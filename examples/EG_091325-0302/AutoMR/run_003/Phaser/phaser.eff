@@ -1,0 +1,30 @@
+phaser {
+  mode = MR_AUTO
+  hklin = "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz"
+  chain_type = dna
+  composition {
+    chain {
+      chain_type = na
+      comp_type = nres
+      nres = 42
+      num = 1
+    }
+  }
+  ensemble {
+    model_id = nasolve_model
+    use_hetatm = True
+    coordinates {
+      pdb = "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_003/Model/input_model.pdb"
+    }
+  }
+  search {
+    ensembles = nasolve_model
+    copies = 1
+  }
+  output_dir = "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_003/Phaser"
+  keywords {
+    general {
+      root = "PHASER"
+    }
+  }
+}

@@ -16,6 +16,7 @@ from .config import AppConfig, PhenixSettings
 
 
 REQUIRED_PROGRAMS = ("phenix.phaser", "phenix.ready_set", "phenix.refine")
+OPTIONAL_PROGRAMS = ("phenix.mtz.dump",)
 VERSION_PROGRAM = "phenix.version"
 
 
@@ -104,7 +105,7 @@ def _from_environment(
     path_value = environment.get("PATH", "")
     resolved: dict[str, Path] = {}
     missing: list[str] = []
-    for program in (*REQUIRED_PROGRAMS, VERSION_PROGRAM):
+    for program in (*REQUIRED_PROGRAMS, *OPTIONAL_PROGRAMS, VERSION_PROGRAM):
         found = shutil.which(program, path=path_value)
         if found:
             resolved[program] = Path(found).resolve()

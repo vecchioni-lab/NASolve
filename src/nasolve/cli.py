@@ -7,6 +7,7 @@ import importlib.metadata
 import sys
 from pathlib import Path
 
+from .automr import AutoMRInputError, ModelAssessmentError, prepare_automr
 from .config import ConfigError, default_config_path, load_config, save_config
 from .phenix_runtime import (
     PhenixDiscoveryError,
@@ -14,6 +15,7 @@ from .phenix_runtime import (
     installation_from_candidate,
     remember_phenix,
 )
+from .phaser import PhaserExecutionError, execute_phaser
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -25,6 +27,40 @@ def build_parser() -> argparse.ArgumentParser:
     phenix = configure_sub.add_parser("phenix", help="discover, validate, and remember Phenix")
     phenix.add_argument("path", nargs="?", help="Phenix root, phenix_env.sh, or phenix executable")
     subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
+    automr = subparsers.add_parser(
+        "automr", help="validate and freeze molecular-replacement inputs"
+    )
+    automr.add_argument(
+        "dataset", nargs="?", default=Path("."), type=Path,
+        help="dataset directory (default: current directory)",
+    )
+    frames = automr.add_mutually_exclusive_group()
+    frames.add_argument(
+        "-W", "--w-frame", dest="frame", action="store_const", const="W",
+        help="use the standard 5W6W/W frame",
+    )
+    frames.add_argument(
+        "-3GBI", dest="frame", action="store_const", const="3GBI",
+        help="use the standard 3GBI frame",
+    )
+    frames.add_argument("--frame", help="standard frame name (W, 5W6W, or 3GBI)")
+    automr.add_argument("--pair", help="ordered standard-site pair, for example D:T")
+    automr.add_argument(
+        "--allow-p1-standard", action="store_true",
+        help="strongly discouraged: allow a standard frame in P1 using three MR copies",
+    )
+    automr.add_argument(
+        "--config", type=Path,
+        help="input file (default: DATASET/nasolve.txt; generated there when absent)",
+    )
+    automr.add_argument(
+        "--frames-dir", type=Path,
+        help="approved MR frame directory (normally discovered from the repository/package)",
+    )
+    automr.add_argument(
+        "--execute", action="store_true",
+        help="run Phenix Phaser after the guarded preflight",
+    )
     return parser
 
 
@@ -81,10 +117,65 @@ def _check(explicit: str | None) -> int:
     return 0 if na_version != "not installed" else 1
 
 
+def _automr(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+        installation = discover_phenix(config, explicit=args.phenix_root)
+        if args.phenix_root is None:
+            remember_phenix(config, installation)
+            save_config(config)
+        result = prepare_automr(
+            args.dataset,
+            config_path=args.config,
+            frame_override=args.frame,
+            pair_override=args.pair,
+            frames_dir=args.frames_dir,
+            allow_p1_standard=args.allow_p1_standard,
+            mtz_dump_executable=installation.executables.get("phenix.mtz.dump"),
+            phenix_environment=installation.environment,
+        )
+        if args.execute:
+            phaser = execute_phaser(
+                result.report_path,
+                installation.executables["phenix.phaser"],
+                environment=installation.environment,
+                phenix_version=installation.version,
+            )
+    except (
+        AutoMRInputError,
+        ModelAssessmentError,
+        ConfigError,
+        PhenixDiscoveryError,
+        PhaserExecutionError,
+    ) as exc:
+        print(f"AutoMR input error: {exc}", file=sys.stderr)
+        return 2
+    if args.execute:
+        print(f"{phaser.status}: {phaser.message}")
+        print("Phaser executed: yes")
+        print(f"Run directory: {phaser.run_directory}")
+        print(f"Phaser log: {phaser.log_path}")
+        print(f"Report: {phaser.report_path}")
+        if phaser.solution_pdb:
+            print(f"MR model: {phaser.solution_pdb}")
+        if phaser.solution_mtz:
+            print(f"MR reflections: {phaser.solution_mtz}")
+        return phaser.exit_code
+    print(f"{result.status}: {result.message}")
+    print("Phaser executed: no (preflight milestone)")
+    print(f"Run directory: {result.run_directory}")
+    print(f"Report: {result.report_path}")
+    if result.generated_config:
+        print(f"Generated: {args.dataset.expanduser().resolve() / 'nasolve.txt'}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "configure" and args.configure_target == "phenix":
         return _configure_phenix(args.path)
     if args.command == "check":
         return _check(args.phenix_root)
+    if args.command == "automr":
+        return _automr(args)
     return 2

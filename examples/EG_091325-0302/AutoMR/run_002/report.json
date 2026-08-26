@@ -1,0 +1,179 @@
+{
+  "configuration": {
+    "effective_snapshot": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_002/nasolve.input.txt",
+    "generated": false,
+    "source": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/nasolve.txt"
+  },
+  "created_utc": "2026-08-26T11:32:23.691445+00:00",
+  "dataset": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302",
+  "execution": {
+    "phaser_ran": false
+  },
+  "frame": {
+    "accession": "5W6W",
+    "aliases": [
+      "W",
+      "5W6W"
+    ],
+    "catalogue_directory": "5W6W",
+    "fallback_model": "C_G.pdb",
+    "name": "W"
+  },
+  "inputs": {
+    "catalogue_warnings": [],
+    "metadata": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/Data_1_autoPROC_STARANISO_all.cif",
+    "model": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/MR_frames/5W6W/E_G.pdb",
+    "model_source": "standard frame catalogue (W; exact pair)",
+    "reflections": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "summary": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/summary.html"
+  },
+  "message": "AutoMR inputs are frozen and ready for the Phaser execution layer",
+  "mode": "standard",
+  "model_assessment": {
+    "atom_count": 860,
+    "byte_size": 100199,
+    "chains": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "copied_model": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_002/Model/input_model.pdb",
+    "duplicate_atom_identities": 0,
+    "hetero_residue_count": 1,
+    "heteroatom_count": 20,
+    "heteroatoms_preserved": true,
+    "malformed_coordinate_records": 0,
+    "maximum_occupancy": 1.0,
+    "minimum_occupancy": 1.0,
+    "missing_occupancies": 0,
+    "modified_polymer_atom_count": 20,
+    "modified_polymer_residue_count": 1,
+    "nonpolymer_hetero_residue_count": 0,
+    "polymer_atom_count": 860,
+    "polymer_residue_count": 42,
+    "polymer_residue_ids_by_chain": {
+      "A": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21"
+      ],
+      "B": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "C": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "D": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    "polymer_residues_by_chain": {
+      "A": 21,
+      "B": 7,
+      "C": 7,
+      "D": 7
+    },
+    "sha256": "8eba4386c4dddf26f65d777ba59d65367d4c1aa3ccbdbb5618f5d332158632f0",
+    "source": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/MR_frames/5W6W/E_G.pdb",
+    "warnings": [],
+    "zero_occupancies": 0
+  },
+  "post_mr_plan": {
+    "application_order": [
+      "sequences",
+      "standard_pair",
+      "explicit_mutations"
+    ],
+    "execution": "not performed by AutoMR preflight",
+    "mutations": {},
+    "sequences": {},
+    "standard_pair": {
+      "exact_model_match": true,
+      "ligand_codes": [
+        "DE",
+        "DG"
+      ],
+      "model_pair": {
+        "ligand_codes": [
+          "DE",
+          "DG"
+        ],
+        "tokens": [
+          "E",
+          "G"
+        ]
+      },
+      "mutation_required": false,
+      "ordered_roles": [
+        "first standard site",
+        "second standard site"
+      ],
+      "requested": "E:G",
+      "site_assignment": "pending standard-frame site manifest"
+    }
+  },
+  "schema_version": 1,
+  "stage": "preflight",
+  "status": "READY",
+  "symmetry": {
+    "evidence": {
+      "cif_symbols": [
+        "H 3",
+        "H 3",
+        "H 3",
+        "H 3",
+        "H 3"
+      ],
+      "mtz_matrix_symbol": "R 3 :H",
+      "mtz_number": 146,
+      "mtz_symbol": "H 3",
+      "normalized_class": "H3/R3",
+      "summary_symbol": "H3"
+    },
+    "final_output_patch": {
+      "reason": "restore the input space-group setting label after structure solution",
+      "required": true,
+      "target_symbol": "H 3"
+    },
+    "mr_copies": 1,
+    "red_flag": null
+  },
+  "workflow": "automr"
+}

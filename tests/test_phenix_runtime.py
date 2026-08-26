@@ -5,14 +5,19 @@ import unittest
 from pathlib import Path
 
 from nasolve.config import AppConfig
-from nasolve.phenix_runtime import REQUIRED_PROGRAMS, discover_phenix, installation_from_candidate
+from nasolve.phenix_runtime import (
+    OPTIONAL_PROGRAMS,
+    REQUIRED_PROGRAMS,
+    discover_phenix,
+    installation_from_candidate,
+)
 
 
 class PhenixRuntimeTests(unittest.TestCase):
     def fake_install(self, root: Path) -> Path:
         bin_dir = root / "bin"
         bin_dir.mkdir(parents=True)
-        for name in (*REQUIRED_PROGRAMS, "phenix.version"):
+        for name in (*REQUIRED_PROGRAMS, *OPTIONAL_PROGRAMS, "phenix.version"):
             path = bin_dir / name
             text = "#!/bin/sh\necho 'Phenix 9.8.7'\n" if name == "phenix.version" else "#!/bin/sh\nexit 0\n"
             path.write_text(text)
@@ -26,6 +31,7 @@ class PhenixRuntimeTests(unittest.TestCase):
             installation = installation_from_candidate(root, base_environment={"PATH": ""})
             self.assertEqual(installation.version, "9.8.7")
             self.assertEqual(installation.root, root.resolve())
+            self.assertIn("phenix.mtz.dump", installation.executables)
 
     def test_path_discovery(self):
         with tempfile.TemporaryDirectory() as directory:
