@@ -9,6 +9,12 @@ from pathlib import Path
 
 from .automr import AutoMRInputError, ModelAssessmentError, prepare_automr
 from .config import ConfigError, default_config_path, load_config, save_config
+from .coot_runtime import (
+    CootDiscoveryError,
+    discover_coot,
+    installation_from_candidate as coot_from_candidate,
+    remember_coot,
+)
 from .phenix_runtime import (
     PhenixDiscoveryError,
     discover_phenix,
@@ -16,6 +22,7 @@ from .phenix_runtime import (
     remember_phenix,
 )
 from .phaser import PhaserExecutionError, execute_phaser
+from .postmr import PostMRPreparationError, prepare_postmr
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -26,6 +33,8 @@ def build_parser() -> argparse.ArgumentParser:
     configure_sub = configure.add_subparsers(dest="configure_target", required=True)
     phenix = configure_sub.add_parser("phenix", help="discover, validate, and remember Phenix")
     phenix.add_argument("path", nargs="?", help="Phenix root, phenix_env.sh, or phenix executable")
+    coot = configure_sub.add_parser("coot", help="discover, validate, and remember Coot")
+    coot.add_argument("path", nargs="?", help="Coot executable or installation directory")
     subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
     automr = subparsers.add_parser(
         "automr", help="validate and freeze molecular-replacement inputs"
@@ -61,6 +70,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--execute", action="store_true",
         help="run Phenix Phaser after the guarded preflight",
     )
+    postmr = subparsers.add_parser(
+        "postmr", help="prepare an accepted Phaser solution for refinement"
+    )
+    postmr.add_argument("run", type=Path, help="completed AutoMR run directory")
+    postmr.add_argument("--coot", help="one-run Coot executable override")
+    postmr.add_argument(
+        "--allow-mr-review", action="store_true",
+        help="explicitly continue from a TFZ 7.0-7.99 MR_REVIEW result",
+    )
     return parser
 
 
@@ -93,6 +111,27 @@ def _configure_phenix(path: str | None) -> int:
     return 0
 
 
+def _configure_coot(path: str | None) -> int:
+    candidate = path
+    if not candidate:
+        if not sys.stdin.isatty():
+            print("Coot path is required in non-interactive mode.", file=sys.stderr)
+            return 2
+        candidate = input("Coot executable or installation folder: ").strip()
+    try:
+        installation = coot_from_candidate(candidate)
+        config = load_config()
+        remember_coot(config, installation)
+        saved_at = save_config(config)
+    except (ConfigError, CootDiscoveryError) as exc:
+        print(f"Coot configuration failed: {exc}", file=sys.stderr)
+        return 1
+    print(f"Coot {installation.version}: OK")
+    print(f"Executable: {installation.executable}")
+    print(f"Saved: {saved_at}")
+    return 0
+
+
 def _check(explicit: str | None) -> int:
     print(f"Python {sys.version.split()[0]}: OK")
     na_version = _narestraints_version()
@@ -114,6 +153,16 @@ def _check(explicit: str | None) -> int:
         print(f"  {name}: {executable}")
     if saved_at:
         print(f"Remembered: {saved_at}")
+    try:
+        coot = discover_coot(config)
+        remember_coot(config, coot)
+        save_config(config)
+    except CootDiscoveryError as exc:
+        print("Coot: NOT CONFIGURED (needed only when PostMR must mutate canonical bases)")
+        print(str(exc))
+    else:
+        print(f"Coot {coot.version}: OK")
+        print(f"  coot: {coot.executable}")
     return 0 if na_version != "not installed" else 1
 
 
@@ -170,12 +219,56 @@ def _automr(args: argparse.Namespace) -> int:
     return 0
 
 
+def _postmr(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+        phenix = discover_phenix(config, explicit=args.phenix_root)
+        if args.phenix_root is None:
+            remember_phenix(config, phenix)
+        coot = None
+        try:
+            coot = discover_coot(config, explicit=args.coot)
+        except CootDiscoveryError:
+            if args.coot:
+                raise
+        else:
+            remember_coot(config, coot)
+        save_config(config)
+        result = prepare_postmr(
+            args.run,
+            phenix.executables["phenix.ready_set"],
+            coot_executable=coot.executable if coot else None,
+            environment=phenix.environment,
+            allow_mr_review=args.allow_mr_review,
+        )
+    except (
+        ConfigError,
+        CootDiscoveryError,
+        PhenixDiscoveryError,
+        PostMRPreparationError,
+    ) as exc:
+        print(f"PostMR preparation error: {exc}", file=sys.stderr)
+        return 2
+    print(f"{result.status}: {result.message}")
+    print(f"Run directory: {result.run_directory}")
+    print(f"Prepared model: {result.model_path}")
+    print(f"ReadySet log: {result.readyset_log}")
+    for restraint in result.restraint_paths:
+        print(f"Restraint: {restraint}")
+    print(f"Report: {result.report_path}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "configure" and args.configure_target == "phenix":
         return _configure_phenix(args.path)
+    if args.command == "configure" and args.configure_target == "coot":
+        return _configure_coot(args.path)
     if args.command == "check":
         return _check(args.phenix_root)
     if args.command == "automr":
         return _automr(args)
+    if args.command == "postmr":
+        return _postmr(args)
     return 2

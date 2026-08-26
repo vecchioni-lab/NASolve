@@ -1,4 +1,5 @@
 import stat
+import json
 from pathlib import Path
 
 
@@ -86,3 +87,58 @@ def make_phaser(
     )
     executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
     return executable
+
+
+def make_ready_set(root: Path) -> Path:
+    executable = root / "phenix.ready_set"
+    executable.write_text(
+        "#!/bin/sh\n"
+        "cp \"$1\" prepared_model.updated.pdb\n"
+        "printf 'data_ligands\\n' > prepared_model.ligands.cif\n"
+        "printf 'ready_set {}\\n' > prepared_model.eff\n"
+        "echo 'Build ligand and use user provided restraints : 8RO'\n"
+    )
+    executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
+    return executable
+
+
+def make_coot(root: Path, version: str = "1.1.10") -> Path:
+    executable = root / "coot"
+    executable.write_text(
+        "#!/bin/sh\n"
+        "if [ \"$1\" = \"--version\" ]; then\n"
+        f"  echo '{version}'\n"
+        "  exit 0\n"
+        "fi\n"
+        "echo 'NASOLVE_COOT_PYTHON_OK'\n"
+        "if [ -n \"$NASOLVE_COOT_OUTPUT\" ]; then\n"
+        "  cp \"$NASOLVE_COOT_INPUT\" \"$NASOLVE_COOT_OUTPUT\"\n"
+        "fi\n"
+    )
+    executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
+    return executable
+
+
+def make_postmr_report(run: Path, model: Path, first: str = "8RO", second: str = "DG") -> Path:
+    phaser = run / "Phaser"
+    phaser.mkdir(parents=True)
+    solution = phaser / "mr_solution.pdb"
+    solution.write_text(model.read_text())
+    report = {
+        "workflow": "automr",
+        "stage": "phaser",
+        "status": "MR_SUCCESS",
+        "frame": {"name": "W"},
+        "post_mr_plan": {
+            "sequences": {},
+            "standard_pair": {
+                "requested": "E:G",
+                "ligand_codes": [first, second],
+            },
+            "mutations": {},
+        },
+        "execution": {"phaser": {"solution_pdb": str(solution.resolve())}},
+    }
+    path = run / "report.json"
+    path.write_text(json.dumps(report))
+    return path

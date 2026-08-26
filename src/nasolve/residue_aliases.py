@@ -24,7 +24,7 @@ RESIDUE_ALIASES: dict[str, str] = {
     "rG": "G",
     "U": "DU",
     "F": "DF",
-    "E": "DE",
+    "E": "8RO",
     "Q": "S6G",
     "B": "IGU",
     "rB": "IG",
@@ -66,7 +66,9 @@ def known_ligand_codes() -> frozenset[str]:
         records = load_residue_records()
     except Exception as exc:  # pragma: no cover - surfaced with useful context
         raise LigandCodeError(f"Could not load the NARestraints residue library: {exc}") from exc
-    return frozenset(str(record["Ligand code"]) for record in records)
+    from .curated_ligands import CURATED_LIGAND_CODES
+
+    return frozenset(str(record["Ligand code"]) for record in records) | CURATED_LIGAND_CODES
 
 
 def resolve_ligand(
@@ -84,7 +86,13 @@ def resolve_ligand(
         )
     used_alias = cleaned in RESIDUE_ALIASES
     code = RESIDUE_ALIASES.get(cleaned, cleaned)
-    authoritative = known_ligand_codes() if valid_codes is None else frozenset(valid_codes)
+    from .curated_ligands import CURATED_LIGAND_CODES
+
+    authoritative = (
+        known_ligand_codes()
+        if valid_codes is None
+        else frozenset(valid_codes) | CURATED_LIGAND_CODES
+    )
     if code not in authoritative:
         if used_alias:
             raise LigandCodeError(

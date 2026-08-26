@@ -21,6 +21,9 @@ class ResidueAliasTests(unittest.TestCase):
         self.assertEqual(resolve_ligand("F", VALID).ligand_code, "DF")
         self.assertEqual(resolve_ligand("A1AAZ", VALID).ligand_code, "A1AAZ")
 
+    def test_e_uses_curated_8ro_identity(self):
+        self.assertEqual(resolve_ligand("E", VALID).ligand_code, "8RO")
+
     def test_ordered_pair(self):
         first, second = resolve_pair("D:T", VALID)
         self.assertEqual((first.ligand_code, second.ligand_code), ("1AP", "DT"))

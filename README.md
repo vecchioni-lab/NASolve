@@ -5,10 +5,10 @@ organizes autoPROC/STARANISO datasets, selects or checks an MR model, runs
 Phenix Phaser with reproducible settings, preserves modified residues and
 other heteroatoms, and classifies the result by TFZ.
 
-The present release provides the **AutoMR** layer. Later NASolve layers will
-handle model mutation, nucleic-acid restraint generation, ReadySet, refinement,
-and final validation. Those later operations are not performed by the current
-command.
+The present release provides **AutoMR** and the first guarded **PostMR**
+preparation layer. PostMR applies supported site changes, generates the
+5W6W restraint stack, supplies curated ligand dictionaries, and runs ReadySet
+without adding hydrogens. Refinement and final validation remain later layers.
 
 ## What AutoMR does
 
@@ -31,6 +31,7 @@ NASolve does not edit the original dataset or search model.
 - Git
 - A working Phenix installation containing `phenix.phaser`,
   `phenix.mtz.dump`, `phenix.ready_set`, and `phenix.refine`
+- Coot with embedded Python when a requested canonical base mutation is needed
 - [NARestraints](https://github.com/vecchioni-lab/NARestraints), installed
   automatically as a NASolve dependency
 
@@ -95,6 +96,14 @@ nasolve --phenix-root /path/to/phenix automr DATASET --execute
 ```
 
 The environment variable `NASOLVE_PHENIX_ROOT` provides another override.
+
+Coot is discovered independently from the current `PATH`, saved
+configuration, and standard platform locations. Configure it explicitly when
+needed with:
+
+```bash
+nasolve configure coot /path/to/coot
+```
 
 ## Repository layout
 
@@ -295,9 +304,9 @@ match the model's polymer-residue count for that chain. Mutation sites use
 `HETATM` count toward the chain length when their residue code occurs in the
 NARestraints library.
 
-Sequence and mutation sections are validated and preserved in the current
-release, but they are **not yet applied to the Phaser solution**. They are the
-input contract for the forthcoming post-MR mutation layer.
+Sequence and mutation sections are validated and preserved. Explicit mutation
+sites are applied by `nasolve postmr`; full-sequence mutation remains a closed
+gate and is not silently ignored.
 
 Command-line frame and pair options override values from `nasolve.txt`; the
 effective configuration is always frozen in the new run directory. Use
@@ -317,7 +326,7 @@ Any literal ligand code present in NARestraints may also be used directly.
 | `A` | `DA` | `rB` | `IG` |
 | `U` | `DU` | `rP` | `50L` |
 | `F` | `DF` | `rZ` | `50N` |
-| `E` | `DE` | `rI` | `I` |
+| `E` | `8RO` | `rI` | `I` |
 | `Q` | `S6G` |  |  |
 | `B` | `IGU` |  |  |
 | `P` | `DP` |  |  |
@@ -328,6 +337,40 @@ Any literal ligand code present in NARestraints may also be used directly.
 
 For example, `F` selects `DF`. A different known ligand such as `A1AAZ` must
 be written explicitly.
+
+## Preparing an accepted MR solution
+
+After a run reaches `MR_SUCCESS`, prepare it for refinement with:
+
+```bash
+nasolve postmr my_dataset/AutoMR/run_004
+```
+
+`MR_REVIEW` runs stop unless the user explicitly supplies
+`--allow-mr-review`. Failed MR runs cannot enter PostMR.
+
+For the W/5W6W frame, PostMR uses the fixed standard sites `A:12` and `B:4`.
+It applies ordinary DNA/RNA base changes through headless Coot. Modified bases
+must already have an approved coordinate template or a curated label-only
+normalization; unsupported construction stops and asks the user for a model.
+Full-sequence mutation is retained in `nasolve.txt` but is not yet applied.
+
+The 5W6W restraint stack contains:
+
+- NARestraints output generated from `Std_padd.txt` (`A 11:13` paired with
+  `B 5:3`), including its stacking restraints; and
+- 17 additional scaffold base-pair definitions from the packaged 5W6W
+  secondary-structure template.
+
+The scaffold template contains no stacking pairs and omits the two base pairs
+already supplied by `Std_padd.txt`, preventing duplicate restraints.
+
+Known problematic Phenix residues use reviewed dictionaries from NASolve's
+local ligand library. The `E` token resolves to `8RO`; legacy `E` runs frozen
+as `DE` are migrated during PostMR, while NARestraints receives a temporary
+compatibility label. ReadySet is launched in its own directory with
+`hydrogens=False` and its output is rejected if hydrogens appear or atom counts
+change unexpectedly.
 
 ## Run directories and outputs
 
@@ -345,13 +388,30 @@ my_dataset/
         ├── Model/
         │   ├── input_model.pdb
         │   └── assessment.json
-        └── Phaser/
+        ├── Phaser/
             ├── phaser.eff
             ├── phaser.log
             ├── PHASER.1.pdb
             ├── PHASER.1.mtz
             ├── mr_solution.pdb
             └── mr_solution.mtz
+        └── PostMR/
+            ├── postmr.log
+            ├── report.json
+            ├── Model/
+            │   ├── mr_solution.pdb
+            │   ├── prepared_model.pdb
+            │   └── readyset_model.pdb
+            ├── Coot/
+            ├── Restraints/
+            │   ├── Std_padd.txt
+            │   ├── narestraints_Std_padd.eff
+            │   ├── 5W6W_secondary_structure.eff
+            │   └── 8RO.cif
+            └── ReadySet/
+                ├── ready_set.log
+                ├── prepared_model.updated.pdb
+                └── prepared_model.ligands.cif
 ```
 
 `Model/input_model.pdb` is a checksum-verified copy of the selected search
@@ -388,13 +448,14 @@ a PDB and MTZ output. Input, discovery, and preflight errors exit with code 2.
 
 ## Current scope
 
-AutoMR currently supports PDB search models and Phenix Phaser MR_AUTO. It does
-not yet:
+AutoMR currently supports PDB search models and Phenix Phaser MR_AUTO. PostMR
+currently implements W/5W6W sites, canonical Coot mutations, curated label
+normalization, NARestraints, and hydrogen-free ReadySet. It does not yet:
 
-- apply full sequences or mutations to the MR solution;
-- invoke Coot;
-- generate NARestraints restraints;
-- run `phenix.ready_set` or `phenix.refine`;
+- apply full sequences;
+- construct arbitrary modified residues without an approved template;
+- prepare the 3GBI frame, whose standard-site manifest is not yet defined;
+- run `phenix.refine`;
 - apply the final H3/R3 notation patch; or
 - search multiple catalogue models automatically.
 

@@ -21,5 +21,13 @@ nasolve = "nasolve.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+nasolve = [
+  "data/ligands/*.cif",
+  "data/restraints/*.eff",
+  "data/restraints/*.txt",
+  "data/*.json",
+]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]

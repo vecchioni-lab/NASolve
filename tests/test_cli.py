@@ -17,6 +17,12 @@ class CLITests(unittest.TestCase):
         self.assertTrue(shunted.allow_p1_standard)
         self.assertTrue(shunted.execute)
 
+    def test_postmr_command(self):
+        parser = build_parser()
+        args = parser.parse_args(["postmr", "run_004", "--allow-mr-review"])
+        self.assertEqual(args.command, "postmr")
+        self.assertTrue(args.allow_mr_review)
+
 
 if __name__ == "__main__":
     unittest.main()

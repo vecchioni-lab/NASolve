@@ -17,6 +17,10 @@ When multiple standard installations exist, NASolve selects the highest validate
 An automatically discovered path is saved and revalidated on use. Each structure-solution report will record the exact
 Phenix version and executable paths used.
 
+Coot uses the same pattern independently: a one-run path, `NASOLVE_COOT`,
+saved configuration, `PATH`, then bounded standard locations. Validation checks
+both `coot --version` and the embedded Python API required by headless mutation.
+
 ## AutoMR input contract
 
 `nasolve automr DATASET` uses one shared `nasolve.txt` schema for standard and
@@ -153,9 +157,37 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 1. Validate and freeze AutoMR input and assess the unmodified search model.
 2. Run Phaser in an isolated `Phaser/` directory without stripping heteroatoms.
 3. Classify the best TFZ: `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
-4. Hand the recorded sequence/mutation plan to the later mutation layer.
-5. Call NARestraints, ReadySet, and `phenix.refine` behind their own validation gates.
+4. `nasolve postmr RUN` applies supported site changes, builds the restraint
+   stack, and runs ReadySet with hydrogens disabled.
+5. Call `phenix.refine` behind its own validation gate.
 
 The default command still stops after step 1. `nasolve automr ... --execute`
 runs step 2 and applies step 3. A passing run exits 0; TFZ 7.0–7.99 is retained
 for review and exits 3; failure or missing output exits 4.
+
+## PostMR contract
+
+PostMR is deliberately a separate command so an accepted Phaser result can be
+inspected and rerun deterministically before refinement. It refuses to
+overwrite an existing `PostMR/` directory. `MR_SUCCESS` is accepted;
+`MR_REVIEW` requires an explicit override; other statuses stop.
+
+The W-frame manifest assigns requested pair roles to `A:12` and `B:4`.
+Canonical DNA/RNA changes use a generated headless Coot script. Coot runs with
+its backup directory redirected beneath the run. Curated label-only changes
+do not invoke Coot. Full sequences and arbitrary modified-base construction
+remain closed gates rather than being silently ignored.
+
+For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
+(`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The
+portable 5W6W secondary-structure template contains 17 non-overlapping
+scaffold base pairs, no stacking pairs, and no historical input paths, cell,
+map, output, or GUI settings.
+
+Problematic Phenix components are explicit curated-library entries. `8RO` is
+the chemical identity for user token `E`; `DE` remains only its accepted model
+and NARestraints compatibility label. ReadySet receives the curated CIF,
+executes with `actions.hydrogens=False`, and is run with `cwd` set to its own
+directory because Phenix 1.20.1 accepts but ignores `input.output_dir`. The
+output is rejected if it contains hydrogen coordinates or changes total or
+HETATM atom counts.

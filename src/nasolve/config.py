@@ -25,9 +25,17 @@ class PhenixSettings:
 
 
 @dataclass
+class CootSettings:
+    executable: str | None = None
+    version: str | None = None
+    validated_utc: str | None = None
+
+
+@dataclass
 class AppConfig:
     schema_version: int = 1
     phenix: PhenixSettings = field(default_factory=PhenixSettings)
+    coot: CootSettings = field(default_factory=CootSettings)
 
 
 def default_config_path(
@@ -57,6 +65,7 @@ def load_config(path: Path | None = None) -> AppConfig:
     try:
         payload = json.loads(config_path.read_text(encoding="utf-8"))
         phenix_payload = payload.get("phenix", {})
+        coot_payload = payload.get("coot", {})
         return AppConfig(
             schema_version=int(payload.get("schema_version", 1)),
             phenix=PhenixSettings(
@@ -65,6 +74,11 @@ def load_config(path: Path | None = None) -> AppConfig:
                 version=phenix_payload.get("version"),
                 executables=dict(phenix_payload.get("executables", {})),
                 validated_utc=phenix_payload.get("validated_utc"),
+            ),
+            coot=CootSettings(
+                executable=coot_payload.get("executable"),
+                version=coot_payload.get("version"),
+                validated_utc=coot_payload.get("validated_utc"),
             ),
         )
     except (OSError, TypeError, ValueError, json.JSONDecodeError) as exc:
