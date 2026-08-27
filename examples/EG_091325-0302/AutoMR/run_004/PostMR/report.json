@@ -1,0 +1,47 @@
+{
+  "coot": {
+    "executable": "/opt/homebrew/Cellar/coot/1.1.10/bin/coot",
+    "log": null,
+    "ran": false
+  },
+  "created_utc": "2026-08-26T15:49:05.746053+00:00",
+  "input_model": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/Phaser/mr_solution.pdb",
+  "input_sha256": "1e18d69b49cfd20414814615b828c741bda3702a9f6f4a0d5ea1433e776c7652",
+  "message": "Post-MR model, restraints, and ReadySet outputs are ready for refinement",
+  "mutation_actions": [
+    {
+      "after": "8RO",
+      "before": "DE",
+      "method": "curated-label-normalization",
+      "site": "A:12"
+    },
+    {
+      "after": "DG",
+      "before": "DG",
+      "method": "none",
+      "site": "B:4"
+    }
+  ],
+  "prepared_model": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/Model/readyset_model.pdb",
+  "prepared_sha256": "287f876b7314fd3b48fce040740c675dec0dc8a0eae0d117162367accc98d7c8",
+  "readyset": {
+    "command": [
+      "/Applications/phenix-1.20.1-4487/build/bin/phenix.ready_set",
+      "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/Model/prepared_model.pdb",
+      "ready_set.actions.hydrogens=False",
+      "ready_set.actions.ligands=True",
+      "ready_set.actions.optimise_ligand_geometry=False",
+      "ready_set.input.cif_file_name=/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/Restraints/curated_ligands.cif"
+    ],
+    "generated_ligand_cif": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/ReadySet/prepared_model.ligands.cif",
+    "hydrogens": false,
+    "log": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/ReadySet/ready_set.log",
+    "updated_model": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/ReadySet/prepared_model.updated.pdb"
+  },
+  "restraints": [
+    "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/Restraints/narestraints_Std_padd.eff",
+    "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/Restraints/5W6W_secondary_structure.eff",
+    "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_004/PostMR/Restraints/8RO.cif"
+  ],
+  "status": "POSTMR_READY"
+}

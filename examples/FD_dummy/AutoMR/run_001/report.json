@@ -1,0 +1,207 @@
+{
+  "configuration": {
+    "effective_snapshot": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/nasolve.input.txt",
+    "generated": false,
+    "source": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/nasolve.txt"
+  },
+  "created_utc": "2026-08-27T08:40:51.835991+00:00",
+  "dataset": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy",
+  "execution": {
+    "phaser": {
+      "best_llg": 245.0,
+      "best_tfz": 10.9,
+      "command": [
+        "/Applications/phenix-1.20.1-4487/build/bin/phenix.phaser",
+        "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Phaser/phaser.eff"
+      ],
+      "composition_nres": 42,
+      "ensemble_count": 1,
+      "ensemble_id": "nasolve_model",
+      "executable": "/Applications/phenix-1.20.1-4487/build/bin/phenix.phaser",
+      "log": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Phaser/phaser.log",
+      "model_rmsd": 1.0,
+      "parameters": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Phaser/phaser.eff",
+      "phenix_version": "1.20.1",
+      "preserve_heteroatoms": true,
+      "raw_solution_mtz": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Phaser/PHASER.1.mtz",
+      "raw_solution_pdb": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Phaser/PHASER.1.pdb",
+      "return_code": 0,
+      "search_copies": 1,
+      "solution_mtz": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Phaser/mr_solution.mtz",
+      "solution_pdb": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Phaser/mr_solution.pdb"
+    },
+    "phaser_ran": true
+  },
+  "frame": {
+    "accession": "5W6W",
+    "aliases": [
+      "W",
+      "5W6W"
+    ],
+    "catalogue_directory": "5W6W",
+    "fallback_model": "C_G.pdb",
+    "name": "W"
+  },
+  "inputs": {
+    "catalogue_warnings": [],
+    "metadata": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/Data_1_autoPROC_STARANISO_all.cif",
+    "model": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/MR_frames/5W6W/C_G.pdb",
+    "model_source": "standard frame catalogue (W; fallback C_G.pdb)",
+    "reflections": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/staraniso_alldata-unique.mtz",
+    "summary": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/summary.html"
+  },
+  "message": "Best TFZ 10.90 passes the 8.0 AutoMR threshold",
+  "mode": "standard",
+  "model_assessment": {
+    "atom_count": 859,
+    "byte_size": 98905,
+    "chains": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "copied_model": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/FD_dummy/AutoMR/run_001/Model/input_model.pdb",
+    "duplicate_atom_identities": 0,
+    "hetero_residue_count": 0,
+    "heteroatom_count": 0,
+    "heteroatoms_preserved": true,
+    "malformed_coordinate_records": 0,
+    "maximum_occupancy": 1.0,
+    "minimum_occupancy": 1.0,
+    "missing_occupancies": 0,
+    "modified_polymer_atom_count": 0,
+    "modified_polymer_residue_count": 0,
+    "nonpolymer_hetero_residue_count": 0,
+    "polymer_atom_count": 859,
+    "polymer_residue_count": 42,
+    "polymer_residue_ids_by_chain": {
+      "A": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21"
+      ],
+      "B": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "C": [
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "D": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    "polymer_residues_by_chain": {
+      "A": 21,
+      "B": 7,
+      "C": 7,
+      "D": 7
+    },
+    "sha256": "92bd4bbe6abcbf54866d88962e5b711624ad3db6a676964cfcb9b6e9a76b156e",
+    "source": "/Users/sav211/Documents/Amsterdam/_Wind/GitHub/NASolve/MR_frames/5W6W/C_G.pdb",
+    "warnings": [],
+    "zero_occupancies": 0
+  },
+  "post_mr_plan": {
+    "application_order": [
+      "sequences",
+      "standard_pair",
+      "explicit_mutations"
+    ],
+    "execution": "not performed by AutoMR preflight",
+    "mutations": {},
+    "sequences": {},
+    "standard_pair": {
+      "exact_model_match": false,
+      "ligand_codes": [
+        "DF",
+        "1AP"
+      ],
+      "model_pair": {
+        "ligand_codes": [
+          "DC",
+          "DG"
+        ],
+        "tokens": [
+          "C",
+          "G"
+        ]
+      },
+      "mutation_required": true,
+      "ordered_roles": [
+        "first standard site",
+        "second standard site"
+      ],
+      "requested": "F:D",
+      "site_assignment": "pending standard-frame site manifest"
+    }
+  },
+  "preflight": {
+    "message": "AutoMR inputs are frozen; a post-MR sequence/mutation plan is recorded",
+    "status": "READY_POST_MR_MUTATION"
+  },
+  "schema_version": 1,
+  "stage": "phaser",
+  "status": "MR_SUCCESS",
+  "symmetry": {
+    "evidence": {
+      "cif_symbols": [
+        "H 3",
+        "H 3",
+        "H 3",
+        "H 3",
+        "H 3"
+      ],
+      "mtz_matrix_symbol": "R 3 :H",
+      "mtz_number": 146,
+      "mtz_symbol": "H 3",
+      "normalized_class": "H3/R3",
+      "summary_symbol": "H3"
+    },
+    "final_output_patch": {
+      "reason": "restore the input space-group setting label after structure solution",
+      "required": true,
+      "target_symbol": "H 3"
+    },
+    "mr_copies": 1,
+    "red_flag": null
+  },
+  "updated_utc": "2026-08-27T08:40:58.959412+00:00",
+  "workflow": "automr"
+}
