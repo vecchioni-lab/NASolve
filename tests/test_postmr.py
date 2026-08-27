@@ -14,6 +14,7 @@ from nasolve.postmr import (
     build_mutation_plan,
     prepare_postmr,
     residue_name,
+    scan_anomalous_candidates,
 )
 
 from .helpers import make_postmr_report, make_ready_set, pdb_record
@@ -177,6 +178,7 @@ class PostMRTests(unittest.TestCase):
             raw_lines = []
             for serial, atom in enumerate(PROTECTED_PARENT_ATOMS, 1):
                 element = "P" if atom == "P" else atom[0]
+                raw_atom = {"OP1": "O1P", "OP2": "O2P"}.get(atom, atom)
                 parent_lines.append(
                     pdb_record(
                         "ATOM",
@@ -197,7 +199,7 @@ class PostMRTests(unittest.TestCase):
                     pdb_record(
                         "HETATM",
                         serial,
-                        atom,
+                        raw_atom,
                         "DF",
                         "A",
                         12,
@@ -251,6 +253,8 @@ class PostMRTests(unittest.TestCase):
             self.assertEqual(float(records["P"][30:38]), 1.0)
             self.assertEqual(float(records["P"][54:60]), 0.75)
             self.assertEqual(float(records["P"][60:66]), 17.0)
+            self.assertEqual(float(records["O1P"][30:38]), 2.0)
+            self.assertEqual(float(records["O2P"][30:38]), 3.0)
             self.assertEqual(float(records["S1"][30:38]), 12.0)
             self.assertEqual(float(records["S1"][38:46]), 0.0)
             self.assertEqual(float(records["S1"][54:60]), 0.50)
@@ -395,6 +399,129 @@ class PostMRTests(unittest.TestCase):
             self.assertEqual(
                 (actions[1].after, actions[1].method, actions[1].parent_code),
                 ("S6G", "coot-parent-overlap", "DG"),
+            )
+
+    def test_q_ic_pair_uses_dg_and_dc_parents(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "model.pdb"
+            model.write_text(postmr_model_text("DC", "DG"))
+            run = root / "run"
+            report_path = make_postmr_report(
+                run,
+                model,
+                first="S6G",
+                second="C38",
+                requested="Q:iC",
+            )
+            actions = build_mutation_plan(json.loads(report_path.read_text()), model)
+            self.assertEqual(
+                [(action.after, action.parent_code) for action in actions],
+                [("S6G", "DG"), ("C38", "DC")],
+            )
+
+    def test_c38_iodine_is_projected_outward_from_c5(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            parent = root / "parent-dc.pdb"
+            raw = root / "raw-c38.pdb"
+            output = root / "restored-c38.pdb"
+            dictionary = root / "C38.cif"
+            dictionary.write_text(
+                "data_C38\nloop_\n"
+                "_chem_comp_atom.comp_id\n"
+                "_chem_comp_atom.atom_id\n"
+                "_chem_comp_atom.pdbx_model_Cartn_x_ideal\n"
+                "_chem_comp_atom.pdbx_model_Cartn_y_ideal\n"
+                "_chem_comp_atom.pdbx_model_Cartn_z_ideal\n"
+                "C38 C5 0.0 0.0 0.0\n"
+                "C38 I 0.0 2.095 0.0\n#\n"
+            )
+            parent_lines = []
+            raw_lines = []
+            for serial, atom in enumerate(PROTECTED_PARENT_ATOMS, 1):
+                element = "P" if atom == "P" else atom[0]
+                parent_lines.append(
+                    pdb_record("ATOM", serial, atom, "DC", "B", 4, element=element)
+                )
+                raw_lines.append(
+                    pdb_record(
+                        "HETATM", serial, atom, "C38", "B", 4,
+                        element=element, x=100.0,
+                    )
+                )
+            parent_lines.extend([
+                pdb_record("ATOM", 90, "C4", "DC", "B", 4, element="C", x=-1.0),
+                pdb_record(
+                    "ATOM", 91, "C5", "DC", "B", 4, element="C", y=1.0,
+                    occupancy=0.65, b_factor=27.0,
+                ),
+                pdb_record("ATOM", 92, "C6", "DC", "B", 4, element="C", x=1.0),
+            ])
+            raw_lines.extend([
+                pdb_record("HETATM", 90, "C4", "C38", "B", 4, element="C"),
+                pdb_record(
+                    "HETATM", 91, "C5", "C38", "B", 4,
+                    element="C", x=100.0, y=100.0,
+                ),
+                pdb_record(
+                    "HETATM", 93, "I", "C38", "B", 4,
+                    element="I", x=101.514, y=100.0,
+                ),
+                pdb_record("HETATM", 92, "C6", "C38", "B", 4, element="C"),
+            ])
+            parent.write_text("".join(parent_lines) + "END\n")
+            raw.write_text("".join(raw_lines) + "END\n")
+            action = MutationAction(
+                "B:4", "DG", "C38", "coot-parent-overlap",
+                parent_code="DC", deposition_code="C38",
+            )
+            restoration = _restore_shared_parent_coordinates(
+                raw,
+                output,
+                (action,),
+                {"B:4": parent},
+                {"C38": dictionary},
+            )
+            records = {
+                line[12:16].strip(): line
+                for line in output.read_text().splitlines()
+                if line.startswith(("ATOM", "HETATM"))
+            }
+            self.assertAlmostEqual(float(records["I"][30:38]), 0.0, places=3)
+            self.assertAlmostEqual(float(records["I"][38:46]), 3.095, places=3)
+            self.assertEqual(float(records["I"][54:60]), 0.65)
+            self.assertEqual(float(records["I"][60:66]), 27.0)
+            self.assertEqual(
+                restoration["B:4"]["substitutions"][0]["placement"],
+                "canonical-ring-outward-bisector",
+            )
+            self.assertEqual(
+                restoration["B:4"]["substitutions"][0]["bond_length_source"],
+                "dictionary-ideal-coordinates",
+            )
+
+    def test_anomalous_scan_is_element_driven_and_nucleotide_scoped(self):
+        with tempfile.TemporaryDirectory() as directory:
+            model = Path(directory) / "heavy-atoms.pdb"
+            model.write_text("".join([
+                pdb_record("HETATM", 1, "C1'", "C38", "A", 12, element="C"),
+                pdb_record("HETATM", 2, "O4'", "C38", "A", 12, element="O"),
+                pdb_record("HETATM", 3, "I", "C38", "A", 12, element="I"),
+                pdb_record("HETATM", 4, "C1'", "NEW", "B", 4, element="C"),
+                pdb_record("HETATM", 5, "C3'", "NEW", "B", 4, element="C"),
+                pdb_record("HETATM", 6, "BR", "NEW", "B", 4, element=""),
+                pdb_record("HETATM", 7, "I", "IOD", "C", 1, element="I"),
+                pdb_record("HETATM", 8, "S6", "S6G", "D", 4, element="S"),
+                "END\n",
+            ]))
+            candidates = scan_anomalous_candidates(model)
+            self.assertEqual(
+                [(item["site"], item["element"], item["element_source"]) for item in candidates],
+                [
+                    ("A:12", "I", "pdb-element-column"),
+                    ("B:4", "BR", "atom-name-fallback"),
+                ],
             )
 
     def test_review_result_requires_explicit_permission(self):

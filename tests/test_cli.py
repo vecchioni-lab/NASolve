@@ -23,6 +23,12 @@ class CLITests(unittest.TestCase):
         self.assertEqual(args.command, "postmr")
         self.assertTrue(args.allow_mr_review)
 
+    def test_autosol_command(self):
+        parser = build_parser()
+        args = parser.parse_args(["autosol", "run_001"])
+        self.assertEqual(args.command, "autosol")
+        self.assertEqual(str(args.run), "run_001")
+
 
 if __name__ == "__main__":
     unittest.main()

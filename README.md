@@ -6,11 +6,14 @@ inputs, selects and validates an approved search model, runs Phenix Phaser with
 reproducible settings, preserves modified residues and other heteroatoms, and
 classifies the solution by TFZ.
 
-The current release provides **AutoMR** and **PostMR**. PostMR constructs
+The current release provides **AutoMR**, **PostMR**, and a conditional
+**AutoSol** branch. PostMR constructs
 supported modified nucleotides through Coot, restores trusted parent
 coordinates, generates the 5W6W restraint stack, supplies reviewed ligand
-dictionaries, and runs ReadySet without hydrogens. Refinement and final
-validation remain deliberately gated for later releases.
+dictionaries, and runs ReadySet without hydrogens. When PostMR finds iodine,
+bromine, or selenium in a nucleotide, AutoSol performs guarded MR-SAD phasing
+and verifies a corresponding anomalous site. Refinement and final validation
+remain deliberately gated for later releases.
 
 ## Quick start
 
@@ -51,6 +54,16 @@ NASolve prints the new numbered run directory. Use that exact path for PostMR:
 RUN=/absolute/path/to/dataset/AutoMR/run_001
 nasolve postmr "$RUN"
 ```
+
+If PostMR reports an anomalous heavy-atom candidate, run the conditional
+MR-SAD layer:
+
+```bash
+nasolve autosol "$RUN"
+```
+
+AutoSol is not run for ordinary structures without a nucleotide-bound iodine,
+bromine, or selenium atom.
 
 For a nonstandard dataset containing one search-model PDB, omit the frame and
 pair options:
@@ -97,7 +110,8 @@ NASolve does not edit the original dataset or search model.
 - Python 3.10 or newer
 - Git
 - A working Phenix installation containing `phenix.phaser`,
-  `phenix.mtz.dump`, `phenix.ready_set`, and `phenix.refine`
+  `phenix.mtz.dump`, `phenix.ready_set`, and `phenix.refine`; the conditional
+  heavy-atom branch additionally requires `phenix.autosol`
 - Coot with embedded Python when a supported base construction is needed
 - [NARestraints](https://github.com/vecchioni-lab/NARestraints), installed
   automatically as a NASolve dependency
@@ -191,6 +205,10 @@ NASolve/
 
 User datasets may live anywhere. They do not need to be copied into
 `examples/` or into the repository.
+
+Each approved standard-frame directory used by AutoSol also contains a
+`seq_base.txt` sequence file. It is a required AutoSol input but is never used
+for model building, because NASolve disables every AutoBuild path.
 
 ## Choosing a run type
 
@@ -395,6 +413,8 @@ Any literal ligand code present in NARestraints may also be used directly.
 | `F` | `DF` | `rZ` | `50N` |
 | `E` | `DE` | `rI` | `I` |
 | `Q` | `S6G` |  |  |
+| `iC` | `C38` |  |  |
+| `iU` | `5IU` |  |  |
 | `B` | `IGU` |  |  |
 | `P` | `DP` |  |  |
 | `Z` | `DZ` |  |  |
@@ -405,7 +425,8 @@ Any literal ligand code present in NARestraints may also be used directly.
 `DE` and `DF` are deliberate three-character compatibility labels used by the
 laboratory PDB/refinement workflow. `DF` records the official five-character
 CCD identity `A1AAZ` for final mmCIF deposition; `1AP` is already an official
-CCD code. Component identities are written to the PostMR report.
+CCD code. `C38` and `5IU` are the official DNA-linking components for iodo-dC
+and iodo-dU. Component identities are written to the PostMR report.
 
 ## Preparing an accepted MR solution
 
@@ -421,8 +442,9 @@ nasolve postmr my_dataset/AutoMR/run_004
 For the W/5W6W frame, PostMR uses the fixed standard sites `A:12` and `B:4`.
 It applies ordinary DNA/RNA base changes through headless Coot. For a supported
 modified nucleotide, Coot first mutates the site to its clean canonical parent
-(`DT` for `DE`/`DF`, `DA` for `1AP`), builds the curated component from its
-dictionary, overlaps it, and replaces the parent. NASolve then restores the
+(`DT` for `DE`/`DF`/`5IU`, `DA` for `1AP`, `DG` for `S6G`, or `DC` for
+`C38`), builds the curated component from its dictionary, overlaps it, and
+replaces the parent. NASolve then restores the
 coordinates, occupancies, and B factors of every atom shared with the parent.
 This preserves the canonical sugar and phosphate exactly while retaining only
 the genuinely modified atoms from the dictionary. Hydrogens are removed.
@@ -434,6 +456,12 @@ determine the final sulfur direction. PostMR projects `S4`, `S1`, or `S6`
 along the canonical parent's `C4-O4`, `C2-O2`, or `C6-O6` vector while keeping
 the dictionary-derived C-S bond length. The substituted atom inherits the
 parent oxygen's occupancy and B factor.
+
+For `C38` and `5IU`, PostMR places iodine outward from mapped ring atom `C5`
+along the external `C4-C5-C6` bisector, using the reviewed dictionary's C-I
+bond length from its ideal-coordinate set. Coot's generated monomer coordinates
+are not used for this distance. The iodine inherits the parent `C5` occupancy
+and B factor.
 
 The 5W6W restraint stack contains:
 
@@ -462,6 +490,12 @@ NARestraints workbook.
 The `Q` token resolves to official CCD `S6G` and uses `DG` as its canonical
 construction parent. NARestraints v1.1.1 also stores its `C5` mapping as `C5 `;
 PostMR trims that exact trailing space in the same process-local adapter.
+
+After ReadySet, PostMR scans nucleotide-like residues for configurable
+anomalous elements. The initial trigger set is iodine, bromine, and selenium;
+it is element-driven rather than restricted to known residue codes. Element
+columns are preferred, with atom-name inference recorded when required. The
+candidate sites and whether AutoSol is required are written to `report.json`.
 
 ## Run directories and outputs
 

@@ -16,7 +16,7 @@ from .config import AppConfig, PhenixSettings
 
 
 REQUIRED_PROGRAMS = ("phenix.phaser", "phenix.ready_set", "phenix.refine")
-OPTIONAL_PROGRAMS = ("phenix.mtz.dump",)
+OPTIONAL_PROGRAMS = ("phenix.mtz.dump", "phenix.autosol")
 VERSION_PROGRAM = "phenix.version"
 
 

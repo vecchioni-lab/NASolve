@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import shlex
 from dataclasses import dataclass
+from math import dist
 from pathlib import Path
 
 
@@ -17,6 +18,15 @@ class AtomSubstitution:
     parent_atom: str
     target_atom: str
     anchor_atom: str
+
+
+@dataclass(frozen=True)
+class RingSubstituent:
+    target_atom: str
+    anchor_atom: str
+    ring_neighbors: tuple[str, str]
+    minimum_bond_length: float = 1.8
+    maximum_bond_length: float = 2.5
 
 
 @dataclass(frozen=True)
@@ -31,6 +41,7 @@ class CuratedLigand:
     required_bonds: tuple[tuple[str, str], ...] = ()
     forbidden_bonds: tuple[tuple[str, str], ...] = ()
     atom_substitutions: tuple[AtomSubstitution, ...] = ()
+    ring_substituents: tuple[RingSubstituent, ...] = ()
 
 
 CURATED_LIGANDS: dict[str, CuratedLigand] = {
@@ -77,6 +88,30 @@ CURATED_LIGANDS: dict[str, CuratedLigand] = {
         required_bonds=(("C6", "S6"),),
         forbidden_bonds=(("N1", "S6"),),
         atom_substitutions=(AtomSubstitution("O6", "S6", "C6"),),
+    ),
+    "C38": CuratedLigand(
+        code="C38",
+        dictionary_filename="C38.cif",
+        accepted_model_labels=("C38",),
+        narestraints_label="C38",
+        description="5-iodo-2'-deoxycytidine-5'-monophosphate",
+        parent_code="DC",
+        deposition_code="C38",
+        required_bonds=(("C5", "I"),),
+        forbidden_bonds=(("C4", "I"), ("C6", "I")),
+        ring_substituents=(RingSubstituent("I", "C5", ("C4", "C6")),),
+    ),
+    "5IU": CuratedLigand(
+        code="5IU",
+        dictionary_filename="5IU.cif",
+        accepted_model_labels=("5IU",),
+        narestraints_label="5IU",
+        description="5-iodo-2'-deoxyuridine-5'-monophosphate",
+        parent_code="DT",
+        deposition_code="5IU",
+        required_bonds=(("C5", "I5"),),
+        forbidden_bonds=(("C4", "I5"), ("C6", "I5")),
+        ring_substituents=(RingSubstituent("I5", "C5", ("C4", "C6")),),
     ),
 }
 
@@ -146,6 +181,73 @@ def _dictionary_bonds(path: Path) -> set[frozenset[str]]:
     raise ValueError(f"Dictionary has no _chem_comp_bond loop: {path}")
 
 
+def dictionary_ideal_bond_length(path: Path, atom_1: str, atom_2: str) -> float:
+    """Return an atom-pair distance from the preferred ideal CIF coordinates."""
+    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    for index, line in enumerate(lines):
+        if line.strip() != "loop_":
+            continue
+        headers: list[str] = []
+        cursor = index + 1
+        while cursor < len(lines) and lines[cursor].lstrip().startswith("_"):
+            headers.append(lines[cursor].strip())
+            cursor += 1
+        atom_header = "_chem_comp_atom.atom_id"
+        coordinate_header_sets = (
+            (
+                "_chem_comp_atom.pdbx_model_Cartn_x_ideal",
+                "_chem_comp_atom.pdbx_model_Cartn_y_ideal",
+                "_chem_comp_atom.pdbx_model_Cartn_z_ideal",
+            ),
+            (
+                "_chem_comp_atom.x",
+                "_chem_comp_atom.y",
+                "_chem_comp_atom.z",
+            ),
+        )
+        if atom_header not in headers:
+            continue
+        coordinate_headers = next(
+            (
+                coordinate_set
+                for coordinate_set in coordinate_header_sets
+                if all(header in headers for header in coordinate_set)
+            ),
+            None,
+        )
+        if coordinate_headers is None:
+            continue
+        atom_index = headers.index(atom_header)
+        coordinate_indices = tuple(headers.index(header) for header in coordinate_headers)
+        coordinates: dict[str, tuple[float, float, float]] = {}
+        while cursor < len(lines):
+            row = lines[cursor].strip()
+            if not row or row == "#" or row == "loop_" or row.startswith("data_"):
+                break
+            if row.startswith("_"):
+                break
+            fields = shlex.split(row, comments=True, posix=False)
+            if len(fields) > max(atom_index, *coordinate_indices):
+                atom = fields[atom_index].strip("'\"")
+                if atom in {atom_1, atom_2}:
+                    try:
+                        coordinates[atom] = tuple(
+                            float(fields[field_index])
+                            for field_index in coordinate_indices
+                        )
+                    except ValueError as exc:
+                        raise ValueError(
+                            f"Dictionary has invalid ideal coordinates for {atom}: {path}"
+                        ) from exc
+            cursor += 1
+        if atom_1 in coordinates and atom_2 in coordinates:
+            return dist(coordinates[atom_1], coordinates[atom_2])
+        raise ValueError(
+            f"Dictionary ideal-coordinate loop is missing {atom_1} or {atom_2}: {path}"
+        )
+    raise ValueError(f"Dictionary has no usable ideal atom coordinates: {path}")
+
+
 def validate_curated_dictionary(code: str, path: Path) -> None:
     """Reject a packaged dictionary whose reviewed local topology changed."""
     try:
@@ -171,7 +273,9 @@ __all__ = [
     "CURATED_LIGANDS",
     "AtomSubstitution",
     "CuratedLigand",
+    "RingSubstituent",
     "curated_dictionary",
+    "dictionary_ideal_bond_length",
     "ligand_data_directory",
     "validate_curated_dictionary",
 ]

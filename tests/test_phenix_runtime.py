@@ -32,6 +32,7 @@ class PhenixRuntimeTests(unittest.TestCase):
             self.assertEqual(installation.version, "9.8.7")
             self.assertEqual(installation.root, root.resolve())
             self.assertIn("phenix.mtz.dump", installation.executables)
+            self.assertIn("phenix.autosol", installation.executables)
 
     def test_path_discovery(self):
         with tempfile.TemporaryDirectory() as directory:

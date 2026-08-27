@@ -159,7 +159,10 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 3. Classify the best TFZ: `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
 4. `nasolve postmr RUN` applies supported site changes, builds the restraint
    stack, and runs ReadySet with hydrogens disabled.
-5. Call `phenix.refine` behind its own validation gate.
+5. If PostMR finds nucleotide-bound I, Br, or Se, `nasolve autosol RUN` performs
+   guarded MR-SAD phasing and validates at least one heavy-atom site against
+   the model under crystallographic symmetry.
+6. Call `phenix.refine` behind its own validation gate.
 
 The default command still stops after step 1. `nasolve automr ... --execute`
 runs step 2 and applies step 3. A passing run exits 0; TFZ 7.0–7.99 is retained
@@ -192,6 +195,11 @@ and `S6G` place sulfur along the canonical `C-O` vector, use the transformed
 dictionary model only for the reviewed C-S bond length, and inherit occupancy
 and B factor from the replaced oxygen. This prevents an otherwise valid Coot
 graph overlap from placing the one new sulfur atom on the wrong side of a base.
+`C38` and `5IU` use the same guarded construction with parents `DC` and `DT`.
+Their iodine is placed along the external bisector defined by the mapped
+`C4-C5-C6` ring atoms, using the C-I distance from the dictionary's ideal
+coordinate set and the parent `C5` occupancy and B factor. The transformed Coot
+monomer is not trusted for the halogen bond length.
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
 (`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The
@@ -217,3 +225,48 @@ record in process memory, restores the builder's original loader in a `finally`
 block, and records the correction. The installed workbook is never mutated,
 and a future upstream `S1` mapping requires no correction.
 The same adapter trims the exact legacy `S6G C5` value `C5 ` to `C5`.
+
+The ReadySet model is scanned by element rather than by a closed residue list.
+Iodine, bromine, and selenium in nucleotide-like residues are the initial
+anomalous trigger set. The PDB element column is authoritative; a conservative
+atom-name fallback is recorded when the column is blank. This allows a new
+modified residue to trigger the later AutoSol branch without first adding its
+residue code to an AutoSol allowlist.
+
+## AutoSol contract
+
+AutoSol is conditional and deliberately separate from PostMR. It requires a
+`POSTMR_READY` report containing one supported heavy-atom element and refuses
+to overwrite an existing `AutoSol/` directory. The current trigger elements
+are iodine, bromine, and selenium; the element registry is intentionally open
+to reviewed additions.
+
+For a standard frame, NASolve copies the adjacent `seq_base.txt` into the run.
+For a nonstandard model, complete sequences recorded in the frozen run may be
+written to the same input instead. The wavelength is read from `summary.html`,
+preferring the high-precision assignment and rejecting inconsistent repeated
+values. `phenix.mtz.dump` must confirm a complete anomalous intensity or
+amplitude quartet before execution.
+
+The AutoSol request is MR-SAD guided by the original Phaser solution PDB, not
+the modified PostMR model. This avoids using the modeled heavy atom to validate
+its own anomalous signal. NASolve supplies the heavy-atom element and
+wavelength, leaves the number of sites unspecified, uses every logical CPU,
+and explicitly sets both `build=False` and
+`phase_improve_and_build=False`. After execution it reads `autosol.eff` and
+rejects the run unless both build controls remain false, every `sites` value is
+unset, and the requested processor count is effective.
+
+Output discovery is content-based. The refinement input must contain a full
+Hendrickson-Lattman phase quartet and anomalous observations. The AutoSol HA
+PDB is compared with every expected nucleotide heavy atom of the same element.
+For H3/R3, matching expands the three point operators, R-centering
+translations, and neighboring unit cells; P1 uses lattice translations. The
+branch automatically accepts phases when at least one expected atom has a
+same-element HA site within 4 A. A nearest site between 4 and 8 A produces an
+`AUTOSOL_REVIEW` result and requests inspection. A more distant or absent site,
+or an AutoSol execution/output failure, produces `AUTOSOL_WARNING`. Review and
+warning outcomes do not block the ordinary MR refinement path, but their phase
+files are not automatically approved for use. All sites and match attempts are
+retained in the report, while extra unmatched sites do not block this phase of
+the pipeline.

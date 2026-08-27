@@ -16,6 +16,7 @@ from typing import Callable, Mapping
 from .curated_ligands import (
     CURATED_LIGANDS,
     curated_dictionary,
+    dictionary_ideal_bond_length,
     validate_curated_dictionary,
 )
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
@@ -49,6 +50,7 @@ class PostMRResult:
 
 
 _COOT_BASES = frozenset({"DA", "DC", "DG", "DT", "A", "C", "G", "U"})
+DEFAULT_ANOMALOUS_ELEMENTS = frozenset({"I", "BR", "SE"})
 _REQUIRED_PARENT_ATOM_GROUPS = (
     frozenset({"P"}),
     frozenset({"OP1", "O1P"}),
@@ -408,10 +410,24 @@ def _atom_identity(line: str) -> tuple[str, str, str, str] | None:
     return identity[0], identity[1], atom_name, alternate
 
 
+def _canonical_atom_name(atom_name: str) -> str:
+    return {"O1P": "OP1", "O2P": "OP2"}.get(atom_name, atom_name)
+
+
 def _atom_element(line: str) -> str:
+    return _atom_element_with_source(line)[0]
+
+
+def _atom_element_with_source(line: str) -> tuple[str, str]:
     if len(line) >= 78 and line[76:78].strip():
-        return line[76:78].strip().upper()
-    return "".join(character for character in line[12:16] if character.isalpha())[:1].upper()
+        return line[76:78].strip().upper(), "pdb-element-column"
+    letters = "".join(
+        character for character in line[12:16] if character.isalpha()
+    ).upper()
+    for two_letter in ("BR", "SE"):
+        if letters.startswith(two_letter):
+            return two_letter, "atom-name-fallback"
+    return letters[:1], "atom-name-fallback"
 
 
 def _atom_coordinates(line: str) -> tuple[float, float, float]:
@@ -419,6 +435,49 @@ def _atom_coordinates(line: str) -> tuple[float, float, float]:
         return tuple(float(line[start:end]) for start, end in ((30, 38), (38, 46), (46, 54)))
     except ValueError as exc:
         raise PostMRPreparationError("Invalid coordinates in Coot PDB output") from exc
+
+
+def scan_anomalous_candidates(
+    path: Path,
+    elements: frozenset[str] = DEFAULT_ANOMALOUS_ELEMENTS,
+) -> list[dict[str, object]]:
+    """Find configured anomalous elements within nucleotide-like residues."""
+    normalized = frozenset(element.strip().upper() for element in elements)
+    residues: dict[tuple[str, str, str], list[str]] = {}
+    for line in _coordinate_records(path):
+        identity = _record_identity(line)
+        if identity is not None:
+            residues.setdefault(identity, []).append(line)
+
+    candidates: list[dict[str, object]] = []
+    for (chain, resid, residue), lines in residues.items():
+        atom_names = {
+            atom[2]
+            for line in lines
+            if (atom := _atom_identity(line)) is not None
+        }
+        nucleotide_like = "C1'" in atom_names and bool(
+            atom_names & {"C2'", "C3'", "O4'"}
+        )
+        if not nucleotide_like:
+            continue
+        for line in lines:
+            atom = _atom_identity(line)
+            if atom is None:
+                continue
+            element, source = _atom_element_with_source(line)
+            if element not in normalized:
+                continue
+            candidates.append({
+                "site": f"{chain}:{resid}",
+                "residue": residue,
+                "atom_name": atom[2],
+                "alternate": atom[3] or None,
+                "element": element,
+                "element_source": source,
+                "coordinates": [round(value, 3) for value in _atom_coordinates(line)],
+            })
+    return candidates
 
 
 def _unique_named_atom(
@@ -446,6 +505,7 @@ def _restore_shared_parent_coordinates(
     output_model: Path,
     actions: tuple[MutationAction, ...],
     parent_models: Mapping[str, Path],
+    dictionary_paths: Mapping[str, Path] | None = None,
 ) -> dict[str, object]:
     """Restore coordinates for atoms shared with each clean canonical parent."""
     modified = tuple(action for action in actions if action.method == "coot-parent-overlap")
@@ -481,6 +541,20 @@ def _restore_shared_parent_coordinates(
                 + ", ".join(missing_parent)
             )
         parent_names[action.site] = names
+
+    parent_atoms_by_canonical_name: dict[
+        tuple[str, str, str, str], str
+    ] = {}
+    for atom, line in parent_atoms.items():
+        canonical_atom = (
+            atom[0], atom[1], _canonical_atom_name(atom[2]), atom[3]
+        )
+        if canonical_atom in parent_atoms_by_canonical_name:
+            raise PostMRPreparationError(
+                f"Canonical parent has duplicate atom aliases at {atom[0]}:{atom[1]}: "
+                f"{atom[2]}"
+            )
+        parent_atoms_by_canonical_name[canonical_atom] = line
 
     substitution_positions: dict[
         tuple[str, str, str, str],
@@ -550,6 +624,92 @@ def _restore_shared_parent_coordinates(
                 "bond_length": round(raw_bond_length, 3),
                 "placement": "canonical-parent-vector",
             })
+        for substituent in ligand.ring_substituents:
+            _, parent_anchor = _unique_named_atom(
+                parent_atoms,
+                chain,
+                resid,
+                substituent.anchor_atom,
+                "canonical parent",
+            )
+            parent_neighbor_lines = [
+                _unique_named_atom(
+                    parent_atoms,
+                    chain,
+                    resid,
+                    neighbor,
+                    "canonical parent",
+                )[1]
+                for neighbor in substituent.ring_neighbors
+            ]
+            _, raw_anchor = _unique_named_atom(
+                raw_atoms,
+                chain,
+                resid,
+                substituent.anchor_atom,
+                "raw Coot model",
+            )
+            target_key, raw_target = _unique_named_atom(
+                raw_atoms,
+                chain,
+                resid,
+                substituent.target_atom,
+                "raw Coot model",
+            )
+            if dictionary_paths is None or action.after not in dictionary_paths:
+                raise PostMRPreparationError(
+                    f"Ideal-coordinate dictionary is required to place "
+                    f"{substituent.target_atom} at {action.site}"
+                )
+            try:
+                bond_length = dictionary_ideal_bond_length(
+                    dictionary_paths[action.after],
+                    substituent.anchor_atom,
+                    substituent.target_atom,
+                )
+            except (OSError, ValueError) as exc:
+                raise PostMRPreparationError(str(exc)) from exc
+            if not (
+                substituent.minimum_bond_length
+                <= bond_length
+                <= substituent.maximum_bond_length
+            ):
+                raise PostMRPreparationError(
+                    f"Implausible ideal {substituent.anchor_atom}-"
+                    f"{substituent.target_atom} distance {bond_length:.3f} "
+                    f"at {action.site}"
+                )
+            anchor_xyz = _atom_coordinates(parent_anchor)
+            neighbor_coordinates = [
+                _atom_coordinates(line) for line in parent_neighbor_lines
+            ]
+            midpoint = tuple(
+                sum(coordinate[axis] for coordinate in neighbor_coordinates) / 2.0
+                for axis in range(3)
+            )
+            direction = tuple(
+                anchor - center for anchor, center in zip(anchor_xyz, midpoint)
+            )
+            direction_length = sqrt(sum(value * value for value in direction))
+            if direction_length < 0.5:
+                names = "/".join(substituent.ring_neighbors)
+                raise PostMRPreparationError(
+                    f"Invalid parent {names}-{substituent.anchor_atom} ring geometry "
+                    f"at {action.site}"
+                )
+            target_xyz = tuple(
+                anchor + bond_length * vector / direction_length
+                for anchor, vector in zip(anchor_xyz, direction)
+            )
+            substitution_positions[target_key] = (target_xyz, parent_anchor)
+            substitution_reports[action.site].append({
+                "target_atom": substituent.target_atom,
+                "anchor_atom": substituent.anchor_atom,
+                "ring_neighbors": list(substituent.ring_neighbors),
+                "bond_length": round(bond_length, 3),
+                "bond_length_source": "dictionary-ideal-coordinates",
+                "placement": "canonical-ring-outward-bisector",
+            })
 
     restored: dict[str, list[str]] = {action.site: [] for action in modified}
     output: list[str] = []
@@ -563,8 +723,11 @@ def _restore_shared_parent_coordinates(
                 + parent_replaced[54:66]
                 + line[66:]
             )
-        elif atom is not None and atom in parent_atoms:
-            parent = parent_atoms[atom]
+        elif atom is not None and (
+            parent := parent_atoms_by_canonical_name.get((
+                atom[0], atom[1], _canonical_atom_name(atom[2]), atom[3]
+            ))
+        ) is not None:
             if _atom_element(line) == _atom_element(parent):
                 line = line[:30] + parent[30:66] + line[66:]
                 site = f"{atom[0]}:{atom[1]}"
@@ -831,6 +994,7 @@ def prepare_postmr(
                 after_coot,
                 overlap_actions,
                 parent_models,
+                curated_sources,
             )
         else:
             shutil.copyfile(raw_after_coot, after_coot)
@@ -926,6 +1090,7 @@ def prepare_postmr(
             raise PostMRPreparationError(
                 f"ReadySet output lost {action.after} at {action.site}"
             )
+    anomalous_candidates = scan_anomalous_candidates(final_model)
 
     postmr_payload = {
         "status": "POSTMR_READY",
@@ -958,6 +1123,11 @@ def prepare_postmr(
             "log": str(readyset_log),
             "updated_model": str(updated),
             "generated_ligand_cif": str(generated_cif) if generated_cif else None,
+        },
+        "anomalous": {
+            "trigger_elements": sorted(DEFAULT_ANOMALOUS_ELEMENTS),
+            "autosol_required": bool(anomalous_candidates),
+            "candidates": anomalous_candidates,
         },
         "prepared_model": str(final_model),
         "prepared_sha256": file_sha256(final_model),
@@ -999,10 +1169,12 @@ def prepare_postmr(
 
 
 __all__ = [
+    "DEFAULT_ANOMALOUS_ELEMENTS",
     "MutationAction",
     "PostMRPreparationError",
     "PostMRResult",
     "build_mutation_plan",
     "prepare_postmr",
     "residue_name",
+    "scan_anomalous_candidates",
 ]

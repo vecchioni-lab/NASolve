@@ -3,7 +3,7 @@ import unittest
 from nasolve.residue_aliases import LigandCodeError, resolve_ligand, resolve_pair
 
 
-VALID = {"1AP", "DT", "DA", "A", "A1AAZ", "DE", "DF", "S6G", "5IU"}
+VALID = {"1AP", "DT", "DA", "A", "A1AAZ", "DE", "DF", "S6G", "5IU", "C38"}
 
 
 class ResidueAliasTests(unittest.TestCase):
@@ -26,6 +26,10 @@ class ResidueAliasTests(unittest.TestCase):
 
     def test_q_uses_curated_s6g_identity(self):
         self.assertEqual(resolve_ligand("Q", VALID).ligand_code, "S6G")
+
+    def test_iodo_aliases_use_official_dna_components(self):
+        self.assertEqual(resolve_ligand("iC", VALID).ligand_code, "C38")
+        self.assertEqual(resolve_ligand("iU", VALID).ligand_code, "5IU")
 
     def test_ordered_pair(self):
         first, second = resolve_pair("D:T", VALID)

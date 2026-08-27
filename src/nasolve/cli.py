@@ -7,6 +7,7 @@ import importlib.metadata
 import sys
 from pathlib import Path
 
+from .autosol import AutoSolPreparationError, execute_autosol
 from .automr import AutoMRInputError, ModelAssessmentError, prepare_automr
 from .config import ConfigError, default_config_path, load_config, save_config
 from .coot_runtime import (
@@ -79,6 +80,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--allow-mr-review", action="store_true",
         help="explicitly continue from a TFZ 7.0-7.99 MR_REVIEW result",
     )
+    autosol = subparsers.add_parser(
+        "autosol", help="run guarded MR-SAD phasing when PostMR finds a heavy atom"
+    )
+    autosol.add_argument("run", type=Path, help="completed POSTMR_READY run directory")
     return parser
 
 
@@ -259,6 +264,51 @@ def _postmr(args: argparse.Namespace) -> int:
     return 0
 
 
+def _autosol(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+        phenix = discover_phenix(config, explicit=args.phenix_root)
+        if args.phenix_root is None:
+            remember_phenix(config, phenix)
+            save_config(config)
+        autosol_executable = phenix.executables.get("phenix.autosol")
+        mtz_dump_executable = phenix.executables.get("phenix.mtz.dump")
+        if autosol_executable is None:
+            raise AutoSolPreparationError(
+                "The discovered Phenix installation has no phenix.autosol executable"
+            )
+        if mtz_dump_executable is None:
+            raise AutoSolPreparationError(
+                "AutoSol validation requires phenix.mtz.dump"
+            )
+        result = execute_autosol(
+            args.run,
+            autosol_executable,
+            mtz_dump_executable,
+            environment=phenix.environment,
+        )
+    except (
+        AutoSolPreparationError,
+        ConfigError,
+        PhenixDiscoveryError,
+    ) as exc:
+        print(f"AutoSol preparation error: {exc}", file=sys.stderr)
+        return 2
+    print(f"{result.status}: {result.message}")
+    print(f"Run directory: {result.run_directory}")
+    print(f"AutoSol log: {result.log_path}")
+    if result.heavy_atom_model:
+        print(f"Heavy-atom model: {result.heavy_atom_model}")
+    if result.refinement_data:
+        print(f"Refinement data: {result.refinement_data}")
+    if result.matched_distance is not None:
+        print(f"Matched HA distance: {result.matched_distance:.3f} A")
+    if result.status != "AUTOSOL_READY":
+        print("Refinement continuation: yes, without automatically approved AutoSol phases")
+    print(f"Report: {result.report_path}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "configure" and args.configure_target == "phenix":
@@ -271,4 +321,6 @@ def main(argv: list[str] | None = None) -> int:
         return _automr(args)
     if args.command == "postmr":
         return _postmr(args)
+    if args.command == "autosol":
+        return _autosol(args)
     return 2
