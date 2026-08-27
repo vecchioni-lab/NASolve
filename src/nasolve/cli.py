@@ -158,7 +158,7 @@ def _check(explicit: str | None) -> int:
         remember_coot(config, coot)
         save_config(config)
     except CootDiscoveryError as exc:
-        print("Coot: NOT CONFIGURED (needed only when PostMR must mutate canonical bases)")
+        print("Coot: NOT CONFIGURED (needed only when PostMR must mutate supported bases)")
         print(str(exc))
     else:
         print(f"Coot {coot.version}: OK")

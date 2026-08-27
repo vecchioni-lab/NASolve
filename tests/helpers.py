@@ -12,11 +12,15 @@ def pdb_record(
     residue_number: int,
     occupancy: float = 1.0,
     element: str = "P",
+    x: float = 0.0,
+    y: float = 0.0,
+    z: float = 0.0,
+    b_factor: float = 20.0,
 ) -> str:
     return (
         f"{record:<6}{serial:5d} {atom:>4s} {residue:>3s} {chain:1s}"
-        f"{residue_number:4d}    {0.0:8.3f}{0.0:8.3f}{0.0:8.3f}"
-        f"{occupancy:6.2f}{20.0:6.2f}          {element:>2s}\n"
+        f"{residue_number:4d}    {x:8.3f}{y:8.3f}{z:8.3f}"
+        f"{occupancy:6.2f}{b_factor:6.2f}          {element:>2s}\n"
     )
 
 
@@ -96,7 +100,7 @@ def make_ready_set(root: Path) -> Path:
         "cp \"$1\" prepared_model.updated.pdb\n"
         "printf 'data_ligands\\n' > prepared_model.ligands.cif\n"
         "printf 'ready_set {}\\n' > prepared_model.eff\n"
-        "echo 'Build ligand and use user provided restraints : 8RO'\n"
+        "echo 'Build ligand and use user provided restraints'\n"
     )
     executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
     return executable
@@ -119,7 +123,13 @@ def make_coot(root: Path, version: str = "1.1.10") -> Path:
     return executable
 
 
-def make_postmr_report(run: Path, model: Path, first: str = "8RO", second: str = "DG") -> Path:
+def make_postmr_report(
+    run: Path,
+    model: Path,
+    first: str = "DE",
+    second: str = "DG",
+    requested: str = "E:G",
+) -> Path:
     phaser = run / "Phaser"
     phaser.mkdir(parents=True)
     solution = phaser / "mr_solution.pdb"
@@ -132,7 +142,7 @@ def make_postmr_report(run: Path, model: Path, first: str = "8RO", second: str =
         "post_mr_plan": {
             "sequences": {},
             "standard_pair": {
-                "requested": "E:G",
+                "requested": requested,
                 "ligand_codes": [first, second],
             },
             "mutations": {},

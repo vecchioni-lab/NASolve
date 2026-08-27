@@ -173,10 +173,25 @@ overwrite an existing `PostMR/` directory. `MR_SUCCESS` is accepted;
 `MR_REVIEW` requires an explicit override; other statuses stop.
 
 The W-frame manifest assigns requested pair roles to `A:12` and `B:4`.
-Canonical DNA/RNA changes use a generated headless Coot script. Coot runs with
-its backup directory redirected beneath the run. Curated label-only changes
-do not invoke Coot. Full sequences and arbitrary modified-base construction
-remain closed gates rather than being silently ignored.
+Canonical DNA/RNA changes use a generated headless Coot script. Curated
+modified nucleotides use a canonical-parent mutation followed by dictionary
+monomer construction, overlap, and residue replacement. Coot runs with its
+backup directory redirected beneath the run and removes hydrogens before
+writing. Full sequences and arbitrary modified-base construction remain closed
+gates rather than being silently ignored.
+
+For curated modifications, Coot also writes a canonical-parent snapshot.
+NASolve copies the coordinates, occupancies, and B factors of every shared
+atom back into the replaced residue and requires the complete sugar/phosphate
+atom set to survive. Thus dictionary overlap positions only the new chemistry;
+it cannot rotate or curl the existing phosphate. The restoration inventory is
+recorded in the run report.
+
+The registry also declares exact parent/target atom substitutions. `DE`, `DF`,
+and `S6G` place sulfur along the canonical `C-O` vector, use the transformed
+dictionary model only for the reviewed C-S bond length, and inherit occupancy
+and B factor from the replaced oxygen. This prevents an otherwise valid Coot
+graph overlap from placing the one new sulfur atom on the wrong side of a base.
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
 (`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The
@@ -184,10 +199,21 @@ portable 5W6W secondary-structure template contains 17 non-overlapping
 scaffold base pairs, no stacking pairs, and no historical input paths, cell,
 map, output, or GUI settings.
 
-Problematic Phenix components are explicit curated-library entries. `8RO` is
-the chemical identity for user token `E`; `DE` remains only its accepted model
-and NARestraints compatibility label. ReadySet receives the curated CIF,
+Problematic Phenix components are explicit curated-library entries. User token
+`E` maps to the laboratory PDB-compatible `DE`, not official CCD `8RO`, whose
+topology describes a different sulfur-ring compound. `F` maps to `DF`, with
+official deposition identity `A1AAZ`; `D` maps to official `1AP`; and `Q` maps
+to official `S6G` with canonical parent `DG`. The registry
+defines canonical parents and required/forbidden sulfur bonds, which are
+validated before Coot or ReadySet runs. ReadySet receives the curated CIF,
 executes with `actions.hydrogens=False`, and is run with `cwd` set to its own
 directory because Phenix 1.20.1 accepts but ignores `input.output_dir`. The
 output is rejected if it contains hydrogen coordinates or changes total or
 HETATM atom counts.
+
+NARestraints v1.1.1 has a legacy `DF` mapping of canonical `O2` to `S2`; the
+A1AAZ-derived component uses `S1`. The PostMR adapter patches a copied residue
+record in process memory, restores the builder's original loader in a `finally`
+block, and records the correction. The installed workbook is never mutated,
+and a future upstream `S1` mapping requires no correction.
+The same adapter trims the exact legacy `S6G C5` value `C5 ` to `C5`.

@@ -24,7 +24,7 @@ RESIDUE_ALIASES: dict[str, str] = {
     "rG": "G",
     "U": "DU",
     "F": "DF",
-    "E": "8RO",
+    "E": "DE",
     "Q": "S6G",
     "B": "IGU",
     "rB": "IG",

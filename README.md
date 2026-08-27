@@ -1,14 +1,81 @@
 # NASolve
 
-NASolve is a command-line workflow for nucleic-acid molecular replacement. It
-organizes autoPROC/STARANISO datasets, selects or checks an MR model, runs
-Phenix Phaser with reproducible settings, preserves modified residues and
-other heteroatoms, and classifies the result by TFZ.
+NASolve is a guarded command-line workflow for nucleic-acid molecular
+replacement and post-MR model preparation. It discovers autoPROC/STARANISO
+inputs, selects and validates an approved search model, runs Phenix Phaser with
+reproducible settings, preserves modified residues and other heteroatoms, and
+classifies the solution by TFZ.
 
-The present release provides **AutoMR** and the first guarded **PostMR**
-preparation layer. PostMR applies supported site changes, generates the
-5W6W restraint stack, supplies curated ligand dictionaries, and runs ReadySet
-without adding hydrogens. Refinement and final validation remain later layers.
+The current release provides **AutoMR** and **PostMR**. PostMR constructs
+supported modified nucleotides through Coot, restores trusted parent
+coordinates, generates the 5W6W restraint stack, supplies reviewed ligand
+dictionaries, and runs ReadySet without hydrogens. Refinement and final
+validation remain deliberately gated for later releases.
+
+## Quick start
+
+### Install
+
+```bash
+git clone https://github.com/vecchioni-lab/NASolve.git
+cd NASolve
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[test]"
+```
+
+### Check the runtime
+
+```bash
+nasolve check
+python -m pytest
+```
+
+`nasolve check` discovers and validates Phenix, Coot, and NARestraints. If an
+external tool is not found automatically, see [Configure external
+tools](#configure-external-tools).
+
+### Run AutoMR and PostMR
+
+For a standard W/5W6W-frame dataset:
+
+```bash
+DATASET=/absolute/path/to/dataset
+nasolve automr "$DATASET" -W --pair F:D --execute
+```
+
+NASolve prints the new numbered run directory. Use that exact path for PostMR:
+
+```bash
+RUN=/absolute/path/to/dataset/AutoMR/run_001
+nasolve postmr "$RUN"
+```
+
+For a nonstandard dataset containing one search-model PDB, omit the frame and
+pair options:
+
+```bash
+nasolve automr "$DATASET" --execute
+```
+
+### Inspect the prepared model in Coot
+
+Launch graphical Coot from a run-local working directory so its histories,
+state files, backups, and downloads do not clutter the repository:
+
+```bash
+RUN=/absolute/path/to/dataset/AutoMR/run_001
+mkdir -p "$RUN/PostMR/CootGUI"
+(cd "$RUN/PostMR/CootGUI" && coot \
+  --pdb "$RUN/PostMR/Model/readyset_model.pdb" \
+  --dictionary "$RUN/PostMR/Restraints/curated_ligands.cif" \
+  --auto "$RUN/Phaser/mr_solution.mtz")
+```
+
+Omit `--dictionary .../curated_ligands.cif` when the run contains no curated
+components. The commands above are the complete normal workflow; the remaining
+sections document inputs, decisions, safeguards, and outputs.
 
 ## What AutoMR does
 
@@ -31,7 +98,7 @@ NASolve does not edit the original dataset or search model.
 - Git
 - A working Phenix installation containing `phenix.phaser`,
   `phenix.mtz.dump`, `phenix.ready_set`, and `phenix.refine`
-- Coot with embedded Python when a requested canonical base mutation is needed
+- Coot with embedded Python when a supported base construction is needed
 - [NARestraints](https://github.com/vecchioni-lab/NARestraints), installed
   automatically as a NASolve dependency
 
@@ -65,7 +132,7 @@ python -m pip install -e ".[test]"
 python -m pytest
 ```
 
-## Configure Phenix
+## Configure external tools
 
 Begin with:
 
@@ -326,7 +393,7 @@ Any literal ligand code present in NARestraints may also be used directly.
 | `A` | `DA` | `rB` | `IG` |
 | `U` | `DU` | `rP` | `50L` |
 | `F` | `DF` | `rZ` | `50N` |
-| `E` | `8RO` | `rI` | `I` |
+| `E` | `DE` | `rI` | `I` |
 | `Q` | `S6G` |  |  |
 | `B` | `IGU` |  |  |
 | `P` | `DP` |  |  |
@@ -335,8 +402,10 @@ Any literal ligand code present in NARestraints may also be used directly.
 | `X` | `DX` |  |  |
 | `K` | `CGY` |  |  |
 
-For example, `F` selects `DF`. A different known ligand such as `A1AAZ` must
-be written explicitly.
+`DE` and `DF` are deliberate three-character compatibility labels used by the
+laboratory PDB/refinement workflow. `DF` records the official five-character
+CCD identity `A1AAZ` for final mmCIF deposition; `1AP` is already an official
+CCD code. Component identities are written to the PostMR report.
 
 ## Preparing an accepted MR solution
 
@@ -350,10 +419,21 @@ nasolve postmr my_dataset/AutoMR/run_004
 `--allow-mr-review`. Failed MR runs cannot enter PostMR.
 
 For the W/5W6W frame, PostMR uses the fixed standard sites `A:12` and `B:4`.
-It applies ordinary DNA/RNA base changes through headless Coot. Modified bases
-must already have an approved coordinate template or a curated label-only
-normalization; unsupported construction stops and asks the user for a model.
-Full-sequence mutation is retained in `nasolve.txt` but is not yet applied.
+It applies ordinary DNA/RNA base changes through headless Coot. For a supported
+modified nucleotide, Coot first mutates the site to its clean canonical parent
+(`DT` for `DE`/`DF`, `DA` for `1AP`), builds the curated component from its
+dictionary, overlaps it, and replaces the parent. NASolve then restores the
+coordinates, occupancies, and B factors of every atom shared with the parent.
+This preserves the canonical sugar and phosphate exactly while retaining only
+the genuinely modified atoms from the dictionary. Hydrogens are removed.
+Unsupported construction stops and asks the user for a model. Full-sequence
+mutation is retained in `nasolve.txt` but is not yet applied.
+
+For reviewed single-atom sulfur substitutions, dictionary overlap does not
+determine the final sulfur direction. PostMR projects `S4`, `S1`, or `S6`
+along the canonical parent's `C4-O4`, `C2-O2`, or `C6-O6` vector while keeping
+the dictionary-derived C-S bond length. The substituted atom inherits the
+parent oxygen's occupancy and B factor.
 
 The 5W6W restraint stack contains:
 
@@ -366,11 +446,22 @@ The scaffold template contains no stacking pairs and omits the two base pairs
 already supplied by `Std_padd.txt`, preventing duplicate restraints.
 
 Known problematic Phenix residues use reviewed dictionaries from NASolve's
-local ligand library. The `E` token resolves to `8RO`; legacy `E` runs frozen
-as `DE` are migrated during PostMR, while NARestraints receives a temporary
-compatibility label. ReadySet is launched in its own directory with
+local ligand library. The `E` token resolves to `DE`; legacy `E` reports frozen
+as `8RO` are migrated to `DE` because official CCD `8RO` is a different
+compound with an unwanted sulfur-ring topology. `DF` is tied explicitly to
+CCD `A1AAZ`. The reviewed dictionaries enforce `DE C4-S4` without `N3-S4`,
+`DF C2-S1` without `N3-S1`, and `S6G C6-S6` without `N1-S6`. ReadySet is launched in its own directory with
 `hydrogens=False` and its output is rejected if hydrogens appear or atom counts
 change unexpectedly.
+
+NARestraints v1.1.1 records the `DF` canonical `O2` mapping as the nonexistent
+atom `S2`. PostMR corrects this to `S1` only in memory for the current builder
+call, records the correction in `report.json`, and never edits the installed
+NARestraints workbook.
+
+The `Q` token resolves to official CCD `S6G` and uses `DG` as its canonical
+construction parent. NARestraints v1.1.1 also stores its `C5` mapping as `C5 `;
+PostMR trims that exact trailing space in the same process-local adapter.
 
 ## Run directories and outputs
 
@@ -400,14 +491,21 @@ my_dataset/
             ├── report.json
             ├── Model/
             │   ├── mr_solution.pdb
+            │   ├── after_coot_raw.pdb
+            │   ├── after_coot.pdb
             │   ├── prepared_model.pdb
             │   └── readyset_model.pdb
             ├── Coot/
+            │   ├── mutate.py
+            │   ├── coot.log
+            │   └── parent_A_12_DT.pdb
             ├── Restraints/
             │   ├── Std_padd.txt
             │   ├── narestraints_Std_padd.eff
             │   ├── 5W6W_secondary_structure.eff
-            │   └── 8RO.cif
+            │   ├── DE.cif
+            │   ├── DF.cif
+            │   └── 1AP.cif
             └── ReadySet/
                 ├── ready_set.log
                 ├── prepared_model.updated.pdb
