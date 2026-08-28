@@ -6,15 +6,21 @@ inputs, selects and validates an approved search model, runs Phenix Phaser with
 reproducible settings, preserves modified residues and other heteroatoms, and
 classifies the solution by TFZ.
 
-The current release provides **AutoMR**, **PostMR**, and a conditional
-**AutoSol** branch. PostMR constructs
+The current release provides **AutoMR**, **PostMR**, a conditional
+**AutoSol** branch, checkpointed **AutoRefine**, and bounded **Refine Doctor**
+triage. PostMR constructs
 supported modified nucleotides through Coot, restores trusted parent
 coordinates, can apply complete chain sequences, generates either the 5W6W
 restraint stack or modification-scoped pair restraints, supplies reviewed ligand
 dictionaries, and runs ReadySet without hydrogens. When PostMR finds iodine,
 bromine, or selenium in a nucleotide, AutoSol performs guarded MR-SAD phasing
-and verifies a corresponding anomalous site. Refinement and final validation
-remain deliberately gated for later releases.
+and verifies a corresponding anomalous site. AutoRefine runs Phenix quietly,
+surfaces the crystallographic statistics normally shown by the GUI, and
+preserves successful, review, failed, and manually imported models as
+branchable checkpoints. Refine Doctor audits the frozen Free-R set, preserves
+an anomalous-strength benchmark, and compares a small number of controlled
+refinement branches without silently selecting one. Final structural
+validation remains a user gate.
 
 ## Quick start
 
@@ -40,7 +46,7 @@ python -m pytest
 external tool is not found automatically, see [Configure external
 tools](#configure-external-tools).
 
-### Run AutoMR and PostMR
+### Run AutoMR through AutoRefine
 
 For a standard W/5W6W-frame dataset:
 
@@ -66,6 +72,50 @@ nasolve autosol "$RUN"
 AutoSol is not run for ordinary structures without a nucleotide-bound iodine,
 bromine, or selenium atom.
 
+Run the first five-cycle refinement and inspect its checkpoint history:
+
+```bash
+nasolve autorefine "$RUN"
+nasolve checkpoints list "$RUN"
+```
+
+If a structurally sound result remains under review—for example, because a
+small test set gives `Rwork >= Rfree`—run the bounded triage layer:
+
+```bash
+nasolve refine-doctor "$RUN"
+```
+
+Refine Doctor never regenerates Free-R flags or changes the current checkpoint.
+It audits the existing flags, runs only eligible sibling branches, stores any
+measured anomalous `f''` benchmark, and prints an explicit recommendation for
+inspection and optional selection. In an interactive terminal it asks whether
+to make the recommendation current; answering `n` or `i` prints the exact
+inspection and later-selection commands. A candidate can be opened without
+changing the current pointer:
+
+```bash
+nasolve show "$RUN" --checkpoint refine-005
+```
+
+A numerically successful result becomes current. Repeating `autorefine` then
+starts from that improved model, while `--from` creates a deliberate branch:
+
+```bash
+nasolve autorefine "$RUN"
+nasolve autorefine "$RUN" --from refine-001
+```
+
+Bookmark, select, or import a manually corrected model with:
+
+```bash
+nasolve checkpoints add "$RUN" --name "clean first refine"
+nasolve checkpoints use "$RUN" refine-001
+nasolve checkpoints add "$RUN" \
+  --model /absolute/path/to/manually_fixed.pdb \
+  --name "fixed ligand"
+```
+
 For a nonstandard dataset containing one search-model PDB, omit the frame and
 pair options:
 
@@ -85,8 +135,24 @@ nasolve postmr "$RUN" --modified-pairs-only
 
 ### Inspect the prepared model in Coot
 
-Launch graphical Coot from a run-local working directory so its histories,
-state files, backups, and downloads do not clutter the repository:
+Open the most advanced completed stage of a run, or the highest numbered run in
+a dataset, with:
+
+```bash
+nasolve show "$RUN"
+nasolve show last "$DATASET"
+nasolve show "$RUN" --stage autosol
+nasolve show "$RUN" --checkpoint refine-005
+```
+
+NASolve chooses a stage-specific view: Phaser model/map for AutoMR, ReadySet
+model plus its generated dictionary for PostMR, Phaser model plus AutoSol HA
+sites and density-modified map for AutoSol, or the current refined model and
+map coefficients for AutoRefine. Coot is launched from a stage-local working
+directory so its histories, state files, backups, and downloads do not clutter
+the repository.
+
+The equivalent manual PostMR launch is:
 
 ```bash
 RUN=/absolute/path/to/dataset/AutoMR/run_001
@@ -529,6 +595,10 @@ partner has a noncanonical nucleotide residue code, writes no stacking
 restraints, and records all guessed/retained pairs and warnings. A canonical
 sequence change alone is not treated as a modification. If no modified pair is
 found, the restraint step is a successful no-op and ReadySet still runs.
+For a project that also supplies a scaffold EFF, the generated NARestraints
+PHIL is authoritative: PostMR removes matching base-pair blocks from the EFF
+and retains the non-overlapping project scaffold rather than failing or
+double-restraining the pair.
 
 Known problematic Phenix residues use reviewed dictionaries from NASolve's
 local ligand library. The `E` token resolves to `DE`; legacy `E` reports frozen
@@ -560,6 +630,50 @@ anomalous elements. The initial trigger set is iodine, bromine, and selenium;
 it is element-driven rather than restricted to known residue codes. Element
 columns are preferred, with atom-name inference recorded when required. The
 candidate sites and whether AutoSol is required are written to `report.json`.
+
+## AutoRefine and checkpoints
+
+`nasolve autorefine RUN` performs one five-macrocycle default refinement. It
+uses the current checkpoint model, the original STARANISO observations and
+unchanged Free-R flags, the ReadySet-generated ligand dictionary when present,
+and the PostMR PHIL/EFF restraint stack. A validated AutoSol MTZ contributes
+only its Hendrickson-Lattman coefficients; its HA coordinates never replace
+known model atoms.
+
+For ordinary data, AutoRefine selects mean observations. When PostMR records a
+heavy atom, it requires `F(+),SIGF(+),F(-),SIGF(-)` and refines `f'` and `f''`
+for exact model selections such as `chain B and resid 4 and name I`. The target
+is explicitly left `auto`, including when experimental phases are supplied. If
+validated AutoSol phases exist but the original data lack a complete anomalous
+amplitude quartet, NASolve runs a mean-data, non-anomalous fallback, preserves
+its outputs for inspection, and exits with a final error rather than silently
+calling the intended anomalous refinement successful.
+
+The default strategy refines reciprocal- and real-space coordinates, group
+B-factors, and eligible occupancies; it disables rigid-body, individual-B,
+TLS, NCS, reference-model, water-update, hydrogen-addition, and simulated
+annealing paths. X-ray/stereochemistry and X-ray/ADP weights are optimized,
+the scattering table is `n_gaussian`, and all available processors are used.
+
+Phenix stdout and stderr are written only to the round-local log. The terminal
+receives a start line and a compact final card containing initial/final Rwork
+and Rfree, their gap, clashscore, bond/angle RMSDs, selected labels, phases,
+and anomalous atom selections. Per-cycle R factors are retained in JSON and
+`metrics.tsv`.
+
+A result reaches `AUTOREFINE_READY` only when Phenix completed, the modified
+residue/heavy-atom inventory survived, `Rwork < Rfree`, and `Rwork < 0.30`.
+This is a numerical gate, not final structural approval. Review and failed
+attempts remain visible without replacing the current model.
+
+Every round is an immutable checkpoint node with a parent, recipe, input and
+output checksums, statistics, compatibility state, and frozen observation,
+phase, dictionary, and restraint references. Successful compatible results
+become current automatically. `nasolve checkpoints add` can assign a bookmark
+to the current node or import a manual Coot model as a review child;
+`checkpoints use` selects a reusable branch deliberately. The model advances
+between rounds, but map-coefficient/refinement MTZ outputs can never replace
+the authoritative STARANISO observations or regenerate the Free-R set.
 
 ## Run directories and outputs
 
@@ -600,7 +714,7 @@ my_dataset/
             │   └── parent_A_12_DT.pdb
             ├── Restraints/
             │   ├── Std_padd.txt
-            │   ├── narestraints_Std_padd.eff
+            │   ├── narestraints_Std_padd.phil
             │   ├── 5W6W_secondary_structure.eff
             │   ├── DE.cif
             │   ├── DF.cif
@@ -609,6 +723,16 @@ my_dataset/
                 ├── ready_set.log
                 ├── prepared_model.updated.pdb
                 └── prepared_model.ligands.cif
+        └── AutoRefine/
+            ├── checkpoints.json
+            └── round_001/
+                ├── autorefine.params
+                ├── phenix.refine.log
+                ├── metrics.tsv
+                ├── report.json
+                ├── refined_001.pdb
+                ├── refined_001.cif
+                └── refined_001_map_coeffs.mtz
 ```
 
 `Model/input_model.pdb` is the checksum-verified search model actually supplied
@@ -651,12 +775,13 @@ a PDB and MTZ output. Input, discovery, and preflight errors exit with code 2.
 AutoMR currently supports PDB search models and Phenix Phaser MR_AUTO. PostMR
 currently implements W/5W6W sites, canonical Coot mutations, curated label
 normalization, complete sequence application, modification-scoped
-NARestraints, and hydrogen-free ReadySet. It does not yet:
+NARestraints, hydrogen-free ReadySet, guarded AutoSol, and checkpointed
+five-cycle Phenix refinement. It does not yet:
 
 - construct arbitrary modified residues without an approved template;
 - perform mirror-side sequence changes through an unmirror/Coot/remirror cycle;
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
-- run `phenix.refine`;
+- choose or compare advanced refinement recipes automatically;
 - apply the final H3/R3 notation patch; or
 - search multiple catalogue models automatically.
 

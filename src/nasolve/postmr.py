@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 from collections import OrderedDict
@@ -1086,6 +1087,64 @@ def _default_modified_pair_restraints_builder(
     }
 
 
+def _selection_site(text: str, base: str) -> str | None:
+    match = re.search(
+        rf"\b{re.escape(base)}\s*=\s*chain\s+['\"]?([^\s'\"]+)['\"]?"
+        rf"\s+and\s+resid\s+([^\s}}]+)",
+        text,
+        re.I,
+    )
+    return f"{match.group(1)}:{match.group(2)}" if match else None
+
+
+def _filter_scaffold_overlaps(
+    source: Path,
+    destination: Path,
+    retained_pairs: list[Mapping[str, object]],
+) -> dict[str, object]:
+    """Remove project-EFF base-pair blocks superseded by generated PHIL pairs."""
+    overlaps = {
+        frozenset((str(pair["first"]), str(pair["second"])))
+        for pair in retained_pairs
+        if isinstance(pair.get("first"), str) and isinstance(pair.get("second"), str)
+    }
+    lines = source.read_text(encoding="utf-8").splitlines(keepends=True)
+    output: list[str] = []
+    removed: list[dict[str, str]] = []
+    index = 0
+    while index < len(lines):
+        if not re.search(r"\bbase_pair\s*\{", lines[index]):
+            output.append(lines[index])
+            index += 1
+            continue
+        block: list[str] = []
+        depth = 0
+        started = False
+        while index < len(lines):
+            line = lines[index]
+            block.append(line)
+            depth += line.count("{") - line.count("}")
+            started = started or "{" in line
+            index += 1
+            if started and depth == 0:
+                break
+        text = "".join(block)
+        first = _selection_site(text, "base1")
+        second = _selection_site(text, "base2")
+        if first is not None and second is not None and frozenset((first, second)) in overlaps:
+            removed.append({"first": first, "second": second})
+        else:
+            output.extend(block)
+    destination.write_text("".join(output), encoding="utf-8")
+    return {
+        "source": str(source.resolve()),
+        "output": str(destination.resolve()),
+        "generated_phil_is_authoritative": True,
+        "removed_overlap_count": len(removed),
+        "removed_overlaps": removed,
+    }
+
+
 def _atom_counts(path: Path) -> tuple[int, int, int]:
     atoms = heteroatoms = hydrogens = 0
     for line in _coordinate_records(path):
@@ -1290,7 +1349,7 @@ def prepare_postmr(
     if modified_pairs_only:
         _rewrite_codes(prepared, compatibility, compatibility_codes)
         pair_file = restraints_dir / "guessed_modified_pairs.txt"
-        narestraints = restraints_dir / "narestraints_modified_pairs.eff"
+        narestraints = restraints_dir / "narestraints_modified_pairs.phil"
         try:
             builder_result = (
                 modified_pair_builder or _default_modified_pair_restraints_builder
@@ -1324,6 +1383,31 @@ def prepare_postmr(
             )
         if narestraints.is_file():
             restraint_paths.append(narestraints)
+        if isinstance(frame_name, str):
+            try:
+                spec = frame_postmr_spec(frame_name)
+            except KeyError as exc:
+                raise PostMRPreparationError(str(exc)) from exc
+            secondary_source = restraint_data_directory(data_root) / spec.secondary_structure_file
+            if not secondary_source.is_file():
+                raise PostMRPreparationError(
+                    f"Packaged restraint resources are missing for frame {frame_name}"
+                )
+            secondary = restraints_dir / spec.secondary_structure_file
+            retained_pairs = narestraints_report.get("retained_pairs")
+            if not isinstance(retained_pairs, list) or not all(
+                isinstance(pair, Mapping) for pair in retained_pairs
+            ):
+                raise PostMRPreparationError(
+                    "Modified-pair report has no structured retained-pair list"
+                )
+            overlay = _filter_scaffold_overlaps(
+                secondary_source,
+                secondary,
+                retained_pairs,  # type: ignore[arg-type]
+            )
+            narestraints_report["project_scaffold"] = overlay
+            restraint_paths.append(secondary)
     elif isinstance(frame_name, str):
         try:
             spec = frame_postmr_spec(frame_name)
@@ -1341,7 +1425,7 @@ def prepare_postmr(
         shutil.copyfile(pair_source, pair_file)
         shutil.copyfile(secondary_source, secondary)
         _rewrite_codes(prepared, compatibility, compatibility_codes)
-        narestraints = restraints_dir / "narestraints_Std_padd.eff"
+        narestraints = restraints_dir / "narestraints_Std_padd.phil"
         try:
             builder_result = (narestraints_builder or _default_narestraints_builder)(
                 compatibility, pair_file, narestraints

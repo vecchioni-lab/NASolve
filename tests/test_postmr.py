@@ -14,6 +14,7 @@ from nasolve.postmr import (
     PostMRPreparationError,
     _coot_script,
     _default_modified_pair_restraints_builder,
+    _filter_scaffold_overlaps,
     _modified_nucleotide_sites,
     _patch_narestraints_records,
     _restore_canonical_mutation_backbones,
@@ -69,6 +70,30 @@ def make_data_root(root: Path) -> Path:
 
 
 class PostMRTests(unittest.TestCase):
+    def test_generated_phil_pair_removes_overlapping_project_eff_block(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "project.eff"
+            output = root / "filtered.eff"
+            source.write_text(
+                "refinement {\n  base_pair {\n"
+                "    base1 = chain 'A' and resid 12\n"
+                "    base2 = chain 'B' and resid 4\n"
+                "  }\n  base_pair {\n"
+                "    base1 = chain 'A' and resid 3\n"
+                "    base2 = chain 'C' and resid 13\n"
+                "  }\n}\n"
+            )
+            report = _filter_scaffold_overlaps(
+                source,
+                output,
+                [{"first": "B:4", "second": "A:12"}],
+            )
+            filtered = output.read_text()
+            self.assertNotIn("resid 12", filtered)
+            self.assertIn("resid 13", filtered)
+            self.assertEqual(report["removed_overlap_count"], 1)
+
     def test_default_modified_pair_builder_filters_structured_candidates(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -236,7 +261,7 @@ class PostMRTests(unittest.TestCase):
                 modified_pair_builder=fake_modified_builder,
             )
             restraint_names = {path.name for path in result.restraint_paths}
-            self.assertIn("narestraints_modified_pairs.eff", restraint_names)
+            self.assertIn("narestraints_modified_pairs.phil", restraint_names)
             self.assertIn("DE.cif", restraint_names)
             self.assertNotIn("5W6W_secondary_structure.eff", restraint_names)
             self.assertTrue(result.readyset_log.is_file())
@@ -280,9 +305,49 @@ class PostMRTests(unittest.TestCase):
                 modified_pair_builder=no_pairs,
             )
             self.assertFalse(
-                (result.postmr_directory / "Restraints" / "narestraints_modified_pairs.eff").exists()
+                (result.postmr_directory / "Restraints" / "narestraints_modified_pairs.phil").exists()
             )
             self.assertTrue(result.readyset_log.is_file())
+
+    def test_modified_pair_phil_and_project_eff_compose_for_w_frame(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.pdb"
+            source.write_text(postmr_model_text())
+            run = root / "run"
+            make_postmr_report(run, source)
+
+            def one_pair(
+                prepared: Path,
+                compatibility: Path,
+                pairs: Path,
+                output: Path,
+            ) -> dict[str, object]:
+                pairs.write_text("A 12\nB 4\n")
+                output.write_text("geometry_restraints.edits {}\n")
+                return {
+                    "mode": "modified-pairs-only",
+                    "modified_sites": ["A:12"],
+                    "retained_pair_count": 1,
+                    "retained_pairs": [{"first": "A:12", "second": "B:4"}],
+                    "compatibility_corrections": [],
+                }
+
+            result = prepare_postmr(
+                run,
+                make_ready_set(root),
+                data_root=make_data_root(root),
+                modified_pairs_only=True,
+                modified_pair_builder=one_pair,
+            )
+            names = {path.name for path in result.restraint_paths}
+            self.assertIn("narestraints_modified_pairs.phil", names)
+            self.assertIn("5W6W_secondary_structure.eff", names)
+            report = json.loads(result.report_path.read_text())
+            self.assertTrue(
+                report["narestraints"]["project_scaffold"]
+                ["generated_phil_is_authoritative"]
+            )
 
     def test_full_dna_sequence_expands_by_frozen_chain_order(self):
         with tempfile.TemporaryDirectory() as directory:

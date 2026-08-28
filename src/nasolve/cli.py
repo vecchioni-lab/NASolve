@@ -4,11 +4,20 @@ from __future__ import annotations
 
 import argparse
 import importlib.metadata
+import json
+import os
 import sys
 from pathlib import Path
 
+from .autorefine import AutoRefineError, execute_autorefine
 from .autosol import AutoSolPreparationError, execute_autosol
 from .automr import AutoMRInputError, ModelAssessmentError, prepare_automr
+from .checkpoints import (
+    CheckpointError,
+    add_checkpoint,
+    list_checkpoints,
+    select_checkpoint,
+)
 from .config import ConfigError, default_config_path, load_config, save_config
 from .coot_runtime import (
     CootDiscoveryError,
@@ -16,6 +25,7 @@ from .coot_runtime import (
     installation_from_candidate as coot_from_candidate,
     remember_coot,
 )
+from .coot_view import CootViewError, launch_coot_view, resolve_run
 from .phenix_runtime import (
     PhenixDiscoveryError,
     discover_phenix,
@@ -24,6 +34,7 @@ from .phenix_runtime import (
 )
 from .phaser import PhaserExecutionError, execute_phaser
 from .postmr import PostMRPreparationError, prepare_postmr
+from .refine_doctor import RefineDoctorError, execute_refine_doctor
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -93,6 +104,78 @@ def build_parser() -> argparse.ArgumentParser:
         "autosol", help="run guarded MR-SAD phasing when PostMR finds a heavy atom"
     )
     autosol.add_argument("run", type=Path, help="completed POSTMR_READY run directory")
+    autorefine = subparsers.add_parser(
+        "autorefine", help="run one quiet, checkpointed Phenix refinement round"
+    )
+    autorefine.add_argument("run", type=Path, help="completed PostMR/AutoSol run directory")
+    autorefine.add_argument(
+        "--from", dest="from_checkpoint",
+        help="checkpoint ID or bookmark to branch from (default: current)",
+    )
+    autorefine.add_argument(
+        "--recipe", default="AutoRefine/default",
+        help="refinement recipe label recorded in provenance",
+    )
+    autorefine.add_argument(
+        "--cycles", type=int, default=5,
+        help="number of refinement macrocycles (default: 5)",
+    )
+    doctor = subparsers.add_parser(
+        "refine-doctor",
+        aliases=["refine_doctor"],
+        help="audit and triage a refinement with bounded checkpoint branches",
+    )
+    doctor.add_argument("run", type=Path, help="completed PostMR/AutoRefine run directory")
+    doctor.add_argument(
+        "--from", dest="from_checkpoint",
+        help="checkpoint ID or bookmark to diagnose (default: current)",
+    )
+    doctor.add_argument(
+        "--cycles", type=int, default=3,
+        help="macrocycles per bounded diagnostic branch (default: 3)",
+    )
+    checkpoints = subparsers.add_parser(
+        "checkpoints", help="list, bookmark, import, or select refinement checkpoints"
+    )
+    checkpoint_sub = checkpoints.add_subparsers(dest="checkpoint_action", required=True)
+    checkpoint_list = checkpoint_sub.add_parser("list", help="list the checkpoint tree")
+    checkpoint_list.add_argument("run", type=Path)
+    checkpoint_add = checkpoint_sub.add_parser(
+        "add", help="bookmark the current checkpoint or import a manual model"
+    )
+    checkpoint_add.add_argument("run", type=Path)
+    checkpoint_add.add_argument("--name", required=True, help="user-visible checkpoint name")
+    checkpoint_add.add_argument("--model", type=Path, help="manual PDB model to import")
+    checkpoint_add.add_argument(
+        "--mtz", type=Path,
+        help="deliberate replacement observation MTZ for an imported model",
+    )
+    checkpoint_add.add_argument(
+        "--from", dest="from_checkpoint",
+        help="parent checkpoint ID or bookmark (default: current)",
+    )
+    checkpoint_use = checkpoint_sub.add_parser("use", help="select a reusable checkpoint")
+    checkpoint_use.add_argument("run", type=Path)
+    checkpoint_use.add_argument("checkpoint", help="checkpoint ID or bookmark")
+    show = subparsers.add_parser(
+        "show", help="open a completed run stage in an isolated graphical Coot session"
+    )
+    show.add_argument(
+        "target", help="run directory, or 'last' to choose the highest numbered dataset run"
+    )
+    show.add_argument(
+        "dataset", nargs="?", type=Path,
+        help="dataset directory required by 'show last'",
+    )
+    show.add_argument(
+        "--stage", choices=("automr", "postmr", "autosol", "autorefine"),
+        help="view a specific completed stage instead of the most advanced one",
+    )
+    show.add_argument(
+        "--checkpoint",
+        help="open a specific refinement checkpoint without selecting it",
+    )
+    show.add_argument("--coot", help="one-run Coot executable override")
     return parser
 
 
@@ -320,6 +403,369 @@ def _autosol(args: argparse.Namespace) -> int:
     return 0
 
 
+def _color(text: str, code: str) -> str:
+    if not sys.stdout.isatty() or "NO_COLOR" in os.environ:
+        return text
+    return f"\033[{code}m{text}\033[0m"
+
+
+def _status_text(status: str, *, current: bool = False) -> str:
+    colors = {
+        "READY": "32",
+        "SUCCESS": "32",
+        "USER_APPROVED": "32",
+        "REVIEW": "33",
+        "FAILED": "31",
+    }
+    marker = _color(">", "36") if current else " "
+    return f"{marker} {_color(status, colors.get(status, '0'))}"
+
+
+def _format_metric(value: object, digits: int = 3) -> str:
+    return f"{value:.{digits}f}" if isinstance(value, (int, float)) else "—"
+
+
+def _autorefine(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+        phenix = discover_phenix(config, explicit=args.phenix_root)
+        if args.phenix_root is None:
+            remember_phenix(config, phenix)
+            save_config(config)
+        mtz_dump = phenix.executables.get("phenix.mtz.dump")
+        if mtz_dump is None:
+            raise AutoRefineError("AutoRefine requires phenix.mtz.dump")
+
+        def progress(checkpoint_id: str, log_path: Path) -> None:
+            print(f"AutoRefine {checkpoint_id} started; full output: {log_path}")
+
+        result = execute_autorefine(
+            args.run,
+            phenix.executables["phenix.refine"],
+            mtz_dump,
+            environment=phenix.environment,
+            from_checkpoint=args.from_checkpoint,
+            recipe=args.recipe,
+            macro_cycles=args.cycles,
+            progress=progress,
+        )
+    except (AutoRefineError, ConfigError, PhenixDiscoveryError) as exc:
+        print(f"AutoRefine error: {exc}", file=sys.stderr)
+        return 2
+    status_color = (
+        "32" if result.status == "AUTOREFINE_READY"
+        else "33" if result.status in {"AUTOREFINE_REVIEW", "AUTOREFINE_ANOMALOUS_FALLBACK"}
+        else "31"
+    )
+    print(f"\n{_color(result.status, status_color)}: {result.message}")
+    print(f"Checkpoint: {result.checkpoint_id} (parent: {result.parent_checkpoint})")
+    print("Cycles: " + str(args.cycles))
+    payload = json.loads(result.report_path.read_text(encoding="utf-8"))
+    inputs = payload.get("inputs", {})
+    refinement = payload.get("refinement", {})
+    if isinstance(inputs, dict) and isinstance(refinement, dict):
+        print("Target: Automatic")
+        print("Observations: " + ",".join(inputs.get("observation_labels", [])))
+        phase_labels = inputs.get("phase_labels", [])
+        print("Phases: " + (",".join(phase_labels) if phase_labels else "none"))
+        selections = refinement.get("anomalous_selections", [])
+        print("Anomalous: " + ("; ".join(selections) if selections else "off"))
+    stats = result.statistics
+    print("\n                 Initial    Final")
+    print(
+        "Rwork           "
+        f"{_format_metric(stats.get('initial_r_work')):>9}"
+        f"{_format_metric(stats.get('r_work')):>9}"
+    )
+    print(
+        "Rfree           "
+        f"{_format_metric(stats.get('initial_r_free')):>9}"
+        f"{_format_metric(stats.get('r_free')):>9}"
+    )
+    print(f"Rfree - Rwork   {'':>9}{_format_metric(stats.get('r_free_minus_r_work')):>9}")
+    print(f"Clashscore      {'':>9}{_format_metric(stats.get('clashscore'), 2):>9}")
+    bond = _format_metric(stats.get("bond_rmsd"), 3)
+    angle = _format_metric(stats.get("angle_rmsd"), 2)
+    print(f"Bond RMSD       {'':>9}{(bond + ' A') if bond != '—' else bond:>9}")
+    print(f"Angle RMSD      {'':>9}{(angle + ' deg') if angle != '—' else angle:>9}")
+    anomalous_stats = stats.get("anomalous_scatterers")
+    if isinstance(anomalous_stats, list) and anomalous_stats:
+        print("\nAnomalous-scatterer strength:")
+        for item in anomalous_stats:
+            if not isinstance(item, dict):
+                continue
+            label = f"{item.get('site')} {item.get('atom_name')} ({item.get('element')})"
+            wavelength = _format_metric(item.get("wavelength"), 6)
+            refined_fdp = _format_metric(item.get("refined_f_double_prime"), 3)
+            calculated_fdp = _format_metric(item.get("calculated_f_double_prime"), 3)
+            occupancy = _format_metric(item.get("model_occupancy"), 3)
+            apparent = _format_metric(item.get("apparent_anomalous_occupancy"), 3)
+            b_factor = _format_metric(item.get("b_factor"), 2)
+            expected_at_occ = _format_metric(
+                item.get("calculated_f_double_prime_at_occupancy"), 3
+            )
+            print(f"  {label}: wavelength {wavelength} A")
+            print(f"    f'' refined {refined_fdp}; calculated {calculated_fdp} e-")
+            print(
+                f"    occupancy {occupancy}; calculated f'' x occupancy "
+                f"{expected_at_occ}; apparent anomalous occupancy {apparent}"
+            )
+            resolution = item.get("resolution_limit")
+            if isinstance(resolution, (int, float)):
+                expected_edge = _format_metric(
+                    item.get("calculated_contribution_at_resolution_limit"), 3
+                )
+                refined_edge = _format_metric(
+                    item.get("refined_contribution_at_resolution_limit"), 3
+                )
+                print(
+                    f"    B {b_factor} A^2; at {resolution:.3f} A: "
+                    f"calculated {expected_edge}, refined {refined_edge} e-"
+                )
+    series = stats.get("cycle_series")
+    if isinstance(series, list) and series:
+        work_trend = " -> ".join(
+            _format_metric(item.get("r_work"))
+            for item in series if isinstance(item, dict)
+        )
+        free_trend = " -> ".join(
+            _format_metric(item.get("r_free"))
+            for item in series if isinstance(item, dict)
+        )
+        print(f"\nRwork trend: {work_trend}")
+        print(f"Rfree trend: {free_trend}")
+    diagnostics = stats.get("diagnostics")
+    if isinstance(diagnostics, list) and diagnostics:
+        print("\nActionable Phenix messages:")
+        for message in diagnostics[:5]:
+            print(f"  - {message}")
+        if len(diagnostics) > 5:
+            print(f"  - {len(diagnostics) - 5} more in the full log")
+    if result.model_path:
+        print(f"\nRefined model: {result.model_path}")
+    if result.model_cif:
+        print(f"Refined model mmCIF: {result.model_cif}")
+    if result.reflection_cif:
+        print(f"Reflections mmCIF: {result.reflection_cif}")
+    if result.map_coefficients:
+        print(f"Map coefficients: {result.map_coefficients}")
+    print(f"Full log: {result.log_path}")
+    print(f"Report: {result.report_path}")
+    if result.selected_as_current:
+        print(_color("Current checkpoint updated.", "32"))
+    else:
+        print("Current checkpoint unchanged; inspect or select this result explicitly.")
+    return result.exit_code
+
+
+def _refine_doctor(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+        phenix = discover_phenix(config, explicit=args.phenix_root)
+        if args.phenix_root is None:
+            remember_phenix(config, phenix)
+            save_config(config)
+        mtz_dump = phenix.executables.get("phenix.mtz.dump")
+        if mtz_dump is None:
+            raise RefineDoctorError("Refine Doctor requires phenix.mtz.dump")
+
+        def progress(recipe: str, checkpoint: str, log_path: Path) -> None:
+            short_recipe = recipe.rsplit("/", 1)[-1]
+            print(
+                _color(f"Refine Doctor: {short_recipe} -> {checkpoint}", "36")
+                + f"; full output: {log_path}"
+            )
+
+        result = execute_refine_doctor(
+            args.run,
+            phenix.executables["phenix.refine"],
+            mtz_dump,
+            environment=phenix.environment,
+            from_checkpoint=args.from_checkpoint,
+            macro_cycles=args.cycles,
+            progress=progress,
+        )
+    except (RefineDoctorError, ConfigError, PhenixDiscoveryError) as exc:
+        print(f"Refine Doctor error: {exc}", file=sys.stderr)
+        return 2
+    colors = {
+        "REFINE_DOCTOR_GOOD_ENOUGH": "32",
+        "REFINE_DOCTOR_RECOMMEND": "36",
+        "REFINE_DOCTOR_REVIEW": "33",
+        "REFINE_DOCTOR_FLAG_REPAIR_REQUIRED": "31",
+    }
+    print(f"\n{_color(result.status, colors.get(result.status, '0'))}: {result.message}")
+    print(f"Source checkpoint: {result.source_checkpoint}")
+    print(
+        "Current checkpoint: preserved"
+        if result.current_checkpoint_preserved else "Current checkpoint: CHANGED"
+    )
+    details = result.audit.details
+    free_groups = details.get("free_independent_groups")
+    fraction = details.get("free_fraction")
+    fraction_text = f"{100 * fraction:.1f}%" if isinstance(fraction, (int, float)) else "—"
+    print(
+        f"Free-R audit: {result.audit.status}; independent free groups "
+        f"{free_groups if isinstance(free_groups, int) else '—'} ({fraction_text})"
+    )
+    for warning in result.audit.warnings:
+        print(f"  - {warning}")
+
+    if result.benchmark:
+        print("\nStored anomalous benchmark:")
+        for item in result.benchmark:
+            print(
+                f"  {item.get('site')} {item.get('atom_name')}: "
+                f"f'' refined {_format_metric(item.get('refined_f_double_prime'))}; "
+                f"calculated {_format_metric(item.get('calculated_f_double_prime'))}; "
+                f"occupancy {_format_metric(item.get('model_occupancy'))}; "
+                f"B {_format_metric(item.get('b_factor'), 2)} A^2 "
+                f"[{item.get('source_checkpoint')}]"
+            )
+
+    payload = json.loads(result.report_path.read_text(encoding="utf-8"))
+    candidates = payload.get("candidates")
+    if isinstance(candidates, list) and candidates:
+        print("\nCheckpoint    Rwork   Rfree     Gap  Recipe")
+        for item in candidates:
+            if not isinstance(item, dict):
+                continue
+            marker = ">" if item.get("checkpoint") == result.recommended_checkpoint else " "
+            print(
+                f"{marker} {str(item.get('checkpoint')):<11} "
+                f"{_format_metric(item.get('r_work')):>6} "
+                f"{_format_metric(item.get('r_free')):>7} "
+                f"{_format_metric(item.get('r_free_minus_r_work')):>7}  "
+                f"{item.get('recipe')}"
+            )
+    print(f"\nRecommendation: {result.recommendation}")
+    if result.recommended_checkpoint:
+        inspect_command = (
+            f"nasolve show {result.run_directory} "
+            f"--checkpoint {result.recommended_checkpoint}"
+        )
+        select_command = (
+            f"nasolve checkpoints use {result.run_directory} "
+            f"{result.recommended_checkpoint}"
+        )
+        print(
+            "Select after map/model inspection: "
+            + select_command
+        )
+    print(f"Free-R audit log: {result.audit.log_path}")
+    print(f"Report: {result.report_path}")
+    if result.recommended_checkpoint:
+        if sys.stdin.isatty():
+            while True:
+                answer = input(
+                    f"\nUse {result.recommended_checkpoint} as the current checkpoint? "
+                    "[y/N/i=inspection commands]: "
+                ).strip().casefold()
+                if answer in {"y", "yes"}:
+                    try:
+                        selected = select_checkpoint(
+                            result.run_directory, result.recommended_checkpoint
+                        )
+                    except CheckpointError as exc:
+                        print(f"Checkpoint error: {exc}", file=sys.stderr)
+                        return 2
+                    print(_color(f"Current checkpoint: {selected.checkpoint_id}", "36"))
+                    break
+                if answer in {"", "n", "no", "i", "inspect"}:
+                    print("Current checkpoint unchanged.")
+                    print("Inspect without selecting:")
+                    print(f"  {inspect_command}")
+                    print("Select later:")
+                    print(f"  {select_command}")
+                    print("Return to the diagnosed source if needed:")
+                    print(
+                        f"  nasolve checkpoints use {result.run_directory} "
+                        f"{result.source_checkpoint}"
+                    )
+                    break
+                print("Please enter y, n, or i.")
+        else:
+            print("Inspect without selecting:")
+            print(f"  {inspect_command}")
+            print("Select later:")
+            print(f"  {select_command}")
+    return result.exit_code
+
+
+def _checkpoints(args: argparse.Namespace) -> int:
+    try:
+        if args.checkpoint_action == "list":
+            records, current, bookmarks = list_checkpoints(args.run)
+            names_by_id: dict[str, list[str]] = {}
+            for name, target in bookmarks.items():
+                names_by_id.setdefault(target, []).append(name)
+            print("  Status         Checkpoint   Parent        Rwork/Rfree    Recipe")
+            for record in records:
+                marker = _status_text(
+                    record.status, current=record.checkpoint_id == current
+                )
+                values = (
+                    f"{_format_metric(record.metrics.get('r_work'))}/"
+                    f"{_format_metric(record.metrics.get('r_free'))}"
+                )
+                aliases = names_by_id.get(record.checkpoint_id, [])
+                label = f" [{', '.join(aliases)}]" if aliases else ""
+                print(
+                    f"{marker} {record.checkpoint_id:<12} "
+                    f"{(record.parent or '—'):<13} {values:<14} "
+                    f"{record.recipe}{label}"
+                )
+            return 0
+        if args.checkpoint_action == "add":
+            record = add_checkpoint(
+                args.run,
+                name=args.name,
+                model=args.model,
+                reflections=args.mtz,
+                parent=args.from_checkpoint,
+            )
+            action = "Imported" if args.model else "Bookmarked"
+            print(f"{action}: {args.name} -> {record.checkpoint_id}")
+            if args.model:
+                print("Status: REVIEW (select explicitly after inspection)")
+            return 0
+        if args.checkpoint_action == "use":
+            record = select_checkpoint(args.run, args.checkpoint)
+            print(_color(f"Current checkpoint: {record.checkpoint_id}", "36"))
+            print(f"Status: {record.status}")
+            print(f"Model: {record.model}")
+            return 0
+    except CheckpointError as exc:
+        print(f"Checkpoint error: {exc}", file=sys.stderr)
+        return 2
+    return 2
+
+
+def _show(args: argparse.Namespace) -> int:
+    try:
+        run = resolve_run(args.target, args.dataset)
+        config = load_config()
+        coot = discover_coot(config, explicit=args.coot)
+        remember_coot(config, coot)
+        save_config(config)
+        result = launch_coot_view(
+            run,
+            coot.executable,
+            stage=args.stage,
+            checkpoint=args.checkpoint,
+        )
+    except (ConfigError, CootDiscoveryError, CootViewError) as exc:
+        print(f"Coot view error: {exc}", file=sys.stderr)
+        return 2
+    print(f"Opened {result.stage}: {result.model_path.name} + {result.map_path.name}")
+    for extra in result.extra_model_paths:
+        print(f"Additional model: {extra}")
+    print(f"Coot working directory: {result.working_directory}")
+    print(f"Coot log: {result.log_path}")
+    print(f"PID: {result.pid}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "configure" and args.configure_target == "phenix":
@@ -334,4 +780,12 @@ def main(argv: list[str] | None = None) -> int:
         return _postmr(args)
     if args.command == "autosol":
         return _autosol(args)
+    if args.command == "autorefine":
+        return _autorefine(args)
+    if args.command in {"refine-doctor", "refine_doctor"}:
+        return _refine_doctor(args)
+    if args.command == "checkpoints":
+        return _checkpoints(args)
+    if args.command == "show":
+        return _show(args)
     return 2

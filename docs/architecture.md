@@ -174,7 +174,12 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 5. If PostMR finds nucleotide-bound I, Br, or Se, `nasolve autosol RUN` performs
    guarded MR-SAD phasing and validates at least one heavy-atom site against
    the model under crystallographic symmetry.
-6. Call `phenix.refine` behind its own validation gate.
+6. `nasolve autorefine RUN` performs one quiet five-cycle default refinement,
+   validates the output model and statistics, and appends an immutable
+   checkpoint.
+7. `nasolve refine-doctor RUN` audits a selected refinement and, when safe,
+   runs a finite set of sibling diagnostic branches without changing the
+   current checkpoint.
 
 The default command still stops after step 1. `nasolve automr ... --execute`
 runs step 2 and applies step 3. A passing run exits 0; TFZ 7.0–7.99 is retained
@@ -228,13 +233,16 @@ portable 5W6W secondary-structure template contains 17 non-overlapping
 scaffold base pairs, no stacking pairs, and no historical input paths, cell,
 map, output, or GUI settings.
 
-`--modified-pairs-only` replaces the frame stack with a model-derived restraint
-selection in either standard or nonstandard mode. After all coordinate edits,
+`--modified-pairs-only` generates a model-derived restraint selection in either
+standard or nonstandard mode. After all coordinate edits,
 the NARestraints guesser runs with `allow_noncanonical=True`. NASolve defines
 modified sites by noncanonical nucleotide residue identity and retains a
 candidate when either partner is modified. It writes pair restraints with
-stacking disabled. A zero-pair result is a successful no-op; warnings,
-candidate counts, and retained pairs remain in the report.
+stacking disabled. When a project also supplies a scaffold EFF, the generated
+PHIL is authoritative: matching scaffold base-pair blocks are removed and the
+remaining project overlay is retained. A zero-pair result is a successful
+no-op; warnings, candidate counts, retained pairs, and removed overlaps remain
+in the report.
 
 Problematic Phenix components are explicit curated-library entries. User token
 `E` maps to the laboratory PDB-compatible `DE`, not official CCD `8RO`, whose
@@ -306,6 +314,136 @@ warning outcomes do not block the ordinary MR refinement path, but their phase
 files are not automatically approved for use. All sites and match attempts are
 retained in the report, while extra unmatched sites do not block this phase of
 the pipeline.
+
+## AutoRefine contract
+
+AutoRefine separates immutable scientific inputs from evolving coordinates.
+Each round inherits an improved model from one selected parent checkpoint, but
+always retains the original STARANISO observations and original Free-R array.
+Refinement-generated MTZ files are outputs and evidence; they cannot become the
+observation source of a child by accident.
+
+The root checkpoint is the ReadySet model. Its restraint set prefers
+ReadySet's generated combined ligand CIF over the individual curated CIFs that
+were supplied to ReadySet, while retaining the NARestraints PHIL and project
+EFF files. An approved AutoSol file is a separate phase source. Explicit
+reflection file names and labels prevent duplicate observations in the AutoSol
+file from competing with the authoritative STARANISO array.
+
+The default recipe is intentionally conservative and named
+`AutoRefine/default`:
+
+- five macrocycles;
+- reciprocal- and real-space coordinate refinement;
+- group ADPs and eligible occupancies;
+- automatic target selection, optimized XYZ/geometry and ADP weights, and the
+  `n_gaussian` scattering table;
+- no rigid body, individual ADP, TLS, NCS, reference-model, water-update,
+  hydrogen-addition, or simulated-annealing strategy; and
+- every logical processor available to the process.
+
+When PostMR has no anomalous candidate, AutoRefine selects supported mean
+observations. With a candidate, it requires an amplitude quartet
+`F(+),SIGF(+),F(-),SIGF(-)`, forces anomalous observations to remain separate,
+adds `group_anomalous`, and defines one exact atom selection per known model
+site. A validated AutoSol MTZ supplies its discovered HL quartet at the same
+time while the target remains explicitly `auto`. If AutoSol is approved but
+F+/F- amplitudes are missing, a non-anomalous mean-data fallback may finish,
+but the command returns a final error and marks the result for review.
+
+Subprocess output is redirected to `phenix.refine.log`; the console receives
+only a start notification and a curated result card. Rwork/Rfree history,
+clashscore, bond/angle RMSDs, labels, selections, commands, outputs, and
+acceptance decisions are written to the round report and a small metrics TSV.
+Before computation, the same command is run through Phenix's dry-run parser in
+the isolated round directory. An invalid parameter or input therefore produces
+a small failed checkpoint and never launches the expensive refinement.
+
+## Checkpoint graph
+
+`AutoRefine/checkpoints.json` is the run-local registry. Nodes are immutable
+and contain a stable ID, parent, recipe, status, model checksum, frozen input
+references, metrics, compatibility result, and outputs. `SUCCESS` nodes become
+current automatically. `REVIEW` nodes remain reusable but require explicit
+selection; `FAILED` nodes remain visible and cannot be selected.
+
+`nasolve checkpoints add RUN --name NAME` creates a bookmark without copying
+the current node. Supplying `--model` imports a manual model into the run as a
+new review child. `--mtz` is a deliberate observation replacement for an
+external refinement and remains subject to label and Free-R validation before
+the next round. `nasolve checkpoints use` changes only the current pointer;
+all branches and provenance remain intact.
+
+Automatic readiness requires a successful Phenix exit, a compatible model,
+`Rwork < Rfree`, and `Rwork < 0.30`. These numerical tests permit continued
+automation but do not replace visual inspection or user approval.
+
+## Refine Doctor contract
+
+Refine Doctor is a finisher and diagnostic layer, not an unconstrained
+R-factor optimizer. It starts from the current or explicitly named checkpoint,
+records that pointer, and requires every trial to be an immutable sibling of
+the same source. A successful trial is recommended for inspection but is never
+selected automatically by the engine. In an interactive CLI session the user
+receives a final `[y/N/i]` prompt: `y` performs the ordinary audited checkpoint
+selection, while `n` or `i` leaves the pointer unchanged and prints commands
+for inspection, later selection, and returning to the diagnosed source.
+
+Before launching Phenix it audits the authoritative Free-R array with the
+Phenix/CCTBX runtime. The audit measures the independent Friedel-group count,
+test fraction, mate consistency, and test-set population across resolution.
+Inconsistent mate flags, fewer than ten independent free groups, or a guarded
+fraction outside 2-20% stop all trials. A small or shell-sparse test set is
+classified as noisy rather than invalid. Refine Doctor never tries alternate
+test-flag values and never regenerates flags merely to reverse an R-factor
+ordering.
+
+When the source checkpoint contains a refined anomalous group, its refined and
+Henke-calculated `f''`, wavelength, model occupancy, B factor, and source
+checkpoint are frozen as a benchmark in the Doctor report. If no benchmark
+exists but a PostMR heavy atom does, one short benchmark branch is permitted.
+Subsequent validation branches may disable anomalous-parameter refinement while
+continuing to use the authoritative F+/F- observations; the benchmark remains
+available to later metal-aware recipes.
+
+The default bounded branches are:
+
+- ML without HL phases, reciprocal-space XYZ, residue-group ADPs, no occupancy
+  search, and anomalous-parameter refinement off; and
+- the same parameterization with approved HL phases, allowing Phenix's
+  automatic target to use MLHL.
+
+An individual-ADP branch is eligible only at 3.2 A or better and with at least
+three independent observations per modeled atom. This prevents low-resolution
+DNA models from gaining a nominal R-factor improvement through an unsupported
+parameter count. Trial definitions are declarative `RefineDoctorTrial`
+records, so future project presets may supply additional reviewed strategies
+without changing checkpoint or audit behavior.
+
+A branch is strictly successful when its compatible model has `Rwork < Rfree`
+and `Rwork < 0.30`. If no branch passes but the source has `Rwork < 0.30`, a gap
+of at least -0.01, and a valid or merely noisy test set, Doctor may report the
+source as good enough under review rather than manipulate the flags. All other
+cases remain explicit user-review results.
+
+## Stage-aware Coot views
+
+`nasolve show RUN` resolves the most advanced viewable completed stage;
+`nasolve show last DATASET` first chooses the highest numbered run. Explicit
+`--stage` selection is available for comparison. `--checkpoint refine-NNN`
+opens an arbitrary refinement checkpoint and its map in a checkpoint-specific
+Coot pen without changing the current pointer. Profiles deliberately differ:
+
+- AutoMR: Phaser model and Phaser MTZ;
+- PostMR: ReadySet model, Phaser MTZ, and ReadySet-generated dictionary;
+- AutoSol: original Phaser model, AutoSol HA model, and density-modified map
+  coefficients; and
+- AutoRefine: current refined checkpoint model, map coefficients, and its
+  frozen dictionaries.
+
+Every graphical process starts in `RUN/CootGUI/STAGE/` with its backup
+directory redirected underneath the same pen. Run discovery uses numbered
+directories and reports, never filesystem modification times.
 
 ## Project preset direction
 
