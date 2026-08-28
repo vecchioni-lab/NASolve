@@ -71,6 +71,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--execute", action="store_true",
         help="run Phenix Phaser after the guarded preflight",
     )
+    automr.add_argument(
+        "--mirror", action="store_true",
+        help="mirror the selected D/L nucleic-acid model with NARestraints before MR",
+    )
     postmr = subparsers.add_parser(
         "postmr", help="prepare an accepted Phaser solution for refinement"
     )
@@ -79,6 +83,11 @@ def build_parser() -> argparse.ArgumentParser:
     postmr.add_argument(
         "--allow-mr-review", action="store_true",
         help="explicitly continue from a TFZ 7.0-7.99 MR_REVIEW result",
+    )
+    postmr.add_argument(
+        "--modified-pairs-only",
+        action="store_true",
+        help="guess base pairs and restrain only pairs containing a modified nucleotide",
     )
     autosol = subparsers.add_parser(
         "autosol", help="run guarded MR-SAD phasing when PostMR finds a heavy atom"
@@ -185,6 +194,7 @@ def _automr(args: argparse.Namespace) -> int:
             pair_override=args.pair,
             frames_dir=args.frames_dir,
             allow_p1_standard=args.allow_p1_standard,
+            mirror=args.mirror,
             mtz_dump_executable=installation.executables.get("phenix.mtz.dump"),
             phenix_environment=installation.environment,
         )
@@ -245,6 +255,7 @@ def _postmr(args: argparse.Namespace) -> int:
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
             allow_mr_review=args.allow_mr_review,
+            modified_pairs_only=args.modified_pairs_only,
         )
     except (
         ConfigError,

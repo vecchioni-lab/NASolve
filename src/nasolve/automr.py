@@ -10,7 +10,7 @@ import json
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Collection, Mapping
+from typing import Callable, Collection, Mapping
 
 from .automr_input import (
     AutoMRInputError,
@@ -19,7 +19,13 @@ from .automr_input import (
     read_intent,
     resolve_automr_input,
 )
-from .model_assessment import ModelAssessment, ModelAssessmentError, copy_preserving_model, inspect_pdb
+from .model_assessment import (
+    ModelAssessment,
+    ModelAssessmentError,
+    copy_preserving_model,
+    file_sha256,
+    inspect_pdb,
+)
 from .symmetry import StandardSymmetryAssessment, SymmetryError, assess_standard_symmetry
 
 
@@ -105,6 +111,50 @@ def _validate_edit_targets(
             raise AutoMRInputError(f"Mutation target {site} does not exist in the MR model")
 
 
+def _default_mirror_transformer(source: Path, destination: Path) -> Path:
+    try:
+        from restraints.mirror_pdb import mirror_pdb
+    except ImportError as exc:
+        raise AutoMRInputError(
+            "--mirror requires a NARestraints installation with restraints.mirror_pdb"
+        ) from exc
+    try:
+        output = Path(mirror_pdb(source, destination)).expanduser().resolve()
+    except Exception as exc:
+        raise AutoMRInputError(f"NARestraints could not mirror the MR model: {exc}") from exc
+    if output != destination.resolve() or not output.is_file():
+        raise AutoMRInputError(
+            f"NARestraints did not create the expected mirrored model: {destination}"
+        )
+    return output
+
+
+def _validate_mirror_inventory(
+    source: ModelAssessment,
+    mirrored: ModelAssessment,
+) -> None:
+    comparisons = (
+        ("atom count", source.atom_count, mirrored.atom_count),
+        ("polymer residue count", source.polymer_residue_count, mirrored.polymer_residue_count),
+        ("HETATM count", source.heteroatom_count, mirrored.heteroatom_count),
+        ("chain inventory", source.chains, mirrored.chains),
+        (
+            "polymer residues by chain",
+            source.polymer_residues_by_chain,
+            mirrored.polymer_residues_by_chain,
+        ),
+    )
+    changed = [
+        f"{label}: {before!r} -> {after!r}"
+        for label, before, after in comparisons
+        if before != after
+    ]
+    if changed:
+        raise AutoMRInputError(
+            "Mirroring changed the model inventory unexpectedly: " + "; ".join(changed)
+        )
+
+
 def _log_text(
     resolved: ResolvedAutoMRInput,
     assessment: ModelAssessment,
@@ -152,6 +202,7 @@ def _log_text(
         f"Exact pair model: {resolved.exact_pair_model}",
         f"MR model: {resolved.model}",
         f"Model source: {resolved.model_source}",
+        f"Mirrored before MR: {'yes' if resolved.mirror else 'no'}",
         "Catalogue warnings:",
         *catalogue_warning_lines,
         f"Model SHA-256: {assessment.sha256}",
@@ -176,10 +227,12 @@ def prepare_automr(
     pair_override: str | None = None,
     frames_dir: Path | None = None,
     allow_p1_standard: bool = False,
+    mirror: bool = False,
     mtz_dump_executable: Path | None = None,
     phenix_environment: Mapping[str, str] | None = None,
     environ: Mapping[str, str] | None = None,
     valid_ligand_codes: Collection[str] | None = None,
+    mirror_transformer: Callable[[Path, Path], Path] | None = None,
 ) -> AutoMRPreflightResult:
     """Validate and freeze one AutoMR request without executing Phaser."""
     root = dataset.expanduser().resolve()
@@ -193,6 +246,7 @@ def prepare_automr(
         pair_override=pair_override,
         frames_dir=frames_dir,
         allow_p1_standard=allow_p1_standard,
+        mirror_override=mirror,
         environ=environ,
         valid_ligand_codes=valid_ligand_codes,
     )
@@ -213,10 +267,10 @@ def prepare_automr(
             )
         except SymmetryError as exc:
             raise AutoMRInputError(str(exc)) from exc
-    assessment = inspect_pdb(
+    source_assessment = inspect_pdb(
         resolved.model, polymer_ligand_codes=valid_ligand_codes
     )
-    _validate_edit_targets(resolved, assessment)
+    _validate_edit_targets(resolved, source_assessment)
     effective_text = format_intent(resolved)
 
     generated = existing_config is None
@@ -231,7 +285,20 @@ def prepare_automr(
     model_dir = run_dir / "Model"
     model_dir.mkdir()
     copied_model = model_dir / "input_model.pdb"
-    copy_preserving_model(resolved.model, copied_model, assessment)
+    if resolved.mirror:
+        source_copy = model_dir / "source_model.pdb"
+        copy_preserving_model(resolved.model, source_copy, source_assessment)
+        (mirror_transformer or _default_mirror_transformer)(source_copy, copied_model)
+        assessment = inspect_pdb(
+            copied_model, polymer_ligand_codes=valid_ligand_codes
+        )
+        _validate_mirror_inventory(source_assessment, assessment)
+        assessment.heteroatoms_preserved = True
+        assessment.copied_model = str(copied_model.resolve())
+        _validate_edit_targets(resolved, assessment)
+    else:
+        assessment = source_assessment
+        copy_preserving_model(resolved.model, copied_model, assessment)
     _write_json(model_dir / "assessment.json", assessment.to_dict())
     (run_dir / "nasolve.input.txt").write_text(effective_text, encoding="utf-8")
 
@@ -264,6 +331,18 @@ def prepare_automr(
             "metadata": str(resolved.dataset.metadata),
             "summary": str(resolved.dataset.summary),
             "model": str(resolved.model),
+            "model_sha256": source_assessment.sha256,
+            "mirror": resolved.mirror,
+            "mirror_source_model": (
+                str(model_dir / "source_model.pdb") if resolved.mirror else None
+            ),
+            "mirrored_model": str(copied_model) if resolved.mirror else None,
+            "sequence_file": (
+                str(resolved.sequence_file) if resolved.sequence_file else None
+            ),
+            "sequence_file_sha256": (
+                file_sha256(resolved.sequence_file) if resolved.sequence_file else None
+            ),
             "model_source": resolved.model_source,
             "catalogue_warnings": list(resolved.catalogue_warnings),
         },

@@ -50,6 +50,16 @@ class PostMRResult:
 
 
 _COOT_BASES = frozenset({"DA", "DC", "DG", "DT", "A", "C", "G", "U"})
+_MIRRORED_CANONICAL_CODES = {
+    "DA": "0DA", "DC": "0DC", "DG": "0DG", "DT": "0DT",
+    "A": "0A", "C": "0C", "G": "0G", "U": "0U",
+}
+_CANONICAL_NUCLEOTIDE_CODES = frozenset({
+    "DA", "DC", "DG", "DT", "DU", "A", "C", "G", "U",
+    *_MIRRORED_CANONICAL_CODES.values(),
+})
+_DNA_SEQUENCE_CODES = {"A": "DA", "C": "DC", "G": "DG", "T": "DT"}
+_RNA_SEQUENCE_CODES = {"A": "A", "C": "C", "G": "G", "U": "U"}
 DEFAULT_ANOMALOUS_ELEMENTS = frozenset({"I", "BR", "SE"})
 _REQUIRED_PARENT_ATOM_GROUPS = (
     frozenset({"P"}),
@@ -152,16 +162,75 @@ def _rewrite_codes(source: Path, destination: Path, code_map: Mapping[str, str])
     destination.write_text("".join(output), encoding="utf-8")
 
 
-def _target_sites(report: Mapping[str, object]) -> OrderedDict[str, str]:
+def _chain_is_rna(model: Path, chain: str, residue_ids: set[str]) -> bool:
+    atom_names = {
+        line[12:16].strip()
+        for line in _coordinate_records(model)
+        if (identity := _record_identity(line)) is not None
+        and identity[0] == chain
+        and identity[1] in residue_ids
+    }
+    return "O2'" in atom_names
+
+
+def _sequence_targets(
+    report: Mapping[str, object],
+    model: Path,
+    sequences: Mapping[str, object],
+) -> OrderedDict[str, str]:
+    assessment = report.get("model_assessment")
+    residue_ids_by_chain = (
+        assessment.get("polymer_residue_ids_by_chain")
+        if isinstance(assessment, Mapping) else None
+    )
+    if not isinstance(residue_ids_by_chain, Mapping):
+        raise PostMRPreparationError(
+            "Full-sequence mutation requires the frozen polymer-residue inventory"
+        )
+    targets: OrderedDict[str, str] = OrderedDict()
+    for chain, sequence_value in sequences.items():
+        if not isinstance(chain, str) or not isinstance(sequence_value, str):
+            raise PostMRPreparationError("Malformed frozen sequence plan")
+        residue_values = residue_ids_by_chain.get(chain)
+        if not isinstance(residue_values, list) or not all(
+            isinstance(value, str) for value in residue_values
+        ):
+            raise PostMRPreparationError(
+                f"Sequence chain {chain!r} has no frozen residue inventory"
+            )
+        sequence = sequence_value.upper()
+        if len(sequence) != len(residue_values):
+            raise PostMRPreparationError(
+                f"Sequence for chain {chain} has length {len(sequence)}, but the "
+                f"frozen model inventory contains {len(residue_values)} residues"
+            )
+        is_rna = _chain_is_rna(model, chain, set(residue_values))
+        mapping = _RNA_SEQUENCE_CODES if is_rna else _DNA_SEQUENCE_CODES
+        incompatible = sorted(set(sequence) - set(mapping))
+        if incompatible:
+            polymer = "RNA" if is_rna else "DNA"
+            raise PostMRPreparationError(
+                f"Sequence for {polymer} chain {chain} contains incompatible symbol(s): "
+                + ", ".join(incompatible)
+            )
+        for resid, symbol in zip(residue_values, sequence):
+            targets[f"{chain}:{resid}"] = mapping[symbol]
+    return targets
+
+
+def _target_sites(
+    report: Mapping[str, object],
+    model: Path,
+) -> OrderedDict[str, str]:
     plan = report.get("post_mr_plan")
     if not isinstance(plan, Mapping):
         raise PostMRPreparationError("Frozen report is missing its post-MR plan")
     sequences = plan.get("sequences")
-    if isinstance(sequences, Mapping) and sequences:
-        raise PostMRPreparationError(
-            "Full-sequence mutation is not enabled yet; use explicit [mutations] sites"
-        )
-    targets: OrderedDict[str, str] = OrderedDict()
+    targets = (
+        _sequence_targets(report, model, sequences)
+        if isinstance(sequences, Mapping) and sequences
+        else OrderedDict()
+    )
     standard_pair = plan.get("standard_pair")
     if isinstance(standard_pair, Mapping):
         frame = report.get("frame")
@@ -210,17 +279,28 @@ def _target_sites(report: Mapping[str, object]) -> OrderedDict[str, str]:
             elif request.get("requested") == "F" and code in {"DF", "A1AAZ"}:
                 code = "DF"
             targets[site] = code
+    inputs = report.get("inputs")
+    if isinstance(inputs, Mapping) and inputs.get("mirror") is True:
+        targets = OrderedDict(
+            (site, _MIRRORED_CANONICAL_CODES.get(code, code))
+            for site, code in targets.items()
+        )
     return targets
 
 
 def build_mutation_plan(report: Mapping[str, object], model: Path) -> tuple[MutationAction, ...]:
     actions: list[MutationAction] = []
-    for site, target in _target_sites(report).items():
+    for site, target in _target_sites(report, model).items():
         current = residue_name(model, site)
         parent_code: str | None = None
         deposition_code: str | None = None
         if current == target:
             method = "none"
+        elif target in _MIRRORED_CANONICAL_CODES.values():
+            raise PostMRPreparationError(
+                f"Mirrored mutation {site} {current}->{target} requires the guarded "
+                "unmirror/Coot/remirror pathway, which is not configured yet"
+            )
         elif target in CURATED_LIGANDS:
             ligand = CURATED_LIGANDS[target]
             if ligand.parent_code is None:
@@ -758,6 +838,84 @@ def _restore_shared_parent_coordinates(
     }
 
 
+def _restore_canonical_mutation_backbones(
+    source_model: Path,
+    mutated_model: Path,
+    output_model: Path,
+    actions: tuple[MutationAction, ...],
+) -> dict[str, object]:
+    """Keep the original sugar/phosphate while allowing Coot to replace bases."""
+    canonical_actions = tuple(
+        action for action in actions if action.method == "coot-mutate-base"
+    )
+    if not canonical_actions:
+        shutil.copyfile(mutated_model, output_model)
+        return {}
+    protected_names = {
+        _canonical_atom_name(name)
+        for group in _REQUIRED_PARENT_ATOM_GROUPS
+        for name in group
+    }
+    source_atoms = {
+        (atom[0], atom[1], _canonical_atom_name(atom[2]), atom[3]): line
+        for line in _coordinate_records(source_model)
+        if (atom := _atom_identity(line)) is not None
+    }
+    mutated_records = _coordinate_records(mutated_model)
+    mutated_atoms = {
+        (atom[0], atom[1], _canonical_atom_name(atom[2]), atom[3]): line
+        for line in mutated_records
+        if (atom := _atom_identity(line)) is not None
+    }
+    replacements: dict[tuple[str, str, str, str], str] = {}
+    reports: dict[str, object] = {}
+    for action in canonical_actions:
+        chain, resid = _site_parts(action.site)
+        expected = {
+            key: line
+            for key, line in source_atoms.items()
+            if key[:2] == (chain, resid) and key[2] in protected_names
+        }
+        if not expected:
+            raise PostMRPreparationError(
+                f"Canonical mutation at {action.site} has no protected backbone atoms"
+            )
+        missing = sorted(
+            key[2] for key in expected if key not in mutated_atoms
+        )
+        if missing:
+            raise PostMRPreparationError(
+                f"Canonical mutation at {action.site} lost original backbone atom(s): "
+                + ", ".join(missing)
+            )
+        restored: list[str] = []
+        for key, source_line in expected.items():
+            mutated_line = mutated_atoms[key]
+            if _atom_element(source_line) != _atom_element(mutated_line):
+                raise PostMRPreparationError(
+                    f"Canonical mutation changed the element of {key[2]} at {action.site}"
+                )
+            replacements[key] = source_line
+            restored.append(key[2])
+        reports[action.site] = {
+            "source": "pre-Coot input model",
+            "count": len(set(restored)),
+            "atoms": sorted(set(restored)),
+        }
+    output: list[str] = []
+    for line in mutated_records:
+        atom = _atom_identity(line)
+        key = (
+            atom[0], atom[1], _canonical_atom_name(atom[2]), atom[3]
+        ) if atom is not None else None
+        source_line = replacements.get(key) if key is not None else None
+        if source_line is not None:
+            line = line[:30] + source_line[30:66] + line[66:]
+        output.append(line)
+    output_model.write_text("".join(output), encoding="utf-8")
+    return reports
+
+
 def _patch_narestraints_records(
     records: list[dict[str, object]],
     required_codes: set[str],
@@ -835,6 +993,99 @@ def _default_narestraints_builder(
     return corrections
 
 
+def _modified_nucleotide_sites(path: Path) -> set[str]:
+    residues: dict[tuple[str, str, str], set[str]] = {}
+    for line in _coordinate_records(path):
+        identity = _record_identity(line)
+        atom = _atom_identity(line)
+        if identity is not None and atom is not None:
+            residues.setdefault(identity, set()).add(atom[2])
+    return {
+        f"{chain}:{resid}"
+        for (chain, resid, residue), atom_names in residues.items()
+        if residue not in _CANONICAL_NUCLEOTIDE_CODES
+        and "C1'" in atom_names
+        and bool(atom_names & {"C2'", "C3'", "O4'"})
+    }
+
+
+def _candidate_site(residue: object) -> str:
+    chain = getattr(residue, "chain", None)
+    resid = getattr(residue, "resid", None)
+    if not isinstance(chain, str) or not isinstance(resid, str):
+        raise PostMRPreparationError("NARestraints guesser returned a malformed residue")
+    return f"{chain}:{resid}"
+
+
+def _default_modified_pair_restraints_builder(
+    prepared_pdb: Path,
+    compatibility_pdb: Path,
+    pair_output: Path,
+    restraint_output: Path,
+) -> dict[str, object]:
+    try:
+        from restraints import builder, guesser
+        from restraints.base_pairs import read_base_pair_file
+        from restraints.residue_library import load_residue_records
+    except ImportError as exc:
+        raise PostMRPreparationError("NARestraints is not installed") from exc
+    modified_sites = _modified_nucleotide_sites(prepared_pdb)
+    required_codes = {
+        identity[2]
+        for line in _coordinate_records(compatibility_pdb)
+        if (identity := _record_identity(line)) is not None
+    }
+    records, corrections = _patch_narestraints_records(
+        load_residue_records(), required_codes
+    )
+    original_builder_loader = builder.load_residue_records
+    original_guesser_loader = guesser.load_residue_records
+    builder.load_residue_records = lambda: records
+    guesser.load_residue_records = lambda: records
+    try:
+        candidates, warnings = guesser.guess_pairs(
+            compatibility_pdb,
+            allow_noncanonical=True,
+        )
+        selected = [
+            candidate
+            for candidate in candidates
+            if _candidate_site(candidate.first) in modified_sites
+            or _candidate_site(candidate.second) in modified_sites
+        ]
+        guesser.write_guess(pair_output, selected)
+        if selected:
+            builder.build_phil_from_pdb(
+                compatibility_pdb,
+                read_base_pair_file(pair_output),
+                restraint_output,
+                include_stacking=False,
+            )
+    finally:
+        builder.load_residue_records = original_builder_loader
+        guesser.load_residue_records = original_guesser_loader
+    return {
+        "mode": "modified-pairs-only",
+        "modified_sites": sorted(modified_sites),
+        "allow_noncanonical_guessing": True,
+        "include_stacking": False,
+        "guesser_warnings": list(warnings),
+        "guessed_pair_count": len(candidates),
+        "retained_pair_count": len(selected),
+        "retained_pairs": [
+            {
+                "first": _candidate_site(candidate.first),
+                "second": _candidate_site(candidate.second),
+                "recipe": str(candidate.recipe),
+                "score": float(candidate.score),
+                "noncanonical": bool(candidate.noncanonical),
+            }
+            for candidate in selected
+        ],
+        "compatibility_corrections": corrections,
+    }
+
+
 def _atom_counts(path: Path) -> tuple[int, int, int]:
     atoms = heteroatoms = hydrogens = 0
     for line in _coordinate_records(path):
@@ -910,8 +1161,10 @@ def prepare_postmr(
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
+    modified_pairs_only: bool = False,
     data_root: Path | None = None,
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
+    modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
 ) -> PostMRResult:
     """Prepare a completed Phaser solution without modifying the MR outputs."""
     run, report = _read_report(run_directory)
@@ -960,6 +1213,9 @@ def prepare_postmr(
     overlap_actions = tuple(
         action for action in coot_actions if action.method == "coot-parent-overlap"
     )
+    canonical_actions = tuple(
+        action for action in coot_actions if action.method == "coot-mutate-base"
+    )
     coot_log: Path | None = None
     coordinate_restoration: dict[str, object] = {}
     after_coot = model_dir / "after_coot.pdb"
@@ -988,16 +1244,27 @@ def prepare_postmr(
             coot_dictionaries,
             parent_models,
         )
+        geometry_after_coot = model_dir / "after_coot_geometry.pdb"
         if overlap_actions:
             coordinate_restoration = _restore_shared_parent_coordinates(
                 raw_after_coot,
-                after_coot,
+                geometry_after_coot,
                 overlap_actions,
                 parent_models,
                 curated_sources,
             )
         else:
-            shutil.copyfile(raw_after_coot, after_coot)
+            shutil.copyfile(raw_after_coot, geometry_after_coot)
+        if canonical_actions:
+            canonical_restoration = _restore_canonical_mutation_backbones(
+                original,
+                geometry_after_coot,
+                after_coot,
+                canonical_actions,
+            )
+            coordinate_restoration.update(canonical_restoration)
+        else:
+            shutil.copyfile(geometry_after_coot, after_coot)
     else:
         shutil.copyfile(original, after_coot)
 
@@ -1010,10 +1277,54 @@ def prepare_postmr(
             )
 
     restraint_paths: list[Path] = []
-    narestraints_corrections: list[dict[str, str]] = []
+    narestraints_report: dict[str, object] = {
+        "mode": "none",
+        "compatibility_corrections": [],
+    }
     frame = report.get("frame")
     frame_name = frame.get("name") if isinstance(frame, Mapping) else None
-    if isinstance(frame_name, str):
+    compatibility = restraints_dir / "narestraints_input.pdb"
+    compatibility_codes = {
+        code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
+    }
+    if modified_pairs_only:
+        _rewrite_codes(prepared, compatibility, compatibility_codes)
+        pair_file = restraints_dir / "guessed_modified_pairs.txt"
+        narestraints = restraints_dir / "narestraints_modified_pairs.eff"
+        try:
+            builder_result = (
+                modified_pair_builder or _default_modified_pair_restraints_builder
+            )(prepared, compatibility, pair_file, narestraints)
+        except PostMRPreparationError:
+            raise
+        except Exception as exc:
+            raise PostMRPreparationError(f"NARestraints pair guessing failed: {exc}") from exc
+        if not isinstance(builder_result, Mapping):
+            raise PostMRPreparationError(
+                "Modified-pair NARestraints builder returned no structured report"
+            )
+        narestraints_report = dict(builder_result)
+        narestraints_report.setdefault("mode", "modified-pairs-only")
+        narestraints_report["pair_file"] = str(pair_file)
+        narestraints_report["restraint_file"] = (
+            str(narestraints) if narestraints.is_file() else None
+        )
+        retained_count = narestraints_report.get("retained_pair_count")
+        if (
+            not isinstance(retained_count, int)
+            or isinstance(retained_count, bool)
+            or retained_count < 0
+        ):
+            raise PostMRPreparationError(
+                "Modified-pair NARestraints report has no valid retained-pair count"
+            )
+        if retained_count and not narestraints.is_file():
+            raise PostMRPreparationError(
+                "NARestraints retained modified pairs but did not create its expected output"
+            )
+        if narestraints.is_file():
+            restraint_paths.append(narestraints)
+    elif isinstance(frame_name, str):
         try:
             spec = frame_postmr_spec(frame_name)
         except KeyError as exc:
@@ -1029,10 +1340,6 @@ def prepare_postmr(
         secondary = restraints_dir / spec.secondary_structure_file
         shutil.copyfile(pair_source, pair_file)
         shutil.copyfile(secondary_source, secondary)
-        compatibility = restraints_dir / "narestraints_input.pdb"
-        compatibility_codes = {
-            code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
-        }
         _rewrite_codes(prepared, compatibility, compatibility_codes)
         narestraints = restraints_dir / "narestraints_Std_padd.eff"
         try:
@@ -1046,9 +1353,17 @@ def prepare_postmr(
         if isinstance(builder_result, list) and all(
             isinstance(item, dict) for item in builder_result
         ):
-            narestraints_corrections = builder_result
+            narestraints_report["compatibility_corrections"] = builder_result
         if not narestraints.is_file():
             raise PostMRPreparationError("NARestraints did not create its expected output")
+        narestraints_report.update({
+            "mode": "frame-template",
+            "frame": frame_name,
+            "pair_file": str(pair_file),
+            "restraint_file": str(narestraints),
+            "include_stacking": True,
+            "secondary_structure_file": str(secondary),
+        })
         restraint_paths.extend([narestraints, secondary])
 
     residue_codes = {
@@ -1114,9 +1429,7 @@ def prepare_postmr(
             for code in curated_codes
         },
         "restraints": [str(path) for path in restraint_paths],
-        "narestraints": {
-            "compatibility_corrections": narestraints_corrections,
-        },
+        "narestraints": narestraints_report,
         "readyset": {
             "command": readyset_command,
             "hydrogens": False,
@@ -1144,6 +1457,7 @@ def prepare_postmr(
                 for action in actions
             ),
             f"Coot executed: {'yes' if coot_actions else 'no'}",
+            f"NARestraints mode: {narestraints_report['mode']}",
             "ReadySet hydrogens: False",
             f"Prepared model: {final_model}",
             "",

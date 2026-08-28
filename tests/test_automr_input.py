@@ -7,6 +7,7 @@ from nasolve.automr_input import (
     AutoMRIntent,
     format_intent,
     read_intent,
+    read_sequence_file,
     resolve_automr_input,
 )
 
@@ -137,13 +138,83 @@ class AutoMRInputTests(unittest.TestCase):
             root = Path(directory)
             path = root / "nasolve.txt"
             path.write_text(
-                "[automr]\nmode = nonstandard\nmodel = models/search.pdb\n\n"
+                "[automr]\nmode = nonstandard\nmodel = models/search.pdb\nmirror = true\n\n"
                 "[sequences]\nA = AC\n\n[mutations]\nA:2 = 5IU\n"
             )
             intent = read_intent(path)
             self.assertEqual(intent.model, "models/search.pdb")
+            self.assertTrue(intent.mirror)
             self.assertEqual(intent.sequences, {"A": "AC"})
             self.assertEqual(intent.mutations, {"A:2": "5IU"})
+
+    def test_chain_labelled_sequence_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fasta = root / "construct.fasta"
+            fasta.write_text(">A target strand\nACGT\n>B\nTGCA\n")
+            self.assertEqual(
+                read_sequence_file(fasta),
+                {"A": "ACGT", "B": "TGCA"},
+            )
+            listed = root / "construct.txt"
+            listed.write_text("A = ACGT\nB = TGCA\n")
+            self.assertEqual(
+                read_sequence_file(listed),
+                {"A": "ACGT", "B": "TGCA"},
+            )
+
+    def test_nonstandard_sequence_file_is_resolved_and_frozen(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = make_dataset(root)
+            (root / "construct.fasta").write_text(">A\nAC\n")
+            config = root / "nasolve.txt"
+            config.write_text(
+                "[automr]\nmode = nonstandard\nmodel = search.pdb\n"
+                "sequence_file = construct.fasta\n"
+            )
+            resolved = resolve_automr_input(
+                dataset,
+                read_intent(config),
+                valid_ligand_codes=VALID,
+            )
+            self.assertEqual(resolved.sequences, {"A": "AC"})
+            self.assertEqual(resolved.sequence_file, (root / "construct.fasta").resolve())
+            effective = format_intent(resolved)
+            self.assertIn("[sequences]\nA = AC", effective)
+            self.assertNotIn("sequence_file", effective)
+
+    def test_sequence_file_rejects_ambiguous_or_escaping_input(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = make_dataset(root)
+            outside = root.parent / "outside-sequence.fasta"
+            outside.write_text(">A\nAC\n")
+            try:
+                with self.assertRaisesRegex(AutoMRInputError, "remain inside"):
+                    resolve_automr_input(
+                        dataset,
+                        AutoMRIntent(
+                            mode="nonstandard",
+                            model="search.pdb",
+                            sequence_file="../outside-sequence.fasta",
+                        ),
+                        valid_ligand_codes=VALID,
+                    )
+                (root / "inside.fasta").write_text(">A\nAC\n")
+                with self.assertRaisesRegex(AutoMRInputError, "either"):
+                    resolve_automr_input(
+                        dataset,
+                        AutoMRIntent(
+                            mode="nonstandard",
+                            model="search.pdb",
+                            sequence_file="inside.fasta",
+                            sequences={"A": "AC"},
+                        ),
+                        valid_ligand_codes=VALID,
+                    )
+            finally:
+                outside.unlink(missing_ok=True)
 
     def test_nonstandard_pair_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -166,6 +237,18 @@ class AutoMRInputTests(unittest.TestCase):
                 valid_ligand_codes=VALID,
             )
             self.assertIn("model = models/search.pdb", format_intent(resolved))
+
+    def test_mirror_cli_override_is_frozen(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dataset = make_dataset(Path(directory))
+            resolved = resolve_automr_input(
+                dataset,
+                AutoMRIntent(),
+                mirror_override=True,
+                valid_ligand_codes=VALID,
+            )
+            self.assertTrue(resolved.mirror)
+            self.assertIn("mirror = true", format_intent(resolved))
 
 
 if __name__ == "__main__":

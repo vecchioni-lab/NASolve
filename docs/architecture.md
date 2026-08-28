@@ -43,13 +43,17 @@ Nonstandard example:
 [automr]
 mode = nonstandard
 model = custom_model.pdb
-
-[sequences]
-A = GCGT
+sequence_file = construct.fasta
+mirror = false
 
 [mutations]
 A:3 = 5IU
 ```
+
+`sequence_file` accepts chain-labelled FASTA or `CHAIN = SEQUENCE` records.
+Inline `[sequences]` remains an exclusive alternative. The effective sequence
+is frozen inline in the run snapshot, with the source path and checksum retained
+in the report.
 
 If `nasolve.txt` is absent, the command infers a nonstandard run from exactly
 one top-level PDB, or takes a standard frame from `-W`, `-3GBI`, or `--frame`.
@@ -93,6 +97,7 @@ DATASET/AutoMR/run_001/
 ├── automr.log
 ├── report.json
 └── Model/
+    ├── source_model.pdb  # only when mirroring
     ├── input_model.pdb
     └── assessment.json
 ```
@@ -120,8 +125,14 @@ P1 shunt sets both composition and search copies to three. Phaser's original
 outputs remain untouched, while stable `mr_solution` copies identify the
 result selected for the next layer.
 
-The copied model is checksum-verified, so HETATM records and all other bytes are
-preserved. Residues written as HETATM whose residue names occur in the
+Without mirroring, the copied model is checksum-verified, so HETATM records and
+all other bytes are preserved. With `--mirror` (or `mirror = true`), NASolve
+copies the untouched source into the run, calls
+`restraints.mirror_pdb.mirror_pdb`, and assesses/checksums the transformed
+`input_model.pdb` that Phaser will consume. The mirror is rejected if atom,
+polymer-residue, chain, or HETATM inventories change unexpectedly.
+
+Residues written as HETATM whose residue names occur in the
 NARestraints ligand library are counted as modified polymer residues, not as
 detached ligands. This keeps chain lengths correct for modified nucleotides
 while retaining separate counts for all HETATM atoms and nonpolymer hetero
@@ -154,7 +165,8 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 
 ## Pipeline gates
 
-1. Validate and freeze AutoMR input and assess the unmodified search model.
+1. Validate and freeze AutoMR input; optionally mirror the search model; assess
+   the exact model supplied to Phaser.
 2. Run Phaser in an isolated `Phaser/` directory without stripping heteroatoms.
 3. Classify the best TFZ: `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
 4. `nasolve postmr RUN` applies supported site changes, builds the restraint
@@ -180,8 +192,17 @@ Canonical DNA/RNA changes use a generated headless Coot script. Curated
 modified nucleotides use a canonical-parent mutation followed by dictionary
 monomer construction, overlap, and residue replacement. Coot runs with its
 backup directory redirected beneath the run and removes hydrogens before
-writing. Full sequences and arbitrary modified-base construction remain closed
-gates rather than being silently ignored.
+writing. Full sequences expand over the frozen per-chain residue inventory;
+application precedence is sequence, standard pair, then explicit mutation.
+Every ordinary base change restores the pre-Coot sugar/phosphate coordinates.
+Arbitrary modified-base construction remains a closed gate rather than being
+silently inferred.
+
+For mirrored runs, canonical targets are translated to the NARestraints L-side
+codes (`0DA`, `0DC`, `0DG`, `0DT`, and RNA equivalents). Exact mirrored models
+therefore are not accidentally mutated back to D chemistry. A required
+mirror-side sequence change stops until the guarded
+unmirror/Coot/remirror construction path is implemented.
 
 For curated modifications, Coot also writes a canonical-parent snapshot.
 NASolve copies the coordinates, occupancies, and B factors of every shared
@@ -207,6 +228,14 @@ portable 5W6W secondary-structure template contains 17 non-overlapping
 scaffold base pairs, no stacking pairs, and no historical input paths, cell,
 map, output, or GUI settings.
 
+`--modified-pairs-only` replaces the frame stack with a model-derived restraint
+selection in either standard or nonstandard mode. After all coordinate edits,
+the NARestraints guesser runs with `allow_noncanonical=True`. NASolve defines
+modified sites by noncanonical nucleotide residue identity and retains a
+candidate when either partner is modified. It writes pair restraints with
+stacking disabled. A zero-pair result is a successful no-op; warnings,
+candidate counts, and retained pairs remain in the report.
+
 Problematic Phenix components are explicit curated-library entries. User token
 `E` maps to the laboratory PDB-compatible `DE`, not official CCD `8RO`, whose
 topology describes a different sulfur-ring compound. `F` maps to `DF`, with
@@ -218,6 +247,13 @@ executes with `actions.hydrogens=False`, and is run with `cwd` set to its own
 directory because Phenix 1.20.1 accepts but ignores `input.output_dir`. The
 output is rejected if it contains hydrogen coordinates or changes total or
 HETATM atom counts.
+
+Coot/model editing, component CIFs, NARestraints, and ReadySet have separate
+roles. Coot establishes coordinate identity and placement; CIFs establish
+intra-residue topology; NARestraints establishes selected inter-residue
+geometry. ReadySet is the uniform post-edit normalization and validation gate,
+even where Phenix refinement could technically consume the edited PDB and CIF
+directly.
 
 NARestraints v1.1.1 has a legacy `DF` mapping of canonical `O2` to `S2`; the
 A1AAZ-derived component uses `S1`. The PostMR adapter patches a copied residue
@@ -270,3 +306,20 @@ warning outcomes do not block the ordinary MR refinement path, but their phase
 files are not automatically approved for use. All sites and match attempts are
 retained in the report, while extra unmatched sites do not block this phase of
 the pipeline.
+
+## Project preset direction
+
+Frame and project policy should become declarative data rather than additional
+conditionals keyed to names such as `5W6W`. A future preset manifest beside each
+frame catalogue can declare:
+
+- model providers, exact-pair catalogues, fallbacks, and copy/symmetry policy;
+- standard sites, chain sequences, and restraint resources or modes;
+- metalation recipes and anomalous-element policy;
+- the AutoSol sequence resource and phasing defaults; and
+- approved discovery providers, including a later AlphaFold route.
+
+The orchestration layers consume a frozen model plus declared capabilities.
+This permits a new experimental campaign to ship a versioned preset directory
+without changing common run allocation, provenance, safety gates, Coot/Phenix
+isolation, or downstream reporting.

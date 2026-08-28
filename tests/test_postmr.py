@@ -1,15 +1,22 @@
 import json
 import shutil
+import sys
 import tempfile
+import types
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from nasolve.curated_ligands import validate_curated_dictionary
 from nasolve.postmr import (
     MutationAction,
     PostMRPreparationError,
     _coot_script,
+    _default_modified_pair_restraints_builder,
+    _modified_nucleotide_sites,
     _patch_narestraints_records,
+    _restore_canonical_mutation_backbones,
     _restore_shared_parent_coordinates,
     build_mutation_plan,
     prepare_postmr,
@@ -62,6 +69,303 @@ def make_data_root(root: Path) -> Path:
 
 
 class PostMRTests(unittest.TestCase):
+    def test_default_modified_pair_builder_filters_structured_candidates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            prepared = root / "prepared.pdb"
+            prepared.write_text("".join([
+                pdb_record("HETATM", 1, "C1'", "DE", "A", 12, element="C"),
+                pdb_record("HETATM", 2, "C3'", "DE", "A", 12, element="C"),
+                pdb_record("ATOM", 3, "C1'", "DC", "B", 4, element="C"),
+                pdb_record("ATOM", 4, "C3'", "DC", "B", 4, element="C"),
+                "END\n",
+            ]))
+            compatibility = root / "compatibility.pdb"
+            compatibility.write_text(prepared.read_text())
+            pair_output = root / "pairs.txt"
+            restraint_output = root / "pairs.eff"
+
+            modified = SimpleNamespace(
+                first=SimpleNamespace(chain="A", resid="12"),
+                second=SimpleNamespace(chain="B", resid="4"),
+                recipe="T_C",
+                score=0.9,
+                noncanonical=True,
+            )
+            canonical = SimpleNamespace(
+                first=SimpleNamespace(chain="C", resid="1"),
+                second=SimpleNamespace(chain="D", resid="2"),
+                recipe="G_C",
+                score=0.8,
+                noncanonical=False,
+            )
+            builder = types.ModuleType("restraints.builder")
+            guesser = types.ModuleType("restraints.guesser")
+            base_pairs = types.ModuleType("restraints.base_pairs")
+            residue_library = types.ModuleType("restraints.residue_library")
+            records = [{"Ligand code": "DE", "Base Analog": "T"}]
+            builder.load_residue_records = lambda: records
+            guesser.load_residue_records = lambda: records
+            residue_library.load_residue_records = lambda: records
+
+            def guess_pairs(path: Path, *, allow_noncanonical: bool):
+                self.assertEqual(path, compatibility)
+                self.assertTrue(allow_noncanonical)
+                return [modified, canonical], ["reviewed warning"]
+
+            def write_guess(path: Path, candidates: list[object]):
+                self.assertEqual(candidates, [modified])
+                path.write_text("A 12\nB 4\n")
+
+            def build_phil_from_pdb(
+                path: Path,
+                stretches: object,
+                output: Path,
+                *,
+                include_stacking: bool,
+            ):
+                self.assertEqual(path, compatibility)
+                self.assertEqual(stretches, "parsed")
+                self.assertFalse(include_stacking)
+                output.write_text("geometry_restraints.edits {}\n")
+
+            guesser.guess_pairs = guess_pairs
+            guesser.write_guess = write_guess
+            builder.build_phil_from_pdb = build_phil_from_pdb
+            base_pairs.read_base_pair_file = lambda _path: "parsed"
+            package = types.ModuleType("restraints")
+            package.builder = builder
+            package.guesser = guesser
+            modules = {
+                "restraints": package,
+                "restraints.builder": builder,
+                "restraints.guesser": guesser,
+                "restraints.base_pairs": base_pairs,
+                "restraints.residue_library": residue_library,
+            }
+            with patch.dict(sys.modules, modules):
+                report = _default_modified_pair_restraints_builder(
+                    prepared, compatibility, pair_output, restraint_output
+                )
+            self.assertEqual(report["guessed_pair_count"], 2)
+            self.assertEqual(report["retained_pair_count"], 1)
+            self.assertEqual(report["retained_pairs"][0]["first"], "A:12")
+            self.assertFalse(report["include_stacking"])
+            self.assertTrue(restraint_output.is_file())
+
+    def test_mirrored_canonical_targets_do_not_revert_to_d_dna(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "model.pdb"
+            model.write_text(postmr_model_text("0DC", "0DG"))
+            run = root / "run"
+            report_path = make_postmr_report(
+                run, model, first="DC", second="DG", requested="C:G",
+            )
+            report = json.loads(report_path.read_text())
+            report["inputs"] = {"mirror": True}
+            actions = build_mutation_plan(report, model)
+            self.assertEqual(
+                [(action.after, action.method) for action in actions],
+                [("0DC", "none"), ("0DG", "none")],
+            )
+
+            report["post_mr_plan"]["standard_pair"]["ligand_codes"][0] = "DA"
+            with self.assertRaisesRegex(
+                PostMRPreparationError, "unmirror/Coot/remirror"
+            ):
+                build_mutation_plan(report, model)
+
+    def test_modified_site_detection_uses_chemical_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            model = Path(directory) / "model.pdb"
+            model.write_text("".join([
+                pdb_record("HETATM", 1, "C1'", "DE", "A", 12, element="C"),
+                pdb_record("HETATM", 2, "C3'", "DE", "A", 12, element="C"),
+                pdb_record("ATOM", 3, "C1'", "DC", "B", 4, element="C"),
+                pdb_record("ATOM", 4, "C3'", "DC", "B", 4, element="C"),
+                "END\n",
+            ]))
+            self.assertEqual(_modified_nucleotide_sites(model), {"A:12"})
+
+    def test_modified_pairs_only_works_for_nonstandard_and_still_runs_readyset(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.pdb"
+            source.write_text("".join([
+                pdb_record("HETATM", 1, "P", "DE", "A", 12, element="P"),
+                pdb_record("HETATM", 2, "C1'", "DE", "A", 12, element="C"),
+                pdb_record("HETATM", 3, "C3'", "DE", "A", 12, element="C"),
+                pdb_record("ATOM", 4, "P", "DC", "B", 4, element="P"),
+                pdb_record("ATOM", 5, "C1'", "DC", "B", 4, element="C"),
+                pdb_record("ATOM", 6, "C3'", "DC", "B", 4, element="C"),
+                "END\n",
+            ]))
+            run = root / "run"
+            report_path = make_postmr_report(run, source)
+            report = json.loads(report_path.read_text())
+            report["frame"] = None
+            report["post_mr_plan"] = {
+                "sequences": {}, "standard_pair": None, "mutations": {},
+            }
+            report_path.write_text(json.dumps(report))
+
+            def fake_modified_builder(
+                prepared: Path,
+                compatibility: Path,
+                pairs: Path,
+                output: Path,
+            ) -> dict[str, object]:
+                self.assertIn(" DE ", prepared.read_text())
+                self.assertIn(" DE ", compatibility.read_text())
+                pairs.write_text("A 12\nB 4\n")
+                output.write_text("geometry_restraints.edits {}\n")
+                return {
+                    "mode": "modified-pairs-only",
+                    "modified_sites": ["A:12"],
+                    "retained_pair_count": 1,
+                    "retained_pairs": [{"first": "A:12", "second": "B:4"}],
+                    "compatibility_corrections": [],
+                }
+
+            result = prepare_postmr(
+                run,
+                make_ready_set(root),
+                data_root=make_data_root(root),
+                modified_pairs_only=True,
+                modified_pair_builder=fake_modified_builder,
+            )
+            restraint_names = {path.name for path in result.restraint_paths}
+            self.assertIn("narestraints_modified_pairs.eff", restraint_names)
+            self.assertIn("DE.cif", restraint_names)
+            self.assertNotIn("5W6W_secondary_structure.eff", restraint_names)
+            self.assertTrue(result.readyset_log.is_file())
+            postmr_report = json.loads(result.report_path.read_text())
+            self.assertEqual(
+                postmr_report["narestraints"]["mode"], "modified-pairs-only"
+            )
+            self.assertEqual(
+                postmr_report["narestraints"]["retained_pair_count"], 1
+            )
+
+    def test_modified_pairs_only_empty_selection_is_successful_noop(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.pdb"
+            source.write_text(postmr_model_text())
+            run = root / "run"
+            report_path = make_postmr_report(run, source)
+            report = json.loads(report_path.read_text())
+            report["frame"] = None
+            report["post_mr_plan"] = {
+                "sequences": {}, "standard_pair": None, "mutations": {},
+            }
+            report_path.write_text(json.dumps(report))
+
+            def no_pairs(*args: Path) -> dict[str, object]:
+                args[2].write_text("")
+                return {
+                    "mode": "modified-pairs-only",
+                    "modified_sites": [],
+                    "retained_pair_count": 0,
+                    "retained_pairs": [],
+                    "compatibility_corrections": [],
+                }
+
+            result = prepare_postmr(
+                run,
+                make_ready_set(root),
+                data_root=make_data_root(root),
+                modified_pairs_only=True,
+                modified_pair_builder=no_pairs,
+            )
+            self.assertFalse(
+                (result.postmr_directory / "Restraints" / "narestraints_modified_pairs.eff").exists()
+            )
+            self.assertTrue(result.readyset_log.is_file())
+
+    def test_full_dna_sequence_expands_by_frozen_chain_order(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "model.pdb"
+            model.write_text("".join([
+                pdb_record("ATOM", 1, "P", "DA", "A", 5),
+                pdb_record("ATOM", 2, "P", "DC", "A", 7),
+                "END\n",
+            ]))
+            run = root / "run"
+            report_path = make_postmr_report(run, model, first="DA", second="DC")
+            report = json.loads(report_path.read_text())
+            report["post_mr_plan"] = {
+                "sequences": {"A": "GT"},
+                "standard_pair": None,
+                "mutations": {"A:7": {"requested": "iU", "ligand_code": "5IU"}},
+            }
+            report["model_assessment"] = {
+                "polymer_residue_ids_by_chain": {"A": ["5", "7"]},
+            }
+            actions = build_mutation_plan(report, model)
+            self.assertEqual(
+                [(action.site, action.before, action.after, action.method) for action in actions],
+                [
+                    ("A:5", "DA", "DG", "coot-mutate-base"),
+                    ("A:7", "DC", "5IU", "coot-parent-overlap"),
+                ],
+            )
+            self.assertEqual(actions[1].parent_code, "DT")
+            script = _coot_script(
+                model,
+                root / "after.pdb",
+                actions,
+                {"5IU": root / "5IU.cif"},
+                {"A:7": root / "parent_A_7_DT.pdb"},
+            )
+            self.assertIn("mutate_base(imol, 'A', 5, '', 'DG')", script)
+            self.assertIn("mutate_base(imol, 'A', 7, '', 'DT')", script)
+
+    def test_canonical_sequence_mutation_restores_original_backbone(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.pdb"
+            mutated = root / "mutated.pdb"
+            output = root / "output.pdb"
+            source.write_text("".join([
+                pdb_record(
+                    "ATOM", 1, "P", "DA", "A", 5, element="P",
+                    x=1.0, y=2.0, z=3.0, occupancy=0.75, b_factor=17.0,
+                ),
+                pdb_record(
+                    "ATOM", 2, "O1P", "DA", "A", 5, element="O",
+                    x=2.0, y=3.0, z=4.0, occupancy=0.75, b_factor=17.0,
+                ),
+                pdb_record(
+                    "ATOM", 3, "C1'", "DA", "A", 5, element="C",
+                    x=3.0, y=4.0, z=5.0, occupancy=0.75, b_factor=17.0,
+                ),
+                "END\n",
+            ]))
+            mutated.write_text("".join([
+                pdb_record("ATOM", 1, "P", "DG", "A", 5, element="P", x=101.0),
+                pdb_record("ATOM", 2, "OP1", "DG", "A", 5, element="O", x=102.0),
+                pdb_record("ATOM", 3, "C1'", "DG", "A", 5, element="C", x=103.0),
+                pdb_record("ATOM", 4, "N9", "DG", "A", 5, element="N", x=104.0),
+                "END\n",
+            ]))
+            action = MutationAction("A:5", "DA", "DG", "coot-mutate-base")
+            report = _restore_canonical_mutation_backbones(
+                source, mutated, output, (action,)
+            )
+            records = {
+                line[12:16].strip(): line
+                for line in output.read_text().splitlines()
+                if line.startswith(("ATOM", "HETATM"))
+            }
+            self.assertEqual(float(records["P"][30:38]), 1.0)
+            self.assertEqual(float(records["OP1"][30:38]), 2.0)
+            self.assertEqual(float(records["C1'"][30:38]), 3.0)
+            self.assertEqual(float(records["N9"][30:38]), 104.0)
+            self.assertEqual(report["A:5"]["source"], "pre-Coot input model")
+
     def test_w_frame_keeps_de_and_runs_readyset_without_coot(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -37,6 +37,8 @@ class AutoMRIntent:
     frame: str | None = None
     pair: str | None = None
     model: str | None = None
+    sequence_file: str | None = None
+    mirror: bool = False
     allow_p1_standard: bool = False
     sequences: dict[str, str] = field(default_factory=dict)
     mutations: dict[str, str] = field(default_factory=dict)
@@ -64,13 +66,103 @@ class ResolvedAutoMRInput:
     exact_pair_model: bool | None
     catalogue_warnings: tuple[str, ...]
     allow_p1_standard: bool
+    mirror: bool
     sequences: dict[str, str]
+    sequence_file: Path | None
     mutations: dict[str, ResolvedLigand]
     config_source: Path | None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations"}
-_ALLOWED_AUTOMR_KEYS = {"mode", "frame", "pair", "model", "allow_p1_standard"}
+_ALLOWED_AUTOMR_KEYS = {
+    "mode",
+    "frame",
+    "pair",
+    "model",
+    "sequence_file",
+    "mirror",
+    "allow_p1_standard",
+}
+
+
+def _validated_sequences(
+    sequences: Mapping[str, str],
+    context: str,
+) -> dict[str, str]:
+    validated: dict[str, str] = {}
+    for raw_chain, raw_sequence in sequences.items():
+        chain = raw_chain.strip()
+        sequence = "".join(raw_sequence.split()).upper()
+        if not chain or not sequence:
+            raise AutoMRInputError(f"{context} chain names and sequences cannot be empty")
+        if len(chain) != 1:
+            raise AutoMRInputError(
+                f"{context} chain {chain!r} must be one PDB chain identifier"
+            )
+        invalid = sorted(set(sequence) - set("ACGTU"))
+        if invalid:
+            raise AutoMRInputError(
+                f"{context} chain {chain} contains unsupported sequence symbol(s): "
+                + ", ".join(invalid)
+            )
+        if chain in validated:
+            raise AutoMRInputError(f"{context} contains duplicate chain {chain!r}")
+        validated[chain] = sequence
+    return validated
+
+
+def read_sequence_file(path: Path) -> dict[str, str]:
+    """Read chain-labelled FASTA or ``CHAIN = SEQUENCE`` text."""
+    source = path.expanduser().resolve()
+    try:
+        lines = source.read_text(encoding="utf-8").splitlines()
+    except OSError as exc:
+        raise AutoMRInputError(f"Could not read sequence file {source}: {exc}") from exc
+    meaningful = [line.strip() for line in lines if line.strip() and not line.lstrip().startswith("#")]
+    if not meaningful:
+        raise AutoMRInputError(f"Sequence file is empty: {source}")
+    parsed: dict[str, str] = {}
+    if any(line.startswith(">") for line in meaningful):
+        current: str | None = None
+        chunks: list[str] = []
+
+        def finish() -> None:
+            if current is not None:
+                if current in parsed:
+                    raise AutoMRInputError(
+                        f"Sequence file contains duplicate FASTA chain {current!r}"
+                    )
+                parsed[current] = "".join(chunks)
+
+        for line in meaningful:
+            if line.startswith(">"):
+                finish()
+                header = line[1:].strip()
+                current = header.split()[0] if header else None
+                chunks = []
+                if current is None:
+                    raise AutoMRInputError("FASTA sequence header must name a PDB chain")
+            else:
+                if current is None:
+                    raise AutoMRInputError(
+                        "FASTA sequence data appeared before the first chain header"
+                    )
+                chunks.append(line)
+        finish()
+    else:
+        for line in meaningful:
+            if line.count("=") != 1:
+                raise AutoMRInputError(
+                    "Non-FASTA sequence files must use CHAIN = SEQUENCE on each line"
+                )
+            chain, sequence = line.split("=", 1)
+            chain = chain.strip()
+            if chain in parsed:
+                raise AutoMRInputError(
+                    f"Sequence file contains duplicate chain {chain!r}"
+                )
+            parsed[chain] = sequence.strip()
+    return _validated_sequences(parsed, f"Sequence file {source.name}")
 
 
 def _parser() -> configparser.ConfigParser:
@@ -120,16 +212,18 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         raise AutoMRInputError(
             "[automr] allow_p1_standard must be true or false"
         ) from exc
-    sequences = {
+    try:
+        mirror = parser["automr"].getboolean("mirror", fallback=False)
+    except ValueError as exc:
+        raise AutoMRInputError("[automr] mirror must be true or false") from exc
+    sequences = _validated_sequences({
         chain.strip(): "".join(sequence.split())
         for chain, sequence in parser["sequences"].items()
-    } if "sequences" in parser else {}
+    } if "sequences" in parser else {}, "[sequences]")
     mutations = {
         site.strip(): residue.strip()
         for site, residue in parser["mutations"].items()
     } if "mutations" in parser else {}
-    if any(not chain or not sequence for chain, sequence in sequences.items()):
-        raise AutoMRInputError("Sequence chain names and values cannot be empty")
     if any(not site or not residue for site, residue in mutations.items()):
         raise AutoMRInputError("Mutation sites and residue values cannot be empty")
     return AutoMRIntent(
@@ -137,6 +231,8 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         frame=automr.get("frame") or None,
         pair=automr.get("pair") or None,
         model=automr.get("model") or None,
+        sequence_file=automr.get("sequence_file") or None,
+        mirror=mirror,
         allow_p1_standard=allow_p1_standard,
         sequences=sequences,
         mutations=mutations,
@@ -336,6 +432,20 @@ def _resolve_dataset_model(dataset: Path, configured: str | None) -> tuple[Path,
     return candidates[0], "dataset discovery"
 
 
+def _resolve_relative_input(dataset: Path, configured: str, label: str) -> Path:
+    relative = Path(configured).expanduser()
+    if relative.is_absolute():
+        raise AutoMRInputError(f"{label} paths in nasolve.txt must be dataset-relative")
+    selected = (dataset / relative).resolve()
+    try:
+        selected.relative_to(dataset)
+    except ValueError as exc:
+        raise AutoMRInputError(f"{label} path must remain inside the dataset") from exc
+    if not selected.is_file():
+        raise AutoMRInputError(f"Configured {label.lower()} does not exist: {selected}")
+    return selected
+
+
 def _validate_mutation_site(site: str) -> None:
     if site.count(":") != 1:
         raise AutoMRInputError(
@@ -355,6 +465,7 @@ def resolve_automr_input(
     pair_override: str | None = None,
     frames_dir: Path | None = None,
     allow_p1_standard: bool = False,
+    mirror_override: bool = False,
     environ: Mapping[str, str] | None = None,
     valid_ligand_codes: Collection[str] | None = None,
 ) -> ResolvedAutoMRInput:
@@ -383,6 +494,7 @@ def resolve_automr_input(
     exact_pair_model: bool | None = None
     catalogue_warnings: tuple[str, ...] = ()
     effective_allow_p1 = bool(allow_p1_standard or intent.allow_p1_standard)
+    effective_mirror = bool(mirror_override or intent.mirror)
     if mode == "standard":
         if not selected_frame:
             raise AutoMRInputError("Standard mode requires frame = W or frame = 3GBI")
@@ -414,6 +526,20 @@ def resolve_automr_input(
             )
         model, model_source = _resolve_dataset_model(dataset.root, intent.model)
 
+    sequence_file: Path | None = None
+    sequences = dict(intent.sequences)
+    if intent.sequence_file:
+        if mode != "nonstandard":
+            raise AutoMRInputError("sequence_file is currently supported only in nonstandard mode")
+        if sequences:
+            raise AutoMRInputError(
+                "Use either [automr] sequence_file or inline [sequences], not both"
+            )
+        sequence_file = _resolve_relative_input(
+            dataset.root, intent.sequence_file, "Sequence file"
+        )
+        sequences = read_sequence_file(sequence_file)
+
     resolved_mutations: dict[str, ResolvedLigand] = {}
     for site, residue in intent.mutations.items():
         _validate_mutation_site(site)
@@ -434,7 +560,9 @@ def resolve_automr_input(
         exact_pair_model=exact_pair_model,
         catalogue_warnings=catalogue_warnings,
         allow_p1_standard=effective_allow_p1,
-        sequences=dict(intent.sequences),
+        mirror=effective_mirror,
+        sequences=sequences,
+        sequence_file=sequence_file,
         mutations=resolved_mutations,
         config_source=intent.source,
     )
@@ -451,6 +579,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
     else:
         relative_model = resolved.model.relative_to(resolved.dataset.root).as_posix()
         lines.append(f"model = {relative_model}")
+    if resolved.mirror:
+        lines.append("mirror = true")
     if resolved.sequences:
         lines.extend(["", "[sequences]"])
         lines.extend(f"{chain} = {sequence}" for chain, sequence in resolved.sequences.items())

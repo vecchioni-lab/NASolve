@@ -12,6 +12,46 @@ VALID = {"1AP", "DT", "DA", "A", "5IU", "DG", "DC", "DF"}
 
 
 class AutoMRPreflightTests(unittest.TestCase):
+    def test_mirror_preserves_source_and_freezes_transformed_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dataset = make_dataset(Path(directory))
+
+            def fake_mirror(source: Path, destination: Path) -> Path:
+                destination.write_text("REMARK MIRRORED\n" + source.read_text())
+                return destination
+
+            result = prepare_automr(
+                dataset,
+                mirror=True,
+                mirror_transformer=fake_mirror,
+                valid_ligand_codes=VALID,
+            )
+            source_copy = result.run_directory / "Model" / "source_model.pdb"
+            mirrored = result.run_directory / "Model" / "input_model.pdb"
+            self.assertEqual(source_copy.read_text(), (dataset / "search.pdb").read_text())
+            self.assertTrue(mirrored.read_text().startswith("REMARK MIRRORED"))
+            report = json.loads(result.report_path.read_text())
+            self.assertTrue(report["inputs"]["mirror"])
+            self.assertEqual(report["model_assessment"]["copied_model"], str(mirrored))
+            self.assertIn("mirror = true", (result.run_directory / "nasolve.input.txt").read_text())
+
+    def test_mirror_rejects_lost_atoms(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dataset = make_dataset(Path(directory))
+
+            def lossy_mirror(source: Path, destination: Path) -> Path:
+                lines = source.read_text().splitlines(keepends=True)
+                destination.write_text("".join(lines[1:]))
+                return destination
+
+            with self.assertRaisesRegex(AutoMRInputError, "inventory"):
+                prepare_automr(
+                    dataset,
+                    mirror=True,
+                    mirror_transformer=lossy_mirror,
+                    valid_ligand_codes=VALID,
+                )
+
     def test_nonstandard_preflight_generates_input_and_run_records(self):
         with tempfile.TemporaryDirectory() as directory:
             dataset = make_dataset(Path(directory))
