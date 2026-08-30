@@ -1,17 +1,23 @@
 import json
+import shutil
 import stat
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
+import nasolve.checkpoints as checkpoint_module
 from nasolve.autorefine import (
     AutoRefineError,
+    _cached_file_referencer,
+    _run_report,
     anomalous_selections,
     build_reflection_plan,
     execute_autorefine,
     parse_refinement_statistics,
 )
-from nasolve.checkpoints import list_checkpoints
+from nasolve.checkpoints import initialize_registry, list_checkpoints
+from nasolve.model_assessment import file_sha256
 
 from .helpers import pdb_record
 
@@ -75,7 +81,10 @@ def make_refine_run(root: Path, *, autosol: bool = True) -> Path:
             "status": "AUTOSOL_READY",
             "use_for_refinement": True,
             "wavelength": 1.377618,
-            "outputs": {"refinement_data": str(phase.resolve())},
+            "outputs": {
+                "refinement_data": str(phase.resolve()),
+                "refinement_data_sha256": file_sha256(phase),
+            },
         }
     (run / "report.json").write_text(json.dumps(report))
     return run
@@ -108,9 +117,34 @@ def make_refine(
     final_free: float = 0.301,
     return_code: int = 0,
     preflight_return_code: int = 0,
+    legacy_single_mtz: bool = False,
+    phase_change: str | None = None,
 ) -> Path:
     executable = root / "phenix.refine"
-    executable.write_text(
+    mtz_outputs = (
+        "Path('refined_001.mtz').write_bytes(b'legacy maps and reflections')\n"
+        if legacy_single_mtz
+        else (
+            "Path('refined_001_map_coeffs.mtz').write_bytes(b'maps')\n"
+            "Path('refined_001_data.mtz').write_bytes(b'refine evidence')\n"
+        )
+    )
+    phase_change_code = {
+        None: "",
+        "modify": (
+            "phase = next(Path(arg) for arg in sys.argv[1:] "
+            "if arg.endswith('overall_best_refine_data.mtz'))\n"
+            "phase.write_bytes(b'changed while refining')\n"
+        ),
+        "delete": (
+            "phase = next(Path(arg) for arg in sys.argv[1:] "
+            "if arg.endswith('overall_best_refine_data.mtz'))\n"
+            "phase.unlink()\n"
+        ),
+    }.get(phase_change)
+    if phase_change_code is None:
+        raise ValueError(f"Unsupported phase test change: {phase_change}")
+    script = (
         "#!/usr/bin/env python3\n"
         "from pathlib import Path\n"
         "import json, shutil, sys\n"
@@ -127,8 +161,7 @@ def make_refine(
         "shutil.copyfile(model, 'refined_001.pdb')\n"
         "Path('refined_001.cif').write_text('data_model\\n')\n"
         "Path('refined_001.reflections.cif').write_text('data_reflections\\n')\n"
-        "Path('refined_001_map_coeffs.mtz').write_bytes(b'maps')\n"
-        "Path('refined_001_data.mtz').write_bytes(b'refine evidence')\n"
+    ) + mtz_outputs + phase_change_code + (
         "print('Start: r_work = 0.412 r_free = 0.438 bonds = 0.012 angles = 1.82')\n"
         "print('Macrocycle 1: r_work = 0.331 r_free = 0.359')\n"
         f"print('Final: r_work = {final_work} r_free = {final_free} bonds = 0.009 angles = 1.21')\n"
@@ -139,6 +172,7 @@ def make_refine(
         "print('  f_prime: -1.8')\n"
         "print('  f_double_prime: 7.91907')\n"
     )
+    executable.write_text(script)
     executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
     phenix_python = root / "phenix.python"
     phenix_python.write_text(
@@ -153,6 +187,14 @@ def make_refine(
 
 
 class AutoRefineTests(unittest.TestCase):
+    def test_non_object_report_is_rejected_cleanly(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = Path(directory)
+            (run / "report.json").write_text(json.dumps([]))
+
+            with self.assertRaisesRegex(AutoRefineError, "not a JSON object"):
+                _run_report(run)
+
     def test_plan_uses_friedel_amplitudes_phases_and_exact_selection(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -203,12 +245,30 @@ class AutoRefineTests(unittest.TestCase):
             args = json.loads((first.round_directory / "received_args.json").read_text())
             self.assertIn('main.target="auto"', args)
             self.assertIn("xray_data.labels=F(+),SIGF(+),F(-),SIGF(-)", args)
+            self.assertFalse(
+                any(
+                    argument.startswith("data_manager.miller_array.labels.name=")
+                    for argument in args
+                )
+            )
             run_report = json.loads((run / "report.json").read_text())
             self.assertIn(
                 "xray_data.file_name=" + run_report["inputs"]["reflections"],
                 args,
             )
             params = (first.round_directory / "autorefine.params").read_text()
+            self.assertEqual(params.count("  miller_array {"), 2)
+            self.assertIn(
+                f'file = "{run_report["inputs"]["reflections"]}"',
+                params,
+            )
+            self.assertIn(
+                f'file = "{run_report["autosol"]["outputs"]["refinement_data"]}"',
+                params,
+            )
+            self.assertIn('name = "F(+),SIGF(+),F(-),SIGF(-)"', params)
+            self.assertIn('name = "FreeR_flag"', params)
+            self.assertIn('name = "HLAM,HLBM,HLCM,HLDM"', params)
             self.assertIn('target = "auto"', params)
             self.assertIn("strategy = *individual_sites *individual_sites_real_space", params)
             self.assertIn("individual = all", params)
@@ -286,6 +346,285 @@ class AutoRefineTests(unittest.TestCase):
             self.assertFalse(payload["refinement"]["anomalous"])
             self.assertEqual(payload["inputs"]["observation_labels"], ["IMEAN", "SIGIMEAN"])
             self.assertNotIn("group_anomalous", payload["refinement"]["strategies"])
+
+    def test_mean_observations_use_data_manager_selector_without_autosol(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root, autosol=False)
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["postmr"]["anomalous"]["candidates"] = []
+            report_path.write_text(json.dumps(report))
+
+            result = execute_autorefine(
+                run,
+                make_refine(root),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+
+            self.assertEqual(result.status, "AUTOREFINE_READY")
+            args = json.loads((result.round_directory / "received_args.json").read_text())
+            self.assertIn("xray_data.labels=IMEAN,SIGIMEAN", args)
+            self.assertFalse(
+                any(
+                    argument.startswith("data_manager.miller_array.labels.name=")
+                    for argument in args
+                )
+            )
+            params = (result.round_directory / "autorefine.params").read_text()
+            self.assertEqual(params.count("  miller_array {"), 1)
+            self.assertIn('name = "IMEAN,SIGIMEAN"', params)
+            self.assertIn('name = "FreeR_flag"', params)
+            self.assertNotIn("HLAM,HLBM,HLCM,HLDM", params)
+
+    def test_existing_pre_autosol_registry_recovers_phases_after_move(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source_run = make_refine_run(root / "collaborator", autosol=False)
+            initialize_registry(source_run)
+            phase = source_run / "AutoSol" / "overall_best_refine_data.mtz"
+            phase.parent.mkdir(parents=True)
+            phase.write_bytes(b"phases")
+            report_path = source_run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["autosol"] = {
+                "status": "AUTOSOL_READY",
+                "use_for_refinement": True,
+                "outputs": {
+                    "refinement_data": str(phase.resolve()),
+                    "refinement_data_sha256": file_sha256(phase),
+                },
+            }
+            report_path.write_text(json.dumps(report))
+            checkout_dataset = root / "checkout" / "dataset"
+            shutil.copytree(source_run.parent.parent, checkout_dataset)
+            shutil.rmtree(root / "collaborator")
+            run = checkout_dataset / "AutoMR" / source_run.name
+
+            with patch(
+                "nasolve.autorefine.file_sha256", wraps=file_sha256
+            ) as hash_file:
+                result = execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
+
+            params = (result.round_directory / "autorefine.params").read_text()
+            self.assertIn(str(run.resolve() / "AutoSol"), params)
+            self.assertIn("HLAM,HLBM,HLCM,HLDM", params)
+            phase_path = (run / "AutoSol" / phase.name).resolve()
+            phase_hashes = [
+                call
+                for call in hash_file.call_args_list
+                if Path(call.args[0]).resolve() == phase_path
+            ]
+            self.assertEqual(len(phase_hashes), 1)
+
+    def test_inherited_phase_is_hashed_once_and_reused(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            phase = (run / "AutoSol" / "overall_best_refine_data.mtz").resolve()
+            initialize_registry(run)
+
+            with (
+                patch(
+                    "nasolve.autorefine.file_sha256", wraps=file_sha256
+                ) as hash_file,
+                patch(
+                    "nasolve.checkpoints._sha256",
+                    wraps=checkpoint_module._sha256,
+                ) as checkpoint_hash,
+            ):
+                result = execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
+
+            phase_hashes = [
+                call
+                for call in hash_file.call_args_list
+                if Path(call.args[0]).resolve() == phase
+            ]
+            checkpoint_phase_hashes = [
+                call
+                for call in checkpoint_hash.call_args_list
+                if Path(call.args[0]).resolve() == phase
+            ]
+            self.assertEqual(
+                len(phase_hashes) + len(checkpoint_phase_hashes),
+                1,
+            )
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            parent, child = registry["checkpoints"]
+            self.assertEqual(child["id"], result.checkpoint_id)
+            self.assertEqual(child["phases"]["sha256"], parent["phases"]["sha256"])
+            self.assertEqual(
+                child["phases"]["labels"],
+                ["HLAM", "HLBM", "HLCM", "HLDM"],
+            )
+
+    def test_inherited_phase_checksum_drift_still_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            initialize_registry(run)
+            phase = run / "AutoSol" / "overall_best_refine_data.mtz"
+            phase.write_bytes(b"changed phases")
+
+            with self.assertRaisesRegex(
+                AutoRefineError, "changed after it was frozen"
+            ):
+                execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
+
+    def test_phase_changed_during_phenix_creates_only_a_failed_checkpoint(self):
+        for phase_change in ("modify", "delete"):
+            with self.subTest(phase_change=phase_change):
+                with tempfile.TemporaryDirectory() as directory:
+                    root = Path(directory)
+                    run = make_refine_run(root)
+                    initialize_registry(run)
+
+                    result = execute_autorefine(
+                        run,
+                        make_refine(root, phase_change=phase_change),
+                        make_mtz_dump(root),
+                        environment={"PATH": "/usr/bin:/bin"},
+                    )
+
+                    registry = json.loads(
+                        (run / "AutoRefine" / "checkpoints.json").read_text()
+                    )
+                    self.assertEqual(result.status, "AUTOREFINE_FAILED")
+                    self.assertIn("while Phenix was running", result.message)
+                    self.assertEqual(registry["current"], "postmr")
+                    self.assertEqual(len(registry["checkpoints"]), 2)
+                    self.assertFalse(registry["checkpoints"][-1]["usable"])
+
+                    phase = run / "AutoSol" / "overall_best_refine_data.mtz"
+                    phase.write_bytes(b"phases")
+                    retry = execute_autorefine(
+                        run,
+                        make_refine(root),
+                        make_mtz_dump(root),
+                        environment={"PATH": "/usr/bin:/bin"},
+                    )
+                    self.assertEqual(retry.checkpoint_id, "refine-002")
+                    self.assertEqual(retry.status, "AUTOREFINE_READY")
+
+    def test_checkpoint_outputs_hash_each_unique_file_once(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root, autosol=False)
+
+            with patch(
+                "nasolve.autorefine.file_sha256", wraps=file_sha256
+            ) as hash_file:
+                result = execute_autorefine(
+                    run,
+                    make_refine(root, legacy_single_mtz=True),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
+
+            primary_mtz = (result.round_directory / "refined_001.mtz").resolve()
+            primary_hashes = [
+                call
+                for call in hash_file.call_args_list
+                if Path(call.args[0]).resolve() == primary_mtz
+            ]
+            self.assertEqual(len(primary_hashes), 1)
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            outputs = registry["checkpoints"][-1]["outputs"]
+            self.assertEqual(
+                outputs["map_coefficients"], outputs["refinement_reflections"]
+            )
+
+    def test_cached_output_references_are_independent_copies(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = root / "dataset" / "AutoMR" / "run_001"
+            artifact = run / "AutoRefine" / "shared.mtz"
+            artifact.parent.mkdir(parents=True)
+            artifact.write_bytes(b"shared output")
+
+            with patch(
+                "nasolve.autorefine.file_sha256", wraps=file_sha256
+            ) as hash_file:
+                reference = _cached_file_referencer(run)
+                first = reference(artifact)
+                first["consumer"] = "maps"
+                second = reference(artifact)
+
+            self.assertNotIn("consumer", second)
+            self.assertEqual(len(hash_file.call_args_list), 1)
+
+    def test_approved_missing_phase_file_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root, autosol=False)
+            initialize_registry(run)
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["autosol"] = {
+                "status": "AUTOSOL_READY",
+                "use_for_refinement": True,
+                "outputs": {
+                    "refinement_data": str(run / "AutoSol" / "missing.mtz")
+                },
+            }
+            report_path.write_text(json.dumps(report))
+
+            with self.assertRaisesRegex(AutoRefineError, "phase data is missing"):
+                execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
+
+    def test_approved_phase_checksum_drift_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root, autosol=False)
+            initialize_registry(run)
+            phase = run / "AutoSol" / "overall_best_refine_data.mtz"
+            phase.parent.mkdir(parents=True)
+            phase.write_bytes(b"original phases")
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["autosol"] = {
+                "status": "AUTOSOL_READY",
+                "use_for_refinement": True,
+                "outputs": {
+                    "refinement_data": str(phase),
+                    "refinement_data_sha256": file_sha256(phase),
+                },
+            }
+            report_path.write_text(json.dumps(report))
+            phase.write_bytes(b"changed phases")
+
+            with self.assertRaisesRegex(AutoRefineError, "checksum validation"):
+                execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
 
     def test_failed_phenix_round_is_visible_and_not_reusable(self):
         with tempfile.TemporaryDirectory() as directory:

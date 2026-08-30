@@ -1,9 +1,70 @@
+import json
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
-from nasolve.cli import build_parser
+from nasolve.cli import _workspace_run, build_parser, main
+from nasolve.config import AppConfig, ConfigError, WorkspaceSettings
+from nasolve.model_assessment import file_sha256
+
+from .helpers import pdb_record
 
 
 class CLITests(unittest.TestCase):
+    def test_workspace_drives_checkpoint_commands_end_to_end(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = root / "dataset"
+            run = dataset / "AutoMR" / "run_004"
+            model = run / "PostMR" / "Model" / "readyset_model.pdb"
+            model.parent.mkdir(parents=True)
+            model.write_text(pdb_record("ATOM", 1, "P", "DA", "A", 1) + "END\n")
+            observations = dataset / "staraniso.mtz"
+            observations.write_bytes(b"observations")
+            report = {
+                "workflow": "automr",
+                "inputs": {
+                    "reflections": str(observations),
+                    "reflections_sha256": file_sha256(observations),
+                },
+                "postmr": {
+                    "status": "POSTMR_READY",
+                    "prepared_model": str(model),
+                    "prepared_sha256": file_sha256(model),
+                    "restraints": [],
+                },
+            }
+            (run / "report.json").write_text(json.dumps(report))
+            config_path = root / "config.json"
+
+            with patch.dict(
+                "os.environ", {"NASOLVE_CONFIG_FILE": str(config_path)}, clear=False
+            ):
+                self.assertEqual(main(["workspace", "use", str(run)]), 0)
+                self.assertEqual(main(["checkpoints", "list"]), 0)
+                self.assertEqual(main(["checkpoints", "use", "postmr"]), 0)
+                self.assertEqual(main(["workspace", "clear"]), 0)
+
+    def test_workspace_run_rejects_non_object_report(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = Path(directory) / "dataset" / "AutoMR" / "run_001"
+            run.mkdir(parents=True)
+            (run / "report.json").write_text(json.dumps([]))
+            config = AppConfig(workspace=WorkspaceSettings(run=str(run)))
+
+            with self.assertRaisesRegex(ConfigError, "not a JSON object"):
+                _workspace_run(None, config)
+
+    def test_workspace_and_optional_active_targets(self):
+        parser = build_parser()
+        workspace = parser.parse_args(["workspace", "use", "dataset/AutoMR/run_004"])
+        self.assertEqual(workspace.workspace_action, "use")
+        self.assertEqual(str(workspace.target), "dataset/AutoMR/run_004")
+        self.assertIsNone(parser.parse_args(["autorefine"]).run)
+        self.assertIsNone(parser.parse_args(["checkpoints", "list"]).run)
+        self.assertIsNone(parser.parse_args(["show"]).target)
+
     def test_standard_frame_shortcuts(self):
         parser = build_parser()
         w = parser.parse_args(["automr", "dataset", "-W", "--pair", "D:T"])
@@ -60,6 +121,9 @@ class CLITests(unittest.TestCase):
         self.assertEqual(str(add.model), "fixed.pdb")
         use = parser.parse_args(["checkpoints", "use", "run_001", "refine-001"])
         self.assertEqual(use.checkpoint, "refine-001")
+        active_use = parser.parse_args(["checkpoints", "use", "refine-001"])
+        self.assertEqual(active_use.run_or_checkpoint, "refine-001")
+        self.assertIsNone(active_use.checkpoint)
         show = parser.parse_args(["show", "last", "dataset", "--stage", "autosol"])
         self.assertEqual(show.target, "last")
         self.assertEqual(str(show.dataset), "dataset")

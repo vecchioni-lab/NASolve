@@ -7,6 +7,7 @@ the inputs that the Phaser execution layer will consume next.
 from __future__ import annotations
 
 import json
+import shutil
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -26,6 +27,7 @@ from .model_assessment import (
     file_sha256,
     inspect_pdb,
 )
+from .run_context import artifact_reference
 from .symmetry import StandardSymmetryAssessment, SymmetryError, assess_standard_symmetry
 
 
@@ -299,6 +301,12 @@ def prepare_automr(
     else:
         assessment = source_assessment
         copy_preserving_model(resolved.model, copied_model, assessment)
+    frame_sequence: Path | None = None
+    if resolved.frame is not None:
+        source_sequence = resolved.model.parent / "seq_base.txt"
+        if source_sequence.is_file():
+            frame_sequence = model_dir / "seq_base.txt"
+            shutil.copyfile(source_sequence, frame_sequence)
     _write_json(model_dir / "assessment.json", assessment.to_dict())
     (run_dir / "nasolve.input.txt").write_text(effective_text, encoding="utf-8")
 
@@ -328,6 +336,7 @@ def prepare_automr(
         },
         "inputs": {
             "reflections": str(resolved.dataset.reflections),
+            "reflections_sha256": file_sha256(resolved.dataset.reflections),
             "metadata": str(resolved.dataset.metadata),
             "summary": str(resolved.dataset.summary),
             "model": str(resolved.model),
@@ -342,6 +351,14 @@ def prepare_automr(
             ),
             "sequence_file_sha256": (
                 file_sha256(resolved.sequence_file) if resolved.sequence_file else None
+            ),
+            "frame_sequence": (
+                {
+                    **artifact_reference(frame_sequence, run_dir),
+                    "sha256": file_sha256(frame_sequence),
+                }
+                if frame_sequence is not None
+                else None
             ),
             "model_source": resolved.model_source,
             "catalogue_warnings": list(resolved.catalogue_warnings),

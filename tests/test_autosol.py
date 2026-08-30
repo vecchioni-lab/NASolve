@@ -1,5 +1,6 @@
 import json
 import math
+import shutil
 import stat
 import tempfile
 import unittest
@@ -7,12 +8,27 @@ from pathlib import Path
 
 from nasolve.autosol import (
     AutoSolPreparationError,
+    _read_run_report,
+    _sequence_source,
     execute_autosol,
     nearest_symmetry_distance,
     read_wavelength,
 )
+from nasolve.model_assessment import file_sha256
+from nasolve.run_context import artifact_reference
 
 from .helpers import pdb_record
+
+
+class AutoSolReportTests(unittest.TestCase):
+    def test_non_object_report_is_rejected_cleanly(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = Path(directory) / "run_001"
+            run.mkdir()
+            (run / "report.json").write_text(json.dumps([]))
+
+            with self.assertRaisesRegex(AutoSolPreparationError, "not a JSON object"):
+                _read_run_report(run)
 
 
 def cryst1(
@@ -123,6 +139,7 @@ def make_run(root: Path, model_xyz: tuple[float, float, float]) -> Path:
         "status": "POSTMR_READY",
         "inputs": {
             "reflections": str(input_mtz.resolve()),
+            "reflections_sha256": file_sha256(input_mtz),
             "summary": str(summary.resolve()),
             "model": str(frame_model.resolve()),
         },
@@ -132,6 +149,7 @@ def make_run(root: Path, model_xyz: tuple[float, float, float]) -> Path:
         },
         "postmr": {
             "prepared_model": str(prepared_model.resolve()),
+            "prepared_sha256": file_sha256(prepared_model),
             "anomalous": {
                 "autosol_required": True,
                 "trigger_elements": ["BR", "I", "SE"],
@@ -151,6 +169,187 @@ def make_run(root: Path, model_xyz: tuple[float, float, float]) -> Path:
 
 
 class AutoSolTests(unittest.TestCase):
+    def test_anchored_frame_sequence_requires_and_matches_checksum(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            report = json.loads((run / "report.json").read_text())
+            sequence = run / "Model" / "seq_base.txt"
+            sequence.parent.mkdir(exist_ok=True)
+            sequence.write_text("GAGC\n\nCTGC\n")
+            reference = artifact_reference(sequence, run)
+            report["inputs"]["frame_sequence"] = reference
+
+            with self.assertRaisesRegex(
+                AutoSolPreparationError,
+                "no checksum",
+            ):
+                _sequence_source(report, run)
+
+            reference["sha256"] = 123
+            with self.assertRaisesRegex(
+                AutoSolPreparationError,
+                "malformed",
+            ):
+                _sequence_source(report, run)
+
+            reference["sha256"] = file_sha256(sequence)
+            selected, _ = _sequence_source(report, run)
+            self.assertEqual(selected, sequence.resolve())
+            sequence.write_text("changed\n")
+            with self.assertRaisesRegex(
+                AutoSolPreparationError,
+                "does not match",
+            ):
+                _sequence_source(report, run)
+
+    def test_windows_model_path_does_not_become_bare_sequence_lookup(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            report = json.loads((run / "report.json").read_text())
+            report["inputs"]["model"] = (
+                r"C:\source\MR_frames\5W6W\E_G.pdb"
+            )
+            report["post_mr_plan"]["sequences"] = {
+                "A": "GAGC",
+                "B": "CTGC",
+            }
+            (run / "seq_base.txt").write_text("UNRELATED\n")
+
+            selected, generated = _sequence_source(report, run)
+
+            self.assertIsNone(selected)
+            self.assertEqual(generated, "GAGC\n\nCTGC\n")
+
+    def test_legacy_report_without_frozen_checksums_still_runs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            del report["inputs"]["reflections_sha256"]
+            del report["postmr"]["prepared_sha256"]
+            report_path.write_text(json.dumps(report))
+
+            result = execute_autosol(
+                run,
+                make_autosol(root, (1.0, 2.0, 3.0)),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+                processor_count=8,
+            )
+
+            result_report = json.loads(result.report_path.read_text())
+            self.assertEqual(
+                result.status,
+                "AUTOSOL_READY",
+                result_report.get("failure_reason"),
+            )
+            self.assertTrue(
+                (result.autosol_directory / "received_args.json").is_file()
+            )
+
+    def test_legacy_frame_sequence_rebases_without_exact_pair_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source"
+            checkout = root / "checkout"
+            run = make_run(source, (1.0, 2.0, 3.0))
+            (source / "pyproject.toml").write_text("[project]\nname='test'\n")
+            report = json.loads((run / "report.json").read_text())
+            missing_pair_model = source / "MR_frames" / "5W6W" / "E_G.pdb"
+            missing_pair_model.write_text("END\n")
+            report["inputs"]["model"] = str(missing_pair_model.resolve())
+            report["post_mr_plan"]["sequences"] = {}
+            report["frame"] = {"catalogue_directory": "5W6W"}
+            (run / "report.json").write_text(json.dumps(report))
+            shutil.copytree(source, checkout)
+            (checkout / "MR_frames" / "5W6W" / "E_G.pdb").unlink()
+            relocated_run = checkout / "dataset" / "AutoMR" / "run_001"
+            relocated_report = json.loads(
+                (relocated_run / "report.json").read_text()
+            )
+
+            sequence, description = _sequence_source(
+                relocated_report,
+                relocated_run,
+            )
+
+            self.assertEqual(
+                sequence,
+                (checkout / "MR_frames" / "5W6W" / "seq_base.txt").resolve(),
+            )
+            self.assertIn("frame", str(description))
+            shutil.rmtree(source)
+            sequence_without_source, _ = _sequence_source(
+                relocated_report,
+                relocated_run,
+            )
+            self.assertEqual(
+                sequence_without_source,
+                (checkout / "MR_frames" / "5W6W" / "seq_base.txt").resolve(),
+            )
+
+    def test_changed_frozen_reflections_stop_before_autosol_launch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            report = json.loads((run / "report.json").read_text())
+            Path(report["inputs"]["reflections"]).write_bytes(b"changed")
+
+            result = execute_autosol(
+                run,
+                make_autosol(root, (1.0, 2.0, 3.0)),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+
+            self.assertEqual(result.status, "AUTOSOL_WARNING")
+            warning = json.loads(result.report_path.read_text())
+            self.assertIn("reflections", warning["failure_reason"])
+            self.assertFalse((result.autosol_directory / "received_args.json").exists())
+
+    def test_changed_prepared_model_stops_before_autosol_launch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            report = json.loads((run / "report.json").read_text())
+            Path(report["postmr"]["prepared_model"]).write_text("changed\n")
+
+            result = execute_autosol(
+                run,
+                make_autosol(root, (1.0, 2.0, 3.0)),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+
+            self.assertEqual(result.status, "AUTOSOL_WARNING")
+            warning = json.loads(result.report_path.read_text())
+            self.assertIn("prepared model", warning["failure_reason"])
+            self.assertFalse((result.autosol_directory / "received_args.json").exists())
+
+    def test_malformed_present_checksum_stops_before_autosol_launch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["inputs"]["reflections_sha256"] = 123
+            report_path.write_text(json.dumps(report))
+
+            result = execute_autosol(
+                run,
+                make_autosol(root, (1.0, 2.0, 3.0)),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+
+            self.assertEqual(result.status, "AUTOSOL_WARNING")
+            warning = json.loads(result.report_path.read_text())
+            self.assertIn("malformed", warning["failure_reason"])
+            self.assertFalse((result.autosol_directory / "received_args.json").exists())
+
     def test_wavelength_prefers_precise_assignment(self):
         with tempfile.TemporaryDirectory() as directory:
             summary = Path(directory) / "summary.html"
@@ -204,6 +403,9 @@ class AutoSolTests(unittest.TestCase):
             report = json.loads((run / "report.json").read_text())
             self.assertEqual(report["stage"], "autosol")
             self.assertFalse(report["autosol"]["effective_parameters"]["build"])
+            outputs = report["autosol"]["outputs"]
+            self.assertRegex(outputs["heavy_atom_model_sha256"], r"^[0-9a-f]{64}$")
+            self.assertRegex(outputs["refinement_data_sha256"], r"^[0-9a-f]{64}$")
             self.assertEqual(
                 report["autosol"]["site_validation"]["accepted"][0]
                 ["nearest_site"]["operator"],

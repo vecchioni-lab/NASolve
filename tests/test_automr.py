@@ -4,6 +4,8 @@ import unittest
 from pathlib import Path
 
 from nasolve.automr import AutoMRInputError, prepare_automr
+from nasolve.model_assessment import file_sha256
+from nasolve.run_context import resolve_artifact_path
 
 from .helpers import make_dataset, make_mtz_dump, model_text
 
@@ -81,6 +83,7 @@ class AutoMRPreflightTests(unittest.TestCase):
             catalogue = frames / "5W6W"
             catalogue.mkdir(parents=True)
             (catalogue / "C_G.pdb").write_text(model_text())
+            (catalogue / "seq_base.txt").write_text("GAGC\n\nCTGC\n")
             result = prepare_automr(
                 dataset, frame_override="W", pair_override="D:T",
                 frames_dir=frames, valid_ligand_codes=VALID,
@@ -95,6 +98,14 @@ class AutoMRPreflightTests(unittest.TestCase):
             self.assertFalse(
                 report["post_mr_plan"]["standard_pair"]["exact_model_match"]
             )
+            frozen_sequence = result.run_directory / "Model" / "seq_base.txt"
+            self.assertEqual(frozen_sequence.read_text(), "GAGC\n\nCTGC\n")
+            sequence_ref = report["inputs"]["frame_sequence"]
+            self.assertEqual(
+                resolve_artifact_path(sequence_ref, result.run_directory),
+                frozen_sequence.resolve(),
+            )
+            self.assertEqual(sequence_ref["sha256"], file_sha256(frozen_sequence))
 
     def test_exact_standard_pair_model_is_ready_without_pair_mutation(self):
         with tempfile.TemporaryDirectory() as directory:

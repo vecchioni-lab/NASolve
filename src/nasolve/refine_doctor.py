@@ -437,7 +437,7 @@ def execute_refine_doctor(
         source = resolve_checkpoint(registry, from_checkpoint)
         if source.get("usable") is not True:
             raise RefineDoctorError(f"Checkpoint {source.get('id')} is not reusable")
-        inherited = inherited_paths(source)
+        inherited = inherited_paths(source, run)
     except CheckpointError as exc:
         raise RefineDoctorError(str(exc)) from exc
     source_id = str(source["id"])

@@ -8,6 +8,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from typing import Mapping
 
 from .autorefine import AutoRefineError, execute_autorefine
 from .autosol import AutoSolPreparationError, execute_autosol
@@ -18,7 +19,7 @@ from .checkpoints import (
     list_checkpoints,
     select_checkpoint,
 )
-from .config import ConfigError, default_config_path, load_config, save_config
+from .config import AppConfig, ConfigError, default_config_path, load_config, save_config
 from .coot_runtime import (
     CootDiscoveryError,
     discover_coot,
@@ -47,13 +48,23 @@ def build_parser() -> argparse.ArgumentParser:
     phenix.add_argument("path", nargs="?", help="Phenix root, phenix_env.sh, or phenix executable")
     coot = configure_sub.add_parser("coot", help="discover, validate, and remember Coot")
     coot.add_argument("path", nargs="?", help="Coot executable or installation directory")
+    workspace = subparsers.add_parser(
+        "workspace", help="remember or inspect the active dataset/run on this computer"
+    )
+    workspace_sub = workspace.add_subparsers(dest="workspace_action", required=True)
+    workspace_use = workspace_sub.add_parser(
+        "use", help="make a dataset or completed run the active target"
+    )
+    workspace_use.add_argument("target", type=Path)
+    workspace_sub.add_parser("status", help="show the active dataset and run")
+    workspace_sub.add_parser("clear", help="forget the active dataset and run")
     subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
     automr = subparsers.add_parser(
         "automr", help="validate and freeze molecular-replacement inputs"
     )
     automr.add_argument(
-        "dataset", nargs="?", default=Path("."), type=Path,
-        help="dataset directory (default: current directory)",
+        "dataset", nargs="?", type=Path,
+        help="dataset directory (default: active workspace, then current directory)",
     )
     frames = automr.add_mutually_exclusive_group()
     frames.add_argument(
@@ -89,7 +100,10 @@ def build_parser() -> argparse.ArgumentParser:
     postmr = subparsers.add_parser(
         "postmr", help="prepare an accepted Phaser solution for refinement"
     )
-    postmr.add_argument("run", type=Path, help="completed AutoMR run directory")
+    postmr.add_argument(
+        "run", nargs="?", type=Path,
+        help="completed AutoMR run directory (default: active workspace run)",
+    )
     postmr.add_argument("--coot", help="one-run Coot executable override")
     postmr.add_argument(
         "--allow-mr-review", action="store_true",
@@ -103,11 +117,17 @@ def build_parser() -> argparse.ArgumentParser:
     autosol = subparsers.add_parser(
         "autosol", help="run guarded MR-SAD phasing when PostMR finds a heavy atom"
     )
-    autosol.add_argument("run", type=Path, help="completed POSTMR_READY run directory")
+    autosol.add_argument(
+        "run", nargs="?", type=Path,
+        help="completed POSTMR_READY run directory (default: active workspace run)",
+    )
     autorefine = subparsers.add_parser(
         "autorefine", help="run one quiet, checkpointed Phenix refinement round"
     )
-    autorefine.add_argument("run", type=Path, help="completed PostMR/AutoSol run directory")
+    autorefine.add_argument(
+        "run", nargs="?", type=Path,
+        help="completed PostMR/AutoSol run directory (default: active workspace run)",
+    )
     autorefine.add_argument(
         "--from", dest="from_checkpoint",
         help="checkpoint ID or bookmark to branch from (default: current)",
@@ -125,7 +145,10 @@ def build_parser() -> argparse.ArgumentParser:
         aliases=["refine_doctor"],
         help="audit and triage a refinement with bounded checkpoint branches",
     )
-    doctor.add_argument("run", type=Path, help="completed PostMR/AutoRefine run directory")
+    doctor.add_argument(
+        "run", nargs="?", type=Path,
+        help="completed PostMR/AutoRefine run directory (default: active workspace run)",
+    )
     doctor.add_argument(
         "--from", dest="from_checkpoint",
         help="checkpoint ID or bookmark to diagnose (default: current)",
@@ -139,11 +162,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     checkpoint_sub = checkpoints.add_subparsers(dest="checkpoint_action", required=True)
     checkpoint_list = checkpoint_sub.add_parser("list", help="list the checkpoint tree")
-    checkpoint_list.add_argument("run", type=Path)
+    checkpoint_list.add_argument("run", nargs="?", type=Path)
     checkpoint_add = checkpoint_sub.add_parser(
         "add", help="bookmark the current checkpoint or import a manual model"
     )
-    checkpoint_add.add_argument("run", type=Path)
+    checkpoint_add.add_argument("run", nargs="?", type=Path)
     checkpoint_add.add_argument("--name", required=True, help="user-visible checkpoint name")
     checkpoint_add.add_argument("--model", type=Path, help="manual PDB model to import")
     checkpoint_add.add_argument(
@@ -155,13 +178,20 @@ def build_parser() -> argparse.ArgumentParser:
         help="parent checkpoint ID or bookmark (default: current)",
     )
     checkpoint_use = checkpoint_sub.add_parser("use", help="select a reusable checkpoint")
-    checkpoint_use.add_argument("run", type=Path)
-    checkpoint_use.add_argument("checkpoint", help="checkpoint ID or bookmark")
+    checkpoint_use.add_argument(
+        "run_or_checkpoint",
+        help="run path, or checkpoint ID/bookmark when an active run is selected",
+    )
+    checkpoint_use.add_argument(
+        "checkpoint", nargs="?",
+        help="checkpoint ID/bookmark when an explicit run path is supplied",
+    )
     show = subparsers.add_parser(
         "show", help="open a completed run stage in an isolated graphical Coot session"
     )
     show.add_argument(
-        "target", help="run directory, or 'last' to choose the highest numbered dataset run"
+        "target", nargs="?",
+        help="run directory, 'last', or omit to use the active workspace run",
     )
     show.add_argument(
         "dataset", nargs="?", type=Path,
@@ -184,6 +214,93 @@ def _narestraints_version() -> str:
         return importlib.metadata.version("NARestraints")
     except importlib.metadata.PackageNotFoundError:
         return "not installed"
+
+
+def _run_report_path(path: Path) -> Path:
+    selected = path.expanduser().resolve()
+    return selected if selected.name == "report.json" else selected / "report.json"
+
+
+def _workspace_dataset(
+    explicit: Path | None,
+    config: AppConfig,
+    *,
+    current_directory_fallback: bool = True,
+) -> Path:
+    value: Path | None = explicit
+    if value is None and config.workspace.dataset:
+        value = Path(config.workspace.dataset)
+    if value is None and current_directory_fallback:
+        value = Path(".")
+    if value is None:
+        raise ConfigError(
+            "No active dataset. Run 'nasolve workspace use DATASET' or pass a path."
+        )
+    dataset = value.expanduser().resolve()
+    if not dataset.is_dir():
+        raise ConfigError(f"Workspace dataset does not exist: {dataset}")
+    return dataset
+
+
+def _workspace_run(explicit: Path | None, config: AppConfig) -> Path:
+    value = explicit or (Path(config.workspace.run) if config.workspace.run else None)
+    if value is None:
+        raise ConfigError(
+            "No active run. Run 'nasolve workspace use RUN' or pass a run path."
+        )
+    report_path = _run_report_path(value)
+    try:
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ConfigError(f"Active run has no readable report: {report_path}") from exc
+    if not isinstance(report, Mapping):
+        raise ConfigError(f"Active run report is not a JSON object: {report_path}")
+    if report.get("workflow") != "automr":
+        raise ConfigError(f"Active run is not a NASolve AutoMR run: {report_path.parent}")
+    return report_path.parent
+
+
+def _remember_workspace(config: AppConfig, run: Path) -> None:
+    resolved = run.expanduser().resolve()
+    config.workspace.run = str(resolved)
+    config.workspace.dataset = str(
+        resolved.parent.parent if resolved.parent.name == "AutoMR" else resolved.parent
+    )
+
+
+def _workspace(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+        if args.workspace_action == "clear":
+            config.workspace.dataset = None
+            config.workspace.run = None
+            saved_at = save_config(config)
+            print("Active NASolve workspace cleared.")
+            print(f"Saved: {saved_at}")
+            return 0
+        if args.workspace_action == "use":
+            target = args.target.expanduser().resolve()
+            report_path = _run_report_path(target)
+            if report_path.is_file():
+                run = _workspace_run(target, config)
+                _remember_workspace(config, run)
+            else:
+                if not target.is_dir():
+                    raise ConfigError(f"Workspace target does not exist: {target}")
+                config.workspace.dataset = str(target)
+                config.workspace.run = None
+            saved_at = save_config(config)
+            print(f"Active dataset: {config.workspace.dataset}")
+            print(f"Active run: {config.workspace.run or 'none'}")
+            print(f"Saved: {saved_at}")
+            return 0
+        print(f"Active dataset: {config.workspace.dataset or 'none'}")
+        print(f"Active run: {config.workspace.run or 'none'}")
+        print(f"Configuration: {default_config_path()}")
+        return 0
+    except ConfigError as exc:
+        print(f"Workspace error: {exc}", file=sys.stderr)
+        return 2
 
 
 def _configure_phenix(path: str | None) -> int:
@@ -266,12 +383,13 @@ def _check(explicit: str | None) -> int:
 def _automr(args: argparse.Namespace) -> int:
     try:
         config = load_config()
+        dataset = _workspace_dataset(args.dataset, config)
         installation = discover_phenix(config, explicit=args.phenix_root)
         if args.phenix_root is None:
             remember_phenix(config, installation)
             save_config(config)
         result = prepare_automr(
-            args.dataset,
+            dataset,
             config_path=args.config,
             frame_override=args.frame,
             pair_override=args.pair,
@@ -281,6 +399,8 @@ def _automr(args: argparse.Namespace) -> int:
             mtz_dump_executable=installation.executables.get("phenix.mtz.dump"),
             phenix_environment=installation.environment,
         )
+        _remember_workspace(config, result.run_directory)
+        save_config(config)
         if args.execute:
             phaser = execute_phaser(
                 result.report_path,
@@ -313,13 +433,14 @@ def _automr(args: argparse.Namespace) -> int:
     print(f"Run directory: {result.run_directory}")
     print(f"Report: {result.report_path}")
     if result.generated_config:
-        print(f"Generated: {args.dataset.expanduser().resolve() / 'nasolve.txt'}")
+        print(f"Generated: {dataset / 'nasolve.txt'}")
     return 0
 
 
 def _postmr(args: argparse.Namespace) -> int:
     try:
         config = load_config()
+        run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
         if args.phenix_root is None:
             remember_phenix(config, phenix)
@@ -333,7 +454,7 @@ def _postmr(args: argparse.Namespace) -> int:
             remember_coot(config, coot)
         save_config(config)
         result = prepare_postmr(
-            args.run,
+            run,
             phenix.executables["phenix.ready_set"],
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
@@ -361,6 +482,7 @@ def _postmr(args: argparse.Namespace) -> int:
 def _autosol(args: argparse.Namespace) -> int:
     try:
         config = load_config()
+        run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
         if args.phenix_root is None:
             remember_phenix(config, phenix)
@@ -376,7 +498,7 @@ def _autosol(args: argparse.Namespace) -> int:
                 "AutoSol validation requires phenix.mtz.dump"
             )
         result = execute_autosol(
-            args.run,
+            run,
             autosol_executable,
             mtz_dump_executable,
             environment=phenix.environment,
@@ -428,6 +550,7 @@ def _format_metric(value: object, digits: int = 3) -> str:
 def _autorefine(args: argparse.Namespace) -> int:
     try:
         config = load_config()
+        run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
         if args.phenix_root is None:
             remember_phenix(config, phenix)
@@ -440,7 +563,7 @@ def _autorefine(args: argparse.Namespace) -> int:
             print(f"AutoRefine {checkpoint_id} started; full output: {log_path}")
 
         result = execute_autorefine(
-            args.run,
+            run,
             phenix.executables["phenix.refine"],
             mtz_dump,
             environment=phenix.environment,
@@ -561,6 +684,7 @@ def _autorefine(args: argparse.Namespace) -> int:
 def _refine_doctor(args: argparse.Namespace) -> int:
     try:
         config = load_config()
+        run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
         if args.phenix_root is None:
             remember_phenix(config, phenix)
@@ -577,7 +701,7 @@ def _refine_doctor(args: argparse.Namespace) -> int:
             )
 
         result = execute_refine_doctor(
-            args.run,
+            run,
             phenix.executables["phenix.refine"],
             mtz_dump,
             environment=phenix.environment,
@@ -694,8 +818,20 @@ def _refine_doctor(args: argparse.Namespace) -> int:
 
 def _checkpoints(args: argparse.Namespace) -> int:
     try:
+        config = load_config()
+        if args.checkpoint_action == "use":
+            if args.checkpoint is None:
+                explicit_run = None
+                checkpoint = args.run_or_checkpoint
+            else:
+                explicit_run = Path(args.run_or_checkpoint)
+                checkpoint = args.checkpoint
+        else:
+            explicit_run = args.run
+            checkpoint = None
+        run = _workspace_run(explicit_run, config)
         if args.checkpoint_action == "list":
-            records, current, bookmarks = list_checkpoints(args.run)
+            records, current, bookmarks = list_checkpoints(run)
             names_by_id: dict[str, list[str]] = {}
             for name, target in bookmarks.items():
                 names_by_id.setdefault(target, []).append(name)
@@ -718,7 +854,7 @@ def _checkpoints(args: argparse.Namespace) -> int:
             return 0
         if args.checkpoint_action == "add":
             record = add_checkpoint(
-                args.run,
+                run,
                 name=args.name,
                 model=args.model,
                 reflections=args.mtz,
@@ -730,12 +866,13 @@ def _checkpoints(args: argparse.Namespace) -> int:
                 print("Status: REVIEW (select explicitly after inspection)")
             return 0
         if args.checkpoint_action == "use":
-            record = select_checkpoint(args.run, args.checkpoint)
+            assert isinstance(checkpoint, str)
+            record = select_checkpoint(run, checkpoint)
             print(_color(f"Current checkpoint: {record.checkpoint_id}", "36"))
             print(f"Status: {record.status}")
             print(f"Model: {record.model}")
             return 0
-    except CheckpointError as exc:
+    except (CheckpointError, ConfigError) as exc:
         print(f"Checkpoint error: {exc}", file=sys.stderr)
         return 2
     return 2
@@ -743,8 +880,16 @@ def _checkpoints(args: argparse.Namespace) -> int:
 
 def _show(args: argparse.Namespace) -> int:
     try:
-        run = resolve_run(args.target, args.dataset)
         config = load_config()
+        if args.target is None:
+            run = _workspace_run(None, config)
+        else:
+            dataset = args.dataset
+            if str(args.target).casefold() == "last" and dataset is None:
+                dataset = _workspace_dataset(
+                    None, config, current_directory_fallback=False
+                )
+            run = resolve_run(args.target, dataset)
         coot = discover_coot(config, explicit=args.coot)
         remember_coot(config, coot)
         save_config(config)
@@ -772,6 +917,8 @@ def main(argv: list[str] | None = None) -> int:
         return _configure_phenix(args.path)
     if args.command == "configure" and args.configure_target == "coot":
         return _configure_coot(args.path)
+    if args.command == "workspace":
+        return _workspace(args)
     if args.command == "check":
         return _check(args.phenix_root)
     if args.command == "automr":

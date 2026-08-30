@@ -22,6 +22,7 @@ from .curated_ligands import (
 )
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
 from .model_assessment import file_sha256
+from .run_context import resolve_artifact_path
 
 
 class PostMRPreparationError(RuntimeError):
@@ -85,6 +86,10 @@ def _read_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
         report = json.loads(report_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise PostMRPreparationError(f"Could not read AutoMR report {report_path}: {exc}") from exc
+    if not isinstance(report, dict):
+        raise PostMRPreparationError(
+            f"AutoMR report is not a JSON object: {report_path}"
+        )
     if report.get("workflow") != "automr":
         raise PostMRPreparationError("PostMR requires a completed Phaser report")
     if report.get("stage") == "postmr" and report.get("status") == "POSTMR_READY":
@@ -101,9 +106,9 @@ def _solution_model(run: Path, report: Mapping[str, object]) -> Path:
     if isinstance(execution, Mapping):
         phaser = execution.get("phaser")
         if isinstance(phaser, Mapping) and isinstance(phaser.get("solution_pdb"), str):
-            candidate = Path(phaser["solution_pdb"]).expanduser()
-            if candidate.is_file():
-                return candidate.resolve()
+            candidate = resolve_artifact_path(phaser["solution_pdb"], run)
+            if candidate is not None:
+                return candidate
     fallback = run / "Phaser" / "mr_solution.pdb"
     if fallback.is_file():
         return fallback.resolve()

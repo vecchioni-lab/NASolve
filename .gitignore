@@ -219,3 +219,7 @@ __marimo__/
 
 # macOS metadata
 .DS_Store
+
+# NASolve machine-local graphical scratch (portable run artifacts remain visible)
+**/CootGUI/
+**/PostMR/Coot/backups/

@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping, Sequence
 
+from .run_context import artifact_reference, resolve_artifact_path
+
 
 class CheckpointError(RuntimeError):
     """Raised when checkpoint provenance cannot be established safely."""
@@ -33,7 +35,8 @@ class CheckpointRecord:
     metrics: dict[str, float | None]
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION}
 AUTOMATIC_STATUSES = {"READY", "SUCCESS", "USER_APPROVED"}
 REUSABLE_STATUSES = AUTOMATIC_STATUSES | {"REVIEW"}
 
@@ -58,12 +61,12 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _required_file(value: object, description: str) -> Path:
+def _required_file(value: object, description: str, run: Path) -> Path:
     if not isinstance(value, str) or not value:
         raise CheckpointError(f"Run report has no {description}")
-    path = Path(value).expanduser().resolve()
-    if not path.is_file():
-        raise CheckpointError(f"Required {description} is missing: {path}")
+    path = resolve_artifact_path(value, run)
+    if path is None:
+        raise CheckpointError(f"Required {description} is missing: {value}")
     return path
 
 
@@ -75,6 +78,8 @@ def _run_and_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
         report = json.loads(report_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise CheckpointError(f"Could not read NASolve report {report_path}: {exc}") from exc
+    if not isinstance(report, dict):
+        raise CheckpointError(f"NASolve report is not a JSON object: {report_path}")
     if report.get("workflow") != "automr":
         raise CheckpointError("Checkpoints require a NASolve AutoMR run")
     postmr = report.get("postmr")
@@ -90,87 +95,191 @@ def registry_path(run_directory: Path) -> Path:
     return run / "AutoRefine" / "checkpoints.json"
 
 
-def _file_reference(path: Path) -> dict[str, object]:
+def _file_reference(
+    path: Path, run: Path, *, sha256: str | None = None
+) -> dict[str, object]:
     resolved = path.expanduser().resolve()
     if not resolved.is_file():
         raise CheckpointError(f"Checkpoint input is missing: {resolved}")
     return {
-        "path": str(resolved),
-        "sha256": _sha256(resolved),
+        **artifact_reference(resolved, run),
+        "sha256": sha256 or _sha256(resolved),
         "size": resolved.stat().st_size,
     }
 
 
-def _ref_path(value: object, description: str, *, required: bool = True) -> Path | None:
-    path_value = value.get("path") if isinstance(value, Mapping) else None
+def _is_portable_reference(value: Mapping[str, object]) -> bool:
+    return isinstance(value.get("anchor"), str) and (
+        isinstance(value.get("relative_path"), str)
+        or isinstance(value.get("absolute_path"), str)
+    )
+
+
+def _require_portable_checksum(value: Mapping[str, object], description: str) -> None:
+    expected = value.get("sha256")
+    if (
+        not isinstance(expected, str)
+        or re.fullmatch(r"[0-9a-fA-F]{64}", expected) is None
+    ):
+        raise CheckpointError(f"Checkpoint {description} has a malformed checksum")
+
+
+def _legacy_provenance(value: object) -> dict[str, object] | None:
+    if isinstance(value, str):
+        return {"provenance_path": value, "available": False}
+    if not isinstance(value, Mapping):
+        return None
+    migrated = dict(value)
+    legacy_path = migrated.pop("path", None)
+    if isinstance(legacy_path, str):
+        migrated.setdefault("provenance_path", legacy_path)
+    migrated["available"] = False
+    return migrated
+
+
+def _ref_path(
+    value: object,
+    description: str,
+    run: Path | None,
+    *,
+    required: bool = True,
+    verify_checksum: bool = True,
+) -> Path | None:
+    path_value = (
+        value.get("relative_path", value.get("absolute_path", value.get("path")))
+        if isinstance(value, Mapping)
+        else None
+    )
     if not isinstance(path_value, str):
         if required:
             raise CheckpointError(f"Checkpoint has no {description}")
         return None
-    path = Path(path_value).expanduser().resolve()
-    if required and not path.is_file():
-        raise CheckpointError(f"Checkpoint {description} is missing: {path}")
-    if not path.is_file():
-        return None
+    portable = isinstance(value, Mapping) and _is_portable_reference(value)
     expected = value.get("sha256") if isinstance(value, Mapping) else None
-    if isinstance(expected, str) and _sha256(path) != expected:
+    if portable:
+        assert isinstance(value, Mapping)
+        _require_portable_checksum(value, description)
+    if run is not None:
+        path = resolve_artifact_path(value, run, verify_checksum=False)
+    elif isinstance(value, Mapping) and isinstance(value.get("anchor"), str):
+        path = None
+    else:
+        path = Path(path_value).expanduser().resolve()
+    if path is None or not path.is_file():
+        if required:
+            raise CheckpointError(f"Checkpoint {description} is missing: {path_value}")
+        return None
+    if (
+        verify_checksum
+        and isinstance(expected, str)
+        and _sha256(path) != expected.casefold()
+    ):
         raise CheckpointError(
             f"Checkpoint {description} changed after it was frozen: {path}"
         )
     return path
 
 
-def _initial_restraints(postmr: Mapping[str, object]) -> list[Path]:
+def _initial_restraints(postmr: Mapping[str, object], run: Path) -> list[Path]:
     values = postmr.get("restraints")
-    paths = [
-        Path(value).expanduser().resolve()
-        for value in values
-        if isinstance(values, list) and isinstance(value, str)
-    ] if isinstance(values, list) else []
+    reported = (
+        [value for value in values if isinstance(value, str)]
+        if isinstance(values, list)
+        else []
+    )
+    non_cif_values = [
+        value for value in reported if not value.casefold().endswith(".cif")
+    ]
+    cif_values = [value for value in reported if value.casefold().endswith(".cif")]
+    retained: list[Path] = []
+    for value in non_cif_values:
+        resolved = resolve_artifact_path(value, run)
+        if resolved is None:
+            raise CheckpointError(f"PostMR restraint input is missing: {value}")
+        retained.append(resolved)
     readyset = postmr.get("readyset")
     generated = readyset.get("generated_ligand_cif") if isinstance(readyset, Mapping) else None
-    generated_path = (
-        Path(generated).expanduser().resolve()
-        if isinstance(generated, str) and Path(generated).expanduser().is_file()
-        else None
-    )
+    generated_path = resolve_artifact_path(generated, run)
     # ReadySet's combined ligand dictionary supersedes the individual input CIFs.
-    retained = [path for path in paths if path.suffix.lower() != ".cif"]
     if generated_path is not None:
         retained.append(generated_path)
     else:
-        retained.extend(path for path in paths if path.suffix.lower() == ".cif")
-    missing = [path for path in retained if not path.is_file()]
-    if missing:
-        raise CheckpointError(f"PostMR restraint input is missing: {missing[0]}")
+        for value in cif_values:
+            resolved = resolve_artifact_path(value, run)
+            if resolved is None:
+                raise CheckpointError(f"PostMR restraint input is missing: {value}")
+            retained.append(resolved)
     return list(dict.fromkeys(retained))
 
 
-def _phase_reference(report: Mapping[str, object]) -> dict[str, object] | None:
+def _phase_reference(report: Mapping[str, object], run: Path) -> dict[str, object] | None:
     autosol = report.get("autosol")
     if not isinstance(autosol, Mapping) or autosol.get("use_for_refinement") is not True:
         return None
     outputs = autosol.get("outputs")
     if not isinstance(outputs, Mapping):
-        return None
-    path = _required_file(outputs.get("refinement_data"), "AutoSol refinement data")
+        raise CheckpointError("Approved AutoSol result has no output references")
+    path = _required_file(outputs.get("refinement_data"), "AutoSol refinement data", run)
+    actual_sha256 = _sha256(path)
+    expected = outputs.get("refinement_data_sha256")
+    if expected is not None and (
+        not isinstance(expected, str)
+        or re.fullmatch(r"[0-9a-fA-F]{64}", expected) is None
+    ):
+        raise CheckpointError("Approved AutoSol refinement-data checksum is malformed")
+    if isinstance(expected, str) and actual_sha256 != expected.casefold():
+        raise CheckpointError(
+            "Approved AutoSol refinement data failed checksum validation"
+        )
     labels = outputs.get("refinement_data_phase_labels")
     return {
-        **_file_reference(path),
+        **_file_reference(path, run, sha256=actual_sha256),
         "labels": list(labels) if isinstance(labels, list) else [],
         "source": "validated-autosol",
     }
 
 
-def _root_payload(report: Mapping[str, object]) -> dict[str, object]:
+def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
     postmr = report["postmr"]
     assert isinstance(postmr, Mapping)
     inputs = report.get("inputs")
     if not isinstance(inputs, Mapping):
         raise CheckpointError("Run report has no frozen AutoMR inputs")
-    model = _required_file(postmr.get("prepared_model"), "PostMR prepared model")
-    reflections = _required_file(inputs.get("reflections"), "authoritative reflections")
-    restraint_refs = [_file_reference(path) for path in _initial_restraints(postmr)]
+    model = _required_file(postmr.get("prepared_model"), "PostMR prepared model", run)
+    model_sha256 = _sha256(model)
+    expected_model_sha256 = postmr.get("prepared_sha256")
+    if expected_model_sha256 is not None and not isinstance(
+        expected_model_sha256, str
+    ):
+        raise CheckpointError("PostMR prepared-model checksum is malformed")
+    model_verified = isinstance(expected_model_sha256, str)
+    if (
+        isinstance(expected_model_sha256, str)
+        and model_sha256 != expected_model_sha256.casefold()
+    ):
+        raise CheckpointError(
+            "Rebased PostMR prepared model does not match its frozen checksum"
+        )
+    reflections = _required_file(
+        inputs.get("reflections"), "authoritative reflections", run
+    )
+    reflections_sha256 = _sha256(reflections)
+    expected_reflections_sha256 = inputs.get("reflections_sha256")
+    if expected_reflections_sha256 is not None and not isinstance(
+        expected_reflections_sha256, str
+    ):
+        raise CheckpointError("Authoritative reflections checksum is malformed")
+    observations_verified = isinstance(expected_reflections_sha256, str)
+    if (
+        observations_verified
+        and reflections_sha256 != expected_reflections_sha256.casefold()
+    ):
+        raise CheckpointError(
+            "Rebased authoritative reflections do not match their frozen checksum"
+        )
+    restraint_refs = [
+        _file_reference(path, run) for path in _initial_restraints(postmr, run)
+    ]
     return {
         "id": "postmr",
         "parent": None,
@@ -180,12 +289,23 @@ def _root_payload(report: Mapping[str, object]) -> dict[str, object]:
         "created_utc": str(postmr.get("created_utc") or _now()),
         "recipe": "PostMR/ReadySet",
         "label": "ReadySet model",
-        "model": _file_reference(model),
-        "observations": _file_reference(reflections),
-        "phases": _phase_reference(report),
+        "model": _file_reference(model, run, sha256=model_sha256),
+        "observations": _file_reference(
+            reflections, run, sha256=reflections_sha256
+        ),
+        "phases": _phase_reference(report, run),
         "restraints": restraint_refs,
         "metrics": {},
-        "compatibility": {"validated": True, "source": "POSTMR_READY"},
+        "compatibility": {
+            "validated": True,
+            "source": "POSTMR_READY",
+            "model_checksum": (
+                "verified" if model_verified else "legacy-unverified"
+            ),
+            "observations_checksum": (
+                "verified" if observations_verified else "legacy-unverified"
+            ),
+        },
     }
 
 
@@ -198,7 +318,13 @@ def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
             registry = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as exc:
             raise CheckpointError(f"Could not read checkpoint registry {path}: {exc}") from exc
-        if registry.get("schema_version") != SCHEMA_VERSION:
+        if not isinstance(registry, dict):
+            raise CheckpointError(f"Checkpoint registry is not a JSON object: {path}")
+        schema_version = registry.get("schema_version")
+        if (
+            type(schema_version) is not int
+            or schema_version not in READABLE_SCHEMA_VERSIONS
+        ):
             raise CheckpointError(f"Unsupported checkpoint schema in {path}")
         checkpoints = registry.get("checkpoints")
         if not isinstance(checkpoints, list) or not any(
@@ -209,18 +335,76 @@ def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
     path.parent.mkdir(parents=True, exist_ok=True)
     registry = {
         "schema_version": SCHEMA_VERSION,
-        "run_directory": str(run),
+        "run_directory": ".",
         "created_utc": _now(),
         "updated_utc": _now(),
         "current": "postmr",
         "bookmarks": {},
-        "checkpoints": [_root_payload(report)],
+        "checkpoints": [_root_payload(report, run)],
     }
     _write_json(path, registry)
     return run, registry
 
 
 def save_registry(run: Path, registry: dict[str, object]) -> Path:
+    registry["schema_version"] = SCHEMA_VERSION
+    registry["run_directory"] = "."
+    for item in _items(registry):
+        for key in ("model", "observations", "phases"):
+            value = item.get(key)
+            if not isinstance(value, dict):
+                continue
+            if _is_portable_reference(value):
+                _require_portable_checksum(value, key)
+                continue
+            path = _ref_path(value, key, run, required=False)
+            if path is not None:
+                portable = artifact_reference(path, run)
+                if portable.get("anchor") != "absolute":
+                    legacy_path = value.pop("path", None)
+                    if isinstance(legacy_path, str):
+                        value.setdefault("provenance_path", legacy_path)
+                    value.update(portable)
+                    continue
+            provenance = _legacy_provenance(value)
+            if provenance is not None:
+                item[key] = provenance
+        restraints = item.get("restraints")
+        if isinstance(restraints, list):
+            for value in restraints:
+                if not isinstance(value, dict):
+                    continue
+                if _is_portable_reference(value):
+                    _require_portable_checksum(value, "restraint")
+                    continue
+                path = _ref_path(value, "restraint", run, required=False)
+                if path is not None:
+                    portable = artifact_reference(path, run)
+                    if portable.get("anchor") != "absolute":
+                        legacy_path = value.pop("path", None)
+                        if isinstance(legacy_path, str):
+                            value.setdefault("provenance_path", legacy_path)
+                        value.update(portable)
+                        continue
+                provenance = _legacy_provenance(value)
+                if provenance is not None:
+                    value.clear()
+                    value.update(provenance)
+        outputs = item.get("outputs")
+        if isinstance(outputs, dict):
+            for key, value in tuple(outputs.items()):
+                if isinstance(value, Mapping) and _is_portable_reference(value):
+                    _require_portable_checksum(value, f"output {key}")
+                    continue
+                path = resolve_artifact_path(value, run)
+                if path is not None:
+                    reference = _file_reference(path, run)
+                    if reference.get("anchor") != "absolute":
+                        outputs[key] = reference
+                        continue
+                provenance = _legacy_provenance(value)
+                if provenance is not None:
+                    outputs[key] = provenance
     registry["updated_utc"] = _now()
     path = registry_path(run)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -250,7 +434,9 @@ def resolve_checkpoint(
     raise CheckpointError(f"Unknown checkpoint or bookmark: {requested}")
 
 
-def checkpoint_record(item: Mapping[str, object]) -> CheckpointRecord:
+def checkpoint_record(
+    item: Mapping[str, object], run: Path | None = None
+) -> CheckpointRecord:
     metrics = item.get("metrics")
     normalized_metrics = {
         str(key): float(value) if isinstance(value, (int, float)) else None
@@ -260,7 +446,7 @@ def checkpoint_record(item: Mapping[str, object]) -> CheckpointRecord:
         checkpoint_id=str(item.get("id")),
         parent=str(item["parent"]) if isinstance(item.get("parent"), str) else None,
         status=str(item.get("status", "UNKNOWN")),
-        model=_ref_path(item.get("model"), "model", required=False),
+        model=_ref_path(item.get("model"), "model", run, required=False),
         usable=item.get("usable") is True,
         recipe=str(item.get("recipe", "unknown")),
         label=str(item["label"]) if isinstance(item.get("label"), str) else None,
@@ -269,7 +455,7 @@ def checkpoint_record(item: Mapping[str, object]) -> CheckpointRecord:
 
 
 def list_checkpoints(run_directory: Path) -> tuple[list[CheckpointRecord], str, dict[str, str]]:
-    _, registry = initialize_registry(run_directory)
+    run, registry = initialize_registry(run_directory)
     current = str(registry.get("current", "postmr"))
     bookmarks = registry.get("bookmarks")
     aliases = {
@@ -277,7 +463,7 @@ def list_checkpoints(run_directory: Path) -> tuple[list[CheckpointRecord], str, 
         for name, target in bookmarks.items()
         if isinstance(bookmarks, Mapping) and isinstance(name, str) and isinstance(target, str)
     } if isinstance(bookmarks, Mapping) else {}
-    return [checkpoint_record(item) for item in _items(registry)], current, aliases
+    return [checkpoint_record(item, run) for item in _items(registry)], current, aliases
 
 
 def next_checkpoint_id(registry: Mapping[str, object], prefix: str) -> str:
@@ -315,10 +501,10 @@ def select_checkpoint(run_directory: Path, checkpoint: str) -> CheckpointRecord:
     item = resolve_checkpoint(registry, checkpoint)
     if item.get("usable") is not True or item.get("status") not in REUSABLE_STATUSES:
         raise CheckpointError(f"Checkpoint {item.get('id')} is not reusable")
-    _ref_path(item.get("model"), "model")
+    _ref_path(item.get("model"), "model", run)
     registry["current"] = item["id"]
     save_registry(run, registry)
-    return checkpoint_record(item)
+    return checkpoint_record(item, run)
 
 
 def _valid_bookmark(name: str) -> str:
@@ -354,7 +540,7 @@ def add_checkpoint(
             raise CheckpointError("--mtz may be used only when importing --model")
         bookmarks[label] = base["id"]
         save_registry(run, registry)
-        return checkpoint_record(base)
+        return checkpoint_record(base, run)
 
     source_model = model.expanduser().resolve()
     if not source_model.is_file():
@@ -375,7 +561,7 @@ def add_checkpoint(
     if source_reflections is not None:
         destination_reflections = destination_dir / source_reflections.name
         shutil.copyfile(source_reflections, destination_reflections)
-        observations = _file_reference(destination_reflections)
+        observations = _file_reference(destination_reflections, run)
     payload = {
         "id": checkpoint_id,
         "parent": base["id"],
@@ -384,7 +570,7 @@ def add_checkpoint(
         "usable": True,
         "recipe": "manual-import",
         "label": label,
-        "model": _file_reference(destination_model),
+        "model": _file_reference(destination_model, run),
         "observations": observations,
         "phases": base.get("phases"),
         "restraints": base.get("restraints", []),
@@ -400,17 +586,28 @@ def add_checkpoint(
     assert isinstance(bookmarks, dict)
     bookmarks[label] = checkpoint_id
     save_registry(run, registry)
-    return checkpoint_record(payload)
+    return checkpoint_record(payload, run)
 
 
-def inherited_paths(item: Mapping[str, object]) -> dict[str, object]:
-    """Resolve and verify the frozen files inherited by a refinement child."""
-    model = _ref_path(item.get("model"), "model")
-    observations = _ref_path(item.get("observations"), "observations")
-    phase = _ref_path(item.get("phases"), "phase data", required=False)
+def _inherited_paths(
+    item: Mapping[str, object],
+    run_directory: Path | None = None,
+    *,
+    verify_phase_checksum: bool,
+) -> dict[str, object]:
+    run = run_directory.expanduser().resolve() if run_directory is not None else None
+    model = _ref_path(item.get("model"), "model", run)
+    observations = _ref_path(item.get("observations"), "observations", run)
+    phase = _ref_path(
+        item.get("phases"),
+        "phase data",
+        run,
+        required=False,
+        verify_checksum=verify_phase_checksum,
+    )
     restraint_values = item.get("restraints")
     restraints = [
-        _ref_path(value, "restraint")
+        _ref_path(value, "restraint", run)
         for value in restraint_values
         if isinstance(restraint_values, Sequence) and isinstance(value, Mapping)
     ] if isinstance(restraint_values, list) else []
@@ -421,6 +618,28 @@ def inherited_paths(item: Mapping[str, object]) -> dict[str, object]:
         "phase_metadata": item.get("phases"),
         "restraints": [path for path in restraints if path is not None],
     }
+
+
+def inherited_paths(
+    item: Mapping[str, object], run_directory: Path | None = None
+) -> dict[str, object]:
+    """Resolve and verify the frozen files inherited by a refinement child."""
+    return _inherited_paths(
+        item,
+        run_directory,
+        verify_phase_checksum=True,
+    )
+
+
+def _inherited_paths_for_autorefine(
+    item: Mapping[str, object], run_directory: Path
+) -> dict[str, object]:
+    """Resolve inputs while deferring phase hashing to AutoRefine's stable check."""
+    return _inherited_paths(
+        item,
+        run_directory,
+        verify_phase_checksum=False,
+    )
 
 
 __all__ = [

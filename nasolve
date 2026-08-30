@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Run NASolve directly from this checkout without relying on editable-install
+# metadata. This is intentionally scoped to the child process.
+set -eu
+
+launcher_path=$0
+link_count=0
+while [ -L "$launcher_path" ]; do
+    link_count=$((link_count + 1))
+    if [ "$link_count" -gt 40 ]; then
+        echo "NASolve launcher: too many symbolic links" >&2
+        exit 126
+    fi
+    link_directory=$(CDPATH= cd -P "$(dirname "$launcher_path")" && pwd)
+    link_target=$(readlink "$launcher_path")
+    case "$link_target" in
+        /*) launcher_path=$link_target ;;
+        *) launcher_path=$link_directory/$link_target ;;
+    esac
+done
+
+repository_directory=$(CDPATH= cd -P "$(dirname "$launcher_path")" && pwd)
+python_command=${NASOLVE_PYTHON:-"$repository_directory/.venv/bin/python"}
+
+case "$python_command" in
+    */*)
+        if [ ! -f "$python_command" ] || [ ! -x "$python_command" ]; then
+            echo "NASolve launcher: Python interpreter is not executable: $python_command" >&2
+            echo "Create the checkout environment with: python3 -m venv \"$repository_directory/.venv\"" >&2
+            exit 127
+        fi
+        ;;
+    *)
+        if ! resolved_python=$(command -v "$python_command" 2>/dev/null); then
+            echo "NASolve launcher: Python interpreter was not found: $python_command" >&2
+            exit 127
+        fi
+        python_command=$resolved_python
+        ;;
+esac
+
+source_directory=$repository_directory/src
+if [ -n "${PYTHONPATH:-}" ]; then
+    PYTHONPATH=$source_directory:$PYTHONPATH
+else
+    PYTHONPATH=$source_directory
+fi
+export PYTHONPATH
+
+exec "$python_command" -c '
+import sys
+
+source_directory = sys.argv.pop(1)
+sys.path[:] = [
+    source_directory,
+    *(entry for entry in sys.path if entry not in {"", source_directory}),
+]
+from nasolve.cli import main
+
+raise SystemExit(main())
+' "$source_directory" "$@"

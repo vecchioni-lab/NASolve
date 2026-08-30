@@ -1,15 +1,19 @@
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
 
 from nasolve.coot_view import (
+    CootViewError,
     find_last_run,
     launch_coot_view,
     resolve_run,
     resolve_view_profile,
 )
+from nasolve.model_assessment import file_sha256
+from nasolve.run_context import artifact_reference
 
 
 def make_view_run(root: Path, number: int = 1) -> Path:
@@ -54,6 +58,7 @@ def make_view_run(root: Path, number: int = 1) -> Path:
     }
     (run / "report.json").write_text(json.dumps(report))
     registry = {
+        "schema_version": 1,
         "current": "refine-001",
         "checkpoints": [{
             "id": "refine-001",
@@ -88,6 +93,22 @@ def add_review_checkpoint(run: Path) -> tuple[Path, Path]:
 
 
 class CootViewTests(unittest.TestCase):
+    def test_profiles_rebase_after_checkout_moves(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source_run = make_view_run(root / "collaborator")
+            source_dataset = source_run.parent.parent
+            checkout_dataset = root / "checkout" / source_dataset.name
+            shutil.copytree(source_dataset, checkout_dataset)
+            shutil.rmtree(root / "collaborator")
+            run = checkout_dataset / "AutoMR" / source_run.name
+
+            postmr = resolve_view_profile(run, stage="postmr")
+            refined = resolve_view_profile(run, stage="autorefine")
+
+            self.assertTrue(postmr.model_path.is_relative_to(run.resolve()))
+            self.assertTrue(refined.model_path.is_relative_to(run.resolve()))
+
     def test_show_last_uses_highest_run_number_not_mtime(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -112,6 +133,141 @@ class CootViewTests(unittest.TestCase):
             self.assertEqual(postmr.model_path.name, "readyset_model.pdb")
             self.assertEqual(postmr.dictionary_paths[0].name, "prepared_model.ligands.cif")
 
+    def test_postmr_view_fails_when_reported_dictionary_is_missing(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            report = json.loads((run / "report.json").read_text())
+            dictionary = Path(
+                report["postmr"]["readyset"]["generated_ligand_cif"]
+            )
+            dictionary.unlink()
+
+            with self.assertRaisesRegex(CootViewError, "dictionary is missing"):
+                resolve_view_profile(run, stage="postmr")
+
+    def test_autosol_view_rejects_changed_heavy_atom_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            heavy_atom = Path(report["autosol"]["outputs"]["heavy_atom_model"])
+            report["autosol"]["outputs"]["heavy_atom_model_sha256"] = (
+                file_sha256(heavy_atom)
+            )
+            report_path.write_text(json.dumps(report))
+            heavy_atom.write_text("changed\n")
+
+            with self.assertRaisesRegex(CootViewError, "failed checksum"):
+                resolve_view_profile(run, stage="autosol")
+
+    def test_autosol_warning_without_outputs_falls_back_to_postmr(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            shutil.rmtree(run / "AutoRefine")
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["autosol"] = {
+                "status": "AUTOSOL_WARNING",
+                "outputs": {
+                    "heavy_atom_model": None,
+                    "refinement_data": None,
+                    "console_log": str(run / "AutoSol" / "autosol.console.log"),
+                },
+            }
+            report_path.write_text(json.dumps(report))
+
+            profile = resolve_view_profile(run)
+
+            self.assertEqual(profile.stage, "postmr")
+
+    def test_autorefine_profile_reads_schema_two_artifact_references(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            registry_path = run / "AutoRefine" / "checkpoints.json"
+            registry = json.loads(registry_path.read_text())
+            checkpoint = registry["checkpoints"][0]
+            model = Path(checkpoint["model"]["path"])
+            dictionary = Path(checkpoint["restraints"][0]["path"])
+            map_path = Path(checkpoint["outputs"]["map_coefficients"])
+            checkpoint["model"] = artifact_reference(model, run)
+            checkpoint["model"]["sha256"] = file_sha256(model)
+            checkpoint["restraints"] = [artifact_reference(dictionary, run)]
+            checkpoint["restraints"][0]["sha256"] = file_sha256(dictionary)
+            checkpoint["outputs"]["map_coefficients"] = artifact_reference(
+                map_path, run
+            )
+            checkpoint["outputs"]["map_coefficients"]["sha256"] = file_sha256(
+                map_path
+            )
+            registry["schema_version"] = 2
+            registry_path.write_text(json.dumps(registry))
+
+            profile = resolve_view_profile(run, stage="autorefine")
+
+            self.assertEqual(profile.model_path, model.resolve())
+            self.assertEqual(profile.map_path, map_path.resolve())
+            self.assertEqual(profile.dictionary_paths, (dictionary.resolve(),))
+
+    def test_schema_two_view_rejects_changed_map_and_dictionary(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            registry_path = run / "AutoRefine" / "checkpoints.json"
+            registry = json.loads(registry_path.read_text())
+            checkpoint = registry["checkpoints"][0]
+            model = Path(checkpoint["model"]["path"])
+            map_path = Path(checkpoint["outputs"]["map_coefficients"])
+            dictionary = Path(checkpoint["restraints"][0]["path"])
+            model_ref = artifact_reference(model, run)
+            model_ref["sha256"] = file_sha256(model)
+            map_ref = artifact_reference(map_path, run)
+            map_ref["sha256"] = file_sha256(map_path)
+            dictionary_ref = artifact_reference(dictionary, run)
+            dictionary_ref["sha256"] = file_sha256(dictionary)
+            checkpoint["model"] = model_ref
+            checkpoint["outputs"]["map_coefficients"] = map_ref
+            checkpoint["restraints"] = [dictionary_ref]
+            registry["schema_version"] = 2
+            registry_path.write_text(json.dumps(registry))
+
+            map_path.write_bytes(b"changed map")
+            with self.assertRaisesRegex(CootViewError, "map coefficients"):
+                resolve_view_profile(run, stage="autorefine")
+            with self.assertRaisesRegex(CootViewError, "map coefficients"):
+                resolve_view_profile(run)
+
+            map_path.write_bytes(b"mtz")
+            map_ref["sha256"] = file_sha256(map_path)
+            registry_path.write_text(json.dumps(registry))
+            dictionary.write_text("changed dictionary\n")
+            with self.assertRaisesRegex(CootViewError, "ligand dictionary"):
+                resolve_view_profile(run, stage="autorefine")
+
+    def test_unknown_or_non_integer_checkpoint_schema_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            registry_path = run / "AutoRefine" / "checkpoints.json"
+            registry = json.loads(registry_path.read_text())
+
+            for version in (True, 1.0, 2.0, 999):
+                registry["schema_version"] = version
+                registry_path.write_text(json.dumps(registry))
+                with self.subTest(version=version):
+                    with self.assertRaisesRegex(
+                        CootViewError, "Unsupported checkpoint schema"
+                    ):
+                        resolve_view_profile(run)
+
+    def test_unknown_current_checkpoint_pointer_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            registry_path = run / "AutoRefine" / "checkpoints.json"
+            registry = json.loads(registry_path.read_text())
+            registry["current"] = "missing-checkpoint"
+            registry_path.write_text(json.dumps(registry))
+
+            with self.assertRaisesRegex(CootViewError, "current pointer is unknown"):
+                resolve_view_profile(run)
+
     def test_autorefine_profile_recovers_legacy_primary_mtz(self):
         with tempfile.TemporaryDirectory() as directory:
             run = make_view_run(Path(directory))
@@ -125,6 +281,44 @@ class CootViewTests(unittest.TestCase):
             legacy.write_bytes(b"legacy maps")
             profile = resolve_view_profile(run, stage="autorefine")
             self.assertEqual(profile.map_path, legacy.resolve())
+
+    def test_schema_two_primary_mtz_requires_valid_output_reference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            registry_path = run / "AutoRefine" / "checkpoints.json"
+            registry = json.loads(registry_path.read_text())
+            checkpoint = registry["checkpoints"][0]
+            model = Path(checkpoint["model"]["path"])
+            dictionary = Path(checkpoint["restraints"][0]["path"])
+            reported_map = Path(checkpoint["outputs"]["map_coefficients"])
+            reported_map.unlink()
+            primary = model.with_suffix(".mtz")
+            primary.write_bytes(b"primary maps")
+            model_ref = artifact_reference(model, run)
+            model_ref["sha256"] = file_sha256(model)
+            dictionary_ref = artifact_reference(dictionary, run)
+            dictionary_ref["sha256"] = file_sha256(dictionary)
+            primary_ref = artifact_reference(primary, run)
+            primary_ref["sha256"] = file_sha256(primary)
+            checkpoint["model"] = model_ref
+            checkpoint["restraints"] = [dictionary_ref]
+            checkpoint["outputs"]["map_coefficients"] = None
+            checkpoint["outputs"]["refinement_reflections"] = primary_ref
+            registry["schema_version"] = 2
+            registry_path.write_text(json.dumps(registry))
+
+            profile = resolve_view_profile(run, stage="autorefine")
+            self.assertEqual(profile.map_path, primary.resolve())
+
+            primary.write_bytes(b"changed maps")
+            with self.assertRaisesRegex(CootViewError, "refinement reflections"):
+                resolve_view_profile(run, stage="autorefine")
+
+            primary.write_bytes(b"primary maps")
+            checkpoint["outputs"]["refinement_reflections"] = None
+            registry_path.write_text(json.dumps(registry))
+            with self.assertRaisesRegex(CootViewError, "refinement reflections"):
+                resolve_view_profile(run, stage="autorefine")
 
     def test_specific_checkpoint_can_be_inspected_without_selecting_it(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -190,6 +384,64 @@ class CootViewTests(unittest.TestCase):
                 result.working_directory,
                 (run / "CootGUI" / "autorefine" / "refine-002").resolve(),
             )
+
+    def test_launcher_rejects_checkpoint_path_components(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_view_run(root)
+            coot = root / "coot"
+            coot.write_text("")
+
+            for checkpoint in ("../../escape", str(root / "escape")):
+                with self.subTest(checkpoint=checkpoint):
+                    with self.assertRaisesRegex(CootViewError, "single safe"):
+                        launch_coot_view(
+                            run,
+                            coot,
+                            checkpoint=checkpoint,
+                            launcher=lambda *args, **kwargs: SimpleNamespace(pid=1),
+                        )
+            self.assertFalse((root / "escape").exists())
+
+    def test_launcher_rejects_symlinked_scratch_directories(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_view_run(root)
+            coot = root / "coot"
+            coot.write_text("")
+            outside = root / "outside"
+            outside.mkdir()
+            (run / "CootGUI").symlink_to(outside, target_is_directory=True)
+
+            with self.assertRaisesRegex(CootViewError, "symbolic link"):
+                launch_coot_view(
+                    run,
+                    coot,
+                    stage="automr",
+                    launcher=lambda *args, **kwargs: SimpleNamespace(pid=1),
+                )
+            self.assertEqual(list(outside.iterdir()), [])
+
+    def test_launcher_rejects_symlinked_backup_directory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_view_run(root)
+            coot = root / "coot"
+            coot.write_text("")
+            outside = root / "outside"
+            outside.mkdir()
+            working = run / "CootGUI" / "automr"
+            working.mkdir(parents=True)
+            (working / "backups").symlink_to(outside, target_is_directory=True)
+
+            with self.assertRaisesRegex(CootViewError, "symbolic link"):
+                launch_coot_view(
+                    run,
+                    coot,
+                    stage="automr",
+                    launcher=lambda *args, **kwargs: SimpleNamespace(pid=1),
+                )
+            self.assertEqual(list(outside.iterdir()), [])
 
 
 if __name__ == "__main__":

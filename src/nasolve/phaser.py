@@ -11,6 +11,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
 
+from .model_assessment import file_sha256
+from .run_context import resolve_artifact_path
+
 
 class PhaserExecutionError(RuntimeError):
     """Raised when a frozen run cannot be prepared for Phaser."""
@@ -54,6 +57,8 @@ def _load_report(report_path: Path) -> dict[str, object]:
         payload = json.loads(report_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise PhaserExecutionError(f"Could not read frozen AutoMR report {report_path}: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise PhaserExecutionError(f"Frozen AutoMR report is not a JSON object: {report_path}")
     if payload.get("workflow") != "automr" or payload.get("stage") != "preflight":
         raise PhaserExecutionError("Phaser requires a frozen AutoMR preflight report")
     return payload
@@ -73,12 +78,26 @@ def build_phaser_eff(report: Mapping[str, object], phaser_directory: Path) -> st
     if not isinstance(inputs, Mapping) or not isinstance(assessment, Mapping):
         raise PhaserExecutionError("Frozen report is missing its input or model assessment")
 
-    reflections = inputs.get("reflections")
-    copied_model = assessment.get("copied_model")
-    if not isinstance(reflections, str) or not Path(reflections).is_file():
+    run = phaser_directory.parent
+    reflections = resolve_artifact_path(inputs.get("reflections"), run)
+    copied_model = resolve_artifact_path(assessment.get("copied_model"), run)
+    if reflections is None:
         raise PhaserExecutionError("Frozen report reflections file is missing")
-    if not isinstance(copied_model, str) or not Path(copied_model).is_file():
+    if copied_model is None:
         raise PhaserExecutionError("Frozen, checksum-verified MR model is missing")
+    model_sha256 = assessment.get("sha256")
+    if not isinstance(model_sha256, str) or file_sha256(copied_model) != model_sha256:
+        raise PhaserExecutionError("Frozen MR model does not match its recorded checksum")
+    reflections_sha256 = inputs.get("reflections_sha256")
+    if reflections_sha256 is not None and not isinstance(reflections_sha256, str):
+        raise PhaserExecutionError("Frozen reflections checksum is malformed")
+    if (
+        isinstance(reflections_sha256, str)
+        and file_sha256(reflections) != reflections_sha256
+    ):
+        raise PhaserExecutionError(
+            "Frozen reflections do not match their recorded checksum"
+        )
 
     residue_count = _integer_field(
         assessment.get("polymer_residue_count"), "polymer residue count"
@@ -92,7 +111,7 @@ def build_phaser_eff(report: Mapping[str, object], phaser_directory: Path) -> st
     return "\n".join([
         "phaser {",
         "  mode = MR_AUTO",
-        f"  hklin = {_phil_string(reflections)}",
+        f"  hklin = {_phil_string(str(reflections))}",
         "  chain_type = dna",
         "  composition {",
         "    chain {",
@@ -106,7 +125,7 @@ def build_phaser_eff(report: Mapping[str, object], phaser_directory: Path) -> st
         "    model_id = nasolve_model",
         "    use_hetatm = True",
         "    coordinates {",
-        f"      pdb = {_phil_string(copied_model)}",
+        f"      pdb = {_phil_string(str(copied_model))}",
         "      rmsd = 1.0",
         "    }",
         "  }",

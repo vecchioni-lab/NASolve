@@ -30,21 +30,81 @@ validation remains a user gate.
 git clone https://github.com/vecchioni-lab/NASolve.git
 cd NASolve
 python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e ".[test]"
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e ".[test]"
 ```
 
 ### Check the runtime
 
 ```bash
-nasolve check
-python -m pytest
+./nasolve check
+env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
+  .venv/bin/python -m pytest
 ```
 
-`nasolve check` discovers and validates Phenix, Coot, and NARestraints. If an
+The tracked `./nasolve` launcher resolves the checkout even when invoked
+through a symbolic link, uses `.venv/bin/python`, and prepends this checkout's
+`src` directory only for its child process. It therefore works in a fresh
+terminal without activation and does not depend on editable-install metadata.
+Set `NASOLVE_PYTHON` to an explicit interpreter path only when intentionally
+using a different environment. To use the shorter `nasolve` spelling from any
+directory, symlink `./nasolve` into a directory that is already on `PATH`; the
+link must be recreated if the checkout moves.
+
+For example, if `$HOME/.local/bin` is already on `PATH`:
+
+```bash
+mkdir -p "$HOME/.local/bin"
+ln -s "$PWD/nasolve" "$HOME/.local/bin/nasolve"
+```
+
+`ln -s` refuses to replace an existing command. The examples in this README
+use `./nasolve` and therefore assume the checkout root is the current directory.
+
+The tracked launcher is for POSIX shells (macOS and Linux). On Windows, use the
+generated virtual-environment entry point after installation:
+
+```powershell
+.\.venv\Scripts\nasolve.exe check
+```
+
+If an editable-install import needs to be bypassed on Windows, run from the
+checkout with its `src` directory scoped to that PowerShell session:
+
+```powershell
+$env:PYTHONPATH = (Join-Path $PWD "src")
+.\.venv\Scripts\python.exe -m nasolve check
+```
+
+`./nasolve check` discovers and validates Phenix, Coot, and NARestraints. If an
 external tool is not found automatically, see [Configure external
 tools](#configure-external-tools).
+
+### Remember an active dataset or run
+
+NASolve can remember a machine-local working target, so collaborators do not
+need to change into a dataset directory or repeatedly paste a long run path:
+
+```bash
+./nasolve workspace use /absolute/path/to/dataset/AutoMR/run_004
+./nasolve workspace status
+
+./nasolve autorefine
+./nasolve checkpoints list
+./nasolve checkpoints use refine-001
+./nasolve show
+```
+
+Explicit dataset/run arguments continue to work and always take precedence.
+Creating a new AutoMR run makes that run active; one-off explicit paths passed
+to later stage commands do not silently replace the active selection.
+The workspace pointer is a small value in NASolve's user configuration; it
+does not copy the dataset, start a background process, or consume persistent
+RAM. Use `nasolve workspace clear` to remove it.
+
+Workspace selection does not replace installation. The tracked launcher makes
+activation optional for source-checkout use. See [Collaboration, workspaces, and portable
+results](docs/collaboration.md) for artifact and Git guidance.
 
 ### Run AutoMR through AutoRefine
 
@@ -52,21 +112,21 @@ For a standard W/5W6W-frame dataset:
 
 ```bash
 DATASET=/absolute/path/to/dataset
-nasolve automr "$DATASET" -W --pair F:D --execute
+./nasolve automr "$DATASET" -W --pair F:D --execute
 ```
 
 NASolve prints the new numbered run directory. Use that exact path for PostMR:
 
 ```bash
 RUN=/absolute/path/to/dataset/AutoMR/run_001
-nasolve postmr "$RUN"
+./nasolve postmr "$RUN"
 ```
 
 If PostMR reports an anomalous heavy-atom candidate, run the conditional
 MR-SAD layer:
 
 ```bash
-nasolve autosol "$RUN"
+./nasolve autosol "$RUN"
 ```
 
 AutoSol is not run for ordinary structures without a nucleotide-bound iodine,
@@ -75,15 +135,15 @@ bromine, or selenium atom.
 Run the first five-cycle refinement and inspect its checkpoint history:
 
 ```bash
-nasolve autorefine "$RUN"
-nasolve checkpoints list "$RUN"
+./nasolve autorefine "$RUN"
+./nasolve checkpoints list "$RUN"
 ```
 
 If a structurally sound result remains under review—for example, because a
 small test set gives `Rwork >= Rfree`—run the bounded triage layer:
 
 ```bash
-nasolve refine-doctor "$RUN"
+./nasolve refine-doctor "$RUN"
 ```
 
 Refine Doctor never regenerates Free-R flags or changes the current checkpoint.
@@ -95,23 +155,23 @@ inspection and later-selection commands. A candidate can be opened without
 changing the current pointer:
 
 ```bash
-nasolve show "$RUN" --checkpoint refine-005
+./nasolve show "$RUN" --checkpoint refine-005
 ```
 
 A numerically successful result becomes current. Repeating `autorefine` then
 starts from that improved model, while `--from` creates a deliberate branch:
 
 ```bash
-nasolve autorefine "$RUN"
-nasolve autorefine "$RUN" --from refine-001
+./nasolve autorefine "$RUN"
+./nasolve autorefine "$RUN" --from refine-001
 ```
 
 Bookmark, select, or import a manually corrected model with:
 
 ```bash
-nasolve checkpoints add "$RUN" --name "clean first refine"
-nasolve checkpoints use "$RUN" refine-001
-nasolve checkpoints add "$RUN" \
+./nasolve checkpoints add "$RUN" --name "clean first refine"
+./nasolve checkpoints use "$RUN" refine-001
+./nasolve checkpoints add "$RUN" \
   --model /absolute/path/to/manually_fixed.pdb \
   --name "fixed ligand"
 ```
@@ -120,17 +180,17 @@ For a nonstandard dataset containing one search-model PDB, omit the frame and
 pair options:
 
 ```bash
-nasolve automr "$DATASET" --execute
+./nasolve automr "$DATASET" --execute
 ```
 
 Useful opt-in variants are:
 
 ```bash
 # Mirror the selected D/L nucleic-acid search model before Phaser.
-nasolve automr "$DATASET" --mirror --execute
+./nasolve automr "$DATASET" --mirror --execute
 
 # Restrain only guessed base pairs containing a modified nucleotide.
-nasolve postmr "$RUN" --modified-pairs-only
+./nasolve postmr "$RUN" --modified-pairs-only
 ```
 
 ### Inspect the prepared model in Coot
@@ -139,10 +199,10 @@ Open the most advanced completed stage of a run, or the highest numbered run in
 a dataset, with:
 
 ```bash
-nasolve show "$RUN"
-nasolve show last "$DATASET"
-nasolve show "$RUN" --stage autosol
-nasolve show "$RUN" --checkpoint refine-005
+./nasolve show "$RUN"
+./nasolve show last "$DATASET"
+./nasolve show "$RUN" --stage autosol
+./nasolve show "$RUN" --checkpoint refine-005
 ```
 
 NASolve chooses a stage-specific view: Phaser model/map for AutoMR, ReadySet
@@ -177,7 +237,8 @@ For each dataset, AutoMR:
    exact model that Phaser will use, including modified nucleotides written as
    `HETATM`;
 4. checks H3/R3 symmetry for standard-frame runs;
-5. freezes the effective inputs in a new, numbered run directory;
+5. freezes the effective inputs in a new, numbered run directory, including a
+   checksummed standard-frame sequence snapshot when available;
 6. optionally runs Phenix Phaser with one explicit ensemble and preserved
    heteroatoms; and
 7. reports the best TFZ and retains both the raw and selected MR outputs.
@@ -205,32 +266,38 @@ Clone the repository and install it in an isolated Python environment:
 git clone https://github.com/vecchioni-lab/NASolve.git
 cd NASolve
 python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e .
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e .
 ```
 
 If you prefer Conda, create an environment in the repository instead:
 
 ```bash
 conda create -p .venv python=3.12
-conda activate ./.venv
-python -m pip install -e .
+.venv/bin/python -m pip install -e .
 ```
 
 For development and testing, install the test dependencies:
 
 ```bash
-python -m pip install -e ".[test]"
-python -m pytest
+.venv/bin/python -m pip install -e ".[test]"
+env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
+  .venv/bin/python -m pytest
 ```
+
+Use `./nasolve` for source-checkout commands. Unlike the generated editable
+entry point, the tracked launcher does not require virtual-environment
+activation or a working `.pth` file. An optional symbolic link to `./nasolve`
+may provide the shorter `nasolve` spelling from other directories on macOS and
+Linux. Windows users should use `.\.venv\Scripts\nasolve.exe` or the documented
+PowerShell `PYTHONPATH` fallback.
 
 ## Configure external tools
 
 Begin with:
 
 ```bash
-nasolve check
+./nasolve check
 ```
 
 NASolve checks the current `PATH`, any saved configuration, and standard
@@ -243,7 +310,7 @@ If automatic discovery fails, configure Phenix once using its installation
 directory, `phenix_env.sh`, or one of its executables:
 
 ```bash
-nasolve configure phenix /path/to/phenix/phenix_env.sh
+./nasolve configure phenix /path/to/phenix/phenix_env.sh
 ```
 
 The saved path is revalidated at startup, so moving or replacing Phenix does
@@ -252,7 +319,7 @@ not silently leave NASolve using a stale installation.
 For a one-run override, place the global option before the subcommand:
 
 ```bash
-nasolve --phenix-root /path/to/phenix automr DATASET --execute
+./nasolve --phenix-root /path/to/phenix automr DATASET --execute
 ```
 
 The environment variable `NASOLVE_PHENIX_ROOT` provides another override.
@@ -262,7 +329,7 @@ configuration, and standard platform locations. Configure it explicitly when
 needed with:
 
 ```bash
-nasolve configure coot /path/to/coot
+./nasolve configure coot /path/to/coot
 ```
 
 ## Repository layout
@@ -271,6 +338,7 @@ When NASolve is used from a source checkout, the repository is organized as:
 
 ```text
 NASolve/
+├── nasolve            source-checkout launcher
 ├── MR_frames/
 │   ├── 5W6W/          approved W-frame search models
 │   └── 3GBI/          approved 3GBI-frame search models
@@ -285,9 +353,11 @@ NASolve/
 User datasets may live anywhere. They do not need to be copied into
 `examples/` or into the repository.
 
-Each approved standard-frame directory used by AutoSol also contains a
-`seq_base.txt` sequence file. It is a required AutoSol input but is never used
-for model building, because NASolve disables every AutoBuild path.
+An approved standard-frame directory may supply `seq_base.txt`; AutoMR freezes
+that sequence source into the run when present. A nonstandard run can instead
+use complete sequences recorded in its frozen plan. AutoSol uses the selected
+sequence only as phasing input, never for model building, because NASolve
+disables every AutoBuild path.
 
 ## Choosing a run type
 
@@ -349,19 +419,19 @@ and `MR_frames/3GBI`. `W` is the short name for the 5W6W frame.
 Prepare and inspect a 5W6W run without launching Phaser:
 
 ```bash
-nasolve automr my_dataset -W --pair E:G
+./nasolve automr my_dataset -W --pair E:G
 ```
 
 Run Phaser after the same guarded preflight:
 
 ```bash
-nasolve automr my_dataset -W --pair E:G --execute
+./nasolve automr my_dataset -W --pair E:G --execute
 ```
 
 Use the 3GBI frame with:
 
 ```bash
-nasolve automr my_dataset -3GBI --pair C:C --execute
+./nasolve automr my_dataset -3GBI --pair C:C --execute
 ```
 
 The pair is ordered: `E:G` and `G:E` are different catalogue requests. AutoMR
@@ -380,7 +450,7 @@ post-MR mutation plan.
 If the catalogue is stored elsewhere, use either:
 
 ```bash
-nasolve automr my_dataset -W --pair E:G --frames-dir /path/to/MR_frames
+./nasolve automr my_dataset -W --pair E:G --frames-dir /path/to/MR_frames
 ```
 
 or set `NASOLVE_MR_FRAMES`.
@@ -402,7 +472,7 @@ Standard-frame P1 data are blocked by default. An expert may explicitly enable
 the discouraged three-copy shunt:
 
 ```bash
-nasolve automr my_dataset -W --pair E:G --allow-p1-standard --execute
+./nasolve automr my_dataset -W --pair E:G --allow-p1-standard --execute
 ```
 
 This creates a prominent red flag in the run report. Other space groups, or a
@@ -415,8 +485,8 @@ When a dataset contains exactly one top-level PDB and no standard frame is
 requested, AutoMR uses nonstandard mode automatically:
 
 ```bash
-nasolve automr my_dataset
-nasolve automr my_dataset --execute
+./nasolve automr my_dataset
+./nasolve automr my_dataset --execute
 ```
 
 The first command performs preflight only. The second creates a new run and
@@ -429,7 +499,7 @@ PostMR can mutate the accepted Phaser solution through Coot.
 To solve the opposite D/L hand, mirror the selected search model before MR:
 
 ```bash
-nasolve automr my_dataset --mirror --execute
+./nasolve automr my_dataset --mirror --execute
 ```
 
 NARestraints performs the coordinate and canonical residue/atom-name
@@ -459,7 +529,7 @@ pair = E:G
 The equivalent command is:
 
 ```bash
-nasolve automr my_dataset --execute
+./nasolve automr my_dataset --execute
 ```
 
 A nonstandard input file may name a dataset-relative model, a chain-labelled
@@ -540,7 +610,7 @@ and iodo-dU. Component identities are written to the PostMR report.
 After a run reaches `MR_SUCCESS`, prepare it for refinement with:
 
 ```bash
-nasolve postmr my_dataset/AutoMR/run_004
+./nasolve postmr my_dataset/AutoMR/run_004
 ```
 
 `MR_REVIEW` runs stop unless the user explicitly supplies
@@ -586,7 +656,7 @@ For a standard or nonstandard run that should restrain only modified chemistry,
 use:
 
 ```bash
-nasolve postmr RUN --modified-pairs-only
+./nasolve postmr RUN --modified-pairs-only
 ```
 
 PostMR runs the NARestraints guesser after Coot and backbone restoration with
@@ -691,7 +761,8 @@ my_dataset/
         ├── Model/
         │   ├── source_model.pdb       # present only for --mirror
         │   ├── input_model.pdb
-        │   └── assessment.json
+        │   ├── assessment.json
+        │   └── seq_base.txt           # optional standard-frame snapshot
         ├── Phaser/
             ├── phaser.eff
             ├── phaser.log
@@ -808,7 +879,7 @@ external-tool isolation.
 Start troubleshooting with:
 
 ```bash
-nasolve check
+./nasolve check
 ```
 
 For an individual run, inspect `automr.log`, `report.json`, and

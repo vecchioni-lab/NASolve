@@ -285,12 +285,15 @@ to overwrite an existing `AutoSol/` directory. The current trigger elements
 are iodine, bromine, and selenium; the element registry is intentionally open
 to reviewed additions.
 
-For a standard frame, NASolve copies the adjacent `seq_base.txt` into the run.
-For a nonstandard model, complete sequences recorded in the frozen run may be
-written to the same input instead. The wavelength is read from `summary.html`,
-preferring the high-precision assignment and rejecting inconsistent repeated
-values. `phenix.mtz.dump` must confirm a complete anomalous intensity or
-amplitude quartet before execution.
+When a standard-frame catalogue supplies `seq_base.txt`, AutoMR freezes a
+checksummed copy under `Model/` and AutoSol copies that run-local snapshot into
+its input. Legacy runs recover the exact declared frame directory without
+requiring the old pair-model filename to remain present. For a nonstandard
+model, complete sequences recorded in the frozen run may be written to the same
+input instead. The wavelength is read from `summary.html`, preferring the
+high-precision assignment and rejecting inconsistent repeated values.
+`phenix.mtz.dump` must confirm a complete anomalous intensity or amplitude
+quartet before execution.
 
 The AutoSol request is MR-SAD guided by the original Phaser solution PDB, not
 the modified PostMR model. This avoids using the modeled heavy atom to validate
@@ -329,6 +332,11 @@ were supplied to ReadySet, while retaining the NARestraints PHIL and project
 EFF files. An approved AutoSol file is a separate phase source. Explicit
 reflection file names and labels prevent duplicate observations in the AutoSol
 file from competing with the authoritative STARANISO array.
+AutoRefine hashes that phase source once immediately before use, captures its
+filesystem identity, and checks the identity again after all external work and
+output hashing. Replacement, modification, or deletion is retained as a failed
+checkpoint, never selected as current, so the next attempt receives a new
+immutable round number.
 
 The default recipe is intentionally conservative and named
 `AutoRefine/default`:

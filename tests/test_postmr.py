@@ -17,8 +17,10 @@ from nasolve.postmr import (
     _filter_scaffold_overlaps,
     _modified_nucleotide_sites,
     _patch_narestraints_records,
+    _read_report,
     _restore_canonical_mutation_backbones,
     _restore_shared_parent_coordinates,
+    _solution_model,
     build_mutation_plan,
     prepare_postmr,
     residue_name,
@@ -70,6 +72,34 @@ def make_data_root(root: Path) -> Path:
 
 
 class PostMRTests(unittest.TestCase):
+    def test_solution_model_prefers_selected_checkout(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source_run = root / "collaborator" / "dataset" / "AutoMR" / "run_004"
+            checkout_run = root / "checkout" / "dataset" / "AutoMR" / "run_004"
+            source_model = source_run / "Phaser" / "mr_solution.pdb"
+            checkout_model = checkout_run / "Phaser" / "mr_solution.pdb"
+            source_model.parent.mkdir(parents=True)
+            checkout_model.parent.mkdir(parents=True)
+            source_model.write_text("source\n")
+            checkout_model.write_text("checkout\n")
+            report = {
+                "execution": {"phaser": {"solution_pdb": str(source_model)}}
+            }
+
+            self.assertEqual(
+                _solution_model(checkout_run, report), checkout_model.resolve()
+            )
+
+    def test_non_object_report_is_rejected_cleanly(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = Path(directory) / "run_001"
+            run.mkdir()
+            (run / "report.json").write_text(json.dumps([]))
+
+            with self.assertRaisesRegex(PostMRPreparationError, "not a JSON object"):
+                _read_report(run)
+
     def test_generated_phil_pair_removes_overlapping_project_eff_block(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

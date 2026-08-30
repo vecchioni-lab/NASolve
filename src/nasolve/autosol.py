@@ -12,8 +12,11 @@ import shutil
 import subprocess
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Mapping, Sequence
+
+from .model_assessment import file_sha256
+from .run_context import resolve_artifact_path
 
 
 class AutoSolPreparationError(RuntimeError):
@@ -54,6 +57,10 @@ def _read_run_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
         report = json.loads(report_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise AutoSolPreparationError(f"Could not read NASolve report {report_path}: {exc}") from exc
+    if not isinstance(report, dict):
+        raise AutoSolPreparationError(
+            f"NASolve report is not a JSON object: {report_path}"
+        )
     if report.get("workflow") != "automr":
         raise AutoSolPreparationError("AutoSol requires a NASolve AutoMR run")
     if report.get("stage") == "autosol" and report.get("status") == "AUTOSOL_READY":
@@ -144,11 +151,83 @@ def anomalous_labels(mtz_dump_output: str) -> tuple[str, str, str, str]:
     )
 
 
-def _sequence_source(report: Mapping[str, object]) -> tuple[Path | None, str | None]:
+def _sequence_source(
+    report: Mapping[str, object], run: Path
+) -> tuple[Path | None, str | None]:
     inputs = report.get("inputs")
-    if isinstance(inputs, Mapping) and isinstance(inputs.get("model"), str):
-        adjacent = Path(inputs["model"]).expanduser().resolve().parent / "seq_base.txt"
-        if adjacent.is_file():
+    if isinstance(inputs, Mapping) and inputs.get("frame_sequence") is not None:
+        sequence_value = inputs["frame_sequence"]
+        sequence = resolve_artifact_path(
+            sequence_value,
+            run,
+            verify_checksum=False,
+        )
+        if sequence is None:
+            raise AutoSolPreparationError("Frozen frame sequence is missing")
+        if isinstance(sequence_value, Mapping):
+            if sequence_value.get("anchor") not in {"run", "dataset", "repository"}:
+                raise AutoSolPreparationError(
+                    "Frozen frame sequence reference is not portable"
+                )
+            expected = sequence_value.get("sha256")
+            if expected is None:
+                raise AutoSolPreparationError(
+                    "Frozen frame sequence reference has no checksum"
+                )
+        else:
+            expected = inputs.get("frame_sequence_sha256")
+        _verify_frozen_checksum(sequence, expected, "frame sequence")
+        return sequence, "run-frozen frame sequence"
+    model_value = inputs.get("model") if isinstance(inputs, Mapping) else None
+    if isinstance(model_value, str):
+        posix = PurePosixPath(model_value)
+        windows = PureWindowsPath(model_value)
+        if windows.is_absolute() and not posix.is_absolute():
+            flavors = (windows,)
+        elif posix.is_absolute() and not windows.is_absolute():
+            flavors = (posix,)
+        elif "\\" in model_value and "/" not in model_value:
+            flavors = (windows,)
+        elif "/" in model_value and "\\" not in model_value:
+            flavors = (posix,)
+        else:
+            flavors = (posix, windows)
+        legacy_parents = {
+            str(path.parent / "seq_base.txt")
+            for path in flavors
+            if len(path.parts) > 1 and str(path.parent) not in {"", "."}
+        }
+        legacy_matches = {
+            path
+            for value in legacy_parents
+            if (path := resolve_artifact_path(value, run)) is not None
+        }
+        if len(legacy_matches) == 1:
+            return legacy_matches.pop(), "legacy frame-adjacent seq_base.txt"
+        if len(legacy_matches) > 1:
+            raise AutoSolPreparationError(
+                "Legacy frame sequence resolves to multiple local files"
+            )
+    frame = report.get("frame")
+    catalogue = frame.get("catalogue_directory") if isinstance(frame, Mapping) else None
+    if isinstance(catalogue, str) and catalogue:
+        if re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}", catalogue) is None:
+            raise AutoSolPreparationError(
+                "Run report contains an unsafe frame catalogue directory"
+            )
+        sequence = resolve_artifact_path(
+            {
+                "anchor": "repository",
+                "relative_path": f"MR_frames/{catalogue}/seq_base.txt",
+            },
+            run,
+        )
+        if sequence is not None:
+            return sequence, "declared frame seq_base.txt"
+    if model_value is not None:
+        model = resolve_artifact_path(model_value, run)
+        adjacent = model.parent / "seq_base.txt" if model is not None else None
+        if adjacent is not None and adjacent.is_file():
             return adjacent, "frame-adjacent seq_base.txt"
     plan = report.get("post_mr_plan")
     if isinstance(plan, Mapping):
@@ -168,8 +247,8 @@ def _original_phaser_model(run: Path, report: Mapping[str, object]) -> Path:
     if isinstance(execution, Mapping):
         phaser = execution.get("phaser")
         if isinstance(phaser, Mapping) and isinstance(phaser.get("solution_pdb"), str):
-            model = Path(phaser["solution_pdb"]).expanduser().resolve()
-            if model.is_file():
+            model = resolve_artifact_path(phaser["solution_pdb"], run)
+            if model is not None:
                 return model
     fallback = run / "Phaser" / "mr_solution.pdb"
     if fallback.is_file():
@@ -177,15 +256,28 @@ def _original_phaser_model(run: Path, report: Mapping[str, object]) -> Path:
     raise AutoSolPreparationError("The original Phaser MR model is missing")
 
 
-def _required_path(report: Mapping[str, object], section: str, key: str) -> Path:
+def _required_path(
+    report: Mapping[str, object], section: str, key: str, run: Path
+) -> Path:
     selected = report.get(section)
     value = selected.get(key) if isinstance(selected, Mapping) else None
     if not isinstance(value, str):
         raise AutoSolPreparationError(f"Run report has no {section}.{key} path")
-    path = Path(value).expanduser().resolve()
-    if not path.is_file():
-        raise AutoSolPreparationError(f"Required run input is missing: {path}")
+    path = resolve_artifact_path(value, run)
+    if path is None:
+        raise AutoSolPreparationError(f"Required run input is missing: {value}")
     return path
+
+
+def _verify_frozen_checksum(path: Path, expected: object, description: str) -> None:
+    if expected is None:
+        return
+    if not isinstance(expected, str) or re.fullmatch(r"[0-9a-fA-F]{64}", expected) is None:
+        raise AutoSolPreparationError(f"Frozen {description} checksum is malformed")
+    if file_sha256(path) != expected.casefold():
+        raise AutoSolPreparationError(
+            f"Frozen {description} does not match its recorded checksum"
+        )
 
 
 def _effective_settings(path: Path, expected_nproc: int) -> dict[str, object]:
@@ -580,17 +672,27 @@ def execute_autosol(
         ) from exc
     log_path = autosol_directory / "autosol.console.log"
     try:
-        reflections = _required_path(report, "inputs", "reflections")
-        summary = _required_path(report, "inputs", "summary")
+        reflections = _required_path(report, "inputs", "reflections", run)
+        summary = _required_path(report, "inputs", "summary", run)
+        inputs = report.get("inputs")
+        assert isinstance(inputs, Mapping)
+        _verify_frozen_checksum(
+            reflections, inputs.get("reflections_sha256"), "reflections"
+        )
         prepared_value = postmr.get("prepared_model") if isinstance(postmr, Mapping) else None
-        if not isinstance(prepared_value, str) or not Path(prepared_value).is_file():
+        prepared_model = resolve_artifact_path(prepared_value, run)
+        if prepared_model is None:
             raise AutoSolPreparationError("PostMR prepared model is missing")
-        prepared_model = Path(prepared_value).resolve()
+        _verify_frozen_checksum(
+            prepared_model,
+            postmr.get("prepared_sha256") if isinstance(postmr, Mapping) else None,
+            "PostMR prepared model",
+        )
         phaser_model = _original_phaser_model(run, report)
         wavelength, wavelength_source = read_wavelength(summary)
         input_dump = _run_mtz_dump(reflections, mtz_dump_executable, environment)
         labels = anomalous_labels(input_dump)
-        sequence_source, generated_sequence = _sequence_source(report)
+        sequence_source, generated_sequence = _sequence_source(report, run)
         nproc = max(1, processor_count if processor_count is not None else (os.cpu_count() or 1))
     except AutoSolPreparationError as exc:
         return _warning_result(
@@ -719,7 +821,9 @@ def execute_autosol(
         },
         "outputs": {
             "heavy_atom_model": str(heavy_atom_model),
+            "heavy_atom_model_sha256": file_sha256(heavy_atom_model),
             "refinement_data": str(refinement_data),
+            "refinement_data_sha256": file_sha256(refinement_data),
             "refinement_data_phase_labels": phase_labels,
             "console_log": str(log_path),
         },

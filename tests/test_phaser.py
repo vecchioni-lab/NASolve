@@ -1,4 +1,5 @@
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -42,6 +43,56 @@ class PhaserExecutionTests(unittest.TestCase):
             self.assertEqual(report["execution"]["phaser"]["ensemble_count"], 1)
             self.assertEqual(report["execution"]["phaser"]["model_rmsd"], 1.0)
             self.assertEqual(report["execution"]["phaser"]["composition_nres"], 2)
+
+    def test_preflight_inputs_rebase_after_checkout_moves(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            preflight = self._preflight(root / "collaborator")
+            source_dataset = preflight.run_directory.parent.parent
+            checkout_dataset = root / "checkout" / source_dataset.name
+            shutil.copytree(source_dataset, checkout_dataset)
+            shutil.rmtree(root / "collaborator")
+            report_path = (
+                checkout_dataset / "AutoMR" / preflight.run_directory.name / "report.json"
+            )
+
+            result = execute_phaser(
+                report_path,
+                make_phaser(root),
+                phenix_version="1.20.1",
+            )
+
+            self.assertEqual(result.status, "MR_SUCCESS")
+            parameters = result.parameter_path.read_text()
+            self.assertIn(str(checkout_dataset.resolve()), parameters)
+
+    def test_relocated_preflight_rejects_changed_local_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            preflight = self._preflight(root / "collaborator")
+            source_dataset = preflight.run_directory.parent.parent
+            checkout_dataset = root / "checkout" / source_dataset.name
+            shutil.copytree(source_dataset, checkout_dataset)
+            run = checkout_dataset / "AutoMR" / preflight.run_directory.name
+            (run / "Model" / "input_model.pdb").write_text("changed\n")
+
+            with self.assertRaisesRegex(PhaserExecutionError, "recorded checksum"):
+                execute_phaser(
+                    run / "report.json",
+                    make_phaser(root),
+                    phenix_version="1.20.1",
+                )
+
+    def test_preflight_records_and_checks_authoritative_reflections(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            preflight = self._preflight(root)
+            report = json.loads(preflight.report_path.read_text())
+            self.assertRegex(report["inputs"]["reflections_sha256"], r"^[0-9a-f]{64}$")
+            Path(report["inputs"]["reflections"]).write_bytes(b"changed")
+
+            with self.assertRaisesRegex(PhaserExecutionError, "reflections"):
+                execute_phaser(preflight.report_path, make_phaser(root))
 
     def test_tfz_review_and_failure_gates(self):
         with tempfile.TemporaryDirectory() as directory:

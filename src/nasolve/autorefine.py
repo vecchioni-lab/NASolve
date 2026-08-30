@@ -14,12 +14,15 @@ from typing import Callable, Mapping, Sequence
 
 from .checkpoints import (
     CheckpointError,
+    _inherited_paths_for_autorefine,
     append_checkpoint,
     inherited_paths,
     initialize_registry,
     next_checkpoint_id,
     resolve_checkpoint,
 )
+from .model_assessment import file_sha256
+from .run_context import artifact_reference, resolve_artifact_path
 
 
 class AutoRefineError(RuntimeError):
@@ -58,6 +61,16 @@ class AutoRefineResult:
     selected_as_current: bool
 
 
+@dataclass(frozen=True)
+class _VerifiedPhase:
+    """An approved phase file and the identity verified before refinement."""
+
+    path: Path
+    sha256: str
+    size: int
+    identity: tuple[int, int, int, int, int]
+
+
 ANOMALOUS_F_LABELS = ("F(+)", "SIGF(+)", "F(-)", "SIGF(-)")
 MEAN_LABEL_SETS = (
     ("IMEAN", "SIGIMEAN"),
@@ -86,6 +99,8 @@ def _run_report(run: Path) -> dict[str, object]:
         report = json.loads((run / "report.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise AutoRefineError(f"Could not read NASolve run report: {exc}") from exc
+    if not isinstance(report, dict):
+        raise AutoRefineError("NASolve run report is not a JSON object")
     if report.get("workflow") != "automr" or not isinstance(report.get("postmr"), Mapping):
         raise AutoRefineError("AutoRefine requires a completed NASolve PostMR run")
     return report
@@ -234,6 +249,8 @@ def anomalous_selections(report: Mapping[str, object]) -> tuple[str, ...]:
 def write_recipe_parameters(
     path: Path,
     *,
+    observations: Path,
+    reflection_plan: ReflectionPlan,
     macro_cycles: int,
     processor_count: int,
     anomalous_atom_selections: Sequence[str],
@@ -259,7 +276,47 @@ def write_recipe_parameters(
         strategies.append("occupancies")
     if anomalous_atom_selections and anomalous_mode == "refine":
         strategies.append("group_anomalous")
-    lines = [
+
+    observations = observations.expanduser().resolve()
+    reflection_arrays: list[tuple[Path, list[str]]] = [
+        (
+            observations,
+            [
+                ",".join(reflection_plan.observation_labels),
+                reflection_plan.free_r_label,
+            ],
+        )
+    ]
+    if reflection_plan.phase_labels:
+        if reflection_plan.phase_file is None:
+            raise AutoRefineError("Selected experimental phases have no reflection file")
+        phase_file = reflection_plan.phase_file.expanduser().resolve()
+        phase_labels = ",".join(reflection_plan.phase_labels)
+        if phase_file == observations:
+            reflection_arrays[0][1].append(phase_labels)
+        else:
+            reflection_arrays.append((phase_file, [phase_labels]))
+
+    lines = ["data_manager {"]
+    for reflection_file, label_sets in reflection_arrays:
+        escaped_file = str(reflection_file).replace("\\", "\\\\").replace('"', '\\"')
+        lines.extend([
+            "  miller_array {",
+            f'    file = "{escaped_file}"',
+        ])
+        for labels in label_sets:
+            escaped_labels = labels.replace("\\", "\\\\").replace('"', '\\"')
+            lines.extend([
+                "    labels {",
+                f'      name = "{escaped_labels}"',
+                "    }",
+            ])
+        lines.extend([
+            "  }",
+        ])
+    lines.extend([
+        "}",
+        "",
         "refinement {",
         "  main {",
         f"    number_of_macro_cycles = {macro_cycles}",
@@ -272,7 +329,7 @@ def write_recipe_parameters(
         "    sites {",
         "      individual = all",
         "    }",
-    ]
+    ])
     if adp_mode == "group":
         lines.extend([
             "    adp {",
@@ -626,29 +683,131 @@ def validate_refined_model(path: Path, report: Mapping[str, object]) -> dict[str
     return {"validated": True, "coordinate_record_count": len(records), "required_items": missing}
 
 
-def _file_reference(path: Path) -> dict[str, object]:
-    import hashlib
+def _file_reference(path: Path, run: Path) -> dict[str, object]:
+    return {
+        **artifact_reference(path, run),
+        "sha256": file_sha256(path),
+        "size": path.stat().st_size,
+    }
 
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    return {"path": str(path.resolve()), "sha256": digest, "size": path.stat().st_size}
+
+def _cached_file_referencer(
+    run: Path,
+) -> Callable[[Path], dict[str, object]]:
+    """Build artifact references while hashing each resolved file only once."""
+    cache: dict[Path, dict[str, object]] = {}
+
+    def reference(path: Path) -> dict[str, object]:
+        resolved = path.expanduser().resolve()
+        if resolved not in cache:
+            cache[resolved] = _file_reference(resolved, run)
+        # Callers may annotate a reference; never expose the cached dictionary.
+        return dict(cache[resolved])
+
+    return reference
 
 
-def _effective_phase_file(
-    report: Mapping[str, object], inherited: Mapping[str, object]
-) -> Path | None:
+def _file_identity(path: Path) -> tuple[int, int, int, int, int]:
+    status = path.stat()
+    return (
+        status.st_dev,
+        status.st_ino,
+        status.st_size,
+        status.st_mtime_ns,
+        status.st_ctime_ns,
+    )
+
+
+def _verify_phase_file(
+    path: Path,
+    expected_sha256: object,
+    *,
+    mismatch_message: str,
+) -> _VerifiedPhase:
+    try:
+        identity_before = _file_identity(path)
+        actual_sha256 = file_sha256(path)
+        identity_after = _file_identity(path)
+    except OSError as exc:
+        raise AutoRefineError(f"Could not verify approved phase data {path}: {exc}") from exc
+    if identity_before != identity_after:
+        raise AutoRefineError(
+            f"Approved phase data changed while it was being verified: {path}"
+        )
+    if (
+        isinstance(expected_sha256, str)
+        and actual_sha256 != expected_sha256.casefold()
+    ):
+        raise AutoRefineError(mismatch_message)
+    return _VerifiedPhase(
+        path=path,
+        sha256=actual_sha256,
+        size=identity_after[2],
+        identity=identity_after,
+    )
+
+
+def _require_unchanged_phase(phase: _VerifiedPhase) -> None:
+    try:
+        identity = _file_identity(phase.path)
+    except OSError as exc:
+        raise AutoRefineError(
+            f"Approved phase data disappeared while Phenix was running: {phase.path}"
+        ) from exc
+    if identity != phase.identity:
+        raise AutoRefineError(
+            f"Approved phase data changed while Phenix was running: {phase.path}"
+        )
+
+
+def _effective_phase(
+    report: Mapping[str, object], inherited: Mapping[str, object], run: Path
+) -> _VerifiedPhase | None:
     inherited_phase = inherited.get("phases")
     if isinstance(inherited_phase, Path) and inherited_phase.is_file():
-        return inherited_phase
+        metadata = inherited.get("phase_metadata")
+        expected = metadata.get("sha256") if isinstance(metadata, Mapping) else None
+        return _verify_phase_file(
+            inherited_phase,
+            expected,
+            mismatch_message=(
+                f"Checkpoint phase data changed after it was frozen: {inherited_phase}"
+            ),
+        )
     autosol = report.get("autosol")
     outputs = autosol.get("outputs") if isinstance(autosol, Mapping) else None
     value = outputs.get("refinement_data") if isinstance(outputs, Mapping) else None
     if (
         isinstance(autosol, Mapping)
         and autosol.get("use_for_refinement") is True
-        and isinstance(value, str)
-        and Path(value).expanduser().is_file()
     ):
-        return Path(value).expanduser().resolve()
+        resolved = resolve_artifact_path(value, run)
+        if resolved is None:
+            raise AutoRefineError(
+                "Approved AutoSol phase data is missing or failed checksum validation"
+            )
+        expected = outputs.get("refinement_data_sha256")
+        embedded_expected = value.get("sha256") if isinstance(value, Mapping) else None
+        if expected is None:
+            expected = embedded_expected
+        elif (
+            isinstance(expected, str)
+            and isinstance(embedded_expected, str)
+            and expected.casefold() != embedded_expected.casefold()
+        ):
+            raise AutoRefineError("Approved AutoSol phase checksums disagree")
+        if expected is not None and (
+            not isinstance(expected, str)
+            or re.fullmatch(r"[0-9a-fA-F]{64}", expected) is None
+        ):
+            raise AutoRefineError("Approved AutoSol phase checksum is malformed")
+        return _verify_phase_file(
+            resolved,
+            expected,
+            mismatch_message=(
+                "Approved AutoSol phase data failed checksum validation"
+            ),
+        )
     return None
 
 
@@ -690,11 +849,20 @@ def execute_autorefine(
         parent = resolve_checkpoint(registry, from_checkpoint)
         if parent.get("usable") is not True:
             raise AutoRefineError(f"Checkpoint {parent.get('id')} is not reusable")
-        inherited = inherited_paths(parent)
+        inherited = (
+            _inherited_paths_for_autorefine(parent, run)
+            if use_experimental_phases
+            else inherited_paths(parent, run)
+        )
     except CheckpointError as exc:
         raise AutoRefineError(str(exc)) from exc
     report = _run_report(run)
-    phase_file = _effective_phase_file(report, inherited) if use_experimental_phases else None
+    verified_phase = (
+        _effective_phase(report, inherited, run)
+        if use_experimental_phases
+        else None
+    )
+    phase_file = verified_phase.path if verified_phase is not None else None
     observations = inherited["observations"]
     model = inherited["model"]
     restraints = inherited["restraints"]
@@ -722,6 +890,8 @@ def execute_autorefine(
     nproc = max(1, processor_count if processor_count is not None else (os.cpu_count() or 1))
     strategies = write_recipe_parameters(
         parameters,
+        observations=observations,
+        reflection_plan=plan,
         macro_cycles=macro_cycles,
         processor_count=nproc,
         anomalous_atom_selections=selections,
@@ -836,6 +1006,29 @@ def execute_autorefine(
         except AutoRefineError as exc:
             compatibility_error = str(exc)
 
+    file_reference = _cached_file_referencer(run)
+    model_reference = file_reference(output_model) if output_model is not None else None
+    output_references = {
+        "model_cif": file_reference(model_cif) if model_cif else None,
+        "reflection_cif": file_reference(reflection_cif) if reflection_cif else None,
+        "map_coefficients": (
+            file_reference(map_coefficients) if map_coefficients else None
+        ),
+        "refinement_reflections": (
+            file_reference(output_reflections) if output_reflections else None
+        ),
+        "metrics_tsv": file_reference(round_directory / "metrics.tsv"),
+        "full_log": file_reference(log_path),
+        "preflight_log": file_reference(preflight_log),
+    }
+
+    phase_error: str | None = None
+    if verified_phase is not None:
+        try:
+            _require_unchanged_phase(verified_phase)
+        except AutoRefineError as exc:
+            phase_error = str(exc)
+
     r_work = statistics.get("r_work")
     r_free = statistics.get("r_free")
     numerical_success = (
@@ -844,7 +1037,13 @@ def execute_autorefine(
         and r_work < r_free
         and r_work < 0.30
     )
-    if completed_returncode != 0 or output_model is None:
+    if phase_error is not None:
+        status = "AUTOREFINE_FAILED"
+        message = phase_error
+        checkpoint_status = "FAILED"
+        usable = False
+        exit_code = 2
+    elif completed_returncode != 0 or output_model is None:
         status = "AUTOREFINE_FAILED"
         message = (
             f"Phenix refinement preflight failed with exit status {completed_returncode}"
@@ -882,7 +1081,15 @@ def execute_autorefine(
         usable = True
         exit_code = 0
     created = _now()
-    phase_reference = _file_reference(phase_file) if phase_file is not None else None
+    phase_reference = (
+        {
+            **artifact_reference(verified_phase.path, run),
+            "sha256": verified_phase.sha256,
+            "size": verified_phase.size,
+        }
+        if verified_phase is not None and phase_error is None
+        else None
+    )
     if phase_reference is not None:
         phase_reference["labels"] = list(plan.phase_labels)
         phase_reference["source"] = "validated-autosol"
@@ -895,7 +1102,7 @@ def execute_autorefine(
         "created_utc": created,
         "recipe": recipe,
         "label": None,
-        "model": _file_reference(output_model) if output_model is not None else None,
+        "model": model_reference,
         # Keep observations authoritative across every branch; output MTZ is evidence only.
         "observations": parent.get("observations"),
         "phases": phase_reference or parent.get("phases"),
@@ -909,14 +1116,7 @@ def execute_autorefine(
             **compatibility,
             "error": compatibility_error,
         },
-        "outputs": {
-            "model_cif": str(model_cif) if model_cif else None,
-            "reflection_cif": str(reflection_cif) if reflection_cif else None,
-            "map_coefficients": str(map_coefficients) if map_coefficients else None,
-            "refinement_reflections": str(output_reflections) if output_reflections else None,
-            "full_log": str(log_path),
-            "preflight_log": str(preflight_log),
-        },
+        "outputs": output_references,
     }
     selected = auto_select_success and status == "AUTOREFINE_READY"
     try:
