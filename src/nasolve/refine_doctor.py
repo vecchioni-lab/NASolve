@@ -15,6 +15,7 @@ from .autorefine import (
     AutoRefineResult,
     build_reflection_plan,
     execute_autorefine,
+    reflection_selector_policy,
 )
 from .checkpoints import (
     CheckpointError,
@@ -424,6 +425,7 @@ def execute_refine_doctor(
     refine_executable: Path,
     mtz_dump_executable: Path,
     *,
+    phenix_version: str,
     environment: Mapping[str, str] | None = None,
     from_checkpoint: str | None = None,
     macro_cycles: int = 3,
@@ -432,6 +434,10 @@ def execute_refine_doctor(
     progress: Callable[[str, str, Path], None] | None = None,
 ) -> RefineDoctorResult:
     """Audit and run a finite set of sibling refinements without selecting one."""
+    try:
+        selector_policy = reflection_selector_policy(phenix_version)
+    except AutoRefineError as exc:
+        raise RefineDoctorError(str(exc)) from exc
     try:
         run, registry = initialize_registry(run_directory)
         source = resolve_checkpoint(registry, from_checkpoint)
@@ -474,6 +480,8 @@ def execute_refine_doctor(
             "status": status,
             "message": message,
             "created_utc": created,
+            "phenix_version": selector_policy.phenix_version,
+            "reflection_selector_mode": selector_policy.mode,
             "source_checkpoint": source_id,
             "current_checkpoint_preserved": True,
             "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
@@ -548,6 +556,7 @@ def execute_refine_doctor(
                 run,
                 refine_executable,
                 mtz_dump_executable,
+                phenix_version=selector_policy.phenix_version,
                 environment=environment,
                 from_checkpoint=source_id,
                 recipe=recipe,
@@ -592,6 +601,8 @@ def execute_refine_doctor(
         "status": status,
         "message": message,
         "created_utc": created,
+        "phenix_version": selector_policy.phenix_version,
+        "reflection_selector_mode": selector_policy.mode,
         "source_checkpoint": source_id,
         "current_checkpoint_preserved": current_preserved,
         "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},

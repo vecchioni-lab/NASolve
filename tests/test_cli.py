@@ -2,16 +2,89 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
+from nasolve.autorefine import AutoRefineError
 from nasolve.cli import _workspace_run, build_parser, main
 from nasolve.config import AppConfig, ConfigError, WorkspaceSettings
 from nasolve.model_assessment import file_sha256
+from nasolve.refine_doctor import RefineDoctorError
 
 from .helpers import pdb_record
 
 
 class CLITests(unittest.TestCase):
+    def test_autorefine_forwards_discovered_phenix_version(self):
+        installation = SimpleNamespace(
+            version="1.20.1-4487",
+            executables={
+                "phenix.refine": Path("/phenix/phenix.refine"),
+                "phenix.mtz.dump": Path("/phenix/phenix.mtz.dump"),
+            },
+            environment={"PATH": "/phenix"},
+        )
+        with (
+            patch("nasolve.cli.load_config", return_value=AppConfig()),
+            patch("nasolve.cli._workspace_run", return_value=Path("/dataset/AutoMR/run_001")),
+            patch("nasolve.cli.discover_phenix", return_value=installation),
+            patch("nasolve.cli.remember_phenix"),
+            patch("nasolve.cli.save_config"),
+            patch(
+                "nasolve.cli.execute_autorefine",
+                side_effect=AutoRefineError("sentinel"),
+            ) as execute,
+        ):
+            self.assertEqual(main(["autorefine", "run_001"]), 2)
+
+        self.assertEqual(execute.call_args.kwargs["phenix_version"], installation.version)
+
+    def test_refine_doctor_forwards_discovered_phenix_version(self):
+        installation = SimpleNamespace(
+            version="2.1-6048",
+            executables={
+                "phenix.refine": Path("/phenix/phenix.refine"),
+                "phenix.mtz.dump": Path("/phenix/phenix.mtz.dump"),
+            },
+            environment={"PATH": "/phenix"},
+        )
+        with (
+            patch("nasolve.cli.load_config", return_value=AppConfig()),
+            patch("nasolve.cli._workspace_run", return_value=Path("/dataset/AutoMR/run_001")),
+            patch("nasolve.cli.discover_phenix", return_value=installation),
+            patch("nasolve.cli.remember_phenix"),
+            patch("nasolve.cli.save_config"),
+            patch(
+                "nasolve.cli.execute_refine_doctor",
+                side_effect=RefineDoctorError("sentinel"),
+            ) as execute,
+        ):
+            self.assertEqual(main(["refine-doctor", "run_001"]), 2)
+
+        self.assertEqual(execute.call_args.kwargs["phenix_version"], installation.version)
+
+    def test_refine_doctor_unknown_version_is_a_guarded_cli_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = Path(directory) / "dataset" / "AutoMR" / "run_001"
+            installation = SimpleNamespace(
+                version="unknown",
+                executables={
+                    "phenix.refine": Path("/phenix/phenix.refine"),
+                    "phenix.mtz.dump": Path("/phenix/phenix.mtz.dump"),
+                },
+                environment={"PATH": "/phenix"},
+            )
+            with (
+                patch("nasolve.cli.load_config", return_value=AppConfig()),
+                patch("nasolve.cli._workspace_run", return_value=run),
+                patch("nasolve.cli.discover_phenix", return_value=installation),
+                patch("nasolve.cli.remember_phenix"),
+                patch("nasolve.cli.save_config"),
+            ):
+                self.assertEqual(main(["refine-doctor", "run_001"]), 2)
+
+            self.assertFalse((run / "RefineDoctor").exists())
+
     def test_workspace_drives_checkpoint_commands_end_to_end(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

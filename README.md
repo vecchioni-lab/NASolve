@@ -710,6 +710,15 @@ and the PostMR PHIL/EFF restraint stack. A validated AutoSol MTZ contributes
 only its Hendrickson-Lattman coefficients; its HA coordinates never replace
 known model atoms.
 
+Reflection-array binding is version-gated. Phenix 1.20.x receives explicit
+observation, Free-R, and optional experimental-phase file/label command
+selectors without the unsupported Data Manager block. Phenix 2.1.x receives
+the same explicit selectors plus file-scoped Data Manager definitions, which
+disambiguate MTZ files containing multiple plausible arrays. NASolve records
+the discovered version and selected mode in every refinement checkpoint and
+report. Unknown, malformed, or unvalidated version families stop before a
+refinement directory is allocated rather than guessing a weaker policy.
+
 For ordinary data, AutoRefine selects mean observations. When PostMR records a
 heavy atom, it requires `F(+),SIGF(+),F(-),SIGF(-)` and refines `f'` and `f''`
 for exact model selections such as `chain B and resid 4 and name I`. The target

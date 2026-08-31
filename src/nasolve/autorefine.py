@@ -43,6 +43,22 @@ class ReflectionPlan:
 
 
 @dataclass(frozen=True)
+class ReflectionSelectorPolicy:
+    """Version-gated Phenix reflection-array selection behavior."""
+
+    phenix_version: str
+    mode: str
+
+    @property
+    def use_data_manager(self) -> bool:
+        if self.mode == DATA_MANAGER_FILE_SCOPED:
+            return True
+        if self.mode == LEGACY_EXPLICIT:
+            return False
+        raise AutoRefineError(f"Unsupported reflection-selector mode: {self.mode}")
+
+
+@dataclass(frozen=True)
 class AutoRefineResult:
     status: str
     message: str
@@ -84,6 +100,39 @@ HL_LABEL_SETS = (
     ("HL_A", "HL_B", "HL_C", "HL_D"),
 )
 FREE_R_LABELS = ("FreeR_flag", "R-free-flags", "FREE", "FreeR")
+DATA_MANAGER_FILE_SCOPED = "data-manager-file-scoped"
+LEGACY_EXPLICIT = "legacy-explicit"
+_PHENIX_VERSION = re.compile(
+    r"(?:Phenix\s+)?(\d+)\.(\d+)(?:\.(\d+))?"
+    r"(?:[-._][A-Za-z0-9][A-Za-z0-9._-]*)?",
+    re.I,
+)
+
+
+def reflection_selector_policy(phenix_version: str) -> ReflectionSelectorPolicy:
+    """Choose only a reflection-selector mode validated for this Phenix family."""
+    if not isinstance(phenix_version, str):
+        raise AutoRefineError(
+            "Phenix version is missing; NASolve will not guess selector support"
+        )
+    normalized = phenix_version.strip()
+    match = _PHENIX_VERSION.fullmatch(normalized)
+    if match is None:
+        raise AutoRefineError(
+            f"Could not interpret Phenix version {phenix_version!r}; NASolve will not "
+            "guess reflection-selector support"
+        )
+    family = (int(match.group(1)), int(match.group(2)))
+    if family == (1, 20):
+        mode = LEGACY_EXPLICIT
+    elif family == (2, 1):
+        mode = DATA_MANAGER_FILE_SCOPED
+    else:
+        raise AutoRefineError(
+            f"Phenix {normalized} has no validated NASolve reflection-selector policy; "
+            "validated families are 1.20.x and 2.1.x"
+        )
+    return ReflectionSelectorPolicy(normalized, mode)
 
 
 def _now() -> str:
@@ -249,6 +298,7 @@ def anomalous_selections(report: Mapping[str, object]) -> tuple[str, ...]:
 def write_recipe_parameters(
     path: Path,
     *,
+    selector_policy: ReflectionSelectorPolicy,
     observations: Path,
     reflection_plan: ReflectionPlan,
     macro_cycles: int,
@@ -297,26 +347,25 @@ def write_recipe_parameters(
         else:
             reflection_arrays.append((phase_file, [phase_labels]))
 
-    lines = ["data_manager {"]
-    for reflection_file, label_sets in reflection_arrays:
-        escaped_file = str(reflection_file).replace("\\", "\\\\").replace('"', '\\"')
-        lines.extend([
-            "  miller_array {",
-            f'    file = "{escaped_file}"',
-        ])
-        for labels in label_sets:
-            escaped_labels = labels.replace("\\", "\\\\").replace('"', '\\"')
+    lines: list[str] = []
+    if selector_policy.use_data_manager:
+        lines.append("data_manager {")
+        for reflection_file, label_sets in reflection_arrays:
+            escaped_file = str(reflection_file).replace("\\", "\\\\").replace('"', '\\"')
             lines.extend([
-                "    labels {",
-                f'      name = "{escaped_labels}"',
-                "    }",
+                "  miller_array {",
+                f'    file = "{escaped_file}"',
             ])
-        lines.extend([
-            "  }",
-        ])
+            for labels in label_sets:
+                escaped_labels = labels.replace("\\", "\\\\").replace('"', '\\"')
+                lines.extend([
+                    "    labels {",
+                    f'      name = "{escaped_labels}"',
+                    "    }",
+                ])
+            lines.append("  }")
+        lines.extend(["}", ""])
     lines.extend([
-        "}",
-        "",
         "refinement {",
         "  main {",
         f"    number_of_macro_cycles = {macro_cycles}",
@@ -830,6 +879,7 @@ def execute_autorefine(
     refine_executable: Path,
     mtz_dump_executable: Path,
     *,
+    phenix_version: str,
     environment: Mapping[str, str] | None = None,
     from_checkpoint: str | None = None,
     recipe: str = "AutoRefine/default",
@@ -844,6 +894,7 @@ def execute_autorefine(
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint."""
+    selector_policy = reflection_selector_policy(phenix_version)
     try:
         run, registry = initialize_registry(run_directory)
         parent = resolve_checkpoint(registry, from_checkpoint)
@@ -890,6 +941,7 @@ def execute_autorefine(
     nproc = max(1, processor_count if processor_count is not None else (os.cpu_count() or 1))
     strategies = write_recipe_parameters(
         parameters,
+        selector_policy=selector_policy,
         observations=observations,
         reflection_plan=plan,
         macro_cycles=macro_cycles,
@@ -1101,6 +1153,8 @@ def execute_autorefine(
         "usable": usable,
         "created_utc": created,
         "recipe": recipe,
+        "phenix_version": selector_policy.phenix_version,
+        "reflection_selector_mode": selector_policy.mode,
         "label": None,
         "model": model_reference,
         # Keep observations authoritative across every branch; output MTZ is evidence only.
@@ -1131,6 +1185,8 @@ def execute_autorefine(
         "parent_checkpoint": parent["id"],
         "selected_as_current": selected,
         "recipe": recipe,
+        "phenix_version": selector_policy.phenix_version,
+        "reflection_selector_mode": selector_policy.mode,
         "macro_cycles": macro_cycles,
         "processor_count": nproc,
         "command": command,
@@ -1209,13 +1265,17 @@ def execute_autorefine(
 __all__ = [
     "AutoRefineError",
     "AutoRefineResult",
+    "DATA_MANAGER_FILE_SCOPED",
+    "LEGACY_EXPLICIT",
     "ReflectionPlan",
+    "ReflectionSelectorPolicy",
     "anomalous_selections",
     "anomalous_scatterer_diagnostics",
     "build_refine_command",
     "build_reflection_plan",
     "execute_autorefine",
     "parse_refinement_statistics",
+    "reflection_selector_policy",
     "validate_refined_model",
     "write_recipe_parameters",
 ]

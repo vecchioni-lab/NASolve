@@ -9,17 +9,24 @@ from unittest.mock import patch
 import nasolve.checkpoints as checkpoint_module
 from nasolve.autorefine import (
     AutoRefineError,
+    DATA_MANAGER_FILE_SCOPED,
+    LEGACY_EXPLICIT,
     _cached_file_referencer,
     _run_report,
     anomalous_selections,
     build_reflection_plan,
     execute_autorefine,
     parse_refinement_statistics,
+    reflection_selector_policy,
 )
 from nasolve.checkpoints import initialize_registry, list_checkpoints
 from nasolve.model_assessment import file_sha256
 
 from .helpers import pdb_record
+
+
+PHENIX_120 = "1.20.1-4487"
+PHENIX_21 = "2.1-6048"
 
 
 def make_refine_run(root: Path, *, autosol: bool = True) -> Path:
@@ -119,6 +126,7 @@ def make_refine(
     preflight_return_code: int = 0,
     legacy_single_mtz: bool = False,
     phase_change: str | None = None,
+    reject_data_manager: bool = False,
 ) -> Path:
     executable = root / "phenix.refine"
     mtz_outputs = (
@@ -150,6 +158,11 @@ def make_refine(
         "import json, shutil, sys\n"
         "if '--dry_run' in sys.argv:\n"
         f"    preflight_return_code = {preflight_return_code}\n"
+        f"    reject_data_manager = {reject_data_manager!r}\n"
+        "    parameter_files = [Path(arg) for arg in sys.argv[1:] if arg.endswith('.params')]\n"
+        "    if reject_data_manager and any('data_manager {' in path.read_text() for path in parameter_files):\n"
+        "        print('ERROR: Unused parameter definitions: data_manager.miller_array.file')\n"
+        "        raise SystemExit(8)\n"
         "    print('Dry-run parameters accepted' if not preflight_return_code else 'ERROR bad parameter')\n"
         "    raise SystemExit(preflight_return_code)\n"
         "Path('received_args.json').write_text(json.dumps(sys.argv[1:]))\n"
@@ -187,6 +200,36 @@ def make_refine(
 
 
 class AutoRefineTests(unittest.TestCase):
+    def test_reflection_selector_policy_is_explicit_and_fail_closed(self):
+        self.assertEqual(
+            reflection_selector_policy(PHENIX_120).mode,
+            LEGACY_EXPLICIT,
+        )
+        self.assertEqual(
+            reflection_selector_policy(PHENIX_21).mode,
+            DATA_MANAGER_FILE_SCOPED,
+        )
+        for version in (None, "unknown", "2.x", "2.0-0000", "2.2-9999"):
+            with self.subTest(version=version):
+                with self.assertRaises(AutoRefineError):
+                    reflection_selector_policy(version)  # type: ignore[arg-type]
+
+    def test_unknown_phenix_version_fails_before_creating_refinement_state(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+
+            with self.assertRaisesRegex(AutoRefineError, "will not guess"):
+                execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    phenix_version="unknown",
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
+
+            self.assertFalse((run / "AutoRefine").exists())
+
     def test_non_object_report_is_rejected_cleanly(self):
         with tempfile.TemporaryDirectory() as directory:
             run = Path(directory)
@@ -194,6 +237,80 @@ class AutoRefineTests(unittest.TestCase):
 
             with self.assertRaisesRegex(AutoRefineError, "not a JSON object"):
                 _run_report(run)
+
+    def test_phenix_120_keeps_exact_anomalous_phase_selectors_without_data_manager(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            result = execute_autorefine(
+                run,
+                make_refine(root, reject_data_manager=True),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_120,
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+
+            self.assertEqual(result.status, "AUTOREFINE_READY")
+            payload = json.loads(result.report_path.read_text())
+            params = (result.round_directory / "autorefine.params").read_text()
+            args = json.loads((result.round_directory / "received_args.json").read_text())
+            run_report = json.loads((run / "report.json").read_text())
+            observations = run_report["inputs"]["reflections"]
+            phases = run_report["autosol"]["outputs"]["refinement_data"]
+            expected = {
+                f"xray_data.file_name={observations}",
+                "xray_data.labels=F(+),SIGF(+),F(-),SIGF(-)",
+                f"xray_data.r_free_flags.file_name={observations}",
+                "xray_data.r_free_flags.label=FreeR_flag",
+                "xray_data.r_free_flags.test_flag_value=0",
+                "xray_data.r_free_flags.generate=False",
+                f"experimental_phases.file_name={phases}",
+                "experimental_phases.labels=HLAM,HLBM,HLCM,HLDM",
+                'main.target="auto"',
+                "xray_data.force_anomalous_flag_to_be_equal_to=True",
+            }
+            self.assertTrue(expected.issubset(args))
+            self.assertNotIn("data_manager", params)
+            self.assertNotIn("miller_array", params)
+            self.assertNotIn("--unused_ok", payload["command"])
+            self.assertNotIn("--unused_ok", payload["preflight_command"])
+            self.assertEqual(payload["phenix_version"], PHENIX_120)
+            self.assertEqual(payload["reflection_selector_mode"], LEGACY_EXPLICIT)
+            self.assertEqual(run_report["autorefine"]["phenix_version"], PHENIX_120)
+            registry = json.loads((run / "AutoRefine" / "checkpoints.json").read_text())
+            checkpoint = registry["checkpoints"][-1]
+            self.assertEqual(checkpoint["phenix_version"], PHENIX_120)
+            self.assertEqual(checkpoint["reflection_selector_mode"], LEGACY_EXPLICIT)
+
+    def test_phenix_120_keeps_exact_mean_selectors_without_data_manager(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root, autosol=False)
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["postmr"]["anomalous"]["candidates"] = []
+            report_path.write_text(json.dumps(report))
+
+            result = execute_autorefine(
+                run,
+                make_refine(root, reject_data_manager=True),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_120,
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+
+            params = (result.round_directory / "autorefine.params").read_text()
+            args = json.loads((result.round_directory / "received_args.json").read_text())
+            observations = json.loads((run / "report.json").read_text())["inputs"]["reflections"]
+            self.assertNotIn("data_manager", params)
+            self.assertIn(f"xray_data.file_name={observations}", args)
+            self.assertIn("xray_data.labels=IMEAN,SIGIMEAN", args)
+            self.assertIn(f"xray_data.r_free_flags.file_name={observations}", args)
+            self.assertIn("xray_data.r_free_flags.label=FreeR_flag", args)
+            self.assertIn("xray_data.r_free_flags.test_flag_value=0", args)
+            self.assertIn("xray_data.r_free_flags.generate=False", args)
+            self.assertIn("xray_data.force_anomalous_flag_to_be_equal_to=False", args)
+            self.assertFalse(any(arg.startswith("experimental_phases.") for arg in args))
 
     def test_plan_uses_friedel_amplitudes_phases_and_exact_selection(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -224,6 +341,7 @@ class AutoRefineTests(unittest.TestCase):
                 run,
                 refine,
                 mtz_dump,
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
                 processor_count=8,
                 progress=lambda checkpoint, log: progress.append((checkpoint, log)),
@@ -276,11 +394,45 @@ class AutoRefineTests(unittest.TestCase):
             self.assertIn("group = all", params)
             self.assertIn('selection = "chain B and resid 4 and name I"', params)
             self.assertIn("group_anomalous", params)
+            observation_file_marker = f'file = "{run_report["inputs"]["reflections"]}"'
+            phase_file_marker = (
+                f'file = "{run_report["autosol"]["outputs"]["refinement_data"]}"'
+            )
+            observation_label_marker = 'name = "F(+),SIGF(+),F(-),SIGF(-)"'
+            self.assertLess(
+                params.index(observation_file_marker),
+                params.index(observation_label_marker),
+            )
+            self.assertLess(
+                params.index(observation_label_marker),
+                params.index('name = "FreeR_flag"'),
+            )
+            self.assertLess(params.index('name = "FreeR_flag"'), params.index(phase_file_marker))
+            self.assertLess(
+                params.index(phase_file_marker),
+                params.index('name = "HLAM,HLBM,HLCM,HLDM"'),
+            )
+            first_report = json.loads(first.report_path.read_text())
+            self.assertEqual(first_report["phenix_version"], PHENIX_21)
+            self.assertEqual(
+                first_report["reflection_selector_mode"],
+                DATA_MANAGER_FILE_SCOPED,
+            )
+            first_registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            first_checkpoint = first_registry["checkpoints"][-1]
+            self.assertEqual(first_checkpoint["phenix_version"], PHENIX_21)
+            self.assertEqual(
+                first_checkpoint["reflection_selector_mode"],
+                DATA_MANAGER_FILE_SCOPED,
+            )
 
             second = execute_autorefine(
                 run,
                 refine,
                 mtz_dump,
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
                 processor_count=8,
             )
@@ -298,6 +450,7 @@ class AutoRefineTests(unittest.TestCase):
                 run,
                 make_refine(root, final_work=0.31, final_free=0.34),
                 make_mtz_dump(root),
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
             )
             self.assertEqual(result.status, "AUTOREFINE_REVIEW")
@@ -314,6 +467,7 @@ class AutoRefineTests(unittest.TestCase):
                 run,
                 make_refine(root),
                 make_mtz_dump(root),
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
                 use_experimental_phases=False,
                 real_space_sites=False,
@@ -338,6 +492,7 @@ class AutoRefineTests(unittest.TestCase):
                 run,
                 make_refine(root),
                 make_mtz_dump(root, anomalous=False),
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
             )
             self.assertEqual(result.status, "AUTOREFINE_ANOMALOUS_FALLBACK")
@@ -360,6 +515,7 @@ class AutoRefineTests(unittest.TestCase):
                 run,
                 make_refine(root),
                 make_mtz_dump(root),
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
             )
 
@@ -409,6 +565,7 @@ class AutoRefineTests(unittest.TestCase):
                     run,
                     make_refine(root),
                     make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
                     environment={"PATH": "/usr/bin:/bin"},
                 )
 
@@ -443,6 +600,7 @@ class AutoRefineTests(unittest.TestCase):
                     run,
                     make_refine(root),
                     make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
                     environment={"PATH": "/usr/bin:/bin"},
                 )
 
@@ -486,6 +644,7 @@ class AutoRefineTests(unittest.TestCase):
                     run,
                     make_refine(root),
                     make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
                     environment={"PATH": "/usr/bin:/bin"},
                 )
 
@@ -501,6 +660,7 @@ class AutoRefineTests(unittest.TestCase):
                         run,
                         make_refine(root, phase_change=phase_change),
                         make_mtz_dump(root),
+                        phenix_version=PHENIX_21,
                         environment={"PATH": "/usr/bin:/bin"},
                     )
 
@@ -519,6 +679,7 @@ class AutoRefineTests(unittest.TestCase):
                         run,
                         make_refine(root),
                         make_mtz_dump(root),
+                        phenix_version=PHENIX_21,
                         environment={"PATH": "/usr/bin:/bin"},
                     )
                     self.assertEqual(retry.checkpoint_id, "refine-002")
@@ -536,6 +697,7 @@ class AutoRefineTests(unittest.TestCase):
                     run,
                     make_refine(root, legacy_single_mtz=True),
                     make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
                     environment={"PATH": "/usr/bin:/bin"},
                 )
 
@@ -594,6 +756,7 @@ class AutoRefineTests(unittest.TestCase):
                     run,
                     make_refine(root),
                     make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
                     environment={"PATH": "/usr/bin:/bin"},
                 )
 
@@ -623,6 +786,7 @@ class AutoRefineTests(unittest.TestCase):
                     run,
                     make_refine(root),
                     make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
                     environment={"PATH": "/usr/bin:/bin"},
                 )
 
@@ -634,6 +798,7 @@ class AutoRefineTests(unittest.TestCase):
                 run,
                 make_refine(root, return_code=7),
                 make_mtz_dump(root),
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
             )
             self.assertEqual(result.status, "AUTOREFINE_FAILED")
@@ -650,11 +815,20 @@ class AutoRefineTests(unittest.TestCase):
                 run,
                 make_refine(root, preflight_return_code=9),
                 make_mtz_dump(root),
+                phenix_version=PHENIX_21,
                 environment={"PATH": "/usr/bin:/bin"},
             )
             self.assertEqual(result.status, "AUTOREFINE_FAILED")
             self.assertFalse((result.round_directory / "received_args.json").exists())
             self.assertIn("preflight failed", result.log_path.read_text().lower())
+            payload = json.loads(result.report_path.read_text())
+            self.assertEqual(payload["phenix_version"], PHENIX_21)
+            self.assertEqual(payload["reflection_selector_mode"], DATA_MANAGER_FILE_SCOPED)
+            registry = json.loads((run / "AutoRefine" / "checkpoints.json").read_text())
+            failed = registry["checkpoints"][-1]
+            self.assertEqual(failed["status"], "FAILED")
+            self.assertEqual(failed["phenix_version"], PHENIX_21)
+            self.assertEqual(failed["reflection_selector_mode"], DATA_MANAGER_FILE_SCOPED)
 
     def test_statistics_parser_keeps_cycle_history(self):
         stats = parse_refinement_statistics(
@@ -681,6 +855,7 @@ class AutoRefineTests(unittest.TestCase):
                     run,
                     make_refine(root),
                     dump,
+                    phenix_version=PHENIX_21,
                     environment={"PATH": "/usr/bin:/bin"},
                 )
 

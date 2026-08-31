@@ -332,6 +332,16 @@ were supplied to ReadySet, while retaining the NARestraints PHIL and project
 EFF files. An approved AutoSol file is a separate phase source. Explicit
 reflection file names and labels prevent duplicate observations in the AutoSol
 file from competing with the authoritative STARANISO array.
+AutoRefine derives one fail-closed reflection-selector policy from the
+discovered Phenix version before allocating a round. Phenix 1.20.x uses
+`legacy-explicit`: the command retains exact observation, Free-R, and optional
+HL phase file/label selectors, but the unsupported Data Manager block is
+omitted. Phenix 2.1.x uses `data-manager-file-scoped`: the same explicit
+selectors are retained and the parameter file additionally binds each label
+set to its MTZ through the Data Manager. Unknown, malformed, and unvalidated
+families are rejected rather than mapped by version ordering. The exact
+version and selected mode are frozen in the round report and checkpoint, and
+Refine Doctor passes the same policy to every trial.
 AutoRefine hashes that phase source once immediately before use, captures its
 filesystem identity, and checks the identity again after all external work and
 output hashing. Replacement, modification, or deletion is retained as a failed

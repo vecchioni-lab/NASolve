@@ -30,6 +30,12 @@ entries are reconstructed from repository history.
 
 ### Fixed
 
+- AutoRefine now omits unsupported Phenix Data Manager Miller-array blocks on
+  Phenix 1.20.x while retaining the exact observation, Free-R, and optional HL
+  phase file/label selectors on the command line. Phenix 2.1.x keeps the
+  file-scoped Data Manager block that prevents ambiguous MTZ-array selection.
+- Refine Doctor now passes the same version-derived reflection-selector policy
+  to every bounded AutoRefine branch.
 - Fresh-terminal source launches no longer depend on macOS Python loading the
   editable-install `.pth` file; this avoids `ModuleNotFoundError: nasolve` when
   that metadata carries the hidden file flag. The launcher also places the
@@ -64,6 +70,11 @@ entries are reconstructed from repository history.
 
 ### Changed
 
+- Every AutoRefine checkpoint and round report now records the discovered
+  Phenix version and the selected `legacy-explicit` or
+  `data-manager-file-scoped` reflection-selector mode. Refine Doctor reports
+  record the same provenance. Unknown, malformed, and unvalidated Phenix
+  version families stop before allocating a refinement or Doctor directory.
 - AutoRefine reuses the checksum produced by mandatory phase validation when
   writing the child checkpoint, avoiding a second full read of the AutoSol MTZ
   in each round. A stable file-identity check before and after Phenix rejects
@@ -90,6 +101,16 @@ entries are reconstructed from repository history.
 
 ### Tests
 
+- Added Phenix 1.20.1-4487 compatibility regressions that emulate rejection of
+  the Data Manager block and verify exact anomalous/mean observations, Free-R
+  flags, separate HL phases, automatic target selection, Doctor propagation,
+  and report/checkpoint provenance without production use of `--unused_ok`.
+- Added fail-before-mutation coverage for unknown or unvalidated Phenix
+  versions and retained the Phenix 2.1 file-to-array binding regressions.
+- Revalidated the post-patch `data-manager-file-scoped` path from a relocated
+  temporary Q:iC run with Phenix 2.1-6048. Dry-run preflight and a one-cycle
+  refinement both exited successfully; the intentionally short refinement was
+  retained as `AUTOREFINE_REVIEW` at Rwork/Rfree 0.177/0.160.
 - Added source-launcher coverage for fresh terminals, symlink resolution,
   argument and working-directory preservation, `PYTHONPATH` scoping, explicit
   and default interpreters, current-directory import shadowing, and
@@ -142,9 +163,13 @@ entries are reconstructed from repository history.
 
 ### Known compatibility notes
 
-- File-scoped Data Manager parameters have been validated with Phenix
-  2.1-6048 in preflight and a complete five-cycle E:G refinement. A Phenix
-  1.20.1 integration run remains desirable.
+- Phenix 1.20.x uses explicit file/label command selectors without the newer
+  Data Manager block; Phenix 2.1.x uses both. The attached collaborator handoff
+  isolated the 1.20.1-4487 failure to the Data Manager definitions and
+  confirmed the retained selectors in a diagnostic dry run. Post-patch
+  1.20.1 execution still requires a host with that release installed.
+- File-scoped Data Manager parameters remain validated with Phenix 2.1-6048
+  in preflight and complete refinement runs.
 - Large MTZ/map histories may eventually warrant Git LFS; current fixtures are
   intentionally kept in ordinary Git until a repository-wide LFS policy is
   adopted.
