@@ -1,0 +1,180 @@
+{
+  "anomalous": {
+    "autosol_required": true,
+    "candidates": [
+      {
+        "alternate": null,
+        "atom_name": "I",
+        "coordinates": [
+          -17.411,
+          0.103,
+          25.687
+        ],
+        "element": "I",
+        "element_source": "pdb-element-column",
+        "residue": "C38",
+        "site": "B:4"
+      }
+    ],
+    "trigger_elements": [
+      "BR",
+      "I",
+      "SE"
+    ]
+  },
+  "component_identity": {
+    "C38": {
+      "deposition_code": "C38",
+      "description": "5-iodo-2'-deoxycytidine-5'-monophosphate",
+      "refinement_code": "C38"
+    },
+    "S6G": {
+      "deposition_code": "S6G",
+      "description": "6-thio-2'-deoxyguanosine-5'-monophosphate",
+      "refinement_code": "S6G"
+    }
+  },
+  "coot": {
+    "executable": "/opt/homebrew/Cellar/coot/1.3.1/bin/coot",
+    "log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Coot/coot.log",
+    "ran": true,
+    "shared_parent_coordinates_restored": {
+      "A:12": {
+        "atoms": [
+          "C1'",
+          "C2",
+          "C2'",
+          "C3'",
+          "C4",
+          "C4'",
+          "C5",
+          "C5'",
+          "C6",
+          "C8",
+          "N1",
+          "N2",
+          "N3",
+          "N7",
+          "N9",
+          "O3'",
+          "O4'",
+          "O5'",
+          "OP1",
+          "OP2",
+          "P"
+        ],
+        "count": 21,
+        "parent_atom_count": 22,
+        "substitutions": [
+          {
+            "anchor_atom": "C6",
+            "bond_length": 1.718,
+            "parent_atom": "O6",
+            "placement": "canonical-parent-vector",
+            "target_atom": "S6"
+          }
+        ]
+      },
+      "B:4": {
+        "atoms": [
+          "C1'",
+          "C2",
+          "C2'",
+          "C3'",
+          "C4",
+          "C4'",
+          "C5",
+          "C5'",
+          "C6",
+          "N1",
+          "N3",
+          "N4",
+          "O1P",
+          "O2",
+          "O2P",
+          "O3'",
+          "O4'",
+          "O5'",
+          "P"
+        ],
+        "count": 19,
+        "parent_atom_count": 19,
+        "substitutions": [
+          {
+            "anchor_atom": "C5",
+            "bond_length": 2.094,
+            "bond_length_source": "dictionary-ideal-coordinates",
+            "placement": "canonical-ring-outward-bisector",
+            "ring_neighbors": [
+              "C4",
+              "C6"
+            ],
+            "target_atom": "I"
+          }
+        ]
+      }
+    }
+  },
+  "created_utc": "2026-08-30T02:02:07.357281+00:00",
+  "input_model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/Phaser/mr_solution.pdb",
+  "input_sha256": "878883d6795d47c862b323d12038f623b1280781cbe198af4afefe4ed0ca99a1",
+  "message": "Post-MR model, restraints, and ReadySet outputs are ready for refinement",
+  "mutation_actions": [
+    {
+      "after": "S6G",
+      "before": "DC",
+      "deposition_code": "S6G",
+      "method": "coot-parent-overlap",
+      "parent_code": "DG",
+      "site": "A:12"
+    },
+    {
+      "after": "C38",
+      "before": "DG",
+      "deposition_code": "C38",
+      "method": "coot-parent-overlap",
+      "parent_code": "DC",
+      "site": "B:4"
+    }
+  ],
+  "narestraints": {
+    "compatibility_corrections": [
+      {
+        "after": "C5",
+        "before": "C5 ",
+        "canonical_atom": "C5",
+        "ligand_code": "S6G",
+        "scope": "process-local"
+      }
+    ],
+    "frame": "W",
+    "include_stacking": true,
+    "mode": "frame-template",
+    "pair_file": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/Std_padd.txt",
+    "restraint_file": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/narestraints_Std_padd.phil",
+    "secondary_structure_file": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/5W6W_secondary_structure.eff"
+  },
+  "prepared_model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Model/readyset_model.pdb",
+  "prepared_sha256": "fa3c3dc75000fedaf140cd82c01a13b1d335befc6850d23de7bad9ca5ef08c8e",
+  "readyset": {
+    "command": [
+      "/Users/karolwoloszyn/Applications/phenix-2.1-6048/bin/phenix.ready_set",
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Model/prepared_model.pdb",
+      "ready_set.actions.hydrogens=False",
+      "ready_set.actions.ligands=True",
+      "ready_set.actions.optimise_ligand_geometry=False",
+      "ready_set.input.cif_file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/curated_ligands.cif"
+    ],
+    "generated_ligand_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/ReadySet/prepared_model.ligands.cif",
+    "hydrogens": false,
+    "log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/ReadySet/ready_set.log",
+    "updated_model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/ReadySet/prepared_model.updated.pdb"
+  },
+  "restraints": [
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/narestraints_Std_padd.phil",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/5W6W_secondary_structure.eff",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/C38.cif",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/PostMR/Restraints/S6G.cif"
+  ],
+  "status": "POSTMR_READY"
+}

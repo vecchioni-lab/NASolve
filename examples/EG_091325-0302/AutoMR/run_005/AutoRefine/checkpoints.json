@@ -1,0 +1,116 @@
+{
+  "bookmarks": {},
+  "checkpoints": [
+    {
+      "compatibility": {
+        "source": "POSTMR_READY",
+        "validated": true
+      },
+      "created_utc": "2026-08-29T00:05:31.585048+00:00",
+      "id": "postmr",
+      "kind": "postmr",
+      "label": "ReadySet model",
+      "metrics": {},
+      "model": {
+        "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Model/readyset_model.pdb",
+        "sha256": "b834c2a207d5a9b23db6a8f32246521e254dfe33d2ce131497afa58252ae7dd4",
+        "size": 68187
+      },
+      "observations": {
+        "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+        "sha256": "a3cf2b2bc1e5ba1db8ab0d28dae7151a41f31442ceb94654082025d6914648de",
+        "size": 229359
+      },
+      "parent": null,
+      "phases": null,
+      "recipe": "PostMR/ReadySet",
+      "restraints": [
+        {
+          "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/narestraints_Std_padd.phil",
+          "sha256": "6888134020c922ad75647531d09a915f63b343f170eb20cc27e54e54e7b2de19",
+          "size": 10068
+        },
+        {
+          "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/5W6W_secondary_structure.eff",
+          "sha256": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+          "size": 2501
+        },
+        {
+          "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/ReadySet/prepared_model.ligands.cif",
+          "sha256": "2cceaa29528395a36cc662e2fe61b1928bca3bf834deac221a3f9a703d193ef9",
+          "size": 9149
+        }
+      ],
+      "status": "READY",
+      "usable": true
+    },
+    {
+      "compatibility": {
+        "coordinate_record_count": 860,
+        "error": null,
+        "required_items": [],
+        "validated": true
+      },
+      "created_utc": "2026-08-29T00:06:14.056090+00:00",
+      "id": "refine-001",
+      "kind": "refinement",
+      "label": null,
+      "metrics": {
+        "angle_rmsd": null,
+        "anomalous_scatterers": [],
+        "bond_rmsd": null,
+        "clashscore": 59.67,
+        "initial_r_free": 0.3318,
+        "initial_r_work": 0.3047,
+        "r_free": 0.1683,
+        "r_free_minus_r_work": 0.0415,
+        "r_work": 0.1268
+      },
+      "model": {
+        "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/AutoRefine/round_001/refined_001.pdb",
+        "sha256": "c64943aa20f37d8b1d7722ac27504f97c656006a25583f4e68b2595424252ee6",
+        "size": 74099
+      },
+      "observations": {
+        "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+        "sha256": "a3cf2b2bc1e5ba1db8ab0d28dae7151a41f31442ceb94654082025d6914648de",
+        "size": 229359
+      },
+      "outputs": {
+        "full_log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/AutoRefine/round_001/phenix.refine.log",
+        "map_coefficients": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/AutoRefine/round_001/refined_001.mtz",
+        "model_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/AutoRefine/round_001/refined_001.cif",
+        "preflight_log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/AutoRefine/round_001/phenix.refine.preflight.log",
+        "refinement_reflections": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/AutoRefine/round_001/refined_001.mtz",
+        "reflection_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/AutoRefine/round_001/refined_001.reflections.cif"
+      },
+      "parent": "postmr",
+      "phases": null,
+      "recipe": "AutoRefine/default",
+      "restraints": [
+        {
+          "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/narestraints_Std_padd.phil",
+          "sha256": "6888134020c922ad75647531d09a915f63b343f170eb20cc27e54e54e7b2de19",
+          "size": 10068
+        },
+        {
+          "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/5W6W_secondary_structure.eff",
+          "sha256": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+          "size": 2501
+        },
+        {
+          "path": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/ReadySet/prepared_model.ligands.cif",
+          "sha256": "2cceaa29528395a36cc662e2fe61b1928bca3bf834deac221a3f9a703d193ef9",
+          "size": 9149
+        }
+      ],
+      "status": "SUCCESS",
+      "usable": true
+    }
+  ],
+  "created_utc": "2026-08-29T00:05:39.654468+00:00",
+  "current": "refine-001",
+  "run_directory": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005",
+  "schema_version": 1,
+  "updated_utc": "2026-08-29T00:06:14.056224+00:00"
+}

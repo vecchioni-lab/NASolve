@@ -1,0 +1,182 @@
+{
+  "bookmarks": {},
+  "checkpoints": [
+    {
+      "compatibility": {
+        "model_checksum": "verified",
+        "observations_checksum": "verified",
+        "source": "POSTMR_READY",
+        "validated": true
+      },
+      "created_utc": "2026-08-29T19:06:52.870289+00:00",
+      "id": "postmr",
+      "kind": "postmr",
+      "label": "ReadySet model",
+      "metrics": {},
+      "model": {
+        "anchor": "run",
+        "relative_path": "PostMR/Model/readyset_model.pdb",
+        "sha256": "fa3c3dc75000fedaf140cd82c01a13b1d335befc6850d23de7bad9ca5ef08c8e",
+        "size": 68266
+      },
+      "observations": {
+        "anchor": "dataset",
+        "relative_path": "staraniso_alldata-unique.mtz",
+        "sha256": "43fe3a986b64a124ddf250c7f6e929c8cd0e7ee8e746b8f384ff0a859b0abc26",
+        "size": 204376
+      },
+      "parent": null,
+      "phases": null,
+      "recipe": "PostMR/ReadySet",
+      "restraints": [
+        {
+          "anchor": "run",
+          "relative_path": "PostMR/Restraints/narestraints_Std_padd.phil",
+          "sha256": "532339443328b80f36904ade90d55cc335a894099e037c907fa1c8988cbb71b1",
+          "size": 11771
+        },
+        {
+          "anchor": "run",
+          "relative_path": "PostMR/Restraints/5W6W_secondary_structure.eff",
+          "sha256": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+          "size": 2501
+        },
+        {
+          "anchor": "run",
+          "relative_path": "PostMR/ReadySet/prepared_model.ligands.cif",
+          "sha256": "2dcf851e96a6de5418e06e19d9059c12933229e6b74925f3882055cebf082247",
+          "size": 19953
+        }
+      ],
+      "status": "READY",
+      "usable": true
+    },
+    {
+      "compatibility": {
+        "coordinate_record_count": 861,
+        "error": null,
+        "required_items": [],
+        "validated": true
+      },
+      "created_utc": "2026-08-29T19:08:00.916384+00:00",
+      "id": "refine-001",
+      "kind": "refinement",
+      "label": null,
+      "metrics": {
+        "angle_rmsd": null,
+        "anomalous_scatterers": [
+          {
+            "apparent_anomalous_occupancy": null,
+            "atom_name": "I",
+            "b_attenuation_at_resolution_limit": 0.16263241964014422,
+            "b_factor": 201.77,
+            "calculated_contribution_at_resolution_limit": null,
+            "calculated_f_double_prime": null,
+            "calculated_f_double_prime_at_occupancy": null,
+            "element": "I",
+            "model_occupancy": 1.0,
+            "refined_contribution_at_resolution_limit": 1.4519545950358688,
+            "refined_f_double_prime": 8.92783,
+            "refined_f_double_prime_at_occupancy": 8.92783,
+            "resolution_limit": 5.26998,
+            "site": "B:4",
+            "wavelength": null
+          }
+        ],
+        "bond_rmsd": null,
+        "clashscore": 44.19,
+        "initial_r_free": 0.3016,
+        "initial_r_work": 0.3278,
+        "r_free": 0.1483,
+        "r_free_minus_r_work": 0.0022,
+        "r_work": 0.1461
+      },
+      "model": {
+        "anchor": "run",
+        "relative_path": "AutoRefine/round_001/refined_001.pdb",
+        "sha256": "b92f637ab2a507aaa076eaf4c6ef977cbcea0ec0b21b0df76ea559cd6e389565",
+        "size": 74525
+      },
+      "observations": {
+        "anchor": "dataset",
+        "relative_path": "staraniso_alldata-unique.mtz",
+        "sha256": "43fe3a986b64a124ddf250c7f6e929c8cd0e7ee8e746b8f384ff0a859b0abc26",
+        "size": 204376
+      },
+      "outputs": {
+        "full_log": {
+          "anchor": "run",
+          "relative_path": "AutoRefine/round_001/phenix.refine.log",
+          "sha256": "537ea5221a4e5b089278afee00dd707ecbaa5b785d746854b776afbf1a1b242c",
+          "size": 117374
+        },
+        "map_coefficients": {
+          "anchor": "run",
+          "relative_path": "AutoRefine/round_001/refined_001.mtz",
+          "sha256": "6b3593ade5be26c1d0abd2b2d5ca5d2cbb815ef4eaf09085d0a681decb009ccd",
+          "size": 155480
+        },
+        "metrics_tsv": {
+          "anchor": "run",
+          "relative_path": "AutoRefine/round_001/metrics.tsv",
+          "sha256": "78db240ed1fbf5af9c3b41b6f6665913707ce26bd7914691ffde8895247f1e44",
+          "size": 566
+        },
+        "model_cif": {
+          "anchor": "run",
+          "relative_path": "AutoRefine/round_001/refined_001.cif",
+          "sha256": "5e354ac65455a7d8940fb07f3bc5abf7f0ca23c3edb59276c1a67ccac6509d50",
+          "size": 108335
+        },
+        "preflight_log": {
+          "anchor": "run",
+          "relative_path": "AutoRefine/round_001/phenix.refine.preflight.log",
+          "sha256": "06abc482892bc7c87df06092f8d070d6acd399409d7d577917e3b668618278c9",
+          "size": 22226
+        },
+        "refinement_reflections": {
+          "anchor": "run",
+          "relative_path": "AutoRefine/round_001/refined_001.mtz",
+          "sha256": "6b3593ade5be26c1d0abd2b2d5ca5d2cbb815ef4eaf09085d0a681decb009ccd",
+          "size": 155480
+        },
+        "reflection_cif": {
+          "anchor": "run",
+          "relative_path": "AutoRefine/round_001/refined_001.reflections.cif",
+          "sha256": "ce57db15246139c3aa3d1fc569f09a25193f0533df90e2004343dfbc7d3708ec",
+          "size": 307350
+        }
+      },
+      "parent": "postmr",
+      "phases": null,
+      "recipe": "AutoRefine/default",
+      "restraints": [
+        {
+          "anchor": "run",
+          "relative_path": "PostMR/Restraints/narestraints_Std_padd.phil",
+          "sha256": "532339443328b80f36904ade90d55cc335a894099e037c907fa1c8988cbb71b1",
+          "size": 11771
+        },
+        {
+          "anchor": "run",
+          "relative_path": "PostMR/Restraints/5W6W_secondary_structure.eff",
+          "sha256": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+          "size": 2501
+        },
+        {
+          "anchor": "run",
+          "relative_path": "PostMR/ReadySet/prepared_model.ligands.cif",
+          "sha256": "2dcf851e96a6de5418e06e19d9059c12933229e6b74925f3882055cebf082247",
+          "size": 19953
+        }
+      ],
+      "status": "SUCCESS",
+      "usable": true
+    }
+  ],
+  "created_utc": "2026-08-29T19:07:24.565887+00:00",
+  "current": "refine-001",
+  "run_directory": ".",
+  "schema_version": 2,
+  "updated_utc": "2026-08-29T19:08:00.918124+00:00"
+}

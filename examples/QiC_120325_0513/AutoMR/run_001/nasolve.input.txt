@@ -1,0 +1,4 @@
+[automr]
+mode = standard
+frame = W
+pair = Q:iC

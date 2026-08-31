@@ -1,0 +1,94 @@
+refinement {
+  pdb_interpretation {
+    secondary_structure {
+      nucleic_acid {
+        base_pair {
+          base1 = chain 'A' and resid 3
+          base2 = chain 'C' and resid 13
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 16
+          base2 = chain 'D' and resid 7
+          saenger_class = 20
+        }
+        base_pair {
+          base1 = chain 'A' and resid 6
+          base2 = chain 'C' and resid 10
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 19
+          base2 = chain 'D' and resid 4
+          saenger_class = 20
+        }
+        base_pair {
+          base1 = chain 'A' and resid 5
+          base2 = chain 'C' and resid 11
+          saenger_class = 20
+        }
+        base_pair {
+          base1 = chain 'A' and resid 18
+          base2 = chain 'D' and resid 5
+          saenger_class = 20
+        }
+        base_pair {
+          base1 = chain 'A' and resid 7
+          base2 = chain 'C' and resid 9
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 8
+          base2 = chain 'C' and resid 8
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 9
+          base2 = chain 'B' and resid 7
+          saenger_class = 20
+        }
+        base_pair {
+          base1 = chain 'A' and resid 15
+          base2 = chain 'B' and resid 1
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 21
+          base2 = chain 'D' and resid 2
+          saenger_class = 20
+        }
+        base_pair {
+          base1 = chain 'A' and resid 20
+          base2 = chain 'D' and resid 3
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 14
+          base2 = chain 'B' and resid 2
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 10
+          base2 = chain 'B' and resid 6
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 2
+          base2 = chain 'C' and resid 14
+          saenger_class = 20
+        }
+        base_pair {
+          base1 = chain 'A' and resid 17
+          base2 = chain 'D' and resid 6
+          saenger_class = 19
+        }
+        base_pair {
+          base1 = chain 'A' and resid 4
+          base2 = chain 'C' and resid 12
+          saenger_class = 19
+        }
+      }
+      enabled = True
+    }
+  }
+}

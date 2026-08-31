@@ -1,0 +1,276 @@
+{
+  "acceptance": {
+    "numerical_success": true,
+    "r_work_less_than_0_30": true,
+    "r_work_less_than_r_free": true,
+    "visual_inspection_required": true
+  },
+  "checkpoint": "refine-001",
+  "command": [
+    "/Users/karolwoloszyn/Applications/phenix-2.1-6048/bin/phenix.refine",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Model/readyset_model.pdb",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Restraints/narestraints_Std_padd.phil",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Restraints/5W6W_secondary_structure.eff",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/ReadySet/prepared_model.ligands.cif",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/autorefine.params",
+    "--overwrite",
+    "xray_data.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "xray_data.labels=IMEAN,SIGIMEAN",
+    "xray_data.r_free_flags.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "xray_data.r_free_flags.label=FreeR_flag",
+    "xray_data.r_free_flags.test_flag_value=0",
+    "xray_data.r_free_flags.generate=False",
+    "main.target=\"auto\"",
+    "ordered_solvent=False",
+    "simulated_annealing=False",
+    "output.prefix=refined",
+    "output.write_model_cif_file=True",
+    "output.write_reflection_cif_file=True",
+    "output.export_final_f_model=True",
+    "xray_data.force_anomalous_flag_to_be_equal_to=False"
+  ],
+  "compatibility": {
+    "coordinate_record_count": 860,
+    "required_items": [],
+    "validated": true
+  },
+  "created_utc": "2026-08-30T01:58:40.142423+00:00",
+  "inputs": {
+    "authoritative_observations": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "free_r_label": "FreeR_flag",
+    "free_r_test_value": 0,
+    "model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Model/readyset_model.pdb",
+    "observation_labels": [
+      "IMEAN",
+      "SIGIMEAN"
+    ],
+    "phase_file": null,
+    "phase_labels": [],
+    "restraints": [
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Restraints/narestraints_Std_padd.phil",
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Restraints/5W6W_secondary_structure.eff",
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/ReadySet/prepared_model.ligands.cif"
+    ]
+  },
+  "macro_cycles": 5,
+  "message": "Numerical refinement criteria passed; inspect the model and maps",
+  "outputs": {
+    "log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/phenix.refine.log",
+    "map_coefficients": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/refined_001.mtz",
+    "metrics_tsv": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/metrics.tsv",
+    "model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/refined_001.pdb",
+    "model_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/refined_001.cif",
+    "preflight_log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/phenix.refine.preflight.log",
+    "refinement_reflections": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/refined_001.mtz",
+    "reflection_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/refined_001.reflections.cif"
+  },
+  "parameters": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/autorefine.params",
+  "parent_checkpoint": "postmr",
+  "phenix_exit_code": 0,
+  "preflight_command": [
+    "/Users/karolwoloszyn/Applications/phenix-2.1-6048/bin/phenix.refine",
+    "--dry_run",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Model/readyset_model.pdb",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Restraints/narestraints_Std_padd.phil",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/Restraints/5W6W_secondary_structure.eff",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/PostMR/ReadySet/prepared_model.ligands.cif",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_006/AutoRefine/round_001/autorefine.params",
+    "--overwrite",
+    "xray_data.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "xray_data.labels=IMEAN,SIGIMEAN",
+    "xray_data.r_free_flags.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz",
+    "xray_data.r_free_flags.label=FreeR_flag",
+    "xray_data.r_free_flags.test_flag_value=0",
+    "xray_data.r_free_flags.generate=False",
+    "main.target=\"auto\"",
+    "ordered_solvent=False",
+    "simulated_annealing=False",
+    "output.prefix=refined",
+    "output.write_model_cif_file=True",
+    "output.write_reflection_cif_file=True",
+    "output.export_final_f_model=True",
+    "xray_data.force_anomalous_flag_to_be_equal_to=False"
+  ],
+  "preflight_failed": false,
+  "processor_count": 16,
+  "recipe": "AutoRefine/default",
+  "refinement": {
+    "adp_mode": "group",
+    "anomalous": false,
+    "anomalous_fallback": false,
+    "anomalous_parameter_mode": "refine",
+    "anomalous_selections": [],
+    "ordered_solvent": false,
+    "real_space_sites": true,
+    "refine_occupancies": true,
+    "simulated_annealing": false,
+    "strategies": [
+      "individual_sites",
+      "individual_sites_real_space",
+      "group_adp",
+      "occupancies"
+    ],
+    "target": "automatic",
+    "use_experimental_phases": true,
+    "weights": {
+      "optimize_adp": true,
+      "optimize_xyz": true
+    }
+  },
+  "selected_as_current": true,
+  "statistics": {
+    "angle_rmsd": null,
+    "anomalous_scatterers": [],
+    "bond_rmsd": null,
+    "clashscore": 59.67,
+    "cycle_series": [
+      {
+        "index": 0,
+        "r_free": 0.3318,
+        "r_work": 0.3047
+      },
+      {
+        "index": 1,
+        "r_free": 0.173,
+        "r_work": 0.2159
+      },
+      {
+        "index": 2,
+        "r_free": 0.1727,
+        "r_work": 0.1723
+      },
+      {
+        "index": 3,
+        "r_free": 0.1654,
+        "r_work": 0.1685
+      },
+      {
+        "index": 4,
+        "r_free": 0.1653,
+        "r_work": 0.1683
+      },
+      {
+        "index": 5,
+        "r_free": 0.1771,
+        "r_work": 0.1673
+      },
+      {
+        "index": 6,
+        "r_free": 0.163,
+        "r_work": 0.1526
+      },
+      {
+        "index": 7,
+        "r_free": 0.1632,
+        "r_work": 0.1511
+      },
+      {
+        "index": 8,
+        "r_free": 0.1632,
+        "r_work": 0.151
+      },
+      {
+        "index": 9,
+        "r_free": 0.1631,
+        "r_work": 0.1509
+      },
+      {
+        "index": 10,
+        "r_free": 0.1661,
+        "r_work": 0.1499
+      },
+      {
+        "index": 11,
+        "r_free": 0.1608,
+        "r_work": 0.1428
+      },
+      {
+        "index": 12,
+        "r_free": 0.1596,
+        "r_work": 0.144
+      },
+      {
+        "index": 13,
+        "r_free": 0.1575,
+        "r_work": 0.1452
+      },
+      {
+        "index": 14,
+        "r_free": 0.1563,
+        "r_work": 0.1461
+      },
+      {
+        "index": 15,
+        "r_free": 0.1632,
+        "r_work": 0.1418
+      },
+      {
+        "index": 16,
+        "r_free": 0.1648,
+        "r_work": 0.1442
+      },
+      {
+        "index": 17,
+        "r_free": 0.1607,
+        "r_work": 0.145
+      },
+      {
+        "index": 18,
+        "r_free": 0.158,
+        "r_work": 0.1464
+      },
+      {
+        "index": 19,
+        "r_free": 0.1566,
+        "r_work": 0.1476
+      },
+      {
+        "index": 20,
+        "r_free": 0.1644,
+        "r_work": 0.1441
+      },
+      {
+        "index": 21,
+        "r_free": 0.1656,
+        "r_work": 0.1276
+      },
+      {
+        "index": 22,
+        "r_free": 0.1629,
+        "r_work": 0.128
+      },
+      {
+        "index": 23,
+        "r_free": 0.1614,
+        "r_work": 0.1289
+      },
+      {
+        "index": 24,
+        "r_free": 0.1603,
+        "r_work": 0.1295
+      },
+      {
+        "index": 25,
+        "r_free": 0.173,
+        "r_work": 0.2159
+      },
+      {
+        "index": 26,
+        "r_free": 0.1683,
+        "r_work": 0.1268
+      }
+    ],
+    "diagnostics": [
+      "Warning, Cannot make NA restraints for ED residue (no planarity definition)",
+      "Warning: Unknown mtz labels: F-obs-filtered, SIGF-obs-filtered, F-model, PHIF-model, 2FOFCWT_no_fill, PH2FOFCWT_no_fill"
+    ],
+    "initial_r_free": 0.3318,
+    "initial_r_work": 0.3047,
+    "r_free": 0.1683,
+    "r_free_minus_r_work": 0.0415,
+    "r_work": 0.1268
+  },
+  "status": "AUTOREFINE_READY"
+}

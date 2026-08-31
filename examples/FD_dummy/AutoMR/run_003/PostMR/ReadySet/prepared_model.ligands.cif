@@ -1,0 +1,473 @@
+data_comp_list
+loop_
+  _chem_comp.id
+  _chem_comp.three_letter_code
+  _chem_comp.name
+  _chem_comp.group
+  _chem_comp.number_atoms_all
+  _chem_comp.number_atoms_nh
+  _chem_comp.desc_level
+  DF   DF   'Unknown                  '  ligand       21  21  .
+  1AP  1AP  'Unknown                  '  non-polymer  36  23  .
+
+data_comp_DF
+loop_
+  _chem_comp_atom.comp_id
+  _chem_comp_atom.atom_id
+  _chem_comp_atom.type_symbol
+  _chem_comp_atom.type_energy
+  _chem_comp_atom.charge
+  _chem_comp_atom.partial_charge
+  _chem_comp_atom.x
+  _chem_comp_atom.y
+  _chem_comp_atom.z
+  DF  C1'  C  C    0  .   -6.2920   0.2640   9.5030
+  DF  C2   C  CR6  0  .   -8.7720   0.0990   9.0110
+  DF  C2'  C  CSP  0  .   -5.8040  -0.9090  10.3430
+  DF  C3'  C  C    0  .   -4.2950  -0.9900  10.1360
+  DF  C4   C  CR6  0  .   -9.5660  -0.7150   6.8230
+  DF  C4'  C  C    0  .   -3.9580   0.2130   9.2490
+  DF  C5   C  CR6  0  .   -8.1870  -0.8990   6.4170
+  DF  C5'  C  CSP  0  .   -3.0100  -0.0960   8.1130
+  DF  C6   C  C    0  .   -7.2210  -0.5830   7.2980
+  DF  C7   C  C    0  .   -7.8980  -1.4220   5.0480
+  DF  N1   N  NR6  0  .   -7.4720  -0.0820   8.5570
+  DF  N3   N  N    0  .   -9.7400  -0.2330   8.0950
+  DF  O3'  O  OC   0  .   -3.5150  -1.0030  11.3600
+  DF  O4   O  OC   0  .  -10.5490  -0.9530   6.1230
+  DF  O4'  O  OC2  0  .   -5.2070   0.6690   8.6920
+  DF  O5'  O  OC2  0  .   -3.7530  -0.5030   6.9460
+  DF  OP1  O  O2   0  .   -1.5530  -0.8060   5.8410
+  DF  OP2  O  O    0  .   -3.5150  -2.3820   5.3200
+  DF  OP3  O  O2   0  .   -2.6440  -0.5220   4.7030
+  DF  P    P  P    0  .   -3.0090  -1.0160   5.6340
+  DF  S1   S  S    0  .   -9.1820   0.7210  10.6630
+
+loop_
+  _chem_comp_bond.comp_id
+  _chem_comp_bond.atom_id_1
+  _chem_comp_bond.atom_id_2
+  _chem_comp_bond.type
+  _chem_comp_bond.value_dist
+  _chem_comp_bond.value_dist_esd
+  DF  C1'  C2'  aromatic  1.581  0.020
+  DF  C1'  N1   single    1.474  0.020
+  DF  C1'  O4'  single    1.297  0.020
+  DF  C2   N1   aromatic  1.333  0.020
+  DF  C2   N3   aromatic  1.329  0.020
+  DF  C2   S1   single    1.823  0.020
+  DF  C2'  C3'  aromatic  1.518  0.020
+  DF  C3'  C4'  aromatic  1.340  0.020
+  DF  C3'  O3'  single    1.492  0.020
+  DF  C4   C5   aromatic  1.399  0.020
+  DF  C4   N3   aromatic  1.333  0.020
+  DF  C4   O4   single    1.407  0.020
+  DF  C4'  C5'  single    1.501  0.020
+  DF  C4'  O4'  single    1.616  0.020
+  DF  C5   C6   aromatic  1.400  0.020
+  DF  C5   C7   single    1.544  0.020
+  DF  C5'  O5'  single    1.412  0.020
+  DF  C6   N1   aromatic  1.333  0.020
+  DF  O5'  P    single    1.658  0.020
+  DF  OP1  OP3  single    1.574  0.020
+  DF  OP1  P    single    1.564  0.020
+  DF  OP2  P    double    1.463  0.020
+  DF  OP3  P    single    1.564  0.020
+
+loop_
+  _chem_comp_angle.comp_id
+  _chem_comp_angle.atom_id_1
+  _chem_comp_angle.atom_id_2
+  _chem_comp_angle.atom_id_3
+  _chem_comp_angle.value_angle
+  _chem_comp_angle.value_angle_esd
+  DF  O4'  C1'  N1   110.19  3.000
+  DF  O4'  C1'  C2'  105.54  3.000
+  DF  N1   C1'  C2'  110.21  3.000
+  DF  S1   C2   N3   118.85  3.000
+  DF  S1   C2   N1   118.87  3.000
+  DF  N3   C2   N1   122.05  3.000
+  DF  C3'  C2'  C1'  105.59  3.000
+  DF  O3'  C3'  C4'  110.08  3.000
+  DF  O3'  C3'  C2'  110.08  3.000
+  DF  C4'  C3'  C2'  105.46  3.000
+  DF  O4   C4   N3   120.36  3.000
+  DF  O4   C4   C5   120.36  3.000
+  DF  N3   C4   C5   119.28  3.000
+  DF  O4'  C4'  C5'  110.19  3.000
+  DF  O4'  C4'  C3'  105.78  3.000
+  DF  C5'  C4'  C3'  110.18  3.000
+  DF  C7   C5   C6   121.04  3.000
+  DF  C7   C5   C4   121.03  3.000
+  DF  C6   C5   C4   117.82  3.000
+  DF  O5'  C5'  C4'  108.35  3.000
+  DF  N1   C6   C5   119.98  3.000
+  DF  C6   N1   C2   120.02  3.000
+  DF  C6   N1   C1'  119.79  3.000
+  DF  C2   N1   C1'  119.81  3.000
+  DF  C4   N3   C2   120.85  3.000
+  DF  C4'  O4'  C1'  105.73  3.000
+  DF  P    O5'  C5'  118.47  3.000
+  DF  P    OP1  OP3   59.79  3.000
+  DF  P    OP3  OP1   59.79  3.000
+  DF  OP3  P    OP2  115.53  3.000
+  DF  OP3  P    OP1   60.43  3.000
+  DF  OP2  P    OP1  115.53  3.000
+  DF  OP3  P    O5'  115.54  3.000
+  DF  OP2  P    O5'  120.16  3.000
+  DF  OP1  P    O5'  115.53  3.000
+
+loop_
+  _chem_comp_tor.comp_id
+  _chem_comp_tor.id
+  _chem_comp_tor.atom_id_1
+  _chem_comp_tor.atom_id_2
+  _chem_comp_tor.atom_id_3
+  _chem_comp_tor.atom_id_4
+  _chem_comp_tor.value_angle
+  _chem_comp_tor.value_angle_esd
+  _chem_comp_tor.period
+  DF  CONST_01  C5   C6   N1   C2      1.63   0.0  0
+  DF  CONST_02  C5   C4   N3   C2      0.49   0.0  0
+  DF  CONST_03  N1   C6   C5   C4     -0.70   0.0  0
+  DF  CONST_04  N1   C2   N3   C4      0.34   0.0  0
+  DF  CONST_05  N3   C4   C5   C6     -0.31   0.0  0
+  DF  CONST_06  N3   C2   N1   C6     -1.37   0.0  0
+  DF  CONST_07  N3   C2   N1   C1'   179.81   0.0  0
+  DF  CONST_08  C5   C6   N1   C1'  -179.56   0.0  0
+  DF  CONST_09  S1   C2   N1   C1'    -0.07   0.0  0
+  DF  CONST_10  O4   C4   N3   C2   -179.38   0.0  0
+  DF  CONST_11  S1   C2   N3   C4   -179.77   0.0  0
+  DF  CONST_12  O4   C4   C5   C6    179.54   0.0  0
+  DF  CONST_13  S1   C2   N1   C6    178.75   0.0  0
+  DF  CONST_14  N3   C4   C5   C7    179.92   0.0  0
+  DF  CONST_15  N1   C6   C5   C7    179.05   0.0  0
+  DF  Var_01    C4'  C3'  C2'  C1'     3.75  30.0  1
+  DF  Var_02    C3'  C4'  O4'  C1'    23.24  30.0  1
+  DF  Var_03    C2'  C1'  N1   C2     91.62  30.0  2
+  DF  Var_04    O4'  C1'  N1   C2   -150.12  30.0  2
+  DF  Var_05    C6   N1   C1'  C2'   -87.21  30.0  2
+  DF  Var_06    C4'  O4'  C1'  C2'   -20.79  30.0  1
+  DF  Var_07    O4'  C4'  C3'  C2'   -15.75  30.0  1
+  DF  Var_08    N1   C1'  C2'  C3'   128.27  30.0  1
+  DF  Var_09    O4'  C1'  C2'  C3'     9.78  30.0  1
+  DF  Var_10    N1   C1'  O4'  C4'  -143.60  30.0  1
+  DF  Var_11    O4'  C1'  N1   C6     31.05  30.0  2
+  DF  Var_12    O3'  C3'  C2'  C1'   127.12  30.0  1
+  DF  Var_13    C5'  C4'  O4'  C1'   146.73  30.0  1
+  DF  Var_14    C5'  C4'  C3'  C2'  -135.50  30.0  1
+  DF  Var_15    O4'  C4'  C3'  O3'  -140.74  30.0  1
+  DF  Var_16    OP3  OP1  P    O5'  -132.21  30.0  1
+  DF  Var_17    OP2  P    OP3  OP1  -116.25  30.0  1
+  DF  Var_18    O5'  C5'  C4'  C3'    89.48  30.0  3
+  DF  Var_19    P    O5'  C5'  C4'  -174.48  30.0  3
+  DF  Var_20    O3'  C3'  C4'  C5'    99.51  30.0  1
+  DF  Var_21    OP1  P    O5'  C5'    -6.99  30.0  3
+  DF  Var_22    OP3  P    O5'  C5'   -92.00  30.0  3
+  DF  Var_23    O5'  C5'  C4'  O4'   -29.05  30.0  3
+  DF  Var_24    OP2  P    O5'  C5'   123.05  30.0  3
+
+loop_
+  _chem_comp_chir.comp_id
+  _chem_comp_chir.id
+  _chem_comp_chir.atom_id_centre
+  _chem_comp_chir.atom_id_1
+  _chem_comp_chir.atom_id_2
+  _chem_comp_chir.atom_id_3
+  _chem_comp_chir.volume_sign
+  DF  chir_01  P  OP1  OP2  OP3  both
+
+loop_
+  _chem_comp_plane_atom.comp_id
+  _chem_comp_plane_atom.plane_id
+  _chem_comp_plane_atom.atom_id
+  _chem_comp_plane_atom.dist_esd
+  DF  plan-1  C1'  0.020
+  DF  plan-1  C2   0.020
+  DF  plan-1  C4   0.020
+  DF  plan-1  C5   0.020
+  DF  plan-1  C6   0.020
+  DF  plan-1  C7   0.020
+  DF  plan-1  N1   0.020
+  DF  plan-1  N3   0.020
+  DF  plan-1  O4   0.020
+  DF  plan-1  S1   0.020
+
+data_comp_1AP
+loop_
+  _chem_comp_atom.comp_id
+  _chem_comp_atom.atom_id
+  _chem_comp_atom.type_symbol
+  _chem_comp_atom.type_energy
+  _chem_comp_atom.charge
+  _chem_comp_atom.partial_charge
+  _chem_comp_atom.x
+  _chem_comp_atom.y
+  _chem_comp_atom.z
+  1AP  N1    N  N      0  .  -3.4003  -1.1491  -2.9600
+  1AP  C2    C  CR6    0  .  -2.0645  -1.4623  -3.0629
+  1AP  C4    C  CR56   0  .  -1.7180  -0.7156  -0.8692
+  1AP  C5    C  CR56   0  .  -3.0345  -0.4078  -0.7706
+  1AP  C6    C  CR6    0  .  -3.8763  -0.6333  -1.8396
+  1AP  C8    C  CR15   0  .  -2.0601   0.0950   1.1158
+  1AP  N2    N  NH2    0  .  -1.7953  -2.0922  -4.3557
+  1AP  N3    N  N      0  .  -1.2353  -1.2424  -2.0154
+  1AP  N9    N  NR5    0  .  -1.1270  -0.3984   0.3079
+  1AP  N7    N  N      0  .  -3.2513   0.0881   0.4392
+  1AP  N6    N  NH2    0  .  -5.2091  -0.1421  -2.2831
+  1AP  P     P  P      0  .   4.1008   3.5903   1.3196
+  1AP  OP1   O  OP    -1  .   3.1910   4.4354   2.1637
+  1AP  OP2   O  O      0  .   3.8924   3.9316  -0.1530
+  1AP  O5'   O  O2     0  .   3.7505   2.0085   1.5617
+  1AP  C5'   C  CH2    0  .   2.4892   1.5016   1.0515
+  1AP  C4'   C  CH1    0  .   1.9159   0.4280   2.0409
+  1AP  O4'   O  O2     0  .   0.3589   0.4802   2.0664
+  1AP  C1'   C  CH1    0  .  -0.1029  -0.7621   1.3276
+  1AP  C2'   C  CH2    0  .   0.9912  -1.2524   0.7316
+  1AP  C3'   C  CH1    0  .   2.2208  -0.7787   1.6269
+  1AP  O3'   O  OH1    0  .   2.3787  -1.6716   2.7632
+  1AP  OP3   O  OP    -1  .   5.5366   3.8599   1.7041
+  1AP  H81   H  HCR5   0  .  -1.9196   0.3753   2.1529
+  1AP  HN21  H  HNH2   0  .  -2.4340  -1.9825  -5.0998
+  1AP  HN22  H  HNH2   0  .  -0.9066  -2.5748  -4.5140
+  1AP  HN61  H  HNH2   0  .  -5.8033   0.3589  -1.6347
+  1AP  HN62  H  HNH2   0  .  -5.5500  -0.3811  -3.1888
+  1AP  H52   H  HCH2   0  .   1.7574   2.3506   0.9566
+  1AP  H51   H  HCH2   0  .   2.6505   1.0471   0.0664
+  1AP  H4    H  HCH1   0  .   2.3190   0.5969   3.0753
+  1AP  H11   H  HCH1   0  .  -0.5225  -1.5189   2.0579
+  1AP  H21   H  HCH2   0  .   1.0761  -0.8719  -0.2214
+  1AP  H22   H  HCH2   0  .   0.9525  -2.2815   0.7069
+  1AP  H31   H  HCH1   0  .   3.1763  -0.7536   0.9983
+  1AP  HO31  H  HOH1   0  .   3.2528  -2.0749   2.7339
+
+loop_
+  _chem_comp_bond.comp_id
+  _chem_comp_bond.atom_id_1
+  _chem_comp_bond.atom_id_2
+  _chem_comp_bond.type
+  _chem_comp_bond.value_dist
+  _chem_comp_bond.value_dist_esd
+  1AP  N1   C2    aromatic  1.376  0.020
+  1AP  N1   C6    aromatic  1.322  0.020
+  1AP  C2   N2    single    1.463  0.020
+  1AP  C2   N3    aromatic  1.354  0.020
+  1AP  C4   C5    aromatic  1.356  0.020
+  1AP  C4   N3    aromatic  1.351  0.020
+  1AP  C4   N9    aromatic  1.355  0.020
+  1AP  C5   C6    aromatic  1.379  0.020
+  1AP  C5   N7    aromatic  1.325  0.020
+  1AP  C6   N6    single    1.488  0.020
+  1AP  C8   N9    aromatic  1.329  0.020
+  1AP  C8   N7    aromatic  1.370  0.020
+  1AP  C8   H81   single    1.083  0.020
+  1AP  N2   HN21  single    0.987  0.020
+  1AP  N2   HN22  single    1.024  0.020
+  1AP  N9   C1'   single    1.490  0.020
+  1AP  N6   HN61  single    1.012  0.020
+  1AP  N6   HN62  single    0.997  0.020
+  1AP  P    OP1   deloc     1.501  0.020
+  1AP  P    OP2   deloc     1.526  0.020
+  1AP  P    O5'   single    1.638  0.020
+  1AP  P    OP3   deloc     1.511  0.020
+  1AP  O5'  C5'   single    1.452  0.020
+  1AP  C5'  C4'   single    1.568  0.020
+  1AP  C5'  H52   single    1.125  0.020
+  1AP  C5'  H51   single    1.097  0.020
+  1AP  C4'  O4'   single    1.558  0.020
+  1AP  C4'  C3'   single    1.312  0.020
+  1AP  C4'  H4    single    1.123  0.020
+  1AP  O4'  C1'   single    1.517  0.020
+  1AP  C1'  C2'   single    1.339  0.020
+  1AP  C1'  H11   single    1.132  0.020
+  1AP  C2'  C3'   single    1.593  0.020
+  1AP  C2'  H21   single    1.030  0.020
+  1AP  C2'  H22   single    1.030  0.020
+  1AP  C3'  O3'   single    1.454  0.020
+  1AP  C3'  H31   single    1.144  0.020
+  1AP  O3'  HO31  single    0.963  0.020
+
+loop_
+  _chem_comp_angle.comp_id
+  _chem_comp_angle.atom_id_1
+  _chem_comp_angle.atom_id_2
+  _chem_comp_angle.atom_id_3
+  _chem_comp_angle.value_angle
+  _chem_comp_angle.value_angle_esd
+  1AP  C6    N1   C2    120.12  3.000
+  1AP  N3    C2   N2    129.86  3.000
+  1AP  N3    C2   N1    119.98  3.000
+  1AP  N2    C2   N1    110.04  3.000
+  1AP  N9    C4   N3    132.28  3.000
+  1AP  N9    C4   C5    107.90  3.000
+  1AP  N3    C4   C5    119.82  3.000
+  1AP  N7    C5   C6    131.98  3.000
+  1AP  N7    C5   C4    108.07  3.000
+  1AP  C6    C5   C4    119.95  3.000
+  1AP  N6    C6   C5    136.36  3.000
+  1AP  N6    C6   N1    101.46  3.000
+  1AP  C5    C6   N1    120.06  3.000
+  1AP  H81   C8   N7    125.93  3.000
+  1AP  H81   C8   N9    125.93  3.000
+  1AP  N7    C8   N9    107.96  3.000
+  1AP  HN22  N2   HN21  119.86  3.000
+  1AP  HN22  N2   C2    119.95  3.000
+  1AP  HN21  N2   C2    119.96  3.000
+  1AP  C4    N3   C2    120.07  3.000
+  1AP  C1'   N9   C8     99.04  3.000
+  1AP  C1'   N9   C4    146.84  3.000
+  1AP  C8    N9   C4    107.98  3.000
+  1AP  C8    N7   C5    108.09  3.000
+  1AP  HN62  N6   HN61  120.00  3.000
+  1AP  HN62  N6   C6    119.87  3.000
+  1AP  HN61  N6   C6    119.89  3.000
+  1AP  OP3   P    O5'   109.75  3.000
+  1AP  OP3   P    OP2   109.60  3.000
+  1AP  O5'   P    OP2   109.24  3.000
+  1AP  OP3   P    OP1   109.41  3.000
+  1AP  O5'   P    OP1   109.32  3.000
+  1AP  OP2   P    OP1   109.51  3.000
+  1AP  C5'   O5'  P     118.09  3.000
+  1AP  H51   C5'  H52   109.43  3.000
+  1AP  H51   C5'  C4'   109.68  3.000
+  1AP  H52   C5'  C4'   109.39  3.000
+  1AP  H51   C5'  O5'   109.42  3.000
+  1AP  H52   C5'  O5'   109.35  3.000
+  1AP  C4'   C5'  O5'   109.56  3.000
+  1AP  H4    C4'  C3'   110.23  3.000
+  1AP  H4    C4'  O4'   109.79  3.000
+  1AP  C3'   C4'  O4'   105.56  3.000
+  1AP  H4    C4'  C5'   110.30  3.000
+  1AP  C3'   C4'  C5'   110.22  3.000
+  1AP  O4'   C4'  C5'   110.65  3.000
+  1AP  C1'   O4'  C4'   105.59  3.000
+  1AP  H11   C1'  C2'   110.20  3.000
+  1AP  H11   C1'  O4'   110.24  3.000
+  1AP  C2'   C1'  O4'   105.54  3.000
+  1AP  H11   C1'  N9    110.47  3.000
+  1AP  C2'   C1'  N9    110.26  3.000
+  1AP  O4'   C1'  N9    110.03  3.000
+  1AP  H22   C2'  H21   110.49  3.000
+  1AP  H22   C2'  C3'   109.85  3.000
+  1AP  H21   C2'  C3'   110.28  3.000
+  1AP  H22   C2'  C1'   110.23  3.000
+  1AP  H21   C2'  C1'   110.13  3.000
+  1AP  C3'   C2'  C1'   105.76  3.000
+  1AP  H31   C3'  O3'   110.62  3.000
+  1AP  H31   C3'  C2'   110.02  3.000
+  1AP  O3'   C3'  C2'   109.91  3.000
+  1AP  H31   C3'  C4'   110.33  3.000
+  1AP  O3'   C3'  C4'   110.09  3.000
+  1AP  C2'   C3'  C4'   105.76  3.000
+  1AP  HO31  O3'  C3'   109.39  3.000
+
+loop_
+  _chem_comp_tor.comp_id
+  _chem_comp_tor.id
+  _chem_comp_tor.atom_id_1
+  _chem_comp_tor.atom_id_2
+  _chem_comp_tor.atom_id_3
+  _chem_comp_tor.atom_id_4
+  _chem_comp_tor.value_angle
+  _chem_comp_tor.value_angle_esd
+  _chem_comp_tor.period
+  1AP  CONST_01  C4    N3   C2   N1     -0.01   0.0  0
+  1AP  CONST_02  C4    C5   C6   N1     -0.00   0.0  0
+  1AP  CONST_03  N7    C5   C6   N1    180.00   0.0  0
+  1AP  CONST_04  C5    C6   N1   C2     -0.01   0.0  0
+  1AP  CONST_05  C5    C4   N3   C2     -0.00   0.0  0
+  1AP  CONST_06  N9    C4   N3   C2    179.99   0.0  0
+  1AP  CONST_07  C8    N7   C5   C4     -0.01   0.0  0
+  1AP  CONST_08  N7    C8   N9   C4      0.00   0.0  0
+  1AP  CONST_09  C8    N9   C4   C5     -0.01   0.0  0
+  1AP  CONST_10  N9    C8   N7   C5      0.00   0.0  0
+  1AP  CONST_11  N3    C2   N1   C6      0.01   0.0  0
+  1AP  CONST_12  N3    C4   C5   C6      0.00   0.0  0
+  1AP  CONST_13  N9    C4   C5   C6   -179.99   0.0  0
+  1AP  CONST_14  C8    N7   C5   C6    179.99   0.0  0
+  1AP  CONST_15  N3    C4   N9   C8    180.00   0.0  0
+  1AP  CONST_16  N7    C5   C4   N3   -180.00   0.0  0
+  1AP  CONST_17  N7    C5   C4   N9      0.01   0.0  0
+  1AP  CONST_18  C1'   N9   C4   C5    143.01   0.0  0
+  1AP  CONST_19  C1'   N9   C4   N3    -36.98   0.0  0
+  1AP  CONST_20  C1'   N9   C8   N7   -160.54   0.0  0
+  1AP  CONST_21  N6    C6   N1   C2    166.04   0.0  0
+  1AP  CONST_22  N6    C6   C5   C4   -159.97   0.0  0
+  1AP  CONST_23  N2    C2   N3   C4   -175.66   0.0  0
+  1AP  CONST_24  N2    C2   N1   C6    176.46   0.0  0
+  1AP  CONST_25  N6    C6   C5   N7     20.03   0.0  0
+  1AP  CONST_26  H81   C8   N9   C4    175.34   0.0  0
+  1AP  CONST_27  HN21  N2   C2   N1     19.24   0.0  0
+  1AP  CONST_28  HN22  N2   C2   N1   -166.27   0.0  0
+  1AP  CONST_29  HN61  N6   C6   N1   -176.72   0.0  0
+  1AP  CONST_30  HN62  N6   C6   N1      9.04   0.0  0
+  1AP  Var_01    O4'   C1'  N9   C4    153.71  30.0  2
+  1AP  Var_02    C2'   C1'  N9   C4     37.71  30.0  2
+  1AP  Var_03    O4'   C1'  N9   C8    -61.69  30.0  2
+  1AP  Var_04    C2'   C1'  N9   C8   -177.70  30.0  2
+  1AP  Var_05    C4'   O4'  C1'  N9   -130.83  30.0  1
+  1AP  Var_06    C3'   C2'  C1'  N9    145.98  30.0  1
+  1AP  Var_07    C2'   C1'  O4'  C4'   -11.89  30.0  1
+  1AP  Var_08    C1'   C2'  C3'  C4'   -36.86  30.0  1
+  1AP  Var_09    C2'   C3'  C4'  O4'    27.15  30.0  1
+  1AP  Var_10    C3'   C2'  C1'  O4'    27.19  30.0  1
+  1AP  Var_11    C3'   C4'  O4'  C1'   -11.82  30.0  1
+  1AP  Var_12    C1'   O4'  C4'  C5'   107.41  30.0  1
+  1AP  Var_13    C2'   C3'  C4'  C5'   -92.36  30.0  1
+  1AP  Var_14    O3'   C3'  C4'  O4'   -91.53  30.0  1
+  1AP  Var_15    O3'   C3'  C2'  C1'    81.94  30.0  1
+  1AP  Var_16    H11   C1'  N9   C4    -84.34  30.0  2
+  1AP  Var_17    H21   C2'  C1'  N9     26.83  30.0  1
+  1AP  Var_18    H22   C2'  C1'  N9    -95.34  30.0  1
+  1AP  Var_19    H31   C3'  C4'  O4'   146.09  30.0  1
+  1AP  Var_20    H4    C4'  O4'  C1'  -130.61  30.0  1
+  1AP  Var_21    O4'   C4'  C5'  O5'   146.19  30.0  3
+  1AP  Var_22    C3'   C4'  C5'  O5'   -97.44  30.0  3
+  1AP  Var_23    O3'   C3'  C4'  C5'   148.96  30.0  1
+  1AP  Var_24    HO31  O3'  C3'  C4'  -123.71  30.0  3
+  1AP  Var_25    H52   C5'  C4'  O4'    26.33  30.0  1
+  1AP  Var_26    H51   C5'  C4'  O4'   -93.69  30.0  1
+  1AP  Var_27    C4'   C5'  O5'  P    -144.25  30.0  3
+  1AP  Var_28    C5'   O5'  P    OP1    69.75  30.0  3
+  1AP  Var_29    C5'   O5'  P    OP2   -50.06  30.0  3
+  1AP  Var_30    OP3   P    O5'  C5'  -170.24  30.0  2
+
+loop_
+  _chem_comp_chir.comp_id
+  _chem_comp_chir.id
+  _chem_comp_chir.atom_id_centre
+  _chem_comp_chir.atom_id_1
+  _chem_comp_chir.atom_id_2
+  _chem_comp_chir.atom_id_3
+  _chem_comp_chir.volume_sign
+  1AP  chir_01  C4'  C5'  O4'  C3'  negativ
+  1AP  chir_02  C1'  O4'  N9   C2'  negativ
+  1AP  chir_03  C3'  O3'  C4'  C2'  positiv
+
+loop_
+  _chem_comp_plane_atom.comp_id
+  _chem_comp_plane_atom.plane_id
+  _chem_comp_plane_atom.atom_id
+  _chem_comp_plane_atom.dist_esd
+  1AP  plan-1  N1    0.020
+  1AP  plan-1  C2    0.020
+  1AP  plan-1  C4    0.020
+  1AP  plan-1  C5    0.020
+  1AP  plan-1  C6    0.020
+  1AP  plan-1  C8    0.020
+  1AP  plan-1  N2    0.020
+  1AP  plan-1  N3    0.020
+  1AP  plan-1  N9    0.020
+  1AP  plan-1  N7    0.020
+  1AP  plan-1  N6    0.020
+  1AP  plan-1  C1'   0.020
+  1AP  plan-1  H81   0.020
+  1AP  plan-2  C2    0.020
+  1AP  plan-2  N2    0.020
+  1AP  plan-2  HN21  0.020
+  1AP  plan-2  HN22  0.020
+  1AP  plan-3  C6    0.020
+  1AP  plan-3  N6    0.020
+  1AP  plan-3  HN61  0.020
+  1AP  plan-3  HN62  0.020
+

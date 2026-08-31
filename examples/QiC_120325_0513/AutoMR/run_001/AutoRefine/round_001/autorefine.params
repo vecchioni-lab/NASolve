@@ -1,0 +1,42 @@
+data_manager {
+  miller_array {
+    file = "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz"
+    labels {
+      name = "F(+),SIGF(+),F(-),SIGF(-)"
+    }
+    labels {
+      name = "FreeR_flag"
+    }
+  }
+}
+
+refinement {
+  main {
+    number_of_macro_cycles = 5
+    target = "auto"
+    scattering_table = n_gaussian
+    nproc = 16
+  }
+  refine {
+    strategy = *individual_sites *individual_sites_real_space *group_adp *occupancies *group_anomalous
+    sites {
+      individual = all
+    }
+    adp {
+      group_adp_refinement_mode = one_adp_group_per_residue
+      group = all
+    }
+    anomalous_scatterers {
+      group {
+        selection = "chain B and resid 4 and name I"
+        f_prime = 0
+        f_double_prime = 0
+        refine = *f_prime *f_double_prime
+      }
+    }
+  }
+  target_weights {
+    optimize_xyz_weight = True
+    optimize_adp_weight = True
+  }
+}

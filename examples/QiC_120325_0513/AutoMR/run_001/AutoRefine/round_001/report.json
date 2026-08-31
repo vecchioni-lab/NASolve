@@ -1,0 +1,328 @@
+{
+  "acceptance": {
+    "numerical_success": true,
+    "r_work_less_than_0_30": true,
+    "r_work_less_than_r_free": true,
+    "visual_inspection_required": true
+  },
+  "checkpoint": "refine-001",
+  "command": [
+    "/Users/karolwoloszyn/Applications/phenix-2.1-6048/bin/phenix.refine",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Model/readyset_model.pdb",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Restraints/narestraints_Std_padd.phil",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Restraints/5W6W_secondary_structure.eff",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/ReadySet/prepared_model.ligands.cif",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/autorefine.params",
+    "--overwrite",
+    "xray_data.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "xray_data.labels=F(+),SIGF(+),F(-),SIGF(-)",
+    "xray_data.r_free_flags.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "xray_data.r_free_flags.label=FreeR_flag",
+    "xray_data.r_free_flags.test_flag_value=0",
+    "xray_data.r_free_flags.generate=False",
+    "main.target=\"auto\"",
+    "ordered_solvent=False",
+    "simulated_annealing=False",
+    "output.prefix=refined",
+    "output.write_model_cif_file=True",
+    "output.write_reflection_cif_file=True",
+    "output.export_final_f_model=True",
+    "xray_data.force_anomalous_flag_to_be_equal_to=True"
+  ],
+  "compatibility": {
+    "coordinate_record_count": 861,
+    "required_items": [],
+    "validated": true
+  },
+  "created_utc": "2026-08-29T19:08:00.916384+00:00",
+  "inputs": {
+    "authoritative_observations": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "free_r_label": "FreeR_flag",
+    "free_r_test_value": 0,
+    "model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Model/readyset_model.pdb",
+    "observation_labels": [
+      "F(+)",
+      "SIGF(+)",
+      "F(-)",
+      "SIGF(-)"
+    ],
+    "phase_file": null,
+    "phase_labels": [],
+    "restraints": [
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Restraints/narestraints_Std_padd.phil",
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Restraints/5W6W_secondary_structure.eff",
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/ReadySet/prepared_model.ligands.cif"
+    ]
+  },
+  "macro_cycles": 5,
+  "message": "Numerical refinement criteria passed; inspect the model and maps",
+  "outputs": {
+    "log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/phenix.refine.log",
+    "map_coefficients": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/refined_001.mtz",
+    "metrics_tsv": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/metrics.tsv",
+    "model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/refined_001.pdb",
+    "model_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/refined_001.cif",
+    "preflight_log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/phenix.refine.preflight.log",
+    "refinement_reflections": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/refined_001.mtz",
+    "reflection_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/refined_001.reflections.cif"
+  },
+  "parameters": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/autorefine.params",
+  "parent_checkpoint": "postmr",
+  "phenix_exit_code": 0,
+  "preflight_command": [
+    "/Users/karolwoloszyn/Applications/phenix-2.1-6048/bin/phenix.refine",
+    "--dry_run",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Model/readyset_model.pdb",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Restraints/narestraints_Std_padd.phil",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/Restraints/5W6W_secondary_structure.eff",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/PostMR/ReadySet/prepared_model.ligands.cif",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_001/AutoRefine/round_001/autorefine.params",
+    "--overwrite",
+    "xray_data.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "xray_data.labels=F(+),SIGF(+),F(-),SIGF(-)",
+    "xray_data.r_free_flags.file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "xray_data.r_free_flags.label=FreeR_flag",
+    "xray_data.r_free_flags.test_flag_value=0",
+    "xray_data.r_free_flags.generate=False",
+    "main.target=\"auto\"",
+    "ordered_solvent=False",
+    "simulated_annealing=False",
+    "output.prefix=refined",
+    "output.write_model_cif_file=True",
+    "output.write_reflection_cif_file=True",
+    "output.export_final_f_model=True",
+    "xray_data.force_anomalous_flag_to_be_equal_to=True"
+  ],
+  "preflight_failed": false,
+  "processor_count": 16,
+  "recipe": "AutoRefine/default",
+  "refinement": {
+    "adp_mode": "group",
+    "anomalous": true,
+    "anomalous_fallback": false,
+    "anomalous_parameter_mode": "refine",
+    "anomalous_selections": [
+      "chain B and resid 4 and name I"
+    ],
+    "ordered_solvent": false,
+    "real_space_sites": true,
+    "refine_occupancies": true,
+    "simulated_annealing": false,
+    "strategies": [
+      "individual_sites",
+      "individual_sites_real_space",
+      "group_adp",
+      "occupancies",
+      "group_anomalous"
+    ],
+    "target": "automatic",
+    "use_experimental_phases": true,
+    "weights": {
+      "optimize_adp": true,
+      "optimize_xyz": true
+    }
+  },
+  "selected_as_current": true,
+  "statistics": {
+    "angle_rmsd": null,
+    "anomalous_scatterers": [
+      {
+        "apparent_anomalous_occupancy": null,
+        "atom_name": "I",
+        "b_attenuation_at_resolution_limit": 0.16263241964014422,
+        "b_factor": 201.77,
+        "calculated_contribution_at_resolution_limit": null,
+        "calculated_f_double_prime": null,
+        "calculated_f_double_prime_at_occupancy": null,
+        "element": "I",
+        "model_occupancy": 1.0,
+        "refined_contribution_at_resolution_limit": 1.4519545950358688,
+        "refined_f_double_prime": 8.92783,
+        "refined_f_double_prime_at_occupancy": 8.92783,
+        "resolution_limit": 5.26998,
+        "site": "B:4",
+        "wavelength": null
+      }
+    ],
+    "bond_rmsd": null,
+    "clashscore": 44.19,
+    "cycle_series": [
+      {
+        "index": 0,
+        "r_free": 0.3016,
+        "r_work": 0.3278
+      },
+      {
+        "index": 1,
+        "r_free": 0.2095,
+        "r_work": 0.2425
+      },
+      {
+        "index": 2,
+        "r_free": 0.1795,
+        "r_work": 0.1958
+      },
+      {
+        "index": 3,
+        "r_free": 0.1648,
+        "r_work": 0.1816
+      },
+      {
+        "index": 4,
+        "r_free": 0.1645,
+        "r_work": 0.1801
+      },
+      {
+        "index": 5,
+        "r_free": 0.1647,
+        "r_work": 0.1799
+      },
+      {
+        "index": 6,
+        "r_free": 0.1536,
+        "r_work": 0.1747
+      },
+      {
+        "index": 7,
+        "r_free": 0.1484,
+        "r_work": 0.1637
+      },
+      {
+        "index": 8,
+        "r_free": 0.1459,
+        "r_work": 0.1626
+      },
+      {
+        "index": 9,
+        "r_free": 0.1451,
+        "r_work": 0.1617
+      },
+      {
+        "index": 10,
+        "r_free": 0.1448,
+        "r_work": 0.1616
+      },
+      {
+        "index": 11,
+        "r_free": 0.1447,
+        "r_work": 0.1616
+      },
+      {
+        "index": 12,
+        "r_free": 0.1445,
+        "r_work": 0.1616
+      },
+      {
+        "index": 13,
+        "r_free": 0.1422,
+        "r_work": 0.1607
+      },
+      {
+        "index": 14,
+        "r_free": 0.1394,
+        "r_work": 0.1541
+      },
+      {
+        "index": 15,
+        "r_free": 0.14,
+        "r_work": 0.1551
+      },
+      {
+        "index": 16,
+        "r_free": 0.1415,
+        "r_work": 0.1554
+      },
+      {
+        "index": 17,
+        "r_free": 0.1429,
+        "r_work": 0.1558
+      },
+      {
+        "index": 18,
+        "r_free": 0.143,
+        "r_work": 0.1557
+      },
+      {
+        "index": 19,
+        "r_free": 0.1431,
+        "r_work": 0.1557
+      },
+      {
+        "index": 20,
+        "r_free": 0.1416,
+        "r_work": 0.1539
+      },
+      {
+        "index": 21,
+        "r_free": 0.1491,
+        "r_work": 0.1478
+      },
+      {
+        "index": 22,
+        "r_free": 0.1475,
+        "r_work": 0.1481
+      },
+      {
+        "index": 23,
+        "r_free": 0.1483,
+        "r_work": 0.1483
+      },
+      {
+        "index": 24,
+        "r_free": 0.1493,
+        "r_work": 0.1486
+      },
+      {
+        "index": 25,
+        "r_free": 0.1456,
+        "r_work": 0.148
+      },
+      {
+        "index": 26,
+        "r_free": 0.1483,
+        "r_work": 0.1458
+      },
+      {
+        "index": 27,
+        "r_free": 0.1478,
+        "r_work": 0.146
+      },
+      {
+        "index": 28,
+        "r_free": 0.1491,
+        "r_work": 0.1463
+      },
+      {
+        "index": 29,
+        "r_free": 0.1487,
+        "r_work": 0.1466
+      },
+      {
+        "index": 30,
+        "r_free": 0.1487,
+        "r_work": 0.1465
+      },
+      {
+        "index": 31,
+        "r_free": 0.2095,
+        "r_work": 0.2425
+      },
+      {
+        "index": 32,
+        "r_free": 0.1483,
+        "r_work": 0.1461
+      }
+    ],
+    "diagnostics": [
+      "Warning: Unknown mtz labels: F-obs-filtered(+), SIGF-obs-filtered(+), F-obs-filtered(-), SIGF-obs-filtered(-), F-model(+), PHIF-model(+), F-model(-), PHIF-model(-), 2FOFCWT_no_fill, PH2FOFCWT_no_fill, ANOM, PANOM"
+    ],
+    "initial_r_free": 0.3016,
+    "initial_r_work": 0.3278,
+    "r_free": 0.1483,
+    "r_free_minus_r_work": 0.0022,
+    "r_work": 0.1461
+  },
+  "status": "AUTOREFINE_READY"
+}

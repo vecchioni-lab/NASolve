@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/Users/karolwoloszyn/Applications/phenix-2.1-6048/bin/phenix.autosol",
+    "data=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/staraniso_alldata-unique.mtz",
+    "seq_file=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/AutoSol/sequence_input.txt",
+    "labels=I(+) SIGI(+) I(-) SIGI(-)",
+    "atom_type=I",
+    "lambda=1.377618",
+    "input_partpdb_file=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/Phaser/mr_solution.pdb",
+    "build=False",
+    "phase_improve_and_build=False",
+    "nproc=16"
+  ],
+  "continuation": "continue without AutoSol phases; user review requested",
+  "created_utc": "2026-08-30T02:02:14.051361+00:00",
+  "failure_reason": "AutoSol exited with status 1",
+  "message": "AutoSol did not produce validated experimental phases; continue with the MR refinement path and inspect this warning",
+  "outputs": {
+    "console_log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/QiC_120325_0513/AutoMR/run_002/AutoSol/autosol.console.log",
+    "heavy_atom_model": null,
+    "refinement_data": null
+  },
+  "status": "AUTOSOL_WARNING",
+  "use_for_refinement": false
+}

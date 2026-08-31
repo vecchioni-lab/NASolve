@@ -1,0 +1,34 @@
+data_manager {
+  miller_array {
+    file = "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/staraniso_alldata-unique.mtz"
+    labels {
+      name = "IMEAN,SIGIMEAN"
+    }
+    labels {
+      name = "FreeR_flag"
+    }
+  }
+}
+
+refinement {
+  main {
+    number_of_macro_cycles = 5
+    target = "auto"
+    scattering_table = n_gaussian
+    nproc = 16
+  }
+  refine {
+    strategy = *individual_sites *individual_sites_real_space *group_adp *occupancies
+    sites {
+      individual = all
+    }
+    adp {
+      group_adp_refinement_mode = one_adp_group_per_residue
+      group = all
+    }
+  }
+  target_weights {
+    optimize_xyz_weight = True
+    optimize_adp_weight = True
+  }
+}

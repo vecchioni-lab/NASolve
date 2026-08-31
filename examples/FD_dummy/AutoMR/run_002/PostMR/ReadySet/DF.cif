@@ -1,0 +1,203 @@
+# electronic Ligand Builder and Optimisation Workbench (eLBOW)
+#   - a module of PHENIX version 2.1-6048-
+#   - file written: Fri Aug 28 19:29:44 2026
+#
+#   Input file: a 22 line input string
+#   Random seed: 03056941001
+#   Residue: DF
+#   Template file: a 22 line input string
+#
+data_comp_list
+loop_
+_chem_comp.id
+_chem_comp.three_letter_code
+_chem_comp.name
+_chem_comp.group
+_chem_comp.number_atoms_all
+_chem_comp.number_atoms_nh
+_chem_comp.desc_level
+DF          DF 'Unknown                  ' ligand 21 21 .
+#
+data_comp_DF
+#
+loop_
+_chem_comp_atom.comp_id
+_chem_comp_atom.atom_id
+_chem_comp_atom.type_symbol
+_chem_comp_atom.type_energy
+_chem_comp_atom.charge
+_chem_comp_atom.partial_charge
+_chem_comp_atom.x
+_chem_comp_atom.y
+_chem_comp_atom.z
+DF         C1'     C   C      0    .      -6.2920    0.2640    9.5030
+DF          C2     C   CR6    0    .      -8.7720    0.0990    9.0110
+DF         C2'     C   CSP    0    .      -5.8040   -0.9090   10.3430
+DF         C3'     C   C      0    .      -4.2950   -0.9900   10.1360
+DF          C4     C   CR6    0    .      -9.5660   -0.7150    6.8230
+DF         C4'     C   C      0    .      -3.9580    0.2130    9.2490
+DF          C5     C   CR6    0    .      -8.1870   -0.8990    6.4170
+DF         C5'     C   CSP    0    .      -3.0100   -0.0960    8.1130
+DF          C6     C   C      0    .      -7.2210   -0.5830    7.2980
+DF          C7     C   C      0    .      -7.8980   -1.4220    5.0480
+DF          N1     N   NR6    0    .      -7.4720   -0.0820    8.5570
+DF          N3     N   N      0    .      -9.7400   -0.2330    8.0950
+DF         O3'     O   OC     0    .      -3.5150   -1.0030   11.3600
+DF          O4     O   OC     0    .     -10.5490   -0.9530    6.1230
+DF         O4'     O   OC2    0    .      -5.2070    0.6690    8.6920
+DF         O5'     O   OC2    0    .      -3.7530   -0.5030    6.9460
+DF          OP1    O   O2     0    .      -1.5530   -0.8060    5.8410
+DF          OP2    O   O      0    .      -3.5150   -2.3820    5.3200
+DF          OP3    O   O2     0    .      -2.6440   -0.5220    4.7030
+DF          P      P   P      0    .      -3.0090   -1.0160    5.6340
+DF          S1     S   S      0    .      -9.1820    0.7210   10.6630
+#
+loop_
+_chem_comp_bond.comp_id
+_chem_comp_bond.atom_id_1
+_chem_comp_bond.atom_id_2
+_chem_comp_bond.type
+_chem_comp_bond.value_dist
+_chem_comp_bond.value_dist_esd
+DF  C1'     C2'    aromatic      1.581 0.020
+DF  C1'      N1    single        1.474 0.020
+DF  C1'     O4'    single        1.297 0.020
+DF   C2      N1    aromatic      1.333 0.020
+DF   C2      N3    aromatic      1.329 0.020
+DF   C2      S1    single        1.823 0.020
+DF  C2'     C3'    aromatic      1.518 0.020
+DF  C3'     C4'    aromatic      1.340 0.020
+DF  C3'     O3'    single        1.492 0.020
+DF   C4      C5    aromatic      1.399 0.020
+DF   C4      N3    aromatic      1.333 0.020
+DF   C4      O4    single        1.407 0.020
+DF  C4'     C5'    single        1.501 0.020
+DF  C4'     O4'    single        1.616 0.020
+DF   C5      C6    aromatic      1.400 0.020
+DF   C5      C7    single        1.544 0.020
+DF  C5'     O5'    single        1.412 0.020
+DF   C6      N1    aromatic      1.333 0.020
+DF  O5'      P     single        1.658 0.020
+DF   OP1     OP3   single        1.574 0.020
+DF   OP1     P     single        1.564 0.020
+DF   OP2     P     double        1.463 0.020
+DF   OP3     P     single        1.564 0.020
+#
+loop_
+_chem_comp_angle.comp_id
+_chem_comp_angle.atom_id_1
+_chem_comp_angle.atom_id_2
+_chem_comp_angle.atom_id_3
+_chem_comp_angle.value_angle
+_chem_comp_angle.value_angle_esd
+DF  O4'     C1'      N1          110.19 3.000
+DF  O4'     C1'     C2'          105.54 3.000
+DF   N1     C1'     C2'          110.21 3.000
+DF   S1      C2      N3          118.85 3.000
+DF   S1      C2      N1          118.87 3.000
+DF   N3      C2      N1          122.05 3.000
+DF  C3'     C2'     C1'          105.59 3.000
+DF  O3'     C3'     C4'          110.08 3.000
+DF  O3'     C3'     C2'          110.08 3.000
+DF  C4'     C3'     C2'          105.46 3.000
+DF   O4      C4      N3          120.36 3.000
+DF   O4      C4      C5          120.36 3.000
+DF   N3      C4      C5          119.28 3.000
+DF  O4'     C4'     C5'          110.19 3.000
+DF  O4'     C4'     C3'          105.78 3.000
+DF  C5'     C4'     C3'          110.18 3.000
+DF   C7      C5      C6          121.04 3.000
+DF   C7      C5      C4          121.03 3.000
+DF   C6      C5      C4          117.82 3.000
+DF  O5'     C5'     C4'          108.35 3.000
+DF   N1      C6      C5          119.98 3.000
+DF   C6      N1      C2          120.02 3.000
+DF   C6      N1     C1'          119.79 3.000
+DF   C2      N1     C1'          119.81 3.000
+DF   C4      N3      C2          120.85 3.000
+DF  C4'     O4'     C1'          105.73 3.000
+DF   P      O5'     C5'          118.47 3.000
+DF   P       OP1     OP3          59.79 3.000
+DF   P       OP3     OP1          59.79 3.000
+DF   OP3     P       OP2         115.53 3.000
+DF   OP3     P       OP1          60.43 3.000
+DF   OP2     P       OP1         115.53 3.000
+DF   OP3     P      O5'          115.54 3.000
+DF   OP2     P      O5'          120.16 3.000
+DF   OP1     P      O5'          115.53 3.000
+#
+loop_
+_chem_comp_tor.comp_id
+_chem_comp_tor.id
+_chem_comp_tor.atom_id_1
+_chem_comp_tor.atom_id_2
+_chem_comp_tor.atom_id_3
+_chem_comp_tor.atom_id_4
+_chem_comp_tor.value_angle
+_chem_comp_tor.value_angle_esd
+_chem_comp_tor.period
+DF CONST_01       C5      C6      N1      C2            1.63   0.0 0
+DF CONST_02       C5      C4      N3      C2            0.49   0.0 0
+DF CONST_03       N1      C6      C5      C4           -0.70   0.0 0
+DF CONST_04       N1      C2      N3      C4            0.34   0.0 0
+DF CONST_05       N3      C4      C5      C6           -0.31   0.0 0
+DF CONST_06       N3      C2      N1      C6           -1.37   0.0 0
+DF CONST_07       N3      C2      N1     C1'          179.81   0.0 0
+DF CONST_08       C5      C6      N1     C1'         -179.56   0.0 0
+DF CONST_09       S1      C2      N1     C1'           -0.07   0.0 0
+DF CONST_10       O4      C4      N3      C2         -179.38   0.0 0
+DF CONST_11       S1      C2      N3      C4         -179.77   0.0 0
+DF CONST_12       O4      C4      C5      C6          179.54   0.0 0
+DF CONST_13       S1      C2      N1      C6          178.75   0.0 0
+DF CONST_14       N3      C4      C5      C7          179.92   0.0 0
+DF CONST_15       N1      C6      C5      C7          179.05   0.0 0
+DF Var_01        C4'     C3'     C2'     C1'            3.75  30.0 1
+DF Var_02        C3'     C4'     O4'     C1'           23.24  30.0 1
+DF Var_03        C2'     C1'      N1      C2           91.62  30.0 2
+DF Var_04        O4'     C1'      N1      C2         -150.12  30.0 2
+DF Var_05         C6      N1     C1'     C2'          -87.21  30.0 2
+DF Var_06        C4'     O4'     C1'     C2'          -20.79  30.0 1
+DF Var_07        O4'     C4'     C3'     C2'          -15.75  30.0 1
+DF Var_08         N1     C1'     C2'     C3'          128.27  30.0 1
+DF Var_09        O4'     C1'     C2'     C3'            9.78  30.0 1
+DF Var_10         N1     C1'     O4'     C4'         -143.60  30.0 1
+DF Var_11        O4'     C1'      N1      C6           31.05  30.0 2
+DF Var_12        O3'     C3'     C2'     C1'          127.12  30.0 1
+DF Var_13        C5'     C4'     O4'     C1'          146.73  30.0 1
+DF Var_14        C5'     C4'     C3'     C2'         -135.50  30.0 1
+DF Var_15        O4'     C4'     C3'     O3'         -140.74  30.0 1
+DF Var_16         OP3     OP1     P      O5'         -132.21  30.0 1
+DF Var_17         OP2     P       OP3     OP1        -116.25  30.0 1
+DF Var_18        O5'     C5'     C4'     C3'           89.48  30.0 3
+DF Var_19         P      O5'     C5'     C4'         -174.48  30.0 3
+DF Var_20        O3'     C3'     C4'     C5'           99.51  30.0 1
+DF Var_21         OP1     P      O5'     C5'           -6.99  30.0 3
+DF Var_22         OP3     P      O5'     C5'          -92.00  30.0 3
+DF Var_23        O5'     C5'     C4'     O4'          -29.05  30.0 3
+DF Var_24         OP2     P      O5'     C5'          123.05  30.0 3
+#
+loop_
+_chem_comp_chir.comp_id
+_chem_comp_chir.id
+_chem_comp_chir.atom_id_centre
+_chem_comp_chir.atom_id_1
+_chem_comp_chir.atom_id_2
+_chem_comp_chir.atom_id_3
+_chem_comp_chir.volume_sign
+DF chir_01   P       OP1     OP2     OP3   both
+#
+loop_
+_chem_comp_plane_atom.comp_id
+_chem_comp_plane_atom.plane_id
+_chem_comp_plane_atom.atom_id
+_chem_comp_plane_atom.dist_esd
+DF plan-1    C1' 0.020
+DF plan-1     C2 0.020
+DF plan-1     C4 0.020
+DF plan-1     C5 0.020
+DF plan-1     C6 0.020
+DF plan-1     C7 0.020
+DF plan-1     N1 0.020
+DF plan-1     N3 0.020
+DF plan-1     O4 0.020
+DF plan-1     S1 0.020

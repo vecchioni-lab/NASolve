@@ -1,0 +1,103 @@
+{
+  "audit": {
+    "array_anomalous": false,
+    "array_labels": "FreeR_flag",
+    "free_fraction": 0.06853396901072706,
+    "free_independent_groups": 115,
+    "inconsistent_friedel_flag_groups": 0,
+    "independent_friedel_groups": 1678,
+    "matching_method": "exact-hkl-fallback",
+    "paired_friedel_groups": 0,
+    "resolution_shells": [
+      {
+        "free_groups": 9,
+        "groups": 168
+      },
+      {
+        "free_groups": 15,
+        "groups": 168
+      },
+      {
+        "free_groups": 12,
+        "groups": 168
+      },
+      {
+        "free_groups": 9,
+        "groups": 168
+      },
+      {
+        "free_groups": 6,
+        "groups": 167
+      },
+      {
+        "free_groups": 10,
+        "groups": 168
+      },
+      {
+        "free_groups": 6,
+        "groups": 168
+      },
+      {
+        "free_groups": 8,
+        "groups": 168
+      },
+      {
+        "free_groups": 20,
+        "groups": 168
+      },
+      {
+        "free_groups": 20,
+        "groups": 167
+      }
+    ],
+    "status": "NOISY",
+    "stored_observations": 1678,
+    "test_flag_value": 0,
+    "warnings": [
+      "Stored array did not expose Friedel mates for a direct consistency test"
+    ]
+  },
+  "automatic_selection": false,
+  "benchmark": [],
+  "candidates": [
+    {
+      "checkpoint": "postmr",
+      "near_tie": false,
+      "r_free": null,
+      "r_free_minus_r_work": null,
+      "r_work": null,
+      "recipe": "PostMR/ReadySet",
+      "strict_success": false
+    },
+    {
+      "checkpoint": "refine-002",
+      "near_tie": false,
+      "r_free": null,
+      "r_free_minus_r_work": null,
+      "r_work": null,
+      "recipe": "RefineDoctor/ML-group-anomalous-off",
+      "strict_success": false
+    }
+  ],
+  "created_utc": "2026-08-28T23:34:07.153247+00:00",
+  "current_checkpoint_preserved": true,
+  "eligibility": {
+    "independent_observations_per_atom": 1.9466357308584687,
+    "individual_adp_trial": false,
+    "resolution_limit": 4.99675
+  },
+  "message": "Refinement remains a user-review case after bounded triage",
+  "recommendation": "The bounded trials did not produce a defensible automatic recommendation",
+  "recommended_checkpoint": null,
+  "source_checkpoint": "postmr",
+  "status": "REFINE_DOCTOR_REVIEW",
+  "trials": [
+    {
+      "checkpoint": "refine-002",
+      "log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/FD_dummy/AutoMR/run_002/AutoRefine/round_002/phenix.refine.log",
+      "parent": "postmr",
+      "report": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/FD_dummy/AutoMR/run_002/AutoRefine/round_002/report.json",
+      "status": "AUTOREFINE_FAILED"
+    }
+  ]
+}

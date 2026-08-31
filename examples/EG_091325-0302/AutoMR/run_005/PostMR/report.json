@@ -1,0 +1,112 @@
+{
+  "anomalous": {
+    "autosol_required": false,
+    "candidates": [],
+    "trigger_elements": [
+      "BR",
+      "I",
+      "SE"
+    ]
+  },
+  "component_identity": {
+    "DE": {
+      "deposition_code": null,
+      "description": "4-thiothymidine under the laboratory PDB-compatible label DE",
+      "refinement_code": "DE"
+    }
+  },
+  "coot": {
+    "executable": "/opt/homebrew/Cellar/coot/1.3.1/bin/coot",
+    "log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Coot/coot.log",
+    "ran": true,
+    "shared_parent_coordinates_restored": {
+      "A:12": {
+        "atoms": [
+          "C1'",
+          "C2",
+          "C2'",
+          "C3'",
+          "C4",
+          "C4'",
+          "C5",
+          "C5'",
+          "C6",
+          "C7",
+          "N1",
+          "N3",
+          "O2",
+          "O3'",
+          "O4'",
+          "O5'",
+          "OP1",
+          "OP2",
+          "P"
+        ],
+        "count": 19,
+        "parent_atom_count": 20,
+        "substitutions": [
+          {
+            "anchor_atom": "C4",
+            "bond_length": 1.588,
+            "parent_atom": "O4",
+            "placement": "canonical-parent-vector",
+            "target_atom": "S4"
+          }
+        ]
+      }
+    }
+  },
+  "created_utc": "2026-08-29T00:05:31.585048+00:00",
+  "input_model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/Phaser/mr_solution.pdb",
+  "input_sha256": "6a9b7d24bc3bdcc2b04bb122064b0fe2f405d53b4a055a8ef82d9402c5aeff3d",
+  "message": "Post-MR model, restraints, and ReadySet outputs are ready for refinement",
+  "mutation_actions": [
+    {
+      "after": "DE",
+      "before": "DC",
+      "deposition_code": null,
+      "method": "coot-parent-overlap",
+      "parent_code": "DT",
+      "site": "A:12"
+    },
+    {
+      "after": "DG",
+      "before": "DG",
+      "deposition_code": null,
+      "method": "none",
+      "parent_code": null,
+      "site": "B:4"
+    }
+  ],
+  "narestraints": {
+    "compatibility_corrections": [],
+    "frame": "W",
+    "include_stacking": true,
+    "mode": "frame-template",
+    "pair_file": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/Std_padd.txt",
+    "restraint_file": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/narestraints_Std_padd.phil",
+    "secondary_structure_file": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/5W6W_secondary_structure.eff"
+  },
+  "prepared_model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Model/readyset_model.pdb",
+  "prepared_sha256": "b834c2a207d5a9b23db6a8f32246521e254dfe33d2ce131497afa58252ae7dd4",
+  "readyset": {
+    "command": [
+      "/Users/karolwoloszyn/Applications/phenix-2.1-6048/bin/phenix.ready_set",
+      "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Model/prepared_model.pdb",
+      "ready_set.actions.hydrogens=False",
+      "ready_set.actions.ligands=True",
+      "ready_set.actions.optimise_ligand_geometry=False",
+      "ready_set.input.cif_file_name=/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/curated_ligands.cif"
+    ],
+    "generated_ligand_cif": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/ReadySet/prepared_model.ligands.cif",
+    "hydrogens": false,
+    "log": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/ReadySet/ready_set.log",
+    "updated_model": "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/ReadySet/prepared_model.updated.pdb"
+  },
+  "restraints": [
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/narestraints_Std_padd.phil",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/5W6W_secondary_structure.eff",
+    "/Users/karolwoloszyn/Documents/GitHub/NASolve/examples/EG_091325-0302/AutoMR/run_005/PostMR/Restraints/DE.cif"
+  ],
+  "status": "POSTMR_READY"
+}

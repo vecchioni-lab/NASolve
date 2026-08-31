@@ -1,0 +1,22 @@
+refinement {
+  main {
+    number_of_macro_cycles = 3
+    target = "auto"
+    scattering_table = n_gaussian
+    nproc = 16
+  }
+  refine {
+    strategy = *individual_sites *group_adp
+    sites {
+      individual = all
+    }
+    adp {
+      group_adp_refinement_mode = one_adp_group_per_residue
+      group = all
+    }
+  }
+  target_weights {
+    optimize_xyz_weight = True
+    optimize_adp_weight = True
+  }
+}
