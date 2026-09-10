@@ -193,15 +193,21 @@ overwrite an existing `PostMR/` directory. `MR_SUCCESS` is accepted;
 `MR_REVIEW` requires an explicit override; other statuses stop.
 
 The W-frame manifest assigns requested pair roles to `A:12` and `B:4`.
-Canonical DNA/RNA changes use a generated headless Coot script. Curated
+Canonical DNA/RNA changes use a generated headless Coot script. Supported
 modified nucleotides use a canonical-parent mutation followed by dictionary
 monomer construction, overlap, and residue replacement. Coot runs with its
 backup directory redirected beneath the run and removes hydrogens before
 writing. Full sequences expand over the frozen per-chain residue inventory;
 application precedence is sequence, standard pair, then explicit mutation.
 Every ordinary base change restores the pre-Coot sugar/phosphate coordinates.
-Arbitrary modified-base construction remains a closed gate rather than being
-silently inferred.
+For mutations outside the curated registry, `ligand_definition` requires one
+NARestraints record and derives a compatible Coot construction parent from
+`Sugar Type` and `Base Analog`. `ligand_dictionary` requires a local
+`ligands/CODE.cif`; no network retrieval occurs. The generic dictionary check
+verifies `_chem_comp.id`, while curated entries keep their explicit topology
+checks and take precedence. This permits OHU mutation with the included CIF
+without claiming general topology or atom-mapping inference. The inferred Coot
+parent is not necessarily the component's official CCD parent.
 
 For mirrored runs, canonical targets are translated to the NARestraints L-side
 codes (`0DA`, `0DC`, `0DG`, `0DT`, and RNA equivalents). Exact mirrored models
@@ -209,12 +215,18 @@ therefore are not accidentally mutated back to D chemistry. A required
 mirror-side sequence change stops until the guarded
 unmirror/Coot/remirror construction path is implemented.
 
-For curated modifications, Coot also writes a canonical-parent snapshot.
-NASolve copies the coordinates, occupancies, and B factors of every shared
+For supported dictionary modifications, Coot also writes a canonical-parent
+snapshot. NASolve copies the coordinates, occupancies, and B factors of every shared
 atom back into the replaced residue and requires the complete sugar/phosphate
 atom set to survive. Thus dictionary overlap positions only the new chemistry;
 it cannot rotate or curl the existing phosphate. The restoration inventory is
 recorded in the run report.
+
+Dictionary resolution follows mutation actions. Curated components present in
+the prepared model are also collected even when unchanged, so their CIFs and
+`component_identity` entries survive a no-op mutation plan. This does not imply
+automatic resolution of every pre-existing noncurated residue. Generic
+definitions add no inferred sulfur substitutions or ring-substituent rules.
 
 The registry also declares exact parent/target atom substitutions. `DE`, `DF`,
 and `S6G` place sulfur along the canonical `C-O` vector, use the transformed
@@ -253,8 +265,36 @@ defines canonical parents and required/forbidden sulfur bonds, which are
 validated before Coot or ReadySet runs. ReadySet receives the curated CIF,
 executes with `actions.hydrogens=False`, and is run with `cwd` set to its own
 directory because Phenix 1.20.1 accepts but ignores `input.output_dir`. The
-output is rejected if it contains hydrogen coordinates or changes total or
-HETATM atom counts.
+output is rejected if it contains hydrogen coordinates. A phosphate check
+removes verified internal OP3/O3P additions before comparing total and HETATM
+atom counts to the prepared input; other count changes remain errors.
+
+`phosphate.sanitize_phosphates` also runs before NARestraints. It scopes checks
+to nucleotide-like residues with OP3/O3P and to sites repaired in the first
+pass. An incoming O3'-P contact must be unique within a model/chain/TER segment,
+with a 1.2–2.1 A separation. Remaining P, OP1/O1P, OP2/O2P and O5'/O5* atoms
+must be unambiguous. Their P-O distances use the same broad bounds, and their
+O-P-O angles must be between 60 and 160 degrees. These are coarse corruption
+guards, not chemical target values. Reference-known incoming and outgoing
+links must survive. Unlinked phosphates retain OP3; ambiguous explicit or
+symmetry links require inspection. Only verified extra atoms and associated
+ANISOU/SIGATM/SIGUIJ/CONECT records are removed; surviving coordinates,
+occupancies, and B factors are untouched.
+
+Atom serials need not be unique for this coordinate cleanup: selected atoms
+are identified by their validated coordinate records, while ANISOU/SIGATM/
+SIGUIJ records use exact atom name, alternate, residue identity, model and
+TER segment. Unrelated records sharing the same serial are preserved. Because
+CONECT identifies atoms only by serial, affected bonds must have unique
+endpoints before they can be interpreted or edited. Cleanup does not renumber
+the raw or surviving coordinate records.
+
+PostMR's additive `phosphate_cleanup.before_restraints` and `after_readyset`
+reports record checked sites, removed/retained atoms, connectivity, and measured
+geometry. Raw ReadySet output remains at `readyset.updated_model`; the new
+`readyset.phosphate_checked_model` points to the separately checked copy used
+for the final model. Immutable earlier runs require no migration and are never
+rewritten.
 
 Coot/model editing, component CIFs, NARestraints, and ReadySet have separate
 roles. Coot establishes coordinate identity and placement; CIFs establish
@@ -318,6 +358,13 @@ files are not automatically approved for use. All sites and match attempts are
 retained in the report, while extra unmatched sites do not block this phase of
 the pipeline.
 
+AutoSol also records an optional `outputs.density_modified_map` portable
+reference and SHA-256, plus `density_modified_map_status` and a diagnostic.
+Discovery prefers a unique `overall_best_denmod_map_coeffs.mtz`, then a unique
+`resolve_histograms*.mtz`, excluding TEMP/PDS products. Missing, ambiguous, or
+unreadable view maps do not change phase acceptance. This viewing product is
+distinct from the HL-bearing `refinement_data` input.
+
 ## AutoRefine contract
 
 AutoRefine separates immutable scientific inputs from evolving coordinates.
@@ -336,7 +383,7 @@ AutoRefine derives one fail-closed reflection-selector policy from the
 discovered Phenix version before allocating a round. Phenix 1.20.x uses
 `legacy-explicit`: the command retains exact observation, Free-R, and optional
 HL phase file/label selectors, but the unsupported Data Manager block is
-omitted. Phenix 2.1.x uses `data-manager-file-scoped`: the same explicit
+omitted. Phenix 2.1.x and 2.2.x use `data-manager-file-scoped`: the same explicit
 selectors are retained and the parameter file additionally binds each label
 set to its MTZ through the Data Manager. Unknown, malformed, and unvalidated
 families are rejected rather than mapped by version ordering. The exact
@@ -446,22 +493,34 @@ cases remain explicit user-review results.
 
 ## Stage-aware Coot views
 
-`nasolve show RUN` resolves the most advanced viewable completed stage;
+`nasolve show` resolves the active workspace; an explicit run remains supported.
+When a checkpoint registry exists, the selected current model takes precedence
+over newer unselected attempts, including when current is manual or PostMR.
 `nasolve show last DATASET` first chooses the highest numbered run. Explicit
-`--stage` selection is available for comparison. `--checkpoint refine-NNN`
-opens an arbitrary refinement checkpoint and its map in a checkpoint-specific
-Coot pen without changing the current pointer. Profiles deliberately differ:
+`--stage` or `--checkpoint` opens a comparison without changing the current
+pointer. Without a registry, the default prefers accepted AutoSol with a usable
+density map, then completed PostMR, then Phaser. Profiles differ:
 
 - AutoMR: Phaser model and Phaser MTZ;
-- PostMR: ReadySet model, Phaser MTZ, and ReadySet-generated dictionary;
-- AutoSol: original Phaser model, AutoSol HA model, and density-modified map
-  coefficients; and
+- PostMR: ReadySet model and dictionaries with accepted AutoSol density when
+  available, otherwise an explicitly labelled Phaser map;
+- AutoSol: ReadySet model and dictionaries, separate AutoSol HA model, and
+  density-modified map coefficients; and
 - AutoRefine: current refined checkpoint model, map coefficients, and its
   frozen dictionaries.
 
+Manual checkpoints keep their own model and dictionaries. Maps may be inherited
+through the checkpoint ancestry only when frozen observations agree; the source
+label states they were not recalculated for the manual coordinates. Raw HL-only
+phase data are never substituted for a density map. Declared sources and their
+checksums take precedence; ambiguity, corruption, or a missing declared map is
+an error. Legacy AutoSol runs retain bounded discovery within their own stage.
+
 Every graphical process starts in `RUN/CootGUI/STAGE/` with its backup
-directory redirected underneath the same pen. Run discovery uses numbered
-directories and reports, never filesystem modification times.
+directory redirected underneath the same pen, plus a checkpoint subdirectory
+when selected. Console output and `launch.json` identify the run, checkpoint,
+model, and map source. Run discovery uses numbered directories and reports,
+never filesystem modification times.
 
 ## Project preset direction
 
@@ -479,3 +538,33 @@ The orchestration layers consume a frozen model plus declared capabilities.
 This permits a new experimental campaign to ship a versioned preset directory
 without changing common run allocation, provenance, safety gates, Coot/Phenix
 isolation, or downstream reporting.
+
+## Next development priorities
+
+The [DOHU validation record](validation-dohu.md) establishes a working local
+dictionary mutation, phosphate cleanup, current-checkpoint view, and ordinary
+Phenix 2.2 refinement path. These are reusable stage operations; a campaign
+manager is still planned.
+
+Campaign orchestration should reuse frozen inputs, immutable numbered runs,
+and checkpoint lineage, with resumable per-dataset progress and explicit
+reporting of a blocked dataset. Supported residue mappings should run without
+per-residue prompts; unavailable or ambiguous chemistry must retain a useful
+diagnostic. Numerical readiness, recommended branches, and user inspection
+must remain distinct states. Project presets should carry scientific policy
+instead of adding project-name branches to the orchestration code.
+
+NARestraints follow-up is separate from the completed PostMR connectivity fix.
+User inspection of Q:E found a collapsed modified-base wobble arrangement with
+suspect angles despite plausible contact distances; sulfur–nitrogen contact
+targets also need review. Resolve these against atom identities, maps, and the
+generated restraints before changing angle or distance targets. No such
+restraint-target change is included here.
+
+Reports should retain raw validation scores together with model and lattice
+context. Simon identifies the DOHU structure as an intentionally interconnected
+symmetry-related crystal, where the reported clashes are expected. That
+interpretation belongs alongside inspection evidence; it does not require
+altering the recorded clashscore. Future campaign acceptance policies should
+be preset-specific and should preserve the distinction between numerical
+acceptance and structural assessment.

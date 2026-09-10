@@ -209,10 +209,73 @@ class AutoRefineTests(unittest.TestCase):
             reflection_selector_policy(PHENIX_21).mode,
             DATA_MANAGER_FILE_SCOPED,
         )
-        for version in (None, "unknown", "2.x", "2.0-0000", "2.2-9999"):
+        for version in (None, "unknown", "2.x", "2.0-0000", "2.3-9999", "3.0-0000"):
             with self.subTest(version=version):
                 with self.assertRaises(AutoRefineError):
                     reflection_selector_policy(version)  # type: ignore[arg-type]
+
+    def test_phenix_22_uses_file_scoped_selector_policy(self):
+        for version in ("2.2", "2.2.1", "2.2.1-6174"):
+            with self.subTest(version=version):
+                self.assertEqual(
+                    reflection_selector_policy(version).mode,
+                    DATA_MANAGER_FILE_SCOPED,
+                )
+
+    def test_phenix_22_scopes_observations_flags_and_phases_to_their_files(self):
+        for autosol in (False, True):
+            with self.subTest(autosol=autosol), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                run = make_refine_run(root, autosol=autosol)
+                report_path = run / "report.json"
+                report = json.loads(report_path.read_text())
+                if not autosol:
+                    report["postmr"]["anomalous"]["candidates"] = []
+                    report_path.write_text(json.dumps(report))
+
+                result = execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    phenix_version="2.2.1-6174",
+                    environment={"PATH": "/usr/bin:/bin"},
+                )
+
+                self.assertEqual(result.status, "AUTOREFINE_READY")
+                payload = json.loads(result.report_path.read_text())
+                self.assertEqual(payload["phenix_version"], "2.2.1-6174")
+                self.assertEqual(
+                    payload["reflection_selector_mode"], DATA_MANAGER_FILE_SCOPED,
+                )
+                params = (result.round_directory / "autorefine.params").read_text()
+                arrays = params.split("  miller_array {")[1:]
+                self.assertEqual(len(arrays), 2 if autosol else 1)
+                observations = (root / "dataset" / "staraniso.mtz").resolve()
+                self.assertIn(f'file = "{observations}"', arrays[0])
+                labels = "F(+),SIGF(+),F(-),SIGF(-)" if autosol else "IMEAN,SIGIMEAN"
+                self.assertIn(f'name = "{labels}"', arrays[0])
+                self.assertIn('name = "FreeR_flag"', arrays[0])
+                self.assertNotIn('name = "HLAM,HLBM,HLCM,HLDM"', arrays[0])
+                if autosol:
+                    phases = (run / "AutoSol" / "overall_best_refine_data.mtz").resolve()
+                    self.assertIn(f'file = "{phases}"', arrays[1])
+                    self.assertIn('name = "HLAM,HLBM,HLCM,HLDM"', arrays[1])
+                    self.assertNotIn('name = "FreeR_flag"', arrays[1])
+                    self.assertNotIn(f'name = "{labels}"', arrays[1])
+
+    def test_phenix_22_preflight_failure_prevents_refinement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            result = execute_autorefine(
+                run,
+                make_refine(root, preflight_return_code=1),
+                make_mtz_dump(root),
+                phenix_version="2.2.1-6174",
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+            self.assertEqual(result.status, "AUTOREFINE_FAILED")
+            self.assertFalse((result.round_directory / "received_args.json").exists())
 
     def test_unknown_phenix_version_fails_before_creating_refinement_state(self):
         with tempfile.TemporaryDirectory() as directory:

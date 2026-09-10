@@ -125,12 +125,14 @@ def reflection_selector_policy(phenix_version: str) -> ReflectionSelectorPolicy:
     family = (int(match.group(1)), int(match.group(2)))
     if family == (1, 20):
         mode = LEGACY_EXPLICIT
-    elif family == (2, 1):
+    elif family in {(2, 1), (2, 2)}:
+        # Phenix 2.2 exposes the same file-scoped selector schema.
+        # Parameter acceptance is still checked by each run's preflight.
         mode = DATA_MANAGER_FILE_SCOPED
     else:
         raise AutoRefineError(
-            f"Phenix {normalized} has no validated NASolve reflection-selector policy; "
-            "validated families are 1.20.x and 2.1.x"
+            f"Phenix {normalized} has no supported NASolve reflection-selector policy; "
+            "supported families are 1.20.x, 2.1.x and 2.2.x"
         )
     return ReflectionSelectorPolicy(normalized, mode)
 

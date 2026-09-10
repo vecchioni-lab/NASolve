@@ -5,6 +5,7 @@ import stat
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from nasolve.autosol import (
     AutoSolPreparationError,
@@ -15,9 +16,9 @@ from nasolve.autosol import (
     read_wavelength,
 )
 from nasolve.model_assessment import file_sha256
-from nasolve.run_context import artifact_reference
+from nasolve.run_context import artifact_reference, resolve_artifact_path
 
-from .helpers import pdb_record
+from .helpers import pdb_record, symlinked_temporary_directory
 
 
 class AutoSolReportTests(unittest.TestCase):
@@ -68,6 +69,7 @@ def make_autosol(
     root: Path,
     site_xyz: tuple[float, float, float],
     return_code: int = 0,
+    map_files: tuple[str, ...] = (),
 ) -> Path:
     executable = root / "phenix.autosol"
     ha_record = pdb_record(
@@ -98,6 +100,10 @@ def make_autosol(
         "phase_improve_and_build = False\\nnproc = 8\\n')\n"
         f"(root / 'overall_best_ha_pdb.pdb').write_text({ha_record!r} + '\\nEND\\n')\n"
         "(root / 'overall_best_refine_data.mtz').write_bytes(b'mtz')\n"
+        f"for name in {map_files!r}:\n"
+        "    map_path = root / name\n"
+        "    map_path.parent.mkdir(parents=True, exist_ok=True)\n"
+        "    map_path.write_bytes(b'density-modified map')\n"
         "print('AutoSol complete')\n"
     )
     executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
@@ -169,6 +175,143 @@ def make_run(root: Path, model_xyz: tuple[float, float, float]) -> Path:
 
 
 class AutoSolTests(unittest.TestCase):
+    def test_density_modified_map_reference_survives_relocation(self):
+        with symlinked_temporary_directory() as directory:
+            root = Path(directory)
+            source = root / "source"
+            source.mkdir()
+            run = make_run(source, (1.0, 2.0, 3.0))
+            result = execute_autosol(
+                run,
+                make_autosol(source, (1.0, 2.0, 3.0), map_files=(
+                    "overall_best_denmod_map_coeffs.mtz",
+                    "resolve_histograms_1.mtz",
+                    "resolve_histograms_2.mtz",
+                )),
+                make_mtz_dump(source),
+                environment={"PATH": "/usr/bin:/bin"},
+                processor_count=8,
+            )
+            self.assertEqual(result.status, "AUTOSOL_READY")
+            outputs = json.loads(result.report_path.read_text())["outputs"]
+            reference = outputs["density_modified_map"]
+            self.assertEqual(outputs["density_modified_map_status"], "available")
+            self.assertEqual(reference["anchor"], "run")
+            self.assertEqual(reference["relative_path"],
+                "AutoSol/AutoSol_run_1_/overall_best_denmod_map_coeffs.mtz")
+            self.assertEqual(reference["sha256"], outputs["density_modified_map_sha256"])
+            self.assertEqual(
+                json.loads((run / "report.json").read_text())["autosol"]["outputs"],
+                outputs,
+            )
+
+            relocated = root / "relocated"
+            shutil.copytree(source, relocated)
+            shutil.rmtree(source)
+            relocated_run = relocated / "dataset" / "AutoMR" / "run_001"
+            expected = relocated_run / reference["relative_path"]
+            self.assertEqual(resolve_artifact_path(reference, relocated_run), expected.resolve())
+            self.assertEqual(file_sha256(expected), outputs["density_modified_map_sha256"])
+            expected.write_bytes(b"changed map")
+            self.assertIsNone(resolve_artifact_path(reference, relocated_run))
+
+    def test_unique_histogram_map_excludes_temporary_products(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            result = execute_autosol(
+                run,
+                make_autosol(root, (1.0, 2.0, 3.0), map_files=(
+                    "resolve_histograms_1.mtz",
+                    "PDS/overall_best_denmod_map_coeffs.mtz",
+                    "TEMP/overall_best_denmod_map_coeffs.mtz",
+                    "TEMP/resolve_histograms_2.mtz",
+                )),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+                processor_count=8,
+            )
+            self.assertEqual(result.status, "AUTOSOL_READY")
+            outputs = json.loads(result.report_path.read_text())["outputs"]
+            self.assertEqual(outputs["density_modified_map_status"], "available")
+            self.assertEqual(outputs["density_modified_map"]["relative_path"],
+                "AutoSol/AutoSol_run_1_/resolve_histograms_1.mtz")
+
+    def test_missing_density_modified_map_does_not_reject_valid_phases(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            result = execute_autosol(
+                run,
+                make_autosol(root, (1.0, 2.0, 3.0)),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+                processor_count=8,
+            )
+            self.assertEqual(result.status, "AUTOSOL_READY")
+            report = json.loads(result.report_path.read_text())
+            self.assertTrue(report["use_for_refinement"])
+            outputs = report["outputs"]
+            self.assertEqual(outputs["density_modified_map_status"], "missing")
+            self.assertIsNone(outputs["density_modified_map"])
+            self.assertIsNone(outputs["density_modified_map_sha256"])
+            self.assertIn("No density-modified map", outputs["density_modified_map_diagnostic"])
+            self.assertTrue(outputs["refinement_data"].endswith("overall_best_refine_data.mtz"))
+
+    def test_ambiguous_density_modified_maps_do_not_reject_valid_phases(self):
+        for map_files in (
+            (
+                "first/overall_best_denmod_map_coeffs.mtz",
+                "second/overall_best_denmod_map_coeffs.mtz",
+                "resolve_histograms_1.mtz",
+            ),
+            ("resolve_histograms_1.mtz", "resolve_histograms_2.mtz"),
+        ):
+            with self.subTest(map_files=map_files), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                run = make_run(root, (1.0, 2.0, 3.0))
+                result = execute_autosol(
+                    run,
+                    make_autosol(root, (1.0, 2.0, 3.0), map_files=map_files),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                    processor_count=8,
+                )
+                self.assertEqual(result.status, "AUTOSOL_READY")
+                report = json.loads(result.report_path.read_text())
+                self.assertTrue(report["use_for_refinement"])
+                outputs = report["outputs"]
+                self.assertEqual(outputs["density_modified_map_status"], "ambiguous")
+                self.assertIsNone(outputs["density_modified_map"])
+                self.assertIsNone(outputs["density_modified_map_sha256"])
+                self.assertIn("found 2", outputs["density_modified_map_diagnostic"])
+
+    def test_unreadable_density_modified_map_does_not_reject_valid_phases(self):
+        def checksum(path):
+            if path.name == "overall_best_denmod_map_coeffs.mtz":
+                raise OSError("map unavailable")
+            return file_sha256(path)
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_run(root, (1.0, 2.0, 3.0))
+            with patch("nasolve.autosol.file_sha256", side_effect=checksum):
+                result = execute_autosol(
+                    run,
+                    make_autosol(root, (1.0, 2.0, 3.0), map_files=(
+                        "overall_best_denmod_map_coeffs.mtz",
+                    )),
+                    make_mtz_dump(root),
+                    environment={"PATH": "/usr/bin:/bin"},
+                    processor_count=8,
+                )
+            self.assertEqual(result.status, "AUTOSOL_READY")
+            outputs = json.loads(result.report_path.read_text())["outputs"]
+            self.assertEqual(outputs["density_modified_map_status"], "unavailable")
+            self.assertIsNone(outputs["density_modified_map"])
+            self.assertIsNone(outputs["density_modified_map_sha256"])
+            self.assertIn("map unavailable", outputs["density_modified_map_diagnostic"])
+
     def test_anchored_frame_sequence_requires_and_matches_checksum(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -419,7 +562,9 @@ class AutoSolTests(unittest.TestCase):
             run = make_run(root, model)
             result = execute_autosol(
                 run,
-                make_autosol(root, (13.0, 14.0, 15.0)),
+                make_autosol(root, (13.0, 14.0, 15.0), map_files=(
+                    "overall_best_denmod_map_coeffs.mtz",
+                )),
                 make_mtz_dump(root),
                 environment={"PATH": "/usr/bin:/bin"},
                 processor_count=8,
@@ -428,6 +573,9 @@ class AutoSolTests(unittest.TestCase):
             report = json.loads((run / "report.json").read_text())
             self.assertFalse(report["autosol"]["use_for_refinement"])
             self.assertIn("continue without AutoSol phases", report["autosol"]["continuation"])
+            self.assertEqual(
+                report["autosol"]["outputs"]["density_modified_map_status"], "available"
+            )
 
     def test_intermediate_distance_requests_review_but_continues(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -438,7 +586,7 @@ class AutoSolTests(unittest.TestCase):
             run = make_run(root, model)
             result = execute_autosol(
                 run,
-                make_autosol(root, site),
+                make_autosol(root, site, map_files=("resolve_histograms_1.mtz",)),
                 make_mtz_dump(root),
                 environment={"PATH": "/usr/bin:/bin"},
                 processor_count=8,
@@ -449,6 +597,9 @@ class AutoSolTests(unittest.TestCase):
             self.assertFalse(report["autosol"]["use_for_refinement"])
             self.assertEqual(
                 len(report["autosol"]["site_validation"]["review_candidates"]), 1
+            )
+            self.assertEqual(
+                report["autosol"]["outputs"]["density_modified_map_status"], "available"
             )
 
     def test_autosol_program_failure_warns_and_continues(self):

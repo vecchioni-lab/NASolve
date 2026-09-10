@@ -1,6 +1,20 @@
 import stat
 import json
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
+
+
+@contextmanager
+def symlinked_temporary_directory():
+    """Exercise path aliases on every host, including macOS /var -> /private/var."""
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        actual = root / "actual"
+        actual.mkdir()
+        alias = root / "alias"
+        alias.symlink_to(actual, target_is_directory=True)
+        yield str(alias)
 
 
 def pdb_record(

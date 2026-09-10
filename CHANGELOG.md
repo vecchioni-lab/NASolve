@@ -10,6 +10,21 @@ entries are reconstructed from repository history.
 
 ### Added
 
+- Added local dictionary construction for modified-residue mutations with one
+  unambiguous NARestraints record and a supported DNA/RNA construction parent.
+  Included `OHU.cif` supports the D:OHU example. Curated overrides take priority;
+  missing dictionaries are not downloaded automatically.
+- Added Phenix 2.2.x to the file-scoped Data Manager selector policy, alongside
+  2.1.x; 1.20.x retains legacy explicit selectors. Other version families still
+  stop before allocating refinement state.
+- Added a two-stage PostMR phosphate audit. Verified internal OP3/O3P leaving
+  atoms are removed before NARestraints and after ReadySet, terminal oxygens
+  remain, raw products are preserved, and measured geometry/removals are
+  recorded under `phosphate_cleanup`. Ambiguous or damaged phosphates stop
+  preparation instead of receiving guessed coordinate repairs.
+- AutoSol reports now record an optional checksummed density-map reference,
+  availability status, and diagnostic independently of phase acceptance.
+
 - Added a tracked POSIX `./nasolve` source-checkout launcher. It resolves
   symbolic links, uses the checkout's `.venv` by default, accepts an explicit
   `NASOLVE_PYTHON`, and scopes `src` path injection to the launched process.
@@ -29,6 +44,29 @@ entries are reconstructed from repository history.
 - Added SHA-256 values for AutoSol heavy-atom and refinement-phase outputs.
 
 ### Fixed
+
+- Curated residues already present in a model retain their dictionaries and
+  component-identity records even when no mutation is needed, including
+  nonstandard modified-pair preparation.
+- PostMR phosphate cleanup now tolerates reused atom serials when full atom
+  identities are unambiguous. Atom-associated records are removed by identity
+  within their model/TER segment; unrelated atoms sharing a serial survive.
+  Affected CONECT records still stop preparation if their endpoint serials
+  cannot be resolved uniquely. Phosphate geometry guards are unchanged.
+
+- Corrected view/AutoSol test expectations for canonical paths on macOS, where
+  `/var` aliases `/private/var`. The affected tests now use an explicit symlink
+  fixture on every host, preserving relocation and checksum assertions while
+  checking resolved output paths. Runtime path resolution is unchanged.
+
+- `show` now follows the selected current checkpoint, including manual and
+  PostMR nodes. Newer unselected attempts do not replace that view. Manual
+  models inherit clearly labelled ancestor maps only with matching observations.
+- PostMR and AutoSol views now load the prepared model and ligand dictionaries.
+  PostMR prefers accepted AutoSol density when available; AutoSol displays its
+  density-modified map and separate heavy-atom overlay. Console and launch
+  records identify the model and map sources, with missing/corrupt declared
+  sources reported explicitly.
 
 - AutoRefine now omits unsupported Phenix Data Manager Miller-array blocks on
   Phenix 1.20.x while retaining the exact observation, Free-R, and optional HL
@@ -101,6 +139,18 @@ entries are reconstructed from repository history.
 
 ### Tests
 
+- The assembled fixes pass 225 tests. The full local run with
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` also passed 51 subtests; the user
+  confirmed 225 passing tests on the Apple Silicon checkout.
+- On 2026-09-09, DOHU `AutoMR/run_004` completed AutoMR, PostMR, and a full
+  five-cycle AutoRefine execution with Phenix 2.2.1-6174 and Coot 1.3.3:
+  TFZ 14.30, final Rwork/Rfree 0.147/0.209, and current checkpoint `refine-001`.
+  The user confirmed successful Coot inspection. The
+  [validation record](docs/validation-dohu.md) preserves the raw clashscore,
+  lattice context, execution details, and limits of this check.
+- Added coverage for current/manual checkpoint views, AutoSol map provenance,
+  relocated and symlinked paths, and phosphate cleanup with duplicate serials
+  and atom-associated records.
 - Added Phenix 1.20.1-4487 compatibility regressions that emulate rejection of
   the Data Manager block and verify exact anomalous/mean observations, Free-R
   flags, separate HL phases, automatic target selection, Doctor propagation,
@@ -142,6 +192,9 @@ entries are reconstructed from repository history.
 
 ### Migration
 
+- New phosphate checks apply to newly prepared PostMR outputs; existing models
+  and immutable runs are not rewritten. Use a new run to reproduce preparation
+  with these checks. The new AutoSol map reference is optional for older reports.
 - No configuration or artifact migration is required for the source launcher;
   the generated package entry point remains supported when its editable
   installation metadata loads normally.
@@ -164,12 +217,14 @@ entries are reconstructed from repository history.
 ### Known compatibility notes
 
 - Phenix 1.20.x uses explicit file/label command selectors without the newer
-  Data Manager block; Phenix 2.1.x uses both. The attached collaborator handoff
-  isolated the 1.20.1-4487 failure to the Data Manager definitions and
-  confirmed the retained selectors in a diagnostic dry run. Post-patch
-  1.20.1 execution still requires a host with that release installed.
+  Data Manager block; Phenix 2.1.x and 2.2.x use both. User validation also
+  completed Q:iC refinement and bounded Refine Doctor branches on 1.20.1-4487
+  with `legacy-explicit` recorded in the refinement report.
 - File-scoped Data Manager parameters remain validated with Phenix 2.1-6048
   in preflight and complete refinement runs.
+- The new live Phenix 2.2.1-6174 check covers mean-intensity refinement with
+  no experimental phases and anomalous refinement off. It does not constitute
+  a new live AutoSol or anomalous-refinement validation for that version.
 - Large MTZ/map histories may eventually warrant Git LFS; current fixtures are
   intentionally kept in ordinary Git until a repository-wide LFS policy is
   adopted.

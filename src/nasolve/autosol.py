@@ -16,7 +16,7 @@ from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Mapping, Sequence
 
 from .model_assessment import file_sha256
-from .run_context import resolve_artifact_path
+from .run_context import artifact_reference, resolve_artifact_path
 
 
 class AutoSolPreparationError(RuntimeError):
@@ -364,6 +364,54 @@ def _discover_refinement_data(
         "AutoSol produced no MTZ containing both Hendrickson-Lattman phases "
         "and anomalous observations"
     )
+
+
+def _density_modified_map_outputs(root: Path, run: Path) -> dict[str, object]:
+    """Record optional view-map provenance without changing phase acceptance."""
+    outputs: dict[str, object] = {
+        "density_modified_map": None,
+        "density_modified_map_sha256": None,
+        "density_modified_map_status": "missing",
+        "density_modified_map_diagnostic": "No density-modified map was produced",
+    }
+    try:
+        for pattern in (
+            "overall_best_denmod_map_coeffs.mtz", "resolve_histograms*.mtz"
+        ):
+            candidates = sorted(
+                path for path in root.rglob(pattern)
+                if path.is_file()
+                and not {"PDS", "TEMP"}.intersection(path.relative_to(root).parts)
+            )
+            if not candidates:
+                continue
+            if len(candidates) != 1:
+                outputs["density_modified_map_status"] = "ambiguous"
+                outputs["density_modified_map_diagnostic"] = (
+                    f"Expected one density-modified map matching {pattern}; "
+                    f"found {len(candidates)}: "
+                    + ", ".join(path.relative_to(root).as_posix() for path in candidates)
+                )
+                return outputs
+            selected = candidates[0].resolve()
+            if not selected.is_relative_to(root.resolve()):
+                raise ValueError("density-modified map is outside the AutoSol output directory")
+            checksum = file_sha256(selected)
+            outputs.update({
+                "density_modified_map": {
+                    **artifact_reference(selected, run), "sha256": checksum,
+                },
+                "density_modified_map_sha256": checksum,
+                "density_modified_map_status": "available",
+                "density_modified_map_diagnostic": None,
+            })
+            return outputs
+    except (OSError, ValueError) as exc:
+        outputs["density_modified_map_status"] = "unavailable"
+        outputs["density_modified_map_diagnostic"] = (
+            f"Could not record the density-modified map: {exc}"
+        )
+    return outputs
 
 
 def _pdb_atoms(path: Path) -> list[dict[str, object]]:
@@ -825,6 +873,7 @@ def execute_autosol(
             "refinement_data": str(refinement_data),
             "refinement_data_sha256": file_sha256(refinement_data),
             "refinement_data_phase_labels": phase_labels,
+            **_density_modified_map_outputs(autosol_directory, run),
             "console_log": str(log_path),
         },
         "site_validation": {

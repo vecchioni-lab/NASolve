@@ -199,11 +199,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     show.add_argument(
         "--stage", choices=("automr", "postmr", "autosol", "autorefine"),
-        help="view a specific completed stage instead of the most advanced one",
+        help="view a specific stage instead of the selected current checkpoint",
     )
     show.add_argument(
         "--checkpoint",
-        help="open a specific refinement checkpoint without selecting it",
+        help="open a specific checkpoint without changing the current selection",
     )
     show.add_argument("--coot", help="one-run Coot executable override")
     return parser
@@ -904,7 +904,11 @@ def _show(args: argparse.Namespace) -> int:
     except (ConfigError, CootDiscoveryError, CootViewError) as exc:
         print(f"Coot view error: {exc}", file=sys.stderr)
         return 2
-    print(f"Opened {result.stage}: {result.model_path.name} + {result.map_path.name}")
+    print(f"Opened {result.stage} in run: {result.run_directory}")
+    print(f"Model source: {result.source}")
+    print(f"Model: {result.model_path}")
+    print(f"Map source: {result.map_source}")
+    print(f"Map: {result.map_path}")
     for extra in result.extra_model_paths:
         print(f"Additional model: {extra}")
     print(f"Coot working directory: {result.working_directory}")

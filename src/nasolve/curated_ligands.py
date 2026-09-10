@@ -118,6 +118,57 @@ CURATED_LIGANDS: dict[str, CuratedLigand] = {
 CURATED_LIGAND_CODES = frozenset(CURATED_LIGANDS)
 
 
+_PARENT_CODES = {
+    ("DNA", "A"): "DA",
+    ("DNA", "C"): "DC",
+    ("DNA", "G"): "DG",
+    ("DNA", "T"): "DT",
+    ("DNA", "U"): "DU",
+    ("RNA", "A"): "A",
+    ("RNA", "C"): "C",
+    ("RNA", "G"): "G",
+    ("RNA", "U"): "U",
+}
+
+
+def ligand_definition(code: str) -> CuratedLigand:
+    """Return a curated override or infer a conservative CCD definition."""
+    if code in CURATED_LIGANDS:
+        return CURATED_LIGANDS[code]
+    try:
+        from restraints.residue_library import load_residue_records
+    except ImportError as exc:  # pragma: no cover - installation error path
+        raise ValueError("NARestraints is required to infer modified residues") from exc
+    matches = [
+        record
+        for record in load_residue_records()
+        if str(record.get("Ligand code")) == code
+    ]
+    if len(matches) != 1:
+        raise ValueError(
+            f"Expected one NARestraints record for {code}, found {len(matches)}"
+        )
+    record = matches[0]
+    sugar = str(record.get("Sugar Type") or "").upper()
+    base = str(record.get("Base Analog") or "").upper()
+    try:
+        parent_code = _PARENT_CODES[(sugar, base)]
+    except KeyError as exc:
+        raise ValueError(
+            f"Cannot infer a canonical parent for {code}: "
+            f"Sugar Type={sugar!r}, Base Analog={base!r}"
+        ) from exc
+    return CuratedLigand(
+        code=code,
+        dictionary_filename=f"{code}.cif",
+        accepted_model_labels=(code,),
+        narestraints_label=code,
+        description=str(record.get("Name") or f"CCD component {code}"),
+        parent_code=parent_code,
+        deposition_code=code,
+    )
+
+
 def ligand_data_directory(data_root: Path | None = None) -> Path:
     if data_root is not None:
         return Path(data_root) / "ligands"
@@ -135,6 +186,37 @@ def curated_dictionary(code: str, data_root: Path | None = None) -> Path:
             f"Curated dictionary for {code} is missing: {path}"
         )
     return path
+
+
+def ligand_dictionary(code: str, data_root: Path | None = None) -> Path:
+    """Resolve the reviewed override or a local official CCD dictionary."""
+    ligand = ligand_definition(code)
+    path = ligand_data_directory(data_root) / ligand.dictionary_filename
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"No local CCD dictionary for {code}: expected {path}"
+        )
+    return path
+
+
+def validate_ligand_dictionary(code: str, path: Path) -> None:
+    """Validate curated topology or, generically, the dictionary identity."""
+    if code in CURATED_LIGANDS:
+        validate_curated_dictionary(code, path)
+        return
+    component_ids: set[str] = set()
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        try:
+            fields = shlex.split(raw_line, comments=False)
+        except ValueError:
+            continue
+        if len(fields) >= 2 and fields[0] == "_chem_comp.id":
+            component_ids.add(fields[1])
+    if code not in component_ids:
+        found = ", ".join(sorted(component_ids)) or "none"
+        raise ValueError(
+            f"Dictionary {path} does not declare _chem_comp.id {code}; found {found}"
+        )
 
 
 def _dictionary_bonds(path: Path) -> set[frozenset[str]]:

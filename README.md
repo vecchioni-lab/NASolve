@@ -11,9 +11,9 @@ The current release provides **AutoMR**, **PostMR**, a conditional
 triage. PostMR constructs
 supported modified nucleotides through Coot, restores trusted parent
 coordinates, can apply complete chain sequences, generates either the 5W6W
-restraint stack or modification-scoped pair restraints, supplies reviewed ligand
-dictionaries, and runs ReadySet without hydrogens. When PostMR finds iodine,
-bromine, or selenium in a nucleotide, AutoSol performs guarded MR-SAD phasing
+restraint stack or modification-scoped pair restraints, supplies curated or
+supported local ligand dictionaries, and runs ReadySet without hydrogens. When
+PostMR finds iodine, bromine, or selenium in a nucleotide, AutoSol performs guarded MR-SAD phasing
 and verifies a corresponding anomalous site. AutoRefine runs Phenix quietly,
 surfaces the crystallographic statistics normally shown by the GUI, and
 preserves successful, review, failed, and manually imported models as
@@ -195,24 +195,36 @@ Useful opt-in variants are:
 
 ### Inspect the prepared model in Coot
 
-Open the most advanced completed stage of a run, or the highest numbered run in
-a dataset, with:
+Open the selected current checkpoint in the active workspace, an explicit run,
+or the highest numbered run in a dataset:
 
 ```bash
+./nasolve show
 ./nasolve show "$RUN"
 ./nasolve show last "$DATASET"
 ./nasolve show "$RUN" --stage autosol
 ./nasolve show "$RUN" --checkpoint refine-005
 ```
 
-NASolve chooses a stage-specific view: Phaser model/map for AutoMR, ReadySet
-model plus its generated dictionary for PostMR, Phaser model plus AutoSol HA
-sites and density-modified map for AutoSol, or the current refined model and
-map coefficients for AutoRefine. Coot is launched from a stage-local working
-directory so its histories, state files, backups, and downloads do not clutter
-the repository.
+The current checkpoint wins over newer unselected refinement attempts. Without
+a checkpoint registry, NASolve chooses an accepted AutoSol view with a usable
+density map, completed PostMR, or Phaser. Explicit `--stage` and `--checkpoint`
+options leave the selection unchanged. The console identifies the run, model,
+checkpoint, and map source.
 
-The equivalent manual PostMR launch is:
+AutoMR shows the Phaser model and map. PostMR shows the ReadySet model and its
+ligand dictionaries, using accepted AutoSol density when available and the
+Phaser map otherwise. AutoSol shows the prepared ReadySet model with its
+dictionaries, the density-modified map, and a separate heavy-atom overlay.
+AutoRefine shows the selected model, its map coefficients, and frozen
+dictionaries. An imported manual checkpoint can inherit an ancestor's map only
+when its observation data match; the output labels this map as not recalculated
+for the manual model. Missing or corrupt declared maps produce an error.
+
+Coot histories and backups stay under `RUN/CootGUI/STAGE/`, with a separate
+checkpoint subdirectory when one is selected.
+
+A manual PostMR launch using the MR map is:
 
 ```bash
 RUN=/absolute/path/to/dataset/AutoMR/run_001
@@ -620,7 +632,7 @@ For the W/5W6W frame, PostMR uses the fixed standard sites `A:12` and `B:4`.
 It applies ordinary DNA/RNA base changes through headless Coot. For a supported
 modified nucleotide, Coot first mutates the site to its clean canonical parent
 (`DT` for `DE`/`DF`/`5IU`, `DA` for `1AP`, `DG` for `S6G`, or `DC` for
-`C38`), builds the curated component from its dictionary, overlaps it, and
+`C38`), builds the component from its dictionary, overlaps it, and
 replaces the parent. NASolve then restores the
 coordinates, occupancies, and B factors of every atom shared with the parent.
 This preserves the canonical sugar and phosphate exactly while retaining only
@@ -629,6 +641,36 @@ Unsupported construction stops and asks the user for a model. Full-sequence
 mutation uses the same Coot base-mutation path. NASolve restores the original
 sugar and phosphate coordinates after every ordinary base change, so a whole
 sequence application cannot curl or rotate the inherited backbone.
+
+Modified-residue mutations can also use a local component dictionary without
+adding a new curated registry entry. NASolve requires one unambiguous
+NARestraints residue record, a supported construction parent derived from its
+`Sugar Type` and `Base Analog`, and a matching local `ligands/CODE.cif` under
+the NASolve data directory. The included `OHU.cif` enables DNA `D:OHU`
+preparation; OHU uses `DT` as its Coot construction parent according to the
+NARestraints mapping. Curated overrides remain authoritative, and their
+dictionaries are retained even when the residue needs no mutation.
+
+This fallback does not download dictionaries. Generic dictionary validation
+checks the component identity; it does not infer arbitrary atom mappings or
+establish that every component topology is correct. New chemistry still needs
+model inspection, and an absent or ambiguous definition gives a specific
+preparation error.
+
+PostMR checks nucleotide phosphates before generating restraints and again
+after ReadySet. It removes `OP3` (or legacy `O3P`) only where an incoming
+`O3'–P` backbone link confirms an internal phosphate. Unlinked or terminal
+phosphates retain that oxygen. Numbering gaps and insertion codes do not define
+connectivity; chain and `TER` boundaries are respected. Remaining phosphate
+atoms, broad bond/angle plausibility, and reference-known backbone links are
+checked. Ambiguous alternatives or broken geometry stop preparation with a
+specific error. This is a connectivity repair, not a coordinate minimization.
+
+Both checks are recorded under `phosphate_cleanup` in the PostMR report. Raw
+Coot and ReadySet outputs remain available; the cleaned ReadySet copy is named
+`prepared_model.phosphate_checked.pdb`. Existing runs are unchanged. A model
+already refined with an extra OP3 should be rebuilt in a new run and refined
+again because removing the atom alone does not reverse earlier distortion.
 
 For reviewed single-atom sulfur substitutions, dictionary overlap does not
 determine the final sulfur direction. PostMR projects `S4`, `S1`, or `S6`
@@ -712,8 +754,8 @@ known model atoms.
 
 Reflection-array binding is version-gated. Phenix 1.20.x receives explicit
 observation, Free-R, and optional experimental-phase file/label command
-selectors without the unsupported Data Manager block. Phenix 2.1.x receives
-the same explicit selectors plus file-scoped Data Manager definitions, which
+selectors without the unsupported Data Manager block. Phenix 2.1.x and 2.2.x
+receive the same explicit selectors plus file-scoped Data Manager definitions, which
 disambiguate MTZ files containing multiple plausible arrays. NASolve records
 the discovered version and selected mode in every refinement checkpoint and
 report. Unknown, malformed, or unvalidated version families stop before a
@@ -853,15 +895,19 @@ a PDB and MTZ output. Input, discovery, and preflight errors exit with code 2.
 ## Current scope
 
 AutoMR currently supports PDB search models and Phenix Phaser MR_AUTO. PostMR
-currently implements W/5W6W sites, canonical Coot mutations, curated label
-normalization, complete sequence application, modification-scoped
-NARestraints, hydrogen-free ReadySet, guarded AutoSol, and checkpointed
-five-cycle Phenix refinement. It does not yet:
+implements W/5W6W sites, canonical Coot mutations, curated overrides, supported
+local dictionary mutations, complete sequence application, modification-scoped
+NARestraints, phosphate connectivity checks, and hydrogen-free ReadySet.
+Guarded AutoSol, checkpointed five-cycle Phenix refinement, bounded Refine
+Doctor comparisons, and views of the current checkpoint are available. The
+[DOHU validation record](docs/validation-dohu.md) documents the complete
+Phenix 2.2.1 execution and subsequent user inspection. NASolve does not yet:
 
-- construct arbitrary modified residues without an approved template;
+- fetch missing ligand dictionaries or construct arbitrary modified residues
+  without a supported mapping and local dictionary;
 - perform mirror-side sequence changes through an unmirror/Coot/remirror cycle;
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
-- choose or compare advanced refinement recipes automatically;
+- orchestrate multi-dataset campaigns or search unbounded refinement recipes;
 - apply the final H3/R3 notation patch; or
 - search multiple catalogue models automatically.
 
@@ -882,6 +928,11 @@ same frozen model-and-capability contract.
 This keeps project-specific scientific choices in versioned data while the
 pipeline retains common validation, provenance, non-overwrite behavior, and
 external-tool isolation.
+
+The [development direction](docs/architecture.md#next-development-priorities)
+keeps campaign automation and modified-pair restraint geometry as explicit next
+steps. Numerical acceptance and model/map inspection remain separate outcomes;
+validation scores retain the scientific context of each project.
 
 ## Problems and reproducibility
 

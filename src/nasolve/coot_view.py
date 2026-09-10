@@ -30,6 +30,8 @@ class ViewProfile:
     extra_model_paths: tuple[Path, ...]
     dictionary_paths: tuple[Path, ...]
     source: str
+    map_source: str
+    checkpoint_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -44,6 +46,9 @@ class CootViewResult:
     log_path: Path
     command: tuple[str, ...]
     pid: int
+    source: str
+    map_source: str
+    checkpoint_id: str | None
 
 
 def _required_file(path: Path, description: str) -> Path:
@@ -85,13 +90,17 @@ def _require_scratch_containment(scratch_root: Path, path: Path) -> None:
 
 
 def _reported_file(value: object, description: str, run: Path) -> Path:
+    if isinstance(value, Mapping):
+        _validate_report_checksum(value.get("sha256"), description)
     path = resolve_artifact_path(value, run)
     if path is None:
-        raise CootViewError(f"Run report has no {description}")
+        raise CootViewError(
+            f"Reported {description} is missing or failed checksum validation"
+        )
     return _required_file(path, description)
 
 
-def _verify_report_checksum(path: Path, expected: object, description: str) -> None:
+def _validate_report_checksum(expected: object, description: str) -> None:
     if expected is None:
         return
     if (
@@ -99,7 +108,11 @@ def _verify_report_checksum(path: Path, expected: object, description: str) -> N
         or re.fullmatch(r"[0-9a-fA-F]{64}", expected) is None
     ):
         raise CootViewError(f"Reported {description} checksum is malformed")
-    if file_sha256(path) != expected.casefold():
+
+
+def _verify_report_checksum(path: Path, expected: object, description: str) -> None:
+    _validate_report_checksum(expected, description)
+    if isinstance(expected, str) and file_sha256(path) != expected.casefold():
         raise CootViewError(f"Reported {description} failed checksum validation")
 
 
@@ -164,15 +177,25 @@ def _postmr_dictionaries(
     postmr = report.get("postmr")
     readyset = postmr.get("readyset") if isinstance(postmr, Mapping) else None
     generated = readyset.get("generated_ligand_cif") if isinstance(readyset, Mapping) else None
+    if isinstance(generated, Mapping):
+        _validate_report_checksum(generated.get("sha256"), "ReadySet ligand dictionary")
     generated_path = resolve_artifact_path(generated, run)
     if generated_path is not None:
         return (generated_path,)
+    if isinstance(generated, Mapping) and generated.get("sha256") is not None:
+        raise CootViewError(
+            "ReadySet ligand dictionary is missing or failed checksum validation"
+        )
     restraints = postmr.get("restraints") if isinstance(postmr, Mapping) else None
     if not isinstance(restraints, list):
-        return ()
+        restraints = []
     dictionaries: list[Path] = []
     for value in restraints:
-        if not isinstance(value, str) or not value.casefold().endswith(".cif"):
+        filename = (
+            value.get("relative_path", value.get("absolute_path", value.get("path")))
+            if isinstance(value, Mapping) else value
+        )
+        if not isinstance(filename, str) or not filename.casefold().endswith(".cif"):
             continue
         path = resolve_artifact_path(value, run)
         if path is None:
@@ -180,58 +203,119 @@ def _postmr_dictionaries(
                 "PostMR ligand dictionary is missing or could not be rebased"
             )
         dictionaries.append(path)
-    if isinstance(generated, str) and not dictionaries:
+    if generated is not None and not dictionaries:
         raise CootViewError(
             "ReadySet ligand dictionary is missing and no input CIF fallback is available"
         )
     return tuple(dictionaries)
 
 
+def _phaser_map(run: Path, report: Mapping[str, object]) -> Path:
+    execution = report.get("execution")
+    phaser = execution.get("phaser") if isinstance(execution, Mapping) else None
+    value = phaser.get("solution_mtz") if isinstance(phaser, Mapping) else None
+    return (
+        _reported_file(value, "Phaser reflections", run)
+        if value is not None
+        else _required_file(run / "Phaser" / "mr_solution.mtz", "Phaser reflections")
+    )
+
+
 def _phaser_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
     execution = report.get("execution")
     phaser = execution.get("phaser") if isinstance(execution, Mapping) else None
     model_value = phaser.get("solution_pdb") if isinstance(phaser, Mapping) else None
-    map_value = phaser.get("solution_mtz") if isinstance(phaser, Mapping) else None
     model = (
         _reported_file(model_value, "Phaser model", run)
-        if isinstance(model_value, str)
+        if model_value is not None
         else _required_file(run / "Phaser" / "mr_solution.pdb", "Phaser model")
     )
-    map_path = (
-        _reported_file(map_value, "Phaser reflections", run)
-        if isinstance(map_value, str)
-        else _required_file(run / "Phaser" / "mr_solution.mtz", "Phaser reflections")
+    map_path = _phaser_map(run, report)
+    return ViewProfile(
+        "automr", model, map_path, (), (), "Phaser solution", "Phaser MR map"
     )
-    return ViewProfile("automr", model, map_path, (), (), "Phaser solution")
 
 
-def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
+def _prepared_model(run: Path, report: Mapping[str, object]) -> Path:
     postmr = report.get("postmr")
     if not isinstance(postmr, Mapping) or postmr.get("status") != "POSTMR_READY":
         raise CootViewError("This run has no completed PostMR result")
     model = _reported_file(postmr.get("prepared_model"), "ReadySet model", run)
     _verify_report_checksum(model, postmr.get("prepared_sha256"), "ReadySet model")
-    phaser = _phaser_profile(run, report)
-    return ViewProfile(
-        "postmr",
-        model,
-        phaser.map_path,
-        (),
-        _postmr_dictionaries(run, report),
-        "ReadySet model with Phaser map",
+    return model
+
+
+def _accepted_autosol(report: Mapping[str, object]) -> bool:
+    autosol = report.get("autosol")
+    return (
+        isinstance(autosol, Mapping)
+        and autosol.get("status") == "AUTOSOL_READY"
+        and autosol.get("use_for_refinement") is True
     )
 
 
-def _autosol_map(run: Path) -> Path:
+def _postmr_map(run: Path, report: Mapping[str, object]) -> tuple[Path, str]:
+    if _accepted_autosol(report):
+        density_map = _autosol_map(run, report, allow_missing=True)
+        if density_map is not None:
+            return density_map, "accepted AutoSol density-modified map"
+        reason = "accepted AutoSol has no density-modified map"
+    elif isinstance(report.get("autosol"), Mapping):
+        reason = "AutoSol phases are not accepted"
+    else:
+        reason = "no AutoSol result"
+    return _phaser_map(run, report), f"Phaser MR map ({reason})"
+
+
+def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
+    model = _prepared_model(run, report)
+    map_path, map_source = _postmr_map(run, report)
+    return ViewProfile(
+        "postmr",
+        model,
+        map_path,
+        (),
+        _postmr_dictionaries(run, report),
+        "PostMR ReadySet prepared model",
+        map_source,
+    )
+
+
+def _autosol_map(
+    run: Path, report: Mapping[str, object], *, allow_missing: bool = False
+) -> Path | None:
+    autosol = report.get("autosol")
+    outputs = autosol.get("outputs") if isinstance(autosol, Mapping) else None
+    value = outputs.get("density_modified_map") if isinstance(outputs, Mapping) else None
+    if value is not None:
+        # A declared map is authoritative. Never replace a missing/corrupt one
+        # with an unreported product, or use the HL-only refinement data as a map.
+        path = _reported_file(value, "AutoSol density-modified map", run)
+        _verify_report_checksum(
+            path, outputs.get("density_modified_map_sha256"),
+            "AutoSol density-modified map",
+        )
+        return path
+    status = outputs.get("density_modified_map_status") if isinstance(outputs, Mapping) else None
+    if isinstance(status, str) and status in {"missing", "unavailable"}:
+        if allow_missing:
+            return None
+        raise CootViewError(f"AutoSol density-modified map is {status}")
+    if status is not None:
+        raise CootViewError(
+            f"AutoSol density-modified map has no usable declared source ({status})"
+        )
     preferred = [
         path for path in (run / "AutoSol").rglob("overall_best_denmod_map_coeffs.mtz")
-        if path.is_file() and "PDS" not in path.parts
+        if path.is_file() and "PDS" not in path.parts and "TEMP" not in path.parts
     ]
     if not preferred:
         preferred = [
             path for path in (run / "AutoSol").rglob("resolve_histograms*.mtz")
             if path.is_file() and "PDS" not in path.parts and "TEMP" not in path.parts
         ]
+    if not preferred and allow_missing:
+        return None
     if len(preferred) != 1:
         raise CootViewError(
             f"Expected one AutoSol density-modified map MTZ, found {len(preferred)}"
@@ -252,80 +336,53 @@ def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         outputs.get("heavy_atom_model_sha256"),
         "AutoSol HA model",
     )
-    phaser = _phaser_profile(run, report)
+    model = _prepared_model(run, report)
+    map_path = _autosol_map(run, report)
+    assert map_path is not None
+    status = str(autosol.get("status", "legacy status unrecorded"))
+    acceptance = "accepted" if _accepted_autosol(report) else "unaccepted; inspection only"
     return ViewProfile(
         "autosol",
-        phaser.model_path,
-        _autosol_map(run),
+        model,
+        map_path,
         (heavy_atom,),
-        (),
-        "Phaser model, AutoSol HA sites, and density-modified map",
+        _postmr_dictionaries(run, report),
+        f"PostMR ReadySet prepared model with separate AutoSol HA sites ({status})",
+        f"AutoSol density-modified map ({acceptance}; {status})",
     )
 
 
-def _autorefine_profile(
-    run: Path,
-    report: Mapping[str, object],
-    checkpoint_id: str | None = None,
-) -> ViewProfile:
-    registry_path = run / "AutoRefine" / "checkpoints.json"
-    registry = _read_json(registry_path, "checkpoint registry")
-    schema_version = registry.get("schema_version")
-    if (
-        type(schema_version) is not int
-        or schema_version not in READABLE_SCHEMA_VERSIONS
-    ):
-        raise CootViewError(f"Unsupported checkpoint schema: {schema_version}")
-    current = checkpoint_id or registry.get("current")
-    checkpoints = registry.get("checkpoints")
-    if not isinstance(current, str) or not isinstance(checkpoints, list):
-        raise CootViewError("Checkpoint registry has no requested model")
-    checkpoint = next(
-        (
-            item for item in checkpoints
-            if isinstance(item, Mapping) and item.get("id") == current
-        ),
-        None,
-    )
-    if not isinstance(checkpoint, Mapping) or checkpoint.get("kind") != "refinement":
-        requested = checkpoint_id or "current"
-        raise CootViewError(f"Checkpoint {requested} is not a completed refinement")
-    model_ref = checkpoint.get("model")
+def _refinement_map(
+    run: Path, checkpoint: Mapping[str, object], schema_version: int
+) -> Path:
     outputs = checkpoint.get("outputs")
-    if schema_version == 2:
-        _require_checkpoint_checksum(model_ref, "model")
-    model = _reported_file(model_ref, "checkpoint model", run)
     map_value = outputs.get("map_coefficients") if isinstance(outputs, Mapping) else None
     if schema_version == 2 and map_value is not None:
         _require_checkpoint_checksum(map_value, "map coefficients")
     reported_map = resolve_artifact_path(map_value, run)
     if reported_map is not None:
-        map_path = reported_map
-    elif map_value is not None:
+        return reported_map
+    if map_value is not None:
         raise CootViewError(
             "Checkpoint map coefficients are missing or failed checksum validation"
         )
-    elif schema_version == 2:
+    if schema_version == 2:
         reflection_value = (
             outputs.get("refinement_reflections")
             if isinstance(outputs, Mapping)
             else None
         )
-        _require_checkpoint_checksum(
-            reflection_value,
-            "refinement reflections",
-        )
-        refinement_reflections = resolve_artifact_path(reflection_value, run)
-        if refinement_reflections is None:
-            raise CootViewError(
-                "Checkpoint refinement reflections are missing or failed "
-                "checksum validation"
-            )
-        map_path = refinement_reflections
-    else:
-        # Phenix 1.20.x stores 2mFo-DFc/mFo-DFc coefficients in the primary
-        # refinement MTZ rather than a separately named *_map_coeffs.mtz file.
-        map_path = _required_file(model.with_suffix(".mtz"), "refinement map coefficients")
+        _require_checkpoint_checksum(reflection_value, "refinement reflections")
+        return _reported_file(reflection_value, "checkpoint refinement reflections", run)
+    # Phenix 1.20.x stores 2mFo-DFc/mFo-DFc coefficients in the primary
+    # refinement MTZ rather than a separately named *_map_coeffs.mtz file.
+    model = _reported_file(checkpoint.get("model"), "checkpoint model", run)
+    return _required_file(model.with_suffix(".mtz"), "refinement map coefficients")
+
+
+def _checkpoint_dictionaries(
+    run: Path, checkpoint: Mapping[str, object], schema_version: int
+) -> tuple[Path, ...]:
     restraints = checkpoint.get("restraints")
     dictionaries: list[Path] = []
     if isinstance(restraints, list):
@@ -338,27 +395,102 @@ def _autorefine_profile(
                     dictionaries.append(path)
                 continue
             reported_value = (
-                value.get(
-                    "relative_path",
-                    value.get("absolute_path", value.get("path")),
-                )
-                if isinstance(value, Mapping)
-                else None
+                value.get("relative_path", value.get("absolute_path", value.get("path")))
+                if isinstance(value, Mapping) else value
             )
-            if (
-                isinstance(reported_value, str)
-                and reported_value.casefold().endswith(".cif")
-            ):
+            if isinstance(reported_value, str) and reported_value.casefold().endswith(".cif"):
                 raise CootViewError(
                     "Checkpoint ligand dictionary is missing or failed checksum validation"
                 )
+    return tuple(dictionaries)
+
+
+def _same_observations(
+    run: Path, child: Mapping[str, object], parent: Mapping[str, object], schema_version: int
+) -> None:
+    paths = []
+    for item in (child, parent):
+        value = item.get("observations")
+        if schema_version == 2:
+            _require_checkpoint_checksum(value, "observations")
+        paths.append(_reported_file(value, "checkpoint observations", run))
+    if paths[0] != paths[1] and file_sha256(paths[0]) != file_sha256(paths[1]):
+        raise CootViewError(
+            "Manual checkpoint observations differ from its ancestor; no compatible "
+            "map coefficients are recorded. Refine this checkpoint before viewing it."
+        )
+
+
+def _checkpoint_map(
+    run: Path, report: Mapping[str, object], checkpoint: Mapping[str, object],
+    checkpoints: Mapping[str, Mapping[str, object]], schema_version: int,
+    visited: frozenset[str] = frozenset(),
+) -> tuple[Path, str]:
+    identifier = str(checkpoint["id"])
+    if identifier in visited:
+        raise CootViewError("Checkpoint map lineage contains a cycle")
+    kind = checkpoint.get("kind")
+    if kind == "refinement":
+        return _refinement_map(run, checkpoint, schema_version), f"refinement checkpoint {identifier}"
+    if kind == "postmr":
+        return _postmr_map(run, report)
+    if kind != "manual":
+        raise CootViewError(f"Checkpoint {identifier} has unsupported kind: {kind}")
+    parent_id = checkpoint.get("parent")
+    parent = checkpoints.get(parent_id) if isinstance(parent_id, str) else None
+    if parent is None:
+        raise CootViewError(f"Manual checkpoint {identifier} has no recorded map ancestor")
+    _same_observations(run, checkpoint, parent, schema_version)
+    map_path, map_source = _checkpoint_map(
+        run, report, parent, checkpoints, schema_version, visited | {identifier}
+    )
+    return map_path, f"inherited {map_source} (not recalculated for manual model)"
+
+
+def _autorefine_profile(
+    run: Path,
+    report: Mapping[str, object],
+    checkpoint_id: str | None = None,
+) -> ViewProfile:
+    registry = _read_json(run / "AutoRefine" / "checkpoints.json", "checkpoint registry")
+    schema_version = registry.get("schema_version")
+    if type(schema_version) is not int or schema_version not in READABLE_SCHEMA_VERSIONS:
+        raise CootViewError(f"Unsupported checkpoint schema: {schema_version}")
+    current = checkpoint_id or registry.get("current")
+    items = registry.get("checkpoints")
+    if not isinstance(current, str) or not isinstance(items, list):
+        raise CootViewError("Checkpoint registry has no valid current pointer")
+    _checkpoint_component(current)
+    checkpoints: dict[str, Mapping[str, object]] = {}
+    for item in items:
+        if not isinstance(item, Mapping) or not isinstance(item.get("id"), str):
+            raise CootViewError("Checkpoint registry contains a malformed checkpoint")
+        identifier = item["id"]
+        if identifier in checkpoints:
+            raise CootViewError(f"Checkpoint registry contains duplicate ID: {identifier}")
+        checkpoints[identifier] = item
+    checkpoint = checkpoints.get(current)
+    if checkpoint is None:
+        requested = "requested checkpoint" if checkpoint_id else "current pointer"
+        raise CootViewError(f"Checkpoint registry {requested} is unknown: {current}")
+    model_ref = checkpoint.get("model")
+    if schema_version == 2:
+        _require_checkpoint_checksum(model_ref, "model")
+    model = _reported_file(model_ref, "checkpoint model", run)
+    map_path, map_source = _checkpoint_map(
+        run, report, checkpoint, checkpoints, schema_version
+    )
+    selection = "requested" if checkpoint_id is not None else "current"
+    status = checkpoint.get("status", "legacy status unrecorded")
     return ViewProfile(
         "autorefine",
         model,
         map_path,
         (),
-        tuple(dictionaries),
-        f"current refinement checkpoint {current}",
+        _checkpoint_dictionaries(run, checkpoint, schema_version),
+        f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})",
+        map_source,
+        current,
     )
 
 
@@ -390,37 +522,8 @@ def resolve_view_profile(
 
     registry_path = run / "AutoRefine" / "checkpoints.json"
     if registry_path.is_file():
-        registry = _read_json(registry_path, "checkpoint registry")
-        schema_version = registry.get("schema_version")
-        if (
-            type(schema_version) is not int
-            or schema_version not in READABLE_SCHEMA_VERSIONS
-        ):
-            raise CootViewError(f"Unsupported checkpoint schema: {schema_version}")
-        current = registry.get("current")
-        checkpoints = registry.get("checkpoints")
-        if not isinstance(current, str) or not isinstance(checkpoints, list):
-            raise CootViewError("Checkpoint registry has no valid current pointer")
-        current_item = next(
-            (
-                item
-                for item in checkpoints
-                if isinstance(item, Mapping) and item.get("id") == current
-            ),
-            None,
-        )
-        if current_item is None:
-            raise CootViewError(f"Checkpoint registry current pointer is unknown: {current}")
-        if current_item.get("kind") == "refinement":
-            return _autorefine_profile(run, report)
-    autosol = report.get("autosol")
-    autosol_outputs = autosol.get("outputs") if isinstance(autosol, Mapping) else None
-    heavy_atom_value = (
-        autosol_outputs.get("heavy_atom_model")
-        if isinstance(autosol_outputs, Mapping)
-        else None
-    )
-    if heavy_atom_value is not None:
+        return _autorefine_profile(run, report)
+    if _accepted_autosol(report) and _autosol_map(run, report, allow_missing=True) is not None:
         return _autosol_profile(run, report)
     postmr = report.get("postmr")
     if isinstance(postmr, Mapping) and postmr.get("status") == "POSTMR_READY":
@@ -448,8 +551,8 @@ def launch_coot_view(
     profile = resolve_view_profile(run, stage=stage, checkpoint=checkpoint)
     scratch_root = run / "CootGUI"
     working = scratch_root / profile.stage
-    if checkpoint is not None:
-        working = working / checkpoint
+    if profile.checkpoint_id is not None:
+        working = working / profile.checkpoint_id
     backups = working / "backups"
     _reject_symlink_components(run, backups)
     try:
@@ -497,7 +600,12 @@ def launch_coot_view(
             {
                 "pid": pid,
                 "stage": profile.stage,
+                "run_directory": str(run),
+                "checkpoint_id": profile.checkpoint_id,
                 "source": profile.source,
+                "map_source": profile.map_source,
+                "model_path": str(profile.model_path),
+                "map_path": str(profile.map_path),
                 "command": command,
             },
             indent=2,
@@ -515,6 +623,9 @@ def launch_coot_view(
         log_path=log,
         command=tuple(command),
         pid=pid,
+        source=profile.source,
+        map_source=profile.map_source,
+        checkpoint_id=profile.checkpoint_id,
     )
 
 

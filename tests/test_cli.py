@@ -1,6 +1,9 @@
 import json
+import io
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from functools import partial
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -8,13 +11,87 @@ from unittest.mock import patch
 from nasolve.autorefine import AutoRefineError
 from nasolve.cli import _workspace_run, build_parser, main
 from nasolve.config import AppConfig, ConfigError, WorkspaceSettings
+from nasolve.coot_runtime import CootInstallation
+from nasolve.coot_view import launch_coot_view
 from nasolve.model_assessment import file_sha256
 from nasolve.refine_doctor import RefineDoctorError
 
-from .helpers import pdb_record
+from .helpers import pdb_record, symlinked_temporary_directory
+from .test_coot_view import add_manual_checkpoint, add_review_checkpoint, make_view_run
 
 
 class CLITests(unittest.TestCase):
+    def test_show_active_run_and_explicit_overrides_report_exact_sources(self):
+        with symlinked_temporary_directory() as directory:
+            root = Path(directory)
+            active = make_view_run(root, 1)
+            newest = make_view_run(root, 2)
+            add_review_checkpoint(active)
+            config = AppConfig(workspace=WorkspaceSettings(
+                dataset=str(active.parent.parent), run=str(active),
+            ))
+            coot = root / "coot"
+            coot.write_text("")
+            launch = partial(
+                launch_coot_view,
+                launcher=lambda *args, **kwargs: SimpleNamespace(pid=1234),
+            )
+            cases = (
+                (["show"], active, "refine-001", "current refinement checkpoint refine-001"),
+                (["show", str(active), "--checkpoint", "refine-002"], active,
+                 "refine-002", "requested refinement checkpoint refine-002 (REVIEW)"),
+                (["show", str(newest), "--stage", "autosol"], newest,
+                 None, "PostMR ReadySet prepared model with separate AutoSol HA sites"),
+                (["show", "last"], newest, "refine-001", "current refinement checkpoint refine-001"),
+            )
+            with (
+                patch("nasolve.cli.load_config", return_value=config),
+                patch("nasolve.cli.save_config"),
+                patch("nasolve.cli.discover_coot", return_value=CootInstallation(coot, "test", "fixture")),
+                patch("nasolve.cli.launch_coot_view", side_effect=launch),
+            ):
+                for arguments, run, checkpoint, source in cases:
+                    output = io.StringIO()
+                    with self.subTest(arguments=arguments), redirect_stdout(output):
+                        self.assertEqual(main(arguments), 0)
+                    text = output.getvalue()
+                    self.assertIn(f"in run: {run.resolve()}", text)
+                    self.assertIn(source, text)
+                    self.assertIn("Map source:", text)
+                    pen = run / "CootGUI" / ("autorefine" if checkpoint else "autosol")
+                    if checkpoint:
+                        pen /= checkpoint
+                    record = json.loads((pen / "launch.json").read_text())
+                    self.assertEqual(record["run_directory"], str(run.resolve()))
+                    self.assertEqual(record["checkpoint_id"], checkpoint)
+                    self.assertIn(record["map_source"], text)
+                    self.assertIn(record["model_path"], text)
+                    self.assertIn(record["map_path"], text)
+                    self.assertEqual(config.workspace.run, str(active))
+
+    def test_bare_show_opens_current_imported_model_in_active_workspace(self):
+        with symlinked_temporary_directory() as directory:
+            root = Path(directory)
+            run = make_view_run(root)
+            model = add_manual_checkpoint(run)
+            config = AppConfig(workspace=WorkspaceSettings(run=str(run)))
+            coot = root / "coot"
+            coot.write_text("")
+            output = io.StringIO()
+            with (
+                patch("nasolve.cli.load_config", return_value=config),
+                patch("nasolve.cli.save_config"),
+                patch("nasolve.cli.discover_coot", return_value=CootInstallation(coot, "test", "fixture")),
+                patch("nasolve.cli.launch_coot_view", side_effect=partial(
+                    launch_coot_view, launcher=lambda *args, **kwargs: SimpleNamespace(pid=1234),
+                )),
+                redirect_stdout(output),
+            ):
+                self.assertEqual(main(["show"]), 0)
+            self.assertIn(f"Model: {model.resolve()}", output.getvalue())
+            self.assertIn("current manual checkpoint manual-001", output.getvalue())
+            self.assertIn("inherited refinement checkpoint refine-001", output.getvalue())
+
     def test_autorefine_forwards_discovered_phenix_version(self):
         installation = SimpleNamespace(
             version="1.20.1-4487",

@@ -16,13 +16,15 @@ from typing import Callable, Mapping
 
 from .curated_ligands import (
     CURATED_LIGANDS,
-    curated_dictionary,
     dictionary_ideal_bond_length,
-    validate_curated_dictionary,
+    ligand_definition,
+    ligand_dictionary,
+    validate_ligand_dictionary,
 )
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
 from .model_assessment import file_sha256
-from .run_context import resolve_artifact_path
+from .phosphate import PhosphateError, sanitize_phosphates
+from .run_context import artifact_reference, resolve_artifact_path
 
 
 class PostMRPreparationError(RuntimeError):
@@ -307,24 +309,22 @@ def build_mutation_plan(report: Mapping[str, object], model: Path) -> tuple[Muta
                 f"Mirrored mutation {site} {current}->{target} requires the guarded "
                 "unmirror/Coot/remirror pathway, which is not configured yet"
             )
-        elif target in CURATED_LIGANDS:
-            ligand = CURATED_LIGANDS[target]
+        elif target in _COOT_BASES:
+            method = "coot-mutate-base"
+        else:
+            try:
+                ligand = ligand_definition(target)
+            except (KeyError, ValueError) as exc:
+                raise PostMRPreparationError(
+                    f"Mutation {site} {current}->{target} has no usable canonical parent: {exc}"
+                ) from exc
             if ligand.parent_code is None:
                 raise PostMRPreparationError(
-                    f"Curated mutation {site} {current}->{target} has no canonical parent"
+                    f"Mutation {site} {current}->{target} has no canonical parent"
                 )
             method = "coot-parent-overlap"
             parent_code = ligand.parent_code
             deposition_code = ligand.deposition_code
-        elif target in _COOT_BASES:
-            method = "coot-mutate-base"
-        else:
-            raise PostMRPreparationError(
-                f"Mutation {site} {current}->{target} needs a curated template or dictionary; "
-                "automatic coordinate construction is not configured"
-            )
-        if target in CURATED_LIGANDS:
-            deposition_code = CURATED_LIGANDS[target].deposition_code
         actions.append(
             MutationAction(
                 site,
@@ -651,7 +651,7 @@ def _restore_shared_parent_coordinates(
     }
     for action in modified:
         chain, resid = _site_parts(action.site)
-        ligand = CURATED_LIGANDS[action.after]
+        ligand = ligand_definition(action.after)
         for substitution in ligand.atom_substitutions:
             _, parent_anchor = _unique_named_atom(
                 parent_atoms,
@@ -1171,7 +1171,9 @@ def _run_readyset(
     readyset_directory: Path,
     ligand_cif: Path | None,
     environment: Mapping[str, str] | None,
-) -> tuple[Path, Path, Path | None, list[str]]:
+    *,
+    phosphate_sites: tuple[str, ...] = (),
+) -> tuple[Path, Path, Path | None, list[str], dict[str, object]]:
     command = [
         str(ready_set_executable),
         str(model),
@@ -1202,16 +1204,24 @@ def _run_readyset(
             f"ReadySet failed with status {completed.returncode}; inspect {log}"
         )
     before = _atom_counts(model)
-    after = _atom_counts(updated)
-    if after[2]:
+    raw_counts = _atom_counts(updated)
+    if raw_counts[2]:
         raise PostMRPreparationError(
-            f"ReadySet added {after[2]} hydrogen atom(s) despite hydrogens=False"
+            f"ReadySet added {raw_counts[2]} hydrogen atom(s) despite hydrogens=False"
         )
+    checked = readyset_directory / f"{model.stem}.phosphate_checked.pdb"
+    try:
+        phosphate_audit = sanitize_phosphates(
+            updated, checked, reference_model=model, check_sites=phosphate_sites,
+        )
+    except PhosphateError as exc:
+        raise PostMRPreparationError(f"ReadySet phosphate validation failed: {exc}") from exc
+    after = _atom_counts(checked)
     if after[:2] != before[:2]:
         raise PostMRPreparationError(
             "ReadySet changed the total or HETATM atom count unexpectedly"
         )
-    return updated, log, generated_cif if generated_cif.is_file() else None, command
+    return checked, log, generated_cif if generated_cif.is_file() else None, command, phosphate_audit
 
 
 def _write_json(path: Path, payload: object) -> None:
@@ -1257,17 +1267,18 @@ def prepare_postmr(
     original = model_dir / "mr_solution.pdb"
     shutil.copyfile(source_model, original)
     actions = build_mutation_plan(report, original)
-    target_curated_codes = sorted({
-        action.after for action in actions if action.after in CURATED_LIGANDS
+    target_ligand_codes = sorted({
+        action.after for action in actions if action.method == "coot-parent-overlap"
     })
-    curated_sources: dict[str, Path] = {}
-    for code in target_curated_codes:
+    ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
+    ligand_sources: dict[str, Path] = {}
+    for code in target_ligand_codes:
         try:
-            dictionary = curated_dictionary(code, data_root).resolve()
-            validate_curated_dictionary(code, dictionary)
+            dictionary = ligand_dictionary(code, data_root).resolve()
+            validate_ligand_dictionary(code, dictionary)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
-        curated_sources[code] = dictionary
+        ligand_sources[code] = dictionary
 
     coot_actions = tuple(
         action
@@ -1296,7 +1307,7 @@ def prepare_postmr(
             for action in overlap_actions
         }
         coot_dictionaries = {
-            action.after: curated_sources[action.after] for action in overlap_actions
+            action.after: ligand_sources[action.after] for action in overlap_actions
         }
         _, coot_log = _run_coot(
             original,
@@ -1315,7 +1326,7 @@ def prepare_postmr(
                 geometry_after_coot,
                 overlap_actions,
                 parent_models,
-                curated_sources,
+                ligand_sources,
             )
         else:
             shutil.copyfile(raw_after_coot, geometry_after_coot)
@@ -1333,7 +1344,12 @@ def prepare_postmr(
         shutil.copyfile(original, after_coot)
 
     prepared = model_dir / "prepared_model.pdb"
-    shutil.copyfile(after_coot, prepared)
+    try:
+        phosphate_before = sanitize_phosphates(
+            after_coot, prepared, reference_model=original,
+        )
+    except PhosphateError as exc:
+        raise PostMRPreparationError(f"PostMR phosphate validation failed: {exc}") from exc
     for action in actions:
         if residue_name(prepared, action.site) != action.after:
             raise PostMRPreparationError(
@@ -1460,14 +1476,18 @@ def prepare_postmr(
         for line in _coordinate_records(prepared)
         if (identity := _record_identity(line)) is not None
     }
-    curated_codes = sorted(residue_codes & set(CURATED_LIGANDS))
+    ligand_codes = sorted(
+        (residue_codes & set(CURATED_LIGANDS))
+        | (residue_codes & set(ligand_sources))
+    )
     copied_cifs: list[Path] = []
-    for code in curated_codes:
+    for code in ligand_codes:
         try:
-            source = curated_sources.get(code) or curated_dictionary(code, data_root).resolve()
-            validate_curated_dictionary(code, source)
+            source = ligand_sources.get(code) or ligand_dictionary(code, data_root).resolve()
+            validate_ligand_dictionary(code, source)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
+        ligand_specs.setdefault(code, ligand_definition(code))
         destination = restraints_dir / source.name
         shutil.copyfile(source, destination)
         copied_cifs.append(destination)
@@ -1480,12 +1500,13 @@ def prepare_postmr(
             encoding="utf-8",
         )
 
-    updated, readyset_log, generated_cif, readyset_command = _run_readyset(
+    updated, readyset_log, generated_cif, readyset_command, phosphate_after = _run_readyset(
         prepared,
         ready_set_executable.expanduser().resolve(),
         readyset_dir,
         readyset_cif,
         environment,
+        phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
@@ -1509,13 +1530,17 @@ def prepare_postmr(
             "log": str(coot_log) if coot_log else None,
             "shared_parent_coordinates_restored": coordinate_restoration,
         },
+        "phosphate_cleanup": {
+            "before_restraints": phosphate_before,
+            "after_readyset": phosphate_after,
+        },
         "component_identity": {
             code: {
                 "refinement_code": code,
-                "deposition_code": CURATED_LIGANDS[code].deposition_code,
-                "description": CURATED_LIGANDS[code].description,
+                "deposition_code": ligand_specs[code].deposition_code,
+                "description": ligand_specs[code].description,
             }
-            for code in curated_codes
+            for code in ligand_codes
         },
         "restraints": [str(path) for path in restraint_paths],
         "narestraints": narestraints_report,
@@ -1523,7 +1548,10 @@ def prepare_postmr(
             "command": readyset_command,
             "hydrogens": False,
             "log": str(readyset_log),
-            "updated_model": str(updated),
+            "updated_model": str(readyset_dir / f"{prepared.stem}.updated.pdb"),
+            "phosphate_checked_model": {
+                **artifact_reference(updated, run), "sha256": file_sha256(updated),
+            },
             "generated_ligand_cif": str(generated_cif) if generated_cif else None,
         },
         "anomalous": {
@@ -1546,6 +1574,14 @@ def prepare_postmr(
                 for action in actions
             ),
             f"Coot executed: {'yes' if coot_actions else 'no'}",
+            "Internal phosphate extras removed before restraints: " + (
+                ", ".join(f"{item['site']} {item['atom']}" for item in phosphate_before["removed"])
+                or "none"
+            ),
+            "Internal phosphate extras removed after ReadySet: " + (
+                ", ".join(f"{item['site']} {item['atom']}" for item in phosphate_after["removed"])
+                or "none"
+            ),
             f"NARestraints mode: {narestraints_report['mode']}",
             "ReadySet hydrogens: False",
             f"Prepared model: {final_model}",
