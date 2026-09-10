@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 import re
 import subprocess
 from dataclasses import dataclass
@@ -14,6 +15,7 @@ from .autorefine import (
     AutoRefineError,
     AutoRefineResult,
     build_reflection_plan,
+    calculated_anomalous_groups,
     execute_autorefine,
     reflection_selector_policy,
 )
@@ -68,12 +70,13 @@ class RefineDoctorTrial:
     requires_phases: bool = False
     maximum_resolution_limit: float | None = None
     minimum_observations_per_atom: float | None = None
+    refine_coordinates: bool = True
 
 
 DEFAULT_TRIALS = (
-    RefineDoctorTrial("RefineDoctor/ML-group-anomalous-off", False),
+    RefineDoctorTrial("RefineDoctor/ML-group", False),
     RefineDoctorTrial(
-        "RefineDoctor/MLHL-group-anomalous-off", True, requires_phases=True
+        "RefineDoctor/MLHL-group", True, requires_phases=True
     ),
     RefineDoctorTrial(
         "RefineDoctor/ML-individual-ADP",
@@ -82,6 +85,19 @@ DEFAULT_TRIALS = (
         maximum_resolution_limit=3.2,
         minimum_observations_per_atom=3.0,
     ),
+    RefineDoctorTrial("RefineDoctor/ML-coordinates-only", False, adp_mode="none"),
+    RefineDoctorTrial("RefineDoctor/ML-group-B-only", False, refine_coordinates=False),
+)
+
+ANOMALOUS_TRIALS = (
+    RefineDoctorTrial("RefineDoctor/ML-fixed-scattering", False, anomalous_mode="fixed"),
+    RefineDoctorTrial("RefineDoctor/MLHL-fixed-scattering", True,
+                     anomalous_mode="fixed", requires_phases=True),
+    RefineDoctorTrial("RefineDoctor/ML-fdp-only", False, anomalous_mode="fdp-only"),
+    RefineDoctorTrial("RefineDoctor/ML-coordinates-only-fixed-scattering", False,
+                     adp_mode="none", anomalous_mode="fixed"),
+    RefineDoctorTrial("RefineDoctor/ML-group-B-only-fixed-scattering", False,
+                     refine_coordinates=False, anomalous_mode="fixed"),
 )
 
 
@@ -261,6 +277,8 @@ def audit_free_r_flags(
         return FreeRAudit(
             "UNAVAILABLE", None, {}, ("Free-R audit result was malformed",), log_path
         )
+    if not isinstance(details, dict):
+        return FreeRAudit("UNAVAILABLE", None, {}, ("Free-R audit result was not an object",), log_path)
 
     warnings: list[str] = []
     invalid: list[str] = []
@@ -322,32 +340,37 @@ def _metrics(checkpoint: Mapping[str, object]) -> dict[str, object]:
     return dict(values) if isinstance(values, Mapping) else {}
 
 
-def _candidate(checkpoint: str, recipe: str, statistics: Mapping[str, object]) -> dict[str, object]:
-    work = statistics.get("r_work")
-    free = statistics.get("r_free")
-    gap = (
-        float(free) - float(work)
-        if isinstance(work, (int, float)) and isinstance(free, (int, float)) else None
-    )
+def _candidate(
+    checkpoint: str, recipe: str, statistics: Mapping[str, object], *,
+    usable: bool = True, accepted: bool = True,
+) -> dict[str, object]:
+    def metric(key: str) -> float | None:
+        value = statistics.get(key)
+        return float(value) if (
+            not isinstance(value, bool) and isinstance(value, (int, float))
+            and math.isfinite(value) and 0 <= value <= 1
+        ) else None
+    work, free = metric("r_work"), metric("r_free")
+    eligible = usable and work is not None and free is not None
+    gap = free - work if work is not None and free is not None else None
     return {
         "checkpoint": checkpoint,
         "recipe": recipe,
         "r_work": work,
         "r_free": free,
         "r_free_minus_r_work": gap,
-        "strict_success": (
-            isinstance(work, (int, float))
-            and isinstance(free, (int, float))
-            and float(work) < 0.30
-            and float(work) < float(free)
-        ),
-        "near_tie": (
-            isinstance(work, (int, float))
-            and isinstance(gap, float)
-            and float(work) < 0.30
-            and gap >= -0.01
-        ),
+        "usable": usable,
+        "eligible_for_inspection": eligible,
+        "strict_success": bool(eligible and accepted and work < .30 and work < free),
     }
+
+
+def _rank_for_inspection(candidates: list[dict[str, object]]) -> list[dict[str, object]]:
+    """Descriptive numerical order, with no claim of statistical significance."""
+    return sorted(
+        (item for item in candidates if item.get("eligible_for_inspection")),
+        key=lambda item: (item["r_free"], item["r_work"]),
+    )
 
 
 def _recommend(
@@ -356,7 +379,9 @@ def _recommend(
     audit: FreeRAudit,
 ) -> tuple[str, str | None, str, int]:
     source = candidates[0]
-    if source.get("strict_success") is True and audit.valid is not False:
+    if audit.valid is not True:
+        return "REFINE_DOCTOR_REVIEW", None, "Free-R integrity must be established before a recommendation", 2
+    if source.get("strict_success") is True:
         return (
             "REFINE_DOCTOR_GOOD_ENOUGH",
             source_checkpoint,
@@ -365,39 +390,23 @@ def _recommend(
         )
     successes = [candidate for candidate in candidates[1:] if candidate.get("strict_success")]
     if successes:
-        choice = min(
-            successes,
-            key=lambda item: (
-                float(item["r_free"]),
-                float(item["r_work"]),
-            ),
-        )
+        choice = successes[0]
         return (
             "REFINE_DOCTOR_RECOMMEND",
             str(choice["checkpoint"]),
-            "A bounded validation branch restored Rwork < Rfree while retaining Rwork < 0.30",
+            "The first eligible branch passed the numerical gate; map/model inspection is still required",
             0,
         )
-    if source.get("near_tie") is True and audit.valid is not False:
-        return (
-            "REFINE_DOCTOR_GOOD_ENOUGH",
-            source_checkpoint,
-            "The small Rwork/Rfree inversion is consistent with a noisy test set; keep the model under review rather than regenerate flags",
-            0,
-        )
-    near_ties = [candidate for candidate in candidates[1:] if candidate.get("near_tie")]
-    if near_ties and audit.valid is not False:
-        choice = max(near_ties, key=lambda item: float(item["r_free_minus_r_work"]))
-        return (
-            "REFINE_DOCTOR_RECOMMEND",
-            str(choice["checkpoint"]),
-            "No branch passed strictly, but this bounded branch is the best statistically plausible checkpoint",
-            0,
-        )
+    ranked = _rank_for_inspection(candidates)
+    detail = (
+        f" Lowest Rfree among usable candidates: {ranked[0]['checkpoint']}; "
+        "this numerical ordering does not establish superiority given test-set uncertainty."
+        if ranked else " No usable candidate has valid comparison statistics."
+    )
     return (
         "REFINE_DOCTOR_REVIEW",
         None,
-        "The bounded trials did not produce a defensible automatic recommendation",
+        "No branch passed the numerical gate; inspect the model and maps." + detail,
         2,
     )
 
@@ -431,9 +440,14 @@ def execute_refine_doctor(
     macro_cycles: int = 3,
     processor_count: int | None = None,
     trial_recipes: Sequence[RefineDoctorTrial] | None = None,
+    max_trials: int = 5,
     progress: Callable[[str, str, Path], None] | None = None,
 ) -> RefineDoctorResult:
     """Audit and run a finite set of sibling refinements without selecting one."""
+    if isinstance(max_trials, bool) or not isinstance(max_trials, int) or not 1 <= max_trials <= 10:
+        raise RefineDoctorError("Doctor max_trials must be an integer from 1 to 10")
+    if isinstance(macro_cycles, bool) or not isinstance(macro_cycles, int) or not 1 <= macro_cycles <= 10:
+        raise RefineDoctorError("Doctor macrocycles must be an integer from 1 to 10")
     try:
         selector_policy = reflection_selector_policy(phenix_version)
     except AutoRefineError as exc:
@@ -473,9 +487,13 @@ def execute_refine_doctor(
         environment,
     )
     created = _now()
-    if audit.valid is False:
-        status = "REFINE_DOCTOR_FLAG_REPAIR_REQUIRED"
-        message = "The frozen Free-R set failed an objective audit; no refinement trials were run"
+    if audit.valid is not True:
+        status = "REFINE_DOCTOR_FLAG_REPAIR_REQUIRED" if audit.valid is False else "REFINE_DOCTOR_REVIEW"
+        message = "Free-R audit failed or was unavailable; no refinement trials were run"
+        recommendation = (
+            "Repair the flags deliberately in a separate branch; NASolve did not regenerate them"
+            if audit.valid is False else "Restore the Phenix Free-R audit before retrying Doctor"
+        )
         payload = {
             "status": status,
             "message": message,
@@ -488,7 +506,11 @@ def execute_refine_doctor(
             "benchmark": [],
             "trials": [],
             "recommended_checkpoint": None,
-            "recommendation": "Repair the flags deliberately in a separate branch; NASolve did not regenerate them",
+            "recommendation": recommendation,
+            "inspection_checkpoint": None,
+            "automatic_selection": False,
+            "triage": {"stop_reason": "free-r-audit", "max_trials": max_trials,
+                       "recipes": [], "next_actions": [recommendation]},
         }
         report_path = destination / "report.json"
         _write_json(report_path, payload)
@@ -498,7 +520,9 @@ def execute_refine_doctor(
             str(payload["recommendation"]), audit, (), (), report_path
         )
 
-    source_candidate = _candidate(source_id, str(source.get("recipe", "source")), _metrics(source))
+    source_candidate = _candidate(source_id, str(source.get("recipe", "source")), _metrics(source),
+                                  usable=source.get("usable") is True,
+                                  accepted=source.get("status") == "SUCCESS")
     candidates = [source_candidate]
     benchmark = _benchmark_from_checkpoint(source, source_id)
     trials: list[AutoRefineResult] = []
@@ -506,45 +530,52 @@ def execute_refine_doctor(
     autosol = report.get("autosol")
     if isinstance(autosol, Mapping) and autosol.get("use_for_refinement") is True:
         phase_available = True
-    anomalous_present = bool(
-        isinstance(report.get("postmr"), Mapping)
-        and isinstance(report["postmr"].get("anomalous"), Mapping)
-        and report["postmr"]["anomalous"].get("candidates")
-    )
-
-    trial_specs: list[RefineDoctorTrial] = []
-    if anomalous_present and not benchmark:
-        trial_specs.append(RefineDoctorTrial(
-            "RefineDoctor/anomalous-benchmark",
-            phase_available,
-            anomalous_mode="refine",
-        ))
     independent = audit.details.get("independent_friedel_groups")
     ratio = float(independent) / max(1, _coordinate_atom_count(model)) if isinstance(independent, int) else None
-    default_pool: Sequence[RefineDoctorTrial] = (
-        ()
-        if trial_recipes is None and source_candidate.get("strict_success") is True
-        else DEFAULT_TRIALS
+    pool = tuple(trial_recipes) if trial_recipes is not None else (
+        ANOMALOUS_TRIALS if plan.anomalous else DEFAULT_TRIALS
     )
-    for trial in trial_recipes if trial_recipes is not None else default_pool:
-        if trial.requires_phases and not phase_available:
-            continue
-        if (
-            trial.maximum_resolution_limit is not None
-            and (
-                plan.resolution_limit is None
-                or plan.resolution_limit > trial.maximum_resolution_limit
-            )
+    stop_reason = (
+        "source-passes" if source_candidate["strict_success"] and trial_recipes is None
+        else "anomalous-data-unavailable" if plan.anomalous_fallback and phase_available
+        else None
+    )
+    scattering = None
+    scattering_error = None
+    if stop_reason is None and plan.anomalous and any(
+        spec.anomalous_mode in {"fixed", "fdp-only"} for spec in pool
+    ):
+        try:
+            scattering = calculated_anomalous_groups(report, refine_executable, environment)
+        except AutoRefineError as exc:
+            scattering_error = str(exc)
+    recipe_records: list[dict[str, object]] = []
+    trial_specs: list[RefineDoctorTrial] = []
+    for spec in pool:
+        record = {"recipe": spec.recipe, "state": "skipped", "reason": ""}
+        recipe_records.append(record)
+        reason = None
+        if stop_reason is not None:
+            reason = stop_reason
+        elif spec.requires_phases and not phase_available:
+            reason = "Accepted experimental phases are unavailable"
+        elif spec.maximum_resolution_limit is not None and (
+            plan.resolution_limit is None or plan.resolution_limit > spec.maximum_resolution_limit
         ):
-            continue
-        if (
-            trial.minimum_observations_per_atom is not None
-            and (ratio is None or ratio < trial.minimum_observations_per_atom)
+            reason = "The resolution does not support this ADP recipe"
+        elif spec.minimum_observations_per_atom is not None and (
+            ratio is None or ratio < spec.minimum_observations_per_atom
         ):
+            reason = "Too few independent observations per atom"
+        elif spec.anomalous_mode in {"fixed", "fdp-only"} and scattering is None:
+            reason = scattering_error or "Explicit scattering requires anomalous data and wavelength"
+        elif len(trials) >= max_trials:
+            stop_reason = reason = "trial-budget-exhausted"
+        if reason is not None:
+            record["reason"] = reason
             continue
-        trial_specs.append(trial)
-
-    for spec in trial_specs:
+        record.update(state="running", reason="Eligible in declared recipe order")
+        trial_specs.append(spec)
         recipe = spec.recipe
 
         def trial_progress(checkpoint: str, log: Path, recipe_name: str = recipe) -> None:
@@ -567,20 +598,33 @@ def execute_refine_doctor(
                 adp_mode=spec.adp_mode,
                 refine_occupancies=spec.refine_occupancies,
                 anomalous_mode=spec.anomalous_mode,
+                refine_coordinates=spec.refine_coordinates,
+                anomalous_groups=scattering if spec.anomalous_mode in {"fixed", "fdp-only"} else None,
                 auto_select_success=False,
                 progress=trial_progress,
             )
         except AutoRefineError as exc:
-            raise RefineDoctorError(f"Doctor trial {recipe} could not run: {exc}") from exc
+            record.update(state="failed", reason=str(exc))
+            stop_reason = "technical-failure"
+            continue
         trials.append(result)
-        candidates.append(_candidate(result.checkpoint_id, recipe, result.statistics))
-        if recipe.endswith("anomalous-benchmark"):
+        record.update(state="completed", checkpoint=result.checkpoint_id, reason=result.message)
+        usable = result.status in {"AUTOREFINE_READY", "AUTOREFINE_REVIEW"} and result.model_path is not None
+        candidates.append(_candidate(result.checkpoint_id, recipe, result.statistics,
+                                      usable=usable, accepted=result.status == "AUTOREFINE_READY"))
+        if usable and not benchmark and spec.anomalous_mode in {"refine", "fdp-only"}:
             benchmark = [
                 {**dict(item), "source_checkpoint": result.checkpoint_id}
                 for item in result.statistics.get("anomalous_scatterers", [])
                 if isinstance(item, Mapping)
                 and isinstance(item.get("refined_f_double_prime"), (int, float))
             ]
+        if not usable:
+            stop_reason = "technical-failure"
+        elif candidates[-1]["strict_success"]:
+            stop_reason = "numerical-pass"
+    if stop_reason is None:
+        stop_reason = "eligible-recipes-exhausted"
 
     try:
         _, final_registry = initialize_registry(run)
@@ -593,7 +637,7 @@ def execute_refine_doctor(
         candidates, source_id, audit
     )
     message = {
-        "REFINE_DOCTOR_GOOD_ENOUGH": "The selected refinement is defensible without changing Free-R flags",
+        "REFINE_DOCTOR_GOOD_ENOUGH": "The source meets the numerical gate; model/map inspection remains required",
         "REFINE_DOCTOR_RECOMMEND": "A bounded refinement branch is recommended for inspection",
         "REFINE_DOCTOR_REVIEW": "Refinement remains a user-review case after bounded triage",
     }[status]
@@ -615,6 +659,31 @@ def execute_refine_doctor(
             ),
         },
         "candidates": candidates,
+        "inspection_checkpoint": (
+            _rank_for_inspection(candidates)[0]["checkpoint"]
+            if _rank_for_inspection(candidates) else None
+        ),
+        "ranking": {
+            "basis": "Rfree then Rwork, among usable comparable candidates",
+            "statistical_superiority_established": False,
+            "checkpoints": [item["checkpoint"] for item in _rank_for_inspection(candidates)],
+        },
+        "triage": {
+            "observation_mode": "anomalous" if plan.anomalous else "mean",
+            "max_trials": max_trials,
+            "macrocycles_per_trial": macro_cycles,
+            "stop_reason": stop_reason,
+            "recipes": recipe_records,
+            "next_actions": (
+                ["Inspect the failed trial log or missing prerequisites before retrying"]
+                if stop_reason in {"technical-failure", "anomalous-data-unavailable"} or scattering_error
+                else ["Inspect candidate maps, modified-site restraints, and B factors",
+                      "Review completeness, anisotropy, scaling, and twinning evidence if fit remains poor",
+                      "Keep the frozen Free-R flags; no statistically justified winner has been established"]
+                if recommended is None
+                else ["Inspect the recommended model and maps before selecting it"]
+            ),
+        },
         "trials": [
             {
                 "checkpoint": trial.checkpoint_id,

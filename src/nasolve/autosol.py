@@ -754,17 +754,19 @@ def execute_autosol(
         sequence_path.write_text(str(generated_sequence), encoding="utf-8")
         sequence_origin = "post_mr_plan.sequences"
 
+    # Use the full AutoSol PHIL paths. Leaf names such as data also exist in
+    # wavelength/native/deriv scopes and are ambiguous in newer Phenix parsers.
     command = [
         str(autosol_executable.expanduser().resolve()),
-        f"data={reflections}",
-        f"seq_file={sequence_path}",
-        "labels=" + " ".join(labels),
-        f"atom_type={_ATOM_TYPE[element]}",
-        f"lambda={wavelength:.8g}",
-        f"input_partpdb_file={phaser_model}",
-        "build=False",
-        "phase_improve_and_build=False",
-        f"nproc={nproc}",
+        f"autosol.data={reflections}",
+        f"autosol.seq_file={sequence_path}",
+        "autosol.labels=" + " ".join(labels),
+        f"autosol.atom_type={_ATOM_TYPE[element]}",
+        f"autosol.lambda={wavelength:.8g}",
+        f"autosol.phasing.input_partpdb_file={phaser_model}",
+        "autosol.model_building.build=False",
+        "autosol.model_building.phase_improve_and_build=False",
+        f"autosol.general.nproc={nproc}",
     ]
     try:
         completed = subprocess.run(

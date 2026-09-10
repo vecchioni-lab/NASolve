@@ -463,15 +463,23 @@ classified as noisy rather than invalid. Refine Doctor never tries alternate
 test-flag values and never regenerates flags merely to reverse an R-factor
 ordering.
 
-When the source checkpoint contains a refined anomalous group, its refined and
-Henke-calculated `f''`, wavelength, model occupancy, B factor, and source
-checkpoint are frozen as a benchmark in the Doctor report. If no benchmark
-exists but a PostMR heavy atom does, one short benchmark branch is permitted.
-Subsequent validation branches may disable anomalous-parameter refinement while
-continuing to use the authoritative F+/F- observations; the benchmark remains
-available to later metal-aware recipes.
+An unavailable audit also stops all trials. A source that already passed the
+numerical gate needs no default trials. Otherwise the declared sequence stops
+at its first numerical pass, technical failure, or trial budget. Both
+`--max-trials` (default five) and macrocycles per trial (default three) accept
+1-10. Every attempted/skipped recipe and its reason is recorded.
 
-The default bounded branches are:
+Source anomalous benchmarks retain their wavelength, occupancy, B factor and
+checkpoint. For selected anomalous observations, default Doctor trials use
+explicit Henke f'/f'' values calculated with Phenix/CCTBX at the recorded
+AutoSol wavelength. The sequence tries ML and eligible MLHL with those values
+fixed, then f''-only refinement, coordinate-only, and B-only fixed-scattering
+fallbacks. Missing wavelength or failed calculation skips these recipes for
+inspection; zero is not substituted. A successful f''-only execution can supply
+a missing benchmark. Fixed values are distinguished from fitted values in the
+metrics. The ordinary AutoRefine default remains unchanged.
+
+The ordinary mean-data branches are:
 
 - ML without HL phases, reciprocal-space XYZ, residue-group ADPs, no occupancy
   search, and anomalous-parameter refinement off; and
@@ -483,13 +491,22 @@ three independent observations per modeled atom. This prevents low-resolution
 DNA models from gaining a nominal R-factor improvement through an unsupported
 parameter count. Trial definitions are declarative `RefineDoctorTrial`
 records, so future project presets may supply additional reviewed strategies
-without changing checkpoint or audit behavior.
+without changing checkpoint or audit behavior. Coordinate-only and group-B-only
+fallbacks follow; these are independent sibling trials, not chained stages.
+Weight optimization is enabled only for the coordinate/ADP strategies being
+refined, and occupancies stay fixed in every default Doctor recipe.
 
-A branch is strictly successful when its compatible model has `Rwork < Rfree`
-and `Rwork < 0.30`. If no branch passes but the source has `Rwork < 0.30`, a gap
-of at least -0.01, and a valid or merely noisy test set, Doctor may report the
-source as good enough under review rather than manipulate the flags. All other
-cases remain explicit user-review results.
+A branch is strictly successful only after a successful compatible AutoRefine
+execution with finite valid R values, `Rwork < Rfree` and `Rwork < 0.30`.
+Failed or incompatible outputs cannot win because they printed favorable
+statistics. If none passes, Doctor returns `REFINE_DOCTOR_REVIEW` (exit 2),
+leaves `recommended_checkpoint` empty, and separately identifies a usable
+`inspection_checkpoint` by Rfree then Rwork. This descriptive ranking does not
+quantify uncertainty or establish superiority. A small inversion no longer
+endorses the original source as good enough. The additive `triage` and
+`ranking` report fields explain budgets, skipped recipes, the stop and next
+inspection steps. Campaign integration and diagnostic-driven restraint/data
+alternatives remain planned in [Refine Doctor triage](refine-doctor-triage.md).
 
 ## Stage-aware Coot views
 
@@ -522,10 +539,75 @@ when selected. Console output and `launch.json` identify the run, checkpoint,
 model, and map source. Run discovery uses numbered directories and reports,
 never filesystem modification times.
 
+## Campaign planning contract
+
+`presets.load_preset` validates a schema-1 TOML policy and its declared resource
+bytes. The packaged `5w6w` preset covers the existing standard workflow. Unknown
+settings and unsupported policies stop loading. Paths resolve within the preset
+root, and exact source and resource hashes accompany the canonical configuration
+fingerprint. Python 3.10 uses the conditional `tomli` dependency; newer Python
+uses `tomllib`.
+
+`campaigns.plan_campaign` composes existing AutoMR input discovery, intent parsing,
+alias resolution and catalogue selection without allocating a scientific run.
+Discovery is limited to immediate dataset children. A malformed or incomplete
+dataset becomes `BLOCKED` while other entries are retained. The planner freezes
+the dataset list, explicitly resolved settings, checksums and duplicate MTZ
+groups. Per-file references use a campaign anchor and relative path; external
+selected models and preset resources are snapshotted into plan storage.
+
+`NASolveCampaign/plan.json` is an immutable schema-1 planning record. Publication
+must not overwrite an existing plan or incomplete planning directory. The
+manifest is exposed only after its resource snapshots are complete. Status
+validates the existing record and input identities without rewriting it or
+admitting new datasets. Relocation tests remove the old campaign, source preset
+and model catalogue before checking the copied plan.
+
+Planning commands do not discover Phenix/Coot, touch workspace settings, select
+checkpoints or execute stages. `DISCOVERED` confirms only input and model
+selection. Full model/symmetry/array validation and downstream chemistry gates
+remain with the existing engines. The executor verifies the frozen plan before
+consuming it and stores execution progress separately. See
+[campaign planning](campaign-planning.md).
+
+## Campaign execution contract
+
+`campaign_execution` composes one standard W/5W6W path per dataset through the
+existing scientific engines. The foreground executor is local and sequential;
+individual Phenix stages retain their normal processor allocation. It consumes
+the plan's resolved configuration and resource snapshots rather than choosing
+a new model from a possibly changed source catalogue.
+
+The immutable plan remains schema 1. Separate schema-1 execution state under
+`NASolveCampaign/execution/` records the plan fingerprint, exact attempt/run
+ownership, stage progress, checkpoint, diagnostic and inspection requirement.
+Atomic updates, campaign/dataset locks, process identity and heartbeat records
+protect against competing execution and expose interrupted work. Stage workers
+execute in owned process groups so cancellation can terminate their external
+tool children. A pause request finishes the active stage before stopping.
+
+Resumption verifies saved stage results and checksummed artifacts before
+continuing. It never adopts an unrelated newest run, guesses artifacts by
+basename, or overwrites an incomplete stage. An explicit retry preserves the
+old attempt and schedules a new preflight with a fresh numbered run. Live or
+uncertain prior processes prevent duplicate work. Whole-campaign relocation
+requires all workers to be stopped first and preserves relative artifact
+references; tool configuration is rediscovered on the current computer.
+
+MR review, unaccepted AutoSol phases and refinement review stop the affected
+dataset for inspection while other selected datasets continue. A numerical
+pass records its selected checkpoint as `SOLVED` with both
+`numerical_success = true` and `inspection_required = true`. Final structural
+approval, automatic Doctor selection and deposition remain separate future
+layers. The existing observation, Free-R, chemistry and checkpoint selection
+gates are preserved. See [campaign execution](campaign-execution.md) for the
+command and recovery contract.
+
 ## Project preset direction
 
-Frame and project policy should become declarative data rather than additional
-conditionals keyed to names such as `5W6W`. A future preset manifest beside each
+The first planning preset makes a bounded set of project settings declarative.
+Further frame and project policy should use data rather than additional
+conditionals keyed to names such as `5W6W`. A later preset manifest beside each
 frame catalogue can declare:
 
 - model providers, exact-pair catalogues, fallbacks, and copy/symmetry policy;
@@ -543,8 +625,10 @@ isolation, or downstream reporting.
 
 The [DOHU validation record](validation-dohu.md) establishes a working local
 dictionary mutation, phosphate cleanup, current-checkpoint view, and ordinary
-Phenix 2.2 refinement path. These are reusable stage operations; a campaign
-manager is still planned.
+Phenix 2.2 refinement path. The campaign planner freezes inputs and project
+policy; the sequential executor now adds guarded stage composition and saved
+progress. Bounded campaign Doctor selection and richer inspection summaries
+are the next orchestration steps.
 
 Campaign orchestration should reuse frozen inputs, immutable numbered runs,
 and checkpoint lineage, with resumable per-dataset progress and explicit

@@ -1,0 +1,21 @@
+schema_version = 1
+id = "5w6w"
+version = "1.0.0"
+description = "Existing standard W stage policy; dataset inputs supply the ordered pair."
+
+[automr]
+mode = "standard"
+frame = "W"
+mirror = false
+allow_p1_standard = false
+
+[postmr]
+modified_pairs_only = false
+
+[autosol]
+policy = "when-anomalous"
+on_unaccepted = "inspect"
+
+[autorefine]
+recipe = "AutoRefine/default"
+cycles = 5

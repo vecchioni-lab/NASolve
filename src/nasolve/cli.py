@@ -6,6 +6,7 @@ import argparse
 import importlib.metadata
 import json
 import os
+import shlex
 import sys
 from pathlib import Path
 from typing import Mapping
@@ -58,6 +59,37 @@ def build_parser() -> argparse.ArgumentParser:
     workspace_use.add_argument("target", type=Path)
     workspace_sub.add_parser("status", help="show the active dataset and run")
     workspace_sub.add_parser("clear", help="forget the active dataset and run")
+    preset = subparsers.add_parser("preset", help="validate a versioned project preset")
+    preset_sub = preset.add_subparsers(dest="preset_action", required=True)
+    preset_check = preset_sub.add_parser("check", help="check a preset and its resource checksums")
+    preset_check.add_argument("source", nargs="?", default="5w6w", help="5w6w or a preset TOML file")
+    preset_check.add_argument("--json", action="store_true", help="print the structured preset record")
+    campaign = subparsers.add_parser("campaign", help="plan, run, and inspect a frozen dataset campaign")
+    campaign_sub = campaign.add_subparsers(dest="campaign_action", required=True)
+    campaign_plan = campaign_sub.add_parser("plan", help="freeze input and model selection without running stages")
+    campaign_plan.add_argument("root", nargs="?", type=Path, default=Path("."), help="parent directory containing datasets")
+    campaign_plan.add_argument("--preset", default="5w6w", help="5w6w or a preset TOML file")
+    campaign_plan.add_argument("--dataset", action="append", help="exact dataset subdirectory; repeat to select several")
+    campaign_plan.add_argument("--frames-dir", type=Path, help="explicit approved MR_frames catalogue root")
+    campaign_plan.add_argument("--json", action="store_true", help="print the complete structured plan")
+    campaign_status = campaign_sub.add_parser("status", help="verify the existing plan and its frozen inputs")
+    campaign_status.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
+    campaign_status.add_argument("--json", action="store_true", help="print structured status and integrity issues")
+    campaign_run = campaign_sub.add_parser("run", help="execute or resume selected datasets sequentially")
+    campaign_run.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
+    campaign_run.add_argument("--dataset", action="append", help="exact planned dataset name; repeat to select several")
+    campaign_run.add_argument(
+        "--through", choices=("preflight", "phaser", "postmr", "autosol", "autorefine"),
+        default="autorefine", help="stop after this stage (default: autorefine)",
+    )
+    campaign_run.add_argument("--json", action="store_true", help="print structured final status without progress messages")
+    campaign_pause = campaign_sub.add_parser("pause", help="request a pause after the active stage finishes")
+    campaign_pause.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
+    campaign_pause.add_argument("--json", action="store_true", help="print structured status")
+    campaign_retry = campaign_sub.add_parser("retry", help="schedule a fresh attempt while preserving previous runs")
+    campaign_retry.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
+    campaign_retry.add_argument("--dataset", required=True, action="append", help="one exact planned dataset name")
+    campaign_retry.add_argument("--json", action="store_true", help="print structured status")
     subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
     automr = subparsers.add_parser(
         "automr", help="validate and freeze molecular-replacement inputs"
@@ -156,6 +188,10 @@ def build_parser() -> argparse.ArgumentParser:
     doctor.add_argument(
         "--cycles", type=int, default=3,
         help="macrocycles per bounded diagnostic branch (default: 3)",
+    )
+    doctor.add_argument(
+        "--max-trials", type=int, default=5,
+        help="maximum eligible Doctor trials, 1-10 (default: 5)",
     )
     checkpoints = subparsers.add_parser(
         "checkpoints", help="list, bookmark, import, or select refinement checkpoints"
@@ -301,6 +337,118 @@ def _workspace(args: argparse.Namespace) -> int:
     except ConfigError as exc:
         print(f"Workspace error: {exc}", file=sys.stderr)
         return 2
+
+
+def _preset(args: argparse.Namespace) -> int:
+    from .presets import PresetError, load_preset
+
+    try:
+        preset = load_preset(args.source)
+    except PresetError as exc:
+        print(f"Preset error: {exc}", file=sys.stderr)
+        return 2
+    if args.json:
+        print(json.dumps(preset.to_dict(), indent=2, sort_keys=True))
+    else:
+        print(f"Preset: {preset.id} {preset.version}")
+        print(f"Source: {preset.source}")
+        print(f"Configuration SHA-256: {preset.config_sha256}")
+        print(f"Validated resources: {len(preset.resources)}")
+    return 0
+
+
+def _campaign(args: argparse.Namespace) -> int:
+    from .campaigns import CampaignError, plan_campaign
+
+    try:
+        if args.campaign_action == "plan":
+            result = plan_campaign(
+                args.root,
+                preset=args.preset,
+                datasets=tuple(args.dataset) if args.dataset is not None else None,
+                frames_directory=args.frames_dir,
+            )
+        else:
+            from .campaign_execution import (
+                execute_campaign, execution_status, request_pause, retry_dataset,
+            )
+
+            if args.campaign_action == "run":
+                result = execute_campaign(
+                    args.root,
+                    datasets=tuple(args.dataset) if args.dataset is not None else None,
+                    through=args.through,
+                    phenix_root=args.phenix_root,
+                    progress=None if args.json else lambda message: print(message, flush=True),
+                )
+            elif args.campaign_action == "pause":
+                result = request_pause(args.root)
+            elif args.campaign_action == "retry":
+                if len(args.dataset) != 1:
+                    raise CampaignError("campaign retry requires exactly one --dataset")
+                result = retry_dataset(args.root, args.dataset[0])
+            else:
+                result = execution_status(args.root)
+    except CampaignError as exc:
+        print(f"Campaign error: {exc}", file=sys.stderr)
+        return 2
+    counts = result["counts"]
+    execution = result.get("execution")
+    if args.json:
+        print(json.dumps(result, indent=2, sort_keys=True))
+    else:
+        print(f"Campaign: {args.root.expanduser().resolve()}")
+        print(f"Plan: {result['plan_path']}")
+        print(f"Preset: {result['preset']['id']} {result['preset']['version']}")
+        if execution is None:
+            print("Input and model selection only; scientific preflight and stage execution are pending.")
+            print(
+                f"Datasets: {counts['total']} total, {counts['discovered']} discovered, "
+                f"{counts['blocked']} blocked"
+            )
+        else:
+            print(f"Execution: {execution['state']}")
+            print(f"Datasets: {counts['total']} planned")
+            if execution.get("pause_requested"):
+                print("Pause requested; the active stage will finish before execution stops.")
+        if "integrity" in result:
+            print(f"Frozen input integrity: {result['integrity']}")
+        progress_by_id = {
+            item["id"]: item for item in execution["datasets"]
+        } if execution is not None else {}
+        for planned in result["datasets"]:
+            item = {**planned, **progress_by_id.get(planned["id"], {})}
+            integrity = f"; integrity {item['integrity']}" if "integrity" in item else ""
+            print(f"  {item['id']}: {item['status']}{integrity}")
+            if item.get("diagnostic"):
+                print(f"    {item['diagnostic']}")
+            if item.get("run"):
+                print(f"    Run: {args.root.expanduser().resolve() / item['run']}")
+            if item.get("next_stage"):
+                print(f"    Next stage: {item['next_stage']}")
+            if item.get("checkpoint"):
+                print(f"    Checkpoint: {item['checkpoint']}")
+                if item.get("run"):
+                    command = [
+                        "./nasolve", "show", str(args.root.expanduser().resolve() / item["run"]),
+                        "--checkpoint", item["checkpoint"],
+                    ]
+                    print(f"    Inspect: {shlex.join(command)}")
+            if item.get("numerical_success"):
+                print("    Numerical refinement criteria passed; inspect the model and maps.")
+            if item.get("duplicate_of"):
+                print(f"    Same observation bytes as {item['duplicate_of']}")
+            for issue in item.get("integrity_issues", []):
+                print(f"    {issue}")
+        for issue in result.get("integrity_issues", []):
+            print(f"  {issue}")
+    flagged = counts["blocked"] or result.get("integrity") == "DRIFT"
+    if execution is not None:
+        flagged = flagged or any(
+            item["status"] in {"BLOCKED", "NO_SOLUTION", "AWAITING_INSPECTION", "DRIFT"}
+            for item in execution["datasets"]
+        )
+    return 3 if flagged else 0
 
 
 def _configure_phenix(path: str | None) -> int:
@@ -709,6 +857,7 @@ def _refine_doctor(args: argparse.Namespace) -> int:
             environment=phenix.environment,
             from_checkpoint=args.from_checkpoint,
             macro_cycles=args.cycles,
+            max_trials=args.max_trials,
             progress=progress,
         )
     except (RefineDoctorError, ConfigError, PhenixDiscoveryError) as exc:
@@ -750,6 +899,13 @@ def _refine_doctor(args: argparse.Namespace) -> int:
             )
 
     payload = json.loads(result.report_path.read_text(encoding="utf-8"))
+    inspection_id = payload.get("inspection_checkpoint")
+    triage = payload.get("triage")
+    if isinstance(triage, dict):
+        print(f"\nTriage: {triage.get('stop_reason')}; {len(result.trials)}/{triage.get('max_trials')} trials")
+        for item in triage.get("recipes", []):
+            if isinstance(item, dict) and item.get("state") in {"skipped", "failed"}:
+                print(f"  {item['state']}: {item.get('recipe')}: {item.get('reason')}")
     candidates = payload.get("candidates")
     if isinstance(candidates, list) and candidates:
         print("\nCheckpoint    Rwork   Rfree     Gap  Recipe")
@@ -765,6 +921,12 @@ def _refine_doctor(args: argparse.Namespace) -> int:
                 f"{item.get('recipe')}"
             )
     print(f"\nRecommendation: {result.recommendation}")
+    if not result.recommended_checkpoint and isinstance(inspection_id, str):
+        print("Candidate for inspection only (no automatic recommendation):")
+        print(f"  nasolve show {shlex.quote(str(result.run_directory))} --checkpoint {shlex.quote(inspection_id)}")
+    if isinstance(triage, dict):
+        for action in triage.get("next_actions", []):
+            print(f"  Next: {action}")
     if result.recommended_checkpoint:
         inspect_command = (
             f"nasolve show {result.run_directory} "
@@ -925,6 +1087,10 @@ def main(argv: list[str] | None = None) -> int:
         return _configure_coot(args.path)
     if args.command == "workspace":
         return _workspace(args)
+    if args.command == "preset":
+        return _preset(args)
+    if args.command == "campaign":
+        return _campaign(args)
     if args.command == "check":
         return _check(args.phenix_root)
     if args.command == "automr":

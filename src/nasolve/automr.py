@@ -235,23 +235,41 @@ def prepare_automr(
     environ: Mapping[str, str] | None = None,
     valid_ligand_codes: Collection[str] | None = None,
     mirror_transformer: Callable[[Path, Path], Path] | None = None,
+    *,
+    resolved_input: ResolvedAutoMRInput | None = None,
+    on_run_allocated: Callable[[Path], None] | None = None,
 ) -> AutoMRPreflightResult:
-    """Validate and freeze one AutoMR request without executing Phaser."""
+    """Validate and freeze one AutoMR request without executing Phaser.
+
+    Campaigns may supply their checksum-verified, frozen selection. The same
+    symmetry, model, and edit-target checks still run, but catalogue discovery
+    and generation of a dataset input file do not run a second time.
+    """
     root = dataset.expanduser().resolve()
-    selected_config = config_path.expanduser().resolve() if config_path else root / "nasolve.txt"
-    existing_config = selected_config if selected_config.is_file() else None
-    intent = read_intent(existing_config)
-    resolved = resolve_automr_input(
-        root,
-        intent,
-        frame_override=frame_override,
-        pair_override=pair_override,
-        frames_dir=frames_dir,
-        allow_p1_standard=allow_p1_standard,
-        mirror_override=mirror,
-        environ=environ,
-        valid_ligand_codes=valid_ligand_codes,
-    )
+    if resolved_input is None:
+        selected_config = config_path.expanduser().resolve() if config_path else root / "nasolve.txt"
+        existing_config = selected_config if selected_config.is_file() else None
+        intent = read_intent(existing_config)
+        resolved = resolve_automr_input(
+            root,
+            intent,
+            frame_override=frame_override,
+            pair_override=pair_override,
+            frames_dir=frames_dir,
+            allow_p1_standard=allow_p1_standard,
+            mirror_override=mirror,
+            environ=environ,
+            valid_ligand_codes=valid_ligand_codes,
+        )
+    else:
+        overrides = (config_path, frame_override, pair_override, frames_dir)
+        if any(value is not None for value in overrides) or allow_p1_standard or mirror:
+            raise AutoMRInputError("A frozen AutoMR selection cannot be combined with input overrides")
+        if resolved_input.dataset.root.resolve() != root:
+            raise AutoMRInputError("Frozen AutoMR selection belongs to a different dataset")
+        resolved = resolved_input
+        selected_config = resolved.config_source or root / "nasolve.txt"
+        existing_config = resolved.config_source
     symmetry: StandardSymmetryAssessment | None = None
     if resolved.mode == "standard":
         if mtz_dump_executable is None:
@@ -275,7 +293,7 @@ def prepare_automr(
     _validate_edit_targets(resolved, source_assessment)
     effective_text = format_intent(resolved)
 
-    generated = existing_config is None
+    generated = existing_config is None and resolved_input is None
     if generated:
         if config_path is not None and selected_config.parent != root:
             raise AutoMRInputError(
@@ -284,6 +302,8 @@ def prepare_automr(
         selected_config.write_text(effective_text, encoding="utf-8")
 
     run_dir = _next_run_directory(root)
+    if on_run_allocated is not None:
+        on_run_allocated(run_dir)
     model_dir = run_dir / "Model"
     model_dir.mkdir()
     copied_model = model_dir / "input_model.pdb"

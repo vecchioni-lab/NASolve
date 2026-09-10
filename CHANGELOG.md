@@ -10,6 +10,36 @@ entries are reconstructed from repository history.
 
 ### Added
 
+- Refine Doctor now tries a bounded mean-data recovery list including
+  coordinate-only and group-B-only siblings. Anomalous trials explicitly fix
+  wavelength-calculated scattering or refine f'' alone. `--max-trials` defaults
+  to five; it and `--cycles` accept 1-10. Trials stop at the first numerical
+  pass, technical failure, or budget. Additive reports preserve scattering
+  provenance, skipped-recipe reasons, descriptive ranking and inspection steps.
+- Unresolved Doctor inversions now remain `REFINE_DOCTOR_REVIEW` (exit 2), with
+  a separate inspection candidate. They no longer endorse the source or choose
+  a review branch by its R-factor gap. Unavailable Free-R audits stop trials;
+  failed/incompatible outputs cannot win by favorable printed statistics.
+- Documented the proposed Refine Doctor triage sequence for noisy mean-data
+  refinement, conditional anomalous recipes, and campaign stop/inspection
+  rules, distinguishing the implemented standalone options from future work.
+- Added foreground sequential `campaign run`, stage boundaries, pause requests
+  and explicit fresh-attempt retries for frozen schema-1 plans. Scientific
+  stages retain their existing gates; blocked and review datasets stop locally
+  while other selected datasets continue. Separate schema-1 execution records
+  preserve attempt/run ownership, stage results, process identity and recovery
+  diagnostics. Resume verifies completed artifacts, refuses to overwrite
+  incomplete work, and preserves checkpoint lineage. Campaign status now shows
+  exact runs, next stages and checkpoints; numerical success still requires
+  model/map inspection. Execution initially supports macOS/Linux.
+- Added schema-1 project presets and a built-in `5w6w` planning policy, with
+  strict TOML validation and checksummed local resources. Added `preset check`,
+  `campaign plan` and read-only `campaign status`: campaigns freeze dataset
+  selection, configuration, input hashes and portable model/preset snapshots,
+  retain blocked datasets with diagnostics, report duplicate observations and
+  detect changed or missing inputs after relocation. These commands plan input
+  and model selection; scientific preflight and execution remain separate
+  commands. Existing stage and checkpoint schemas are unchanged.
 - Published the DOHU input dataset (configuration, authoritative MTZ, autoPROC/STARANISO
   CIF, and summary) for collaborator reruns. Added `examples/README.md` and an
   eight-file SHA-256 manifest covering DOHU and the existing dated QiC example.
@@ -50,6 +80,16 @@ entries are reconstructed from repository history.
 
 ### Fixed
 
+- AutoSol now uses fully qualified PHIL parameter paths, including nested
+  phasing, model-building and general settings. This fixes Phenix 2.2 rejecting
+  the ambiguous `data=` argument before reading inputs. Standalone and campaign
+  AutoSol retain the same MR model, anomalous labels, wavelength and no-building
+  policy. The external-tool fixture now rejects abbreviated parameter names.
+- Campaign worker shutdown now recognizes macOS process groups containing only
+  exited, unreaped workers when group probes return `EPERM`. Cleanup still
+  requires verified inactivity, reaps its owned child and checks the group
+  afterward; live or unidentified groups retain the existing error and retry
+  safeguards.
 - Curated residues already present in a model retain their dictionaries and
   component-identity records even when no mutation is needed, including
   nonstandard modified-pair preparation.
@@ -144,6 +184,12 @@ entries are reconstructed from repository history.
 
 ### Tests
 
+- Doctor triage regression coverage includes the QiC inversion ranking case,
+  ordinary IMEAN fallbacks, fixed and f''-only scattering, alternate selections,
+  missing prerequisites, unavailable audits, failed external runs, budgets,
+  immutable sibling lineage and inspection without selection. The complete
+  local suite passes 393 tests and 129 subtests, with two existing platform
+  skips. New Phenix recipes still require live validation on the user runtime.
 - The assembled fixes pass 225 tests. The full local run with
   `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` also passed 51 subtests; the user
   confirmed 225 passing tests on the Apple Silicon checkout.

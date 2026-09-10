@@ -310,14 +310,35 @@ def write_recipe_parameters(
     adp_mode: str = "group",
     refine_occupancies: bool = True,
     anomalous_mode: str = "refine",
+    refine_coordinates: bool = True,
+    anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
 ) -> tuple[str, ...]:
     if macro_cycles < 1:
         raise AutoRefineError("AutoRefine requires at least one macrocycle")
     if adp_mode not in {"group", "individual", "none"}:
         raise AutoRefineError("ADP mode must be group, individual, or none")
-    if anomalous_mode not in {"refine", "off"}:
-        raise AutoRefineError("Anomalous mode must be refine or off")
-    strategies = ["individual_sites"]
+    if anomalous_mode not in {"refine", "off", "fixed", "fdp-only"}:
+        raise AutoRefineError("Anomalous mode must be refine, off, fixed, or fdp-only")
+    if anomalous_mode in {"fixed", "fdp-only"}:
+        if not reflection_plan.anomalous or not anomalous_atom_selections:
+            raise AutoRefineError("Explicit scattering modes require anomalous observations and atom selections")
+        if anomalous_groups is None or set(anomalous_groups) != set(anomalous_atom_selections):
+            raise AutoRefineError("Explicit scattering values must match every anomalous selection")
+        for group in anomalous_groups.values():
+            if not isinstance(group, Mapping) or any(
+                isinstance(group.get(key), bool)
+                or not isinstance(group.get(key), (int, float))
+                or not math.isfinite(group[key])
+                for key in ("f_prime", "f_double_prime")
+            ):
+                raise AutoRefineError("Anomalous scattering values must be finite numbers")
+            if group["f_double_prime"] < 0:
+                raise AutoRefineError("Calculated f_double_prime must not be negative")
+    elif anomalous_groups:
+        raise AutoRefineError("Explicit scattering values require fixed or fdp-only mode")
+    if real_space_sites and not refine_coordinates:
+        raise AutoRefineError("Real-space coordinate refinement requires refine_coordinates")
+    strategies = ["individual_sites"] if refine_coordinates else []
     if real_space_sites:
         strategies.append("individual_sites_real_space")
     if adp_mode == "group":
@@ -326,8 +347,10 @@ def write_recipe_parameters(
         strategies.append("individual_adp")
     if refine_occupancies:
         strategies.append("occupancies")
-    if anomalous_atom_selections and anomalous_mode == "refine":
+    if anomalous_atom_selections and anomalous_mode in {"refine", "fdp-only"}:
         strategies.append("group_anomalous")
+    if not strategies:
+        raise AutoRefineError("A refinement recipe must enable at least one strategy")
 
     observations = observations.expanduser().resolve()
     reflection_arrays: list[tuple[Path, list[str]]] = [
@@ -396,23 +419,25 @@ def write_recipe_parameters(
             "      }",
             "    }",
         ])
-    for selection in anomalous_atom_selections if anomalous_mode == "refine" else ():
+    for selection in anomalous_atom_selections if anomalous_mode != "off" else ():
         escaped = selection.replace('"', '\\"')
+        group = anomalous_groups[selection] if anomalous_groups else {}
         lines.extend([
             "    anomalous_scatterers {",
             "      group {",
             f'        selection = "{escaped}"',
-            "        f_prime = 0",
-            "        f_double_prime = 0",
-            "        refine = *f_prime *f_double_prime",
+            f"        f_prime = {group.get('f_prime', 0)}",
+            f"        f_double_prime = {group.get('f_double_prime', 0)}",
+            ("        refine = f_prime *f_double_prime" if anomalous_mode == "fdp-only"
+             else "        refine = *f_prime *f_double_prime"),
             "      }",
             "    }",
         ])
     lines.extend([
         "  }",
         "  target_weights {",
-        "    optimize_xyz_weight = True",
-        "    optimize_adp_weight = True",
+        f"    optimize_xyz_weight = {refine_coordinates}",
+        f"    optimize_adp_weight = {adp_mode != 'none'}",
         "  }",
         "}",
         "",
@@ -489,6 +514,69 @@ def _final_anomalous_values(log_text: str) -> dict[str, float]:
     return values
 
 
+def calculated_anomalous_groups(
+    report: Mapping[str, object],
+    refine_executable: Path,
+    environment: Mapping[str, str] | None,
+) -> dict[str, dict[str, object]]:
+    """Obtain explicit Henke values using the recorded AutoSol wavelength."""
+    autosol = report.get("autosol")
+    wavelength = autosol.get("wavelength") if isinstance(autosol, Mapping) else None
+    if (
+        isinstance(wavelength, bool) or not isinstance(wavelength, (int, float))
+        or not math.isfinite(wavelength) or wavelength <= 0
+    ):
+        raise AutoRefineError("No finite positive AutoSol wavelength is recorded for scattering calculation")
+    selections = anomalous_selections(report)
+    elements = {}
+    for candidate, selection in zip(_anomalous_candidates(report), selections):
+        site, atom, element = candidate.get("site"), candidate.get("atom_name"), candidate.get("element")
+        if not isinstance(site, str) or ":" not in site or not isinstance(atom, str):
+            continue
+        if not isinstance(element, str) or re.fullmatch(r"[A-Za-z]{1,2}", element) is None:
+            raise AutoRefineError(f"Unknown anomalous element at {site}")
+        if selection in elements and elements[selection] != element.upper():
+            raise AutoRefineError(f"Conflicting anomalous elements at {site}")
+        elements[selection] = element.upper()
+    if not selections or set(elements) != set(selections):
+        raise AutoRefineError("Could not resolve every anomalous scattering selection")
+    script = (
+        "import json\nfrom cctbx.eltbx import henke\nvalues = {}\n"
+        f"for element in {sorted(set(elements.values()))!r}:\n"
+        f"    value = henke.table(element).at_angstrom({float(wavelength)!r})\n"
+        "    values[element] = [value.fp(), value.fdp()]\n"
+        "print('NASOLVE_SCATTERING_JSON:' + json.dumps(values))\n"
+    )
+    python = refine_executable.expanduser().resolve().parent / "phenix.python"
+    try:
+        completed = subprocess.run(
+            [str(python), "-c", script],
+            env=dict(environment) if environment is not None else None,
+            text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            check=False, timeout=30,
+        )
+        matches = re.findall(r"^NASOLVE_SCATTERING_JSON:(\{.*\})$", completed.stdout, re.M)
+        if completed.returncode or len(matches) != 1:
+            raise ValueError("Phenix returned no unique scattering result")
+        values = json.loads(matches[0])
+        result = {}
+        for selection, element in elements.items():
+            pair = values.get(element) if isinstance(values, dict) else None
+            if not isinstance(pair, list) or len(pair) != 2 or any(
+                isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v)
+                for v in pair
+            ) or pair[1] < 0:
+                raise ValueError(f"Invalid calculated scattering values for {element}")
+            result[selection] = {
+                "f_prime": pair[0], "f_double_prime": pair[1], "element": element,
+                "wavelength": wavelength, "source": "cctbx-henke",
+                "wavelength_source": "autosol.wavelength",
+            }
+        return result
+    except (OSError, subprocess.TimeoutExpired, ValueError) as exc:
+        raise AutoRefineError(f"Cannot calculate anomalous scattering: {exc}") from exc
+
+
 def _henke_f_double_prime(
     refine_executable: Path,
     element: str,
@@ -527,6 +615,9 @@ def anomalous_scatterer_diagnostics(
     refine_executable: Path,
     environment: Mapping[str, str] | None,
     resolution_limit: float | None,
+    *,
+    anomalous_mode: str = "refine",
+    anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
 ) -> list[dict[str, object]]:
     """Compare refined anomalous strength with wavelength-calculated values."""
     if model_path is None or not model_path.is_file():
@@ -535,6 +626,7 @@ def anomalous_scatterer_diagnostics(
     wavelength_value = autosol.get("wavelength") if isinstance(autosol, Mapping) else None
     wavelength = float(wavelength_value) if isinstance(wavelength_value, (int, float)) else None
     refined_values = _final_anomalous_values(log_text)
+    final_primes = {match.group(1): float(match.group(2)) for match in _ANOMALOUS_GROUP.finditer(log_text)}
     lines = model_path.read_text(encoding="utf-8", errors="replace").splitlines()
     results: list[dict[str, object]] = []
     for candidate in _anomalous_candidates(report):
@@ -545,12 +637,16 @@ def anomalous_scatterer_diagnostics(
             continue
         chain, residue = site.split(":", 1)
         selection = f"chain {chain} and resid {residue} and name {atom_name}"
+        alternate = candidate.get("alternate")
+        if isinstance(alternate, str) and alternate:
+            selection += f" and altloc {alternate}"
         record = next(
             (
                 line for line in lines
                 if (identity := _record_identity(line)) is not None
                 and identity[0] == chain and identity[1] == residue
                 and line[12:16].strip() == atom_name
+                and (not alternate or line[16:17].strip() == alternate)
             ),
             None,
         )
@@ -566,7 +662,9 @@ def anomalous_scatterer_diagnostics(
             if isinstance(element_value, str) and element_value.strip()
             else record[76:78].strip().upper()
         )
-        refined = refined_values.get(selection)
+        final_value = refined_values.get(selection)
+        refined = final_value if anomalous_mode in {"refine", "fdp-only"} else None
+        final_prime = final_primes.get(selection)
         calculated = (
             _henke_f_double_prime(refine_executable, element, wavelength, environment)
             if wavelength is not None and element else None
@@ -582,6 +680,11 @@ def anomalous_scatterer_diagnostics(
             "wavelength": wavelength,
             "resolution_limit": resolution_limit,
             "refined_f_double_prime": refined,
+            "refined_f_prime": final_prime if anomalous_mode == "refine" else None,
+            "final_f_double_prime": final_value,
+            "final_f_prime": final_prime,
+            "parameter_mode": anomalous_mode,
+            "input_scattering": dict(anomalous_groups.get(selection, {})) if anomalous_groups else None,
             "calculated_f_double_prime": calculated,
             "model_occupancy": occupancy,
             "b_factor": b_factor,
@@ -892,6 +995,8 @@ def execute_autorefine(
     adp_mode: str = "group",
     refine_occupancies: bool = True,
     anomalous_mode: str = "refine",
+    refine_coordinates: bool = True,
+    anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
     auto_select_success: bool = True,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
@@ -953,6 +1058,8 @@ def execute_autorefine(
         adp_mode=adp_mode,
         refine_occupancies=refine_occupancies,
         anomalous_mode=anomalous_mode,
+        refine_coordinates=refine_coordinates,
+        anomalous_groups=anomalous_groups,
     )
     command = build_refine_command(
         refine_executable,
@@ -1050,7 +1157,9 @@ def execute_autorefine(
         refine_executable,
         environment,
         plan.resolution_limit,
-    )
+        anomalous_mode=anomalous_mode,
+        anomalous_groups=anomalous_groups,
+    ) if plan.anomalous else []
     _write_metrics_tsv(round_directory / "metrics.tsv", statistics)
     compatibility: dict[str, object] = {"validated": False}
     compatibility_error: str | None = None
@@ -1210,12 +1319,14 @@ def execute_autorefine(
             "anomalous": plan.anomalous,
             "anomalous_selections": list(selections),
             "anomalous_parameter_mode": anomalous_mode,
+            "anomalous_groups": dict(anomalous_groups) if anomalous_groups else {},
             "anomalous_fallback": plan.anomalous_fallback,
             "use_experimental_phases": use_experimental_phases,
             "real_space_sites": real_space_sites,
             "adp_mode": adp_mode,
             "refine_occupancies": refine_occupancies,
-            "weights": {"optimize_xyz": True, "optimize_adp": True},
+            "refine_coordinates": refine_coordinates,
+            "weights": {"optimize_xyz": refine_coordinates, "optimize_adp": adp_mode != "none"},
             "ordered_solvent": False,
             "simulated_annealing": False,
         },

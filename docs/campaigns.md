@@ -1,7 +1,11 @@
 # NASolve campaigns and project presets
 
-Status: planning specification. This document records the intended architecture;
-it does not imply that the campaign commands described below are implemented.
+Status: architecture and roadmap. Versioned 5W6W presets, immutable campaign
+planning/status, and one sequential resumable candidate path are implemented;
+see [campaign planning](campaign-planning.md) and
+[campaign execution](campaign-execution.md) for available commands and limits.
+The broader candidate-selection, Doctor, approval, reporting and deposition
+commands described below remain planned.
 
 ## Purpose
 
@@ -296,6 +300,12 @@ mode may select its first successful preset-approved branch automatically;
 standalone use may prompt. Anomalous `f''` benchmarks remain attached even if
 later validation branches stop refining anomalous parameters.
 
+The [Refine Doctor triage proposal](refine-doctor-triage.md) makes recovery for
+noisy mean-intensity datasets the main path, with conditional anomalous
+recipes. Standalone Doctor now implements a bounded fallback list, finite trial
+budgets, and an inspection outcome when no eligible recipe passes. Broader data
+diagnostics and automatic campaign Doctor triggers remain planned.
+
 ### Final Model Doctor
 
 A later final validation layer should examine residue-level fit, geometry,
@@ -484,9 +494,18 @@ identifiers and the exact approved snapshot submitted.
 9. Add curate and the lab Table 1 specification.
 10. Add deposition preparation, validation, and explicit submission.
 
-The first implementation slice ends after step 3. It should prove that the
-existing scientific engines can be composed and resumed without changing their
-individual contracts.
+Steps 1 and 2 provide `preset check`, `campaign plan` and `campaign status`,
+with an immutable JSON inventory, portable resource snapshots and integrity
+verification. Step 3 adds `campaign run`, `campaign pause` and explicit
+`campaign retry` for one sequential standard-frame path. It reuses verified
+completed stages, preserves incomplete attempts for inspection and records
+per-dataset outcomes separately from the plan. It does not yet parse the
+proposed `nasolve-campaign.toml` or maintain a database execution index.
+
+The first execution slice ends after step 3. Real Phenix/Coot campaign smoke
+checks remain necessary alongside the regression suite. Automatic Doctor
+selection and the later approval/deposition workflow are not implied by
+numerical success.
 
 ## Deferred decisions
 

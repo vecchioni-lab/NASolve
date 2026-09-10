@@ -90,14 +90,14 @@ class RefineDoctorTests(unittest.TestCase):
             self.assertEqual(result.status, "REFINE_DOCTOR_RECOMMEND")
             self.assertEqual(result.source_checkpoint, "refine-001")
             self.assertEqual(result.recommended_checkpoint, "refine-002")
-            self.assertEqual(len(result.trials), 2)
+            self.assertEqual(len(result.trials), 1)
             self.assertTrue(result.current_checkpoint_preserved)
             self.assertEqual(result.audit.status, "NOISY")
             self.assertEqual(result.benchmark[0]["source_checkpoint"], "refine-001")
             records, current, _ = list_checkpoints(run)
             self.assertEqual(current, "refine-001")
             self.assertEqual(
-                {record.parent for record in records[-2:]}, {"refine-001"}
+                {record.parent for record in records[-1:]}, {"refine-001"}
             )
             report = json.loads(result.report_path.read_text())
             self.assertFalse(report["automatic_selection"])

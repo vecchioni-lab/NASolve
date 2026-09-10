@@ -192,6 +192,7 @@ def make_refine(
         "#!/bin/sh\n"
         "case \"$*\" in\n"
         "  *audit_free_r.py*) printf '%s\\n' 'NASOLVE_FREE_R_AUDIT_JSON:{\"array_anomalous\": true, \"stored_observations\": 2017, \"independent_friedel_groups\": 1010, \"paired_friedel_groups\": 1007, \"free_independent_groups\": 45, \"free_fraction\": 0.044554, \"inconsistent_friedel_flag_groups\": 0, \"test_flag_value\": 0, \"resolution_shells\": [{\"groups\": 101, \"free_groups\": 4}, {\"groups\": 101, \"free_groups\": 5}]}';;\n"
+        "  *NASOLVE_SCATTERING_JSON*) printf '%s\\n' 'NASOLVE_SCATTERING_JSON:{\"I\": [-1.8, 5.75]}';;\n"
         "  *) printf '%s\\n' '5.750252723693848';;\n"
         "esac\n"
     )

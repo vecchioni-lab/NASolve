@@ -89,6 +89,18 @@ def make_autosol(
         "#!/usr/bin/env python3\n"
         "from pathlib import Path\n"
         "import sys\n"
+        # Parameter paths from the official AutoSol keyword hierarchy. Keep
+        # this external-program contract independent of the command builder.
+        "allowed = {'autosol.data', 'autosol.seq_file', 'autosol.labels',\n"
+        "           'autosol.atom_type', 'autosol.lambda',\n"
+        "           'autosol.phasing.input_partpdb_file',\n"
+        "           'autosol.model_building.build',\n"
+        "           'autosol.model_building.phase_improve_and_build',\n"
+        "           'autosol.general.nproc'}\n"
+        "keys = [arg.partition('=')[0] for arg in sys.argv[1:]]\n"
+        "if len(keys) != len(allowed) or set(keys) != allowed:\n"
+        "    print('Sorry: Ambiguous or unknown AutoSol parameter definition: ' + ', '.join(keys))\n"
+        "    raise SystemExit(1)\n"
         "root = Path.cwd() / 'AutoSol_run_1_'\n"
         "root.mkdir()\n"
         "(Path.cwd() / 'received_args.json').write_text(__import__('json').dumps(sys.argv[1:]))\n"
@@ -537,11 +549,11 @@ class AutoSolTests(unittest.TestCase):
             self.assertEqual(result.status, "AUTOSOL_READY")
             self.assertEqual(result.matched_distance, 1.0)
             args = json.loads((result.autosol_directory / "received_args.json").read_text())
-            self.assertIn("build=False", args)
-            self.assertIn("phase_improve_and_build=False", args)
-            self.assertIn("nproc=8", args)
-            self.assertFalse(any(argument.startswith("sites=") for argument in args))
-            model_argument = next(arg for arg in args if arg.startswith("input_partpdb_file="))
+            self.assertIn("autosol.model_building.build=False", args)
+            self.assertIn("autosol.model_building.phase_improve_and_build=False", args)
+            self.assertIn("autosol.general.nproc=8", args)
+            self.assertFalse(any(argument.partition("=")[0].split(".")[-1] == "sites" for argument in args))
+            model_argument = next(arg for arg in args if arg.startswith("autosol.phasing.input_partpdb_file="))
             self.assertTrue(model_argument.endswith("/Phaser/mr_solution.pdb"))
             report = json.loads((run / "report.json").read_text())
             self.assertEqual(report["stage"], "autosol")
@@ -554,6 +566,33 @@ class AutoSolTests(unittest.TestCase):
                 ["nearest_site"]["operator"],
                 "-x+y,-x,z",
             )
+
+    def test_fully_qualified_parameters_preserve_mr_sad_inputs_and_settings(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            run = make_run(root, (1.0, 2.0, 3.0))
+            result = execute_autosol(
+                run,
+                make_autosol(root, (1.0, 2.0, 3.0)),
+                make_mtz_dump(root),
+                environment={"PATH": "/usr/bin:/bin"},
+                processor_count=8,
+            )
+            self.assertEqual(result.status, "AUTOSOL_READY", result.message)
+            args = json.loads((result.autosol_directory / "received_args.json").read_text())
+            self.assertEqual(dict(arg.split("=", 1) for arg in args), {
+                "autosol.data": str(root / "dataset/staraniso_alldata-unique.mtz"),
+                "autosol.seq_file": str(run / "AutoSol/sequence_input.txt"),
+                "autosol.labels": "I(+) SIGI(+) I(-) SIGI(-)",
+                "autosol.atom_type": "I",
+                "autosol.lambda": "1.377618",
+                "autosol.phasing.input_partpdb_file": str(run / "Phaser/mr_solution.pdb"),
+                "autosol.model_building.build": "False",
+                "autosol.model_building.phase_improve_and_build": "False",
+                "autosol.general.nproc": "8",
+            })
+            report = json.loads(result.report_path.read_text())
+            self.assertEqual(report["command"][1:], args)
 
     def test_distant_ha_sites_stop_before_report_acceptance(self):
         with tempfile.TemporaryDirectory() as directory:

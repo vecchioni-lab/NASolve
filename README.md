@@ -7,8 +7,8 @@ reproducible settings, preserves modified residues and other heteroatoms, and
 classifies the solution by TFZ.
 
 The current release provides **AutoMR**, **PostMR**, a conditional
-**AutoSol** branch, checkpointed **AutoRefine**, and bounded **Refine Doctor**
-triage. PostMR constructs
+**AutoSol** branch, checkpointed **AutoRefine**, bounded **Refine Doctor**
+triage, and sequential campaign execution from frozen plans. PostMR constructs
 supported modified nucleotides through Coot, restores trusted parent
 coordinates, can apply complete chain sequences, generates either the 5W6W
 restraint stack or modification-scoped pair restraints, supplies curated or
@@ -147,12 +147,22 @@ small test set gives `Rwork >= Rfree`—run the bounded triage layer:
 ```
 
 Refine Doctor never regenerates Free-R flags or changes the current checkpoint.
-It audits the existing flags, runs only eligible sibling branches, stores any
-measured anomalous `f''` benchmark, and prints an explicit recommendation for
-inspection and optional selection. In an interactive terminal it asks whether
-to make the recommendation current; answering `n` or `i` prints the exact
-inspection and later-selection commands. A candidate can be opened without
-changing the current pointer:
+It requires an available, valid Free-R audit, tries eligible sibling branches
+in declared order, and stops at the first numerical pass or a technical error.
+The ordinary mean-data path includes grouped-B, eligible individual-ADP,
+coordinate-only and B-only recipes. Anomalous data use explicit calculated
+scattering values and an optional f''-only trial; the recorded AutoSol
+wavelength is required. Existing anomalous benchmarks remain in the report.
+The default limit is five trials of three macrocycles each; `--max-trials` and
+`--cycles` each accept 1-10.
+
+An unresolved inversion remains `REFINE_DOCTOR_REVIEW` (exit 2). Doctor prints
+the lowest-Rfree usable candidate for inspection without declaring statistical
+superiority or offering to select an unpassed candidate. A numerical pass may
+be selected through the interactive `[y/N/i]` prompt. Every report records
+attempted/skipped recipes and stopping reasons. See the
+[triage notes](docs/refine-doctor-triage.md) for implemented options and planned
+diagnostics. A candidate can be opened without changing the current pointer:
 
 ```bash
 ./nasolve show "$RUN" --checkpoint refine-005
@@ -907,7 +917,7 @@ Phenix 2.2.1 execution and subsequent user inspection. NASolve does not yet:
   without a supported mapping and local dictionary;
 - perform mirror-side sequence changes through an unmirror/Coot/remirror cycle;
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
-- orchestrate multi-dataset campaigns or search unbounded refinement recipes;
+- search unbounded refinement recipes or run several campaign jobs concurrently;
 - apply the final H3/R3 notation patch; or
 - search multiple catalogue models automatically.
 
@@ -915,11 +925,52 @@ These operations are deliberately kept behind later validation gates rather
 than being implied by an MR success. Always inspect the molecular-replacement
 solution and electron density before treating it as a solved structure.
 
+## Plan and run a dataset campaign
+
+Validate the built-in project preset and freeze the published example inputs
+without launching scientific stages:
+
+```bash
+./nasolve preset check 5w6w
+./nasolve campaign plan examples --dataset DOHU --dataset QiC_120325_0513
+./nasolve campaign status examples
+```
+
+The planner records valid and blocked datasets independently, input checksums,
+resolved configuration, and portable copies of selected models and preset
+resources under `NASolveCampaign/`. Status checks detect changed or missing
+frozen inputs. Existing dataset files, runs and checkpoint selections are
+preserved. A saved plan is immutable; use `status` rather than planning over it.
+
+`DISCOVERED` means input and model selection passed; the scientific preflight
+and execution gates still remain. The sequential executor runs those existing
+engines and saves progress separately from the immutable plan. For a first
+check, run one dataset through PostMR, then continue it:
+
+```bash
+./nasolve campaign run examples --dataset DOHU --through postmr
+./nasolve campaign status examples
+./nasolve campaign run examples --dataset DOHU
+```
+
+The second `run` continues the same campaign-owned numbered run after verifying
+its completed stages. It does not repeat MR or PostMR. A scientific review or
+technical failure stops that dataset while other selected datasets continue.
+AutoSol runs only when the prepared model has a supported anomalous candidate;
+unaccepted phasing stops for inspection. Numerical refinement success retains
+the selected checkpoint and still requires model/map inspection.
+
+Use `campaign pause examples` from another terminal to stop after the active
+stage finishes. Keep the execution terminal open; this first executor runs in
+the foreground on macOS/Linux. See [campaign execution](docs/campaign-execution.md)
+for interruption handling, explicit retries and live-test commands, and
+[campaign planning](docs/campaign-planning.md) for preset and input integrity.
+
 ## Project presets and future model providers
 
-The current frame directories are the first project presets. Future projects
-can add sibling preset directories rather than new project-name branches in
-the workflow code. A preset manifest can declare its MR catalogue and fallback,
+The versioned `5w6w` planning preset describes the current standard workflow.
+Future projects can add preset directories rather than new project-name
+branches in the workflow code. Later preset schemas can declare an MR catalogue and fallback,
 site roles, sequence resource, restraint policy, AutoSol sequence, metalation
 recipe, and model providers. A provider may later be a curated PDB, an
 AlphaFold result, or another approved source; downstream stages consume the
@@ -930,8 +981,8 @@ pipeline retains common validation, provenance, non-overwrite behavior, and
 external-tool isolation.
 
 The [development direction](docs/architecture.md#next-development-priorities)
-keeps campaign automation and modified-pair restraint geometry as explicit next
-steps. Numerical acceptance and model/map inspection remain separate outcomes;
+keeps bounded campaign Doctor selection and modified-pair restraint geometry as
+explicit next steps. Numerical acceptance and model/map inspection remain separate outcomes;
 validation scores retain the scientific context of each project.
 
 ## Problems and reproducibility
