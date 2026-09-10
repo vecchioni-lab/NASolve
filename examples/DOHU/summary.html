@@ -1,0 +1,2659 @@
+<!DOCTYPE html>
+<html> <head>
+<meta charset="utf-8"/>
+<title>autoPROC - 3D5 (/home/3D5/312542-20240323-NYU_Vecchioni/mx312542-1/RJS_04-07/3/RJS-004_7)</title>
+<script type='text/javascript'>//<![CDATA[
+
+function toggle_visibility(id) {
+    var a = document.getElementById(id);
+    var b = document.getElementById(id + '_button');
+    var c = document.getElementById(id + '_info');
+    if (a.style.display == 'block' || a.style.display=='') {
+      a.style.display = 'none';
+      b.innerHTML = '+';
+      b.style.backgroundColor = '#73e600';
+      c.innerHTML = 'Click for more information/plots';
+    } else {
+      a.style.display = 'block';
+      b.innerHTML = '-';
+      b.style.backgroundColor = '#ff8080';
+      c.innerHTML = ' ';
+    }
+}
+
+function toggle_modals() {
+  Array.from(document.getElementsByClassName('myImgClose')).forEach(
+    function(v) {
+      var id = v.getAttribute('id').substr(10);
+
+      // Get the modal
+      var modal = document.getElementById('myImgModal'+id);
+
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      var img = document.getElementById('myImg'+id);
+      var modalImg = document.getElementById("img"+id);
+      var captionText = document.getElementById("caption"+id);
+      img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      v.onclick = function() {
+        modal.style.display = "none";
+      }
+    }
+  )
+  Array.from(document.getElementsByClassName('txtclose')).forEach(
+    function(v) {
+      var id = v.getAttribute('id').substr(10);
+
+      // Get the modal
+      var modal = document.getElementById('myTxtModal'+id);
+
+      // set to hidden
+      modal.style.display = "none";
+
+      // When the user clicks on <span> (x), close the modal
+      v.onclick = function() {
+        modal.style.display = "none";
+      }
+    }
+  )
+}
+
+function openTxtModal(id) {
+    var modal = document.getElementById(id);
+    modal.style.display = "block";
+}
+function closeTxtModal(id) {
+    var modal = document.getElementById(id);
+    modal.style.display = "none";
+}
+
+
+//]]> 
+</script>
+<style type="text/css">
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #section-to-print, #section-to-print * {
+    visibility: visible;
+  }
+  #section-to-print {
+    position: absolute;
+    margin: 0px;
+    left: 0;
+    top: 0;
+  }
+}
+.hideinfo {
+    /* height: 12px; */
+    /* width: 10px; */
+    /* background-color: #ff8080; */
+    text-align: left;
+    vertical-align: middle;
+    /* padding: 1px; */
+    font-size: 10px;
+    font-weight: 900;
+    font-family:'Arial';
+    /* border: 1px solid black; */
+    text-decoration: none;
+    /* list-style:none; */
+    /* margin: 0px 0px 0px 0px; */
+    overflow:auto;
+}
+.hidebutton {
+    height: 12px;
+    width: 10px;
+    background-color: #ff8080;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px;
+    font-size: 10px;
+    font-weight: 900;
+    font-family:'Arial';
+    border: 1px solid black;
+    text-decoration: none;
+    list-style:none;
+    margin: 0px 0px 0px 0px;
+    overflow:auto;
+}
+.pic {
+    background-color: white;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    margin: 5px;
+}
+.pic2legend {
+    display: block;
+    font-size: 0.8em;
+    background-color: #FFEBE6;
+    padding: 2px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    margin-top: 10px;
+}
+.pictxt {
+    background-color: white;
+    padding: 0px;
+    margin: 5px;
+}
+.sidebar {
+  position: fixed;
+  padding: 2px;
+  width: 200px;
+  height: 95%;
+  overflow-y: auto;
+  z-index: 10;
+  background-color: #f7f7f7;
+}
+.content {
+  margin-left: 220px;
+  width: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 960px;
+  overflow: hidden;
+}
+.section {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.subsection {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.subsubsection {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+.sidebarsection {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+}
+.sidebarsubsection {
+    display: block;
+    font-size: 0.8em;
+    margin-left: 1.5em;
+}
+.sidebarsubsubsection {
+    display: block;
+    font-size: 0.7em;
+    margin-left: 2.5em;
+}
+.sidebarhref {
+  text-decoration: none;
+  color: #000099;
+}
+.note {
+    display: block;
+    background-color: #f7f7f7;
+    color: #000000;
+    padding: 5px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 3px solid #5e5c5e;
+    margin: 5px;
+}
+.warning {
+    font-weight: bold;
+    display: block;
+    background-color: #f7f7f7;
+    padding: 5px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 5px solid #940d2f;
+    margin: 5px;
+}
+.warningheader {
+    font-weight: bold;
+    color: #940d2f;
+    background-color: #ebd4d3;
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    margin: 0px 0px 10px 0px;
+}
+.nwarning {
+    color: #940d2f;
+}
+.error {
+    font-weight: bold;
+    display: block;
+    background-color: #f7f7f7;
+    padding: 5px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 5px solid #cc0c0c;
+    margin: 5px;
+}
+.errorheader {
+    font-weight: bold;
+    color: #cc0c0c;
+    background-color: #f0d4d3;
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    margin: 0px 0px 10px 0px;
+}
+.nerror {
+    color: #cc0c0c;
+}
+.pre {
+    font-family:monospace,monospace;
+    font-size: 0.9em;
+    display: block;
+    white-space: pre;
+    overflow-x: auto;
+}
+.pre1 {
+    font-family:monospace,monospace;
+    font-size: 0.9em;
+    display: block;
+    white-space: pre;
+    background-color: #eaf6ff; /* light blue */
+    overflow-x: auto;
+}
+.pre2 {
+    font-family:monospace,monospace;
+    font-size: 0.9em;
+    display: block;
+    white-space: pre;
+    background-color: #eaffee; /* light green */
+    overflow-x: auto;
+}
+.pre3 {
+    font-family:monospace,monospace;
+    font-size: 0.9em;
+    display: block;
+    white-space: pre;
+    background-color: #ffe8ea; /* lightred */
+    overflow-x: auto;
+}
+.pre4 {
+    font-family:monospace,monospace;
+    font-size: 0.9em;
+    display: block;
+    white-space: pre;
+    background-color: #fff5ea; /* light orange */
+    overflow-x: auto;
+}
+.pre5 {
+    font-family:monospace,monospace;
+    font-size: 0.9em;
+    display: block;
+    white-space: pre;
+    background-color: #ffffea; /* light yellow */
+    overflow-x: auto;
+}
+    /*
+    960px grid system ~ Core CSS.
+    24 Columns ~ Margin left: 10px ~ Margin right: 10px
+
+    Based on the 960.gs grid system - http://960.gs/
+    by Nathan Smith
+
+    Created by the Grid System Generator - v1.04
+    Learn more ~ http://www.gridsystemgenerator.com/
+    */
+
+    /*
+    Forces backgrounds to span full width,
+    even if there is horizontal scrolling.
+    Increase this if your layout is wider.
+
+    Note: IE6 works fine without this fix.
+    */
+    body {
+            min-width: 960px;
+    }
+
+    /* =Containers
+    --------------------------------------------------------------------------------*/
+    .container_24
+    {
+            margin-left: auto;
+            margin-right: auto;
+            width: 960px;
+    }
+
+    /* =Grid >> Global
+    --------------------------------------------------------------------------------*/
+    .grid_1,
+    .grid_2,
+    .grid_3,
+    .grid_4,
+    .grid_5,
+    .grid_6,
+    .grid_7,
+    .grid_8,
+    .grid_9,
+    .grid_10,
+    .grid_11,
+    .grid_12,
+    .grid_13,
+    .grid_14,
+    .grid_15,
+    .grid_16,
+    .grid_17,
+    .grid_18,
+    .grid_19,
+    .grid_20,
+    .grid_21,
+    .grid_22,
+    .grid_23,
+    .grid_24 {
+            display: inline;
+            float: left;
+            margin-left: 10px;
+            margin-right: 10px;
+    }
+
+    .push_1, .pull_1,
+    .push_2, .pull_2,
+    .push_3, .pull_3,
+    .push_4, .pull_4,
+    .push_5, .pull_5,
+    .push_6, .pull_6,
+    .push_7, .pull_7,
+    .push_8, .pull_8,
+    .push_9, .pull_9,
+    .push_10, .pull_10,
+    .push_11, .pull_11,
+    .push_12, .pull_12,
+    .push_13, .pull_13,
+    .push_14, .pull_14,
+    .push_15, .pull_15,
+    .push_16, .pull_16,
+    .push_17, .pull_17,
+    .push_18, .pull_18,
+    .push_19, .pull_19,
+    .push_20, .pull_20,
+    .push_21, .pull_21,
+    .push_22, .pull_22,
+    .push_23, .pull_23 {
+            position: relative;
+    }
+
+    /* =Grid >> Children (Alpha ~ First, Omega ~ Last)
+    --------------------------------------------------------------------------------*/
+    .alpha {margin-left: 0;}
+    .omega {margin-right: 0;}
+
+    /* =Grid >> 24 Columns
+    --------------------------------------------------------------------------------*/
+    .container_24 .grid_1 {width: 20px;}
+    .container_24 .grid_2 {width: 60px;}
+    .container_24 .grid_3 {width: 100px;}
+    .container_24 .grid_4 {width: 140px;}
+    .container_24 .grid_5 {width: 180px;}
+    .container_24 .grid_6 {width: 220px;}
+    .container_24 .grid_7 {width: 260px;}
+    .container_24 .grid_8 {width: 300px;}
+    .container_24 .grid_9 {width: 340px;}
+    .container_24 .grid_10 {width: 380px;}
+    .container_24 .grid_11 {width: 420px;}
+    .container_24 .grid_12 {width: 460px;}
+    .container_24 .grid_13 {width: 500px;}
+    .container_24 .grid_14 {width: 540px;}
+    .container_24 .grid_15 {width: 580px;}
+    .container_24 .grid_16 {width: 620px;}
+    .container_24 .grid_17 {width: 660px;}
+    .container_24 .grid_18 {width: 700px;}
+    .container_24 .grid_19 {width: 740px;}
+    .container_24 .grid_20 {width: 780px;}
+    .container_24 .grid_21 {width: 820px;}
+    .container_24 .grid_22 {width: 860px;}
+    .container_24 .grid_23 {width: 900px;}
+    .container_24 .grid_24 {width: 940px;}
+
+    /* =Prefix Extra Space >> 24 Columns
+    --------------------------------------------------------------------------------*/
+    .container_24 .prefix_1 {padding-left: 40px;}
+    .container_24 .prefix_2 {padding-left: 80px;}
+    .container_24 .prefix_3 {padding-left: 120px;}
+    .container_24 .prefix_4 {padding-left: 160px;}
+    .container_24 .prefix_5 {padding-left: 200px;}
+    .container_24 .prefix_6 {padding-left: 240px;}
+    .container_24 .prefix_7 {padding-left: 280px;}
+    .container_24 .prefix_8 {padding-left: 320px;}
+    .container_24 .prefix_9 {padding-left: 360px;}
+    .container_24 .prefix_10 {padding-left: 400px;}
+    .container_24 .prefix_11 {padding-left: 440px;}
+    .container_24 .prefix_12 {padding-left: 480px;}
+    .container_24 .prefix_13 {padding-left: 520px;}
+    .container_24 .prefix_14 {padding-left: 560px;}
+    .container_24 .prefix_15 {padding-left: 600px;}
+    .container_24 .prefix_16 {padding-left: 640px;}
+    .container_24 .prefix_17 {padding-left: 680px;}
+    .container_24 .prefix_18 {padding-left: 720px;}
+    .container_24 .prefix_19 {padding-left: 760px;}
+    .container_24 .prefix_20 {padding-left: 800px;}
+    .container_24 .prefix_21 {padding-left: 840px;}
+    .container_24 .prefix_22 {padding-left: 880px;}
+    .container_24 .prefix_23 {padding-left: 920px;}
+
+    /* =Suffix Extra Space >> 24 Columns
+    --------------------------------------------------------------------------------*/
+    .container_24 .suffix_1 {padding-right: 40px;}
+    .container_24 .suffix_2 {padding-right: 80px;}
+    .container_24 .suffix_3 {padding-right: 120px;}
+    .container_24 .suffix_4 {padding-right: 160px;}
+    .container_24 .suffix_5 {padding-right: 200px;}
+    .container_24 .suffix_6 {padding-right: 240px;}
+    .container_24 .suffix_7 {padding-right: 280px;}
+    .container_24 .suffix_8 {padding-right: 320px;}
+    .container_24 .suffix_9 {padding-right: 360px;}
+    .container_24 .suffix_10 {padding-right: 400px;}
+    .container_24 .suffix_11 {padding-right: 440px;}
+    .container_24 .suffix_12 {padding-right: 480px;}
+    .container_24 .suffix_13 {padding-right: 520px;}
+    .container_24 .suffix_14 {padding-right: 560px;}
+    .container_24 .suffix_15 {padding-right: 600px;}
+    .container_24 .suffix_16 {padding-right: 640px;}
+    .container_24 .suffix_17 {padding-right: 680px;}
+    .container_24 .suffix_18 {padding-right: 720px;}
+    .container_24 .suffix_19 {padding-right: 760px;}
+    .container_24 .suffix_20 {padding-right: 800px;}
+    .container_24 .suffix_21 {padding-right: 840px;}
+    .container_24 .suffix_22 {padding-right: 880px;}
+    .container_24 .suffix_23 {padding-right: 920px;}
+
+    /* Push Space >> 24 Columns
+    --------------------------------------------------------------------------------*/
+    .container_24 .push_1 {left: 40px;}
+    .container_24 .push_2 {left: 80px;}
+    .container_24 .push_3 {left: 120px;}
+    .container_24 .push_4 {left: 160px;}
+    .container_24 .push_5 {left: 200px;}
+    .container_24 .push_6 {left: 240px;}
+    .container_24 .push_7 {left: 280px;}
+    .container_24 .push_8 {left: 320px;}
+    .container_24 .push_9 {left: 360px;}
+    .container_24 .push_10 {left: 400px;}
+    .container_24 .push_11 {left: 440px;}
+    .container_24 .push_12 {left: 480px;}
+    .container_24 .push_13 {left: 520px;}
+    .container_24 .push_14 {left: 560px;}
+    .container_24 .push_15 {left: 600px;}
+    .container_24 .push_16 {left: 640px;}
+    .container_24 .push_17 {left: 680px;}
+    .container_24 .push_18 {left: 720px;}
+    .container_24 .push_19 {left: 760px;}
+    .container_24 .push_20 {left: 800px;}
+    .container_24 .push_21 {left: 840px;}
+    .container_24 .push_22 {left: 880px;}
+    .container_24 .push_23 {left: 920px;}
+
+    /* Pull Space >> 24 Columns
+    --------------------------------------------------------------------------------*/
+    .container_24 .pull_1 {left: -40px;}
+    .container_24 .pull_2 {left: -80px;}
+    .container_24 .pull_3 {left: -120px;}
+    .container_24 .pull_4 {left: -160px;}
+    .container_24 .pull_5 {left: -200px;}
+    .container_24 .pull_6 {left: -240px;}
+    .container_24 .pull_7 {left: -280px;}
+    .container_24 .pull_8 {left: -320px;}
+    .container_24 .pull_9 {left: -360px;}
+    .container_24 .pull_10 {left: -400px;}
+    .container_24 .pull_11 {left: -440px;}
+    .container_24 .pull_12 {left: -480px;}
+    .container_24 .pull_13 {left: -520px;}
+    .container_24 .pull_14 {left: -560px;}
+    .container_24 .pull_15 {left: -600px;}
+    .container_24 .pull_16 {left: -640px;}
+    .container_24 .pull_17 {left: -680px;}
+    .container_24 .pull_18 {left: -720px;}
+    .container_24 .pull_19 {left: -760px;}
+    .container_24 .pull_20 {left: -800px;}
+    .container_24 .pull_21 {left: -840px;}
+    .container_24 .pull_22 {left: -880px;}
+    .container_24 .pull_23 {left: -920px;}
+
+    /* Clear Floated Elements
+    ----------------------------------------------------------------------------------------------------*/
+    /* http://sonspring.com/journal/clearing-floats */
+    .clear {
+            clear: both;
+            display: block;
+            overflow: hidden;
+            visibility: hidden;
+            width: 0;
+            height: 0;
+    }
+
+    /* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+    .clearfix:before,
+    .clearfix:after {
+            content: "\0020";
+            display: block;
+            overflow: hidden;
+            visibility: hidden;
+            width: 0;
+            height: 0;
+    }
+    .clearfix:after {
+            clear: both;
+    }
+    /*
+    The following zoom:1 rule is specifically for IE6 + IE7.
+    Move to separate stylesheet if invalid CSS is a problem.
+    */
+    .clearfix {
+            zoom: 1;
+    }
+
+/* ------------------------------------------------------------------------------ */
+/* ----------------------- Modal images ----------------------------------------- */
+/* based on ideas from https://www.w3schools.com/howto/howto_css_modal_images.asp */
+/* see also: https://codepen.io/galulex/pen/eNZRVq                                */
+.myImg {
+    cursor: pointer;
+    transition: 0.3s;
+}
+.myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.myImgModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+/* Modal Content (image) */
+.myImgModal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+}
+
+/* Caption of Modal Image */
+#myImgCaption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.myImgModal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.myImgClose {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.myImgClose:hover,
+.myImgClose:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .myImgModal-content {
+        width: 100%;
+    }
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ----------------------- Modal text ------------------------------------------- */
+/* based on ideas from https://www.w3schools.com/howto/howto_css_modals.asp       */
+
+/* The Modal (background) */
+.myTxtModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(255,255,255); /* Fallback color */
+    background-color: rgba(255,255,255,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.myTxtModal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.myTxtClose {
+    /* position: absolute; */
+    /* top: 15px; */
+    /* right: 35px; */
+    color: #aaaaaa;
+    float: right;
+    /* font-size: 28px; */
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.myTxtClose:hover,
+.myTxtClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body style="font-family: Arial, Helvetica, sans-serif; overflow-x: hidden;" onload="toggle_modals();">
+
+  <div class="sidebar">
+
+  <span class="sidebarsection"><a class="sidebarhref" href="#intro"><b>1.</b>&nbsp;Setup</a></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#intro.check"><b>1.1.</b>&nbsp;Checking&nbsp;input</a></span>
+  <span class="sidebarsection"><a class="sidebarhref" href="#id1"><b>2.</b>&nbsp;Processing&nbsp;dataset</a></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.index"><b>2.1.</b>&nbsp;Indexing</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nwarning">2&nbsp;warnings</span></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.integ"><b>2.2.</b>&nbsp;Integration&nbsp;(initial)</a></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.postref"><b>2.3.</b>&nbsp;Post-refinement</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nwarning">2&nbsp;warnings</span></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.select3"><b>2.4.</b>&nbsp;Analysis&nbsp;#3</a></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.process"><b>2.5.</b>&nbsp;Integration&nbsp;(further)</a></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.scale"><b>2.6.</b>&nbsp;Scaling</a></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.analyse"><b>2.7.</b>&nbsp;Anisotropy&nbsp;analysis</a></span>
+        <span class="sidebarsubsection"><a class="sidebarhref" href="#id1.finish"><b>2.8.</b>&nbsp;Finalising&nbsp;output</a></span>
+          <span class="sidebarsubsubsection"><a class="sidebarhref" href="#id1.finish.outputFile1"><b>2.8.1.</b>&nbsp;isotropic&nbsp;(standard)</a></span>
+<! TRUNCATE mtz=AP4Ah3/truncate-unique.mtz lambda= subdirtxt=AP4Ah3 >
+          <span class="sidebarsubsubsection"><a class="sidebarhref" href="#id1.outputFile1.outputFile2"><b>2.8.2.</b>&nbsp;isotropic&nbsp;(extended)</a></span>
+          <span class="sidebarsubsubsection"><a class="sidebarhref" href="#id1.outputFile2.outputFile3"><b>2.8.3.</b>&nbsp;anisotropic</a></span>
+<! STARANISO mtz=AP4Ah3/staraniso_alldata-unique.mtz lambda= subdirtxt=AP4Ah3 >
+  </div>
+
+  <div id="section-to-print" class="content">
+
+
+<table style="border: 1px solid black; border-radius: 10px 10px 10px 10px; -moz-border-radius: 10px 10px 10px 10px; -webkit-border-radius: 10px 10px 10px 10px">
+  <tr>
+    <td style="vertical-align:top;text-align:left"><a href="http://www.globalphasing.com/autoproc/"><img src="gphl_logo.png" width="200"></a></td>
+    <td style="vertical-align:top;text-align:left"><a href="http://www.globalphasing.com/autoproc/">autoPROC home page</a><br>
+        <a href="http://www.globalphasing.com/autoproc/wiki/">autoPROC Wiki</a><br>
+        <a href="http://www.globalphasing.com/autoproc/manual/">autoPROC manual</a> (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC0.html">local copy</a>)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:middle;text-align:center">&nbsp;&nbsp;<b>autoPROC&nbsp;1.0.5&nbsp;(20230726)</b>&nbsp;&nbsp;</td>
+    <td style="vertical-align:top;text-align:left"><b>Please cite:</b>
+<div class="note"><table>
+  <tr>
+<td style="vertical-align:top">autoPROC   </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> Vonrhein, C., Flensburg, C., Keller, P., Sharff, A., Smart, O., Paciorek, W.,
+              Womack, T. &amp; Bricogne, G. (2011). Data processing and analysis with
+              the autoPROC toolbox. Acta Cryst. D67, 293-302.</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">XDS        </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> Kabsch, W. (2010). XDS. Acta Cryst. D66, 125-132.</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">POINTLESS  </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> Evans, P.R. (2006). Scaling and assessment of data quality, Acta Cryst. D62, 72-82.</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">AIMLESS    </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> Evans, P.R. &amp; Murshudov, G.N. (2013). How good are my data and what is the
+              resolution?, Acta Cryst. D69, 1204-1214.</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">CCP4       </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> Agirre, J., Atanasova, M., Bagdonas, H., Ballard, C. B., Basle, A., 
+              Beilsten-Edmands, J., ... & Yamashita, K. (2023). The CCP4 suite: integrative software for
+              macromolecular crystallography. Acta Cryst. D79, 449-461.</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">STARANISO  </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> Tickle, I.J., Flensburg, C., Keller, P., Paciorek, W., Sharff, A., Vonrhein, C., 
+              &amp; Bricogne, G. (2018-2023). STARANISO. Cambridge, United Kingdom: Global Phasing Ltd.</td>
+ 
+  </tr>
+</table></div>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:middle;text-align:center">&nbsp;&nbsp;</td>
+    <td style="vertical-align:top;text-align:left"><b>Program versions used:</b>
+<div class="note"><table>
+  <tr>
+<td style="vertical-align:top">XDS        </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> Jun 30, 2023 (BUILT 20230630)</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">POINTLESS  </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> 1.12.15</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">AIMLESS    </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> 0.7.13</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">CCP4       </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> 8.0.015</td>
+ 
+  </tr>
+  <tr>
+<td style="vertical-align:top">STARANISO  </td><td style="vertical-align:top">&nbsp;:&nbsp;</td><td style="vertical-align:top"> 2.3.94 (20230525)</td>
+ 
+  </tr>
+</table></div>
+    </td>
+  </tr>
+</table>
+
+
+    <div id="container" class="container_24">
+
+      <div class="grid_24"><hr style="height:3px;border-width:0;color:gray;background-color:gray"></div>
+
+      <div class="grid_24"><span class="section">1.&nbsp;<a name="intro">Setup</a></span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre">
+-----------------------------------------------------------------------------------------
+ Host      : seemanlab33.chem.nyu.edu
+ OS        : Fedora release 39 (Thirty Nine)<br>             VERSION_CODENAME=""<br>             PLATFORM_ID="platform:f39"<br>             PRETTY_NAME="Fedora Linux 39 (Workstation Edition)"<br>             LOGO=fedora-logo-icon<br>             DEFAULT_HOSTNAME="fedora"<br>             REDHAT_BUGZILLA_PRODUCT="Fedora"<br>             REDHAT_BUGZILLA_PRODUCT_VERSION=39<br>             SUPPORT_END=2024-11-12<br>             VARIANT="Workstation Edition"<br>             VARIANT_ID=workstation<br>             x86_64<br>             6.6.13-200.fc39.x86_64
+ User      : 3D5 (group = 3D5)
+ Directory : /home/3D5/312542-20240323-NYU_Vecchioni/mx312542-1/RJS_04-07/3/RJS-004_7
+ Date      : Mon Mar 25 12:55:56 EDT 2024
+ autoPROC  : /home/3D5/GPhL/autoPROC_snapshot_20230726
+-----------------------------------------------------------------------------------------
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Command-line arguments:<br><b>-d AP4Ah3 -M LowResOrTricky -R 99 4 -ANO symm=H3</b></div>
+      </div>
+<! aP_Section_1_SubSectionNum="1" >
+<! aP_Section_1_SubSection_1_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">1.1.&nbsp;<a name="intro.check">&nbsp;</a><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#step0">Checking input</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.67424em;">
+ID               Directory                                                                  Files                       Range
+-----------------------------------------------------------------------------------------------------------------------------
+RJS_04-07_1546   /home/3D5/312542-20240323-NYU_Vecchioni/mx312542-1/RJS_04-07/3/RJS-004_7   RJS_04-07_1546_master.h5   1-1800
+        </div>
+      </div>
+<! aP_SectionNum="2" >
+
+      <div class="grid_24"><hr style="height:3px;border-width:0;color:gray;background-color:gray"></div>
+
+      <div class="grid_24"><span class="section">2.&nbsp;<a name="id1">Processing dataset</a></span></div>
+
+<! aP_SectionId="id1" >
+<! aP_Section_2_SubSection_1_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.1.&nbsp;<a name="id1.index">&nbsp;</a><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#step1">Indexing</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.8428em;">
+Header information from first image
+(/home/3D5/312542-20240323-NYU_Vecchioni/mx312542-1/RJS_04-07/3/RJS-004_7/RJS_04-07_1546_master.h5):
+  date                                = 24 Mar 2024 01:11:48.001
+  exposure time             [seconds] = 0.00500
+  distance                       [mm] = 219.991
+  wavelength                      [A] = 0.920105
+  Phi-angle                  [degree] = 0.00000
+  Omega-angle (start, end)   [degree] = 0.00000 0.10000
+  Oscillation-angle in Omega [degree] = 0.10000
+  Chi-angle                  [degree] = 0.00000
+  Kappa-angle                [degree] = 0.00000
+  Beam centre in X            [pixel] = 1571.000
+  Beam centre in Y            [pixel] = 1555.138
+  Number of images in sweep           = 1800
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Using spots from images 1-1800</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Goniostat angles for first image are Omega,Kappa,Phi = 0.000,0.000,0.000</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Re-setting low-resolution limit to 20.0 A (from 99) for indexing</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_15">
+        <div class="pic">
+          <a href="SPOT.XDS.SpotsPerImage.png"><img id="myImg1" class="myImg" src="SPOT.XDS.SpotsPerImage.png" width="550" alt="Number of spots found (as a function of image number)"></a>
+        </div>
+      </div>
+      <div class="grid_8">
+        <div class="pictxt">Number of spots found (as a function of image number) (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#SPOT_SpotsPerImage">explanation</a>)</div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1"><div id="hide1_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide1')">+</div></div>
+      <div class="grid_23"><div id="hide1_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide1" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="01_run_idxref_01_RJS_04-07_1546_000001.cbf.jpg"><img id="myImg2" class="myImg" src="01_run_idxref_01_RJS_04-07_1546_000001.cbf.jpg" width="390" alt="RJS_04-07_1546_000001.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000001.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="01_run_idxref_01_RJS_04-07_1546_000300.cbf.jpg"><img id="myImg3" class="myImg" src="01_run_idxref_01_RJS_04-07_1546_000300.cbf.jpg" width="390" alt="RJS_04-07_1546_000300.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000300.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="01_run_idxref_01_RJS_04-07_1546_000600.cbf.jpg"><img id="myImg4" class="myImg" src="01_run_idxref_01_RJS_04-07_1546_000600.cbf.jpg" width="390" alt="RJS_04-07_1546_000600.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000600.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="01_run_idxref_01_RJS_04-07_1546_000900.cbf.jpg"><img id="myImg5" class="myImg" src="01_run_idxref_01_RJS_04-07_1546_000900.cbf.jpg" width="390" alt="RJS_04-07_1546_000900.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000900.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="run_idxref_spot_hkl_hist_smooth.png"><img id="myImg6" class="myImg" src="run_idxref_spot_hkl_hist_smooth.png" width="390" alt="Number of spots for each significant indexing solution (as a function of image number, smoothed)"></a>
+          <span class="pic2legend">Number of spots for each significant indexing solution (as a function of image number, smoothed) (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#run_idxref_spot_hkl_hist">explanation</a>)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="run_idxref_spot_hkl_histfrc_smooth.png"><img id="myImg7" class="myImg" src="run_idxref_spot_hkl_histfrc_smooth.png" width="390" alt="Fraction of spots for each significant indexing solution (as a function of image number, smoothed)"></a>
+          <span class="pic2legend">Fraction of spots for each significant indexing solution (as a function of image number, smoothed)</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Picking indexing solution that used the most spots (=01) - for details see <a href="run_idxref_cycle-1.log" type="text/plain">run_idxref_cycle-1.log</a></div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Indexing uses 43% (2457) of the initial 5760 spots</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="warning"><div class="warningheader">WARNING</div>The selected indexing solution uses less than 50% of initial spots - please check this carefully for ice-rings, multiple lattices or problematic spot searching (e.g. due to poor initial background estimation, damaged pixels, shadowing, poor beamstop masking etc).</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Selected cell parameters for user-supplied spacegroup H3 = 106.75 106.75 90.6 90 90 120</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+  LATTICE-  BRAVAIS-   QUALITY  UNIT CELL CONSTANTS (ANGSTROEM &amp; DEGREES)
+ CHARACTER  LATTICE     OF FIT      a      b      c   alpha  beta gamma
+
+    44        aP          0.0      68.5   68.7   68.7 101.9 101.9 102.5
+    14        mC          2.6      85.8  107.0   68.7  90.0 109.2  89.9
+    25        mC          5.2      85.8  107.0   68.7  90.0 109.2  89.9
+     4        hR          8.4     107.0  106.5   90.6  90.4  89.9 120.1 <<<<<<
+     5        cI         70.1      86.5   86.5   85.8  76.3  76.5  76.4
+    31        aP        103.1      68.5   68.7   68.7  78.1 101.9  77.5
+    20        mC        109.2      86.5  106.6   68.5  90.4 109.6  90.0
+
+BRAVAIS-            POSSIBLE SPACE-GROUPS FOR PROTEIN CRYSTALS
+  TYPE                     [SPACE GROUP NUMBER,SYMBOL]
+  aP      [1,P1]
+ mC,mI    [5,C2]
+  hR      [146,R3] [155,R32]
+  cI      [197,I23] [199,I2(1)3] [211,I432] [214,I4(1)32]
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_15">
+        <div class="pic">
+          <a href="SPOT.XDS_orig.SpotsPerImage.png"><img id="myImg8" class="myImg" src="SPOT.XDS_orig.SpotsPerImage.png" width="550" alt="Number of spots found (as a function of image number)"></a>
+        </div>
+      </div>
+      <div class="grid_8">
+        <div class="pictxt">Number of spots found (as a function of image number) (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#SPOT_SpotsPerImage">explanation</a>)</div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1"><div id="hide2_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide2')">+</div></div>
+      <div class="grid_23"><div id="hide2_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide2" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="02_run_idxref_01_RJS_04-07_1546_000001.cbf.jpg"><img id="myImg9" class="myImg" src="02_run_idxref_01_RJS_04-07_1546_000001.cbf.jpg" width="390" alt="RJS_04-07_1546_000001.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000001.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="02_run_idxref_01_RJS_04-07_1546_000300.cbf.jpg"><img id="myImg10" class="myImg" src="02_run_idxref_01_RJS_04-07_1546_000300.cbf.jpg" width="390" alt="RJS_04-07_1546_000300.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000300.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="02_run_idxref_01_RJS_04-07_1546_000600.cbf.jpg"><img id="myImg11" class="myImg" src="02_run_idxref_01_RJS_04-07_1546_000600.cbf.jpg" width="390" alt="RJS_04-07_1546_000600.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000600.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="02_run_idxref_01_RJS_04-07_1546_000900.cbf.jpg"><img id="myImg12" class="myImg" src="02_run_idxref_01_RJS_04-07_1546_000900.cbf.jpg" width="390" alt="RJS_04-07_1546_000900.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000900.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="run_idxref_spot_hkl_hist_smooth.png"><img id="myImg13" class="myImg" src="run_idxref_spot_hkl_hist_smooth.png" width="390" alt="Number of spots for each significant indexing solution (as a function of image number, smoothed)"></a>
+          <span class="pic2legend">Number of spots for each significant indexing solution (as a function of image number, smoothed) (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#run_idxref_spot_hkl_hist">explanation</a>)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="run_idxref_spot_hkl_histfrc_smooth.png"><img id="myImg14" class="myImg" src="run_idxref_spot_hkl_histfrc_smooth.png" width="390" alt="Fraction of spots for each significant indexing solution (as a function of image number, smoothed)"></a>
+          <span class="pic2legend">Fraction of spots for each significant indexing solution (as a function of image number, smoothed)</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Picking indexing solution that used the most spots (=01) - for details see <a href="run_idxref_cycle-2.log" type="text/plain">run_idxref_cycle-2.log</a></div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Indexing uses 43% (2475) of the initial 5760 spots</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="warning"><div class="warningheader">WARNING</div>The selected indexing solution uses less than 50% of initial spots - please check this carefully for ice-rings, multiple lattices or problematic spot searching (e.g. due to poor initial background estimation, damaged pixels, shadowing, poor beamstop masking etc).</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Based on analysis of indexed spots we would recommend a low-resolution limit of 41.00 A. You can set this on the command-line (e.g. adding reslow=41.00).</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Based on all indexed spots, a high-resolution limit of at least 6.00 A should be possible.</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+ AUTOINDEXING IS BASED ON   2204 OUT OF    2475 SPOTS
+
+  LATTICE-  BRAVAIS-   QUALITY  UNIT CELL CONSTANTS (ANGSTROEM &amp; DEGREES)
+ CHARACTER  LATTICE     OF FIT      a      b      c   alpha  beta gamma
+
+    44        aP          0.0      68.5   68.7   68.7 101.9 101.9 102.5
+    14        mC          2.6      85.8  107.0   68.7  90.0 109.2  89.9
+    25        mC          5.3      85.8  107.0   68.7  90.0 109.2  89.9
+     4        hR          8.5     107.0  106.5   90.6  90.4  89.9 120.1
+     5        cI         70.2      86.5   86.5   85.8  76.3  76.5  76.4
+    31        aP        103.1      68.5   68.7   68.7  78.1 101.9  77.5
+    20        mC        109.3      86.5  106.6   68.5  90.4 109.6  90.0
+
+BRAVAIS-            POSSIBLE SPACE-GROUPS FOR PROTEIN CRYSTALS
+  TYPE                     [SPACE GROUP NUMBER,SYMBOL]
+  aP      [1,P1]
+ mC,mI    [5,C2]
+  hR      [146,R3] [155,R32]
+  cI      [197,I23] [199,I2(1)3] [211,I432] [214,I4(1)32]
+
+
+
+ ***** REFINED SOLUTION BASED ON GIVEN CELL CONSTANTS AND SPACE GROUP *****
+
+ REFINED VALUES OF DIFFRACTION PARAMETERS DERIVED FROM      2200 INDEXED SPOTS
+ REFINED PARAMETERS:   BEAM ORIENTATION CELL AXIS
+ STANDARD DEVIATION OF SPOT    POSITION (PIXELS)     1.19
+ STANDARD DEVIATION OF SPINDLE POSITION (DEGREES)    0.28
+ SPACE GROUP NUMBER    146
+ UNIT CELL PARAMETERS    106.882   106.882    90.601  90.000  90.000 120.000
+ REC. CELL PARAMETERS   0.010804  0.010804  0.011037  90.000  90.000  60.000
+ COORDINATES OF UNIT CELL A-AXIS    95.544   -13.847    45.863
+ COORDINATES OF UNIT CELL B-AXIS   -89.207   -12.465    57.536
+ COORDINATES OF UNIT CELL C-AXIS    -2.061   -87.810   -22.219
+ CRYSTAL MOSAICITY (DEGREES)     0.200
+ LAB COORDINATES OF ROTATION AXIS -0.999989 -0.003857 -0.002816
+ DIRECT BEAM COORDINATES (REC. ANGSTROEM)     0.000063    0.000369    1.086832
+ DETECTOR COORDINATES (PIXELS) OF DIRECT BEAM    1570.83   1554.14
+ DETECTOR ORIGIN (PIXELS) AT                     1571.00   1555.14
+ CRYSTAL TO DETECTOR DISTANCE (mm)       219.99
+ LAB COORDINATES OF DETECTOR X-AXIS -1.000000  0.000000  0.000000
+ LAB COORDINATES OF DETECTOR Y-AXIS  0.000000 -1.000000  0.000000
+
+
+
+ ***** INDEXING OF OBSERVED SPOTS IN SPACE GROUP # 146 *****
+      2204 OUT OF      2204 SPOTS INDEXED.
+        0 REJECTED REFLECTIONS (REASON: OVERLAP)
+        0 REJECTED REFLECTIONS (REASON: TOO FAR FROM IDEAL POSITION)
+ EXPECTED ERROR IN SPINDLE  POSITION     0.287 DEGREES
+ EXPECTED ERROR IN DETECTOR POSITION      1.19 PIXELS
+
+
+
+ ***** DIFFRACTION PARAMETERS USED AT START OF INTEGRATION *****
+
+ REFINED VALUES OF DIFFRACTION PARAMETERS DERIVED FROM      2204 INDEXED SPOTS
+ REFINED PARAMETERS:   BEAM ORIENTATION CELL AXIS
+ STANDARD DEVIATION OF SPOT    POSITION (PIXELS)     1.19
+ STANDARD DEVIATION OF SPINDLE POSITION (DEGREES)    0.29
+ SPACE GROUP NUMBER    146
+ UNIT CELL PARAMETERS    106.878   106.878    90.604  90.000  90.000 120.000
+ REC. CELL PARAMETERS   0.010804  0.010804  0.011037  90.000  90.000  60.000
+ COORDINATES OF UNIT CELL A-AXIS    95.539   -13.850    45.864
+ COORDINATES OF UNIT CELL B-AXIS   -89.207   -12.464    57.531
+ COORDINATES OF UNIT CELL C-AXIS    -2.062   -87.812   -22.222
+ CRYSTAL MOSAICITY (DEGREES)     0.200
+ LAB COORDINATES OF ROTATION AXIS -0.999989 -0.003809 -0.002783
+ DIRECT BEAM COORDINATES (REC. ANGSTROEM)     0.000062    0.000367    1.086832
+ DETECTOR COORDINATES (PIXELS) OF DIRECT BEAM    1570.83   1554.15
+ DETECTOR ORIGIN (PIXELS) AT                     1571.00   1555.14
+ CRYSTAL TO DETECTOR DISTANCE (mm)       219.99
+ LAB COORDINATES OF DETECTOR X-AXIS -1.000000  0.000000  0.000000
+ LAB COORDINATES OF DETECTOR Y-AXIS  0.000000 -1.000000  0.000000
+
+
+ !!! WARNING !!! SOLUTION MAY NOT BE UNIQUE.
+ OTHER POSSIBLE SOLUTIONS CAN BE TRIED IN THE "CORRECT" STEP
+ BY SPECIFYING ALTERNATIVE SETS OF UNIT CELL BASIS VECTORS:
+
+ UNIT_CELL_A-AXIS=    95.539   -13.850    45.864
+ UNIT_CELL_B-AXIS=   -89.207   -12.464    57.531
+ UNIT_CELL_C-AXIS=    -2.062   -87.812   -22.222
+
+
+ UNIT_CELL_A-AXIS=    -6.332    26.314  -103.395
+ UNIT_CELL_B-AXIS=   -89.207   -12.464    57.531
+ UNIT_CELL_C-AXIS=     2.062    87.812    22.222
+
+
+ UNIT_CELL_A-AXIS=   -89.207   -12.464    57.531
+ UNIT_CELL_B-AXIS=    95.539   -13.850    45.864
+ UNIT_CELL_C-AXIS=     2.062    87.812    22.222
+        </div>
+      </div>
+      <div class="grid_1"><div id="hide3_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide3')">+</div></div>
+      <div class="grid_23"><div id="hide3_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide3" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="03_index_RJS_04-07_1546_000001.cbf.jpg"><img id="myImg15" class="myImg" src="03_index_RJS_04-07_1546_000001.cbf.jpg" width="390" alt="RJS_04-07_1546_000001.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000001.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="03_index_RJS_04-07_1546_000300.cbf.jpg"><img id="myImg16" class="myImg" src="03_index_RJS_04-07_1546_000300.cbf.jpg" width="390" alt="RJS_04-07_1546_000300.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000300.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="03_index_RJS_04-07_1546_000600.cbf.jpg"><img id="myImg17" class="myImg" src="03_index_RJS_04-07_1546_000600.cbf.jpg" width="390" alt="RJS_04-07_1546_000600.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000600.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="03_index_RJS_04-07_1546_000900.cbf.jpg"><img id="myImg18" class="myImg" src="03_index_RJS_04-07_1546_000900.cbf.jpg" width="390" alt="RJS_04-07_1546_000900.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000900.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="pic">
+          <a href="aP_anaspot_000_histdiff.png"><img id="myImg19" class="myImg" src="aP_anaspot_000_histdiff.png" width="870" alt="Analysis of unindexed spots (excluding baseline of unindexable spots) within and close to known ice-ring resolution ranges"></a>
+          <span class="pic2legend">Analysis of unindexed spots (excluding baseline of unindexable spots) within and close to known ice-ring resolution ranges</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+<! aP_Section_2_SubSection_2_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.2.&nbsp;<a name="id1.integ">&nbsp;</a><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#step2">Integration (initial)</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="0_SPOT_never-indexed.noHKL.png"><img id="myImg20" class="myImg" src="0_SPOT_never-indexed.noHKL.png" width="390" alt="Position of unindexed spots on detector surface"></a>
+          <span class="pic2legend">Position of unindexed spots on detector surface (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#SPOT_neverindexednoHKL">explanation</a>)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="0_scale.png"><img id="myImg21" class="myImg" src="0_scale.png" width="390" alt="Image scale factor"></a>
+          <span class="pic2legend">Image scale factor (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#imagescale">explanation</a>)</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1"><div id="hide4_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide4')">+</div></div>
+      <div class="grid_23"><div id="hide4_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide4" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="0_divergence-mosaicity.png"><img id="myImg22" class="myImg" src="0_divergence-mosaicity.png" width="390" alt="Divergence and mosaicity (estimated and used) as a function of image number"></a>
+            <span class="pic2legend">Divergence and mosaicity (estimated and used) as a function of image number (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#mosaicitydivergence">explanation</a>)</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="0_misfits.png"><img id="myImg23" class="myImg" src="0_misfits.png" width="390" alt="Spots classified as misfits as a function of detector surface position"></a>
+            <span class="pic2legend">Spots classified as misfits as a function of detector surface position</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="0_misfits_per_image.png"><img id="myImg24" class="myImg" src="0_misfits_per_image.png" width="390" alt="Spots classified as misfits as a function of image number"></a>
+            <span class="pic2legend">Spots classified as misfits as a function of image number</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+<! aP_Section_2_SubSection_3_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.3.&nbsp;<a name="id1.postref">&nbsp;</a><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#step2_pointless">Post-refinement</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22"><span class="subsubsection">Analysis of data with POINTLESS</span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+Scores for each symmetry element
+   
+   Nelmt  Lklhd  Z-cc    CC        N  Rmeas    Symmetry &amp; operator (in Lattice Cell)
+   
+     1   0.913   9.15   0.92    2415  0.051     identity
+     2   0.086   3.08   0.31    4791  0.762     2-fold   ( 2-1 0) {h,-h-k,-l}
+     3   0.084   3.01   0.30    4780  0.759     2-fold   (-1 2 0) {-h-k,k,-l}
+     4   0.084   3.02   0.30    4866  0.763     2-fold   ( 1 1 0) {k,h,-l}
+     5   0.915   9.06   0.91    9654  0.059 *** 3-fold l ( 0 0 1) {k,-h-k,l}{-h-k,h,l}
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+Best Solution:    space group H 3
+
+   Reindex operator:                   [h,k,l]                 
+   Laue group probability:             0.894
+   Systematic absence probability:     1.000
+   Total probability:                  0.894
+   Space group confidence:             0.851
+   Laue group confidence               0.851
+
+   Unit cell:   107.14  107.14   90.90      90.00   90.00  120.00
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="warning"><div class="warningheader">WARNING</div>Some tests suggest that the data might be twinned (alpha = 0.084-0.114). Please check <a href="pointless.log" type="text/plain">pointless.log</a>!</div>
+      </div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22"><span class="subsubsection">Some initial processing statistics</span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.648308em;">
+RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+  LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+   10.38         865     317       382       83.0%       2.9%      2.9%      858   32.08      3.7%    99.8*    17    0.952     150
+    7.93        1288     455       458       99.3%       4.3%      3.8%     1284   21.48      5.4%    99.7*     9    0.912     223
+    6.67        1686     578       580       99.7%      10.2%      9.6%     1680    8.98     12.7%    99.3*     1    0.820     283
+    5.86        1920     673       676       99.6%      31.7%     31.7%     1910    3.44     39.3%    93.1*     1    0.771     326
+    5.29        1841     722       728       99.2%      61.7%     66.0%     1808    1.68     78.5%    64.9*     5    0.708     325
+    4.86        2230     828       830       99.8%     158.8%    172.4%     2152    0.69    197.0%    31.2*    -2    0.627     339
+    4.52        2449     886       890       99.6%     479.6%    527.2%     2405    0.20    596.4%     5.8     -4    0.519     397
+    4.25        2366     923       954       96.8%     604.3%    639.2%     2270    0.17    758.5%    -0.1      2    0.548     352
+    4.01        2487     986      1012       97.4%    1122.9%   1234.5%     2352    0.08   1411.1%     1.6      0    0.510     357
+   total       17132    6368      6510       97.8%       8.9%      9.1%    16719    4.65     11.1%    99.8*     2    0.674    2752
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+    a        b          ISa (see Diederichs, Acta Cryst. (2010). D66, 733-740)
+8.292E-01  2.196E-03   23.43
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="warning"><div class="warningheader">WARNING</div>There is no indication of any anomalous signal in <a href="CORRECT.LP">CORRECT.LP</a> and <a href="CORRECT_ana_ano_all.mrfana">CORRECT_ana_ano_all.mrfana</a> . Data completeness (100%) and multiplicity (2.92) seem sufficiently high to give those indications some reliability. You should definitely consider running with the -noANO command-line option instead and compare results.</div>
+      </div>
+<! aP_Section_2_SubSection_4_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.4.&nbsp;<a name="id1.select3">Analysis #3</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+<! aP_Section_2_SubSection_5_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.5.&nbsp;<a name="id1.process">&nbsp;</a><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#step3">Integration (further)</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22"><span class="subsubsection">Processing statistics at cycle 1/5</span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.648308em;">
+RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+  LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+   10.50         838     309       374       82.6%       3.0%      3.0%      830   30.77      3.8%    99.7*    23    0.951     146
+    7.99        1301     461       466       98.9%       4.4%      3.9%     1297   20.88      5.4%    99.7*    12    0.955     225
+    6.70        1636     564       568       99.3%      10.0%      9.5%     1630    8.89     12.4%    99.3*     5    0.882     275
+    5.88        1931     678       680       99.7%      32.9%     32.3%     1921    3.38     40.7%    93.7*     6    0.780     329
+    5.31        1877     733       740       99.1%      66.6%     69.5%     1844    1.61     84.6%    58.9*     6    0.711     330
+    4.87        2228     827       830       99.6%     163.6%    179.1%     2150    0.67    203.1%    30.0*     0    0.620     341
+    4.53        2488     902       902      100.0%     553.8%    606.6%     2443    0.18    689.4%     3.9     -3    0.527     406
+    4.25        2387     932       966       96.5%     647.8%    693.9%     2292    0.15    813.1%     2.9      7    0.549     357
+    4.02        2439     974      1008       96.6%    1136.8%   1228.3%     2298    0.06   1431.7%     1.4     -1    0.549     350
+   total       17125    6380      6534       97.6%       8.7%      8.9%    16705    4.47     10.9%    99.8*     5    0.689    2759
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+    a        b          ISa (see Diederichs, Acta Cryst. (2010). D66, 733-740)
+7.944E-01  2.566E-03   22.15
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Re-running integration/postrefinement (cycle-2)</div>
+      </div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22"><span class="subsubsection">Processing statistics at cycle 2/5</span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.648308em;">
+RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+  LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+   10.41         873     320       386       82.9%       3.1%      3.1%      866   30.06      3.9%    99.7*    19    0.994     151
+    7.96        1270     450       454       99.1%       4.4%      4.0%     1266   20.49      5.5%    99.7*    19    0.994     220
+    6.69        1686     580       584       99.3%      10.5%      9.9%     1680    8.59     13.0%    99.3*     3    0.856     283
+    5.88        1902     669       672       99.6%      33.6%     33.3%     1892    3.31     41.6%    93.3*     7    0.789     324
+    5.31        1875     734       740       99.2%      69.1%     71.8%     1842    1.58     88.0%    59.2*     5    0.700     331
+    4.88        2247     834       836       99.8%     178.1%    194.8%     2167    0.63    220.9%    32.2*    -1    0.620     342
+    4.54        2456     890       890      100.0%     579.8%    649.7%     2413    0.17    721.0%     3.8     -2    0.540     402
+    4.26        2403     940       972       96.7%     699.3%    743.0%     2306    0.14    878.6%    -2.2      6    0.550     359
+    4.02        2431     971      1006       96.5%    1283.9%   1413.1%     2286    0.05   1614.0%    -0.9      0    0.533     346
+   total       17143    6388      6540       97.7%       8.8%      9.0%    16718    4.39     11.0%    99.8*     5    0.692    2758
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+    a        b          ISa (see Diederichs, Acta Cryst. (2010). D66, 733-740)
+8.041E-01  2.633E-03   21.73
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Re-running integration/postrefinement (cycle-3)</div>
+      </div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22"><span class="subsubsection">Processing statistics at cycle 3/5</span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.648308em;">
+RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+  LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+   10.42         874     321       386       83.2%       3.0%      3.0%      867   30.45      3.8%    99.8*    22    0.958     152
+    7.96        1273     451       454       99.3%       4.5%      3.9%     1269   20.62      5.6%    99.6*    14    0.965     221
+    6.69        1683     579       584       99.1%      10.5%      9.9%     1677    8.58     13.0%    99.3*     4    0.840     282
+    5.89        1906     670       672       99.7%      34.0%     33.8%     1896    3.28     42.2%    92.5*    -3    0.731     325
+    5.31        1872     733       740       99.1%      70.5%     73.5%     1838    1.56     89.7%    58.8*     2    0.696     329
+    4.88        2250     836       836      100.0%     179.5%    196.3%     2170    0.63    222.6%    27.5*    -3    0.596     344
+    4.54        2457     890       890      100.0%     579.9%    657.7%     2414    0.17    721.8%     8.6      0    0.531     402
+    4.26        2400     939       972       96.6%     714.2%    763.5%     2303    0.15    897.8%    -2.8      2    0.544     359
+    4.03        2440     973      1006       96.7%    1368.6%   1514.8%     2297    0.06   1720.7%    -0.7     -4    0.514     347
+   total       17155    6392      6540       97.7%       8.8%      9.1%    16731    4.42     11.0%    99.8*     2    0.672    2761
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+    a        b          ISa (see Diederichs, Acta Cryst. (2010). D66, 733-740)
+8.168E-01  2.491E-03   22.17
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Re-running integration/postrefinement (cycle-4)</div>
+      </div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22"><span class="subsubsection">Processing statistics at cycle 4/5</span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.648308em;">
+RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+  LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+   10.42         873     320       386       82.9%       3.0%      3.0%      866   30.64      3.8%    99.7*    18    0.948     151
+    7.96        1276     452       454       99.6%       4.5%      3.9%     1272   20.62      5.6%    99.7*    13    0.997     222
+    6.69        1682     578       584       99.0%      10.6%     10.0%     1676    8.58     13.1%    99.3*     1    0.837     281
+    5.89        1904     669       672       99.6%      34.1%     33.8%     1896    3.30     42.3%    92.9*     0    0.737     326
+    5.31        1873     733       740       99.1%      71.0%     73.6%     1839    1.57     90.2%    56.5*    -1    0.681     329
+    4.88        2250     836       836      100.0%     178.3%    195.3%     2170    0.63    221.0%    26.9*    -3    0.610     344
+    4.54        2458     890       890      100.0%     619.6%    698.6%     2415    0.16    770.6%     5.0      0    0.518     402
+    4.26        2403     940       972       96.7%     740.2%    793.2%     2306    0.14    930.5%    -4.7     -3    0.540     359
+    4.03        2439     973      1006       96.7%    1326.9%   1468.7%     2295    0.06   1666.9%     0.5      1    0.521     346
+   total       17158    6391      6540       97.7%       8.8%      9.1%    16735    4.43     11.0%    99.8*     1    0.672    2760
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+    a        b          ISa (see Diederichs, Acta Cryst. (2010). D66, 733-740)
+8.188E-01  2.456E-03   22.30
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Re-running integration/postrefinement (cycle-5)</div>
+      </div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22"><span class="subsubsection">Processing statistics at cycle 5/5</span></div>
+
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.648308em;">
+RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano
+  LIMIT     OBSERVED  UNIQUE  POSSIBLE     OF DATA   observed  expected                                      Corr
+
+   10.42         878     321       386       83.2%       3.1%      3.1%      871   30.13      3.8%    99.8*    17    0.911     152
+    7.97        1273     452       454       99.6%       4.5%      4.0%     1269   20.40      5.6%    99.6*    16    0.984     222
+    6.70        1680     578       584       99.0%      10.5%     10.0%     1674    8.53     13.0%    99.3*     5    0.836     281
+    5.89        1905     669       672       99.6%      34.4%     33.7%     1897    3.31     42.7%    93.3*    -2    0.771     326
+    5.32        1873     733       740       99.1%      70.7%     73.4%     1839    1.58     89.8%    57.1*     4    0.689     329
+    4.88        2250     836       836      100.0%     177.2%    194.1%     2170    0.63    219.5%    29.1*    -4    0.613     344
+    4.54        2460     890       890      100.0%     622.2%    698.5%     2417    0.16    773.6%     0.9     -1    0.518     402
+    4.26        2400     939       972       96.6%     749.6%    804.7%     2303    0.14    942.2%    -5.3      0    0.538     359
+    4.03        2439     973      1006       96.7%    1334.1%   1476.3%     2294    0.05   1675.2%    -0.2     -3    0.503     345
+   total       17158    6391      6540       97.7%       8.9%      9.1%    16734    4.39     11.1%    99.8*     2    0.672    2760
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+    a        b          ISa (see Diederichs, Acta Cryst. (2010). D66, 733-740)
+8.144E-01  2.580E-03   21.81
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">0 overloaded reflections out of 17313 total</div>
+      </div>
+      <div class="grid_1"><div id="hide5_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide5')">+</div></div>
+      <div class="grid_23"><div id="hide5_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide5" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="1_divergence-mosaicity.png"><img id="myImg25" class="myImg" src="1_divergence-mosaicity.png" width="390" alt="Divergence and mosaicity (estimated and used) as a function of image number"></a>
+            <span class="pic2legend">Divergence and mosaicity (estimated and used) as a function of image number (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#mosaicitydivergence">explanation</a>)</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="1_misfits.png"><img id="myImg26" class="myImg" src="1_misfits.png" width="390" alt="Spots classified as misfits as a function of detector surface position"></a>
+            <span class="pic2legend">Spots classified as misfits as a function of detector surface position</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="1_misfits_per_image.png"><img id="myImg27" class="myImg" src="1_misfits_per_image.png" width="390" alt="Spots classified as misfits as a function of image number"></a>
+            <span class="pic2legend">Spots classified as misfits as a function of image number</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">A final set of (optimised) indexing solution(s) of the initial spots list using the current set of parameters is available in AP4Ah3/FinalAnalysis - see <a href="FinalAnalysis/run_idxref.log" type="text/plain">FinalAnalysis/run_idxref.log</a> for details</div>
+      </div>
+      <div class="grid_1"><div id="hide6_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide6')">+</div></div>
+      <div class="grid_23"><div id="hide6_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide6" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000001.cbf.jpg"><img id="myImg28" class="myImg" src="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000001.cbf.jpg" width="390" alt="RJS_04-07_1546_000001.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000001.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000300.cbf.jpg"><img id="myImg29" class="myImg" src="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000300.cbf.jpg" width="390" alt="RJS_04-07_1546_000300.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000300.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000600.cbf.jpg"><img id="myImg30" class="myImg" src="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000600.cbf.jpg" width="390" alt="RJS_04-07_1546_000600.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000600.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000900.cbf.jpg"><img id="myImg31" class="myImg" src="FinalAnalysis/01_run_idxref_01_RJS_04-07_1546_000900.cbf.jpg" width="390" alt="RJS_04-07_1546_000900.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000900.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="FinalAnalysis/run_idxref_spot_hkl_hist_smooth.png"><img id="myImg32" class="myImg" src="FinalAnalysis/run_idxref_spot_hkl_hist_smooth.png" width="390" alt="Number of spots for each significant indexing solution (as a function of image number)"></a>
+          <span class="pic2legend">Number of spots for each significant indexing solution (as a function of image number) (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#run_idxref_spot_hkl_hist">explanation</a>)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="FinalAnalysis/run_idxref_spot_hkl_histfrc_smooth.png"><img id="myImg33" class="myImg" src="FinalAnalysis/run_idxref_spot_hkl_histfrc_smooth.png" width="390" alt="Fraction of spots for each significant indexing solution (as a function of image number)"></a>
+          <span class="pic2legend">Fraction of spots for each significant indexing solution (as a function of image number)</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1"><div id="hide7_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide7')">+</div></div>
+      <div class="grid_23"><div id="hide7_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide7" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="04_process_RJS_04-07_1546_000001.cbf.jpg"><img id="myImg34" class="myImg" src="04_process_RJS_04-07_1546_000001.cbf.jpg" width="390" alt="RJS_04-07_1546_000001.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000001.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="04_process_RJS_04-07_1546_000300.cbf.jpg"><img id="myImg35" class="myImg" src="04_process_RJS_04-07_1546_000300.cbf.jpg" width="390" alt="RJS_04-07_1546_000300.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000300.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="04_process_RJS_04-07_1546_000600.cbf.jpg"><img id="myImg36" class="myImg" src="04_process_RJS_04-07_1546_000600.cbf.jpg" width="390" alt="RJS_04-07_1546_000600.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000600.cbf</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="04_process_RJS_04-07_1546_000900.cbf.jpg"><img id="myImg37" class="myImg" src="04_process_RJS_04-07_1546_000900.cbf.jpg" width="390" alt="RJS_04-07_1546_000900.cbf"></a>
+            <span class="pic2legend">RJS_04-07_1546_000900.cbf</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+<! aP_Section_2_SubSection_6_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.6.&nbsp;<a name="id1.scale">&nbsp;</a><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#step4">Scaling</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Running "aP_scale" with arguments "-mtz INTEGRATE.mtz -ANO autoPROC_ScaleWithXscale=no"</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+RESOLUTION RUN   1   19.38 4.8880 ! recommended resolution cut based on CC<    0.300
+        </div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+NOTE : AIMLESS (version 0.7.13), CCP4 8.0.015
+        </div>
+      </div>
+<! detailed stats for each dataset 1..1>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">The statistics below are for all measurements used during scale determination - this corresponds to the traditional isotropic analysis.</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre1" style="font-size:0.9em;">
+Number of active ice-rings within this resolution range =  0
+
+Criteria used in determination of resolution cut:
+------------------------------------------------- 
+   I/sigI         &gt;=    0.00
+   CC(1/2)        &gt;=    0.3000
+
+                                            Overall  InnerShell  OuterShell
+---------------------------------------------------------------------------
+   Low resolution limit                      19.374      19.374       4.975
+   High resolution limit                      4.892      12.149       4.892
+
+
+   Rmerge  (all I+ &amp; I-)                      0.089       0.041       3.152
+   Rmerge  (within I+/I-)                     0.083       0.038       2.681
+   Rmeas   (all I+ &amp; I-)                      0.098       0.045       3.493
+   Rmeas   (within I+/I-)                     0.103       0.047       3.294
+   Rpim    (all I+ &amp; I-)                      0.042       0.019       1.500
+   Rpim    (within I+/I-)                     0.061       0.028       1.894
+   Total number of observations                9946         521         422
+   Total number unique                         1797          94          78
+   Mean(I)/sd(I)                                6.7        24.1         0.4
+   Completeness                               100.0       100.0       100.0
+   Multiplicity                                 5.5         5.5         5.4
+   CC(1/2)                                    0.999       0.999       0.228
+
+
+   Anomalous completeness                      99.9       100.0       100.0
+   Anomalous multiplicity                       2.8         2.8         2.7
+   CC(ano)                                   -0.195       0.041       0.286
+   |DANO|/sd(DANO)                            0.535       0.488       0.564
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="aimless.mrfana.Rmerge_Rmeas_Rpim_batch.png"><img id="myImg38" class="myImg" src="aimless.mrfana.Rmerge_Rmeas_Rpim_batch.png" width="390" alt="Rmerge, Rmeas, Rpim as a function of image/batch number"></a>
+          <span class="pic2legend">Rmerge, Rmeas, Rpim as a function of image/batch number</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="aimless.mrfana.Completeness_batch.png"><img id="myImg39" class="myImg" src="aimless.mrfana.Completeness_batch.png" width="390" alt="Completeness as a function of image/batch number"></a>
+          <span class="pic2legend">Completeness as a function of image/batch number</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1"><div id="hide8_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide8')">+</div></div>
+      <div class="grid_23"><div id="hide8_info"  class="hideinfo">Click for more information/plots - scale determination</div></div>
+      <div id="hide8" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.585278em;">
+------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                    Completeness    Multiplicity
+                                                                                    --------------  ------------
+           Resolution      #uniq     #Rfac  Rmerge   Rmeas    Rpim   #Isig  I/sigI     all     ano    all    ano CC(1/2)  #CCAno CC(ano)  SigAno
+------------------------------------------------------------------------------------------------------------------------------------------------
+        19.374 -  12.149      94       521   0.041   0.045   0.019      94  24.126  1.0000  1.0000   5.54   2.77  0.9985      88  0.0406   0.488
+        12.149 -  10.075      89       511   0.045   0.049   0.021      89  21.911  1.0000  1.0000   5.74   2.87  0.9980      88 -0.2603   0.458
+        10.075 -   8.943      88       512   0.064   0.070   0.029      88  18.592  1.0000  1.0000   5.82   2.91  0.9988      88 -0.4757   0.491
+         8.943 -   8.193      93       545   0.069   0.076   0.032      93  17.065  1.0000  1.0000   5.86   2.93  0.9993      91 -0.7579   0.543
+         8.193 -   7.645      85       495   0.099   0.109   0.045      85  12.215  1.0000  1.0000   5.82   2.91  0.9991      84 -0.8485   0.574
+         7.645 -   7.218      93       546   0.149   0.163   0.067      93   8.764  1.0000  1.0000   5.87   2.94  0.9969      91 -0.5240   0.520
+         7.218 -   6.874      89       520   0.231   0.254   0.106      89   5.639  1.0000  1.0000   5.84   2.92  0.9871      88 -0.5438   0.564
+         6.874 -   6.587      94       551   0.254   0.280   0.116      94   5.032  1.0000  1.0000   5.86   2.93  0.9886      92 -0.2944   0.631
+         6.587 -   6.343      83       487   0.426   0.468   0.193      83   3.308  1.0000  1.0000   5.87   2.93  0.9698      82 -0.1161   0.545
+         6.343 -   6.131      96       565   0.421   0.462   0.191      96   2.997  1.0000  1.0000   5.89   2.94  0.9877      96 -0.5452   0.547
+         6.131 -   5.945      88       472   0.515   0.571   0.244      88   2.707  1.0000  0.9773   5.36   2.72  0.9453      81 -0.1845   0.554
+         5.945 -   5.780      81       408   0.631   0.703   0.311      81   2.022  1.0000  1.0000   5.04   2.52  0.8858      78 -0.3218   0.525
+         5.780 -   5.631     102       493   0.679   0.762   0.344     102   1.714  1.0000  0.9608   4.83   2.45  0.9012      88 -0.1238   0.537
+         5.631 -   5.497      87       452   0.814   0.906   0.395      87   1.798  1.0000  1.0000   5.20   2.60  0.7730      80 -0.1731   0.637
+         5.497 -   5.375      87       451   1.004   1.119   0.490      87   1.336  1.0000  1.0000   5.18   2.59  0.8002      77 -0.2306   0.523
+         5.375 -   5.263      91       484   0.943   1.046   0.451      91   1.431  1.0000  1.0000   5.32   2.66  0.7653      75 -0.1493   0.524
+         5.263 -   5.159      82       446   1.582   1.753   0.751      82   0.824  1.0000  1.0000   5.44   2.72  0.6928      72 -0.0995   0.498
+         5.159 -   5.064      98       526   2.958   3.280   1.407      98   0.441  1.0000  1.0000   5.37   2.68  0.5822      81 -0.0030   0.531
+         5.064 -   4.975      99       539   2.598   2.876   1.230      99   0.483  1.0000  1.0000   5.44   2.72  0.4692      85 -0.1058   0.449
+         4.975 -   4.892      78       422   3.152   3.493   1.500      78   0.390  1.0000  1.0000   5.41   2.71  0.2276      59  0.2857   0.564
+------------------------------------------------------------------------------------------------------------------------------------------------
+Total:  19.374 -   4.892    1797      9946   0.089   0.098   0.042    1797   6.678  1.0000  0.9989   5.53   2.77  0.9990    1664 -0.1946   0.535
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="ana_aimless_Scale.png"><img id="myImg40" class="myImg" src="ana_aimless_Scale.png" width="390" alt="Scale factor"></a>
+            <span class="pic2legend">Scale factor (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#ana_aimless_Scale">explanation</a>)</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="ana_aimless_Bscale.png"><img id="myImg41" class="myImg" src="ana_aimless_Bscale.png" width="390" alt="Scaling B-factor"></a>
+            <span class="pic2legend">Scaling B-factor (<a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#ana_aimless_Bscale">explanation</a>)</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.Rmerge_Rmeas_Rpim.png"><img id="myImg42" class="myImg" src="aimless.mrfana.Rmerge_Rmeas_Rpim.png" width="390" alt="Rmerge Rmeas Rpim as a function of resolution"></a>
+            <span class="pic2legend">Rmerge Rmeas Rpim as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.Multiplicity.png"><img id="myImg43" class="myImg" src="aimless.mrfana.Multiplicity.png" width="390" alt="Multiplicity as a function of resolution"></a>
+            <span class="pic2legend">Multiplicity as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.IsigI.png"><img id="myImg44" class="myImg" src="aimless.mrfana.IsigI.png" width="390" alt="I/sigI as a function of resolution"></a>
+            <span class="pic2legend">I/sigI as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.CC12.png"><img id="myImg45" class="myImg" src="aimless.mrfana.CC12.png" width="390" alt="CC1/2 as a function of resolution"></a>
+            <span class="pic2legend">CC1/2 as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.CCano.png"><img id="myImg46" class="myImg" src="aimless.mrfana.CCano.png" width="390" alt="CCano as a function of resolution"></a>
+            <span class="pic2legend">CCano as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.SigAno.png"><img id="myImg47" class="myImg" src="aimless.mrfana.SigAno.png" width="390" alt="SigAno as a function of resolution"></a>
+            <span class="pic2legend">SigAno as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.I_IsigI_batch.png"><img id="myImg48" class="myImg" src="aimless.mrfana.I_IsigI_batch.png" width="390" alt="Mean(I) and mean(I/sigI) as a function of image/batch number"></a>
+            <span class="pic2legend">Mean(I) and mean(I/sigI) as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="aimless.mrfana.fitness_batch.png"><img id="myImg49" class="myImg" src="aimless.mrfana.fitness_batch.png" width="390" alt="Fitness as a function of image/batch number"></a>
+            <span class="pic2legend">Fitness as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1"><div id="hide9_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide9')">+</div></div>
+      <div class="grid_23"><div id="hide9_info"  class="hideinfo">Click for more information/plots - all measurements</div></div>
+      <div id="hide9" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_23">
+          <div class="note">The statistics below are for all <a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/staraniso/manual/staraniso_glossary.html#MeasuredData">measurements</a> up to the maximum resolution as determined by STARANISO. This is given here only for comparison (between the tradtional isotropic analysis and the anisotropic analysis by STARANISO) and doesn't correspond to an actually useful dataset.</div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.9em;">
+Number of active ice-rings within this resolution range =  0
+
+Criteria used in determination of diffraction limits:
+-----------------------------------------------------
+   local(I/sigI)  &gt;=    1.20
+
+                                            Overall  InnerShell  OuterShell
+---------------------------------------------------------------------------
+   Low resolution limit                      19.374      19.374       4.747
+   High resolution limit                      4.668      11.713       4.668
+
+
+   Rmerge  (all I+ &amp; I-)                      0.101       0.041       7.681
+   Rmerge  (within I+/I-)                     0.093       0.038       6.941
+   Rmeas   (all I+ &amp; I-)                      0.111       0.046       8.495
+   Rmeas   (within I+/I-)                     0.116       0.048       8.707
+   Rpim    (all I+ &amp; I-)                      0.047       0.020       3.621
+   Rpim    (within I+/I-)                     0.068       0.028       5.204
+   Total number of observations               11470         566         561
+   Total number unique                         2074         102         102
+   Mean(I)/sd(I)                                5.8        23.9         0.2
+   Completeness (spherical)                   100.0       100.0       100.0
+   Completeness (ellipsoidal)                 100.0       100.0       100.0
+   Multiplicity                                 5.5         5.5         5.5
+   CC(1/2)                                    0.999       0.999       0.021
+
+
+   Anomalous completeness (spherical)          99.9       100.0       100.0
+   Anomalous completeness (ellipsoidal)        99.9       100.0       100.0
+   Anomalous multiplicity                       2.8         2.8         2.8
+   CC(ano)                                   -0.254      -0.163      -0.185
+   |DANO|/sd(DANO)                            0.537       0.482       0.556
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.Rmerge_Rmeas_Rpim_batch.png"><img id="myImg50" class="myImg" src="staraniso_alldata.mrfana_meas_ell.Rmerge_Rmeas_Rpim_batch.png" width="390" alt="Rmerge, Rmeas, Rpim as a function of image/batch number"></a>
+            <span class="pic2legend">Rmerge, Rmeas, Rpim as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.CompletenessEll_batch.png"><img id="myImg51" class="myImg" src="staraniso_alldata.mrfana_meas_ell.CompletenessEll_batch.png" width="390" alt="Ellipsoidal completeness as a function of image/batch number"></a>
+            <span class="pic2legend">Ellipsoidal completeness as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.520247em;">
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+# detailed statistics (measurements up to the maximum resolution as determined by STARANISO)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                    Compl. Spher.   Multiplicity                                   Compl. Ellip. 
+                                                                                    --------------  ------------                                  --------------- 
+           Resolution      #uniq     #Rfac  Rmerge   Rmeas    Rpim   #Isig  I/sigI     all     ano    all    ano CC(1/2)  #CCAno CC(ano)  SigAno    all     ano
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+        19.374 -  11.713     102       566   0.041   0.046   0.020     102  23.910  1.0000  1.0000   5.55   2.77  0.9986      96 -0.1631   0.482   1.0000  1.0000
+        11.713 -   9.666     103       594   0.045   0.050   0.021     103  21.278  1.0000  1.0000   5.77   2.88  0.9980     102 -0.2084   0.452   1.0000  1.0000
+         9.666 -   8.564     107       623   0.066   0.072   0.030     107  18.635  1.0000  1.0000   5.82   2.91  0.9988     106 -0.5257   0.518   1.0000  1.0000
+         8.564 -   7.838     103       603   0.079   0.086   0.036     103  14.462  1.0000  1.0000   5.85   2.93  0.9993     101 -0.7900   0.580   1.0000  1.0000
+         7.838 -   7.308     102       594   0.133   0.146   0.060     102  10.237  1.0000  1.0000   5.82   2.91  0.9982     100 -0.6158   0.520   1.0000  1.0000
+         7.308 -   6.898     102       601   0.215   0.237   0.098     102   6.123  1.0000  1.0000   5.89   2.95  0.9874     101 -0.0177   0.585   1.0000  1.0000
+         6.898 -   6.567     119       696   0.276   0.304   0.126     119   4.755  1.0000  1.0000   5.85   2.92  0.9865     117 -0.1246   0.615   1.0000  1.0000
+         6.567 -   6.291      88       517   0.369   0.406   0.168      88   3.489  1.0000  1.0000   5.88   2.94  0.9863      87 -0.4663   0.552   1.0000  1.0000
+         6.291 -   6.057     108       622   0.546   0.600   0.249     108   2.514  1.0000  1.0000   5.76   2.88  0.9671     104 -0.1755   0.523   1.0000  1.0000
+         6.057 -   5.854     101       532   0.510   0.566   0.246     101   2.678  1.0000  0.9802   5.27   2.66  0.9434      97 -0.4223   0.581   1.0000  0.9802
+         5.854 -   5.675     101       503   0.741   0.827   0.368     101   1.757  1.0000  0.9901   4.98   2.50  0.8076      94 -0.0738   0.509   1.0000  0.9901
+         5.675 -   5.517     122       603   0.745   0.832   0.370     122   1.753  1.0000  0.9754   4.94   2.50  0.8604     106 -0.3165   0.603   1.0000  0.9754
+         5.517 -   5.375      91       474   0.968   1.078   0.471      91   1.396  1.0000  1.0000   5.21   2.60  0.8161      81 -0.2905   0.543   1.0000  1.0000
+         5.375 -   5.246     105       553   1.021   1.134   0.491     105   1.286  1.0000  1.0000   5.27   2.63  0.7989      85 -0.1489   0.509   1.0000  1.0000
+         5.246 -   5.129     103       566   1.636   1.811   0.771     103   0.762  1.0000  1.0000   5.50   2.75  0.6076      92  0.0139   0.508   1.0000  1.0000
+         5.129 -   5.022     102       545   2.712   3.008   1.294     102   0.523  1.0000  1.0000   5.34   2.67  0.4464      83  0.1277   0.549   1.0000  1.0000
+         5.022 -   4.923     103       569   3.285   3.635   1.550     103   0.401  1.0000  1.0000   5.52   2.76  0.3353      85  0.0324   0.480   1.0000  1.0000
+         4.923 -   4.832     101       543   3.125   3.461   1.483     101   0.429  1.0000  1.0000   5.38   2.69  0.1955      86  0.0297   0.548   1.0000  1.0000
+         4.832 -   4.747     109       605   7.044   7.786   3.309     109   0.193  1.0000  1.0000   5.55   2.78  0.2241      96 -0.0635   0.504   1.0000  1.0000
+         4.747 -   4.668     102       561   7.681   8.495   3.621     102   0.231  1.0000  1.0000   5.50   2.75  0.0206      91 -0.1853   0.556   1.0000  1.0000
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total:  19.374 -   4.668    2074     11470   0.101   0.111   0.047    2074   5.840  1.0000  0.9990   5.53   2.77  0.9990    1910 -0.2536   0.537   1.0000  0.9989
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.Rmerge_Rmeas_Rpim.png"><img id="myImg52" class="myImg" src="staraniso_alldata.mrfana_meas_ell.Rmerge_Rmeas_Rpim.png" width="390" alt="Rmerge Rmeas Rpim as a function of resolution"></a>
+            <span class="pic2legend">Rmerge Rmeas Rpim as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.MultiplicitySph.png"><img id="myImg53" class="myImg" src="staraniso_alldata.mrfana_meas_ell.MultiplicitySph.png" width="390" alt="Multiplicity, spherical as a function of resolution"></a>
+            <span class="pic2legend">Multiplicity, spherical as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.IsigI.png"><img id="myImg54" class="myImg" src="staraniso_alldata.mrfana_meas_ell.IsigI.png" width="390" alt="I/sigI as a function of resolution"></a>
+            <span class="pic2legend">I/sigI as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.CC12.png"><img id="myImg55" class="myImg" src="staraniso_alldata.mrfana_meas_ell.CC12.png" width="390" alt="CC1/2 as a function of resolution"></a>
+            <span class="pic2legend">CC1/2 as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.CCano.png"><img id="myImg56" class="myImg" src="staraniso_alldata.mrfana_meas_ell.CCano.png" width="390" alt="CCano as a function of resolution"></a>
+            <span class="pic2legend">CCano as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.SigAno.png"><img id="myImg57" class="myImg" src="staraniso_alldata.mrfana_meas_ell.SigAno.png" width="390" alt="SigAno as a function of resolution"></a>
+            <span class="pic2legend">SigAno as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.I_IsigI_batch.png"><img id="myImg58" class="myImg" src="staraniso_alldata.mrfana_meas_ell.I_IsigI_batch.png" width="390" alt="Mean(I) and mean(I/sigI) as a function of image/batch number"></a>
+            <span class="pic2legend">Mean(I) and mean(I/sigI) as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.fitness_batch.png"><img id="myImg59" class="myImg" src="staraniso_alldata.mrfana_meas_ell.fitness_batch.png" width="390" alt="Fitness as a function of image/batch number"></a>
+            <span class="pic2legend">Fitness as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_meas_ell.Completeness_batch.png"><img id="myImg60" class="myImg" src="staraniso_alldata.mrfana_meas_ell.Completeness_batch.png" width="390" alt="Spherical completeness as a function of image/batch number"></a>
+            <span class="pic2legend">Spherical completeness as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="grid_12">&nbsp;</div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">The statistics below are for all <a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/staraniso/manual/staraniso_glossary.html#ObservedData">observations</a> up to the maximum resolution as determined by STARANISO</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre2" style="font-size:0.9em;">
+Number of active ice-rings within this resolution range =  0
+
+Criteria used in determination of diffraction limits:
+-----------------------------------------------------
+   local(I/sigI)  &gt;=    1.20
+
+                                            Overall  InnerShell  OuterShell
+---------------------------------------------------------------------------
+   Low resolution limit                      19.374      19.374       5.225
+   High resolution limit                      4.668       9.744       4.668
+
+
+   Rmerge  (all I+ &amp; I-)                      0.082       0.042       1.717
+   Rmerge  (within I+/I-)                     0.076       0.039       1.537
+   Rmeas   (all I+ &amp; I-)                      0.091       0.047       1.906
+   Rmeas   (within I+/I-)                     0.095       0.049       1.927
+   Rpim    (all I+ &amp; I-)                      0.038       0.020       0.822
+   Rpim    (within I+/I-)                     0.056       0.029       1.154
+   Total number of observations                8706        1101        1044
+   Total number unique                         1560         195         195
+   Mean(I)/sd(I)                                7.7        22.8         0.8
+   Completeness (spherical)                    75.4       100.0        33.0
+   Completeness (ellipsoidal)                  86.6       100.0        55.9
+   Multiplicity                                 5.6         5.6         5.4
+   CC(1/2)                                    0.999       0.999       0.324
+
+
+   Anomalous completeness (spherical)          75.3       100.0        33.0
+   Anomalous completeness (ellipsoidal)        86.5       100.0        55.9
+   Anomalous multiplicity                       2.8         2.8         2.7
+   CC(ano)                                   -0.155      -0.065      -0.055
+   |DANO|/sd(DANO)                            0.538       0.471       0.535
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="staraniso_alldata.mrfana_obs_ell.Rmerge_Rmeas_Rpim_batch.png"><img id="myImg61" class="myImg" src="staraniso_alldata.mrfana_obs_ell.Rmerge_Rmeas_Rpim_batch.png" width="390" alt="Rmerge, Rmeas, Rpim as a function of image/batch number"></a>
+          <span class="pic2legend">Rmerge, Rmeas, Rpim as a function of image/batch number</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_11">
+        <div class="pic">
+          <a href="staraniso_alldata.mrfana_obs_ell.CompletenessEll_batch.png"><img id="myImg62" class="myImg" src="staraniso_alldata.mrfana_obs_ell.CompletenessEll_batch.png" width="390" alt="Ellipsoidal completeness as a function of image/batch number"></a>
+          <span class="pic2legend">Ellipsoidal completeness as a function of image/batch number</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1"><div id="hide10_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide10')">+</div></div>
+      <div class="grid_23"><div id="hide10_info"  class="hideinfo">Click for more information/plots - all observations</div></div>
+      <div id="hide10" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.520247em;">
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+# detailed statistics (observations up to the maximum resolution as determined by STARANISO)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                    Compl. Spher.   Multiplicity                                   Compl. Ellip. 
+                                                                                    --------------  ------------                                  --------------- 
+           Resolution      #uniq     #Rfac  Rmerge   Rmeas    Rpim   #Isig  I/sigI     all     ano    all    ano CC(1/2)  #CCAno CC(ano)  SigAno    all     ano
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+        19.374 -   9.744     195      1101   0.042   0.047   0.020     195  22.798  1.0000  1.0000   5.65   2.82  0.9987     188 -0.0654   0.471   1.0000  1.0000
+         9.718 -   8.025     195      1139   0.069   0.076   0.031     195  16.927  1.0000  1.0000   5.84   2.92  0.9992     193 -0.4957   0.525   1.0000  1.0000
+         7.961 -   7.027     195      1140   0.133   0.146   0.060     195   9.305  1.0000  1.0000   5.85   2.92  0.9982     192 -0.5234   0.543   1.0000  1.0000
+         7.025 -   6.403     195      1145   0.271   0.298   0.124     195   4.791  0.9949  0.9949   5.87   2.94  0.9846     192 -0.3003   0.609   0.9949  0.9949
+         6.403 -   5.982     195      1113   0.478   0.526   0.219     195   2.855  1.0000  1.0000   5.71   2.86  0.9781     188 -0.4294   0.556   1.0000  1.0000
+         5.981 -   5.616     195       987   0.592   0.661   0.293     195   2.151  0.9466  0.9417   5.06   2.54  0.9200     187 -0.2623   0.534   0.9466  0.9417
+         5.616 -   5.225     195      1037   0.718   0.797   0.344     195   2.003  0.6588  0.6588   5.32   2.66  0.8059     177 -0.2734   0.530   0.7222  0.7222
+         5.225 -   4.668     195      1044   1.717   1.906   0.822     195   0.801  0.3299  0.3299   5.35   2.68  0.3238     172 -0.0549   0.535   0.5587  0.5587
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total:  19.374 -   4.668    1560      8706   0.082   0.091   0.038    1560   7.704  0.7536  0.7527   5.58   2.79  0.9990    1489 -0.1549   0.538   0.8657  0.8646
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.Rmerge_Rmeas_Rpim.png"><img id="myImg63" class="myImg" src="staraniso_alldata.mrfana_obs_ell.Rmerge_Rmeas_Rpim.png" width="390" alt="Rmerge Rmeas Rpim as a function of resolution"></a>
+            <span class="pic2legend">Rmerge Rmeas Rpim as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.MultiplicitySph.png"><img id="myImg64" class="myImg" src="staraniso_alldata.mrfana_obs_ell.MultiplicitySph.png" width="390" alt="Multiplicity, spherical as a function of resolution"></a>
+            <span class="pic2legend">Multiplicity, spherical as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.CompletenessSph.png"><img id="myImg65" class="myImg" src="staraniso_alldata.mrfana_obs_ell.CompletenessSph.png" width="390" alt="Completeness, spherical as a function of resolution"></a>
+            <span class="pic2legend">Completeness, spherical as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.CompletenessEll.png"><img id="myImg66" class="myImg" src="staraniso_alldata.mrfana_obs_ell.CompletenessEll.png" width="390" alt="Completeness, ellipsoidal as a function of resolution"></a>
+            <span class="pic2legend">Completeness, ellipsoidal as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.IsigI.png"><img id="myImg67" class="myImg" src="staraniso_alldata.mrfana_obs_ell.IsigI.png" width="390" alt="I/sigI as a function of resolution"></a>
+            <span class="pic2legend">I/sigI as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.CC12.png"><img id="myImg68" class="myImg" src="staraniso_alldata.mrfana_obs_ell.CC12.png" width="390" alt="CC1/2 as a function of resolution"></a>
+            <span class="pic2legend">CC1/2 as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.CCano.png"><img id="myImg69" class="myImg" src="staraniso_alldata.mrfana_obs_ell.CCano.png" width="390" alt="CCano as a function of resolution"></a>
+            <span class="pic2legend">CCano as a function of resolution</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.SigAno.png"><img id="myImg70" class="myImg" src="staraniso_alldata.mrfana_obs_ell.SigAno.png" width="390" alt="SigAno as a function of resolution"></a>
+            <span class="pic2legend">SigAno as a function of resolution</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.I_IsigI_batch.png"><img id="myImg71" class="myImg" src="staraniso_alldata.mrfana_obs_ell.I_IsigI_batch.png" width="390" alt="Mean(I) and mean(I/sigI) as a function of image/batch number"></a>
+            <span class="pic2legend">Mean(I) and mean(I/sigI) as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.fitness_batch.png"><img id="myImg72" class="myImg" src="staraniso_alldata.mrfana_obs_ell.fitness_batch.png" width="390" alt="Fitness as a function of image/batch number"></a>
+            <span class="pic2legend">Fitness as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_11">
+          <div class="pic">
+            <a href="staraniso_alldata.mrfana_obs_ell.Completeness_batch.png"><img id="myImg73" class="myImg" src="staraniso_alldata.mrfana_obs_ell.Completeness_batch.png" width="390" alt="Spherical completeness as a function of image/batch number"></a>
+            <span class="pic2legend">Spherical completeness as a function of image/batch number</span>
+          </div>
+        </div>
+        <div class="grid_12">&nbsp;</div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">REMARK 200 section (traditional isotropic analysis) written as <a href="remark200.pdb">remark200.pdb</a></div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">REMARK 200 section (for anisotropically analysed data from STARANISO) written as <a href="staraniso_remark200.pdb">staraniso_remark200.pdb</a></div>
+      </div>
+<! aP_Section_2_SubSection_7_SubSubSectionNum="0" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.7.&nbsp;<a name="id1.analyse">&nbsp;</a><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#step4_staraniso">Anisotropy analysis</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note"><a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/staraniso/manual/index.html">STARANISO</a> analyses merged intensity data for <a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/staraniso/manual/anisotropy_about.html">anisotropy</a> of diffraction, applies an anisotropic cut-off as well as a correction and finally performs Bayesian estimation of structure amplitudes. See also <a href="http://staraniso.globalphasing.org/">STARANISO server</a> and <a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/staraniso/manual/index.html">program details</a>.</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.86em;">
+STARANISO version: 2.3.94 (25-May-2023)   Run on: Mon, 25 Mar 2024 13:07:14 -0400.
+
+
+Unit cell and space group:      107.658  107.658   91.434  90.00  90.00 120.00   'H 3'
+Nominal diffraction range:       19.374  4.029
+Input reflection count:            3239
+
+Diffraction cut-off criterion: Local mean I/sd(I) = 1.20
+
+Diffraction limits &amp; principal axes of ellipsoid fitted to diffraction cut-off surface:
+                              4.538         1.0000   0.0000   0.0000       0.894 <b>a<sup>*</sup></b> - 0.447 <b>b<sup>*</sup></b>
+                              4.538         0.0000   1.0000   0.0000       <b>b<sup>*</sup></b>
+                              5.525         0.0000   0.0000   1.0000       <b>c<sup>*</sup></b>
+        </div>
+      </div>
+      <div class="grid_1"><div id="hide11_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide11')">+</div></div>
+      <div class="grid_23"><div id="hide11_info"  class="hideinfo">Click for more information/plots</div></div>
+      <div id="hide11" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.8428em;">
+GoF (<a href="https://en.wikipedia.org/wiki/Goodness_of_fit">Goodness of fit</a>) to ellipsoid (d*):  0.0351    Fraction of surface points fitted:  100.0%  (      603 /      603)
+
+Number of unobserved reflections inside ellipsoid:      284
+Number of observed reflections inside ellipsoid:       1560
+Number of observed reflections outside ellipsoid:         0
+
+Lowest cut-off diffraction limit:
+            5.772 at reflection    3    3  -15  in direction   0.192 <b>a<sup>*</sup></b> + 0.192 <b>b<sup>*</sup></b> - 0.962 <b>c<sup>*</sup></b>
+
+Worst diffraction limit after cut-off:
+            6.124 at reflection    2    4  -14  in direction   0.136 <b>a<sup>*</sup></b> + 0.272 <b>b<sup>*</sup></b> - 0.953 <b>c<sup>*</sup></b>
+
+Best diffraction limit after cut-off:
+            4.668 at reflection    5   17    0  in direction   0.282 <b>a<sup>*</sup></b> + 0.959 <b>b<sup>*</sup></b>
+          </div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.877917em;">
+Fraction of data inside cut-off surface:                           48.2%  (     1560 /     3239)
+
+Fraction of surface truncated by detector edges:                    0.0%  (        0 /      249)
+
+Fraction of total surface above threshold truncated by cusp(s):     0.0%  (        0 /      249)
+          </div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.86em;">
+<a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">Eigenvalues &amp; eigenvectors</a> of mean I/sd(I) anisotropy tensor:
+                               1.79         1.0000   0.0000   0.0000       0.894 <b>a<sup>*</sup></b> - 0.447 <b>b<sup>*</sup></b>
+                               1.79         0.0000   1.0000   0.0000       <b>b<sup>*</sup></b>
+                               1.03         0.0000   0.0000   1.0000       <b>c<sup>*</sup></b>
+          </div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.877917em;">
+Scale:                       1.62458E+00    [ = factor to place Iobs on same scale as Iprofile.]
+Beq:                              352.81    [ = equivalent overall isotropic B factor on Fs.]
+
+                                   B11      B22      B33      B23      B31      B12
+Baniso tensor:                  256.91   256.91   544.59     0.00     0.00     0.00
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_23">
+          <div class="note">The Baniso tensor is the overall anisotropy tensor on Fs.</div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.9em;">
+Delta-B tensor:                 -95.89   -95.89   191.78     0.00     0.00     0.00
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_23">
+          <div class="note">The delta-B tensor is the overall anisotropy tensor on Fs after subtraction of Beq from its diagonal elements (so trace = 0). Neither this nor its eigenvalues shown below is used further in any computation, including in anisotropy correction and deposition.</div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.851313em;">
+Eigenvalues of overall anisotropy tensor (Ang.^2), eigenvalues after subtraction of smallest
+eigenvalue (as used in the anisotropy correction) and corresponding eigenvectors of the overall &amp;
+anisotropy tensor as direction cosines relative to the orthonormal basis (standard PDB convention),
+and also in terms of reciprocal unit-cell vectors:
+
+  Eigenvalue #1:          256.91     0.00   ( 1.0000,  0.0000,  0.0000)    0.894 <b>a<sup>*</sup></b> - 0.447 <b>b<sup>*</sup></b>
+  Eigenvalue #2:          256.91     0.00   ( 0.0000,  1.0000,  0.0000)    <b>b<sup>*</sup></b>
+  Eigenvalue #3:          544.59   287.67   ( 0.0000,  0.0000,  1.0000)    <b>c<sup>*</sup></b>
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_23">
+          <div class="note"> The eigenvalues and eigenvectors of the overall B tensor are the squares of the lengths and the directions of the principal axes of the ellipsoid that represents the tensor.</div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.9em;">
+Delta-B eigenvalues:            -95.89   -95.89   191.78
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_23">
+          <div class="note"> The delta-B eigenvalues are the eigenvalues of the overall anisotropy tensor after subtraction of Beq (so sum = 0). Angle &amp; axis of rotation of diffraction-limit ellipsoid relative to anisotropy tensor:</div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.826275em;">
+Anisotropy ratio:             0.815    [ = (Emax - Emin) / Beq ]
+Fractional anisotropy:        0.439    [ = sqrt(1.5 Sum_i (E_i - Beq)^2 / Sum_i E_i^2) ]
+Anisotropic S/N ratio:        26.27    [ = max_h | exp(4 pi^2 s~_h delta(B) s_h) - 1 | &lt;I_h/sd(I_h)&gt; ]
+          </div>
+        </div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_23">
+          <div class="note"> The 'anisotropic S/N ratio', unlike the 'anisotropy ratio' or the 'fractional' anisotropy shown above, in addition to the anisotropy of the B tensor, takes both the diffraction and the local mean I/sd(I) into account.</div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.787664em;">
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of observed acentric Z probability (before, after):  0.00  0.00
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of posterior acentric Z probability:                 0.00
+Estimated twin fraction from Britton histogram for k,h,-l operator (strong, all):                0.50  0.50
+Estimated twin fraction from Murray-Rust plot for k,h,-l operator (strong, all):                 0.01  0.12
+Estimated twin fraction from weighted Fisher &amp; Sweet plot for k,h,-l operator:                   0.01
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of |delta-Z| probability for k,h,-l operator:        0.00
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of |H| probability for k,h,-l operator:              0.00
+Estimated twin fraction from Britton histogram for -h,-k,l operator (strong, all):               0.00  0.04
+Estimated twin fraction from Murray-Rust plot for -h,-k,l operator (strong, all):                0.01  0.11
+Estimated twin fraction from weighted Fisher &amp; Sweet plot for -h,-k,l operator:                  0.01
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of |delta-Z| probability for -h,-k,l operator:       0.00
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of |H| probability for -h,-k,l operator:             0.00
+Estimated twin fraction from Britton histogram for -k,-h,-l operator (strong, all):              0.16  0.32
+Estimated twin fraction from Murray-Rust plot for -k,-h,-l operator (strong, all):               0.01  0.11
+Estimated twin fraction from weighted Fisher &amp; Sweet plot for -k,-h,-l operator:                 0.01
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of |delta-Z| probability for -k,-h,-l operator:      0.00
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of |H| probability for -k,-h,-l operator:            0.00
+Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of unrelated acentric |delta-Z| probability:         0.00
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre" style="font-size:0.9em;">
+Padilla &amp; Yeates L test for twinning, acentric moments of |L|:
+&lt;|L|&gt; (normal = .500; perfect twin = .375):  0.481
+&lt;L^2&gt; (normal = .333; perfect twin = .200):  0.306
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Estimated twin fraction from <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">K-L divergence</a> of |L| probability:                                  0.03</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Output file created after STARANISO analysis of anisotropy = <a href="staraniso_alldata.sca">staraniso_alldata.sca</a>. This contains intensities (after applying an anisotropic high-resolution cut-off and correction) and can be used e.g. for experimental phasing with autoSHARP (https://www.globalphasing.com/sharp/).</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Output file created after STARANISO analysis of anisotropy = <a href="staraniso_alldata.mtz">staraniso_alldata.mtz</a>. This contains intensities and amplitudes (after applying an anisotropic high-resolution cut-off and correction) and can be used for all subsequent stages, e.g. refinement in BUSTER (https://www.globalphasing.com/buster/).</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">For details see <a href="staraniso_alldata.log" type="text/plain">staraniso_alldata.log</a></div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Reciprocal plane plots generated from STARANISO analysis - see below.</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_7">
+        <div class="pic">
+          <a href="staraniso_alldata.ismean-0kl.png"><img id="myImg74" class="myImg" src="staraniso_alldata.ismean-0kl.png" width="230" alt="STARANISO (0kl)"></a>
+          <span class="pic2legend">STARANISO (0kl)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_7">
+        <div class="pic">
+          <a href="staraniso_alldata.ismean-h0l.png"><img id="myImg75" class="myImg" src="staraniso_alldata.ismean-h0l.png" width="230" alt="STARANISO (h0l)"></a>
+          <span class="pic2legend">STARANISO (h0l)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_7">
+        <div class="pic">
+          <a href="staraniso_alldata.ismean-hk0.png"><img id="myImg76" class="myImg" src="staraniso_alldata.ismean-hk0.png" width="230" alt="STARANISO (hk0)"></a>
+          <span class="pic2legend">STARANISO (hk0)</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_7">
+        <div class="pic">
+          <a href="staraniso_alldata.ismean-0qr.png"><img id="myImg77" class="myImg" src="staraniso_alldata.ismean-0qr.png" width="230" alt="STARANISO (0qr)"></a>
+          <span class="pic2legend">STARANISO (0qr)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_7">
+        <div class="pic">
+          <a href="staraniso_alldata.ismean-p0r.png"><img id="myImg78" class="myImg" src="staraniso_alldata.ismean-p0r.png" width="230" alt="STARANISO (p0r)"></a>
+          <span class="pic2legend">STARANISO (p0r)</span>
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_7">
+        <div class="pic">
+          <a href="staraniso_alldata.ismean-pq0.png"><img id="myImg79" class="myImg" src="staraniso_alldata.ismean-pq0.png" width="230" alt="STARANISO (pq0)"></a>
+          <span class="pic2legend">STARANISO (pq0)</span>
+        </div>
+      </div>
+      <div class="clear"></div>
+<! aP_SumNumImg="79" >
+<! aP_Section_2_SubSectionNum="8" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsection">2.8.&nbsp;<a name="id1.finish">Finalising output</a></span></div>
+      <div class="grid_24">&nbsp;</div>
+
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Details about the various reflection files described below can be found <a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/autoproc/manual/autoPROC7.html#reflectiondata">here</a></div>
+      </div>
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsubsection">2.8.1.&nbsp;<a name="id1.finish.outputFile1">isotropic (standard)</a></span></div>
+
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Output file created (classical isotropic treatment and <a href="https://www.globalphasing.com/autoproc/wiki/index.cgi?FaqScalingHighResLimit">analysis</a> of data) = <a href="truncate-unique.mtz">truncate-unique.mtz</a> - see also <a href="truncate-unique.table1">table1</a> <a href="truncate-unique.stats">stats</a> <a href="truncate-unique.xml">xml</a>. This file contains intensities and amplitudes. The file <a href="Data_2_autoPROC_TRUNCATE_all.cif">Data_2_autoPROC_TRUNCATE_all.cif</a> can be used for PDB deposition. For a full PDF report please see <a href="report.pdf">report.pdf</a> .</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre1" style="font-size:0.9em;">
+Spacegroup name          H3
+Unit cell parameters     107.658 107.658 91.434 90.0 90.0 120.0
+Wavelength               0.92010 A
+
+Number of active ice-rings within this resolution range =  0
+
+Criteria used in determination of resolution cut:
+------------------------------------------------- 
+   I/sigI         &gt;=    0.00
+   CC(1/2)        &gt;=    0.3000
+
+Per-reflection cut-off      Operational Resolution                
+----------------------------------------------------------------- 
+   I/sigma(I) &gt;= 2.0    :   6.1470 A   for        922 reflections
+   I/sigma(I) &gt;= 1.0    :   5.6532 A   for       1176 reflections
+   I/sigma(I) &gt;= 0.0    :   5.2067 A   for       1518 reflections
+   all                  :   5.0167 A   for       1703 reflections
+
+                                            Overall  InnerShell  OuterShell
+---------------------------------------------------------------------------
+   Low resolution limit                      19.374      19.374       4.975
+   High resolution limit                      4.892      12.149       4.892
+
+
+   Rmerge  (all I+ &amp; I-)                      0.089       0.041       3.152
+   Rmerge  (within I+/I-)                     0.083       0.038       2.681
+   Rmeas   (all I+ &amp; I-)                      0.098       0.045       3.493
+   Rmeas   (within I+/I-)                     0.103       0.047       3.294
+   Rpim    (all I+ &amp; I-)                      0.042       0.019       1.500
+   Rpim    (within I+/I-)                     0.061       0.028       1.894
+   Total number of observations                9946         521         422
+   Total number unique                         1797          94          78
+   Mean(I)/sd(I)                                6.7        24.1         0.4
+   Completeness                               100.0       100.0       100.0
+   Multiplicity                                 5.5         5.5         5.4
+   CC(1/2)                                    0.999       0.999       0.228
+
+
+   Anomalous completeness                      99.9       100.0       100.0
+   Anomalous multiplicity                       2.8         2.8         2.7
+   CC(ano)                                   -0.195       0.041       0.286
+   |DANO|/sd(DANO)                            0.535       0.488       0.564
+        </div>
+      </div>
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsubsection">2.8.2.&nbsp;<a name="id1.outputFile1.outputFile2">isotropic (extended)</a></span></div>
+
+<! aP_HideNum="12" >
+      <div class="grid_1"><div id="hide12_button" class="hidebutton" style="background-color: #73e600;" onclick="toggle_visibility('hide12')">+</div></div>
+      <div class="grid_23"><div id="hide12_info"  class="hideinfo">Click for more information/plots - isotropic (extended)</div></div>
+      <div id="hide12" style="display: none">
+        <div class="clear"></div>
+        <div class="grid_1">&nbsp;</div>
+        <div class="grid_23">
+          <div class="note">Output file created (for all measurements within sphere of highest observed resolution limit) = <a href="aimless_alldata-unique.mtz">aimless_alldata-unique.mtz</a> - see also <a href="aimless_alldata-unique.table1">table1</a> <a href="aimless_alldata-unique.stats">stats</a> <a href="aimless_alldata-unique.xml">xml</a>. This file contains intensities only. Be aware that this data will contain intensities for unobserved data (as defined by STARANISO): to derive correct amplitudes, an anisotropic prior should be used within the French &amp; Wilson method (as available e.g. witin STARANISO).</div>
+        </div>
+        <div class="grid_2">&nbsp;</div>
+        <div class="grid_22">
+          <div class="pre" style="font-size:0.9em;">
+Spacegroup name          H3
+Unit cell parameters     107.658 107.658 91.434 90.0 90.0 120.0
+Wavelength               0.92010 A
+
+Number of active ice-rings within this resolution range =  0
+
+Criteria used in determination of diffraction limits:
+-----------------------------------------------------
+   local(I/sigI)  &gt;=    1.20
+
+Per-reflection cut-off      Operational Resolution                
+----------------------------------------------------------------- 
+   I/sigma(I) &gt;= 2.0    :   6.1341 A   for        931 reflections
+   I/sigma(I) &gt;= 1.0    :   5.5843 A   for       1235 reflections
+   I/sigma(I) &gt;= 0.0    :   4.9501 A   for       1761 reflections
+   all                  :   4.6770 A   for       2091 reflections
+
+                                            Overall  InnerShell  OuterShell
+---------------------------------------------------------------------------
+   Low resolution limit                      19.374      19.374       4.747
+   High resolution limit                      4.668      11.713       4.668
+
+
+   Rmerge  (all I+ &amp; I-)                      0.101       0.041       7.681
+   Rmerge  (within I+/I-)                     0.093       0.038       6.941
+   Rmeas   (all I+ &amp; I-)                      0.111       0.046       8.495
+   Rmeas   (within I+/I-)                     0.116       0.048       8.707
+   Rpim    (all I+ &amp; I-)                      0.047       0.020       3.621
+   Rpim    (within I+/I-)                     0.068       0.028       5.204
+   Total number of observations               11470         566         561
+   Total number unique                         2074         102         102
+   Mean(I)/sd(I)                                5.8        23.9         0.2
+   Completeness (spherical)                   100.0       100.0       100.0
+   Completeness (ellipsoidal)                 100.0       100.0       100.0
+   Multiplicity                                 5.5         5.5         5.5
+   CC(1/2)                                    0.999       0.999       0.021
+
+
+   Anomalous completeness (spherical)          99.9       100.0       100.0
+   Anomalous completeness (ellipsoidal)        99.9       100.0       100.0
+   Anomalous multiplicity                       2.8         2.8         2.8
+   CC(ano)                                   -0.254      -0.163      -0.185
+   |DANO|/sd(DANO)                            0.537       0.482       0.556
+          </div>
+        </div>
+<! aP_Prefix="      " >
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">&nbsp;</div>
+      <div class="clear"></div>
+<! aP_Section_2_SubSection_8_SubSubSectionNum="3" >
+
+      <div class="grid_24">&nbsp;</div>
+      <div class="grid_24"><span class="subsubsection">2.8.3.&nbsp;<a name="id1.outputFile2.outputFile3">anisotropic</a></span></div>
+
+<! aP_SubSectionId="outputFile3" >
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Final output file created (including analysis of anisotropy via <a href="file:///home/3D5/GPhL/autoPROC_snapshot_20230726/docs/staraniso/manual/index.html">STARANISO</a> ) = <a href="staraniso_alldata-unique.mtz">staraniso_alldata-unique.mtz</a> (see above for detailed analysis of anisotropy) - see also <a href="staraniso_alldata-unique.table1">table1</a> <a href="staraniso_alldata-unique.stats">stats</a> <a href="staraniso_alldata-unique.xml">xml</a>. This file contains intensities and amplitudes. The file <a href="Data_1_autoPROC_STARANISO_all.cif">Data_1_autoPROC_STARANISO_all.cif</a> can be used for PDB deposition. For a full PDF report please see <a href="report_staraniso.pdf">report_staraniso.pdf</a> .</div>
+      </div>
+      <div class="grid_2">&nbsp;</div>
+      <div class="grid_22">
+        <div class="pre2" style="font-size:0.9em;">
+Spacegroup name          H3
+Unit cell parameters     107.658 107.658 91.434 90.0 90.0 120.0
+Wavelength               0.92010 A
+
+Diffraction limits &amp; principal axes of ellipsoid fitted to diffraction cut-off surface:
+  4.538         1.0000   0.0000   0.0000       0.894 _a_* - 0.447 _b_*
+  4.538         0.0000   1.0000   0.0000       _b_*
+  5.525         0.0000   0.0000   1.0000       _c_*
+
+Number of active ice-rings within this resolution range =  0
+
+Criteria used in determination of diffraction limits:
+-----------------------------------------------------
+   local(I/sigI)  &gt;=    1.20
+
+Per-reflection cut-off      Operational Resolution                
+----------------------------------------------------------------- 
+   I/sigma(I) &gt;= 2.0    :   6.1335 A   for        926 reflections
+   I/sigma(I) &gt;= 1.0    :   5.6757 A   for       1167 reflections
+   I/sigma(I) &gt;= 0.0    :   5.2953 A   for       1440 reflections
+   all                  :   5.1552 A   for       1560 reflections
+
+                                            Overall  InnerShell  OuterShell
+---------------------------------------------------------------------------
+   Low resolution limit                      19.374      19.374       5.225
+   High resolution limit                      4.668       9.744       4.668
+
+
+   Rmerge  (all I+ &amp; I-)                      0.082       0.042       1.717
+   Rmerge  (within I+/I-)                     0.076       0.039       1.537
+   Rmeas   (all I+ &amp; I-)                      0.091       0.047       1.906
+   Rmeas   (within I+/I-)                     0.095       0.049       1.927
+   Rpim    (all I+ &amp; I-)                      0.038       0.020       0.822
+   Rpim    (within I+/I-)                     0.056       0.029       1.154
+   Total number of observations                8706        1101        1044
+   Total number unique                         1560         195         195
+   Mean(I)/sd(I)                                7.7        22.8         0.8
+   Completeness (spherical)                    75.4       100.0        33.0
+   Completeness (ellipsoidal)                  86.6       100.0        55.9
+   Multiplicity                                 5.6         5.6         5.4
+   CC(1/2)                                    0.999       0.999       0.324
+
+
+   Anomalous completeness (spherical)          75.3       100.0        33.0
+   Anomalous completeness (ellipsoidal)        86.5       100.0        55.9
+   Anomalous multiplicity                       2.8         2.8         2.7
+   CC(ano)                                   -0.155      -0.065      -0.055
+   |DANO|/sd(DANO)                            0.538       0.471       0.535
+        </div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Created mmCIF files (which should be ready to use as-is e.g. for PDB deposition) as <br> <a href="Data_1_autoPROC_STARANISO_all.cif">Data_1_autoPROC_STARANISO_all.cif</a> (anisotropic analysis)<br> <a href="Data_2_autoPROC_TRUNCATE_all.cif">Data_2_autoPROC_TRUNCATE_all.cif</a> (traditional isotropic analysis)</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Created PDF report as <a href="report.pdf">report.pdf</a> (traditional isotropic analysis)</div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">Created STARANISO (anisotropic analysis) PDF report as <a href="report_staraniso.pdf">report_staraniso.pdf</a></div>
+      </div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+      </div>
+      <div class="clear"></div>
+      <div class="grid_1">&nbsp;</div>
+      <div class="grid_23">
+        <div class="note">XML files written as <br><a href="autoPROC_staraniso.xml">AP4Ah3/autoPROC_staraniso.xml</a> (for <a href="staraniso_alldata-unique.mtz">staraniso_alldata-unique.mtz</a>)<br><a href="autoPROC.xml">AP4Ah3/autoPROC.xml</a> (for <a href="truncate-unique.mtz">truncate-unique.mtz</a>)</div>
+      </div>
+      <p><hr style="height:2px;border-width:0;color:gray;background-color:gray" ><b>Elapsed time = 745 seconds</b><p>
+    </div>
+  </div>
+
+</body> </html>

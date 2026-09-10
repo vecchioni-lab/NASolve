@@ -10,6 +10,11 @@ entries are reconstructed from repository history.
 
 ### Added
 
+- Published the DOHU input dataset (configuration, authoritative MTZ, autoPROC/STARANISO
+  CIF, and summary) for collaborator reruns. Added `examples/README.md` and an
+  eight-file SHA-256 manifest covering DOHU and the existing dated QiC example.
+  The uploaded short-name QiC inputs match that existing example byte for byte;
+  no duplicate dataset or new run history is added. Input bytes are preserved.
 - Added local dictionary construction for modified-residue mutations with one
   unambiguous NARestraints record and a supported DNA/RNA construction parent.
   Included `OHU.cif` supports the D:OHU example. Curated overrides take priority;
