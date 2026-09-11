@@ -80,6 +80,11 @@ entries are reconstructed from repository history.
 
 ### Fixed
 
+- Refine Doctor's interactive `i` answer now opens the recommended checkpoint
+  in Coot and returns to the same selection prompt. Answers take effect after
+  Enter; only `y` selects a checkpoint. Declining, blank input, EOF or Ctrl-C
+  preserves the current selection, and an inspection-launch error allows a
+  retry. Printed inspection/selection commands now quote paths with spaces.
 - AutoSol now uses fully qualified PHIL parameter paths, including nested
   phasing, model-building and general settings. This fixes Phenix 2.2 rejecting
   the ambiguous `data=` argument before reading inputs. Standalone and campaign

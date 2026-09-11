@@ -124,23 +124,33 @@ staged trials, and unchanged checkpoint selection. Live validation must include
 noisy ordinary datasets as well as the anomalous QiC case; success on one data
 class is not validation of the other.
 
-## Handoff for 2026-09-11
+## Live validation and handoff, 2026-09-11
 
-The updated Doctor has not yet been run on the user's QiC data. The first live
-task is to run it from the existing source checkpoint, from the NASolve checkout:
+The user completed the first updated Doctor run on QiC on 2026-09-11, after
+syncing the published source and passing 395 tests and 129 subtests on macOS.
+The command, run from the NASolve checkout, was:
 
 ```bash
 ./nasolve refine-doctor examples/QiC_120325_0513/AutoMR/run_004 --from refine-001
 ```
 
-This starts a new Doctor attempt with bounded sibling trials; inspect its report
-and candidate maps before choosing a checkpoint. The last reported source had
+Doctor completed four sibling trials, recommended the coordinate-only
+fixed-scattering branch `refine-007`, and stopped on its numerical pass before
+the fifth recipe. The source remained current. This is a live workflow check;
+the numerical recommendation still needs map/model inspection. The source had
 Rwork 0.1644, Rfree 0.1562 and 66 independent Free-R groups. Those are historical
 results from the earlier implementation, not validation of the new recipes.
 The user's installed runtime is Phenix 2.2.1-6174 and Coot 1.3.3 on Apple Silicon.
-No new scientific execution was performed during publication.
+No scientific execution was performed in the coding environment during
+publication.
 
-The tested source passed **393 tests and 129 subtests**, with **2 skips** for
+That live run identified a prompt issue: `i` printed inspection commands and
+exited. The follow-up now opens Coot and repeats the `y/N/i` prompt after
+`i` plus Enter. Selection still requires `y`; inspection never selects the
+candidate. The prompt change is covered with simulated input and a controlled
+GUI launcher; live Coot interaction remains to be checked on the user's Mac.
+
+The prompt update passed **399 tests and 132 subtests**, with **2 skips** for
 process-inspection cases in the Linux container. The exact validation command,
 run with Python 3.12.14 from the prepared checkout, was:
 
@@ -149,11 +159,16 @@ env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /workspace/scratch/fe02cd83cd4e/nas
 ```
 
 For a local checkout, the corresponding interpreter is `.venv/bin/python`.
-The patch also applied cleanly to its documented base, and all eleven changed
-files matched the tested source byte for byte. The handoff text added afterward
-does not change executable behavior.
+Focused validation used the same command with `tests/test_doctor_inspection.py
+tests/test_cli.py tests/test_doctor_triage.py`, passing 33 tests and 17 subtests.
+The new regression tests reproduced the original prompt exit before the fix.
+They verify the requested model/map sources, inspection followed by acceptance
+or decline, repeated and invalid input, launch failure, EOF/Ctrl-C, and
+noninteractive commands with spaces in the run path. The prompt change affects
+the CLI, its tests and documentation; scientific recipes, selection validation
+and report/checkpoint schemas are unchanged.
 
-This publication includes the previously unpublished preset/planning and
+The preceding 2026-09-10 publication included the preset/planning and
 campaign-execution modules, their CLI/tests/docs, the macOS worker-shutdown and
 AutoSol parameter fixes, and the standalone Doctor update. Presets, campaign
 plans and execution records use their documented schema 1; the Doctor changes
@@ -162,6 +177,6 @@ frozen plans and immutable run history remain usable. Generated local campaign
 state, refinement outputs, logs, patch archives and virtual environments are
 not part of the publication.
 
-After the QiC run, validate a noisy ordinary `IMEAN,SIGIMEAN` case. Campaign
-recipe configuration and automatic Doctor triggers remain the next development
-block, after reviewing these live results.
+Next inspect the QiC candidate and validate a noisy ordinary `IMEAN,SIGIMEAN`
+case. Campaign recipe configuration and automatic Doctor triggers remain the
+next development block, after reviewing these live results.

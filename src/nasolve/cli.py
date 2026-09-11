@@ -928,14 +928,14 @@ def _refine_doctor(args: argparse.Namespace) -> int:
         for action in triage.get("next_actions", []):
             print(f"  Next: {action}")
     if result.recommended_checkpoint:
-        inspect_command = (
-            f"nasolve show {result.run_directory} "
-            f"--checkpoint {result.recommended_checkpoint}"
-        )
-        select_command = (
-            f"nasolve checkpoints use {result.run_directory} "
-            f"{result.recommended_checkpoint}"
-        )
+        inspect_command = shlex.join([
+            "nasolve", "show", str(result.run_directory),
+            "--checkpoint", result.recommended_checkpoint,
+        ])
+        select_command = shlex.join([
+            "nasolve", "checkpoints", "use", str(result.run_directory),
+            result.recommended_checkpoint,
+        ])
         print(
             "Select after map/model inspection: "
             + select_command
@@ -945,10 +945,25 @@ def _refine_doctor(args: argparse.Namespace) -> int:
     if result.recommended_checkpoint:
         if sys.stdin.isatty():
             while True:
-                answer = input(
-                    f"\nUse {result.recommended_checkpoint} as the current checkpoint? "
-                    "[y/N/i=inspection commands]: "
-                ).strip().casefold()
+                try:
+                    answer = input(
+                        f"\nUse {result.recommended_checkpoint} as the current checkpoint? "
+                        "[y/N/i=inspect]: "
+                    ).strip().casefold()
+                except (EOFError, KeyboardInterrupt):
+                    print()
+                    answer = "n"
+                if answer in {"i", "inspect"}:
+                    view_status = _show(argparse.Namespace(
+                        target=result.run_directory, dataset=None, stage=None,
+                        checkpoint=result.recommended_checkpoint, coot=None,
+                    ))
+                    if view_status == 0:
+                        print("Inspect the model and maps in Coot, then return here to enter y or n.")
+                    else:
+                        print("Inspection could not open. Retry with i, or inspect later:")
+                        print(f"  {inspect_command}")
+                    continue
                 if answer in {"y", "yes"}:
                     try:
                         selected = select_checkpoint(
@@ -959,17 +974,17 @@ def _refine_doctor(args: argparse.Namespace) -> int:
                         return 2
                     print(_color(f"Current checkpoint: {selected.checkpoint_id}", "36"))
                     break
-                if answer in {"", "n", "no", "i", "inspect"}:
+                if answer in {"", "n", "no"}:
                     print("Current checkpoint unchanged.")
                     print("Inspect without selecting:")
                     print(f"  {inspect_command}")
                     print("Select later:")
                     print(f"  {select_command}")
                     print("Return to the diagnosed source if needed:")
-                    print(
-                        f"  nasolve checkpoints use {result.run_directory} "
-                        f"{result.source_checkpoint}"
-                    )
+                    print("  " + shlex.join([
+                        "nasolve", "checkpoints", "use", str(result.run_directory),
+                        result.source_checkpoint,
+                    ]))
                     break
                 print("Please enter y, n, or i.")
         else:

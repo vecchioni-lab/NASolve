@@ -146,7 +146,8 @@ small test set gives `Rwork >= Rfree`—run the bounded triage layer:
 ./nasolve refine-doctor "$RUN"
 ```
 
-Refine Doctor never regenerates Free-R flags or changes the current checkpoint.
+Refine Doctor never regenerates Free-R flags. Its engine preserves the current
+checkpoint; the interactive CLI changes it only when you explicitly select one.
 It requires an available, valid Free-R audit, tries eligible sibling branches
 in declared order, and stops at the first numerical pass or a technical error.
 The ordinary mean-data path includes grouped-B, eligible individual-ADP,
@@ -159,8 +160,12 @@ The default limit is five trials of three macrocycles each; `--max-trials` and
 An unresolved inversion remains `REFINE_DOCTOR_REVIEW` (exit 2). Doctor prints
 the lowest-Rfree usable candidate for inspection without declaring statistical
 superiority or offering to select an unpassed candidate. A numerical pass may
-be selected through the interactive `[y/N/i]` prompt. Every report records
-attempted/skipped recipes and stopping reasons. See the
+be selected through the interactive `[y/N/i]` prompt. Type `i` and press Enter
+to open the recommended model and maps in Coot. The terminal asks again while
+Coot remains open: return to enter `y` to select or `n` (or just Enter) to finish
+with the current checkpoint unchanged. An inspection-launch error also returns
+to the prompt. Every report records attempted/skipped recipes and stopping
+reasons. See the
 [triage notes](docs/refine-doctor-triage.md) for implemented options and planned
 diagnostics. A candidate can be opened without changing the current pointer:
 

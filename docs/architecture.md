@@ -450,9 +450,14 @@ R-factor optimizer. It starts from the current or explicitly named checkpoint,
 records that pointer, and requires every trial to be an immutable sibling of
 the same source. A successful trial is recommended for inspection but is never
 selected automatically by the engine. In an interactive CLI session the user
-receives a final `[y/N/i]` prompt: `y` performs the ordinary audited checkpoint
-selection, while `n` or `i` leaves the pointer unchanged and prints commands
-for inspection, later selection, and returning to the diagnosed source.
+receives a final `[y/N/i]` prompt, with each answer confirmed by Enter. `i`
+opens the exact recommended checkpoint through the ordinary Coot view path,
+then repeats the prompt without waiting for Coot to close or rerunning Doctor.
+Only `y` performs the ordinary audited checkpoint selection. `n`, blank input,
+EOF or Ctrl-C at the prompt finishes with the pointer unchanged and prints
+commands for inspection, later selection, and returning to the diagnosed
+source. A Coot discovery or view error preserves the prompt for another choice.
+Noninteractive sessions print commands without prompting or launching Coot.
 
 Before launching Phenix it audits the authoritative Free-R array with the
 Phenix/CCTBX runtime. The audit measures the independent Friedel-group count,
