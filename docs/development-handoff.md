@@ -55,7 +55,7 @@ Initial reviewed force geometries should be hard-coded and small in number. The 
 requested templates are:
 
 - `G:C`
-- `G:A`
+- `A:T`
 - `G:T`
 
 Unknown or unsupported `force` values should fail closed rather than being guessed.
