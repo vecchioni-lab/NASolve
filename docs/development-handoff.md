@@ -34,10 +34,16 @@ returned `MR_REVIEW` with TFZ 7.60. Manual inspection found the MR placement pla
 and the expected sticky-end packing reasonable despite very noisy density, so the MR
 review was accepted for continued testing.
 
-After standalone Doctor behaves on an ordinary test case, the next major development
-block is campaign-level Doctor integration: preset-declared triggers, bounded recipe
-budgets, automatic selection only across reviewed passing branches, and an inspection
-queue for unresolved datasets. This is roadmap step 4 in `docs/campaigns.md`.
+EA then passed PostMR and ordinary mean-data AutoRefine without AutoSol. The first
+five-cycle refinement reached `AUTOREFINE_READY` with Rwork/Rfree about 0.160/0.177.
+This validates another difficult ordinary-data route through the linear spine, but EA
+did not itself require Refine Doctor because AutoRefine passed numerically.
+
+After standalone Doctor behaves on an ordinary test case that actually reaches
+`AUTOREFINE_REVIEW`, the next major development block is campaign-level Doctor
+integration: preset-declared triggers, bounded recipe budgets, automatic selection only
+across reviewed passing branches, and an inspection queue for unresolved datasets.
+This is roadmap step 4 in `docs/campaigns.md`.
 
 ## MR Doctor and recipe-specific review promotion
 
@@ -64,16 +70,44 @@ review gate, and manual sticky-end/symmetry inspection supported continuing.
 ## Coot map startup / rendering follow-up
 
 During manual inspection of the low-resolution EA MR result, Coot initially displayed
-maps extremely poorly/noisily while they were initializing. This may simply reflect the
-very weak data, but it could also involve how NASolve launches Coot, which MTZ columns
-are selected, map contour defaults, or Coot's initial map rendering/cache behavior.
+maps extremely poorly/noisily while they were initializing. This could involve the weak
+MR phases themselves, how NASolve launches Coot, which MTZ columns are selected, map
+contour defaults, or Coot's initial map rendering/cache behavior.
 
-Add a focused follow-up before treating this as a scientific symptom. Compare the same
-MR MTZ opened manually versus through `nasolve show`, record the selected map labels and
-initial contour settings, and determine whether the display converges after loading.
-If NASolve is responsible, fix the viewing/launch layer rather than changing scientific
-outputs. The diagnostic should keep "poor map rendering at startup" separate from
+The later `refine-001` view for the same EA dataset opened with good-looking maps. That
+narrows the problem: it is not a general inability of Coot or `nasolve show` to render
+this dataset. Focus the diagnostic on the MR-stage map source/loading path and on the
+expected difference between raw MR phases and refined map coefficients.
+
+Add a focused follow-up before treating ugly MR startup rendering as a scientific
+symptom. Compare the same MR MTZ opened manually versus through `nasolve show`, record
+the selected map labels and initial contour settings, and determine whether the display
+converges after loading. If NASolve is responsible, fix the viewing/launch layer rather
+than changing scientific outputs. Keep "poor map rendering at startup" separate from
 "poor underlying density" in reports and inspection guidance.
+
+## Sulfur-containing pair restraint follow-up
+
+The refined EA model looks sensible overall, but manual inspection still finds the
+sulfur-associated hydrogen-bond contact too short. Treat this as a future restraint
+chemistry issue rather than evidence that the ordinary refinement engine failed.
+
+Before changing anything, identify which layer sets the contact target. Inspect the
+actual generated `narestraints_Std_padd.phil` used by EA and determine whether the
+inter-residue S-containing hydrogen-bond target is inherited from a canonical O/N
+geometry, comes from the NARestraints ligand mapping/workbook, or is introduced by a
+NASolve adapter. Keep that separate from the component CIF, which primarily defines
+intra-residue topology, and from planarity warnings.
+
+If the short contact originates in NARestraints' reviewed pair geometry, patch
+NARestraints at the geometry-definition/mapping layer rather than compensating with an
+unrelated Phenix refinement setting. Record the exact old/new target distance and the
+NARestraints version consumed by NASolve. Do not edit an installed workbook in place;
+make any durable correction in source with regression coverage.
+
+This sulfur-distance issue may also become a useful Final Model Doctor check: modified
+pairs should be able to report unusually short donor/acceptor contacts even when global
+R factors pass.
 
 ## User-forced base-pair restraint geometry
 
@@ -168,16 +202,19 @@ selection separate. A numerical pass is still subject to map/model inspection.
 
 Near-term follow-up remains:
 
-1. continue the ordinary/noisy mean-data path using EA and other new test datasets;
-2. debug the provisional `force = G:C` path and determine whether NASolve alone can
+1. continue the ordinary/noisy mean-data search until a test dataset naturally reaches
+   `AUTOREFINE_REVIEW`, while retaining EA as a difficult ordinary-data success case;
+2. inspect and, if needed, correct the sulfur-containing pair target geometry in
+   NARestraints/NASolve;
+3. debug the provisional `force = G:C` path and determine whether NASolve alone can
    express the requested geometry or whether NARestraints needs a reviewed patch;
-3. investigate Coot/map startup behavior on weak MR maps;
-4. design the preset-declared sticky-end/symmetry check for MR_REVIEW promotion;
-5. after ordinary validation, expose Doctor triggers/recipes/budgets through the
+4. investigate Coot/MR-map startup behavior on weak MR maps;
+5. design the preset-declared sticky-end/symmetry check for MR_REVIEW promotion;
+6. after ordinary validation, expose Doctor triggers/recipes/budgets through the
    campaign preset and executor;
-6. retain explicit reuse of prior fitted anomalous scattering values as a later
+7. retain explicit reuse of prior fitted anomalous scattering values as a later
    reviewed Doctor capability; and
-7. keep broader xtriage/data diagnostics, restraint-alternative diagnosis, chained
+8. keep broader xtriage/data diagnostics, restraint-alternative diagnosis, chained
    staging, Final Model Doctor, curate/Table 1, and deposition as downstream roadmap
    layers already described in the main design documents.
 
