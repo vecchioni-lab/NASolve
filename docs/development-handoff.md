@@ -27,10 +27,53 @@ The next scientific validation target is an ordinary/noisy mean-data case
 anomalous. New local test datasets are being staged under `examples/TestSets/`; that
 directory was not yet present in the published repository when this note was written.
 
+The first deliberately difficult ordinary test selected from that panel is `EA`. Its
+STARANISO summary is unusually weak for this system (about 594 unique reflections,
+mean I/sigI about 3.8, and diffraction limits around 6.32/6.32/7.13 A). Fresh AutoMR
+returned `MR_REVIEW` with TFZ 7.60. Manual inspection found the MR placement plausible
+and the expected sticky-end packing reasonable despite very noisy density, so the MR
+review was accepted for continued testing.
+
 After standalone Doctor behaves on an ordinary test case, the next major development
 block is campaign-level Doctor integration: preset-declared triggers, bounded recipe
 budgets, automatic selection only across reviewed passing branches, and an inspection
 queue for unresolved datasets. This is roadmap step 4 in `docs/campaigns.md`.
+
+## MR Doctor and recipe-specific review promotion
+
+A future MR Doctor should distinguish globally meaningful MR criteria from
+project/motif-specific structural sanity checks. TFZ 7.0-7.99 should remain `MR_REVIEW`
+by default, but a campaign preset may be allowed to promote a review result when a
+reviewed structural check specific to that recipe passes.
+
+For the 5W6W/W-frame system, the first concrete rule is sticky-end packing. The human
+review used here asks whether the expected sticky end is positioned to stack with its
+crystallographic symmetry partner. A first scripted version may use a conservative
+geometric cutoff of no more than approximately 5 A between the relevant stacking
+features, together with the expected symmetry relationship. The exact atoms/features
+and symmetry construction must be defined explicitly before implementation.
+
+This must not become a global "TFZ 7 is fine" rule. It is a project-specific acceptance
+recipe that should live in a versioned preset, record the measured geometry and
+threshold, and only promote the MR branch when all declared checks pass. Other
+campaigns may define different motif-specific validators or none at all.
+
+The EA run is the first example motivating this design: TFZ 7.60 triggered the correct
+review gate, and manual sticky-end/symmetry inspection supported continuing.
+
+## Coot map startup / rendering follow-up
+
+During manual inspection of the low-resolution EA MR result, Coot initially displayed
+maps extremely poorly/noisily while they were initializing. This may simply reflect the
+very weak data, but it could also involve how NASolve launches Coot, which MTZ columns
+are selected, map contour defaults, or Coot's initial map rendering/cache behavior.
+
+Add a focused follow-up before treating this as a scientific symptom. Compare the same
+MR MTZ opened manually versus through `nasolve show`, record the selected map labels and
+initial contour settings, and determine whether the display converges after loading.
+If NASolve is responsible, fix the viewing/launch layer rather than changing scientific
+outputs. The diagnostic should keep "poor map rendering at startup" separate from
+"poor underlying density" in reports and inspection guidance.
 
 ## User-forced base-pair restraint geometry
 
@@ -125,14 +168,16 @@ selection separate. A numerical pass is still subject to map/model inspection.
 
 Near-term follow-up remains:
 
-1. validate the ordinary/noisy mean-data path using the new test datasets;
+1. continue the ordinary/noisy mean-data path using EA and other new test datasets;
 2. debug the provisional `force = G:C` path and determine whether NASolve alone can
    express the requested geometry or whether NARestraints needs a reviewed patch;
-3. after ordinary validation, expose Doctor triggers/recipes/budgets through the
+3. investigate Coot/map startup behavior on weak MR maps;
+4. design the preset-declared sticky-end/symmetry check for MR_REVIEW promotion;
+5. after ordinary validation, expose Doctor triggers/recipes/budgets through the
    campaign preset and executor;
-4. retain explicit reuse of prior fitted anomalous scattering values as a later
+6. retain explicit reuse of prior fitted anomalous scattering values as a later
    reviewed Doctor capability; and
-5. keep broader xtriage/data diagnostics, restraint-alternative diagnosis, chained
+7. keep broader xtriage/data diagnostics, restraint-alternative diagnosis, chained
    staging, Final Model Doctor, curate/Table 1, and deposition as downstream roadmap
    layers already described in the main design documents.
 
