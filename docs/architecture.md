@@ -538,6 +538,32 @@ phase data are never substituted for a density map. Declared sources and their
 checksums take precedence; ambiguity, corruption, or a missing declared map is
 an error. Legacy AutoSol runs retain bounded discovery within their own stage.
 
+Every view retains ordinary `--auto` map loading and adds a run-local Python
+startup script. In Coot, `valid_labels` checks the exact `ANOM`/`PHANOM` pair.
+The script uses `make_and_draw_map` with no weights and the difference-map flag,
+then names the overlay and sets its initial contour to 3 sigma. It adds no
+phase shift. Existing maps with the same MTZ and column pair are reused, and
+the original refinement-map and scroll-wheel selections are restored.
+
+Candidates are the selected map MTZ followed, for refinement checkpoints, by
+the explicitly recorded `refinement_reflections` MTZ if different. Both follow
+the existing relocation and checksum rules; a corrupt or missing declared
+source stops launch. Manual checkpoints inherit these candidates from the
+same observation-compatible ancestor as their ordinary maps. Other stages
+check only their selected map. There is no search across refinement rounds,
+dependence on an anomalous-refinement flag, or substitution of HL coefficients.
+Missing columns simply leave the normal view in place. Optional Coot API/read/
+display failures are logged without closing the ordinary view.
+
+`launch.json` has an additive `anomalous_map` request with paths, labels,
+contour, script path, and `status: check-in-coot`; this is not a claim that an
+asynchronously started GUI loaded the map. `NASOLVE_ANOMALOUS_MAP` JSON lines
+in `coot_gui.log` record `loaded`, `reused`, `absent`, or `error`. No checkpoint
+or scientific report schema changes, regeneration, or dependency installation
+are required. Tests execute the generated script against a simulated Coot
+Python API; graphical validation on the user's Coot 1.3.3 / Phenix 2.2.1-6174
+outputs remains a live check, not a claimed execution in the test environment.
+
 Every graphical process starts in `RUN/CootGUI/STAGE/` with its backup
 directory redirected underneath the same pen, plus a checkpoint subdirectory
 when selected. Console output and `launch.json` identify the run, checkpoint,

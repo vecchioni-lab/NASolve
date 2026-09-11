@@ -236,6 +236,15 @@ dictionaries. An imported manual checkpoint can inherit an ancestor's map only
 when its observation data match; the output labels this map as not recalculated
 for the manual model. Missing or corrupt declared maps produce an error.
 
+If the selected MTZ contains `ANOM` and `PHANOM`, `show` also opens a named
+**Anomalous difference** map at **3 sigma**. If Phenix wrote separate map and
+refinement MTZ files, it also checks the refinement MTZ recorded for that same
+checkpoint. Availability depends on the columns, so fixed-scattering and
+refined-anomalous results both work; a mean-only result without this pair opens
+its usual maps. This also works from Refine Doctor's `i` inspection option.
+The usual maps and their refinement/scroll controls are preserved. Coot's log
+records whether the extra map was loaded, already open, absent, or failed.
+
 Coot histories and backups stay under `RUN/CootGUI/STAGE/`, with a separate
 checkpoint subdirectory when one is selected.
 

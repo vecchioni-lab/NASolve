@@ -32,6 +32,7 @@ class ViewProfile:
     source: str
     map_source: str
     checkpoint_id: str | None = None
+    anomalous_map_paths: tuple[Path, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -405,6 +406,20 @@ def _checkpoint_dictionaries(
     return tuple(dictionaries)
 
 
+def _refinement_anomalous_maps(
+    run: Path, checkpoint: Mapping[str, object], schema_version: int, map_path: Path
+) -> tuple[Path, ...]:
+    """Check only this checkpoint's maps and explicitly recorded refinement MTZ."""
+    outputs = checkpoint.get("outputs")
+    value = outputs.get("refinement_reflections") if isinstance(outputs, Mapping) else None
+    if value is None:
+        return (map_path,)
+    if schema_version == 2:
+        _require_checkpoint_checksum(value, "refinement reflections")
+    reflections = _reported_file(value, "checkpoint refinement reflections", run)
+    return tuple(dict.fromkeys((map_path, reflections)))
+
+
 def _same_observations(
     run: Path, child: Mapping[str, object], parent: Mapping[str, object], schema_version: int
 ) -> None:
@@ -425,15 +440,21 @@ def _checkpoint_map(
     run: Path, report: Mapping[str, object], checkpoint: Mapping[str, object],
     checkpoints: Mapping[str, Mapping[str, object]], schema_version: int,
     visited: frozenset[str] = frozenset(),
-) -> tuple[Path, str]:
+) -> tuple[Path, str, tuple[Path, ...]]:
     identifier = str(checkpoint["id"])
     if identifier in visited:
         raise CootViewError("Checkpoint map lineage contains a cycle")
     kind = checkpoint.get("kind")
     if kind == "refinement":
-        return _refinement_map(run, checkpoint, schema_version), f"refinement checkpoint {identifier}"
+        map_path = _refinement_map(run, checkpoint, schema_version)
+        return (
+            map_path,
+            f"refinement checkpoint {identifier}",
+            _refinement_anomalous_maps(run, checkpoint, schema_version, map_path),
+        )
     if kind == "postmr":
-        return _postmr_map(run, report)
+        map_path, map_source = _postmr_map(run, report)
+        return map_path, map_source, (map_path,)
     if kind != "manual":
         raise CootViewError(f"Checkpoint {identifier} has unsupported kind: {kind}")
     parent_id = checkpoint.get("parent")
@@ -441,10 +462,14 @@ def _checkpoint_map(
     if parent is None:
         raise CootViewError(f"Manual checkpoint {identifier} has no recorded map ancestor")
     _same_observations(run, checkpoint, parent, schema_version)
-    map_path, map_source = _checkpoint_map(
+    map_path, map_source, anomalous_paths = _checkpoint_map(
         run, report, parent, checkpoints, schema_version, visited | {identifier}
     )
-    return map_path, f"inherited {map_source} (not recalculated for manual model)"
+    return (
+        map_path,
+        f"inherited {map_source} (not recalculated for manual model)",
+        anomalous_paths,
+    )
 
 
 def _autorefine_profile(
@@ -477,7 +502,7 @@ def _autorefine_profile(
     if schema_version == 2:
         _require_checkpoint_checksum(model_ref, "model")
     model = _reported_file(model_ref, "checkpoint model", run)
-    map_path, map_source = _checkpoint_map(
+    map_path, map_source, anomalous_paths = _checkpoint_map(
         run, report, checkpoint, checkpoints, schema_version
     )
     selection = "requested" if checkpoint_id is not None else "current"
@@ -491,6 +516,7 @@ def _autorefine_profile(
         f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})",
         map_source,
         current,
+        anomalous_paths,
     )
 
 
@@ -535,6 +561,70 @@ def resolve_view_profile(
     raise CootViewError("No completed stage in this run can be opened in Coot")
 
 
+def _anomalous_map_script(map_paths: tuple[Path, ...]) -> str:
+    """Use Coot's MTZ reader in the GUI process; no host crystallography dependency."""
+    return (
+        "import coot\nimport json\nimport os\n\n"
+        f"map_paths = {json.dumps([str(path) for path in map_paths])}\n"
+        '''
+def report_anomalous_map(status, **details):
+    details["status"] = status
+    details["labels"] = ["ANOM", "PHANOM"]
+    print("NASOLVE_ANOMALOUS_MAP " + json.dumps(details, sort_keys=True), flush=True)
+
+
+def existing_anomalous_map(path):
+    # --auto or the user's Coot configuration may already have opened it.
+    for imol in range(coot.graphics_n_molecules()):
+        source = coot.mtz_hklin_for_map(imol)
+        if source and os.path.realpath(source) == os.path.realpath(path):
+            amplitude = coot.mtz_fp_for_map(imol) or ""
+            phase = coot.mtz_phi_for_map(imol) or ""
+            if (amplitude.rsplit("/", 1)[-1] == "ANOM"
+                    and phase.rsplit("/", 1)[-1] == "PHANOM"
+                    and not coot.mtz_use_weight_for_map(imol)):
+                return imol
+    return -1
+
+
+def load_anomalous_map():
+    for path in map_paths:
+        if coot.valid_labels(path, "ANOM", "PHANOM", "", 0) != 1:
+            continue
+        refinement_map = coot.imol_refinement_map()
+        scroll_map = coot.scroll_wheel_map()
+        try:
+            imol = existing_anomalous_map(path)
+            reused = imol >= 0
+            if not reused:
+                # PHANOM already contains the map phase: no extra weights or shift.
+                imol = coot.make_and_draw_map(path, "ANOM", "PHANOM", "", 0, 1)
+            if imol < 0:
+                raise RuntimeError("Coot could not construct ANOM/PHANOM from " + path)
+            coot.set_map_is_difference_map(imol, 1)
+            coot.set_contour_level_in_sigma(imol, 3.0)
+            coot.set_molecule_name(imol, "Anomalous difference (ANOM/PHANOM)")
+        finally:
+            # An inspection overlay must not change real-space refinement/scrolling.
+            if refinement_map >= 0:
+                coot.set_imol_refinement_map(refinement_map)
+            if scroll_map >= 0:
+                coot.set_scroll_wheel_map(scroll_map)
+        report_anomalous_map("reused" if reused else "loaded", path=path,
+                             molecule=imol, contour_sigma=3.0)
+        return
+    report_anomalous_map("absent", paths=map_paths)
+
+
+try:
+    load_anomalous_map()
+except Exception as exc:
+    # Ordinary --auto maps remain available; make optional-map failures visible.
+    report_anomalous_map("error", message=str(exc), paths=map_paths)
+'''
+    )
+
+
 def launch_coot_view(
     run_directory: Path,
     coot_executable: Path,
@@ -564,7 +654,8 @@ def launch_coot_view(
     _require_scratch_containment(scratch_root, backups)
     log = working / "coot_gui.log"
     launch_record = working / "launch.json"
-    for output in (log, launch_record):
+    map_script = working / "load_anomalous_map.py"
+    for output in (log, launch_record, map_script):
         if output.is_symlink():
             raise CootViewError(f"Refusing to write Coot output through a symlink: {output}")
     command = [
@@ -577,6 +668,12 @@ def launch_coot_view(
     for dictionary in profile.dictionary_paths:
         command.extend(["--dictionary", str(dictionary)])
     command.extend(["--auto", str(profile.map_path)])
+    anomalous_paths = profile.anomalous_map_paths or (profile.map_path,)
+    try:
+        map_script.write_text(_anomalous_map_script(anomalous_paths), encoding="utf-8")
+    except OSError as exc:
+        raise CootViewError(f"Could not write Coot map startup script: {exc}") from exc
+    command.extend(["--script", str(map_script)])
 
     env = dict(os.environ if environment is None else environment)
     env["COOT_BACKUP_DIR"] = str(backups)
@@ -606,6 +703,14 @@ def launch_coot_view(
                 "map_source": profile.map_source,
                 "model_path": str(profile.model_path),
                 "map_path": str(profile.map_path),
+                "anomalous_map": {
+                    "status": "check-in-coot",
+                    "paths": [str(path) for path in anomalous_paths],
+                    "labels": ["ANOM", "PHANOM"],
+                    "contour_sigma": 3.0,
+                    "script": str(map_script),
+                    "log_marker": "NASOLVE_ANOMALOUS_MAP",
+                },
                 "command": command,
             },
             indent=2,

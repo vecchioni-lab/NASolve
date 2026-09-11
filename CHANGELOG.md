@@ -10,6 +10,12 @@ entries are reconstructed from repository history.
 
 ### Added
 
+- `show` now opens an additional anomalous difference map at 3 sigma when
+  Coot finds `ANOM`/`PHANOM` in the selected map MTZ or that checkpoint's
+  declared refinement MTZ. This also applies to Refine Doctor inspection and
+  compatible manual-checkpoint ancestors, irrespective of whether f'' was
+  refined. Existing overlays are reused; ordinary maps and their controls are
+  preserved. Startup diagnostics record loaded, reused, absent, or error.
 - Refine Doctor now tries a bounded mean-data recovery list including
   coordinate-only and group-B-only siblings. Anomalous trials explicitly fix
   wavelength-calculated scattering or refine f'' alone. `--max-trials` defaults
