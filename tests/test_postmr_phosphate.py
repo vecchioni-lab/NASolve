@@ -56,7 +56,8 @@ class PostMRPhosphateTests(unittest.TestCase):
         report_path = make_postmr_report(run, model)
         report = json.loads(report_path.read_text())
         report["frame"] = None
-        report["post_mr_plan"] = {"sequences": {}, "standard_pair": None, "mutations": {}}
+        report["post_mr_plan"] = {"sequences": {}, "standard_pair": None, "mutations": {},
+                                  "allow_op3_sites": ["D:1"]}
         report_path.write_text(json.dumps(report))
         return model, run
 

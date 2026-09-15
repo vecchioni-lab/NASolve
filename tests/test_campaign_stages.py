@@ -16,7 +16,7 @@ from nasolve.postmr import prepare_postmr
 from nasolve.coot_runtime import CootDiscoveryError
 from nasolve.presets import load_preset
 
-from .helpers import make_dataset, make_mtz_dump, make_phaser, model_text, make_postmr_report, make_ready_set
+from .helpers import make_dataset, make_mtz_dump, make_phaser, w_model_text as model_text, make_postmr_report, make_ready_set
 from .test_autorefine import make_refine, make_refine_run, make_mtz_dump as refine_dump
 from .test_autosol import make_autosol, make_run as make_autosol_run, make_mtz_dump as autosol_dump
 from .test_postmr import make_data_root, postmr_model_text
@@ -80,6 +80,18 @@ class CampaignStageTests(unittest.TestCase):
         if not anomalous:
             report["postmr"]["anomalous"]["candidates"] = []
         (run / "report.json").write_text(json.dumps(report))
+
+    def test_op3_explicit_dataset_request_survives_campaign_freezing(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        (dataset / "nasolve.txt").write_text("[automr]\npair = C:G\nallow_op3_sites = A:1\n")
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        self.assertEqual(self.dataset["effective_config"]["allow_op3_sites"], ["A:1"])
+        result = self.stage("preflight")
+        report = json.loads((self.root / result["run"] / "report.json").read_text())
+        self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["A:1"])
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
 
     def test_preflight_uses_frozen_catalogue_and_does_not_generate_dataset_config(self):
         self.plan(config=False)

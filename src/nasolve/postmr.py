@@ -23,7 +23,11 @@ from .curated_ligands import (
 )
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
 from .model_assessment import file_sha256
-from .phosphate import PhosphateError, sanitize_phosphates
+from .phosphate import PhosphateError, sanitize_phosphates, requested_op3_sites
+from .ligand_profiles import (
+    AUTHORITATIVE_CODES, combine_dictionary_inputs, effective_restraints,
+    frozen_reference, validate_model_phosphate_policy, write_linked_profile,
+)
 from .run_context import artifact_reference, resolve_artifact_path
 
 
@@ -1173,6 +1177,7 @@ def _run_readyset(
     environment: Mapping[str, str] | None,
     *,
     phosphate_sites: tuple[str, ...] = (),
+    allow_op3_sites: tuple[str, ...] = (),
 ) -> tuple[Path, Path, Path | None, list[str], dict[str, object]]:
     command = [
         str(ready_set_executable),
@@ -1213,6 +1218,7 @@ def _run_readyset(
     try:
         phosphate_audit = sanitize_phosphates(
             updated, checked, reference_model=model, check_sites=phosphate_sites,
+            allow_op3_sites=allow_op3_sites,
         )
     except PhosphateError as exc:
         raise PostMRPreparationError(f"ReadySet phosphate validation failed: {exc}") from exc
@@ -1249,6 +1255,10 @@ def prepare_postmr(
         )
     if mr_status not in ({"MR_SUCCESS", "MR_REVIEW"} if allow_mr_review else {"MR_SUCCESS"}):
         raise PostMRPreparationError(f"PostMR requires an accepted Phaser result, not {mr_status}")
+    try:
+        allowed_op3 = requested_op3_sites(report)
+    except PhosphateError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
     source_model = _solution_model(run, report)
     postmr = run / "PostMR"
     try:
@@ -1346,7 +1356,7 @@ def prepare_postmr(
     prepared = model_dir / "prepared_model.pdb"
     try:
         phosphate_before = sanitize_phosphates(
-            after_coot, prepared, reference_model=original,
+            after_coot, prepared, reference_model=original, allow_op3_sites=allowed_op3,
         )
     except PhosphateError as exc:
         raise PostMRPreparationError(f"PostMR phosphate validation failed: {exc}") from exc
@@ -1495,10 +1505,19 @@ def prepare_postmr(
     readyset_cif: Path | None = None
     if copied_cifs:
         readyset_cif = restraints_dir / "curated_ligands.cif"
-        readyset_cif.write_text(
-            "\n".join(path.read_text(encoding="utf-8").rstrip() for path in copied_cifs) + "\n",
-            encoding="utf-8",
-        )
+        try:
+            combine_dictionary_inputs(copied_cifs, readyset_cif)
+        except PhosphateError as exc:
+            raise PostMRPreparationError(str(exc)) from exc
+
+    profile = None
+    if set(ligand_codes) & AUTHORITATIVE_CODES:
+        try:
+            profile, modification_paths = write_linked_profile(
+                prepared, restraints_dir, allow_op3_sites=allowed_op3)
+        except PhosphateError as exc:
+            raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
+        restraint_paths.extend(modification_paths)
 
     updated, readyset_log, generated_cif, readyset_command, phosphate_after = _run_readyset(
         prepared,
@@ -1507,6 +1526,7 @@ def prepare_postmr(
         readyset_cif,
         environment,
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
+        allow_op3_sites=allowed_op3,
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
@@ -1515,6 +1535,21 @@ def prepare_postmr(
             raise PostMRPreparationError(
                 f"ReadySet output lost {action.after} at {action.site}"
             )
+    phosphate_policy = {"mode": "op3-explicit-opt-in-v1", "allow_op3_sites": list(allowed_op3)}
+    try:
+        validate_model_phosphate_policy(final_model, {
+            "post_mr_plan": {"allow_op3_sites": list(allowed_op3)},
+            "postmr": {"phosphate_policy": phosphate_policy, "linked_phosphate_profile": profile},
+        })
+    except PhosphateError as exc:
+        raise PostMRPreparationError(f"ReadySet phosphate/profile validation failed: {exc}") from exc
+    effective = None
+    view_dictionaries = None
+    if profile is not None:
+        try:
+            effective, view_dictionaries = effective_restraints(restraint_paths, generated_cif, restraints_dir)
+        except PhosphateError as exc:
+            raise PostMRPreparationError(f"Cannot freeze authoritative dictionary inputs: {exc}") from exc
     anomalous_candidates = scan_anomalous_candidates(final_model)
 
     postmr_payload = {
@@ -1530,6 +1565,7 @@ def prepare_postmr(
             "log": str(coot_log) if coot_log else None,
             "shared_parent_coordinates_restored": coordinate_restoration,
         },
+        "phosphate_policy": phosphate_policy,
         "phosphate_cleanup": {
             "before_restraints": phosphate_before,
             "after_readyset": phosphate_after,
@@ -1562,6 +1598,16 @@ def prepare_postmr(
         "prepared_model": str(final_model),
         "prepared_sha256": file_sha256(final_model),
     }
+    if profile is not None:
+        postmr_payload["linked_phosphate_profile"] = profile
+        postmr_payload["refinement_restraints"] = [frozen_reference(path, run) for path in effective]
+        postmr_payload["view_dictionaries"] = [frozen_reference(path, run) for path in view_dictionaries]
+        postmr_payload["dictionary_precedence"] = {
+            "policy": "reviewed-1ap-over-readyset-v1",
+            "authoritative_codes": sorted(set(ligand_codes) & AUTHORITATIVE_CODES),
+            "sources": {path.stem: frozen_reference(path, run) for path in copied_cifs
+                        if path.stem in AUTHORITATIVE_CODES},
+        }
     postmr_report = postmr / "report.json"
     _write_json(postmr_report, postmr_payload)
     (postmr / "postmr.log").write_text(

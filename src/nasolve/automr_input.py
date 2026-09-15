@@ -9,6 +9,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Collection, Mapping
 
+from .phosphate import PhosphateError, validate_op3_sites, validate_phosphate_intent
+from .presets import PresetError, ProjectPreset, load_preset
 from .residue_aliases import LigandCodeError, ResolvedLigand, resolve_ligand, resolve_pair
 
 
@@ -23,10 +25,11 @@ class FrameSpec:
     aliases: tuple[str, ...]
     catalogue_directory: str
     fallback_model: str
+    recipe_preset: str | None = None
 
 
 FRAME_SPECS: tuple[FrameSpec, ...] = (
-    FrameSpec("W", "5W6W", ("W", "5W6W"), "5W6W", "C_G.pdb"),
+    FrameSpec("W", "5W6W", ("W", "5W6W"), "5W6W", "C_G.pdb", "5w6w"),
     FrameSpec("3GBI", "3GBI", ("3GBI",), "3GBI", "C_C.pdb"),
 )
 
@@ -43,6 +46,8 @@ class AutoMRIntent:
     sequences: dict[str, str] = field(default_factory=dict)
     mutations: dict[str, str] = field(default_factory=dict)
     source: Path | None = None
+    allow_op3_sites: tuple[str, ...] = ()
+    op3_sites_explicit: bool = False
 
 
 @dataclass(frozen=True)
@@ -71,6 +76,8 @@ class ResolvedAutoMRInput:
     sequence_file: Path | None
     mutations: dict[str, ResolvedLigand]
     config_source: Path | None
+    allow_op3_sites: tuple[str, ...] = ()
+    phosphate_intent: dict[str, object] | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations"}
@@ -82,6 +89,7 @@ _ALLOWED_AUTOMR_KEYS = {
     "sequence_file",
     "mirror",
     "allow_p1_standard",
+    "allow_op3_sites",
 }
 
 
@@ -226,6 +234,11 @@ def read_intent(path: Path | None) -> AutoMRIntent:
     } if "mutations" in parser else {}
     if any(not site or not residue for site, residue in mutations.items()):
         raise AutoMRInputError("Mutation sites and residue values cannot be empty")
+    raw_op3 = automr.get("allow_op3_sites", "").strip()
+    try:
+        allow_op3 = validate_op3_sites([v.strip() for v in raw_op3.split(",")] if raw_op3 else [])
+    except PhosphateError as exc:
+        raise AutoMRInputError(str(exc)) from exc
     return AutoMRIntent(
         mode=automr.get("mode") or None,
         frame=automr.get("frame") or None,
@@ -237,6 +250,8 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         sequences=sequences,
         mutations=mutations,
         source=source,
+        allow_op3_sites=allow_op3,
+        op3_sites_explicit="allow_op3_sites" in automr,
     )
 
 
@@ -468,8 +483,14 @@ def resolve_automr_input(
     mirror_override: bool = False,
     environ: Mapping[str, str] | None = None,
     valid_ligand_codes: Collection[str] | None = None,
+    *,
+    recipe: ProjectPreset | None = None,
 ) -> ResolvedAutoMRInput:
     """Apply CLI precedence, validate intent, and select exactly one model."""
+    try:
+        allow_op3 = validate_op3_sites(intent.allow_op3_sites)
+    except PhosphateError as exc:
+        raise AutoMRInputError(str(exc)) from exc
     dataset = discover_dataset(root)
     configured_mode = intent.mode.strip().casefold() if intent.mode else None
     if configured_mode not in {None, "standard", "nonstandard"}:
@@ -548,6 +569,35 @@ def resolve_automr_input(
         except LigandCodeError as exc:
             raise AutoMRInputError(f"Mutation {site}: {exc}") from exc
 
+    # A chosen recipe is itself an explicit chemistry request, not model inference.
+    # Campaign planning passes its selected card. Execution uses frozen values and
+    # deliberately never calls this resolver again.
+    declaration = None
+    if frame is not None:
+        try:
+            selected_recipe = recipe or (load_preset(frame.recipe_preset) if frame.recipe_preset else None)
+        except PresetError as exc:
+            raise AutoMRInputError(f"Cannot load selected frame recipe: {exc}") from exc
+        if selected_recipe is not None:
+            if normalize_frame(selected_recipe.automr_defaults["frame"]).name != frame.name:
+                raise AutoMRInputError("Selected recipe and effective frame disagree")
+            declaration = selected_recipe.phosphate_declaration()
+    elif recipe is not None:
+        raise AutoMRInputError("A standard recipe cannot authorize a nonstandard model")
+    explicit = bool(intent.op3_sites_explicit or intent.allow_op3_sites)
+    if not explicit and declaration is not None:
+        allow_op3 = tuple(declaration["terminal_phosphate_sites"])
+    phosphate_intent = {
+        "schema_version": 1,
+        "source": "dataset" if explicit else ("recipe" if declaration is not None else "none"),
+        "recipe": declaration,
+        "allow_op3_sites": list(allow_op3),
+    }
+    try:
+        validate_phosphate_intent(phosphate_intent, allow_op3)
+    except PhosphateError as exc:
+        raise AutoMRInputError(str(exc)) from exc
+
     return ResolvedAutoMRInput(
         dataset=dataset,
         mode=mode,
@@ -565,6 +615,8 @@ def resolve_automr_input(
         sequence_file=sequence_file,
         mutations=resolved_mutations,
         config_source=intent.source,
+        allow_op3_sites=allow_op3,
+        phosphate_intent=phosphate_intent,
     )
 
 
@@ -581,6 +633,9 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
         lines.append(f"model = {relative_model}")
     if resolved.mirror:
         lines.append("mirror = true")
+    # Always freeze even an empty list: reopening a snapshot must not adopt a
+    # later recipe version's phosphate sites.
+    lines.append("allow_op3_sites = " + ", ".join(resolved.allow_op3_sites))
     if resolved.sequences:
         lines.extend(["", "[sequences]"])
         lines.extend(f"{chain} = {sequence}" for chain, sequence in resolved.sequences.items())

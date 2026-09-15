@@ -25,7 +25,8 @@ def test_packaged_preset_declares_existing_standard_policy():
     preset = load_preset()
     assert isinstance(preset, ProjectPreset)
     assert preset.id == "5w6w"
-    assert preset.version == "1.0.0"
+    assert preset.version == "1.1.0"
+    assert preset.terminal_phosphate_sites == ("D:1",)
     assert preset.source.name == "5w6w.toml"
     assert preset.root == preset.source.parent
     assert preset.automr_defaults == {

@@ -28,6 +28,7 @@ from .model_assessment import (
     inspect_pdb,
 )
 from .run_context import artifact_reference
+from .phosphate import phosphate_intent_summary, validate_phosphate_intent, PhosphateError
 from .symmetry import StandardSymmetryAssessment, SymmetryError, assess_standard_symmetry
 
 
@@ -38,6 +39,7 @@ class AutoMRPreflightResult:
     run_directory: Path
     generated_config: bool
     report_path: Path
+    phosphate_summary: str | None = None
 
 
 def _next_run_directory(dataset: Path) -> Path:
@@ -79,6 +81,8 @@ def _post_mr_plan(resolved: ResolvedAutoMRInput) -> dict[str, object]:
             "site_assignment": "pending standard-frame site manifest",
         }
     return {
+        "allow_op3_sites": list(resolved.allow_op3_sites),
+        **({"phosphate_intent": resolved.phosphate_intent} if resolved.phosphate_intent is not None else {}),
         "application_order": ["sequences", "standard_pair", "explicit_mutations"],
         "sequences": dict(resolved.sequences),
         "standard_pair": pair,
@@ -111,6 +115,11 @@ def _validate_edit_targets(
         chain, residue = (part.strip() for part in site.split(":", 1))
         if residue not in assessment.polymer_residue_ids_by_chain.get(chain, []):
             raise AutoMRInputError(f"Mutation target {site} does not exist in the MR model")
+
+    for site in resolved.allow_op3_sites:
+        chain, residue = site.split(":", 1)
+        if residue not in assessment.polymer_residue_ids_by_chain.get(chain, []):
+            raise AutoMRInputError(f"OP3 request {site} does not exist in the MR model")
 
 
 def _default_mirror_transformer(source: Path, destination: Path) -> Path:
@@ -196,6 +205,7 @@ def _log_text(
         f"Input configuration: {config_path} ({'generated' if generated else 'existing'})",
         f"Mode: {resolved.mode}",
         f"Frame: {resolved.frame.name if resolved.frame else 'none'}",
+        phosphate_intent_summary(resolved.allow_op3_sites, resolved.phosphate_intent),
         f"Authoritative space group: {space_group}",
         f"Planned MR copies: {copies}",
         f"Symmetry red flag: {symmetry_warning}",
@@ -286,6 +296,11 @@ def prepare_automr(
                 allow_p1_standard=resolved.allow_p1_standard,
             )
         except SymmetryError as exc:
+            raise AutoMRInputError(str(exc)) from exc
+    if resolved.phosphate_intent is not None:
+        try:
+            validate_phosphate_intent(resolved.phosphate_intent, resolved.allow_op3_sites)
+        except PhosphateError as exc:
             raise AutoMRInputError(str(exc)) from exc
     source_assessment = inspect_pdb(
         resolved.model, polymer_ligand_codes=valid_ligand_codes
@@ -398,7 +413,10 @@ def prepare_automr(
         _log_text(resolved, assessment, symmetry, status, selected_config, generated),
         encoding="utf-8",
     )
-    return AutoMRPreflightResult(status, message, run_dir, generated, report_path)
+    return AutoMRPreflightResult(
+        status, message, run_dir, generated, report_path,
+        phosphate_intent_summary(resolved.allow_op3_sites, resolved.phosphate_intent),
+    )
 
 
 __all__ = [

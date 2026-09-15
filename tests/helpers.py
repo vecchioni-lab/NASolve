@@ -47,6 +47,11 @@ def model_text() -> str:
     ])
 
 
+def w_model_text() -> str:
+    """Minimal preflight-only inventory including the W recipe's D:1 site."""
+    return model_text().replace("END\n", pdb_record("ATOM", 4, "P", "DC", "D", 1) + "END\n")
+
+
 def make_dataset(root: Path, include_model: bool = True) -> Path:
     root.mkdir(parents=True, exist_ok=True)
     (root / "staraniso-alldata.mtz").write_bytes(b"mtz")

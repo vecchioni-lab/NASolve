@@ -12,6 +12,7 @@ from typing import Callable, Mapping
 
 from .checkpoints import READABLE_SCHEMA_VERSIONS
 from .model_assessment import file_sha256
+from .ligand_profiles import is_modification_only
 from .run_context import resolve_artifact_path
 
 
@@ -176,6 +177,15 @@ def _postmr_dictionaries(
     run: Path, report: Mapping[str, object]
 ) -> tuple[Path, ...]:
     postmr = report.get("postmr")
+    if isinstance(postmr, Mapping) and "view_dictionaries" in postmr:
+        references = postmr["view_dictionaries"]
+        if not isinstance(references, list) or not references:
+            raise CootViewError("Malformed frozen PostMR dictionary list")
+        dictionaries = []
+        for ref in references:
+            _require_checkpoint_checksum(ref, "PostMR ligand dictionary")
+            dictionaries.append(_reported_file(ref, "PostMR ligand dictionary", run))
+        return tuple(dictionaries)
     readyset = postmr.get("readyset") if isinstance(postmr, Mapping) else None
     generated = readyset.get("generated_ligand_cif") if isinstance(readyset, Mapping) else None
     if isinstance(generated, Mapping):
@@ -392,7 +402,7 @@ def _checkpoint_dictionaries(
                 _require_checkpoint_checksum(value, "restraint")
             path = resolve_artifact_path(value, run)
             if path is not None:
-                if path.suffix.casefold() == ".cif":
+                if path.suffix.casefold() == ".cif" and not is_modification_only(path):
                     dictionaries.append(path)
                 continue
             reported_value = (

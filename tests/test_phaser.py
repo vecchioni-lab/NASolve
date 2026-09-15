@@ -7,7 +7,7 @@ from pathlib import Path
 from nasolve.automr import prepare_automr
 from nasolve.phaser import PhaserExecutionError, execute_phaser, parse_best_tfz
 
-from .helpers import make_dataset, make_mtz_dump, make_phaser, model_text
+from .helpers import make_dataset, make_mtz_dump, make_phaser, model_text, w_model_text
 
 
 VALID = {"DA", "DC"}
@@ -115,7 +115,7 @@ class PhaserExecutionTests(unittest.TestCase):
             (dataset / "summary.html").write_text("Spacegroup name P1\n")
             catalogue = root / "frames" / "5W6W"
             catalogue.mkdir(parents=True)
-            (catalogue / "C_G.pdb").write_text(model_text())
+            (catalogue / "C_G.pdb").write_text(w_model_text())
             preflight = prepare_automr(
                 dataset,
                 frame_override="W",

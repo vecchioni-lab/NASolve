@@ -127,6 +127,8 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         sequences=dict(effective["sequences"]), sequence_file=None,
         mutations={site: _ligand(ligand) for site, ligand in effective["mutations"].items()},
         config_source=None,
+        allow_op3_sites=tuple(effective.get("allow_op3_sites", [])),
+        phosphate_intent=effective.get("phosphate_intent"),
     )
     config = frozen / "nasolve.input.txt"
     with config.open("x", encoding="utf-8") as handle:

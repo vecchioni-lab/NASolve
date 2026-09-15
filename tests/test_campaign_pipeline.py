@@ -42,7 +42,8 @@ class CampaignPipelineTests(unittest.TestCase):
         (frames / "C_G.pdb").write_text(postmr_model_text("DC", "DG"))
         (frames / "seq_base.txt").write_text("C\n\nG\n")
         dataset = make_dataset(self.root / "dataset", include_model=False)
-        (dataset / "nasolve.txt").write_text("[automr]\nframe = W\npair = C:G\n")
+        # These minimal stage fixtures deliberately omit the W terminal phosphate.
+        (dataset / "nasolve.txt").write_text("[automr]\nframe = W\npair = C:G\nallow_op3_sites =\n")
         self.plan = plan_campaign(self.root, frames_directory=frames.parent)
         self.plan_bytes = (self.root / "NASolveCampaign/plan.json").read_bytes()
         shutil.rmtree(frames.parent)
@@ -154,7 +155,8 @@ class CampaignPipelineTests(unittest.TestCase):
         (frames / "Q_iC.pdb").write_text(model)
         (frames / "seq_base.txt").write_text("G\n\nC\n")
         dataset = make_dataset(self.root / "dataset", include_model=False)
-        (dataset / "nasolve.txt").write_text("[automr]\nframe = W\npair = Q:iC\n")
+        # These minimal stage fixtures deliberately omit the W terminal phosphate.
+        (dataset / "nasolve.txt").write_text("[automr]\nframe = W\npair = Q:iC\nallow_op3_sites =\n")
         with (dataset / "summary.html").open("a") as handle:
             handle.write("wavelength [A] = 1.377618\n")
         plan = plan_campaign(self.root, frames_directory=frames.parent)
