@@ -91,7 +91,7 @@ class PhosphateTests(unittest.TestCase):
         unrelated = atom(99, "MG", "MG", "Z", 1, (80, 0, 0))
         records = ["REMARK synthetic phosphate regression\n", *first, "TER\n",
                    *second, "TER\n", *terminal, "TER\n", unrelated, "END\n"]
-        report, cleaned = self.run_cleanup(records)
+        report, cleaned = self.run_cleanup(records, allow_op3_sites=("D:1",))
         self.assertEqual({row["site"] for row in report["removed"]}, {"A:12", "B:4"})
         self.assertEqual({row["atom"] for row in report["removed"]}, {"OP3"})
         self.assertEqual({row["site"] for row in report["retained"]}, {"D:1"})
@@ -120,7 +120,7 @@ class PhosphateTests(unittest.TestCase):
                 raw = [line[:6] + serial + line[11:]
                        if line.startswith(("ATOM  ", "HETATM")) else line
                        for line in records]
-                report, cleaned = self.run_cleanup(raw)
+                report, cleaned = self.run_cleanup(raw, allow_op3_sites=("D:1",))
                 self.assertEqual({row["site"] for row in report["removed"]}, {"A:12", "B:4"})
                 expected = "".join(line for line in raw if not (
                     line.startswith(("ATOM  ", "HETATM")) and line[21] in "AB"
@@ -168,12 +168,10 @@ class PhosphateTests(unittest.TestCase):
             ("ENDMDL\nMODEL        2\n", ["MODEL        1\n"], ["ENDMDL\n"]),
         ):
             with self.subTest(boundary=boundary):
-                # A separate segment/model has an isolated same-named atom;
-                # it is outside nucleotide cleanup and keeps its own ANISOU.
+                # An orphan OP3 can no longer pass as an automatic exception;
+                # duplicate residue identity across contexts requires review.
                 records = [*prefix, *first, anisou, boundary, extra, anisou, *suffix, "END\n"]
-                _, cleaned = self.run_cleanup(records)
-                expected = [*prefix, *without_extra(first), boundary, extra, anisou, *suffix, "END\n"]
-                self.assertEqual(cleaned, "".join(expected))
+                self.assert_rejected(records)
 
     def test_conect_with_duplicated_phosphorus_endpoint_is_ambiguous(self):
         self.assert_rejected(phosphate() + [
@@ -187,19 +185,18 @@ class PhosphateTests(unittest.TestCase):
         self.assertEqual([row["atom"] for row in report["removed"]], ["O3P"])
         self.assertEqual(cleaned, "".join(without_extra(records)))
 
-    def test_ter_break_preserves_terminal_extra_even_when_other_segment_is_close(self):
+    def test_ter_break_does_not_authorize_op3_or_hide_cross_segment_link(self):
         records = phosphate()
         records.insert(1, "TER\n")
-        report, cleaned = self.run_cleanup(records)
-        self.assertEqual(report["removed"], [])
-        self.assertEqual([row["site"] for row in report["retained"]], ["A:12"])
-        self.assertEqual(cleaned, "".join(records))
+        self.assert_rejected(records)
+        self.assert_rejected(records, allow_op3_sites=("A:12",))
 
     def test_models_do_not_supply_each_others_incoming_bond(self):
         records = phosphate()
         records = ["MODEL        1\n", records[0], "ENDMDL\n",
                    "MODEL        2\n", *records[1:], "ENDMDL\n", "END\n"]
-        report, cleaned = self.run_cleanup(records)
+        self.assert_rejected(records)
+        report, cleaned = self.run_cleanup(records, allow_op3_sites=("A:12",))
         self.assertEqual(report["removed"], [])
         self.assertEqual(cleaned, "".join(records))
 
@@ -258,16 +255,13 @@ class PhosphateTests(unittest.TestCase):
         reference.write_text("".join(phosphate(terminal=True)))
         self.assert_rejected(phosphate(), reference_model=reference)
 
-    def test_unrelated_ligand_atom_named_op3_is_outside_nucleotide_cleanup(self):
+    def test_orphan_ligand_atom_named_op3_requires_review(self):
         records = [
             atom(1, "OP3", "XYZ", "L", 1, (0, 0, 0)),
             atom(2, "C7", "XYZ", "L", 1, (1.4, 0, 0)),
             "END\n",
         ]
-        report, cleaned = self.run_cleanup(records)
-        self.assertEqual(report["removed"], [])
-        self.assertEqual(report["checked"], [])
-        self.assertEqual(cleaned, "".join(records))
+        self.assert_rejected(records)
 
     def test_check_sites_revalidate_after_op3_was_already_removed(self):
         reference = self.root / "prepared.pdb"

@@ -276,8 +276,15 @@ with a 1.2–2.1 A separation. Remaining P, OP1/O1P, OP2/O2P and O5'/O5* atoms
 must be unambiguous. Their P-O distances use the same broad bounds, and their
 O-P-O angles must be between 60 and 160 degrees. These are coarse corruption
 guards, not chemical target values. Reference-known incoming and outgoing
-links must survive. Unlinked phosphates retain OP3; ambiguous explicit or
-symmetry links require inspection. Only verified extra atoms and associated
+links must survive. OP3/O3P requires explicit per-site user consent, including
+at termini. Selecting an annotated recipe is also explicit consent for exactly
+its declared `chemistry.terminal_phosphate_sites`: the W/5W6W card declares
+D:1, confirmed by Simon as part of the design on 2026-09-15. This is resolved
+before AutoMR freezing, not inferred later from coordinates or residue numbers.
+An explicit dataset `allow_op3_sites` replaces the entire recipe list, including
+an empty override. Unrequested unlinked OP3 stops for review. A request must not
+permit an extra OP3 on an internal phosphate. Ambiguous explicit or symmetry
+links require inspection. Only verified extra atoms and associated
 ANISOU/SIGATM/SIGUIJ/CONECT records are removed; surviving coordinates,
 occupancies, and B factors are untouched.
 
@@ -295,6 +302,14 @@ geometry. Raw ReadySet output remains at `readyset.updated_model`; the new
 `readyset.phosphate_checked_model` points to the separately checked copy used
 for the final model. Immutable earlier runs require no migration and are never
 rewritten.
+
+The [1AP integration contract](1ap-phosphate-integration.md) defines the first
+parameterized monomer override with selected-site `NASnoOP3` modifications.
+New 1AP runs freeze authoritative refinement/view artifact lists with hashes,
+so ReadySet cannot silently supersede the reviewed 1AP CIF or omit the
+modification at checkpoint creation. Incoming/outgoing profile links and
+explicit OP3 consent are checked after preparation, around refinement, before
+Doctor triage and on manual import. Existing histories are never rewritten.
 
 Coot/model editing, component CIFs, NARestraints, and ReadySet have separate
 roles. Coot establishes coordinate identity and placement; CIFs establish
@@ -578,6 +593,28 @@ settings and unsupported policies stop loading. Paths resolve within the preset
 root, and exact source and resource hashes accompany the canonical configuration
 fingerprint. Python 3.10 uses the conditional `tomli` dependency; newer Python
 uses `tomllib`.
+
+The optional `[chemistry] terminal_phosphate_sites` list is a typed, explicit
+site declaration. The W frame points to the packaged `5w6w` card (now version
+1.1.0) for standalone input resolution. Campaign planning passes its selected
+card to the same resolver; a custom card does not silently inherit the built-in
+card's chemistry. The card is the single source of the D:1 declaration.
+
+New resolutions freeze `phosphate_intent` (schema 1, effective list, source
+`recipe`/`dataset`/`none`, recipe id/version/frame and source/config SHA-256)
+in each campaign `effective_config` and AutoMR `post_mr_plan`. The existing
+`allow_op3_sites` field is the operational list, so PostMR, ReadySet validation,
+AutoRefine, Doctor and manual children use the same permission unchanged.
+Campaign loading validates recipe provenance against the frozen preset and
+checks the effective list against its source. Execution does not consult the
+current card to add permissions. CLI plan/status reports sites and their source.
+`format_intent` always emits even an empty `allow_op3_sites` field, preventing
+re-read snapshots from acquiring later defaults.
+
+Old runs/plans lacking this additive provenance still use their original frozen
+list (or no consent if absent). Do not patch an existing run or campaign in
+place just because a recipe changed; prepare a fresh attempt with explicitly
+selected chemistry. Failed ED run_002 remains historical evidence.
 
 `campaigns.plan_campaign` composes existing AutoMR input discovery, intent parsing,
 alias resolution and catalogue selection without allocating a scientific run.

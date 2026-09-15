@@ -17,6 +17,8 @@ from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
+from .phosphate import PhosphateError, validate_op3_sites
+
 try:
     import tomllib
 except ModuleNotFoundError:  # Python 3.10
@@ -51,6 +53,20 @@ class ProjectPreset:
         return json.loads(self._policy_json)["automr"]
 
     @property
+    def terminal_phosphate_sites(self) -> tuple[str, ...]:
+        """Site-specific chemistry explicitly declared by the selected recipe."""
+        return tuple(json.loads(self._policy_json)["chemistry"]["terminal_phosphate_sites"])
+
+    def phosphate_declaration(self) -> dict[str, Any]:
+        """Portable, versioned provenance; never re-resolve this during execution."""
+        return {
+            "id": self.id, "version": self.version,
+            "sha256": self.sha256, "config_sha256": self.config_sha256,
+            "frame": self.automr_defaults["frame"],
+            "terminal_phosphate_sites": list(self.terminal_phosphate_sites),
+        }
+
+    @property
     def resources(self) -> dict[str, Path]:
         return dict(self._resource_paths)
 
@@ -76,7 +92,7 @@ class ProjectPreset:
 
 _TOP_LEVEL = {
     "schema_version", "id", "version", "description", "automr", "postmr",
-    "autosol", "autorefine", "resources",
+    "autosol", "autorefine", "resources", "chemistry",
 }
 _DEFAULTS: dict[str, dict[str, Any]] = {
     "automr": {
@@ -240,6 +256,14 @@ def load_preset(source: str | Path = "5w6w") -> ProjectPreset:
                 raise PresetError("automr.pair must contain two residue tokens: FIRST:SECOND")
             resolved["pair"] = ":".join(parts)
         policy[name] = resolved
+
+    chemistry = _table(data, "chemistry")
+    _unknown_keys(chemistry, {"terminal_phosphate_sites"}, "chemistry")
+    try:
+        terminal_sites = validate_op3_sites(chemistry.get("terminal_phosphate_sites", []))
+    except PhosphateError as exc:
+        raise PresetError(f"chemistry.terminal_phosphate_sites: {exc}") from exc
+    policy["chemistry"] = {"terminal_phosphate_sites": list(terminal_sites)}
 
     root = path.parent
     resource_paths = []

@@ -19,6 +19,7 @@ from dataclasses import asdict
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
+from .phosphate import PhosphateError, validate_op3_sites, validate_phosphate_intent
 from .automr_input import (
     AutoMRInputError, AutoMRIntent, _parser, discover_dataset, locate_frames_directory,
     normalize_frame, read_intent, resolve_automr_input,
@@ -205,6 +206,7 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
         "mode": intent.mode, "frame": intent.frame, "pair": intent.pair,
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
         "sequences": dict(intent.sequences), "mutations": dict(intent.mutations),
+        "allow_op3_sites": list(intent.allow_op3_sites),
     }
 
 
@@ -232,7 +234,7 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
                 or not intent.frame or normalize_frame(intent.frame).name != "W"):
             raise AutoMRInputError("Campaign schema 1 supports only standard W/5W6W datasets")
         located_frames = locate_frames_directory(frames_directory, environ={})
-        resolved = resolve_automr_input(dataset, intent, frames_dir=located_frames, environ={})
+        resolved = resolve_automr_input(dataset, intent, frames_dir=located_frames, environ={}, recipe=preset)
         _contained(located_frames, resolved.model, "Selected catalogue model")
         model_data = _resource_bytes(resolved.model)
         if not model_data:
@@ -247,6 +249,8 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             entry["inputs"]["config"] = entry["inputs"]["discovery:nasolve.txt"]
         entry["effective_config"].update({
             "mode": resolved.mode, "frame": resolved.frame.name,
+            "allow_op3_sites": list(resolved.allow_op3_sites),
+            "phosphate_intent": resolved.phosphate_intent,
             "pair": resolved.pair_text, "pair_ligands": [asdict(item) for item in resolved.pair],
             "model": model, "model_name": resolved.model.name,
             "model_source": resolved.model_source,
@@ -447,6 +451,12 @@ def _validate_plan(payload: Any) -> None:
     _require(policy["description"], str, "preset.policy.description")
     for section in ("automr", "postmr", "autosol", "autorefine"):
         _require(policy[section], dict, f"preset.policy.{section}")
+    if "chemistry" in policy:
+        chemistry = _require(policy["chemistry"], dict, "preset.policy.chemistry")
+        try:
+            validate_op3_sites(chemistry.get("terminal_phosphate_sites", []))
+        except PhosphateError as exc:
+            raise CampaignError(f"Malformed campaign recipe chemistry: {exc}") from exc
     resource_prefix = f"{_STATE_DIRECTORY}/resources"
     _validate_ref(preset.get("source"), "preset.source", resource_prefix)
     if preset["source"]["sha256"] != preset["sha256"]:
@@ -499,6 +509,21 @@ def _validate_plan(payload: Any) -> None:
             for field in ("mode", "frame", "pair"):
                 if config.get(field) is not None:
                     _require(config[field], str, f"{name}.{field}")
+            try:
+                sites = validate_op3_sites(config.get("allow_op3_sites", []))
+                if "phosphate_intent" in config:
+                    intent = config["phosphate_intent"]
+                    validate_phosphate_intent(intent, sites)
+                    declaration = intent.get("recipe")
+                    if declaration is not None:
+                        for field in ("id", "version", "sha256", "config_sha256"):
+                            if declaration[field] != preset[field]:
+                                raise PhosphateError("Frozen chemistry and campaign recipe identity disagree")
+                        expected = policy.get("chemistry", {}).get("terminal_phosphate_sites", [])
+                        if declaration["terminal_phosphate_sites"] != expected or declaration["frame"] != config.get("frame"):
+                            raise PhosphateError("Frozen chemistry and campaign recipe sites/frame disagree")
+            except PhosphateError as exc:
+                raise CampaignError(f"Malformed campaign OP3 request: {exc}") from exc
             for field in ("sequences", "mutations"):
                 _require(config.get(field), dict, f"{name}.{field}")
             for field, role in (("model", "model"), ("config_source", "config"),

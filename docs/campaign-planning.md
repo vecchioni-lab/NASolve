@@ -80,10 +80,30 @@ overrides a preset's `true`; an omitted value inherits the preset. Sequences
 and explicit mutations use the existing dataset intent parser. The resolved
 configuration is stored per dataset, while the original input file is preserved.
 
-The campaign executor consumes these frozen declarations. Standalone stage
-commands retain their own arguments and do not consume campaign presets;
-planning does not alter an independent `nasolve automr` or `nasolve autorefine`
-invocation.
+Recipe cards may explicitly declare terminal phosphates:
+
+```toml
+[chemistry]
+terminal_phosphate_sites = ["D:1"]
+```
+
+The built-in `5w6w` card version 1.1.0 declares D:1 as part of the designed W
+motif, following Simon's explicit confirmation. A custom card must declare its
+own list; omission does not authorize any sites. Booleans, broad selectors,
+malformed sites and duplicate sites are rejected. The dataset
+`[automr] allow_op3_sites` overrides the complete card list, even when explicitly
+empty. No option bypasses connectivity checks or constructs a missing phosphate.
+
+Each dataset freezes the effective sites and their origin (`recipe` or explicit
+`dataset` override), with recipe id, version and hashes. Plan/status prints
+these beside the dataset. Workers use the frozen list after relocation without
+reloading today's recipe or catalogue. Old plans do not acquire new permission
+merely because the installed built-in card changed.
+
+The campaign executor consumes these frozen declarations. Standalone `-W` /
+`frame = W` uses the same **built-in** recipe chemistry, but never an active
+campaign's custom preset. Planning does not alter another command's arguments,
+source input, stage settings, or existing run.
 
 ## Frozen inputs and portable resources
 

@@ -18,6 +18,7 @@ from .autorefine import (
     calculated_anomalous_groups,
     execute_autorefine,
     reflection_selector_policy,
+    validate_refined_model,
 )
 from .checkpoints import (
     CheckpointError,
@@ -470,6 +471,10 @@ def execute_refine_doctor(
         report = json.loads((run / "report.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise RefineDoctorError(f"Could not read run report: {exc}") from exc
+    try:
+        validate_refined_model(model, report)
+    except AutoRefineError as exc:
+        raise RefineDoctorError(str(exc)) from exc
     destination = _next_doctor_directory(run)
     try:
         plan = build_reflection_plan(

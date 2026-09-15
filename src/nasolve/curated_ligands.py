@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import shlex
 from dataclasses import dataclass
-from math import dist
+from math import dist, isfinite
 from pathlib import Path
 
 
@@ -76,6 +76,8 @@ CURATED_LIGANDS: dict[str, CuratedLigand] = {
         description="2,6-diaminopurine nucleotide",
         parent_code="DA",
         deposition_code="1AP",
+        required_bonds=(("C1'", "N9"), ("C2", "N2"), ("C6", "N6"), ("P", "O5'")),
+        forbidden_bonds=(("O4'", "N1"),),
     ),
     "S6G": CuratedLigand(
         code="S6G",
@@ -336,6 +338,40 @@ def validate_curated_dictionary(code: str, path: Path) -> None:
         ligand = CURATED_LIGANDS[code]
     except KeyError as exc:
         raise KeyError(f"No curated NASolve ligand is registered for {code}") from exc
+    if code == "1AP":
+        # The official CCD graph alone is not a refinement restraint dictionary.
+        from .ligand_profiles import _blocks
+        values = {}
+        for block in _blocks(path):
+            for key, value in block.values.items():
+                if key == "data_":
+                    continue
+                if key in values:
+                    raise ValueError(f"1AP dictionary has repeated category field {key}")
+                values[key] = value
+        if values.get("_chem_comp.id") != ["1AP"] or any(
+            set(values.get(key, [])) != {"1AP"}
+            for key in ("_chem_comp_atom.comp_id", "_chem_comp_bond.comp_id")
+        ):
+            raise ValueError("1AP dictionary has conflicting component identities")
+        names = values.get("_chem_comp_atom.atom_id", [])
+        energies = values.get("_chem_comp_atom.type_energy", [])
+        if not names or len(energies) != len(names) or any(v in ("", ".", "?") for v in energies):
+            raise ValueError("1AP requires complete nonbonded energy types, not a raw CCD graph")
+        if values.get("_chem_comp.group") != ["DNA"]:
+            raise ValueError("1AP restraint dictionary must use the reviewed DNA component group")
+        for key in ("_chem_comp_bond.value_dist", "_chem_comp_bond.value_dist_esd"):
+            raw = values.get(key, [])
+            try:
+                valid = len(raw) == len(values["_chem_comp_bond.atom_id_1"]) and bool(raw) and all(
+                    isfinite(float(v)) and float(v) > 0 for v in raw)
+            except (ValueError, KeyError):
+                valid = False
+            if not valid:
+                raise ValueError(f"1AP requires finite positive numerical restraints: {key}")
+        base = {"N1", "C2", "N2", "N3", "C4", "C5", "C6", "N6", "N7", "C8", "N9"}
+        if not base.issubset(set(values.get("_chem_comp_plane_atom.atom_id", []))):
+            raise ValueError("1AP base-plane definition is incomplete")
     bonds = _dictionary_bonds(path)
     missing = [pair for pair in ligand.required_bonds if frozenset(pair) not in bonds]
     forbidden = [pair for pair in ligand.forbidden_bonds if frozenset(pair) in bonds]

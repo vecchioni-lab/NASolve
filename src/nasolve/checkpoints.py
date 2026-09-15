@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping, Sequence
 
+from .phosphate import PhosphateError
+from .ligand_profiles import validate_model_phosphate_policy
 from .run_context import artifact_reference, resolve_artifact_path
 
 
@@ -181,6 +183,11 @@ def _ref_path(
 
 
 def _initial_restraints(postmr: Mapping[str, object], run: Path) -> list[Path]:
+    if "refinement_restraints" in postmr:
+        references = postmr["refinement_restraints"]
+        if not isinstance(references, list) or not references:
+            raise CheckpointError("Malformed frozen refinement restraint list")
+        return [_ref_path(ref, "PostMR restraint", run) for ref in references]
     values = postmr.get("restraints")
     reported = (
         [value for value in values if isinstance(value, str)]
@@ -246,6 +253,10 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
     if not isinstance(inputs, Mapping):
         raise CheckpointError("Run report has no frozen AutoMR inputs")
     model = _required_file(postmr.get("prepared_model"), "PostMR prepared model", run)
+    try:
+        validate_model_phosphate_policy(model, report)
+    except PhosphateError as exc:
+        raise CheckpointError(str(exc)) from exc
     model_sha256 = _sha256(model)
     expected_model_sha256 = postmr.get("prepared_sha256")
     if expected_model_sha256 is not None and not isinstance(
@@ -545,6 +556,11 @@ def add_checkpoint(
     source_model = model.expanduser().resolve()
     if not source_model.is_file():
         raise CheckpointError(f"Manual checkpoint model does not exist: {source_model}")
+    try:
+        _, frozen_report = _run_and_report(run)
+        validate_model_phosphate_policy(source_model, frozen_report)
+    except PhosphateError as exc:
+        raise CheckpointError(f"Manual model phosphate validation failed: {exc}") from exc
     source_reflections: Path | None = None
     if reflections is not None:
         source_reflections = reflections.expanduser().resolve()

@@ -8,6 +8,39 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Changed
+
+- Added explicit `[chemistry] terminal_phosphate_sites` to recipe cards. The
+  built-in W/5W6W card is now version 1.1.0 and declares D:1, confirmed by Simon
+  as a designed 5-prime phosphate. Standalone W selection and campaign planning
+  resolve this same card; custom cards declare their own lists. Dataset
+  `allow_op3_sites` replaces recipe sites, including an explicit empty override.
+- Freeze recipe phosphate origin/id/version/hashes beside the effective sites in
+  AutoMR and campaign records. Report sites in AutoMR and campaign plan/status.
+  Existing frozen runs/plans never gain permissions from a later recipe version;
+  no geometry/linkage checks are loosened and no coordinates are manufactured.
+
+- OP3/O3P is now strictly user-opt-in, including at termini. The new dataset
+  `[automr] allow_op3_sites` list is frozen into AutoMR/campaign intent. Internal
+  extras are still removed only with verified linkage; unrequested unlinked,
+  missing requested, ambiguous or contradictory phosphates require review.
+  Explicit permission retains a valid existing terminal group; it does not
+  construct absent atoms or authorize an extra oxygen on an internal phosphate.
+- Replaced the bundled raw 1AP CCD graph with the tested parameterized monomer
+  library dictionary, preserving numerical values and adapting its group to
+  DNA. New PostMR 1AP profiles generate residue-selected OP3 modifications and
+  freeze checksummed refinement/view artifacts. ReadySet cannot supersede the
+  reviewed 1AP definition or swallow modification files during checkpoint
+  creation. Normal dictionaries and coordinate/raw run evidence remain intact.
+- Added phosphate/profile gates to AutoRefine, Doctor triage and manual imports;
+  retained inherited modifiers after relocation, with missing or changed
+  artifacts failing closed. Combined dictionary inputs merge their component
+  lists instead of concatenating conflicting data blocks.
+- Pinned NARestraints to merged stacking commit `1f20e9f` instead of the older
+  `v1.1.1` tag for new installs. No DE, sulfur pair-target, observations, Free-R
+  or NARestraints workbook changes. Automated external-tool behavior remains
+  subject to a live ReadySet/Phenix check; see `docs/1ap-phosphate-integration.md`.
+
 ### Added
 
 - `show` now opens an additional anomalous difference map at 3 sigma when
@@ -59,8 +92,8 @@ entries are reconstructed from repository history.
   2.1.x; 1.20.x retains legacy explicit selectors. Other version families still
   stop before allocating refinement state.
 - Added a two-stage PostMR phosphate audit. Verified internal OP3/O3P leaving
-  atoms are removed before NARestraints and after ReadySet, terminal oxygens
-  remain, raw products are preserved, and measured geometry/removals are
+  atoms are removed before NARestraints and after ReadySet, authorized terminal
+  oxygens remain (see explicit recipe/dataset policy above), raw products are preserved, and measured geometry/removals are
   recorded under `phosphate_cleanup`. Ambiguous or damaged phosphates stop
   preparation instead of receiving guessed coordinate repairs.
 - AutoSol reports now record an optional checksummed density-map reference,

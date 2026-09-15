@@ -354,6 +354,7 @@ def _preset(args: argparse.Namespace) -> int:
         print(f"Source: {preset.source}")
         print(f"Configuration SHA-256: {preset.config_sha256}")
         print(f"Validated resources: {len(preset.resources)}")
+        print("Recipe 5'-phosphate/OP3 sites: " + (", ".join(preset.terminal_phosphate_sites) or "none"))
     return 0
 
 
@@ -420,6 +421,11 @@ def _campaign(args: argparse.Namespace) -> int:
             item = {**planned, **progress_by_id.get(planned["id"], {})}
             integrity = f"; integrity {item['integrity']}" if "integrity" in item else ""
             print(f"  {item['id']}: {item['status']}{integrity}")
+            effective = planned.get("effective_config")
+            if effective is not None:
+                from .phosphate import phosphate_intent_summary
+                print("    " + phosphate_intent_summary(
+                    effective.get("allow_op3_sites", []), effective.get("phosphate_intent")))
             if item.get("diagnostic"):
                 print(f"    {item['diagnostic']}")
             if item.get("run"):
@@ -571,6 +577,8 @@ def _automr(args: argparse.Namespace) -> int:
         print(f"Run directory: {phaser.run_directory}")
         print(f"Phaser log: {phaser.log_path}")
         print(f"Report: {phaser.report_path}")
+        if result.phosphate_summary:
+            print(result.phosphate_summary)
         if phaser.solution_pdb:
             print(f"MR model: {phaser.solution_pdb}")
         if phaser.solution_mtz:
@@ -580,6 +588,8 @@ def _automr(args: argparse.Namespace) -> int:
     print("Phaser executed: no (preflight milestone)")
     print(f"Run directory: {result.run_directory}")
     print(f"Report: {result.report_path}")
+    if result.phosphate_summary:
+        print(result.phosphate_summary)
     if result.generated_config:
         print(f"Generated: {dataset / 'nasolve.txt'}")
     return 0

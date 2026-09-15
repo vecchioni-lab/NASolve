@@ -1,7 +1,12 @@
 schema_version = 1
 id = "5w6w"
-version = "1.0.0"
-description = "Existing standard W stage policy; dataset inputs supply the ordered pair."
+version = "1.1.0"
+description = "Standard W/5W6W recipe, including the designed 5-prime phosphate at D:1; dataset inputs supply the ordered pair."
+
+# Selecting this recipe explicitly selects this terminal chemistry (Simon,
+# 2026-09-15). This is not inferred from a model or from terminal placement.
+[chemistry]
+terminal_phosphate_sites = ["D:1"]
 
 [automr]
 mode = "standard"

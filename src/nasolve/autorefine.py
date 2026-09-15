@@ -12,6 +12,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Mapping, Sequence
 
+from .ligand_profiles import validate_model_phosphate_policy
+from .phosphate import PhosphateError
 from .checkpoints import (
     CheckpointError,
     _inherited_paths_for_autorefine,
@@ -834,7 +836,12 @@ def validate_refined_model(path: Path, report: Mapping[str, object]) -> dict[str
         raise AutoRefineError(
             "Refined model is not checkpoint-compatible; missing " + ", ".join(missing)
         )
-    return {"validated": True, "coordinate_record_count": len(records), "required_items": missing}
+    try:
+        phosphate_audit = validate_model_phosphate_policy(path, report)
+    except PhosphateError as exc:
+        raise AutoRefineError(f"Refined model phosphate validation failed: {exc}") from exc
+    return {"validated": True, "coordinate_record_count": len(records), "required_items": missing,
+            "phosphate_policy": phosphate_audit}
 
 
 def _file_reference(path: Path, run: Path) -> dict[str, object]:

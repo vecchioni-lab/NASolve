@@ -683,12 +683,41 @@ preparation error.
 
 PostMR checks nucleotide phosphates before generating restraints and again
 after ReadySet. It removes `OP3` (or legacy `O3P`) only where an incoming
-`O3'–P` backbone link confirms an internal phosphate. Unlinked or terminal
-phosphates retain that oxygen. Numbering gaps and insertion codes do not define
+`O3'–P` backbone link confirms an internal phosphate. **OP3/O3P is strictly
+user-opt-in, even at a terminus.** An unexpected unlinked OP3 stops preparation
+for review rather than being retained automatically or blindly deleted. Numbering gaps and insertion codes do not define
 connectivity; chain and `TER` boundaries are respected. Remaining phosphate
 atoms, broad bond/angle plausibility, and reference-known backbone links are
 checked. Ambiguous alternatives or broken geometry stop preparation with a
 specific error. This is a connectivity repair, not a coordinate minimization.
+
+Selecting the standard **W/5W6W recipe** (`-W`, `frame = W`, or
+`frame = 5W6W`) explicitly selects its designed **5-prime phosphate at D:1**.
+The versioned `5w6w` recipe card contains:
+
+```toml
+[chemistry]
+terminal_phosphate_sites = ["D:1"]
+```
+
+The source and effective sites are printed by AutoMR, `preset check`, and
+campaign plan/status. This is recipe-declared chemistry, not an automatic
+exception for every terminal residue or permission inferred from coordinates.
+Other frames/nonstandard models do not inherit W's sites. A custom campaign
+recipe supplies its own explicit chemistry list; omitting the table means no
+recipe-authorized phosphates.
+
+An explicitly requested, already-defined terminal phosphate can be retained
+with `[automr] allow_op3_sites = A:1, B:1` in `nasolve.txt`. This is a site list,
+not a boolean or an instruction to construct absent atoms. An explicitly
+supplied list **replaces** the recipe list; include D:1 when also requesting
+another site. An explicitly empty `allow_op3_sites =` suppresses all recipe
+phosphate permissions for a variant; it does not dephosphorylate coordinates.
+The existing model must match the requested chemistry or preparation stops.
+Incoming linkage,
+atom identity and geometry must still be valid; an internally linked OP3 is
+not authorized by that option. See [the 1AP/phosphate integration contract](docs/1ap-phosphate-integration.md)
+for the supported profile, provenance and remaining live checks.
 
 Both checks are recorded under `phosphate_cleanup` in the PostMR report. Raw
 Coot and ReadySet outputs remain available; the cleaned ReadySet copy is named

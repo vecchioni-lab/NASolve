@@ -7,7 +7,7 @@ from nasolve.automr import AutoMRInputError, prepare_automr
 from nasolve.model_assessment import file_sha256
 from nasolve.run_context import resolve_artifact_path
 
-from .helpers import make_dataset, make_mtz_dump, model_text
+from .helpers import make_dataset, make_mtz_dump, model_text, w_model_text
 
 
 VALID = {"1AP", "DT", "DA", "A", "5IU", "DG", "DC", "DF"}
@@ -82,7 +82,7 @@ class AutoMRPreflightTests(unittest.TestCase):
             frames = root / "frames"
             catalogue = frames / "5W6W"
             catalogue.mkdir(parents=True)
-            (catalogue / "C_G.pdb").write_text(model_text())
+            (catalogue / "C_G.pdb").write_text(w_model_text())
             (catalogue / "seq_base.txt").write_text("GAGC\n\nCTGC\n")
             result = prepare_automr(
                 dataset, frame_override="W", pair_override="D:T",
@@ -113,8 +113,8 @@ class AutoMRPreflightTests(unittest.TestCase):
             dataset = make_dataset(root / "dataset", include_model=False)
             catalogue = root / "frames" / "5W6W"
             catalogue.mkdir(parents=True)
-            (catalogue / "C_G.pdb").write_text(model_text())
-            (catalogue / "A_G.pdb").write_text(model_text())
+            (catalogue / "C_G.pdb").write_text(w_model_text())
+            (catalogue / "A_G.pdb").write_text(w_model_text())
             result = prepare_automr(
                 dataset, frame_override="W", pair_override="A:G",
                 frames_dir=root / "frames", valid_ligand_codes=VALID,
@@ -137,7 +137,7 @@ class AutoMRPreflightTests(unittest.TestCase):
             (dataset / "summary.html").write_text("Spacegroup name P1\n")
             catalogue = root / "frames" / "5W6W"
             catalogue.mkdir(parents=True)
-            (catalogue / "C_G.pdb").write_text(model_text())
+            (catalogue / "C_G.pdb").write_text(w_model_text())
             dump = make_mtz_dump(root, "P 1", 1)
             with self.assertRaisesRegex(AutoMRInputError, "three MR copies"):
                 prepare_automr(
