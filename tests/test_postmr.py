@@ -14,6 +14,7 @@ from nasolve.postmr import (
     PostMRPreparationError,
     _coot_script,
     _default_modified_pair_restraints_builder,
+    _default_narestraints_builder,
     _filter_scaffold_overlaps,
     _modified_nucleotide_sites,
     _patch_narestraints_records,
@@ -179,10 +180,12 @@ class PostMRTests(unittest.TestCase):
                 output: Path,
                 *,
                 include_stacking: bool,
+                terminal_phosphate_sites: tuple[str, ...] = (),
             ):
                 self.assertEqual(path, compatibility)
                 self.assertEqual(stretches, "parsed")
                 self.assertFalse(include_stacking)
+                self.assertEqual(terminal_phosphate_sites, ("D:1",))
                 output.write_text("geometry_restraints.edits {}\n")
 
             guesser.guess_pairs = guess_pairs
@@ -201,13 +204,65 @@ class PostMRTests(unittest.TestCase):
             }
             with patch.dict(sys.modules, modules):
                 report = _default_modified_pair_restraints_builder(
-                    prepared, compatibility, pair_output, restraint_output
+                    prepared, compatibility, pair_output, restraint_output,
+                    terminal_phosphate_sites=("D:1",),
                 )
             self.assertEqual(report["guessed_pair_count"], 2)
             self.assertEqual(report["retained_pair_count"], 1)
             self.assertEqual(report["retained_pairs"][0]["first"], "A:12")
             self.assertFalse(report["include_stacking"])
             self.assertTrue(restraint_output.is_file())
+
+    def test_default_narestraints_builder_forwards_terminal_phosphate_sites(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "model.pdb"
+            model.write_text(
+                pdb_record("ATOM", 1, "P", "DC", "D", 1, element="P") + "END\n"
+            )
+            pairs = root / "pairs.txt"
+            pairs.write_text("D 1\nD 1\n")
+            output = root / "restraints.phil"
+            seen: dict[str, object] = {}
+
+            builder = types.ModuleType("restraints.builder")
+            base_pairs = types.ModuleType("restraints.base_pairs")
+            residue_library = types.ModuleType("restraints.residue_library")
+            builder.load_residue_records = lambda: []
+            residue_library.load_residue_records = lambda: []
+            base_pairs.read_base_pair_file = lambda _path: "parsed"
+
+            def build_phil_from_pdb(
+                path: Path, stretches: object, destination: Path, *,
+                include_stacking: bool,
+                terminal_phosphate_sites: tuple[str, ...] = (),
+            ) -> None:
+                seen["path"] = path
+                seen["stretches"] = stretches
+                seen["include_stacking"] = include_stacking
+                seen["terminal_phosphate_sites"] = terminal_phosphate_sites
+                destination.write_text("geometry_restraints.edits {}\n")
+
+            builder.build_phil_from_pdb = build_phil_from_pdb
+            package = types.ModuleType("restraints")
+            package.builder = builder
+            modules = {
+                "restraints": package,
+                "restraints.builder": builder,
+                "restraints.base_pairs": base_pairs,
+                "restraints.residue_library": residue_library,
+            }
+            with patch.dict(sys.modules, modules):
+                corrections = _default_narestraints_builder(
+                    model, pairs, output, terminal_phosphate_sites=("D:1",)
+                )
+
+            self.assertEqual(corrections, [])
+            self.assertEqual(seen["path"], model)
+            self.assertEqual(seen["stretches"], "parsed")
+            self.assertTrue(seen["include_stacking"])
+            self.assertEqual(seen["terminal_phosphate_sites"], ("D:1",))
+            self.assertTrue(output.is_file())
 
     def test_mirrored_canonical_targets_do_not_revert_to_d_dna(self):
         with tempfile.TemporaryDirectory() as directory:

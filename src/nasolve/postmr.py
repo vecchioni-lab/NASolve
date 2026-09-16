@@ -977,6 +977,8 @@ def _default_narestraints_builder(
     pdb: Path,
     pairs: Path,
     output: Path,
+    *,
+    terminal_phosphate_sites: tuple[str, ...] = (),
 ) -> list[dict[str, str]]:
     try:
         from restraints import builder
@@ -1000,6 +1002,7 @@ def _default_narestraints_builder(
             read_base_pair_file(pairs),
             output,
             include_stacking=True,
+            terminal_phosphate_sites=terminal_phosphate_sites,
         )
     finally:
         builder.load_residue_records = original_loader
@@ -1035,6 +1038,8 @@ def _default_modified_pair_restraints_builder(
     compatibility_pdb: Path,
     pair_output: Path,
     restraint_output: Path,
+    *,
+    terminal_phosphate_sites: tuple[str, ...] = (),
 ) -> dict[str, object]:
     try:
         from restraints import builder, guesser
@@ -1067,12 +1072,13 @@ def _default_modified_pair_restraints_builder(
             or _candidate_site(candidate.second) in modified_sites
         ]
         guesser.write_guess(pair_output, selected)
-        if selected:
+        if selected or terminal_phosphate_sites:
             builder.build_phil_from_pdb(
                 compatibility_pdb,
                 read_base_pair_file(pair_output),
                 restraint_output,
                 include_stacking=False,
+                terminal_phosphate_sites=terminal_phosphate_sites,
             )
     finally:
         builder.load_residue_records = original_builder_loader
@@ -1428,9 +1434,15 @@ def prepare_postmr(
         pair_file = restraints_dir / "guessed_modified_pairs.txt"
         narestraints = restraints_dir / "narestraints_modified_pairs.phil"
         try:
-            builder_result = (
-                modified_pair_builder or _default_modified_pair_restraints_builder
-            )(prepared, compatibility, pair_file, narestraints)
+            if modified_pair_builder is None:
+                builder_result = _default_modified_pair_restraints_builder(
+                    prepared, compatibility, pair_file, narestraints,
+                    terminal_phosphate_sites=allowed_op3,
+                )
+            else:
+                builder_result = modified_pair_builder(
+                    prepared, compatibility, pair_file, narestraints
+                )
         except PostMRPreparationError:
             raise
         except Exception as exc:
@@ -1441,6 +1453,7 @@ def prepare_postmr(
             )
         narestraints_report = dict(builder_result)
         narestraints_report.setdefault("mode", "modified-pairs-only")
+        narestraints_report["terminal_phosphate_sites"] = list(allowed_op3)
         narestraints_report["pair_file"] = str(pair_file)
         narestraints_report["restraint_file"] = (
             str(narestraints) if narestraints.is_file() else None
@@ -1504,9 +1517,15 @@ def prepare_postmr(
         _rewrite_codes(prepared, compatibility, compatibility_codes)
         narestraints = restraints_dir / "narestraints_Std_padd.phil"
         try:
-            builder_result = (narestraints_builder or _default_narestraints_builder)(
-                compatibility, pair_file, narestraints
-            )
+            if narestraints_builder is None:
+                builder_result = _default_narestraints_builder(
+                    compatibility, pair_file, narestraints,
+                    terminal_phosphate_sites=allowed_op3,
+                )
+            else:
+                builder_result = narestraints_builder(
+                    compatibility, pair_file, narestraints
+                )
         except PostMRPreparationError:
             raise
         except Exception as exc:
@@ -1523,6 +1542,7 @@ def prepare_postmr(
             "pair_file": str(pair_file),
             "restraint_file": str(narestraints),
             "include_stacking": True,
+            "terminal_phosphate_sites": list(allowed_op3),
             "secondary_structure_file": str(secondary),
         })
         restraint_paths.extend([narestraints, secondary])
