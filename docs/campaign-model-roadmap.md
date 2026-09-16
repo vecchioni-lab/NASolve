@@ -1,0 +1,232 @@
+# Campaign model, sequence, and recovery roadmap
+
+Status: design addendum for the campaign architecture. This document narrows the next development direction without replacing `campaigns.md`. It is deliberately broader than the current single-scaffold 5W6W execution slice.
+
+## Goal
+
+Campaigns must support both closely related construct series and genuinely heterogeneous structure families. NASolve must not assume that every dataset in a campaign differs only by sequence or chemistry. A campaign may contain:
+
+- one search scaffold with many sequence or modified-site variants;
+- several related search models with small geometric changes;
+- different space groups or copy-number expectations;
+- per-dataset models generated from sequence by a model provider such as AlphaFold;
+- experimentally solved models that later become useful search models for unsolved siblings; or
+- mixtures of these cases within one campaign.
+
+The human-facing configuration should stay simple even when the frozen internal record is rich.
+
+## Three scientific state layers
+
+For sequence and chemistry, NASolve should reason in three layers.
+
+### 1. Search-model state
+
+This is what the actual MR model contains. It is the lowest-authority starting state and must be recorded exactly. It may have a different sequence from the intended construct and may lack chemistry that PostMR is expected to install.
+
+The search model is not silently edited before Phaser merely to resemble the target construct. Differences are recorded and reconciled after MR unless a reviewed MR-model-generation policy says otherwise.
+
+### 2. Frame/reference state
+
+A frame or model-family recipe may provide a reference sequence and other expected scaffold properties. This describes the baseline construct family, not necessarily the literal sequence of every search-model PDB.
+
+For a shared family, the campaign may optionally provide a campaign-level reference sequence. A dataset may override it. Neither is mandatory for campaigns whose datasets use unrelated models.
+
+Reference-sequence information is strongly recommended where available because it enables model validation, explicit mutation planning, and later deposition checks.
+
+### 3. Dataset target state
+
+This is the authoritative intended construct for one dataset. It may be assembled from:
+
+- a dataset sequence;
+- an inherited campaign/reference sequence;
+- explicit site mutations;
+- modified-residue identities;
+- terminal chemistry such as 5-prime phosphate;
+- backbone chemistry declarations; and
+- other reviewed site-specific chemistry.
+
+Ordinary sequence and explicit site chemistry are one authority layer. When both address the same site, the explicit site declaration wins because it contains more chemical information.
+
+NASolve should compile these inputs into one effective target before PostMR and then execute only the delta between the actual MR model and that effective target. It should not blindly mutate through several intermediate sequence layers.
+
+Every overridden value remains visible in provenance, for example:
+
+```text
+MR model: DA
+frame/reference: DA
+dataset sequence: DG
+explicit site chemistry: 1AP
+effective PostMR target: 1AP
+```
+
+## Simple human-facing sequence input
+
+The common case should require almost no path configuration.
+
+A dataset directory may contain a conventionally named sequence file, discovered automatically. A campaign may also declare a shared/reference sequence for a family of datasets. Dataset sequence input overrides the inherited campaign/reference sequence.
+
+The exact filename and syntax remain to be finalized, but users should not normally need to point each campaign entry at a text file. Large campaigns can be organized by ordinary external scripting rather than turning NASolve into a file-management system.
+
+Chain-labelled sequence is preferred in the durable schema. Existing unlabeled frame resources such as `MR_frames/5W6W/seq_base.txt` may remain provenance inputs, but a reviewed preset should resolve them to explicit chain identities before execution.
+
+## Sequence comparison policy
+
+Before Phaser, NASolve should compare the selected search model against any applicable frame/reference sequence and record:
+
+- chain inventory and lengths;
+- residue identities;
+- exact mismatch sites;
+- whether mismatches are expected to be corrected after MR; and
+- the final effective dataset target.
+
+A residue-identity mismatch is not automatically a bad MR model. A model may be a valid scaffold with the wrong construct sequence. Chain topology or length incompatibility is a stronger error and may block the run unless the preset explicitly supports that transformation.
+
+PostMR applies the final effective target only after MR succeeds.
+
+## Mirroring
+
+`mirror = true` remains the simple human-facing D/L chirality switch.
+
+Mirroring is orthogonal to sequence and chemistry. It changes the chirality of the selected search scaffold before Phaser; it does not itself change the intended sequence, modified-residue identity, terminal chemistry, or dataset target.
+
+Configuration precedence remains dataset-specific: a dataset may override a campaign or preset mirror default in either direction.
+
+## Model-provider hierarchy
+
+Campaigns must not assume one catalogue model for all datasets. A dataset may obtain its MR candidate from a reviewed model provider. Planned provider classes include:
+
+- fixed reviewed catalogue model;
+- bounded catalogue/model library;
+- explicit dataset-supplied model;
+- campaign-shared model;
+- sequence-derived model, including a later AlphaFold provider;
+- model generated or transformed from a reviewed template; and
+- model promoted from a solved sibling dataset by Campaign Doctor.
+
+Every provider must record the source sequence/model, provider version or identity, transformation, checksums, and the exact model submitted to Phaser.
+
+Different datasets in one campaign may use different providers.
+
+## Geometry-rich campaigns
+
+A future campaign may contain related assemblies whose differences are geometric rather than merely sequence-based. One planned example is a family of triangular DNA constructs with different shapes, space groups, and small geometric adjustments.
+
+For such campaigns NASolve should support:
+
+```text
+sequence / construct specification
+        -> model provider
+        -> dataset-specific search model
+        -> AutoMR
+        -> PostMR target chemistry
+```
+
+The campaign may share design logic while each dataset has its own model, expected symmetry, and MR state. The campaign schema must therefore avoid encoding "one frame model plus mutations" as a universal assumption.
+
+## Campaign Doctor: cross-dataset model rescue
+
+Campaign Doctor is a future recovery layer above the existing stage-specific Doctors. Its purpose is to use information learned from solved datasets to generate bounded rescue candidates for related unsolved datasets.
+
+Potential reviewed operations include:
+
+- use a solved sibling structure directly as an MR model when construct compatibility permits;
+- mutate a solved sibling toward the failed dataset's effective target before using it as a search model;
+- use several solved siblings as a bounded MR library;
+- build an ensemble from structurally related solved siblings;
+- prefer a solved model with matching geometry, space group family, or construct class;
+- feed a solved model back into a model-provider pipeline for a nearby design; and
+- retry MR under a preset-declared budget.
+
+This must be provenance-rich and bounded. Campaign Doctor must record which solved dataset supplied the parent model, what sequence/geometry transformations were applied, how many rescue candidates were tried, and why each candidate was eligible.
+
+It must never silently treat one dataset's solution as ground truth for another.
+
+## Cross-dataset compatibility
+
+Before reusing a solved model for another dataset, Campaign Doctor should eventually evaluate explicit compatibility dimensions rather than simple filename similarity. These may include:
+
+- chain count and polymer topology;
+- intended sequence and modified-site compatibility;
+- chirality;
+- construct/model-family identity;
+- expected oligomeric or geometric class;
+- symmetry/copy-number expectations;
+- known terminal or backbone chemistry; and
+- user/preset-declared family relationships.
+
+The exact scoring/eligibility rules are deferred until a real heterogeneous campaign is available. Early implementations should prefer explicit family declarations and conservative hard gates over inferred similarity.
+
+## DAG implications
+
+The campaign execution graph must permit both shared and dataset-specific parents.
+
+Examples:
+
+```text
+shared reference sequence
+├── dataset A -> model A -> MR -> solved A
+├── dataset B -> model B -> MR failed
+└── dataset C -> model C -> MR -> solved C
+
+Campaign Doctor:
+solved A ----\
+              -> bounded rescue candidates for B
+solved C ----/
+```
+
+A successful upstream artifact may be shared only when scientifically compatible. Immutable run/checkpoint lineage remains mandatory.
+
+## Roadmap insertion
+
+The existing campaign roadmap remains valid but should be interpreted with the following additions.
+
+### Near-term: before broad campaign Doctor work
+
+1. Generalize sequence handling into search-model, reference, and dataset-target layers.
+2. Add simple campaign/reference sequence inheritance plus dataset override.
+3. Add search-model sequence comparison and mismatch provenance.
+4. Keep `mirror` as an orthogonal inherited/overridable token.
+5. Allow explicit forced search-model selection for validation and unusual datasets.
+6. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
+
+### Multi-candidate / model-provider stage
+
+7. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
+8. Add provider provenance and sequence-to-model hooks; AlphaFold is a later provider, not a special campaign architecture.
+9. Extend the campaign DAG to represent shared references, per-dataset models, and reusable solved sibling models.
+
+### Campaign Doctor stage
+
+10. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
+11. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
+12. Keep failed MR branches and every rescue attempt immutable and inspectable.
+
+### Later validation and curation
+
+13. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+
+## Immediate validation fixture
+
+`MR_frames/5W6W/5W6W_noPO4.pdb` is intended as a forced test model, not a default catalogue choice. It is the original 5W6W PDB sequence rather than the Lu-Vecchioni metal-pair scaffold sequence used by the current project models. It also lacks the designed D:1 5-prime phosphate.
+
+This makes it a useful integration fixture for:
+
+1. forced alternate MR-model selection;
+2. search-model versus frame/reference sequence comparison;
+3. PostMR normalization to the effective dataset target;
+4. explicit dataset/site mutations overriding the frame/reference sequence; and
+5. whole D:1 5-prime-phosphate construction and downstream ReadySet/Phenix interpretation.
+
+The model must not become the normal W catalogue fallback merely because it exists in the frame directory.
+
+## Design rule
+
+The campaign layer should know enough to answer five questions for every dataset:
+
+1. **What construct did the user intend?**
+2. **What search model did we actually use?**
+3. **How did that model differ from the intended/reference construct?**
+4. **What did PostMR change to reach the effective target?**
+5. **If ordinary MR failed, what bounded related-model evidence was tried next, and why?**
+
+If those answers remain explicit, NASolve can grow from simple 5W6W sequence variants to heterogeneous geometric campaigns without changing its fundamental provenance model.
