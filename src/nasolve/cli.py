@@ -701,7 +701,9 @@ def _backbone_review(args: argparse.Namespace) -> int:
             number += 1
         profile = resolve_view_profile(run)
         review_path = review_dir / f"review_{number:03d}.json"
-        write_backbone_review(review_path, sites=sites, model=profile.model_path, reviewed=True)
+        write_backbone_review(
+            review_path, sites=sites, model=profile.model_path, run=run, reviewed=True
+        )
         print(_color("Backbone review recorded as USER_REVIEWED.", "32"))
         print(f"Review record: {review_path}")
         print("Experimental passthrough provenance remains in the run report.")
@@ -911,6 +913,25 @@ def _autorefine(args: argparse.Namespace) -> int:
         print(_color("Current checkpoint updated.", "32"))
     else:
         print("Current checkpoint unchanged; inspect or select this result explicitly.")
+    if result.exit_code == 0:
+        try:
+            run_report = json.loads((run / "report.json").read_text(encoding="utf-8"))
+            backbone_policy = requested_backbone_policy(run_report)
+            pending_backbone = tuple(backbone_policy["experimental_passthrough_sites"])
+        except (OSError, ValueError, BackboneError):
+            pending_backbone = ()
+        if pending_backbone:
+            print()
+            print(_color("NON-STANDARD BACKBONE CHEMISTRY — REVIEW REQUIRED", "33"))
+            print("Flagged site(s): " + ", ".join(pending_backbone))
+            if sys.stdin.isatty():
+                # Review is deliberately advisory to refinement status: declining inspection
+                # leaves a persistent warning but does not turn a successful refinement into
+                # a failed crystallographic run.
+                _backbone_review(argparse.Namespace(run=run, coot=None))
+            else:
+                print("Interactive Coot review was not possible in this session. Run:")
+                print("  " + shlex.join(["./nasolve", "backbone-review", str(run)]))
     return result.exit_code
 
 

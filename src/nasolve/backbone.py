@@ -19,6 +19,8 @@ from hashlib import sha256
 from pathlib import Path
 from typing import Mapping
 
+from .run_context import artifact_reference
+
 
 class BackboneError(ValueError):
     """Backbone chemistry cannot be interpreted without guessing."""
@@ -277,19 +279,26 @@ def ensure_five_prime_phosphates(
         present = {atom.name for atom in group if atom.name in {"P", "OP1", "OP2", "OP3"}}
         last_index = max(atom.index for atom in group)
         template = o5.line
-        if present == {"P", "OP1", "OP2", "OP3"}:
-            report["preserved"].append({"site": site, "atoms": sorted(present)})
-            continue
-        if present == {"P", "OP1", "OP2"}:
-            p = _one(group, "P", site)
-            # A requested terminal group must not already be an internal phosphate.
-            incoming = [
+        p = _one(group, "P", site) if "P" in present else None
+        incoming = (
+            [
                 atom for atom in atoms
                 if atom.site != site and atom.chain == p.chain and atom.name == "O3'"
                 and math.dist(atom.xyz, p.xyz) <= 2.1
             ]
-            if incoming:
-                raise BackboneError(f"5'-phosphate {site}: missing OP3 conflicts with an internal O3'-P link")
+            if p is not None else []
+        )
+        if len(incoming) > 1:
+            raise BackboneError(f"5'-phosphate {site}: multiple possible incoming O3'-P links")
+        if incoming:
+            raise BackboneError(
+                f"5'-phosphate {site}: terminal phosphate request conflicts with an internal O3'-P link"
+            )
+        if present == {"P", "OP1", "OP2", "OP3"}:
+            report["preserved"].append({"site": site, "atoms": sorted(present)})
+            continue
+        if present == {"P", "OP1", "OP2"}:
+            assert p is not None
             serial += 1
             op3 = _new_atom(template, serial, "OP3", _missing_op3_coordinate(group, p), "O")
             additions.setdefault(last_index, []).append(op3)
@@ -323,21 +332,23 @@ def ensure_five_prime_phosphates(
 
 
 def backbone_review_record(
-    *, sites: tuple[str, ...], model: Path, reviewed: bool
+    *, sites: tuple[str, ...], model: Path, run: Path, reviewed: bool
 ) -> dict[str, object]:
     return {
         "schema_version": 1,
         "status": "USER_REVIEWED" if reviewed else "UNREVIEWED",
         "sites": list(sites),
-        "model": str(model.resolve()),
+        "model": artifact_reference(model, run),
         "model_sha256": sha256(model.read_bytes()).hexdigest(),
         "updated_utc": datetime.now(timezone.utc).isoformat(),
         "provenance": "experimental-passthrough; NASolve did not validate custom backbone connectivity",
     }
 
 
-def write_backbone_review(path: Path, *, sites: tuple[str, ...], model: Path, reviewed: bool) -> None:
-    value = backbone_review_record(sites=sites, model=model, reviewed=reviewed)
+def write_backbone_review(
+    path: Path, *, sites: tuple[str, ...], model: Path, run: Path, reviewed: bool
+) -> None:
+    value = backbone_review_record(sites=sites, model=model, run=run, reviewed=reviewed)
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 

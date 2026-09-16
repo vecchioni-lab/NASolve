@@ -295,7 +295,7 @@ allow_unreviewed_backbone = true
 A:12 = experimental_passthrough
 ```
 
-Passthrough suppresses only NASolve's standard phosphate-linkage rules at the listed site. It does not disable pairing/stacking elsewhere and does not invent custom bonds. The run stays visibly unreviewed. After refinement use `./nasolve backbone-review RUN`; NASolve first asks whether to open the flagged result in Coot, then separately asks whether the chemistry was reviewed. Confirmation records the inspected model hash but never erases passthrough provenance.
+Passthrough suppresses only NASolve's standard phosphate-linkage rules at the listed site. It does not disable pairing/stacking elsewhere and does not invent custom bonds. The run stays visibly unreviewed. After a successful interactive AutoRefine, NASolve immediately offers to show the flagged result in Coot and then separately asks whether the chemistry was reviewed. You can defer that inspection and later run `./nasolve backbone-review RUN`. Confirmation records a portable reference plus the inspected model hash but never erases passthrough provenance.
 
 Reviewed arbitrary GNA/PNA/TNA linkage recipes and 3'-terminal phosphate construction are intentionally deferred until we have real validated examples. If you need one, contact the developers with the intended atom connections and deletions so it can become a reviewed recipe rather than a guess. See [Backbone chemistry](docs/backbone-chemistry.md), the [machine-readable schema](docs/backbone-chemistry.schema.json), and the [human recipe example](docs/backbone-recipe-example.txt).
 

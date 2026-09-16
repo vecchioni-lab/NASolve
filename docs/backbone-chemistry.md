@@ -88,17 +88,21 @@ pretending NASolve understands their connectivity.
 ## Human review
 
 Runs containing experimental passthrough sites retain a persistent
-`UNREVIEWED_NONSTANDARD_BACKBONE` warning. The intended review interaction is:
+`UNREVIEWED_NONSTANDARD_BACKBONE` warning. The review interaction is:
 
-1. NASolve asks whether to show the flagged result in Coot (`y/n`).
+1. After a successful interactive AutoRefine, NASolve asks whether to show the
+   flagged result in Coot (`y/n`). The same flow is available later through
+   `nasolve backbone-review RUN`.
 2. If opened, the user inspects the current model and maps.
 3. NASolve then asks whether the chemistry has been reviewed (`y/n`).
-4. Confirmation writes a separate review record with the inspected model hash
-   and changes the human status to `USER_REVIEWED`; it does not erase the fact
-   that passthrough chemistry was used.
+4. Confirmation writes a separate review record with a run-anchored model
+   reference and the inspected model hash and marks it `USER_REVIEWED`; it does
+   not erase the fact that passthrough chemistry was used.
 
-For non-interactive campaigns, the same condition remains an inspection flag
-and can be reviewed later with the dedicated backbone review command.
+Declining review does not convert an otherwise successful refinement into a
+failed run; the warning remains pending. For non-interactive campaigns, the
+same condition remains an inspection flag and can be reviewed later with the
+dedicated backbone review command.
 
 ## Future reviewed custom recipes
 

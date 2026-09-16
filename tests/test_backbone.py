@@ -5,6 +5,7 @@ from pathlib import Path
 
 from nasolve.backbone import (
     BackboneError,
+    backbone_review_record,
     ensure_five_prime_phosphates,
     make_backbone_policy,
     requested_backbone_policy,
@@ -102,6 +103,37 @@ class TerminalPhosphateTests(unittest.TestCase):
         with self.assertRaises(BackboneError):
             ensure_five_prime_phosphates(source, output, ("D:1",))
         self.assertFalse(output.exists())
+
+    def test_complete_terminal_group_cannot_hide_internal_link(self):
+        records = terminal_without_phosphate()
+        records[1:1] = [
+            atom(20, "P", "DC", "D", 1, (1.6, 0.0, 0.0)),
+            atom(21, "OP1", "DC", "D", 1, (2.1, 1.4, 0.0)),
+            atom(22, "OP2", "DC", "D", 1, (2.1, -0.7, 1.2)),
+            atom(23, "OP3", "DC", "D", 1, (2.1, -0.7, -1.2)),
+            atom(24, "O3'", "DG", "D", 0, (1.65, 0.0, 0.0)),
+        ]
+        source = self.root / "internal.pdb"
+        output = self.root / "internal-output.pdb"
+        source.write_text("".join(records), encoding="utf-8")
+        with self.assertRaisesRegex(BackboneError, "internal O3'-P link"):
+            ensure_five_prime_phosphates(source, output, ("D:1",))
+
+    def test_review_record_uses_run_anchored_model_reference(self):
+        run = self.root / "run_001"
+        model_dir = run / "AutoRefine" / "round_001"
+        model_dir.mkdir(parents=True)
+        model = model_dir / "refined.pdb"
+        model.write_text("END\n", encoding="utf-8")
+        record = backbone_review_record(
+            sites=("A:12",), model=model, run=run, reviewed=True
+        )
+        self.assertEqual(record["status"], "USER_REVIEWED")
+        self.assertEqual(record["model"]["anchor"], "run")
+        self.assertEqual(
+            record["model"]["relative_path"], "AutoRefine/round_001/refined.pdb"
+        )
+        self.assertNotIn(str(self.root), json.dumps(record["model"]))
 
     def test_builder_report_is_json_serializable(self):
         report, _ = self.run_ensure(terminal_without_phosphate())
