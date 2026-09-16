@@ -5,6 +5,7 @@ on:
     branches: [feature/backbone-chemistry-recipes]
     paths:
       - scripts/apply_backbone_feature.py
+      - scripts/fix_backbone_patcher.py
       - .github/workflows/backbone-feature-build.yml
   workflow_dispatch:
 
@@ -29,6 +30,7 @@ jobs:
           if grep -q 'backbone_sites: dict\[str, str\]' src/nasolve/automr_input.py; then
             echo 'Backbone patch already applied; validating current branch.'
           else
+            python scripts/fix_backbone_patcher.py
             python scripts/apply_backbone_feature.py
           fi
       - name: Install test environment
