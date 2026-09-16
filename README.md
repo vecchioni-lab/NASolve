@@ -281,6 +281,24 @@ For each dataset, AutoMR:
 
 NASolve does not edit the original dataset or search model.
 
+## Backbone and terminal-phosphate chemistry
+
+NASolve treats ordinary DNA/RNA-like backbones as standard phosphodiesters. A requested 5'-terminal phosphate is a complete P/OP1/OP2/OP3 group; PostMR preserves a complete group, completes a missing OP3 when P/OP1/OP2 are present, or seeds the whole group from O5'-C5' when the phosphate is absent. New input files may use `five_prime_phosphate_sites`; the historical `allow_op3_sites` name remains readable for old frozen runs.
+
+Unsupported backbone chemistry is never guessed. Mark a site explicitly in `nasolve.txt` and opt into the experimental passthrough only when you intend to inspect the result yourself:
+
+```ini
+[automr]
+allow_unreviewed_backbone = true
+
+[backbones]
+A:12 = experimental_passthrough
+```
+
+Passthrough suppresses only NASolve's standard phosphate-linkage rules at the listed site. It does not disable pairing/stacking elsewhere and does not invent custom bonds. The run stays visibly unreviewed. After refinement use `./nasolve backbone-review RUN`; NASolve first asks whether to open the flagged result in Coot, then separately asks whether the chemistry was reviewed. Confirmation records the inspected model hash but never erases passthrough provenance.
+
+Reviewed arbitrary GNA/PNA/TNA linkage recipes and 3'-terminal phosphate construction are intentionally deferred until we have real validated examples. If you need one, contact the developers with the intended atom connections and deletions so it can become a reviewed recipe rather than a guess. See [Backbone chemistry](docs/backbone-chemistry.md), the [machine-readable schema](docs/backbone-chemistry.schema.json), and the [human recipe example](docs/backbone-recipe-example.txt).
+
 ## Requirements
 
 - Python 3.10 or newer

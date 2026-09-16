@@ -280,6 +280,7 @@ def _process_phosphates(
     check_sites: tuple[str, ...] = (),
     inspect_sites: tuple[str, ...] = (),
     allow_op3_sites: tuple[str, ...] = (),
+    passthrough_sites: tuple[str, ...] = (),
 ) -> dict[str, object]:
     """Remove only OP3/O3P with a verified incoming nucleotide O3'-P link.
 
@@ -288,6 +289,11 @@ def _process_phosphates(
     rechecked after ReadySet even when their extra oxygen is already absent.
     """
     allowed = set(validate_op3_sites(allow_op3_sites))
+    passthrough = set(validate_op3_sites(passthrough_sites))
+    if allowed & passthrough:
+        raise PhosphateError(
+            "A site cannot be both an explicit standard 5'-phosphate and an experimental backbone passthrough"
+        )
     if destination is not None and source.resolve() == destination.resolve():
         raise PhosphateError("Phosphate cleanup requires a separate output; preserve the raw model")
     lines = source.read_text(encoding="utf-8").splitlines(keepends=True)
@@ -297,8 +303,11 @@ def _process_phosphates(
         groups[atom.key].append(atom)
     sugar_names = {"C1'", "C2'", "C3'", "C4'", "C5'", "O3'", "O4'", "O5'"}
     requested = set(check_sites) | set(inspect_sites) | allowed
-    targets = [group for group in groups.values()
-               if any(a.name == "OP3" for a in group) or group[0].site in requested]
+    targets = [
+        group for group in groups.values()
+        if group[0].site not in passthrough
+        and (any(a.name == "OP3" for a in group) or group[0].site in requested)
+    ]
     missing = requested - {group[0].site for group in targets}
     if missing:
         raise PhosphateError("Requested phosphate site is absent: " + ", ".join(sorted(missing)))
@@ -310,7 +319,13 @@ def _process_phosphates(
         "connectivity_distance_range_angstrom": [_MIN_PO, _MAX_PO],
         "angle_range_degrees": [60., 160.],
         "input_sha256": sha256(source.read_bytes()).hexdigest(),
-        "mode": "op3-explicit-opt-in-v1", "allow_op3_sites": list(allow_op3_sites)}
+        "mode": "op3-explicit-opt-in-v1",
+        "allow_op3_sites": list(allow_op3_sites),
+        "experimental_passthrough_sites": sorted(passthrough),
+        "skipped": [
+            {"site": site, "reason": "user-authorized-nonstandard-backbone"}
+            for site in sorted(passthrough)
+        ]}
     removed_atoms = []
     seen_sites: set[str] = set()
     for group in targets:
@@ -434,25 +449,31 @@ def _process_phosphates(
 def sanitize_phosphates(
     source: Path, destination: Path, *, reference_model: Path | None = None,
     check_sites: tuple[str, ...] = (), allow_op3_sites: tuple[str, ...] = (),
+    passthrough_sites: tuple[str, ...] = (),
 ) -> dict[str, object]:
     """Remove verified internal extras; retain terminal OP3 only with consent.
 
     Unrequested unlinked OP3 stops preparation, rather than deleting an oxygen
     and pretending an incomplete phosphate is sound. Raw inputs are preserved.
     """
-    return _process_phosphates(source, destination, reference_model=reference_model,
-                              check_sites=check_sites, allow_op3_sites=allow_op3_sites)
+    return _process_phosphates(
+        source, destination, reference_model=reference_model,
+        check_sites=check_sites, allow_op3_sites=allow_op3_sites,
+        passthrough_sites=passthrough_sites,
+    )
 
 
 def audit_phosphates(
     source: Path, *, allow_op3_sites: tuple[str, ...] = (),
     inspect_sites: tuple[str, ...] = (), check_sites: tuple[str, ...] = (),
-    reference_model: Path | None = None,
+    reference_model: Path | None = None, passthrough_sites: tuple[str, ...] = (),
 ) -> dict[str, object]:
     """Read-only gate: a model needing cleanup is not checkpoint-ready."""
-    result = _process_phosphates(source, None, allow_op3_sites=allow_op3_sites,
-                                inspect_sites=inspect_sites, check_sites=check_sites,
-                                reference_model=reference_model)
+    result = _process_phosphates(
+        source, None, allow_op3_sites=allow_op3_sites,
+        inspect_sites=inspect_sites, check_sites=check_sites,
+        reference_model=reference_model, passthrough_sites=passthrough_sites,
+    )
     if result["removed"]:
         sites = ", ".join(row["site"] for row in result["removed"])
         raise PhosphateError(f"Unrequested internal OP3 remains at {sites}; prepare a new model, do not alter an existing checkpoint")

@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Collection, Mapping
 
 from .phosphate import PhosphateError, validate_op3_sites, validate_phosphate_intent
+from .backbone import BackboneError, validate_backbone_sites
 from .presets import PresetError, ProjectPreset, load_preset
 from .residue_aliases import LigandCodeError, ResolvedLigand, resolve_ligand, resolve_pair
 
@@ -48,6 +49,8 @@ class AutoMRIntent:
     source: Path | None = None
     allow_op3_sites: tuple[str, ...] = ()
     op3_sites_explicit: bool = False
+    backbone_sites: dict[str, str] = field(default_factory=dict)
+    allow_unreviewed_backbone: bool = False
 
 
 @dataclass(frozen=True)
@@ -78,9 +81,11 @@ class ResolvedAutoMRInput:
     config_source: Path | None
     allow_op3_sites: tuple[str, ...] = ()
     phosphate_intent: dict[str, object] | None = None
+    backbone_sites: dict[str, str] = field(default_factory=dict)
+    allow_unreviewed_backbone: bool = False
 
 
-_ALLOWED_SECTIONS = {"automr", "sequences", "mutations"}
+_ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
 _ALLOWED_AUTOMR_KEYS = {
     "mode",
     "frame",
@@ -90,6 +95,8 @@ _ALLOWED_AUTOMR_KEYS = {
     "mirror",
     "allow_p1_standard",
     "allow_op3_sites",
+    "five_prime_phosphate_sites",
+    "allow_unreviewed_backbone",
 }
 
 
@@ -224,6 +231,14 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         mirror = parser["automr"].getboolean("mirror", fallback=False)
     except ValueError as exc:
         raise AutoMRInputError("[automr] mirror must be true or false") from exc
+    try:
+        allow_unreviewed_backbone = parser["automr"].getboolean(
+            "allow_unreviewed_backbone", fallback=False
+        )
+    except ValueError as exc:
+        raise AutoMRInputError(
+            "[automr] allow_unreviewed_backbone must be true or false"
+        ) from exc
     sequences = _validated_sequences({
         chain.strip(): "".join(sequence.split())
         for chain, sequence in parser["sequences"].items()
@@ -234,10 +249,25 @@ def read_intent(path: Path | None) -> AutoMRIntent:
     } if "mutations" in parser else {}
     if any(not site or not residue for site, residue in mutations.items()):
         raise AutoMRInputError("Mutation sites and residue values cannot be empty")
-    raw_op3 = automr.get("allow_op3_sites", "").strip()
+    if "allow_op3_sites" in automr and "five_prime_phosphate_sites" in automr:
+        raise AutoMRInputError(
+            "Use five_prime_phosphate_sites (preferred) or legacy allow_op3_sites, not both"
+        )
+    phosphate_key = (
+        "five_prime_phosphate_sites"
+        if "five_prime_phosphate_sites" in automr
+        else "allow_op3_sites"
+    )
+    raw_op3 = automr.get(phosphate_key, "").strip()
     try:
-        allow_op3 = validate_op3_sites([v.strip() for v in raw_op3.split(",")] if raw_op3 else [])
-    except PhosphateError as exc:
+        allow_op3 = validate_op3_sites(
+            [v.strip() for v in raw_op3.split(",")] if raw_op3 else []
+        )
+        backbone_sites = validate_backbone_sites(
+            {site.strip(): mode.strip() for site, mode in parser["backbones"].items()}
+            if "backbones" in parser else {}
+        )
+    except (PhosphateError, BackboneError) as exc:
         raise AutoMRInputError(str(exc)) from exc
     return AutoMRIntent(
         mode=automr.get("mode") or None,
@@ -251,7 +281,11 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         mutations=mutations,
         source=source,
         allow_op3_sites=allow_op3,
-        op3_sites_explicit="allow_op3_sites" in automr,
+        op3_sites_explicit=(
+            "allow_op3_sites" in automr or "five_prime_phosphate_sites" in automr
+        ),
+        backbone_sites=backbone_sites,
+        allow_unreviewed_backbone=allow_unreviewed_backbone,
     )
 
 
@@ -489,8 +523,11 @@ def resolve_automr_input(
     """Apply CLI precedence, validate intent, and select exactly one model."""
     try:
         allow_op3 = validate_op3_sites(intent.allow_op3_sites)
-    except PhosphateError as exc:
+        backbone_sites = validate_backbone_sites(intent.backbone_sites)
+    except (PhosphateError, BackboneError) as exc:
         raise AutoMRInputError(str(exc)) from exc
+    if type(intent.allow_unreviewed_backbone) is not bool:
+        raise AutoMRInputError("allow_unreviewed_backbone must be true or false")
     dataset = discover_dataset(root)
     configured_mode = intent.mode.strip().casefold() if intent.mode else None
     if configured_mode not in {None, "standard", "nonstandard"}:
@@ -617,6 +654,8 @@ def resolve_automr_input(
         config_source=intent.source,
         allow_op3_sites=allow_op3,
         phosphate_intent=phosphate_intent,
+        backbone_sites=backbone_sites,
+        allow_unreviewed_backbone=intent.allow_unreviewed_backbone,
     )
 
 
@@ -633,6 +672,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
         lines.append(f"model = {relative_model}")
     if resolved.mirror:
         lines.append("mirror = true")
+    if resolved.allow_unreviewed_backbone:
+        lines.append("allow_unreviewed_backbone = true")
     # Always freeze even an empty list: reopening a snapshot must not adopt a
     # later recipe version's phosphate sites.
     lines.append("allow_op3_sites = " + ", ".join(resolved.allow_op3_sites))
@@ -642,4 +683,7 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
     if resolved.mutations:
         lines.extend(["", "[mutations]"])
         lines.extend(f"{site} = {ligand.token}" for site, ligand in resolved.mutations.items())
+    if resolved.backbone_sites:
+        lines.extend(["", "[backbones]"])
+        lines.extend(f"{site} = {mode}" for site, mode in resolved.backbone_sites.items())
     return "\n".join(lines) + "\n"

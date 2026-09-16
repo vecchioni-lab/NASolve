@@ -27,7 +27,10 @@ from .coot_runtime import (
     installation_from_candidate as coot_from_candidate,
     remember_coot,
 )
-from .coot_view import CootViewError, launch_coot_view, resolve_run
+from .coot_view import (
+    CootViewError, launch_coot_view, resolve_run, resolve_view_profile,
+)
+from .backbone import BackboneError, requested_backbone_policy, write_backbone_review
 from .phenix_runtime import (
     PhenixDiscoveryError,
     discover_phenix,
@@ -146,6 +149,20 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="guess base pairs and restrain only pairs containing a modified nucleotide",
     )
+    postmr.add_argument(
+        "--allow-unreviewed-backbone", action="store_true",
+        help=("experimental: continue at explicitly marked non-standard backbone "
+              "sites without validating their linkage chemistry"),
+    )
+    backbone_review = subparsers.add_parser(
+        "backbone-review",
+        help="inspect experimental backbone sites in Coot and record human review",
+    )
+    backbone_review.add_argument(
+        "run", nargs="?", type=Path,
+        help="NASolve run (default: active workspace run)",
+    )
+    backbone_review.add_argument("--coot", help="one-run Coot executable override")
     autosol = subparsers.add_parser(
         "autosol", help="run guarded MR-SAD phasing when PostMR finds a heavy atom"
     )
@@ -618,6 +635,7 @@ def _postmr(args: argparse.Namespace) -> int:
             environment=phenix.environment,
             allow_mr_review=args.allow_mr_review,
             modified_pairs_only=args.modified_pairs_only,
+            allow_unreviewed_backbone=args.allow_unreviewed_backbone,
         )
     except (
         ConfigError,
@@ -634,7 +652,63 @@ def _postmr(args: argparse.Namespace) -> int:
     for restraint in result.restraint_paths:
         print(f"Restraint: {restraint}")
     print(f"Report: {result.report_path}")
+    try:
+        run_report = json.loads((result.run_directory / "report.json").read_text(encoding="utf-8"))
+        policy = requested_backbone_policy(run_report)
+        pending = tuple(policy["experimental_passthrough_sites"])
+    except (OSError, ValueError, BackboneError):
+        pending = ()
+    if pending:
+        print(_color("WARNING: unreviewed non-standard backbone chemistry: " + ", ".join(pending), "33"))
+        print("NASolve did not validate those linkage atoms. After refinement, run:")
+        print("  " + shlex.join(["./nasolve", "backbone-review", str(result.run_directory)]))
     return 0
+
+
+def _backbone_review(args: argparse.Namespace) -> int:
+    try:
+        config = load_config()
+        run = _workspace_run(args.run, config)
+        report = json.loads((run / "report.json").read_text(encoding="utf-8"))
+        policy = requested_backbone_policy(report)
+        sites = tuple(policy["experimental_passthrough_sites"])
+        if not sites:
+            print("No experimental backbone passthrough sites are recorded for this run.")
+            return 0
+        if not sys.stdin.isatty():
+            raise ConfigError("backbone-review is interactive; run it in a terminal")
+        print(_color("NON-STANDARD BACKBONE CHEMISTRY — REVIEW REQUIRED", "33"))
+        print("Flagged site(s): " + ", ".join(sites))
+        print("NASolve intentionally did not infer or validate their inter-residue linkage chemistry.")
+        answer = input("Show the flagged result in Coot? [y/N]: " ).strip().casefold()
+        if answer not in {"y", "yes"}:
+            print("Review remains pending.")
+            return 2
+        coot = discover_coot(config, explicit=args.coot)
+        remember_coot(config, coot)
+        save_config(config)
+        view = launch_coot_view(run, coot.executable)
+        print(f"Opened {view.model_path} in Coot (PID {view.pid}).")
+        print("Inspect the flagged backbone site(s) and maps, then return here.")
+        confirm = input("Confirm that you reviewed the non-standard backbone chemistry? [y/N]: " ).strip().casefold()
+        if confirm not in {"y", "yes"}:
+            print("Review remains pending; passthrough provenance is unchanged.")
+            return 2
+        review_dir = run / "PostMR" / "BackboneReview"
+        review_dir.mkdir(parents=True, exist_ok=True)
+        number = 1
+        while (review_dir / f"review_{number:03d}.json").exists():
+            number += 1
+        profile = resolve_view_profile(run)
+        review_path = review_dir / f"review_{number:03d}.json"
+        write_backbone_review(review_path, sites=sites, model=profile.model_path, reviewed=True)
+        print(_color("Backbone review recorded as USER_REVIEWED.", "32"))
+        print(f"Review record: {review_path}")
+        print("Experimental passthrough provenance remains in the run report.")
+        return 0
+    except (ConfigError, CootDiscoveryError, CootViewError, BackboneError, OSError, ValueError) as exc:
+        print(f"Backbone review error: {exc}", file=sys.stderr)
+        return 2
 
 
 def _autosol(args: argparse.Namespace) -> int:
@@ -1123,6 +1197,8 @@ def main(argv: list[str] | None = None) -> int:
         return _automr(args)
     if args.command == "postmr":
         return _postmr(args)
+    if args.command == "backbone-review":
+        return _backbone_review(args)
     if args.command == "autosol":
         return _autosol(args)
     if args.command == "autorefine":

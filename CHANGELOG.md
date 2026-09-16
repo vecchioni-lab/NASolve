@@ -10,6 +10,9 @@ entries are reconstructed from repository history.
 
 ### Changed
 
+- Generalized the OP3-specific policy into an explicit standard-phosphodiester backbone contract. `five_prime_phosphate_sites` is the preferred user-facing name (legacy `allow_op3_sites` remains readable). PostMR now treats a requested 5'-terminal phosphate as the complete P/OP1/OP2/OP3 group, preserving a complete group, completing missing OP3 from existing P/OP1/OP2, or seeding a whole missing group from O5'-C5' with recorded idealized starting geometry. Partial ambiguous groups still fail closed.
+- Added site-scoped `experimental_passthrough` for explicitly declared non-standard backbones. Standard phosphate rules are skipped only at those sites; no custom linkage is inferred. Passthrough requires explicit user authorization, persists in run/campaign provenance, and has a two-step `backbone-review` Coot/confirmation workflow that records the inspected model hash without erasing provenance. Reviewed custom backbone recipes and 3'-phosphate construction remain future work.
+
 - Added explicit `[chemistry] terminal_phosphate_sites` to recipe cards. The
   built-in W/5W6W card is now version 1.1.0 and declares D:1, confirmed by Simon
   as a designed 5-prime phosphate. Standalone W selection and campaign planning

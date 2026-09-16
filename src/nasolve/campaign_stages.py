@@ -129,6 +129,8 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         config_source=None,
         allow_op3_sites=tuple(effective.get("allow_op3_sites", [])),
         phosphate_intent=effective.get("phosphate_intent"),
+        backbone_sites=dict(effective.get("backbones", {})),
+        allow_unreviewed_backbone=bool(effective.get("allow_unreviewed_backbone", False)),
     )
     config = frozen / "nasolve.input.txt"
     with config.open("x", encoding="utf-8") as handle:

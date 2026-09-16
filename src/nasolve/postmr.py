@@ -24,6 +24,9 @@ from .curated_ligands import (
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
 from .model_assessment import file_sha256
 from .phosphate import PhosphateError, sanitize_phosphates, requested_op3_sites
+from .backbone import (
+    BackboneError, ensure_five_prime_phosphates, requested_backbone_policy,
+)
 from .ligand_profiles import (
     AUTHORITATIVE_CODES, combine_dictionary_inputs, effective_restraints,
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
@@ -1178,6 +1181,7 @@ def _run_readyset(
     *,
     phosphate_sites: tuple[str, ...] = (),
     allow_op3_sites: tuple[str, ...] = (),
+    passthrough_sites: tuple[str, ...] = (),
 ) -> tuple[Path, Path, Path | None, list[str], dict[str, object]]:
     command = [
         str(ready_set_executable),
@@ -1218,7 +1222,7 @@ def _run_readyset(
     try:
         phosphate_audit = sanitize_phosphates(
             updated, checked, reference_model=model, check_sites=phosphate_sites,
-            allow_op3_sites=allow_op3_sites,
+            allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
         )
     except PhosphateError as exc:
         raise PostMRPreparationError(f"ReadySet phosphate validation failed: {exc}") from exc
@@ -1242,6 +1246,7 @@ def prepare_postmr(
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
     modified_pairs_only: bool = False,
+    allow_unreviewed_backbone: bool = False,
     data_root: Path | None = None,
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
@@ -1257,8 +1262,24 @@ def prepare_postmr(
         raise PostMRPreparationError(f"PostMR requires an accepted Phaser result, not {mr_status}")
     try:
         allowed_op3 = requested_op3_sites(report)
-    except PhosphateError as exc:
+        backbone_policy = requested_backbone_policy(report)
+    except (PhosphateError, BackboneError) as exc:
         raise PostMRPreparationError(str(exc)) from exc
+    passthrough_sites = tuple(backbone_policy["experimental_passthrough_sites"])
+    if passthrough_sites and not (
+        backbone_policy["allow_unreviewed"] or allow_unreviewed_backbone
+    ):
+        raise PostMRPreparationError(
+            "Non-standard backbone site(s) require explicit experimental passthrough consent: "
+            + ", ".join(passthrough_sites)
+            + ". Set [automr] allow_unreviewed_backbone = true before a new run, "
+              "or use --allow-unreviewed-backbone for this PostMR attempt."
+        )
+    if set(passthrough_sites) & set(allowed_op3):
+        raise PostMRPreparationError(
+            "A site cannot simultaneously request standard 5'-phosphate construction "
+            "and experimental backbone passthrough"
+        )
     source_model = _solution_model(run, report)
     postmr = run / "PostMR"
     try:
@@ -1353,10 +1374,20 @@ def prepare_postmr(
     else:
         shutil.copyfile(original, after_coot)
 
+    terminal_ready = model_dir / "terminal_phosphate_model.pdb"
+    try:
+        terminal_phosphate = ensure_five_prime_phosphates(
+            after_coot, terminal_ready, allowed_op3
+        ) if allowed_op3 else None
+        if terminal_phosphate is None:
+            shutil.copyfile(after_coot, terminal_ready)
+    except BackboneError as exc:
+        raise PostMRPreparationError(f"5'-terminal phosphate construction failed: {exc}") from exc
     prepared = model_dir / "prepared_model.pdb"
     try:
         phosphate_before = sanitize_phosphates(
-            after_coot, prepared, reference_model=original, allow_op3_sites=allowed_op3,
+            terminal_ready, prepared, reference_model=original,
+            allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         )
     except PhosphateError as exc:
         raise PostMRPreparationError(f"PostMR phosphate validation failed: {exc}") from exc
@@ -1514,7 +1545,8 @@ def prepare_postmr(
     if set(ligand_codes) & AUTHORITATIVE_CODES:
         try:
             profile, modification_paths = write_linked_profile(
-                prepared, restraints_dir, allow_op3_sites=allowed_op3)
+                prepared, restraints_dir, allow_op3_sites=allowed_op3,
+                passthrough_sites=passthrough_sites)
         except PhosphateError as exc:
             raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
         restraint_paths.extend(modification_paths)
@@ -1526,7 +1558,7 @@ def prepare_postmr(
         readyset_cif,
         environment,
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
-        allow_op3_sites=allowed_op3,
+        allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
@@ -1567,8 +1599,26 @@ def prepare_postmr(
         },
         "phosphate_policy": phosphate_policy,
         "phosphate_cleanup": {
+            "terminal_phosphate_ensure": terminal_phosphate,
             "before_restraints": phosphate_before,
             "after_readyset": phosphate_after,
+        },
+        "backbone_chemistry": {
+            "schema_version": 1,
+            "default": "standard_phosphodiester",
+            "sites": dict(backbone_policy["sites"]),
+            "experimental_passthrough_sites": list(passthrough_sites),
+            "user_authorized": bool(
+                backbone_policy["allow_unreviewed"] or allow_unreviewed_backbone
+            ),
+            "authorization_source": (
+                "frozen-input" if backbone_policy["allow_unreviewed"]
+                else "postmr-cli-override" if allow_unreviewed_backbone else None
+            ),
+            "review_required": bool(passthrough_sites),
+            "review_status": (
+                "UNREVIEWED_NONSTANDARD_BACKBONE" if passthrough_sites else "NOT_REQUIRED"
+            ),
         },
         "component_identity": {
             code: {

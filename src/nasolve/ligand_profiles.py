@@ -18,6 +18,7 @@ from .model_assessment import file_sha256
 from .phosphate import (PhosphateError, _atoms, audit_phosphates,
                         requested_op3_sites, validate_op3_sites)
 from .run_context import artifact_reference
+from .backbone import requested_backbone_policy
 
 AUTHORITATIVE_CODES = frozenset({"1AP"})
 MOD_ID = "NASnoOP3"
@@ -162,10 +163,13 @@ def _profile_inventory(model: Path) -> dict[str, str]:
 
 def write_linked_profile(
     model: Path, directory: Path, *, allow_op3_sites: tuple[str, ...] = (),
+    passthrough_sites: tuple[str, ...] = (),
 ) -> tuple[dict[str, object], tuple[Path, ...]]:
     inventory = _profile_inventory(model)
-    audit = audit_phosphates(model, allow_op3_sites=allow_op3_sites,
-                             inspect_sites=tuple(inventory))
+    audit = audit_phosphates(
+        model, allow_op3_sites=allow_op3_sites, inspect_sites=tuple(inventory),
+        passthrough_sites=passthrough_sites,
+    )
     modifications = []
     for item in audit["checked"]:
         if item["site"] in inventory and item["incoming_site"] is not None:
@@ -194,6 +198,8 @@ def write_linked_profile(
 def validate_model_phosphate_policy(model: Path, report: Mapping[str, object]) -> dict[str, object]:
     """Validate both default OP3 policy and the identities frozen in the PHIL."""
     allowed = requested_op3_sites(report)
+    backbone = requested_backbone_policy(report)
+    passthrough = tuple(backbone["experimental_passthrough_sites"])
     postmr = report.get("postmr")
     profile = postmr.get("linked_phosphate_profile") if isinstance(postmr, Mapping) else None
     modifications = []
@@ -209,8 +215,11 @@ def validate_model_phosphate_policy(model: Path, report: Mapping[str, object]) -
             for item in modifications
         ):
             raise PhosphateError("Malformed linked-phosphate modification inventory")
-    result = audit_phosphates(model, allow_op3_sites=allowed,
-                             check_sites=tuple(item["site"] for item in modifications))
+    result = audit_phosphates(
+        model, allow_op3_sites=allowed,
+        check_sites=tuple(item["site"] for item in modifications),
+        passthrough_sites=passthrough,
+    )
     actual = {item["site"]: (item["incoming_site"], item["outgoing_site"]) for item in result["checked"]}
     if any(actual.get(item["site"]) != (item["incoming_site"], item.get("outgoing_site"))
            for item in modifications):
