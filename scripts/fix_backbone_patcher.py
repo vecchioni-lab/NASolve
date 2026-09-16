@@ -29,5 +29,17 @@ if text.count(needle) != 1:
     raise SystemExit(f"Expected one AutoMR replacement tail, found {text.count(needle)}")
 text = text.replace(needle, replacement, 1)
 
+needle = '''    "CHANGELOG.md",
+    "### Changed\\n\\n",
+    "### Changed\\n\\n"
+'''
+replacement = '''    "CHANGELOG.md",
+    "## [Unreleased]\\n\\n### Changed\\n\\n",
+    "## [Unreleased]\\n\\n### Changed\\n\\n"
+'''
+if text.count(needle) != 1:
+    raise SystemExit(f"Expected one changelog patch block, found {text.count(needle)}")
+text = text.replace(needle, replacement, 1)
+
 path.write_text(text, encoding="utf-8")
-print("Disambiguated AutoMR log patch anchor.")
+print("Disambiguated AutoMR and changelog patch anchors.")
