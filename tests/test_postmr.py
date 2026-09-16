@@ -20,6 +20,7 @@ from nasolve.postmr import (
     _read_report,
     _restore_canonical_mutation_backbones,
     _restore_shared_parent_coordinates,
+    _run_readyset,
     _solution_model,
     build_mutation_plan,
     prepare_postmr,
@@ -242,6 +243,33 @@ class PostMRTests(unittest.TestCase):
                 "END\n",
             ]))
             self.assertEqual(_modified_nucleotide_sites(model), {"A:12"})
+
+    def test_readyset_successful_noop_preserves_and_audits_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "prepared_model.pdb"
+            model.write_text(postmr_model_text("DC", "DG"))
+            readyset_directory = root / "ReadySet"
+            readyset_directory.mkdir()
+            executable = root / "phenix.ready_set"
+            executable.write_text(
+                "#!/bin/sh\n"
+                "echo 'No unknown residues'\n"
+                "exit 0\n"
+            )
+            executable.chmod(executable.stat().st_mode | 0o100)
+
+            checked, log, generated_cif, command, audit = _run_readyset(
+                model, executable, readyset_directory, None, None
+            )
+
+            self.assertTrue(checked.is_file())
+            self.assertEqual(checked.read_text(), model.read_text())
+            self.assertIn("No unknown residues", log.read_text())
+            self.assertIsNone(generated_cif)
+            self.assertEqual(command[0], str(executable))
+            self.assertEqual(audit["readyset_output_mode"], "successful-noop")
+            self.assertFalse((readyset_directory / "prepared_model.updated.pdb").exists())
 
     def test_modified_pairs_only_works_for_nonstandard_and_still_runs_readyset(self):
         with tempfile.TemporaryDirectory() as directory:

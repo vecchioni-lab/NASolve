@@ -1208,12 +1208,26 @@ def _run_readyset(
     log.write_text(completed.stdout, encoding="utf-8")
     updated = readyset_directory / f"{model.stem}.updated.pdb"
     generated_cif = readyset_directory / f"{model.stem}.ligands.cif"
-    if completed.returncode or not updated.is_file():
+    if completed.returncode:
         raise PostMRPreparationError(
             f"ReadySet failed with status {completed.returncode}; inspect {log}"
         )
+    readyset_source = updated
+    readyset_output_mode = "updated-model"
+    if not updated.is_file():
+        if re.search(r"\bNo unknown residues\b", completed.stdout, re.I):
+            # Phenix 2.2 may return success without writing an updated PDB when
+            # ReadySet has nothing to modify. Preserve the already-prepared
+            # model, but still run the same phosphate and atom-count audits.
+            readyset_source = model
+            readyset_output_mode = "successful-noop"
+        else:
+            raise PostMRPreparationError(
+                "ReadySet exited successfully but did not write its expected updated model; "
+                f"inspect {log}"
+            )
     before = _atom_counts(model)
-    raw_counts = _atom_counts(updated)
+    raw_counts = _atom_counts(readyset_source)
     if raw_counts[2]:
         raise PostMRPreparationError(
             f"ReadySet added {raw_counts[2]} hydrogen atom(s) despite hydrogens=False"
@@ -1221,9 +1235,10 @@ def _run_readyset(
     checked = readyset_directory / f"{model.stem}.phosphate_checked.pdb"
     try:
         phosphate_audit = sanitize_phosphates(
-            updated, checked, reference_model=model, check_sites=phosphate_sites,
+            readyset_source, checked, reference_model=model, check_sites=phosphate_sites,
             allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
         )
+        phosphate_audit["readyset_output_mode"] = readyset_output_mode
     except PhosphateError as exc:
         raise PostMRPreparationError(f"ReadySet phosphate validation failed: {exc}") from exc
     after = _atom_counts(checked)
@@ -1634,7 +1649,12 @@ def prepare_postmr(
             "command": readyset_command,
             "hydrogens": False,
             "log": str(readyset_log),
-            "updated_model": str(readyset_dir / f"{prepared.stem}.updated.pdb"),
+            "output_mode": phosphate_after.get("readyset_output_mode"),
+            "updated_model": (
+                str(readyset_dir / f"{prepared.stem}.updated.pdb")
+                if phosphate_after.get("readyset_output_mode") == "updated-model"
+                else None
+            ),
             "phosphate_checked_model": {
                 **artifact_reference(updated, run), "sha256": file_sha256(updated),
             },

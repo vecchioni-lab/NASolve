@@ -122,6 +122,8 @@ entries are reconstructed from repository history.
 
 ### Fixed
 
+- ReadySet exit status 0 with the explicit `No unknown residues` result is now accepted as a successful no-op when Phenix writes no `*.updated.pdb`. NASolve preserves the already-prepared model, still runs its phosphate/atom-count audits, and records the no-op output mode; missing ReadySet output without that explicit success condition still fails closed.
+
 - Refine Doctor's interactive `i` answer now opens the recommended checkpoint
   in Coot and returns to the same selection prompt. Answers take effect after
   Enter; only `y` selects a checkpoint. Declining, blank input, EOF or Ctrl-C
