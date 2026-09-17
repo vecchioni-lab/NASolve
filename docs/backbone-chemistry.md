@@ -59,37 +59,59 @@ idealized target.
 
 Low-information terminal groups can be driven into chemically implausible
 internal geometry by global diffraction weighting even when their starting
-coordinates and native Phenix restraints are valid. NASolve should treat this
-as a refinement/Doctor problem, not as evidence that a plausible constructor
-must be rewritten to follow noisy density.
+coordinates and native Phenix restraints are valid. For a declared standard
+terminal phosphate, NASolve therefore treats local geometry protection as part
+of the normal chemistry contract rather than waiting for an unprotected
+refinement to fail first.
 
-The reviewed recovery pattern is:
+The production contract is:
 
 1. construct the explicitly requested terminal group in a local molecular frame;
 2. validate it for completeness, connectivity, severe clashes, and Phenix
    interpretability;
-3. refine normally using native Phenix chemistry and normal global weighting;
-4. audit the refined local geometry against the native restraints;
-5. if a low-information constructed group is driven beyond a hard chemical
-   threshold, create an immutable sibling Refine Doctor branch from the clean
-   parent checkpoint;
-6. in that sibling, use Phenix `geometry_restraints.edits` with
-   `action = change` to tighten the sigma of the **existing native restraints**
-   at the declared site, without adding duplicate restraints or inventing new
-   ideals; and
-7. compare the locally protected branch with the ordinary branch while keeping
-   global diffraction/stereochemistry weighting unchanged unless there is a
-   separate reason to test a global weighting recipe.
+3. obtain the authoritative native terminal-phosphate geometry from Phenix
+   interpretation rather than hard-coding a second NASolve geometry table;
+4. before the first coordinate refinement, generate local
+   `geometry_restraints.edits` using `action = change` to retain Phenix's native
+   ideals while tightening only the reviewed low-information internal geometry;
+5. keep normal global diffraction/stereochemistry weighting unless an
+   independent diagnostic justifies changing it;
+6. record the protection file as a normal checkpoint restraint artifact so it
+   is inherited transitively by every refinement, Doctor branch, or manual
+   child descended from that protected checkpoint;
+7. after every refinement, audit the declared terminal group against the final
+   Phenix geometry restraints; and
+8. if the protected group still exceeds the guarded geometry threshold, stop
+   for review and allow Refine Doctor to create a bounded clean-parent rescue
+   rather than silently accepting the distorted coordinates.
 
-The first validated 5'-phosphate experiment tightened the six native P-centered
-angle restraints locally and substantially restored sensible phosphate geometry
-without globally weakening the diffraction target. A globally conservative
-`wxc_scale` branch remains useful as a diagnostic, but local native-restraint
-protection is the preferred production direction for this failure mode.
+The first validated 5'-phosphate experiment established this policy
+experimentally. An unprotected default refinement drove one native P-centered
+angle to approximately 7 sigma from its Phenix target. A sibling using local
+`action = change` protection retained normal global X-ray weighting, removed
+the severe violation, passed all 11 terminal-phosphate geometry checks, and did
+not worsen the global R factors. The protected branch therefore becomes the
+production default; the deliberately unprotected route remains diagnostic.
 
-This logic belongs in refinement provenance/Doctor policy. NARestraints remains
-responsible for reviewed pairing/stacking geometry and should not duplicate
-Phenix's native terminal-phosphate restraints.
+Protection is lineage-scoped. A child of a protected checkpoint inherits the
+protection automatically. A deliberate branch from an older unprotected
+checkpoint does not silently acquire it unless terminal-phosphate protection is
+being generated anew from the declared chemistry contract. Future merge/rebase
+operations must preserve all applicable chemistry-protection restraints and
+rerun the terminal-geometry audit afterward.
+
+An advanced opt-out may disable proactive terminal-phosphate protection for
+diagnostic or method-development work. Such an override must be explicit,
+prominently reported in provenance, and must **not** disable the final geometry
+audit. Automatic chemistry rescue should also remain suppressed while that
+override is active, so "off" means deliberately off rather than partially off.
+
+A globally conservative `wxc_scale` branch remains useful as a diagnostic, but
+blanket global reweighting is not the preferred production response to a local
+terminal-group geometry problem.
+
+NARestraints remains responsible for reviewed pairing/stacking geometry and
+should not duplicate Phenix's native terminal-phosphate restraints.
 
 ## 3'-terminal phosphates
 
