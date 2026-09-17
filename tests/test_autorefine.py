@@ -10,6 +10,7 @@ import nasolve.checkpoints as checkpoint_module
 from nasolve.autorefine import (
     AutoRefineError,
     DATA_MANAGER_FILE_SCOPED,
+    audit_terminal_phosphate_geometry,
     LEGACY_EXPLICIT,
     _cached_file_referencer,
     _run_report,
@@ -281,9 +282,97 @@ class AutoRefineTests(unittest.TestCase):
             params = (result.round_directory / "autorefine.params").read_text()
             self.assertIn("optimize_xyz_weight = True", params)
             self.assertIn("wxc_scale = 0.1", params)
+            self.assertIn("write_final_geo_file = True", params)
 
             payload = json.loads(result.report_path.read_text())
             self.assertEqual(payload["recipe"], "AutoRefine/geometry-conservative")
+
+    def test_terminal_phosphate_geometry_audit_uses_phenix_native_sigmas(self):
+        with tempfile.TemporaryDirectory() as directory:
+            geo = Path(directory) / "final.geo"
+
+            def bond(a, b, ideal=1.480, model=1.480, sigma=0.020):
+                return (
+                    f'bond pdb="{a:>4} DC  D   1 "\n'
+                    f'     pdb="{b:>4} DC  D   1 "\n'
+                    "  ideal  model  delta    sigma   weight residual\n"
+                    f"  {ideal:.3f}  {model:.3f} {ideal-model:6.3f} {sigma:.2e} 1.00e+00 0.00e+00\n"
+                )
+
+            def angle(a, b, c, ideal, model=None, sigma=3.0):
+                model = ideal if model is None else model
+                return (
+                    f'angle pdb="{a:>4} DC  D   1 "\n'
+                    f'      pdb="{b:>4} DC  D   1 "\n'
+                    f'      pdb="{c:>4} DC  D   1 "\n'
+                    "    ideal   model   delta    sigma   weight residual\n"
+                    f"   {ideal:.2f}  {model:.2f}  {ideal-model:.2f} {sigma:.2e} 1.00e+00 0.00e+00\n"
+                )
+
+            clean = "".join([
+                bond("P", "O5'", 1.593, 1.593, 0.010),
+                bond("P", "OP1"),
+                bond("P", "OP2"),
+                bond("P", "OP3"),
+                angle("OP1", "P", "OP2", 120.00),
+                angle("OP1", "P", "OP3", 109.47),
+                angle("OP2", "P", "OP3", 109.47),
+                angle("O5'", "P", "OP1", 109.00),
+                angle("O5'", "P", "OP2", 108.00),
+                angle("O5'", "P", "OP3", 109.47),
+                angle("P", "O5'", "C5'", 120.90, sigma=1.60),
+            ])
+            geo.write_text(clean)
+
+            audit = audit_terminal_phosphate_geometry(geo, ("D:1",))
+            self.assertEqual(audit["status"], "PASS")
+            self.assertFalse(audit["requires_review"])
+            self.assertEqual(audit["sites"][0]["restraint_count"], 11)
+
+            geo.write_text(
+                clean.replace(
+                    angle("OP1", "P", "OP3", 109.47),
+                    angle("OP1", "P", "OP3", 109.47, model=88.47),
+                )
+            )
+            audit = audit_terminal_phosphate_geometry(geo, ("D:1",))
+            self.assertEqual(audit["status"], "REVIEW")
+            self.assertTrue(audit["requires_review"])
+            self.assertAlmostEqual(
+                audit["sites"][0]["max_sigma_deviation"],
+                7.0,
+                places=6,
+            )
+
+    def test_terminal_geometry_review_blocks_numerical_auto_promotion(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            forced_audit = {
+                "status": "REVIEW",
+                "requires_review": True,
+                "sigma_threshold": 5.0,
+                "sites": [{"site": "D:1", "max_sigma_deviation": 7.0}],
+            }
+            with patch(
+                "nasolve.autorefine.audit_terminal_phosphate_geometry",
+                return_value=forced_audit,
+            ):
+                result = execute_autorefine(
+                    run,
+                    make_refine(root, final_work=0.20, final_free=0.24),
+                    make_mtz_dump(root),
+                    phenix_version="2.2.1-6174",
+                    environment={"PATH": "/usr/bin:/bin"},
+                    macro_cycles=1,
+                )
+
+            self.assertEqual(result.status, "AUTOREFINE_REVIEW")
+            self.assertFalse(result.selected_as_current)
+            payload = json.loads(result.report_path.read_text())
+            self.assertTrue(
+                payload["acceptance"]["terminal_geometry_review"]
+            )
 
     def test_phenix_22_preflight_failure_prevents_refinement(self):
         with tempfile.TemporaryDirectory() as directory:

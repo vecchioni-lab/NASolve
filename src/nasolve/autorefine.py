@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Callable, Mapping, Sequence
 
 from .ligand_profiles import validate_model_phosphate_policy
-from .phosphate import PhosphateError
+from .phosphate import PhosphateError, requested_op3_sites
 from .checkpoints import (
     CheckpointError,
     _inherited_paths_for_autorefine,
@@ -104,6 +104,8 @@ HL_LABEL_SETS = (
 FREE_R_LABELS = ("FreeR_flag", "R-free-flags", "FREE", "FreeR")
 DATA_MANAGER_FILE_SCOPED = "data-manager-file-scoped"
 LEGACY_EXPLICIT = "legacy-explicit"
+_TERMINAL_GEOMETRY_REVIEW_SIGMA = 5.0
+_GEO_ATOM = re.compile(r'pdb="\s*([^"]+?)\s*"')
 _PHENIX_VERSION = re.compile(
     r"(?:Phenix\s+)?(\d+)\.(\d+)(?:\.(\d+))?"
     r"(?:[-._][A-Za-z0-9][A-Za-z0-9._-]*)?",
@@ -450,6 +452,9 @@ def write_recipe_parameters(
         f"    optimize_adp_weight = {adp_mode != 'none'}",
         f"    wxc_scale = {xyz_wxc_scale:g}",
         "  }",
+        "  output {",
+        "    write_final_geo_file = True",
+        "  }",
         "}",
         "",
     ])
@@ -720,6 +725,175 @@ def anomalous_scatterer_diagnostics(
             ),
         })
     return results
+
+
+def audit_terminal_phosphate_geometry(
+    geometry_file: Path | None,
+    sites: Sequence[str],
+    *,
+    sigma_threshold: float = _TERMINAL_GEOMETRY_REVIEW_SIGMA,
+) -> dict[str, object]:
+    """Audit declared 5'-terminal phosphates against Phenix's own final restraints.
+
+    No ideal values are encoded here. The final .geo file supplies ideal, model,
+    and sigma values. A future 3'-phosphate implementation can reuse the same
+    normalized-deviation gate with its own restraint-block selector.
+    """
+    if (
+        isinstance(sigma_threshold, bool)
+        or not isinstance(sigma_threshold, (int, float))
+        or not math.isfinite(sigma_threshold)
+        or sigma_threshold <= 0
+    ):
+        raise AutoRefineError("Terminal-geometry sigma threshold must be positive and finite")
+
+    requested = tuple(sites)
+    if not requested:
+        return {
+            "status": "NOT_REQUESTED",
+            "requires_review": False,
+            "sigma_threshold": float(sigma_threshold),
+            "sites": [],
+        }
+
+    if geometry_file is None or not geometry_file.is_file():
+        return {
+            "status": "REVIEW",
+            "requires_review": True,
+            "reason": "final-geometry-file-missing",
+            "sigma_threshold": float(sigma_threshold),
+            "sites": [
+                {
+                    "site": site,
+                    "restraint_count": 0,
+                    "expected_restraint_count": 11,
+                    "max_sigma_deviation": None,
+                    "severe_restraints": [],
+                    "restraints": [],
+                }
+                for site in requested
+            ],
+        }
+
+    lines = geometry_file.read_text(encoding="utf-8", errors="replace").splitlines()
+    starts = [
+        index
+        for index, line in enumerate(lines)
+        if line.startswith(("bond ", "angle "))
+    ]
+
+    aliases = {"O1P": "OP1", "O2P": "OP2", "O3P": "OP3"}
+    terminal_oxygens = {"O5'", "OP1", "OP2", "OP3"}
+    rows_by_site: dict[str, list[dict[str, object]]] = {
+        site: [] for site in requested
+    }
+
+    for number, start in enumerate(starts):
+        end = starts[number + 1] if number + 1 < len(starts) else len(lines)
+        block = lines[start:end]
+        text = "\n".join(block)
+        kind = block[0].split(None, 1)[0]
+
+        atoms: list[tuple[str, str, str]] = []
+        for match in _GEO_ATOM.finditer(text):
+            fields = match.group(1).split()
+            if len(fields) < 4:
+                continue
+            name = aliases.get(fields[0], fields[0])
+            atoms.append((name, fields[-2], fields[-1]))
+
+        if kind == "bond" and len(atoms) != 2:
+            continue
+        if kind == "angle" and len(atoms) != 3:
+            continue
+
+        atom_names = tuple(atom[0] for atom in atoms)
+
+        if kind == "bond":
+            wanted = (
+                "P" in atom_names
+                and len(set(atom_names) & terminal_oxygens) == 1
+            )
+        else:
+            wanted = (
+                (
+                    atom_names[1] == "P"
+                    and atom_names[0] in terminal_oxygens
+                    and atom_names[2] in terminal_oxygens
+                    and atom_names[0] != atom_names[2]
+                )
+                or (
+                    atom_names[1] == "O5'"
+                    and {atom_names[0], atom_names[2]} == {"P", "C5'"}
+                )
+            )
+        if not wanted:
+            continue
+
+        values = None
+        for index, line in enumerate(block[:-1]):
+            if all(label in line for label in ("ideal", "model", "delta", "sigma")):
+                fields = block[index + 1].split()
+                if len(fields) >= 4:
+                    try:
+                        values = tuple(float(value) for value in fields[:4])
+                    except ValueError:
+                        values = None
+                break
+        if values is None:
+            continue
+
+        ideal, model, delta, sigma = values
+        sigma_deviation = (
+            abs(delta) / sigma
+            if sigma > 0 and math.isfinite(sigma)
+            else math.inf
+        )
+
+        for site in requested:
+            chain, resid = site.split(":", 1)
+            if all(atom[1] == chain and atom[2] == resid for atom in atoms):
+                rows_by_site[site].append({
+                    "kind": kind,
+                    "atoms": list(atom_names),
+                    "ideal": ideal,
+                    "model": model,
+                    "delta": delta,
+                    "sigma": sigma,
+                    "sigma_deviation": sigma_deviation,
+                    "severe": sigma_deviation >= sigma_threshold,
+                })
+
+    site_reports: list[dict[str, object]] = []
+    requires_review = False
+
+    for site in requested:
+        restraints = rows_by_site[site]
+        severe = [row for row in restraints if row["severe"] is True]
+        complete = len(restraints) == 11
+        maximum = max(
+            (float(row["sigma_deviation"]) for row in restraints),
+            default=None,
+        )
+        site_review = (not complete) or bool(severe)
+        requires_review = requires_review or site_review
+        site_reports.append({
+            "site": site,
+            "restraint_count": len(restraints),
+            "expected_restraint_count": 11,
+            "max_sigma_deviation": maximum,
+            "severe_restraints": severe,
+            "restraints": restraints,
+            "requires_review": site_review,
+        })
+
+    return {
+        "status": "REVIEW" if requires_review else "PASS",
+        "requires_review": requires_review,
+        "sigma_threshold": float(sigma_threshold),
+        "geometry_file": str(geometry_file),
+        "sites": site_reports,
+    }
 
 
 def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str, object]:
@@ -1036,6 +1210,10 @@ def execute_autorefine(
     except CheckpointError as exc:
         raise AutoRefineError(str(exc)) from exc
     report = _run_report(run)
+    try:
+        terminal_phosphate_sites = requested_op3_sites(report)
+    except PhosphateError as exc:
+        raise AutoRefineError(f"Malformed frozen terminal-phosphate intent: {exc}") from exc
     verified_phase = (
         _effective_phase(report, inherited, run)
         if use_experimental_phases
@@ -1167,11 +1345,17 @@ def execute_autorefine(
         "refined_*.mtz",
         include=lambda path: "map_coeffs" not in path.name.casefold(),
     )
+    final_geometry = _discover_output(round_directory, "refined_*_final.geo")
+    terminal_geometry_audit = audit_terminal_phosphate_geometry(
+        final_geometry,
+        terminal_phosphate_sites,
+    )
     model_text = (
         output_model.read_text(encoding="utf-8", errors="replace")
         if output_model is not None else ""
     )
     statistics = parse_refinement_statistics(log_text, model_text)
+    statistics["terminal_geometry_audit"] = terminal_geometry_audit
     statistics["anomalous_scatterers"] = anomalous_scatterer_diagnostics(
         log_text,
         output_model,
@@ -1201,6 +1385,9 @@ def execute_autorefine(
         ),
         "refinement_reflections": (
             file_reference(output_reflections) if output_reflections else None
+        ),
+        "final_geometry": (
+            file_reference(final_geometry) if final_geometry else None
         ),
         "metrics_tsv": file_reference(round_directory / "metrics.tsv"),
         "full_log": file_reference(log_path),
@@ -1253,6 +1440,15 @@ def execute_autorefine(
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 2
+    elif terminal_geometry_audit["requires_review"] is True:
+        status = "AUTOREFINE_REVIEW"
+        message = (
+            "Refinement completed, but declared terminal-phosphate geometry exceeds "
+            "the native Phenix restraint review threshold"
+        )
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
     elif numerical_success:
         status = "AUTOREFINE_READY"
         message = "Numerical refinement criteria passed; inspect the model and maps"
@@ -1348,7 +1544,11 @@ def execute_autorefine(
             "adp_mode": adp_mode,
             "refine_occupancies": refine_occupancies,
             "refine_coordinates": refine_coordinates,
-            "weights": {"optimize_xyz": refine_coordinates, "optimize_adp": adp_mode != "none"},
+            "weights": {
+                "optimize_xyz": refine_coordinates,
+                "optimize_adp": adp_mode != "none",
+                "wxc_scale": xyz_wxc_scale,
+            },
             "ordered_solvent": False,
             "simulated_annealing": False,
         },
@@ -1359,6 +1559,7 @@ def execute_autorefine(
             ),
             "r_work_less_than_0_30": r_work < 0.30 if isinstance(r_work, float) else False,
             "numerical_success": numerical_success,
+            "terminal_geometry_review": terminal_geometry_audit["requires_review"],
             "visual_inspection_required": True,
         },
         "outputs": {
@@ -1367,6 +1568,7 @@ def execute_autorefine(
             "reflection_cif": str(reflection_cif) if reflection_cif else None,
             "map_coefficients": str(map_coefficients) if map_coefficients else None,
             "refinement_reflections": str(output_reflections) if output_reflections else None,
+            "final_geometry": str(final_geometry) if final_geometry else None,
             "metrics_tsv": str(round_directory / "metrics.tsv"),
             "log": str(log_path),
             "preflight_log": str(preflight_log),
@@ -1406,6 +1608,7 @@ __all__ = [
     "ReflectionSelectorPolicy",
     "anomalous_selections",
     "anomalous_scatterer_diagnostics",
+    "audit_terminal_phosphate_geometry",
     "build_refine_command",
     "build_reflection_plan",
     "execute_autorefine",
