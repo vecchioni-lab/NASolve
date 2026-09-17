@@ -19,6 +19,7 @@ from nasolve.autorefine import (
     execute_autorefine,
     parse_refinement_statistics,
     reflection_selector_policy,
+    write_terminal_phosphate_protection,
 )
 from nasolve.checkpoints import initialize_registry, list_checkpoints
 from nasolve.model_assessment import file_sha256
@@ -343,6 +344,74 @@ class AutoRefineTests(unittest.TestCase):
                 7.0,
                 places=6,
             )
+
+    def test_terminal_phosphate_protection_can_target_clean_declared_site(self):
+        with tempfile.TemporaryDirectory() as directory:
+            destination = Path(directory) / "terminal_phosphate_protection.phil"
+            audit = {
+                "status": "PASS",
+                "requires_review": False,
+                "sites": [{
+                    "site": "D:1",
+                    "requires_review": False,
+                    "restraints": [
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP2"], "ideal": 120.00},
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["OP2", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP1"], "ideal": 109.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP2"], "ideal": 108.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP3"], "ideal": 109.47},
+                    ],
+                }],
+            }
+
+            record = write_terminal_phosphate_protection(
+                audit,
+                destination,
+                protect_sites=("D:1",),
+            )
+
+            self.assertEqual(record["sites"], ["D:1"])
+            self.assertEqual(record["angle_count"], 6)
+            self.assertEqual(destination.read_text().count("action = *change"), 6)
+
+            with self.assertRaises(
+                AutoRefineError,
+                msg="PASS audit must not trigger Doctor-style protection implicitly",
+            ):
+                write_terminal_phosphate_protection(
+                    audit,
+                    Path(directory) / "implicit.phil",
+                )
+
+    def test_terminal_phosphate_protection_fails_closed_for_missing_declared_site(self):
+        with tempfile.TemporaryDirectory() as directory:
+            audit = {
+                "status": "PASS",
+                "requires_review": False,
+                "sites": [{
+                    "site": "D:1",
+                    "requires_review": False,
+                    "restraints": [
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP2"], "ideal": 120.00},
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["OP2", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP1"], "ideal": 109.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP2"], "ideal": 108.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP3"], "ideal": 109.47},
+                    ],
+                }],
+            }
+
+            with self.assertRaises(
+                AutoRefineError,
+                msg="Explicit proactive protection must fail if the requested site is absent",
+            ):
+                write_terminal_phosphate_protection(
+                    audit,
+                    Path(directory) / "missing.phil",
+                    protect_sites=("A:1",),
+                )
 
     def test_terminal_geometry_review_blocks_numerical_auto_promotion(self):
         with tempfile.TemporaryDirectory() as directory:

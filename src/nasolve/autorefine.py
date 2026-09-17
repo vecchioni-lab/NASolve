@@ -901,6 +901,7 @@ def write_terminal_phosphate_protection(
     destination: Path,
     *,
     sigma: float = 1.0,
+    protect_sites: Sequence[str] | None = None,
 ) -> dict[str, object]:
     """Write local action=change restraints from Phenix's audited native ideals."""
     if (
@@ -913,22 +914,37 @@ def write_terminal_phosphate_protection(
             "Terminal-geometry protection sigma must be positive and finite"
         )
 
-    sites = audit.get("sites")
-    if not isinstance(sites, list):
+    site_records = audit.get("sites")
+    if not isinstance(site_records, list):
         raise AutoRefineError("Terminal-geometry audit has no site records")
+
+    requested_sites: tuple[str, ...] | None = None
+    if protect_sites is not None:
+        requested_sites = tuple(protect_sites)
+        if (
+            not requested_sites
+            or any(not isinstance(site, str) or ":" not in site for site in requested_sites)
+            or len(set(requested_sites)) != len(requested_sites)
+        ):
+            raise AutoRefineError(
+                "Explicit terminal-phosphate protection sites must be unique chain:resid values"
+            )
 
     lines = ["refinement.geometry_restraints.edits {"]
     protected_sites: list[str] = []
     angle_count = 0
     allowed = {"P", "OP1", "OP2", "OP3", "O5'"}
 
-    for item in sites:
+    for item in site_records:
         if not isinstance(item, Mapping):
-            continue
-        if item.get("requires_review") is not True:
             continue
 
         site = item.get("site")
+        if requested_sites is None:
+            if item.get("requires_review") is not True:
+                continue
+        elif site not in requested_sites:
+            continue
         restraints = item.get("restraints")
         if (
             not isinstance(site, str)
@@ -996,6 +1012,12 @@ def write_terminal_phosphate_protection(
     if not protected_sites:
         raise AutoRefineError(
             "Terminal-geometry trigger contains no protectable phosphate site"
+        )
+    if requested_sites is not None and set(protected_sites) != set(requested_sites):
+        missing = sorted(set(requested_sites) - set(protected_sites))
+        raise AutoRefineError(
+            "Terminal-phosphate protection audit is incomplete for: "
+            + ", ".join(missing)
         )
 
     lines.extend(["}", ""])
