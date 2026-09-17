@@ -1187,6 +1187,7 @@ def execute_autorefine(
     anomalous_mode: str = "refine",
     refine_coordinates: bool = True,
     anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
+    extra_restraints: Sequence[Path] = (),
     auto_select_success: bool = True,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
@@ -1225,6 +1226,29 @@ def execute_autorefine(
     restraints = inherited["restraints"]
     assert isinstance(observations, Path) and isinstance(model, Path)
     assert isinstance(restraints, list)
+
+    parent_restraint_records = parent.get("restraints", [])
+    if not isinstance(parent_restraint_records, list):
+        raise AutoRefineError("Parent checkpoint restraint provenance is malformed")
+
+    seen_restraints = {
+        path.expanduser().resolve()
+        for path in restraints
+        if isinstance(path, Path)
+    }
+    resolved_extra_restraints: list[Path] = []
+    for value in extra_restraints:
+        path = Path(value).expanduser().resolve()
+        if not path.is_file():
+            raise AutoRefineError(
+                f"Additional refinement restraint does not exist: {path}"
+            )
+        if path in seen_restraints:
+            continue
+        seen_restraints.add(path)
+        resolved_extra_restraints.append(path)
+
+    restraints = [*restraints, *resolved_extra_restraints]
     validate_refined_model(model, report)
     plan = build_reflection_plan(
         report,
@@ -1377,6 +1401,9 @@ def execute_autorefine(
 
     file_reference = _cached_file_referencer(run)
     model_reference = file_reference(output_model) if output_model is not None else None
+    extra_restraint_references = [
+        file_reference(path) for path in resolved_extra_restraints
+    ]
     output_references = {
         "model_cif": file_reference(model_cif) if model_cif else None,
         "reflection_cif": file_reference(reflection_cif) if reflection_cif else None,
@@ -1489,7 +1516,10 @@ def execute_autorefine(
         # Keep observations authoritative across every branch; output MTZ is evidence only.
         "observations": parent.get("observations"),
         "phases": phase_reference or parent.get("phases"),
-        "restraints": parent.get("restraints", []),
+        "restraints": [
+            *parent_restraint_records,
+            *extra_restraint_references,
+        ],
         "metrics": {
             key: value
             for key, value in statistics.items()
@@ -1530,6 +1560,9 @@ def execute_autorefine(
             "phase_file": str(phase_file) if phase_file else None,
             "phase_labels": list(plan.phase_labels),
             "restraints": [str(path) for path in restraints],
+            "extra_restraints": [
+                str(path) for path in resolved_extra_restraints
+            ],
         },
         "refinement": {
             "target": "automatic",

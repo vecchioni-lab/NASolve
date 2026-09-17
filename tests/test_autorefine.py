@@ -374,6 +374,30 @@ class AutoRefineTests(unittest.TestCase):
                 payload["acceptance"]["terminal_geometry_review"]
             )
 
+    def test_extra_restraint_is_passed_to_refine_and_recorded(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            extra = root / "terminal-protection.phil"
+            extra.write_text("refinement.geometry_restraints.edits {}\n")
+
+            result = execute_autorefine(
+                run,
+                make_refine(root, final_work=0.244, final_free=0.267),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+                macro_cycles=1,
+                extra_restraints=(extra,),
+                auto_select_success=False,
+            )
+
+            payload = json.loads(result.report_path.read_text())
+            expected = str(extra.resolve())
+            self.assertEqual(payload["inputs"]["extra_restraints"], [expected])
+            self.assertIn(expected, payload["inputs"]["restraints"])
+            self.assertIn(expected, payload["command"])
+
     def test_phenix_22_preflight_failure_prevents_refinement(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
