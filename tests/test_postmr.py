@@ -180,12 +180,10 @@ class PostMRTests(unittest.TestCase):
                 output: Path,
                 *,
                 include_stacking: bool,
-                terminal_phosphate_sites: tuple[str, ...] = (),
             ):
                 self.assertEqual(path, compatibility)
                 self.assertEqual(stretches, "parsed")
                 self.assertFalse(include_stacking)
-                self.assertEqual(terminal_phosphate_sites, ("D:1",))
                 output.write_text("geometry_restraints.edits {}\n")
 
             guesser.guess_pairs = guess_pairs
@@ -205,7 +203,6 @@ class PostMRTests(unittest.TestCase):
             with patch.dict(sys.modules, modules):
                 report = _default_modified_pair_restraints_builder(
                     prepared, compatibility, pair_output, restraint_output,
-                    terminal_phosphate_sites=("D:1",),
                 )
             self.assertEqual(report["guessed_pair_count"], 2)
             self.assertEqual(report["retained_pair_count"], 1)
@@ -213,7 +210,7 @@ class PostMRTests(unittest.TestCase):
             self.assertFalse(report["include_stacking"])
             self.assertTrue(restraint_output.is_file())
 
-    def test_default_narestraints_builder_forwards_terminal_phosphate_sites(self):
+    def test_default_narestraints_builder_uses_released_api(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             model = root / "model.pdb"
@@ -235,12 +232,10 @@ class PostMRTests(unittest.TestCase):
             def build_phil_from_pdb(
                 path: Path, stretches: object, destination: Path, *,
                 include_stacking: bool,
-                terminal_phosphate_sites: tuple[str, ...] = (),
             ) -> None:
                 seen["path"] = path
                 seen["stretches"] = stretches
                 seen["include_stacking"] = include_stacking
-                seen["terminal_phosphate_sites"] = terminal_phosphate_sites
                 destination.write_text("geometry_restraints.edits {}\n")
 
             builder.build_phil_from_pdb = build_phil_from_pdb
@@ -254,14 +249,13 @@ class PostMRTests(unittest.TestCase):
             }
             with patch.dict(sys.modules, modules):
                 corrections = _default_narestraints_builder(
-                    model, pairs, output, terminal_phosphate_sites=("D:1",)
+                    model, pairs, output
                 )
 
             self.assertEqual(corrections, [])
             self.assertEqual(seen["path"], model)
             self.assertEqual(seen["stretches"], "parsed")
             self.assertTrue(seen["include_stacking"])
-            self.assertEqual(seen["terminal_phosphate_sites"], ("D:1",))
             self.assertTrue(output.is_file())
 
     def test_mirrored_canonical_targets_do_not_revert_to_d_dna(self):
