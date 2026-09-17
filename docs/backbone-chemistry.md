@@ -40,14 +40,56 @@ When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an
 
 1. a complete P/OP1/OP2/OP3 group is preserved;
 2. P/OP1/OP2 with missing OP3 is completed using tetrahedral starting geometry;
-3. if no phosphate atoms are present, P/OP1/OP2/OP3 are seeded from the
-   O5'-C5' direction with idealized tetrahedral starting coordinates;
+3. if no phosphate atoms are present, P/OP1/OP2/OP3 are seeded from the local
+   O5'-C5'-C4' sugar frame with idealized, clash-checked starting coordinates;
 4. any other partial phosphate state stops for review rather than guessing;
 5. the generated geometry is recorded and remains subject to ReadySet/Phenix
    regularization and final model inspection.
 
-This construction is a starting-coordinate operation, not an assertion that
-initial bond lengths or torsions are experimentally correct.
+The local-frame construction is a starting-coordinate operation, not an
+assertion that the initial group is the experimentally measured phosphate
+geometry. Live validation on a phosphate-free 5W6W fixture established that the
+constructed group can enter ReadySet and native Phenix interpretation cleanly.
+Phenix's native terminal-phosphate geometry is not a perfectly symmetric
+109.47-degree tetrahedron; where exact native ideals matter, NASolve should read
+or preserve the authoritative Phenix chemistry rather than substitute its own
+idealized target.
+
+## Refinement protection for constructed terminal chemistry
+
+Low-information terminal groups can be driven into chemically implausible
+internal geometry by global diffraction weighting even when their starting
+coordinates and native Phenix restraints are valid. NASolve should treat this
+as a refinement/Doctor problem, not as evidence that a plausible constructor
+must be rewritten to follow noisy density.
+
+The reviewed recovery pattern is:
+
+1. construct the explicitly requested terminal group in a local molecular frame;
+2. validate it for completeness, connectivity, severe clashes, and Phenix
+   interpretability;
+3. refine normally using native Phenix chemistry and normal global weighting;
+4. audit the refined local geometry against the native restraints;
+5. if a low-information constructed group is driven beyond a hard chemical
+   threshold, create an immutable sibling Refine Doctor branch from the clean
+   parent checkpoint;
+6. in that sibling, use Phenix `geometry_restraints.edits` with
+   `action = change` to tighten the sigma of the **existing native restraints**
+   at the declared site, without adding duplicate restraints or inventing new
+   ideals; and
+7. compare the locally protected branch with the ordinary branch while keeping
+   global diffraction/stereochemistry weighting unchanged unless there is a
+   separate reason to test a global weighting recipe.
+
+The first validated 5'-phosphate experiment tightened the six native P-centered
+angle restraints locally and substantially restored sensible phosphate geometry
+without globally weakening the diffraction target. A globally conservative
+`wxc_scale` branch remains useful as a diagnostic, but local native-restraint
+protection is the preferred production direction for this failure mode.
+
+This logic belongs in refinement provenance/Doctor policy. NARestraints remains
+responsible for reviewed pairing/stacking geometry and should not duplicate
+Phenix's native terminal-phosphate restraints.
 
 ## 3'-terminal phosphates
 
@@ -57,6 +99,28 @@ Unlike a 5'-terminal phosphate, a 3'-terminal phosphate can collide with the
 usual P atom naming/ownership convention of a nucleotide that already carries
 its incoming phosphate, so a real example and reviewed atom/link convention
 should precede automation.
+
+When a validated 3'-phosphate example is available, its constructor should
+explicitly inherit the lessons from the 5'-phosphate work rather than being
+implemented as a simple atom-name swap:
+
+- require an explicit, site-scoped 3'-phosphate declaration;
+- establish authoritative atom ownership, naming, connectivity, and native
+  Phenix geometry from a real reviewed example before coding the recipe;
+- construct missing atoms in a local molecular frame defined from the terminal
+  sugar, with deterministic orientation and clash checks;
+- preserve complete existing groups and fail closed on ambiguous partial states;
+- treat constructed coordinates as starting coordinates rather than measured
+  geometry;
+- validate the prepared group through ReadySet/Phenix before refinement;
+- run the same post-refinement local-geometry audit used for constructed
+  5'-phosphate chemistry; and
+- if refinement distorts the low-information group, prefer a Refine Doctor
+  sibling using local `action = change` tightening of **native** restraints over
+  duplicate custom restraints or a blanket reduction of global X-ray weight.
+
+No 3'-phosphate constructor should be generalized from the current 5' routine
+until this atom/link convention and a live refinement example are reviewed.
 
 If you need 3'-phosphate support now, please contact the developers with an
 example model and intended linkage.
