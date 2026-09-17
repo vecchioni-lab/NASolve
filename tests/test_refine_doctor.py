@@ -165,6 +165,125 @@ class RefineDoctorTests(unittest.TestCase):
             # P-O5'-C5' is deliberately not part of the six-angle protection.
             self.assertNotIn("name C5'", text)
 
+    def test_terminal_geometry_trigger_runs_protected_clean_parent_sibling(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            mtz_dump = make_mtz_dump(root)
+
+            source = execute_autorefine(
+                run,
+                make_refine(root, final_work=0.162, final_free=0.155),
+                mtz_dump,
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+            )
+            self.assertEqual(source.status, "AUTOREFINE_REVIEW")
+
+            synthetic_audit = {
+                "status": "REVIEW",
+                "requires_review": True,
+                "sigma_threshold": 5.0,
+                "sites": [{
+                    "site": "D:1",
+                    "requires_review": True,
+                    "restraint_count": 11,
+                    "expected_restraint_count": 11,
+                    "max_sigma_deviation": 7.0,
+                    "severe_restraints": [],
+                    "restraints": [
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP2"], "ideal": 120.00},
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["OP2", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP1"], "ideal": 109.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP2"], "ideal": 108.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["P", "O5'", "C5'"], "ideal": 120.90},
+                    ],
+                }],
+            }
+
+            protected_pass = {
+                "status": "PASS",
+                "requires_review": False,
+                "sigma_threshold": 5.0,
+                "sites": [{
+                    "site": "D:1",
+                    "requires_review": False,
+                    "restraint_count": 11,
+                    "expected_restraint_count": 11,
+                    "max_sigma_deviation": 1.0,
+                    "severe_restraints": [],
+                    "restraints": [],
+                }],
+            }
+
+            def source_audit(checkpoint):
+                return (
+                    synthetic_audit
+                    if checkpoint.get("id") == source.checkpoint_id
+                    else None
+                )
+
+            with patch(
+                "nasolve.refine_doctor._terminal_geometry_audit",
+                side_effect=source_audit,
+            ), patch(
+                "nasolve.autorefine.audit_terminal_phosphate_geometry",
+                return_value=protected_pass,
+            ):
+                result = execute_refine_doctor(
+                    run,
+                    make_refine(root, final_work=0.244, final_free=0.267),
+                    mtz_dump,
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    from_checkpoint=source.checkpoint_id,
+                    macro_cycles=1,
+                )
+
+            self.assertEqual(len(result.trials), 1)
+            trial = result.trials[0]
+            self.assertEqual(trial.parent_checkpoint, "postmr")
+
+            trial_report = json.loads(trial.report_path.read_text())
+            self.assertEqual(
+                trial_report["recipe"],
+                "RefineDoctor/terminal-phosphate-protected",
+            )
+            self.assertEqual(
+                len(trial_report["inputs"]["extra_restraints"]),
+                1,
+            )
+
+            protection = Path(
+                trial_report["inputs"]["extra_restraints"][0]
+            )
+            self.assertTrue(protection.is_file())
+            self.assertEqual(
+                protection.read_text().count("action = *change"),
+                6,
+            )
+
+            doctor_report = json.loads(result.report_path.read_text())
+            self.assertTrue(
+                doctor_report["terminal_geometry"]["triggered"]
+            )
+            self.assertEqual(
+                doctor_report["terminal_geometry"][
+                    "clean_parent_checkpoint"
+                ],
+                "postmr",
+            )
+            self.assertEqual(
+                doctor_report["triage"]["stop_reason"],
+                "terminal-geometry-rescued",
+            )
+            self.assertEqual(
+                doctor_report["inspection_checkpoint"],
+                trial.checkpoint_id,
+            )
+
     def test_objectively_invalid_flags_stop_before_trials(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

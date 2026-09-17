@@ -341,6 +341,54 @@ def _metrics(checkpoint: Mapping[str, object]) -> dict[str, object]:
     return dict(values) if isinstance(values, Mapping) else {}
 
 
+def _terminal_geometry_audit(
+    checkpoint: Mapping[str, object],
+) -> dict[str, object] | None:
+    metrics = checkpoint.get("metrics")
+    audit = (
+        metrics.get("terminal_geometry_audit")
+        if isinstance(metrics, Mapping)
+        else None
+    )
+    if isinstance(audit, Mapping) and audit.get("requires_review") is True:
+        return dict(audit)
+    return None
+
+
+def _terminal_geometry_rescued(
+    source_audit: Mapping[str, object],
+    trial_audit: object,
+) -> bool:
+    if not isinstance(trial_audit, Mapping):
+        return False
+    if (
+        trial_audit.get("status") != "PASS"
+        or trial_audit.get("requires_review") is not False
+    ):
+        return False
+
+    source_rows = source_audit.get("sites")
+    trial_rows = trial_audit.get("sites")
+    if not isinstance(source_rows, list) or not isinstance(trial_rows, list):
+        return False
+
+    source_sites = {
+        row.get("site")
+        for row in source_rows
+        if isinstance(row, Mapping)
+        and row.get("requires_review") is True
+        and isinstance(row.get("site"), str)
+    }
+    trial_sites = {
+        row.get("site")
+        for row in trial_rows
+        if isinstance(row, Mapping)
+        and row.get("requires_review") is False
+        and isinstance(row.get("site"), str)
+    }
+    return bool(source_sites) and source_sites.issubset(trial_sites)
+
+
 def write_terminal_phosphate_protection(
     audit: Mapping[str, object],
     destination: Path,
@@ -467,7 +515,17 @@ def _candidate(
             and math.isfinite(value) and 0 <= value <= 1
         ) else None
     work, free = metric("r_work"), metric("r_free")
-    eligible = usable and work is not None and free is not None
+    terminal_audit = statistics.get("terminal_geometry_audit")
+    terminal_geometry_review = (
+        isinstance(terminal_audit, Mapping)
+        and terminal_audit.get("requires_review") is True
+    )
+    eligible = (
+        usable
+        and work is not None
+        and free is not None
+        and not terminal_geometry_review
+    )
     gap = free - work if work is not None and free is not None else None
     return {
         "checkpoint": checkpoint,
@@ -476,6 +534,7 @@ def _candidate(
         "r_free": free,
         "r_free_minus_r_work": gap,
         "usable": usable,
+        "terminal_geometry_review": terminal_geometry_review,
         "eligible_for_inspection": eligible,
         "strict_success": bool(eligible and accepted and work < .30 and work < free),
     }
@@ -578,6 +637,7 @@ def execute_refine_doctor(
         raise RefineDoctorError(str(exc)) from exc
     source_id = str(source["id"])
     original_current = str(registry.get("current"))
+    source_terminal_audit = _terminal_geometry_audit(source)
     observations = inherited.get("observations")
     model = inherited.get("model")
     if not isinstance(observations, Path) or not isinstance(model, Path):
@@ -640,9 +700,50 @@ def execute_refine_doctor(
             str(payload["recommendation"]), audit, (), (), report_path
         )
 
-    source_candidate = _candidate(source_id, str(source.get("recipe", "source")), _metrics(source),
-                                  usable=source.get("usable") is True,
-                                  accepted=source.get("status") == "SUCCESS")
+    terminal_parent_id: str | None = None
+    terminal_protection_path: Path | None = None
+    terminal_protection: dict[str, object] | None = None
+
+    source_metrics = _metrics(source)
+    if source_terminal_audit is not None:
+        source_metrics["terminal_geometry_audit"] = source_terminal_audit
+
+    if source_terminal_audit is not None and trial_recipes is None:
+        parent_value = source.get("parent")
+        if not isinstance(parent_value, str):
+            raise RefineDoctorError(
+                "Terminal-geometry rescue requires a reusable parent checkpoint"
+            )
+        try:
+            clean_parent = resolve_checkpoint(registry, parent_value)
+        except CheckpointError as exc:
+            raise RefineDoctorError(str(exc)) from exc
+        if clean_parent.get("usable") is not True:
+            raise RefineDoctorError(
+                f"Terminal-geometry rescue parent {parent_value} is not reusable"
+            )
+        if _terminal_geometry_audit(clean_parent) is not None:
+            raise RefineDoctorError(
+                f"Terminal-geometry rescue parent {parent_value} is itself "
+                "chemically flagged; refusing to call it a clean parent"
+            )
+
+        terminal_parent_id = parent_value
+        terminal_protection_path = (
+            destination / "terminal_phosphate_protection.phil"
+        )
+        terminal_protection = write_terminal_phosphate_protection(
+            source_terminal_audit,
+            terminal_protection_path,
+        )
+
+    source_candidate = _candidate(
+        source_id,
+        str(source.get("recipe", "source")),
+        source_metrics,
+        usable=source.get("usable") is True,
+        accepted=source.get("status") == "SUCCESS",
+    )
     candidates = [source_candidate]
     benchmark = _benchmark_from_checkpoint(source, source_id)
     trials: list[AutoRefineResult] = []
@@ -652,8 +753,23 @@ def execute_refine_doctor(
         phase_available = True
     independent = audit.details.get("independent_friedel_groups")
     ratio = float(independent) / max(1, _coordinate_atom_count(model)) if isinstance(independent, int) else None
-    pool = tuple(trial_recipes) if trial_recipes is not None else (
-        ANOMALOUS_TRIALS if plan.anomalous else DEFAULT_TRIALS
+    pool = (
+        tuple(trial_recipes)
+        if trial_recipes is not None
+        else (
+            RefineDoctorTrial(
+                "RefineDoctor/terminal-phosphate-protected",
+                True,
+                real_space_sites=True,
+                adp_mode="group",
+                refine_occupancies=True,
+                anomalous_mode="refine",
+            ),
+        )
+        if source_terminal_audit is not None
+        else ANOMALOUS_TRIALS
+        if plan.anomalous
+        else DEFAULT_TRIALS
     )
     stop_reason = (
         "source-passes" if source_candidate["strict_success"] and trial_recipes is None
@@ -702,6 +818,28 @@ def execute_refine_doctor(
             if progress is not None:
                 progress(recipe_name, checkpoint, log)
 
+        terminal_trial = (
+            recipe == "RefineDoctor/terminal-phosphate-protected"
+        )
+        trial_parent = (
+            terminal_parent_id
+            if terminal_trial
+            else source_id
+        )
+        trial_extra_restraints = (
+            (terminal_protection_path,)
+            if terminal_trial and terminal_protection_path is not None
+            else ()
+        )
+
+        if trial_parent is None:
+            record.update(
+                state="failed",
+                reason="Terminal-geometry rescue parent was not resolved",
+            )
+            stop_reason = "technical-failure"
+            continue
+
         try:
             result = execute_autorefine(
                 run,
@@ -709,7 +847,7 @@ def execute_refine_doctor(
                 mtz_dump_executable,
                 phenix_version=selector_policy.phenix_version,
                 environment=environment,
-                from_checkpoint=source_id,
+                from_checkpoint=trial_parent,
                 recipe=recipe,
                 macro_cycles=macro_cycles,
                 processor_count=processor_count,
@@ -720,6 +858,7 @@ def execute_refine_doctor(
                 anomalous_mode=spec.anomalous_mode,
                 refine_coordinates=spec.refine_coordinates,
                 anomalous_groups=scattering if spec.anomalous_mode in {"fixed", "fdp-only"} else None,
+                extra_restraints=trial_extra_restraints,
                 auto_select_success=False,
                 progress=trial_progress,
             )
@@ -741,6 +880,20 @@ def execute_refine_doctor(
             ]
         if not usable:
             stop_reason = "technical-failure"
+        elif terminal_trial:
+            trial_terminal = result.statistics.get(
+                "terminal_geometry_audit"
+            )
+            if (
+                source_terminal_audit is not None
+                and _terminal_geometry_rescued(
+                    source_terminal_audit,
+                    trial_terminal,
+                )
+            ):
+                stop_reason = "terminal-geometry-rescued"
+            else:
+                stop_reason = "terminal-geometry-unresolved"
         elif candidates[-1]["strict_success"]:
             stop_reason = "numerical-pass"
     if stop_reason is None:
@@ -771,6 +924,12 @@ def execute_refine_doctor(
         "current_checkpoint_preserved": current_preserved,
         "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
         "benchmark": benchmark,
+        "terminal_geometry": {
+            "triggered": source_terminal_audit is not None,
+            "source_audit": source_terminal_audit,
+            "clean_parent_checkpoint": terminal_parent_id,
+            "protection": terminal_protection,
+        },
         "eligibility": {
             "resolution_limit": plan.resolution_limit,
             "independent_observations_per_atom": ratio,
@@ -795,8 +954,17 @@ def execute_refine_doctor(
             "stop_reason": stop_reason,
             "recipes": recipe_records,
             "next_actions": (
-                ["Inspect the failed trial log or missing prerequisites before retrying"]
-                if stop_reason in {"technical-failure", "anomalous-data-unavailable"} or scattering_error
+                [
+                    "Inspect the locally protected terminal phosphate and maps before selecting it",
+                    "Confirm the terminal-geometry audit remains below the review threshold",
+                ]
+                if stop_reason == "terminal-geometry-rescued"
+                else ["Inspect the failed trial log or missing prerequisites before retrying"]
+                if stop_reason in {
+                    "technical-failure",
+                    "anomalous-data-unavailable",
+                    "terminal-geometry-unresolved",
+                } or scattering_error
                 else ["Inspect candidate maps, modified-site restraints, and B factors",
                       "Review completeness, anisotropy, scaling, and twinning evidence if fit remains poor",
                       "Keep the frozen Free-R flags; no statistically justified winner has been established"]
