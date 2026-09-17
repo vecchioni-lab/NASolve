@@ -1,4 +1,5 @@
 import json
+import math
 import tempfile
 import unittest
 from pathlib import Path
@@ -82,6 +83,38 @@ class TerminalPhosphateTests(unittest.TestCase):
         ]
         for name in ("P", "OP1", "OP2", "OP3", "O5'", "C5'"):
             self.assertIn(name, names)
+
+        coords = {}
+        for line in text.splitlines():
+            if (
+                line.startswith(("ATOM  ", "HETATM"))
+                and line[21:22] == "D"
+                and line[22:26].strip() == "1"
+            ):
+                coords[line[12:16].strip()] = tuple(
+                    float(line[n:n + 8]) for n in (30, 38, 46)
+                )
+
+        def angle(a, b, c):
+            u = tuple(x - y for x, y in zip(coords[a], coords[b]))
+            v = tuple(x - y for x, y in zip(coords[c], coords[b]))
+            cosine = sum(x * y for x, y in zip(u, v)) / (
+                math.sqrt(sum(x * x for x in u))
+                * math.sqrt(sum(x * x for x in v))
+            )
+            return math.degrees(math.acos(max(-1.0, min(1.0, cosine))))
+
+        self.assertAlmostEqual(math.dist(coords["P"], coords["O5'"]), 1.593, delta=0.005)
+        for oxygen in ("OP1", "OP2", "OP3"):
+            self.assertAlmostEqual(math.dist(coords["P"], coords[oxygen]), 1.480, delta=0.005)
+
+        self.assertAlmostEqual(angle("P", "O5'", "C5'"), 120.90, delta=0.10)
+        self.assertAlmostEqual(angle("OP1", "P", "OP2"), 109.47, delta=0.10)
+        self.assertAlmostEqual(angle("OP1", "P", "OP3"), 109.47, delta=0.10)
+        self.assertAlmostEqual(angle("OP2", "P", "OP3"), 109.47, delta=0.10)
+        self.assertAlmostEqual(angle("O5'", "P", "OP1"), 109.47, delta=0.10)
+        self.assertAlmostEqual(angle("O5'", "P", "OP2"), 109.47, delta=0.10)
+        self.assertAlmostEqual(angle("O5'", "P", "OP3"), 109.47, delta=0.10)
 
     def test_completes_only_missing_op3(self):
         records = terminal_without_phosphate()

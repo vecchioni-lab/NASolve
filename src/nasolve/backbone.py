@@ -204,20 +204,55 @@ def _new_atom(
     return "".join(chars) + "\n"
 
 
-def _full_phosphate_coordinates(o5: _PdbAtom, c5: _PdbAtom) -> dict[str, tuple[float, float, float]]:
-    outward = _unit(_sub(o5.xyz, c5.xyz), "5'-phosphate P-O5' axis")
-    p = _add(o5.xyz, _scale(outward, 1.60))
+def _full_phosphate_coordinates(
+    o5: _PdbAtom,
+    c5: _PdbAtom,
+    c4: _PdbAtom,
+) -> dict[str, tuple[float, float, float]]:
+    # Phenix native DNA geometry restrains P-O5'-C5' to 120.90 degrees.
+    # Use the local sugar frame to choose the otherwise free torsion rather
+    # than extending C5'->O5' linearly or depending on global XYZ axes.
+    toward_c5 = _unit(_sub(c5.xyz, o5.xyz), "5'-phosphate O5'-C5' axis")
+    toward_c4 = _sub(c4.xyz, c5.xyz)
+    sugar_radial = _sub(
+        toward_c4,
+        _scale(toward_c5, _dot(toward_c4, toward_c5)),
+    )
+    away_from_sugar = _scale(
+        _unit(sugar_radial, "5'-phosphate local sugar frame"),
+        -1.0,
+    )
+
+    o5_angle = math.radians(120.90)
+    p_direction = _add(
+        _scale(toward_c5, math.cos(o5_angle)),
+        _scale(away_from_sugar, math.sin(o5_angle)),
+    )
+    p = _add(o5.xyz, _scale(p_direction, 1.593))
+
     axis = _unit(_sub(o5.xyz, p), "5'-phosphate O5'-P axis")
-    seed = (1.0, 0.0, 0.0) if abs(axis[0]) < 0.85 else (0.0, 1.0, 0.0)
-    u = _unit(_cross(axis, seed), "5'-phosphate tetrahedral basis")
-    v = _unit(_cross(axis, u), "5'-phosphate tetrahedral basis")
+
+    # Orient the terminal oxygens from the molecular frame as well. OP3 is
+    # initially placed on the side opposite the sugar; Phenix then has a
+    # chemically sensible tetrahedral starting group to regularize.
+    from_p_to_c4 = _sub(c4.xyz, p)
+    projected_sugar = _sub(
+        from_p_to_c4,
+        _scale(axis, _dot(from_p_to_c4, axis)),
+    )
+    u = _scale(
+        _unit(projected_sugar, "5'-phosphate tetrahedral local frame"),
+        -1.0,
+    )
+    v = _unit(_cross(axis, u), "5'-phosphate tetrahedral local frame")
+
     cos_theta = -1.0 / 3.0
     sin_theta = math.sqrt(8.0 / 9.0)
     result = {"P": p}
     for name, length, phi in (
-        ("OP1", 1.50, 0.0),
-        ("OP2", 1.50, 2.0 * math.pi / 3.0),
-        ("OP3", 1.60, 4.0 * math.pi / 3.0),
+        ("OP3", 1.48, 0.0),
+        ("OP1", 1.48, 2.0 * math.pi / 3.0),
+        ("OP2", 1.48, 4.0 * math.pi / 3.0),
     ):
         radial = _add(_scale(u, math.cos(phi)), _scale(v, math.sin(phi)))
         direction = _add(_scale(axis, cos_theta), _scale(radial, sin_theta))
@@ -276,6 +311,7 @@ def ensure_five_prime_phosphates(
         group = groups[site]
         o5 = _one(group, "O5'", site)
         c5 = _one(group, "C5'", site)
+        c4 = _one(group, "C4'", site)
         present = {atom.name for atom in group if atom.name in {"P", "OP1", "OP2", "OP3"}}
         last_index = max(atom.index for atom in group)
         template = o5.line
@@ -309,7 +345,7 @@ def ensure_five_prime_phosphates(
                 f"5'-phosphate {site}: partial phosphate atoms {sorted(present)} require manual review; "
                 "automatic construction supports either no phosphate or P/OP1/OP2 missing only OP3"
             )
-        coordinates = _full_phosphate_coordinates(o5, c5)
+        coordinates = _full_phosphate_coordinates(o5, c5, c4)
         built = []
         for name in ("P", "OP1", "OP2", "OP3"):
             serial += 1
@@ -318,7 +354,7 @@ def ensure_five_prime_phosphates(
         report["constructed"].append({
             "site": site,
             "added": ["P", "OP1", "OP2", "OP3"],
-            "placement": "idealized-tetrahedral-from-O5prime-C5prime",
+            "placement": "idealized-local-sugar-frame",
             "requires_downstream_geometry_review": True,
         })
     output: list[str] = []
