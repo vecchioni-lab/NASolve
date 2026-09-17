@@ -341,6 +341,121 @@ def _metrics(checkpoint: Mapping[str, object]) -> dict[str, object]:
     return dict(values) if isinstance(values, Mapping) else {}
 
 
+def write_terminal_phosphate_protection(
+    audit: Mapping[str, object],
+    destination: Path,
+    *,
+    sigma: float = 1.0,
+) -> dict[str, object]:
+    """Write local action=change restraints from Phenix's audited native ideals."""
+    if (
+        isinstance(sigma, bool)
+        or not isinstance(sigma, (int, float))
+        or not math.isfinite(sigma)
+        or sigma <= 0
+    ):
+        raise RefineDoctorError(
+            "Terminal-geometry protection sigma must be positive and finite"
+        )
+
+    sites = audit.get("sites")
+    if not isinstance(sites, list):
+        raise RefineDoctorError("Terminal-geometry audit has no site records")
+
+    lines = ["refinement.geometry_restraints.edits {"]
+    protected_sites: list[str] = []
+    angle_count = 0
+    allowed = {"P", "OP1", "OP2", "OP3", "O5'"}
+
+    for item in sites:
+        if not isinstance(item, Mapping):
+            continue
+        if item.get("requires_review") is not True:
+            continue
+
+        site = item.get("site")
+        restraints = item.get("restraints")
+        if (
+            not isinstance(site, str)
+            or ":" not in site
+            or not isinstance(restraints, list)
+        ):
+            raise RefineDoctorError("Malformed terminal-geometry site record")
+
+        chain, resid = site.split(":", 1)
+        angles: list[tuple[tuple[str, str, str], float]] = []
+
+        for row in restraints:
+            if not isinstance(row, Mapping) or row.get("kind") != "angle":
+                continue
+
+            atoms = row.get("atoms")
+            ideal = row.get("ideal")
+
+            if (
+                not isinstance(atoms, list)
+                or len(atoms) != 3
+                or not all(isinstance(atom, str) for atom in atoms)
+            ):
+                continue
+
+            # Protect only the six P-centered internal phosphate angles.
+            if atoms[1] != "P":
+                continue
+
+            atom_tuple = (atoms[0], atoms[1], atoms[2])
+            if (
+                any(atom not in allowed for atom in atom_tuple)
+                or isinstance(ideal, bool)
+                or not isinstance(ideal, (int, float))
+                or not math.isfinite(ideal)
+            ):
+                raise RefineDoctorError(
+                    f"Malformed native terminal-phosphate angle at {site}"
+                )
+
+            angles.append((atom_tuple, float(ideal)))
+
+        unique = {atoms for atoms, unused in angles}
+        if len(angles) != 6 or len(unique) != 6:
+            raise RefineDoctorError(
+                f"Terminal phosphate {site}: expected six native P-centered "
+                f"angles, found {len(angles)}"
+            )
+
+        protected_sites.append(site)
+
+        for atoms, ideal in angles:
+            lines.extend([
+                "  angle {",
+                "    action = *change",
+                f"    atom_selection_1 = chain {chain} and resid {resid} and name {atoms[0]}",
+                f"    atom_selection_2 = chain {chain} and resid {resid} and name {atoms[1]}",
+                f"    atom_selection_3 = chain {chain} and resid {resid} and name {atoms[2]}",
+                f"    angle_ideal = {ideal:.6g}",
+                f"    sigma = {float(sigma):.6g}",
+                "  }",
+            ])
+            angle_count += 1
+
+    if not protected_sites:
+        raise RefineDoctorError(
+            "Terminal-geometry trigger contains no protectable phosphate site"
+        )
+
+    lines.extend(["}", ""])
+    destination.write_text("\n".join(lines), encoding="utf-8")
+
+    return {
+        "path": str(destination),
+        "sites": protected_sites,
+        "angle_count": angle_count,
+        "sigma": float(sigma),
+        "ideal_source": "source-checkpoint-final-phenix-geometry-audit",
+        "mechanism": "phenix-action-change",
+    }
+
+
 def _candidate(
     checkpoint: str, recipe: str, statistics: Mapping[str, object], *,
     usable: bool = True, accepted: bool = True,
@@ -730,5 +845,6 @@ __all__ = [
     "RefineDoctorTrial",
     "DEFAULT_TRIALS",
     "audit_free_r_flags",
+    "write_terminal_phosphate_protection",
     "execute_refine_doctor",
 ]

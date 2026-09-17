@@ -10,6 +10,7 @@ from nasolve.refine_doctor import (
     RefineDoctorError,
     audit_free_r_flags,
     execute_refine_doctor,
+    write_terminal_phosphate_protection,
 )
 
 from .test_autorefine import (
@@ -117,6 +118,52 @@ class RefineDoctorTests(unittest.TestCase):
                 )
                 params = (trial.round_directory / "autorefine.params").read_text()
                 self.assertNotIn("data_manager", params)
+
+    def test_terminal_phosphate_protection_uses_phenix_native_ideals(self):
+        with tempfile.TemporaryDirectory() as directory:
+            destination = Path(directory) / "protect.phil"
+
+            audit = {
+                "requires_review": True,
+                "sites": [{
+                    "site": "D:1",
+                    "requires_review": True,
+                    "restraints": [
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP2"], "ideal": 120.00},
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["OP2", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP1"], "ideal": 109.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP2"], "ideal": 108.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["P", "O5'", "C5'"], "ideal": 120.90},
+                    ],
+                }],
+            }
+
+            record = write_terminal_phosphate_protection(
+                audit,
+                destination,
+            )
+            text = destination.read_text()
+
+            self.assertEqual(record["sites"], ["D:1"])
+            self.assertEqual(record["angle_count"], 6)
+            self.assertEqual(record["sigma"], 1.0)
+            self.assertEqual(
+                record["ideal_source"],
+                "source-checkpoint-final-phenix-geometry-audit",
+            )
+
+            self.assertEqual(text.count("action = *change"), 6)
+            self.assertEqual(text.count("sigma = 1"), 6)
+
+            # Native Phenix values are carried through from the audit.
+            self.assertIn("angle_ideal = 120", text)
+            self.assertIn("angle_ideal = 108", text)
+            self.assertIn("angle_ideal = 109.47", text)
+
+            # P-O5'-C5' is deliberately not part of the six-angle protection.
+            self.assertNotIn("name C5'", text)
 
     def test_objectively_invalid_flags_stop_before_trials(self):
         with tempfile.TemporaryDirectory() as directory:
