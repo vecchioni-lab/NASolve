@@ -176,6 +176,65 @@ solved C ----/
 
 A successful upstream artifact may be shared only when scientifically compatible. Immutable run/checkpoint lineage remains mandatory.
 
+## Campaign Prep and collection hierarchy
+
+A future `Campaign Prep` layer should sit upstream of campaign planning/execution and reconcile the laboratory's experiment-facing records into a clean, machine-readable campaign without rewriting the raw archive.
+
+The input side may include:
+
+- XRD spreadsheets containing sample, puck, pin, beam-date, sequence/design, anomalous, expected-space-group, and note fields;
+- design slide decks or other design records that map construct names to sequences and modified sites;
+- beamline/raw-data directories organized by date, puck, pin, and collection; and
+- autoPROC outputs or other processing results.
+
+Prep should create explicit provenance-rich relationships rather than assuming one folder equals one dataset. The core hierarchy is:
+
+```text
+design -> sequence/chemistry -> physical sample -> pin -> collection -> processing result
+```
+
+A single physical pin may have many collections: point collects, vector collects, weak or radiation-damaged collects, repeats, alternate wedges, and other attempts of very different quality. Therefore **sample, collection, processed dataset, and refinement result are distinct objects** in the durable campaign model.
+
+Prep should preserve the original pin/puck/date organization as immutable source data and create only a curated campaign view containing metadata, checksums, references/symlinks, generated inputs, and unresolved-match queues. Ambiguous sample/design/collection joins should go to a Prep Doctor queue rather than being guessed silently.
+
+## Collection triage within a sample
+
+One sample may legitimately enter NASolve through several processed collections. The default policy should be bounded rather than exhaustive:
+
+1. begin with the most promising processed collection, usually the highest-resolution candidate that passes basic processing/statistical gates;
+2. run the normal AutoMR/PostMR/AutoRefine path;
+3. if refinement, validation, or map quality is unsatisfactory, consider alternate collections from the same physical sample;
+4. compare resulting checkpoints using descriptive statistics and model-quality evidence; and
+5. either select a preferred branch automatically under reviewed hard rules or place the shortlist into a human inspection queue.
+
+Campaign execution must therefore allow multiple collection branches to share one sample/design parent while preserving immutable provenance. It should not assume that the first or nominally highest-resolution collection is scientifically best.
+
+## autoPROC automation and Doctor
+
+A future upstream autoPROC runner should read frozen experiment metadata and construct the appropriate processing intent, including reviewed settings such as anomalous handling, expected/candidate space group, global phasing-related options, and other beamline-specific flags.
+
+The runner should be paired with an AutoProc Doctor that can recognize common technical/statistical failure modes and retry a bounded set of reviewed recipes. Every processing attempt should remain inspectable and attributable to its input collection and parameter set.
+
+Processing automation should not silently reinterpret user-declared chemistry/symmetry intent; disagreements between metadata and processing evidence should be surfaced explicitly.
+
+## Dataset merging / combination search
+
+A later autoPROC-side feature should explore merging multiple equivalent or near-equivalent collections from the same sample/design family when a single collection is incomplete or statistically poor despite high nominal resolution.
+
+This is intentionally a search problem. A collection reaching, for example, 0.7 A may still be unusable because completeness, redundancy, radiation damage, scaling consistency, or other statistics are poor. Combining several compatible collections may improve the usable dataset, but the best subset may not be obvious in advance.
+
+The merger should therefore:
+
+- define explicit compatibility gates before attempting a merge;
+- generate bounded candidate subsets rather than blindly trying every power-set combination;
+- run autoPROC/scaling on those candidates with frozen provenance;
+- compare merged-data statistics to the best individual parent datasets;
+- retain only scientifically meaningful improvements for downstream NASolve testing;
+- permit Campaign/AutoProc Doctor to expand the search budget when early candidates fail; and
+- preserve the exact parent collections and merge parameters for every derived dataset.
+
+A successful merged dataset becomes another processed-dataset candidate under the same physical-sample parent, not a replacement for the original raw collections.
+
 ## Roadmap insertion
 
 The existing campaign roadmap remains valid but should be interpreted with the following additions.
@@ -193,7 +252,7 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 
 7. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
 8. Add provider provenance and sequence-to-model hooks; AlphaFold is a later provider, not a special campaign architecture.
-9. Extend the campaign DAG to represent shared references, per-dataset models, and reusable solved sibling models.
+9. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
 
 ### Campaign Doctor stage
 
@@ -201,9 +260,16 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 11. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
 12. Keep failed MR branches and every rescue attempt immutable and inspectable.
 
+### Upstream preparation / processing stage
+
+13. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
+14. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
+15. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
+16. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
+
 ### Later validation and curation
 
-13. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+17. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
 
 ## Immediate validation fixture
 
@@ -228,5 +294,13 @@ The campaign layer should know enough to answer five questions for every dataset
 3. **How did that model differ from the intended/reference construct?**
 4. **What did PostMR change to reach the effective target?**
 5. **If ordinary MR failed, what bounded related-model evidence was tried next, and why?**
+
+For campaign preparation and processing, it must also be possible to answer:
+
+- which physical sample/pin produced this collection;
+- which raw collection(s) produced this processed dataset;
+- whether this result came from one collection or a merge;
+- which processing/Doctor parameters generated it; and
+- which alternate collections or merged candidates were tested before selecting the downstream branch.
 
 If those answers remain explicit, NASolve can grow from simple 5W6W sequence variants to heterogeneous geometric campaigns without changing its fundamental provenance model.
