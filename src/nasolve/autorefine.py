@@ -313,6 +313,7 @@ def write_recipe_parameters(
     refine_occupancies: bool = True,
     anomalous_mode: str = "refine",
     refine_coordinates: bool = True,
+    xyz_wxc_scale: float = 0.5,
     anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
 ) -> tuple[str, ...]:
     if macro_cycles < 1:
@@ -340,6 +341,13 @@ def write_recipe_parameters(
         raise AutoRefineError("Explicit scattering values require fixed or fdp-only mode")
     if real_space_sites and not refine_coordinates:
         raise AutoRefineError("Real-space coordinate refinement requires refine_coordinates")
+    if (
+        isinstance(xyz_wxc_scale, bool)
+        or not isinstance(xyz_wxc_scale, (int, float))
+        or not math.isfinite(xyz_wxc_scale)
+        or xyz_wxc_scale <= 0
+    ):
+        raise AutoRefineError("X-ray/stereochemistry wxc_scale must be a positive finite number")
     strategies = ["individual_sites"] if refine_coordinates else []
     if real_space_sites:
         strategies.append("individual_sites_real_space")
@@ -440,6 +448,7 @@ def write_recipe_parameters(
         "  target_weights {",
         f"    optimize_xyz_weight = {refine_coordinates}",
         f"    optimize_adp_weight = {adp_mode != 'none'}",
+        f"    wxc_scale = {xyz_wxc_scale:g}",
         "  }",
         "}",
         "",
@@ -1008,6 +1017,11 @@ def execute_autorefine(
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint."""
+    xyz_wxc_scale = (
+        0.1
+        if recipe == "AutoRefine/geometry-conservative"
+        else 0.5
+    )
     selector_policy = reflection_selector_policy(phenix_version)
     try:
         run, registry = initialize_registry(run_directory)
@@ -1066,6 +1080,7 @@ def execute_autorefine(
         refine_occupancies=refine_occupancies,
         anomalous_mode=anomalous_mode,
         refine_coordinates=refine_coordinates,
+        xyz_wxc_scale=xyz_wxc_scale,
         anomalous_groups=anomalous_groups,
     )
     command = build_refine_command(

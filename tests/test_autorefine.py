@@ -264,6 +264,27 @@ class AutoRefineTests(unittest.TestCase):
                     self.assertNotIn('name = "FreeR_flag"', arrays[1])
                     self.assertNotIn(f'name = "{labels}"', arrays[1])
 
+    def test_geometry_conservative_recipe_reduces_xray_weight_scale(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            result = execute_autorefine(
+                run,
+                make_refine(root),
+                make_mtz_dump(root),
+                phenix_version="2.2.1-6174",
+                environment={"PATH": "/usr/bin:/bin"},
+                recipe="AutoRefine/geometry-conservative",
+                macro_cycles=1,
+            )
+
+            params = (result.round_directory / "autorefine.params").read_text()
+            self.assertIn("optimize_xyz_weight = True", params)
+            self.assertIn("wxc_scale = 0.1", params)
+
+            payload = json.loads(result.report_path.read_text())
+            self.assertEqual(payload["recipe"], "AutoRefine/geometry-conservative")
+
     def test_phenix_22_preflight_failure_prevents_refinement(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
