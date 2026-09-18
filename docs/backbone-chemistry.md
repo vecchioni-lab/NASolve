@@ -1,6 +1,9 @@
 # Backbone chemistry in NASolve
 
-Status: feature design implemented on `feature/backbone-chemistry-recipes`.
+Status: active contract. Terminal-phosphate construction, final-geometry
+audit, targeted Doctor rescue, and the reusable proactive-protection primitive
+are implemented and validated. Automatic invocation of proactive protection on
+the first AutoRefine round remains the immediate runtime step.
 
 ## Goal
 

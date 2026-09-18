@@ -355,7 +355,10 @@ def _process_phosphates(
             if incoming is not None:
                 raise PhosphateError(f"Phosphate {site}: explicit OP3 request conflicts with an internal O3'-P link")
             if extra is None:
-                raise PhosphateError(f"Phosphate {site}: requested OP3 is absent; automatic terminal-phosphate construction is not supported")
+                raise PhosphateError(
+                    f"Phosphate {site}: requested terminal phosphate is incomplete "
+                    "after model preparation; OP3 is absent at the declared 5'-terminal site"
+                )
             if any(a.name == "O3'" and dist(a.xyz, p.xyz) <= _MAX_PO for a in group):
                 raise PhosphateError(f"Phosphate {site}: possible cyclic phosphate is not a 5'-terminal OP3 exception")
             # Consent cannot convert a cross-chain/TER/symmetry bond into a terminus.

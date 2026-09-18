@@ -165,9 +165,10 @@ to open the recommended model and maps in Coot. The terminal asks again while
 Coot remains open: return to enter `y` to select or `n` (or just Enter) to finish
 with the current checkpoint unchanged. An inspection-launch error also returns
 to the prompt. Every report records attempted/skipped recipes and stopping
-reasons. See the
-[triage notes](docs/refine-doctor-triage.md) for implemented options and planned
-diagnostics. A candidate can be opened without changing the current pointer:
+reasons. The durable Doctor contract is described in
+[the architecture](docs/architecture.md), with campaign-level follow-up in
+[the campaign design](docs/campaigns.md). A candidate can be opened without
+changing the current pointer:
 
 ```bash
 ./nasolve show "$RUN" --checkpoint refine-005
@@ -725,17 +726,22 @@ Other frames/nonstandard models do not inherit W's sites. A custom campaign
 recipe supplies its own explicit chemistry list; omitting the table means no
 recipe-authorized phosphates.
 
-An explicitly requested, already-defined terminal phosphate can be retained
-with `[automr] allow_op3_sites = A:1, B:1` in `nasolve.txt`. This is a site list,
-not a boolean or an instruction to construct absent atoms. An explicitly
-supplied list **replaces** the recipe list; include D:1 when also requesting
-another site. An explicitly empty `allow_op3_sites =` suppresses all recipe
-phosphate permissions for a variant; it does not dephosphorylate coordinates.
-The existing model must match the requested chemistry or preparation stops.
-Incoming linkage,
-atom identity and geometry must still be valid; an internally linked OP3 is
-not authorized by that option. See [the 1AP/phosphate integration contract](docs/1ap-phosphate-integration.md)
-for the supported profile, provenance and remaining live checks.
+An explicit site list may be supplied in `nasolve.txt` with the preferred
+`five_prime_phosphate_sites` name; the historical `allow_op3_sites` name remains
+readable for old inputs and frozen runs. This is a site-scoped chemistry
+declaration, not a boolean. An explicitly supplied list **replaces** the recipe
+list; include D:1 when also requesting another site. An explicitly empty list
+suppresses recipe phosphate permissions for that variant without editing the raw
+coordinates.
+
+At a requested 5-prime terminal site, PostMR preserves a complete valid
+P/OP1/OP2/OP3 group, completes a P/OP1/OP2 group that lacks OP3, or constructs a
+wholly missing terminal group from the local sugar frame. Ambiguous partial
+groups, incoming/internal O3'-P conflicts, cyclic-phosphate-like geometry, and
+other contradictory states still fail closed. See the active
+[backbone chemistry contract](docs/backbone-chemistry.md). The earlier 1AP
+integration diary is retained only as a
+[historical record](docs/history/1ap-phosphate-integration.md).
 
 Both checks are recorded under `phosphate_cleanup` in the PostMR report. Raw
 Coot and ReadySet outputs remain available; the cleaned ReadySet copy is named
@@ -971,8 +977,10 @@ local dictionary mutations, complete sequence application, modification-scoped
 NARestraints, phosphate connectivity checks, and hydrogen-free ReadySet.
 Guarded AutoSol, checkpointed five-cycle Phenix refinement, bounded Refine
 Doctor comparisons, and views of the current checkpoint are available. The
-[DOHU validation record](docs/validation-dohu.md) documents the complete
-Phenix 2.2.1 execution and subsequent user inspection. NASolve does not yet:
+[historical DOHU validation record](docs/history/validation-dohu.md)
+documents an earlier complete Phenix 2.2.1 execution and user inspection.
+Current validation state is summarized in
+[`docs/development-handoff.md`](docs/development-handoff.md). NASolve does not yet:
 
 - fetch missing ligand dictionaries or construct arbitrary modified residues
   without a supported mapping and local dictionary;
