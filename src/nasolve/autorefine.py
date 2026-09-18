@@ -1608,7 +1608,7 @@ def execute_autorefine(
         status = "AUTOREFINE_REVIEW"
         message = (
             "Refinement completed, but declared terminal-phosphate geometry exceeds "
-            "the native Phenix restraint review threshold"
+            "the Phenix geometry-restraint review threshold"
         )
         checkpoint_status = "REVIEW"
         usable = True

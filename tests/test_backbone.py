@@ -109,6 +109,9 @@ class TerminalPhosphateTests(unittest.TestCase):
             self.assertAlmostEqual(math.dist(coords["P"], coords[oxygen]), 1.480, delta=0.005)
 
         self.assertAlmostEqual(angle("P", "O5'", "C5'"), 120.90, delta=0.10)
+
+        # Constructor-only seed geometry: use a symmetric tetrahedral starting
+        # group here. Exact native refinement ideals are harvested from Phenix.
         self.assertAlmostEqual(angle("OP1", "P", "OP2"), 109.47, delta=0.10)
         self.assertAlmostEqual(angle("OP1", "P", "OP3"), 109.47, delta=0.10)
         self.assertAlmostEqual(angle("OP2", "P", "OP3"), 109.47, delta=0.10)
