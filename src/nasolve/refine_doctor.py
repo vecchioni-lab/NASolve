@@ -761,6 +761,9 @@ def execute_refine_doctor(
                 refine_coordinates=spec.refine_coordinates,
                 anomalous_groups=scattering if spec.anomalous_mode in {"fixed", "fdp-only"} else None,
                 extra_restraints=trial_extra_restraints,
+                terminal_geometry_protection=(
+                    terminal_protection if terminal_trial else None
+                ),
                 auto_select_success=False,
                 progress=trial_progress,
             )

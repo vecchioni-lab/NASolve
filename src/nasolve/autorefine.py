@@ -902,6 +902,7 @@ def write_terminal_phosphate_protection(
     *,
     sigma: float = 1.0,
     protect_sites: Sequence[str] | None = None,
+    ideal_source: str = "source-checkpoint-final-phenix-geometry-audit",
 ) -> dict[str, object]:
     """Write local action=change restraints from Phenix's audited native ideals."""
     if (
@@ -913,6 +914,12 @@ def write_terminal_phosphate_protection(
         raise AutoRefineError(
             "Terminal-geometry protection sigma must be positive and finite"
         )
+
+    if not isinstance(ideal_source, str) or not ideal_source.strip():
+        raise AutoRefineError(
+            "Terminal-geometry protection ideal source must be a non-empty string"
+        )
+    ideal_source = ideal_source.strip()
 
     site_records = audit.get("sites")
     if not isinstance(site_records, list):
@@ -1024,13 +1031,89 @@ def write_terminal_phosphate_protection(
     destination.write_text("\n".join(lines), encoding="utf-8")
 
     return {
+        "schema_version": 1,
+        "kind": "terminal-phosphate-protection",
         "path": str(destination),
         "sites": protected_sites,
         "angle_count": angle_count,
         "sigma": float(sigma),
-        "ideal_source": "source-checkpoint-final-phenix-geometry-audit",
+        "ideal_source": ideal_source,
         "mechanism": "phenix-action-change",
     }
+
+
+def _validate_terminal_geometry_protection(
+    value: object,
+    *,
+    require_path: bool,
+) -> dict[str, object] | None:
+    """Validate semantic terminal-phosphate protection provenance."""
+    if value is None:
+        return None
+    if not isinstance(value, Mapping):
+        raise AutoRefineError("Terminal-geometry protection provenance is malformed")
+
+    record = dict(value)
+    if record.get("schema_version") != 1:
+        raise AutoRefineError("Unsupported terminal-geometry protection schema")
+    if record.get("kind") != "terminal-phosphate-protection":
+        raise AutoRefineError("Terminal-geometry protection kind is malformed")
+
+    sites = record.get("sites")
+    if (
+        not isinstance(sites, list)
+        or not sites
+        or any(not isinstance(site, str) or ":" not in site for site in sites)
+        or len(set(sites)) != len(sites)
+    ):
+        raise AutoRefineError(
+            "Terminal-geometry protection sites must be unique chain:resid values"
+        )
+
+    angle_count = record.get("angle_count")
+    if (
+        isinstance(angle_count, bool)
+        or not isinstance(angle_count, int)
+        or angle_count != 6 * len(sites)
+    ):
+        raise AutoRefineError(
+            "Terminal-geometry protection must record six P-centered angles per site"
+        )
+
+    sigma = record.get("sigma")
+    if (
+        isinstance(sigma, bool)
+        or not isinstance(sigma, (int, float))
+        or not math.isfinite(sigma)
+        or sigma <= 0
+    ):
+        raise AutoRefineError(
+            "Terminal-geometry protection sigma must be positive and finite"
+        )
+
+    if record.get("mechanism") != "phenix-action-change":
+        raise AutoRefineError("Terminal-geometry protection mechanism is malformed")
+
+    ideal_source = record.get("ideal_source")
+    if not isinstance(ideal_source, str) or not ideal_source.strip():
+        raise AutoRefineError(
+            "Terminal-geometry protection ideal source must be a non-empty string"
+        )
+
+    if require_path:
+        path = record.get("path")
+        if not isinstance(path, str) or not path:
+            raise AutoRefineError(
+                "Terminal-geometry protection has no restraint artifact path"
+            )
+    else:
+        restraint = record.get("restraint")
+        if not isinstance(restraint, Mapping):
+            raise AutoRefineError(
+                "Inherited terminal-geometry protection has no restraint artifact"
+            )
+
+    return record
 
 
 def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str, object]:
@@ -1325,6 +1408,7 @@ def execute_autorefine(
     refine_coordinates: bool = True,
     anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
     extra_restraints: Sequence[Path] = (),
+    terminal_geometry_protection: Mapping[str, object] | None = None,
     auto_select_success: bool = True,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
@@ -1368,6 +1452,30 @@ def execute_autorefine(
     if not isinstance(parent_restraint_records, list):
         raise AutoRefineError("Parent checkpoint restraint provenance is malformed")
 
+    inherited_terminal_protection = _validate_terminal_geometry_protection(
+        parent.get("terminal_geometry_protection"),
+        require_path=False,
+    )
+    requested_terminal_protection = _validate_terminal_geometry_protection(
+        terminal_geometry_protection,
+        require_path=True,
+    )
+    if inherited_terminal_protection is not None:
+        inherited_ref = inherited_terminal_protection.get("restraint")
+        if inherited_ref not in parent_restraint_records:
+            raise AutoRefineError(
+                "Inherited terminal-geometry protection restraint is not present "
+                "in the parent checkpoint restraint bundle"
+            )
+    if (
+        inherited_terminal_protection is not None
+        and requested_terminal_protection is not None
+    ):
+        raise AutoRefineError(
+            "Parent checkpoint already carries terminal-geometry protection; "
+            "refusing to stack another protection record"
+        )
+
     seen_restraints = {
         path.expanduser().resolve()
         for path in restraints
@@ -1386,6 +1494,27 @@ def execute_autorefine(
         resolved_extra_restraints.append(path)
 
     restraints = [*restraints, *resolved_extra_restraints]
+
+    requested_terminal_protection_path: Path | None = None
+    if requested_terminal_protection is not None:
+        requested_terminal_protection_path = Path(
+            str(requested_terminal_protection["path"])
+        ).expanduser().resolve()
+        protection_reference = artifact_reference(
+            requested_terminal_protection_path,
+            run,
+        )
+        if protection_reference.get("anchor") == "absolute":
+            raise AutoRefineError(
+                "Terminal-geometry protection artifact must be stored inside "
+                "the NASolve run for portable checkpoint provenance"
+            )
+        if requested_terminal_protection_path not in resolved_extra_restraints:
+            raise AutoRefineError(
+                "Terminal-geometry protection artifact must be supplied as a new "
+                "extra refinement restraint"
+            )
+
     validate_refined_model(model, report)
     plan = build_reflection_plan(
         report,
@@ -1541,6 +1670,23 @@ def execute_autorefine(
     extra_restraint_references = [
         file_reference(path) for path in resolved_extra_restraints
     ]
+
+    terminal_protection_record: dict[str, object] | None
+    if requested_terminal_protection is not None:
+        assert requested_terminal_protection_path is not None
+        terminal_protection_record = {
+            key: value
+            for key, value in requested_terminal_protection.items()
+            if key != "path"
+        }
+        terminal_protection_record["restraint"] = file_reference(
+            requested_terminal_protection_path
+        )
+    elif inherited_terminal_protection is not None:
+        terminal_protection_record = dict(inherited_terminal_protection)
+    else:
+        terminal_protection_record = None
+
     output_references = {
         "model_cif": file_reference(model_cif) if model_cif else None,
         "reflection_cif": file_reference(reflection_cif) if reflection_cif else None,
@@ -1657,6 +1803,11 @@ def execute_autorefine(
             *parent_restraint_records,
             *extra_restraint_references,
         ],
+        **(
+            {"terminal_geometry_protection": terminal_protection_record}
+            if terminal_protection_record is not None
+            else {}
+        ),
         "metrics": {
             key: value
             for key, value in statistics.items()
@@ -1688,6 +1839,7 @@ def execute_autorefine(
         "command": command,
         "preflight_command": preflight_command,
         "parameters": str(parameters),
+        "terminal_geometry_protection": terminal_protection_record,
         "inputs": {
             "model": str(model),
             "authoritative_observations": str(observations),

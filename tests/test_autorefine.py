@@ -371,8 +371,14 @@ class AutoRefineTests(unittest.TestCase):
                 protect_sites=("D:1",),
             )
 
+            self.assertEqual(record["schema_version"], 1)
+            self.assertEqual(record["kind"], "terminal-phosphate-protection")
             self.assertEqual(record["sites"], ["D:1"])
             self.assertEqual(record["angle_count"], 6)
+            self.assertEqual(
+                record["ideal_source"],
+                "source-checkpoint-final-phenix-geometry-audit",
+            )
             self.assertEqual(destination.read_text().count("action = *change"), 6)
 
             with self.assertRaises(
@@ -466,6 +472,89 @@ class AutoRefineTests(unittest.TestCase):
             self.assertEqual(payload["inputs"]["extra_restraints"], [expected])
             self.assertIn(expected, payload["inputs"]["restraints"])
             self.assertIn(expected, payload["command"])
+
+    def test_terminal_protection_metadata_is_frozen_and_inherited(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            extra = run / "terminal-protection.phil"
+            extra.write_text("refinement.geometry_restraints.edits {}\n")
+            protection = {
+                "schema_version": 1,
+                "kind": "terminal-phosphate-protection",
+                "path": str(extra.resolve()),
+                "sites": ["D:1"],
+                "angle_count": 6,
+                "sigma": 1.0,
+                "ideal_source": "test-phenix-geometry",
+                "mechanism": "phenix-action-change",
+            }
+
+            first = execute_autorefine(
+                run,
+                make_refine(root, final_work=0.244, final_free=0.267),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+                macro_cycles=1,
+                extra_restraints=(extra,),
+                terminal_geometry_protection=protection,
+                auto_select_success=False,
+            )
+
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            first_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == first.checkpoint_id
+            )
+            frozen = first_checkpoint["terminal_geometry_protection"]
+            self.assertNotIn("path", frozen)
+            self.assertEqual(frozen["sites"], ["D:1"])
+            self.assertEqual(frozen["angle_count"], 6)
+            self.assertEqual(frozen["ideal_source"], "test-phenix-geometry")
+            self.assertEqual(frozen["restraint"]["anchor"], "run")
+            self.assertEqual(frozen["restraint"]["sha256"], file_sha256(extra))
+
+            second = execute_autorefine(
+                run,
+                make_refine(root, final_work=0.243, final_free=0.266),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+                from_checkpoint=first.checkpoint_id,
+                macro_cycles=1,
+                auto_select_success=False,
+            )
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            second_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == second.checkpoint_id
+            )
+            self.assertEqual(
+                second_checkpoint["terminal_geometry_protection"],
+                frozen,
+            )
+
+            with self.assertRaisesRegex(
+                AutoRefineError,
+                "already carries terminal-geometry protection",
+            ):
+                execute_autorefine(
+                    run,
+                    make_refine(root, final_work=0.242, final_free=0.265),
+                    make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    from_checkpoint=first.checkpoint_id,
+                    macro_cycles=1,
+                    extra_restraints=(extra,),
+                    terminal_geometry_protection=protection,
+                    auto_select_success=False,
+                )
 
     def test_phenix_22_preflight_failure_prevents_refinement(self):
         with tempfile.TemporaryDirectory() as directory:

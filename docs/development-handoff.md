@@ -108,12 +108,12 @@ Already implemented:
 - missing requested sites fail closed;
 - protection restraints already inherit transitively once attached to a
   checkpoint lineage.
+- terminal protection now carries explicit schema-1 semantic checkpoint provenance, including protected sites, sigma, mechanism, Phenix-ideal source, and the exact restraint artifact;
+- semantic protection artifacts must be stored inside the NASolve run, inherit through AutoRefine/manual children, and cannot be stacked onto an already protected lineage.
 
 Next implementation steps:
 
-1. give terminal protection explicit semantic provenance rather than detecting
-   it by filename;
-2. obtain a pre-refinement Phenix geometry snapshot for declared sites;
+1. obtain a pre-refinement Phenix geometry snapshot for declared sites;
 3. if a lineage declares a terminal phosphate but lacks matching protection,
    generate the six-angle protection before coordinate refinement;
 4. record protection metadata plus the restraint artifact on the checkpoint;

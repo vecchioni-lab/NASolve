@@ -268,6 +268,46 @@ class CheckpointTests(unittest.TestCase):
             _, current_after, _ = list_checkpoints(run)
             self.assertEqual(current_after, record.checkpoint_id)
 
+    def test_manual_import_inherits_terminal_geometry_protection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_checkpoint_run(root)
+            _, registry = initialize_registry(run)
+            postmr = resolve_checkpoint(registry, "postmr")
+            protection = {
+                "schema_version": 1,
+                "kind": "terminal-phosphate-protection",
+                "sites": ["D:1"],
+                "angle_count": 6,
+                "sigma": 1.0,
+                "ideal_source": "test-phenix-geometry",
+                "mechanism": "phenix-action-change",
+                "restraint": postmr["restraints"][0],
+            }
+            postmr["terminal_geometry_protection"] = protection
+            (run / "AutoRefine" / "checkpoints.json").write_text(
+                json.dumps(registry)
+            )
+
+            manual = root / "manual-protected.pdb"
+            manual.write_text(
+                pdb_record("ATOM", 1, "P", "DA", "A", 1) + "END\n"
+            )
+            record = add_checkpoint(
+                run,
+                name="protected manual",
+                model=manual,
+            )
+
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            child = resolve_checkpoint(registry, record.checkpoint_id)
+            self.assertEqual(
+                child["terminal_geometry_protection"],
+                protection,
+            )
+
     def test_duplicate_bookmark_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             run = make_checkpoint_run(Path(directory))
