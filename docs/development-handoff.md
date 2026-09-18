@@ -151,8 +151,14 @@ Unsupported GNA/PNA/TNA/other linkage chemistry is never guessed.
 declared site and remains visibly unreviewed until a human Coot review is
 recorded.
 
-One interactive synthetic/test passthrough review should still be exercised
-before merging the backbone-chemistry feature.
+The interactive passthrough review path has now been live-validated on a
+disposable copy of ED `run_010` using a synthetic A:12
+`experimental_passthrough` declaration. NASolve opened the intended
+`refine-005` model/maps in real Coot, waited for human confirmation, and wrote a
+portable `USER_REVIEWED` record containing the run-anchored model reference,
+model SHA-256, flagged site, timestamp, and preserved passthrough provenance.
+This validated the review UX/provenance path only; it does not assert
+non-standard chemistry at A:12.
 
 ## Separate scientific follow-up
 
