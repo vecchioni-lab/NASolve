@@ -23,7 +23,7 @@ unless a user explicitly selects another one.
 
 Current branch-wide local regression baseline:
 
-- **516 tests passed**
+- **520 tests passed**
 - **145 subtests passed**
 - `python -m compileall -q src tests` passed
 - `git diff --check` passed
@@ -94,36 +94,53 @@ using Phenix-derived ideals, and created `refine-004`.
 It remained a numerical user-review case because Rwork was still slightly above
 Rfree. Chemical validity and numerical acceptance are intentionally separate.
 
-## Immediate task: proactive terminal protection
+## Proactive terminal protection: live-validated
 
-Production policy is to protect a declared standard terminal phosphate from
-**refinement #1**, rather than deliberately allowing one bad refinement before
-Doctor rescues it.
+Production AutoRefine now protects a declared standard terminal phosphate from
+**refinement #1** rather than deliberately allowing an unprotected refinement
+before Doctor rescue.
 
-Already implemented:
+For a declared site on an unprotected lineage, AutoRefine now:
 
-- generic protection writer lives in AutoRefine;
-- Doctor wraps the same primitive;
-- proactive protection can target a clean/PASS declared site;
-- missing requested sites fail closed;
-- protection restraints already inherit transitively once attached to a
-  checkpoint lineage.
-- terminal protection now carries explicit schema-1 semantic checkpoint provenance, including protected sites, sigma, mechanism, Phenix-ideal source, and the exact restraint artifact;
-- semantic protection artifacts must be stored inside the NASolve run, inherit through AutoRefine/manual children, and cannot be stacked onto an already protected lineage.
+1. runs `phenix.pdb_interpretation ... write_geo=True` on the inherited
+   model/restraint bundle before creating the numbered refinement round;
+2. requires a complete native Phenix geometry snapshot with all 11 expected
+   terminal-phosphate restraints per site;
+3. derives the six P-centered angle ideals from that Phenix geometry rather
+   than from a NASolve hard-coded target table;
+4. writes local `action = change` protection at sigma = 1 degree;
+5. stores the source `.geo`, interpretation log, and protection PHIL inside the
+   new AutoRefine round;
+6. attaches schema-1 semantic protection provenance to the checkpoint;
+7. passes the protection restraint to the first coordinate refinement;
+8. inherits the same protection through AutoRefine/manual descendants without
+   stacking duplicate protection files; and
+9. retains the final 11-restraint geometry audit after every refinement.
 
-Next implementation steps:
+Preparation fails closed before `round_00N` is created if Phenix interpretation
+is unavailable or the declared terminal geometry is incomplete.
 
-1. obtain a pre-refinement Phenix geometry snapshot for declared sites;
-3. if a lineage declares a terminal phosphate but lacks matching protection,
-   generate the six-angle protection before coordinate refinement;
-4. record protection metadata plus the restraint artifact on the checkpoint;
-5. inherit protection without stacking duplicate `action = change` files;
-6. retain the final geometry audit after every refinement;
-7. live-test from a clean parent and confirm the original ~7-sigma excursion
-   never occurs.
+Live ED `run_010` validation from the clean `postmr` parent created
+`refine-005` with proactive protection already present in the actual
+`phenix.refine` command. It reported:
+
+- Rwork/Rfree = 0.1735 / 0.1707;
+- semantic protection for D:1 with six angles at sigma = 1 degree;
+- ideal source = pre-refinement `phenix.pdb_interpretation` geometry;
+- final terminal audit `PASS`;
+- 11/11 expected restraints found;
+- maximum final normalized deviation = 4.27 sigma under the tightened
+  1-degree protection;
+- zero severe restraints.
+
+`refine-005` therefore reached the same protected endpoint as the earlier
+Doctor rescue `refine-004` without requiring an unprotected sacrificial
+refinement first. Its `AUTOREFINE_REVIEW` status is numerical only because
+Rwork remains slightly above Rfree; the terminal chemistry itself passes.
 
 A future advanced opt-out may disable proactive protection deliberately, but it
-must remain explicit, visible in provenance, and must not disable the audit.
+must remain explicit, visible in provenance, and must not disable the final
+geometry audit.
 
 ## Unsupported backbone chemistry
 

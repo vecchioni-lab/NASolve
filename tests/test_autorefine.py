@@ -119,6 +119,62 @@ def make_mtz_dump(root: Path, *, anomalous: bool = True) -> Path:
     return executable
 
 
+
+def make_pdb_interpretation(root: Path) -> Path:
+    executable = root / "phenix.pdb_interpretation"
+
+    def bond(first: str, second: str, ideal: float, sigma: float) -> str:
+        return (
+            f'bond pdb=" {first} DA  D   1 "\n'
+            f'     pdb=" {second} DA  D   1 "\n'
+            "  ideal  model  delta    sigma   weight residual\n"
+            f"  {ideal:.3f}  {ideal:.3f} 0.000 {sigma:.2e} 1.00e+00 0.00e+00\n"
+        )
+
+    def angle(
+        first: str,
+        second: str,
+        third: str,
+        ideal: float,
+        sigma: float,
+    ) -> str:
+        return (
+            f'angle pdb=" {first} DA  D   1 "\n'
+            f'      pdb=" {second} DA  D   1 "\n'
+            f'      pdb=" {third} DA  D   1 "\n'
+            "  ideal  model  delta    sigma   weight residual\n"
+            f"  {ideal:.2f}  {ideal:.2f} 0.00 {sigma:.2e} 1.00e+00 0.00e+00\n"
+        )
+
+    geometry = "".join([
+        bond("P", "O5'", 1.593, 0.010),
+        bond("P", "OP1", 1.480, 0.020),
+        bond("P", "OP2", 1.480, 0.020),
+        bond("P", "OP3", 1.480, 0.020),
+        angle("OP1", "P", "OP2", 120.00, 3.00),
+        angle("OP1", "P", "O5'", 109.00, 3.00),
+        angle("OP2", "P", "O5'", 108.00, 3.00),
+        angle("OP1", "P", "OP3", 109.47, 3.00),
+        angle("OP2", "P", "OP3", 109.47, 3.00),
+        angle("O5'", "P", "OP3", 109.47, 3.00),
+        angle("P", "O5'", "C5'", 120.90, 1.60),
+    ])
+    executable.write_text(
+        "#!/usr/bin/env python3\n"
+        "from pathlib import Path\n"
+        "import sys\n"
+        "if 'write_geo=True' not in sys.argv:\n"
+        "    print('ERROR: expected write_geo=True')\n"
+        "    raise SystemExit(9)\n"
+        "model = next(Path(arg) for arg in sys.argv[1:] if arg.endswith('.pdb'))\n"
+        f"geometry = {geometry!r}\n"
+        "Path(model.name + '.geo').write_text(geometry)\n"
+        "print('Wrote pre-refinement geometry')\n"
+    )
+    executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
+    return executable
+
+
 def make_refine(
     root: Path,
     *,
@@ -555,6 +611,157 @@ class AutoRefineTests(unittest.TestCase):
                     terminal_geometry_protection=protection,
                     auto_select_success=False,
                 )
+
+
+    def test_declared_terminal_phosphate_is_protected_before_first_refinement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            make_pdb_interpretation(root)
+            refine = make_refine(root, final_work=0.244, final_free=0.267)
+            mtz_dump = make_mtz_dump(root)
+
+            with (
+                patch(
+                    "nasolve.autorefine.requested_op3_sites",
+                    return_value=("D:1",),
+                ),
+                patch(
+                    "nasolve.autorefine.validate_refined_model",
+                    return_value={"validated": True},
+                ),
+            ):
+                first = execute_autorefine(
+                    run,
+                    refine,
+                    mtz_dump,
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    macro_cycles=1,
+                    auto_select_success=False,
+                )
+
+            protection = (
+                first.round_directory / "terminal_phosphate_protection.phil"
+            )
+            source_geometry = (
+                first.round_directory / "terminal_geometry_pre_refine.geo"
+            )
+            source_log = (
+                first.round_directory / "terminal_geometry_pre_refine.log"
+            )
+            self.assertTrue(protection.is_file())
+            self.assertTrue(source_geometry.is_file())
+            self.assertTrue(source_log.is_file())
+            self.assertEqual(
+                protection.read_text().count("action = *change"),
+                6,
+            )
+
+            payload = json.loads(first.report_path.read_text())
+            expected_protection = str(protection.resolve())
+            self.assertIn(
+                expected_protection,
+                payload["inputs"]["restraints"],
+            )
+            self.assertIn(
+                expected_protection,
+                payload["command"],
+            )
+
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            first_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == first.checkpoint_id
+            )
+            semantic = first_checkpoint["terminal_geometry_protection"]
+            self.assertEqual(semantic["sites"], ["D:1"])
+            self.assertEqual(semantic["angle_count"], 6)
+            self.assertEqual(
+                semantic["ideal_source"],
+                "pre-refinement-phenix.pdb_interpretation-geometry",
+            )
+            self.assertEqual(semantic["restraint"]["anchor"], "run")
+            self.assertEqual(semantic["source_geometry"]["anchor"], "run")
+            self.assertEqual(semantic["source_log"]["anchor"], "run")
+
+            # An inherited protected child must not need to invoke interpretation
+            # again and must carry exactly one protection artifact.
+            (root / "phenix.pdb_interpretation").unlink()
+            with (
+                patch(
+                    "nasolve.autorefine.requested_op3_sites",
+                    return_value=("D:1",),
+                ),
+                patch(
+                    "nasolve.autorefine.validate_refined_model",
+                    return_value={"validated": True},
+                ),
+            ):
+                second = execute_autorefine(
+                    run,
+                    make_refine(root, final_work=0.243, final_free=0.266),
+                    mtz_dump,
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    from_checkpoint=first.checkpoint_id,
+                    macro_cycles=1,
+                    auto_select_success=False,
+                )
+
+            second_payload = json.loads(second.report_path.read_text())
+            protection_inputs = [
+                value for value in second_payload["inputs"]["restraints"]
+                if value.endswith("terminal_phosphate_protection.phil")
+            ]
+            self.assertEqual(protection_inputs, [expected_protection])
+
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            second_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == second.checkpoint_id
+            )
+            self.assertEqual(
+                second_checkpoint["terminal_geometry_protection"],
+                semantic,
+            )
+
+    def test_missing_interpreter_fails_before_numbered_round_is_created(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+
+            with (
+                patch(
+                    "nasolve.autorefine.requested_op3_sites",
+                    return_value=("D:1",),
+                ),
+                patch(
+                    "nasolve.autorefine.validate_refined_model",
+                    return_value={"validated": True},
+                ),
+                self.assertRaisesRegex(
+                    AutoRefineError,
+                    "phenix.pdb_interpretation was not found",
+                ),
+            ):
+                execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    macro_cycles=1,
+                    auto_select_success=False,
+                )
+
+            self.assertFalse(
+                (run / "AutoRefine" / "round_001").exists()
+            )
 
     def test_phenix_22_preflight_failure_prevents_refinement(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -1,9 +1,8 @@
 # Backbone chemistry in NASolve
 
 Status: active contract. Terminal-phosphate construction, final-geometry
-audit, targeted Doctor rescue, and the reusable proactive-protection primitive
-are implemented and validated. Automatic invocation of proactive protection on
-the first AutoRefine round remains the immediate runtime step.
+audit, targeted Doctor rescue, and automatic proactive protection from the
+first AutoRefine round are implemented and live-validated.
 
 ## Goal
 
@@ -95,6 +94,14 @@ angle to approximately 7 sigma from its Phenix target. A sibling using local
 the severe violation, passed all 11 terminal-phosphate geometry checks, and did
 not worsen the global R factors. The protected branch therefore becomes the
 production default; the deliberately unprotected route remains diagnostic.
+
+Automatic first-round protection was subsequently live-validated on ED
+`run_010/refine-005`, branched directly from `postmr`. AutoRefine harvested the
+native terminal geometry with `phenix.pdb_interpretation`, generated the six
+sigma=1-degree P-centered `action = change` restraints before coordinate
+refinement, and carried their semantic provenance into the checkpoint. The
+final D:1 audit passed all 11 restraints with zero severe violations and reached
+Rwork/Rfree 0.1735/0.1707 without an unprotected precursor.
 
 Protection is lineage-scoped. A child of a protected checkpoint inherits the
 protection automatically. A deliberate branch from an older unprotected

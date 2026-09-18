@@ -7,6 +7,7 @@ import math
 import os
 import re
 import subprocess
+import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -1375,6 +1376,125 @@ def _effective_phase(
     return None
 
 
+def _prepare_terminal_phosphate_protection(
+    model: Path,
+    restraints: Sequence[Path],
+    refine_executable: Path,
+    environment: Mapping[str, str] | None,
+    sites: Sequence[str],
+) -> dict[str, object]:
+    """Harvest Phenix terminal-phosphate ideals before creating a refine round."""
+    requested = tuple(sites)
+    if not requested:
+        raise AutoRefineError(
+            "Pre-refinement terminal protection requires at least one declared site"
+        )
+
+    refine_path = Path(refine_executable).expanduser()
+    candidates = [
+        refine_path.parent / "phenix.pdb_interpretation",
+        refine_path.resolve().parent / "phenix.pdb_interpretation",
+    ]
+    interpreter = next(
+        (candidate for candidate in dict.fromkeys(candidates) if candidate.is_file()),
+        None,
+    )
+    if interpreter is None:
+        raise AutoRefineError(
+            "Declared terminal phosphate requires proactive protection, but "
+            "phenix.pdb_interpretation was not found beside phenix.refine"
+        )
+
+    with tempfile.TemporaryDirectory(
+        prefix="nasolve-terminal-geometry-"
+    ) as directory:
+        work = Path(directory)
+        command = [
+            str(interpreter),
+            str(model),
+            *(str(path) for path in restraints),
+            "write_geo=True",
+        ]
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=work,
+                env=dict(environment) if environment is not None else None,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+        except OSError as exc:
+            raise AutoRefineError(
+                f"Could not launch phenix.pdb_interpretation for terminal "
+                f"protection: {exc}"
+            ) from exc
+
+        log_text = completed.stdout
+        if completed.returncode:
+            tail = "\n".join(log_text.splitlines()[-10:])
+            detail = f"\n{tail}" if tail else ""
+            raise AutoRefineError(
+                "phenix.pdb_interpretation failed while preparing proactive "
+                f"terminal-phosphate protection with status "
+                f"{completed.returncode}{detail}"
+            )
+
+        geometry_files = sorted(
+            path.resolve() for path in work.glob("*.geo") if path.is_file()
+        )
+        if len(geometry_files) != 1:
+            raise AutoRefineError(
+                "phenix.pdb_interpretation did not produce exactly one .geo "
+                f"file for proactive terminal-phosphate protection; found "
+                f"{len(geometry_files)}"
+            )
+
+        geometry_file = geometry_files[0]
+        audit = audit_terminal_phosphate_geometry(
+            geometry_file,
+            requested,
+        )
+        site_records = audit.get("sites")
+        if not isinstance(site_records, list):
+            raise AutoRefineError(
+                "Pre-refinement terminal-geometry audit has no site records"
+            )
+        incomplete = [
+            str(item.get("site"))
+            for item in site_records
+            if not isinstance(item, Mapping)
+            or item.get("restraint_count") != 11
+        ]
+        if incomplete:
+            raise AutoRefineError(
+                "Phenix pre-refinement geometry is incomplete for declared "
+                "terminal phosphate site(s): " + ", ".join(incomplete)
+            )
+
+        protection_file = work / "terminal_phosphate_protection.phil"
+        record = write_terminal_phosphate_protection(
+            audit,
+            protection_file,
+            protect_sites=requested,
+            ideal_source=(
+                "pre-refinement-phenix.pdb_interpretation-geometry"
+            ),
+        )
+
+        return {
+            "geometry_text": geometry_file.read_text(
+                encoding="utf-8", errors="replace"
+            ),
+            "log_text": log_text,
+            "protection_text": protection_file.read_text(encoding="utf-8"),
+            "record": {
+                key: value for key, value in record.items() if key != "path"
+            },
+        }
+
+
 def _update_run_report(run: Path, round_payload: Mapping[str, object]) -> None:
     report = _run_report(run)
     history = report.setdefault("autorefine_history", [])
@@ -1524,6 +1644,21 @@ def execute_autorefine(
         phase_file,
     )
     selections = anomalous_selections(report) if plan.anomalous else ()
+
+    automatic_terminal_seed: dict[str, object] | None = None
+    if (
+        terminal_phosphate_sites
+        and inherited_terminal_protection is None
+        and requested_terminal_protection is None
+    ):
+        automatic_terminal_seed = _prepare_terminal_phosphate_protection(
+            model,
+            restraints,
+            refine_executable,
+            environment,
+            terminal_phosphate_sites,
+        )
+
     checkpoint_id = next_checkpoint_id(registry, "refine")
     round_number = int(checkpoint_id.rsplit("-", 1)[1])
     round_directory = run / "AutoRefine" / f"round_{round_number:03d}"
@@ -1533,6 +1668,64 @@ def execute_autorefine(
         raise AutoRefineError(
             f"Refinement round already exists; refusing to overwrite {round_directory}"
         ) from exc
+
+    pre_refinement_geometry: Path | None = None
+    pre_refinement_geometry_log: Path | None = None
+    if automatic_terminal_seed is not None:
+        geometry_text = automatic_terminal_seed.get("geometry_text")
+        geometry_log_text = automatic_terminal_seed.get("log_text")
+        protection_text = automatic_terminal_seed.get("protection_text")
+        seed_record = automatic_terminal_seed.get("record")
+        if (
+            not isinstance(geometry_text, str)
+            or not isinstance(geometry_log_text, str)
+            or not isinstance(protection_text, str)
+            or not isinstance(seed_record, Mapping)
+        ):
+            raise AutoRefineError(
+                "Internal proactive terminal-protection preparation record "
+                "is malformed"
+            )
+
+        pre_refinement_geometry = (
+            round_directory / "terminal_geometry_pre_refine.geo"
+        )
+        pre_refinement_geometry_log = (
+            round_directory / "terminal_geometry_pre_refine.log"
+        )
+        protection_path = (
+            round_directory / "terminal_phosphate_protection.phil"
+        )
+        pre_refinement_geometry.write_text(
+            geometry_text,
+            encoding="utf-8",
+        )
+        pre_refinement_geometry_log.write_text(
+            geometry_log_text,
+            encoding="utf-8",
+        )
+        protection_path.write_text(
+            protection_text,
+            encoding="utf-8",
+        )
+
+        requested_terminal_protection = (
+            _validate_terminal_geometry_protection(
+                {
+                    **dict(seed_record),
+                    "path": str(protection_path),
+                },
+                require_path=True,
+            )
+        )
+        if requested_terminal_protection is None:
+            raise AutoRefineError(
+                "Automatic terminal protection unexpectedly produced no record"
+            )
+        requested_terminal_protection_path = protection_path
+        resolved_extra_restraints.append(protection_path)
+        restraints.append(protection_path)
+
     parameters = round_directory / "autorefine.params"
     nproc = max(1, processor_count if processor_count is not None else (os.cpu_count() or 1))
     strategies = write_recipe_parameters(
@@ -1682,6 +1875,14 @@ def execute_autorefine(
         terminal_protection_record["restraint"] = file_reference(
             requested_terminal_protection_path
         )
+        if pre_refinement_geometry is not None:
+            terminal_protection_record["source_geometry"] = file_reference(
+                pre_refinement_geometry
+            )
+        if pre_refinement_geometry_log is not None:
+            terminal_protection_record["source_log"] = file_reference(
+                pre_refinement_geometry_log
+            )
     elif inherited_terminal_protection is not None:
         terminal_protection_record = dict(inherited_terminal_protection)
     else:
@@ -1698,6 +1899,16 @@ def execute_autorefine(
         ),
         "final_geometry": (
             file_reference(final_geometry) if final_geometry else None
+        ),
+        "terminal_geometry_pre_refine": (
+            file_reference(pre_refinement_geometry)
+            if pre_refinement_geometry is not None
+            else None
+        ),
+        "terminal_geometry_pre_refine_log": (
+            file_reference(pre_refinement_geometry_log)
+            if pre_refinement_geometry_log is not None
+            else None
         ),
         "metrics_tsv": file_reference(round_directory / "metrics.tsv"),
         "full_log": file_reference(log_path),
