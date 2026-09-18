@@ -24,6 +24,9 @@ from .curated_ligands import (
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
 from .model_assessment import file_sha256
 from .phosphate import PhosphateError, sanitize_phosphates, requested_op3_sites
+from .backbone import (
+    BackboneError, ensure_five_prime_phosphates, requested_backbone_policy,
+)
 from .ligand_profiles import (
     AUTHORITATIVE_CODES, combine_dictionary_inputs, effective_restraints,
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
@@ -1178,6 +1181,7 @@ def _run_readyset(
     *,
     phosphate_sites: tuple[str, ...] = (),
     allow_op3_sites: tuple[str, ...] = (),
+    passthrough_sites: tuple[str, ...] = (),
 ) -> tuple[Path, Path, Path | None, list[str], dict[str, object]]:
     command = [
         str(ready_set_executable),
@@ -1204,12 +1208,26 @@ def _run_readyset(
     log.write_text(completed.stdout, encoding="utf-8")
     updated = readyset_directory / f"{model.stem}.updated.pdb"
     generated_cif = readyset_directory / f"{model.stem}.ligands.cif"
-    if completed.returncode or not updated.is_file():
+    if completed.returncode:
         raise PostMRPreparationError(
             f"ReadySet failed with status {completed.returncode}; inspect {log}"
         )
+    readyset_source = updated
+    readyset_output_mode = "updated-model"
+    if not updated.is_file():
+        if re.search(r"\bNo unknown residues\b", completed.stdout, re.I):
+            # Phenix 2.2 may return success without writing an updated PDB when
+            # ReadySet has nothing to modify. Preserve the already-prepared
+            # model, but still run the same phosphate and atom-count audits.
+            readyset_source = model
+            readyset_output_mode = "successful-noop"
+        else:
+            raise PostMRPreparationError(
+                "ReadySet exited successfully but did not write its expected updated model; "
+                f"inspect {log}"
+            )
     before = _atom_counts(model)
-    raw_counts = _atom_counts(updated)
+    raw_counts = _atom_counts(readyset_source)
     if raw_counts[2]:
         raise PostMRPreparationError(
             f"ReadySet added {raw_counts[2]} hydrogen atom(s) despite hydrogens=False"
@@ -1217,9 +1235,10 @@ def _run_readyset(
     checked = readyset_directory / f"{model.stem}.phosphate_checked.pdb"
     try:
         phosphate_audit = sanitize_phosphates(
-            updated, checked, reference_model=model, check_sites=phosphate_sites,
-            allow_op3_sites=allow_op3_sites,
+            readyset_source, checked, reference_model=model, check_sites=phosphate_sites,
+            allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
         )
+        phosphate_audit["readyset_output_mode"] = readyset_output_mode
     except PhosphateError as exc:
         raise PostMRPreparationError(f"ReadySet phosphate validation failed: {exc}") from exc
     after = _atom_counts(checked)
@@ -1242,6 +1261,7 @@ def prepare_postmr(
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
     modified_pairs_only: bool = False,
+    allow_unreviewed_backbone: bool = False,
     data_root: Path | None = None,
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
@@ -1257,8 +1277,24 @@ def prepare_postmr(
         raise PostMRPreparationError(f"PostMR requires an accepted Phaser result, not {mr_status}")
     try:
         allowed_op3 = requested_op3_sites(report)
-    except PhosphateError as exc:
+        backbone_policy = requested_backbone_policy(report)
+    except (PhosphateError, BackboneError) as exc:
         raise PostMRPreparationError(str(exc)) from exc
+    passthrough_sites = tuple(backbone_policy["experimental_passthrough_sites"])
+    if passthrough_sites and not (
+        backbone_policy["allow_unreviewed"] or allow_unreviewed_backbone
+    ):
+        raise PostMRPreparationError(
+            "Non-standard backbone site(s) require explicit experimental passthrough consent: "
+            + ", ".join(passthrough_sites)
+            + ". Set [automr] allow_unreviewed_backbone = true before a new run, "
+              "or use --allow-unreviewed-backbone for this PostMR attempt."
+        )
+    if set(passthrough_sites) & set(allowed_op3):
+        raise PostMRPreparationError(
+            "A site cannot simultaneously request standard 5'-phosphate construction "
+            "and experimental backbone passthrough"
+        )
     source_model = _solution_model(run, report)
     postmr = run / "PostMR"
     try:
@@ -1353,10 +1389,20 @@ def prepare_postmr(
     else:
         shutil.copyfile(original, after_coot)
 
+    terminal_ready = model_dir / "terminal_phosphate_model.pdb"
+    try:
+        terminal_phosphate = ensure_five_prime_phosphates(
+            after_coot, terminal_ready, allowed_op3
+        ) if allowed_op3 else None
+        if terminal_phosphate is None:
+            shutil.copyfile(after_coot, terminal_ready)
+    except BackboneError as exc:
+        raise PostMRPreparationError(f"5'-terminal phosphate construction failed: {exc}") from exc
     prepared = model_dir / "prepared_model.pdb"
     try:
         phosphate_before = sanitize_phosphates(
-            after_coot, prepared, reference_model=original, allow_op3_sites=allowed_op3,
+            terminal_ready, prepared, reference_model=original,
+            allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         )
     except PhosphateError as exc:
         raise PostMRPreparationError(f"PostMR phosphate validation failed: {exc}") from exc
@@ -1382,9 +1428,14 @@ def prepare_postmr(
         pair_file = restraints_dir / "guessed_modified_pairs.txt"
         narestraints = restraints_dir / "narestraints_modified_pairs.phil"
         try:
-            builder_result = (
-                modified_pair_builder or _default_modified_pair_restraints_builder
-            )(prepared, compatibility, pair_file, narestraints)
+            if modified_pair_builder is None:
+                builder_result = _default_modified_pair_restraints_builder(
+                    prepared, compatibility, pair_file, narestraints,
+                )
+            else:
+                builder_result = modified_pair_builder(
+                    prepared, compatibility, pair_file, narestraints
+                )
         except PostMRPreparationError:
             raise
         except Exception as exc:
@@ -1395,6 +1446,7 @@ def prepare_postmr(
             )
         narestraints_report = dict(builder_result)
         narestraints_report.setdefault("mode", "modified-pairs-only")
+
         narestraints_report["pair_file"] = str(pair_file)
         narestraints_report["restraint_file"] = (
             str(narestraints) if narestraints.is_file() else None
@@ -1458,9 +1510,14 @@ def prepare_postmr(
         _rewrite_codes(prepared, compatibility, compatibility_codes)
         narestraints = restraints_dir / "narestraints_Std_padd.phil"
         try:
-            builder_result = (narestraints_builder or _default_narestraints_builder)(
-                compatibility, pair_file, narestraints
-            )
+            if narestraints_builder is None:
+                builder_result = _default_narestraints_builder(
+                    compatibility, pair_file, narestraints,
+                )
+            else:
+                builder_result = narestraints_builder(
+                    compatibility, pair_file, narestraints
+                )
         except PostMRPreparationError:
             raise
         except Exception as exc:
@@ -1477,6 +1534,7 @@ def prepare_postmr(
             "pair_file": str(pair_file),
             "restraint_file": str(narestraints),
             "include_stacking": True,
+
             "secondary_structure_file": str(secondary),
         })
         restraint_paths.extend([narestraints, secondary])
@@ -1514,7 +1572,8 @@ def prepare_postmr(
     if set(ligand_codes) & AUTHORITATIVE_CODES:
         try:
             profile, modification_paths = write_linked_profile(
-                prepared, restraints_dir, allow_op3_sites=allowed_op3)
+                prepared, restraints_dir, allow_op3_sites=allowed_op3,
+                passthrough_sites=passthrough_sites)
         except PhosphateError as exc:
             raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
         restraint_paths.extend(modification_paths)
@@ -1526,7 +1585,7 @@ def prepare_postmr(
         readyset_cif,
         environment,
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
-        allow_op3_sites=allowed_op3,
+        allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
@@ -1567,8 +1626,26 @@ def prepare_postmr(
         },
         "phosphate_policy": phosphate_policy,
         "phosphate_cleanup": {
+            "terminal_phosphate_ensure": terminal_phosphate,
             "before_restraints": phosphate_before,
             "after_readyset": phosphate_after,
+        },
+        "backbone_chemistry": {
+            "schema_version": 1,
+            "default": "standard_phosphodiester",
+            "sites": dict(backbone_policy["sites"]),
+            "experimental_passthrough_sites": list(passthrough_sites),
+            "user_authorized": bool(
+                backbone_policy["allow_unreviewed"] or allow_unreviewed_backbone
+            ),
+            "authorization_source": (
+                "frozen-input" if backbone_policy["allow_unreviewed"]
+                else "postmr-cli-override" if allow_unreviewed_backbone else None
+            ),
+            "review_required": bool(passthrough_sites),
+            "review_status": (
+                "UNREVIEWED_NONSTANDARD_BACKBONE" if passthrough_sites else "NOT_REQUIRED"
+            ),
         },
         "component_identity": {
             code: {
@@ -1584,7 +1661,12 @@ def prepare_postmr(
             "command": readyset_command,
             "hydrogens": False,
             "log": str(readyset_log),
-            "updated_model": str(readyset_dir / f"{prepared.stem}.updated.pdb"),
+            "output_mode": phosphate_after.get("readyset_output_mode"),
+            "updated_model": (
+                str(readyset_dir / f"{prepared.stem}.updated.pdb")
+                if phosphate_after.get("readyset_output_mode") == "updated-model"
+                else None
+            ),
             "phosphate_checked_model": {
                 **artifact_reference(updated, run), "sha256": file_sha256(updated),
             },

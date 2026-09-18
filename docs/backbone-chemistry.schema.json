@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vecchioni-lab/NASolve/docs/backbone-chemistry.schema.json",
+  "title": "NASolve backbone chemistry policy v1",
+  "description": "Machine-readable contract for frozen PostMR backbone intent. The user-facing source remains nasolve.txt and human-readable recipe documentation.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "default",
+    "sites",
+    "allow_unreviewed",
+    "experimental_passthrough_sites"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "default": {"const": "standard_phosphodiester"},
+    "sites": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9_]:-?(?:0|[1-9][0-9]*)[A-Za-z]?$"
+      },
+      "additionalProperties": {
+        "enum": ["standard", "experimental_passthrough"]
+      },
+      "description": "Site-level exceptions. Unknown backbone chemistry is never inferred automatically."
+    },
+    "allow_unreviewed": {
+      "type": "boolean",
+      "description": "Explicit user consent to continue through PostMR with experimental passthrough chemistry."
+    },
+    "experimental_passthrough_sites": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_]:-?(?:0|[1-9][0-9]*)[A-Za-z]?$"
+      },
+      "description": "Derived sorted list of sites whose connectivity NASolve intentionally does not validate."
+    }
+  },
+  "x-nasolve-capabilities": {
+    "standard_phosphodiester": {
+      "internal_rule": "incoming O3'-P connection; P/OP1/OP2 retained; internal OP3 removed when connectivity is verified",
+      "five_prime_terminal_phosphate": "explicit request ensures complete P/OP1/OP2/OP3 group",
+      "three_prime_terminal_phosphate": "planned; not automatically represented in v1"
+    },
+    "experimental_passthrough": {
+      "inference": false,
+      "automatic_link_edits": false,
+      "human_review_required": true,
+      "review_provenance_persists": true
+    },
+    "custom_backbone_recipes": {
+      "status": "planned",
+      "principle": "human-readable atom connection/deletion instructions promoted only from reviewed real examples"
+    }
+  }
+}

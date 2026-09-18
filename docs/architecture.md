@@ -303,8 +303,10 @@ geometry. Raw ReadySet output remains at `readyset.updated_model`; the new
 for the final model. Immutable earlier runs require no migration and are never
 rewritten.
 
-The [1AP integration contract](1ap-phosphate-integration.md) defines the first
-parameterized monomer override with selected-site `NASnoOP3` modifications.
+The first parameterized monomer override uses selected-site `NASnoOP3`
+modifications for reviewed 1AP chemistry. The original integration/validation
+diary is preserved under `history/1ap-phosphate-integration.md`; it is no longer
+the active contract.
 New 1AP runs freeze authoritative refinement/view artifact lists with hashes,
 so ReadySet cannot silently supersede the reviewed 1AP CIF or omit the
 modification at checkpoint creation. Incoming/outgoing profile links and
@@ -525,8 +527,9 @@ leaves `recommended_checkpoint` empty, and separately identifies a usable
 quantify uncertainty or establish superiority. A small inversion no longer
 endorses the original source as good enough. The additive `triage` and
 `ranking` report fields explain budgets, skipped recipes, the stop and next
-inspection steps. Campaign integration and diagnostic-driven restraint/data
-alternatives remain planned in [Refine Doctor triage](refine-doctor-triage.md).
+inspection steps. Campaign integration and diagnostic-driven restraint/data alternatives
+remain planned in `campaigns.md`; immediate implementation state is tracked in
+`development-handoff.md`.
 
 ## Stage-aware Coot views
 
@@ -691,12 +694,14 @@ isolation, or downstream reporting.
 
 ## Next development priorities
 
-The [DOHU validation record](validation-dohu.md) establishes a working local
-dictionary mutation, phosphate cleanup, current-checkpoint view, and ordinary
-Phenix 2.2 refinement path. The campaign planner freezes inputs and project
-policy; the sequential executor now adds guarded stage composition and saved
-progress. Bounded campaign Doctor selection and richer inspection summaries
-are the next orchestration steps.
+Earlier end-to-end local validation is preserved in
+`history/validation-dohu.md`. Current validation state and the immediate
+implementation edge are maintained in `development-handoff.md`.
+
+The campaign planner freezes inputs and project policy; the sequential executor
+adds guarded stage composition and saved progress. Bounded campaign Doctor
+selection and richer inspection summaries remain the next major orchestration
+steps after the current standalone refinement/chemistry guard work.
 
 Campaign orchestration should reuse frozen inputs, immutable numbered runs,
 and checkpoint lineage, with resumable per-dataset progress and explicit

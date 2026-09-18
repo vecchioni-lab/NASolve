@@ -10,6 +10,11 @@ entries are reconstructed from repository history.
 
 ### Changed
 
+- Added schema-1 semantic `terminal_geometry_protection` checkpoint provenance. Protected sites, sigma, Phenix-derived ideal source, mechanism, and the run-local protection restraint artifact now inherit with refinement/manual children; attempts to stack a second protection record fail closed.
+- Generalized the OP3-specific policy into an explicit standard-phosphodiester backbone contract. `five_prime_phosphate_sites` is the preferred user-facing name (legacy `allow_op3_sites` remains readable). PostMR now treats a requested 5'-terminal phosphate as the complete P/OP1/OP2/OP3 group, preserving a complete group, completing missing OP3 from existing P/OP1/OP2, or seeding a whole missing group from O5'-C5' with recorded idealized starting geometry. Partial ambiguous groups still fail closed.
+- Terminal-phosphate native geometry remains owned by Phenix. NASolve now audits declared terminal phosphates from Phenix geometry output and provides provenance-tracked local `action = change` protection using Phenix-derived ideals; NARestraints remains responsible for reviewed pairing/stacking geometry and does not duplicate native terminal-phosphate restraints. Automatic first-AutoRefine protection is now implemented and live-validated: NASolve obtains native ideals from a pre-refinement `phenix.pdb_interpretation` geometry snapshot, applies six local sigma=1-degree P-centered `action = change` restraints, freezes the source geometry/log/protection artifact into checkpoint provenance, and inherits that protection without duplicate stacking.
+- Added site-scoped `experimental_passthrough` for explicitly declared non-standard backbones. Standard phosphate rules are skipped only at those sites; no custom linkage is inferred. Passthrough requires explicit user authorization, persists in run/campaign provenance, and has a two-step `backbone-review` Coot/confirmation workflow that records the inspected model hash without erasing provenance. Reviewed custom backbone recipes and 3'-phosphate construction remain future work.
+
 - Added explicit `[chemistry] terminal_phosphate_sites` to recipe cards. The
   built-in W/5W6W card is now version 1.1.0 and declares D:1, confirmed by Simon
   as a designed 5-prime phosphate. Standalone W selection and campaign planning
@@ -17,15 +22,16 @@ entries are reconstructed from repository history.
   `allow_op3_sites` replaces recipe sites, including an explicit empty override.
 - Freeze recipe phosphate origin/id/version/hashes beside the effective sites in
   AutoMR and campaign records. Report sites in AutoMR and campaign plan/status.
-  Existing frozen runs/plans never gain permissions from a later recipe version;
-  no geometry/linkage checks are loosened and no coordinates are manufactured.
+  Existing frozen runs/plans never gain permissions from a later recipe version.
+  Fresh PostMR attempts may construct an explicitly requested 5-prime terminal
+  phosphate under the current guarded chemistry contract; old runs remain immutable.
 
-- OP3/O3P is now strictly user-opt-in, including at termini. The new dataset
-  `[automr] allow_op3_sites` list is frozen into AutoMR/campaign intent. Internal
-  extras are still removed only with verified linkage; unrequested unlinked,
-  missing requested, ambiguous or contradictory phosphates require review.
-  Explicit permission retains a valid existing terminal group; it does not
-  construct absent atoms or authorize an extra oxygen on an internal phosphate.
+- OP3/O3P terminal intent is strictly explicit and is frozen into
+  AutoMR/campaign provenance. For a requested 5-prime terminal site, PostMR may
+  preserve a complete group, add missing OP3 to P/OP1/OP2, or construct a wholly
+  missing P/OP1/OP2/OP3 group from the local sugar frame. Ambiguous partial
+  groups, unrequested unlinked OP3, cyclic/incoming-link conflicts, and an extra
+  oxygen on an internal phosphate still fail closed.
 - Replaced the bundled raw 1AP CCD graph with the tested parameterized monomer
   library dictionary, preserving numerical values and adapting its group to
   DNA. New PostMR 1AP profiles generate residue-selected OP3 modifications and
@@ -36,10 +42,11 @@ entries are reconstructed from repository history.
   retained inherited modifiers after relocation, with missing or changed
   artifacts failing closed. Combined dictionary inputs merge their component
   lists instead of concatenating conflicting data blocks.
-- Pinned NARestraints to merged stacking commit `1f20e9f` instead of the older
-  `v1.1.1` tag for new installs. No DE, sulfur pair-target, observations, Free-R
-  or NARestraints workbook changes. Automated external-tool behavior remains
-  subject to a live ReadySet/Phenix check; see `docs/1ap-phosphate-integration.md`.
+- NASolve now installs the released NARestraints `v1.1.2` dependency. No DE,
+  sulfur pair-target, observations, Free-R, or NARestraints workbook changes are
+  implied by this backbone work. ReadySet/Phenix interpretation and live
+  refinement of a wholly constructed terminal phosphate have now been exercised;
+  the earlier 1AP integration diary is archived under `docs/history/`.
 
 ### Added
 
@@ -118,6 +125,8 @@ entries are reconstructed from repository history.
 - Added SHA-256 values for AutoSol heavy-atom and refinement-phase outputs.
 
 ### Fixed
+
+- ReadySet exit status 0 with the explicit `No unknown residues` result is now accepted as a successful no-op when Phenix writes no `*.updated.pdb`. NASolve preserves the already-prepared model, still runs its phosphate/atom-count audits, and records the no-op output mode; missing ReadySet output without that explicit success condition still fails closed.
 
 - Refine Doctor's interactive `i` answer now opens the recommended checkpoint
   in Coot and returns to the same selection prompt. Answers take effect after

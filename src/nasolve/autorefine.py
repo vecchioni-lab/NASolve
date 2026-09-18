@@ -7,13 +7,14 @@ import math
 import os
 import re
 import subprocess
+import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Mapping, Sequence
 
 from .ligand_profiles import validate_model_phosphate_policy
-from .phosphate import PhosphateError
+from .phosphate import PhosphateError, requested_op3_sites
 from .checkpoints import (
     CheckpointError,
     _inherited_paths_for_autorefine,
@@ -104,6 +105,8 @@ HL_LABEL_SETS = (
 FREE_R_LABELS = ("FreeR_flag", "R-free-flags", "FREE", "FreeR")
 DATA_MANAGER_FILE_SCOPED = "data-manager-file-scoped"
 LEGACY_EXPLICIT = "legacy-explicit"
+_TERMINAL_GEOMETRY_REVIEW_SIGMA = 5.0
+_GEO_ATOM = re.compile(r'pdb="\s*([^"]+?)\s*"')
 _PHENIX_VERSION = re.compile(
     r"(?:Phenix\s+)?(\d+)\.(\d+)(?:\.(\d+))?"
     r"(?:[-._][A-Za-z0-9][A-Za-z0-9._-]*)?",
@@ -313,6 +316,7 @@ def write_recipe_parameters(
     refine_occupancies: bool = True,
     anomalous_mode: str = "refine",
     refine_coordinates: bool = True,
+    xyz_wxc_scale: float = 0.5,
     anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
 ) -> tuple[str, ...]:
     if macro_cycles < 1:
@@ -340,6 +344,13 @@ def write_recipe_parameters(
         raise AutoRefineError("Explicit scattering values require fixed or fdp-only mode")
     if real_space_sites and not refine_coordinates:
         raise AutoRefineError("Real-space coordinate refinement requires refine_coordinates")
+    if (
+        isinstance(xyz_wxc_scale, bool)
+        or not isinstance(xyz_wxc_scale, (int, float))
+        or not math.isfinite(xyz_wxc_scale)
+        or xyz_wxc_scale <= 0
+    ):
+        raise AutoRefineError("X-ray/stereochemistry wxc_scale must be a positive finite number")
     strategies = ["individual_sites"] if refine_coordinates else []
     if real_space_sites:
         strategies.append("individual_sites_real_space")
@@ -440,6 +451,10 @@ def write_recipe_parameters(
         "  target_weights {",
         f"    optimize_xyz_weight = {refine_coordinates}",
         f"    optimize_adp_weight = {adp_mode != 'none'}",
+        f"    wxc_scale = {xyz_wxc_scale:g}",
+        "  }",
+        "  output {",
+        "    write_final_geo_file = True",
         "  }",
         "}",
         "",
@@ -713,6 +728,395 @@ def anomalous_scatterer_diagnostics(
     return results
 
 
+def audit_terminal_phosphate_geometry(
+    geometry_file: Path | None,
+    sites: Sequence[str],
+    *,
+    sigma_threshold: float = _TERMINAL_GEOMETRY_REVIEW_SIGMA,
+) -> dict[str, object]:
+    """Audit declared 5'-terminal phosphates against Phenix's own final restraints.
+
+    No ideal values are encoded here. The final .geo file supplies ideal, model,
+    and sigma values. A future 3'-phosphate implementation can reuse the same
+    normalized-deviation gate with its own restraint-block selector.
+    """
+    if (
+        isinstance(sigma_threshold, bool)
+        or not isinstance(sigma_threshold, (int, float))
+        or not math.isfinite(sigma_threshold)
+        or sigma_threshold <= 0
+    ):
+        raise AutoRefineError("Terminal-geometry sigma threshold must be positive and finite")
+
+    requested = tuple(sites)
+    if not requested:
+        return {
+            "status": "NOT_REQUESTED",
+            "requires_review": False,
+            "sigma_threshold": float(sigma_threshold),
+            "sites": [],
+        }
+
+    if geometry_file is None or not geometry_file.is_file():
+        return {
+            "status": "REVIEW",
+            "requires_review": True,
+            "reason": "final-geometry-file-missing",
+            "sigma_threshold": float(sigma_threshold),
+            "sites": [
+                {
+                    "site": site,
+                    "restraint_count": 0,
+                    "expected_restraint_count": 11,
+                    "max_sigma_deviation": None,
+                    "severe_restraints": [],
+                    "restraints": [],
+                }
+                for site in requested
+            ],
+        }
+
+    lines = geometry_file.read_text(encoding="utf-8", errors="replace").splitlines()
+    starts = [
+        index
+        for index, line in enumerate(lines)
+        if line.startswith(("bond ", "angle "))
+    ]
+
+    aliases = {"O1P": "OP1", "O2P": "OP2", "O3P": "OP3"}
+    terminal_oxygens = {"O5'", "OP1", "OP2", "OP3"}
+    rows_by_site: dict[str, list[dict[str, object]]] = {
+        site: [] for site in requested
+    }
+
+    for number, start in enumerate(starts):
+        end = starts[number + 1] if number + 1 < len(starts) else len(lines)
+        block = lines[start:end]
+        text = "\n".join(block)
+        kind = block[0].split(None, 1)[0]
+
+        atoms: list[tuple[str, str, str]] = []
+        for match in _GEO_ATOM.finditer(text):
+            fields = match.group(1).split()
+            if len(fields) < 4:
+                continue
+            name = aliases.get(fields[0], fields[0])
+            atoms.append((name, fields[-2], fields[-1]))
+
+        if kind == "bond" and len(atoms) != 2:
+            continue
+        if kind == "angle" and len(atoms) != 3:
+            continue
+
+        atom_names = tuple(atom[0] for atom in atoms)
+
+        if kind == "bond":
+            wanted = (
+                "P" in atom_names
+                and len(set(atom_names) & terminal_oxygens) == 1
+            )
+        else:
+            wanted = (
+                (
+                    atom_names[1] == "P"
+                    and atom_names[0] in terminal_oxygens
+                    and atom_names[2] in terminal_oxygens
+                    and atom_names[0] != atom_names[2]
+                )
+                or (
+                    atom_names[1] == "O5'"
+                    and {atom_names[0], atom_names[2]} == {"P", "C5'"}
+                )
+            )
+        if not wanted:
+            continue
+
+        values = None
+        for index, line in enumerate(block[:-1]):
+            if all(label in line for label in ("ideal", "model", "delta", "sigma")):
+                fields = block[index + 1].split()
+                if len(fields) >= 4:
+                    try:
+                        values = tuple(float(value) for value in fields[:4])
+                    except ValueError:
+                        values = None
+                break
+        if values is None:
+            continue
+
+        ideal, model, delta, sigma = values
+        sigma_deviation = (
+            abs(delta) / sigma
+            if sigma > 0 and math.isfinite(sigma)
+            else math.inf
+        )
+
+        for site in requested:
+            chain, resid = site.split(":", 1)
+            if all(atom[1] == chain and atom[2] == resid for atom in atoms):
+                rows_by_site[site].append({
+                    "kind": kind,
+                    "atoms": list(atom_names),
+                    "ideal": ideal,
+                    "model": model,
+                    "delta": delta,
+                    "sigma": sigma,
+                    "sigma_deviation": sigma_deviation,
+                    "severe": sigma_deviation >= sigma_threshold,
+                })
+
+    site_reports: list[dict[str, object]] = []
+    requires_review = False
+
+    for site in requested:
+        restraints = rows_by_site[site]
+        severe = [row for row in restraints if row["severe"] is True]
+        complete = len(restraints) == 11
+        maximum = max(
+            (float(row["sigma_deviation"]) for row in restraints),
+            default=None,
+        )
+        site_review = (not complete) or bool(severe)
+        requires_review = requires_review or site_review
+        site_reports.append({
+            "site": site,
+            "restraint_count": len(restraints),
+            "expected_restraint_count": 11,
+            "max_sigma_deviation": maximum,
+            "severe_restraints": severe,
+            "restraints": restraints,
+            "requires_review": site_review,
+        })
+
+    return {
+        "status": "REVIEW" if requires_review else "PASS",
+        "requires_review": requires_review,
+        "sigma_threshold": float(sigma_threshold),
+        "geometry_file": str(geometry_file),
+        "sites": site_reports,
+    }
+
+
+def write_terminal_phosphate_protection(
+    audit: Mapping[str, object],
+    destination: Path,
+    *,
+    sigma: float = 1.0,
+    protect_sites: Sequence[str] | None = None,
+    ideal_source: str = "source-checkpoint-final-phenix-geometry-audit",
+) -> dict[str, object]:
+    """Write local action=change restraints from Phenix's audited native ideals."""
+    if (
+        isinstance(sigma, bool)
+        or not isinstance(sigma, (int, float))
+        or not math.isfinite(sigma)
+        or sigma <= 0
+    ):
+        raise AutoRefineError(
+            "Terminal-geometry protection sigma must be positive and finite"
+        )
+
+    if not isinstance(ideal_source, str) or not ideal_source.strip():
+        raise AutoRefineError(
+            "Terminal-geometry protection ideal source must be a non-empty string"
+        )
+    ideal_source = ideal_source.strip()
+
+    site_records = audit.get("sites")
+    if not isinstance(site_records, list):
+        raise AutoRefineError("Terminal-geometry audit has no site records")
+
+    requested_sites: tuple[str, ...] | None = None
+    if protect_sites is not None:
+        requested_sites = tuple(protect_sites)
+        if (
+            not requested_sites
+            or any(not isinstance(site, str) or ":" not in site for site in requested_sites)
+            or len(set(requested_sites)) != len(requested_sites)
+        ):
+            raise AutoRefineError(
+                "Explicit terminal-phosphate protection sites must be unique chain:resid values"
+            )
+
+    lines = ["refinement.geometry_restraints.edits {"]
+    protected_sites: list[str] = []
+    angle_count = 0
+    allowed = {"P", "OP1", "OP2", "OP3", "O5'"}
+
+    for item in site_records:
+        if not isinstance(item, Mapping):
+            continue
+
+        site = item.get("site")
+        if requested_sites is None:
+            if item.get("requires_review") is not True:
+                continue
+        elif site not in requested_sites:
+            continue
+        restraints = item.get("restraints")
+        if (
+            not isinstance(site, str)
+            or ":" not in site
+            or not isinstance(restraints, list)
+        ):
+            raise AutoRefineError("Malformed terminal-geometry site record")
+
+        chain, resid = site.split(":", 1)
+        angles: list[tuple[tuple[str, str, str], float]] = []
+
+        for row in restraints:
+            if not isinstance(row, Mapping) or row.get("kind") != "angle":
+                continue
+
+            atoms = row.get("atoms")
+            ideal = row.get("ideal")
+
+            if (
+                not isinstance(atoms, list)
+                or len(atoms) != 3
+                or not all(isinstance(atom, str) for atom in atoms)
+            ):
+                continue
+
+            # Protect only the six P-centered internal phosphate angles.
+            if atoms[1] != "P":
+                continue
+
+            atom_tuple = (atoms[0], atoms[1], atoms[2])
+            if (
+                any(atom not in allowed for atom in atom_tuple)
+                or isinstance(ideal, bool)
+                or not isinstance(ideal, (int, float))
+                or not math.isfinite(ideal)
+            ):
+                raise AutoRefineError(
+                    f"Malformed native terminal-phosphate angle at {site}"
+                )
+
+            angles.append((atom_tuple, float(ideal)))
+
+        unique = {atoms for atoms, unused in angles}
+        if len(angles) != 6 or len(unique) != 6:
+            raise AutoRefineError(
+                f"Terminal phosphate {site}: expected six native P-centered "
+                f"angles, found {len(angles)}"
+            )
+
+        protected_sites.append(site)
+
+        for atoms, ideal in angles:
+            lines.extend([
+                "  angle {",
+                "    action = *change",
+                f"    atom_selection_1 = chain {chain} and resid {resid} and name {atoms[0]}",
+                f"    atom_selection_2 = chain {chain} and resid {resid} and name {atoms[1]}",
+                f"    atom_selection_3 = chain {chain} and resid {resid} and name {atoms[2]}",
+                f"    angle_ideal = {ideal:.6g}",
+                f"    sigma = {float(sigma):.6g}",
+                "  }",
+            ])
+            angle_count += 1
+
+    if not protected_sites:
+        raise AutoRefineError(
+            "Terminal-geometry trigger contains no protectable phosphate site"
+        )
+    if requested_sites is not None and set(protected_sites) != set(requested_sites):
+        missing = sorted(set(requested_sites) - set(protected_sites))
+        raise AutoRefineError(
+            "Terminal-phosphate protection audit is incomplete for: "
+            + ", ".join(missing)
+        )
+
+    lines.extend(["}", ""])
+    destination.write_text("\n".join(lines), encoding="utf-8")
+
+    return {
+        "schema_version": 1,
+        "kind": "terminal-phosphate-protection",
+        "path": str(destination),
+        "sites": protected_sites,
+        "angle_count": angle_count,
+        "sigma": float(sigma),
+        "ideal_source": ideal_source,
+        "mechanism": "phenix-action-change",
+    }
+
+
+def _validate_terminal_geometry_protection(
+    value: object,
+    *,
+    require_path: bool,
+) -> dict[str, object] | None:
+    """Validate semantic terminal-phosphate protection provenance."""
+    if value is None:
+        return None
+    if not isinstance(value, Mapping):
+        raise AutoRefineError("Terminal-geometry protection provenance is malformed")
+
+    record = dict(value)
+    if record.get("schema_version") != 1:
+        raise AutoRefineError("Unsupported terminal-geometry protection schema")
+    if record.get("kind") != "terminal-phosphate-protection":
+        raise AutoRefineError("Terminal-geometry protection kind is malformed")
+
+    sites = record.get("sites")
+    if (
+        not isinstance(sites, list)
+        or not sites
+        or any(not isinstance(site, str) or ":" not in site for site in sites)
+        or len(set(sites)) != len(sites)
+    ):
+        raise AutoRefineError(
+            "Terminal-geometry protection sites must be unique chain:resid values"
+        )
+
+    angle_count = record.get("angle_count")
+    if (
+        isinstance(angle_count, bool)
+        or not isinstance(angle_count, int)
+        or angle_count != 6 * len(sites)
+    ):
+        raise AutoRefineError(
+            "Terminal-geometry protection must record six P-centered angles per site"
+        )
+
+    sigma = record.get("sigma")
+    if (
+        isinstance(sigma, bool)
+        or not isinstance(sigma, (int, float))
+        or not math.isfinite(sigma)
+        or sigma <= 0
+    ):
+        raise AutoRefineError(
+            "Terminal-geometry protection sigma must be positive and finite"
+        )
+
+    if record.get("mechanism") != "phenix-action-change":
+        raise AutoRefineError("Terminal-geometry protection mechanism is malformed")
+
+    ideal_source = record.get("ideal_source")
+    if not isinstance(ideal_source, str) or not ideal_source.strip():
+        raise AutoRefineError(
+            "Terminal-geometry protection ideal source must be a non-empty string"
+        )
+
+    if require_path:
+        path = record.get("path")
+        if not isinstance(path, str) or not path:
+            raise AutoRefineError(
+                "Terminal-geometry protection has no restraint artifact path"
+            )
+    else:
+        restraint = record.get("restraint")
+        if not isinstance(restraint, Mapping):
+            raise AutoRefineError(
+                "Inherited terminal-geometry protection has no restraint artifact"
+            )
+
+    return record
+
+
 def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str, object]:
     pairs = [(float(a), float(b)) for a, b in _R_PAIR.findall(log_text)]
     # Logs repeat some summaries; preserve changes while collapsing immediate duplicates.
@@ -972,6 +1376,125 @@ def _effective_phase(
     return None
 
 
+def _prepare_terminal_phosphate_protection(
+    model: Path,
+    restraints: Sequence[Path],
+    refine_executable: Path,
+    environment: Mapping[str, str] | None,
+    sites: Sequence[str],
+) -> dict[str, object]:
+    """Harvest Phenix terminal-phosphate ideals before creating a refine round."""
+    requested = tuple(sites)
+    if not requested:
+        raise AutoRefineError(
+            "Pre-refinement terminal protection requires at least one declared site"
+        )
+
+    refine_path = Path(refine_executable).expanduser()
+    candidates = [
+        refine_path.parent / "phenix.pdb_interpretation",
+        refine_path.resolve().parent / "phenix.pdb_interpretation",
+    ]
+    interpreter = next(
+        (candidate for candidate in dict.fromkeys(candidates) if candidate.is_file()),
+        None,
+    )
+    if interpreter is None:
+        raise AutoRefineError(
+            "Declared terminal phosphate requires proactive protection, but "
+            "phenix.pdb_interpretation was not found beside phenix.refine"
+        )
+
+    with tempfile.TemporaryDirectory(
+        prefix="nasolve-terminal-geometry-"
+    ) as directory:
+        work = Path(directory)
+        command = [
+            str(interpreter),
+            str(model),
+            *(str(path) for path in restraints),
+            "write_geo=True",
+        ]
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=work,
+                env=dict(environment) if environment is not None else None,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+        except OSError as exc:
+            raise AutoRefineError(
+                f"Could not launch phenix.pdb_interpretation for terminal "
+                f"protection: {exc}"
+            ) from exc
+
+        log_text = completed.stdout
+        if completed.returncode:
+            tail = "\n".join(log_text.splitlines()[-10:])
+            detail = f"\n{tail}" if tail else ""
+            raise AutoRefineError(
+                "phenix.pdb_interpretation failed while preparing proactive "
+                f"terminal-phosphate protection with status "
+                f"{completed.returncode}{detail}"
+            )
+
+        geometry_files = sorted(
+            path.resolve() for path in work.glob("*.geo") if path.is_file()
+        )
+        if len(geometry_files) != 1:
+            raise AutoRefineError(
+                "phenix.pdb_interpretation did not produce exactly one .geo "
+                f"file for proactive terminal-phosphate protection; found "
+                f"{len(geometry_files)}"
+            )
+
+        geometry_file = geometry_files[0]
+        audit = audit_terminal_phosphate_geometry(
+            geometry_file,
+            requested,
+        )
+        site_records = audit.get("sites")
+        if not isinstance(site_records, list):
+            raise AutoRefineError(
+                "Pre-refinement terminal-geometry audit has no site records"
+            )
+        incomplete = [
+            str(item.get("site"))
+            for item in site_records
+            if not isinstance(item, Mapping)
+            or item.get("restraint_count") != 11
+        ]
+        if incomplete:
+            raise AutoRefineError(
+                "Phenix pre-refinement geometry is incomplete for declared "
+                "terminal phosphate site(s): " + ", ".join(incomplete)
+            )
+
+        protection_file = work / "terminal_phosphate_protection.phil"
+        record = write_terminal_phosphate_protection(
+            audit,
+            protection_file,
+            protect_sites=requested,
+            ideal_source=(
+                "pre-refinement-phenix.pdb_interpretation-geometry"
+            ),
+        )
+
+        return {
+            "geometry_text": geometry_file.read_text(
+                encoding="utf-8", errors="replace"
+            ),
+            "log_text": log_text,
+            "protection_text": protection_file.read_text(encoding="utf-8"),
+            "record": {
+                key: value for key, value in record.items() if key != "path"
+            },
+        }
+
+
 def _update_run_report(run: Path, round_payload: Mapping[str, object]) -> None:
     report = _run_report(run)
     history = report.setdefault("autorefine_history", [])
@@ -1004,10 +1527,17 @@ def execute_autorefine(
     anomalous_mode: str = "refine",
     refine_coordinates: bool = True,
     anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
+    extra_restraints: Sequence[Path] = (),
+    terminal_geometry_protection: Mapping[str, object] | None = None,
     auto_select_success: bool = True,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint."""
+    xyz_wxc_scale = (
+        0.1
+        if recipe == "AutoRefine/geometry-conservative"
+        else 0.5
+    )
     selector_policy = reflection_selector_policy(phenix_version)
     try:
         run, registry = initialize_registry(run_directory)
@@ -1022,6 +1552,10 @@ def execute_autorefine(
     except CheckpointError as exc:
         raise AutoRefineError(str(exc)) from exc
     report = _run_report(run)
+    try:
+        terminal_phosphate_sites = requested_op3_sites(report)
+    except PhosphateError as exc:
+        raise AutoRefineError(f"Malformed frozen terminal-phosphate intent: {exc}") from exc
     verified_phase = (
         _effective_phase(report, inherited, run)
         if use_experimental_phases
@@ -1033,6 +1567,74 @@ def execute_autorefine(
     restraints = inherited["restraints"]
     assert isinstance(observations, Path) and isinstance(model, Path)
     assert isinstance(restraints, list)
+
+    parent_restraint_records = parent.get("restraints", [])
+    if not isinstance(parent_restraint_records, list):
+        raise AutoRefineError("Parent checkpoint restraint provenance is malformed")
+
+    inherited_terminal_protection = _validate_terminal_geometry_protection(
+        parent.get("terminal_geometry_protection"),
+        require_path=False,
+    )
+    requested_terminal_protection = _validate_terminal_geometry_protection(
+        terminal_geometry_protection,
+        require_path=True,
+    )
+    if inherited_terminal_protection is not None:
+        inherited_ref = inherited_terminal_protection.get("restraint")
+        if inherited_ref not in parent_restraint_records:
+            raise AutoRefineError(
+                "Inherited terminal-geometry protection restraint is not present "
+                "in the parent checkpoint restraint bundle"
+            )
+    if (
+        inherited_terminal_protection is not None
+        and requested_terminal_protection is not None
+    ):
+        raise AutoRefineError(
+            "Parent checkpoint already carries terminal-geometry protection; "
+            "refusing to stack another protection record"
+        )
+
+    seen_restraints = {
+        path.expanduser().resolve()
+        for path in restraints
+        if isinstance(path, Path)
+    }
+    resolved_extra_restraints: list[Path] = []
+    for value in extra_restraints:
+        path = Path(value).expanduser().resolve()
+        if not path.is_file():
+            raise AutoRefineError(
+                f"Additional refinement restraint does not exist: {path}"
+            )
+        if path in seen_restraints:
+            continue
+        seen_restraints.add(path)
+        resolved_extra_restraints.append(path)
+
+    restraints = [*restraints, *resolved_extra_restraints]
+
+    requested_terminal_protection_path: Path | None = None
+    if requested_terminal_protection is not None:
+        requested_terminal_protection_path = Path(
+            str(requested_terminal_protection["path"])
+        ).expanduser().resolve()
+        protection_reference = artifact_reference(
+            requested_terminal_protection_path,
+            run,
+        )
+        if protection_reference.get("anchor") == "absolute":
+            raise AutoRefineError(
+                "Terminal-geometry protection artifact must be stored inside "
+                "the NASolve run for portable checkpoint provenance"
+            )
+        if requested_terminal_protection_path not in resolved_extra_restraints:
+            raise AutoRefineError(
+                "Terminal-geometry protection artifact must be supplied as a new "
+                "extra refinement restraint"
+            )
+
     validate_refined_model(model, report)
     plan = build_reflection_plan(
         report,
@@ -1042,6 +1644,21 @@ def execute_autorefine(
         phase_file,
     )
     selections = anomalous_selections(report) if plan.anomalous else ()
+
+    automatic_terminal_seed: dict[str, object] | None = None
+    if (
+        terminal_phosphate_sites
+        and inherited_terminal_protection is None
+        and requested_terminal_protection is None
+    ):
+        automatic_terminal_seed = _prepare_terminal_phosphate_protection(
+            model,
+            restraints,
+            refine_executable,
+            environment,
+            terminal_phosphate_sites,
+        )
+
     checkpoint_id = next_checkpoint_id(registry, "refine")
     round_number = int(checkpoint_id.rsplit("-", 1)[1])
     round_directory = run / "AutoRefine" / f"round_{round_number:03d}"
@@ -1051,6 +1668,64 @@ def execute_autorefine(
         raise AutoRefineError(
             f"Refinement round already exists; refusing to overwrite {round_directory}"
         ) from exc
+
+    pre_refinement_geometry: Path | None = None
+    pre_refinement_geometry_log: Path | None = None
+    if automatic_terminal_seed is not None:
+        geometry_text = automatic_terminal_seed.get("geometry_text")
+        geometry_log_text = automatic_terminal_seed.get("log_text")
+        protection_text = automatic_terminal_seed.get("protection_text")
+        seed_record = automatic_terminal_seed.get("record")
+        if (
+            not isinstance(geometry_text, str)
+            or not isinstance(geometry_log_text, str)
+            or not isinstance(protection_text, str)
+            or not isinstance(seed_record, Mapping)
+        ):
+            raise AutoRefineError(
+                "Internal proactive terminal-protection preparation record "
+                "is malformed"
+            )
+
+        pre_refinement_geometry = (
+            round_directory / "terminal_geometry_pre_refine.geo"
+        )
+        pre_refinement_geometry_log = (
+            round_directory / "terminal_geometry_pre_refine.log"
+        )
+        protection_path = (
+            round_directory / "terminal_phosphate_protection.phil"
+        )
+        pre_refinement_geometry.write_text(
+            geometry_text,
+            encoding="utf-8",
+        )
+        pre_refinement_geometry_log.write_text(
+            geometry_log_text,
+            encoding="utf-8",
+        )
+        protection_path.write_text(
+            protection_text,
+            encoding="utf-8",
+        )
+
+        requested_terminal_protection = (
+            _validate_terminal_geometry_protection(
+                {
+                    **dict(seed_record),
+                    "path": str(protection_path),
+                },
+                require_path=True,
+            )
+        )
+        if requested_terminal_protection is None:
+            raise AutoRefineError(
+                "Automatic terminal protection unexpectedly produced no record"
+            )
+        requested_terminal_protection_path = protection_path
+        resolved_extra_restraints.append(protection_path)
+        restraints.append(protection_path)
+
     parameters = round_directory / "autorefine.params"
     nproc = max(1, processor_count if processor_count is not None else (os.cpu_count() or 1))
     strategies = write_recipe_parameters(
@@ -1066,6 +1741,7 @@ def execute_autorefine(
         refine_occupancies=refine_occupancies,
         anomalous_mode=anomalous_mode,
         refine_coordinates=refine_coordinates,
+        xyz_wxc_scale=xyz_wxc_scale,
         anomalous_groups=anomalous_groups,
     )
     command = build_refine_command(
@@ -1152,11 +1828,17 @@ def execute_autorefine(
         "refined_*.mtz",
         include=lambda path: "map_coeffs" not in path.name.casefold(),
     )
+    final_geometry = _discover_output(round_directory, "refined_*_final.geo")
+    terminal_geometry_audit = audit_terminal_phosphate_geometry(
+        final_geometry,
+        terminal_phosphate_sites,
+    )
     model_text = (
         output_model.read_text(encoding="utf-8", errors="replace")
         if output_model is not None else ""
     )
     statistics = parse_refinement_statistics(log_text, model_text)
+    statistics["terminal_geometry_audit"] = terminal_geometry_audit
     statistics["anomalous_scatterers"] = anomalous_scatterer_diagnostics(
         log_text,
         output_model,
@@ -1178,6 +1860,34 @@ def execute_autorefine(
 
     file_reference = _cached_file_referencer(run)
     model_reference = file_reference(output_model) if output_model is not None else None
+    extra_restraint_references = [
+        file_reference(path) for path in resolved_extra_restraints
+    ]
+
+    terminal_protection_record: dict[str, object] | None
+    if requested_terminal_protection is not None:
+        assert requested_terminal_protection_path is not None
+        terminal_protection_record = {
+            key: value
+            for key, value in requested_terminal_protection.items()
+            if key != "path"
+        }
+        terminal_protection_record["restraint"] = file_reference(
+            requested_terminal_protection_path
+        )
+        if pre_refinement_geometry is not None:
+            terminal_protection_record["source_geometry"] = file_reference(
+                pre_refinement_geometry
+            )
+        if pre_refinement_geometry_log is not None:
+            terminal_protection_record["source_log"] = file_reference(
+                pre_refinement_geometry_log
+            )
+    elif inherited_terminal_protection is not None:
+        terminal_protection_record = dict(inherited_terminal_protection)
+    else:
+        terminal_protection_record = None
+
     output_references = {
         "model_cif": file_reference(model_cif) if model_cif else None,
         "reflection_cif": file_reference(reflection_cif) if reflection_cif else None,
@@ -1186,6 +1896,19 @@ def execute_autorefine(
         ),
         "refinement_reflections": (
             file_reference(output_reflections) if output_reflections else None
+        ),
+        "final_geometry": (
+            file_reference(final_geometry) if final_geometry else None
+        ),
+        "terminal_geometry_pre_refine": (
+            file_reference(pre_refinement_geometry)
+            if pre_refinement_geometry is not None
+            else None
+        ),
+        "terminal_geometry_pre_refine_log": (
+            file_reference(pre_refinement_geometry_log)
+            if pre_refinement_geometry_log is not None
+            else None
         ),
         "metrics_tsv": file_reference(round_directory / "metrics.tsv"),
         "full_log": file_reference(log_path),
@@ -1238,6 +1961,15 @@ def execute_autorefine(
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 2
+    elif terminal_geometry_audit["requires_review"] is True:
+        status = "AUTOREFINE_REVIEW"
+        message = (
+            "Refinement completed, but declared terminal-phosphate geometry exceeds "
+            "the Phenix geometry-restraint review threshold"
+        )
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
     elif numerical_success:
         status = "AUTOREFINE_READY"
         message = "Numerical refinement criteria passed; inspect the model and maps"
@@ -1278,7 +2010,15 @@ def execute_autorefine(
         # Keep observations authoritative across every branch; output MTZ is evidence only.
         "observations": parent.get("observations"),
         "phases": phase_reference or parent.get("phases"),
-        "restraints": parent.get("restraints", []),
+        "restraints": [
+            *parent_restraint_records,
+            *extra_restraint_references,
+        ],
+        **(
+            {"terminal_geometry_protection": terminal_protection_record}
+            if terminal_protection_record is not None
+            else {}
+        ),
         "metrics": {
             key: value
             for key, value in statistics.items()
@@ -1310,6 +2050,7 @@ def execute_autorefine(
         "command": command,
         "preflight_command": preflight_command,
         "parameters": str(parameters),
+        "terminal_geometry_protection": terminal_protection_record,
         "inputs": {
             "model": str(model),
             "authoritative_observations": str(observations),
@@ -1319,6 +2060,9 @@ def execute_autorefine(
             "phase_file": str(phase_file) if phase_file else None,
             "phase_labels": list(plan.phase_labels),
             "restraints": [str(path) for path in restraints],
+            "extra_restraints": [
+                str(path) for path in resolved_extra_restraints
+            ],
         },
         "refinement": {
             "target": "automatic",
@@ -1333,7 +2077,11 @@ def execute_autorefine(
             "adp_mode": adp_mode,
             "refine_occupancies": refine_occupancies,
             "refine_coordinates": refine_coordinates,
-            "weights": {"optimize_xyz": refine_coordinates, "optimize_adp": adp_mode != "none"},
+            "weights": {
+                "optimize_xyz": refine_coordinates,
+                "optimize_adp": adp_mode != "none",
+                "wxc_scale": xyz_wxc_scale,
+            },
             "ordered_solvent": False,
             "simulated_annealing": False,
         },
@@ -1344,6 +2092,7 @@ def execute_autorefine(
             ),
             "r_work_less_than_0_30": r_work < 0.30 if isinstance(r_work, float) else False,
             "numerical_success": numerical_success,
+            "terminal_geometry_review": terminal_geometry_audit["requires_review"],
             "visual_inspection_required": True,
         },
         "outputs": {
@@ -1352,6 +2101,7 @@ def execute_autorefine(
             "reflection_cif": str(reflection_cif) if reflection_cif else None,
             "map_coefficients": str(map_coefficients) if map_coefficients else None,
             "refinement_reflections": str(output_reflections) if output_reflections else None,
+            "final_geometry": str(final_geometry) if final_geometry else None,
             "metrics_tsv": str(round_directory / "metrics.tsv"),
             "log": str(log_path),
             "preflight_log": str(preflight_log),
@@ -1391,6 +2141,7 @@ __all__ = [
     "ReflectionSelectorPolicy",
     "anomalous_selections",
     "anomalous_scatterer_diagnostics",
+    "audit_terminal_phosphate_geometry",
     "build_refine_command",
     "build_reflection_plan",
     "execute_autorefine",
@@ -1398,4 +2149,5 @@ __all__ = [
     "reflection_selector_policy",
     "validate_refined_model",
     "write_recipe_parameters",
+    "write_terminal_phosphate_protection",
 ]

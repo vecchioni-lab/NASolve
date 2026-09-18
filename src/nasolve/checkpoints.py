@@ -590,6 +590,14 @@ def add_checkpoint(
         "observations": observations,
         "phases": base.get("phases"),
         "restraints": base.get("restraints", []),
+        **(
+            {
+                "terminal_geometry_protection":
+                    base["terminal_geometry_protection"]
+            }
+            if "terminal_geometry_protection" in base
+            else {}
+        ),
         "metrics": {},
         "compatibility": {
             "validated": False,

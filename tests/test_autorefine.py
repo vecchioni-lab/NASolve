@@ -10,6 +10,7 @@ import nasolve.checkpoints as checkpoint_module
 from nasolve.autorefine import (
     AutoRefineError,
     DATA_MANAGER_FILE_SCOPED,
+    audit_terminal_phosphate_geometry,
     LEGACY_EXPLICIT,
     _cached_file_referencer,
     _run_report,
@@ -18,6 +19,7 @@ from nasolve.autorefine import (
     execute_autorefine,
     parse_refinement_statistics,
     reflection_selector_policy,
+    write_terminal_phosphate_protection,
 )
 from nasolve.checkpoints import initialize_registry, list_checkpoints
 from nasolve.model_assessment import file_sha256
@@ -112,6 +114,62 @@ def make_mtz_dump(root: Path, *, anomalous: bool = True) -> Path:
         "     printf '%s\\n' 'Resolution range: 20.0 5.27';\n"
         "     ;;\n"
         "esac\n"
+    )
+    executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
+    return executable
+
+
+
+def make_pdb_interpretation(root: Path) -> Path:
+    executable = root / "phenix.pdb_interpretation"
+
+    def bond(first: str, second: str, ideal: float, sigma: float) -> str:
+        return (
+            f'bond pdb=" {first} DA  D   1 "\n'
+            f'     pdb=" {second} DA  D   1 "\n'
+            "  ideal  model  delta    sigma   weight residual\n"
+            f"  {ideal:.3f}  {ideal:.3f} 0.000 {sigma:.2e} 1.00e+00 0.00e+00\n"
+        )
+
+    def angle(
+        first: str,
+        second: str,
+        third: str,
+        ideal: float,
+        sigma: float,
+    ) -> str:
+        return (
+            f'angle pdb=" {first} DA  D   1 "\n'
+            f'      pdb=" {second} DA  D   1 "\n'
+            f'      pdb=" {third} DA  D   1 "\n'
+            "  ideal  model  delta    sigma   weight residual\n"
+            f"  {ideal:.2f}  {ideal:.2f} 0.00 {sigma:.2e} 1.00e+00 0.00e+00\n"
+        )
+
+    geometry = "".join([
+        bond("P", "O5'", 1.593, 0.010),
+        bond("P", "OP1", 1.480, 0.020),
+        bond("P", "OP2", 1.480, 0.020),
+        bond("P", "OP3", 1.480, 0.020),
+        angle("OP1", "P", "OP2", 120.00, 3.00),
+        angle("OP1", "P", "O5'", 109.00, 3.00),
+        angle("OP2", "P", "O5'", 108.00, 3.00),
+        angle("OP1", "P", "OP3", 109.47, 3.00),
+        angle("OP2", "P", "OP3", 109.47, 3.00),
+        angle("O5'", "P", "OP3", 109.47, 3.00),
+        angle("P", "O5'", "C5'", 120.90, 1.60),
+    ])
+    executable.write_text(
+        "#!/usr/bin/env python3\n"
+        "from pathlib import Path\n"
+        "import sys\n"
+        "if 'write_geo=True' not in sys.argv:\n"
+        "    print('ERROR: expected write_geo=True')\n"
+        "    raise SystemExit(9)\n"
+        "model = next(Path(arg) for arg in sys.argv[1:] if arg.endswith('.pdb'))\n"
+        f"geometry = {geometry!r}\n"
+        "Path(model.name + '.geo').write_text(geometry)\n"
+        "print('Wrote pre-refinement geometry')\n"
     )
     executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
     return executable
@@ -263,6 +321,447 @@ class AutoRefineTests(unittest.TestCase):
                     self.assertIn('name = "HLAM,HLBM,HLCM,HLDM"', arrays[1])
                     self.assertNotIn('name = "FreeR_flag"', arrays[1])
                     self.assertNotIn(f'name = "{labels}"', arrays[1])
+
+    def test_geometry_conservative_recipe_reduces_xray_weight_scale(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            result = execute_autorefine(
+                run,
+                make_refine(root),
+                make_mtz_dump(root),
+                phenix_version="2.2.1-6174",
+                environment={"PATH": "/usr/bin:/bin"},
+                recipe="AutoRefine/geometry-conservative",
+                macro_cycles=1,
+            )
+
+            params = (result.round_directory / "autorefine.params").read_text()
+            self.assertIn("optimize_xyz_weight = True", params)
+            self.assertIn("wxc_scale = 0.1", params)
+            self.assertIn("write_final_geo_file = True", params)
+
+            payload = json.loads(result.report_path.read_text())
+            self.assertEqual(payload["recipe"], "AutoRefine/geometry-conservative")
+
+    def test_terminal_phosphate_geometry_audit_uses_phenix_native_sigmas(self):
+        with tempfile.TemporaryDirectory() as directory:
+            geo = Path(directory) / "final.geo"
+
+            def bond(a, b, ideal=1.480, model=1.480, sigma=0.020):
+                return (
+                    f'bond pdb="{a:>4} DC  D   1 "\n'
+                    f'     pdb="{b:>4} DC  D   1 "\n'
+                    "  ideal  model  delta    sigma   weight residual\n"
+                    f"  {ideal:.3f}  {model:.3f} {ideal-model:6.3f} {sigma:.2e} 1.00e+00 0.00e+00\n"
+                )
+
+            def angle(a, b, c, ideal, model=None, sigma=3.0):
+                model = ideal if model is None else model
+                return (
+                    f'angle pdb="{a:>4} DC  D   1 "\n'
+                    f'      pdb="{b:>4} DC  D   1 "\n'
+                    f'      pdb="{c:>4} DC  D   1 "\n'
+                    "    ideal   model   delta    sigma   weight residual\n"
+                    f"   {ideal:.2f}  {model:.2f}  {ideal-model:.2f} {sigma:.2e} 1.00e+00 0.00e+00\n"
+                )
+
+            clean = "".join([
+                bond("P", "O5'", 1.593, 1.593, 0.010),
+                bond("P", "OP1"),
+                bond("P", "OP2"),
+                bond("P", "OP3"),
+                angle("OP1", "P", "OP2", 120.00),
+                angle("OP1", "P", "OP3", 109.47),
+                angle("OP2", "P", "OP3", 109.47),
+                angle("O5'", "P", "OP1", 109.00),
+                angle("O5'", "P", "OP2", 108.00),
+                angle("O5'", "P", "OP3", 109.47),
+                angle("P", "O5'", "C5'", 120.90, sigma=1.60),
+            ])
+            geo.write_text(clean)
+
+            audit = audit_terminal_phosphate_geometry(geo, ("D:1",))
+            self.assertEqual(audit["status"], "PASS")
+            self.assertFalse(audit["requires_review"])
+            self.assertEqual(audit["sites"][0]["restraint_count"], 11)
+
+            geo.write_text(
+                clean.replace(
+                    angle("OP1", "P", "OP3", 109.47),
+                    angle("OP1", "P", "OP3", 109.47, model=88.47),
+                )
+            )
+            audit = audit_terminal_phosphate_geometry(geo, ("D:1",))
+            self.assertEqual(audit["status"], "REVIEW")
+            self.assertTrue(audit["requires_review"])
+            self.assertAlmostEqual(
+                audit["sites"][0]["max_sigma_deviation"],
+                7.0,
+                places=6,
+            )
+
+    def test_terminal_phosphate_protection_can_target_clean_declared_site(self):
+        with tempfile.TemporaryDirectory() as directory:
+            destination = Path(directory) / "terminal_phosphate_protection.phil"
+            audit = {
+                "status": "PASS",
+                "requires_review": False,
+                "sites": [{
+                    "site": "D:1",
+                    "requires_review": False,
+                    "restraints": [
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP2"], "ideal": 120.00},
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["OP2", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP1"], "ideal": 109.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP2"], "ideal": 108.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP3"], "ideal": 109.47},
+                    ],
+                }],
+            }
+
+            record = write_terminal_phosphate_protection(
+                audit,
+                destination,
+                protect_sites=("D:1",),
+            )
+
+            self.assertEqual(record["schema_version"], 1)
+            self.assertEqual(record["kind"], "terminal-phosphate-protection")
+            self.assertEqual(record["sites"], ["D:1"])
+            self.assertEqual(record["angle_count"], 6)
+            self.assertEqual(
+                record["ideal_source"],
+                "source-checkpoint-final-phenix-geometry-audit",
+            )
+            self.assertEqual(destination.read_text().count("action = *change"), 6)
+
+            with self.assertRaises(
+                AutoRefineError,
+                msg="PASS audit must not trigger Doctor-style protection implicitly",
+            ):
+                write_terminal_phosphate_protection(
+                    audit,
+                    Path(directory) / "implicit.phil",
+                )
+
+    def test_terminal_phosphate_protection_fails_closed_for_missing_declared_site(self):
+        with tempfile.TemporaryDirectory() as directory:
+            audit = {
+                "status": "PASS",
+                "requires_review": False,
+                "sites": [{
+                    "site": "D:1",
+                    "requires_review": False,
+                    "restraints": [
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP2"], "ideal": 120.00},
+                        {"kind": "angle", "atoms": ["OP1", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["OP2", "P", "OP3"], "ideal": 109.47},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP1"], "ideal": 109.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP2"], "ideal": 108.00},
+                        {"kind": "angle", "atoms": ["O5'", "P", "OP3"], "ideal": 109.47},
+                    ],
+                }],
+            }
+
+            with self.assertRaises(
+                AutoRefineError,
+                msg="Explicit proactive protection must fail if the requested site is absent",
+            ):
+                write_terminal_phosphate_protection(
+                    audit,
+                    Path(directory) / "missing.phil",
+                    protect_sites=("A:1",),
+                )
+
+    def test_terminal_geometry_review_blocks_numerical_auto_promotion(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            forced_audit = {
+                "status": "REVIEW",
+                "requires_review": True,
+                "sigma_threshold": 5.0,
+                "sites": [{"site": "D:1", "max_sigma_deviation": 7.0}],
+            }
+            with patch(
+                "nasolve.autorefine.audit_terminal_phosphate_geometry",
+                return_value=forced_audit,
+            ):
+                result = execute_autorefine(
+                    run,
+                    make_refine(root, final_work=0.20, final_free=0.24),
+                    make_mtz_dump(root),
+                    phenix_version="2.2.1-6174",
+                    environment={"PATH": "/usr/bin:/bin"},
+                    macro_cycles=1,
+                )
+
+            self.assertEqual(result.status, "AUTOREFINE_REVIEW")
+            self.assertFalse(result.selected_as_current)
+            payload = json.loads(result.report_path.read_text())
+            self.assertTrue(
+                payload["acceptance"]["terminal_geometry_review"]
+            )
+
+    def test_extra_restraint_is_passed_to_refine_and_recorded(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            extra = root / "terminal-protection.phil"
+            extra.write_text("refinement.geometry_restraints.edits {}\n")
+
+            result = execute_autorefine(
+                run,
+                make_refine(root, final_work=0.244, final_free=0.267),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+                macro_cycles=1,
+                extra_restraints=(extra,),
+                auto_select_success=False,
+            )
+
+            payload = json.loads(result.report_path.read_text())
+            expected = str(extra.resolve())
+            self.assertEqual(payload["inputs"]["extra_restraints"], [expected])
+            self.assertIn(expected, payload["inputs"]["restraints"])
+            self.assertIn(expected, payload["command"])
+
+    def test_terminal_protection_metadata_is_frozen_and_inherited(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            extra = run / "terminal-protection.phil"
+            extra.write_text("refinement.geometry_restraints.edits {}\n")
+            protection = {
+                "schema_version": 1,
+                "kind": "terminal-phosphate-protection",
+                "path": str(extra.resolve()),
+                "sites": ["D:1"],
+                "angle_count": 6,
+                "sigma": 1.0,
+                "ideal_source": "test-phenix-geometry",
+                "mechanism": "phenix-action-change",
+            }
+
+            first = execute_autorefine(
+                run,
+                make_refine(root, final_work=0.244, final_free=0.267),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+                macro_cycles=1,
+                extra_restraints=(extra,),
+                terminal_geometry_protection=protection,
+                auto_select_success=False,
+            )
+
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            first_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == first.checkpoint_id
+            )
+            frozen = first_checkpoint["terminal_geometry_protection"]
+            self.assertNotIn("path", frozen)
+            self.assertEqual(frozen["sites"], ["D:1"])
+            self.assertEqual(frozen["angle_count"], 6)
+            self.assertEqual(frozen["ideal_source"], "test-phenix-geometry")
+            self.assertEqual(frozen["restraint"]["anchor"], "run")
+            self.assertEqual(frozen["restraint"]["sha256"], file_sha256(extra))
+
+            second = execute_autorefine(
+                run,
+                make_refine(root, final_work=0.243, final_free=0.266),
+                make_mtz_dump(root),
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+                from_checkpoint=first.checkpoint_id,
+                macro_cycles=1,
+                auto_select_success=False,
+            )
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            second_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == second.checkpoint_id
+            )
+            self.assertEqual(
+                second_checkpoint["terminal_geometry_protection"],
+                frozen,
+            )
+
+            with self.assertRaisesRegex(
+                AutoRefineError,
+                "already carries terminal-geometry protection",
+            ):
+                execute_autorefine(
+                    run,
+                    make_refine(root, final_work=0.242, final_free=0.265),
+                    make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    from_checkpoint=first.checkpoint_id,
+                    macro_cycles=1,
+                    extra_restraints=(extra,),
+                    terminal_geometry_protection=protection,
+                    auto_select_success=False,
+                )
+
+
+    def test_declared_terminal_phosphate_is_protected_before_first_refinement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+            make_pdb_interpretation(root)
+            refine = make_refine(root, final_work=0.244, final_free=0.267)
+            mtz_dump = make_mtz_dump(root)
+
+            with (
+                patch(
+                    "nasolve.autorefine.requested_op3_sites",
+                    return_value=("D:1",),
+                ),
+                patch(
+                    "nasolve.autorefine.validate_refined_model",
+                    return_value={"validated": True},
+                ),
+            ):
+                first = execute_autorefine(
+                    run,
+                    refine,
+                    mtz_dump,
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    macro_cycles=1,
+                    auto_select_success=False,
+                )
+
+            protection = (
+                first.round_directory / "terminal_phosphate_protection.phil"
+            )
+            source_geometry = (
+                first.round_directory / "terminal_geometry_pre_refine.geo"
+            )
+            source_log = (
+                first.round_directory / "terminal_geometry_pre_refine.log"
+            )
+            self.assertTrue(protection.is_file())
+            self.assertTrue(source_geometry.is_file())
+            self.assertTrue(source_log.is_file())
+            self.assertEqual(
+                protection.read_text().count("action = *change"),
+                6,
+            )
+
+            payload = json.loads(first.report_path.read_text())
+            expected_protection = str(protection.resolve())
+            self.assertIn(
+                expected_protection,
+                payload["inputs"]["restraints"],
+            )
+            self.assertIn(
+                expected_protection,
+                payload["command"],
+            )
+
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            first_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == first.checkpoint_id
+            )
+            semantic = first_checkpoint["terminal_geometry_protection"]
+            self.assertEqual(semantic["sites"], ["D:1"])
+            self.assertEqual(semantic["angle_count"], 6)
+            self.assertEqual(
+                semantic["ideal_source"],
+                "pre-refinement-phenix.pdb_interpretation-geometry",
+            )
+            self.assertEqual(semantic["restraint"]["anchor"], "run")
+            self.assertEqual(semantic["source_geometry"]["anchor"], "run")
+            self.assertEqual(semantic["source_log"]["anchor"], "run")
+
+            # An inherited protected child must not need to invoke interpretation
+            # again and must carry exactly one protection artifact.
+            (root / "phenix.pdb_interpretation").unlink()
+            with (
+                patch(
+                    "nasolve.autorefine.requested_op3_sites",
+                    return_value=("D:1",),
+                ),
+                patch(
+                    "nasolve.autorefine.validate_refined_model",
+                    return_value={"validated": True},
+                ),
+            ):
+                second = execute_autorefine(
+                    run,
+                    make_refine(root, final_work=0.243, final_free=0.266),
+                    mtz_dump,
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    from_checkpoint=first.checkpoint_id,
+                    macro_cycles=1,
+                    auto_select_success=False,
+                )
+
+            second_payload = json.loads(second.report_path.read_text())
+            protection_inputs = [
+                value for value in second_payload["inputs"]["restraints"]
+                if value.endswith("terminal_phosphate_protection.phil")
+            ]
+            self.assertEqual(protection_inputs, [expected_protection])
+
+            registry = json.loads(
+                (run / "AutoRefine" / "checkpoints.json").read_text()
+            )
+            second_checkpoint = next(
+                item for item in registry["checkpoints"]
+                if item["id"] == second.checkpoint_id
+            )
+            self.assertEqual(
+                second_checkpoint["terminal_geometry_protection"],
+                semantic,
+            )
+
+    def test_missing_interpreter_fails_before_numbered_round_is_created(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_refine_run(root)
+
+            with (
+                patch(
+                    "nasolve.autorefine.requested_op3_sites",
+                    return_value=("D:1",),
+                ),
+                patch(
+                    "nasolve.autorefine.validate_refined_model",
+                    return_value={"validated": True},
+                ),
+                self.assertRaisesRegex(
+                    AutoRefineError,
+                    "phenix.pdb_interpretation was not found",
+                ),
+            ):
+                execute_autorefine(
+                    run,
+                    make_refine(root),
+                    make_mtz_dump(root),
+                    phenix_version=PHENIX_21,
+                    environment={"PATH": "/usr/bin:/bin"},
+                    macro_cycles=1,
+                    auto_select_success=False,
+                )
+
+            self.assertFalse(
+                (run / "AutoRefine" / "round_001").exists()
+            )
 
     def test_phenix_22_preflight_failure_prevents_refinement(self):
         with tempfile.TemporaryDirectory() as directory:

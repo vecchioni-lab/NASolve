@@ -300,11 +300,12 @@ mode may select its first successful preset-approved branch automatically;
 standalone use may prompt. Anomalous `f''` benchmarks remain attached even if
 later validation branches stop refining anomalous parameters.
 
-The [Refine Doctor triage proposal](refine-doctor-triage.md) makes recovery for
-noisy mean-intensity datasets the main path, with conditional anomalous
-recipes. Standalone Doctor now implements a bounded fallback list, finite trial
-budgets, and an inspection outcome when no eligible recipe passes. Broader data
-diagnostics and automatic campaign Doctor triggers remain planned.
+Standalone Doctor now implements bounded recovery for ordinary and anomalous
+data, finite trial budgets, and an inspection outcome when no eligible recipe
+passes. The original design proposal is archived under
+`history/refine-doctor-triage.md`. Broader data diagnostics and automatic
+campaign Doctor triggers remain planned; current implementation state lives in
+`development-handoff.md`.
 
 ### Final Model Doctor
 

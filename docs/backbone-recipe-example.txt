@@ -1,0 +1,25 @@
+# Illustrative future backbone recipe
+#
+# This file documents the intended human-facing style for future reviewed
+# custom-backbone recipes. NASolve does not execute arbitrary custom recipes yet.
+
+Backbone recipe: standard phosphodiester example
+
+Internal residue:
+- connect previous O3' to this P
+- connect this O3' to next P
+- keep P, OP1, OP2
+- remove OP3
+
+5' terminal phosphate:
+- connect this P to this O5'
+- keep P, OP1, OP2, OP3
+- do not require an incoming O3'-P connection
+
+5' hydroxyl terminus:
+- do not add P, OP1, OP2, or OP3
+
+Notes:
+- Pairing and stacking geometry are separate from this backbone recipe.
+- A future GNA/PNA/TNA recipe should name the actual atoms to connect/delete.
+- Do not infer a non-standard recipe from residue names or atom proximity alone.

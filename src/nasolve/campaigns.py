@@ -207,6 +207,8 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
         "sequences": dict(intent.sequences), "mutations": dict(intent.mutations),
         "allow_op3_sites": list(intent.allow_op3_sites),
+        "backbones": dict(intent.backbone_sites),
+        "allow_unreviewed_backbone": intent.allow_unreviewed_backbone,
     }
 
 
@@ -251,6 +253,8 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "mode": resolved.mode, "frame": resolved.frame.name,
             "allow_op3_sites": list(resolved.allow_op3_sites),
             "phosphate_intent": resolved.phosphate_intent,
+            "backbones": dict(resolved.backbone_sites),
+            "allow_unreviewed_backbone": resolved.allow_unreviewed_backbone,
             "pair": resolved.pair_text, "pair_ligands": [asdict(item) for item in resolved.pair],
             "model": model, "model_name": resolved.model.name,
             "model_source": resolved.model_source,
@@ -506,6 +510,15 @@ def _validate_plan(payload: Any) -> None:
             _require(config, dict, f"{name}.effective_config")
             for boolean in ("mirror", "allow_p1_standard"):
                 _require(config.get(boolean), bool, f"{name}.{boolean}")
+            if "allow_unreviewed_backbone" in config:
+                _require(config.get("allow_unreviewed_backbone"), bool,
+                         f"{name}.allow_unreviewed_backbone")
+            if "backbones" in config:
+                from .backbone import BackboneError, validate_backbone_sites
+                try:
+                    validate_backbone_sites(config["backbones"])
+                except BackboneError as exc:
+                    raise CampaignError(f"Malformed campaign backbone chemistry: {exc}") from exc
             for field in ("mode", "frame", "pair"):
                 if config.get(field) is not None:
                     _require(config[field], str, f"{name}.{field}")

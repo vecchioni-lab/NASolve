@@ -29,6 +29,7 @@ from .model_assessment import (
 )
 from .run_context import artifact_reference
 from .phosphate import phosphate_intent_summary, validate_phosphate_intent, PhosphateError
+from .backbone import make_backbone_policy
 from .symmetry import StandardSymmetryAssessment, SymmetryError, assess_standard_symmetry
 
 
@@ -82,6 +83,10 @@ def _post_mr_plan(resolved: ResolvedAutoMRInput) -> dict[str, object]:
         }
     return {
         "allow_op3_sites": list(resolved.allow_op3_sites),
+        "backbone_policy": make_backbone_policy(
+            resolved.backbone_sites,
+            allow_unreviewed=resolved.allow_unreviewed_backbone,
+        ),
         **({"phosphate_intent": resolved.phosphate_intent} if resolved.phosphate_intent is not None else {}),
         "application_order": ["sequences", "standard_pair", "explicit_mutations"],
         "sequences": dict(resolved.sequences),
@@ -119,7 +124,11 @@ def _validate_edit_targets(
     for site in resolved.allow_op3_sites:
         chain, residue = site.split(":", 1)
         if residue not in assessment.polymer_residue_ids_by_chain.get(chain, []):
-            raise AutoMRInputError(f"OP3 request {site} does not exist in the MR model")
+            raise AutoMRInputError(f"5'-phosphate request {site} does not exist in the MR model")
+    for site in resolved.backbone_sites:
+        chain, residue = site.split(":", 1)
+        if residue not in assessment.polymer_residue_ids_by_chain.get(chain, []):
+            raise AutoMRInputError(f"Backbone chemistry site {site} does not exist in the MR model")
 
 
 def _default_mirror_transformer(source: Path, destination: Path) -> Path:
@@ -206,6 +215,10 @@ def _log_text(
         f"Mode: {resolved.mode}",
         f"Frame: {resolved.frame.name if resolved.frame else 'none'}",
         phosphate_intent_summary(resolved.allow_op3_sites, resolved.phosphate_intent),
+        ("Backbone chemistry: standard phosphodiester" if not resolved.backbone_sites else
+         "Backbone chemistry exceptions: " + ", ".join(
+             f"{site}={mode}" for site, mode in resolved.backbone_sites.items()
+         )),
         f"Authoritative space group: {space_group}",
         f"Planned MR copies: {copies}",
         f"Symmetry red flag: {symmetry_warning}",

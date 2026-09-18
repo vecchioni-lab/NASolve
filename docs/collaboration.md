@@ -3,6 +3,17 @@
 NASolve separates machine-local convenience state from reviewable
 crystallographic artifacts.
 
+## Documentation roles
+
+The root `README.md` is the human-facing operating guide. `architecture.md` and
+the active subsystem documents define durable behavior.
+`development-handoff.md` records the current implementation/validation edge and
+immediate next work. Superseded integration notes, validation diaries and old
+handoffs live under `history/`; they are retained for debugging and provenance
+but are not implementation instructions.
+
+See [`docs/README.md`](README.md) for the complete documentation map.
+
 ## Command available from any directory
 
 The tracked launcher can be linked into an existing `PATH` directory. From the

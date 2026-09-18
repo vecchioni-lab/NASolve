@@ -255,6 +255,17 @@ class PhosphateTests(unittest.TestCase):
         reference.write_text("".join(phosphate(terminal=True)))
         self.assert_rejected(phosphate(), reference_model=reference)
 
+    def test_explicit_nonstandard_passthrough_skips_standard_phosphate_rules(self):
+        records = [
+            atom(1, "OP3", "XYZ", "L", 1, (0, 0, 0)),
+            atom(2, "C7", "XYZ", "L", 1, (1.4, 0, 0)),
+            "END\n",
+        ]
+        report, cleaned = self.run_cleanup(records, passthrough_sites=("L:1",))
+        self.assertEqual(report["removed"], [])
+        self.assertEqual(report["experimental_passthrough_sites"], ["L:1"])
+        self.assertEqual(cleaned, "".join(records))
+
     def test_orphan_ligand_atom_named_op3_requires_review(self):
         records = [
             atom(1, "OP3", "XYZ", "L", 1, (0, 0, 0)),

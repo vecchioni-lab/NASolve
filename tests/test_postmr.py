@@ -14,12 +14,14 @@ from nasolve.postmr import (
     PostMRPreparationError,
     _coot_script,
     _default_modified_pair_restraints_builder,
+    _default_narestraints_builder,
     _filter_scaffold_overlaps,
     _modified_nucleotide_sites,
     _patch_narestraints_records,
     _read_report,
     _restore_canonical_mutation_backbones,
     _restore_shared_parent_coordinates,
+    _run_readyset,
     _solution_model,
     build_mutation_plan,
     prepare_postmr,
@@ -200,13 +202,61 @@ class PostMRTests(unittest.TestCase):
             }
             with patch.dict(sys.modules, modules):
                 report = _default_modified_pair_restraints_builder(
-                    prepared, compatibility, pair_output, restraint_output
+                    prepared, compatibility, pair_output, restraint_output,
                 )
             self.assertEqual(report["guessed_pair_count"], 2)
             self.assertEqual(report["retained_pair_count"], 1)
             self.assertEqual(report["retained_pairs"][0]["first"], "A:12")
             self.assertFalse(report["include_stacking"])
             self.assertTrue(restraint_output.is_file())
+
+    def test_default_narestraints_builder_uses_released_api(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "model.pdb"
+            model.write_text(
+                pdb_record("ATOM", 1, "P", "DC", "D", 1, element="P") + "END\n"
+            )
+            pairs = root / "pairs.txt"
+            pairs.write_text("D 1\nD 1\n")
+            output = root / "restraints.phil"
+            seen: dict[str, object] = {}
+
+            builder = types.ModuleType("restraints.builder")
+            base_pairs = types.ModuleType("restraints.base_pairs")
+            residue_library = types.ModuleType("restraints.residue_library")
+            builder.load_residue_records = lambda: []
+            residue_library.load_residue_records = lambda: []
+            base_pairs.read_base_pair_file = lambda _path: "parsed"
+
+            def build_phil_from_pdb(
+                path: Path, stretches: object, destination: Path, *,
+                include_stacking: bool,
+            ) -> None:
+                seen["path"] = path
+                seen["stretches"] = stretches
+                seen["include_stacking"] = include_stacking
+                destination.write_text("geometry_restraints.edits {}\n")
+
+            builder.build_phil_from_pdb = build_phil_from_pdb
+            package = types.ModuleType("restraints")
+            package.builder = builder
+            modules = {
+                "restraints": package,
+                "restraints.builder": builder,
+                "restraints.base_pairs": base_pairs,
+                "restraints.residue_library": residue_library,
+            }
+            with patch.dict(sys.modules, modules):
+                corrections = _default_narestraints_builder(
+                    model, pairs, output
+                )
+
+            self.assertEqual(corrections, [])
+            self.assertEqual(seen["path"], model)
+            self.assertEqual(seen["stretches"], "parsed")
+            self.assertTrue(seen["include_stacking"])
+            self.assertTrue(output.is_file())
 
     def test_mirrored_canonical_targets_do_not_revert_to_d_dna(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -242,6 +292,33 @@ class PostMRTests(unittest.TestCase):
                 "END\n",
             ]))
             self.assertEqual(_modified_nucleotide_sites(model), {"A:12"})
+
+    def test_readyset_successful_noop_preserves_and_audits_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "prepared_model.pdb"
+            model.write_text(postmr_model_text("DC", "DG"))
+            readyset_directory = root / "ReadySet"
+            readyset_directory.mkdir()
+            executable = root / "phenix.ready_set"
+            executable.write_text(
+                "#!/bin/sh\n"
+                "echo 'No unknown residues'\n"
+                "exit 0\n"
+            )
+            executable.chmod(executable.stat().st_mode | 0o100)
+
+            checked, log, generated_cif, command, audit = _run_readyset(
+                model, executable, readyset_directory, None, None
+            )
+
+            self.assertTrue(checked.is_file())
+            self.assertEqual(checked.read_text(), model.read_text())
+            self.assertIn("No unknown residues", log.read_text())
+            self.assertIsNone(generated_cif)
+            self.assertEqual(command[0], str(executable))
+            self.assertEqual(audit["readyset_output_mode"], "successful-noop")
+            self.assertFalse((readyset_directory / "prepared_model.updated.pdb").exists())
 
     def test_modified_pairs_only_works_for_nonstandard_and_still_runs_readyset(self):
         with tempfile.TemporaryDirectory() as directory:

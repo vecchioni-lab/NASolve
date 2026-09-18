@@ -7,8 +7,10 @@ in this repository.
 
 1. Run `git status --short`. Generated runs and unrelated dirty files belong to
    their author; never delete, overwrite, or silently absorb them.
-2. Read `README.md`, `docs/architecture.md`, `docs/collaboration.md`, and the
-   `Unreleased` section of `CHANGELOG.md`.
+2. Read `README.md`, `docs/README.md`, `docs/architecture.md`,
+   `docs/development-handoff.md`, `docs/collaboration.md`, and the `Unreleased`
+   section of `CHANGELOG.md`. Files under `docs/history/` are evidence, not
+   current instructions.
 3. Identify whether the change affects crystallographic behavior,
    compatibility, artifact schemas, portability, or reproducibility.
 
