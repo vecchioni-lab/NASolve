@@ -1,5 +1,6 @@
 import json
 import io
+import shlex
 import tempfile
 import unittest
 from contextlib import redirect_stdout
@@ -8,19 +9,91 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from nasolve.autorefine import AutoRefineError
+from nasolve.autorefine import AutoRefineError, AutoRefineResult
 from nasolve.cli import _workspace_run, build_parser, main
 from nasolve.config import AppConfig, ConfigError, WorkspaceSettings
 from nasolve.coot_runtime import CootInstallation
-from nasolve.coot_view import launch_coot_view
+from nasolve.coot_view import CootViewError, launch_coot_view
 from nasolve.model_assessment import file_sha256
 from nasolve.refine_doctor import RefineDoctorError
 
 from .helpers import pdb_record, symlinked_temporary_directory
 from .test_coot_view import add_manual_checkpoint, add_review_checkpoint, make_view_run
+from .test_checkpoints import make_checkpoint_run
 
 
 class CLITests(unittest.TestCase):
+    def test_checkpoint_listing_cli_is_read_only_for_explicit_and_active_run(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_checkpoint_run(Path(directory))
+            config = AppConfig(workspace=WorkspaceSettings(run=str(run)))
+            with patch('nasolve.cli.load_config', return_value=config), patch('nasolve.cli.save_config') as save:
+                for arguments in (['checkpoints', 'list', str(run)], ['checkpoints', 'list']):
+                    with self.subTest(arguments=arguments), redirect_stdout(io.StringIO()) as output:
+                        self.assertEqual(main(arguments), 0)
+                        self.assertIn('postmr', output.getvalue())
+                        self.assertFalse((run / 'AutoRefine').exists())
+                save.assert_not_called()
+
+    def test_autorefine_prints_exact_inspection_command_without_selecting(self):
+        with tempfile.TemporaryDirectory(prefix='nasolve inspection ') as directory:
+            run = make_checkpoint_run(Path(directory))
+            report_path = run / 'refinement-report.json'
+            report_path.write_text('{}')
+            installation = SimpleNamespace(
+                version='2.2.1', environment={},
+                executables={'phenix.refine': Path('/phenix/refine'), 'phenix.mtz.dump': Path('/phenix/dump')},
+            )
+            for status, selected, products, viewable in (
+                ('AUTOREFINE_READY', True, True, True),
+                ('AUTOREFINE_REVIEW', False, True, True),
+                ('AUTOREFINE_ANOMALOUS_FALLBACK', False, True, True),
+                ('AUTOREFINE_FAILED', False, True, True),
+                ('AUTOREFINE_FAILED', False, False, False),
+                ('AUTOREFINE_REVIEW', False, False, False),
+                # The resolver can find recorded maps absent from the result field.
+                ('AUTOREFINE_REVIEW', False, False, True),
+                # Non-null result paths do not establish artifact integrity.
+                ('AUTOREFINE_REVIEW', False, True, False),
+            ):
+                result = AutoRefineResult(
+                    status=status, message='fixture', exit_code=2 if status in {'AUTOREFINE_FAILED', 'AUTOREFINE_ANOMALOUS_FALLBACK'} else 0,
+                    run_directory=run, round_directory=run / 'AutoRefine' / 'round_002',
+                    checkpoint_id='refine-002', parent_checkpoint='postmr',
+                    report_path=report_path, log_path=run / 'refine.log',
+                    model_path=run / 'refined.pdb',
+                    model_cif=None, reflection_cif=None,
+                    map_coefficients=run / 'maps.mtz' if products else None,
+                    statistics={}, selected_as_current=selected,
+                )
+                with (
+                    self.subTest(status=status, products=products, viewable=viewable),
+                    patch('nasolve.cli.load_config', return_value=AppConfig()),
+                    patch('nasolve.cli.discover_phenix', return_value=installation),
+                    patch('nasolve.cli.remember_phenix'), patch('nasolve.cli.save_config'),
+                    patch('nasolve.cli.execute_autorefine', return_value=result),
+                    patch(
+                        'nasolve.cli.resolve_view_profile',
+                        side_effect=None if viewable else CootViewError('fixture map unavailable'),
+                    ) as resolve,
+                    patch('nasolve.cli.select_checkpoint') as select,
+                    redirect_stdout(io.StringIO()) as output,
+                ):
+                    self.assertEqual(main(['autorefine', str(run)]), result.exit_code)
+                    text = output.getvalue()
+                    commands = [line.removeprefix('Inspect: ') for line in text.splitlines() if line.startswith('Inspect: ')]
+                    resolve.assert_called_once_with(run, checkpoint='refine-002')
+                    if viewable:
+                        self.assertEqual(len(commands), 1)
+                        self.assertEqual(shlex.split(commands[0]), ['./nasolve', 'show', str(run), '--checkpoint', 'refine-002'])
+                    else:
+                        self.assertEqual(commands, [])
+                        self.assertIn('Model/map inspection unavailable', text)
+                        self.assertIn('fixture map unavailable', text)
+                    self.assertIn('Current checkpoint updated.' if selected else 'Current checkpoint unchanged.', text)
+                    self.assertNotIn('select this result', text)
+                    select.assert_not_called()
+
     def test_show_active_run_and_explicit_overrides_report_exact_sources(self):
         with symlinked_temporary_directory() as directory:
             root = Path(directory)

@@ -62,6 +62,39 @@ def make_checkpoint_run(root: Path) -> Path:
 
 
 class CheckpointTests(unittest.TestCase):
+    def test_listing_uninitialized_run_does_not_create_artifacts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_checkpoint_run(Path(directory))
+            before = {p.relative_to(run): p.read_bytes() for p in run.rglob('*') if p.is_file()}
+            records, current, bookmarks = list_checkpoints(run)
+            self.assertEqual([record.checkpoint_id for record in records], ['postmr'])
+            self.assertEqual(current, 'postmr')
+            self.assertEqual(bookmarks, {})
+            self.assertFalse((run / 'AutoRefine').exists())
+            self.assertEqual(before, {p.relative_to(run): p.read_bytes() for p in run.rglob('*') if p.is_file()})
+            add_checkpoint(run, name='first bookmark')
+            self.assertTrue((run / 'AutoRefine' / 'checkpoints.json').is_file())
+
+    def test_listing_legacy_registry_preserves_bytes_and_timestamp(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_checkpoint_run(Path(directory))
+            _, registry = initialize_registry(run)
+            registry['schema_version'] = 1
+            path = run / 'AutoRefine' / 'checkpoints.json'
+            path.write_text(json.dumps(registry))
+            before = path.read_bytes(), path.stat().st_mtime_ns
+            list_checkpoints(run)
+            self.assertEqual((path.read_bytes(), path.stat().st_mtime_ns), before)
+
+    def test_listing_invalid_uninitialized_run_leaves_no_registry_directory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_checkpoint_run(Path(directory))
+            report = json.loads((run / 'report.json').read_text())
+            Path(report['postmr']['prepared_model']).write_text('changed model\n')
+            with self.assertRaises(CheckpointError):
+                list_checkpoints(run)
+            self.assertFalse((run / 'AutoRefine').exists())
+
     def test_non_object_report_and_registry_are_rejected_cleanly(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

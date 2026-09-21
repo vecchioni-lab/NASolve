@@ -912,7 +912,17 @@ def _autorefine(args: argparse.Namespace) -> int:
     if result.selected_as_current:
         print(_color("Current checkpoint updated.", "32"))
     else:
-        print("Current checkpoint unchanged; inspect or select this result explicitly.")
+        print("Current checkpoint unchanged.")
+    try:
+        resolve_view_profile(result.run_directory, checkpoint=result.checkpoint_id)
+    except CootViewError as exc:
+        print(f"Model/map inspection unavailable for this result: {exc}")
+        print("See the full log and report above.")
+    else:
+        print("Inspect: " + shlex.join([
+            "./nasolve", "show", str(result.run_directory),
+            "--checkpoint", result.checkpoint_id,
+        ]))
     if result.exit_code == 0:
         try:
             run_report = json.loads((run / "report.json").read_text(encoding="utf-8"))
