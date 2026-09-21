@@ -320,8 +320,8 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
     }
 
 
-def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
-    """Create the root PostMR checkpoint, or validate an existing registry."""
+def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
+    """Read a registry or derive its validated PostMR root without writing files."""
     run, report = _run_and_report(run_directory)
     path = registry_path(run)
     if path.is_file():
@@ -343,7 +343,6 @@ def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
         ):
             raise CheckpointError("Checkpoint registry has no PostMR root")
         return run, registry
-    path.parent.mkdir(parents=True, exist_ok=True)
     registry = {
         "schema_version": SCHEMA_VERSION,
         "run_directory": ".",
@@ -353,7 +352,16 @@ def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
         "bookmarks": {},
         "checkpoints": [_root_payload(report, run)],
     }
-    _write_json(path, registry)
+    return run, registry
+
+
+def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
+    """Persist the root PostMR checkpoint when a modifying operation needs it."""
+    run, registry = read_registry(run_directory)
+    path = registry_path(run)
+    if not path.is_file():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        _write_json(path, registry)
     return run, registry
 
 
@@ -466,7 +474,7 @@ def checkpoint_record(
 
 
 def list_checkpoints(run_directory: Path) -> tuple[list[CheckpointRecord], str, dict[str, str]]:
-    run, registry = initialize_registry(run_directory)
+    run, registry = read_registry(run_directory)
     current = str(registry.get("current", "postmr"))
     bookmarks = registry.get("bookmarks")
     aliases = {
@@ -677,6 +685,7 @@ __all__ = [
     "initialize_registry",
     "list_checkpoints",
     "next_checkpoint_id",
+    "read_registry",
     "registry_path",
     "resolve_checkpoint",
     "save_registry",

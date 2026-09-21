@@ -449,6 +449,10 @@ references, metrics, compatibility result, and outputs. `SUCCESS` nodes become
 current automatically. `REVIEW` nodes remain reusable but require explicit
 selection; `FAILED` nodes remain visible and cannot be selected.
 
+Checkpoint listing is read-only: it validates an existing
+registry without rewriting it, or derives a validated PostMR root in memory
+without creating files. Modifying operations still initialize the registry.
+
 `nasolve checkpoints add RUN --name NAME` creates a bookmark without copying
 the current node. Supplying `--model` imports a manual model into the run as a
 new review child. `--mtz` is a deliberate observation replacement for an

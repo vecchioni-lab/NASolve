@@ -126,6 +126,15 @@ entries are reconstructed from repository history.
 
 ### Fixed
 
+- Checkpoint listing now validates and displays an uninitialized PostMR root
+  without creating a registry or directories; existing registries are read
+  without migration. Modifying checkpoint operations still initialize normally.
+- Standalone AutoRefine prints a shell-quoted inspection command for its exact
+  result checkpoint when the existing `show` resolver can resolve its model and
+  maps, including unselected results and recorded map fallbacks. Resolution
+  failures are reported explicitly, and failed results no
+  longer receive a generic suggestion to select them.
+
 - ReadySet exit status 0 with the explicit `No unknown residues` result is now accepted as a successful no-op when Phenix writes no `*.updated.pdb`. NASolve preserves the already-prepared model, still runs its phosphate/atom-count audits, and records the no-op output mode; missing ReadySet output without that explicit success condition still fails closed.
 
 - Refine Doctor's interactive `i` answer now opens the recommended checkpoint

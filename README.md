@@ -139,6 +139,13 @@ Run the first five-cycle refinement and inspect its checkpoint history:
 ./nasolve checkpoints list "$RUN"
 ```
 
+Checkpoint listing is read-only. Before the registry has been initialized, it
+shows the validated PostMR root without creating files. AutoRefine prints an
+exact `show RUN --checkpoint ID` command when the same view resolver used by
+`show` can resolve that checkpoint's model and maps, so you can inspect an
+unselected result without changing the current checkpoint. If resolution fails,
+it reports the reason and directs you to the log and report instead.
+
 If a structurally sound result remains under review—for example, because a
 small test set gives `Rwork >= Rfree`—run the bounded triage layer:
 
