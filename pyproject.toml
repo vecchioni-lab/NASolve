@@ -25,6 +25,7 @@ where = ["src"]
 [tool.setuptools.package-data]
 nasolve = [
   "data/presets/*.toml",
+  "data/sequence_references/*.json",
   "data/ligands/*.cif",
   "data/restraints/*.phil",
   "data/restraints/*.eff",

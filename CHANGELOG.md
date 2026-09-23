@@ -50,6 +50,14 @@ entries are reconstructed from repository history.
 
 ### Added
 
+- Added a standalone, explicit sequence-reference target compiler with the
+  reviewed W-scaffold reference, chain/residue correspondence, thread/dataset
+  sequence and component-code overlays, assignment provenance and read-only
+  inventory comparison. AutoMR/PostMR and campaign input parsing do not invoke
+  it yet; existing defaults, frozen runs and chemistry behavior are unchanged.
+- Clarified that experimental-family membership and MR-model reuse eligibility
+  are separate, and that a metal-adapted scaffold does not imply metal pairing.
+
 - `show` now opens an additional anomalous difference map at 3 sigma when
   Coot finds `ANOM`/`PHANOM` in the selected map MTZ or that checkpoint's
   declared refinement MTZ. This also applies to Refine Doctor inspection and

@@ -15,6 +15,7 @@ NASolve documentation is organized by role, not chronology.
 
 ## Active subsystem contracts
 
+- [`sequence-family-targets.md`](sequence-family-targets.md) — explicit sequence-reference target assembly; standalone primitive, not yet connected to runtime.
 - [`backbone-chemistry.md`](backbone-chemistry.md) — phosphodiester,
   terminal-phosphate, and unsupported-backbone policy.
 - [`campaigns.md`](campaigns.md) — campaign orchestration contract.

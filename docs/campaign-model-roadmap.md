@@ -15,6 +15,46 @@ Campaigns must support both closely related construct series and genuinely heter
 
 The human-facing configuration should stay simple even when the frozen internal record is rich.
 
+## Experimental families and scientific extension boundaries
+
+A campaign groups related experiments; shared sequence is one possible family
+relationship, not a required campaign property. Explicit design metadata may
+instead identify shared geometry, topology or discrete construction parameters.
+Different family types may coexist in a campaign under an applicable project
+policy. The current sequential executor remains its narrower implemented slice.
+
+Keep three responsibilities separate:
+
+- experiment definition: declared invariants, variable parameters and explicit
+  dataset/thread membership;
+- model provision: how candidate coordinates are selected, generated or
+  transformed for a member;
+- reuse eligibility: what permits an artifact from one member to seed another.
+
+Family membership is not evidence of MR-model compatibility. Sequence-defined
+families use explicit chain/residue correspondence; geometry/topology-defined
+families may use other reviewed providers and compatibility rules without a
+shared sequence or coordinate template. Compact design metadata identifies
+intent, not proof that generated coordinates satisfy it.
+
+The immediate sequence-defined case is the W-scaffold chemistry series:
+compile a reviewed scaffold sequence and dataset/thread site declarations into
+one effective residue target. Using the metal-adapted W reference does not
+request metal atoms or validate metal coordination. Watson-Crick-like
+proof-of-principle restraint policies and explicit metal-pair hypotheses belong
+to distinct reviewed project policies; component identity alone establishes
+neither pairing geometry nor metal occupancy.
+
+A separate metal-pair project can later add declared metal-site construction,
+coordination candidates, restraints and evidence checks. Existing multi-candidate
+budgets and inspection rules apply; the ordinary WC-like path must not silently
+become a metal-site inference engine. Broader geometry/topology providers remain
+later extensions, not prerequisites for the present sequence-family work.
+
+[Sequence-family target assembly](sequence-family-targets.md) records the first
+standalone compiler/reference primitive and its validation boundary. It is not
+yet runtime integration or general campaign-family orchestration.
+
 ## Three scientific state layers
 
 For sequence and chemistry, NASolve should reason in three layers.
@@ -140,6 +180,18 @@ Potential reviewed operations include:
 This must be provenance-rich and bounded. Campaign Doctor must record which solved dataset supplied the parent model, what sequence/geometry transformations were applied, how many rescue candidates were tried, and why each candidate was eligible.
 
 It must never silently treat one dataset's solution as ground truth for another.
+
+A donor solution supplies a search candidate, not recipient evidence. A rescue
+must record the exact donor dataset/checkpoint and model checksum, the recipient
+identity, compatibility checks, transformations and search budget. The recipient
+retains its own authoritative observations, Free-R flags, effective construct
+target and scientific gates; donor occupancy, metal assignment or approval must
+not be inherited as experimentally established facts about the recipient.
+
+A solved related model may therefore prime a fresh MR attempt for a failed
+dataset, but must not rewrite that failed branch or replace the recipient's
+intended construct. Numerical success alone is not universal donor eligibility;
+the applicable project rule determines which source checkpoints may be used.
 
 ## Cross-dataset compatibility
 
