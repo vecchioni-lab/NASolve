@@ -82,6 +82,79 @@ def _component_ids(block: _Block) -> set[str]:
     return set(block.values.get("_chem_comp_atom.comp_id", []))
 
 
+def normalize_ccp4_torsion_alternates(source: Path, output: Path) -> bool:
+    """Materialize a Phenix-compatible copy of CCP4 alternative torsions.
+
+    Some CCP4 monomer dictionaries encode alternative conformations as
+    multiple torsion rows over the same four atoms. Phenix expects those
+    alternatives folded into ``_chem_comp_tor.alt_value_angle`` instead of
+    simultaneous conflicting proxies. The reviewed source is never modified.
+    """
+    rendered: list[str] = []
+    changed = False
+
+    atom_keys = tuple(f"_chem_comp_tor.atom_id_{index}" for index in range(1, 5))
+    angle_key = "_chem_comp_tor.value_angle"
+    alt_key = "_chem_comp_tor.alt_value_angle"
+
+    for block in _blocks(source):
+        values = dict(block.values)
+
+        if alt_key in values or angle_key not in values:
+            rendered.append(block.text)
+            continue
+
+        columns = [values.get(key, []) for key in atom_keys]
+        angles = values.get(angle_key, [])
+        count = len(angles)
+
+        if not count or any(len(column) != count for column in columns):
+            rendered.append(block.text)
+            continue
+
+        first_for_atoms: dict[tuple[str, ...], int] = {}
+        keep: list[int] = []
+        alternatives: dict[int, list[str]] = {}
+
+        for index in range(count):
+            atom_set = tuple(sorted(column[index] for column in columns))
+            first = first_for_atoms.get(atom_set)
+            if first is None:
+                first_for_atoms[atom_set] = index
+                keep.append(index)
+                alternatives[index] = []
+                continue
+
+            changed = True
+            angle = angles[index]
+            if angle != angles[first] and angle not in alternatives[first]:
+                alternatives[first].append(angle)
+
+        if len(keep) == count:
+            rendered.append(block.text)
+            continue
+
+        for key, column in list(values.items()):
+            if key.startswith("_chem_comp_tor.") and isinstance(column, list):
+                values[key] = [column[index] for index in keep]
+
+        values[alt_key] = [
+            ",".join(alternatives[index]) if alternatives[index] else "."
+            for index in keep
+        ]
+        rendered.append(_emit(values))
+
+    with output.open("x", encoding="utf-8") as handle:
+        handle.write(
+            "# Runtime Phenix compatibility adaptation: CCP4 duplicate torsion "
+            "targets folded into _chem_comp_tor.alt_value_angle. "
+            "Reviewed source unchanged.\n"
+        )
+        handle.write("\n".join(rendered))
+
+    return changed
+
+
 def combine_dictionary_inputs(paths: Sequence[Path], output: Path) -> None:
     """Merge component lists; never concatenate duplicate data_comp_list blocks."""
     blocks = []

@@ -29,6 +29,7 @@ from .backbone import (
 )
 from .ligand_profiles import (
     AUTHORITATIVE_CODES, combine_dictionary_inputs, effective_restraints,
+    normalize_ccp4_torsion_alternates,
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
 )
 from .run_context import artifact_reference, resolve_artifact_path
@@ -1597,7 +1598,10 @@ def prepare_postmr(
             raise PostMRPreparationError(str(exc)) from exc
         ligand_specs.setdefault(code, ligand_definition(code))
         destination = restraints_dir / source.name
-        shutil.copyfile(source, destination)
+        if code == "1AP":
+            normalize_ccp4_torsion_alternates(source, destination)
+        else:
+            shutil.copyfile(source, destination)
         copied_cifs.append(destination)
         restraint_paths.append(destination)
     readyset_cif: Path | None = None

@@ -15,7 +15,8 @@ from nasolve.checkpoints import CheckpointError, _initial_restraints, initialize
 from nasolve.coot_view import _postmr_dictionaries, _checkpoint_dictionaries, CootViewError
 from nasolve.ligand_profiles import (
     MOD_CIF, _blocks, combine_dictionary_inputs, effective_restraints,
-    frozen_reference, validate_model_phosphate_policy, write_linked_profile,
+    frozen_reference, normalize_ccp4_torsion_alternates,
+    validate_model_phosphate_policy, write_linked_profile,
 )
 from nasolve.phosphate import PhosphateError, sanitize_phosphates, audit_phosphates
 from nasolve.postmr import PostMRPreparationError, prepare_postmr
@@ -162,6 +163,26 @@ def test_op3_request_roundtrips_in_effective_input_and_postmr_plan(tmp_path):
     cfg.write_text(format_intent(resolved))
     assert read_intent(cfg).allow_op3_sites == resolved.allow_op3_sites
     assert _post_mr_plan(resolved)['allow_op3_sites'] == ['A:1', 'B:-3A']
+
+
+def test_1ap_runtime_copy_folds_ccp4_alternative_torsions(tmp_path):
+    runtime = tmp_path / "1AP.cif"
+    assert normalize_ccp4_torsion_alternates(LIBRARY, runtime) is True
+
+    component = next(
+        block.values for block in _blocks(runtime)
+        if block.values["data_"] == "comp_1AP"
+    )
+    ids = component["_chem_comp_tor.id"]
+    assert "C2e-nyu0" in ids
+    assert "C3e-nyu0" not in ids
+
+    index = ids.index("C2e-nyu0")
+    assert component["_chem_comp_tor.value_angle"][index] == "340.700"
+    assert component["_chem_comp_tor.alt_value_angle"][index] == "2.8"
+
+    # Reviewed source evidence remains byte-for-byte untouched.
+    assert "C3e-nyu0" in LIBRARY.read_text()
 
 
 def test_combine_list_blocks_preserves_both_components(tmp_path):
