@@ -667,6 +667,18 @@ CCD identity `A1AAZ` for final mmCIF deposition; `1AP` is already an official
 CCD code. `C38` and `5IU` are the official DNA-linking components for iodo-dC
 and iodo-dU. Component identities are written to the PostMR report.
 
+## Optional sequence-family reference
+
+A fresh standalone run can explicitly select the reviewed W sequence baseline
+with `[automr] sequence_reference = w-metal-scaffold`. This does not change W's
+default recipe, imply metal-pair chemistry, or edit the MR search coordinates.
+It freezes the complete intended residue target for PostMR, with dataset
+sequence and explicit site-chemistry overrides retained. The same field accepts
+an explicit dataset-relative reference JSON. See
+[sequence-family target assembly](docs/sequence-family-targets.md) for the
+schema, precedence and validation boundary. Campaign use is explicitly blocked
+until its reference-snapshot integration is implemented.
+
 ## Preparing an accepted MR solution
 
 After a run reaches `MR_SUCCESS`, prepare it for refinement with:

@@ -179,7 +179,8 @@ def compile_sequence_family_targets(
     More specific site chemistry takes precedence over ordinary sequence letters;
     dataset site declarations then override inherited/thread site declarations.
     Code syntax is checked here; dictionary support and actual chemistry are not.
-    This primitive is not yet wired into AutoMR/PostMR or campaign input parsing.
+    The standalone sequence_family adapter freezes this result for AutoMR/PostMR;
+    campaign input binding remains separate.
     """
     if not isinstance(reference, SequenceReference):
         _fail("An explicitly validated sequence reference is required")

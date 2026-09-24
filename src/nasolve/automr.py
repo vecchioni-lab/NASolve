@@ -30,6 +30,8 @@ from .model_assessment import (
 from .run_context import artifact_reference
 from .phosphate import phosphate_intent_summary, validate_phosphate_intent, PhosphateError
 from .backbone import make_backbone_policy
+from .sequence_reference import SequenceReferenceError
+from .sequence_family import prepare_sequence_family, freeze_sequence_family
 from .symmetry import StandardSymmetryAssessment, SymmetryError, assess_standard_symmetry
 
 
@@ -319,6 +321,18 @@ def prepare_automr(
         resolved.model, polymer_ligand_codes=valid_ligand_codes
     )
     _validate_edit_targets(resolved, source_assessment)
+    post_mr_plan = _post_mr_plan(resolved)
+    family_seed = None
+    if resolved.sequence_reference is not None:
+        try:
+            family_seed = prepare_sequence_family(
+                resolved.sequence_reference, resolved.model, source_assessment,
+                post_mr_plan,
+                frame=resolved.frame.name if resolved.frame is not None else None,
+                mirror=resolved.mirror,
+            )
+        except SequenceReferenceError as exc:
+            raise AutoMRInputError(f"Sequence-family target preparation failed: {exc}") from exc
     effective_text = format_intent(resolved)
 
     generated = existing_config is None and resolved_input is None
@@ -355,11 +369,19 @@ def prepare_automr(
         if source_sequence.is_file():
             frame_sequence = model_dir / "seq_base.txt"
             shutil.copyfile(source_sequence, frame_sequence)
+    if family_seed is not None:
+        post_mr_plan["sequence_family"] = freeze_sequence_family(family_seed, run_dir)
+        post_mr_plan["application_order"] = [
+            "sequence_family_reference", "sequences", "standard_pair", "explicit_mutations",
+        ]
     _write_json(model_dir / "assessment.json", assessment.to_dict())
     (run_dir / "nasolve.input.txt").write_text(effective_text, encoding="utf-8")
 
     pair_needs_edit = bool(resolved.pair and not resolved.exact_pair_model)
-    needs_edit = bool(pair_needs_edit or resolved.sequences or resolved.mutations)
+    needs_edit = bool(
+        pair_needs_edit or resolved.sequences or resolved.mutations
+        or (family_seed is not None and family_seed.differences)
+    )
     if symmetry and symmetry.red_flag:
         status = "READY_WITH_RED_FLAG"
         message = symmetry.red_flag
@@ -400,6 +422,8 @@ def prepare_automr(
             "sequence_file_sha256": (
                 file_sha256(resolved.sequence_file) if resolved.sequence_file else None
             ),
+            **({"sequence_reference": post_mr_plan["sequence_family"]["reference"]}
+               if family_seed is not None else {}),
             "frame_sequence": (
                 {
                     **artifact_reference(frame_sequence, run_dir),
@@ -417,7 +441,17 @@ def prepare_automr(
             "gate": "not applied in nonstandard mode"
         },
         "model_assessment": assessment.to_dict(),
-        "post_mr_plan": _post_mr_plan(resolved),
+        "post_mr_plan": post_mr_plan,
+        **({
+            "sequence_family_preflight": {
+                "target_count": len(json.loads(family_seed.target_bytes)["sites"]),
+                "scope": "literal-source-inventory-before-any-mirroring",
+                "differences": [
+                    {"site": site, "before": before, "after": after}
+                    for site, before, after in family_seed.differences
+                ],
+            },
+        } if family_seed is not None else {}),
         "execution": {"phaser_ran": False},
     }
     report_path = run_dir / "report.json"

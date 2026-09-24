@@ -232,6 +232,12 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             entry["inputs"][role] = _input_ref(root, dataset, path)
         intent = _merged_intent(dataset, preset)
         entry["effective_config"] = _intent_config(intent)
+        if intent.sequence_reference is not None:
+            entry["effective_config"]["sequence_reference"] = intent.sequence_reference
+            raise AutoMRInputError(
+                "sequence_reference is currently supported by standalone AutoMR/PostMR only; "
+                "campaign reference snapshotting is not implemented and will not be silently omitted"
+            )
         if (not intent.mode or intent.mode.strip().casefold() != "standard"
                 or not intent.frame or normalize_frame(intent.frame).name != "W"):
             raise AutoMRInputError("Campaign schema 1 supports only standard W/5W6W datasets")

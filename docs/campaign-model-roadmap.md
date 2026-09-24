@@ -51,9 +51,11 @@ budgets and inspection rules apply; the ordinary WC-like path must not silently
 become a metal-site inference engine. Broader geometry/topology providers remain
 later extensions, not prerequisites for the present sequence-family work.
 
-[Sequence-family target assembly](sequence-family-targets.md) records the first
-standalone compiler/reference primitive and its validation boundary. It is not
-yet runtime integration or general campaign-family orchestration.
+[Sequence-family target assembly](sequence-family-targets.md) records the
+compiler and explicit opt-in standalone AutoMR/PostMR integration, including
+its pending live-validation boundary. General campaign-family orchestration,
+thread binding and campaign reference snapshotting remain separate work;
+campaign planning does not silently discard a selected sequence reference.
 
 ## Three scientific state layers
 

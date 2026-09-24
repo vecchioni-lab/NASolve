@@ -1,7 +1,9 @@
 # Explicit sequence-family target assembly
 
-Status: **tested standalone primitive; not yet invoked by AutoMR, PostMR, or
-campaign execution.** No existing run or default recipe changes in this slice.
+Status: **explicitly opt-in standalone AutoMR/PostMR integration; controlled
+regression fixtures tested, live Phenix/Coot validation pending.** Ordinary W
+recipe defaults and existing frozen runs are unchanged. Campaign integration
+is not enabled by this slice.
 
 ## Scope and scientific boundary
 
@@ -34,9 +36,9 @@ Reference fields have a strict schema, explicit polymer type, ID and version.
 Duplicate keys, chains or residue IDs and incompatible symbols are rejected.
 
 `content_sha256` fingerprints canonical validated reference content. It is not
-claimed to be a raw-file checksum. The future run-freezing integration must
-also retain the exact consumed reference artifact and its byte checksum using
-NASolve's ordinary portable provenance machinery.
+claimed to be a raw-file checksum. The run-freezing integration also retains
+the exact consumed reference artifact and its byte checksum using NASolve's
+ordinary portable provenance machinery.
 
 ## Target precedence
 
@@ -82,15 +84,86 @@ come from the applicable resolved site declarations. D:1 terminal-phosphate
 construction/protection is a separate chemistry contract and is not part of
 this residue-identity compiler.
 
-## Next integration slice
+## Explicit standalone opt-in
 
-Freeze the explicitly selected family reference and resolved target for fresh
-runs, feed that target to the existing PostMR mutation executor, and audit the
-prepared identities against it. Do not retrofit reference authority into legacy
-reports or recompile old runs from a newly installed recipe. Preserve the
-current mutation and chirality safety gates; this primitive does not supply a
-new mutation engine.
+Add the following field to the dataset's existing `[automr]` section before
+creating a **fresh** run:
 
-Only after that integration and its tests should a fresh live W-family run
-check full 42-site target coverage, scaffold conversion, variant-site identity,
-and unchanged terminal-phosphate protection together.
+```ini
+[automr]
+mode = standard
+frame = W
+pair = A:T
+sequence_reference = w-metal-scaffold
+```
+
+The pair above is an example, not a new default. Retain the intended experimental
+pair and any explicit `[mutations]` declarations. `sequence_reference` may also
+name an explicit dataset-relative JSON file with the same reference schema;
+absolute paths and paths escaping the dataset are rejected. No unlabelled
+sequence file, model name, or frame selection implicitly enables this feature.
+This slice introduces no `W*` frame alias and does not modify the W preset.
+
+Standalone sequence overlays and site declarations feed the tested compiler.
+Thread inheritance remains a compiler capability, not a new implicit grouping
+rule or a supported campaign input in this slice. A campaign selecting
+`sequence_reference` is recorded as `BLOCKED` with an explicit unsupported-path
+diagnostic: its reference must not be silently omitted from a frozen plan.
+Campaign reference snapshotting and group binding require a separate change.
+
+## Frozen run contract
+
+AutoMR validates complete chain/residue correspondence and compiles the target
+before allocating the new run. It copies the original search coordinates
+unchanged, apart from the existing explicitly requested mirror transform.
+Sequence mutations are never performed before Phaser.
+
+The new run retains:
+
+- `Model/sequence_reference.json`: the exact reference bytes consumed;
+- `Model/sequence_family_target.json`: all effective residue codes and layer
+  assignments;
+- additive `post_mr_plan.sequence_family` schema-1 metadata containing the two
+  run-anchored, checksummed artifacts, frozen overlays and an input-intent
+  fingerprint;
+- a matching `inputs.sequence_reference` artifact reference; and
+- a read-only preflight comparison of the literal source inventory before any
+  mirroring, separate from the actual post-MR mutation plan.
+
+The JSON files are not reconstructed from a later installed reference. PostMR
+checks their byte hashes and internal consistency, rejects changed input
+intent, and checks actual MR correspondence before constructing its output.
+Removing a requested artifact or contract is an error, not permission to fall
+back to the legacy planner.
+
+PostMR feeds the verified target codes to the existing mutation planner and
+Coot/parent-overlap routes. Existing DNA/RNA sugar checks, mirrored-mutation
+restrictions, component dictionaries and chemistry safeguards remain active.
+It checks all final prepared residue identities after ReadySet and records a
+`sequence_family_audit`. This is an identity audit, not a claim of correct
+geometry, metal coordination, map quality or deposition readiness.
+
+Low-level callers inspecting an opted-in run must pass its explicit location:
+
+```python
+build_mutation_plan(report, model, run_directory=run)
+```
+
+Legacy calls and reports without a selected reference retain their prior target
+semantics. No existing run is migrated, and older coordinate/checkpoint files
+are never rewritten to acquire new reference authority.
+
+## Validation boundary and next live check
+
+Controlled tests cover 42-site coverage, the two computed scaffold corrections,
+sequence/site precedence, C:8–14 numbering, raw-search-model preservation,
+artifact/intent drift, relocation after the original directory disappears,
+legacy behavior, existing mirror/sugar/chemistry gates, and final prepared-model
+identity checks. External executables in these tests are fixtures, not real
+Phenix/Coot runs.
+
+After the complete local suite passes, a fresh W-family live run should verify
+all 42 intended identities, its actual A:12/B:4 variant and the independent D:1
+phosphate protection together. Only after that live validation should a new
+versioned recipe consider enabling this reference by default. The metal-pair
+project and geometry/topology-defined campaign families remain separate work.

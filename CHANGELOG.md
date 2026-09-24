@@ -50,11 +50,15 @@ entries are reconstructed from repository history.
 
 ### Added
 
-- Added a standalone, explicit sequence-reference target compiler with the
-  reviewed W-scaffold reference, chain/residue correspondence, thread/dataset
-  sequence and component-code overlays, assignment provenance and read-only
-  inventory comparison. AutoMR/PostMR and campaign input parsing do not invoke
-  it yet; existing defaults, frozen runs and chemistry behavior are unchanged.
+- Added an explicit sequence-reference target compiler with the reviewed
+  W-scaffold reference, chain/residue correspondence, thread/dataset overlays,
+  assignment provenance and read-only inventory comparison.
+- Added opt-in standalone `[automr] sequence_reference` integration. Fresh
+  AutoMR runs freeze exact reference bytes and effective targets; PostMR reuses
+  existing mutation routes and audits complete prepared residue identities.
+  Snapshot/intent drift fails closed. Ordinary W defaults and legacy runs are
+  unchanged. Campaigns explicitly block this setting until campaign reference
+  snapshotting is implemented; no selected reference is silently discarded.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 

@@ -32,6 +32,10 @@ from .ligand_profiles import (
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
 )
 from .run_context import artifact_reference, resolve_artifact_path
+from .sequence_reference import SequenceReferenceError
+from .sequence_family import (
+    load_frozen_sequence_family, audit_sequence_family_model, sequence_family_inventory,
+)
 
 
 class PostMRPreparationError(RuntimeError):
@@ -236,16 +240,36 @@ def _sequence_targets(
 def _target_sites(
     report: Mapping[str, object],
     model: Path,
+    *, run_directory: Path | None = None,
 ) -> OrderedDict[str, str]:
     plan = report.get("post_mr_plan")
     if not isinstance(plan, Mapping):
         raise PostMRPreparationError("Frozen report is missing its post-MR plan")
-    sequences = plan.get("sequences")
-    targets = (
-        _sequence_targets(report, model, sequences)
-        if isinstance(sequences, Mapping) and sequences
-        else OrderedDict()
-    )
+    try:
+        family = load_frozen_sequence_family(report, run_directory)
+    except SequenceReferenceError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    if family is not None:
+        try:
+            sequence_family_inventory(
+                family, model, extra_codes=tuple(_MIRRORED_CANONICAL_CODES.values()),
+            )
+        except SequenceReferenceError as exc:
+            raise PostMRPreparationError(str(exc)) from exc
+        for chain in family.reference.chains:
+            observed_rna = _chain_is_rna(model, chain.chain, set(chain.residue_ids))
+            if observed_rna != (chain.polymer == "RNA"):
+                raise PostMRPreparationError(
+                    f"Sequence-family polymer type disagrees with the model at chain {chain.chain}"
+                )
+        targets = OrderedDict(family.codes)
+    else:
+        sequences = plan.get("sequences")
+        targets = (
+            _sequence_targets(report, model, sequences)
+            if isinstance(sequences, Mapping) and sequences
+            else OrderedDict()
+        )
     standard_pair = plan.get("standard_pair")
     if isinstance(standard_pair, Mapping):
         frame = report.get("frame")
@@ -294,6 +318,8 @@ def _target_sites(
             elif request.get("requested") == "F" and code in {"DF", "A1AAZ"}:
                 code = "DF"
             targets[site] = code
+    if family is not None and dict(targets) != family.codes:
+        raise PostMRPreparationError("Frozen sequence-family target and executable site declarations disagree")
     inputs = report.get("inputs")
     if isinstance(inputs, Mapping) and inputs.get("mirror") is True:
         targets = OrderedDict(
@@ -303,9 +329,11 @@ def _target_sites(
     return targets
 
 
-def build_mutation_plan(report: Mapping[str, object], model: Path) -> tuple[MutationAction, ...]:
+def build_mutation_plan(
+    report: Mapping[str, object], model: Path, *, run_directory: Path | None = None,
+) -> tuple[MutationAction, ...]:
     actions: list[MutationAction] = []
-    for site, target in _target_sites(report, model).items():
+    for site, target in _target_sites(report, model, run_directory=run_directory).items():
         current = residue_name(model, site)
         parent_code: str | None = None
         deposition_code: str | None = None
@@ -1296,6 +1324,15 @@ def prepare_postmr(
             "and experimental backbone passthrough"
         )
     source_model = _solution_model(run, report)
+    try:
+        family = load_frozen_sequence_family(report, run)
+    except SequenceReferenceError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    # Validate opt-in frozen targets and mutation routes before creating PostMR.
+    family_actions = (
+        build_mutation_plan(report, source_model, run_directory=run)
+        if family is not None else None
+    )
     postmr = run / "PostMR"
     try:
         postmr.mkdir()
@@ -1312,7 +1349,10 @@ def prepare_postmr(
 
     original = model_dir / "mr_solution.pdb"
     shutil.copyfile(source_model, original)
-    actions = build_mutation_plan(report, original)
+    actions = (
+        family_actions if family_actions is not None
+        else build_mutation_plan(report, original)
+    )
     target_ligand_codes = sorted({
         action.after for action in actions if action.method == "coot-parent-overlap"
     })
@@ -1589,6 +1629,18 @@ def prepare_postmr(
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
+    family_audit = None
+    if family is not None:
+        try:
+            # Recheck frozen evidence after the external tools, not just before.
+            checked_family = load_frozen_sequence_family(report, run)
+            assert checked_family is not None
+            family_audit = audit_sequence_family_model(
+                checked_family, final_model,
+                {action.site: action.after for action in actions}, run,
+            )
+        except SequenceReferenceError as exc:
+            raise PostMRPreparationError(f"Sequence-family identity audit failed: {exc}") from exc
     for action in actions:
         if residue_name(final_model, action.site) != action.after:
             raise PostMRPreparationError(
@@ -1625,6 +1677,7 @@ def prepare_postmr(
             "shared_parent_coordinates_restored": coordinate_restoration,
         },
         "phosphate_policy": phosphate_policy,
+        **({"sequence_family_audit": family_audit} if family_audit is not None else {}),
         "phosphate_cleanup": {
             "terminal_phosphate_ensure": terminal_phosphate,
             "before_restraints": phosphate_before,

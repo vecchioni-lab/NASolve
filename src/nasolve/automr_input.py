@@ -51,6 +51,7 @@ class AutoMRIntent:
     op3_sites_explicit: bool = False
     backbone_sites: dict[str, str] = field(default_factory=dict)
     allow_unreviewed_backbone: bool = False
+    sequence_reference: str | None = None
 
 
 @dataclass(frozen=True)
@@ -83,6 +84,7 @@ class ResolvedAutoMRInput:
     phosphate_intent: dict[str, object] | None = None
     backbone_sites: dict[str, str] = field(default_factory=dict)
     allow_unreviewed_backbone: bool = False
+    sequence_reference: Path | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
@@ -92,6 +94,7 @@ _ALLOWED_AUTOMR_KEYS = {
     "pair",
     "model",
     "sequence_file",
+    "sequence_reference",
     "mirror",
     "allow_p1_standard",
     "allow_op3_sites",
@@ -275,6 +278,7 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         pair=automr.get("pair") or None,
         model=automr.get("model") or None,
         sequence_file=automr.get("sequence_file") or None,
+        sequence_reference=automr.get("sequence_reference"),
         mirror=mirror,
         allow_p1_standard=allow_p1_standard,
         sequences=sequences,
@@ -598,6 +602,24 @@ def resolve_automr_input(
         )
         sequences = read_sequence_file(sequence_file)
 
+    sequence_reference: Path | None = None
+    if intent.sequence_reference is not None:
+        requested_reference = intent.sequence_reference
+        if not isinstance(requested_reference, str) or not requested_reference.strip():
+            raise AutoMRInputError("sequence_reference must be an explicit reference ID or dataset-relative file")
+        requested_reference = requested_reference.strip()
+        if requested_reference == "w-metal-scaffold":
+            sequence_reference = (
+                Path(__file__).resolve().parent / "data" / "sequence_references"
+                / "w-metal-scaffold.json"
+            )
+            if not sequence_reference.is_file():
+                raise AutoMRInputError("The selected w-metal-scaffold sequence reference is missing")
+        else:
+            sequence_reference = _resolve_relative_input(
+                dataset.root, requested_reference, "Sequence reference"
+            )
+
     resolved_mutations: dict[str, ResolvedLigand] = {}
     for site, residue in intent.mutations.items():
         _validate_mutation_site(site)
@@ -650,6 +672,7 @@ def resolve_automr_input(
         mirror=effective_mirror,
         sequences=sequences,
         sequence_file=sequence_file,
+        sequence_reference=sequence_reference,
         mutations=resolved_mutations,
         config_source=intent.source,
         allow_op3_sites=allow_op3,
@@ -670,6 +693,17 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
     else:
         relative_model = resolved.model.relative_to(resolved.dataset.root).as_posix()
         lines.append(f"model = {relative_model}")
+    if resolved.sequence_reference is not None:
+        builtin = Path(__file__).resolve().parent / "data" / "sequence_references" / "w-metal-scaffold.json"
+        selected = resolved.sequence_reference.resolve()
+        if selected == builtin.resolve():
+            reference_text = "w-metal-scaffold"
+        else:
+            try:
+                reference_text = selected.relative_to(resolved.dataset.root.resolve()).as_posix()
+            except ValueError as exc:
+                raise AutoMRInputError("Sequence reference must be built-in or dataset-relative") from exc
+        lines.append(f"sequence_reference = {reference_text}")
     if resolved.mirror:
         lines.append("mirror = true")
     if resolved.allow_unreviewed_backbone:
