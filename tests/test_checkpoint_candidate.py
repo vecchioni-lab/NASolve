@@ -58,6 +58,10 @@ class CheckpointCandidateTests(unittest.TestCase):
             self.assertIsNone(
                 descriptor["run_context"]["checkpoint_model_target_comparison"]
             )
+            self.assertEqual(
+                descriptor["run_context"]["source_model_provenance_verification"],
+                "legacy-run-report-only",
+            )
             self.assertEqual(descriptor["semantics"], {
                 "descriptive_only": True,
                 "checkpoint_local_reusable": True,
