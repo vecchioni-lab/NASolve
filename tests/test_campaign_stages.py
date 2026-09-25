@@ -24,6 +24,7 @@ from .test_sequence_family_integration import model_text as sequence_family_mode
 
 
 REFERENCE = Path(__file__).parents[1] / "src/nasolve/data/sequence_references/w-metal-scaffold.json"
+FORCED_W = Path(__file__).parents[1] / "MR_frames/5W6W/5W6W_noPO4.pdb"
 
 
 class CampaignStageTests(unittest.TestCase):
@@ -180,6 +181,41 @@ class CampaignStageTests(unittest.TestCase):
         self.assertEqual(overlays["thread_sequences"], {"B": "CCCCCCC"})
         self.assertEqual(overlays["thread_site_codes"], {"A:13": "1AP"})
         self.assertEqual(report["sequence_family_preflight"]["target_count"], 42)
+
+    def test_forced_dataset_model_preflight_uses_only_frozen_provider_resources(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        shutil.copyfile(FORCED_W, dataset / "alternate.pdb")
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\npair = D:T\nmodel = alternate.pdb\n"
+        )
+        (self.frames / "seq_base.txt").write_text("FRAME-CONTEXT\n")
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        provider = self.dataset["effective_config"]["model_provider"]
+        self.assertEqual(provider["location"], "dataset")
+        frozen_model = self.root / self.dataset["inputs"]["model"]["relative_path"]
+        expected_model = frozen_model.read_bytes()
+
+        (dataset / "alternate.pdb").unlink()
+        shutil.rmtree(self.frames.parent)
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+        result = self.stage("preflight")
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        self.assertEqual(result["status"], "READY_POST_MR_MUTATION")
+        self.assertEqual(report["inputs"]["model_provider"], {
+            "kind": "explicit-standard-model",
+            "selection": "user-forced",
+            "frame": "W",
+            "location": "dataset",
+            "selector": "alternate.pdb",
+        })
+        self.assertEqual(report["inputs"]["model_selector"], "alternate.pdb")
+        self.assertEqual((run / "Model/input_model.pdb").read_bytes(), expected_model)
+        self.assertEqual((run / "Model/seq_base.txt").read_text(), "FRAME-CONTEXT\n")
+        self.assertIn("model = alternate.pdb", (run / "nasolve.input.txt").read_text())
 
     def test_preflight_uses_frozen_catalogue_and_does_not_generate_dataset_config(self):
         self.plan(config=False)
