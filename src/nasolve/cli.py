@@ -454,6 +454,13 @@ def _campaign(args: argparse.Namespace) -> int:
                     print(f"    Sequence reference: {effective['sequence_reference']}")
                 if effective.get("sequence_thread"):
                     print(f"    Sequence thread: {effective['sequence_thread']['id']}")
+                if effective.get("model_selector"):
+                    provider = effective.get("model_provider") or {}
+                    location = provider.get("location", "explicit")
+                    print(
+                        f"    Model override: {effective['model_selector']} "
+                        f"({location})"
+                    )
             if item.get("diagnostic"):
                 print(f"    {item['diagnostic']}")
             if item.get("run"):
