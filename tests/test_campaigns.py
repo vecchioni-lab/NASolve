@@ -513,6 +513,33 @@ class CampaignTests(unittest.TestCase):
             with self.subTest(index=index), self.assertRaises(CampaignError):
                 campaign_status(self.root)
 
+    def test_forged_sequence_thread_binding_is_rejected_after_resigning(self):
+        self.dataset("dataset", "[automr]\npair = C:G\n")
+        (self.root / "nasolve-campaign.toml").write_text(
+            'schema_version = 1\n'
+            '[sequence_threads.w-family]\n'
+            'datasets = ["dataset"]\n'
+            'sequence_reference = "w-metal-scaffold"\n'
+            '[sequence_threads.w-family.site_codes]\n'
+            '"A:13" = "1AP"\n'
+        )
+        self.plan()
+        original = self.state_path().read_bytes()
+        mutations = [
+            lambda value: value["sequence_threads"]["definitions"]["w-family"][
+                "site_codes"
+            ].update({"A:13": "DG"}),
+            lambda value: value["datasets"][0]["effective_config"][
+                "sequence_thread"
+            ].update(id="other"),
+            lambda value: value.pop("sequence_threads"),
+        ]
+        for index, mutate in enumerate(mutations):
+            self.state_path().write_bytes(original)
+            self.rewrite_state(mutate, resign=True)
+            with self.subTest(index=index), self.assertRaises(CampaignError):
+                campaign_status(self.root)
+
     def test_invalid_json_duplicate_fields_and_missing_plan_are_clear_errors(self):
         with self.assertRaisesRegex(CampaignError, "Cannot read campaign plan"):
             campaign_status(self.root)
