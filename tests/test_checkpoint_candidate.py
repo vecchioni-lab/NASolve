@@ -7,7 +7,12 @@ from nasolve.checkpoint_candidate import (
     CheckpointCandidateError,
     describe_checkpoint_candidate,
 )
-from nasolve.checkpoints import append_checkpoint, initialize_registry, resolve_checkpoint
+from nasolve.checkpoints import (
+    add_checkpoint,
+    append_checkpoint,
+    initialize_registry,
+    resolve_checkpoint,
+)
 from nasolve.model_assessment import file_sha256
 
 from .test_checkpoints import make_checkpoint_run
@@ -121,6 +126,54 @@ class CheckpointCandidateTests(unittest.TestCase):
             descriptor = describe_checkpoint_candidate(run, "clean model")
             self.assertEqual(descriptor["source"]["checkpoint_id"], "postmr")
             self.assertEqual(descriptor["source"]["lineage"], ["postmr"])
+
+    def test_manual_review_checkpoint_is_not_promoted_to_cross_dataset_donor(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_checkpoint_run(root)
+            manual = root / "manual.pdb"
+            manual.write_text(
+                (run / "PostMR" / "Model" / "readyset_model.pdb").read_text()
+            )
+            record = add_checkpoint(
+                run,
+                name="manual review",
+                model=manual,
+            )
+
+            descriptor = describe_checkpoint_candidate(
+                run,
+                record.checkpoint_id,
+            )
+            self.assertEqual(descriptor["source"]["status"], "REVIEW")
+            self.assertTrue(descriptor["source"]["usable"])
+            self.assertTrue(descriptor["source"]["locally_reusable"])
+            self.assertFalse(descriptor["source"]["selected_current"])
+            self.assertEqual(
+                descriptor["source"]["lineage"],
+                ["postmr", record.checkpoint_id],
+            )
+            self.assertIsNone(descriptor["semantics"]["donor_eligibility"])
+            self.assertIsNone(
+                descriptor["semantics"]["recipient_compatibility"]
+            )
+            self.assertFalse(
+                descriptor["semantics"]["automatic_reuse_authorized"]
+            )
+
+    def test_changed_source_observations_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_checkpoint_run(Path(directory))
+            run, registry = initialize_registry(run)
+            root = resolve_checkpoint(registry, "postmr")
+            observations = run.parent.parent / root["observations"]["relative_path"]
+            observations.write_bytes(b"changed observations")
+
+            with self.assertRaisesRegex(
+                CheckpointCandidateError,
+                "observations.*checksum|observations.*missing",
+            ):
+                describe_checkpoint_candidate(run)
 
     def test_changed_checkpoint_model_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
