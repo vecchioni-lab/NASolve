@@ -653,9 +653,18 @@ def _validate_plan(payload: Any) -> None:
                     validate_backbone_sites(config["backbones"])
                 except BackboneError as exc:
                     raise CampaignError(f"Malformed campaign backbone chemistry: {exc}") from exc
-            for field in ("mode", "frame", "pair", "sequence_reference", "model_selector"):
+            for field in (
+                "mode", "frame", "pair", "sequence_reference",
+                "model_selector", "model_family",
+            ):
                 if config.get(field) is not None:
                     _require(config[field], str, f"{name}.{field}")
+                    if field == "model_family" and re.fullmatch(
+                        r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", config[field]
+                    ) is None:
+                        raise CampaignError(
+                            f"Malformed campaign state: invalid {name}.model_family"
+                        )
                     if field == "sequence_reference" and (
                         not config[field].strip()
                         or any(char in config[field] for char in "\r\n\x00")
@@ -759,6 +768,7 @@ def _validate_plan(payload: Any) -> None:
                         or len(selector_path.parts) != 1
                         or selector_path.suffix.casefold() != ".pdb"
                         or config.get("model_selector") is not None
+                        or config.get("model_family") is not None
                         or config.get("model_name") != selector
                         or config.get("model_pair") is None
                         or config.get("exact_pair_model") is not (selection == "exact-pair")
@@ -768,7 +778,10 @@ def _validate_plan(payload: Any) -> None:
                             f"Malformed campaign state: invalid {name}.model_provider"
                         )
                 elif kind == "explicit-standard-model":
-                    expected_provider_fields = {"kind", "selection", "frame", "location", "selector"}
+                    model_family = config.get("model_family")
+                    expected_provider_fields = {
+                        "kind", "selection", "frame", "location", "selector"
+                    } | ({"construct_family"} if model_family is not None else set())
                     selector = provider.get("selector")
                     location = provider.get("location")
                     expected_source = (
@@ -789,6 +802,7 @@ def _validate_plan(payload: Any) -> None:
                         or selector_path.suffix.casefold() != ".pdb"
                         or selector_path.name != config.get("model_name")
                         or config.get("model_selector") != selector
+                        or provider.get("construct_family") != model_family
                         or config.get("model_pair") is not None
                         or config.get("exact_pair_model") is not False
                         or config.get("model_source") != expected_source
