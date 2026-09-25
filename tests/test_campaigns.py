@@ -155,7 +155,8 @@ class CampaignTests(unittest.TestCase):
         entries = {entry["id"]: entry for entry in self.plan()["datasets"]}
         self.assertEqual(entries["good"]["status"], "DISCOVERED")
         self.assertIn("Unknown ligand code", entries["unknown"]["diagnostic"])
-        self.assertIn("remove model", entries["custom"]["diagnostic"])
+        self.assertIn("Explicit standard model 'custom.pdb' was not found",
+                      entries["custom"]["diagnostic"])
 
     def test_multiple_mutation_sites_use_the_canonical_config_parser(self):
         self.dataset("dataset", "[automr]\npair = C:G\n[mutations]\nA:8 = E\nA:9 = F\n")
@@ -250,6 +251,35 @@ class CampaignTests(unittest.TestCase):
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
         self.assertTrue(first.is_dir())
         self.assertTrue(second.is_dir())
+
+    def test_explicit_standard_dataset_model_is_frozen_with_provider_provenance(self):
+        dataset = self.dataset(
+            "dataset",
+            "[automr]\npair = C:G\nmodel = alternate.pdb\n",
+        )
+        shutil.copyfile(REFERENCE.parents[4] / "MR_frames/5W6W/5W6W_noPO4.pdb",
+                        dataset / "alternate.pdb")
+        plan = self.plan()
+        entry = plan["datasets"][0]
+        self.assertEqual(entry["status"], "DISCOVERED")
+        effective = entry["effective_config"]
+        self.assertEqual(effective["model_selector"], "alternate.pdb")
+        self.assertEqual(effective["model_provider"], {
+            "kind": "explicit-standard-model",
+            "selection": "user-forced",
+            "frame": "W",
+            "location": "dataset",
+            "selector": "alternate.pdb",
+        })
+        self.assertIsNone(effective["model_pair"])
+        self.assertFalse(effective["exact_pair_model"])
+        frozen = self.root / entry["inputs"]["model"]["relative_path"]
+        self.assertEqual(frozen.read_bytes(), (dataset / "alternate.pdb").read_bytes())
+
+        # The source PDB and catalogue are not execution dependencies after planning.
+        (dataset / "alternate.pdb").unlink()
+        shutil.rmtree(self.frames)
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
 
     def test_duplicate_authoritative_reflections_are_reported_without_collapsing(self):
         self.dataset("z", content=b"duplicate")
@@ -497,6 +527,12 @@ class CampaignTests(unittest.TestCase):
             lambda value: value["datasets"][0]["inputs"]["model"].update(sha256="bad"),
             lambda value: value["datasets"][0]["inputs"]["model"].update(size=-1),
             lambda value: value["datasets"][0]["effective_config"].update(mirror="false"),
+            lambda value: value["datasets"][0]["effective_config"]["model_provider"].update(
+                location="dataset"
+            ),
+            lambda value: value["datasets"][0]["effective_config"].update(
+                model_selector="forged.pdb"
+            ),
             lambda value: value["datasets"][0]["effective_config"].update(
                 sequence_reference="w-metal-scaffold"
             ),
@@ -523,6 +559,8 @@ class CampaignTests(unittest.TestCase):
             config = value["datasets"][0]["effective_config"]
             config.pop("sequence_reference_source", None)
             config.pop("sequence_thread", None)
+            config.pop("model_selector", None)
+            config.pop("model_provider", None)
         self.rewrite_state(make_legacy, resign=True)
         status = campaign_status(self.root)
         self.assertEqual(status["integrity"], "OK")

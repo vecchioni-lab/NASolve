@@ -5,8 +5,9 @@ dataset-level campaign inputs; regression fixtures and a fresh live
 Phenix/Coot/AutoRefine path validated.** The live validation accounted for all
 42 intended residue identities, preserved the independent terminal-phosphate
 chemistry, and carried the prepared model through refinement. Ordinary W recipe
-defaults and existing frozen runs remain unchanged. Campaign thread/group
-inheritance is not enabled by this slice.
+defaults and existing frozen runs remain unchanged. Explicit campaign
+sequence-thread inheritance is supported; thread membership remains target
+metadata and does not imply model compatibility or reuse.
 
 ## Scope and scientific boundary
 
@@ -127,6 +128,14 @@ compatibility, select a sibling model, authorize cross-dataset reuse, or imply
 shared geometry/metal chemistry. Those remain separate reviewed campaign/model
 policies.
 
+An explicit standard-frame model provider may be combined with the same frozen
+sequence-family target. The tracked `MR_frames/5W6W/5W6W_noPO4.pdb` fixture
+exercises this path: its original 42-site scaffold enters the W workflow as
+coordinates, while the sequence-family compiler independently records the A:13
+DC→DT and B:3 DG→DA target differences. The W recipe independently retains D:1
+terminal-phosphate intent. Provider selection therefore never becomes target
+authority.
+
 ## Frozen run contract
 
 AutoMR validates complete chain/residue correspondence and compiles the target
@@ -175,13 +184,14 @@ Controlled tests cover 42-site coverage, the two computed scaffold corrections,
 sequence/site precedence, C:8–14 numbering, raw-search-model preservation,
 artifact/intent drift, relocation after the original directory disappears,
 legacy behavior, existing mirror/sugar/chemistry gates, final prepared-model
-identity checks, campaign reference snapshotting, and campaign execution after
-the original reference source disappears. External executables in these tests
-are fixtures.
+identity checks, campaign reference snapshotting, campaign execution after
+the original reference source disappears, explicit standard-model providers,
+and controlled normalization of the original no-phosphate W scaffold through
+PostMR. External executables in these tests are fixtures.
 
 A fresh W-family live run separately verified all 42 intended identities,
 the actual A:12/B:4 variant, independent D:1 phosphate protection, and successful
 AutoRefine continuation. That validation does not make the reference a default:
 a future versioned recipe may consider doing so explicitly. The metal-pair
-project, shared campaign thread binding, and geometry/topology-defined campaign
-families remain separate work.
+project, automatic cross-dataset model reuse, and geometry/topology-defined
+campaign families remain separate work.

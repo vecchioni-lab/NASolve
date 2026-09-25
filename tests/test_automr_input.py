@@ -1,3 +1,4 @@
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -15,6 +16,7 @@ from .helpers import make_dataset, model_text
 
 
 VALID = {"1AP", "DT", "DA", "A", "5IU", "DG", "DC", "DF", "DE"}
+FORCED_W = Path(__file__).parents[1] / "MR_frames/5W6W/5W6W_noPO4.pdb"
 
 
 class AutoMRInputTests(unittest.TestCase):
@@ -60,6 +62,95 @@ class AutoMRInputTests(unittest.TestCase):
             self.assertEqual(
                 tuple(item.ligand_code for item in resolved.pair), ("1AP", "DT")
             )
+
+    def test_standard_model_override_can_select_frame_catalogue_without_pair_inference(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            dataset = make_dataset(base / "dataset", include_model=False)
+            catalogue = base / "MR_frames" / "5W6W"
+            catalogue.mkdir(parents=True)
+            shutil.copyfile(FORCED_W, catalogue / "5W6W_noPO4.pdb")
+            (catalogue / "seq_base.txt").write_text("FRAME-SEQUENCE\n")
+            resolved = resolve_automr_input(
+                dataset,
+                AutoMRIntent(
+                    mode="standard", frame="W", pair="D:T",
+                    model="5W6W_noPO4.pdb",
+                ),
+                frames_dir=base / "MR_frames",
+                valid_ligand_codes=VALID,
+            )
+            self.assertEqual(resolved.model, (catalogue / "5W6W_noPO4.pdb").resolve())
+            self.assertIsNone(resolved.model_pair)
+            self.assertFalse(resolved.exact_pair_model)
+            self.assertEqual(resolved.model_selector, "5W6W_noPO4.pdb")
+            self.assertEqual(resolved.model_provider, {
+                "kind": "explicit-standard-model",
+                "selection": "user-forced",
+                "frame": "W",
+                "location": "frame-catalogue",
+                "selector": "5W6W_noPO4.pdb",
+            })
+            self.assertEqual(
+                resolved.frame_sequence_source, (catalogue / "seq_base.txt").resolve()
+            )
+            self.assertIn("model = 5W6W_noPO4.pdb", format_intent(resolved))
+
+    def test_standard_dataset_model_override_keeps_frame_sequence_context(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            dataset = make_dataset(base / "dataset", include_model=False)
+            shutil.copyfile(FORCED_W, dataset / "alternate.pdb")
+            (dataset / "seq_base.txt").write_text("WRONG-DATASET-SEQUENCE\n")
+            catalogue = base / "MR_frames" / "5W6W"
+            catalogue.mkdir(parents=True)
+            (catalogue / "C_G.pdb").write_text(model_text())
+            (catalogue / "seq_base.txt").write_text("RIGHT-FRAME-SEQUENCE\n")
+            resolved = resolve_automr_input(
+                dataset,
+                AutoMRIntent(mode="standard", frame="W", pair="D:T"),
+                model_override="alternate.pdb",
+                frames_dir=base / "MR_frames",
+                valid_ligand_codes=VALID,
+            )
+            self.assertEqual(resolved.model, (dataset / "alternate.pdb").resolve())
+            self.assertEqual(resolved.model_provider["location"], "dataset")
+            self.assertEqual(
+                resolved.frame_sequence_source, (catalogue / "seq_base.txt").resolve()
+            )
+            self.assertIn("model = alternate.pdb", format_intent(resolved))
+
+    def test_standard_model_override_is_ambiguous_or_unsafe_instead_of_guessed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            dataset = make_dataset(base / "dataset", include_model=False)
+            catalogue = base / "MR_frames" / "5W6W"
+            catalogue.mkdir(parents=True)
+            shutil.copyfile(FORCED_W, dataset / "alternate.pdb")
+            shutil.copyfile(FORCED_W, catalogue / "alternate.pdb")
+            with self.assertRaisesRegex(AutoMRInputError, "Ambiguous explicit standard model"):
+                resolve_automr_input(
+                    dataset,
+                    AutoMRIntent(
+                        mode="standard", frame="W", pair="D:T",
+                        model="alternate.pdb",
+                    ),
+                    frames_dir=base / "MR_frames",
+                    valid_ligand_codes=VALID,
+                )
+            for selector in ("../alternate.pdb", "/tmp/alternate.pdb", "C:\\alternate.pdb"):
+                with self.subTest(selector=selector), self.assertRaisesRegex(
+                    AutoMRInputError, "safe relative PDB"
+                ):
+                    resolve_automr_input(
+                        dataset,
+                        AutoMRIntent(
+                            mode="standard", frame="W", pair="D:T",
+                            model=selector,
+                        ),
+                        frames_dir=base / "MR_frames",
+                        valid_ligand_codes=VALID,
+                    )
 
     def test_catalogue_matches_resolved_codes_not_only_spelling(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -304,6 +304,11 @@ class CLITests(unittest.TestCase):
             "automr", "dataset", "-W", "--pair", "D:T", "--mirror",
         ])
         self.assertTrue(mirrored.mirror)
+        forced = parser.parse_args([
+            "automr", "dataset", "-W", "--pair", "D:T",
+            "--model", "5W6W_noPO4.pdb",
+        ])
+        self.assertEqual(forced.model, "5W6W_noPO4.pdb")
 
     def test_postmr_command(self):
         parser = build_parser()

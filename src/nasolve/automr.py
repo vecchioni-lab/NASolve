@@ -32,6 +32,7 @@ from .phosphate import phosphate_intent_summary, validate_phosphate_intent, Phos
 from .backbone import make_backbone_policy
 from .sequence_reference import SequenceReferenceError
 from .sequence_family import prepare_sequence_family, freeze_sequence_family
+from .frame_postmr import frame_postmr_spec
 from .symmetry import StandardSymmetryAssessment, SymmetryError, assess_standard_symmetry
 
 
@@ -144,6 +145,22 @@ def _validate_edit_targets(
         chain, residue = (part.strip() for part in site.split(":", 1))
         if residue not in assessment.polymer_residue_ids_by_chain.get(chain, []):
             raise AutoMRInputError(f"Mutation target {site} does not exist in the MR model")
+
+    if (
+        resolved.frame is not None
+        and isinstance(resolved.model_provider, Mapping)
+        and resolved.model_provider.get("kind") == "explicit-standard-model"
+    ):
+        try:
+            standard_sites = frame_postmr_spec(resolved.frame.name).sites
+        except KeyError:
+            standard_sites = ()
+        for site in standard_sites:
+            if site.resid not in assessment.polymer_residue_ids_by_chain.get(site.chain, []):
+                raise AutoMRInputError(
+                    f"Explicit standard model is incompatible with frame {resolved.frame.name}: "
+                    f"required PostMR site {site.text} is absent"
+                )
 
     for site in resolved.allow_op3_sites:
         chain, residue = site.split(":", 1)
@@ -277,6 +294,7 @@ def prepare_automr(
     frames_dir: Path | None = None,
     allow_p1_standard: bool = False,
     mirror: bool = False,
+    model_override: str | None = None,
     mtz_dump_executable: Path | None = None,
     phenix_environment: Mapping[str, str] | None = None,
     environ: Mapping[str, str] | None = None,
@@ -305,11 +323,12 @@ def prepare_automr(
             frames_dir=frames_dir,
             allow_p1_standard=allow_p1_standard,
             mirror_override=mirror,
+            model_override=model_override,
             environ=environ,
             valid_ligand_codes=valid_ligand_codes,
         )
     else:
-        overrides = (config_path, frame_override, pair_override, frames_dir)
+        overrides = (config_path, frame_override, pair_override, frames_dir, model_override)
         if any(value is not None for value in overrides) or allow_p1_standard or mirror:
             raise AutoMRInputError("A frozen AutoMR selection cannot be combined with input overrides")
         if resolved_input.dataset.root.resolve() != root:
@@ -387,8 +406,11 @@ def prepare_automr(
         copy_preserving_model(resolved.model, copied_model, assessment)
     frame_sequence: Path | None = None
     if resolved.frame is not None:
-        source_sequence = resolved.model.parent / "seq_base.txt"
-        if source_sequence.is_file():
+        source_sequence = resolved.frame_sequence_source
+        if source_sequence is None:
+            legacy_sequence = resolved.model.parent / "seq_base.txt"
+            source_sequence = legacy_sequence if legacy_sequence.is_file() else None
+        if source_sequence is not None and source_sequence.is_file():
             frame_sequence = model_dir / "seq_base.txt"
             shutil.copyfile(source_sequence, frame_sequence)
     if family_seed is not None:
@@ -434,6 +456,8 @@ def prepare_automr(
             "summary": str(resolved.dataset.summary),
             "model": str(resolved.model),
             "model_sha256": source_assessment.sha256,
+            "model_selector": resolved.model_selector,
+            "model_provider": resolved.model_provider,
             "mirror": resolved.mirror,
             "mirror_source_model": (
                 str(model_dir / "source_model.pdb") if resolved.mirror else None

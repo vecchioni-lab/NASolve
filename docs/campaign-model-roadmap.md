@@ -137,11 +137,13 @@ Configuration precedence remains dataset-specific: a dataset may override a camp
 
 ## Model-provider hierarchy
 
-Campaigns must not assume one catalogue model for all datasets. A dataset may obtain its MR candidate from a reviewed model provider. Planned provider classes include:
+Campaigns must not assume one catalogue model for all datasets. A dataset may obtain its MR candidate from a reviewed model provider. The first provider seam is now implemented: standard-frame runs can use the ordinary reviewed catalogue selection or one explicit forced PDB from the dataset/frame catalogue while retaining the same frame policy.
 
-- fixed reviewed catalogue model;
+Provider classes include:
+
+- fixed reviewed catalogue model (implemented);
+- explicit dataset/frame-catalogue model override (implemented);
 - bounded catalogue/model library;
-- explicit dataset-supplied model;
 - campaign-shared model;
 - sequence-derived model, including a later AlphaFold provider;
 - model generated or transformed from a reviewed template; and
@@ -301,7 +303,7 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 2. Add simple campaign/reference sequence inheritance plus dataset override.
 3. Add search-model sequence comparison and mismatch provenance.
 4. Keep `mirror` as an orthogonal inherited/overridable token.
-5. Allow explicit forced search-model selection for validation and unusual datasets.
+5. **Implemented:** allow explicit forced search-model selection for validation and unusual datasets.
 6. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
 
 ### Multi-candidate / model-provider stage
@@ -331,15 +333,18 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 
 `MR_frames/5W6W/5W6W_noPO4.pdb` is intended as a forced test model, not a default catalogue choice. It is the original 5W6W PDB sequence rather than the Lu-Vecchioni metal-pair scaffold sequence used by the current project models. It also lacks the designed D:1 5-prime phosphate.
 
-This makes it a useful integration fixture for:
+This fixture now exercises the implemented explicit-provider seam:
 
-1. forced alternate MR-model selection;
-2. search-model versus frame/reference sequence comparison;
+1. forced alternate MR-model selection without changing the W default;
+2. literal search-model versus frame/reference sequence comparison;
 3. PostMR normalization to the effective dataset target;
-4. explicit dataset/site mutations overriding the frame/reference sequence; and
-5. whole D:1 5-prime-phosphate construction and downstream ReadySet/Phenix interpretation.
+4. explicit dataset/site chemistry overriding inherited sequence intent; and
+5. whole D:1 5-prime-phosphate construction through the ordinary PostMR path.
 
-The model must not become the normal W catalogue fallback merely because it exists in the frame directory.
+The provider record deliberately does not infer compatibility from the
+`5W6W_noPO4.pdb` filename. The model must not become the normal W catalogue
+fallback merely because it exists in the frame directory. Automatic sibling
+reuse and provider ranking remain Campaign Doctor work.
 
 ## Design rule
 

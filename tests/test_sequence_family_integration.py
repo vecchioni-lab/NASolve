@@ -26,6 +26,7 @@ from .helpers import make_dataset, make_mtz_dump, make_ready_set, pdb_record
 
 
 REFERENCE = Path(__file__).resolve().parents[1] / "src/nasolve/data/sequence_references/w-metal-scaffold.json"
+FORCED_W = Path(__file__).resolve().parents[1] / "MR_frames/5W6W/5W6W_noPO4.pdb"
 VALID = {"DA", "DC", "DG", "DT", "1AP", "S6G", "DF", "DE", "0DA", "0DC", "0DG", "0DT"}
 
 
@@ -441,6 +442,45 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
         changed = [a for a in payload["mutation_actions"] if a["method"] != "none"]
         self.assertEqual([a["site"] for a in changed], ["A:13", "B:3"])
         self.assertEqual(len(payload["mutation_actions"]), 42)
+        self.assertEqual(read_json(result.report_path)["status"], "POSTMR_READY")
+
+    def test_forced_original_scaffold_normalizes_sequence_and_terminal_phosphate(self):
+        self.configure(standard=True, extra="model = 5W6W_noPO4.pdb\n")
+        catalogue = self.root / "frames/5W6W"
+        catalogue.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(FORCED_W, catalogue / "5W6W_noPO4.pdb")
+        result = self.preflight(standard=True)
+        report, model = self.completed_mr(result)
+        self.assertEqual(report["inputs"]["model_provider"]["kind"], "explicit-standard-model")
+        self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["D:1"])
+
+        readyset = make_ready_set(self.root)
+
+        def restraint_builder(model, pairs, output):
+            output.write_text("geometry_restraints.edits {}\n")
+
+        with patch("nasolve.sequence_family.known_ligand_codes", return_value=VALID):
+            prepared = prepare_postmr(
+                result.run_directory,
+                readyset,
+                coot_executable=self.fake_coot(),
+                narestraints_builder=restraint_builder,
+            )
+        payload = read_json(prepared.report_path)
+        self.assertEqual(payload["sequence_family_audit"]["status"], "PASS")
+        self.assertEqual(payload["sequence_family_audit"]["target_count"], 42)
+
+        changed = [a for a in payload["mutation_actions"] if a["method"] != "none"]
+        self.assertEqual([a["site"] for a in changed], ["A:13", "B:3"])
+
+        d1_atoms = {
+            line[12:16].strip()
+            for line in prepared.model_path.read_text().splitlines()
+            if line.startswith(("ATOM  ", "HETATM"))
+            and line[21:22].strip() == "D"
+            and line[22:26].strip() == "1"
+        }
+        self.assertTrue({"P", "OP1", "OP2", "OP3"} <= d1_atoms)
         self.assertEqual(read_json(result.report_path)["status"], "POSTMR_READY")
 
     def test_prepared_model_extra_polymer_fails_complete_target_audit(self):

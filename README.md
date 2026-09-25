@@ -425,12 +425,12 @@ disables every AutoBuild path.
 
 | | Standard frame | Nonstandard model |
 | --- | --- | --- |
-| Search model | Selected from `MR_frames/5W6W` or `MR_frames/3GBI` | Supplied in the dataset |
+| Search model | Catalogue by default; explicit dataset/frame-catalogue override allowed | Supplied in the dataset |
 | Required request | Frame plus ordered pair | One PDB, found or named |
 | Space-group rule | H3/R3; P1 only through the explicit shunt | No standard-frame symmetry gate |
-| Standard-site change | Exact catalogue pair or recorded fallback mutation | Use explicit mutation sites |
+| Standard-site change | Exact catalogue pair, fallback mutation, or conservative target application for a forced model | Use explicit mutation sites |
 | Complete sequence | May be introduced by a future frame preset | Chain-labelled sequence file or inline chains |
-| Optional mirror | `--mirror` on the selected catalogue model | `--mirror` on the selected dataset model |
+| Optional mirror | `--mirror` on the selected/forced standard model | `--mirror` on the selected dataset model |
 | Typical command | `nasolve automr DATASET -W --pair E:G --execute` | `nasolve automr DATASET --execute` |
 
 Both routes use the same dataset discovery, model assessment, frozen run
@@ -508,6 +508,33 @@ resolves both aliases to ligand codes, searches for an exact
 An exact catalogue model can proceed directly to MR. A fallback model can also
 be used, but the requested standard-site changes are recorded as a required
 post-MR mutation plan.
+
+For a deliberate validation or unusual dataset, force one exact PDB while
+retaining the standard frame's symmetry, chemistry, sequence-family and PostMR
+rules:
+
+```bash
+./nasolve automr my_dataset -W --pair A:T \
+  --model 5W6W_noPO4.pdb --execute
+```
+
+In standard mode the selector is resolved only from the dataset directory and
+the selected frame catalogue. If both contain the same selector NASolve stops
+as ambiguous; escaping/absolute paths are rejected. A forced model is never
+declared an exact pair match from its filename. NASolve records the provider and
+model checksum, verifies required standard PostMR sites such as W A:12/B:4, and
+lets the ordinary PostMR target decide what identity changes are actually needed.
+The W catalogue remains the source of frame context such as `seq_base.txt`.
+
+The same selector can be written in `nasolve.txt`:
+
+```ini
+[automr]
+mode = standard
+frame = W
+pair = A:T
+model = 5W6W_noPO4.pdb
+```
 
 If the catalogue is stored elsewhere, use either:
 
@@ -682,6 +709,12 @@ campaign resource store before execution. A root `nasolve-campaign.toml` can
 also bind datasets explicitly into named W-family sequence threads whose shared
 sequence/site overlays are inherited before dataset-specific overrides. Thread
 membership changes target intent only: it does not select or reuse MR models.
+
+A sequence-family target can be combined with an explicit standard-model
+provider. This is the intended validation path for the tracked original
+`5W6W_noPO4.pdb`: the original scaffold coordinates enter Phaser unchanged,
+while the frozen W-family target records the post-MR sequence delta and the W
+recipe independently retains D:1 terminal-phosphate intent.
 
 ## Preparing an accepted MR solution
 

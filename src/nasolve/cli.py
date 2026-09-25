@@ -113,6 +113,13 @@ def build_parser() -> argparse.ArgumentParser:
     frames.add_argument("--frame", help="standard frame name (W, 5W6W, or 3GBI)")
     automr.add_argument("--pair", help="ordered standard-site pair, for example D:T")
     automr.add_argument(
+        "--model",
+        help=(
+            "explicit MR model selector; in standard mode search the dataset and "
+            "selected frame catalogue, otherwise use a dataset-relative model"
+        ),
+    )
+    automr.add_argument(
         "--allow-p1-standard", action="store_true",
         help="strongly discouraged: allow a standard frame in P1 using three MR copies",
     )
@@ -447,6 +454,13 @@ def _campaign(args: argparse.Namespace) -> int:
                     print(f"    Sequence reference: {effective['sequence_reference']}")
                 if effective.get("sequence_thread"):
                     print(f"    Sequence thread: {effective['sequence_thread']['id']}")
+                if effective.get("model_selector"):
+                    provider = effective.get("model_provider") or {}
+                    location = provider.get("location", "explicit")
+                    print(
+                        f"    Model override: {effective['model_selector']} "
+                        f"({location})"
+                    )
             if item.get("diagnostic"):
                 print(f"    {item['diagnostic']}")
             if item.get("run"):
@@ -568,6 +582,7 @@ def _automr(args: argparse.Namespace) -> int:
             config_path=args.config,
             frame_override=args.frame,
             pair_override=args.pair,
+            model_override=args.model,
             frames_dir=args.frames_dir,
             allow_p1_standard=args.allow_p1_standard,
             mirror=args.mirror,

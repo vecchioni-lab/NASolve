@@ -108,8 +108,10 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
     frozen.mkdir()
     model = frozen / model_name
     _copy_resource(root, inputs.get("model"), model)
+    frame_sequence_source = None
     if inputs.get("frame_sequence") is not None:
-        _copy_resource(root, inputs["frame_sequence"], frozen / "seq_base.txt")
+        frame_sequence_source = frozen / "seq_base.txt"
+        _copy_resource(root, inputs["frame_sequence"], frame_sequence_source)
     sequence_reference_label = effective.get("sequence_reference")
     sequence_reference_record = inputs.get("sequence_reference")
     if (sequence_reference_label is None) != (sequence_reference_record is None):
@@ -134,7 +136,10 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         dataset=files, mode="standard", frame=normalize_frame("W"),
         pair_text=effective["pair"], pair=_pair(effective["pair_ligands"]),
         model=model, model_source=effective["model_source"],
-        model_pair=_pair(effective["model_pair"]),
+        model_pair=(
+            _pair(effective["model_pair"])
+            if effective.get("model_pair") is not None else None
+        ),
         exact_pair_model=effective["exact_pair_model"],
         catalogue_warnings=tuple(effective["catalogue_warnings"]),
         allow_p1_standard=effective["allow_p1_standard"], mirror=effective["mirror"],
@@ -145,6 +150,12 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
             dict(effective["sequence_thread"])
             if effective.get("sequence_thread") is not None else None
         ),
+        model_selector=effective.get("model_selector"),
+        model_provider=(
+            dict(effective["model_provider"])
+            if effective.get("model_provider") is not None else None
+        ),
+        frame_sequence_source=frame_sequence_source,
         mutations={site: _ligand(ligand) for site, ligand in effective["mutations"].items()},
         config_source=None,
         allow_op3_sites=tuple(effective.get("allow_op3_sites", [])),
