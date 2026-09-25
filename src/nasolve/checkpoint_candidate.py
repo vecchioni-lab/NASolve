@@ -233,9 +233,8 @@ def describe_checkpoint_candidate(
         raise CheckpointCandidateError("Run report has no frozen AutoMR inputs")
     frame = report.get("frame")
     frame_name = frame.get("name") if isinstance(frame, Mapping) else None
-    mode = report.get("mode")
-    if not isinstance(mode, str):
-        raise CheckpointCandidateError("Run report has no AutoMR mode")
+    raw_mode = report.get("mode")
+    mode = raw_mode if isinstance(raw_mode, str) else None
 
     provider = inputs.get("model_provider")
     if provider is not None and not isinstance(provider, Mapping):
