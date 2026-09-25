@@ -20,6 +20,10 @@ from .automr_input import (
     read_intent,
     resolve_automr_input,
 )
+from .model_compatibility import (
+    build_model_compatibility_facts,
+    freeze_model_compatibility_facts,
+)
 from .model_assessment import (
     ModelAssessment,
     ModelAssessmentError,
@@ -204,6 +208,11 @@ def _validate_mirror_inventory(
             "polymer residues by chain",
             source.polymer_residues_by_chain,
             mirrored.polymer_residues_by_chain,
+        ),
+        (
+            "polymer residue IDs by chain",
+            source.polymer_residue_ids_by_chain,
+            mirrored.polymer_residue_ids_by_chain,
         ),
     )
     changed = [
@@ -426,6 +435,23 @@ def prepare_automr(
             "sequence_family_reference", "thread_sequences", "sequences",
             "thread_site_chemistry", "standard_pair", "explicit_mutations",
         ]
+    compatibility_facts = build_model_compatibility_facts(
+        source_assessment=source_assessment,
+        effective_assessment=assessment,
+        model_provider=resolved.model_provider,
+        mode=resolved.mode,
+        recipient_frame=resolved.frame.name if resolved.frame is not None else None,
+        mirror_transform_applied=resolved.mirror,
+        comparison=comparison_payload,
+        comparison_artifact=search_model_comparison,
+        terminal_phosphate_sites=tuple(resolved.allow_op3_sites),
+        phosphate_intent=resolved.phosphate_intent,
+        backbone_policy=post_mr_plan["backbone_policy"],
+        symmetry=symmetry.to_dict() if symmetry is not None else None,
+    )
+    frozen_compatibility_facts = freeze_model_compatibility_facts(
+        compatibility_facts, run_dir
+    )
     _write_json(model_dir / "assessment.json", assessment.to_dict())
     (run_dir / "nasolve.input.txt").write_text(effective_text, encoding="utf-8")
 
@@ -495,6 +521,7 @@ def prepare_automr(
             "gate": "not applied in nonstandard mode"
         },
         "model_assessment": assessment.to_dict(),
+        "model_compatibility_facts": frozen_compatibility_facts,
         "post_mr_plan": post_mr_plan,
         **(
             {"search_model_comparison": search_model_comparison}

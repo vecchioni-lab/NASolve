@@ -209,18 +209,32 @@ the applicable project rule determines which source checkpoints may be used.
 
 ## Cross-dataset compatibility
 
-Before reusing a solved model for another dataset, Campaign Doctor should eventually evaluate explicit compatibility dimensions rather than simple filename similarity. These may include:
+The first compatibility-fact layer is now implemented for fresh AutoMR runs.
+It freezes named, provenance-bound dimensions without deciding whether a model
+is reusable:
 
-- chain count and polymer topology;
-- intended sequence and modified-site compatibility;
-- chirality;
-- construct/model-family identity;
-- expected oligomeric or geometric class;
-- symmetry/copy-number expectations;
-- known terminal or backbone chemistry; and
-- user/preset-declared family relationships.
+- exact candidate chain/residue inventory;
+- provider/recipient frame declarations;
+- complete-target site-set and residue-identity relations when available;
+- recipient sequence-reference identity while model-side construct-family
+  membership remains unknown;
+- the explicit mirror-transform fact while absolute D/L chirality remains
+  unknown;
+- recipient terminal-phosphate and backbone intent; and
+- recipient symmetry class and requested MR copy number while the coordinate
+  model makes no symmetry claim.
 
-The exact scoring/eligibility rules are deferred until a real heterogeneous campaign is available. Early implementations should prefer explicit family declarations and conservative hard gates over inferred similarity.
+The schema deliberately fixes score, overall compatibility and donor eligibility
+to null and automatic reuse authorization to false. `SAME` and `DIFFERENT`
+are literal per-dimension relations, not acceptance/rejection labels;
+`UNKNOWN` is not permissive.
+
+Before reusing a solved model for another dataset, Campaign Doctor still needs
+a separate reviewed eligibility policy. Future dimensions may include explicit
+absolute chirality, declared construct/model-family identity, oligomeric or
+geometric class, candidate-coordinate chemistry evidence and other
+project-specific relationships. The exact hard gates/ranking rules remain
+deferred until a real heterogeneous campaign is available.
 
 ## DAG implications
 
@@ -310,32 +324,33 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 1. Generalize sequence handling into search-model, reference, and dataset-target layers.
 2. Add simple campaign/reference sequence inheritance plus dataset override.
 3. **Implemented for complete explicit targets:** add search-model sequence comparison and mismatch provenance.
-4. Keep `mirror` as an orthogonal inherited/overridable token.
-5. **Implemented:** allow explicit forced search-model selection for validation and unusual datasets.
-6. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
+4. **Implemented as descriptive facts:** freeze compatibility dimensions without scoring or donor eligibility.
+5. Keep `mirror` as an orthogonal inherited/overridable token.
+6. **Implemented:** allow explicit forced search-model selection for validation and unusual datasets.
+7. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
 
 ### Multi-candidate / model-provider stage
 
-7. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
-8. Add provider provenance and sequence-to-model hooks; AlphaFold is a later provider, not a special campaign architecture.
-9. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
+8. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
+9. Add provider provenance and sequence-to-model hooks; AlphaFold is a later provider, not a special campaign architecture.
+10. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
 
 ### Campaign Doctor stage
 
-10. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
-11. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
-12. Keep failed MR branches and every rescue attempt immutable and inspectable.
+11. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
+12. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
+13. Keep failed MR branches and every rescue attempt immutable and inspectable.
 
 ### Upstream preparation / processing stage
 
-13. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
-14. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
-15. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
-16. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
+14. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
+15. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
+16. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
+17. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
 
 ### Later validation and curation
 
-17. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+18. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
 
 ## Immediate validation fixture
 

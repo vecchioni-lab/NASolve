@@ -6,6 +6,7 @@ from pathlib import Path
 
 from nasolve.automr import AutoMRInputError, prepare_automr
 from nasolve.model_assessment import file_sha256
+from nasolve.model_compatibility import load_model_compatibility_facts
 from nasolve.run_context import resolve_artifact_path
 
 from .helpers import make_dataset, make_mtz_dump, model_text, w_model_text
@@ -39,6 +40,28 @@ class AutoMRPreflightTests(unittest.TestCase):
             self.assertEqual(report["model_assessment"]["copied_model"], str(mirrored))
             self.assertIn("mirror = true", (result.run_directory / "nasolve.input.txt").read_text())
 
+    def test_mirror_rejects_changed_residue_ids_even_when_counts_match(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dataset = make_dataset(Path(directory))
+
+            def renumbering_mirror(source: Path, destination: Path) -> Path:
+                lines = []
+                for line in source.read_text().splitlines(keepends=True):
+                    if line.startswith(("ATOM  ", "HETATM")) and line[21:22].strip() == "A":
+                        resid = int(line[22:26]) + 10
+                        line = line[:22] + f"{resid:4d}" + line[26:]
+                    lines.append(line)
+                destination.write_text("".join(lines))
+                return destination
+
+            with self.assertRaisesRegex(AutoMRInputError, "residue IDs by chain"):
+                prepare_automr(
+                    dataset,
+                    mirror=True,
+                    mirror_transformer=renumbering_mirror,
+                    valid_ligand_codes=VALID,
+                )
+
     def test_mirror_rejects_lost_atoms(self):
         with tempfile.TemporaryDirectory() as directory:
             dataset = make_dataset(Path(directory))
@@ -67,11 +90,18 @@ class AutoMRPreflightTests(unittest.TestCase):
             for relative in (
                 "nasolve.input.txt", "automr.log", "report.json",
                 "Model/input_model.pdb", "Model/assessment.json",
+                "Model/model_compatibility_facts.json",
             ):
                 self.assertTrue((result.run_directory / relative).is_file(), relative)
             report = json.loads(result.report_path.read_text())
             self.assertFalse(report["execution"]["phaser_ran"])
             self.assertTrue(report["model_assessment"]["heteroatoms_preserved"])
+            facts = load_model_compatibility_facts(report, result.run_directory)
+            self.assertEqual(facts["dimensions"]["frame_identity"]["relation"], "UNKNOWN")
+            self.assertEqual(facts["dimensions"]["site_set"]["relation"], "UNKNOWN")
+            self.assertEqual(facts["dimensions"]["residue_identity"]["relation"], "UNKNOWN")
+            self.assertIsNone(facts["semantics"]["overall_compatibility"])
+            self.assertFalse(facts["semantics"]["automatic_reuse_authorized"])
 
             second = prepare_automr(dataset, valid_ligand_codes=VALID)
             self.assertEqual(second.run_directory.name, "run_002")
@@ -108,6 +138,17 @@ class AutoMRPreflightTests(unittest.TestCase):
                 frozen_sequence.resolve(),
             )
             self.assertEqual(sequence_ref["sha256"], file_sha256(frozen_sequence))
+            facts = load_model_compatibility_facts(report, result.run_directory)
+            self.assertEqual(facts["dimensions"]["frame_identity"]["relation"], "SAME")
+            self.assertEqual(facts["dimensions"]["site_set"]["relation"], "UNKNOWN")
+            self.assertEqual(
+                facts["dimensions"]["symmetry_and_copy_number"]["recipient_symmetry_class"],
+                "H3/R3",
+            )
+            self.assertEqual(
+                facts["dimensions"]["terminal_phosphate_chemistry"]["recipient_sites"],
+                ["D:1"],
+            )
 
     def test_forced_original_w_scaffold_preserves_recipe_and_sequence_family_delta(self):
         with tempfile.TemporaryDirectory() as directory:

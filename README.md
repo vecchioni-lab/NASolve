@@ -726,6 +726,17 @@ MR-model compatibility rule, or cross-dataset reuse policy has been validated.
 Runs without a complete explicit target do not invent this comparison from
 filenames or unlabeled frame sequence files.
 
+Every fresh AutoMR run also freezes
+`Model/model_compatibility_facts.json`. This fact sheet joins existing provider,
+model, target, symmetry and chemistry provenance into named dimensions such as
+frame identity, candidate chain/site inventory, residue identity, mirror-transform
+state, terminal/backbone intent and symmetry/copy number. Relations are
+descriptive (`SAME`, `DIFFERENT`, `PARTIAL`, `UNKNOWN`) and are never
+collapsed into a score or overall verdict. Absolute D/L chirality is currently
+unknown even when `mirror` is false; NASolve records only whether it applied
+the explicit mirror transform. See
+[model compatibility facts](docs/model-compatibility-facts.md).
+
 ## Preparing an accepted MR solution
 
 After a run reaches `MR_SUCCESS`, prepare it for refinement with:

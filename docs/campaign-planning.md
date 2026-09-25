@@ -115,6 +115,14 @@ original frame catalogue has disappeared. The W frame sequence resource is
 frozen separately so a dataset-supplied model cannot silently replace frame
 context with a neighboring `seq_base.txt`.
 
+Campaign preflight then runs ordinary AutoMR from these frozen selections. Every
+fresh campaign AutoMR run therefore receives the same
+`Model/model_compatibility_facts.json` fact sheet as a standalone run. Its
+provider, frame, target, chemistry and symmetry facts come from the frozen
+campaign selection and run preflights; execution does not rediscover the source
+catalogue or infer sibling-model eligibility. The fact sheet contains no score
+or reuse decision.
+
 ### Explicit sequence threads
 
 A campaign root may optionally contain `nasolve-campaign.toml` with explicit

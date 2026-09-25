@@ -10,6 +10,7 @@ from nasolve.automr_input import AutoMRInputError
 from nasolve.campaign_stages import CampaignStageError, execute_stage
 from nasolve.campaigns import CampaignError, campaign_status, plan_campaign
 from nasolve.config import AppConfig
+from nasolve.model_compatibility import load_model_compatibility_facts
 from nasolve.phenix_runtime import PhenixInstallation
 from nasolve.phaser import PhaserExecutionError
 from nasolve.postmr import prepare_postmr
@@ -181,6 +182,18 @@ class CampaignStageTests(unittest.TestCase):
         self.assertEqual(overlays["thread_sequences"], {"B": "CCCCCCC"})
         self.assertEqual(overlays["thread_site_codes"], {"A:13": "1AP"})
         self.assertEqual(report["sequence_family_preflight"]["target_count"], 42)
+        facts = load_model_compatibility_facts(report, run)
+        self.assertEqual(facts["dimensions"]["frame_identity"]["relation"], "SAME")
+        self.assertEqual(facts["dimensions"]["site_set"]["relation"], "SAME")
+        self.assertEqual(
+            facts["dimensions"]["construct_family"]["recipient_reference"]["id"],
+            "w-metal-scaffold",
+        )
+        self.assertEqual(
+            facts["evidence"]["search_model_comparison"],
+            report["search_model_comparison"],
+        )
+        self.assertIsNone(facts["semantics"]["donor_eligibility"])
 
     def test_forced_dataset_model_preflight_uses_only_frozen_provider_resources(self):
         dataset = make_dataset(self.root / "dataset", include_model=False)
@@ -216,6 +229,18 @@ class CampaignStageTests(unittest.TestCase):
         self.assertEqual((run / "Model/input_model.pdb").read_bytes(), expected_model)
         self.assertEqual((run / "Model/seq_base.txt").read_text(), "FRAME-CONTEXT\n")
         self.assertIn("model = alternate.pdb", (run / "nasolve.input.txt").read_text())
+        facts = load_model_compatibility_facts(report, run)
+        self.assertEqual(
+            facts["candidate"]["provider"]["location"],
+            "dataset",
+        )
+        self.assertEqual(facts["dimensions"]["frame_identity"]["relation"], "SAME")
+        self.assertEqual(facts["dimensions"]["site_set"]["relation"], "UNKNOWN")
+        self.assertEqual(
+            facts["dimensions"]["terminal_phosphate_chemistry"]["recipient_sites"],
+            ["D:1"],
+        )
+        self.assertTrue((run / "Model/model_compatibility_facts.json").is_file())
 
     def test_preflight_uses_frozen_catalogue_and_does_not_generate_dataset_config(self):
         self.plan(config=False)
