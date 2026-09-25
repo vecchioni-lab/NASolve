@@ -103,9 +103,21 @@ class CandidateRecipientComparisonTests(unittest.TestCase):
 
             comparison = compare_checkpoint_to_recipient(donor, recipient)
 
-            self.assertNotEqual(
+            self.assertEqual(
                 comparison["donor"]["dataset_name"],
+                "dataset",
+            )
+            self.assertEqual(
                 comparison["recipient"]["dataset_name"],
+                "dataset",
+            )
+            self.assertNotEqual(
+                comparison["donor"]["dataset_locator"],
+                comparison["recipient"]["dataset_locator"],
+            )
+            self.assertNotEqual(
+                comparison["donor"]["run_locator"],
+                comparison["recipient"]["run_locator"],
             )
             self.assertNotIn("source_observations", comparison["recipient"])
             self.assertIsNone(
