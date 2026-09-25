@@ -205,6 +205,7 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
     return {
         "mode": intent.mode, "frame": intent.frame, "pair": intent.pair,
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
+        "sequence_reference": intent.sequence_reference,
         "sequences": dict(intent.sequences), "mutations": dict(intent.mutations),
         "allow_op3_sites": list(intent.allow_op3_sites),
         "backbones": dict(intent.backbone_sites),
@@ -232,12 +233,6 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             entry["inputs"][role] = _input_ref(root, dataset, path)
         intent = _merged_intent(dataset, preset)
         entry["effective_config"] = _intent_config(intent)
-        if intent.sequence_reference is not None:
-            entry["effective_config"]["sequence_reference"] = intent.sequence_reference
-            raise AutoMRInputError(
-                "sequence_reference is currently supported by standalone AutoMR/PostMR only; "
-                "campaign reference snapshotting is not implemented and will not be silently omitted"
-            )
         if (not intent.mode or intent.mode.strip().casefold() != "standard"
                 or not intent.frame or normalize_frame(intent.frame).name != "W"):
             raise AutoMRInputError("Campaign schema 1 supports only standard W/5W6W datasets")
@@ -249,6 +244,12 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             raise AutoMRInputError("Selected catalogue model is empty")
         model = _resource_ref(staging, model_data)
         entry["inputs"]["model"] = model
+        sequence_reference = None
+        if resolved.sequence_reference is not None:
+            sequence_reference = _resource_ref(
+                staging, _resource_bytes(resolved.sequence_reference)
+            )
+            entry["inputs"]["sequence_reference"] = sequence_reference
         sequence = resolved.model.parent / "seq_base.txt"
         if sequence.exists() or sequence.is_symlink():
             _contained(located_frames, sequence, "Catalogue sequence")
@@ -269,6 +270,7 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "catalogue_warnings": list(resolved.catalogue_warnings),
             "config_source": entry["inputs"].get("config"),
             "frame_sequence": entry["inputs"].get("frame_sequence"),
+            "sequence_reference": resolved.sequence_reference_label,
             "mutations": {site: asdict(ligand) for site, ligand in resolved.mutations.items()},
         })
         # Config parsing and discovery must describe the exact bytes frozen above.
@@ -510,7 +512,7 @@ def _validate_plan(payload: Any) -> None:
         inputs = _require(entry.get("inputs"), dict, f"{name}.inputs")
         for role, reference in inputs.items():
             _validate_ref(reference, f"{name}.{role}",
-                          resource_prefix if role in {"model", "frame_sequence"} else name)
+                          resource_prefix if role in {"model", "frame_sequence", "sequence_reference"} else name)
         config = entry.get("effective_config")
         if config is not None:
             _require(config, dict, f"{name}.effective_config")
@@ -525,9 +527,16 @@ def _validate_plan(payload: Any) -> None:
                     validate_backbone_sites(config["backbones"])
                 except BackboneError as exc:
                     raise CampaignError(f"Malformed campaign backbone chemistry: {exc}") from exc
-            for field in ("mode", "frame", "pair"):
+            for field in ("mode", "frame", "pair", "sequence_reference"):
                 if config.get(field) is not None:
                     _require(config[field], str, f"{name}.{field}")
+                    if field == "sequence_reference" and (
+                        not config[field].strip()
+                        or any(char in config[field] for char in "\r\n\x00")
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: invalid {name}.sequence_reference"
+                        )
             try:
                 sites = validate_op3_sites(config.get("allow_op3_sites", []))
                 if "phosphate_intent" in config:
@@ -549,6 +558,13 @@ def _validate_plan(payload: Any) -> None:
                                 ("frame_sequence", "frame_sequence")):
                 if field in config and config[field] != inputs.get(role):
                     raise CampaignError(f"Malformed campaign state: inconsistent {name}.{field}")
+            if entry["status"] == "DISCOVERED":
+                selected_reference = config.get("sequence_reference")
+                frozen_reference = inputs.get("sequence_reference")
+                if (selected_reference is None) != (frozen_reference is None):
+                    raise CampaignError(
+                        f"Malformed campaign state: inconsistent {name}.sequence_reference"
+                    )
         elif entry["status"] == "DISCOVERED":
             raise CampaignError("Malformed campaign state: discovered dataset requires effective configuration")
         if entry["status"] == "DISCOVERED":
