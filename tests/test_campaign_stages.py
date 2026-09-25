@@ -138,6 +138,49 @@ class CampaignStageTests(unittest.TestCase):
         )
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
 
+    def test_sequence_thread_overlays_reach_frozen_family_target(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        (self.frames / "C_G.pdb").write_text(sequence_family_model_text())
+        (dataset / "nasolve.txt").write_text("[automr]\npair = C:G\n")
+        (self.root / "nasolve-campaign.toml").write_text(
+            'schema_version = 1\n\n'
+            '[sequence_threads.w-family]\n'
+            'datasets = ["dataset"]\n'
+            'sequence_reference = "w-metal-scaffold"\n\n'
+            '[sequence_threads.w-family.sequences]\n'
+            'B = "CCCCCCC"\n\n'
+            '[sequence_threads.w-family.site_codes]\n'
+            '"A:13" = "1AP"\n'
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        self.assertEqual(
+            self.dataset["effective_config"]["sequence_reference_source"], "thread"
+        )
+
+        result = self.stage("preflight")
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        target = json.loads((run / "Model/sequence_family_target.json").read_text())
+        rows = {row["site"]: row for row in target["sites"]}
+
+        self.assertEqual(report["post_mr_plan"]["sequence_thread"], {
+            "id": "w-family",
+            "sequences": {"B": "CCCCCCC"},
+            "site_codes": {"A:13": "1AP"},
+        })
+        self.assertEqual(rows["B:3"]["residue_code"], "DC")
+        self.assertEqual(rows["B:3"]["source"], "thread_sequence")
+        self.assertEqual(rows["A:13"]["residue_code"], "1AP")
+        self.assertEqual(rows["A:13"]["source"], "thread_site_chemistry")
+        self.assertEqual(rows["B:4"]["residue_code"], "DG")
+        self.assertEqual(rows["B:4"]["source"], "dataset_site_chemistry")
+        overlays = report["post_mr_plan"]["sequence_family"]["overlays"]
+        self.assertEqual(overlays["thread_sequences"], {"B": "CCCCCCC"})
+        self.assertEqual(overlays["thread_site_codes"], {"A:13": "1AP"})
+        self.assertEqual(report["sequence_family_preflight"]["target_count"], 42)
+
     def test_preflight_uses_frozen_catalogue_and_does_not_generate_dataset_config(self):
         self.plan(config=False)
         shutil.rmtree(self.frames.parent)
