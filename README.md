@@ -676,8 +676,10 @@ It freezes the complete intended residue target for PostMR, with dataset
 sequence and explicit site-chemistry overrides retained. The same field accepts
 an explicit dataset-relative reference JSON. See
 [sequence-family target assembly](docs/sequence-family-targets.md) for the
-schema, precedence and validation boundary. Campaign use is explicitly blocked
-until its reference-snapshot integration is implemented.
+schema, precedence and validation boundary. Campaign planning accepts the same
+explicit per-dataset selector and freezes the exact reference bytes into the
+campaign resource store before execution; shared/thread family binding remains
+separate work.
 
 ## Preparing an accepted MR solution
 

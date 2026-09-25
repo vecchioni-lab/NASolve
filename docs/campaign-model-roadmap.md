@@ -52,10 +52,11 @@ become a metal-site inference engine. Broader geometry/topology providers remain
 later extensions, not prerequisites for the present sequence-family work.
 
 [Sequence-family target assembly](sequence-family-targets.md) records the
-compiler and explicit opt-in standalone AutoMR/PostMR integration, including
-its pending live-validation boundary. General campaign-family orchestration,
-thread binding and campaign reference snapshotting remain separate work;
-campaign planning does not silently discard a selected sequence reference.
+compiler, explicit opt-in standalone AutoMR/PostMR integration, live validation,
+and dataset-level campaign reference snapshots. Campaign planning freezes exact
+selected reference bytes and campaign preflight consumes only that snapshot.
+General campaign-family orchestration and thread/group binding remain separate
+work; family membership still does not imply search-model compatibility.
 
 ## Three scientific state layers
 

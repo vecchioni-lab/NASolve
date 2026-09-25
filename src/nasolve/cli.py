@@ -443,6 +443,8 @@ def _campaign(args: argparse.Namespace) -> int:
                 from .phosphate import phosphate_intent_summary
                 print("    " + phosphate_intent_summary(
                     effective.get("allow_op3_sites", []), effective.get("phosphate_intent")))
+                if effective.get("sequence_reference"):
+                    print(f"    Sequence reference: {effective['sequence_reference']}")
             if item.get("diagnostic"):
                 print(f"    {item['diagnostic']}")
             if item.get("run"):

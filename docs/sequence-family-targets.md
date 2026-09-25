@@ -1,11 +1,12 @@
 # Explicit sequence-family target assembly
 
-Status: **explicitly opt-in standalone AutoMR/PostMR integration; regression
-fixtures and a fresh live Phenix/Coot/AutoRefine path validated.** The live
-validation accounted for all 42 intended residue identities, preserved the
-independent terminal-phosphate chemistry, and carried the prepared model
-through refinement. Ordinary W recipe defaults and existing frozen runs remain
-unchanged. Campaign integration is not enabled by this slice.
+Status: **explicitly opt-in AutoMR/PostMR integration for standalone runs and
+dataset-level campaign inputs; regression fixtures and a fresh live
+Phenix/Coot/AutoRefine path validated.** The live validation accounted for all
+42 intended residue identities, preserved the independent terminal-phosphate
+chemistry, and carried the prepared model through refinement. Ordinary W recipe
+defaults and existing frozen runs remain unchanged. Campaign thread/group
+inheritance is not enabled by this slice.
 
 ## Scope and scientific boundary
 
@@ -107,11 +108,18 @@ sequence file, model name, or frame selection implicitly enables this feature.
 This slice introduces no `W*` frame alias and does not modify the W preset.
 
 Standalone sequence overlays and site declarations feed the tested compiler.
+Campaign planning accepts the same explicit per-dataset `sequence_reference`
+selector. The planner copies the exact selected reference bytes into the
+content-addressed `NASolveCampaign/resources/` store, records the original
+selector separately, and fingerprints both into the immutable plan. Campaign
+preflight consumes only that frozen resource, receipts its attempt-local copy,
+and then lets ordinary AutoMR freeze the same bytes again into the numbered run.
+The installed reference or original dataset-relative JSON is therefore not
+reopened during execution.
+
 Thread inheritance remains a compiler capability, not a new implicit grouping
-rule or a supported campaign input in this slice. A campaign selecting
-`sequence_reference` is recorded as `BLOCKED` with an explicit unsupported-path
-diagnostic: its reference must not be silently omitted from a frozen plan.
-Campaign reference snapshotting and group binding require a separate change.
+rule or a supported campaign input in this slice. Campaign family/group binding
+requires a separate reviewed change.
 
 ## Frozen run contract
 
@@ -155,17 +163,19 @@ Legacy calls and reports without a selected reference retain their prior target
 semantics. No existing run is migrated, and older coordinate/checkpoint files
 are never rewritten to acquire new reference authority.
 
-## Validation boundary and next live check
+## Validation boundary
 
 Controlled tests cover 42-site coverage, the two computed scaffold corrections,
 sequence/site precedence, C:8–14 numbering, raw-search-model preservation,
 artifact/intent drift, relocation after the original directory disappears,
-legacy behavior, existing mirror/sugar/chemistry gates, and final prepared-model
-identity checks. External executables in these tests are fixtures, not real
-Phenix/Coot runs.
+legacy behavior, existing mirror/sugar/chemistry gates, final prepared-model
+identity checks, campaign reference snapshotting, and campaign execution after
+the original reference source disappears. External executables in these tests
+are fixtures.
 
-After the complete local suite passes, a fresh W-family live run should verify
-all 42 intended identities, its actual A:12/B:4 variant and the independent D:1
-phosphate protection together. Only after that live validation should a new
-versioned recipe consider enabling this reference by default. The metal-pair
-project and geometry/topology-defined campaign families remain separate work.
+A fresh W-family live run separately verified all 42 intended identities,
+the actual A:12/B:4 variant, independent D:1 phosphate protection, and successful
+AutoRefine continuation. That validation does not make the reference a default:
+a future versioned recipe may consider doing so explicitly. The metal-pair
+project, shared campaign thread binding, and geometry/topology-defined campaign
+families remain separate work.

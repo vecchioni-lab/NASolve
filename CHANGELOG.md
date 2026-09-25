@@ -57,8 +57,9 @@ entries are reconstructed from repository history.
   AutoMR runs freeze exact reference bytes and effective targets; PostMR reuses
   existing mutation routes and audits complete prepared residue identities.
   Snapshot/intent drift fails closed. Ordinary W defaults and legacy runs are
-  unchanged. Campaigns explicitly block this setting until campaign reference
-  snapshotting is implemented; no selected reference is silently discarded.
+  unchanged. Campaign planning now snapshots an explicitly selected per-dataset
+  reference into content-addressed resources; campaign preflight consumes that
+  frozen copy rather than reopening the installed or dataset source.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 

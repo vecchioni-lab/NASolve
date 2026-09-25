@@ -77,7 +77,10 @@ typed settings; they cannot supply shell commands.
 For the settings supported here, precedence is NASolve defaults, then preset,
 then explicitly supplied `nasolve.txt` values. An explicitly written `false`
 overrides a preset's `true`; an omitted value inherits the preset. Sequences
-and explicit mutations use the existing dataset intent parser. The resolved
+and explicit mutations use the existing dataset intent parser. An explicit
+dataset `[automr] sequence_reference` is also resolved during planning. Its
+selector remains visible in the effective configuration while the exact
+reference bytes are copied into the campaign resource store. The resolved
 configuration is stored per dataset, while the original input file is preserved.
 
 Recipe cards may explicitly declare terminal phosphates:
@@ -110,9 +113,11 @@ source input, stage settings, or existing run.
 The manifest records input paths, file sizes and SHA-256 checksums, the resolved
 preset and its identity, selected models and sequence resources, duplicate
 observation groups, and dataset diagnostics. References are anchored to the
-campaign root. Selected models, the preset source and declared preset resources
-are copied into `NASolveCampaign/resources/`; they remain available after the
-source catalogue or custom preset is removed.
+campaign root. Selected models, explicit sequence-family references, the preset
+source and declared preset resources are copied into
+`NASolveCampaign/resources/`; they remain available after the source catalogue,
+dataset-relative reference file, installed reference, or custom preset is
+removed.
 
 The large dataset inputs remain in their existing directories. Freezing records
 their identities and checksums; it does not make another copy of every MTZ or
@@ -121,7 +126,10 @@ and reports changed, missing, or unsafe inputs as `DRIFT`.
 
 Move or copy the **whole campaign root**, including dataset inputs and
 `NASolveCampaign/`, to preserve these relative references. A status check does
-not need the old absolute location, source preset, or source catalogue.
+not need the old absolute location, source preset, source catalogue, or original
+sequence-reference file. Campaign preflight copies the checksummed reference
+resource into its immutable attempt tree and ordinary AutoMR then freezes those
+same bytes into the numbered run's sequence-family contract.
 
 Identical authoritative MTZ bytes are reported as duplicates. The datasets stay
 separate because different intended chemistry can remain a meaningful reason

@@ -110,6 +110,20 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
     _copy_resource(root, inputs.get("model"), model)
     if inputs.get("frame_sequence") is not None:
         _copy_resource(root, inputs["frame_sequence"], frozen / "seq_base.txt")
+    sequence_reference_label = effective.get("sequence_reference")
+    sequence_reference_record = inputs.get("sequence_reference")
+    if (sequence_reference_label is None) != (sequence_reference_record is None):
+        raise CampaignStageError("Frozen sequence-reference selector and resource disagree")
+    sequence_reference = None
+    if sequence_reference_record is not None:
+        if (
+            not isinstance(sequence_reference_label, str)
+            or not sequence_reference_label.strip()
+            or any(char in sequence_reference_label for char in "\r\n\x00")
+        ):
+            raise CampaignStageError("Frozen sequence-reference selector is malformed")
+        sequence_reference = frozen / "sequence_reference.json"
+        _copy_resource(root, sequence_reference_record, sequence_reference)
     files = DatasetFiles(
         root=root / name,
         reflections=_reference(root, inputs.get("reflections"), dataset=name),
@@ -125,6 +139,8 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         catalogue_warnings=tuple(effective["catalogue_warnings"]),
         allow_p1_standard=effective["allow_p1_standard"], mirror=effective["mirror"],
         sequences=dict(effective["sequences"]), sequence_file=None,
+        sequence_reference=sequence_reference,
+        sequence_reference_label=sequence_reference_label,
         mutations={site: _ligand(ligand) for site, ligand in effective["mutations"].items()},
         config_source=None,
         allow_op3_sites=tuple(effective.get("allow_op3_sites", [])),
