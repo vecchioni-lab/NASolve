@@ -87,6 +87,9 @@ class ResolvedAutoMRInput:
     sequence_reference: Path | None = None
     sequence_reference_label: str | None = None
     sequence_thread: dict[str, object] | None = None
+    model_selector: str | None = None
+    model_provider: dict[str, object] | None = None
+    frame_sequence_source: Path | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
@@ -460,6 +463,68 @@ def _resolve_frame_model(
     return fallback.resolve(), fallback_pair, False, tuple(warnings)
 
 
+def _resolve_standard_model_override(
+    dataset: Path,
+    spec: FrameSpec,
+    frames_dir: Path,
+    configured: str,
+) -> tuple[Path, dict[str, object]]:
+    """Resolve one explicit standard-frame model without inferring compatibility."""
+    selector = configured.strip()
+    if not selector or any(char in selector for char in "\r\n\x00"):
+        raise AutoMRInputError("Explicit standard model selector is malformed")
+    relative = Path(selector)
+    if (
+        relative.is_absolute()
+        or "\\" in selector
+        or any(part in {"", ".", ".."} for part in relative.parts)
+        or relative.suffix.casefold() != ".pdb"
+    ):
+        raise AutoMRInputError(
+            "Standard model override must be a safe relative PDB path"
+        )
+
+    catalogue = (frames_dir / spec.catalogue_directory).resolve()
+    if not catalogue.is_dir():
+        raise AutoMRInputError(f"Missing standard frame catalogue: {catalogue}")
+
+    candidates: list[tuple[str, Path]] = []
+    dataset_model = (dataset / relative).resolve()
+    try:
+        dataset_model.relative_to(dataset)
+    except ValueError as exc:
+        raise AutoMRInputError("Standard model override must remain inside the dataset or frame catalogue") from exc
+    if dataset_model.is_file():
+        candidates.append(("dataset", dataset_model))
+
+    frame_model = (catalogue / relative).resolve()
+    try:
+        frame_model.relative_to(catalogue)
+    except ValueError as exc:
+        raise AutoMRInputError("Standard model override must remain inside the dataset or frame catalogue") from exc
+    if frame_model.is_file():
+        candidates.append(("frame-catalogue", frame_model))
+
+    if not candidates:
+        raise AutoMRInputError(
+            f"Explicit standard model {selector!r} was not found in the dataset "
+            f"or {catalogue}"
+        )
+    if len(candidates) > 1:
+        raise AutoMRInputError(
+            f"Ambiguous explicit standard model {selector!r}: present in both "
+            "the dataset and frame catalogue"
+        )
+    location, model = candidates[0]
+    return model, {
+        "kind": "explicit-standard-model",
+        "selection": "user-forced",
+        "frame": spec.name,
+        "location": location,
+        "selector": selector,
+    }
+
+
 def _resolve_dataset_model(dataset: Path, configured: str | None) -> tuple[Path, str]:
     if configured:
         relative = Path(configured).expanduser()
@@ -521,6 +586,7 @@ def resolve_automr_input(
     frames_dir: Path | None = None,
     allow_p1_standard: bool = False,
     mirror_override: bool = False,
+    model_override: str | None = None,
     environ: Mapping[str, str] | None = None,
     valid_ligand_codes: Collection[str] | None = None,
     *,
@@ -557,6 +623,9 @@ def resolve_automr_input(
     model_pair: tuple[ResolvedLigand, ResolvedLigand] | None = None
     exact_pair_model: bool | None = None
     catalogue_warnings: tuple[str, ...] = ()
+    model_selector = model_override or intent.model
+    model_provider: dict[str, object] | None = None
+    frame_sequence_source: Path | None = None
     effective_allow_p1 = bool(allow_p1_standard or intent.allow_p1_standard)
     effective_mirror = bool(mirror_override or intent.mirror)
     if mode == "standard":
@@ -569,18 +638,37 @@ def resolve_automr_input(
             pair = resolve_pair(pair_text, valid_ligand_codes)
         except LigandCodeError as exc:
             raise AutoMRInputError(str(exc)) from exc
-        if intent.model and not frame_override:
-            raise AutoMRInputError("Standard mode selects its model by frame; remove model = from [automr]")
         located_frames = locate_frames_directory(frames_dir, environ)
-        model, model_pair, exact_pair_model, catalogue_warnings = _resolve_frame_model(
-            frame, located_frames, pair, valid_ligand_codes
-        )
-        if exact_pair_model:
-            model_source = f"standard frame catalogue ({frame.name}; exact pair)"
-        else:
-            model_source = (
-                f"standard frame catalogue ({frame.name}; fallback {frame.fallback_model})"
+        catalogue = located_frames / frame.catalogue_directory
+        sequence = catalogue / "seq_base.txt"
+        frame_sequence_source = sequence.resolve() if sequence.is_file() else None
+        if model_selector is not None:
+            model, model_provider = _resolve_standard_model_override(
+                dataset.root, frame, located_frames, model_selector
             )
+            model_pair = None
+            exact_pair_model = False
+            model_source = (
+                f"explicit standard model ({frame.name}; "
+                f"{model_provider['location']}:{model_provider['selector']})"
+            )
+        else:
+            model, model_pair, exact_pair_model, catalogue_warnings = _resolve_frame_model(
+                frame, located_frames, pair, valid_ligand_codes
+            )
+            model_provider = {
+                "kind": "standard-frame-catalogue",
+                "selection": "exact-pair" if exact_pair_model else "fallback",
+                "frame": frame.name,
+                "location": "frame-catalogue",
+                "selector": model.name,
+            }
+            if exact_pair_model:
+                model_source = f"standard frame catalogue ({frame.name}; exact pair)"
+            else:
+                model_source = (
+                    f"standard frame catalogue ({frame.name}; fallback {frame.fallback_model})"
+                )
     else:
         if selected_frame and not frame_override:
             raise AutoMRInputError("Nonstandard mode cannot also specify a standard frame")
@@ -588,7 +676,16 @@ def resolve_automr_input(
             raise AutoMRInputError(
                 "pair = is only valid in standard mode; use exact [mutations] sites for nonstandard models"
             )
-        model, model_source = _resolve_dataset_model(dataset.root, intent.model)
+        model, model_source = _resolve_dataset_model(dataset.root, model_selector)
+        model_provider = {
+            "kind": (
+                "explicit-nonstandard-model" if model_selector is not None
+                else "discovered-nonstandard-model"
+            ),
+            "selection": "user-forced" if model_selector is not None else "single-pdb-discovery",
+            "location": "dataset",
+            "selector": model_selector or model.relative_to(dataset.root).as_posix(),
+        }
 
     sequence_file: Path | None = None
     sequences = dict(intent.sequences)
@@ -676,6 +773,9 @@ def resolve_automr_input(
         sequence_file=sequence_file,
         sequence_reference=sequence_reference,
         sequence_reference_label=requested_reference if sequence_reference is not None else None,
+        model_selector=model_selector,
+        model_provider=model_provider,
+        frame_sequence_source=frame_sequence_source,
         mutations=resolved_mutations,
         config_source=intent.source,
         allow_op3_sites=allow_op3,
@@ -691,10 +791,16 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
     if resolved.mode == "standard":
         assert resolved.frame is not None and resolved.pair_text is not None
         lines.extend([f"frame = {resolved.frame.name}", f"pair = {resolved.pair_text}"])
+        if resolved.model_selector is not None:
+            lines.append(f"model = {resolved.model_selector}")
         if resolved.allow_p1_standard:
             lines.append("allow_p1_standard = true")
     else:
-        relative_model = resolved.model.relative_to(resolved.dataset.root).as_posix()
+        relative_model = (
+            resolved.model_selector
+            if resolved.model_selector is not None
+            else resolved.model.relative_to(resolved.dataset.root).as_posix()
+        )
         lines.append(f"model = {relative_model}")
     if resolved.sequence_reference is not None:
         if resolved.sequence_reference_label is not None:
