@@ -15,6 +15,10 @@ from pathlib import Path
 
 from .model_assessment import ModelAssessment
 from .run_context import artifact_reference, resolve_artifact_path
+from .search_model_comparison import (
+    SearchModelComparisonError,
+    load_search_model_comparison,
+)
 
 
 class ModelCompatibilityFactsError(RuntimeError):
@@ -211,6 +215,15 @@ def build_model_compatibility_facts(
             "effective_model_sha256": effective_assessment.sha256,
             "provider": provider,
             "mode": mode,
+            "polymer_residue_count": effective_assessment.polymer_residue_count,
+            "chains": [
+                {
+                    "chain": chain,
+                    "residue_count": len(residue_ids),
+                    "residue_ids": list(residue_ids),
+                }
+                for chain, residue_ids in effective_assessment.polymer_residue_ids_by_chain.items()
+            ],
         },
         "recipient": {
             "mode": mode,
@@ -251,6 +264,7 @@ def build_model_compatibility_facts(
                 "recipient_default": default,
                 "recipient_site_overrides": dict(sites),
                 "experimental_passthrough_sites": list(passthrough),
+                "recipient_allow_unreviewed": bool(backbone_policy.get("allow_unreviewed", False)),
                 "candidate_coordinate_evidence": "NOT_ASSESSED",
                 "relation": "UNKNOWN",
             },
@@ -316,6 +330,7 @@ def _validated_record(value: object) -> dict[str, object]:
         raise ModelCompatibilityFactsError("Malformed compatibility-facts roles")
     if set(candidate) != {
         "source_model_sha256", "effective_model_sha256", "provider", "mode",
+        "polymer_residue_count", "chains",
     }:
         raise ModelCompatibilityFactsError("Malformed compatibility-facts candidate")
     for key in ("source_model_sha256", "effective_model_sha256"):
@@ -326,6 +341,32 @@ def _validated_record(value: object) -> dict[str, object]:
             raise ModelCompatibilityFactsError("Malformed compatibility-facts model hash")
     if candidate["mode"] not in {"standard", "nonstandard"}:
         raise ModelCompatibilityFactsError("Malformed compatibility-facts candidate mode")
+    if (
+        type(candidate["polymer_residue_count"]) is not int
+        or candidate["polymer_residue_count"] < 0
+        or not isinstance(candidate["chains"], list)
+    ):
+        raise ModelCompatibilityFactsError("Malformed compatibility-facts candidate inventory")
+    counted = 0
+    seen_chains: set[str] = set()
+    for chain in candidate["chains"]:
+        if (
+            not isinstance(chain, dict)
+            or set(chain) != {"chain", "residue_count", "residue_ids"}
+            or not isinstance(chain["chain"], str)
+            or not chain["chain"]
+            or chain["chain"] in seen_chains
+            or type(chain["residue_count"]) is not int
+            or chain["residue_count"] < 0
+            or not isinstance(chain["residue_ids"], list)
+            or len(chain["residue_ids"]) != chain["residue_count"]
+            or not all(isinstance(resid, str) and resid for resid in chain["residue_ids"])
+        ):
+            raise ModelCompatibilityFactsError("Malformed compatibility-facts chain inventory")
+        seen_chains.add(chain["chain"])
+        counted += chain["residue_count"]
+    if counted != candidate["polymer_residue_count"]:
+        raise ModelCompatibilityFactsError("Inconsistent compatibility-facts residue count")
     provider = candidate["provider"]
     if (
         not isinstance(provider, dict)
@@ -422,11 +463,16 @@ def _validated_record(value: object) -> dict[str, object]:
     backbone = dimensions["backbone_chemistry"]
     if set(backbone) != {
         "recipient_default", "recipient_site_overrides",
-        "experimental_passthrough_sites", "candidate_coordinate_evidence",
-        "relation",
+        "experimental_passthrough_sites", "recipient_allow_unreviewed",
+        "candidate_coordinate_evidence", "relation",
     } or not isinstance(backbone["recipient_default"], str) or not isinstance(
         backbone["recipient_site_overrides"], dict
-    ) or not isinstance(backbone["experimental_passthrough_sites"], list) or backbone[
+    ) or not all(
+        isinstance(site, str) and isinstance(mode, str)
+        for site, mode in backbone["recipient_site_overrides"].items()
+    ) or not isinstance(backbone["experimental_passthrough_sites"], list) or not all(
+        isinstance(site, str) for site in backbone["experimental_passthrough_sites"]
+    ) or type(backbone["recipient_allow_unreviewed"]) is not bool or backbone[
         "candidate_coordinate_evidence"
     ] != "NOT_ASSESSED" or backbone["relation"] != "UNKNOWN":
         raise ModelCompatibilityFactsError("Malformed backbone-chemistry facts")
@@ -538,7 +584,54 @@ def load_model_compatibility_facts(
         raise ModelCompatibilityFactsError(
             f"Could not decode frozen model-compatibility facts: {exc}"
         ) from exc
-    return _validated_record(value)
+    facts = _validated_record(value)
+
+    inputs = report.get("inputs")
+    assessment = report.get("model_assessment")
+    if not isinstance(inputs, Mapping) or not isinstance(assessment, Mapping):
+        raise ModelCompatibilityFactsError(
+            "Run report lacks model provenance required by compatibility facts"
+        )
+    if facts["candidate"]["source_model_sha256"] != inputs.get("model_sha256"):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with the source-model checksum"
+        )
+    if facts["candidate"]["effective_model_sha256"] != assessment.get("sha256"):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with the effective-model checksum"
+        )
+    if facts["candidate"]["mode"] != report.get("mode"):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with the run mode"
+        )
+    frame = report.get("frame")
+    frame_name = frame.get("name") if isinstance(frame, Mapping) else None
+    if facts["recipient"]["frame"] != frame_name:
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with the recipient frame"
+        )
+    if facts["dimensions"]["chirality"]["mirror_transform_applied"] != inputs.get("mirror"):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with the mirror-transform intent"
+        )
+
+    comparison_ref = facts["evidence"]["search_model_comparison"]
+    report_comparison = report.get("search_model_comparison")
+    if comparison_ref != report_comparison:
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with search-model comparison provenance"
+        )
+    if comparison_ref is not None:
+        try:
+            load_search_model_comparison(
+                {"search_model_comparison": comparison_ref},
+                run,
+            )
+        except SearchModelComparisonError as exc:
+            raise ModelCompatibilityFactsError(
+                f"Compatibility-facts comparison evidence failed verification: {exc}"
+            ) from exc
+    return facts
 
 
 __all__ = [
