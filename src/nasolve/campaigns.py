@@ -232,6 +232,7 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
     return {
         "mode": intent.mode, "frame": intent.frame, "pair": intent.pair,
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
+        "model_selector": intent.model,
         "sequence_reference": intent.sequence_reference,
         "sequences": dict(intent.sequences), "mutations": dict(intent.mutations),
         "allow_op3_sites": list(intent.allow_op3_sites),
@@ -277,7 +278,20 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
                 "site_codes": dict(sequence_thread["site_codes"]),
             }
             resolved = replace(resolved, sequence_thread=applied_thread)
-        _contained(located_frames, resolved.model, "Selected catalogue model")
+        provider = resolved.model_provider
+        if not isinstance(provider, dict):
+            raise CampaignError("Resolved model provider provenance is missing")
+        if provider.get("kind") == "standard-frame-catalogue":
+            _contained(located_frames, resolved.model, "Selected catalogue model")
+        elif provider.get("kind") == "explicit-standard-model":
+            if provider.get("location") == "frame-catalogue":
+                _contained(located_frames, resolved.model, "Explicit frame-catalogue model")
+            elif provider.get("location") == "dataset":
+                _contained(dataset, resolved.model, "Explicit dataset model")
+            else:
+                raise CampaignError("Explicit standard model has an unsupported provider location")
+        else:
+            raise CampaignError("Campaign schema 1 requires a standard-frame model provider")
         model_data = _resource_bytes(resolved.model)
         if not model_data:
             raise AutoMRInputError("Selected catalogue model is empty")
@@ -289,8 +303,8 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
                 staging, _resource_bytes(resolved.sequence_reference)
             )
             entry["inputs"]["sequence_reference"] = sequence_reference
-        sequence = resolved.model.parent / "seq_base.txt"
-        if sequence.exists() or sequence.is_symlink():
+        sequence = resolved.frame_sequence_source
+        if sequence is not None:
             _contained(located_frames, sequence, "Catalogue sequence")
             entry["inputs"]["frame_sequence"] = _resource_ref(staging, _resource_bytes(sequence))
         if intent.source is not None:
@@ -304,7 +318,12 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "pair": resolved.pair_text, "pair_ligands": [asdict(item) for item in resolved.pair],
             "model": model, "model_name": resolved.model.name,
             "model_source": resolved.model_source,
-            "model_pair": [asdict(item) for item in resolved.model_pair],
+            "model_selector": resolved.model_selector,
+            "model_provider": resolved.model_provider,
+            "model_pair": (
+                [asdict(item) for item in resolved.model_pair]
+                if resolved.model_pair is not None else None
+            ),
             "exact_pair_model": resolved.exact_pair_model,
             "catalogue_warnings": list(resolved.catalogue_warnings),
             "config_source": entry["inputs"].get("config"),
@@ -632,7 +651,7 @@ def _validate_plan(payload: Any) -> None:
                     validate_backbone_sites(config["backbones"])
                 except BackboneError as exc:
                     raise CampaignError(f"Malformed campaign backbone chemistry: {exc}") from exc
-            for field in ("mode", "frame", "pair", "sequence_reference"):
+            for field in ("mode", "frame", "pair", "sequence_reference", "model_selector"):
                 if config.get(field) is not None:
                     _require(config[field], str, f"{name}.{field}")
                     if field == "sequence_reference" and (
@@ -713,13 +732,54 @@ def _validate_plan(payload: Any) -> None:
                                       "exact_pair_model", "catalogue_warnings", "config_source",
                                       "frame_sequence", "pair_ligands", "sequences", "mutations"},
                              f"{name}.effective_config")
+            if "model_provider" in config:
+                provider = _require(config["model_provider"], dict, f"{name}.model_provider")
+                kind = provider.get("kind")
+                if kind == "standard-frame-catalogue":
+                    expected_provider_fields = {"kind", "selection", "frame", "location", "selector"}
+                    if (
+                        set(provider) != expected_provider_fields
+                        or provider.get("selection") not in {"exact-pair", "fallback"}
+                        or provider.get("frame") != "W"
+                        or provider.get("location") != "frame-catalogue"
+                        or type(provider.get("selector")) is not str
+                        or config.get("model_selector") is not None
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: invalid {name}.model_provider"
+                        )
+                elif kind == "explicit-standard-model":
+                    expected_provider_fields = {"kind", "selection", "frame", "location", "selector"}
+                    if (
+                        set(provider) != expected_provider_fields
+                        or provider.get("selection") != "user-forced"
+                        or provider.get("frame") != "W"
+                        or provider.get("location") not in {"dataset", "frame-catalogue"}
+                        or type(provider.get("selector")) is not str
+                        or config.get("model_selector") != provider.get("selector")
+                        or config.get("model_pair") is not None
+                        or config.get("exact_pair_model") is not False
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: invalid {name}.model_provider"
+                        )
+                else:
+                    raise CampaignError(
+                        f"Malformed campaign state: unsupported {name}.model_provider"
+                    )
+            elif config.get("model_selector") is not None:
+                raise CampaignError(
+                    f"Malformed campaign state: model selector has no provider provenance"
+                )
             if config["mode"] != "standard" or config["frame"] != "W" or not config["pair"]:
                 raise CampaignError("Malformed campaign state: invalid discovered W configuration")
             _require(config["exact_pair_model"], bool, f"{name}.exact_pair_model")
             for field in ("model_name", "model_source"):
                 _require(config[field], str, f"{name}.{field}")
-            for field in ("pair_ligands", "model_pair", "catalogue_warnings"):
+            for field in ("pair_ligands", "catalogue_warnings"):
                 _require(config[field], list, f"{name}.{field}")
+            if config["model_pair"] is not None:
+                _require(config["model_pair"], list, f"{name}.model_pair")
         group = _require(entry.get("duplicate_group"), list, f"{name}.duplicate_group")
         for member in group:
             _dataset_name(member)
