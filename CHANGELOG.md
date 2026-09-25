@@ -65,6 +65,13 @@ entries are reconstructed from repository history.
   reviewed W sequence reference plus shared chain/site overlays, and preserve
   provenance into run-local sequence-family targets. Dataset declarations remain
   more specific. Membership does not imply MR-model compatibility or reuse.
+- Added explicit standard-frame model providers through `[automr] model`
+  and `automr --model`. A forced PDB may come from the dataset or selected frame
+  catalogue, is frozen with structured provider provenance, and retains the
+  frame's symmetry/recipe/sequence context. Forced filenames never imply pair
+  compatibility; required W PostMR sites are checked literally before MR.
+  Campaign plans snapshot the exact model bytes and provider so execution remains
+  portable after the original model/catalogue disappears.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 
