@@ -128,6 +128,12 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
                 facts["candidate"]["source_model_sha256"],
                 facts["candidate"]["effective_model_sha256"],
             )
+            self.assertEqual(facts["candidate"]["polymer_residue_count"], 2)
+            self.assertEqual(facts["candidate"]["chains"], [{
+                "chain": "A",
+                "residue_count": 2,
+                "residue_ids": ["1", "2"],
+            }])
             dimensions = facts["dimensions"]
             self.assertEqual(dimensions["frame_identity"]["relation"], "SAME")
             self.assertEqual(dimensions["site_set"]["relation"], "SAME")
@@ -230,9 +236,12 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
                 "inputs": {
                     "model_sha256": model.sha256,
                     "mirror": False,
+                    "model_provider": None,
                 },
-                "model_assessment": {
-                    "sha256": model.sha256,
+                "model_assessment": model.to_dict(),
+                "post_mr_plan": {
+                    "allow_op3_sites": [],
+                    "backbone_policy": make_backbone_policy({}),
                 },
                 "model_compatibility_facts": frozen,
             }
@@ -245,6 +254,16 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
                 "source-model checksum",
             ):
                 load_model_compatibility_facts(forged_report, run)
+
+            forged_provider = json.loads(json.dumps(report))
+            forged_provider["inputs"]["model_provider"] = {
+                "kind": "forged-provider",
+            }
+            with self.assertRaisesRegex(
+                ModelCompatibilityFactsError,
+                "model-provider provenance",
+            ):
+                load_model_compatibility_facts(forged_provider, run)
 
             path = run / frozen["artifact"]["relative_path"]
             value = json.loads(path.read_text())
