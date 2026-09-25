@@ -8,6 +8,7 @@ from nasolve.checkpoint_candidate import (
     describe_checkpoint_candidate,
 )
 from nasolve.checkpoints import append_checkpoint, initialize_registry, resolve_checkpoint
+from nasolve.model_assessment import file_sha256
 
 from .test_checkpoints import make_checkpoint_run
 
@@ -41,10 +42,10 @@ class CheckpointCandidateTests(unittest.TestCase):
             self.assertTrue(source["selected_current"])
 
             model = descriptor["model"]
-            self.assertEqual(
-                model["artifact"]["sha256"],
-                descriptor["model"]["artifact"]["sha256"],
+            prepared = Path(
+                json.loads((run / "report.json").read_text())["postmr"]["prepared_model"]
             )
+            self.assertEqual(model["artifact"]["sha256"], file_sha256(prepared))
             self.assertEqual(model["assessment"]["polymer_residue_count"], 1)
             self.assertEqual(model["assessment"]["residue_identities"], [
                 {"site": "A:1", "residue_code": "DA"},
