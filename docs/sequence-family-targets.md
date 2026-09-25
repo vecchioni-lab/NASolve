@@ -117,9 +117,15 @@ and then lets ordinary AutoMR freeze the same bytes again into the numbered run.
 The installed reference or original dataset-relative JSON is therefore not
 reopened during execution.
 
-Thread inheritance remains a compiler capability, not a new implicit grouping
-rule or a supported campaign input in this slice. Campaign family/group binding
-requires a separate reviewed change.
+Campaign sequence-thread inheritance is supported only through explicit root
+`nasolve-campaign.toml` membership. A named thread freezes the reviewed
+`w-metal-scaffold` selector plus optional shared chain-sequence and site-code
+overlays. Dataset sequence and site declarations remain more specific.
+
+Thread membership is target metadata only. It does not establish search-model
+compatibility, select a sibling model, authorize cross-dataset reuse, or imply
+shared geometry/metal chemistry. Those remain separate reviewed campaign/model
+policies.
 
 ## Frozen run contract
 
