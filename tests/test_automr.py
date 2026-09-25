@@ -1,4 +1,5 @@
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -11,6 +12,7 @@ from .helpers import make_dataset, make_mtz_dump, model_text, w_model_text
 
 
 VALID = {"1AP", "DT", "DA", "A", "5IU", "DG", "DC", "DF"}
+FORCED_W = Path(__file__).parents[1] / "MR_frames/5W6W/5W6W_noPO4.pdb"
 
 
 class AutoMRPreflightTests(unittest.TestCase):
@@ -106,6 +108,68 @@ class AutoMRPreflightTests(unittest.TestCase):
                 frozen_sequence.resolve(),
             )
             self.assertEqual(sequence_ref["sha256"], file_sha256(frozen_sequence))
+
+    def test_forced_original_w_scaffold_preserves_recipe_and_sequence_family_delta(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = make_dataset(root / "dataset", include_model=False)
+            catalogue = root / "frames" / "5W6W"
+            catalogue.mkdir(parents=True)
+            shutil.copyfile(FORCED_W, catalogue / "5W6W_noPO4.pdb")
+            (catalogue / "seq_base.txt").write_text("reviewed-frame-sequence\n")
+            (dataset / "nasolve.txt").write_text(
+                "[automr]\n"
+                "mode = standard\n"
+                "frame = W\n"
+                "pair = A:T\n"
+                "model = 5W6W_noPO4.pdb\n"
+                "sequence_reference = w-metal-scaffold\n"
+            )
+
+            result = prepare_automr(
+                dataset,
+                frames_dir=root / "frames",
+                valid_ligand_codes=VALID,
+                mtz_dump_executable=make_mtz_dump(root),
+            )
+            self.assertEqual(result.status, "READY_POST_MR_MUTATION")
+            report = json.loads(result.report_path.read_text())
+
+            self.assertEqual(report["inputs"]["model_provider"], {
+                "kind": "explicit-standard-model",
+                "selection": "user-forced",
+                "frame": "W",
+                "location": "frame-catalogue",
+                "selector": "5W6W_noPO4.pdb",
+            })
+            self.assertEqual(report["inputs"]["model_selector"], "5W6W_noPO4.pdb")
+            self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["D:1"])
+            pair = report["post_mr_plan"]["standard_pair"]
+            self.assertIsNone(pair["model_pair"])
+            self.assertFalse(pair["exact_model_match"])
+            self.assertTrue(pair["mutation_required"])
+            self.assertEqual(report["sequence_family_preflight"]["differences"], [
+                {"site": "A:13", "before": "DC", "after": "DT"},
+                {"site": "B:3", "before": "DG", "after": "DA"},
+            ])
+
+            input_model = result.run_directory / "Model/input_model.pdb"
+            d1 = [
+                line for line in input_model.read_text().splitlines()
+                if line.startswith(("ATOM  ", "HETATM"))
+                and line[21:22].strip() == "D"
+                and line[22:26].strip() == "1"
+            ]
+            self.assertTrue(d1)
+            self.assertNotIn("P", {line[12:16].strip() for line in d1})
+            self.assertEqual(
+                (result.run_directory / "Model/seq_base.txt").read_text(),
+                "reviewed-frame-sequence\n",
+            )
+            self.assertIn(
+                "model = 5W6W_noPO4.pdb",
+                (result.run_directory / "nasolve.input.txt").read_text(),
+            )
 
     def test_exact_standard_pair_model_is_ready_without_pair_mutation(self):
         with tempfile.TemporaryDirectory() as directory:
