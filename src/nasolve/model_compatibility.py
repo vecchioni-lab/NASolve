@@ -171,6 +171,10 @@ def build_model_compatibility_facts(
     if not isinstance(backbone_policy, Mapping):
         raise ModelCompatibilityFactsError("Backbone policy must be a mapping")
 
+    if (comparison is None) != (comparison_artifact is None):
+        raise ModelCompatibilityFactsError(
+            "Search-model comparison payload and artifact provenance must appear together"
+        )
     provider = _provider_summary(model_provider)
     candidate_frame = _text_or_none(provider["declared_frame"])
     site_set, residue_identity, family = _comparison_dimensions(comparison)
@@ -184,23 +188,34 @@ def build_model_compatibility_facts(
     sites = backbone_policy.get("sites", {})
     passthrough = backbone_policy.get("experimental_passthrough_sites", [])
     default = backbone_policy.get("default")
+    allow_unreviewed = backbone_policy.get("allow_unreviewed")
     if (
         not isinstance(sites, Mapping)
         or not all(isinstance(site, str) and isinstance(value, str) for site, value in sites.items())
         or not isinstance(passthrough, list)
         or not all(isinstance(site, str) for site in passthrough)
         or not isinstance(default, str)
+        or type(allow_unreviewed) is not bool
     ):
         raise ModelCompatibilityFactsError("Malformed backbone policy in compatibility facts")
 
     symmetry_class = None
     mr_copies = None
-    if isinstance(symmetry, Mapping):
+    if symmetry is not None:
+        if not isinstance(symmetry, Mapping):
+            raise ModelCompatibilityFactsError("Malformed symmetry evidence in compatibility facts")
         evidence = symmetry.get("evidence")
-        if isinstance(evidence, Mapping):
-            symmetry_class = _text_or_none(evidence.get("normalized_class"))
+        if evidence is not None:
+            if not isinstance(evidence, Mapping):
+                raise ModelCompatibilityFactsError("Malformed symmetry evidence in compatibility facts")
+            normalized = evidence.get("normalized_class")
+            if normalized is not None and not isinstance(normalized, str):
+                raise ModelCompatibilityFactsError("Malformed symmetry class in compatibility facts")
+            symmetry_class = _text_or_none(normalized)
         copies = symmetry.get("mr_copies")
-        if type(copies) is int and copies > 0:
+        if copies is not None:
+            if type(copies) is not int or copies <= 0:
+                raise ModelCompatibilityFactsError("Malformed MR copy count in compatibility facts")
             mr_copies = copies
 
     return {
@@ -264,7 +279,7 @@ def build_model_compatibility_facts(
                 "recipient_default": default,
                 "recipient_site_overrides": dict(sites),
                 "experimental_passthrough_sites": list(passthrough),
-                "recipient_allow_unreviewed": bool(backbone_policy.get("allow_unreviewed", False)),
+                "recipient_allow_unreviewed": allow_unreviewed,
                 "candidate_coordinate_evidence": "NOT_ASSESSED",
                 "relation": "UNKNOWN",
             },
@@ -576,8 +591,25 @@ def _validated_record(value: object) -> dict[str, object]:
     if set(evidence) != {"search_model_comparison"}:
         raise ModelCompatibilityFactsError("Malformed compatibility-facts evidence")
     comparison = evidence["search_model_comparison"]
-    if comparison is not None and not isinstance(comparison, dict):
-        raise ModelCompatibilityFactsError("Malformed compatibility-facts comparison evidence")
+    if comparison is not None:
+        if (
+            not isinstance(comparison, dict)
+            or set(comparison) != {"schema_version", "kind", "artifact"}
+            or comparison.get("schema_version") != 1
+            or comparison.get("kind") != "frozen-search-model-comparison"
+            or not isinstance(comparison.get("artifact"), dict)
+        ):
+            raise ModelCompatibilityFactsError("Malformed compatibility-facts comparison evidence")
+        comparison_artifact = comparison["artifact"]
+        if (
+            comparison_artifact.get("anchor") != "run"
+            or not isinstance(comparison_artifact.get("relative_path"), str)
+            or not isinstance(comparison_artifact.get("sha256"), str)
+            or re.fullmatch(r"[0-9a-f]{64}", comparison_artifact["sha256"]) is None
+            or type(comparison_artifact.get("size")) is not int
+            or comparison_artifact["size"] <= 0
+        ):
+            raise ModelCompatibilityFactsError("Malformed compatibility-facts comparison artifact")
 
     if set(semantics) != {
         "descriptive_only", "score", "overall_compatibility",
