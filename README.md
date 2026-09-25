@@ -8,7 +8,9 @@ classifies the solution by TFZ.
 
 The current release provides **AutoMR**, **PostMR**, a conditional
 **AutoSol** branch, checkpointed **AutoRefine**, bounded **Refine Doctor**
-triage, and sequential campaign execution from frozen plans. PostMR constructs
+triage, sequential campaign execution from frozen plans, and read-only
+campaign provenance primitives for comparing search models, solved
+checkpoints, and recipient targets without authorizing reuse. PostMR constructs
 supported modified nucleotides through Coot, restores trusted parent
 coordinates, can apply complete chain sequences, generates either the 5W6W
 restraint stack or modification-scoped pair restraints, supplies curated or
@@ -1154,9 +1156,13 @@ pipeline retains common validation, provenance, non-overwrite behavior, and
 external-tool isolation.
 
 The [development direction](docs/architecture.md#next-development-priorities)
-keeps bounded campaign Doctor selection and modified-pair restraint geometry as
-explicit next steps. Numerical acceptance and model/map inspection remain separate outcomes;
-validation scores retain the scientific context of each project.
+now has the read-only Campaign Doctor provenance prerequisites in place:
+checkpoint-candidate description plus donor-checkpoint versus recipient-run
+comparison. The next campaign step is a reviewed eligibility policy and bounded
+rescue execution; descriptive facts do not themselves select or reuse a model.
+Modified-pair restraint geometry remains a separate validation track. Numerical
+acceptance and model/map inspection remain separate outcomes; validation scores
+retain the scientific context of each project.
 
 ## Problems and reproducibility
 
