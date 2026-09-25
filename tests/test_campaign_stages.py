@@ -22,6 +22,9 @@ from .test_autosol import make_autosol, make_run as make_autosol_run, make_mtz_d
 from .test_postmr import make_data_root, postmr_model_text
 
 
+REFERENCE = Path(__file__).parents[1] / "src/nasolve/data/sequence_references/w-metal-scaffold.json"
+
+
 class CampaignStageTests(unittest.TestCase):
     def setUp(self):
         temporary = tempfile.TemporaryDirectory()
@@ -91,6 +94,44 @@ class CampaignStageTests(unittest.TestCase):
         result = self.stage("preflight")
         report = json.loads((self.root / result["run"] / "report.json").read_text())
         self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["A:1"])
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_sequence_reference_preflight_uses_frozen_campaign_copy(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        custom = dataset / "family.json"
+        shutil.copyfile(REFERENCE, custom)
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\npair = C:G\nsequence_reference = family.json\n"
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        frozen = self.dataset["inputs"]["sequence_reference"]
+        self.assertEqual(
+            (self.root / frozen["relative_path"]).read_bytes(),
+            REFERENCE.read_bytes(),
+        )
+
+        # The campaign resource is authoritative after planning; execution must
+        # not reopen the dataset-relative source or the installed reference.
+        custom.unlink()
+        result = self.stage("preflight")
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+
+        self.assertEqual(result["status"], "READY_POST_MR_MUTATION")
+        self.assertEqual(report["sequence_family_preflight"]["target_count"], 42)
+        self.assertEqual(
+            (run / "Model/sequence_reference.json").read_bytes(),
+            REFERENCE.read_bytes(),
+        )
+        self.assertIn(
+            "sequence_reference = family.json",
+            (run / "nasolve.input.txt").read_text(),
+        )
+        self.assertTrue(
+            any(path.endswith("/frozen/sequence_reference.json") for path in result["artifacts"])
+        )
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
 
     def test_preflight_uses_frozen_catalogue_and_does_not_generate_dataset_config(self):
