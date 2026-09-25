@@ -744,12 +744,18 @@ def _validate_plan(payload: Any) -> None:
                         if selection == "exact-pair"
                         else "standard frame catalogue (W; fallback C_G.pdb)"
                     )
+                    if type(selector) is str:
+                        selector_path = Path(_safe_relative(selector, f"{name}.model_provider.selector"))
+                    else:
+                        selector_path = Path("")
                     if (
                         set(provider) != expected_provider_fields
                         or selection not in {"exact-pair", "fallback"}
                         or provider.get("frame") != "W"
                         or provider.get("location") != "frame-catalogue"
                         or type(selector) is not str or not selector
+                        or len(selector_path.parts) != 1
+                        or selector_path.suffix.casefold() != ".pdb"
                         or config.get("model_selector") is not None
                         or config.get("model_name") != selector
                         or config.get("model_pair") is None
@@ -768,13 +774,18 @@ def _validate_plan(payload: Any) -> None:
                         if isinstance(selector, str) and isinstance(location, str)
                         else None
                     )
+                    if type(selector) is str:
+                        selector_path = Path(_safe_relative(selector, f"{name}.model_provider.selector"))
+                    else:
+                        selector_path = Path("")
                     if (
                         set(provider) != expected_provider_fields
                         or provider.get("selection") != "user-forced"
                         or provider.get("frame") != "W"
                         or location not in {"dataset", "frame-catalogue"}
                         or type(selector) is not str or not selector
-                        or Path(selector).name != config.get("model_name")
+                        or selector_path.suffix.casefold() != ".pdb"
+                        or selector_path.name != config.get("model_name")
                         or config.get("model_selector") != selector
                         or config.get("model_pair") is not None
                         or config.get("exact_pair_model") is not False
@@ -796,6 +807,11 @@ def _validate_plan(payload: Any) -> None:
             _require(config["exact_pair_model"], bool, f"{name}.exact_pair_model")
             for field in ("model_name", "model_source"):
                 _require(config[field], str, f"{name}.{field}")
+            model_name_path = Path(_safe_relative(config["model_name"], f"{name}.model_name"))
+            if len(model_name_path.parts) != 1 or model_name_path.suffix.casefold() != ".pdb":
+                raise CampaignError(
+                    f"Malformed campaign state: invalid {name}.model_name"
+                )
             for field in ("pair_ligands", "catalogue_warnings"):
                 _require(config[field], list, f"{name}.{field}")
             if config["model_pair"] is not None:
