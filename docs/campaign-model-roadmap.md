@@ -209,18 +209,32 @@ the applicable project rule determines which source checkpoints may be used.
 
 ## Cross-dataset compatibility
 
-Before reusing a solved model for another dataset, Campaign Doctor should eventually evaluate explicit compatibility dimensions rather than simple filename similarity. These may include:
+The first compatibility-fact layer is now implemented for fresh AutoMR runs.
+It freezes named, provenance-bound dimensions without deciding whether a model
+is reusable:
 
-- chain count and polymer topology;
-- intended sequence and modified-site compatibility;
-- chirality;
-- construct/model-family identity;
-- expected oligomeric or geometric class;
-- symmetry/copy-number expectations;
-- known terminal or backbone chemistry; and
-- user/preset-declared family relationships.
+- exact candidate chain/residue inventory;
+- provider/recipient frame declarations;
+- complete-target site-set and residue-identity relations when available;
+- recipient sequence-reference identity while model-side construct-family
+  membership remains unknown;
+- the explicit mirror-transform fact while absolute D/L chirality remains
+  unknown;
+- recipient terminal-phosphate and backbone intent; and
+- recipient symmetry class and requested MR copy number while the coordinate
+  model makes no symmetry claim.
 
-The exact scoring/eligibility rules are deferred until a real heterogeneous campaign is available. Early implementations should prefer explicit family declarations and conservative hard gates over inferred similarity.
+The schema deliberately fixes score, overall compatibility and donor eligibility
+to null and automatic reuse authorization to false. `SAME` and `DIFFERENT`
+are literal per-dimension relations, not acceptance/rejection labels;
+`UNKNOWN` is not permissive.
+
+Before reusing a solved model for another dataset, Campaign Doctor still needs
+a separate reviewed eligibility policy. Future dimensions may include explicit
+absolute chirality, declared construct/model-family identity, oligomeric or
+geometric class, candidate-coordinate chemistry evidence and other
+project-specific relationships. The exact hard gates/ranking rules remain
+deferred until a real heterogeneous campaign is available.
 
 ## DAG implications
 
@@ -310,9 +324,10 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 1. Generalize sequence handling into search-model, reference, and dataset-target layers.
 2. Add simple campaign/reference sequence inheritance plus dataset override.
 3. **Implemented for complete explicit targets:** add search-model sequence comparison and mismatch provenance.
-4. Keep `mirror` as an orthogonal inherited/overridable token.
-5. **Implemented:** allow explicit forced search-model selection for validation and unusual datasets.
-6. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
+4. **Implemented as descriptive facts:** freeze compatibility dimensions without scoring or donor eligibility.
+5. Keep `mirror` as an orthogonal inherited/overridable token.
+6. **Implemented:** allow explicit forced search-model selection for validation and unusual datasets.
+7. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
 
 ### Multi-candidate / model-provider stage
 
