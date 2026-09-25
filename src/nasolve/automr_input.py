@@ -41,6 +41,7 @@ class AutoMRIntent:
     frame: str | None = None
     pair: str | None = None
     model: str | None = None
+    model_family: str | None = None
     sequence_file: str | None = None
     mirror: bool = False
     allow_p1_standard: bool = False
@@ -88,6 +89,7 @@ class ResolvedAutoMRInput:
     sequence_reference_label: str | None = None
     sequence_thread: dict[str, object] | None = None
     model_selector: str | None = None
+    model_family: str | None = None
     model_provider: dict[str, object] | None = None
     frame_sequence_source: Path | None = None
 
@@ -98,6 +100,7 @@ _ALLOWED_AUTOMR_KEYS = {
     "frame",
     "pair",
     "model",
+    "model_family",
     "sequence_file",
     "sequence_reference",
     "mirror",
@@ -106,6 +109,19 @@ _ALLOWED_AUTOMR_KEYS = {
     "five_prime_phosphate_sites",
     "allow_unreviewed_backbone",
 }
+
+
+def _validated_model_family(value: object) -> str | None:
+    if value is None:
+        return None
+    if not isinstance(value, str):
+        raise AutoMRInputError("model_family must be a stable text identifier")
+    family = value.strip()
+    if re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", family) is None:
+        raise AutoMRInputError(
+            "model_family must use 1-64 letters, numbers, dot, underscore or hyphen"
+        )
+    return family
 
 
 def _validated_sequences(
@@ -282,6 +298,7 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         frame=automr.get("frame") or None,
         pair=automr.get("pair") or None,
         model=automr.get("model") or None,
+        model_family=_validated_model_family(automr.get("model_family")),
         sequence_file=automr.get("sequence_file") or None,
         sequence_reference=automr.get("sequence_reference"),
         mirror=mirror,
@@ -624,6 +641,17 @@ def resolve_automr_input(
     exact_pair_model: bool | None = None
     catalogue_warnings: tuple[str, ...] = ()
     model_selector = model_override if model_override is not None else intent.model
+    model_family = _validated_model_family(intent.model_family)
+    if model_family is not None:
+        if intent.model is None:
+            raise AutoMRInputError(
+                "[automr] model_family requires an explicit model = selector"
+            )
+        if model_override is not None and model_override != intent.model:
+            raise AutoMRInputError(
+                "Configured model_family is bound to model = "
+                f"{intent.model!r} and cannot follow a different --model override"
+            )
     model_provider: dict[str, object] | None = None
     frame_sequence_source: Path | None = None
     effective_allow_p1 = bool(allow_p1_standard or intent.allow_p1_standard)
@@ -686,6 +714,10 @@ def resolve_automr_input(
             "location": "dataset",
             "selector": model_selector or model.relative_to(dataset.root).as_posix(),
         }
+
+    if model_family is not None:
+        assert model_provider is not None
+        model_provider["construct_family"] = model_family
 
     sequence_file: Path | None = None
     sequences = dict(intent.sequences)
@@ -774,6 +806,7 @@ def resolve_automr_input(
         sequence_reference=sequence_reference,
         sequence_reference_label=requested_reference if sequence_reference is not None else None,
         model_selector=model_selector,
+        model_family=model_family,
         model_provider=model_provider,
         frame_sequence_source=frame_sequence_source,
         mutations=resolved_mutations,
@@ -793,6 +826,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
         lines.extend([f"frame = {resolved.frame.name}", f"pair = {resolved.pair_text}"])
         if resolved.model_selector is not None:
             lines.append(f"model = {resolved.model_selector}")
+        if resolved.model_family is not None:
+            lines.append(f"model_family = {resolved.model_family}")
         if resolved.allow_p1_standard:
             lines.append("allow_p1_standard = true")
     else:
@@ -802,6 +837,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
             else resolved.model.relative_to(resolved.dataset.root).as_posix()
         )
         lines.append(f"model = {relative_model}")
+        if resolved.model_family is not None:
+            lines.append(f"model_family = {resolved.model_family}")
     if resolved.sequence_reference is not None:
         if resolved.sequence_reference_label is not None:
             reference_text = resolved.sequence_reference_label.strip()
