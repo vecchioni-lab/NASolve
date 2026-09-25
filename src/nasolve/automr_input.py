@@ -85,6 +85,7 @@ class ResolvedAutoMRInput:
     backbone_sites: dict[str, str] = field(default_factory=dict)
     allow_unreviewed_backbone: bool = False
     sequence_reference: Path | None = None
+    sequence_reference_label: str | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
@@ -673,6 +674,7 @@ def resolve_automr_input(
         sequences=sequences,
         sequence_file=sequence_file,
         sequence_reference=sequence_reference,
+        sequence_reference_label=requested_reference if sequence_reference is not None else None,
         mutations=resolved_mutations,
         config_source=intent.source,
         allow_op3_sites=allow_op3,
@@ -694,15 +696,20 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
         relative_model = resolved.model.relative_to(resolved.dataset.root).as_posix()
         lines.append(f"model = {relative_model}")
     if resolved.sequence_reference is not None:
-        builtin = Path(__file__).resolve().parent / "data" / "sequence_references" / "w-metal-scaffold.json"
-        selected = resolved.sequence_reference.resolve()
-        if selected == builtin.resolve():
-            reference_text = "w-metal-scaffold"
+        if resolved.sequence_reference_label is not None:
+            reference_text = resolved.sequence_reference_label.strip()
+            if not reference_text or any(char in reference_text for char in "\r\n\x00"):
+                raise AutoMRInputError("Sequence reference label is malformed")
         else:
-            try:
-                reference_text = selected.relative_to(resolved.dataset.root.resolve()).as_posix()
-            except ValueError as exc:
-                raise AutoMRInputError("Sequence reference must be built-in or dataset-relative") from exc
+            builtin = Path(__file__).resolve().parent / "data" / "sequence_references" / "w-metal-scaffold.json"
+            selected = resolved.sequence_reference.resolve()
+            if selected == builtin.resolve():
+                reference_text = "w-metal-scaffold"
+            else:
+                try:
+                    reference_text = selected.relative_to(resolved.dataset.root.resolve()).as_posix()
+                except ValueError as exc:
+                    raise AutoMRInputError("Sequence reference must be built-in or dataset-relative") from exc
         lines.append(f"sequence_reference = {reference_text}")
     if resolved.mirror:
         lines.append("mirror = true")
