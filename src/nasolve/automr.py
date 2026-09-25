@@ -32,6 +32,7 @@ from .phosphate import phosphate_intent_summary, validate_phosphate_intent, Phos
 from .backbone import make_backbone_policy
 from .sequence_reference import SequenceReferenceError
 from .sequence_family import prepare_sequence_family, freeze_sequence_family
+from .search_model_comparison import freeze_search_model_comparison
 from .frame_postmr import frame_postmr_spec
 from .symmetry import StandardSymmetryAssessment, SymmetryError, assess_standard_symmetry
 
@@ -413,8 +414,14 @@ def prepare_automr(
         if source_sequence is not None and source_sequence.is_file():
             frame_sequence = model_dir / "seq_base.txt"
             shutil.copyfile(source_sequence, frame_sequence)
+    search_model_comparison = None
+    comparison_payload = None
     if family_seed is not None:
         post_mr_plan["sequence_family"] = freeze_sequence_family(family_seed, run_dir)
+        comparison_payload = json.loads(family_seed.comparison_bytes)
+        search_model_comparison = freeze_search_model_comparison(
+            comparison_payload, run_dir
+        )
         post_mr_plan["application_order"] = [
             "sequence_family_reference", "thread_sequences", "sequences",
             "thread_site_chemistry", "standard_pair", "explicit_mutations",
@@ -489,10 +496,15 @@ def prepare_automr(
         },
         "model_assessment": assessment.to_dict(),
         "post_mr_plan": post_mr_plan,
+        **(
+            {"search_model_comparison": search_model_comparison}
+            if search_model_comparison is not None else {}
+        ),
         **({
             "sequence_family_preflight": {
                 "target_count": len(json.loads(family_seed.target_bytes)["sites"]),
                 "scope": "literal-source-inventory-before-any-mirroring",
+                "comparison_status": comparison_payload["status"],
                 "differences": [
                     {"site": site, "before": before, "after": after}
                     for site, before, after in family_seed.differences
