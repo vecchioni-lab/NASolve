@@ -91,6 +91,13 @@ entries are reconstructed from repository history.
   sequence-reference identifier when both exist. Frames, filenames, sequence
   threads and similarity never create family membership implicitly, and the
   resulting SAME/DIFFERENT fact still carries no donor-eligibility decision.
+- Added read-only checkpoint model-candidate descriptors as a prerequisite for
+  future Campaign Doctor rescue. Descriptors verify checkpoint lineage, model
+  and source-observation checksums, literal residue inventory, frozen chemistry,
+  source-provider provenance and complete sequence-family target context when
+  available. Checkpoint models are compared afresh with the frozen target.
+  Local checkpoint reusability is recorded separately from cross-dataset donor
+  eligibility, which remains null; no model is selected, exported or reused.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 
