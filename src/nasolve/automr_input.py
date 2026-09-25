@@ -643,7 +643,7 @@ def resolve_automr_input(
     model_selector = model_override if model_override is not None else intent.model
     model_family = _validated_model_family(intent.model_family)
     if model_family is not None:
-        if intent.model is None:
+        if not isinstance(intent.model, str) or not intent.model.strip():
             raise AutoMRInputError(
                 "[automr] model_family requires an explicit model = selector"
             )
