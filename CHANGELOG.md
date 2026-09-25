@@ -72,6 +72,12 @@ entries are reconstructed from repository history.
   compatibility; required W PostMR sites are checked literally before MR.
   Campaign plans snapshot the exact model bytes and provider so execution remains
   portable after the original model/catalogue disappears.
+- Added checksum-verified search-model mismatch provenance for runs with a
+  complete explicit residue target. The frozen comparison records chain/site
+  inventory, missing/unexpected sites, literal residue mismatches, and the target
+  source layer for each expected PostMR correction. It is descriptive only:
+  no compatibility score, mutation-route guarantee, donor eligibility, or
+  automatic model reuse is inferred.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 

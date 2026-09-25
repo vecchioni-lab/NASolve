@@ -15,9 +15,15 @@ from hashlib import sha256
 from pathlib import Path
 
 from .frame_postmr import frame_postmr_spec
-from .model_assessment import ModelAssessment, ModelAssessmentError, inspect_pdb
+from .model_assessment import (
+    ModelAssessment, ModelAssessmentError, inspect_pdb,
+    literal_polymer_identity_inventory,
+)
 from .residue_aliases import LigandCodeError, known_ligand_codes
 from .run_context import artifact_reference, resolve_artifact_path
+from .search_model_comparison import (
+    SearchModelComparisonError, compare_search_model_to_target,
+)
 from .sequence_reference import (
     SequenceReference, SequenceReferenceError, compile_sequence_family_targets,
     parse_sequence_reference,
@@ -32,6 +38,7 @@ class SequenceFamilySeed:
     target_bytes: bytes
     intent_sha256: str
     overlays_bytes: bytes
+    comparison_bytes: bytes
     differences: tuple[tuple[str, str, str], ...]
 
 
@@ -110,48 +117,49 @@ def _site_codes(plan: Mapping[str, object], frame: str | None) -> dict[str, str]
 
 
 def _model_inventory(
-    model: Path, assessment: ModelAssessment, reference: SequenceReference,
+    model: Path,
+    assessment: ModelAssessment,
+    reference: SequenceReference | None = None,
 ) -> dict[str, str]:
     if assessment.duplicate_atom_identities:
-        raise SequenceReferenceError("Duplicate coordinate atom identities make sequence-family correspondence ambiguous")
-    expected = set(reference.sites)
-    observed = {
-        f"{chain}:{resid}"
-        for chain, ids in assessment.polymer_residue_ids_by_chain.items()
-        for resid in ids
-    }
-    if observed != expected:
         raise SequenceReferenceError(
-            "Model/reference site correspondence differs; missing="
-            + repr(sorted(expected - observed)) + "; unexpected="
-            + repr(sorted(observed - expected))
+            "Duplicate coordinate atom identities make sequence-family correspondence ambiguous"
         )
     try:
         data = model.read_bytes()
     except OSError as exc:
-        raise SequenceReferenceError(f"Could not read sequence-family model {model}: {exc}") from exc
+        raise SequenceReferenceError(
+            f"Could not read sequence-family model {model}: {exc}"
+        ) from exc
     if sha256(data).hexdigest() != assessment.sha256:
-        raise SequenceReferenceError("Model changed after its sequence-family inventory was assessed")
-    names: dict[str, set[str]] = {site: set() for site in reference.sites}
-    model_records = 0
+        raise SequenceReferenceError(
+            "Model changed after its sequence-family inventory was assessed"
+        )
     try:
         lines = data.decode("utf-8", errors="strict").splitlines()
     except UnicodeError as exc:
-        raise SequenceReferenceError("Sequence-family model is not UTF-8 text") from exc
-    for line in lines:
-        if line.startswith("MODEL "):
-            model_records += 1
-        if not line.startswith(("ATOM  ", "HETATM")) or len(line) < 27:
-            continue
-        site = f"{line[21:22].strip() or '_'}:{line[22:26].strip()}{line[26:27].strip()}"
-        if site in names:
-            names[site].add(line[17:20].strip())
-    if model_records > 1:
-        raise SequenceReferenceError("Sequence-family correspondence requires one coordinate model")
-    ambiguous = [site for site, values in names.items() if len(values) != 1]
-    if ambiguous:
-        raise SequenceReferenceError("Missing or ambiguous sequence-family identities: " + ", ".join(ambiguous))
-    return {site: next(iter(values)) for site, values in names.items()}
+        raise SequenceReferenceError(
+            "Sequence-family model is not UTF-8 text"
+        ) from exc
+    if sum(line.startswith("MODEL ") for line in lines) > 1:
+        raise SequenceReferenceError(
+            "Sequence-family correspondence requires one coordinate model"
+        )
+    try:
+        inventory = literal_polymer_identity_inventory(assessment)
+    except ModelAssessmentError as exc:
+        raise SequenceReferenceError(str(exc)) from exc
+    if reference is not None:
+        expected = set(reference.sites)
+        observed = set(inventory)
+        if observed != expected:
+            raise SequenceReferenceError(
+                "Model/reference site correspondence differs; missing="
+                + repr(sorted(expected - observed))
+                + "; unexpected="
+                + repr(sorted(observed - expected))
+            )
+    return inventory
 
 
 def prepare_sequence_family(
@@ -190,14 +198,31 @@ def prepare_sequence_family(
             "dataset_site_codes": _site_codes(plan, frame),
         }
     target = compile_sequence_family_targets(reference, **overlays)
-    inventory = _model_inventory(model, assessment, reference)
+    _model_inventory(model, assessment)
+    try:
+        comparison = compare_search_model_to_target(assessment, target)
+    except SearchModelComparisonError as exc:
+        raise SequenceReferenceError(str(exc)) from exc
+    correspondence = comparison["correspondence"]
+    if not correspondence["exact_site_set"]:
+        raise SequenceReferenceError(
+            "Model/reference site correspondence differs; missing="
+            + repr(correspondence["missing_sites"])
+            + "; unexpected="
+            + repr(correspondence["unexpected_sites"])
+        )
+    mismatches = comparison["identity"]["mismatches"]
     differences = tuple(
-        (row["site"], inventory[row["site"]], row["residue_code"])
-        for row in target["sites"] if inventory[row["site"]] != row["residue_code"]
+        (
+            row["site"],
+            row["model_residue_code"],
+            row["target_residue_code"],
+        )
+        for row in mismatches
     )
     return SequenceFamilySeed(
         raw, _json_bytes(target), _intent_fingerprint(plan, frame, mirror),
-        _json_bytes(overlays), differences,
+        _json_bytes(overlays), _json_bytes(comparison), differences,
     )
 
 

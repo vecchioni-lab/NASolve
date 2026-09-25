@@ -74,14 +74,26 @@ then applies the existing mirror, dictionary and mutation-execution policies.
 
 ## Read-only model comparison
 
-`compare_sequence_family_inventory()` accepts literal residue identities keyed
-by explicit `CHAIN:RESID`. A missing or additional site is a correspondence
-error, not permission to align, renumber, insert or delete residues.
+Model assessment now retains the literal polymer residue name(s) observed at
+each explicit `CHAIN:RESID`. When a complete sequence-family target is
+available, AutoMR feeds that common inventory into the generic
+search-model-comparison primitive and freezes the result as
+`Model/search_model_comparison.json`.
+
+The record contains the model chain/residue inventory, target site count,
+missing/unexpected sites, exact identity mismatches and each mismatch's winning
+target source layer. A missing or additional site is still a correspondence
+error, not permission to align, renumber, insert or delete residues. The pure
+comparison primitive can describe such a mismatch; sequence-family AutoMR still
+fails closed before allocating a run when correspondence is not exact.
 
 The original 5W6W scaffold tested with the W-family baseline differs at A:13
-(DC to DT) and B:3 (DG to DA). Those differences are computed from the reference
-and inventory, not implemented as mandatory site-specific substitutions. A
-model already matching the effective target needs no identity changes.
+(DC to DT) and B:3 (DG to DA). Those differences are computed from the target
+and literal model inventory, not implemented as mandatory site-specific
+substitutions. A model already matching the effective target needs no identity
+changes. `expected_postmr_correction` denotes target intent only; the record
+sets `route_validated = false` because mutation-route validation remains a
+separate PostMR responsibility.
 
 A:12 and B:4 remain experimental-variant sites. Their final component identities
 come from the applicable resolved site declarations. D:1 terminal-phosphate
@@ -151,9 +163,15 @@ The new run retains:
 - additive `post_mr_plan.sequence_family` schema-1 metadata containing the two
   run-anchored, checksummed artifacts, frozen overlays and an input-intent
   fingerprint;
-- a matching `inputs.sequence_reference` artifact reference; and
-- a read-only preflight comparison of the literal source inventory before any
-  mirroring, separate from the actual post-MR mutation plan.
+- a matching `inputs.sequence_reference` artifact reference;
+- `Model/search_model_comparison.json`, referenced by additive
+  `search_model_comparison` metadata with checksum and size; and
+- the existing compact `sequence_family_preflight` summary for human-readable
+  continuity.
+
+The comparison is made from the literal source inventory before any mirroring
+and remains separate from the actual PostMR mutation plan. It is not authoritative
+chemistry and PostMR does not use it to bypass the frozen target contract.
 
 The JSON files are not reconstructed from a later installed reference. PostMR
 checks their byte hashes and internal consistency, rejects changed input

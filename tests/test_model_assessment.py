@@ -2,7 +2,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from nasolve.model_assessment import copy_preserving_model, file_sha256, inspect_pdb
+from nasolve.model_assessment import (
+    ModelAssessmentError,
+    copy_preserving_model,
+    file_sha256,
+    inspect_pdb,
+    literal_polymer_identity_inventory,
+)
 
 from .helpers import model_text, pdb_record
 
@@ -19,9 +25,36 @@ class ModelAssessmentTests(unittest.TestCase):
             self.assertEqual(assessment.polymer_residue_count, 2)
             self.assertEqual(assessment.heteroatom_count, 1)
             self.assertEqual(assessment.polymer_residue_ids_by_chain, {"A": ["1", "2"]})
+            self.assertEqual(
+                assessment.polymer_residue_names_by_site,
+                {"A:1": ["DA"], "A:2": ["DC"]},
+            )
+            self.assertEqual(
+                literal_polymer_identity_inventory(assessment),
+                {"A:1": "DA", "A:2": "DC"},
+            )
             copy_preserving_model(source, destination, assessment)
             self.assertEqual(file_sha256(source), file_sha256(destination))
             self.assertTrue(assessment.heteroatoms_preserved)
+
+    def test_literal_inventory_rejects_two_residue_names_at_one_site(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "ambiguous.pdb"
+            source.write_text(
+                pdb_record("ATOM", 1, "P", "DA", "A", 1)
+                + pdb_record("ATOM", 2, "C1'", "DC", "A", 1, element="C")
+            )
+            assessment = inspect_pdb(
+                source, polymer_ligand_codes={"DA", "DC"}
+            )
+            self.assertEqual(
+                assessment.polymer_residue_names_by_site["A:1"],
+                ["DA", "DC"],
+            )
+            with self.assertRaisesRegex(
+                ModelAssessmentError, "ambiguous polymer residue identities"
+            ):
+                literal_polymer_identity_inventory(assessment)
 
     def test_modified_nucleotide_hetatm_counts_as_polymer_residue(self):
         with tempfile.TemporaryDirectory() as directory:

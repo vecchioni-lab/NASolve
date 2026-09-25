@@ -19,6 +19,7 @@ from nasolve.automr_input import AutoMRInputError, format_intent, read_intent, r
 from nasolve.campaigns import plan_campaign
 from nasolve.postmr import PostMRPreparationError, build_mutation_plan, prepare_postmr
 from nasolve.sequence_family import load_frozen_sequence_family
+from nasolve.search_model_comparison import load_search_model_comparison
 from nasolve.sequence_reference import SequenceReferenceError
 from nasolve.run_context import resolve_artifact_path
 
@@ -167,6 +168,41 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
             {"site": "A:13", "before": "DC", "after": "DT"},
             {"site": "B:3", "before": "DG", "after": "DA"},
         ])
+        self.assertEqual(
+            report["sequence_family_preflight"]["comparison_status"],
+            "IDENTITY_DIFFERENCES",
+        )
+        comparison = load_search_model_comparison(report, run)
+        self.assertEqual(comparison["status"], "IDENTITY_DIFFERENCES")
+        self.assertEqual(comparison["correspondence"], {
+            "exact_site_set": True,
+            "missing_sites": [],
+            "unexpected_sites": [],
+        })
+        self.assertEqual(comparison["model"]["chain_count"], 4)
+        self.assertEqual(comparison["model"]["polymer_residue_count"], 42)
+        self.assertEqual(comparison["identity"]["mismatch_count"], 2)
+        self.assertEqual(comparison["identity"]["mismatches"], [
+            {
+                "site": "A:13",
+                "model_residue_code": "DC",
+                "target_residue_code": "DT",
+                "target_source": "family_reference",
+                "expected_postmr_correction": True,
+                "route_validated": False,
+            },
+            {
+                "site": "B:3",
+                "model_residue_code": "DG",
+                "target_residue_code": "DA",
+                "target_source": "family_reference",
+                "expected_postmr_correction": True,
+                "route_validated": False,
+            },
+        ])
+        self.assertTrue(
+            (run / "Model/search_model_comparison.json").is_file()
+        )
         self.assertIn("C:8", family.codes)
         self.assertNotIn("C:1", family.codes)
         self.assertFalse((run / "Phaser").exists())
@@ -184,7 +220,11 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
         report, model = self.completed_mr(result)
         self.assertNotIn("sequence_family", report["post_mr_plan"])
         self.assertNotIn("sequence_family_preflight", report)
+        self.assertNotIn("search_model_comparison", report)
         self.assertFalse((result.run_directory / "Model/sequence_reference.json").exists())
+        self.assertFalse(
+            (result.run_directory / "Model/search_model_comparison.json").exists()
+        )
         self.assertEqual(len(build_mutation_plan(report, model)), 2)
 
     def test_reference_bytes_are_exact_and_distinct_from_content_fingerprint(self):

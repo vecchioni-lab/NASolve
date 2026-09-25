@@ -31,6 +31,7 @@ class ModelAssessment:
     chains: list[str]
     polymer_residues_by_chain: dict[str, int]
     polymer_residue_ids_by_chain: dict[str, list[str]]
+    polymer_residue_names_by_site: dict[str, list[str]]
     duplicate_atom_identities: int
     missing_occupancies: int
     zero_occupancies: int
@@ -77,6 +78,7 @@ def inspect_pdb(
     occupancies: list[float] = []
     atom_identities: set[tuple[str, ...]] = set()
     polymer_residues: set[tuple[str, str, str]] = set()
+    polymer_residue_names: dict[tuple[str, str, str], set[str]] = {}
     modified_polymer_residues: set[tuple[str, str, str]] = set()
     hetero_residues: set[tuple[str, str, str, str]] = set()
     nonpolymer_hetero_residues: set[tuple[str, str, str, str]] = set()
@@ -110,6 +112,7 @@ def inspect_pdb(
         if record == "ATOM":
             polymer_atoms += 1
             polymer_residues.add(polymer_residue_key)
+            polymer_residue_names.setdefault(polymer_residue_key, set()).add(residue_name)
         else:
             heteroatoms += 1
             hetero_residues.add(hetero_residue_key)
@@ -117,6 +120,7 @@ def inspect_pdb(
                 polymer_atoms += 1
                 modified_polymer_atoms += 1
                 polymer_residues.add(polymer_residue_key)
+                polymer_residue_names.setdefault(polymer_residue_key, set()).add(residue_name)
                 modified_polymer_residues.add(polymer_residue_key)
             else:
                 nonpolymer_hetero_residues.add(hetero_residue_key)
@@ -147,6 +151,18 @@ def inspect_pdb(
     for values in residue_ids.values():
         values.sort(key=lambda value: (int(value) if value.lstrip("-").isdigit() else 10**9, value))
     counts = {chain: len(values) for chain, values in residue_ids.items()}
+    names_by_site = {
+        f"{chain}:{residue_number}{insertion}": sorted(names)
+        for (chain, residue_number, insertion), names in sorted(
+            polymer_residue_names.items(),
+            key=lambda item: (
+                item[0][0],
+                int(item[0][1]) if item[0][1].lstrip("-").isdigit() else 10**9,
+                item[0][1],
+                item[0][2],
+            ),
+        )
+    }
     warnings: list[str] = []
     if malformed:
         warnings.append(f"{malformed} coordinate record(s) were too short to parse")
@@ -172,6 +188,7 @@ def inspect_pdb(
         chains=sorted(residue_ids),
         polymer_residues_by_chain=dict(sorted(counts.items())),
         polymer_residue_ids_by_chain=dict(sorted(residue_ids.items())),
+        polymer_residue_names_by_site=names_by_site,
         duplicate_atom_identities=duplicates,
         missing_occupancies=missing_occupancies,
         zero_occupancies=zero_occupancies,
@@ -180,6 +197,30 @@ def inspect_pdb(
         malformed_coordinate_records=malformed,
         warnings=warnings,
     )
+
+
+def literal_polymer_identity_inventory(
+    assessment: ModelAssessment,
+) -> dict[str, str]:
+    """Return one literal residue code per assessed polymer site.
+
+    This is descriptive coordinate identity only. It does not align, renumber,
+    infer chemistry, or establish model/target compatibility.
+    """
+    ambiguous = [
+        site
+        for site, names in assessment.polymer_residue_names_by_site.items()
+        if len(names) != 1
+    ]
+    if ambiguous:
+        raise ModelAssessmentError(
+            "Missing or ambiguous polymer residue identities at: "
+            + ", ".join(sorted(ambiguous))
+        )
+    return {
+        site: names[0]
+        for site, names in assessment.polymer_residue_names_by_site.items()
+    }
 
 
 def copy_preserving_model(

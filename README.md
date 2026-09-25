@@ -716,6 +716,16 @@ provider. This is the intended validation path for the tracked original
 while the frozen W-family target records the post-MR sequence delta and the W
 recipe independently retains D:1 terminal-phosphate intent.
 
+When a complete explicit residue target is available, AutoMR also freezes
+`Model/search_model_comparison.json`. This descriptive record captures the
+literal model chain/residue inventory, missing or unexpected target sites, exact
+identity mismatches, and the target layer responsible for each mismatch.
+`expected_postmr_correction = true` means only that the frozen target differs
+at that site; the comparison does not claim that a mutation route, dictionary,
+MR-model compatibility rule, or cross-dataset reuse policy has been validated.
+Runs without a complete explicit target do not invent this comparison from
+filenames or unlabeled frame sequence files.
+
 ## Preparing an accepted MR solution
 
 After a run reaches `MR_SUCCESS`, prepare it for refinement with:
