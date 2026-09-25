@@ -1,9 +1,11 @@
 # Explicit sequence-family target assembly
 
-Status: **explicitly opt-in standalone AutoMR/PostMR integration; controlled
-regression fixtures tested, live Phenix/Coot validation pending.** Ordinary W
-recipe defaults and existing frozen runs are unchanged. Campaign integration
-is not enabled by this slice.
+Status: **explicitly opt-in standalone AutoMR/PostMR integration; regression
+fixtures and a fresh live Phenix/Coot/AutoRefine path validated.** The live
+validation accounted for all 42 intended residue identities, preserved the
+independent terminal-phosphate chemistry, and carried the prepared model
+through refinement. Ordinary W recipe defaults and existing frozen runs remain
+unchanged. Campaign integration is not enabled by this slice.
 
 ## Scope and scientific boundary
 
