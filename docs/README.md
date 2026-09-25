@@ -15,14 +15,20 @@ NASolve documentation is organized by role, not chronology.
 
 ## Active subsystem contracts
 
-- [`sequence-family-targets.md`](sequence-family-targets.md) — explicit sequence-reference target assembly; standalone primitive, not yet connected to runtime.
+- [`sequence-family-targets.md`](sequence-family-targets.md) — explicit
+  sequence-reference target assembly, standalone AutoMR/PostMR integration, and
+  campaign sequence-thread inheritance.
 - [`backbone-chemistry.md`](backbone-chemistry.md) — phosphodiester,
   terminal-phosphate, and unsupported-backbone policy.
 - [`campaigns.md`](campaigns.md) — campaign orchestration contract.
 - [`campaign-planning.md`](campaign-planning.md) and
   [`campaign-execution.md`](campaign-execution.md) — current campaign stages.
+- [`model-compatibility-facts.md`](model-compatibility-facts.md) — descriptive
+  search-model, checkpoint-candidate, and donor-to-recipient compatibility
+  provenance; no donor eligibility or automatic reuse.
 - [`campaign-model-roadmap.md`](campaign-model-roadmap.md) — forward-looking
-  model/sequence/processing architecture.
+  model/sequence/processing architecture and the current Campaign Doctor
+  implementation boundary.
 
 Machine-readable schemas and small recipe examples beside these files are part
 of the active contract.
