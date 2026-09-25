@@ -155,7 +155,8 @@ class CampaignTests(unittest.TestCase):
         entries = {entry["id"]: entry for entry in self.plan()["datasets"]}
         self.assertEqual(entries["good"]["status"], "DISCOVERED")
         self.assertIn("Unknown ligand code", entries["unknown"]["diagnostic"])
-        self.assertIn("remove model", entries["custom"]["diagnostic"])
+        self.assertIn("Explicit standard model 'custom.pdb' was not found",
+                      entries["custom"]["diagnostic"])
 
     def test_multiple_mutation_sites_use_the_canonical_config_parser(self):
         self.dataset("dataset", "[automr]\npair = C:G\n[mutations]\nA:8 = E\nA:9 = F\n")
