@@ -78,6 +78,13 @@ entries are reconstructed from repository history.
   source layer for each expected PostMR correction. It is descriptive only:
   no compatibility score, mutation-route guarantee, donor eligibility, or
   automatic model reuse is inferred.
+- Added checksum-verified model compatibility fact sheets for every fresh
+  AutoMR run. They record provider/frame declarations, exact candidate
+  chain/residue inventory, target-dependent site/identity relations when
+  available, mirror-transform state, recipient terminal/backbone chemistry and
+  recipient symmetry/copy-number evidence. Unknown dimensions remain explicitly
+  unknown. Schema 1 forbids scores, overall compatibility verdicts, donor
+  eligibility and automatic reuse authorization.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 
