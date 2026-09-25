@@ -51,6 +51,7 @@ def _frame_relation(candidate: str | None, recipient: str | None) -> str:
 
 def _comparison_dimensions(
     comparison: Mapping[str, object] | None,
+    candidate_declared_family: str | None,
 ) -> tuple[dict[str, object], dict[str, object], dict[str, object]]:
     if comparison is None:
         unknown_site = {
@@ -66,10 +67,14 @@ def _comparison_dimensions(
             "mismatch_count": 0,
         }
         family = {
-            "candidate_declared_family": None,
+            "candidate_declared_family": candidate_declared_family,
             "recipient_reference": None,
             "relation": "UNKNOWN",
-            "basis": "candidate family membership is not declared",
+            "basis": (
+                "recipient construct-family reference is unavailable"
+                if candidate_declared_family is not None
+                else "candidate and recipient construct-family identities are not both declared"
+            ),
         }
         return unknown_site, unknown_identity, family
 
@@ -135,12 +140,24 @@ def _comparison_dimensions(
             "mismatch_count": mismatch_count,
         },
         {
-            "candidate_declared_family": None,
+            "candidate_declared_family": candidate_declared_family,
             "recipient_reference": recipient_reference,
-            "relation": "UNKNOWN",
+            "relation": (
+                "SAME"
+                if candidate_declared_family is not None
+                and recipient_reference is not None
+                and candidate_declared_family == recipient_reference.get("id")
+                else "DIFFERENT"
+                if candidate_declared_family is not None
+                and recipient_reference is not None
+                and isinstance(recipient_reference.get("id"), str)
+                else "UNKNOWN"
+            ),
             "basis": (
-                "the recipient target reference is known, but current model "
-                "providers do not declare construct-family membership"
+                "explicit provider construct-family declaration versus explicit "
+                "recipient sequence-reference identifier"
+                if candidate_declared_family is not None and recipient_reference is not None
+                else "candidate and recipient construct-family identities are not both declared"
             ),
         },
     )
@@ -151,6 +168,7 @@ def build_model_compatibility_facts(
     source_assessment: ModelAssessment,
     effective_assessment: ModelAssessment,
     model_provider: Mapping[str, object] | None,
+    candidate_construct_family: str | None,
     mode: str,
     recipient_frame: str | None,
     mirror_transform_applied: bool,
@@ -164,6 +182,13 @@ def build_model_compatibility_facts(
     """Join explicit facts without deriving a compatibility verdict."""
     if mode not in {"standard", "nonstandard"}:
         raise ModelCompatibilityFactsError("Unsupported AutoMR mode in compatibility facts")
+    if candidate_construct_family is not None and (
+        not isinstance(candidate_construct_family, str)
+        or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", candidate_construct_family) is None
+    ):
+        raise ModelCompatibilityFactsError(
+            "Candidate construct family is not a stable identifier"
+        )
     if type(mirror_transform_applied) is not bool:
         raise ModelCompatibilityFactsError("Mirror-transform fact must be boolean")
     if any(not isinstance(site, str) for site in terminal_phosphate_sites):
@@ -177,7 +202,9 @@ def build_model_compatibility_facts(
         )
     provider = _provider_summary(model_provider)
     candidate_frame = _text_or_none(provider["declared_frame"])
-    site_set, residue_identity, family = _comparison_dimensions(comparison)
+    site_set, residue_identity, family = _comparison_dimensions(
+        comparison, candidate_construct_family
+    )
 
     phosphate_source = "legacy"
     if isinstance(phosphate_intent, Mapping):
@@ -570,10 +597,14 @@ def _validated_record(value: object) -> dict[str, object]:
     family = dimensions["construct_family"]
     if set(family) != {
         "candidate_declared_family", "recipient_reference", "relation", "basis",
-    } or family["candidate_declared_family"] is not None or family["relation"] != "UNKNOWN" or not isinstance(
-        family["basis"], str
-    ) or not family["basis"]:
-        raise ModelCompatibilityFactsError("Current providers do not declare construct family")
+    } or not isinstance(family["basis"], str) or not family["basis"]:
+        raise ModelCompatibilityFactsError("Malformed construct-family facts")
+    candidate_family = family["candidate_declared_family"]
+    if candidate_family is not None and (
+        not isinstance(candidate_family, str)
+        or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", candidate_family) is None
+    ):
+        raise ModelCompatibilityFactsError("Malformed candidate construct-family identifier")
     reference = family["recipient_reference"]
     if reference is not None:
         if (
@@ -587,6 +618,18 @@ def _validated_record(value: object) -> dict[str, object]:
             or re.fullmatch(r"[0-9a-f]{64}", reference["content_sha256"]) is None
         ):
             raise ModelCompatibilityFactsError("Malformed construct-family recipient reference")
+    recipient_family = reference["id"] if reference is not None else None
+    expected_family_relation = (
+        "SAME"
+        if candidate_family is not None
+        and recipient_family is not None
+        and candidate_family == recipient_family
+        else "DIFFERENT"
+        if candidate_family is not None and recipient_family is not None
+        else "UNKNOWN"
+    )
+    if family["relation"] != expected_family_relation:
+        raise ModelCompatibilityFactsError("Inconsistent construct-family relation")
 
     if set(evidence) != {"search_model_comparison"}:
         raise ModelCompatibilityFactsError("Malformed compatibility-facts evidence")
@@ -723,6 +766,16 @@ def load_model_compatibility_facts(
     if facts["candidate"]["provider"] != expected_provider:
         raise ModelCompatibilityFactsError(
             "Compatibility facts disagree with model-provider provenance"
+        )
+    raw_provider = inputs.get("model_provider")
+    expected_family = (
+        raw_provider.get("construct_family")
+        if isinstance(raw_provider, Mapping)
+        else None
+    )
+    if facts["dimensions"]["construct_family"]["candidate_declared_family"] != expected_family:
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with model-family provenance"
         )
     expected_ids = assessment.get("polymer_residue_ids_by_chain")
     if not isinstance(expected_ids, Mapping):
