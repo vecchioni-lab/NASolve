@@ -71,11 +71,12 @@ def _intent_fingerprint(plan: Mapping[str, object], frame: object, mirror: objec
         raise SequenceReferenceError("Sequence-family mirror intent must be a boolean")
     intent = {
         "frame": frame, "mirror": mirror,
-        "sequence_thread": plan.get("sequence_thread"),
         "sequences": plan.get("sequences"),
         "standard_pair": plan.get("standard_pair"),
         "mutations": plan.get("mutations"),
     }
+    if "sequence_thread" in plan:
+        intent["sequence_thread"] = plan.get("sequence_thread")
     try:
         return sha256(_json_bytes(intent)).hexdigest()
     except (TypeError, ValueError) as exc:
