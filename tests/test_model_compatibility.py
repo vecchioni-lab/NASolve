@@ -224,8 +224,27 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
                 symmetry=None,
             )
             frozen = freeze_model_compatibility_facts(facts, run)
-            report = {"model_compatibility_facts": frozen}
+            report = {
+                "mode": "nonstandard",
+                "frame": None,
+                "inputs": {
+                    "model_sha256": model.sha256,
+                    "mirror": False,
+                },
+                "model_assessment": {
+                    "sha256": model.sha256,
+                },
+                "model_compatibility_facts": frozen,
+            }
             self.assertEqual(load_model_compatibility_facts(report, run), facts)
+
+            forged_report = json.loads(json.dumps(report))
+            forged_report["inputs"]["model_sha256"] = "f" * 64
+            with self.assertRaisesRegex(
+                ModelCompatibilityFactsError,
+                "source-model checksum",
+            ):
+                load_model_compatibility_facts(forged_report, run)
 
             path = run / frozen["artifact"]["relative_path"]
             value = json.loads(path.read_text())
