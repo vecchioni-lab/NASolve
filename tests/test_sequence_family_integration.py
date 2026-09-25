@@ -534,6 +534,10 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
             candidate["run_context"]["sequence_family"]["reference"]["id"],
             "w-metal-scaffold",
         )
+        self.assertEqual(
+            candidate["run_context"]["source_model_provenance_verification"],
+            "frozen-model-compatibility-facts",
+        )
         self.assertTrue(candidate["source"]["locally_reusable"])
         self.assertIsNone(candidate["semantics"]["donor_eligibility"])
         self.assertFalse(candidate["semantics"]["automatic_reuse_authorized"])
