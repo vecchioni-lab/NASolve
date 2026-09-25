@@ -1,5 +1,6 @@
 import tempfile
 import unittest
+from hashlib import sha256
 from pathlib import Path
 
 from nasolve.model_assessment import inspect_pdb
@@ -140,6 +141,17 @@ class SearchModelComparisonTests(unittest.TestCase):
             with self.assertRaisesRegex(
                 SearchModelComparisonError,
                 "missing or failed checksum|changed while being read",
+            ):
+                load_search_model_comparison(report, run)
+
+            forged = artifact.read_bytes()
+            report["search_model_comparison"]["artifact"].update(
+                sha256=sha256(forged).hexdigest(),
+                size=len(forged),
+            )
+            with self.assertRaisesRegex(
+                SearchModelComparisonError,
+                "Malformed frozen search-model comparison record",
             ):
                 load_search_model_comparison(report, run)
 
