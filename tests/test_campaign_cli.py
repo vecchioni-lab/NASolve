@@ -95,6 +95,26 @@ class CampaignCLITests(unittest.TestCase):
             self.assertIn("Sequence thread: w-family", output)
             self.assertFalse((dataset / "AutoMR").exists())
 
+    def test_status_prints_explicit_model_provider(self):
+        with tempfile.TemporaryDirectory() as directory:
+            campaign, frames, dataset = self.fixture(Path(directory).resolve())
+            (dataset / "alternate.pdb").write_text(model_text())
+            text = (dataset / "nasolve.txt").read_text()
+            (dataset / "nasolve.txt").write_text(
+                text.replace(
+                    "pair = D:OHU\n",
+                    "pair = D:OHU\nmodel = alternate.pdb\n",
+                )
+            )
+            code, output, error = self.invoke([
+                "campaign", "plan", str(campaign), "--frames-dir", str(frames),
+            ])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Model override: alternate.pdb (dataset)", output)
+            code, output, error = self.invoke(["campaign", "status", str(campaign)])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Model override: alternate.pdb (dataset)", output)
+
     def test_blocked_dataset_is_visible_and_returns_review_exit_code(self):
         with tempfile.TemporaryDirectory() as directory:
             campaign, frames, _ = self.fixture(Path(directory).resolve())
