@@ -168,7 +168,6 @@ def build_model_compatibility_facts(
     source_assessment: ModelAssessment,
     effective_assessment: ModelAssessment,
     model_provider: Mapping[str, object] | None,
-    candidate_construct_family: str | None,
     mode: str,
     recipient_frame: str | None,
     mirror_transform_applied: bool,
@@ -178,6 +177,7 @@ def build_model_compatibility_facts(
     phosphate_intent: Mapping[str, object] | None,
     backbone_policy: Mapping[str, object],
     symmetry: Mapping[str, object] | None,
+    candidate_construct_family: str | None = None,
 ) -> dict[str, object]:
     """Join explicit facts without deriving a compatibility verdict."""
     if mode not in {"standard", "nonstandard"}:
