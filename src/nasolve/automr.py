@@ -205,6 +205,11 @@ def _validate_mirror_inventory(
             source.polymer_residues_by_chain,
             mirrored.polymer_residues_by_chain,
         ),
+        (
+            "polymer residue IDs by chain",
+            source.polymer_residue_ids_by_chain,
+            mirrored.polymer_residue_ids_by_chain,
+        ),
     )
     changed = [
         f"{label}: {before!r} -> {after!r}"
