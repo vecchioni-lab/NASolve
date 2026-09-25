@@ -233,6 +233,7 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
         "mode": intent.mode, "frame": intent.frame, "pair": intent.pair,
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
         "model_selector": intent.model,
+        "model_family": intent.model_family,
         "sequence_reference": intent.sequence_reference,
         "sequences": dict(intent.sequences), "mutations": dict(intent.mutations),
         "allow_op3_sites": list(intent.allow_op3_sites),
@@ -319,6 +320,7 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "model": model, "model_name": resolved.model.name,
             "model_source": resolved.model_source,
             "model_selector": resolved.model_selector,
+            "model_family": resolved.model_family,
             "model_provider": resolved.model_provider,
             "model_pair": (
                 [asdict(item) for item in resolved.model_pair]
