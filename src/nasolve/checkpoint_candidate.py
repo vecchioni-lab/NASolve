@@ -19,6 +19,10 @@ from .checkpoints import (
     read_registry,
     resolve_checkpoint,
 )
+from .model_compatibility import (
+    ModelCompatibilityFactsError,
+    load_model_compatibility_facts,
+)
 from .model_assessment import (
     ModelAssessmentError,
     file_sha256,
@@ -188,6 +192,18 @@ def describe_checkpoint_candidate(
 
     report = _run_report(run)
     try:
+        compatibility_facts = load_model_compatibility_facts(report, run)
+    except ModelCompatibilityFactsError as exc:
+        raise CheckpointCandidateError(
+            f"Frozen source-model provenance failed validation: {exc}"
+        ) from exc
+    provider_verification = (
+        "frozen-model-compatibility-facts"
+        if compatibility_facts is not None
+        else "legacy-run-report-only"
+    )
+
+    try:
         family = load_frozen_sequence_family(report, run)
         ligand_codes = set(known_ligand_codes())
         if family is not None:
@@ -265,6 +281,10 @@ def describe_checkpoint_candidate(
         )
 
     target_context = _target_context(report, run, assessment)
+    if file_sha256(model) != assessment.sha256:
+        raise CheckpointCandidateError(
+            "Checkpoint model changed after candidate assessment"
+        )
     local_reusable = usable and status in REUSABLE_STATUSES
 
     return {
@@ -326,6 +346,7 @@ def describe_checkpoint_candidate(
             "source_model_provider": (
                 dict(provider) if isinstance(provider, Mapping) else None
             ),
+            "source_model_provenance_verification": provider_verification,
             "terminal_phosphate_sites": phosphate_sites,
             "backbone_policy": backbone_policy,
             **target_context,
