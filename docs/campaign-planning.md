@@ -109,6 +109,20 @@ chemistry, symmetry gate, sequence reference/thread overlays and PostMR rules
 remain independent. A forced filename is not parsed as evidence that its
 standard pair matches the requested pair.
 
+A dataset may additionally bind a stable family identifier to that explicit
+model:
+
+```ini
+[automr]
+model = alternate.pdb
+model_family = w-metal-scaffold
+```
+
+The family is frozen with the provider and survives campaign relocation. It is
+not inherited from a sequence thread or W-frame membership, and a campaign
+plan is rejected if a re-signed provider/family record disagrees with its
+effective configuration.
+
 The exact selected PDB is copied into `NASolveCampaign/resources/`. Execution
 therefore uses the frozen model after relocation even if the source PDB or
 original frame catalogue has disappeared. The W frame sequence resource is
