@@ -193,7 +193,7 @@ recipient AutoMR run. It loads the recipient's frozen sequence-family target
 when present and compares the donor checkpoint's **literal** residue inventory
 to that target, yielding descriptive site-set and residue-identity relations.
 
-The donor source run's mode, frame, target-reference ID and mirror-transform
+The donor source run's mode, frame, full target-reference identity and mirror-transform
 flag are carried only as source context. A matching source/recipient target
 reference is not promoted into a claim that the donor checkpoint belongs to
 that family, and matching mirror flags do not establish absolute chirality.
