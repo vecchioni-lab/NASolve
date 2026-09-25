@@ -326,7 +326,11 @@ def _validated_record(value: object) -> dict[str, object]:
     if not all(isinstance(item, dict) for item in (roles, candidate, recipient, dimensions, evidence, semantics)):
         raise ModelCompatibilityFactsError("Malformed compatibility-facts sections")
 
-    if set(roles) != {"candidate", "recipient"}:
+    if (
+        set(roles) != {"candidate", "recipient"}
+        or roles["candidate"] != "effective-search-model-submitted-to-or-prepared-for-Phaser"
+        or roles["recipient"] != "frozen-AutoMR-intent-for-this-dataset"
+    ):
         raise ModelCompatibilityFactsError("Malformed compatibility-facts roles")
     if set(candidate) != {
         "source_model_sha256", "effective_model_sha256", "provider", "mode",
@@ -412,6 +416,13 @@ def _validated_record(value: object) -> dict[str, object]:
         "candidate_declared_frame", "recipient_frame", "relation", "basis",
     }:
         raise ModelCompatibilityFactsError("Malformed frame-identity facts")
+    if (
+        frame["candidate_declared_frame"] != provider["declared_frame"]
+        or frame["recipient_frame"] != recipient["frame"]
+        or not isinstance(frame["basis"], str)
+        or not frame["basis"]
+    ):
+        raise ModelCompatibilityFactsError("Inconsistent frame-identity facts")
     expected_frame_relation = _frame_relation(
         frame["candidate_declared_frame"], frame["recipient_frame"]
     )
@@ -426,8 +437,25 @@ def _validated_record(value: object) -> dict[str, object]:
     if not all(
         isinstance(values, list) and all(isinstance(site, str) for site in values)
         for values in (site_set["missing_sites"], site_set["unexpected_sites"])
-    ):
+    ) or not isinstance(site_set["basis"], str) or not site_set["basis"]:
         raise ModelCompatibilityFactsError("Malformed site-set inventory")
+    if site_set["basis"] == "no-complete-explicit-residue-target":
+        if (
+            site_set["relation"] != "UNKNOWN"
+            or site_set["missing_sites"]
+            or site_set["unexpected_sites"]
+        ):
+            raise ModelCompatibilityFactsError("Inconsistent unknown site-set facts")
+    elif site_set["basis"] == "complete-explicit-residue-target":
+        expected_site_relation = (
+            "SAME"
+            if not site_set["missing_sites"] and not site_set["unexpected_sites"]
+            else "DIFFERENT"
+        )
+        if site_set["relation"] != expected_site_relation:
+            raise ModelCompatibilityFactsError("Inconsistent site-set relation")
+    else:
+        raise ModelCompatibilityFactsError("Unsupported site-set fact basis")
 
     residue = dimensions["residue_identity"]
     if set(residue) != {
@@ -435,8 +463,30 @@ def _validated_record(value: object) -> dict[str, object]:
     } or any(
         type(residue[key]) is not int or residue[key] < 0
         for key in ("compared_site_count", "mismatch_count")
-    ):
+    ) or residue["mismatch_count"] > residue["compared_site_count"] or not isinstance(
+        residue["basis"], str
+    ) or not residue["basis"]:
         raise ModelCompatibilityFactsError("Malformed residue-identity facts")
+    if residue["basis"] == "no-complete-explicit-residue-target":
+        if (
+            residue["relation"] != "UNKNOWN"
+            or residue["compared_site_count"] != 0
+            or residue["mismatch_count"] != 0
+        ):
+            raise ModelCompatibilityFactsError("Inconsistent unknown residue-identity facts")
+    elif residue["basis"] == "source-search-model-before-any-mirror-transform":
+        if site_set["relation"] == "SAME":
+            expected_identity_relation = (
+                "SAME" if residue["mismatch_count"] == 0 else "DIFFERENT"
+            )
+        else:
+            expected_identity_relation = (
+                "PARTIAL" if residue["compared_site_count"] else "UNKNOWN"
+            )
+        if residue["relation"] != expected_identity_relation:
+            raise ModelCompatibilityFactsError("Inconsistent residue-identity relation")
+    else:
+        raise ModelCompatibilityFactsError("Unsupported residue-identity fact basis")
 
     chirality = dimensions["chirality"]
     if set(chirality) != {
@@ -448,6 +498,8 @@ def _validated_record(value: object) -> dict[str, object]:
         chirality["candidate_absolute_chirality"] is not None
         or chirality["recipient_absolute_chirality"] is not None
         or chirality["relation"] != "UNKNOWN"
+        or not isinstance(chirality["basis"], str)
+        or not chirality["basis"]
     ):
         raise ModelCompatibilityFactsError("Current schema cannot claim absolute chirality")
 
@@ -457,7 +509,9 @@ def _validated_record(value: object) -> dict[str, object]:
         "candidate_coordinate_evidence", "relation",
     } or not isinstance(terminal["recipient_sites"], list) or not all(
         isinstance(site, str) for site in terminal["recipient_sites"]
-    ) or terminal["candidate_coordinate_evidence"] != "NOT_ASSESSED" or terminal["relation"] != "UNKNOWN":
+    ) or not isinstance(terminal["recipient_intent_source"], str) or not terminal[
+        "recipient_intent_source"
+    ] or terminal["candidate_coordinate_evidence"] != "NOT_ASSESSED" or terminal["relation"] != "UNKNOWN":
         raise ModelCompatibilityFactsError("Malformed terminal-phosphate facts")
 
     backbone = dimensions["backbone_chemistry"]
@@ -476,19 +530,48 @@ def _validated_record(value: object) -> dict[str, object]:
         "candidate_coordinate_evidence"
     ] != "NOT_ASSESSED" or backbone["relation"] != "UNKNOWN":
         raise ModelCompatibilityFactsError("Malformed backbone-chemistry facts")
+    expected_passthrough = sorted(
+        site
+        for site, mode in backbone["recipient_site_overrides"].items()
+        if mode == "experimental_passthrough"
+    )
+    if backbone["experimental_passthrough_sites"] != expected_passthrough:
+        raise ModelCompatibilityFactsError("Inconsistent backbone passthrough facts")
 
     symmetry = dimensions["symmetry_and_copy_number"]
     if set(symmetry) != {
         "recipient_symmetry_class", "recipient_mr_copies",
         "candidate_coordinate_claim", "relation", "basis",
-    } or symmetry["candidate_coordinate_claim"] is not None or symmetry["relation"] != "UNKNOWN":
+    } or symmetry["candidate_coordinate_claim"] is not None or symmetry["relation"] != "UNKNOWN" or not isinstance(
+        symmetry["basis"], str
+    ) or not symmetry["basis"]:
         raise ModelCompatibilityFactsError("Malformed symmetry/copy-number facts")
+    if (
+        symmetry["recipient_symmetry_class"] != recipient["symmetry_class"]
+        or symmetry["recipient_mr_copies"] != recipient["mr_copies"]
+    ):
+        raise ModelCompatibilityFactsError("Inconsistent symmetry/copy-number facts")
 
     family = dimensions["construct_family"]
     if set(family) != {
         "candidate_declared_family", "recipient_reference", "relation", "basis",
-    } or family["candidate_declared_family"] is not None or family["relation"] != "UNKNOWN":
+    } or family["candidate_declared_family"] is not None or family["relation"] != "UNKNOWN" or not isinstance(
+        family["basis"], str
+    ) or not family["basis"]:
         raise ModelCompatibilityFactsError("Current providers do not declare construct family")
+    reference = family["recipient_reference"]
+    if reference is not None:
+        if (
+            not isinstance(reference, dict)
+            or set(reference) != {"id", "version", "content_sha256"}
+            or not isinstance(reference["id"], str)
+            or not reference["id"]
+            or not isinstance(reference["version"], str)
+            or not reference["version"]
+            or not isinstance(reference["content_sha256"], str)
+            or re.fullmatch(r"[0-9a-f]{64}", reference["content_sha256"]) is None
+        ):
+            raise ModelCompatibilityFactsError("Malformed construct-family recipient reference")
 
     if set(evidence) != {"search_model_comparison"}:
         raise ModelCompatibilityFactsError("Malformed compatibility-facts evidence")
@@ -604,6 +687,33 @@ def load_model_compatibility_facts(
         raise ModelCompatibilityFactsError(
             "Compatibility facts disagree with the run mode"
         )
+    expected_provider = _provider_summary(inputs.get("model_provider"))
+    if facts["candidate"]["provider"] != expected_provider:
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with model-provider provenance"
+        )
+    expected_ids = assessment.get("polymer_residue_ids_by_chain")
+    if not isinstance(expected_ids, Mapping):
+        raise ModelCompatibilityFactsError(
+            "Run model assessment lacks polymer residue inventory"
+        )
+    expected_chains = [
+        {
+            "chain": chain,
+            "residue_count": len(residue_ids),
+            "residue_ids": list(residue_ids),
+        }
+        for chain, residue_ids in expected_ids.items()
+        if isinstance(chain, str) and isinstance(residue_ids, list)
+    ]
+    if (
+        facts["candidate"]["chains"] != expected_chains
+        or facts["candidate"]["polymer_residue_count"]
+        != assessment.get("polymer_residue_count")
+    ):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with candidate chain inventory"
+        )
     frame = report.get("frame")
     frame_name = frame.get("name") if isinstance(frame, Mapping) else None
     if facts["recipient"]["frame"] != frame_name:
@@ -613,6 +723,61 @@ def load_model_compatibility_facts(
     if facts["dimensions"]["chirality"]["mirror_transform_applied"] != inputs.get("mirror"):
         raise ModelCompatibilityFactsError(
             "Compatibility facts disagree with the mirror-transform intent"
+        )
+    symmetry_report = report.get("symmetry")
+    expected_symmetry_class = None
+    expected_mr_copies = None
+    if isinstance(symmetry_report, Mapping):
+        evidence_report = symmetry_report.get("evidence")
+        if isinstance(evidence_report, Mapping):
+            expected_symmetry_class = evidence_report.get("normalized_class")
+        copies = symmetry_report.get("mr_copies")
+        if type(copies) is int:
+            expected_mr_copies = copies
+    if (
+        facts["recipient"]["symmetry_class"] != expected_symmetry_class
+        or facts["recipient"]["mr_copies"] != expected_mr_copies
+    ):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with recipient symmetry/copy-number evidence"
+        )
+    plan = report.get("post_mr_plan")
+    if not isinstance(plan, Mapping):
+        raise ModelCompatibilityFactsError(
+            "Run report lacks PostMR intent required by compatibility facts"
+        )
+    if facts["dimensions"]["terminal_phosphate_chemistry"]["recipient_sites"] != plan.get(
+        "allow_op3_sites", []
+    ):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with terminal-phosphate intent"
+        )
+    plan_phosphate = plan.get("phosphate_intent")
+    expected_phosphate_source = (
+        plan_phosphate.get("source")
+        if isinstance(plan_phosphate, Mapping)
+        else ("legacy" if plan.get("allow_op3_sites") else "none")
+    )
+    if facts["dimensions"]["terminal_phosphate_chemistry"]["recipient_intent_source"] != expected_phosphate_source:
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with terminal-phosphate provenance"
+        )
+    plan_backbone = plan.get("backbone_policy")
+    if not isinstance(plan_backbone, Mapping):
+        raise ModelCompatibilityFactsError(
+            "Run report lacks backbone policy required by compatibility facts"
+        )
+    backbone_facts = facts["dimensions"]["backbone_chemistry"]
+    if (
+        backbone_facts["recipient_default"] != plan_backbone.get("default")
+        or backbone_facts["recipient_site_overrides"] != plan_backbone.get("sites")
+        or backbone_facts["experimental_passthrough_sites"]
+        != plan_backbone.get("experimental_passthrough_sites")
+        or backbone_facts["recipient_allow_unreviewed"]
+        != plan_backbone.get("allow_unreviewed")
+    ):
+        raise ModelCompatibilityFactsError(
+            "Compatibility facts disagree with backbone chemistry intent"
         )
 
     comparison_ref = facts["evidence"]["search_model_comparison"]
