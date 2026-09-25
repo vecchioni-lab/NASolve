@@ -141,6 +141,10 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         sequences=dict(effective["sequences"]), sequence_file=None,
         sequence_reference=sequence_reference,
         sequence_reference_label=sequence_reference_label,
+        sequence_thread=(
+            dict(effective["sequence_thread"])
+            if effective.get("sequence_thread") is not None else None
+        ),
         mutations={site: _ligand(ligand) for site, ligand in effective["mutations"].items()},
         config_source=None,
         allow_op3_sites=tuple(effective.get("allow_op3_sites", [])),
