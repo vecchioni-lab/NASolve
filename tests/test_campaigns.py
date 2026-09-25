@@ -12,6 +12,9 @@ from nasolve.campaigns import CampaignError, campaign_status, plan_campaign
 from .helpers import make_dataset, model_text
 
 
+REFERENCE = Path(__file__).parents[1] / "src/nasolve/data/sequence_references/w-metal-scaffold.json"
+
+
 class CampaignTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -160,6 +163,35 @@ class CampaignTests(unittest.TestCase):
         self.assertEqual(entry["status"], "DISCOVERED")
         self.assertEqual(set(entry["effective_config"]["mutations"]), {"A:8", "A:9"})
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_sequence_reference_is_frozen_as_portable_resource_and_checked(self):
+        dataset = self.dataset(
+            "dataset",
+            "[automr]\npair = C:G\nsequence_reference = family.json\n",
+        )
+        shutil.copyfile(REFERENCE, dataset / "family.json")
+        plan = self.plan()
+        entry = plan["datasets"][0]
+        self.assertEqual(entry["status"], "DISCOVERED")
+        self.assertEqual(entry["effective_config"]["sequence_reference"], "family.json")
+        reference = entry["inputs"]["sequence_reference"]
+        self.assertEqual(reference["anchor"], "campaign")
+        self.assertTrue(reference["relative_path"].startswith("NASolveCampaign/resources/"))
+        frozen = self.root / reference["relative_path"]
+        self.assertEqual(frozen.read_bytes(), REFERENCE.read_bytes())
+
+        # The content-addressed snapshot is the execution authority after
+        # planning; the original dataset-relative file may disappear.
+        (dataset / "family.json").unlink()
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+        frozen.write_bytes(frozen.read_bytes() + b" ")
+        status = campaign_status(self.root)
+        self.assertEqual(status["integrity"], "DRIFT")
+        self.assertTrue(
+            any("sequence_reference" in issue or "Changed frozen file" in issue
+                for issue in status["datasets"][0]["integrity_issues"])
+        )
 
     def test_duplicate_authoritative_reflections_are_reported_without_collapsing(self):
         self.dataset("z", content=b"duplicate")
