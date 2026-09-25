@@ -19,6 +19,7 @@ from nasolve.automr_input import AutoMRInputError, format_intent, read_intent, r
 from nasolve.campaigns import plan_campaign
 from nasolve.postmr import PostMRPreparationError, build_mutation_plan, prepare_postmr
 from nasolve.sequence_family import load_frozen_sequence_family
+from nasolve.model_compatibility import load_model_compatibility_facts
 from nasolve.search_model_comparison import load_search_model_comparison
 from nasolve.sequence_reference import SequenceReferenceError
 from nasolve.run_context import resolve_artifact_path
@@ -203,6 +204,30 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
         self.assertTrue(
             (run / "Model/search_model_comparison.json").is_file()
         )
+        facts = load_model_compatibility_facts(report, run)
+        self.assertEqual(facts["dimensions"]["frame_identity"]["relation"], "SAME")
+        self.assertEqual(facts["dimensions"]["site_set"]["relation"], "SAME")
+        self.assertEqual(
+            facts["dimensions"]["residue_identity"]["relation"],
+            "DIFFERENT",
+        )
+        self.assertEqual(
+            facts["dimensions"]["residue_identity"]["mismatch_count"],
+            2,
+        )
+        self.assertEqual(
+            facts["dimensions"]["construct_family"]["relation"],
+            "UNKNOWN",
+        )
+        self.assertEqual(
+            facts["evidence"]["search_model_comparison"],
+            report["search_model_comparison"],
+        )
+        self.assertIsNone(facts["semantics"]["donor_eligibility"])
+        self.assertFalse(facts["semantics"]["automatic_reuse_authorized"])
+        self.assertTrue(
+            (run / "Model/model_compatibility_facts.json").is_file()
+        )
         self.assertIn("C:8", family.codes)
         self.assertNotIn("C:1", family.codes)
         self.assertFalse((run / "Phaser").exists())
@@ -221,9 +246,18 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
         self.assertNotIn("sequence_family", report["post_mr_plan"])
         self.assertNotIn("sequence_family_preflight", report)
         self.assertNotIn("search_model_comparison", report)
+        facts = load_model_compatibility_facts(report, result.run_directory)
+        self.assertEqual(facts["dimensions"]["site_set"]["relation"], "UNKNOWN")
+        self.assertEqual(
+            facts["dimensions"]["residue_identity"]["relation"],
+            "UNKNOWN",
+        )
         self.assertFalse((result.run_directory / "Model/sequence_reference.json").exists())
         self.assertFalse(
             (result.run_directory / "Model/search_model_comparison.json").exists()
+        )
+        self.assertTrue(
+            (result.run_directory / "Model/model_compatibility_facts.json").is_file()
         )
         self.assertEqual(len(build_mutation_plan(report, model)), 2)
 
