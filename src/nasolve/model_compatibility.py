@@ -189,6 +189,26 @@ def build_model_compatibility_facts(
         raise ModelCompatibilityFactsError(
             "Candidate construct family is not a stable identifier"
         )
+    provider_construct_family = None
+    if isinstance(model_provider, Mapping) and "construct_family" in model_provider:
+        raw_family = model_provider.get("construct_family")
+        if (
+            not isinstance(raw_family, str)
+            or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", raw_family) is None
+        ):
+            raise ModelCompatibilityFactsError(
+                "Model-provider construct family is not a stable identifier"
+            )
+        provider_construct_family = raw_family
+    if candidate_construct_family is None:
+        candidate_construct_family = provider_construct_family
+    elif (
+        provider_construct_family is not None
+        and provider_construct_family != candidate_construct_family
+    ):
+        raise ModelCompatibilityFactsError(
+            "Candidate construct family disagrees with model-provider provenance"
+        )
     if type(mirror_transform_applied) is not bool:
         raise ModelCompatibilityFactsError("Mirror-transform fact must be boolean")
     if any(not isinstance(site, str) for site in terminal_phosphate_sites):
