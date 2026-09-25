@@ -237,6 +237,16 @@ def compare_checkpoint_to_recipient(
         if isinstance(frame, Mapping):
             recipient_frame = frame.get("name")
 
+    if recipient_symmetry is None or recipient_copies is None:
+        symmetry_report = recipient_report.get("symmetry")
+        if isinstance(symmetry_report, Mapping):
+            evidence = symmetry_report.get("evidence")
+            if recipient_symmetry is None and isinstance(evidence, Mapping):
+                recipient_symmetry = evidence.get("normalized_class")
+            copies = symmetry_report.get("mr_copies")
+            if recipient_copies is None and type(copies) is int:
+                recipient_copies = copies
+
     donor_frame = donor_context.get("frame")
     donor_mode = donor_context.get("mode")
     donor_mirror = donor_context.get("mirror_transform_applied")
@@ -247,13 +257,17 @@ def compare_checkpoint_to_recipient(
         else None
     )
 
-    donor_reference_id = (
-        donor_reference.get("id")
+    donor_reference_identity = (
+        {
+            "id": donor_reference.get("id"),
+            "version": donor_reference.get("version"),
+            "content_sha256": donor_reference.get("content_sha256"),
+        }
         if isinstance(donor_reference, Mapping)
         else None
     )
-    recipient_reference_id = (
-        recipient_reference.get("id")
+    recipient_reference_identity = (
+        dict(recipient_reference)
         if isinstance(recipient_reference, Mapping)
         else None
     )
@@ -309,8 +323,8 @@ def compare_checkpoint_to_recipient(
                 ),
                 "recipient_reference": recipient_reference,
                 "relation": _relation(
-                    donor_reference_id,
-                    recipient_reference_id,
+                    donor_reference_identity,
+                    recipient_reference_identity,
                 ),
                 "basis": (
                     "source-run-target-reference-context-only; "
