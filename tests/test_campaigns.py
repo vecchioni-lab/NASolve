@@ -513,6 +513,24 @@ class CampaignTests(unittest.TestCase):
             with self.subTest(index=index), self.assertRaises(CampaignError):
                 campaign_status(self.root)
 
+    def test_legacy_willow_reference_plan_remains_readable(self):
+        self.dataset(
+            "dataset",
+            "[automr]\npair = C:G\nsequence_reference = w-metal-scaffold\n",
+        )
+        self.plan()
+        def make_legacy(value):
+            config = value["datasets"][0]["effective_config"]
+            config.pop("sequence_reference_source", None)
+            config.pop("sequence_thread", None)
+        self.rewrite_state(make_legacy, resign=True)
+        status = campaign_status(self.root)
+        self.assertEqual(status["integrity"], "OK")
+        self.assertEqual(
+            status["datasets"][0]["effective_config"]["sequence_reference"],
+            "w-metal-scaffold",
+        )
+
     def test_forged_sequence_thread_binding_is_rejected_after_resigning(self):
         self.dataset("dataset", "[automr]\npair = C:G\n")
         (self.root / "nasolve-campaign.toml").write_text(
