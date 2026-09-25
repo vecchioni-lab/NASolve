@@ -20,6 +20,7 @@ from .helpers import make_dataset, make_mtz_dump, make_phaser, w_model_text as m
 from .test_autorefine import make_refine, make_refine_run, make_mtz_dump as refine_dump
 from .test_autosol import make_autosol, make_run as make_autosol_run, make_mtz_dump as autosol_dump
 from .test_postmr import make_data_root, postmr_model_text
+from .test_sequence_family_integration import model_text as sequence_family_model_text
 
 
 REFERENCE = Path(__file__).parents[1] / "src/nasolve/data/sequence_references/w-metal-scaffold.json"
@@ -98,6 +99,9 @@ class CampaignStageTests(unittest.TestCase):
 
     def test_sequence_reference_preflight_uses_frozen_campaign_copy(self):
         dataset = make_dataset(self.root / "dataset", include_model=False)
+        # This test exercises the sequence-family correspondence gate, so its
+        # search scaffold must contain the complete reviewed 42-site W inventory.
+        (self.frames / "C_G.pdb").write_text(sequence_family_model_text())
         custom = dataset / "family.json"
         shutil.copyfile(REFERENCE, custom)
         (dataset / "nasolve.txt").write_text(
