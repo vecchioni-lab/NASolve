@@ -558,6 +558,8 @@ class CampaignTests(unittest.TestCase):
             config = value["datasets"][0]["effective_config"]
             config.pop("sequence_reference_source", None)
             config.pop("sequence_thread", None)
+            config.pop("model_selector", None)
+            config.pop("model_provider", None)
         self.rewrite_state(make_legacy, resign=True)
         status = campaign_status(self.root)
         self.assertEqual(status["integrity"], "OK")
