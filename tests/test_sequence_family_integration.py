@@ -18,6 +18,7 @@ from nasolve.automr import prepare_automr
 from nasolve.automr_input import AutoMRInputError, format_intent, read_intent, resolve_automr_input
 from nasolve.campaigns import plan_campaign
 from nasolve.checkpoint_candidate import describe_checkpoint_candidate
+from nasolve.candidate_recipient_comparison import compare_checkpoint_to_recipient
 from nasolve.postmr import PostMRPreparationError, build_mutation_plan, prepare_postmr
 from nasolve.sequence_family import load_frozen_sequence_family
 from nasolve.model_compatibility import load_model_compatibility_facts
@@ -541,6 +542,31 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
         self.assertTrue(candidate["source"]["locally_reusable"])
         self.assertIsNone(candidate["semantics"]["donor_eligibility"])
         self.assertFalse(candidate["semantics"]["automatic_reuse_authorized"])
+
+        with patch(
+            "nasolve.checkpoint_candidate.known_ligand_codes",
+            return_value=VALID,
+        ):
+            cross = compare_checkpoint_to_recipient(
+                result.run_directory,
+                result.run_directory,
+            )
+        self.assertEqual(cross["dimensions"]["site_set"]["relation"], "SAME")
+        self.assertEqual(
+            cross["dimensions"]["residue_identity"]["relation"],
+            "SAME",
+        )
+        self.assertEqual(
+            cross["dimensions"]["target_reference_context"]["relation"],
+            "SAME",
+        )
+        self.assertEqual(
+            cross["dimensions"]["residue_identity"]["mismatch_count"],
+            0,
+        )
+        self.assertIsNone(cross["semantics"]["donor_eligibility"])
+        self.assertIsNone(cross["semantics"]["recipient_compatibility"])
+        self.assertFalse(cross["semantics"]["rescue_authorized"])
 
     def test_forced_original_scaffold_normalizes_sequence_and_terminal_phosphate(self):
         self.configure(standard=True, extra="model = 5W6W_noPO4.pdb\n")
