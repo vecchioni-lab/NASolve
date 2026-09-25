@@ -115,17 +115,25 @@ Chain-labelled sequence is preferred in the durable schema. Existing unlabeled f
 
 ## Sequence comparison policy
 
-Before Phaser, NASolve should compare the selected search model against any applicable frame/reference sequence and record:
+Before Phaser, NASolve compares a selected search model against a complete
+explicit residue target when one is available and records:
 
-- chain inventory and lengths;
-- residue identities;
-- exact mismatch sites;
-- whether mismatches are expected to be corrected after MR; and
-- the final effective dataset target.
+- chain inventory and residue IDs;
+- literal residue identities;
+- missing or unexpected sites;
+- exact identity mismatches and the winning target source layer; and
+- whether a mismatch is expected to be corrected after MR.
 
-A residue-identity mismatch is not automatically a bad MR model. A model may be a valid scaffold with the wrong construct sequence. Chain topology or length incompatibility is a stronger error and may block the run unless the preset explicitly supports that transformation.
+This comparison is now implemented for complete explicit targets and frozen as
+run-local provenance. It deliberately does not infer a complete target from a
+filename, an unlabeled frame sequence, family membership, or a related model.
+A residue-identity mismatch is not automatically a bad MR model. A model may be
+a valid scaffold with the wrong construct sequence. Missing/extra sites remain
+a stronger correspondence error and are not silently aligned or renumbered.
 
-PostMR applies the final effective target only after MR succeeds.
+`expected_postmr_correction` is descriptive target intent, not proof that the
+mutation route is supported. PostMR continues to validate and apply the
+authoritative target only after MR succeeds.
 
 ## Mirroring
 
@@ -301,7 +309,7 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 
 1. Generalize sequence handling into search-model, reference, and dataset-target layers.
 2. Add simple campaign/reference sequence inheritance plus dataset override.
-3. Add search-model sequence comparison and mismatch provenance.
+3. **Implemented for complete explicit targets:** add search-model sequence comparison and mismatch provenance.
 4. Keep `mirror` as an orthogonal inherited/overridable token.
 5. **Implemented:** allow explicit forced search-model selection for validation and unusual datasets.
 6. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
