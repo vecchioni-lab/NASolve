@@ -455,11 +455,16 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
         self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["D:1"])
 
         readyset = make_ready_set(self.root)
+
+        def restraint_builder(model, pairs, output):
+            output.write_text("geometry_restraints.edits {}\n")
+
         with patch("nasolve.sequence_family.known_ligand_codes", return_value=VALID):
             prepared = prepare_postmr(
                 result.run_directory,
                 readyset,
                 coot_executable=self.fake_coot(),
+                narestraints_builder=restraint_builder,
             )
         payload = read_json(prepared.report_path)
         self.assertEqual(payload["sequence_family_audit"]["status"], "PASS")
