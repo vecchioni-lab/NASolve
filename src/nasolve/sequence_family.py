@@ -117,7 +117,9 @@ def _site_codes(plan: Mapping[str, object], frame: str | None) -> dict[str, str]
 
 
 def _model_inventory(
-    model: Path, assessment: ModelAssessment,
+    model: Path,
+    assessment: ModelAssessment,
+    reference: SequenceReference | None = None,
 ) -> dict[str, str]:
     if assessment.duplicate_atom_identities:
         raise SequenceReferenceError(
@@ -144,9 +146,20 @@ def _model_inventory(
             "Sequence-family correspondence requires one coordinate model"
         )
     try:
-        return literal_polymer_identity_inventory(assessment)
+        inventory = literal_polymer_identity_inventory(assessment)
     except ModelAssessmentError as exc:
         raise SequenceReferenceError(str(exc)) from exc
+    if reference is not None:
+        expected = set(reference.sites)
+        observed = set(inventory)
+        if observed != expected:
+            raise SequenceReferenceError(
+                "Model/reference site correspondence differs; missing="
+                + repr(sorted(expected - observed))
+                + "; unexpected="
+                + repr(sorted(observed - expected))
+            )
+    return inventory
 
 
 def prepare_sequence_family(
