@@ -439,6 +439,12 @@ class CampaignTests(unittest.TestCase):
             lambda value: value["datasets"][0]["inputs"]["model"].update(sha256="bad"),
             lambda value: value["datasets"][0]["inputs"]["model"].update(size=-1),
             lambda value: value["datasets"][0]["effective_config"].update(mirror="false"),
+            lambda value: value["datasets"][0]["effective_config"].update(
+                sequence_reference="w-metal-scaffold"
+            ),
+            lambda value: value["datasets"][0]["inputs"].update(
+                sequence_reference=value["datasets"][0]["inputs"]["model"]
+            ),
             lambda value: value["datasets"][0].update(duplicate_of="missing"),
             lambda value: value["datasets"][0].pop("duplicate_of"),
             lambda value: value["preset"].update(config_sha256="0" * 64),
