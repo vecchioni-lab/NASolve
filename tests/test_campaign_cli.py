@@ -54,6 +54,25 @@ class CampaignCLITests(unittest.TestCase):
             self.assertEqual((dataset / "nasolve.txt").read_bytes(), intent)
             self.assertFalse((dataset / "AutoMR").exists())
 
+    def test_status_prints_explicit_sequence_reference_selector(self):
+        with tempfile.TemporaryDirectory() as directory:
+            campaign, frames, dataset = self.fixture(Path(directory).resolve())
+            text = (dataset / "nasolve.txt").read_text()
+            (dataset / "nasolve.txt").write_text(
+                text.replace(
+                    "pair = D:OHU\n",
+                    "pair = D:OHU\nsequence_reference = w-metal-scaffold\n",
+                )
+            )
+            code, output, error = self.invoke([
+                "campaign", "plan", str(campaign), "--frames-dir", str(frames),
+            ])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Sequence reference: w-metal-scaffold", output)
+            code, output, error = self.invoke(["campaign", "status", str(campaign)])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Sequence reference: w-metal-scaffold", output)
+
     def test_blocked_dataset_is_visible_and_returns_review_exit_code(self):
         with tempfile.TemporaryDirectory() as directory:
             campaign, frames, _ = self.fixture(Path(directory).resolve())
