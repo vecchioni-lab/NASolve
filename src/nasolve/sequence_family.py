@@ -280,7 +280,10 @@ def load_frozen_sequence_family(
         "thread_sequences", "dataset_sequences",
         "thread_site_codes", "dataset_site_codes",
     }
-    if not isinstance(overlays, Mapping) or set(overlays) not in {frozenset(legacy_fields), frozenset(thread_fields)}:
+    overlay_fields = set(overlays) if isinstance(overlays, Mapping) else set()
+    if not isinstance(overlays, Mapping) or (
+        overlay_fields != legacy_fields and overlay_fields != thread_fields
+    ):
         raise SequenceReferenceError("Malformed frozen sequence-family overlays")
     if overlays["dataset_sequences"] != plan.get("sequences", {}):
         raise SequenceReferenceError("Frozen sequence-family sequence overlays disagree with the plan")
