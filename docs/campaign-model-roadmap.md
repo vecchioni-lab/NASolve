@@ -53,10 +53,11 @@ later extensions, not prerequisites for the present sequence-family work.
 
 [Sequence-family target assembly](sequence-family-targets.md) records the
 compiler, explicit opt-in standalone AutoMR/PostMR integration, live validation,
-and dataset-level campaign reference snapshots. Campaign planning freezes exact
-selected reference bytes and campaign preflight consumes only that snapshot.
-General campaign-family orchestration and thread/group binding remain separate
-work; family membership still does not imply search-model compatibility.
+dataset-level campaign reference snapshots, and explicit named sequence-thread
+binding from root `nasolve-campaign.toml`. Thread sequence/site overlays are
+frozen into dataset target intent with dataset overrides retaining higher
+precedence. This binding still does not establish search-model compatibility or
+cross-dataset model reuse; broader family/model orchestration remains separate.
 
 ## Three scientific state layers
 
