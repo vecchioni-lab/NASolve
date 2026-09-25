@@ -664,28 +664,33 @@ def _validate_plan(payload: Any) -> None:
                 raise CampaignError(
                     f"Malformed campaign state: inconsistent {name}.sequence_thread"
                 )
-            reference_source = config.get("sequence_reference_source")
-            if reference_source not in {None, "dataset", "thread"}:
-                raise CampaignError(
-                    f"Malformed campaign state: invalid {name}.sequence_reference_source"
-                )
-            if reference_source == "thread":
-                if (
-                    expected_thread is None
-                    or config.get("sequence_reference")
-                    != payload["sequence_threads"]["definitions"][expected_thread["id"]]["sequence_reference"]
-                ):
+            if "sequence_reference_source" in config:
+                reference_source = config.get("sequence_reference_source")
+                if reference_source not in {None, "dataset", "thread"}:
                     raise CampaignError(
-                        f"Malformed campaign state: inconsistent {name} thread reference"
+                        f"Malformed campaign state: invalid {name}.sequence_reference_source"
                     )
-            elif reference_source == "dataset":
-                if config.get("sequence_reference") is None:
+                if reference_source == "thread":
+                    if (
+                        expected_thread is None
+                        or config.get("sequence_reference")
+                        != payload["sequence_threads"]["definitions"][expected_thread["id"]]["sequence_reference"]
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: inconsistent {name} thread reference"
+                        )
+                elif reference_source == "dataset":
+                    if config.get("sequence_reference") is None:
+                        raise CampaignError(
+                            f"Malformed campaign state: dataset reference source has no selector"
+                        )
+                elif config.get("sequence_reference") is not None:
                     raise CampaignError(
-                        f"Malformed campaign state: dataset reference source has no selector"
+                        f"Malformed campaign state: selected reference has no provenance source"
                     )
-            elif config.get("sequence_reference") is not None:
+            elif expected_thread is not None:
                 raise CampaignError(
-                    f"Malformed campaign state: selected reference has no provenance source"
+                    f"Malformed campaign state: thread-bound {name} lacks reference provenance"
                 )
             for field, role in (("model", "model"), ("config_source", "config"),
                                 ("frame_sequence", "frame_sequence")):
@@ -706,8 +711,7 @@ def _validate_plan(payload: Any) -> None:
             _required_fields(config, {"mode", "frame", "pair", "mirror", "allow_p1_standard",
                                       "model", "model_name", "model_source", "model_pair",
                                       "exact_pair_model", "catalogue_warnings", "config_source",
-                                      "frame_sequence", "pair_ligands", "sequences", "mutations",
-                                      "sequence_reference_source", "sequence_thread"},
+                                      "frame_sequence", "pair_ligands", "sequences", "mutations"},
                              f"{name}.effective_config")
             if config["mode"] != "standard" or config["frame"] != "W" or not config["pair"]:
                 raise CampaignError("Malformed campaign state: invalid discovered W configuration")
