@@ -457,16 +457,22 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
             prepare_postmr(result.run_directory, readyset, coot_executable=self.fake_coot())
         self.assertEqual(read_json(result.report_path)["status"], "MR_SUCCESS")
 
-    def test_campaign_does_not_silently_drop_selected_reference(self):
+    def test_campaign_snapshots_selected_reference_without_silent_drop(self):
         self.configure(standard=True)
         frames = self.root / "frames/5W6W"
         frames.mkdir(parents=True)
         (frames / "C_G.pdb").write_text(model_text(), encoding="utf-8")
         result = plan_campaign(self.root, datasets=("dataset",), frames_directory=frames.parent)
         entry = result["datasets"][0]
-        self.assertEqual(entry["status"], "BLOCKED")
-        self.assertIn("standalone AutoMR/PostMR only", entry["diagnostic"])
+        self.assertEqual(entry["status"], "DISCOVERED")
         self.assertEqual(entry["effective_config"]["sequence_reference"], "w-metal-scaffold")
+        frozen = entry["inputs"]["sequence_reference"]
+        self.assertEqual(frozen["anchor"], "campaign")
+        self.assertTrue(frozen["relative_path"].startswith("NASolveCampaign/resources/"))
+        self.assertEqual(
+            (self.root / frozen["relative_path"]).read_bytes(),
+            REFERENCE.read_bytes(),
+        )
         self.assertFalse((self.dataset / "AutoMR").exists())
 
     def test_missing_contract_cannot_turn_an_opted_in_run_into_legacy(self):
