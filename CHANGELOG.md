@@ -98,6 +98,13 @@ entries are reconstructed from repository history.
   available. Checkpoint models are compared afresh with the frozen target.
   Local checkpoint reusability is recorded separately from cross-dataset donor
   eligibility, which remains null; no model is selected, exported or reused.
+- Added a read-only donor-checkpoint versus recipient-run comparison layer.
+  It re-verifies Fern donor provenance, consumes only the recipient run's frozen
+  AutoMR target/context, compares literal donor residue inventory to the
+  recipient target, and records mode/frame/reference/mirror/symmetry context as
+  separate descriptive dimensions. Scores, ranking, donor eligibility,
+  recipient compatibility, rescue authorization and automatic reuse remain
+  explicitly unset/false.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 
