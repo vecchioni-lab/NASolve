@@ -756,6 +756,14 @@ Absolute D/L chirality is currently unknown even when `mirror` is false;
 NASolve records only whether it applied the explicit mirror transform. See
 [model compatibility facts](docs/model-compatibility-facts.md).
 
+For future Campaign Doctor work, NASolve can also compare a verified Fern
+checkpoint candidate directly against another AutoMR run's frozen recipient
+intent. This cross-dataset comparison is read-only and descriptive: it reports
+source mode/frame context, target-reference context, literal donor-model versus
+recipient-target site/identity differences, relative mirror-transform context,
+and recipient symmetry/copy-number facts. It does not score, rank, select,
+authorize, export, or retry any donor model.
+
 ## Preparing an accepted MR solution
 
 After a run reaches `MR_SUCCESS`, prepare it for refinement with:
