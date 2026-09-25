@@ -331,26 +331,26 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 
 ### Multi-candidate / model-provider stage
 
-7. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
-8. Add provider provenance and sequence-to-model hooks; AlphaFold is a later provider, not a special campaign architecture.
-9. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
+8. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
+9. Add provider provenance and sequence-to-model hooks; AlphaFold is a later provider, not a special campaign architecture.
+10. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
 
 ### Campaign Doctor stage
 
-10. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
-11. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
-12. Keep failed MR branches and every rescue attempt immutable and inspectable.
+11. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
+12. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
+13. Keep failed MR branches and every rescue attempt immutable and inspectable.
 
 ### Upstream preparation / processing stage
 
-13. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
-14. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
-15. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
-16. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
+14. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
+15. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
+16. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
+17. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
 
 ### Later validation and curation
 
-17. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+18. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
 
 ## Immediate validation fixture
 
