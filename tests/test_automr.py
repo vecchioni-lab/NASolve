@@ -164,6 +164,7 @@ class AutoMRPreflightTests(unittest.TestCase):
                 "frame = W\n"
                 "pair = A:T\n"
                 "model = 5W6W_noPO4.pdb\n"
+                "model_family = w-metal-scaffold\n"
                 "sequence_reference = w-metal-scaffold\n"
             )
 
@@ -182,6 +183,7 @@ class AutoMRPreflightTests(unittest.TestCase):
                 "frame": "W",
                 "location": "frame-catalogue",
                 "selector": "5W6W_noPO4.pdb",
+                "construct_family": "w-metal-scaffold",
             })
             self.assertEqual(report["inputs"]["model_selector"], "5W6W_noPO4.pdb")
             self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["D:1"])
@@ -207,10 +209,15 @@ class AutoMRPreflightTests(unittest.TestCase):
                 (result.run_directory / "Model/seq_base.txt").read_text(),
                 "reviewed-frame-sequence\n",
             )
-            self.assertIn(
-                "model = 5W6W_noPO4.pdb",
-                (result.run_directory / "nasolve.input.txt").read_text(),
-            )
+            snapshot = (result.run_directory / "nasolve.input.txt").read_text()
+            self.assertIn("model = 5W6W_noPO4.pdb", snapshot)
+            self.assertIn("model_family = w-metal-scaffold", snapshot)
+            facts = load_model_compatibility_facts(report, result.run_directory)
+            family = facts["dimensions"]["construct_family"]
+            self.assertEqual(family["candidate_declared_family"], "w-metal-scaffold")
+            self.assertEqual(family["recipient_reference"]["id"], "w-metal-scaffold")
+            self.assertEqual(family["relation"], "SAME")
+            self.assertIsNone(facts["semantics"]["donor_eligibility"])
 
     def test_forced_standard_model_missing_required_sites_fails_before_run(self):
         with tempfile.TemporaryDirectory() as directory:
