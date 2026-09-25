@@ -140,6 +140,173 @@ def compare_search_model_to_target(
     }
 
 
+def _validated_comparison_record(value: object) -> dict[str, object]:
+    if not isinstance(value, dict):
+        raise SearchModelComparisonError(
+            "Frozen search-model comparison is not an object"
+        )
+    required = {
+        "schema_version", "kind", "scope", "status", "model", "target",
+        "correspondence", "identity", "semantics",
+    }
+    if set(value) != required:
+        raise SearchModelComparisonError(
+            "Malformed frozen search-model comparison record"
+        )
+    if (
+        type(value["schema_version"]) is not int
+        or value["schema_version"] != 1
+        or value["kind"] != "search-model-target-comparison"
+        or value["scope"] != "complete-residue-target"
+        or value["status"] not in {
+            "EXACT", "IDENTITY_DIFFERENCES", "SITE_CORRESPONDENCE_DIFFERENCE",
+        }
+    ):
+        raise SearchModelComparisonError(
+            "Malformed frozen search-model comparison identity"
+        )
+    model = value["model"]
+    target = value["target"]
+    correspondence = value["correspondence"]
+    identity = value["identity"]
+    semantics = value["semantics"]
+    if (
+        not isinstance(model, dict)
+        or set(model) != {
+            "sha256", "polymer_residue_count", "chain_count", "chains",
+        }
+        or not isinstance(model["sha256"], str)
+        or re.fullmatch(r"[0-9a-f]{64}", model["sha256"]) is None
+        or type(model["polymer_residue_count"]) is not int
+        or model["polymer_residue_count"] < 0
+        or type(model["chain_count"]) is not int
+        or model["chain_count"] < 0
+        or not isinstance(model["chains"], list)
+        or len(model["chains"]) != model["chain_count"]
+    ):
+        raise SearchModelComparisonError(
+            "Malformed search-model comparison model inventory"
+        )
+    for chain in model["chains"]:
+        if (
+            not isinstance(chain, dict)
+            or set(chain) != {"chain", "residue_count", "residue_ids"}
+            or not isinstance(chain["chain"], str)
+            or not chain["chain"]
+            or type(chain["residue_count"]) is not int
+            or chain["residue_count"] < 0
+            or not isinstance(chain["residue_ids"], list)
+            or len(chain["residue_ids"]) != chain["residue_count"]
+            or not all(isinstance(item, str) and item for item in chain["residue_ids"])
+        ):
+            raise SearchModelComparisonError(
+                "Malformed search-model comparison chain inventory"
+            )
+    if (
+        not isinstance(target, dict)
+        or set(target) != {"kind", "reference", "site_count"}
+        or target["kind"] != "sequence-family-target"
+        or type(target["site_count"]) is not int
+        or target["site_count"] < 0
+    ):
+        raise SearchModelComparisonError(
+            "Malformed search-model comparison target inventory"
+        )
+    if (
+        not isinstance(correspondence, dict)
+        or set(correspondence) != {
+            "exact_site_set", "missing_sites", "unexpected_sites",
+        }
+        or type(correspondence["exact_site_set"]) is not bool
+        or not isinstance(correspondence["missing_sites"], list)
+        or not isinstance(correspondence["unexpected_sites"], list)
+        or not all(
+            isinstance(site, str)
+            for site in (
+                correspondence["missing_sites"]
+                + correspondence["unexpected_sites"]
+            )
+        )
+    ):
+        raise SearchModelComparisonError(
+            "Malformed search-model comparison correspondence"
+        )
+    if (
+        not isinstance(identity, dict)
+        or set(identity) != {
+            "compared_site_count", "match_count", "mismatch_count", "mismatches",
+        }
+        or any(
+            type(identity[field]) is not int or identity[field] < 0
+            for field in ("compared_site_count", "match_count", "mismatch_count")
+        )
+        or not isinstance(identity["mismatches"], list)
+        or len(identity["mismatches"]) != identity["mismatch_count"]
+        or identity["match_count"] + identity["mismatch_count"]
+        != identity["compared_site_count"]
+    ):
+        raise SearchModelComparisonError(
+            "Malformed search-model comparison identity counts"
+        )
+    for mismatch in identity["mismatches"]:
+        if (
+            not isinstance(mismatch, dict)
+            or set(mismatch) != {
+                "site", "model_residue_code", "target_residue_code",
+                "target_source", "expected_postmr_correction",
+                "route_validated",
+            }
+            or not all(
+                isinstance(mismatch[field], str) and mismatch[field]
+                for field in (
+                    "site", "model_residue_code", "target_residue_code",
+                    "target_source",
+                )
+            )
+            or mismatch["expected_postmr_correction"] is not True
+            or mismatch["route_validated"] is not False
+        ):
+            raise SearchModelComparisonError(
+                "Malformed search-model comparison mismatch"
+            )
+    if (
+        not isinstance(semantics, dict)
+        or set(semantics) != {
+            "descriptive_only", "expected_postmr_correction",
+        }
+        or semantics["descriptive_only"] is not True
+        or not isinstance(semantics["expected_postmr_correction"], str)
+    ):
+        raise SearchModelComparisonError(
+            "Malformed search-model comparison semantics"
+        )
+    if correspondence["exact_site_set"] != (
+        not correspondence["missing_sites"]
+        and not correspondence["unexpected_sites"]
+    ):
+        raise SearchModelComparisonError(
+            "Inconsistent search-model correspondence summary"
+        )
+    expected_status = (
+        "SITE_CORRESPONDENCE_DIFFERENCE"
+        if not correspondence["exact_site_set"]
+        else "IDENTITY_DIFFERENCES"
+        if identity["mismatch_count"]
+        else "EXACT"
+    )
+    if value["status"] != expected_status:
+        raise SearchModelComparisonError(
+            "Inconsistent search-model comparison status"
+        )
+    if target["site_count"] != (
+        identity["compared_site_count"] + len(correspondence["missing_sites"])
+    ):
+        raise SearchModelComparisonError(
+            "Inconsistent search-model comparison target counts"
+        )
+    return value
+
+
 def freeze_search_model_comparison(
     comparison: Mapping[str, object],
     run: Path,
@@ -214,9 +381,7 @@ def load_search_model_comparison(
         raise SearchModelComparisonError(
             f"Could not decode frozen search-model comparison: {exc}"
         ) from exc
-    if not isinstance(value, dict):
-        raise SearchModelComparisonError("Frozen search-model comparison is not an object")
-    return value
+    return _validated_comparison_record(value)
 
 
 __all__ = [
