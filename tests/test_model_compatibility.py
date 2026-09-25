@@ -105,7 +105,9 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
                     "location": "dataset",
                     "selector": "alternate.pdb",
                     "frame": "W",
+                    "construct_family": "family",
                 },
+                candidate_construct_family="family",
                 mode="standard",
                 recipient_frame="W",
                 mirror_transform_applied=True,
@@ -139,7 +141,11 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
             self.assertEqual(dimensions["site_set"]["relation"], "SAME")
             self.assertEqual(dimensions["residue_identity"]["relation"], "DIFFERENT")
             self.assertEqual(dimensions["residue_identity"]["mismatch_count"], 1)
-            self.assertEqual(dimensions["construct_family"]["relation"], "UNKNOWN")
+            self.assertEqual(dimensions["construct_family"]["relation"], "SAME")
+            self.assertEqual(
+                dimensions["construct_family"]["candidate_declared_family"],
+                "family",
+            )
             self.assertEqual(
                 dimensions["construct_family"]["recipient_reference"]["id"],
                 "family",
@@ -178,7 +184,9 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
                     "selection": "user-forced",
                     "location": "dataset",
                     "selector": "model.pdb",
+                    "construct_family": "family",
                 },
+                candidate_construct_family="family",
                 mode="nonstandard",
                 recipient_frame=None,
                 mirror_transform_applied=False,
@@ -208,6 +216,52 @@ class ModelCompatibilityFactsTests(unittest.TestCase):
             self.assertIsNone(
                 dimensions["symmetry_and_copy_number"]["recipient_symmetry_class"]
             )
+
+    def test_declared_family_difference_is_descriptive_only(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(root, "model.pdb", [("A", 1, "DA")])
+            comparison = compare_search_model_to_target(
+                model,
+                target(("A:1", "DA", "family_reference")),
+            )
+            facts = build_model_compatibility_facts(
+                source_assessment=model,
+                effective_assessment=model,
+                model_provider={
+                    "kind": "explicit-nonstandard-model",
+                    "selection": "user-forced",
+                    "location": "dataset",
+                    "selector": "model.pdb",
+                    "construct_family": "other-family",
+                },
+                candidate_construct_family="other-family",
+                mode="nonstandard",
+                recipient_frame=None,
+                mirror_transform_applied=False,
+                comparison=comparison,
+                comparison_artifact={
+                    "schema_version": 1,
+                    "kind": "frozen-search-model-comparison",
+                    "artifact": {
+                        "anchor": "run",
+                        "relative_path": "Model/search_model_comparison.json",
+                        "sha256": "c" * 64,
+                        "size": 100,
+                    },
+                },
+                terminal_phosphate_sites=(),
+                phosphate_intent=None,
+                backbone_policy=make_backbone_policy({}),
+                symmetry=None,
+            )
+            family = facts["dimensions"]["construct_family"]
+            self.assertEqual(family["candidate_declared_family"], "other-family")
+            self.assertEqual(family["recipient_reference"]["id"], "family")
+            self.assertEqual(family["relation"], "DIFFERENT")
+            self.assertIsNone(facts["semantics"]["overall_compatibility"])
+            self.assertIsNone(facts["semantics"]["donor_eligibility"])
+            self.assertFalse(facts["semantics"]["automatic_reuse_authorized"])
 
     def test_frozen_facts_reject_checksum_drift_and_resigned_score(self):
         with tempfile.TemporaryDirectory() as directory:
