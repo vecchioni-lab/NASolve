@@ -176,10 +176,6 @@ def describe_checkpoint_candidate(
             f"Checkpoint {record.checkpoint_id} has no verified model"
         )
     model = record.model
-    if file_sha256(model) != file_sha256(model):
-        # Defensive placeholder against accidental replacement between the two
-        # immediate reads; the stable artifact check below repeats the hash once.
-        raise CheckpointCandidateError("Checkpoint model changed while being described")
 
     model_value = item.get("model")
     verified_model, model_artifact = _verified_artifact(
