@@ -15,7 +15,7 @@ import os
 import re
 import stat
 import tempfile
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
@@ -25,6 +25,9 @@ from .automr_input import (
     normalize_frame, read_intent, resolve_automr_input,
 )
 from .presets import PresetError, ProjectPreset, load_preset
+from .campaign_threads import (
+    SequenceThreadError, membership_by_dataset, parse_sequence_threads,
+)
 
 
 class CampaignError(RuntimeError):
@@ -136,6 +139,30 @@ def _resource_bytes(path: Path) -> bytes:
         raise CampaignError(f"Resource changed while being read: {path.name}")
     return data
 
+def _freeze_sequence_threads(
+    root: Path, staging: Path,
+) -> tuple[dict[str, Any] | None, dict[str, dict[str, object]]]:
+    """Freeze optional root thread declarations and return explicit membership."""
+    source = root / "nasolve-campaign.toml"
+    if not source.exists() and not source.is_symlink():
+        return None, {}
+    if source.is_symlink() or not source.is_file():
+        raise CampaignError("nasolve-campaign.toml must be a regular file in the campaign root")
+    data = _resource_bytes(source)
+    try:
+        definitions = parse_sequence_threads(data)
+    except SequenceThreadError as exc:
+        raise CampaignError(str(exc)) from exc
+    for thread in definitions.values():
+        for dataset in thread["datasets"]:
+            _dataset_name(dataset)
+    frozen = {
+        "source": _resource_ref(staging, data),
+        "definitions": definitions,
+    }
+    return frozen, membership_by_dataset(definitions)
+
+
 
 def _is_candidate_name(name: str) -> bool:
     path = Path(name)
@@ -214,7 +241,8 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
 
 
 def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Path,
-                  frames_directory: Path | None) -> dict[str, Any]:
+                  frames_directory: Path | None,
+                  sequence_thread: dict[str, object] | None = None) -> dict[str, Any]:
     entry: dict[str, Any] = {
         "id": dataset.name, "relative_path": dataset.name,
         "status": "BLOCKED", "diagnostic": "", "effective_config": None,
@@ -232,12 +260,23 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             path = getattr(files, role)
             entry["inputs"][role] = _input_ref(root, dataset, path)
         intent = _merged_intent(dataset, preset)
+        dataset_sequence_reference = intent.sequence_reference
+        if sequence_thread is not None and intent.sequence_reference is None:
+            intent.sequence_reference = sequence_thread["sequence_reference"]
         entry["effective_config"] = _intent_config(intent)
         if (not intent.mode or intent.mode.strip().casefold() != "standard"
                 or not intent.frame or normalize_frame(intent.frame).name != "W"):
             raise AutoMRInputError("Campaign schema 1 supports only standard W/5W6W datasets")
         located_frames = locate_frames_directory(frames_directory, environ={})
         resolved = resolve_automr_input(dataset, intent, frames_dir=located_frames, environ={}, recipe=preset)
+        applied_thread = None
+        if sequence_thread is not None:
+            applied_thread = {
+                "id": sequence_thread["id"],
+                "sequences": dict(sequence_thread["sequences"]),
+                "site_codes": dict(sequence_thread["site_codes"]),
+            }
+            resolved = replace(resolved, sequence_thread=applied_thread)
         _contained(located_frames, resolved.model, "Selected catalogue model")
         model_data = _resource_bytes(resolved.model)
         if not model_data:
@@ -271,6 +310,11 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "config_source": entry["inputs"].get("config"),
             "frame_sequence": entry["inputs"].get("frame_sequence"),
             "sequence_reference": resolved.sequence_reference_label,
+            "sequence_reference_source": (
+                "dataset" if dataset_sequence_reference is not None
+                else "thread" if sequence_thread is not None else None
+            ),
+            "sequence_thread": applied_thread,
             "mutations": {site: asdict(ligand) for site, ligand in resolved.mutations.items()},
         })
         # Config parsing and discovery must describe the exact bytes frozen above.
@@ -391,12 +435,19 @@ def plan_campaign(root: Path, *, preset: str | Path = "5w6w",
         with tempfile.TemporaryDirectory(prefix=".nasolve-campaign-", dir=campaign) as temporary:
             staging = Path(temporary)
             frozen_preset = _freeze_preset(project, staging)
-            entries = [_plan_dataset(campaign, path, project, staging, frames_directory)
-                       for path in selected]
+            frozen_threads, membership = _freeze_sequence_threads(campaign, staging)
+            entries = [
+                _plan_dataset(
+                    campaign, path, project, staging, frames_directory,
+                    membership.get(path.name),
+                )
+                for path in selected
+            ]
             _duplicates(entries)
             payload = {
                 "schema_version": 1, "state": "PLANNED", "validation_scope": _SCOPE,
                 "preset": frozen_preset, "datasets": entries, "counts": _counts(entries),
+                **({"sequence_threads": frozen_threads} if frozen_threads is not None else {}),
             }
             payload["fingerprint"] = _digest(_canonical(payload))
             _validate_plan(payload)
@@ -407,7 +458,7 @@ def plan_campaign(root: Path, *, preset: str | Path = "5w6w",
                 os.fsync(handle.fileno())
             plan_path = _publish(campaign, staging)
         return {**payload, "plan_path": str(plan_path)}
-    except (PresetError, OSError, UnicodeError, RuntimeError, ValueError) as exc:
+    except (PresetError, SequenceThreadError, OSError, UnicodeError, RuntimeError, ValueError) as exc:
         if isinstance(exc, CampaignError):
             raise
         raise CampaignError(f"Could not plan campaign: {exc}") from exc
