@@ -91,6 +91,10 @@ def _post_mr_plan(resolved: ResolvedAutoMRInput) -> dict[str, object]:
         ),
         **({"phosphate_intent": resolved.phosphate_intent} if resolved.phosphate_intent is not None else {}),
         "application_order": ["sequences", "standard_pair", "explicit_mutations"],
+        **(
+            {"sequence_thread": dict(resolved.sequence_thread)}
+            if resolved.sequence_thread is not None else {}
+        ),
         "sequences": dict(resolved.sequences),
         "standard_pair": pair,
         "mutations": {
@@ -106,18 +110,36 @@ def _validate_edit_targets(
     assessment: ModelAssessment,
 ) -> None:
     """Require sequence lengths and explicit mutation sites to match the model."""
-    for chain, sequence in resolved.sequences.items():
-        model_length = assessment.polymer_residues_by_chain.get(chain)
-        if model_length is None:
-            available = ", ".join(assessment.chains)
-            raise AutoMRInputError(
-                f"Sequence chain {chain!r} is absent from the MR model; available chains: {available}"
-            )
-        if len(sequence) != model_length:
-            raise AutoMRInputError(
-                f"Sequence for chain {chain} has length {len(sequence)}, "
-                f"but the MR model contains {model_length} polymer residues"
-            )
+    thread_sequences = (
+        resolved.sequence_thread.get("sequences", {})
+        if resolved.sequence_thread is not None else {}
+    )
+    for source, sequences in (("Thread sequence", thread_sequences), ("Sequence", resolved.sequences)):
+        if not isinstance(sequences, Mapping):
+            raise AutoMRInputError(f"{source} declarations are malformed")
+        for chain, sequence in sequences.items():
+            model_length = assessment.polymer_residues_by_chain.get(chain)
+            if model_length is None:
+                available = ", ".join(assessment.chains)
+                raise AutoMRInputError(
+                    f"{source} chain {chain!r} is absent from the MR model; available chains: {available}"
+                )
+            if not isinstance(sequence, str) or len(sequence) != model_length:
+                raise AutoMRInputError(
+                    f"{source} for chain {chain} has length "
+                    f"{len(sequence) if isinstance(sequence, str) else 'invalid'}, "
+                    f"but the MR model contains {model_length} polymer residues"
+                )
+    thread_sites = (
+        resolved.sequence_thread.get("site_codes", {})
+        if resolved.sequence_thread is not None else {}
+    )
+    if not isinstance(thread_sites, Mapping):
+        raise AutoMRInputError("Thread site-chemistry declarations are malformed")
+    for site in thread_sites:
+        chain, residue = (part.strip() for part in site.split(":", 1))
+        if residue not in assessment.polymer_residue_ids_by_chain.get(chain, []):
+            raise AutoMRInputError(f"Thread chemistry target {site} does not exist in the MR model")
     for site in resolved.mutations:
         chain, residue = (part.strip() for part in site.split(":", 1))
         if residue not in assessment.polymer_residue_ids_by_chain.get(chain, []):
@@ -372,7 +394,8 @@ def prepare_automr(
     if family_seed is not None:
         post_mr_plan["sequence_family"] = freeze_sequence_family(family_seed, run_dir)
         post_mr_plan["application_order"] = [
-            "sequence_family_reference", "sequences", "standard_pair", "explicit_mutations",
+            "sequence_family_reference", "thread_sequences", "sequences",
+            "thread_site_chemistry", "standard_pair", "explicit_mutations",
         ]
     _write_json(model_dir / "assessment.json", assessment.to_dict())
     (run_dir / "nasolve.input.txt").write_text(effective_text, encoding="utf-8")
