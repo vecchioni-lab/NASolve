@@ -193,6 +193,64 @@ class CampaignTests(unittest.TestCase):
                 for issue in status["datasets"][0]["integrity_issues"])
         )
 
+    def test_sequence_thread_binding_is_frozen_and_dataset_reference_can_override(self):
+        first = self.dataset("A", "[automr]\npair = C:G\n")
+        second = self.dataset(
+            "B",
+            "[automr]\npair = D:T\nsequence_reference = w-metal-scaffold\n"
+            "[sequences]\nB = GGGGGGG\n",
+        )
+        declaration = (
+            'schema_version = 1\n\n'
+            '[sequence_threads.w-family]\n'
+            'datasets = ["B", "A"]\n'
+            'sequence_reference = "w-metal-scaffold"\n\n'
+            '[sequence_threads.w-family.sequences]\n'
+            'B = "CCCCCCC"\n\n'
+            '[sequence_threads.w-family.site_codes]\n'
+            '"A:13" = "1AP"\n'
+        )
+        (self.root / "nasolve-campaign.toml").write_text(declaration)
+
+        plan = self.plan()
+        entries = {entry["id"]: entry for entry in plan["datasets"]}
+        self.assertEqual({entry["status"] for entry in entries.values()}, {"DISCOVERED"})
+
+        frozen_threads = plan["sequence_threads"]
+        self.assertEqual(
+            (self.root / frozen_threads["source"]["relative_path"]).read_text(),
+            declaration,
+        )
+        self.assertEqual(
+            frozen_threads["definitions"]["w-family"]["datasets"], ["A", "B"]
+        )
+
+        a = entries["A"]["effective_config"]
+        b = entries["B"]["effective_config"]
+        expected_applied = {
+            "id": "w-family",
+            "sequences": {"B": "CCCCCCC"},
+            "site_codes": {"A:13": "1AP"},
+        }
+        self.assertEqual(a["sequence_thread"], expected_applied)
+        self.assertEqual(b["sequence_thread"], expected_applied)
+        self.assertEqual(a["sequence_reference"], "w-metal-scaffold")
+        self.assertEqual(a["sequence_reference_source"], "thread")
+        self.assertEqual(b["sequence_reference"], "w-metal-scaffold")
+        self.assertEqual(b["sequence_reference_source"], "dataset")
+        self.assertEqual(b["sequences"], {"B": "GGGGGGG"})
+
+        # Thread membership affects target intent only; ordinary model selection
+        # remains driven by each dataset's existing pair/catalogue rules.
+        self.assertEqual(a["model_name"], "C_G.pdb")
+        self.assertEqual(b["model_name"], "C_G.pdb")
+
+        # The original campaign declaration is no longer an execution dependency.
+        (self.root / "nasolve-campaign.toml").unlink()
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+        self.assertTrue(first.is_dir())
+        self.assertTrue(second.is_dir())
+
     def test_duplicate_authoritative_reflections_are_reported_without_collapsing(self):
         self.dataset("z", content=b"duplicate")
         self.dataset("a", content=b"duplicate")
@@ -448,6 +506,51 @@ class CampaignTests(unittest.TestCase):
             lambda value: value["datasets"][0].update(duplicate_of="missing"),
             lambda value: value["datasets"][0].pop("duplicate_of"),
             lambda value: value["preset"].update(config_sha256="0" * 64),
+        ]
+        for index, mutate in enumerate(mutations):
+            self.state_path().write_bytes(original)
+            self.rewrite_state(mutate, resign=True)
+            with self.subTest(index=index), self.assertRaises(CampaignError):
+                campaign_status(self.root)
+
+    def test_legacy_willow_reference_plan_remains_readable(self):
+        self.dataset(
+            "dataset",
+            "[automr]\npair = C:G\nsequence_reference = w-metal-scaffold\n",
+        )
+        self.plan()
+        def make_legacy(value):
+            config = value["datasets"][0]["effective_config"]
+            config.pop("sequence_reference_source", None)
+            config.pop("sequence_thread", None)
+        self.rewrite_state(make_legacy, resign=True)
+        status = campaign_status(self.root)
+        self.assertEqual(status["integrity"], "OK")
+        self.assertEqual(
+            status["datasets"][0]["effective_config"]["sequence_reference"],
+            "w-metal-scaffold",
+        )
+
+    def test_forged_sequence_thread_binding_is_rejected_after_resigning(self):
+        self.dataset("dataset", "[automr]\npair = C:G\n")
+        (self.root / "nasolve-campaign.toml").write_text(
+            'schema_version = 1\n'
+            '[sequence_threads.w-family]\n'
+            'datasets = ["dataset"]\n'
+            'sequence_reference = "w-metal-scaffold"\n'
+            '[sequence_threads.w-family.site_codes]\n'
+            '"A:13" = "1AP"\n'
+        )
+        self.plan()
+        original = self.state_path().read_bytes()
+        mutations = [
+            lambda value: value["sequence_threads"]["definitions"]["w-family"][
+                "site_codes"
+            ].update({"A:13": "DG"}),
+            lambda value: value["datasets"][0]["effective_config"][
+                "sequence_thread"
+            ].update(id="other"),
+            lambda value: value.pop("sequence_threads"),
         ]
         for index, mutate in enumerate(mutations):
             self.state_path().write_bytes(original)

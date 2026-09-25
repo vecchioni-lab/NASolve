@@ -445,6 +445,8 @@ def _campaign(args: argparse.Namespace) -> int:
                     effective.get("allow_op3_sites", []), effective.get("phosphate_intent")))
                 if effective.get("sequence_reference"):
                     print(f"    Sequence reference: {effective['sequence_reference']}")
+                if effective.get("sequence_thread"):
+                    print(f"    Sequence thread: {effective['sequence_thread']['id']}")
             if item.get("diagnostic"):
                 print(f"    {item['diagnostic']}")
             if item.get("run"):

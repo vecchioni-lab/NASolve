@@ -83,6 +83,36 @@ selector remains visible in the effective configuration while the exact
 reference bytes are copied into the campaign resource store. The resolved
 configuration is stored per dataset, while the original input file is preserved.
 
+### Explicit sequence threads
+
+A campaign root may optionally contain `nasolve-campaign.toml` with explicit
+sequence-family membership. Schema 1 currently supports named W-family threads
+using the reviewed `w-metal-scaffold` reference:
+
+```toml
+schema_version = 1
+
+[sequence_threads.w-family]
+datasets = ["sample_A", "sample_B"]
+sequence_reference = "w-metal-scaffold"
+
+[sequence_threads.w-family.sequences]
+B = "CCCCCCC"
+
+[sequence_threads.w-family.site_codes]
+"A:13" = "1AP"
+```
+
+A dataset may belong to at most one sequence thread. Thread values affect only
+the intended residue target. They do not change search-model selection, symmetry,
+copy number, or cross-dataset model eligibility.
+
+Target precedence is: family reference, thread sequence, dataset sequence,
+thread site chemistry, then dataset site chemistry. More specific dataset
+declarations therefore override inherited thread values. The normalized thread
+definition and exact root declaration bytes are frozen into the campaign plan;
+the run freezes only the thread ID and overlays actually applied to that dataset.
+
 Recipe cards may explicitly declare terminal phosphates:
 
 ```toml

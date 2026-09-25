@@ -15,7 +15,7 @@ import os
 import re
 import stat
 import tempfile
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
@@ -25,6 +25,9 @@ from .automr_input import (
     normalize_frame, read_intent, resolve_automr_input,
 )
 from .presets import PresetError, ProjectPreset, load_preset
+from .campaign_threads import (
+    SequenceThreadError, membership_by_dataset, parse_sequence_threads,
+)
 
 
 class CampaignError(RuntimeError):
@@ -136,6 +139,30 @@ def _resource_bytes(path: Path) -> bytes:
         raise CampaignError(f"Resource changed while being read: {path.name}")
     return data
 
+def _freeze_sequence_threads(
+    root: Path, staging: Path,
+) -> tuple[dict[str, Any] | None, dict[str, dict[str, object]]]:
+    """Freeze optional root thread declarations and return explicit membership."""
+    source = root / "nasolve-campaign.toml"
+    if not source.exists() and not source.is_symlink():
+        return None, {}
+    if source.is_symlink() or not source.is_file():
+        raise CampaignError("nasolve-campaign.toml must be a regular file in the campaign root")
+    data = _resource_bytes(source)
+    try:
+        definitions = parse_sequence_threads(data)
+    except SequenceThreadError as exc:
+        raise CampaignError(str(exc)) from exc
+    for thread in definitions.values():
+        for dataset in thread["datasets"]:
+            _dataset_name(dataset)
+    frozen = {
+        "source": _resource_ref(staging, data),
+        "definitions": definitions,
+    }
+    return frozen, membership_by_dataset(definitions)
+
+
 
 def _is_candidate_name(name: str) -> bool:
     path = Path(name)
@@ -214,7 +241,8 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
 
 
 def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Path,
-                  frames_directory: Path | None) -> dict[str, Any]:
+                  frames_directory: Path | None,
+                  sequence_thread: dict[str, object] | None = None) -> dict[str, Any]:
     entry: dict[str, Any] = {
         "id": dataset.name, "relative_path": dataset.name,
         "status": "BLOCKED", "diagnostic": "", "effective_config": None,
@@ -232,12 +260,23 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             path = getattr(files, role)
             entry["inputs"][role] = _input_ref(root, dataset, path)
         intent = _merged_intent(dataset, preset)
+        dataset_sequence_reference = intent.sequence_reference
+        if sequence_thread is not None and intent.sequence_reference is None:
+            intent.sequence_reference = sequence_thread["sequence_reference"]
         entry["effective_config"] = _intent_config(intent)
         if (not intent.mode or intent.mode.strip().casefold() != "standard"
                 or not intent.frame or normalize_frame(intent.frame).name != "W"):
             raise AutoMRInputError("Campaign schema 1 supports only standard W/5W6W datasets")
         located_frames = locate_frames_directory(frames_directory, environ={})
         resolved = resolve_automr_input(dataset, intent, frames_dir=located_frames, environ={}, recipe=preset)
+        applied_thread = None
+        if sequence_thread is not None:
+            applied_thread = {
+                "id": sequence_thread["id"],
+                "sequences": dict(sequence_thread["sequences"]),
+                "site_codes": dict(sequence_thread["site_codes"]),
+            }
+            resolved = replace(resolved, sequence_thread=applied_thread)
         _contained(located_frames, resolved.model, "Selected catalogue model")
         model_data = _resource_bytes(resolved.model)
         if not model_data:
@@ -271,6 +310,11 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "config_source": entry["inputs"].get("config"),
             "frame_sequence": entry["inputs"].get("frame_sequence"),
             "sequence_reference": resolved.sequence_reference_label,
+            "sequence_reference_source": (
+                "dataset" if dataset_sequence_reference is not None
+                else "thread" if sequence_thread is not None else None
+            ),
+            "sequence_thread": applied_thread,
             "mutations": {site: asdict(ligand) for site, ligand in resolved.mutations.items()},
         })
         # Config parsing and discovery must describe the exact bytes frozen above.
@@ -391,12 +435,19 @@ def plan_campaign(root: Path, *, preset: str | Path = "5w6w",
         with tempfile.TemporaryDirectory(prefix=".nasolve-campaign-", dir=campaign) as temporary:
             staging = Path(temporary)
             frozen_preset = _freeze_preset(project, staging)
-            entries = [_plan_dataset(campaign, path, project, staging, frames_directory)
-                       for path in selected]
+            frozen_threads, membership = _freeze_sequence_threads(campaign, staging)
+            entries = [
+                _plan_dataset(
+                    campaign, path, project, staging, frames_directory,
+                    membership.get(path.name),
+                )
+                for path in selected
+            ]
             _duplicates(entries)
             payload = {
                 "schema_version": 1, "state": "PLANNED", "validation_scope": _SCOPE,
                 "preset": frozen_preset, "datasets": entries, "counts": _counts(entries),
+                **({"sequence_threads": frozen_threads} if frozen_threads is not None else {}),
             }
             payload["fingerprint"] = _digest(_canonical(payload))
             _validate_plan(payload)
@@ -407,7 +458,7 @@ def plan_campaign(root: Path, *, preset: str | Path = "5w6w",
                 os.fsync(handle.fileno())
             plan_path = _publish(campaign, staging)
         return {**payload, "plan_path": str(plan_path)}
-    except (PresetError, OSError, UnicodeError, RuntimeError, ValueError) as exc:
+    except (PresetError, SequenceThreadError, OSError, UnicodeError, RuntimeError, ValueError) as exc:
         if isinstance(exc, CampaignError):
             raise
         raise CampaignError(f"Could not plan campaign: {exc}") from exc
@@ -436,6 +487,59 @@ def _validate_ref(value: Any, label: str, prefix: str | None = None) -> None:
         raise CampaignError(f"Malformed campaign state: {label} requires a SHA-256 checksum")
     if type(value.get("size")) is not int or value["size"] < 0:
         raise CampaignError(f"Malformed campaign state: {label} requires a nonnegative integer size")
+
+
+def _validate_sequence_threads(
+    payload: dict[str, Any], resource_prefix: str,
+) -> dict[str, dict[str, object]]:
+    value = payload.get("sequence_threads")
+    if value is None:
+        return {}
+    value = _require(value, dict, "sequence_threads")
+    if set(value) != {"source", "definitions"}:
+        raise CampaignError("Malformed campaign state: invalid sequence_threads record")
+    _validate_ref(value["source"], "sequence_threads.source", resource_prefix)
+    definitions = _require(value["definitions"], dict, "sequence_threads.definitions")
+    membership: dict[str, dict[str, object]] = {}
+    for thread_id, thread in definitions.items():
+        if (
+            type(thread_id) is not str
+            or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", thread_id) is None
+        ):
+            raise CampaignError("Malformed campaign state: invalid sequence thread id")
+        thread = _require(thread, dict, f"sequence_threads.{thread_id}")
+        if set(thread) != {"id", "datasets", "sequence_reference", "sequences", "site_codes"}:
+            raise CampaignError("Malformed campaign state: invalid sequence thread fields")
+        if thread.get("id") != thread_id or thread.get("sequence_reference") != "w-metal-scaffold":
+            raise CampaignError("Malformed campaign state: inconsistent sequence thread identity")
+        datasets = _require(thread.get("datasets"), list, f"{thread_id}.datasets")
+        if datasets != sorted(set(datasets)) or not datasets:
+            raise CampaignError("Malformed campaign state: invalid sequence thread membership")
+        sequences = _require(thread.get("sequences"), dict, f"{thread_id}.sequences")
+        site_codes = _require(thread.get("site_codes"), dict, f"{thread_id}.site_codes")
+        if any(
+            type(chain) is not str or len(chain) != 1
+            or type(sequence) is not str or not sequence
+            for chain, sequence in sequences.items()
+        ):
+            raise CampaignError("Malformed campaign state: invalid thread sequence overlay")
+        if any(
+            type(site) is not str or re.fullmatch(r"[A-Za-z0-9_]:[^:\\s]+", site) is None
+            or type(code) is not str or re.fullmatch(r"[A-Z0-9]{1,5}", code) is None
+            for site, code in site_codes.items()
+        ):
+            raise CampaignError("Malformed campaign state: invalid thread site chemistry")
+        applied = {
+            "id": thread_id,
+            "sequences": sequences,
+            "site_codes": site_codes,
+        }
+        for dataset in datasets:
+            name = _dataset_name(dataset)
+            if name in membership:
+                raise CampaignError("Malformed campaign state: dataset belongs to multiple sequence threads")
+            membership[name] = applied
+    return membership
 
 
 def _validate_plan(payload: Any) -> None:
@@ -483,6 +587,7 @@ def _validate_plan(payload: Any) -> None:
         _safe_relative(original.get("relative_path"), f"preset.policy.resources.{name}")
         if any(original.get(field) != reference[field] for field in ("sha256", "size")):
             raise CampaignError("Malformed campaign state: inconsistent preset resource identity")
+    thread_membership = _validate_sequence_threads(payload, resource_prefix)
     entries = _require(payload.get("datasets"), list, "datasets")
     ids = []
     for entry in entries:
@@ -554,6 +659,39 @@ def _validate_plan(payload: Any) -> None:
                 raise CampaignError(f"Malformed campaign OP3 request: {exc}") from exc
             for field in ("sequences", "mutations"):
                 _require(config.get(field), dict, f"{name}.{field}")
+            expected_thread = thread_membership.get(name)
+            if config.get("sequence_thread") != expected_thread:
+                raise CampaignError(
+                    f"Malformed campaign state: inconsistent {name}.sequence_thread"
+                )
+            if "sequence_reference_source" in config:
+                reference_source = config.get("sequence_reference_source")
+                if reference_source not in {None, "dataset", "thread"}:
+                    raise CampaignError(
+                        f"Malformed campaign state: invalid {name}.sequence_reference_source"
+                    )
+                if reference_source == "thread":
+                    if (
+                        expected_thread is None
+                        or config.get("sequence_reference")
+                        != payload["sequence_threads"]["definitions"][expected_thread["id"]]["sequence_reference"]
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: inconsistent {name} thread reference"
+                        )
+                elif reference_source == "dataset":
+                    if config.get("sequence_reference") is None:
+                        raise CampaignError(
+                            f"Malformed campaign state: dataset reference source has no selector"
+                        )
+                elif config.get("sequence_reference") is not None:
+                    raise CampaignError(
+                        f"Malformed campaign state: selected reference has no provenance source"
+                    )
+            elif expected_thread is not None:
+                raise CampaignError(
+                    f"Malformed campaign state: thread-bound {name} lacks reference provenance"
+                )
             for field, role in (("model", "model"), ("config_source", "config"),
                                 ("frame_sequence", "frame_sequence")):
                 if field in config and config[field] != inputs.get(role):
@@ -651,8 +789,10 @@ def campaign_status(root: Path) -> dict[str, Any]:
         return cache[key]
 
     preset = payload["preset"]
-    issues = [issue for reference in [preset["source"], *preset["resources"].values()]
-              if (issue := check(reference))]
+    global_references = [preset["source"], *preset["resources"].values()]
+    if payload.get("sequence_threads") is not None:
+        global_references.append(payload["sequence_threads"]["source"])
+    issues = [issue for reference in global_references if (issue := check(reference))]
     for entry in payload["datasets"]:
         local = [issue for reference in entry["inputs"].values() if (issue := check(reference))]
         dataset = campaign / entry["relative_path"]

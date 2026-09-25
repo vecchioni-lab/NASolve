@@ -73,6 +73,28 @@ class CampaignCLITests(unittest.TestCase):
             self.assertEqual((code, error), (0, ""))
             self.assertIn("Sequence reference: w-metal-scaffold", output)
 
+    def test_status_prints_sequence_thread_membership(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            campaign, frames, dataset = self.fixture(root)
+            (campaign / "nasolve-campaign.toml").write_text(
+                'schema_version = 1\n'
+                '[sequence_threads.w-family]\n'
+                'datasets = ["DOHU"]\n'
+                'sequence_reference = "w-metal-scaffold"\n'
+            )
+            code, output, error = self.invoke([
+                "campaign", "plan", str(campaign), "--frames-dir", str(frames),
+            ])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Sequence reference: w-metal-scaffold", output)
+            self.assertIn("Sequence thread: w-family", output)
+
+            code, output, error = self.invoke(["campaign", "status", str(campaign)])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Sequence thread: w-family", output)
+            self.assertFalse((dataset / "AutoMR").exists())
+
     def test_blocked_dataset_is_visible_and_returns_review_exit_code(self):
         with tempfile.TemporaryDirectory() as directory:
             campaign, frames, _ = self.fixture(Path(directory).resolve())

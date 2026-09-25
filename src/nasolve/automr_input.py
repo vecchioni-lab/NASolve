@@ -86,6 +86,7 @@ class ResolvedAutoMRInput:
     allow_unreviewed_backbone: bool = False
     sequence_reference: Path | None = None
     sequence_reference_label: str | None = None
+    sequence_thread: dict[str, object] | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}

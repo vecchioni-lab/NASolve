@@ -75,6 +75,8 @@ def _intent_fingerprint(plan: Mapping[str, object], frame: object, mirror: objec
         "standard_pair": plan.get("standard_pair"),
         "mutations": plan.get("mutations"),
     }
+    if "sequence_thread" in plan:
+        intent["sequence_thread"] = plan.get("sequence_thread")
     try:
         return sha256(_json_bytes(intent)).hexdigest()
     except (TypeError, ValueError) as exc:
@@ -165,7 +167,28 @@ def prepare_sequence_family(
     sequences = plan.get("sequences", {})
     if not isinstance(sequences, Mapping):
         raise SequenceReferenceError("Malformed sequence-family dataset sequences")
-    overlays = {"dataset_sequences": dict(sequences), "dataset_site_codes": _site_codes(plan, frame)}
+    thread = plan.get("sequence_thread")
+    if thread is None:
+        overlays = {
+            "dataset_sequences": dict(sequences),
+            "dataset_site_codes": _site_codes(plan, frame),
+        }
+    else:
+        if (
+            not isinstance(thread, Mapping)
+            or set(thread) != {"id", "sequences", "site_codes"}
+            or not isinstance(thread.get("id"), str)
+            or not thread["id"]
+            or not isinstance(thread.get("sequences"), Mapping)
+            or not isinstance(thread.get("site_codes"), Mapping)
+        ):
+            raise SequenceReferenceError("Malformed sequence-family thread intent")
+        overlays = {
+            "thread_sequences": dict(thread["sequences"]),
+            "dataset_sequences": dict(sequences),
+            "thread_site_codes": dict(thread["site_codes"]),
+            "dataset_site_codes": _site_codes(plan, frame),
+        }
     target = compile_sequence_family_targets(reference, **overlays)
     inventory = _model_inventory(model, assessment, reference)
     differences = tuple(
@@ -253,12 +276,30 @@ def load_frozen_sequence_family(
         _frozen_bytes(value["reference"], run, "sequence reference"), "frozen sequence reference",
     ))
     overlays = value["overlays"]
-    if not isinstance(overlays, Mapping) or set(overlays) != {"dataset_sequences", "dataset_site_codes"}:
+    legacy_fields = {"dataset_sequences", "dataset_site_codes"}
+    thread_fields = {
+        "thread_sequences", "dataset_sequences",
+        "thread_site_codes", "dataset_site_codes",
+    }
+    overlay_fields = set(overlays) if isinstance(overlays, Mapping) else set()
+    if not isinstance(overlays, Mapping) or (
+        overlay_fields != legacy_fields and overlay_fields != thread_fields
+    ):
         raise SequenceReferenceError("Malformed frozen sequence-family overlays")
     if overlays["dataset_sequences"] != plan.get("sequences", {}):
         raise SequenceReferenceError("Frozen sequence-family sequence overlays disagree with the plan")
     if overlays["dataset_site_codes"] != _site_codes(plan, frame_name):
         raise SequenceReferenceError("Frozen sequence-family site overlays disagree with the plan")
+    thread = plan.get("sequence_thread")
+    if set(overlays) == thread_fields:
+        if (
+            not isinstance(thread, Mapping)
+            or overlays["thread_sequences"] != thread.get("sequences")
+            or overlays["thread_site_codes"] != thread.get("site_codes")
+        ):
+            raise SequenceReferenceError("Frozen sequence-family thread overlays disagree with the plan")
+    elif thread is not None:
+        raise SequenceReferenceError("Frozen sequence-family contract omitted declared thread overlays")
     target = _decode(_frozen_bytes(value["target"], run, "sequence target"), "frozen sequence target")
     expected_target = compile_sequence_family_targets(reference, **dict(overlays))
     if target != expected_target:

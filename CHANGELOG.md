@@ -60,6 +60,11 @@ entries are reconstructed from repository history.
   unchanged. Campaign planning now snapshots an explicitly selected per-dataset
   reference into content-addressed resources; campaign preflight consumes that
   frozen copy rather than reopening the installed or dataset source.
+- Added explicit campaign sequence threads through root
+  `nasolve-campaign.toml`. Threads freeze named dataset membership, inherit the
+  reviewed W sequence reference plus shared chain/site overlays, and preserve
+  provenance into run-local sequence-family targets. Dataset declarations remain
+  more specific. Membership does not imply MR-model compatibility or reuse.
 - Clarified that experimental-family membership and MR-model reuse eligibility
   are separate, and that a metal-adapted scaffold does not imply metal pairing.
 
