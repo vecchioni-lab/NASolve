@@ -737,28 +737,48 @@ def _validate_plan(payload: Any) -> None:
                 kind = provider.get("kind")
                 if kind == "standard-frame-catalogue":
                     expected_provider_fields = {"kind", "selection", "frame", "location", "selector"}
+                    selection = provider.get("selection")
+                    selector = provider.get("selector")
+                    expected_source = (
+                        "standard frame catalogue (W; exact pair)"
+                        if selection == "exact-pair"
+                        else "standard frame catalogue (W; fallback C_G.pdb)"
+                    )
                     if (
                         set(provider) != expected_provider_fields
-                        or provider.get("selection") not in {"exact-pair", "fallback"}
+                        or selection not in {"exact-pair", "fallback"}
                         or provider.get("frame") != "W"
                         or provider.get("location") != "frame-catalogue"
-                        or type(provider.get("selector")) is not str
+                        or type(selector) is not str or not selector
                         or config.get("model_selector") is not None
+                        or config.get("model_name") != selector
+                        or config.get("model_pair") is None
+                        or config.get("exact_pair_model") is not (selection == "exact-pair")
+                        or config.get("model_source") != expected_source
                     ):
                         raise CampaignError(
                             f"Malformed campaign state: invalid {name}.model_provider"
                         )
                 elif kind == "explicit-standard-model":
                     expected_provider_fields = {"kind", "selection", "frame", "location", "selector"}
+                    selector = provider.get("selector")
+                    location = provider.get("location")
+                    expected_source = (
+                        f"explicit standard model (W; {location}:{selector})"
+                        if isinstance(selector, str) and isinstance(location, str)
+                        else None
+                    )
                     if (
                         set(provider) != expected_provider_fields
                         or provider.get("selection") != "user-forced"
                         or provider.get("frame") != "W"
-                        or provider.get("location") not in {"dataset", "frame-catalogue"}
-                        or type(provider.get("selector")) is not str
-                        or config.get("model_selector") != provider.get("selector")
+                        or location not in {"dataset", "frame-catalogue"}
+                        or type(selector) is not str or not selector
+                        or Path(selector).name != config.get("model_name")
+                        or config.get("model_selector") != selector
                         or config.get("model_pair") is not None
                         or config.get("exact_pair_model") is not False
+                        or config.get("model_source") != expected_source
                     ):
                         raise CampaignError(
                             f"Malformed campaign state: invalid {name}.model_provider"
