@@ -171,3 +171,17 @@ A future Campaign Doctor may consume these facts only under a separate reviewed
 eligibility policy. Moss itself does not decide whether a solved sibling may be
 used, how candidates should be ranked, or what transformations would be
 permitted.
+
+## Checkpoint candidate handoff
+
+A later refinement checkpoint is a different coordinate object from the
+original AutoMR search model. NASolve therefore does not reuse this run-level
+fact sheet as if it described every descendant checkpoint. The read-only
+checkpoint-candidate layer reassesses the selected checkpoint's literal model
+inventory and, when a complete frozen target exists, compares that checkpoint
+model afresh with the target. It carries this run-level provider/family context
+only as source provenance.
+
+Fresh runs verify that source provenance through this checksum-bound
+compatibility-facts artifact. Historical runs without it remain describable but
+are marked `legacy-run-report-only`. Neither path supplies donor eligibility.

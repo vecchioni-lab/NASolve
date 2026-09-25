@@ -207,6 +207,15 @@ dataset, but must not rewrite that failed branch or replace the recipient's
 intended construct. Numerical success alone is not universal donor eligibility;
 the applicable project rule determines which source checkpoints may be used.
 
+The first donor-side prerequisite is now implemented as a **read-only checkpoint
+candidate descriptor**. Given a checkpoint (or the current checkpoint), NASolve
+can report its exact lineage, status/usability, verified model bytes, literal
+polymer inventory, source-observation provenance, frozen run chemistry and
+complete target comparison when available. It rechecks the checkpoint model
+itself against the frozen target; it does not inherit target identity merely
+from its parent. The descriptor does not choose a donor, compare against a
+recipient dataset, authorize reuse or launch MR.
+
 ## Cross-dataset compatibility
 
 The first compatibility-fact layer is now implemented for fresh AutoMR runs.
@@ -338,20 +347,21 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 
 ### Campaign Doctor stage
 
-11. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
-12. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
-13. Keep failed MR branches and every rescue attempt immutable and inspectable.
+11. **Implemented as read-only provenance:** describe checkpoint models as immutable candidate inputs without donor eligibility.
+12. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
+13. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
+14. Keep failed MR branches and every rescue attempt immutable and inspectable.
 
 ### Upstream preparation / processing stage
 
-14. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
-15. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
-16. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
-17. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
+15. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
+16. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
+17. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
+18. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
 
 ### Later validation and curation
 
-18. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+19. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
 
 ## Immediate validation fixture
 

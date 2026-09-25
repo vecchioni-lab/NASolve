@@ -146,6 +146,15 @@ exact `show RUN --checkpoint ID` command when the same view resolver used by
 unselected result without changing the current checkpoint. If resolution fails,
 it reports the reason and directs you to the log and report instead.
 
+NASolve also has a read-only checkpoint-candidate descriptor primitive for
+future campaign reasoning. It verifies one checkpoint's lineage, model checksum,
+literal polymer inventory, source-observation provenance, frozen chemistry and
+complete sequence-family target when available. The checkpoint model is compared
+afresh with that frozen target rather than assumed to match because of ancestry.
+This descriptor does **not** select, export or reuse the checkpoint. Existing
+checkpoint `usable`/`REVIEW`/`SUCCESS` state is reported as local lineage
+state only; cross-dataset donor eligibility remains unset.
+
 If a structurally sound result remains under review—for example, because a
 small test set gives `Rwork >= Rfree`—run the bounded triage layer:
 
