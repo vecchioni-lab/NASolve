@@ -678,8 +678,10 @@ an explicit dataset-relative reference JSON. See
 [sequence-family target assembly](docs/sequence-family-targets.md) for the
 schema, precedence and validation boundary. Campaign planning accepts the same
 explicit per-dataset selector and freezes the exact reference bytes into the
-campaign resource store before execution; shared/thread family binding remains
-separate work.
+campaign resource store before execution. A root `nasolve-campaign.toml` can
+also bind datasets explicitly into named W-family sequence threads whose shared
+sequence/site overlays are inherited before dataset-specific overrides. Thread
+membership changes target intent only: it does not select or reuse MR models.
 
 ## Preparing an accepted MR solution
 
