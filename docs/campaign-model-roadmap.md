@@ -179,7 +179,12 @@ The campaign may share design logic while each dataset has its own model, expect
 
 ## Campaign Doctor: cross-dataset model rescue
 
-Campaign Doctor is a future recovery layer above the existing stage-specific Doctors. Its purpose is to use information learned from solved datasets to generate bounded rescue candidates for related unsolved datasets.
+Campaign Doctor policy and rescue execution remain future work above the
+existing stage-specific Doctors. Its first two read-only prerequisites are now
+implemented: verified checkpoint-candidate descriptors and descriptive
+donor-checkpoint versus recipient-run comparisons. The future execution layer
+will use those facts under a separate reviewed eligibility policy to generate
+bounded rescue candidates for related unsolved datasets.
 
 Potential reviewed operations include:
 
@@ -351,7 +356,7 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 ### Multi-candidate / model-provider stage
 
 8. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
-9. Add provider provenance and sequence-to-model hooks; AlphaFold is a later provider, not a special campaign architecture.
+9. **Partially implemented:** provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation (including AlphaFold) remains future work.
 10. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
 
 ### Campaign Doctor stage
