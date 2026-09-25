@@ -17,6 +17,7 @@ from unittest.mock import patch
 from nasolve.automr import prepare_automr
 from nasolve.automr_input import AutoMRInputError, format_intent, read_intent, resolve_automr_input
 from nasolve.campaigns import plan_campaign
+from nasolve.checkpoint_candidate import describe_checkpoint_candidate
 from nasolve.postmr import PostMRPreparationError, build_mutation_plan, prepare_postmr
 from nasolve.sequence_family import load_frozen_sequence_family
 from nasolve.model_compatibility import load_model_compatibility_facts
@@ -517,6 +518,25 @@ class SequenceFamilyIntegrationTests(unittest.TestCase):
         self.assertEqual([a["site"] for a in changed], ["A:13", "B:3"])
         self.assertEqual(len(payload["mutation_actions"]), 42)
         self.assertEqual(read_json(result.report_path)["status"], "POSTMR_READY")
+
+        self.assertFalse((result.run_directory / "AutoRefine").exists())
+        with patch(
+            "nasolve.checkpoint_candidate.known_ligand_codes",
+            return_value=VALID,
+        ):
+            candidate = describe_checkpoint_candidate(result.run_directory)
+        self.assertFalse((result.run_directory / "AutoRefine").exists())
+        comparison = candidate["run_context"]["checkpoint_model_target_comparison"]
+        self.assertEqual(comparison["status"], "EXACT")
+        self.assertEqual(comparison["identity"]["mismatch_count"], 0)
+        self.assertEqual(comparison["model"]["polymer_residue_count"], 42)
+        self.assertEqual(
+            candidate["run_context"]["sequence_family"]["reference"]["id"],
+            "w-metal-scaffold",
+        )
+        self.assertTrue(candidate["source"]["locally_reusable"])
+        self.assertIsNone(candidate["semantics"]["donor_eligibility"])
+        self.assertFalse(candidate["semantics"]["automatic_reuse_authorized"])
 
     def test_forced_original_scaffold_normalizes_sequence_and_terminal_phosphate(self):
         self.configure(standard=True, extra="model = 5W6W_noPO4.pdb\n")
