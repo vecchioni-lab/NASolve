@@ -202,10 +202,11 @@ def build_model_compatibility_facts(
         provider_construct_family = raw_family
     if candidate_construct_family is None:
         candidate_construct_family = provider_construct_family
-    elif (
-        provider_construct_family is not None
-        and provider_construct_family != candidate_construct_family
-    ):
+    elif provider_construct_family is None:
+        raise ModelCompatibilityFactsError(
+            "Candidate construct family lacks model-provider provenance"
+        )
+    elif provider_construct_family != candidate_construct_family:
         raise ModelCompatibilityFactsError(
             "Candidate construct family disagrees with model-provider provenance"
         )
