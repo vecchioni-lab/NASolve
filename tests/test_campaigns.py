@@ -256,7 +256,7 @@ class CampaignTests(unittest.TestCase):
             "dataset",
             "[automr]\npair = C:G\nmodel = alternate.pdb\n",
         )
-        shutil.copyfile(REFERENCE.parents[3] / "MR_frames/5W6W/5W6W_noPO4.pdb",
+        shutil.copyfile(REFERENCE.parents[4] / "MR_frames/5W6W/5W6W_noPO4.pdb",
                         dataset / "alternate.pdb")
         plan = self.plan()
         entry = plan["datasets"][0]
