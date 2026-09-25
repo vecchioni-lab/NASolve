@@ -50,8 +50,10 @@ whole root. The names must stay within that root.
 
 Dataset discovery reuses the ordinary AutoMR rules: one authoritative MTZ,
 one processing metadata CIF, and one summary. The first planner supports the
-standard W/5W6W catalogue. Unsupported modes or frames are reported as blocked.
-Custom model-provider execution is a later roadmap step.
+standard W/5W6W frame. Catalogue selection remains the default, but a dataset may
+explicitly force one PDB from its own directory or the selected frame catalogue.
+Unsupported modes or frames are reported as blocked. Automatic/shared/sibling
+model providers remain later roadmap steps.
 
 `DISCOVERED` means input and model selection succeeded. It does **not** assert
 that the MTZ contains usable arrays, symmetry agrees, the model passes its full
@@ -82,6 +84,36 @@ dataset `[automr] sequence_reference` is also resolved during planning. Its
 selector remains visible in the effective configuration while the exact
 reference bytes are copied into the campaign resource store. The resolved
 configuration is stored per dataset, while the original input file is preserved.
+
+### Explicit standard-model providers
+
+A standard W dataset may set `[automr] model = NAME.pdb`. The selector is
+resolved only from the dataset directory and selected W catalogue. If both
+contain that selector, planning stops rather than choosing one. Absolute,
+escaping and non-PDB selectors are rejected.
+
+The frozen effective configuration records a structured provider:
+
+```json
+{
+  "kind": "explicit-standard-model",
+  "selection": "user-forced",
+  "frame": "W",
+  "location": "dataset",
+  "selector": "alternate.pdb"
+}
+```
+
+This changes only the coordinates offered to Phaser. The W pair target, recipe
+chemistry, symmetry gate, sequence reference/thread overlays and PostMR rules
+remain independent. A forced filename is not parsed as evidence that its
+standard pair matches the requested pair.
+
+The exact selected PDB is copied into `NASolveCampaign/resources/`. Execution
+therefore uses the frozen model after relocation even if the source PDB or
+original frame catalogue has disappeared. The W frame sequence resource is
+frozen separately so a dataset-supplied model cannot silently replace frame
+context with a neighboring `seq_base.txt`.
 
 ### Explicit sequence threads
 
@@ -143,7 +175,7 @@ source input, stage settings, or existing run.
 The manifest records input paths, file sizes and SHA-256 checksums, the resolved
 preset and its identity, selected models and sequence resources, duplicate
 observation groups, and dataset diagnostics. References are anchored to the
-campaign root. Selected models, explicit sequence-family references, the preset
+campaign root. Selected models (including explicit provider overrides), explicit sequence-family references, the preset
 source and declared preset resources are copied into
 `NASolveCampaign/resources/`; they remain available after the source catalogue,
 dataset-relative reference file, installed reference, or custom preset is
