@@ -185,3 +185,21 @@ only as source provenance.
 Fresh runs verify that source provenance through this checksum-bound
 compatibility-facts artifact. Historical runs without it remain describable but
 are marked `legacy-run-report-only`. Neither path supplies donor eligibility.
+
+## Cross-dataset comparison handoff
+
+The next read-only layer compares a verified checkpoint candidate with a
+recipient AutoMR run. It loads the recipient's frozen sequence-family target
+when present and compares the donor checkpoint's **literal** residue inventory
+to that target, yielding descriptive site-set and residue-identity relations.
+
+The donor source run's mode, frame, target-reference ID and mirror-transform
+flag are carried only as source context. A matching source/recipient target
+reference is not promoted into a claim that the donor checkpoint belongs to
+that family, and matching mirror flags do not establish absolute chirality.
+Recipient symmetry/copy number remains recipient evidence; the donor coordinate
+model makes no symmetry claim.
+
+This comparison fixes score, ranking, donor eligibility, recipient
+compatibility and rescue authorization to null/false values. Campaign Doctor
+policy and execution remain separate future layers.
