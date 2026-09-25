@@ -623,7 +623,7 @@ def resolve_automr_input(
     model_pair: tuple[ResolvedLigand, ResolvedLigand] | None = None
     exact_pair_model: bool | None = None
     catalogue_warnings: tuple[str, ...] = ()
-    model_selector = model_override or intent.model
+    model_selector = model_override if model_override is not None else intent.model
     model_provider: dict[str, object] | None = None
     frame_sequence_source: Path | None = None
     effective_allow_p1 = bool(allow_p1_standard or intent.allow_p1_standard)
