@@ -49,10 +49,24 @@ coordinate geometry or filenames.
 
 ### Construct family
 
-Current model providers do not declare construct-family membership. Even when a
-complete target names `w-metal-scaffold`, the model-side family remains
-unknown. The fact sheet therefore records the recipient reference and leaves
-the relation `UNKNOWN`.
+A specifically named search model may opt into a stable provider-side family:
+
+```ini
+[automr]
+model = alternate.pdb
+model_family = w-metal-scaffold
+```
+
+The family identifier is bound to that exact model selector and frozen inside
+provider provenance. A different command-line model override cannot inherit the
+old declaration. NASolve never derives model family from a frame, filename,
+sequence thread, sequence similarity, or target reference.
+
+When a complete explicit target also names a sequence-reference identifier,
+Moss compares the two literal family IDs. Equal IDs produce `SAME`, unequal
+IDs produce `DIFFERENT`, and a missing declaration on either side produces
+`UNKNOWN`. These are provenance facts only; neither `SAME` nor
+`DIFFERENT` establishes donor eligibility.
 
 ### Site set
 
@@ -135,7 +149,7 @@ Loading Moss provenance verifies:
 
 - the fact-sheet artifact checksum and schema;
 - source/effective model hashes against the run report;
-- provider provenance;
+- provider provenance, including any explicit model-family declaration;
 - exact candidate chain/residue inventory;
 - mode, frame and mirror intent;
 - recipient symmetry/copy-number evidence;

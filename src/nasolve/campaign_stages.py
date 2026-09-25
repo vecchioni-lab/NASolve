@@ -151,6 +151,7 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
             if effective.get("sequence_thread") is not None else None
         ),
         model_selector=effective.get("model_selector"),
+        model_family=effective.get("model_family"),
         model_provider=(
             dict(effective["model_provider"])
             if effective.get("model_provider") is not None else None

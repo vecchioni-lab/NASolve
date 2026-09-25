@@ -189,6 +189,13 @@ class CampaignStageTests(unittest.TestCase):
             facts["dimensions"]["construct_family"]["recipient_reference"]["id"],
             "w-metal-scaffold",
         )
+        self.assertIsNone(
+            facts["dimensions"]["construct_family"]["candidate_declared_family"]
+        )
+        self.assertEqual(
+            facts["dimensions"]["construct_family"]["relation"],
+            "UNKNOWN",
+        )
         self.assertEqual(
             facts["evidence"]["search_model_comparison"],
             report["search_model_comparison"],
@@ -199,7 +206,10 @@ class CampaignStageTests(unittest.TestCase):
         dataset = make_dataset(self.root / "dataset", include_model=False)
         shutil.copyfile(FORCED_W, dataset / "alternate.pdb")
         (dataset / "nasolve.txt").write_text(
-            "[automr]\npair = D:T\nmodel = alternate.pdb\n"
+            "[automr]\n"
+            "pair = D:T\n"
+            "model = alternate.pdb\n"
+            "model_family = w-metal-scaffold\n"
         )
         (self.frames / "seq_base.txt").write_text("FRAME-CONTEXT\n")
         plan = plan_campaign(self.root, frames_directory=self.frames.parent)
@@ -207,6 +217,11 @@ class CampaignStageTests(unittest.TestCase):
         self.policy = plan["preset"]["policy"]
         provider = self.dataset["effective_config"]["model_provider"]
         self.assertEqual(provider["location"], "dataset")
+        self.assertEqual(provider["construct_family"], "w-metal-scaffold")
+        self.assertEqual(
+            self.dataset["effective_config"]["model_family"],
+            "w-metal-scaffold",
+        )
         frozen_model = self.root / self.dataset["inputs"]["model"]["relative_path"]
         expected_model = frozen_model.read_bytes()
 
@@ -224,11 +239,14 @@ class CampaignStageTests(unittest.TestCase):
             "frame": "W",
             "location": "dataset",
             "selector": "alternate.pdb",
+            "construct_family": "w-metal-scaffold",
         })
         self.assertEqual(report["inputs"]["model_selector"], "alternate.pdb")
         self.assertEqual((run / "Model/input_model.pdb").read_bytes(), expected_model)
         self.assertEqual((run / "Model/seq_base.txt").read_text(), "FRAME-CONTEXT\n")
-        self.assertIn("model = alternate.pdb", (run / "nasolve.input.txt").read_text())
+        snapshot = (run / "nasolve.input.txt").read_text()
+        self.assertIn("model = alternate.pdb", snapshot)
+        self.assertIn("model_family = w-metal-scaffold", snapshot)
         facts = load_model_compatibility_facts(report, run)
         self.assertEqual(
             facts["candidate"]["provider"]["location"],
@@ -236,6 +254,14 @@ class CampaignStageTests(unittest.TestCase):
         )
         self.assertEqual(facts["dimensions"]["frame_identity"]["relation"], "SAME")
         self.assertEqual(facts["dimensions"]["site_set"]["relation"], "UNKNOWN")
+        self.assertEqual(
+            facts["dimensions"]["construct_family"]["candidate_declared_family"],
+            "w-metal-scaffold",
+        )
+        self.assertEqual(
+            facts["dimensions"]["construct_family"]["relation"],
+            "UNKNOWN",
+        )
         self.assertEqual(
             facts["dimensions"]["terminal_phosphate_chemistry"]["recipient_sites"],
             ["D:1"],

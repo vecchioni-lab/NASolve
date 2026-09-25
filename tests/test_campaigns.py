@@ -534,6 +534,9 @@ class CampaignTests(unittest.TestCase):
                 model_selector="forged.pdb"
             ),
             lambda value: value["datasets"][0]["effective_config"].update(
+                model_family="forged-family"
+            ),
+            lambda value: value["datasets"][0]["effective_config"].update(
                 sequence_reference="w-metal-scaffold"
             ),
             lambda value: value["datasets"][0]["inputs"].update(

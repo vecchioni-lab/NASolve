@@ -216,8 +216,9 @@ is reusable:
 - exact candidate chain/residue inventory;
 - provider/recipient frame declarations;
 - complete-target site-set and residue-identity relations when available;
-- recipient sequence-reference identity while model-side construct-family
-  membership remains unknown;
+- explicit provider-side construct-family identity when a named model declares
+  `model_family`, compared literally with an explicit recipient reference when
+  both exist; missing declarations remain unknown;
 - the explicit mirror-transform fact while absolute D/L chirality remains
   unknown;
 - recipient terminal-phosphate and backbone intent; and
@@ -231,9 +232,9 @@ are literal per-dimension relations, not acceptance/rejection labels;
 
 Before reusing a solved model for another dataset, Campaign Doctor still needs
 a separate reviewed eligibility policy. Future dimensions may include explicit
-absolute chirality, declared construct/model-family identity, oligomeric or
-geometric class, candidate-coordinate chemistry evidence and other
-project-specific relationships. The exact hard gates/ranking rules remain
+absolute chirality, richer/possibly versioned construct-family metadata,
+oligomeric or geometric class, candidate-coordinate chemistry evidence and
+other project-specific relationships. The exact hard gates/ranking rules remain
 deferred until a real heterogeneous campaign is available.
 
 ## DAG implications

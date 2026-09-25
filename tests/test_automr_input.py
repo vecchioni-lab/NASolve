@@ -329,6 +329,83 @@ class AutoMRInputTests(unittest.TestCase):
             )
             self.assertIn("model = models/search.pdb", format_intent(resolved))
 
+    def test_explicit_model_family_is_bound_to_named_provider_and_round_trips(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = make_dataset(root)
+            config = root / "nasolve.txt"
+            config.write_text(
+                "[automr]\n"
+                "mode = nonstandard\n"
+                "model = search.pdb\n"
+                "model_family = w-metal-scaffold\n"
+            )
+            intent = read_intent(config)
+            self.assertEqual(intent.model_family, "w-metal-scaffold")
+            resolved = resolve_automr_input(
+                dataset,
+                intent,
+                valid_ligand_codes=VALID,
+            )
+            self.assertEqual(resolved.model_family, "w-metal-scaffold")
+            self.assertEqual(
+                resolved.model_provider["construct_family"],
+                "w-metal-scaffold",
+            )
+            effective = format_intent(resolved)
+            self.assertIn("model_family = w-metal-scaffold", effective)
+            snapshot = root / "snapshot.txt"
+            snapshot.write_text(effective)
+            self.assertEqual(
+                read_intent(snapshot).model_family,
+                "w-metal-scaffold",
+            )
+
+    def test_model_family_requires_explicit_model_and_rejects_stale_cli_override(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = make_dataset(root)
+            with self.assertRaisesRegex(
+                AutoMRInputError,
+                "model_family requires an explicit model",
+            ):
+                resolve_automr_input(
+                    dataset,
+                    AutoMRIntent(
+                        mode="nonstandard",
+                        model_family="w-metal-scaffold",
+                    ),
+                    valid_ligand_codes=VALID,
+                )
+
+            (root / "alternate.pdb").write_text(model_text())
+            with self.assertRaisesRegex(
+                AutoMRInputError,
+                "cannot follow a different --model override",
+            ):
+                resolve_automr_input(
+                    dataset,
+                    AutoMRIntent(
+                        mode="nonstandard",
+                        model="search.pdb",
+                        model_family="w-metal-scaffold",
+                    ),
+                    model_override="alternate.pdb",
+                    valid_ligand_codes=VALID,
+                )
+
+    def test_model_family_identifier_is_strict(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "nasolve.txt"
+            path.write_text(
+                "[automr]\n"
+                "mode = nonstandard\n"
+                "model = search.pdb\n"
+                "model_family = family with spaces\n"
+            )
+            with self.assertRaisesRegex(AutoMRInputError, "model_family must use"):
+                read_intent(path)
+
     def test_mirror_cli_override_is_frozen(self):
         with tempfile.TemporaryDirectory() as directory:
             dataset = make_dataset(Path(directory))

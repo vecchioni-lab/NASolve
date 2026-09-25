@@ -716,6 +716,13 @@ provider. This is the intended validation path for the tracked original
 while the frozen W-family target records the post-MR sequence delta and the W
 recipe independently retains D:1 terminal-phosphate intent.
 
+An explicitly named model may also declare a stable provider-side family with
+`model_family = FAMILY_ID` in `[automr]`. The declaration is bound to that
+exact `model = ...` selector and is copied into provider provenance; it cannot
+silently follow a different command-line model override. NASolve does not infer
+this value from the frame, filename, sequence thread, residue similarity, or
+target reference.
+
 When a complete explicit residue target is available, AutoMR also freezes
 `Model/search_model_comparison.json`. This descriptive record captures the
 literal model chain/residue inventory, missing or unexpected target sites, exact
@@ -732,9 +739,12 @@ model, target, symmetry and chemistry provenance into named dimensions such as
 frame identity, candidate chain/site inventory, residue identity, mirror-transform
 state, terminal/backbone intent and symmetry/copy number. Relations are
 descriptive (`SAME`, `DIFFERENT`, `PARTIAL`, `UNKNOWN`) and are never
-collapsed into a score or overall verdict. Absolute D/L chirality is currently
-unknown even when `mirror` is false; NASolve records only whether it applied
-the explicit mirror transform. See
+collapsed into a score or overall verdict. When both an explicit provider
+`model_family` and a complete target reference are present, the construct-family
+dimension reports their literal identifier relation as `SAME` or `DIFFERENT`;
+missing declarations remain `UNKNOWN`. This is still not a reuse decision.
+Absolute D/L chirality is currently unknown even when `mirror` is false;
+NASolve records only whether it applied the explicit mirror transform. See
 [model compatibility facts](docs/model-compatibility-facts.md).
 
 ## Preparing an accepted MR solution

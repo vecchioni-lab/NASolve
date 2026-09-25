@@ -439,6 +439,7 @@ def prepare_automr(
         source_assessment=source_assessment,
         effective_assessment=assessment,
         model_provider=resolved.model_provider,
+        candidate_construct_family=resolved.model_family,
         mode=resolved.mode,
         recipient_frame=resolved.frame.name if resolved.frame is not None else None,
         mirror_transform_applied=resolved.mirror,
