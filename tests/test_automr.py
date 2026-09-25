@@ -171,6 +171,27 @@ class AutoMRPreflightTests(unittest.TestCase):
                 (result.run_directory / "nasolve.input.txt").read_text(),
             )
 
+    def test_forced_standard_model_missing_required_sites_fails_before_run(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dataset = make_dataset(root / "dataset", include_model=False)
+            catalogue = root / "frames" / "5W6W"
+            catalogue.mkdir(parents=True)
+            (catalogue / "tiny.pdb").write_text(w_model_text())
+            with self.assertRaisesRegex(
+                AutoMRInputError, "required PostMR site A:12 is absent"
+            ):
+                prepare_automr(
+                    dataset,
+                    frame_override="W",
+                    pair_override="D:T",
+                    model_override="tiny.pdb",
+                    frames_dir=root / "frames",
+                    valid_ligand_codes=VALID,
+                    mtz_dump_executable=make_mtz_dump(root),
+                )
+            self.assertFalse((dataset / "AutoMR").exists())
+
     def test_exact_standard_pair_model_is_ready_without_pair_mutation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
