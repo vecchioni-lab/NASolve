@@ -489,6 +489,59 @@ def _validate_ref(value: Any, label: str, prefix: str | None = None) -> None:
         raise CampaignError(f"Malformed campaign state: {label} requires a nonnegative integer size")
 
 
+def _validate_sequence_threads(
+    payload: dict[str, Any], resource_prefix: str,
+) -> dict[str, dict[str, object]]:
+    value = payload.get("sequence_threads")
+    if value is None:
+        return {}
+    value = _require(value, dict, "sequence_threads")
+    if set(value) != {"source", "definitions"}:
+        raise CampaignError("Malformed campaign state: invalid sequence_threads record")
+    _validate_ref(value["source"], "sequence_threads.source", resource_prefix)
+    definitions = _require(value["definitions"], dict, "sequence_threads.definitions")
+    membership: dict[str, dict[str, object]] = {}
+    for thread_id, thread in definitions.items():
+        if (
+            type(thread_id) is not str
+            or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", thread_id) is None
+        ):
+            raise CampaignError("Malformed campaign state: invalid sequence thread id")
+        thread = _require(thread, dict, f"sequence_threads.{thread_id}")
+        if set(thread) != {"id", "datasets", "sequence_reference", "sequences", "site_codes"}:
+            raise CampaignError("Malformed campaign state: invalid sequence thread fields")
+        if thread.get("id") != thread_id or thread.get("sequence_reference") != "w-metal-scaffold":
+            raise CampaignError("Malformed campaign state: inconsistent sequence thread identity")
+        datasets = _require(thread.get("datasets"), list, f"{thread_id}.datasets")
+        if datasets != sorted(set(datasets)) or not datasets:
+            raise CampaignError("Malformed campaign state: invalid sequence thread membership")
+        sequences = _require(thread.get("sequences"), dict, f"{thread_id}.sequences")
+        site_codes = _require(thread.get("site_codes"), dict, f"{thread_id}.site_codes")
+        if any(
+            type(chain) is not str or len(chain) != 1
+            or type(sequence) is not str or not sequence
+            for chain, sequence in sequences.items()
+        ):
+            raise CampaignError("Malformed campaign state: invalid thread sequence overlay")
+        if any(
+            type(site) is not str or re.fullmatch(r"[A-Za-z0-9_]:[^:\\s]+", site) is None
+            or type(code) is not str or re.fullmatch(r"[A-Z0-9]{1,5}", code) is None
+            for site, code in site_codes.items()
+        ):
+            raise CampaignError("Malformed campaign state: invalid thread site chemistry")
+        applied = {
+            "id": thread_id,
+            "sequences": sequences,
+            "site_codes": site_codes,
+        }
+        for dataset in datasets:
+            name = _dataset_name(dataset)
+            if name in membership:
+                raise CampaignError("Malformed campaign state: dataset belongs to multiple sequence threads")
+            membership[name] = applied
+    return membership
+
+
 def _validate_plan(payload: Any) -> None:
     _require(payload, dict, "record")
     _required_fields(payload, {"schema_version", "state", "validation_scope", "preset",
@@ -534,6 +587,7 @@ def _validate_plan(payload: Any) -> None:
         _safe_relative(original.get("relative_path"), f"preset.policy.resources.{name}")
         if any(original.get(field) != reference[field] for field in ("sha256", "size")):
             raise CampaignError("Malformed campaign state: inconsistent preset resource identity")
+    thread_membership = _validate_sequence_threads(payload, resource_prefix)
     entries = _require(payload.get("datasets"), list, "datasets")
     ids = []
     for entry in entries:
@@ -605,6 +659,34 @@ def _validate_plan(payload: Any) -> None:
                 raise CampaignError(f"Malformed campaign OP3 request: {exc}") from exc
             for field in ("sequences", "mutations"):
                 _require(config.get(field), dict, f"{name}.{field}")
+            expected_thread = thread_membership.get(name)
+            if config.get("sequence_thread") != expected_thread:
+                raise CampaignError(
+                    f"Malformed campaign state: inconsistent {name}.sequence_thread"
+                )
+            reference_source = config.get("sequence_reference_source")
+            if reference_source not in {None, "dataset", "thread"}:
+                raise CampaignError(
+                    f"Malformed campaign state: invalid {name}.sequence_reference_source"
+                )
+            if reference_source == "thread":
+                if (
+                    expected_thread is None
+                    or config.get("sequence_reference")
+                    != payload["sequence_threads"]["definitions"][expected_thread["id"]]["sequence_reference"]
+                ):
+                    raise CampaignError(
+                        f"Malformed campaign state: inconsistent {name} thread reference"
+                    )
+            elif reference_source == "dataset":
+                if config.get("sequence_reference") is None:
+                    raise CampaignError(
+                        f"Malformed campaign state: dataset reference source has no selector"
+                    )
+            elif config.get("sequence_reference") is not None:
+                raise CampaignError(
+                    f"Malformed campaign state: selected reference has no provenance source"
+                )
             for field, role in (("model", "model"), ("config_source", "config"),
                                 ("frame_sequence", "frame_sequence")):
                 if field in config and config[field] != inputs.get(role):
@@ -624,7 +706,8 @@ def _validate_plan(payload: Any) -> None:
             _required_fields(config, {"mode", "frame", "pair", "mirror", "allow_p1_standard",
                                       "model", "model_name", "model_source", "model_pair",
                                       "exact_pair_model", "catalogue_warnings", "config_source",
-                                      "frame_sequence", "pair_ligands", "sequences", "mutations"},
+                                      "frame_sequence", "pair_ligands", "sequences", "mutations",
+                                      "sequence_reference_source", "sequence_thread"},
                              f"{name}.effective_config")
             if config["mode"] != "standard" or config["frame"] != "W" or not config["pair"]:
                 raise CampaignError("Malformed campaign state: invalid discovered W configuration")
@@ -702,8 +785,10 @@ def campaign_status(root: Path) -> dict[str, Any]:
         return cache[key]
 
     preset = payload["preset"]
-    issues = [issue for reference in [preset["source"], *preset["resources"].values()]
-              if (issue := check(reference))]
+    global_references = [preset["source"], *preset["resources"].values()]
+    if payload.get("sequence_threads") is not None:
+        global_references.append(payload["sequence_threads"]["source"])
+    issues = [issue for reference in global_references if (issue := check(reference))]
     for entry in payload["datasets"]:
         local = [issue for reference in entry["inputs"].values() if (issue := check(reference))]
         dataset = campaign / entry["relative_path"]
