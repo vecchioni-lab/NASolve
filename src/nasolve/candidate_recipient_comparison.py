@@ -288,7 +288,15 @@ def compare_checkpoint_to_recipient(
         "kind": "checkpoint-recipient-comparison",
         "donor": {
             "dataset_name": donor_source.get("dataset_name"),
+            "dataset_locator": str(
+                dataset_directory(
+                    donor_run_directory.expanduser().resolve()
+                ).resolve()
+            ),
             "run_id": donor_source.get("run_id"),
+            "run_locator": str(
+                donor_run_directory.expanduser().resolve()
+            ),
             "checkpoint_id": donor_source.get("checkpoint_id"),
             "status": donor_source.get("status"),
             "usable": donor_source.get("usable"),
@@ -297,7 +305,11 @@ def compare_checkpoint_to_recipient(
         },
         "recipient": {
             "dataset_name": dataset_directory(recipient_run).name,
+            "dataset_locator": str(
+                dataset_directory(recipient_run).resolve()
+            ),
             "run_id": recipient_run.name,
+            "run_locator": str(recipient_run),
             "mode": recipient_mode,
             "frame": recipient_frame,
             "symmetry_class": recipient_symmetry,
