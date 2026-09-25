@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Status: **current working state — updated 2026-09-18**.
+Status: **current working state — updated 2026-09-25**.
 
 This file records the implementation edge: what is validated now, what is
 scientifically blocked, and what should happen next.
@@ -21,15 +21,16 @@ Numbered runs and checkpoint branches are immutable. Free-R flags are not
 regenerated for convenience. Refine Doctor preserves the current checkpoint
 unless a user explicitly selects another one.
 
-Current branch-wide local regression baseline:
+Latest local regression baseline before this documentation-only cleanup:
 
-- **520 tests passed**
-- **145 subtests passed**
-- `python -m compileall -q src tests` passed
-- `git diff --check` passed
+- **620 tests passed** in the full suite;
+- the focused donor/recipient comparison slice passed **51 tests plus 22
+  subtests**.
 
-This was verified locally on Python 3.12. The current feature-branch head did
-not have an attached GitHub Actions run at that checkpoint.
+These results were reported from the active Python 3.12 development
+environment. This handoff does not claim fresh `compileall`, `diff --check`,
+or GitHub Actions results beyond the checks actually run in that development
+window.
 
 ## Terminal-phosphate chemistry
 
@@ -160,6 +161,39 @@ model SHA-256, flagged site, timestamp, and preserved passthrough provenance.
 This validated the review UX/provenance path only; it does not assert
 non-standard chemistry at A:12.
 
+## Campaign provenance and Doctor groundwork
+
+Sequential campaign execution from immutable plans is operational for the
+current standard W path. Planning freezes explicit dataset/model/reference
+choices, supports root `nasolve-campaign.toml` sequence threads, and keeps
+run/checkpoint lineage immutable.
+
+The donor/recipient provenance stack is now implemented in read-only layers:
+
+- complete explicit sequence-family targets and search-model mismatch
+  provenance when a target is available;
+- checksum-bound model compatibility fact sheets for every fresh AutoMR run;
+- explicit provider-side `model_family` declarations bound to a named model,
+  never inferred from frame, filename, sequence thread, or similarity;
+- checkpoint-candidate descriptors that re-verify the selected checkpoint
+  model, observations, lineage, literal residue inventory, chemistry context,
+  and frozen target comparison; and
+- donor-checkpoint versus recipient-run comparisons that re-verify both sides
+  and compare literal donor site/residue inventory against the recipient's own
+  frozen target while keeping source frame/reference/mirror facts as context.
+
+These layers are deliberately **descriptive only**. They do not rank donors,
+declare donor eligibility, declare recipient compatibility, authorize rescue,
+or reuse a solved sibling automatically. Source observations remain donor
+provenance rather than recipient evidence.
+
+The next campaign orchestration edge is therefore a separate reviewed
+eligibility/rescue policy that consumes these facts under a bounded budget.
+That future layer must record the exact donor checkpoint, recipient, applicable
+hard gates, transformations, attempts and stopping reason without rewriting the
+recipient's authoritative observations, Free-R set, target chemistry or failed
+branch.
+
 ## Separate scientific follow-up
 
 These are not blockers for proactive terminal-phosphate protection:
@@ -174,8 +208,9 @@ These are not blockers for proactive terminal-phosphate protection:
 - Final Model Doctor / curate / deposition should preserve explicit evidence
   provenance rather than assuming every artifact comes from the selected
   coordinate checkpoint;
-- campaign-level Doctor integration remains the next major orchestration layer
-  after the standalone refinement/chemistry path is complete.
+- reviewed Campaign Doctor eligibility and bounded rescue execution remain the
+  next major orchestration layer; the donor provenance and donor-to-recipient
+  descriptive comparison prerequisites are already implemented.
 
 ## Documentation rule
 

@@ -483,30 +483,39 @@ identifiers and the exact approved snapshot submitted.
 
 ## Proposed implementation sequence
 
-1. Add a versioned preset schema and loader.
-2. Add strict dataset discovery, input freezing, and campaign state storage.
-3. Orchestrate one resumable single-candidate 5W6W path using existing stages.
-4. Add campaign-level Doctor policy, automatic bounded selection, and the
-   inspection queue.
+1. **Implemented:** versioned preset schema and loader.
+2. **Implemented:** strict dataset discovery, input freezing, campaign state
+   storage, explicit sequence-reference freezing, and root
+   `nasolve-campaign.toml` sequence threads.
+3. **Implemented:** one resumable sequential 5W6W execution path using the
+   existing AutoMR/PostMR/conditional AutoSol/AutoRefine stages, including
+   pause and explicit retry.
+4. **Prerequisites implemented; policy/execution still future:** read-only
+   checkpoint-candidate descriptors and donor-checkpoint versus recipient-run
+   comparisons now provide provenance-rich inputs for Campaign Doctor. Reviewed
+   donor eligibility rules, bounded rescue candidate generation/selection, and
+   the inspection queue are not implemented yet.
 5. Add machine-readable summaries and per-dataset/campaign PDF rendering.
-6. Add multi-candidate DAGs, shared-parent execution, budgets, and comparison.
+6. Add multi-candidate DAGs, shared-parent execution, budgets, and bounded
+   rescue comparison/selection under explicit policy.
 7. Add a local dashboard for status, Coot launch, tree navigation, and approval.
 8. Add Model Doctor and project-specific recovery extensions.
 9. Add curate and the lab Table 1 specification.
 10. Add deposition preparation, validation, and explicit submission.
 
-Steps 1 and 2 provide `preset check`, `campaign plan` and `campaign status`,
-with an immutable JSON inventory, portable resource snapshots and integrity
-verification. Step 3 adds `campaign run`, `campaign pause` and explicit
-`campaign retry` for one sequential standard-frame path. It reuses verified
-completed stages, preserves incomplete attempts for inspection and records
-per-dataset outcomes separately from the plan. It does not yet parse the
-proposed `nasolve-campaign.toml` or maintain a database execution index.
+The implemented campaign slice provides `preset check`, `campaign plan`,
+`campaign status`, `campaign run`, `campaign pause`, and explicit
+`campaign retry` with immutable planning state, portable resource snapshots,
+integrity verification, and per-dataset execution records. Planning can also
+freeze explicit sequence threads and provider/target provenance used by later
+run-level compatibility records. A database execution index and general
+multi-candidate DAG remain future work.
 
-The first execution slice ends after step 3. Real Phenix/Coot campaign smoke
-checks remain necessary alongside the regression suite. Automatic Doctor
-selection and the later approval/deposition workflow are not implied by
-numerical success.
+Real Phenix/Coot campaign smoke checks remain necessary alongside the
+regression suite. The new donor/recipient comparison layer is descriptive only:
+automatic Doctor eligibility/selection and the later approval/deposition
+workflow are not implied by numerical success or by matching compatibility
+facts.
 
 ## Deferred decisions
 
