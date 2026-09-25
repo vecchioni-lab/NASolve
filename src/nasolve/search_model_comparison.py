@@ -312,8 +312,9 @@ def freeze_search_model_comparison(
     run: Path,
 ) -> dict[str, object]:
     """Freeze one comparison artifact beneath an already allocated run."""
+    validated = _validated_comparison_record(dict(comparison))
     data = (
-        json.dumps(comparison, indent=2, sort_keys=True, allow_nan=False) + "\n"
+        json.dumps(validated, indent=2, sort_keys=True, allow_nan=False) + "\n"
     ).encode("utf-8")
     path = run / "Model" / "search_model_comparison.json"
     with path.open("xb") as handle:
