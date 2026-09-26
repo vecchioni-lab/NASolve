@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-oak-2",
+  "version": "2026-09-26-oak-3",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -411,5 +411,25 @@
     "provider_baseline_runtime_requirement": "Caller-supplied provider codes are experimental evidence only. Runtime use requires binding them to a reviewed/versioned provider or model-family record with provenance.",
     "weighted_sequence_score_used": false,
     "live_pipeline_changed": false
+  },
+  "active_development_branch": {
+    "name": "oak",
+    "pull_request": 22,
+    "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
+    "status": "FOCUSED_VALIDATED_REAL_W_SHADOW_PENDING"
+  },
+  "documentation_sync_policy": {
+    "required_on_meaningful_inference_changes": true,
+    "surfaces": [
+      "README.md human-facing current capability/boundary",
+      "docs/README.md active documentation map",
+      "docs/construct-registration.md subsystem design/implementation contract",
+      "docs/construct-registration-intent.json machine-readable policy and validation history",
+      "docs/construct-registration-live-checks.md minimum human/real-data validation queue",
+      "docs/campaign-model-roadmap.md forward-looking implementation status",
+      "docs/development-handoff.md immediate working edge",
+      "active pull request body / branch description"
+    ],
+    "rule": "Keep these synchronized as implementation or inference policy changes so a new chat or collaborator can recover current state without conversation history."
   }
 }
