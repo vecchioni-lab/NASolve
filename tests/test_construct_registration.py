@@ -6,6 +6,7 @@ from pathlib import Path
 
 from nasolve.construct_registration import (
     ConstructRegistrationError,
+    apply_guided_chain_selection,
     build_construct_registration,
     build_identity_registration,
     compare_construct_registrations,
@@ -789,6 +790,150 @@ class ConstructRegistrationTests(unittest.TestCase):
                 "different logical targets",
             ):
                 compare_construct_registrations(before, other)
+
+    def test_guided_selection_resolves_only_preexisting_ambiguous_scout_candidates(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DA"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DG"),
+                ],
+            )
+            logical_target = target(
+                ("A:1", "DA"),
+                ("A:2", "DA"),
+                ("B:1", "DG"),
+                ("B:2", "DG"),
+            )
+            scout = scout_simple_registration(model, logical_target)
+            self.assertEqual(scout["status"], "AMBIGUOUS")
+
+            decision = apply_guided_chain_selection(
+                model,
+                logical_target,
+                scout,
+                {"A": "M", "B": "N"},
+            )
+            self.assertEqual(decision["kind"], "guided-registration-decision")
+            self.assertEqual(decision["source_scout_status"], "AMBIGUOUS")
+            self.assertTrue(decision["semantics"]["user_selection_required"])
+            self.assertFalse(
+                decision["semantics"]["sequence_similarity_used_for_assignment"]
+            )
+            self.assertEqual(
+                [
+                    (row["logical_chain"], row["coordinate_chain"])
+                    for row in decision["selection"]
+                ],
+                [("A", "M"), ("B", "N")],
+            )
+            mapping = {
+                row["logical_site"]: row["coordinate_site"]
+                for row in decision["registration"]["copies"][0]["mappings"]
+            }
+            self.assertEqual(
+                mapping,
+                {
+                    "A:1": "M:1",
+                    "A:2": "M:2",
+                    "B:1": "N:1",
+                    "B:2": "N:2",
+                },
+            )
+
+    def test_guided_selection_cannot_invent_non_scout_candidate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DA"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DG"),
+                ],
+            )
+            logical_target = target(
+                ("A:1", "DA"),
+                ("A:2", "DA"),
+                ("B:1", "DG"),
+                ("B:2", "DG"),
+            )
+            scout = scout_simple_registration(model, logical_target)
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "was not a Scout candidate",
+            ):
+                apply_guided_chain_selection(
+                    model,
+                    logical_target,
+                    scout,
+                    {"A": "M", "B": "Z"},
+                )
+
+    def test_guided_selection_requires_a_bijection_and_every_logical_chain(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DA"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DG"),
+                ],
+            )
+            logical_target = target(
+                ("A:1", "DA"),
+                ("A:2", "DA"),
+                ("B:1", "DG"),
+                ("B:2", "DG"),
+            )
+            scout = scout_simple_registration(model, logical_target)
+
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "name every logical chain",
+            ):
+                apply_guided_chain_selection(
+                    model,
+                    logical_target,
+                    scout,
+                    {"A": "M"},
+                )
+
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "unique coordinate chains",
+            ):
+                apply_guided_chain_selection(
+                    model,
+                    logical_target,
+                    scout,
+                    {"A": "M", "B": "M"},
+                )
+
+    def test_guided_selection_refuses_nonambiguous_scout(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(root, [("A", 1, "DA")])
+            logical_target = target(("A:1", "DA"))
+            scout = scout_simple_registration(model, logical_target)
+            self.assertEqual(scout["status"], "REGISTERED")
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "requires an AMBIGUOUS Scout",
+            ):
+                apply_guided_chain_selection(
+                    model,
+                    logical_target,
+                    scout,
+                    {"A": "A"},
+                )
 
     def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
         with tempfile.TemporaryDirectory() as directory:
