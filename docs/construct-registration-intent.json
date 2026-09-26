@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-oak-3",
+  "version": "2026-09-26-oak-4",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,9 +105,8 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "branch_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
-    "status": "real-w-shadow-pending",
-    "remaining_gate": "Run the experimental design-aware Scout v2 helper against the renamed ED run_011 real-W model using explicit reviewed 5W6W provider baseline identities."
+    "status": "real-w-shadow-rerun-pending",
+    "remaining_gate": "Re-run renamed ED run_011 with complete verified C_G provider identity set A:12/A:13=DC and B:3/B:4=DG."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -179,7 +178,7 @@
       "scope": "experimental design-aware Scout v2 proposal helper plus existing Construct Registration tests"
     }
   ],
-  "current_validation_status": "OAK_V2_FOCUSED_PASSED_REAL_W_PENDING",
+  "current_validation_status": "OAK_V2_FOCUSED_PASSED_REAL_W_RERUN_PENDING",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -410,7 +409,40 @@
     "assignment_budget_maximum": 1024,
     "provider_baseline_runtime_requirement": "Caller-supplied provider codes are experimental evidence only. Runtime use requires binding them to a reviewed/versioned provider or model-family record with provenance.",
     "weighted_sequence_score_used": false,
-    "live_pipeline_changed": false
+    "live_pipeline_changed": false,
+    "real_w_attempt_1": {
+      "status": "AMBIGUOUS_EXPECTED_FAIL_CLOSED",
+      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
+      "supplied_provider_codes": {
+        "A:13": "DC",
+        "B:3": "DG"
+      },
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 0,
+      "intended_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 2,
+        "unexplained_mismatch_count": 2
+      },
+      "root_cause": "Experimental provider evidence was incomplete, not that the intended chain mapping was wrong."
+    },
+    "verified_provider_identity_set": {
+      "source": "MR_frames/5W6W/C_G.pdb",
+      "codes": {
+        "A:12": "DC",
+        "A:13": "DC",
+        "B:3": "DG",
+        "B:4": "DG"
+      },
+      "note": "A:13/B:3 are known family-baseline differences; A:12/B:4 are provider-pair identities. Production inference must bind these facts to reviewed/versioned provider provenance."
+    }
   },
   "active_development_branch": {
     "name": "oak",
