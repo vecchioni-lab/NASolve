@@ -168,6 +168,7 @@ def scout_dataset_pdb_candidates(
             results.append({
                 "selector": selector,
                 "status": "INVALID",
+                "file": candidate["file"],
                 "diagnostic": candidate["diagnostic"],
                 "registration_scout": None,
             })
@@ -205,6 +206,7 @@ def scout_dataset_pdb_candidates(
         results.append({
             "selector": selector,
             "status": "VALID",
+            "file": candidate["file"],
             "diagnostic": None,
             "registration_scout": scout,
         })
@@ -217,6 +219,7 @@ def scout_dataset_pdb_candidates(
         "candidate_count": inventory["candidate_count"],
         "valid_candidate_count": inventory["valid_candidate_count"],
         "invalid_candidate_count": inventory["invalid_candidate_count"],
+        "candidate_set_sha256": inventory["candidate_set_sha256"],
         "registered_candidate_count": registered,
         "ambiguous_candidate_count": ambiguous,
         "unresolved_candidate_count": unresolved,
