@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-1",
+  "version": "2026-09-26-birch-2",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -30,7 +30,8 @@
       "exact logical-to-coordinate site identity",
       "same-named chains with constant residue-number offsets",
       "unique whole-chain rename with matching chain length and constant residue-number pattern",
-      "unique whole-chain rename plus constant residue-number offset"
+      "unique whole-chain rename plus constant residue-number offset",
+      "descriptive design-identity evidence for each simple chain candidate is recorded but not used for assignment"
     ],
     "explicitly_not_used_for_chain_assignment": [
       "sequence-similarity ranking",
@@ -89,6 +90,18 @@
     "reported_pass_count": 23,
     "reported_by": "user-local-run",
     "github_ci": false,
-    "scope": "construct registration core, artifact provenance and conservative scout synthetic tests"
+    "scope": "construct registration core, artifact provenance and conservative scout synthetic tests",
+    "note": "This checkpoint predates the descriptive chain-evidence and frozen Scout artifact additions."
+  },
+  "pending_validation": {
+    "branch": "birch",
+    "branch_head": "e137e63eb1494a6da7c13a9d5bfe4fdcb738592f",
+    "status": "pending-user-local-tests",
+    "changes_since_validation_checkpoint": [
+      "descriptive per-candidate design identity evidence",
+      "explicit invariant that design evidence is not used for Scout assignment",
+      "checksum-bound Model/registration_scout.json freeze/load",
+      "strict Scout artifact semantic validation"
+    ]
   }
 }
