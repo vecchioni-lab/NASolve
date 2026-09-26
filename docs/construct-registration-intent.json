@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "kind": "construct-registration-development-intent",
+  "version": "2026-09-26-birch-8",
+  "status": "development-policy-not-runtime-authority",
+  "primary_domain": {
+    "system": "designed self-assembling nucleic-acid crystals",
+    "input_intent_expected": true,
+    "assumptions": [
+      "logical construct sequences and modified-site intent are normally known before MR",
+      "strands are typically short and deliberately designed to reduce unintended ambiguity",
+      "coordinate chain names, residue numbers and ASU cuts are not construct identity"
+    ],
+    "known_edge_cases": [
+      "short repeated motifs may still occur",
+      "three-nucleotide or other constrained repeats may be unavoidable",
+      "single-base sticky ends or overhangs may be intrinsically ambiguous",
+      "symmetry-related or equivalent ASU cuts may preserve the same construct",
+      "unexpected complete or partial ASU copies may occur"
+    ]
+  },
+  "authority_order": [
+    "frozen logical construct intent",
+    "explicit reviewed registration or registration recipe",
+    "authoritative registration of the actual MR solution",
+    "coordinate labels and numbering"
+  ],
+  "implemented_scout_v1": {
+    "allowed_automatic_inference": [
+      "exact logical-to-coordinate site identity",
+      "same-named chains with constant residue-number offsets",
+      "unique whole-chain rename with matching chain length and constant residue-number pattern",
+      "unique whole-chain rename plus constant residue-number offset",
+      "descriptive design-identity evidence for each simple chain candidate is recorded but not used for assignment"
+    ],
+    "explicitly_not_used_for_chain_assignment": [
+      "sequence-similarity ranking",
+      "modified-site similarity scoring",
+      "MR score ranking",
+      "symmetry expansion",
+      "topology inference"
+    ],
+    "refuse_or_defer": [
+      "multiple equally valid chain bijections",
+      "chain-count mismatch suggesting split chains, multiplicity or partial copies",
+      "nonconstant residue-number correspondence",
+      "symmetry-dependent recutting",
+      "topology-dependent correspondence"
+    ],
+    "descriptive_design_evidence": {
+      "recorded_for_each_simple_chain_candidate": true,
+      "used_for_assignment": false,
+      "intended_use": [
+        "guided review",
+        "future reviewed inference policy",
+        "human-readable Registration Net annotations"
+      ],
+      "caution": "Target mismatches can be expected PostMR sequence/modification changes and are not a compatibility score."
+    }
+  },
+  "sequence_and_modification_policy": {
+    "logical_intent_is_authoritative": true,
+    "current_scout_sequence_tie_breaking": false,
+    "future_design_aware_inference": "Sequence, modified-site intent, sticky-end definitions and other design information may become explicit evidence in later inference layers when they produce a unique reviewed interpretation. They must not become a hidden composite score.",
+    "ambiguity_guard": "Repeated short motifs and single-base overhangs must remain capable of producing AMBIGUOUS or guided-review outcomes."
+  },
+  "mutation_propagation_policy": {
+    "apply_in_logical_coordinates": true,
+    "propagate_to_all_complete_registered_copies": true,
+    "propagate_complete_copy_mutations_to_partial_copies": false,
+    "coordinate_editing_in_core_registration": false
+  },
+  "timing_policy": [
+    "cheap non-mutating Registration Scout before MR",
+    "ordinary MR first when a candidate remains plausible",
+    "authoritative registration on the actual MR solution before PostMR chemistry",
+    "bounded explicit Registration/Recut Rescue only when needed"
+  ],
+  "human_escalation": {
+    "automatic_when": "one reviewed deterministic interpretation remains",
+    "guided_when": [
+      "more than one non-equivalent mapping remains",
+      "a split, recut or boundary operation lacks a reviewed recipe",
+      "partial-copy interpretation affects downstream actions",
+      "successful MR candidates imply materially different cuts or multiplicities",
+      "mapping depends on topology rather than simple construct correspondence"
+    ]
+  },
+  "provenance_policy": {
+    "inference_changes_must_update_human_docs": true,
+    "inference_changes_must_update_machine_readable_intent": true,
+    "successful_local_behavior_does_not_silently_change_global_policy": true,
+    "backtracking_after_real_data_validation_is_expected": true
+  },
+  "validation_checkpoint": {
+    "date": "2026-09-26",
+    "branch": "birch",
+    "validated_code_head": "4452295c3330de6d55bddd75b01be21f39afb222",
+    "focused_test_file": "tests/test_construct_registration.py",
+    "reported_pass_count": 23,
+    "reported_by": "user-local-run",
+    "github_ci": false,
+    "scope": "construct registration core, artifact provenance and conservative scout synthetic tests",
+    "note": "This checkpoint predates the descriptive chain-evidence and frozen Scout artifact additions."
+  },
+  "pending_validation": null,
+  "stage_transition_policy": {
+    "implemented": true,
+    "kind": "construct-registration-transition",
+    "purpose": "Describe how registration changes between stages without deciding whether the change is acceptable.",
+    "dimensions": [
+      "logical copy-coverage structure",
+      "complete/partial copy multiplicity",
+      "complete-copy observed identity classes",
+      "single-copy coordinate realization when directly comparable"
+    ],
+    "decisions_explicitly_not_made": [
+      "scientific acceptability",
+      "guided-review requirement",
+      "PostMR authorization",
+      "recut authorization"
+    ]
+  },
+  "validation_history": [
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "birch",
+      "code_head": "4452295c3330de6d55bddd75b01be21f39afb222",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 23,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "construct registration core, artifact provenance and conservative Scout v1 synthetic tests"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "birch",
+      "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "registration core/scout/evidence/guided/transition plus read-only multi-PDB candidate inventory/scouting",
+      "reported_pass_count": 44,
+      "focused_test_files": [
+        "tests/test_construct_registration.py",
+        "tests/test_model_candidates.py"
+      ],
+      "note": "Focused bundle passed locally; full NASolve regression suite remains pending before merge."
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "birch",
+      "checkout_head": "cc0ad6ab537cc61e17e13bc562e4ae8667461e8d",
+      "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+      "passed_tests": 664,
+      "passed_subtests": 222,
+      "elapsed_seconds": 61.7,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "full NASolve regression suite"
+    }
+  ],
+  "current_validation_status": "FULL_SUITE_PASSED",
+  "guided_resolution_v1": {
+    "implemented": true,
+    "scope": "simple ambiguous whole-chain Scout candidates only",
+    "input": "explicit user selection of logical chain -> coordinate chain",
+    "guarantees": [
+      "selection must cover every logical chain",
+      "coordinate chains must be unique",
+      "every selected pair must already be a Scout candidate",
+      "Scout model/target evidence must match the current assessment and target",
+      "guided selection does not use sequence similarity to make the choice",
+      "guided selection does not edit coordinates or promote a global recipe"
+    ],
+    "explicitly_deferred": [
+      "guided split-chain assembly",
+      "guided symmetry-dependent cut selection",
+      "partial-copy interpretation",
+      "topology-aware mapping",
+      "recipe promotion"
+    ]
+  },
+  "multi_pdb_candidate_inventory_v1": {
+    "implemented": true,
+    "live_automr_behavior_changed": false,
+    "scope": "top-level dataset PDB files only",
+    "behavior": [
+      "enumerate every top-level PDB without selecting one",
+      "assess valid and invalid PDBs independently",
+      "retain invalid candidates with diagnostics rather than hiding them",
+      "record SHA-256 and byte size for every candidate regardless of validity",
+      "compute one stable candidate-set fingerprint over selector/status/file identity",
+      "run Registration Scout independently on every valid candidate in the read-only scouting layer"
+    ],
+    "decisions_explicitly_not_made": [
+      "candidate ranking",
+      "automatic model selection",
+      "MR attempt authorization",
+      "best-TFZ selection",
+      "candidate transformation"
+    ],
+    "current_legacy_behavior": "AutoMR still requires one unambiguous nonstandard PDB or an explicit model selector."
+  },
+  "human_live_check_queue": {
+    "path": "docs/construct-registration-live-checks.md",
+    "policy": "Keep the queue small, trigger-based, and tied to real/user-visible behavior rather than duplicating unit tests.",
+    "required_categories": [
+      "full regression before substantial merge",
+      "clean W identity-path live check when registration is wired",
+      "8D93-style non-identity recut live check when executable",
+      "8D31-like complete/partial multiplicity live check when executable",
+      "guided ambiguity live check when UI/CLI exists",
+      "bounded multi-PDB MR live check when selection policy exists"
+    ]
+  },
+  "latest_focused_validation": {
+    "date": "2026-09-26",
+    "branch": "birch",
+    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+    "reported_pass_count": 44,
+    "files": [
+      "tests/test_construct_registration.py",
+      "tests/test_model_candidates.py"
+    ],
+    "reported_by": "user-local-run",
+    "github_ci": false
+  },
+  "latest_full_validation": {
+    "date": "2026-09-26",
+    "branch": "birch",
+    "checkout_head": "cc0ad6ab537cc61e17e13bc562e4ae8667461e8d",
+    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+    "command_scope": "full NASolve pytest suite",
+    "passed_tests": 664,
+    "passed_subtests": 222,
+    "elapsed_seconds": 61.7,
+    "reported_by": "user-local-run",
+    "github_ci": false,
+    "note": "Checkout included documentation-only commits after the validated code head; no source/test code changed after code_head."
+  }
+}

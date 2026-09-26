@@ -21,17 +21,18 @@ Numbered runs and checkpoint branches are immutable. Free-R flags are not
 regenerated for convenience. Refine Doctor preserves the current checkpoint
 unless a user explicitly selects another one.
 
-Latest local code regression baseline before the current documentation/design
-update:
+Latest local code regression baseline:
 
-- **620 tests passed** in the full suite;
-- the focused donor/recipient comparison slice passed **51 tests plus 22
-  subtests**.
+- **664 tests passed** in the full suite;
+- **222 subtests passed**;
+- full-suite runtime: **61.70 s**.
 
-These results were reported from the active Python 3.12 development
-environment. The Sep 26 Construct Registration/NAPrep update is documentation
-and architecture planning only; it does not claim a new code-test,
-`compileall`, `diff --check`, or GitHub Actions result.
+This was reported from the active Python 3.12 development environment on Birch
+checkout `cc0ad6ab537cc61e17e13bc562e4ae8667461e8d`. Registration source/test
+code was unchanged after code head
+`686830beb64907f2a1ba73fa1bdbff97f6dcc38d`; later Birch commits before the
+full run were documentation-only validation bookkeeping. This is a user-local
+test result, not GitHub CI.
 
 ## Terminal-phosphate chemistry
 
@@ -251,6 +252,73 @@ The first planned validation ladder begins with ordinary W identity
 registration and an 8D93-style -> W recut fixture, then chain renaming,
 numbering offsets, chain splits, multicopy/partial-copy ASUs and bounded
 multi-PDB MR candidates.
+
+### Birch implementation checkpoint
+
+The first backend-only slice is now implemented on the `birch` development
+branch without changing any existing AutoMR/PostMR call path.
+
+Implemented:
+
+- strict logical-site -> coordinate-site registration records;
+- complete, multicopy and partial-copy representation;
+- complete-copy-only logical mutation/chemistry expansion;
+- checksum-bound freeze/load provenance and semantic revalidation;
+- exact accounting for mapped and unmapped polymer residues;
+- read-only logical inventories for later Hemlock/Moss/Campaign Doctor use;
+- conservative Registration Scout v1 for identity, same-name constant residue
+  offsets, unique whole-chain rename, and rename-plus-offset cases;
+- descriptive per-candidate design-identity evidence that is explicitly barred
+  from Scout assignment/ranking;
+- checksum-bound `Model/registration_scout.json` freeze/load with semantic
+  revalidation; and
+- a non-decisional registration-transition comparison for later
+  Scout-versus-authoritative-MR reporting;
+- UI-independent guided resolution for ambiguous simple chain assignments,
+  restricted to explicit user selections among already enumerated Scout
+  candidates;
+- read-only top-level dataset PDB candidate inventory with valid/invalid
+  diagnostics, per-file SHA-256/size and a stable candidate-set fingerprint;
+  and
+- read-only conservative Registration Scout across every valid discovered PDB,
+  with no ranking, selection or MR authorization.
+
+Scout v1 deliberately does not use sequence-similarity ranking, modified-site
+similarity, symmetry expansion, split-chain inference, copy-number inference or
+topology. Ambiguous renamed chains remain ambiguous rather than being selected
+by a hidden score.
+
+The primary inference regime is designed self-assembling nucleic-acid crystals:
+input construct sequence/modification/boundary intent is normally known and
+short designed strands are usually less repetitive than generic polymers.
+Repeated short motifs and single-base overhangs remain explicit ambiguity
+hazards rather than ignored corner cases.
+
+The machine-readable development policy is
+[`construct-registration-intent.json`](construct-registration-intent.json).
+Policy changes should update that file alongside the human design contract so
+real-data testing can intentionally backtrack or revise inference behavior
+without losing why an earlier rule existed.
+
+The minimum human/real-workflow validation queue is maintained separately in
+[`construct-registration-live-checks.md`](construct-registration-live-checks.md).
+Keep that list intentionally small and trigger-based; it exists so clean-W,
+8D93-style recut, 8D31-like multiplicity, guided ambiguity and bounded multi-PDB
+live checks are not forgotten as implementation context moves across chats.
+
+Validation history is preserved rather than overwritten:
+
+- the earlier Birch checkpoint at code head
+  `4452295c3330de6d55bddd75b01be21f39afb222` had **23 focused registration
+  tests passing locally**;
+- the current Birch bundle at code head
+  `686830beb64907f2a1ba73fa1bdbff97f6dcc38d` has **44 focused tests passing locally** across
+  `tests/test_construct_registration.py` and
+  `tests/test_model_candidates.py`.
+
+Both are user-local checkpoints, not GitHub CI. The full NASolve regression
+suite subsequently passed with **664 tests and 222 subtests**, satisfying the
+remaining merge gate for PR #17.
 
 ## NAPrep boundary
 

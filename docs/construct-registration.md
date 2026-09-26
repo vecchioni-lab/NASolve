@@ -1,8 +1,39 @@
 # Construct registration and the Registration Net
 
-Status: **design contract; not yet implemented.** This layer is intended to make
-NASolve robust to real crystallographic coordinate representations without
-changing the logical construct intent supplied by the user.
+Status: **design contract with core semantics and conservative Scout v1 now
+implemented on the Birch development branch; not yet wired into live
+AutoMR/PostMR execution.** This layer is intended to make NASolve robust to real
+crystallographic coordinate representations without changing the logical
+construct intent supplied by the user.
+
+The current machine-readable development policy is
+[`construct-registration-intent.json`](construct-registration-intent.json).
+Inference-policy changes should update both that record and this document so
+later validation can distinguish a code regression from an intentional policy
+revision.
+
+## Primary inference domain
+
+The primary target is **designed self-assembling nucleic-acid crystals**, not an
+arbitrary biological polymer with unknown composition.
+
+NASolve should normally know the intended strand sequences, modified sites,
+sticky ends, termini and other dataset-level construct intent before MR. Those
+designed strands are generally short and deliberately chosen to reduce
+accidental correspondence ambiguity. That makes registration better constrained
+than generic sequence alignment.
+
+This is a useful prior, not permission to force a mapping. Short repeated motifs
+can still occur; some three-nucleotide patterns may be constrained to repeat;
+and a single-base sticky end can be intrinsically non-identifying. Such cases
+must remain able to produce an ambiguous/guided outcome.
+
+The intended direction is therefore **design-aware but explicit**: sequence,
+modified-site intent and boundary definitions may later participate as named
+evidence when they make a registration unique, but must not become a hidden
+similarity score that silently decides between competing crystallographic
+interpretations. Scout v1 deliberately does not use sequence similarity to
+break chain-assignment ties.
 
 ## Core idea
 
@@ -195,6 +226,42 @@ Automatic mode may:
 Every automatic action remains frozen in provenance and reconstructible in the
 final report.
 
+### Current Scout v1 implementation boundary
+
+Birch currently implements the pure registration record, checksum-bound
+freeze/load provenance, logical-site propagation across complete registered
+copies, and a conservative non-mutating scout for:
+
+- exact logical/coordinate site identity;
+- same-named chains with constant residue-number offsets;
+- unique whole-chain renames with the same length/residue-number pattern; and
+- unique whole-chain rename plus constant residue-number offset.
+
+Scout v1 intentionally refuses to infer split chains, copy multiplicity,
+symmetry-dependent cuts, partial copies or topology. It also does **not** use
+sequence or modified-site similarity as a tie-breaker.
+
+Birch now additionally records a **descriptive design-evidence matrix** for
+every simple chain candidate. It reports target/coordinate residue matches and
+mismatches—including intended modified-site differences—but schema semantics
+fix `used_for_assignment = false` and explicitly state that identity-match
+counts are not a score. This gives guided mode and future reviewed inference a
+transparent evidence trail without changing Scout v1's decision rule.
+
+Scout results themselves can now be frozen as checksum-bound
+`Model/registration_scout.json` artifacts, including unresolved/ambiguous
+cases. A separate pure transition comparator can describe how registration
+changes between a search-model stage and a later authoritative MR-solution
+registration: copy coverage, complete/partial multiplicity, complete-copy
+identity classes and single-copy coordinate realization remain separate
+dimensions with no acceptance or PostMR verdict.
+
+The focused Birch registration suite was reported locally as **23 passing
+tests** at code head `4452295c3330de6d55bddd75b01be21f39afb222`. The newer
+design-evidence, frozen-Scout and registration-transition additions are
+explicitly marked pending validation in
+[`construct-registration-intent.json`](construct-registration-intent.json).
+
 ### Guided mode
 
 Guided mode is for a dataset whose crystallographic interpretation itself has
@@ -207,6 +274,13 @@ mark a fragment as partial/extraneous, or select a reviewed cut recipe.
 A guided decision is frozen as run-local registration provenance. It does not
 silently change a global NASolve rule. Promotion of a successful run-local
 mapping into a reusable lab recipe is a separate explicit action.
+
+Birch now implements the first UI-independent guided primitive for simple
+ambiguous Scout cases: an explicit logical-chain -> coordinate-chain selection
+can be applied only if every chosen pair was already present in Scout's frozen
+candidate set. The selection must cover every logical chain and remain
+one-to-one. This helper does not choose for the user, edit coordinates, infer
+split chains/symmetry/topology, or promote the result into a global recipe.
 
 The user-facing goal is not to ask the user to rebuild a model manually before
 NASolve can proceed. NASolve should present its best deterministic proposal,
@@ -410,6 +484,21 @@ Dataset PDBs are candidate providers, not automatic truth.
 When several PDBs are present, AutoMR may registration-scout a bounded candidate
 set. Models that cannot represent required logical sites are excluded with a
 diagnostic. Eligible candidates may be tried under a preset-declared MR budget.
+
+Birch now implements the **read-only precursor** to that future behavior without
+changing current AutoMR selection. A separate candidate-inventory module:
+
+- enumerates every top-level dataset PDB;
+- retains invalid PDBs with diagnostics instead of hiding them;
+- records SHA-256 and byte size for every candidate, valid or invalid;
+- computes one stable fingerprint for the entire candidate set; and
+- can run conservative Registration Scout independently on each valid candidate
+  while leaving `selection = null`.
+
+Current AutoMR behavior is intentionally unchanged: a nonstandard dataset with
+multiple unselected PDBs still stops as ambiguous. Candidate inventory/scouting
+does not authorize MR and registration status is explicitly not an MR-quality
+score.
 
 Automatic selection should use existing scientific MR gates and explicit policy,
 not a single composite registration score or raw TFZ alone. A candidate can
