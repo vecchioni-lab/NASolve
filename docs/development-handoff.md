@@ -372,10 +372,21 @@ alternatives retained 12, 11, 16, 17 and 10 unexplained mismatches.
 `runtime_authority` remained false.
 
 This validates the experimental zero-unexplained uniqueness rule on the real-W
-rename nuisance case without promoting it into runtime authority. The immediate
-production-design edge is now provider provenance: replace ad hoc caller-supplied
-provider identity dictionaries with identities derived from a reviewed/versioned
-provider or model-family record before considering any runtime integration.
+rename nuisance case without promoting it into runtime authority.
+
+Oak has now implemented the next provenance slice at code head
+`c515a37dc41fa8bb1935d2c80c825ebef8153177`: Scout v2 no longer accepts an
+ad hoc provider residue dictionary. Optional provider evidence is derived from
+an actual `ModelAssessment` of a standard frame-catalogue model plus NASolve's
+existing `model_provider` record. The helper requires frame-catalogue
+provenance, exact target-site coverage and provider-selector/source-model
+agreement, and returns the derived residue baseline bound to the source model's
+SHA-256. Runtime authority remains false and AutoMR/PostMR still do not call it.
+
+This source/test change is **pending focused local validation**. The earlier
+41-test Oak result belongs to code head
+`189fd4589a8c8f2a0191e21e99cec22b428e6a1c` and must not be inherited onto
+the new code head until rerun.
 
 ### First real-data registration shadow check
 
