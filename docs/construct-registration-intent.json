@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-oak-1",
+  "version": "2026-09-26-oak-2",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,8 +105,9 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "status": "pending-user-local-tests",
-    "scope": "experimental design-aware Scout v2 proposal helper and fail-closed tests"
+    "branch_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
+    "status": "real-w-shadow-pending",
+    "remaining_gate": "Run the experimental design-aware Scout v2 helper against the renamed ED run_011 real-W model using explicit reviewed 5W6W provider baseline identities."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -165,9 +166,20 @@
       "reported_by": "user-local-run",
       "github_ci": false,
       "scope": "full NASolve regression suite"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "oak",
+      "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 41,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "experimental design-aware Scout v2 proposal helper plus existing Construct Registration tests"
     }
   ],
-  "current_validation_status": "OAK_V2_PENDING_FOCUSED_TESTS",
+  "current_validation_status": "OAK_V2_FOCUSED_PASSED_REAL_W_PENDING",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
