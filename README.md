@@ -771,8 +771,8 @@ foundation is now implemented and tested, but it is **not yet wired into live
 AutoMR/PostMR execution**. The merged core can represent logical construct sites
 independently of coordinate chain labels/numbering, freeze Registration Scout
 provenance, compare registration across stages, support explicit guided
-simple-chain choices, and inventory/scout multiple dataset PDB candidates
-without selecting one.
+simple-chain choices, and inventory multiple dataset PDB candidates and run Registration Scout on
+them without selecting one.
 
 Scout v1 remains conservative: ordinary identity/renumbering cases can be
 described deterministically, while renamed repetitive strands remain ambiguous
