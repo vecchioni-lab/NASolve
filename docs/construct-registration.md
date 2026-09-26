@@ -485,6 +485,21 @@ When several PDBs are present, AutoMR may registration-scout a bounded candidate
 set. Models that cannot represent required logical sites are excluded with a
 diagnostic. Eligible candidates may be tried under a preset-declared MR budget.
 
+Birch now implements the **read-only precursor** to that future behavior without
+changing current AutoMR selection. A separate candidate-inventory module:
+
+- enumerates every top-level dataset PDB;
+- retains invalid PDBs with diagnostics instead of hiding them;
+- records SHA-256 and byte size for every candidate, valid or invalid;
+- computes one stable fingerprint for the entire candidate set; and
+- can run conservative Registration Scout independently on each valid candidate
+  while leaving `selection = null`.
+
+Current AutoMR behavior is intentionally unchanged: a nonstandard dataset with
+multiple unselected PDBs still stops as ambiguous. Candidate inventory/scouting
+does not authorize MR and registration status is explicitly not an MR-quality
+score.
+
 Automatic selection should use existing scientific MR gates and explicit policy,
 not a single composite registration score or raw TFZ alone. A candidate can
 have a beautiful registration and still fail MR; another can have weaker
