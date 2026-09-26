@@ -402,6 +402,7 @@ def scout_simple_registration(
     _target_inventory(target)
     coordinate = _coordinate_inventory(assessment)
     logical_order, logical_ids, _ = _target_chains(target)
+    design_evidence = describe_simple_chain_evidence(assessment, target)
 
     if set(coordinate) == {
         f"{chain}:{resid}"
@@ -416,6 +417,7 @@ def scout_simple_registration(
             "method": "identity-site-map",
             "reason": "logical and coordinate site identifiers are identical",
             "chain_candidates": {},
+            "design_evidence": design_evidence,
             "registration": registration,
             "semantics": {
                 "descriptive_only": True,
@@ -479,6 +481,7 @@ def scout_simple_registration(
                     }]
                     for chain in logical_order
                 },
+                "design_evidence": design_evidence,
                 "registration": registration,
                 "semantics": {
                     "descriptive_only": True,
@@ -519,6 +522,7 @@ def scout_simple_registration(
                 "split-chain inference is outside simple scout"
             ),
             "chain_candidates": candidate_view,
+            "design_evidence": design_evidence,
             "registration": None,
             "semantics": {
                 **common_semantics,
@@ -537,6 +541,7 @@ def scout_simple_registration(
                 "same length and constant residue-number offset"
             ),
             "chain_candidates": candidate_view,
+            "design_evidence": design_evidence,
             "registration": None,
             "semantics": {
                 **common_semantics,
@@ -556,6 +561,7 @@ def scout_simple_registration(
                 "registration; scout refuses to rank by sequence similarity"
             ),
             "chain_candidates": candidate_view,
+            "design_evidence": design_evidence,
             "registration": None,
             "semantics": {
                 **common_semantics,
@@ -570,6 +576,7 @@ def scout_simple_registration(
             "method": None,
             "reason": "no complete one-to-one simple chain assignment exists",
             "chain_candidates": candidate_view,
+            "design_evidence": design_evidence,
             "registration": None,
             "semantics": {
                 **common_semantics,
@@ -615,6 +622,7 @@ def scout_simple_registration(
         "method": method,
         "reason": "unique simple chain bijection",
         "chain_candidates": candidate_view,
+        "design_evidence": design_evidence,
         "registration": registration,
         "semantics": {
             **common_semantics,
