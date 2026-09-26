@@ -355,9 +355,16 @@ by AutoMR/PostMR. Provider-baseline codes are caller-supplied experimental
 evidence for now; production use requires versioned/provider-bound provenance.
 Focused Oak validation is now green: **41 tests passed locally** in
 `tests/test_construct_registration.py` at code head
-`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`. The next validation is the
-renamed real-W shadow case using explicit reviewed 5W6W provider-baseline
-identities; v2 remains non-runtime regardless of that result.
+`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`. The first renamed real-W v2 shadow case has now been run. With only the known
+A:13=DC and B:3=DG family-baseline differences supplied as provider evidence,
+v2 correctly stayed `AMBIGUOUS`: 6 complete mappings, 0 zero-unexplained
+mappings; the intended mapping had 38 exact, 2 provider-explained and 2
+unexplained sites. Direct inspection of `MR_frames/5W6W/C_G.pdb` verified that
+the missing provider-pair identities are A:12=DC and B:4=DG. The next shadow
+rerun uses all four provider identities (A:12/A:13=DC; B:3/B:4=DG). v2 remains
+non-runtime regardless of that result. Production use must bind provider
+identity evidence to reviewed/versioned provider provenance rather than a
+caller-supplied dictionary.
 
 ### First real-data registration shadow check
 
