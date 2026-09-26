@@ -1,8 +1,39 @@
 # Construct registration and the Registration Net
 
-Status: **design contract; not yet implemented.** This layer is intended to make
-NASolve robust to real crystallographic coordinate representations without
-changing the logical construct intent supplied by the user.
+Status: **design contract with core semantics and conservative Scout v1 now
+implemented on the Birch development branch; not yet wired into live
+AutoMR/PostMR execution.** This layer is intended to make NASolve robust to real
+crystallographic coordinate representations without changing the logical
+construct intent supplied by the user.
+
+The current machine-readable development policy is
+[`construct-registration-intent.json`](construct-registration-intent.json).
+Inference-policy changes should update both that record and this document so
+later validation can distinguish a code regression from an intentional policy
+revision.
+
+## Primary inference domain
+
+The primary target is **designed self-assembling nucleic-acid crystals**, not an
+arbitrary biological polymer with unknown composition.
+
+NASolve should normally know the intended strand sequences, modified sites,
+sticky ends, termini and other dataset-level construct intent before MR. Those
+designed strands are generally short and deliberately chosen to reduce
+accidental correspondence ambiguity. That makes registration better constrained
+than generic sequence alignment.
+
+This is a useful prior, not permission to force a mapping. Short repeated motifs
+can still occur; some three-nucleotide patterns may be constrained to repeat;
+and a single-base sticky end can be intrinsically non-identifying. Such cases
+must remain able to produce an ambiguous/guided outcome.
+
+The intended direction is therefore **design-aware but explicit**: sequence,
+modified-site intent and boundary definitions may later participate as named
+evidence when they make a registration unique, but must not become a hidden
+similarity score that silently decides between competing crystallographic
+interpretations. Scout v1 deliberately does not use sequence similarity to
+break chain-assignment ties.
 
 ## Core idea
 
@@ -194,6 +225,26 @@ Automatic mode may:
 
 Every automatic action remains frozen in provenance and reconstructible in the
 final report.
+
+### Current Scout v1 implementation boundary
+
+Birch currently implements the pure registration record, checksum-bound
+freeze/load provenance, logical-site propagation across complete registered
+copies, and a conservative non-mutating scout for:
+
+- exact logical/coordinate site identity;
+- same-named chains with constant residue-number offsets;
+- unique whole-chain renames with the same length/residue-number pattern; and
+- unique whole-chain rename plus constant residue-number offset.
+
+Scout v1 intentionally refuses to infer split chains, copy multiplicity,
+symmetry-dependent cuts, partial copies or topology. It also does **not** use
+sequence or modified-site similarity as a tie-breaker. Those richer evidence
+layers should be introduced only with explicit policy and real-data validation.
+
+The focused Birch registration suite has been reported locally as **23 passing
+tests** for this implementation checkpoint. This is a user-local validation
+record, not a GitHub CI result.
 
 ### Guided mode
 
