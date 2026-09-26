@@ -472,11 +472,110 @@ def _enumerate_chain_assignments(
     return solutions, overflow
 
 
+def _reviewed_provider_identity_baseline(
+    provider_assessment: ModelAssessment | None,
+    model_provider: Mapping[str, object] | None,
+    target_codes: Mapping[str, str],
+) -> tuple[dict[str, str], dict[str, object] | None]:
+    """Derive provider residue evidence from one exact reviewed catalogue model.
+
+    The evidence is accepted only from the existing standard frame catalogue
+    provider seam. Residue codes are read from the assessed provider coordinates;
+    callers cannot supply an independent site->code dictionary.
+    """
+    if provider_assessment is None and model_provider is None:
+        return {}, None
+    if provider_assessment is None or model_provider is None:
+        raise ConstructRegistrationError(
+            "Provider baseline evidence requires both a provider assessment "
+            "and model-provider provenance"
+        )
+    if not isinstance(model_provider, Mapping):
+        raise ConstructRegistrationError("Model-provider provenance must be a mapping")
+
+    kind = model_provider.get("kind")
+    selection = model_provider.get("selection")
+    frame = model_provider.get("frame")
+    location = model_provider.get("location")
+    selector = model_provider.get("selector")
+    if (
+        kind not in {"standard-frame-catalogue", "explicit-standard-model"}
+        or location != "frame-catalogue"
+        or not isinstance(selection, str)
+        or not selection
+        or not isinstance(frame, str)
+        or not frame
+        or not isinstance(selector, str)
+        or not selector
+    ):
+        raise ConstructRegistrationError(
+            "Provider baseline evidence must come from an explicit reviewed "
+            "standard frame-catalogue provider"
+        )
+
+    provider_inventory = _coordinate_inventory(provider_assessment)
+    expected_sites = set(target_codes)
+    observed_sites = set(provider_inventory)
+    if observed_sites != expected_sites:
+        missing = sorted(expected_sites - observed_sites)
+        unexpected = sorted(observed_sites - expected_sites)
+        raise ConstructRegistrationError(
+            "Reviewed provider baseline must cover exactly the logical target "
+            f"site set; missing={missing}, unexpected={unexpected}"
+        )
+
+    selector_name = Path(selector).name
+    source_name = Path(provider_assessment.source).name
+    if selector_name != source_name:
+        raise ConstructRegistrationError(
+            "Provider assessment does not match model-provider selector"
+        )
+
+    provider = {
+        "kind": kind,
+        "selection": selection,
+        "frame": frame,
+        "location": location,
+        "selector": selector,
+    }
+    construct_family = model_provider.get("construct_family")
+    if construct_family is not None:
+        if not isinstance(construct_family, str) or not construct_family:
+            raise ConstructRegistrationError(
+                "Model-provider construct family is malformed"
+            )
+        provider["construct_family"] = construct_family
+
+    codes = {
+        site: provider_inventory[site]
+        for site in sorted(target_codes)
+    }
+    baseline = {
+        "schema_version": 1,
+        "kind": "reviewed-provider-residue-baseline",
+        "provider": provider,
+        "source_model": {
+            "sha256": provider_assessment.sha256,
+            "byte_size": provider_assessment.byte_size,
+            "polymer_residue_count": provider_assessment.polymer_residue_count,
+        },
+        "site_count": len(codes),
+        "residue_codes": codes,
+        "semantics": {
+            "codes_derived_from_provider_coordinates": True,
+            "caller_supplied_residue_codes": False,
+            "provider_source_is_frame_catalogue": True,
+        },
+    }
+    return codes, baseline
+
+
 def propose_design_aware_chain_mapping(
     assessment: ModelAssessment,
     target: Mapping[str, object],
     *,
-    reviewed_provider_codes: Mapping[str, str] | None = None,
+    provider_assessment: ModelAssessment | None = None,
+    model_provider: Mapping[str, object] | None = None,
     max_assignments: int = 128,
 ) -> dict[str, object]:
     """Experimentally propose one chain mapping from explicit design evidence.
@@ -486,8 +585,8 @@ def propose_design_aware_chain_mapping(
 
     - DECLARED_TARGET_HISTORY: the observed code appears in an earlier explicit
       target assignment for that logical site;
-    - REVIEWED_PROVIDER_BASELINE: the observed code matches an explicitly
-      supplied reviewed provider baseline for that logical site; or
+    - REVIEWED_PROVIDER_BASELINE: the observed code matches the literal residue
+      identity derived from one exact reviewed frame-catalogue provider model; or
     - UNEXPLAINED: neither explicit evidence source accounts for the mismatch.
 
     Exactly one assignment may be proposed only when it has zero unexplained
@@ -508,22 +607,11 @@ def propose_design_aware_chain_mapping(
     history = _target_assignment_history(target)
     _, candidates = _simple_chain_candidates(assessment, target)
 
-    provider_codes: dict[str, str] = {}
-    if reviewed_provider_codes is not None:
-        if not isinstance(reviewed_provider_codes, Mapping):
-            raise ConstructRegistrationError(
-                "Reviewed provider codes must map logical sites to residue codes"
-            )
-        for site, code in reviewed_provider_codes.items():
-            if (
-                site not in target_codes
-                or not isinstance(code, str)
-                or _CODE.fullmatch(code) is None
-            ):
-                raise ConstructRegistrationError(
-                    f"Invalid reviewed provider code declaration: {site!r} -> {code!r}"
-                )
-            provider_codes[site] = code
+    provider_codes, provider_baseline = _reviewed_provider_identity_baseline(
+        provider_assessment,
+        model_provider,
+        target_codes,
+    )
 
     common_semantics = {
         "experimental_only": True,
@@ -532,7 +620,8 @@ def propose_design_aware_chain_mapping(
         "weighted_sequence_score_used": False,
         "zero_unexplained_required": True,
         "alternatives_must_have_unexplained": True,
-        "provider_baseline_provenance_required_for_runtime": True,
+        "provider_baseline_provenance_bound": provider_baseline is not None,
+        "provider_baseline_codes_are_caller_supplied": False,
     }
 
     coordinate_chains = list(assessment.polymer_residue_ids_by_chain)
@@ -553,7 +642,7 @@ def propose_design_aware_chain_mapping(
                 "reference": target.get("reference"),
                 "site_count": len(target_codes),
             },
-            "reviewed_provider_codes": dict(sorted(provider_codes.items())),
+            "provider_baseline": provider_baseline,
             "assignment_count": 0,
             "eligible_assignment_count": 0,
             "assignments": [],
@@ -577,7 +666,7 @@ def propose_design_aware_chain_mapping(
                 "reference": target.get("reference"),
                 "site_count": len(target_codes),
             },
-            "reviewed_provider_codes": dict(sorted(provider_codes.items())),
+            "provider_baseline": provider_baseline,
             "assignment_count": 0,
             "eligible_assignment_count": 0,
             "assignments": [],
@@ -607,7 +696,7 @@ def propose_design_aware_chain_mapping(
                 "reference": target.get("reference"),
                 "site_count": len(target_codes),
             },
-            "reviewed_provider_codes": dict(sorted(provider_codes.items())),
+            "provider_baseline": provider_baseline,
             "assignment_count": len(assignments),
             "eligible_assignment_count": 0,
             "assignments": [],
@@ -629,7 +718,7 @@ def propose_design_aware_chain_mapping(
                 "reference": target.get("reference"),
                 "site_count": len(target_codes),
             },
-            "reviewed_provider_codes": dict(sorted(provider_codes.items())),
+            "provider_baseline": provider_baseline,
             "assignment_count": 0,
             "eligible_assignment_count": 0,
             "assignments": [],
@@ -748,7 +837,7 @@ def propose_design_aware_chain_mapping(
             "reference": target.get("reference"),
             "site_count": len(target_codes),
         },
-        "reviewed_provider_codes": dict(sorted(provider_codes.items())),
+        "provider_baseline": provider_baseline,
         "assignment_count": len(records),
         "eligible_assignment_count": len(eligible_indices),
         "assignments": records,
