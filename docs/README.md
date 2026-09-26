@@ -29,7 +29,9 @@ NASolve documentation is organized by role, not chronology.
 - [`construct-registration.md`](construct-registration.md) — logical
   construct-to-coordinate registration design plus the current Birch core/Scout
   implementation boundary; [`construct-registration-intent.json`](construct-registration-intent.json)
-  records the machine-readable inference policy and validation checkpoint.
+  records the machine-readable inference policy and validation checkpoint, and
+  [`construct-registration-live-checks.md`](construct-registration-live-checks.md)
+  keeps the minimum human/real-workflow validation queue.
 - [`campaign-model-roadmap.md`](campaign-model-roadmap.md) — forward-looking
   model/sequence/processing architecture and the current Campaign Doctor
   implementation boundary.
