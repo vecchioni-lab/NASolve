@@ -996,10 +996,33 @@ class ConstructRegistrationTests(unittest.TestCase):
                 ("D:2", [("family_reference", "DA")]),
             )
 
+            provider_root = root / "provider"
+            provider_root.mkdir()
+            provider = assessment(
+                provider_root,
+                [
+                    ("A", 1, "DA"),
+                    ("A", 2, "DC"),
+                    ("A", 3, "DG"),
+                    ("B", 1, "DG"),
+                    ("B", 2, "DC"),
+                    ("C", 1, "DC"),
+                    ("C", 2, "DG"),
+                    ("D", 1, "DT"),
+                    ("D", 2, "DA"),
+                ],
+            )
             result = propose_design_aware_chain_mapping(
                 model,
                 logical_target,
-                reviewed_provider_codes={"A:2": "DC"},
+                provider_assessment=provider,
+                model_provider={
+                    "kind": "explicit-standard-model",
+                    "selection": "user-forced",
+                    "frame": "W",
+                    "location": "frame-catalogue",
+                    "selector": "model.pdb",
+                },
             )
             self.assertEqual(result["status"], "PROPOSED")
             self.assertEqual(result["assignment_count"], 6)
@@ -1010,6 +1033,20 @@ class ConstructRegistrationTests(unittest.TestCase):
             )
             self.assertFalse(
                 result["semantics"]["weighted_sequence_score_used"]
+            )
+            self.assertTrue(
+                result["semantics"]["provider_baseline_provenance_bound"]
+            )
+            self.assertFalse(
+                result["semantics"]["provider_baseline_codes_are_caller_supplied"]
+            )
+            self.assertEqual(
+                result["provider_baseline"]["residue_codes"]["A:2"],
+                "DC",
+            )
+            self.assertEqual(
+                result["provider_baseline"]["source_model"]["sha256"],
+                provider.sha256,
             )
             self.assertEqual(
                 {
@@ -1167,21 +1204,33 @@ class ConstructRegistrationTests(unittest.TestCase):
             self.assertIsNone(result["proposed_selection"])
             self.assertIn("budget exceeded", result["reason"])
 
-    def test_design_aware_v2_rejects_unreviewed_provider_site_declarations(self):
+    def test_design_aware_v2_rejects_unreviewed_provider_provenance(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            model = assessment(root, [("M", 1, "DA")])
+            model_root = root / "model"
+            provider_root = root / "provider"
+            model_root.mkdir()
+            provider_root.mkdir()
+            model = assessment(model_root, [("M", 1, "DA")])
+            provider = assessment(provider_root, [("A", 1, "DA")])
             logical_target = historical_target(
                 ("A:1", [("family_reference", "DA")]),
             )
             with self.assertRaisesRegex(
                 ConstructRegistrationError,
-                "Invalid reviewed provider code declaration",
+                "reviewed standard frame-catalogue provider",
             ):
                 propose_design_aware_chain_mapping(
                     model,
                     logical_target,
-                    reviewed_provider_codes={"Z:99": "DA"},
+                    provider_assessment=provider,
+                    model_provider={
+                        "kind": "explicit-standard-model",
+                        "selection": "user-forced",
+                        "frame": "W",
+                        "location": "dataset",
+                        "selector": "model.pdb",
+                    },
                 )
 
     def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
