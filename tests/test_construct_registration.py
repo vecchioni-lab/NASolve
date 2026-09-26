@@ -17,6 +17,7 @@ from nasolve.construct_registration import (
     load_construct_registration,
     load_registration_scout,
     logical_inventory_by_copy,
+    propose_design_aware_chain_mapping,
     scout_simple_registration,
     validate_construct_registration,
     validate_registration_scout,
@@ -51,6 +52,31 @@ def target(*rows):
                 ],
             }
             for site, code in rows
+        ],
+    }
+
+
+def historical_target(*rows):
+    """rows are (site, [(source, residue_code), ...]) histories."""
+    return {
+        "schema_version": 1,
+        "kind": "sequence-family-target",
+        "reference": {
+            "id": "registration-history-fixture",
+            "version": "1",
+            "content_sha256": "b" * 64,
+        },
+        "sites": [
+            {
+                "site": site,
+                "residue_code": history[-1][1],
+                "source": history[-1][0],
+                "assignments": [
+                    {"source": source, "residue_code": code}
+                    for source, code in history
+                ],
+            }
+            for site, history in rows
         ],
     }
 
@@ -933,6 +959,208 @@ class ConstructRegistrationTests(unittest.TestCase):
                     logical_target,
                     scout,
                     {"A": "A"},
+                )
+
+    def test_design_aware_v2_proposes_unique_zero_unexplained_mapping(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DC"),
+                    ("M", 3, "DG"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DC"),
+                    ("P", 1, "DC"),
+                    ("P", 2, "DG"),
+                    ("Q", 1, "DT"),
+                    ("Q", 2, "DA"),
+                ],
+            )
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+                ("A:2", [("family_reference", "DT")]),
+                ("A:3", [("family_reference", "DG")]),
+                (
+                    "B:1",
+                    [
+                        ("family_reference", "DG"),
+                        ("dataset_sequence", "DA"),
+                    ],
+                ),
+                ("B:2", [("family_reference", "DC")]),
+                ("C:1", [("family_reference", "DC")]),
+                ("C:2", [("family_reference", "DG")]),
+                ("D:1", [("family_reference", "DT")]),
+                ("D:2", [("family_reference", "DA")]),
+            )
+
+            result = propose_design_aware_chain_mapping(
+                model,
+                logical_target,
+                reviewed_provider_codes={"A:2": "DC"},
+            )
+            self.assertEqual(result["status"], "PROPOSED")
+            self.assertEqual(result["assignment_count"], 6)
+            self.assertEqual(result["eligible_assignment_count"], 1)
+            self.assertFalse(result["semantics"]["runtime_authority"])
+            self.assertFalse(
+                result["semantics"]["automatic_application_authorized"]
+            )
+            self.assertFalse(
+                result["semantics"]["weighted_sequence_score_used"]
+            )
+            self.assertEqual(
+                {
+                    row["logical_chain"]: row["coordinate_chain"]
+                    for row in result["proposed_selection"]
+                },
+                {"A": "M", "B": "N", "C": "P", "D": "Q"},
+            )
+
+            winner = next(
+                row
+                for row in result["assignments"]
+                if row["eligible_zero_unexplained"]
+            )
+            self.assertEqual(
+                winner["evidence"]["unexplained_mismatch_count"],
+                0,
+            )
+            self.assertEqual(
+                winner["evidence"]["declared_target_history_difference_count"],
+                1,
+            )
+            self.assertEqual(
+                winner["evidence"]["reviewed_provider_difference_count"],
+                1,
+            )
+            self.assertEqual(
+                {
+                    row["classification"]
+                    for row in winner["evidence"]["differences"]
+                },
+                {
+                    "DECLARED_TARGET_HISTORY",
+                    "REVIEWED_PROVIDER_BASELINE",
+                },
+            )
+
+    def test_design_aware_v2_does_not_choose_fewest_unexplained_mapping(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DC"),
+                    ("M", 3, "DG"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DC"),
+                    ("P", 1, "DC"),
+                    ("P", 2, "DG"),
+                    ("Q", 1, "DT"),
+                    ("Q", 2, "DA"),
+                ],
+            )
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+                ("A:2", [("family_reference", "DT")]),
+                ("A:3", [("family_reference", "DG")]),
+                (
+                    "B:1",
+                    [
+                        ("family_reference", "DG"),
+                        ("dataset_sequence", "DA"),
+                    ],
+                ),
+                ("B:2", [("family_reference", "DC")]),
+                ("C:1", [("family_reference", "DC")]),
+                ("C:2", [("family_reference", "DG")]),
+                ("D:1", [("family_reference", "DT")]),
+                ("D:2", [("family_reference", "DA")]),
+            )
+
+            result = propose_design_aware_chain_mapping(
+                model,
+                logical_target,
+            )
+            self.assertEqual(result["status"], "AMBIGUOUS")
+            self.assertEqual(result["eligible_assignment_count"], 0)
+            self.assertIsNone(result["proposed_selection"])
+            best_unexplained = min(
+                row["evidence"]["unexplained_mismatch_count"]
+                for row in result["assignments"]
+            )
+            self.assertEqual(best_unexplained, 1)
+            self.assertIn("no complete", result["reason"])
+
+    def test_design_aware_v2_repeated_sequences_remain_ambiguous(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DC"),
+                    ("N", 1, "DA"),
+                    ("N", 2, "DC"),
+                ],
+            )
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+                ("A:2", [("family_reference", "DC")]),
+                ("B:1", [("family_reference", "DA")]),
+                ("B:2", [("family_reference", "DC")]),
+            )
+            result = propose_design_aware_chain_mapping(model, logical_target)
+            self.assertEqual(result["status"], "AMBIGUOUS")
+            self.assertEqual(result["assignment_count"], 2)
+            self.assertEqual(result["eligible_assignment_count"], 2)
+            self.assertIsNone(result["proposed_selection"])
+            self.assertIn("more than one", result["reason"])
+
+    def test_design_aware_v2_assignment_budget_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("N", 1, "DA"),
+                    ("P", 1, "DA"),
+                ],
+            )
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+                ("B:1", [("family_reference", "DA")]),
+                ("C:1", [("family_reference", "DA")]),
+            )
+            result = propose_design_aware_chain_mapping(
+                model,
+                logical_target,
+                max_assignments=2,
+            )
+            self.assertEqual(result["status"], "UNRESOLVED")
+            self.assertIsNone(result["proposed_selection"])
+            self.assertIn("budget exceeded", result["reason"])
+
+    def test_design_aware_v2_rejects_unreviewed_provider_site_declarations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(root, [("M", 1, "DA")])
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+            )
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "Invalid reviewed provider code declaration",
+            ):
+                propose_design_aware_chain_mapping(
+                    model,
+                    logical_target,
+                    reviewed_provider_codes={"Z:99": "DA"},
                 )
 
     def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
