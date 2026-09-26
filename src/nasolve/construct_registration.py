@@ -1323,6 +1323,159 @@ def validate_construct_registration(value: Mapping[str, object]) -> dict[str, ob
     return dict(value)
 
 
+def compare_construct_registrations(
+    before: Mapping[str, object],
+    after: Mapping[str, object],
+) -> dict[str, object]:
+    """Compare two registrations of the same logical target descriptively.
+
+    This is intended for search-model Scout versus authoritative MR-solution
+    registration, or other stage transitions. Coordinate-label changes are
+    reported as representation changes, never as scientific rejection.
+    """
+    left = validate_construct_registration(before)
+    right = validate_construct_registration(after)
+    if left["target"] != right["target"]:
+        raise ConstructRegistrationError(
+            "Cannot compare registrations with different logical targets"
+        )
+
+    target_sites = left["target"]["sites"]
+
+    def snapshot(value: Mapping[str, object]) -> dict[str, object]:
+        coverage = sorted(
+            tuple(
+                row["logical_site"]
+                for row in copy["mappings"]
+            )
+            for copy in value["copies"]
+        )
+        complete_vectors = set()
+        complete_maps: list[dict[str, str]] = []
+        for copy in value["copies"]:
+            if copy["status"] != "COMPLETE":
+                continue
+            by_site = {
+                row["logical_site"]: row
+                for row in copy["mappings"]
+            }
+            complete_vectors.add(tuple(
+                by_site[site]["coordinate_residue_code"]
+                for site in target_sites
+            ))
+            complete_maps.append({
+                site: by_site[site]["coordinate_site"]
+                for site in target_sites
+            })
+        return {
+            "registration_status": value["status"],
+            "model_sha256": value["model"]["sha256"],
+            "complete_copy_count": value["summary"]["complete_copy_count"],
+            "partial_copy_count": value["summary"]["partial_copy_count"],
+            "copy_coverage_signatures": [list(items) for items in coverage],
+            "unmapped_coordinate_site_count": len(
+                value["summary"]["unmapped_coordinate_sites"]
+            ),
+            "identity_mismatch_count": value["identity"]["mismatch_count"],
+            "complete_identity_classes": [
+                list(items) for items in sorted(complete_vectors)
+            ],
+            "complete_coordinate_maps": complete_maps,
+        }
+
+    before_snapshot = snapshot(left)
+    after_snapshot = snapshot(right)
+
+    copy_structure_relation = (
+        "SAME"
+        if before_snapshot["copy_coverage_signatures"]
+        == after_snapshot["copy_coverage_signatures"]
+        else "DIFFERENT"
+    )
+    multiplicity_relation = (
+        "SAME"
+        if (
+            before_snapshot["complete_copy_count"],
+            before_snapshot["partial_copy_count"],
+        )
+        == (
+            after_snapshot["complete_copy_count"],
+            after_snapshot["partial_copy_count"],
+        )
+        else "DIFFERENT"
+    )
+
+    if (
+        before_snapshot["complete_identity_classes"]
+        and after_snapshot["complete_identity_classes"]
+    ):
+        identity_class_relation = (
+            "SAME"
+            if before_snapshot["complete_identity_classes"]
+            == after_snapshot["complete_identity_classes"]
+            else "DIFFERENT"
+        )
+    else:
+        identity_class_relation = "UNKNOWN"
+
+    if (
+        before_snapshot["complete_copy_count"] == 1
+        and after_snapshot["complete_copy_count"] == 1
+        and before_snapshot["partial_copy_count"] == 0
+        and after_snapshot["partial_copy_count"] == 0
+    ):
+        coordinate_relation = (
+            "SAME"
+            if before_snapshot["complete_coordinate_maps"]
+            == after_snapshot["complete_coordinate_maps"]
+            else "DIFFERENT"
+        )
+    else:
+        coordinate_relation = "UNKNOWN"
+
+    return {
+        "schema_version": 1,
+        "kind": "construct-registration-transition",
+        "target": left["target"],
+        "before": before_snapshot,
+        "after": after_snapshot,
+        "dimensions": {
+            "copy_structure": {
+                "relation": copy_structure_relation,
+                "basis": "logical-site coverage signatures; copy ids ignored",
+            },
+            "copy_multiplicity": {
+                "relation": multiplicity_relation,
+                "before_complete": before_snapshot["complete_copy_count"],
+                "after_complete": after_snapshot["complete_copy_count"],
+                "before_partial": before_snapshot["partial_copy_count"],
+                "after_partial": after_snapshot["partial_copy_count"],
+            },
+            "complete_copy_identity_classes": {
+                "relation": identity_class_relation,
+                "basis": (
+                    "unique observed residue-code vectors in logical-site order; "
+                    "copy multiplicity ignored"
+                ),
+            },
+            "single_copy_coordinate_realization": {
+                "relation": coordinate_relation,
+                "basis": (
+                    "coordinate labels are representation only; comparison is "
+                    "available only for one complete copy at both stages"
+                ),
+            },
+        },
+        "semantics": {
+            "descriptive_only": True,
+            "scientific_acceptability": None,
+            "guided_review_required": None,
+            "postmr_authorized": False,
+            "recut_authorized": False,
+        },
+    }
+
+
 def logical_inventory_by_copy(
     registration: Mapping[str, object],
     *,
@@ -1432,6 +1585,7 @@ __all__ = [
     "ConstructRegistrationError",
     "build_construct_registration",
     "build_identity_registration",
+    "compare_construct_registrations",
     "describe_simple_chain_evidence",
     "expand_logical_sites",
     "freeze_construct_registration",
