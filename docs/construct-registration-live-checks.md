@@ -19,6 +19,32 @@ the live pipeline.
 | ☐ | **When guided ambiguity handling gets a UI/CLI** | Exercise a deliberately ambiguous short repeat / single-base-overhang mapping. | NASolve shows the alternatives instead of guessing; the user can select one minimal mapping decision; that choice freezes/replays exactly and does not silently become a global recipe. |
 | ☐ | **When bounded multi-PDB MR selection is enabled** | Put several plausible PDBs in one dataset and inspect the candidate report before/after MR attempts. | Every candidate and rejection remains visible with immutable file identity; no filename or registration-score shortcut silently chooses a model; any automatic choice follows the reviewed MR policy and materially different successful interpretations remain inspectable. |
 
+## Completed shadow live checks
+
+### Clean W registration semantics — ED run_011
+
+A read-only shadow test was run against the existing ED `run_011` search model
+and PostMR ReadySet model using the frozen 42-site sequence-family target.
+
+Observed:
+
+- search model: `REGISTERED`, `identity-site-map`, **4 identity mismatches**;
+- PostMR model: `REGISTERED`, `identity-site-map`, **0 identity mismatches**;
+- registration transition:
+  - copy structure: `SAME`;
+  - copy multiplicity: `SAME`;
+  - complete-copy identity classes: `DIFFERENT`;
+  - single-copy coordinate realization: `SAME`.
+
+Interpretation: the logical-to-coordinate registration remained stable while
+PostMR changed residue identities to the intended target. This is the desired
+separation between **where a logical site is represented** and **what identity
+that site should have**.
+
+This was a manual/read-only invocation of the registration layer against an
+existing completed run. It does **not** complete the future checklist item for
+Registration Scout/registration being wired into live AutoMR/PostMR execution.
+
 ## Current validation note
 
 The earlier Birch checkpoint at code head
