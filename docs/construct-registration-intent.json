@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-oak-5",
+  "version": "2026-09-26-oak-6",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,8 +105,8 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "status": "provider-provenance-binding-pending",
-    "remaining_gate": "Replace caller-supplied reviewed_provider_codes with identities derived from a reviewed/versioned provider or model-family provenance record before any runtime promotion."
+    "status": "provider-provenance-code-pending-focused-validation",
+    "remaining_gate": "Run focused tests/test_construct_registration.py against code head c515a37dc41fa8bb1935d2c80c825ebef8153177 before treating the provenance-bound provider-evidence slice as validated."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -189,7 +189,7 @@
       "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained mismatches; runtime_authority=false"
     }
   ],
-  "current_validation_status": "OAK_V2_REAL_W_SHADOW_PASSED_PROVENANCE_BINDING_PENDING",
+  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_IMPLEMENTED_PENDING_FOCUSED_TESTS",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -393,14 +393,14 @@
     ]
   },
   "design_aware_scout_v2_experiment": {
-    "status": "IMPLEMENTED_EXPERIMENTAL_REAL_W_SHADOW_VALIDATED",
+    "status": "IMPLEMENTED_EXPERIMENTAL_PROVIDER_PROVENANCE_PENDING_VALIDATION",
     "function": "propose_design_aware_chain_mapping",
     "runtime_authority": false,
     "automatic_application_authorized": false,
     "input_evidence": [
       "complete simple one-to-one chain assignments from existing length/offset constraints",
       "explicit per-site target assignment history",
-      "optional caller-supplied reviewed provider baseline residue codes"
+      "optional literal residue identities derived from an assessed standard frame-catalogue provider model and bound to existing model-provider provenance"
     ],
     "mismatch_classes": [
       "DECLARED_TARGET_HISTORY",
@@ -418,7 +418,7 @@
     ],
     "assignment_budget_default": 128,
     "assignment_budget_maximum": 1024,
-    "provider_baseline_runtime_requirement": "Caller-supplied provider codes are experimental evidence only. Runtime use requires binding them to a reviewed/versioned provider or model-family record with provenance.",
+    "provider_baseline_runtime_requirement": "Caller-supplied residue-code dictionaries are no longer accepted. The experimental helper derives provider identities from the exact assessed frame-catalogue model plus NASolve model-provider provenance; runtime promotion remains separately unreviewed.",
     "weighted_sequence_score_used": false,
     "live_pipeline_changed": false,
     "real_w_attempt_1": {
@@ -486,13 +486,28 @@
         10
       ],
       "interpretation": "Exactly one complete mapping achieved zero unexplained mismatches only after the complete verified provider identity set was supplied; the helper remained proposal-only and non-runtime."
+    },
+    "provenance_binding_slice": {
+      "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "validation_status": "PENDING_FOCUSED_LOCAL_TESTS",
+      "behavior": [
+        "accept provider evidence only as provider_assessment plus model_provider provenance",
+        "require standard frame-catalogue provenance",
+        "require exact logical target-site coverage",
+        "require model-provider selector to match the assessed provider source model",
+        "derive residue codes from literal provider coordinates",
+        "bind returned provider baseline to source-model SHA-256 and byte size",
+        "never accept a caller-supplied site-to-code residue dictionary"
+      ],
+      "live_pipeline_changed": false,
+      "runtime_authority": false
     }
   },
   "active_development_branch": {
     "name": "oak",
     "pull_request": 22,
     "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "FOCUSED_VALIDATED_REAL_W_SHADOW_PASSED_PROVENANCE_BINDING_PENDING"
+    "status": "PROVIDER_PROVENANCE_IMPLEMENTED_PENDING_FOCUSED_VALIDATION"
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
