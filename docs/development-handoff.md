@@ -206,7 +206,7 @@ The design contract is
 [`construct-registration.md`](construct-registration.md). It now records the
 full expected failure-mode inventory, automatic-versus-guided triage matrix,
 user-escalation rules, reporting escalation, Registration Net interaction model,
-reviewed recipe promotion rules, and the rationale for preferring scout -> MR
+reviewed recipe promotion rules, and the rationale for preferring Scout -> MR
 -> authoritative ASU registration over heavy pre-MR coordinate surgery.
 
 The intended timing is:
