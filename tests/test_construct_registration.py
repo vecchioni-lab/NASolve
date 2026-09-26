@@ -649,7 +649,7 @@ class ConstructRegistrationTests(unittest.TestCase):
             forged["semantics"]["sequence_similarity_used_for_assignment"] = True
             with self.assertRaisesRegex(
                 ConstructRegistrationError,
-                "Malformed registration-scout semantics",
+                "Malformed Registration Scout semantics",
             ):
                 validate_registration_scout(forged)
 
@@ -663,7 +663,7 @@ class ConstructRegistrationTests(unittest.TestCase):
             freeze_registration_scout(scout, run)
             with self.assertRaisesRegex(
                 ConstructRegistrationError,
-                "Could not freeze registration scout",
+                "Could not freeze Registration Scout",
             ):
                 freeze_registration_scout(scout, run)
 
