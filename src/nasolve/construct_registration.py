@@ -235,6 +235,68 @@ def scout_simple_registration(
         }
 
     coordinate_chains = list(assessment.polymer_residue_ids_by_chain)
+
+    # Preserve the ordinary labelled-chain path before considering renames.
+    # This matters for constructs such as W where several chains may share the
+    # same length/numbering pattern and would otherwise form interchangeable
+    # rename candidates despite their labels already agreeing.
+    if set(logical_order) == set(coordinate_chains):
+        same_name_offsets: dict[str, int] = {}
+        same_name_ok = True
+        for logical_chain in logical_order:
+            offset = _constant_residue_offset(
+                logical_ids[logical_chain],
+                assessment.polymer_residue_ids_by_chain[logical_chain],
+            )
+            if offset is None:
+                same_name_ok = False
+                break
+            same_name_offsets[logical_chain] = offset
+        if same_name_ok:
+            mapping = {}
+            for logical_chain in logical_order:
+                coordinate_ids = assessment.polymer_residue_ids_by_chain[
+                    logical_chain
+                ]
+                for logical_resid, coordinate_resid in zip(
+                    logical_ids[logical_chain],
+                    coordinate_ids,
+                ):
+                    mapping[f"{logical_chain}:{logical_resid}"] = (
+                        f"{logical_chain}:{coordinate_resid}"
+                    )
+            registration = build_construct_registration(
+                assessment,
+                target,
+                {"copy_1": mapping},
+                source="registration-scout:residue-number-offset",
+            )
+            return {
+                "schema_version": 1,
+                "kind": "construct-registration-scout",
+                "status": "REGISTERED",
+                "method": "residue-number-offset",
+                "reason": (
+                    "same-named logical/coordinate chains have constant "
+                    "residue-number offsets"
+                ),
+                "chain_candidates": {
+                    chain: [{
+                        "coordinate_chain": chain,
+                        "residue_number_offset": same_name_offsets[chain],
+                    }]
+                    for chain in logical_order
+                },
+                "registration": registration,
+                "semantics": {
+                    "descriptive_only": True,
+                    "sequence_similarity_used_for_assignment": False,
+                    "symmetry_or_topology_inferred": False,
+                    "coordinate_edit_performed": False,
+                    "guided_review_required": False,
+                },
+            }
+
     logical_order, candidates = _simple_chain_candidates(assessment, target)
     candidate_view = {
         logical_chain: [
