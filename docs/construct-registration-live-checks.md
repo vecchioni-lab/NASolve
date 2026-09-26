@@ -55,7 +55,7 @@ Scout v1 correctly returned:
 
 - status: `AMBIGUOUS`;
 - method: none;
-- reason: more than one simple chain bijection satisfied the current
+- reason: more than one simple one-to-one chain assignment satisfied the current
   length/offset rules, and Scout refused to rank them by sequence similarity.
 
 Descriptive design evidence nevertheless strongly separated the intended
