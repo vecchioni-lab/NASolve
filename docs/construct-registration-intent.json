@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "kind": "construct-registration-development-intent",
+  "version": "2026-09-26-birch-1",
+  "status": "development-policy-not-runtime-authority",
+  "primary_domain": {
+    "system": "designed self-assembling nucleic-acid crystals",
+    "input_intent_expected": true,
+    "assumptions": [
+      "logical construct sequences and modified-site intent are normally known before MR",
+      "strands are typically short and deliberately designed to reduce unintended ambiguity",
+      "coordinate chain names, residue numbers and ASU cuts are not construct identity"
+    ],
+    "known_edge_cases": [
+      "short repeated motifs may still occur",
+      "three-nucleotide or other constrained repeats may be unavoidable",
+      "single-base sticky ends or overhangs may be intrinsically ambiguous",
+      "symmetry-related or equivalent ASU cuts may preserve the same construct",
+      "unexpected complete or partial ASU copies may occur"
+    ]
+  },
+  "authority_order": [
+    "frozen logical construct intent",
+    "explicit reviewed registration or registration recipe",
+    "authoritative registration of the actual MR solution",
+    "coordinate labels and numbering"
+  ],
+  "implemented_scout_v1": {
+    "allowed_automatic_inference": [
+      "exact logical-to-coordinate site identity",
+      "same-named chains with constant residue-number offsets",
+      "unique whole-chain rename with matching chain length and constant residue-number pattern",
+      "unique whole-chain rename plus constant residue-number offset"
+    ],
+    "explicitly_not_used_for_chain_assignment": [
+      "sequence-similarity ranking",
+      "modified-site similarity scoring",
+      "MR score ranking",
+      "symmetry expansion",
+      "topology inference"
+    ],
+    "refuse_or_defer": [
+      "multiple equally valid chain bijections",
+      "chain-count mismatch suggesting split chains, multiplicity or partial copies",
+      "nonconstant residue-number correspondence",
+      "symmetry-dependent recutting",
+      "topology-dependent correspondence"
+    ]
+  },
+  "sequence_and_modification_policy": {
+    "logical_intent_is_authoritative": true,
+    "current_scout_sequence_tie_breaking": false,
+    "future_design_aware_inference": "Sequence, modified-site intent, sticky-end definitions and other design information may become explicit evidence in later inference layers when they produce a unique reviewed interpretation. They must not become a hidden composite score.",
+    "ambiguity_guard": "Repeated short motifs and single-base overhangs must remain capable of producing AMBIGUOUS or guided-review outcomes."
+  },
+  "mutation_propagation_policy": {
+    "apply_in_logical_coordinates": true,
+    "propagate_to_all_complete_registered_copies": true,
+    "propagate_complete_copy_mutations_to_partial_copies": false,
+    "coordinate_editing_in_core_registration": false
+  },
+  "timing_policy": [
+    "cheap non-mutating Registration Scout before MR",
+    "ordinary MR first when a candidate remains plausible",
+    "authoritative registration on the actual MR solution before PostMR chemistry",
+    "bounded explicit Registration/Recut Rescue only when needed"
+  ],
+  "human_escalation": {
+    "automatic_when": "one reviewed deterministic interpretation remains",
+    "guided_when": [
+      "more than one non-equivalent mapping remains",
+      "a split, recut or boundary operation lacks a reviewed recipe",
+      "partial-copy interpretation affects downstream actions",
+      "successful MR candidates imply materially different cuts or multiplicities",
+      "mapping depends on topology rather than simple construct correspondence"
+    ]
+  },
+  "provenance_policy": {
+    "inference_changes_must_update_human_docs": true,
+    "inference_changes_must_update_machine_readable_intent": true,
+    "successful_local_behavior_does_not_silently_change_global_policy": true,
+    "backtracking_after_real_data_validation_is_expected": true
+  },
+  "validation_checkpoint": {
+    "date": "2026-09-26",
+    "branch": "birch",
+    "validated_code_head": "4452295c3330de6d55bddd75b01be21f39afb222",
+    "focused_test_file": "tests/test_construct_registration.py",
+    "reported_pass_count": 23,
+    "reported_by": "user-local-run",
+    "github_ci": false,
+    "scope": "construct registration core, artifact provenance and conservative scout synthetic tests"
+  }
+}
