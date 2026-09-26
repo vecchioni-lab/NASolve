@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Status: **current working state — updated 2026-09-25**.
+Status: **current working state — updated 2026-09-26**.
 
 This file records the implementation edge: what is validated now, what is
 scientifically blocked, and what should happen next.
@@ -21,16 +21,17 @@ Numbered runs and checkpoint branches are immutable. Free-R flags are not
 regenerated for convenience. Refine Doctor preserves the current checkpoint
 unless a user explicitly selects another one.
 
-Latest local regression baseline before this documentation-only cleanup:
+Latest local code regression baseline before the current documentation/design
+update:
 
 - **620 tests passed** in the full suite;
 - the focused donor/recipient comparison slice passed **51 tests plus 22
   subtests**.
 
 These results were reported from the active Python 3.12 development
-environment. This handoff does not claim fresh `compileall`, `diff --check`,
-or GitHub Actions results beyond the checks actually run in that development
-window.
+environment. The Sep 26 Construct Registration/NAPrep update is documentation
+and architecture planning only; it does not claim a new code-test,
+`compileall`, `diff --check`, or GitHub Actions result.
 
 ## Terminal-phosphate chemistry
 
