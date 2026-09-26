@@ -5,12 +5,39 @@ from pathlib import Path
 from nasolve.model_candidates import (
     ModelCandidateInventoryError,
     inventory_dataset_pdb_candidates,
+    scout_dataset_pdb_candidates,
 )
 
 from .helpers import model_text, pdb_record
 
 
 CODES = {"DA", "DC", "DG", "DT"}
+
+
+def target(*rows):
+    return {
+        "schema_version": 1,
+        "kind": "sequence-family-target",
+        "reference": {
+            "id": "candidate-fixture",
+            "version": "1",
+            "content_sha256": "a" * 64,
+        },
+        "sites": [
+            {
+                "site": site,
+                "residue_code": code,
+                "source": "family_reference",
+                "assignments": [
+                    {
+                        "source": "family_reference",
+                        "residue_code": code,
+                    }
+                ],
+            }
+            for site, code in rows
+        ],
+    }
 
 
 class ModelCandidateInventoryTests(unittest.TestCase):
@@ -115,6 +142,88 @@ class ModelCandidateInventoryTests(unittest.TestCase):
                 1,
             )
             self.assertTrue(candidate["assessment"]["warnings"])
+
+    def test_multi_pdb_scout_reports_registered_and_ambiguous_without_selection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "registered.pdb").write_text(
+                "".join([
+                    pdb_record("ATOM", 1, "C1'", "DA", "A", 1, element="C"),
+                    pdb_record("ATOM", 2, "C1'", "DA", "A", 2, element="C"),
+                    pdb_record("ATOM", 3, "C1'", "DG", "B", 1, element="C"),
+                    pdb_record("ATOM", 4, "C1'", "DG", "B", 2, element="C"),
+                    "END\n",
+                ]),
+                encoding="utf-8",
+            )
+            (root / "ambiguous.pdb").write_text(
+                "".join([
+                    pdb_record("ATOM", 1, "C1'", "DA", "M", 1, element="C"),
+                    pdb_record("ATOM", 2, "C1'", "DA", "M", 2, element="C"),
+                    pdb_record("ATOM", 3, "C1'", "DG", "N", 1, element="C"),
+                    pdb_record("ATOM", 4, "C1'", "DG", "N", 2, element="C"),
+                    "END\n",
+                ]),
+                encoding="utf-8",
+            )
+            result = scout_dataset_pdb_candidates(
+                root,
+                target(
+                    ("A:1", "DA"),
+                    ("A:2", "DA"),
+                    ("B:1", "DG"),
+                    ("B:2", "DG"),
+                ),
+                polymer_ligand_codes=CODES,
+            )
+            self.assertEqual(result["candidate_count"], 2)
+            self.assertEqual(result["registered_candidate_count"], 1)
+            self.assertEqual(result["ambiguous_candidate_count"], 1)
+            self.assertEqual(result["unresolved_candidate_count"], 0)
+            self.assertIsNone(result["selection"])
+            by_name = {
+                row["selector"]: row
+                for row in result["candidates"]
+            }
+            self.assertEqual(
+                by_name["registered.pdb"]["registration_scout"]["status"],
+                "REGISTERED",
+            )
+            self.assertEqual(
+                by_name["ambiguous.pdb"]["registration_scout"]["status"],
+                "AMBIGUOUS",
+            )
+            self.assertFalse(
+                result["semantics"]["automatic_selection_authorized"]
+            )
+            self.assertTrue(
+                result["semantics"]["registration_status_is_not_mr_quality"]
+            )
+
+    def test_multi_pdb_scout_keeps_invalid_candidates_visible(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "good.pdb").write_text(
+                pdb_record("ATOM", 1, "C1'", "DA", "A", 1, element="C")
+                + "END\n",
+                encoding="utf-8",
+            )
+            (root / "bad.pdb").write_text("HEADER only\nEND\n", encoding="utf-8")
+            result = scout_dataset_pdb_candidates(
+                root,
+                target(("A:1", "DA")),
+                polymer_ligand_codes=CODES,
+            )
+            self.assertEqual(result["valid_candidate_count"], 1)
+            self.assertEqual(result["invalid_candidate_count"], 1)
+            self.assertEqual(result["registered_candidate_count"], 1)
+            by_name = {
+                row["selector"]: row
+                for row in result["candidates"]
+            }
+            self.assertEqual(by_name["bad.pdb"]["status"], "INVALID")
+            self.assertIsNone(by_name["bad.pdb"]["registration_scout"])
+            self.assertIsNotNone(by_name["bad.pdb"]["diagnostic"])
 
     def test_missing_dataset_directory_is_an_error(self):
         with tempfile.TemporaryDirectory() as directory:
