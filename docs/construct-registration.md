@@ -275,6 +275,13 @@ A guided decision is frozen as run-local registration provenance. It does not
 silently change a global NASolve rule. Promotion of a successful run-local
 mapping into a reusable lab recipe is a separate explicit action.
 
+Birch now implements the first UI-independent guided primitive for simple
+ambiguous Scout cases: an explicit logical-chain -> coordinate-chain selection
+can be applied only if every chosen pair was already present in Scout's frozen
+candidate set. The selection must cover every logical chain and remain
+one-to-one. This helper does not choose for the user, edit coordinates, infer
+split chains/symmetry/topology, or promote the result into a global recipe.
+
 The user-facing goal is not to ask the user to rebuild a model manually before
 NASolve can proceed. NASolve should present its best deterministic proposal,
 explain what is uncertain, and ask only for the smallest crystallographic
