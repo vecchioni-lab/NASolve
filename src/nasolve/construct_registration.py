@@ -31,7 +31,7 @@ class ConstructRegistrationError(RuntimeError):
     """Raised when a construct registration is malformed or ambiguous."""
 
 
-_SITE = re.compile(r"[^:\\s]+:[^:\\s]+")
+_SITE = re.compile(r"[^:\s]+:[^:\s]+")
 _COPY_ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}")
 _CODE = re.compile(r"[A-Z0-9]{1,5}")
 
