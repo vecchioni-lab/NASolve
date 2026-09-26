@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-juniper-1",
+  "version": "2026-09-26-oak-1",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -103,7 +103,11 @@
     "scope": "construct registration core, artifact provenance and conservative Scout synthetic tests",
     "note": "This checkpoint predates the descriptive chain-evidence and frozen Scout artifact additions."
   },
-  "pending_validation": null,
+  "pending_validation": {
+    "branch": "oak",
+    "status": "pending-user-local-tests",
+    "scope": "experimental design-aware Scout v2 proposal helper and fail-closed tests"
+  },
   "stage_transition_policy": {
     "implemented": true,
     "kind": "construct-registration-transition",
@@ -163,7 +167,7 @@
       "scope": "full NASolve regression suite"
     }
   ],
-  "current_validation_status": "FULL_SUITE_PASSED",
+  "current_validation_status": "OAK_V2_PENDING_FOCUSED_TESTS",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -365,5 +369,35 @@
       "modified-site declarations are intent evidence, not proof of MR correctness",
       "real-data validation is required before promotion into runtime authority"
     ]
+  },
+  "design_aware_scout_v2_experiment": {
+    "status": "IMPLEMENTED_EXPERIMENTAL_PENDING_VALIDATION",
+    "function": "propose_design_aware_chain_mapping",
+    "runtime_authority": false,
+    "automatic_application_authorized": false,
+    "input_evidence": [
+      "complete simple one-to-one chain assignments from existing length/offset constraints",
+      "explicit per-site target assignment history",
+      "optional caller-supplied reviewed provider baseline residue codes"
+    ],
+    "mismatch_classes": [
+      "DECLARED_TARGET_HISTORY",
+      "REVIEWED_PROVIDER_BASELINE",
+      "UNEXPLAINED"
+    ],
+    "proposal_rule": "Propose a mapping only when exactly one complete one-to-one chain mapping has zero unexplained mismatches and every alternative has at least one. Never choose merely because it has fewer unexplained mismatches.",
+    "fail_closed": [
+      "chain-count mismatch",
+      "logical chain with no simple candidate",
+      "no complete one-to-one mapping",
+      "more than one zero-unexplained mapping",
+      "no zero-unexplained mapping",
+      "assignment enumeration budget exceeded"
+    ],
+    "assignment_budget_default": 128,
+    "assignment_budget_maximum": 1024,
+    "provider_baseline_runtime_requirement": "Caller-supplied provider codes are experimental evidence only. Runtime use requires binding them to a reviewed/versioned provider or model-family record with provenance.",
+    "weighted_sequence_score_used": false,
+    "live_pipeline_changed": false
   }
 }
