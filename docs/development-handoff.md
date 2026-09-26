@@ -272,10 +272,15 @@ Implemented:
 - checksum-bound `Model/registration_scout.json` freeze/load with semantic
   revalidation; and
 - a non-decisional registration-transition comparison for later
-  Scout-versus-authoritative-MR reporting; and
+  Scout-versus-authoritative-MR reporting;
 - UI-independent guided resolution for ambiguous simple chain assignments,
   restricted to explicit user selections among already enumerated Scout
-  candidates.
+  candidates;
+- read-only top-level dataset PDB candidate inventory with valid/invalid
+  diagnostics, per-file SHA-256/size and a stable candidate-set fingerprint;
+  and
+- read-only conservative Registration Scout across every valid discovered PDB,
+  with no ranking, selection or MR authorization.
 
 Scout v1 deliberately does not use sequence-similarity ranking, modified-site
 similarity, symmetry expansion, split-chain inference, copy-number inference or
