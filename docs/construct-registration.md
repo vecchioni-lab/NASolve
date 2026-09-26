@@ -256,10 +256,12 @@ registration: copy coverage, complete/partial multiplicity, complete-copy
 identity classes and single-copy coordinate realization remain separate
 dimensions with no acceptance or PostMR verdict.
 
-The focused Birch registration suite was reported locally as **23 passing
-tests** at code head `4452295c3330de6d55bddd75b01be21f39afb222`. The newer
-design-evidence, frozen-Scout and registration-transition additions are
-explicitly marked pending validation in
+The first focused Birch registration checkpoint reported **23 passing tests**
+at code head `4452295c3330de6d55bddd75b01be21f39afb222`. The later merged
+Birch registration/model-candidate bundle reached **44 focused tests passing**
+plus a full NASolve regression of **664 tests and 222 subtests**. Oak's
+experimental Scout v2 helper subsequently reached **41 focused tests passing**;
+its real-W shadow history is frozen in
 [`construct-registration-intent.json`](construct-registration-intent.json).
 
 ### Experimental design-aware Scout v2 proposal
@@ -299,10 +301,19 @@ correct fail-closed result for incomplete evidence. Only A:13=DC and B:3=DG had
 been supplied; the intended mapping therefore still contained two unexplained
 differences. Direct inspection of the actual `MR_frames/5W6W/C_G.pdb`
 provider verified the complete relevant identity set:
-`A:12=DC`, `A:13=DC`, `B:3=DG`, `B:4=DG`. The next experimental rerun
-uses all four. This also sharpens the eventual production requirement:
-provider-specific residue identities must come from versioned/provider-bound
-provenance, not ad hoc caller dictionaries.
+`A:12=DC`, `A:13=DC`, `B:3=DG`, `B:4=DG`.
+
+Repeating the same shadow case with all four verified provider identities
+produced exactly one zero-unexplained proposal:
+`A->M, B->N, C->P, D->Q`. It contained 38 exact identities and 4
+`REVIEWED_PROVIDER_BASELINE` differences; every alternative retained at least
+10 `UNEXPLAINED` mismatches. The helper still reported
+`runtime_authority = false`. This validates the experimental categorical rule
+on the real rename nuisance case without promoting it into runtime authority.
+
+The remaining production boundary is provenance: provider-specific residue
+identities must come from a reviewed/versioned provider or model-family record,
+not an ad hoc caller dictionary.
 
 ### Guided mode
 
