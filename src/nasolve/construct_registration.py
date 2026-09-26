@@ -532,6 +532,7 @@ def propose_design_aware_chain_mapping(
         "weighted_sequence_score_used": False,
         "zero_unexplained_required": True,
         "alternatives_must_have_unexplained": True,
+        "provider_baseline_provenance_required_for_runtime": True,
     }
 
     coordinate_chains = list(assessment.polymer_residue_ids_by_chain)
@@ -608,6 +609,28 @@ def propose_design_aware_chain_mapping(
             },
             "reviewed_provider_codes": dict(sorted(provider_codes.items())),
             "assignment_count": len(assignments),
+            "eligible_assignment_count": 0,
+            "assignments": [],
+            "proposed_selection": None,
+            "semantics": common_semantics,
+        }
+
+    if not assignments:
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-design-aware-proposal",
+            "status": "UNRESOLVED",
+            "reason": "no complete one-to-one chain mapping satisfies simple constraints",
+            "model": {
+                "sha256": assessment.sha256,
+                "polymer_residue_count": assessment.polymer_residue_count,
+            },
+            "target": {
+                "reference": target.get("reference"),
+                "site_count": len(target_codes),
+            },
+            "reviewed_provider_codes": dict(sorted(provider_codes.items())),
+            "assignment_count": 0,
             "eligible_assignment_count": 0,
             "assignments": [],
             "proposed_selection": None,
