@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-oak-4",
+  "version": "2026-09-26-oak-5",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,8 +105,8 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "status": "real-w-shadow-rerun-pending",
-    "remaining_gate": "Re-run renamed ED run_011 with complete verified C_G provider identity set A:12/A:13=DC and B:3/B:4=DG."
+    "status": "provider-provenance-binding-pending",
+    "remaining_gate": "Replace caller-supplied reviewed_provider_codes with identities derived from a reviewed/versioned provider or model-family provenance record before any runtime promotion."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -176,9 +176,20 @@
       "reported_by": "user-local-run",
       "github_ci": false,
       "scope": "experimental design-aware Scout v2 proposal helper plus existing Construct Registration tests"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "28e8dee96b6458d25733f296f8e83d03c229a014",
+      "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "renamed ED run_011 real-W Scout v2 shadow rerun with complete verified C_G provider identity set",
+      "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained mismatches; runtime_authority=false"
     }
   ],
-  "current_validation_status": "OAK_V2_FOCUSED_PASSED_REAL_W_RERUN_PENDING",
+  "current_validation_status": "OAK_V2_REAL_W_SHADOW_PASSED_PROVENANCE_BINDING_PENDING",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -234,15 +245,15 @@
   },
   "latest_focused_validation": {
     "date": "2026-09-26",
-    "branch": "birch",
-    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
-    "reported_pass_count": 44,
+    "branch": "oak",
+    "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
+    "reported_pass_count": 41,
     "files": [
-      "tests/test_construct_registration.py",
-      "tests/test_model_candidates.py"
+      "tests/test_construct_registration.py"
     ],
     "reported_by": "user-local-run",
-    "github_ci": false
+    "github_ci": false,
+    "note": "Experimental design-aware Scout v2 proposal helper plus existing Construct Registration tests."
   },
   "latest_full_validation": {
     "date": "2026-09-26",
@@ -365,7 +376,7 @@
     "interpretation": "Current conservative ambiguity is scientifically safe; known design intent contains strong discriminating evidence, but that evidence remains non-decisional under Scout v1."
   },
   "proposed_design_aware_inference_v2": {
-    "status": "PROPOSED_NOT_IMPLEMENTED",
+    "status": "IMPLEMENTED_EXPERIMENTAL_NOT_RUNTIME_AUTHORITY",
     "principle": "Prefer categorical consistency with declared construct intent over generic sequence-similarity scoring.",
     "candidate_evidence": [
       "whether candidate mismatches occur only at sites already declared to change between the family/reference construct and this dataset target",
@@ -382,7 +393,7 @@
     ]
   },
   "design_aware_scout_v2_experiment": {
-    "status": "IMPLEMENTED_EXPERIMENTAL_PENDING_VALIDATION",
+    "status": "IMPLEMENTED_EXPERIMENTAL_REAL_W_SHADOW_VALIDATED",
     "function": "propose_design_aware_chain_mapping",
     "runtime_authority": false,
     "automatic_application_authorized": false,
@@ -442,13 +453,46 @@
         "B:4": "DG"
       },
       "note": "A:13/B:3 are known family-baseline differences; A:12/B:4 are provider-pair identities. Production inference must bind these facts to reviewed/versioned provider provenance."
+    },
+    "real_w_attempt_2": {
+      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED",
+      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
+      "supplied_provider_codes": {
+        "A:12": "DC",
+        "A:13": "DC",
+        "B:3": "DG",
+        "B:4": "DG"
+      },
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 1,
+      "runtime_authority": false,
+      "proposed_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 4,
+        "unexplained_mismatch_count": 0
+      },
+      "alternative_unexplained_mismatch_counts": [
+        12,
+        11,
+        16,
+        17,
+        10
+      ],
+      "interpretation": "Exactly one complete mapping achieved zero unexplained mismatches only after the complete verified provider identity set was supplied; the helper remained proposal-only and non-runtime."
     }
   },
   "active_development_branch": {
     "name": "oak",
     "pull_request": 22,
     "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "FOCUSED_VALIDATED_REAL_W_SHADOW_PENDING"
+    "status": "FOCUSED_VALIDATED_REAL_W_SHADOW_PASSED_PROVENANCE_BINDING_PENDING"
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
