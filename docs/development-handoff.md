@@ -305,12 +305,18 @@ Keep that list intentionally small and trigger-based; it exists so clean-W,
 8D93-style recut, 8D31-like multiplicity, guided ambiguity and bounded multi-PDB
 live checks are not forgotten as implementation context moves across chats.
 
-Local focused validation reported **23 passing tests** in
-`tests/test_construct_registration.py` at Birch code head
-`4452295c3330de6d55bddd75b01be21f39afb222`. This is a user-local test
-checkpoint, not GitHub CI. Newer design-evidence/frozen-Scout/transition code is
-intentionally tracked as **pending validation** in the machine-readable intent
-ledger rather than being folded into that earlier green checkpoint.
+Validation history is preserved rather than overwritten:
+
+- the earlier Birch checkpoint at code head
+  `4452295c3330de6d55bddd75b01be21f39afb222` had **23 focused registration
+  tests passing locally**;
+- the current Birch bundle at code head
+  `686830beb64907f2a1ba73fa1bdbff97f6dcc38d` has **44 focused tests passing locally** across
+  `tests/test_construct_registration.py` and
+  `tests/test_model_candidates.py`.
+
+Both are user-local checkpoints, not GitHub CI. The only remaining merge gate
+for PR #17 is the full NASolve regression suite.
 
 ## NAPrep boundary
 
