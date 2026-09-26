@@ -158,6 +158,198 @@ def _simple_chain_candidates(
     return logical_order, candidates
 
 
+def describe_simple_chain_evidence(
+    assessment: ModelAssessment,
+    target: Mapping[str, object],
+) -> dict[str, object]:
+    """Describe design-identity evidence for every simple chain candidate.
+
+    This report is deliberately non-decisional. A target residue mismatch may
+    simply be the intended PostMR mutation or modification, so match counts are
+    not a compatibility score and are not used by Scout v1 to choose chains.
+    """
+    logical_order, logical_ids, target_codes = _target_chains(target)
+    coordinate = _coordinate_inventory(assessment)
+    _, candidates = _simple_chain_candidates(assessment, target)
+
+    chains: list[dict[str, object]] = []
+    for logical_chain in logical_order:
+        candidate_rows: list[dict[str, object]] = []
+        for option in candidates[logical_chain]:
+            coordinate_chain = option["coordinate_chain"]
+            coordinate_ids = assessment.polymer_residue_ids_by_chain[
+                coordinate_chain
+            ]
+            mismatches: list[dict[str, str]] = []
+            match_count = 0
+            for logical_resid, coordinate_resid in zip(
+                logical_ids[logical_chain],
+                coordinate_ids,
+            ):
+                logical_site = f"{logical_chain}:{logical_resid}"
+                coordinate_site = f"{coordinate_chain}:{coordinate_resid}"
+                observed = coordinate[coordinate_site]
+                intended = target_codes[logical_site]
+                if observed == intended:
+                    match_count += 1
+                else:
+                    mismatches.append({
+                        "logical_site": logical_site,
+                        "coordinate_site": coordinate_site,
+                        "coordinate_residue_code": observed,
+                        "target_residue_code": intended,
+                    })
+            candidate_rows.append({
+                "coordinate_chain": coordinate_chain,
+                "residue_number_offset": option["residue_number_offset"],
+                "compared_site_count": len(coordinate_ids),
+                "identity_match_count": match_count,
+                "identity_mismatch_count": len(mismatches),
+                "mismatches": mismatches,
+            })
+        chains.append({
+            "logical_chain": logical_chain,
+            "logical_site_count": len(logical_ids[logical_chain]),
+            "candidates": candidate_rows,
+        })
+
+    return {
+        "schema_version": 1,
+        "kind": "construct-registration-chain-evidence",
+        "model": {
+            "sha256": assessment.sha256,
+            "polymer_residue_count": assessment.polymer_residue_count,
+        },
+        "target": {
+            "kind": target["kind"],
+            "reference": target.get("reference"),
+            "site_count": sum(len(logical_ids[chain]) for chain in logical_order),
+        },
+        "chains": chains,
+        "semantics": {
+            "descriptive_only": True,
+            "used_for_assignment": False,
+            "identity_match_count_is_not_a_score": True,
+            "target_differences_may_be_expected_postmr_changes": True,
+        },
+    }
+
+
+def _validate_chain_evidence(value: object) -> dict[str, object]:
+    if not isinstance(value, Mapping):
+        raise ConstructRegistrationError("Registration chain evidence is not an object")
+    if set(value) != {
+        "schema_version", "kind", "model", "target", "chains", "semantics",
+    }:
+        raise ConstructRegistrationError("Malformed registration chain evidence")
+    if (
+        type(value["schema_version"]) is not int
+        or value["schema_version"] != 1
+        or value["kind"] != "construct-registration-chain-evidence"
+    ):
+        raise ConstructRegistrationError("Malformed registration chain-evidence identity")
+    model = value["model"]
+    target = value["target"]
+    chains = value["chains"]
+    semantics = value["semantics"]
+    if (
+        not isinstance(model, Mapping)
+        or set(model) != {"sha256", "polymer_residue_count"}
+        or not isinstance(model["sha256"], str)
+        or re.fullmatch(r"[0-9a-f]{64}", model["sha256"]) is None
+        or type(model["polymer_residue_count"]) is not int
+        or model["polymer_residue_count"] < 0
+    ):
+        raise ConstructRegistrationError("Malformed chain-evidence model")
+    if (
+        not isinstance(target, Mapping)
+        or set(target) != {"kind", "reference", "site_count"}
+        or target["kind"] != "sequence-family-target"
+        or type(target["site_count"]) is not int
+        or target["site_count"] <= 0
+    ):
+        raise ConstructRegistrationError("Malformed chain-evidence target")
+    if not isinstance(chains, list) or not chains:
+        raise ConstructRegistrationError("Registration chain evidence has no chains")
+    logical_seen: set[str] = set()
+    total_sites = 0
+    for chain in chains:
+        if (
+            not isinstance(chain, Mapping)
+            or set(chain) != {"logical_chain", "logical_site_count", "candidates"}
+            or not isinstance(chain["logical_chain"], str)
+            or not chain["logical_chain"]
+            or chain["logical_chain"] in logical_seen
+            or type(chain["logical_site_count"]) is not int
+            or chain["logical_site_count"] <= 0
+            or not isinstance(chain["candidates"], list)
+        ):
+            raise ConstructRegistrationError("Malformed chain-evidence chain record")
+        logical_seen.add(chain["logical_chain"])
+        total_sites += chain["logical_site_count"]
+        coordinate_seen: set[str] = set()
+        for candidate in chain["candidates"]:
+            if (
+                not isinstance(candidate, Mapping)
+                or set(candidate) != {
+                    "coordinate_chain",
+                    "residue_number_offset",
+                    "compared_site_count",
+                    "identity_match_count",
+                    "identity_mismatch_count",
+                    "mismatches",
+                }
+                or not isinstance(candidate["coordinate_chain"], str)
+                or not candidate["coordinate_chain"]
+                or candidate["coordinate_chain"] in coordinate_seen
+                or type(candidate["residue_number_offset"]) is not int
+                or type(candidate["compared_site_count"]) is not int
+                or candidate["compared_site_count"] != chain["logical_site_count"]
+                or type(candidate["identity_match_count"]) is not int
+                or type(candidate["identity_mismatch_count"]) is not int
+                or not isinstance(candidate["mismatches"], list)
+                or candidate["identity_mismatch_count"] != len(candidate["mismatches"])
+                or candidate["identity_match_count"] + candidate["identity_mismatch_count"]
+                != candidate["compared_site_count"]
+            ):
+                raise ConstructRegistrationError("Malformed chain-evidence candidate")
+            coordinate_seen.add(candidate["coordinate_chain"])
+            for mismatch in candidate["mismatches"]:
+                if (
+                    not isinstance(mismatch, Mapping)
+                    or set(mismatch) != {
+                        "logical_site",
+                        "coordinate_site",
+                        "coordinate_residue_code",
+                        "target_residue_code",
+                    }
+                    or not all(
+                        isinstance(mismatch[field], str) and mismatch[field]
+                        for field in (
+                            "logical_site",
+                            "coordinate_site",
+                            "coordinate_residue_code",
+                            "target_residue_code",
+                        )
+                    )
+                    or mismatch["coordinate_residue_code"]
+                    == mismatch["target_residue_code"]
+                ):
+                    raise ConstructRegistrationError(
+                        "Malformed chain-evidence mismatch"
+                    )
+    if total_sites != target["site_count"]:
+        raise ConstructRegistrationError("Chain-evidence target count is inconsistent")
+    if semantics != {
+        "descriptive_only": True,
+        "used_for_assignment": False,
+        "identity_match_count_is_not_a_score": True,
+        "target_differences_may_be_expected_postmr_changes": True,
+    }:
+        raise ConstructRegistrationError("Malformed chain-evidence semantics")
+    return dict(value)
+
+
 def _unique_chain_assignment(
     logical_order: Sequence[str],
     candidates: Mapping[str, Sequence[Mapping[str, object]]],
