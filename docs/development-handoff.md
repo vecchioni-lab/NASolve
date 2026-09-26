@@ -21,17 +21,18 @@ Numbered runs and checkpoint branches are immutable. Free-R flags are not
 regenerated for convenience. Refine Doctor preserves the current checkpoint
 unless a user explicitly selects another one.
 
-Latest local code regression baseline before the current documentation/design
-update:
+Latest local code regression baseline:
 
-- **620 tests passed** in the full suite;
-- the focused donor/recipient comparison slice passed **51 tests plus 22
-  subtests**.
+- **664 tests passed** in the full suite;
+- **222 subtests passed**;
+- full-suite runtime: **61.70 s**.
 
-These results were reported from the active Python 3.12 development
-environment. The Sep 26 Construct Registration/NAPrep update is documentation
-and architecture planning only; it does not claim a new code-test,
-`compileall`, `diff --check`, or GitHub Actions result.
+This was reported from the active Python 3.12 development environment on Birch
+checkout `cc0ad6ab537cc61e17e13bc562e4ae8667461e8d`. Registration source/test
+code was unchanged after code head
+`686830beb64907f2a1ba73fa1bdbff97f6dcc38d`; later Birch commits before the
+full run were documentation-only validation bookkeeping. This is a user-local
+test result, not GitHub CI.
 
 ## Terminal-phosphate chemistry
 
@@ -315,8 +316,9 @@ Validation history is preserved rather than overwritten:
   `tests/test_construct_registration.py` and
   `tests/test_model_candidates.py`.
 
-Both are user-local checkpoints, not GitHub CI. The only remaining merge gate
-for PR #17 is the full NASolve regression suite.
+Both are user-local checkpoints, not GitHub CI. The full NASolve regression
+suite subsequently passed with **664 tests and 222 subtests**, satisfying the
+remaining merge gate for PR #17.
 
 ## NAPrep boundary
 
