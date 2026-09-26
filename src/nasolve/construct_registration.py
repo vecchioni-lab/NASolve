@@ -354,7 +354,7 @@ def _unique_chain_assignment(
     logical_order: Sequence[str],
     candidates: Mapping[str, Sequence[Mapping[str, object]]],
 ) -> tuple[dict[str, Mapping[str, object]] | None, bool]:
-    """Return the unique bijection, or signal ambiguity without ranking guesses."""
+    """Return the unique one-to-one chain assignment, or signal ambiguity without ranking guesses."""
     solutions: list[dict[str, Mapping[str, object]]] = []
 
     def visit(
@@ -557,7 +557,7 @@ def scout_simple_registration(
             "status": "AMBIGUOUS",
             "method": None,
             "reason": (
-                "more than one chain bijection satisfies simple length/offset "
+                "more than one one-to-one chain assignment satisfies simple length/offset "
                 "registration; scout refuses to rank by sequence similarity"
             ),
             "chain_candidates": candidate_view,
@@ -620,7 +620,7 @@ def scout_simple_registration(
         "kind": "construct-registration-scout",
         "status": "REGISTERED",
         "method": method,
-        "reason": "unique simple chain bijection",
+        "reason": "unique simple one-to-one chain assignment",
         "chain_candidates": candidate_view,
         "design_evidence": design_evidence,
         "registration": registration,
