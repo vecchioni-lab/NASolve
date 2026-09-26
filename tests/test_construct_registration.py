@@ -12,6 +12,7 @@ from nasolve.construct_registration import (
     freeze_construct_registration,
     load_construct_registration,
     logical_inventory_by_copy,
+    scout_simple_registration,
     validate_construct_registration,
 )
 from nasolve.model_assessment import inspect_pdb
@@ -302,6 +303,173 @@ class ConstructRegistrationTests(unittest.TestCase):
                 "Duplicate coordinate atom identities",
             ):
                 build_identity_registration(model, target(("A:1", "DA")))
+
+    def test_scout_identity_fast_path_is_noninteractive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [("A", 1, "DA"), ("A", 2, "DC"), ("B", 1, "DG")],
+            )
+            result = scout_simple_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DT"), ("B:1", "DG")),
+            )
+            self.assertEqual(result["status"], "REGISTERED")
+            self.assertEqual(result["method"], "identity-site-map")
+            self.assertFalse(result["semantics"]["guided_review_required"])
+            self.assertEqual(
+                result["registration"]["identity"]["mismatch_count"],
+                1,
+            )
+
+    def test_scout_accepts_unique_residue_number_offset(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [("A", 101, "DA"), ("A", 102, "DC"), ("B", 51, "DG")],
+            )
+            result = scout_simple_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DC"), ("B:1", "DG")),
+            )
+            self.assertEqual(result["status"], "REGISTERED")
+            self.assertEqual(result["method"], "residue-number-offset")
+            self.assertEqual(
+                result["chain_candidates"],
+                {
+                    "A": [
+                        {
+                            "coordinate_chain": "A",
+                            "residue_number_offset": 100,
+                        }
+                    ],
+                    "B": [
+                        {
+                            "coordinate_chain": "B",
+                            "residue_number_offset": 50,
+                        }
+                    ],
+                },
+            )
+            mapping = {
+                row["logical_site"]: row["coordinate_site"]
+                for row in result["registration"]["copies"][0]["mappings"]
+            }
+            self.assertEqual(
+                mapping,
+                {"A:1": "A:101", "A:2": "A:102", "B:1": "B:51"},
+            )
+
+    def test_scout_accepts_unique_whole_chain_rename(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [("M", 1, "DA"), ("M", 2, "DC"), ("N", 1, "DG")],
+            )
+            result = scout_simple_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DC"), ("B:1", "DG")),
+            )
+            self.assertEqual(result["status"], "REGISTERED")
+            self.assertEqual(result["method"], "whole-chain-rename")
+            mapping = {
+                row["logical_site"]: row["coordinate_site"]
+                for row in result["registration"]["copies"][0]["mappings"]
+            }
+            self.assertEqual(
+                mapping,
+                {"A:1": "M:1", "A:2": "M:2", "B:1": "N:1"},
+            )
+
+    def test_scout_accepts_unique_chain_rename_plus_number_offset(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [("M", 101, "DA"), ("M", 102, "DC"), ("N", -4, "DG")],
+            )
+            result = scout_simple_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DC"), ("B:1", "DG")),
+            )
+            self.assertEqual(result["status"], "REGISTERED")
+            self.assertEqual(
+                result["method"],
+                "whole-chain-rename-and-residue-offset",
+            )
+            self.assertFalse(
+                result["semantics"]["sequence_similarity_used_for_assignment"]
+            )
+
+    def test_scout_refuses_ambiguous_equal_shape_chains_even_when_sequence_tempts_it(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DA"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DG"),
+                ],
+            )
+            result = scout_simple_registration(
+                model,
+                target(
+                    ("A:1", "DA"),
+                    ("A:2", "DA"),
+                    ("B:1", "DG"),
+                    ("B:2", "DG"),
+                ),
+            )
+            self.assertEqual(result["status"], "AMBIGUOUS")
+            self.assertIsNone(result["registration"])
+            self.assertTrue(result["semantics"]["guided_review_required"])
+            self.assertFalse(
+                result["semantics"]["sequence_similarity_used_for_assignment"]
+            )
+            self.assertEqual(
+                {
+                    row["coordinate_chain"]
+                    for row in result["chain_candidates"]["A"]
+                },
+                {"M", "N"},
+            )
+            self.assertIn("refuses to rank", result["reason"])
+
+    def test_scout_defers_chain_count_difference_for_split_or_multicopy_logic(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [("M", 1, "DA"), ("N", 1, "DC"), ("Q", 1, "DG")],
+            )
+            result = scout_simple_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DC"), ("B:1", "DG")),
+            )
+            self.assertEqual(result["status"], "UNRESOLVED")
+            self.assertIsNone(result["method"])
+            self.assertTrue(result["semantics"]["guided_review_required"])
+            self.assertIn("chain counts differ", result["reason"])
+
+    def test_scout_rejects_nonconstant_residue_number_pattern(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [("A", 10, "DA"), ("A", 12, "DC"), ("B", 1, "DG")],
+            )
+            result = scout_simple_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DC"), ("B:1", "DG")),
+            )
+            self.assertEqual(result["status"], "UNRESOLVED")
+            self.assertEqual(result["chain_candidates"]["A"], [])
+            self.assertIn("constant residue-number offset", result["reason"])
 
     def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
         with tempfile.TemporaryDirectory() as directory:
