@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-7",
+  "version": "2026-09-26-birch-8",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -103,12 +103,7 @@
     "scope": "construct registration core, artifact provenance and conservative scout synthetic tests",
     "note": "This checkpoint predates the descriptive chain-evidence and frozen Scout artifact additions."
   },
-  "pending_validation": {
-    "branch": "birch",
-    "branch_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
-    "status": "full-suite-pending",
-    "remaining_gate": "Run the full NASolve regression suite before merging PR #17."
-  },
+  "pending_validation": null,
   "stage_transition_policy": {
     "implemented": true,
     "kind": "construct-registration-transition",
@@ -153,9 +148,22 @@
         "tests/test_model_candidates.py"
       ],
       "note": "Focused bundle passed locally; full NASolve regression suite remains pending before merge."
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "birch",
+      "checkout_head": "cc0ad6ab537cc61e17e13bc562e4ae8667461e8d",
+      "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+      "passed_tests": 664,
+      "passed_subtests": 222,
+      "elapsed_seconds": 61.7,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "full NASolve regression suite"
     }
   ],
-  "current_validation_status": "FOCUSED_PASSED_FULL_SUITE_PENDING",
+  "current_validation_status": "FULL_SUITE_PASSED",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -220,5 +228,18 @@
     ],
     "reported_by": "user-local-run",
     "github_ci": false
+  },
+  "latest_full_validation": {
+    "date": "2026-09-26",
+    "branch": "birch",
+    "checkout_head": "cc0ad6ab537cc61e17e13bc562e4ae8667461e8d",
+    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+    "command_scope": "full NASolve pytest suite",
+    "passed_tests": 664,
+    "passed_subtests": 222,
+    "elapsed_seconds": 61.7,
+    "reported_by": "user-local-run",
+    "github_ci": false,
+    "note": "Checkout included documentation-only commits after the validated code head; no source/test code changed after code_head."
   }
 }
