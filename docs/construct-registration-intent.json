@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-6",
+  "version": "2026-09-26-birch-7",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,18 +105,9 @@
   },
   "pending_validation": {
     "branch": "birch",
-    "branch_head": "7abe09c7f634dc2caf41a42218717e0ecb462c2e",
-    "status": "pending-user-local-tests",
-    "changes_since_validation_checkpoint": [
-      "descriptive per-candidate design identity evidence",
-      "explicit invariant that design evidence is not used for Scout assignment",
-      "checksum-bound Model/registration_scout.json freeze/load",
-      "strict Scout artifact semantic validation",
-      "descriptive comparison of registration state across stages",
-      "guided resolution of ambiguous simple Scout chain assignments using only explicit user-selected preexisting candidates",
-      "read-only multi-PDB candidate inventory with per-file hashes and stable candidate-set fingerprint",
-      "read-only Registration Scout across every valid top-level dataset PDB without selection authority"
-    ]
+    "branch_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+    "status": "full-suite-pending",
+    "remaining_gate": "Run the full NASolve regression suite before merging PR #17."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -149,16 +140,22 @@
     },
     {
       "date": "2026-09-26",
-      "status": "PENDING",
+      "status": "PASSED",
       "branch": "birch",
-      "code_head": "7abe09c7f634dc2caf41a42218717e0ecb462c2e",
+      "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
       "focused_test_file": "tests/test_construct_registration.py",
-      "reported_by": null,
+      "reported_by": "user-local-run",
       "github_ci": false,
-      "scope": "registration design evidence, frozen Scout, stage transition, guided simple-chain resolution, and read-only multi-PDB candidate scouting"
+      "scope": "registration core/scout/evidence/guided/transition plus read-only multi-PDB candidate inventory/scouting",
+      "reported_pass_count": 44,
+      "focused_test_files": [
+        "tests/test_construct_registration.py",
+        "tests/test_model_candidates.py"
+      ],
+      "note": "Focused bundle passed locally; full NASolve regression suite remains pending before merge."
     }
   ],
-  "current_validation_status": "PENDING",
+  "current_validation_status": "FOCUSED_PASSED_FULL_SUITE_PENDING",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -211,5 +208,17 @@
       "guided ambiguity live check when UI/CLI exists",
       "bounded multi-PDB MR live check when selection policy exists"
     ]
+  },
+  "latest_focused_validation": {
+    "date": "2026-09-26",
+    "branch": "birch",
+    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+    "reported_pass_count": 44,
+    "files": [
+      "tests/test_construct_registration.py",
+      "tests/test_model_candidates.py"
+    ],
+    "reported_by": "user-local-run",
+    "github_ci": false
   }
 }
