@@ -780,8 +780,17 @@ rather than being ranked by sequence similarity. The current Oak development
 branch adds an **experimental Scout v2 proposal helper** that tests a stricter
 design-aware rule: propose a one-to-one chain mapping only when exactly one
 complete mapping has zero **unexplained** mismatches after accounting for
-explicit target-history and reviewed provider-baseline identities. It is
-proposal-only, cannot alter coordinates, and is not runtime authority.
+explicit target-history and reviewed provider identities. It is proposal-only,
+cannot alter coordinates, and is not runtime authority.
+
+Oak's first renamed-real-W v2 shadow run deliberately stayed `AMBIGUOUS`:
+the intended mapping still had two unexplained differences. Direct inspection of
+the actual standard provider `MR_frames/5W6W/C_G.pdb` showed why—the
+experimental evidence supplied only the known A:13/B:3 family-baseline
+differences but omitted the provider-pair identities A:12=DC and B:4=DG.
+The next shadow run therefore uses the complete four-site provider identity set
+(A:12/A:13=DC; B:3/B:4=DG). Production use must derive/bind this evidence from
+versioned provider provenance rather than hand-entered residue dictionaries.
 
 The intended live architecture remains: cheap non-mutating Registration Scout
 inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
