@@ -45,6 +45,39 @@ This was a manual/read-only invocation of the registration layer against an
 existing completed run. It does **not** complete the future checklist item for
 Registration Scout/registration being wired into live AutoMR/PostMR execution.
 
+### Renamed-chain real W ambiguity — ED run_011
+
+A temporary read-only copy of the real ED `run_011` search model was created
+with chain labels changed `A/B/C/D -> M/N/P/Q`. Coordinates and residue
+identities were otherwise unchanged.
+
+Scout v1 correctly returned:
+
+- status: `AMBIGUOUS`;
+- method: none;
+- reason: more than one simple chain bijection satisfied the current
+  length/offset rules, and Scout refused to rank them by sequence similarity.
+
+Descriptive design evidence nevertheless strongly separated the intended
+mapping:
+
+- logical A -> M: 19 matches / 2 mismatches;
+- logical B -> N: 5 matches / 2 mismatches, versus 1/6 for P or Q;
+- logical C -> P: 7/0, versus 1/6 for N or Q;
+- logical D -> Q: 7/0, versus 2/5 for N and 1/6 for P.
+
+An explicit guided choice `A->M, B->N, C->P, D->Q` then produced
+`REGISTERED_COMPLETE`, one complete copy, 4 target-identity mismatches and
+zero coordinate edits.
+
+Interpretation: the conservative Scout behavior is correct for its current
+policy, and the guided backend resolves the real ambiguous case cleanly. The
+evidence also motivates a future **design-aware hard-rule layer** that
+distinguishes mismatches already explained by declared dataset/reference
+changes from unexpected ordinary-base mismatches. This should be evaluated as
+explicit categorical evidence, not introduced as a generic sequence-similarity
+score.
+
 ## Current validation note
 
 The earlier Birch checkpoint at code head
