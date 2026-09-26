@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-4",
+  "version": "2026-09-26-birch-5",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,7 +105,7 @@
   },
   "pending_validation": {
     "branch": "birch",
-    "branch_head": "32d1096bc259cb26534aa0e26bdebd0956e77471",
+    "branch_head": "7abe09c7f634dc2caf41a42218717e0ecb462c2e",
     "status": "pending-user-local-tests",
     "changes_since_validation_checkpoint": [
       "descriptive per-candidate design identity evidence",
@@ -113,7 +113,9 @@
       "checksum-bound Model/registration_scout.json freeze/load",
       "strict Scout artifact semantic validation",
       "descriptive comparison of registration state across stages",
-      "guided resolution of ambiguous simple Scout chain assignments using only explicit user-selected preexisting candidates"
+      "guided resolution of ambiguous simple Scout chain assignments using only explicit user-selected preexisting candidates",
+      "read-only multi-PDB candidate inventory with per-file hashes and stable candidate-set fingerprint",
+      "read-only Registration Scout across every valid top-level dataset PDB without selection authority"
     ]
   },
   "stage_transition_policy": {
@@ -149,11 +151,11 @@
       "date": "2026-09-26",
       "status": "PENDING",
       "branch": "birch",
-      "code_head": "32d1096bc259cb26534aa0e26bdebd0956e77471",
+      "code_head": "7abe09c7f634dc2caf41a42218717e0ecb462c2e",
       "focused_test_file": "tests/test_construct_registration.py",
       "reported_by": null,
       "github_ci": false,
-      "scope": "design evidence, frozen Scout provenance, registration transition comparison and guided simple-chain resolution"
+      "scope": "registration design evidence, frozen Scout, stage transition, guided simple-chain resolution, and read-only multi-PDB candidate scouting"
     }
   ],
   "current_validation_status": "PENDING",
@@ -176,5 +178,26 @@
       "topology-aware mapping",
       "recipe promotion"
     ]
+  },
+  "multi_pdb_candidate_inventory_v1": {
+    "implemented": true,
+    "live_automr_behavior_changed": false,
+    "scope": "top-level dataset PDB files only",
+    "behavior": [
+      "enumerate every top-level PDB without selecting one",
+      "assess valid and invalid PDBs independently",
+      "retain invalid candidates with diagnostics rather than hiding them",
+      "record SHA-256 and byte size for every candidate regardless of validity",
+      "compute one stable candidate-set fingerprint over selector/status/file identity",
+      "run Registration Scout independently on every valid candidate in the read-only scouting layer"
+    ],
+    "decisions_explicitly_not_made": [
+      "candidate ranking",
+      "automatic model selection",
+      "MR attempt authorization",
+      "best-TFZ selection",
+      "candidate transformation"
+    ],
+    "current_legacy_behavior": "AutoMR still requires one unambiguous nonstandard PDB or an explicit model selector."
   }
 }
