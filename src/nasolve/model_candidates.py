@@ -7,14 +7,16 @@ model-resolution behavior remains unchanged until a later reviewed integration.
 
 from __future__ import annotations
 
+import json
 from collections.abc import Collection
+from hashlib import sha256
 from pathlib import Path
 
 from .construct_registration import (
     ConstructRegistrationError,
     scout_simple_registration,
 )
-from .model_assessment import ModelAssessmentError, inspect_pdb
+from .model_assessment import ModelAssessmentError, file_sha256, inspect_pdb
 
 
 class ModelCandidateInventoryError(RuntimeError):
@@ -57,6 +59,10 @@ def inventory_dataset_pdb_candidates(
             ) from exc
 
         selector = path.relative_to(root).as_posix()
+        file_identity = {
+            "sha256": file_sha256(path),
+            "byte_size": path.stat().st_size,
+        }
         try:
             assessment = inspect_pdb(
                 path,
@@ -67,6 +73,7 @@ def inventory_dataset_pdb_candidates(
             candidates.append({
                 "selector": selector,
                 "status": "INVALID",
+                "file": file_identity,
                 "diagnostic": str(exc),
                 "assessment": None,
             })
@@ -76,6 +83,7 @@ def inventory_dataset_pdb_candidates(
         candidates.append({
             "selector": selector,
             "status": "VALID",
+            "file": file_identity,
             "diagnostic": None,
             "assessment": {
                 "sha256": assessment.sha256,
@@ -96,6 +104,23 @@ def inventory_dataset_pdb_candidates(
             },
         })
 
+    fingerprint_payload = [
+        {
+            "selector": row["selector"],
+            "status": row["status"],
+            "sha256": row["file"]["sha256"],
+            "byte_size": row["file"]["byte_size"],
+        }
+        for row in candidates
+    ]
+    candidate_set_sha256 = sha256(
+        json.dumps(
+            fingerprint_payload,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+    ).hexdigest()
+
     return {
         "schema_version": 1,
         "kind": "dataset-pdb-candidate-inventory",
@@ -104,6 +129,7 @@ def inventory_dataset_pdb_candidates(
         "candidate_count": len(candidates),
         "valid_candidate_count": valid_count,
         "invalid_candidate_count": invalid_count,
+        "candidate_set_sha256": candidate_set_sha256,
         "candidates": candidates,
         "selection": None,
         "semantics": {
