@@ -13,14 +13,18 @@ mutation or chemistry intent.
 
 from __future__ import annotations
 
+import json
 import re
 from collections.abc import Mapping, Sequence
+from hashlib import sha256
+from pathlib import Path
 
 from .model_assessment import (
     ModelAssessment,
     ModelAssessmentError,
     literal_polymer_identity_inventory,
 )
+from .run_context import artifact_reference, resolve_artifact_path
 
 
 class ConstructRegistrationError(RuntimeError):
@@ -522,11 +526,15 @@ def validate_construct_registration(value: Mapping[str, object]) -> dict[str, ob
         or summary["partial_copy_ids"] != partial_ids
         or summary["mapped_coordinate_site_count"] != mapped_count
         or not isinstance(summary["unmapped_coordinate_sites"], list)
+        or len(set(summary["unmapped_coordinate_sites"]))
+        != len(summary["unmapped_coordinate_sites"])
         or not all(
             isinstance(site, str) and _SITE.fullmatch(site)
             for site in summary["unmapped_coordinate_sites"]
         )
         or coordinate_sites.intersection(summary["unmapped_coordinate_sites"])
+        or mapped_count + len(summary["unmapped_coordinate_sites"])
+        != model["polymer_residue_count"]
     ):
         raise ConstructRegistrationError("Malformed registration summary")
 
@@ -553,10 +561,118 @@ def validate_construct_registration(value: Mapping[str, object]) -> dict[str, ob
     return dict(value)
 
 
+def logical_inventory_by_copy(
+    registration: Mapping[str, object],
+    *,
+    complete_only: bool = False,
+) -> dict[str, dict[str, str]]:
+    """Return observed residue identities in logical-site coordinates.
+
+    The values come from the registered coordinate model, not the target.
+    This is a read-only adapter for later comparison/provenance layers.
+    """
+    checked = validate_construct_registration(registration)
+    result: dict[str, dict[str, str]] = {}
+    for copy in checked["copies"]:
+        if complete_only and copy["status"] != "COMPLETE":
+            continue
+        result[copy["copy_id"]] = {
+            row["logical_site"]: row["coordinate_residue_code"]
+            for row in copy["mappings"]
+        }
+    return result
+
+
+def freeze_construct_registration(
+    registration: Mapping[str, object],
+    run: Path,
+) -> dict[str, object]:
+    """Freeze one registration artifact beneath an already allocated run."""
+    checked = validate_construct_registration(registration)
+    data = (
+        json.dumps(checked, indent=2, sort_keys=True, allow_nan=False) + "\n"
+    ).encode("utf-8")
+    path = run / "Model" / "construct_registration.json"
+    try:
+        with path.open("xb") as handle:
+            handle.write(data)
+    except OSError as exc:
+        raise ConstructRegistrationError(
+            f"Could not freeze construct registration: {exc}"
+        ) from exc
+    return {
+        "schema_version": 1,
+        "kind": "frozen-construct-registration",
+        "artifact": {
+            **artifact_reference(path, run),
+            "sha256": sha256(data).hexdigest(),
+            "size": len(data),
+        },
+    }
+
+
+def load_construct_registration(
+    report: Mapping[str, object],
+    run: Path,
+) -> dict[str, object] | None:
+    """Load only a checksum-verified run-local registration artifact."""
+    frozen = report.get("construct_registration")
+    if frozen is None:
+        return None
+    if (
+        not isinstance(frozen, Mapping)
+        or set(frozen) != {"schema_version", "kind", "artifact"}
+        or type(frozen.get("schema_version")) is not int
+        or frozen["schema_version"] != 1
+        or frozen.get("kind") != "frozen-construct-registration"
+        or not isinstance(frozen.get("artifact"), Mapping)
+    ):
+        raise ConstructRegistrationError("Malformed frozen construct registration")
+
+    artifact = frozen["artifact"]
+    if (
+        artifact.get("anchor") != "run"
+        or not isinstance(artifact.get("relative_path"), str)
+        or not isinstance(artifact.get("sha256"), str)
+        or re.fullmatch(r"[0-9a-f]{64}", artifact["sha256"]) is None
+        or type(artifact.get("size")) is not int
+        or artifact["size"] <= 0
+    ):
+        raise ConstructRegistrationError(
+            "Malformed construct-registration artifact reference"
+        )
+    try:
+        path = resolve_artifact_path(artifact, run)
+        if path is None:
+            raise ConstructRegistrationError(
+                "Frozen construct registration is missing or failed checksum validation"
+            )
+        path.resolve().relative_to(run.resolve())
+        data = path.read_bytes()
+    except (OSError, ValueError) as exc:
+        raise ConstructRegistrationError(
+            f"Could not read frozen construct registration: {exc}"
+        ) from exc
+    if len(data) != artifact["size"] or sha256(data).hexdigest() != artifact["sha256"]:
+        raise ConstructRegistrationError(
+            "Frozen construct registration changed while being read"
+        )
+    try:
+        value = json.loads(data.decode("utf-8"))
+    except (UnicodeError, ValueError) as exc:
+        raise ConstructRegistrationError(
+            f"Could not decode frozen construct registration: {exc}"
+        ) from exc
+    return validate_construct_registration(value)
+
+
 __all__ = [
     "ConstructRegistrationError",
     "build_construct_registration",
     "build_identity_registration",
     "expand_logical_sites",
+    "freeze_construct_registration",
+    "load_construct_registration",
+    "logical_inventory_by_copy",
     "validate_construct_registration",
 ]
