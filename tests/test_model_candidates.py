@@ -66,6 +66,10 @@ class ModelCandidateInventoryTests(unittest.TestCase):
                 ["alpha.pdb", "zeta.pdb"],
             )
             self.assertIsNone(result["selection"])
+            self.assertRegex(result["candidate_set_sha256"], r"^[0-9a-f]{64}$")
+            for candidate in result["candidates"]:
+                self.assertRegex(candidate["file"]["sha256"], r"^[0-9a-f]{64}$")
+                self.assertGreater(candidate["file"]["byte_size"], 0)
             self.assertFalse(
                 result["semantics"]["automatic_selection_authorized"]
             )
@@ -89,6 +93,8 @@ class ModelCandidateInventoryTests(unittest.TestCase):
                 for row in result["candidates"]
             }
             self.assertEqual(by_name["bad.pdb"]["status"], "INVALID")
+            self.assertRegex(by_name["bad.pdb"]["file"]["sha256"], r"^[0-9a-f]{64}$")
+            self.assertGreater(by_name["bad.pdb"]["file"]["byte_size"], 0)
             self.assertIsNone(by_name["bad.pdb"]["assessment"])
             self.assertIn("contains no ATOM or HETATM", by_name["bad.pdb"]["diagnostic"])
             self.assertEqual(by_name["good.pdb"]["status"], "VALID")
@@ -143,6 +149,41 @@ class ModelCandidateInventoryTests(unittest.TestCase):
             )
             self.assertTrue(candidate["assessment"]["warnings"])
 
+    def test_candidate_set_fingerprint_changes_when_candidate_bytes_change(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root / "model.pdb"
+            path.write_text(model_text(), encoding="utf-8")
+            first = inventory_dataset_pdb_candidates(
+                root,
+                polymer_ligand_codes=CODES,
+            )
+            second = inventory_dataset_pdb_candidates(
+                root,
+                polymer_ligand_codes=CODES,
+            )
+            self.assertEqual(
+                first["candidate_set_sha256"],
+                second["candidate_set_sha256"],
+            )
+
+            path.write_text(
+                model_text().replace("20.00", "21.00", 1),
+                encoding="utf-8",
+            )
+            changed = inventory_dataset_pdb_candidates(
+                root,
+                polymer_ligand_codes=CODES,
+            )
+            self.assertNotEqual(
+                first["candidate_set_sha256"],
+                changed["candidate_set_sha256"],
+            )
+            self.assertNotEqual(
+                first["candidates"][0]["file"]["sha256"],
+                changed["candidates"][0]["file"]["sha256"],
+            )
+
     def test_multi_pdb_scout_reports_registered_and_ambiguous_without_selection(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -177,6 +218,7 @@ class ModelCandidateInventoryTests(unittest.TestCase):
                 polymer_ligand_codes=CODES,
             )
             self.assertEqual(result["candidate_count"], 2)
+            self.assertRegex(result["candidate_set_sha256"], r"^[0-9a-f]{64}$")
             self.assertEqual(result["registered_candidate_count"], 1)
             self.assertEqual(result["ambiguous_candidate_count"], 1)
             self.assertEqual(result["unresolved_candidate_count"], 0)
