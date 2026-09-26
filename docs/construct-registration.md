@@ -42,6 +42,111 @@ representation-level ways without representing a genuinely different assembly:
 
 These cases must not be collapsed into a generic "sequence mismatch."
 
+## Motivating crystallographic cases
+
+The initial design is motivated by recurring lab failure modes rather than an
+abstract renumbering problem.
+
+Representative cases include:
+
+- **3GBI/8D93-style equivalent cuts:** the same broad periodic object can be
+  represented by a duplex-like or junction-containing ASU cut. A correct model
+  may therefore look different in chain boundaries without being a different
+  construct.
+- **3GBI/5W6W-style slice/boundary differences:** a search representation may
+  have the right overall geometry but a different sticky-end/boundary cut and
+  may omit terminal chemistry that the intended construct requires.
+- **8D31-style multiplicity surprises:** an unexpected space-group/ASU
+  interpretation may contain an additional complete construct copy. Dataset
+  sequence/chemistry intent must then be propagated to both complete registered
+  copies.
+- **partial-copy ASUs:** one complete logical construct may coexist with only a
+  fragment of another. That fragment must not be silently coerced into a second
+  complete copy.
+- **messy imported MR models:** chain names may be unrelated to the logical
+  design, residue numbering may begin at arbitrary values, and one logical
+  strand may be split across several coordinate chains.
+- **multi-PDB dataset folders:** several plausible search models may coexist and
+  need bounded registration scouting plus MR attempts rather than filename-based
+  guessing.
+
+These examples are meant to exercise one common abstraction: the logical
+construct is stable even when its coordinate serialization is not.
+
+## Failure-mode triage matrix
+
+Registration should make the response to common problems explicit and
+deterministic.
+
+| Observed problem | Automatic response when unambiguous | Escalation / guided response |
+| --- | --- | --- |
+| Chain renamed, e.g. logical A appears as M | Register by sequence/connectivity; retain coordinate label as provenance | Ask only if several non-equivalent strand assignments remain |
+| Residue numbering offset/arbitrary numbering | Map logical residue order/site identity to coordinate IDs | Ask if gaps/insertions create multiple plausible correspondences |
+| One logical strand split across coordinate chains | Join the fragments in the logical registration without editing coordinates | Guided fragment assignment if several joins are plausible |
+| Equivalent alternative ASU cut | Recognize by reviewed symmetry/cut recipe or unique symmetry-aware registration | Show Registration Net and candidate cuts when more than one non-equivalent cut survives |
+| Sticky end/arm too long or too short | Record coverage/boundary difference; apply only a reviewed recipe | Guided review if the intended boundary cannot be established uniquely |
+| Required terminal phosphate absent | Keep registration separate; pass the logical terminus to the existing chemistry audit/construction path | Stop if boundary identity itself is ambiguous or chemistry is unsupported |
+| Extra complete ASU copy | Register each complete copy and propagate logical sequence/mutations to every complete instance | Guided review if copies are non-equivalent or map differently |
+| One complete plus partial extra copy | Register the complete copy; classify the fragment as partial; do not propagate complete-copy chemistry into it | Expanded report plus guided interpretation; later topology layer may explain it |
+| Search-model scout looks simple but MR output reorganizes the ASU | Re-run authoritative registration on the actual Phaser solution and discard the scout as downstream authority | Guided review if the solved ASU has ambiguous multiplicity/cut |
+| Ordinary MR fails but representation mismatch is plausible | Spawn a bounded Registration/Recut Rescue candidate under a reviewed recipe | User chooses/edits the cut when no reviewed deterministic rescue applies |
+| Several PDBs in the dataset | Scout each bounded candidate; reject models lacking required logical coverage; run eligible MR attempts | Preserve a shortlist if multiple successful models imply materially different interpretations |
+| Same logical target but sequence differences | Register first, then express differences in logical coordinates for PostMR | Stop if the mapping itself is ambiguous; do not let sequence mutation hide a registration problem |
+| Topology/connectivity genuinely differs | Do not force a registration merely because sequence can be aligned | Stop/guided review; defer genuinely topology-rich interpretation to the later topology layer |
+
+No row above is an overall compatibility score. Several dimensions may apply at
+once and should remain separately visible.
+
+## Escalation policy: when the user must be involved
+
+Automatic mode is appropriate only when the remaining choices are
+crystallographically equivalent under reviewed deterministic rules.
+
+NASolve should switch to guided mode when any of the following occurs:
+
+- more than one non-symmetry-equivalent logical registration remains;
+- a proposed recut/split/join/boundary operation is not already covered by a
+  reviewed recipe;
+- an unexpected complete copy is not equivalent to the other registered
+  copies;
+- any partial copy is present and its interpretation affects downstream
+  chemistry or model choice;
+- required logical coverage differs in a way that cannot be explained by a
+  reviewed boundary/cut recipe;
+- multiple MR candidates pass ordinary MR gates but imply materially different
+  cuts, multiplicities or logical-site mappings;
+- the MR solution changes the registration interpretation relative to the
+  pre-MR scout in a scientifically meaningful way; or
+- the mapping begins to depend on topology rather than sequence/connectivity
+  correspondence.
+
+Guided mode is not a failure state. It means the crystallographic
+representation itself has become part of the scientific result and therefore
+deserves an explicit human decision plus richer documentation.
+
+## Reporting escalation
+
+Documentation effort should scale with the scientific importance of the
+registration.
+
+- **Identity-like single-copy W case:** compact machine-readable registration
+  plus a terse human summary; no interactive interruption.
+- **Automatic but non-identity case:** retain a rendered Registration Net,
+  mapping table and applied recipe/transform evidence even if the pipeline
+  continues automatically.
+- **Multicopy case:** report every registered copy and exactly which logical
+  mutation/chemistry actions were propagated to each.
+- **Partial-copy, ambiguous, or user-guided case:** produce the full
+  Registration Net, competing mappings/cuts, symmetry evidence, coverage
+  differences, user selections, rejected alternatives and any recut preview.
+- **MR rescue case:** retain the original failed candidate, every transformed
+  candidate, transformation manifest, MR statistics and the reason the rescue
+  branch was attempted/accepted/rejected.
+
+These records should flow into the final dataset/campaign report and later
+curation/deposition provenance rather than living only in a temporary setup
+screen.
+
 ## Logical construct manifest
 
 Dataset intent should ultimately compile to a logical construct manifest. It may
@@ -103,6 +208,11 @@ A guided decision is frozen as run-local registration provenance. It does not
 silently change a global NASolve rule. Promotion of a successful run-local
 mapping into a reusable lab recipe is a separate explicit action.
 
+The user-facing goal is not to ask the user to rebuild a model manually before
+NASolve can proceed. NASolve should present its best deterministic proposal,
+explain what is uncertain, and ask only for the smallest crystallographic
+decision required to make the mapping authoritative.
+
 ## Timing: scout, MR, authoritative registration, rescue
 
 NASolve should not require heavy coordinate surgery before ordinary MR when MR
@@ -157,6 +267,12 @@ It records:
 
 PostMR then applies dataset-level sequence/chemistry to every **complete,
 unambiguous registered instance** of each logical site.
+
+For example, a dataset request such as `logical A:12 = 1AP` may resolve after
+MR to one coordinate site in an ordinary ASU or to several sites in a
+multicopy ASU. The mutation request remains singular in logical intent; the
+registration layer expands it deterministically to all complete registered
+instances and records that propagation.
 
 Partial or ambiguous instances are never silently mutated as though they were a
 complete second copy.
@@ -256,8 +372,13 @@ set. Models that cannot represent required logical sites are excluded with a
 diagnostic. Eligible candidates may be tried under a preset-declared MR budget.
 
 Automatic selection should use existing scientific MR gates and explicit policy,
-not a single composite registration score or raw TFZ alone. If multiple
-successful candidates imply materially different ASU/multiplicity
+not a single composite registration score or raw TFZ alone. A candidate can
+have a beautiful registration and still fail MR; another can have weaker
+pre-MR correspondence but solve cleanly and become easy to register after
+Phaser. MR evidence therefore remains an important part of the bounded
+candidate decision.
+
+If multiple successful candidates imply materially different ASU/multiplicity
 interpretations, guided review should preserve the alternatives rather than
 silently choosing one.
 
@@ -285,6 +406,11 @@ A recipe must still validate against the actual input model before use.
 
 A guided run may save a run-local mapping. Reusing it globally requires explicit
 promotion into a reviewed recipe.
+
+Recipe promotion should capture *why* the mapping is reusable: required
+invariants, acceptable source representation, symmetry/cut assumptions, and
+validation checks. Campaign Doctor may observe repeated successful mappings,
+but repeated observation alone must not silently manufacture a global recipe.
 
 An 8D93-style representation transformed into the standard W representation is
 a strong planned validation fixture because it exercises an equivalent ASU cut,
@@ -404,6 +530,12 @@ Hemlock/Moss and later sequence/compatibility layers should eventually consume
 logical-site registration when one is present rather than assuming raw
 `CHAIN:RESID` equality. That migration should occur only after registration is
 validated against controlled fixtures and must preserve legacy report support.
+
+Campaign Doctor should consume these registration-aware facts rather than
+re-infer chain correspondence from donor and recipient PDB labels. Differences
+can therefore accumulate coherently across solved siblings—sequence,
+boundaries, multiplicity, ASU cut and later topology—without letting one
+dataset's coordinate serialization become the next dataset's assumed truth.
 
 ## Planned validation ladder
 
