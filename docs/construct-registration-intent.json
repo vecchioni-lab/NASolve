@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-2",
+  "version": "2026-09-26-birch-3",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -46,7 +46,17 @@
       "nonconstant residue-number correspondence",
       "symmetry-dependent recutting",
       "topology-dependent correspondence"
-    ]
+    ],
+    "descriptive_design_evidence": {
+      "recorded_for_each_simple_chain_candidate": true,
+      "used_for_assignment": false,
+      "intended_use": [
+        "guided review",
+        "future reviewed inference policy",
+        "human-readable Registration Net annotations"
+      ],
+      "caution": "Target mismatches can be expected PostMR sequence/modification changes and are not a compatibility score."
+    }
   },
   "sequence_and_modification_policy": {
     "logical_intent_is_authoritative": true,
@@ -95,13 +105,55 @@
   },
   "pending_validation": {
     "branch": "birch",
-    "branch_head": "e137e63eb1494a6da7c13a9d5bfe4fdcb738592f",
+    "branch_head": "6a9c1f843b661423c2b6a7a2f18804a4e4c17371",
     "status": "pending-user-local-tests",
     "changes_since_validation_checkpoint": [
       "descriptive per-candidate design identity evidence",
       "explicit invariant that design evidence is not used for Scout assignment",
       "checksum-bound Model/registration_scout.json freeze/load",
-      "strict Scout artifact semantic validation"
+      "strict Scout artifact semantic validation",
+      "descriptive comparison of registration state across stages"
     ]
-  }
+  },
+  "stage_transition_policy": {
+    "implemented": true,
+    "kind": "construct-registration-transition",
+    "purpose": "Describe how registration changes between stages without deciding whether the change is acceptable.",
+    "dimensions": [
+      "logical copy-coverage structure",
+      "complete/partial copy multiplicity",
+      "complete-copy observed identity classes",
+      "single-copy coordinate realization when directly comparable"
+    ],
+    "decisions_explicitly_not_made": [
+      "scientific acceptability",
+      "guided-review requirement",
+      "PostMR authorization",
+      "recut authorization"
+    ]
+  },
+  "validation_history": [
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "birch",
+      "code_head": "4452295c3330de6d55bddd75b01be21f39afb222",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 23,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "construct registration core, artifact provenance and conservative Scout v1 synthetic tests"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PENDING",
+      "branch": "birch",
+      "code_head": "6a9c1f843b661423c2b6a7a2f18804a4e4c17371",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_by": null,
+      "github_ci": false,
+      "scope": "design-evidence matrix, frozen Scout provenance and registration stage-transition comparison"
+    }
+  ],
+  "current_validation_status": "PENDING"
 }
