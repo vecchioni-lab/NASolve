@@ -262,6 +262,38 @@ design-evidence, frozen-Scout and registration-transition additions are
 explicitly marked pending validation in
 [`construct-registration-intent.json`](construct-registration-intent.json).
 
+### Experimental design-aware Scout v2 proposal
+
+Oak adds a separate **experimental, non-runtime** proposal helper to test the
+lesson from the renamed real-W validation without changing Scout v1.
+
+The helper evaluates every complete simple one-to-one chain mapping and
+classifies each target-identity difference as:
+
+- `DECLARED_TARGET_HISTORY` when the observed residue identity appears in an
+  earlier explicit target assignment at that logical site;
+- `REVIEWED_PROVIDER_BASELINE` when it matches an explicitly supplied provider
+  baseline identity for that logical site; or
+- `UNEXPLAINED` otherwise.
+
+It may return a proposal only when **exactly one** complete mapping has zero
+unexplained mismatches and every alternative has at least one. It never chooses
+the mapping with merely the lowest mismatch count and never constructs a
+weighted sequence-similarity score.
+
+This is deliberately not runtime authority:
+
+- it cannot apply its proposal;
+- AutoMR/PostMR do not call it;
+- repeated/indistinguishable strands remain ambiguous;
+- assignment enumeration is bounded and fails closed; and
+- caller-supplied provider baseline identities are not production provenance.
+  Runtime use would require binding those identities to a reviewed/versioned
+  provider or model-family record.
+
+The point of Oak is to test whether categorical design evidence is strong enough
+to disambiguate the real W rename case safely before any policy is promoted.
+
 ### Guided mode
 
 Guided mode is for a dataset whose crystallographic interpretation itself has
