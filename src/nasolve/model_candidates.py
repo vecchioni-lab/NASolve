@@ -10,6 +10,10 @@ from __future__ import annotations
 from collections.abc import Collection
 from pathlib import Path
 
+from .construct_registration import (
+    ConstructRegistrationError,
+    scout_simple_registration,
+)
 from .model_assessment import ModelAssessmentError, inspect_pdb
 
 
@@ -112,7 +116,98 @@ def inventory_dataset_pdb_candidates(
     }
 
 
+def scout_dataset_pdb_candidates(
+    dataset: Path,
+    target: dict[str, object],
+    *,
+    polymer_ligand_codes: Collection[str] | None = None,
+) -> dict[str, object]:
+    """Run conservative Registration Scout on every valid top-level PDB.
+
+    This remains descriptive only. It does not select a candidate, authorize an
+    MR attempt, transform coordinates, or change current AutoMR ambiguity rules.
+    """
+    inventory = inventory_dataset_pdb_candidates(
+        dataset,
+        polymer_ligand_codes=polymer_ligand_codes,
+    )
+    root = Path(dataset).expanduser().resolve()
+    results: list[dict[str, object]] = []
+    registered = ambiguous = unresolved = invalid = 0
+
+    for candidate in inventory["candidates"]:
+        selector = candidate["selector"]
+        if candidate["status"] != "VALID":
+            invalid += 1
+            results.append({
+                "selector": selector,
+                "status": "INVALID",
+                "diagnostic": candidate["diagnostic"],
+                "registration_scout": None,
+            })
+            continue
+
+        model_path = (root / selector).resolve()
+        try:
+            model_path.relative_to(root)
+        except ValueError as exc:
+            raise ModelCandidateInventoryError(
+                "Candidate selector escaped the dataset directory"
+            ) from exc
+        try:
+            assessment = inspect_pdb(
+                model_path,
+                polymer_ligand_codes=polymer_ligand_codes,
+            )
+            scout = scout_simple_registration(assessment, target)
+        except (ModelAssessmentError, ConstructRegistrationError) as exc:
+            raise ModelCandidateInventoryError(
+                f"Could not registration-scout candidate {selector}: {exc}"
+            ) from exc
+
+        status = scout["status"]
+        if status == "REGISTERED":
+            registered += 1
+        elif status == "AMBIGUOUS":
+            ambiguous += 1
+        elif status == "UNRESOLVED":
+            unresolved += 1
+        else:
+            raise ModelCandidateInventoryError(
+                f"Unexpected registration-scout status for {selector}: {status}"
+            )
+        results.append({
+            "selector": selector,
+            "status": "VALID",
+            "diagnostic": None,
+            "registration_scout": scout,
+        })
+
+    return {
+        "schema_version": 1,
+        "kind": "dataset-pdb-registration-scout",
+        "dataset": inventory["dataset"],
+        "scope": inventory["scope"],
+        "candidate_count": inventory["candidate_count"],
+        "valid_candidate_count": inventory["valid_candidate_count"],
+        "invalid_candidate_count": inventory["invalid_candidate_count"],
+        "registered_candidate_count": registered,
+        "ambiguous_candidate_count": ambiguous,
+        "unresolved_candidate_count": unresolved,
+        "candidates": results,
+        "selection": None,
+        "semantics": {
+            "descriptive_only": True,
+            "registration_status_is_not_mr_quality": True,
+            "design_evidence_is_not_a_selection_score": True,
+            "automatic_selection_authorized": False,
+            "mr_attempt_authorized": False,
+        },
+    }
+
+
 __all__ = [
     "ModelCandidateInventoryError",
     "inventory_dataset_pdb_candidates",
+    "scout_dataset_pdb_candidates",
 ]
