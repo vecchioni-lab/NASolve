@@ -353,7 +353,11 @@ one. A mapping with merely fewer unexplained mismatches is still ambiguous.
 The helper is not runtime authority, cannot apply a mapping, and is not called
 by AutoMR/PostMR. Provider-baseline codes are caller-supplied experimental
 evidence for now; production use requires versioned/provider-bound provenance.
-Focused Oak validation is pending.
+Focused Oak validation is now green: **41 tests passed locally** in
+`tests/test_construct_registration.py` at code head
+`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`. The next validation is the
+renamed real-W shadow case using explicit reviewed 5W6W provider-baseline
+identities; v2 remains non-runtime regardless of that result.
 
 ### First real-data registration shadow check
 
