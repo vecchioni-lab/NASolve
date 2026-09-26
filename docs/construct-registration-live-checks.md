@@ -12,7 +12,7 @@ the live pipeline.
 
 | Status | Trigger | Human check | Minimum pass condition |
 | --- | --- | --- | --- |
-| ☐ | **Before merging a substantial registration backend branch** | Run the focused registration/model-candidate tests **and the full NASolve regression suite**. | Focused tests and full suite are green; no unrelated existing tests regress. |
+| ◐ | **Before merging a substantial registration backend branch** | Run the focused registration/model-candidate tests **and the full NASolve regression suite**. | **Focused bundle: 44/44 green on Birch. Full suite still pending.** Merge only after the full suite is green and no unrelated existing tests regress. |
 | ☐ | **When Registration Scout / registration is first wired into AutoMR/PostMR** | Run one known, ordinary **clean W** dataset end-to-end through the existing path. | It takes the boring identity fast path, adds no unnecessary prompt, preserves the expected MR/PostMR result, and the frozen registration artifacts accurately describe the known construct. |
 | ☐ | **When non-identity registration / recut rescue first becomes executable** | Use the planned **8D93-style -> W** validation case and inspect the proposed mapping/recut in the Registration Net + Coot. | Chain mapping/cut is scientifically sensible; sticky-end/boundary differences are shown correctly; required terminal-phosphate intent remains separate and correct; the transformed model is reconstructible from provenance. |
 | ☐ | **When multiplicity handling first becomes live** | Use an **8D31-like extra-copy** case, plus a partial-copy case when available. | Complete registered copies receive the intended logical sequence/modification actions; a partial copy is visibly classified as partial and is never silently treated as a complete second copy. |
@@ -25,9 +25,10 @@ The earlier Birch checkpoint at code head
 `4452295c3330de6d55bddd75b01be21f39afb222` had **23 focused registration
 tests passing locally**.
 
-Newer Birch work is intentionally tracked as pending validation in
-[`construct-registration-intent.json`](construct-registration-intent.json)
-until the next local focused/full regression run.
+The current Birch focused bundle has **44 tests passing locally** across
+`tests/test_construct_registration.py` and `tests/test_model_candidates.py`.
+The full NASolve regression suite remains the only outstanding pre-merge gate,
+tracked in [`construct-registration-intent.json`](construct-registration-intent.json).
 
 When a live check above is completed, record the dataset/run/checkpoint and code
 commit in the development handoff or the machine-readable intent ledger. Avoid
