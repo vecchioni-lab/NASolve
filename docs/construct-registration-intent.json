@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-3",
+  "version": "2026-09-26-birch-4",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,14 +105,15 @@
   },
   "pending_validation": {
     "branch": "birch",
-    "branch_head": "6a9c1f843b661423c2b6a7a2f18804a4e4c17371",
+    "branch_head": "32d1096bc259cb26534aa0e26bdebd0956e77471",
     "status": "pending-user-local-tests",
     "changes_since_validation_checkpoint": [
       "descriptive per-candidate design identity evidence",
       "explicit invariant that design evidence is not used for Scout assignment",
       "checksum-bound Model/registration_scout.json freeze/load",
       "strict Scout artifact semantic validation",
-      "descriptive comparison of registration state across stages"
+      "descriptive comparison of registration state across stages",
+      "guided resolution of ambiguous simple Scout chain assignments using only explicit user-selected preexisting candidates"
     ]
   },
   "stage_transition_policy": {
@@ -148,12 +149,32 @@
       "date": "2026-09-26",
       "status": "PENDING",
       "branch": "birch",
-      "code_head": "6a9c1f843b661423c2b6a7a2f18804a4e4c17371",
+      "code_head": "32d1096bc259cb26534aa0e26bdebd0956e77471",
       "focused_test_file": "tests/test_construct_registration.py",
       "reported_by": null,
       "github_ci": false,
-      "scope": "design-evidence matrix, frozen Scout provenance and registration stage-transition comparison"
+      "scope": "design evidence, frozen Scout provenance, registration transition comparison and guided simple-chain resolution"
     }
   ],
-  "current_validation_status": "PENDING"
+  "current_validation_status": "PENDING",
+  "guided_resolution_v1": {
+    "implemented": true,
+    "scope": "simple ambiguous whole-chain Scout candidates only",
+    "input": "explicit user selection of logical chain -> coordinate chain",
+    "guarantees": [
+      "selection must cover every logical chain",
+      "coordinate chains must be unique",
+      "every selected pair must already be a Scout candidate",
+      "Scout model/target evidence must match the current assessment and target",
+      "guided selection does not use sequence similarity to make the choice",
+      "guided selection does not edit coordinates or promote a global recipe"
+    ],
+    "explicitly_deferred": [
+      "guided split-chain assembly",
+      "guided symmetry-dependent cut selection",
+      "partial-copy interpretation",
+      "topology-aware mapping",
+      "recipe promotion"
+    ]
+  }
 }
