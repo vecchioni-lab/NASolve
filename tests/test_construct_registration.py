@@ -8,6 +8,7 @@ from nasolve.construct_registration import (
     ConstructRegistrationError,
     build_construct_registration,
     build_identity_registration,
+    compare_construct_registrations,
     describe_simple_chain_evidence,
     expand_logical_sites,
     freeze_construct_registration,
@@ -664,6 +665,130 @@ class ConstructRegistrationTests(unittest.TestCase):
                 "Could not freeze registration scout",
             ):
                 freeze_registration_scout(scout, run)
+
+    def test_registration_transition_reports_new_complete_copy_without_verdict(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            logical_target = target(("A:1", "DA"), ("A:2", "DC"))
+            before_model = assessment(
+                root,
+                [("M", 1, "DA"), ("M", 2, "DC")],
+            )
+            before = build_construct_registration(
+                before_model,
+                logical_target,
+                {"copy_1": {"A:1": "M:1", "A:2": "M:2"}},
+                source="before",
+            )
+
+            after_root = root / "after"
+            after_root.mkdir()
+            after_model = assessment(
+                after_root,
+                [
+                    ("X", 1, "DA"),
+                    ("X", 2, "DC"),
+                    ("Y", 1, "DA"),
+                    ("Y", 2, "DC"),
+                ],
+            )
+            after = build_construct_registration(
+                after_model,
+                logical_target,
+                {
+                    "copy_1": {"A:1": "X:1", "A:2": "X:2"},
+                    "copy_2": {"A:1": "Y:1", "A:2": "Y:2"},
+                },
+                source="after",
+            )
+            result = compare_construct_registrations(before, after)
+            self.assertEqual(
+                result["dimensions"]["copy_structure"]["relation"],
+                "DIFFERENT",
+            )
+            self.assertEqual(
+                result["dimensions"]["copy_multiplicity"]["relation"],
+                "DIFFERENT",
+            )
+            self.assertEqual(
+                result["dimensions"]["complete_copy_identity_classes"]["relation"],
+                "SAME",
+            )
+            self.assertEqual(
+                result["dimensions"]["single_copy_coordinate_realization"]["relation"],
+                "UNKNOWN",
+            )
+            self.assertIsNone(result["semantics"]["scientific_acceptability"])
+            self.assertFalse(result["semantics"]["postmr_authorized"])
+
+    def test_registration_transition_separates_coordinate_relabel_from_logical_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            logical_target = target(("A:1", "DA"), ("A:2", "DC"))
+            first_model = assessment(
+                root,
+                [("M", 1, "DA"), ("M", 2, "DC")],
+            )
+            before = build_construct_registration(
+                first_model,
+                logical_target,
+                {"copy_1": {"A:1": "M:1", "A:2": "M:2"}},
+                source="before",
+            )
+            second_root = root / "second"
+            second_root.mkdir()
+            second_model = assessment(
+                second_root,
+                [("Q", 101, "DA"), ("Q", 102, "DC")],
+            )
+            after = build_construct_registration(
+                second_model,
+                logical_target,
+                {"copy_1": {"A:1": "Q:101", "A:2": "Q:102"}},
+                source="after",
+            )
+            result = compare_construct_registrations(before, after)
+            self.assertEqual(
+                result["dimensions"]["copy_structure"]["relation"],
+                "SAME",
+            )
+            self.assertEqual(
+                result["dimensions"]["copy_multiplicity"]["relation"],
+                "SAME",
+            )
+            self.assertEqual(
+                result["dimensions"]["complete_copy_identity_classes"]["relation"],
+                "SAME",
+            )
+            self.assertEqual(
+                result["dimensions"]["single_copy_coordinate_realization"]["relation"],
+                "DIFFERENT",
+            )
+
+    def test_registration_transition_requires_the_same_logical_target(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(root, [("A", 1, "DA")])
+            before = build_identity_registration(
+                model,
+                target(("A:1", "DA")),
+            )
+            other = build_identity_registration(
+                model,
+                {
+                    **target(("A:1", "DA")),
+                    "reference": {
+                        "id": "other",
+                        "version": "1",
+                        "content_sha256": "b" * 64,
+                    },
+                },
+            )
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "different logical targets",
+            ):
+                compare_construct_registrations(before, other)
 
     def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
         with tempfile.TemporaryDirectory() as directory:
