@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-oak-6",
+  "version": "2026-09-26-oak-7",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,8 +105,8 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "status": "provider-provenance-code-pending-focused-validation",
-    "remaining_gate": "Run focused tests/test_construct_registration.py against code head c515a37dc41fa8bb1935d2c80c825ebef8153177 before treating the provenance-bound provider-evidence slice as validated."
+    "status": "provenance-bound-real-w-shadow-rerun-pending",
+    "remaining_gate": "Exercise the renamed ED run_011 real-W Scout v2 case through the new provider_assessment + model_provider provenance interface before any runtime-promotion discussion."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -187,9 +187,21 @@
       "github_ci": false,
       "scope": "renamed ED run_011 real-W Scout v2 shadow rerun with complete verified C_G provider identity set",
       "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained mismatches; runtime_authority=false"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "36c369bdfd75602340882805a6dc03f2c193c58d",
+      "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 41,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "provenance-bound Scout v2 provider evidence interface plus existing Construct Registration tests"
     }
   ],
-  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_IMPLEMENTED_PENDING_FOCUSED_TESTS",
+  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_FOCUSED_PASSED_REAL_W_INTERFACE_RERUN_PENDING",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -246,14 +258,15 @@
   "latest_focused_validation": {
     "date": "2026-09-26",
     "branch": "oak",
-    "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
+    "checkout_head": "36c369bdfd75602340882805a6dc03f2c193c58d",
+    "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
     "reported_pass_count": 41,
     "files": [
       "tests/test_construct_registration.py"
     ],
     "reported_by": "user-local-run",
     "github_ci": false,
-    "note": "Experimental design-aware Scout v2 proposal helper plus existing Construct Registration tests."
+    "note": "Provenance-bound Scout v2 provider evidence interface plus existing Construct Registration tests."
   },
   "latest_full_validation": {
     "date": "2026-09-26",
@@ -393,7 +406,7 @@
     ]
   },
   "design_aware_scout_v2_experiment": {
-    "status": "IMPLEMENTED_EXPERIMENTAL_PROVIDER_PROVENANCE_PENDING_VALIDATION",
+    "status": "IMPLEMENTED_EXPERIMENTAL_PROVIDER_PROVENANCE_FOCUSED_VALIDATED",
     "function": "propose_design_aware_chain_mapping",
     "runtime_authority": false,
     "automatic_application_authorized": false,
@@ -489,7 +502,7 @@
     },
     "provenance_binding_slice": {
       "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-      "validation_status": "PENDING_FOCUSED_LOCAL_TESTS",
+      "validation_status": "PASSED_FOCUSED_LOCAL_TESTS",
       "behavior": [
         "accept provider evidence only as provider_assessment plus model_provider provenance",
         "require standard frame-catalogue provenance",
@@ -507,7 +520,7 @@
     "name": "oak",
     "pull_request": 22,
     "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "PROVIDER_PROVENANCE_IMPLEMENTED_PENDING_FOCUSED_VALIDATION"
+    "status": "PROVIDER_PROVENANCE_FOCUSED_VALIDATED_REAL_W_INTERFACE_RERUN_PENDING"
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
