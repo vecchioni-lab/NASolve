@@ -851,6 +851,115 @@ def load_registration_scout(
     return validate_registration_scout(value)
 
 
+def apply_guided_chain_selection(
+    assessment: ModelAssessment,
+    target: Mapping[str, object],
+    scout: Mapping[str, object],
+    selection: Mapping[str, str],
+) -> dict[str, object]:
+    """Resolve an AMBIGUOUS simple Scout result using an explicit user choice.
+
+    This helper contains no UI. It validates that every chosen logical->coordinate
+    chain pair was already one of Scout v1's simple candidates, requires a
+    one-to-one chain selection, and returns a normal construct registration plus
+    an auditable guided-decision record.
+    """
+    checked = validate_registration_scout(scout)
+    if checked["status"] != "AMBIGUOUS":
+        raise ConstructRegistrationError(
+            "Guided simple-chain selection requires an AMBIGUOUS Scout result"
+        )
+    if not isinstance(selection, Mapping):
+        raise ConstructRegistrationError("Guided chain selection must be a mapping")
+
+    logical_order, logical_ids, _ = _target_chains(target)
+    expected_reference = target.get("reference")
+    evidence = checked["design_evidence"]
+    if (
+        assessment.sha256 != evidence["model"]["sha256"]
+        or assessment.polymer_residue_count
+        != evidence["model"]["polymer_residue_count"]
+        or evidence["target"]["reference"] != expected_reference
+        or evidence["target"]["site_count"]
+        != sum(len(logical_ids[chain]) for chain in logical_order)
+    ):
+        raise ConstructRegistrationError(
+            "Guided chain selection inputs disagree with the Scout evidence"
+        )
+
+    if set(selection) != set(logical_order):
+        raise ConstructRegistrationError(
+            "Guided chain selection must name every logical chain exactly once"
+        )
+
+    chosen_coordinate_chains = list(selection.values())
+    if (
+        not all(isinstance(chain, str) and chain for chain in chosen_coordinate_chains)
+        or len(set(chosen_coordinate_chains)) != len(chosen_coordinate_chains)
+    ):
+        raise ConstructRegistrationError(
+            "Guided chain selection requires unique coordinate chains"
+        )
+
+    mapping: dict[str, str] = {}
+    choices: list[dict[str, object]] = []
+    for logical_chain in logical_order:
+        coordinate_chain = selection[logical_chain]
+        options = {
+            row["coordinate_chain"]: row["residue_number_offset"]
+            for row in checked["chain_candidates"].get(logical_chain, [])
+        }
+        if coordinate_chain not in options:
+            raise ConstructRegistrationError(
+                f"Coordinate chain {coordinate_chain!r} was not a Scout candidate "
+                f"for logical chain {logical_chain!r}"
+            )
+        coordinate_ids = assessment.polymer_residue_ids_by_chain.get(
+            coordinate_chain
+        )
+        if coordinate_ids is None:
+            raise ConstructRegistrationError(
+                f"Selected coordinate chain {coordinate_chain!r} is absent"
+            )
+        if len(coordinate_ids) != len(logical_ids[logical_chain]):
+            raise ConstructRegistrationError(
+                "Selected coordinate chain length changed after Scout"
+            )
+        for logical_resid, coordinate_resid in zip(
+            logical_ids[logical_chain],
+            coordinate_ids,
+        ):
+            mapping[f"{logical_chain}:{logical_resid}"] = (
+                f"{coordinate_chain}:{coordinate_resid}"
+            )
+        choices.append({
+            "logical_chain": logical_chain,
+            "coordinate_chain": coordinate_chain,
+            "residue_number_offset": options[coordinate_chain],
+        })
+
+    registration = build_construct_registration(
+        assessment,
+        target,
+        {"copy_1": mapping},
+        source="guided-scout-chain-selection",
+    )
+    return {
+        "schema_version": 1,
+        "kind": "guided-registration-decision",
+        "source_scout_status": checked["status"],
+        "selection": choices,
+        "registration": registration,
+        "semantics": {
+            "user_selection_required": True,
+            "selection_was_scout_candidate_only": True,
+            "sequence_similarity_used_for_assignment": False,
+            "coordinate_edit_performed": False,
+            "global_recipe_promoted": False,
+        },
+    }
+
+
 def build_construct_registration(
     assessment: ModelAssessment,
     target: Mapping[str, object],
@@ -1583,6 +1692,7 @@ def load_construct_registration(
 
 __all__ = [
     "ConstructRegistrationError",
+    "apply_guided_chain_selection",
     "build_construct_registration",
     "build_identity_registration",
     "compare_construct_registrations",
