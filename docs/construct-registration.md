@@ -239,12 +239,28 @@ copies, and a conservative non-mutating scout for:
 
 Scout v1 intentionally refuses to infer split chains, copy multiplicity,
 symmetry-dependent cuts, partial copies or topology. It also does **not** use
-sequence or modified-site similarity as a tie-breaker. Those richer evidence
-layers should be introduced only with explicit policy and real-data validation.
+sequence or modified-site similarity as a tie-breaker.
 
-The focused Birch registration suite has been reported locally as **23 passing
-tests** for this implementation checkpoint. This is a user-local validation
-record, not a GitHub CI result.
+Birch now additionally records a **descriptive design-evidence matrix** for
+every simple chain candidate. It reports target/coordinate residue matches and
+mismatches—including intended modified-site differences—but schema semantics
+fix `used_for_assignment = false` and explicitly state that identity-match
+counts are not a score. This gives guided mode and future reviewed inference a
+transparent evidence trail without changing Scout v1's decision rule.
+
+Scout results themselves can now be frozen as checksum-bound
+`Model/registration_scout.json` artifacts, including unresolved/ambiguous
+cases. A separate pure transition comparator can describe how registration
+changes between a search-model stage and a later authoritative MR-solution
+registration: copy coverage, complete/partial multiplicity, complete-copy
+identity classes and single-copy coordinate realization remain separate
+dimensions with no acceptance or PostMR verdict.
+
+The focused Birch registration suite was reported locally as **23 passing
+tests** at code head `4452295c3330de6d55bddd75b01be21f39afb222`. The newer
+design-evidence, frozen-Scout and registration-transition additions are
+explicitly marked pending validation in
+[`construct-registration-intent.json`](construct-registration-intent.json).
 
 ### Guided mode
 
