@@ -8,12 +8,16 @@ from nasolve.construct_registration import (
     ConstructRegistrationError,
     build_construct_registration,
     build_identity_registration,
+    describe_simple_chain_evidence,
     expand_logical_sites,
     freeze_construct_registration,
+    freeze_registration_scout,
     load_construct_registration,
+    load_registration_scout,
     logical_inventory_by_copy,
     scout_simple_registration,
     validate_construct_registration,
+    validate_registration_scout,
 )
 from nasolve.model_assessment import inspect_pdb
 
@@ -506,6 +510,160 @@ class ConstructRegistrationTests(unittest.TestCase):
             self.assertEqual(result["status"], "UNRESOLVED")
             self.assertEqual(result["chain_candidates"]["A"], [])
             self.assertIn("constant residue-number offset", result["reason"])
+
+    def test_design_evidence_is_descriptive_and_not_a_chain_score(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DA"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DG"),
+                ],
+            )
+            logical_target = target(
+                ("A:1", "DA"),
+                ("A:2", "DA"),
+                ("B:1", "DG"),
+                ("B:2", "DG"),
+            )
+            evidence = describe_simple_chain_evidence(model, logical_target)
+            by_chain = {
+                row["logical_chain"]: {
+                    candidate["coordinate_chain"]: candidate
+                    for candidate in row["candidates"]
+                }
+                for row in evidence["chains"]
+            }
+            self.assertEqual(by_chain["A"]["M"]["identity_match_count"], 2)
+            self.assertEqual(by_chain["A"]["N"]["identity_match_count"], 0)
+            self.assertEqual(by_chain["B"]["N"]["identity_match_count"], 2)
+            self.assertEqual(by_chain["B"]["M"]["identity_match_count"], 0)
+            self.assertFalse(evidence["semantics"]["used_for_assignment"])
+            self.assertTrue(
+                evidence["semantics"]["identity_match_count_is_not_a_score"]
+            )
+
+            scout = scout_simple_registration(model, logical_target)
+            self.assertEqual(scout["status"], "AMBIGUOUS")
+            self.assertEqual(scout["design_evidence"], evidence)
+            self.assertIsNone(scout["registration"])
+
+    def test_target_modification_difference_is_evidence_not_registration_penalty(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(root, [("A", 1, "DA"), ("A", 2, "DC")])
+            logical_target = target(("A:1", "DA"), ("A:2", "1AP"))
+            evidence = describe_simple_chain_evidence(model, logical_target)
+            candidate = evidence["chains"][0]["candidates"][0]
+            self.assertEqual(candidate["identity_match_count"], 1)
+            self.assertEqual(candidate["identity_mismatch_count"], 1)
+            self.assertEqual(
+                candidate["mismatches"][0],
+                {
+                    "logical_site": "A:2",
+                    "coordinate_site": "A:2",
+                    "coordinate_residue_code": "DC",
+                    "target_residue_code": "1AP",
+                },
+            )
+            self.assertTrue(
+                evidence["semantics"][
+                    "target_differences_may_be_expected_postmr_changes"
+                ]
+            )
+            scout = scout_simple_registration(model, logical_target)
+            self.assertEqual(scout["status"], "REGISTERED")
+            self.assertEqual(scout["method"], "identity-site-map")
+
+    def test_frozen_scout_preserves_ambiguity_and_design_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = root / "run_001"
+            (run / "Model").mkdir(parents=True)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DA"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DG"),
+                ],
+            )
+            scout = scout_simple_registration(
+                model,
+                target(
+                    ("A:1", "DA"),
+                    ("A:2", "DA"),
+                    ("B:1", "DG"),
+                    ("B:2", "DG"),
+                ),
+            )
+            self.assertEqual(scout["status"], "AMBIGUOUS")
+            frozen = freeze_registration_scout(scout, run)
+            report = {"registration_scout": frozen}
+            self.assertEqual(load_registration_scout(report, run), scout)
+
+            artifact = run / frozen["artifact"]["relative_path"]
+            artifact.write_text("{}\n", encoding="utf-8")
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "missing or failed checksum|changed while being read",
+            ):
+                load_registration_scout(report, run)
+
+    def test_scout_validator_rejects_promoting_design_evidence_into_assignment(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DA"),
+                    ("N", 1, "DG"),
+                    ("N", 2, "DG"),
+                ],
+            )
+            scout = scout_simple_registration(
+                model,
+                target(
+                    ("A:1", "DA"),
+                    ("A:2", "DA"),
+                    ("B:1", "DG"),
+                    ("B:2", "DG"),
+                ),
+            )
+            forged = copy.deepcopy(scout)
+            forged["design_evidence"]["semantics"]["used_for_assignment"] = True
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "Malformed chain-evidence semantics",
+            ):
+                validate_registration_scout(forged)
+
+            forged = copy.deepcopy(scout)
+            forged["semantics"]["sequence_similarity_used_for_assignment"] = True
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "Malformed registration-scout semantics",
+            ):
+                validate_registration_scout(forged)
+
+    def test_freeze_scout_refuses_to_overwrite_existing_artifact(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = root / "run_001"
+            (run / "Model").mkdir(parents=True)
+            model = assessment(root, [("A", 1, "DA")])
+            scout = scout_simple_registration(model, target(("A:1", "DA")))
+            freeze_registration_scout(scout, run)
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "Could not freeze registration scout",
+            ):
+                freeze_registration_scout(scout, run)
 
     def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
         with tempfile.TemporaryDirectory() as directory:
