@@ -687,14 +687,20 @@ frame catalogue can declare:
 
 - model providers, exact-pair catalogues, fallbacks, and copy/symmetry policy;
 - standard sites, chain sequences, and restraint resources or modes;
+- reviewed construct-registration/cut recipes;
 - metalation recipes and anomalous-element policy;
 - the AutoSol sequence resource and phasing defaults; and
-- approved discovery providers, including a later AlphaFold route.
+- imported external-provider provenance/capabilities.
 
 The orchestration layers consume a frozen model plus declared capabilities.
 This permits a new experimental campaign to ship a versioned preset directory
 without changing common run allocation, provenance, safety gates, Coot/Phenix
 isolation, or downstream reporting.
+
+Model generation is not part of NASolve's runtime contract. A separate optional
+NAPrep package may manage design/data records and externally generated model
+candidates (including AlphaFold outputs), but NASolve consumes only the frozen
+handoff and then owns the downstream crystallographic/campaign decision tree.
 
 ## Next development priorities
 
@@ -703,9 +709,19 @@ Earlier end-to-end local validation is preserved in
 implementation edge are maintained in `development-handoff.md`.
 
 The campaign planner freezes inputs and project policy; the sequential executor
-adds guarded stage composition and saved progress. Bounded campaign Doctor
-selection and richer inspection summaries remain the next major orchestration
-steps after the current standalone refinement/chemistry guard work.
+adds guarded stage composition and saved progress. The read-only Campaign
+Doctor provenance/comparison prerequisites are now implemented.
+
+The next structural robustness layer is construct registration: a cheap
+non-mutating Registration Scout before Phaser, authoritative ASU Registration
+on the MR solution before PostMR, a guided Registration Net for ambiguous
+cases, and bounded Registration/Recut Rescue candidates only when ordinary MR
+or representation mapping needs them. Current clean W runs must retain an
+identity-like fast path.
+
+Reviewed Campaign Doctor eligibility/rescue policy and richer inspection
+summaries remain the next major orchestration steps after this registration
+foundation.
 
 Campaign orchestration should reuse frozen inputs, immutable numbered runs,
 and checkpoint lineage, with resumable per-dataset progress and explicit

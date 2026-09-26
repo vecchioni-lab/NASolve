@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Status: **current working state — updated 2026-09-25**.
+Status: **current working state — updated 2026-09-26**.
 
 This file records the implementation edge: what is validated now, what is
 scientifically blocked, and what should happen next.
@@ -21,16 +21,17 @@ Numbered runs and checkpoint branches are immutable. Free-R flags are not
 regenerated for convenience. Refine Doctor preserves the current checkpoint
 unless a user explicitly selects another one.
 
-Latest local regression baseline before this documentation-only cleanup:
+Latest local code regression baseline before the current documentation/design
+update:
 
 - **620 tests passed** in the full suite;
 - the focused donor/recipient comparison slice passed **51 tests plus 22
   subtests**.
 
 These results were reported from the active Python 3.12 development
-environment. This handoff does not claim fresh `compileall`, `diff --check`,
-or GitHub Actions results beyond the checks actually run in that development
-window.
+environment. The Sep 26 Construct Registration/NAPrep update is documentation
+and architecture planning only; it does not claim a new code-test,
+`compileall`, `diff --check`, or GitHub Actions result.
 
 ## Terminal-phosphate chemistry
 
@@ -194,6 +195,75 @@ hard gates, transformations, attempts and stopping reason without rewriting the
 recipient's authoritative observations, Free-R set, target chemistry or failed
 branch.
 
+## Construct registration: next structural robustness layer
+
+The next planned scientific infrastructure is **Construct Registration**:
+logical construct sites must be separated from incidental PDB chain names,
+residue numbering and ASU cuts.
+
+The design contract is
+[`construct-registration.md`](construct-registration.md).
+
+The intended timing is:
+
+```text
+logical construct manifest
+    -> AutoMR Registration Scout (cheap, non-mutating)
+    -> ordinary MR first when plausible
+    -> authoritative ASU Registration on the MR solution
+    -> PostMR logical-site sequence/chemistry
+```
+
+MR itself is often the most useful coordinate registry. NASolve should not
+require heavy recutting, renumbering or mutation of a plausible search model
+before learning whether it solves.
+
+If MR fails, or a reviewed representation problem is known, a separate bounded
+**Registration/Recut Rescue** may build a transformed candidate with frozen
+provenance. Planned reviewed transforms include equivalent ASU cuts,
+split/join/relabel/renumber operations, sticky-end/boundary changes and
+explicitly reviewed boundary chemistry.
+
+The common W path must stay cheap: an identity-like single-copy registration
+should pass automatically without user interaction.
+
+Guided mode is reserved for crystallographically interesting cases such as:
+
+- equivalent but nontrivial ASU cuts;
+- renamed/renumbered/split logical strands;
+- unexpected complete copy multiplicity;
+- one complete plus a partial copy;
+- sticky-end/arm coverage differences; or
+- several non-equivalent registrations.
+
+The **Registration Net** will be a simple 2-D SVG/HTML schematic, not a second
+molecular viewer. It should show logical strands, coordinate fragments,
+symmetry/ASU seams, complete/partial copies, sticky ends, important logical
+sites and mapping bands. Minimal click actions will accept/reassign fragments,
+select equivalent cuts/recipes, mark partial/extraneous fragments and preview
+recuts; Coot remains the coordinate editor.
+
+The first planned validation ladder begins with ordinary W identity
+registration and an 8D93-style -> W recut fixture, then chain renaming,
+numbering offsets, chain splits, multicopy/partial-copy ASUs and bounded
+multi-PDB MR candidates.
+
+## NAPrep boundary
+
+NAPrep is a separate optional upstream design/data-management package, analogous
+in separation to NARestraints. It may organize design records, sequences,
+sample/collection metadata, folders and externally generated model candidates.
+
+NASolve does **not** invoke AlphaFold.
+
+NASolve remains responsible for the crystallographic/campaign decision tree
+once a curated handoff exists: AutoMR, Construct Registration, PostMR, AutoSol,
+refinement, Campaign Doctor, reporting/curation and deposition. NAPrep must not
+become a second campaign manager that re-infers NASolve's downstream decisions.
+
+Direct manually prepared NASolve inputs remain supported; NAPrep is not a
+runtime requirement.
+
 ## Separate scientific follow-up
 
 These are not blockers for proactive terminal-phosphate protection:
@@ -208,9 +278,11 @@ These are not blockers for proactive terminal-phosphate protection:
 - Final Model Doctor / curate / deposition should preserve explicit evidence
   provenance rather than assuming every artifact comes from the selected
   coordinate checkpoint;
-- reviewed Campaign Doctor eligibility and bounded rescue execution remain the
-  next major orchestration layer; the donor provenance and donor-to-recipient
-  descriptive comparison prerequisites are already implemented.
+- Construct Registration/Registration Net and bounded recut rescue are the next
+  structural robustness layer before broad automatic Campaign Doctor rescue;
+- reviewed Campaign Doctor eligibility and bounded rescue execution remain a
+  major orchestration layer; donor provenance and donor-to-recipient descriptive
+  comparison prerequisites are already implemented.
 
 ## Documentation rule
 

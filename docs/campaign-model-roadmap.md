@@ -9,7 +9,8 @@ Campaigns must support both closely related construct series and genuinely heter
 - one search scaffold with many sequence or modified-site variants;
 - several related search models with small geometric changes;
 - different space groups or copy-number expectations;
-- per-dataset models generated from sequence by a model provider such as AlphaFold;
+- per-dataset models generated externally from sequence/design and imported with
+  explicit provider provenance;
 - experimentally solved models that later become useful search models for unsolved siblings; or
 - mixtures of these cases within one campaign.
 
@@ -135,6 +136,48 @@ a stronger correspondence error and are not silently aligned or renumbered.
 mutation route is supported. PostMR continues to validate and apply the
 authoritative target only after MR succeeds.
 
+## Construct registration and ASU representation
+
+Literal `CHAIN:RESID` correspondence is not sufficient for real crystallographic
+models. Equivalent constructs may use different chain labels, numbering,
+chain splits, ASU cuts, symmetry mates or copy counts. NASolve should therefore
+reason in **logical construct coordinates** and register each coordinate
+realization onto that construct.
+
+The detailed design lives in
+[construct registration and the Registration Net](construct-registration.md).
+
+The planned flow deliberately avoids expensive coordinate surgery before it is
+needed:
+
+```text
+logical construct manifest
+        -> AutoMR Registration Scout (cheap, non-mutating)
+        -> ordinary MR when the candidate is plausible
+        -> authoritative ASU Registration on the MR solution
+        -> PostMR logical-site chemistry
+```
+
+A successful MR solution is often the most useful coordinate registry. NASolve
+should therefore try preserved plausible candidates before investing heavily in
+recutting/mutating them.
+
+If MR fails, or a reviewed representation problem is already known, MR
+Doctor/AutoMR may create a bounded **Registration/Recut Rescue** candidate:
+split/join/relabel chains, materialize an equivalent crystallographic cut,
+adjust a reviewed sticky-end/boundary representation, or apply explicitly
+reviewed boundary chemistry. The source model remains immutable and every
+transform receives its own manifest/checksum.
+
+A normal W run should take the fast path: identity-like registration, complete
+single copy, no user interaction.
+
+Guided mode becomes appropriate when registration itself is crystallographically
+interesting: alternative cuts, unexpected multiplicity, partial copies, or
+non-equivalent mappings. These decisions are frozen as provenance and rendered
+through a simple interactive **Registration Net**, with Coot remaining the
+coordinate editor.
+
 ## Mirroring
 
 `mirror = true` remains the simple human-facing D/L chirality switch.
@@ -153,11 +196,16 @@ Provider classes include:
 - explicit dataset/frame-catalogue model override (implemented);
 - bounded catalogue/model library;
 - campaign-shared model;
-- sequence-derived model, including a later AlphaFold provider;
-- model generated or transformed from a reviewed template; and
+- externally generated/imported model with explicit provider provenance;
+- model generated or transformed from a reviewed crystallographic template; and
 - model promoted from a solved sibling dataset by Campaign Doctor.
 
-Every provider must record the source sequence/model, provider version or identity, transformation, checksums, and the exact model submitted to Phaser.
+NASolve does **not** invoke AlphaFold. Design/model-generation workflows belong
+upstream in NAPrep or another provider tool. NASolve consumes the resulting
+candidate coordinates plus their provenance.
+
+Every provider must record the source sequence/model, provider version or
+identity, transformation, checksums, and the exact model submitted to Phaser.
 
 Different datasets in one campaign may use different providers.
 
@@ -280,9 +328,21 @@ solved C ----/
 
 A successful upstream artifact may be shared only when scientifically compatible. Immutable run/checkpoint lineage remains mandatory.
 
-## Campaign Prep and collection hierarchy
+## NAPrep handoff and collection hierarchy
 
-A future `Campaign Prep` layer should sit upstream of campaign planning/execution and reconcile the laboratory's experiment-facing records into a clean, machine-readable campaign without rewriting the raw archive.
+NAPrep is a separate upstream design/data-management package, analogous in
+separation to NARestraints. It may reconcile laboratory experiment-facing
+records into curated dataset folders/manifests without rewriting the raw
+archive.
+
+NASolve remains the campaign manager and crystallographic decision engine.
+Campaign planning imports the curated dataset/model/design intent from NAPrep
+(or equivalent manually prepared inputs) and then owns the complete downstream
+decision tree: AutoMR, registration, PostMR, AutoSol, refinement, Campaign
+Doctor, reporting/curation and deposition.
+
+NASolve must not require NAPrep; carefully prepared folders/manifests remain a
+valid direct input path.
 
 The input side may include:
 
@@ -291,7 +351,7 @@ The input side may include:
 - beamline/raw-data directories organized by date, puck, pin, and collection; and
 - autoPROC outputs or other processing results.
 
-Prep should create explicit provenance-rich relationships rather than assuming one folder equals one dataset. The core hierarchy is:
+NAPrep should create explicit provenance-rich relationships rather than assuming one folder equals one dataset. The core hierarchy is:
 
 ```text
 design -> sequence/chemistry -> physical sample -> pin -> collection -> processing result
@@ -299,7 +359,7 @@ design -> sequence/chemistry -> physical sample -> pin -> collection -> processi
 
 A single physical pin may have many collections: point collects, vector collects, weak or radiation-damaged collects, repeats, alternate wedges, and other attempts of very different quality. Therefore **sample, collection, processed dataset, and refinement result are distinct objects** in the durable campaign model.
 
-Prep should preserve the original pin/puck/date organization as immutable source data and create only a curated campaign view containing metadata, checksums, references/symlinks, generated inputs, and unresolved-match queues. Ambiguous sample/design/collection joins should go to a Prep Doctor queue rather than being guessed silently.
+NAPrep should preserve the original pin/puck/date organization as immutable source data and create only a curated handoff containing metadata, checksums, references/symlinks, generated inputs, and unresolved-match queues. Ambiguous sample/design/collection joins should go to an upstream NAPrep review queue rather than being guessed silently.
 
 ## Collection triage within a sample
 
@@ -355,28 +415,30 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 
 ### Multi-candidate / model-provider stage
 
-8. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
-9. **Partially implemented:** provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation (including AlphaFold) remains future work.
-10. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
+8. Add construct registration: fast identity path, Registration Scout, authoritative post-MR ASU registration, multiplicity/coverage reporting and guided Registration Net.
+9. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates.
+10. Generalize candidate generation so different datasets in one campaign may use different search models/providers.
+11. **Partially implemented:** provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation remains future work. External model generation (including AlphaFold) is upstream, not a NASolve provider-execution responsibility.
+12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
 
 ### Campaign Doctor stage
 
-11. **Implemented as read-only provenance:** describe checkpoint models as immutable candidate inputs without donor eligibility.
-12. **Implemented as descriptive comparison:** compare a verified checkpoint candidate with a recipient run's frozen target/context without scoring or rescue authorization.
-13. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
-14. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
-15. Keep failed MR branches and every rescue attempt immutable and inspectable.
+13. **Implemented as read-only provenance:** describe checkpoint models as immutable candidate inputs without donor eligibility.
+14. **Implemented as descriptive comparison:** compare a verified checkpoint candidate with a recipient run's frozen target/context without scoring or rescue authorization.
+15. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
+16. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
+17. Keep failed MR branches and every rescue attempt immutable and inspectable.
 
-### Upstream preparation / processing stage
+### Upstream NAPrep / processing boundary
 
-16. Add Campaign Prep to reconcile design, sequence/chemistry, sample, pin, collection, and processing metadata into a curated campaign view without moving raw data.
-17. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes.
-18. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
-19. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
+18. Define a stable optional NAPrep -> NASolve handoff for design, sequence/chemistry, sample, pin, collection and externally generated candidate-model metadata. NAPrep remains a separate package.
+19. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes inside NASolve's crystallographic campaign workflow.
+20. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
+21. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
 
 ### Later validation and curation
 
-20. Reuse the effective target sequence/chemistry record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+22. Reuse the effective target sequence/chemistry/registration record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
 
 ## Immediate validation fixture
 

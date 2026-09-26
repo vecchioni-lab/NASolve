@@ -21,7 +21,8 @@ or their safety checks.
 The first supported production preset is 5W6W. The architecture must also
 support later project presets with different MR catalogues, sequences,
 metalation strategies, restraint policies, AutoSol protocols, refinement
-recipes, or model providers such as AlphaFold.
+recipes, and imported model providers. Model generation itself is upstream;
+NASolve does not invoke AlphaFold.
 
 ## Core principles
 
@@ -75,8 +76,13 @@ after MR rather than execute Phaser four times.
 
 ## Pre-curated campaign input
 
-Campaigns do not build, rename, or clean dataset directories. Dataset import
-and preparation belong to a separate future user-facing tool.
+Campaigns do not act as the laboratory design/raw-data database. Dataset import,
+design reconciliation and folder preparation may be handled by the separate
+upstream NAPrep package, or manually.
+
+NAPrep is optional. NASolve consumes a curated dataset/model/design handoff and
+then owns the downstream crystallographic decision tree, campaign execution,
+Campaign Doctor, curation/reporting and deposition provenance.
 
 A campaign root contains a manifest and dataset subdirectories:
 
@@ -127,7 +133,7 @@ may declare:
 - bounded Doctor trial definitions and candidate-selection policy;
 - reporting and PDF policy;
 - later curate, Table 1, and deposition policy; and
-- later discovery providers, including AlphaFold.
+- imported/external provider provenance and reviewed model transformations.
 
 All preset paths are resolved relative to the preset root. The frozen campaign
 records the preset file, version, Git revision when available, and checksums of
@@ -148,6 +154,10 @@ The ordinary 5W6W policy is:
 ```text
 data validation
   -> AutoMR
+       -> Registration Scout
+       -> Phaser
+       -> authoritative ASU Registration
+       -> optional Registration/Recut Rescue branch when needed
   -> PostMR
   -> conditional AutoSol
   -> AutoRefine
@@ -527,7 +537,8 @@ stage:
 - dashboard framework and local Coot-launch mechanism;
 - direct OneDep integration constraints and authentication;
 - storage archival policy for very large campaigns;
-- cluster executor details; and
-- specific AlphaFold and metal-base-pair candidate providers.
+- cluster executor details;
+- stable optional NAPrep handoff details; and
+- specific metal-base-pair candidate providers.
 
 These are extension points, not blockers for the first campaign slice.
