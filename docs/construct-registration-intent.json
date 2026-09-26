@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-spruce-1",
+  "version": "2026-09-26-juniper-1",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -268,5 +268,102 @@
     "pipeline_wiring_validated": false,
     "human_live_check_completed": false,
     "reason_not_completed": "Registration was invoked manually/read-only against existing run artifacts rather than through live AutoMR/PostMR integration."
+  },
+  "renamed_real_w_shadow_validation": {
+    "date": "2026-09-26",
+    "mode": "temporary-read-only-chain-rename",
+    "dataset_context": "ED",
+    "run_id": "run_011",
+    "rename_map": {
+      "A": "M",
+      "B": "N",
+      "C": "P",
+      "D": "Q"
+    },
+    "scout": {
+      "status": "AMBIGUOUS",
+      "method": null,
+      "reason": "multiple simple chain bijections satisfy length/offset rules; Scout v1 refuses sequence-similarity ranking"
+    },
+    "design_evidence": {
+      "A": {
+        "M": {
+          "matches": 19,
+          "mismatches": 2
+        }
+      },
+      "B": {
+        "N": {
+          "matches": 5,
+          "mismatches": 2
+        },
+        "P": {
+          "matches": 1,
+          "mismatches": 6
+        },
+        "Q": {
+          "matches": 1,
+          "mismatches": 6
+        }
+      },
+      "C": {
+        "N": {
+          "matches": 1,
+          "mismatches": 6
+        },
+        "P": {
+          "matches": 7,
+          "mismatches": 0
+        },
+        "Q": {
+          "matches": 1,
+          "mismatches": 6
+        }
+      },
+      "D": {
+        "N": {
+          "matches": 2,
+          "mismatches": 5
+        },
+        "P": {
+          "matches": 1,
+          "mismatches": 6
+        },
+        "Q": {
+          "matches": 7,
+          "mismatches": 0
+        }
+      }
+    },
+    "guided_selection": {
+      "selection": {
+        "A": "M",
+        "B": "N",
+        "C": "P",
+        "D": "Q"
+      },
+      "registration_status": "REGISTERED_COMPLETE",
+      "complete_copy_count": 1,
+      "identity_mismatch_count": 4,
+      "coordinate_edit_performed": false
+    },
+    "interpretation": "Current conservative ambiguity is scientifically safe; known design intent contains strong discriminating evidence, but that evidence remains non-decisional under Scout v1."
+  },
+  "proposed_design_aware_inference_v2": {
+    "status": "PROPOSED_NOT_IMPLEMENTED",
+    "principle": "Prefer categorical consistency with declared construct intent over generic sequence-similarity scoring.",
+    "candidate_evidence": [
+      "whether candidate mismatches occur only at sites already declared to change between the family/reference construct and this dataset target",
+      "number and identity of unexpected mismatches outside declared-change sites",
+      "complete logical-site coverage and one-to-one chain correspondence",
+      "existing hard registration geometry/numbering constraints"
+    ],
+    "suggested_safe_rule": "Automatic disambiguation may become eligible only when exactly one complete bijection has zero unexpected mismatches after accounting for explicitly declared construct-change sites, while every alternative has one or more unexpected mismatches. Otherwise remain AMBIGUOUS.",
+    "cautions": [
+      "do not convert total match count into a weighted score",
+      "single-base overhangs and short repeated motifs may remain intrinsically ambiguous",
+      "modified-site declarations are intent evidence, not proof of MR correctness",
+      "real-data validation is required before promotion into runtime authority"
+    ]
   }
 }
