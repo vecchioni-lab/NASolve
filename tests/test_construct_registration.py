@@ -875,7 +875,7 @@ class ConstructRegistrationTests(unittest.TestCase):
                     {"A": "M", "B": "Z"},
                 )
 
-    def test_guided_selection_requires_a_bijection_and_every_logical_chain(self):
+    def test_guided_selection_requires_one_to_one_mapping_and_every_logical_chain(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             model = assessment(
