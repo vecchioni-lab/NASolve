@@ -41,7 +41,7 @@
       "topology inference"
     ],
     "refuse_or_defer": [
-      "multiple equally valid chain bijections",
+      "multiple equally valid one-to-one chain assignments",
       "chain-count mismatch suggesting split chains, multiplicity or partial copies",
       "nonconstant residue-number correspondence",
       "symmetry-dependent recutting",
@@ -283,7 +283,7 @@
     "scout": {
       "status": "AMBIGUOUS",
       "method": null,
-      "reason": "multiple simple chain bijections satisfy length/offset rules; Scout v1 refuses sequence-similarity ranking"
+      "reason": "multiple simple one-to-one chain assignments satisfy length/offset rules; Scout v1 refuses sequence-similarity ranking"
     },
     "design_evidence": {
       "A": {
@@ -358,7 +358,7 @@
       "complete logical-site coverage and one-to-one chain correspondence",
       "existing hard registration geometry/numbering constraints"
     ],
-    "suggested_safe_rule": "Automatic disambiguation may become eligible only when exactly one complete bijection has zero unexpected mismatches after accounting for explicitly declared construct-change sites, while every alternative has one or more unexpected mismatches. Otherwise remain AMBIGUOUS.",
+    "suggested_safe_rule": "Automatic disambiguation may become eligible only when exactly one complete one-to-one chain mapping has zero unexpected mismatches after accounting for explicitly declared construct-change sites, while every alternative has one or more unexpected mismatches. Otherwise remain AMBIGUOUS.",
     "cautions": [
       "do not convert total match count into a weighted score",
       "single-base overhangs and short repeated motifs may remain intrinsically ambiguous",
