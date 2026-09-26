@@ -272,7 +272,10 @@ Implemented:
 - checksum-bound `Model/registration_scout.json` freeze/load with semantic
   revalidation; and
 - a non-decisional registration-transition comparison for later
-  Scout-versus-authoritative-MR reporting.
+  Scout-versus-authoritative-MR reporting; and
+- UI-independent guided resolution for ambiguous simple chain assignments,
+  restricted to explicit user selections among already enumerated Scout
+  candidates.
 
 Scout v1 deliberately does not use sequence-similarity ranking, modified-site
 similarity, symmetry expansion, split-chain inference, copy-number inference or
