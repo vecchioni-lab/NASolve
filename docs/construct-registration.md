@@ -294,6 +294,16 @@ This is deliberately not runtime authority:
 The point of Oak is to test whether categorical design evidence is strong enough
 to disambiguate the real W rename case safely before any policy is promoted.
 
+The first renamed-real-W v2 shadow attempt remained `AMBIGUOUS`, which was the
+correct fail-closed result for incomplete evidence. Only A:13=DC and B:3=DG had
+been supplied; the intended mapping therefore still contained two unexplained
+differences. Direct inspection of the actual `MR_frames/5W6W/C_G.pdb`
+provider verified the complete relevant identity set:
+`A:12=DC`, `A:13=DC`, `B:3=DG`, `B:4=DG`. The next experimental rerun
+uses all four. This also sharpens the eventual production requirement:
+provider-specific residue identities must come from versioned/provider-bound
+provenance, not ad hoc caller dictionaries.
+
 ### Guided mode
 
 Guided mode is for a dataset whose crystallographic interpretation itself has
