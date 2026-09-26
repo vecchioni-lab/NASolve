@@ -631,6 +631,226 @@ def scout_simple_registration(
     }
 
 
+def validate_registration_scout(
+    value: Mapping[str, object],
+) -> dict[str, object]:
+    """Strictly validate one schema-1 Registration Scout result."""
+    if not isinstance(value, Mapping):
+        raise ConstructRegistrationError("Registration scout is not an object")
+    required = {
+        "schema_version",
+        "kind",
+        "status",
+        "method",
+        "reason",
+        "chain_candidates",
+        "design_evidence",
+        "registration",
+        "semantics",
+    }
+    if set(value) != required:
+        raise ConstructRegistrationError("Malformed registration-scout record")
+    if (
+        type(value["schema_version"]) is not int
+        or value["schema_version"] != 1
+        or value["kind"] != "construct-registration-scout"
+        or value["status"] not in {"REGISTERED", "AMBIGUOUS", "UNRESOLVED"}
+        or not isinstance(value["reason"], str)
+        or not value["reason"]
+    ):
+        raise ConstructRegistrationError("Malformed registration-scout identity")
+
+    allowed_methods = {
+        "identity-site-map",
+        "residue-number-offset",
+        "whole-chain-rename",
+        "whole-chain-rename-and-residue-offset",
+    }
+    method = value["method"]
+    if method is not None and method not in allowed_methods:
+        raise ConstructRegistrationError("Malformed registration-scout method")
+
+    chain_candidates = value["chain_candidates"]
+    if not isinstance(chain_candidates, Mapping):
+        raise ConstructRegistrationError("Malformed registration-scout candidates")
+    for logical_chain, rows in chain_candidates.items():
+        if (
+            not isinstance(logical_chain, str)
+            or not logical_chain
+            or not isinstance(rows, list)
+        ):
+            raise ConstructRegistrationError("Malformed registration-scout candidates")
+        seen: set[str] = set()
+        for row in rows:
+            if (
+                not isinstance(row, Mapping)
+                or set(row) != {"coordinate_chain", "residue_number_offset"}
+                or not isinstance(row["coordinate_chain"], str)
+                or not row["coordinate_chain"]
+                or row["coordinate_chain"] in seen
+                or type(row["residue_number_offset"]) is not int
+            ):
+                raise ConstructRegistrationError(
+                    "Malformed registration-scout candidate row"
+                )
+            seen.add(row["coordinate_chain"])
+
+    evidence = _validate_chain_evidence(value["design_evidence"])
+
+    semantics = value["semantics"]
+    if (
+        not isinstance(semantics, Mapping)
+        or set(semantics) != {
+            "descriptive_only",
+            "sequence_similarity_used_for_assignment",
+            "symmetry_or_topology_inferred",
+            "coordinate_edit_performed",
+            "guided_review_required",
+        }
+        or semantics["descriptive_only"] is not True
+        or semantics["sequence_similarity_used_for_assignment"] is not False
+        or semantics["symmetry_or_topology_inferred"] is not False
+        or semantics["coordinate_edit_performed"] is not False
+        or type(semantics["guided_review_required"]) is not bool
+    ):
+        raise ConstructRegistrationError("Malformed registration-scout semantics")
+
+    registration_value = value["registration"]
+    if value["status"] == "REGISTERED":
+        if method is None or semantics["guided_review_required"] is not False:
+            raise ConstructRegistrationError(
+                "Registered scout must have a method and no guided-review requirement"
+            )
+        if not isinstance(registration_value, Mapping):
+            raise ConstructRegistrationError(
+                "Registered scout is missing its construct registration"
+            )
+        registration = validate_construct_registration(registration_value)
+        if (
+            registration["model"]["sha256"] != evidence["model"]["sha256"]
+            or registration["model"]["polymer_residue_count"]
+            != evidence["model"]["polymer_residue_count"]
+            or registration["target"]["reference"] != evidence["target"]["reference"]
+            or registration["target"]["site_count"] != evidence["target"]["site_count"]
+        ):
+            raise ConstructRegistrationError(
+                "Registration scout evidence disagrees with its registration"
+            )
+    else:
+        if (
+            method is not None
+            or registration_value is not None
+            or semantics["guided_review_required"] is not True
+        ):
+            raise ConstructRegistrationError(
+                "Ambiguous/unresolved scout must remain non-decisional"
+            )
+
+    evidence_by_chain = {
+        row["logical_chain"]: {
+            item["coordinate_chain"]: item["residue_number_offset"]
+            for item in row["candidates"]
+        }
+        for row in evidence["chains"]
+    }
+    if chain_candidates:
+        for logical_chain, rows in chain_candidates.items():
+            if logical_chain not in evidence_by_chain:
+                raise ConstructRegistrationError(
+                    "Scout candidates are absent from design evidence"
+                )
+            expected = evidence_by_chain[logical_chain]
+            for row in rows:
+                if expected.get(row["coordinate_chain"]) != row["residue_number_offset"]:
+                    raise ConstructRegistrationError(
+                        "Scout candidate disagrees with design evidence"
+                    )
+
+    return dict(value)
+
+
+def freeze_registration_scout(
+    scout: Mapping[str, object],
+    run: Path,
+) -> dict[str, object]:
+    """Freeze one Registration Scout artifact beneath an allocated run."""
+    checked = validate_registration_scout(scout)
+    data = (
+        json.dumps(checked, indent=2, sort_keys=True, allow_nan=False) + "\n"
+    ).encode("utf-8")
+    path = run / "Model" / "registration_scout.json"
+    try:
+        with path.open("xb") as handle:
+            handle.write(data)
+    except OSError as exc:
+        raise ConstructRegistrationError(
+            f"Could not freeze registration scout: {exc}"
+        ) from exc
+    return {
+        "schema_version": 1,
+        "kind": "frozen-registration-scout",
+        "artifact": {
+            **artifact_reference(path, run),
+            "sha256": sha256(data).hexdigest(),
+            "size": len(data),
+        },
+    }
+
+
+def load_registration_scout(
+    report: Mapping[str, object],
+    run: Path,
+) -> dict[str, object] | None:
+    """Load only a checksum-verified run-local Registration Scout artifact."""
+    frozen = report.get("registration_scout")
+    if frozen is None:
+        return None
+    if (
+        not isinstance(frozen, Mapping)
+        or set(frozen) != {"schema_version", "kind", "artifact"}
+        or type(frozen.get("schema_version")) is not int
+        or frozen["schema_version"] != 1
+        or frozen.get("kind") != "frozen-registration-scout"
+        or not isinstance(frozen.get("artifact"), Mapping)
+    ):
+        raise ConstructRegistrationError("Malformed frozen registration scout")
+    artifact = frozen["artifact"]
+    if (
+        artifact.get("anchor") != "run"
+        or not isinstance(artifact.get("relative_path"), str)
+        or not isinstance(artifact.get("sha256"), str)
+        or re.fullmatch(r"[0-9a-f]{64}", artifact["sha256"]) is None
+        or type(artifact.get("size")) is not int
+        or artifact["size"] <= 0
+    ):
+        raise ConstructRegistrationError(
+            "Malformed registration-scout artifact reference"
+        )
+    try:
+        path = resolve_artifact_path(artifact, run)
+        if path is None:
+            raise ConstructRegistrationError(
+                "Frozen registration scout is missing or failed checksum validation"
+            )
+        path.resolve().relative_to(run.resolve())
+        data = path.read_bytes()
+    except (OSError, ValueError) as exc:
+        raise ConstructRegistrationError(
+            f"Could not read frozen registration scout: {exc}"
+        ) from exc
+    if len(data) != artifact["size"] or sha256(data).hexdigest() != artifact["sha256"]:
+        raise ConstructRegistrationError(
+            "Frozen registration scout changed while being read"
+        )
+    try:
+        value = json.loads(data.decode("utf-8"))
+    except (UnicodeError, ValueError) as exc:
+        raise ConstructRegistrationError(
+            f"Could not decode frozen registration scout: {exc}"
+        ) from exc
+    return validate_registration_scout(value)
+
+
 def build_construct_registration(
     assessment: ModelAssessment,
     target: Mapping[str, object],
@@ -1212,10 +1432,14 @@ __all__ = [
     "ConstructRegistrationError",
     "build_construct_registration",
     "build_identity_registration",
+    "describe_simple_chain_evidence",
     "expand_logical_sites",
     "freeze_construct_registration",
+    "freeze_registration_scout",
     "load_construct_registration",
+    "load_registration_scout",
     "logical_inventory_by_copy",
     "scout_simple_registration",
     "validate_construct_registration",
+    "validate_registration_scout",
 ]
