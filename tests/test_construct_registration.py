@@ -1,6 +1,8 @@
 import copy
+import json
 import tempfile
 import unittest
+from hashlib import sha256
 from pathlib import Path
 
 from nasolve.construct_registration import (
@@ -8,6 +10,9 @@ from nasolve.construct_registration import (
     build_construct_registration,
     build_identity_registration,
     expand_logical_sites,
+    freeze_construct_registration,
+    load_construct_registration,
+    logical_inventory_by_copy,
     validate_construct_registration,
 )
 from nasolve.model_assessment import inspect_pdb
@@ -298,6 +303,114 @@ class ConstructRegistrationTests(unittest.TestCase):
                 "Duplicate coordinate atom identities",
             ):
                 build_identity_registration(model, target(("A:1", "DA")))
+
+    def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("M", 2, "DC"),
+                    ("N", 1, "DG"),
+                ],
+            )
+            result = build_construct_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DT")),
+                {
+                    "copy_1": {"A:1": "M:1", "A:2": "M:2"},
+                    "copy_2": {"A:1": "N:1"},
+                },
+                source="inventory-fixture",
+            )
+            self.assertEqual(
+                logical_inventory_by_copy(result),
+                {
+                    "copy_1": {"A:1": "DA", "A:2": "DC"},
+                    "copy_2": {"A:1": "DG"},
+                },
+            )
+            self.assertEqual(
+                logical_inventory_by_copy(result, complete_only=True),
+                {"copy_1": {"A:1": "DA", "A:2": "DC"}},
+            )
+
+    def test_frozen_registration_is_checksum_verified_and_schema_revalidated(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = root / "run_001"
+            (run / "Model").mkdir(parents=True)
+            model = assessment(root, [("A", 1, "DA"), ("A", 2, "DC")])
+            result = build_identity_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DC")),
+            )
+            frozen = freeze_construct_registration(result, run)
+            report = {"construct_registration": frozen}
+            self.assertEqual(
+                load_construct_registration(report, run),
+                result,
+            )
+
+            artifact = run / frozen["artifact"]["relative_path"]
+            artifact.write_text("{}\n", encoding="utf-8")
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "missing or failed checksum|changed while being read",
+            ):
+                load_construct_registration(report, run)
+
+            forged = artifact.read_bytes()
+            report["construct_registration"]["artifact"].update(
+                sha256=sha256(forged).hexdigest(),
+                size=len(forged),
+            )
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "Malformed construct-registration record",
+            ):
+                load_construct_registration(report, run)
+
+    def test_freeze_refuses_to_overwrite_existing_registration_artifact(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = root / "run_001"
+            (run / "Model").mkdir(parents=True)
+            model = assessment(root, [("A", 1, "DA")])
+            result = build_identity_registration(
+                model,
+                target(("A:1", "DA")),
+            )
+            freeze_construct_registration(result, run)
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "Could not freeze construct registration",
+            ):
+                freeze_construct_registration(result, run)
+
+    def test_validator_requires_all_model_residues_to_be_accounted_for(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [("A", 1, "DA"), ("A", 2, "DC"), ("Z", 9, "DG")],
+            )
+            result = build_construct_registration(
+                model,
+                target(("A:1", "DA"), ("A:2", "DC")),
+                {"copy_1": {"A:1": "A:1", "A:2": "A:2"}},
+                source="accounting-fixture",
+            )
+            self.assertEqual(result["summary"]["unmapped_coordinate_sites"], ["Z:9"])
+
+            forged = copy.deepcopy(result)
+            forged["summary"]["unmapped_coordinate_sites"] = []
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "Malformed registration summary",
+            ):
+                validate_construct_registration(forged)
 
     def test_record_validator_rejects_forged_completeness_or_identity(self):
         with tempfile.TemporaryDirectory() as directory:
