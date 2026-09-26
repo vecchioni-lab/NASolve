@@ -766,6 +766,19 @@ recipient-target site/identity differences, relative mirror-transform context,
 and recipient symmetry/copy-number facts. It does not score, rank, select,
 authorize, export, or retry any donor model.
 
+The next planned robustness layer is **Construct Registration**. It will map
+logical construct sites onto whatever chain names, residue numbers, chain
+splits, ASU cut and copy multiplicity actually appear in a search model or MR
+solution. The common W path should remain nearly invisible: a cheap
+non-mutating Registration Scout runs inside AutoMR preflight, plausible models
+go through ordinary MR first, and the actual MR solution receives the
+authoritative ASU registration before PostMR mutates logical sites. If MR fails
+or a reviewed representation problem is known, a separate bounded
+Registration/Recut Rescue may materialize an equivalent cut or chain
+representation with full provenance. Guided cases use the simple interactive
+Registration Net described in
+[construct registration](docs/construct-registration.md).
+
 ## Preparing an accepted MR solution
 
 After a run reaches `MR_SUCCESS`, prepare it for refinement with:
@@ -1093,8 +1106,10 @@ Current validation state is summarized in
 - perform mirror-side sequence changes through an unmirror/Coot/remirror cycle;
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
 - search unbounded refinement recipes or run several campaign jobs concurrently;
-- apply the final H3/R3 notation patch; or
-- search multiple catalogue models automatically.
+- apply the final H3/R3 notation patch;
+- perform construct/ASU registration, guided Registration Net editing, or
+  registration-aware recut rescue; or
+- search multiple catalogue/dataset models automatically.
 
 These operations are deliberately kept behind later validation gates rather
 than being implied by an MR success. Always inspect the molecular-replacement
@@ -1141,15 +1156,21 @@ the foreground on macOS/Linux. See [campaign execution](docs/campaign-execution.
 for interruption handling, explicit retries and live-test commands, and
 [campaign planning](docs/campaign-planning.md) for preset and input integrity.
 
-## Project presets and future model providers
+## Project presets and model providers
 
 The versioned `5w6w` planning preset describes the current standard workflow.
 Future projects can add preset directories rather than new project-name
-branches in the workflow code. Later preset schemas can declare an MR catalogue and fallback,
-site roles, sequence resource, restraint policy, AutoSol sequence, metalation
-recipe, and model providers. A provider may later be a curated PDB, an
-AlphaFold result, or another approved source; downstream stages consume the
-same frozen model-and-capability contract.
+branches in the workflow code. Later preset schemas can declare an MR catalogue
+and fallback, site roles, sequence resources, restraint policy, AutoSol
+sequence, metalation recipe, imported provider provenance, registration/cut
+recipes and model-search budgets.
+
+NASolve does **not** invoke AlphaFold. A separately developed upstream NAPrep
+package may organize designs/data and externally generated model candidates,
+but it is optional: carefully prepared folders/manifests remain valid direct
+NASolve inputs. Once imported, NASolve owns the crystallographic decision tree,
+campaign management, Campaign Doctor, curation/reporting and deposition
+provenance.
 
 This keeps project-specific scientific choices in versioned data while the
 pipeline retains common validation, provenance, non-overwrite behavior, and
