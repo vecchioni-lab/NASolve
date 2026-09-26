@@ -362,6 +362,42 @@ class ConstructRegistrationTests(unittest.TestCase):
                 {"A:1": "A:101", "A:2": "A:102", "B:1": "B:51"},
             )
 
+    def test_scout_same_named_equal_length_chains_do_not_become_false_ambiguity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("B", 101, "DA"),
+                    ("B", 102, "DC"),
+                    ("C", 101, "DG"),
+                    ("C", 102, "DT"),
+                    ("D", 101, "DT"),
+                    ("D", 102, "DA"),
+                ],
+            )
+            result = scout_simple_registration(
+                model,
+                target(
+                    ("B:1", "DA"),
+                    ("B:2", "DC"),
+                    ("C:1", "DG"),
+                    ("C:2", "DT"),
+                    ("D:1", "DT"),
+                    ("D:2", "DA"),
+                ),
+            )
+            self.assertEqual(result["status"], "REGISTERED")
+            self.assertEqual(result["method"], "residue-number-offset")
+            self.assertFalse(result["semantics"]["guided_review_required"])
+            self.assertEqual(
+                {
+                    chain: rows[0]["coordinate_chain"]
+                    for chain, rows in result["chain_candidates"].items()
+                },
+                {"B": "B", "C": "C", "D": "D"},
+            )
+
     def test_scout_accepts_unique_whole_chain_rename(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
