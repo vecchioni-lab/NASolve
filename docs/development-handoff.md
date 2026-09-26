@@ -320,6 +320,22 @@ Both are user-local checkpoints, not GitHub CI. The full NASolve regression
 suite subsequently passed with **664 tests and 222 subtests**, satisfying the
 remaining merge gate for PR #17.
 
+### First real-data registration shadow check
+
+The new registration core was then exercised read-only against existing ED
+`run_011` using its frozen 42-site target:
+
+- search model: `REGISTERED` by `identity-site-map`, 4 identity mismatches;
+- PostMR ReadySet model: `REGISTERED` by `identity-site-map`, 0 mismatches;
+- transition: copy structure `SAME`, multiplicity `SAME`, complete-copy
+  identity classes `DIFFERENT`, single-copy coordinate realization `SAME`.
+
+This is the expected scientific behavior: PostMR changed logical residue
+identity while the coordinate registration itself remained stable. It is a
+useful real-W validation of the abstraction, but **not** yet a live pipeline
+integration test because registration was invoked manually against an already
+completed run.
+
 ## NAPrep boundary
 
 NAPrep is a separate optional upstream design/data-management package, analogous
