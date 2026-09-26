@@ -390,7 +390,7 @@ def scout_simple_registration(
 ) -> dict[str, object]:
     """Conservatively infer only identity/rename/constant-offset registrations.
 
-    The scout intentionally ignores residue-identity similarity when assigning
+    The Scout intentionally ignores residue-identity similarity when assigning
     chains. Expected mutations must not become a hidden registration score.
     Symmetry expansion, split-chain inference, copy-number inference, topology,
     recutting, and coordinate edits are all deferred.
@@ -519,7 +519,7 @@ def scout_simple_registration(
             "method": None,
             "reason": (
                 "logical and coordinate chain counts differ; multiplicity or "
-                "split-chain inference is outside simple scout"
+                "split-chain inference is outside simple Scout"
             ),
             "chain_candidates": candidate_view,
             "design_evidence": design_evidence,
@@ -558,7 +558,7 @@ def scout_simple_registration(
             "method": None,
             "reason": (
                 "more than one one-to-one chain assignment satisfies simple length/offset "
-                "registration; scout refuses to rank by sequence similarity"
+                "registration; Scout refuses to rank by sequence similarity"
             ),
             "chain_candidates": candidate_view,
             "design_evidence": design_evidence,
@@ -636,7 +636,7 @@ def validate_registration_scout(
 ) -> dict[str, object]:
     """Strictly validate one schema-1 Registration Scout result."""
     if not isinstance(value, Mapping):
-        raise ConstructRegistrationError("Registration scout is not an object")
+        raise ConstructRegistrationError("Registration Scout is not an object")
     required = {
         "schema_version",
         "kind",
@@ -649,7 +649,7 @@ def validate_registration_scout(
         "semantics",
     }
     if set(value) != required:
-        raise ConstructRegistrationError("Malformed registration-scout record")
+        raise ConstructRegistrationError("Malformed Registration Scout record")
     if (
         type(value["schema_version"]) is not int
         or value["schema_version"] != 1
@@ -658,7 +658,7 @@ def validate_registration_scout(
         or not isinstance(value["reason"], str)
         or not value["reason"]
     ):
-        raise ConstructRegistrationError("Malformed registration-scout identity")
+        raise ConstructRegistrationError("Malformed Registration Scout identity")
 
     allowed_methods = {
         "identity-site-map",
@@ -668,18 +668,18 @@ def validate_registration_scout(
     }
     method = value["method"]
     if method is not None and method not in allowed_methods:
-        raise ConstructRegistrationError("Malformed registration-scout method")
+        raise ConstructRegistrationError("Malformed Registration Scout method")
 
     chain_candidates = value["chain_candidates"]
     if not isinstance(chain_candidates, Mapping):
-        raise ConstructRegistrationError("Malformed registration-scout candidates")
+        raise ConstructRegistrationError("Malformed Registration Scout candidates")
     for logical_chain, rows in chain_candidates.items():
         if (
             not isinstance(logical_chain, str)
             or not logical_chain
             or not isinstance(rows, list)
         ):
-            raise ConstructRegistrationError("Malformed registration-scout candidates")
+            raise ConstructRegistrationError("Malformed Registration Scout candidates")
         seen: set[str] = set()
         for row in rows:
             if (
@@ -691,7 +691,7 @@ def validate_registration_scout(
                 or type(row["residue_number_offset"]) is not int
             ):
                 raise ConstructRegistrationError(
-                    "Malformed registration-scout candidate row"
+                    "Malformed Registration Scout candidate row"
                 )
             seen.add(row["coordinate_chain"])
 
@@ -713,17 +713,17 @@ def validate_registration_scout(
         or semantics["coordinate_edit_performed"] is not False
         or type(semantics["guided_review_required"]) is not bool
     ):
-        raise ConstructRegistrationError("Malformed registration-scout semantics")
+        raise ConstructRegistrationError("Malformed Registration Scout semantics")
 
     registration_value = value["registration"]
     if value["status"] == "REGISTERED":
         if method is None or semantics["guided_review_required"] is not False:
             raise ConstructRegistrationError(
-                "Registered scout must have a method and no guided-review requirement"
+                "Registered Scout must have a method and no guided-review requirement"
             )
         if not isinstance(registration_value, Mapping):
             raise ConstructRegistrationError(
-                "Registered scout is missing its construct registration"
+                "Registered Scout is missing its construct registration"
             )
         registration = validate_construct_registration(registration_value)
         if (
@@ -734,7 +734,7 @@ def validate_registration_scout(
             or registration["target"]["site_count"] != evidence["target"]["site_count"]
         ):
             raise ConstructRegistrationError(
-                "Registration scout evidence disagrees with its registration"
+                "Registration Scout evidence disagrees with its registration"
             )
     else:
         if (
@@ -743,7 +743,7 @@ def validate_registration_scout(
             or semantics["guided_review_required"] is not True
         ):
             raise ConstructRegistrationError(
-                "Ambiguous/unresolved scout must remain non-decisional"
+                "Ambiguous/unresolved Scout must remain non-decisional"
             )
 
     evidence_by_chain = {
@@ -784,7 +784,7 @@ def freeze_registration_scout(
             handle.write(data)
     except OSError as exc:
         raise ConstructRegistrationError(
-            f"Could not freeze registration scout: {exc}"
+            f"Could not freeze Registration Scout: {exc}"
         ) from exc
     return {
         "schema_version": 1,
@@ -813,7 +813,7 @@ def load_registration_scout(
         or frozen.get("kind") != "frozen-registration-scout"
         or not isinstance(frozen.get("artifact"), Mapping)
     ):
-        raise ConstructRegistrationError("Malformed frozen registration scout")
+        raise ConstructRegistrationError("Malformed frozen Registration Scout")
     artifact = frozen["artifact"]
     if (
         artifact.get("anchor") != "run"
@@ -824,29 +824,29 @@ def load_registration_scout(
         or artifact["size"] <= 0
     ):
         raise ConstructRegistrationError(
-            "Malformed registration-scout artifact reference"
+            "Malformed Registration Scout artifact reference"
         )
     try:
         path = resolve_artifact_path(artifact, run)
         if path is None:
             raise ConstructRegistrationError(
-                "Frozen registration scout is missing or failed checksum validation"
+                "Frozen Registration Scout is missing or failed checksum validation"
             )
         path.resolve().relative_to(run.resolve())
         data = path.read_bytes()
     except (OSError, ValueError) as exc:
         raise ConstructRegistrationError(
-            f"Could not read frozen registration scout: {exc}"
+            f"Could not read frozen Registration Scout: {exc}"
         ) from exc
     if len(data) != artifact["size"] or sha256(data).hexdigest() != artifact["sha256"]:
         raise ConstructRegistrationError(
-            "Frozen registration scout changed while being read"
+            "Frozen Registration Scout changed while being read"
         )
     try:
         value = json.loads(data.decode("utf-8"))
     except (UnicodeError, ValueError) as exc:
         raise ConstructRegistrationError(
-            f"Could not decode frozen registration scout: {exc}"
+            f"Could not decode frozen Registration Scout: {exc}"
         ) from exc
     return validate_registration_scout(value)
 
