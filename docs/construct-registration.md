@@ -311,9 +311,18 @@ produced exactly one zero-unexplained proposal:
 `runtime_authority = false`. This validates the experimental categorical rule
 on the real rename nuisance case without promoting it into runtime authority.
 
-The remaining production boundary is provenance: provider-specific residue
-identities must come from a reviewed/versioned provider or model-family record,
-not an ad hoc caller dictionary.
+Oak's next code slice now binds that provenance explicitly. Scout v2 no longer
+accepts an ad hoc site->code dictionary. Optional provider-baseline evidence must
+arrive as the actual assessed provider model plus NASolve's existing
+model-provider record. The helper accepts only standard frame-catalogue
+provenance, requires exact logical-site coverage, verifies that the provider
+selector matches the assessed source model, derives every residue code from the
+provider coordinates, and records the source-model SHA-256 in the returned
+baseline evidence.
+
+This provenance-bound implementation remains experimental and non-runtime.
+Focused local tests are pending after the code change; the previously recorded
+41-test checkpoint predates this slice.
 
 ### Guided mode
 
