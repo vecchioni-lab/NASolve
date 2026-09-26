@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-5",
+  "version": "2026-09-26-birch-6",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -199,5 +199,17 @@
       "candidate transformation"
     ],
     "current_legacy_behavior": "AutoMR still requires one unambiguous nonstandard PDB or an explicit model selector."
+  },
+  "human_live_check_queue": {
+    "path": "docs/construct-registration-live-checks.md",
+    "policy": "Keep the queue small, trigger-based, and tied to real/user-visible behavior rather than duplicating unit tests.",
+    "required_categories": [
+      "full regression before substantial merge",
+      "clean W identity-path live check when registration is wired",
+      "8D93-style non-identity recut live check when executable",
+      "8D31-like complete/partial multiplicity live check when executable",
+      "guided ambiguity live check when UI/CLI exists",
+      "bounded multi-PDB MR live check when selection policy exists"
+    ]
   }
 }
