@@ -353,18 +353,29 @@ one. A mapping with merely fewer unexplained mismatches is still ambiguous.
 The helper is not runtime authority, cannot apply a mapping, and is not called
 by AutoMR/PostMR. Provider-baseline codes are caller-supplied experimental
 evidence for now; production use requires versioned/provider-bound provenance.
-Focused Oak validation is now green: **41 tests passed locally** in
+Focused Oak validation is green: **41 tests passed locally** in
 `tests/test_construct_registration.py` at code head
-`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`. The first renamed real-W v2 shadow case has now been run. With only the known
-A:13=DC and B:3=DG family-baseline differences supplied as provider evidence,
-v2 correctly stayed `AMBIGUOUS`: 6 complete mappings, 0 zero-unexplained
-mappings; the intended mapping had 38 exact, 2 provider-explained and 2
-unexplained sites. Direct inspection of `MR_frames/5W6W/C_G.pdb` verified that
-the missing provider-pair identities are A:12=DC and B:4=DG. The next shadow
-rerun uses all four provider identities (A:12/A:13=DC; B:3/B:4=DG). v2 remains
-non-runtime regardless of that result. Production use must bind provider
-identity evidence to reviewed/versioned provider provenance rather than a
-caller-supplied dictionary.
+`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`.
+
+The first renamed real-W v2 shadow case supplied only A:13=DC and B:3=DG as
+provider evidence and correctly stayed `AMBIGUOUS`: 6 complete mappings,
+0 zero-unexplained mappings; the intended mapping had 38 exact,
+2 provider-explained and 2 unexplained sites. Direct inspection of
+`MR_frames/5W6W/C_G.pdb` verified that the missing provider-pair identities
+were A:12=DC and B:4=DG.
+
+The same case was then repeated with all four verified provider identities
+(A:12/A:13=DC; B:3/B:4=DG). v2 returned `PROPOSED` with exactly one
+zero-unexplained mapping: A->M, B->N, C->P, D->Q. That mapping had 38 exact,
+0 target-history, 4 provider-explained and 0 unexplained sites; the five
+alternatives retained 12, 11, 16, 17 and 10 unexplained mismatches.
+`runtime_authority` remained false.
+
+This validates the experimental zero-unexplained uniqueness rule on the real-W
+rename nuisance case without promoting it into runtime authority. The immediate
+production-design edge is now provider provenance: replace ad hoc caller-supplied
+provider identity dictionaries with identities derived from a reviewed/versioned
+provider or model-family record before considering any runtime integration.
 
 ### First real-data registration shadow check
 
