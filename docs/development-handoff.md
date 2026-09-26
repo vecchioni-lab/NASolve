@@ -320,6 +320,25 @@ Both are user-local checkpoints, not GitHub CI. The full NASolve regression
 suite subsequently passed with **664 tests and 222 subtests**, satisfying the
 remaining merge gate for PR #17.
 
+### Renamed-chain real-W ambiguity check
+
+A second read-only ED `run_011` test renamed coordinate chains
+`A/B/C/D -> M/N/P/Q` without changing coordinates/residue identities.
+
+Scout v1 returned `AMBIGUOUS`, as designed, because multiple equal-length
+chain bijections satisfied its current length/offset rules. Its non-decisional
+design evidence strongly identified the intended mapping (A->M 19/2, B->N 5/2,
+C->P 7/0, D->Q 7/0; alternatives carried many more mismatches). Explicit guided
+selection of A->M, B->N, C->P, D->Q yielded `REGISTERED_COMPLETE`, one copy,
+4 target-identity mismatches and no coordinate edit.
+
+This validates both the conservative refusal-to-guess behavior and the guided
+resolution primitive on real W coordinates. It also suggests the next reviewed
+inference experiment: classify mismatches as **declared construct-change sites**
+versus **unexpected mismatches**, and allow automatic disambiguation only when
+one complete bijection has zero unexpected mismatches and every alternative has
+at least one. This is recorded as proposed policy, not runtime authority.
+
 ### First real-data registration shadow check
 
 The new registration core was then exercised read-only against existing ED
