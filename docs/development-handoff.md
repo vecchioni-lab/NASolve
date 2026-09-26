@@ -252,6 +252,44 @@ registration and an 8D93-style -> W recut fixture, then chain renaming,
 numbering offsets, chain splits, multicopy/partial-copy ASUs and bounded
 multi-PDB MR candidates.
 
+### Birch implementation checkpoint
+
+The first backend-only slice is now implemented on the `birch` development
+branch without changing any existing AutoMR/PostMR call path.
+
+Implemented:
+
+- strict logical-site -> coordinate-site registration records;
+- complete, multicopy and partial-copy representation;
+- complete-copy-only logical mutation/chemistry expansion;
+- checksum-bound freeze/load provenance and semantic revalidation;
+- exact accounting for mapped and unmapped polymer residues;
+- read-only logical inventories for later Hemlock/Moss/Campaign Doctor use; and
+- conservative Registration Scout v1 for identity, same-name constant residue
+  offsets, unique whole-chain rename, and rename-plus-offset cases.
+
+Scout v1 deliberately does not use sequence-similarity ranking, modified-site
+similarity, symmetry expansion, split-chain inference, copy-number inference or
+topology. Ambiguous renamed chains remain ambiguous rather than being selected
+by a hidden score.
+
+The primary inference regime is designed self-assembling nucleic-acid crystals:
+input construct sequence/modification/boundary intent is normally known and
+short designed strands are usually less repetitive than generic polymers.
+Repeated short motifs and single-base overhangs remain explicit ambiguity
+hazards rather than ignored corner cases.
+
+The machine-readable development policy is
+[`construct-registration-intent.json`](construct-registration-intent.json).
+Policy changes should update that file alongside the human design contract so
+real-data testing can intentionally backtrack or revise inference behavior
+without losing why an earlier rule existed.
+
+Local focused validation reported **23 passing tests** in
+`tests/test_construct_registration.py` at Birch code head
+`4452295c3330de6d55bddd75b01be21f39afb222`. This is a user-local test
+checkpoint, not GitHub CI.
+
 ## NAPrep boundary
 
 NAPrep is a separate optional upstream design/data-management package, analogous
