@@ -383,10 +383,13 @@ provenance, exact target-site coverage and provider-selector/source-model
 agreement, and returns the derived residue baseline bound to the source model's
 SHA-256. Runtime authority remains false and AutoMR/PostMR still do not call it.
 
-This source/test change is **pending focused local validation**. The earlier
-41-test Oak result belongs to code head
-`189fd4589a8c8f2a0191e21e99cec22b428e6a1c` and must not be inherited onto
-the new code head until rerun.
+This provenance-bound source/test slice has now passed **41 focused tests
+locally** at checkout head
+`36c369bdfd75602340882805a6dc03f2c193c58d`, with source/test code head
+`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The result is user-local, not
+GitHub CI. Scout v2 remains experimental and non-runtime; the next scientific
+validation should exercise the real renamed-W case through this new
+provider-assessment/provenance interface before any promotion discussion.
 
 ### First real-data registration shadow check
 
