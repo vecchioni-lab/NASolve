@@ -100,7 +100,7 @@
     "reported_pass_count": 23,
     "reported_by": "user-local-run",
     "github_ci": false,
-    "scope": "construct registration core, artifact provenance and conservative scout synthetic tests",
+    "scope": "construct registration core, artifact provenance and conservative Scout synthetic tests",
     "note": "This checkpoint predates the descriptive chain-evidence and frozen Scout artifact additions."
   },
   "pending_validation": null,
@@ -141,7 +141,7 @@
       "focused_test_file": "tests/test_construct_registration.py",
       "reported_by": "user-local-run",
       "github_ci": false,
-      "scope": "registration core/scout/evidence/guided/transition plus read-only multi-PDB candidate inventory/scouting",
+      "scope": "registration core/Scout/evidence/guided/transition plus read-only multi-PDB candidate inventory/scouting",
       "reported_pass_count": 44,
       "focused_test_files": [
         "tests/test_construct_registration.py",

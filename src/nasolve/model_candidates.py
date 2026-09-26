@@ -189,7 +189,7 @@ def scout_dataset_pdb_candidates(
             scout = scout_simple_registration(assessment, target)
         except (ModelAssessmentError, ConstructRegistrationError) as exc:
             raise ModelCandidateInventoryError(
-                f"Could not registration-scout candidate {selector}: {exc}"
+                f"Could not run Registration Scout for candidate {selector}: {exc}"
             ) from exc
 
         status = scout["status"]
@@ -201,7 +201,7 @@ def scout_dataset_pdb_candidates(
             unresolved += 1
         else:
             raise ModelCandidateInventoryError(
-                f"Unexpected registration-scout status for {selector}: {status}"
+                f"Unexpected Registration Scout status for {selector}: {status}"
             )
         results.append({
             "selector": selector,

@@ -119,7 +119,7 @@ deterministic.
 | Required terminal phosphate absent | Keep registration separate; pass the logical terminus to the existing chemistry audit/construction path | Stop if boundary identity itself is ambiguous or chemistry is unsupported |
 | Extra complete ASU copy | Register each complete copy and propagate logical sequence/mutations to every complete instance | Guided review if copies are non-equivalent or map differently |
 | One complete plus partial extra copy | Register the complete copy; classify the fragment as partial; do not propagate complete-copy chemistry into it | Expanded report plus guided interpretation; later topology layer may explain it |
-| Search-model scout looks simple but MR output reorganizes the ASU | Re-run authoritative registration on the actual Phaser solution and discard the scout as downstream authority | Guided review if the solved ASU has ambiguous multiplicity/cut |
+| Search-model Scout looks simple but MR output reorganizes the ASU | Re-run authoritative registration on the actual Phaser solution and discard the Scout as downstream authority | Guided review if the solved ASU has ambiguous multiplicity/cut |
 | Ordinary MR fails but representation mismatch is plausible | Spawn a bounded Registration/Recut Rescue candidate under a reviewed recipe | User chooses/edits the cut when no reviewed deterministic rescue applies |
 | Several PDBs in the dataset | Scout each bounded candidate; reject models lacking required logical coverage; run eligible MR attempts | Preserve a shortlist if multiple successful models imply materially different interpretations |
 | Same logical target but sequence differences | Register first, then express differences in logical coordinates for PostMR | Stop if the mapping itself is ambiguous; do not let sequence mutation hide a registration problem |
@@ -147,7 +147,7 @@ NASolve should switch to guided mode when any of the following occurs:
 - multiple MR candidates pass ordinary MR gates but imply materially different
   cuts, multiplicities or logical-site mappings;
 - the MR solution changes the registration interpretation relative to the
-  pre-MR scout in a scientifically meaningful way; or
+  pre-MR Scout in a scientifically meaningful way; or
 - the mapping begins to depend on topology rather than sequence/connectivity
   correspondence.
 
@@ -230,7 +230,7 @@ final report.
 
 Birch currently implements the pure registration record, checksum-bound
 freeze/load provenance, logical-site propagation across complete registered
-copies, and a conservative non-mutating scout for:
+copies, and a conservative non-mutating Scout for:
 
 - exact logical/coordinate site identity;
 - same-named chains with constant residue-number offsets;
@@ -304,7 +304,7 @@ The design decisions are:
    heavily recut/mutated before Phaser merely to make its labels resemble the
    intended construct. MR often supplies the best oriented coordinate registry.
 4. **The actual MR solution is downstream authority.** PostMR must register the
-   solved coordinate model again; the pre-MR scout is evidence, not authority.
+   solved coordinate model again; the pre-MR Scout is evidence, not authority.
 5. **Representation rescue is a separate branch.** Recutting, chain
    split/join/relabel operations and reviewed boundary adjustments become
    explicit AutoMR/MR-Doctor rescue candidates rather than invisible setup
@@ -327,14 +327,14 @@ The design decisions are:
 This arrangement gives NASolve useful deterministic "intelligence" without
 turning inference into hidden scientific authority.
 
-## Timing: scout, MR, authoritative registration, rescue
+## Timing: Scout, MR, authoritative registration, rescue
 
 NASolve should not require heavy coordinate surgery before ordinary MR when MR
 itself may provide the most useful coordinate registry.
 
 ### 1. Registration Scout inside AutoMR preflight
 
-Before Phaser, NASolve performs a cheap, non-mutating scout of each candidate
+Before Phaser, NASolve performs a cheap, non-mutating Scout of each candidate
 search model:
 
 - literal polymer inventory;
@@ -347,7 +347,7 @@ search model:
 
 For a clean standard W model this should be a fast identity case.
 
-The scout may reject a model whose required logical sites cannot be registered
+The Scout may reject a model whose required logical sites cannot be registered
 at all, but it should not require expensive recutting/mutation merely to make a
 plausible model cosmetically match the target before MR.
 
@@ -377,7 +377,7 @@ It records:
 - multiplicity surprises;
 - ambiguity evidence; and
 - whether the MR solution changed the interpretation relative to the search
-  model scout.
+  model Scout.
 
 PostMR then applies dataset-level sequence/chemistry to every **complete,
 unambiguous registered instance** of each logical site.
@@ -396,7 +396,7 @@ complete second copy.
 Some models may require a different crystallographic cut or other reviewed
 representation change before they become effective search models.
 
-If ordinary MR fails, or if the scout identifies a known representation problem,
+If ordinary MR fails, or if the Scout identifies a known representation problem,
 NASolve may create a bounded rescue candidate using an explicit reviewed recipe.
 
 Possible reviewed operations include:
@@ -481,7 +481,7 @@ terminal-phosphate correction.
 
 Dataset PDBs are candidate providers, not automatic truth.
 
-When several PDBs are present, AutoMR may registration-scout a bounded candidate
+When several PDBs are present, AutoMR may run Registration Scout on a bounded candidate
 set. Models that cannot represent required logical sites are excluded with a
 diagnostic. Eligible candidates may be tried under a preset-declared MR budget.
 
@@ -616,7 +616,7 @@ The final solution/campaign report should retain:
 
 - original candidate model identity/checksum;
 - applied registration/cut recipe, if any;
-- search-model registration scout;
+- search-model Registration Scout;
 - MR-solution authoritative registration;
 - copy decomposition;
 - missing/extra/boundary differences;
