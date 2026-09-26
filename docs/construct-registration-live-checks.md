@@ -130,10 +130,11 @@ subtests** in **61.70 s** on checkout
 
 Oak's previously validated Scout v2 code head
 `189fd4589a8c8f2a0191e21e99cec22b428e6a1c` had **41 focused tests passing**.
-The newer provenance-bound provider-evidence slice at code head
-`c515a37dc41fa8bb1935d2c80c825ebef8153177` changes source/tests and is
-**pending focused local validation**. Do not inherit the earlier 41-pass result
-onto this code head.
+The provenance-bound provider-evidence slice at code head
+`c515a37dc41fa8bb1935d2c80c825ebef8153177` has now also passed
+**41 focused tests locally** at checkout head
+`36c369bdfd75602340882805a6dc03f2c193c58d`. This validates the new
+provider-assessment/provenance boundary without changing the live pipeline.
 
 When a live check above is completed, record the dataset/run/checkpoint and code
 commit in the development handoff or the machine-readable intent ledger. Avoid
