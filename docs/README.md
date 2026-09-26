@@ -33,8 +33,8 @@ NASolve documentation is organized by role, not chronology.
   records machine-readable inference policy, validation checkpoints, and real-W
   attempt history, while
   [`construct-registration-live-checks.md`](construct-registration-live-checks.md)
-  keeps the minimum human/real-workflow validation queue, including the current
-  renamed-real-W rerun gate with the complete verified C_G provider identity set.
+  keeps the minimum human/real-workflow validation queue, including the completed
+  renamed-real-W Scout v2 shadow validation and the remaining live-wiring gates.
 - [`campaign-model-roadmap.md`](campaign-model-roadmap.md) — forward-looking
   model/sequence/processing architecture and the current Campaign Doctor
   implementation boundary.
