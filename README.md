@@ -766,18 +766,31 @@ recipient-target site/identity differences, relative mirror-transform context,
 and recipient symmetry/copy-number facts. It does not score, rank, select,
 authorize, export, or retry any donor model.
 
-The next planned robustness layer is **Construct Registration**. It will map
-logical construct sites onto whatever chain names, residue numbers, chain
-splits, ASU cut and copy multiplicity actually appear in a search model or MR
-solution. The common W path should remain nearly invisible: a cheap
-non-mutating Registration Scout runs inside AutoMR preflight, plausible models
-go through ordinary MR first, and the actual MR solution receives the
-authoritative ASU registration before PostMR mutates logical sites. If MR fails
-or a reviewed representation problem is known, a separate bounded
-Registration/Recut Rescue may materialize an equivalent cut or chain
-representation with full provenance. Guided cases use the simple interactive
-Registration Net described in
-[construct registration](docs/construct-registration.md).
+The next planned robustness layer is **Construct Registration**. Its backend
+foundation is now implemented and tested, but it is **not yet wired into live
+AutoMR/PostMR execution**. The merged core can represent logical construct sites
+independently of coordinate chain labels/numbering, freeze Registration Scout
+provenance, compare registration across stages, support explicit guided
+simple-chain choices, and inventory/scout multiple dataset PDB candidates
+without selecting one.
+
+Scout v1 remains conservative: ordinary identity/renumbering cases can be
+described deterministically, while renamed repetitive strands remain ambiguous
+rather than being ranked by sequence similarity. The current Oak development
+branch adds an **experimental Scout v2 proposal helper** that tests a stricter
+design-aware rule: propose a one-to-one chain mapping only when exactly one
+complete mapping has zero **unexplained** mismatches after accounting for
+explicit target-history and reviewed provider-baseline identities. It is
+proposal-only, cannot alter coordinates, and is not runtime authority.
+
+The intended live architecture remains: cheap non-mutating Registration Scout
+inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
+registration on the actual MR solution before PostMR changes logical sites, and
+a separate bounded Registration/Recut Rescue only for reviewed representation
+problems. Guided cases use the Registration Net described in
+[construct registration](docs/construct-registration.md). The minimum real-data
+validation queue is kept in
+[construct-registration-live-checks.md](docs/construct-registration-live-checks.md).
 
 ## Preparing an accepted MR solution
 
