@@ -89,6 +89,286 @@ def _copy_status(mapped_sites: set[str], expected_sites: set[str]) -> str:
     return "COMPLETE" if mapped_sites == expected_sites else "PARTIAL"
 
 
+
+
+_RESID_PARTS = re.compile(r"(-?(?:0|[1-9][0-9]*))([A-Za-z]?)$")
+
+
+def _split_site(site: str) -> tuple[str, str]:
+    chain, resid = site.split(":", 1)
+    return chain, resid
+
+
+def _target_chains(
+    target: Mapping[str, object],
+) -> tuple[list[str], dict[str, list[str]], dict[str, str]]:
+    ordered_sites, codes = _target_inventory(target)
+    order: list[str] = []
+    by_chain: dict[str, list[str]] = {}
+    for site in ordered_sites:
+        chain, resid = _split_site(site)
+        if chain not in by_chain:
+            order.append(chain)
+            by_chain[chain] = []
+        by_chain[chain].append(resid)
+    return order, by_chain, codes
+
+
+def _constant_residue_offset(
+    logical_ids: Sequence[str],
+    coordinate_ids: Sequence[str],
+) -> int | None:
+    """Return one numeric residue-number offset, or None if the pattern differs."""
+    if len(logical_ids) != len(coordinate_ids) or not logical_ids:
+        return None
+    offsets: set[int] = set()
+    for logical, coordinate in zip(logical_ids, coordinate_ids):
+        left = _RESID_PARTS.fullmatch(logical)
+        right = _RESID_PARTS.fullmatch(coordinate)
+        if left is None or right is None or left.group(2) != right.group(2):
+            return None
+        offsets.add(int(right.group(1)) - int(left.group(1)))
+        if len(offsets) > 1:
+            return None
+    return next(iter(offsets))
+
+
+def _simple_chain_candidates(
+    assessment: ModelAssessment,
+    target: Mapping[str, object],
+) -> tuple[list[str], dict[str, list[dict[str, object]]]]:
+    logical_order, logical_ids, _ = _target_chains(target)
+    candidates: dict[str, list[dict[str, object]]] = {}
+    for logical_chain in logical_order:
+        rows: list[dict[str, object]] = []
+        for coordinate_chain, coordinate_ids in (
+            assessment.polymer_residue_ids_by_chain.items()
+        ):
+            offset = _constant_residue_offset(
+                logical_ids[logical_chain],
+                coordinate_ids,
+            )
+            if offset is None:
+                continue
+            rows.append({
+                "coordinate_chain": coordinate_chain,
+                "residue_number_offset": offset,
+            })
+        candidates[logical_chain] = rows
+    return logical_order, candidates
+
+
+def _unique_chain_assignment(
+    logical_order: Sequence[str],
+    candidates: Mapping[str, Sequence[Mapping[str, object]]],
+) -> tuple[dict[str, Mapping[str, object]] | None, bool]:
+    """Return the unique bijection, or signal ambiguity without ranking guesses."""
+    solutions: list[dict[str, Mapping[str, object]]] = []
+
+    def visit(
+        index: int,
+        used: set[str],
+        chosen: dict[str, Mapping[str, object]],
+    ) -> None:
+        if len(solutions) >= 2:
+            return
+        if index == len(logical_order):
+            solutions.append(dict(chosen))
+            return
+        logical_chain = logical_order[index]
+        for option in candidates.get(logical_chain, ()):
+            coordinate_chain = option.get("coordinate_chain")
+            if not isinstance(coordinate_chain, str) or coordinate_chain in used:
+                continue
+            used.add(coordinate_chain)
+            chosen[logical_chain] = option
+            visit(index + 1, used, chosen)
+            chosen.pop(logical_chain, None)
+            used.remove(coordinate_chain)
+
+    visit(0, set(), {})
+    if len(solutions) == 1:
+        return solutions[0], False
+    return None, len(solutions) > 1
+
+
+def scout_simple_registration(
+    assessment: ModelAssessment,
+    target: Mapping[str, object],
+) -> dict[str, object]:
+    """Conservatively infer only identity/rename/constant-offset registrations.
+
+    The scout intentionally ignores residue-identity similarity when assigning
+    chains. Expected mutations must not become a hidden registration score.
+    Symmetry expansion, split-chain inference, copy-number inference, topology,
+    recutting, and coordinate edits are all deferred.
+
+    A unique simple mapping returns REGISTERED plus a full construct-registration
+    record. Multiple equally valid chain assignments return AMBIGUOUS. Missing
+    simple correspondence returns UNRESOLVED. No case silently guesses.
+    """
+    _target_inventory(target)
+    coordinate = _coordinate_inventory(assessment)
+    logical_order, logical_ids, _ = _target_chains(target)
+
+    if set(coordinate) == {
+        f"{chain}:{resid}"
+        for chain in logical_order
+        for resid in logical_ids[chain]
+    }:
+        registration = build_identity_registration(assessment, target)
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-scout",
+            "status": "REGISTERED",
+            "method": "identity-site-map",
+            "reason": "logical and coordinate site identifiers are identical",
+            "chain_candidates": {},
+            "registration": registration,
+            "semantics": {
+                "descriptive_only": True,
+                "sequence_similarity_used_for_assignment": False,
+                "symmetry_or_topology_inferred": False,
+                "coordinate_edit_performed": False,
+                "guided_review_required": False,
+            },
+        }
+
+    coordinate_chains = list(assessment.polymer_residue_ids_by_chain)
+    logical_order, candidates = _simple_chain_candidates(assessment, target)
+    candidate_view = {
+        logical_chain: [
+            {
+                "coordinate_chain": row["coordinate_chain"],
+                "residue_number_offset": row["residue_number_offset"],
+            }
+            for row in rows
+        ]
+        for logical_chain, rows in candidates.items()
+    }
+
+    common_semantics = {
+        "descriptive_only": True,
+        "sequence_similarity_used_for_assignment": False,
+        "symmetry_or_topology_inferred": False,
+        "coordinate_edit_performed": False,
+    }
+
+    if len(logical_order) != len(coordinate_chains):
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-scout",
+            "status": "UNRESOLVED",
+            "method": None,
+            "reason": (
+                "logical and coordinate chain counts differ; multiplicity or "
+                "split-chain inference is outside simple scout"
+            ),
+            "chain_candidates": candidate_view,
+            "registration": None,
+            "semantics": {
+                **common_semantics,
+                "guided_review_required": True,
+            },
+        }
+
+    if any(not rows for rows in candidates.values()):
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-scout",
+            "status": "UNRESOLVED",
+            "method": None,
+            "reason": (
+                "at least one logical chain has no coordinate chain with the "
+                "same length and constant residue-number offset"
+            ),
+            "chain_candidates": candidate_view,
+            "registration": None,
+            "semantics": {
+                **common_semantics,
+                "guided_review_required": True,
+            },
+        }
+
+    assignment, ambiguous = _unique_chain_assignment(logical_order, candidates)
+    if ambiguous:
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-scout",
+            "status": "AMBIGUOUS",
+            "method": None,
+            "reason": (
+                "more than one chain bijection satisfies simple length/offset "
+                "registration; scout refuses to rank by sequence similarity"
+            ),
+            "chain_candidates": candidate_view,
+            "registration": None,
+            "semantics": {
+                **common_semantics,
+                "guided_review_required": True,
+            },
+        }
+    if assignment is None:
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-scout",
+            "status": "UNRESOLVED",
+            "method": None,
+            "reason": "no complete one-to-one simple chain assignment exists",
+            "chain_candidates": candidate_view,
+            "registration": None,
+            "semantics": {
+                **common_semantics,
+                "guided_review_required": True,
+            },
+        }
+
+    mapping: dict[str, str] = {}
+    renamed = False
+    shifted = False
+    for logical_chain in logical_order:
+        option = assignment[logical_chain]
+        coordinate_chain = option["coordinate_chain"]
+        offset = option["residue_number_offset"]
+        renamed = renamed or coordinate_chain != logical_chain
+        shifted = shifted or offset != 0
+        coordinate_ids = assessment.polymer_residue_ids_by_chain[coordinate_chain]
+        for logical_resid, coordinate_resid in zip(
+            logical_ids[logical_chain],
+            coordinate_ids,
+        ):
+            mapping[f"{logical_chain}:{logical_resid}"] = (
+                f"{coordinate_chain}:{coordinate_resid}"
+            )
+
+    if renamed and shifted:
+        method = "whole-chain-rename-and-residue-offset"
+    elif renamed:
+        method = "whole-chain-rename"
+    else:
+        method = "residue-number-offset"
+
+    registration = build_construct_registration(
+        assessment,
+        target,
+        {"copy_1": mapping},
+        source=f"registration-scout:{method}",
+    )
+    return {
+        "schema_version": 1,
+        "kind": "construct-registration-scout",
+        "status": "REGISTERED",
+        "method": method,
+        "reason": "unique simple chain bijection",
+        "chain_candidates": candidate_view,
+        "registration": registration,
+        "semantics": {
+            **common_semantics,
+            "guided_review_required": False,
+        },
+    }
+
+
 def build_construct_registration(
     assessment: ModelAssessment,
     target: Mapping[str, object],
@@ -674,5 +954,6 @@ __all__ = [
     "freeze_construct_registration",
     "load_construct_registration",
     "logical_inventory_by_copy",
+    "scout_simple_registration",
     "validate_construct_registration",
 ]
