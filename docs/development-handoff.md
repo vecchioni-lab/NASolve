@@ -299,6 +299,12 @@ Policy changes should update that file alongside the human design contract so
 real-data testing can intentionally backtrack or revise inference behavior
 without losing why an earlier rule existed.
 
+The minimum human/real-workflow validation queue is maintained separately in
+[`construct-registration-live-checks.md`](construct-registration-live-checks.md).
+Keep that list intentionally small and trigger-based; it exists so clean-W,
+8D93-style recut, 8D31-like multiplicity, guided ambiguity and bounded multi-PDB
+live checks are not forgotten as implementation context moves across chats.
+
 Local focused validation reported **23 passing tests** in
 `tests/test_construct_registration.py` at Birch code head
 `4452295c3330de6d55bddd75b01be21f39afb222`. This is a user-local test
