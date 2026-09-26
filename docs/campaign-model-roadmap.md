@@ -420,26 +420,25 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 10. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates.
 11. **Partially implemented:** dataset PDB candidate inventory/scouting, provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation/selection remains future work. External model generation (including AlphaFold) is upstream, not a NASolve provider-execution responsibility.
 12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
-13. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
 
 ### Campaign Doctor stage
 
-14. **Implemented as read-only provenance:** describe checkpoint models as immutable candidate inputs without donor eligibility.
-15. **Implemented as descriptive comparison:** compare a verified checkpoint candidate with a recipient run's frozen target/context without scoring or rescue authorization.
-16. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
-17. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
-18. Keep failed MR branches and every rescue attempt immutable and inspectable.
+13. **Implemented as read-only provenance:** describe checkpoint models as immutable candidate inputs without donor eligibility.
+14. **Implemented as descriptive comparison:** compare a verified checkpoint candidate with a recipient run's frozen target/context without scoring or rescue authorization.
+15. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
+16. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
+17. Keep failed MR branches and every rescue attempt immutable and inspectable.
 
 ### Upstream NAPrep / processing boundary
 
-19. Define a stable optional NAPrep -> NASolve handoff for design, sequence/chemistry, sample, pin, collection and externally generated candidate-model metadata. NAPrep remains a separate package.
-20. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes inside NASolve's crystallographic campaign workflow.
-21. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
-22. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
+18. Define a stable optional NAPrep -> NASolve handoff for design, sequence/chemistry, sample, pin, collection and externally generated candidate-model metadata. NAPrep remains a separate package.
+19. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes inside NASolve's crystallographic campaign workflow.
+20. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
+21. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
 
 ### Later validation and curation
 
-23. Reuse the effective target sequence/chemistry/registration record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+22. Reuse the effective target sequence/chemistry/registration record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
 
 ## Immediate validation fixture
 
