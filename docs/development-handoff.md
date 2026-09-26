@@ -339,6 +339,22 @@ versus **unexpected mismatches**, and allow automatic disambiguation only when
 one complete one-to-one chain mapping has zero unexpected mismatches and every alternative has
 at least one. This is recorded as proposed policy, not runtime authority.
 
+### Oak: experimental design-aware Scout v2
+
+Following the renamed-chain real-W result, Oak prototypes a **proposal-only**
+design-aware helper. It enumerates bounded complete one-to-one chain mappings
+and classifies differences using explicit target assignment history plus an
+optional reviewed-provider baseline map.
+
+The hard proposal rule is intentionally non-scoring: exactly one mapping must
+have **zero unexplained mismatches**, and every alternative must have at least
+one. A mapping with merely fewer unexplained mismatches is still ambiguous.
+
+The helper is not runtime authority, cannot apply a mapping, and is not called
+by AutoMR/PostMR. Provider-baseline codes are caller-supplied experimental
+evidence for now; production use requires versioned/provider-bound provenance.
+Focused Oak validation is pending.
+
 ### First real-data registration shadow check
 
 The new registration core was then exercised read-only against existing ED
