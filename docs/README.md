@@ -27,9 +27,10 @@ NASolve documentation is organized by role, not chronology.
   search-model, checkpoint-candidate, and donor-to-recipient compatibility
   provenance; no donor eligibility or automatic reuse.
 - [`construct-registration.md`](construct-registration.md) — logical
-  construct-to-coordinate registration design plus the current Birch core/Scout
-  implementation boundary; [`construct-registration-intent.json`](construct-registration-intent.json)
-  records the machine-readable inference policy and validation checkpoint, and
+  construct-to-coordinate registration design, the merged core/Scout v1
+  boundary, and the current Oak experimental Scout v2 proposal layer;
+  [`construct-registration-intent.json`](construct-registration-intent.json)
+  records machine-readable inference policy and validation checkpoints, while
   [`construct-registration-live-checks.md`](construct-registration-live-checks.md)
   keeps the minimum human/real-workflow validation queue.
 - [`campaign-model-roadmap.md`](campaign-model-roadmap.md) — forward-looking
