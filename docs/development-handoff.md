@@ -264,9 +264,15 @@ Implemented:
 - complete-copy-only logical mutation/chemistry expansion;
 - checksum-bound freeze/load provenance and semantic revalidation;
 - exact accounting for mapped and unmapped polymer residues;
-- read-only logical inventories for later Hemlock/Moss/Campaign Doctor use; and
+- read-only logical inventories for later Hemlock/Moss/Campaign Doctor use;
 - conservative Registration Scout v1 for identity, same-name constant residue
-  offsets, unique whole-chain rename, and rename-plus-offset cases.
+  offsets, unique whole-chain rename, and rename-plus-offset cases;
+- descriptive per-candidate design-identity evidence that is explicitly barred
+  from Scout assignment/ranking;
+- checksum-bound `Model/registration_scout.json` freeze/load with semantic
+  revalidation; and
+- a non-decisional registration-transition comparison for later
+  Scout-versus-authoritative-MR reporting.
 
 Scout v1 deliberately does not use sequence-similarity ranking, modified-site
 similarity, symmetry expansion, split-chain inference, copy-number inference or
@@ -288,7 +294,9 @@ without losing why an earlier rule existed.
 Local focused validation reported **23 passing tests** in
 `tests/test_construct_registration.py` at Birch code head
 `4452295c3330de6d55bddd75b01be21f39afb222`. This is a user-local test
-checkpoint, not GitHub CI.
+checkpoint, not GitHub CI. Newer design-evidence/frozen-Scout/transition code is
+intentionally tracked as **pending validation** in the machine-readable intent
+ledger rather than being folded into that earlier green checkpoint.
 
 ## NAPrep boundary
 
