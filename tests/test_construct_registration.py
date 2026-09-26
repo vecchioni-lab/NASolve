@@ -1,5 +1,4 @@
 import copy
-import json
 import tempfile
 import unittest
 from hashlib import sha256
