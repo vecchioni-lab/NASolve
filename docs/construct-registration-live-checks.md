@@ -14,7 +14,7 @@ the live pipeline.
 | --- | --- | --- | --- |
 | ☑ | **Before merging a substantial registration backend branch** | Run the focused registration/model-candidate tests **and the full NASolve regression suite**. | **Birch complete: focused bundle 44/44 green; full suite 664 tests + 222 subtests green.** No unrelated regression observed. |
 | ☐ | **When Registration Scout / registration is first wired into AutoMR/PostMR** | Run one known, ordinary **clean W** dataset end-to-end through the existing path. | It takes the boring identity fast path, adds no unnecessary prompt, preserves the expected MR/PostMR result, and the frozen registration artifacts accurately describe the known construct. |
-| ☐ | **During Oak Scout v2 evaluation** | Re-run the renamed ED `run_011` real-W shadow case with explicit reviewed 5W6W provider-baseline identities (`A:13=DC`, `B:3=DG`). | Scout v2 remains proposal-only, returns exactly one zero-unexplained mapping `A->M, B->N, C->P, D->Q`, and reports `runtime_authority = false`. If not, keep the rule experimental and record why. |
+| ◐ | **During Oak Scout v2 evaluation** | Re-run the renamed ED `run_011` real-W shadow case with the complete verified `5W6W/C_G.pdb` provider identity set (`A:12=DC`, `A:13=DC`, `B:3=DG`, `B:4=DG`). | First attempt with only A:13/B:3 stayed safely `AMBIGUOUS` (0 zero-unexplained mappings). Next pass should remain proposal-only, return exactly one zero-unexplained mapping `A->M, B->N, C->P, D->Q`, and report `runtime_authority = false`. |
 | ☐ | **When non-identity registration / recut rescue first becomes executable** | Use the planned **8D93-style -> W** validation case and inspect the proposed mapping/recut in the Registration Net + Coot. | Chain mapping/cut is scientifically sensible; sticky-end/boundary differences are shown correctly; required terminal-phosphate intent remains separate and correct; the transformed model is reconstructible from provenance. |
 | ☐ | **When multiplicity handling first becomes live** | Use an **8D31-like extra-copy** case, plus a partial-copy case when available. | Complete registered copies receive the intended logical sequence/modification actions; a partial copy is visibly classified as partial and is never silently treated as a complete second copy. |
 | ☐ | **When guided ambiguity handling gets a UI/CLI** | Exercise a deliberately ambiguous short repeat / single-base-overhang mapping. | NASolve shows the alternatives instead of guessing; the user can select one minimal mapping decision; that choice freezes/replays exactly and does not silently become a global recipe. |
@@ -78,6 +78,19 @@ distinguishes mismatches already explained by declared dataset/reference
 changes from unexpected ordinary-base mismatches. This should be evaluated as
 explicit categorical evidence, not introduced as a generic sequence-similarity
 score.
+
+### Oak Scout v2 first real-W attempt — incomplete provider evidence
+
+The first v2 shadow run used the renamed ED `run_011` model plus only
+`A:13=DC` and `B:3=DG` as provider evidence. Scout v2 returned
+`AMBIGUOUS`: 6 complete mappings, 0 zero-unexplained mappings. The intended
+A->M/B->N/C->P/D->Q mapping had 38 exact identities, 2 provider-explained
+differences and 2 unexplained differences.
+
+Inspection of the actual standard provider `MR_frames/5W6W/C_G.pdb` verified
+that the two missing identities are `A:12=DC` and `B:4=DG`. Thus the
+provider-specific four-site identity set is A:12/A:13=DC and B:3/B:4=DG.
+This is a validation of fail-closed behavior, not a failed scientific mapping.
 
 ## Current validation note
 
