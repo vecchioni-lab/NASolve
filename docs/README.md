@@ -30,9 +30,11 @@ NASolve documentation is organized by role, not chronology.
   construct-to-coordinate registration design, the merged core/Scout v1
   boundary, and the current Oak experimental Scout v2 proposal layer;
   [`construct-registration-intent.json`](construct-registration-intent.json)
-  records machine-readable inference policy and validation checkpoints, while
+  records machine-readable inference policy, validation checkpoints, and real-W
+  attempt history, while
   [`construct-registration-live-checks.md`](construct-registration-live-checks.md)
-  keeps the minimum human/real-workflow validation queue.
+  keeps the minimum human/real-workflow validation queue, including the current
+  renamed-real-W rerun gate with the complete verified C_G provider identity set.
 - [`campaign-model-roadmap.md`](campaign-model-roadmap.md) — forward-looking
   model/sequence/processing architecture and the current Campaign Doctor
   implementation boundary.
