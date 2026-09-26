@@ -26,6 +26,9 @@ NASolve documentation is organized by role, not chronology.
 - [`model-compatibility-facts.md`](model-compatibility-facts.md) — descriptive
   search-model, checkpoint-candidate, and donor-to-recipient compatibility
   provenance; no donor eligibility or automatic reuse.
+- [`construct-registration.md`](construct-registration.md) — planned logical
+  construct-to-coordinate registration, Registration Scout, authoritative ASU
+  registration, guided Registration Net and bounded recut rescue.
 - [`campaign-model-roadmap.md`](campaign-model-roadmap.md) — forward-looking
   model/sequence/processing architecture and the current Campaign Doctor
   implementation boundary.
