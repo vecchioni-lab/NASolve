@@ -1121,6 +1121,27 @@ class ConstructRegistrationTests(unittest.TestCase):
             self.assertIsNone(result["proposed_selection"])
             self.assertIn("more than one", result["reason"])
 
+    def test_design_aware_v2_no_complete_one_to_one_mapping_is_unresolved(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = assessment(
+                root,
+                [
+                    ("M", 1, "DA"),
+                    ("N", 1, "DA"),
+                    ("N", 2, "DC"),
+                ],
+            )
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+                ("B:1", [("family_reference", "DA")]),
+            )
+            result = propose_design_aware_chain_mapping(model, logical_target)
+            self.assertEqual(result["status"], "UNRESOLVED")
+            self.assertEqual(result["assignment_count"], 0)
+            self.assertIsNone(result["proposed_selection"])
+            self.assertIn("no complete one-to-one", result["reason"])
+
     def test_design_aware_v2_assignment_budget_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
