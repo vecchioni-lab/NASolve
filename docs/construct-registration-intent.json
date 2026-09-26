@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-birch-8",
+  "version": "2026-09-26-spruce-1",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -241,5 +241,32 @@
     "reported_by": "user-local-run",
     "github_ci": false,
     "note": "Checkout included documentation-only commits after the validated code head; no source/test code changed after code_head."
+  },
+  "shadow_live_validation": {
+    "date": "2026-09-26",
+    "mode": "manual-read-only-existing-run",
+    "dataset_context": "ED",
+    "run_id": "run_011",
+    "logical_target_site_count": 42,
+    "search_model": {
+      "scout_status": "REGISTERED",
+      "method": "identity-site-map",
+      "identity_mismatch_count": 4
+    },
+    "postmr_model": {
+      "scout_status": "REGISTERED",
+      "method": "identity-site-map",
+      "identity_mismatch_count": 0
+    },
+    "transition": {
+      "copy_structure": "SAME",
+      "copy_multiplicity": "SAME",
+      "complete_copy_identity_classes": "DIFFERENT",
+      "single_copy_coordinate_realization": "SAME"
+    },
+    "interpretation": "Registration remained stable while PostMR normalized residue identities to the logical target.",
+    "pipeline_wiring_validated": false,
+    "human_live_check_completed": false,
+    "reason_not_completed": "Registration was invoked manually/read-only against existing run artifacts rather than through live AutoMR/PostMR integration."
   }
 }
