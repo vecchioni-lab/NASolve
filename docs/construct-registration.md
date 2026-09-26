@@ -213,6 +213,46 @@ NASolve can proceed. NASolve should present its best deterministic proposal,
 explain what is uncertain, and ask only for the smallest crystallographic
 decision required to make the mapping authoritative.
 
+## Chosen design rationale
+
+The preferred architecture is intentionally asymmetric: **understand first,
+edit only when necessary**.
+
+The design decisions are:
+
+1. **Logical construct identity outranks PDB labels.** Chain names, residue
+   numbers and ASU boundaries are coordinate serialization, not construct
+   identity.
+2. **Registration comes before sequence mutation conceptually.** A mutation such
+   as `A:12` must be attached to a logical site before NASolve decides which
+   coordinate residue(s) to edit.
+3. **Ordinary MR gets an early chance.** A plausible search model should not be
+   heavily recut/mutated before Phaser merely to make its labels resemble the
+   intended construct. MR often supplies the best oriented coordinate registry.
+4. **The actual MR solution is downstream authority.** PostMR must register the
+   solved coordinate model again; the pre-MR scout is evidence, not authority.
+5. **Representation rescue is a separate branch.** Recutting, chain
+   split/join/relabel operations and reviewed boundary adjustments become
+   explicit AutoMR/MR-Doctor rescue candidates rather than invisible setup
+   edits.
+6. **Independent facts stay independent.** Registration, sequence identity,
+   coverage, terminal chemistry, copy multiplicity, MR statistics and later
+   topology should not be collapsed into one score.
+7. **Humans resolve scientific ambiguity, not bookkeeping.** NASolve handles
+   deterministic renaming/renumbering/copy propagation automatically and asks
+   the user only when genuinely different crystallographic interpretations
+   remain.
+8. **Every unusual interpretation earns provenance.** The stranger the ASU,
+   multiplicity or cut, the richer the report should become.
+9. **Successful local knowledge can become a recipe only explicitly.** Guided
+   mappings may later be promoted into reviewed lab recipes, but neither one
+   successful run nor Campaign Doctor repetition silently changes global rules.
+10. **Backward compatibility matters.** Clean W runs should remain fast and
+    boring; historical literal `CHAIN:RESID` runs remain readable.
+
+This arrangement gives NASolve useful deterministic "intelligence" without
+turning inference into hidden scientific authority.
+
 ## Timing: scout, MR, authoritative registration, rescue
 
 NASolve should not require heavy coordinate surgery before ordinary MR when MR
