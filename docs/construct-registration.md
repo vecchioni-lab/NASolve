@@ -817,6 +817,102 @@ The goal is not to force nature back into the synthesis spreadsheet. It is to
 use the spreadsheet as high-authority experimental intent while allowing the
 solved periodic object to disagree visibly.
 
+### Repeat-bearing / root strands and stoichiometry
+
+Many designed DNA tiles contain one strand with an internal repeated pattern or
+declared n-fold role: for example, the central/root strand of a tensegrity
+triangle. These strands need explicit representation because two different
+ideas are otherwise easy to conflate:
+
+- **tile stoichiometry** — how many copies of each complete input strand were
+  intended per designed tile; and
+- **internal repeat order** — how many repeated domains/roles exist within one
+  repeat-bearing strand.
+
+Both belong in the design-level tile/strand sheet when known. They are
+experimental intent, not constraints that the observed crystal must obey.
+
+A repeat-aware strand record should therefore be able to retain, at minimum:
+
+- full input strand identity and sequence;
+- intended copies per declared tile / input stoichiometry;
+- optional declared tile role such as `ROOT`, `CENTER`, `ARM`, `EDGE`, or a
+  project-specific free-form role;
+- optional designed internal repeat order;
+- optional residue/domain ranges for the repeated units when known;
+- whether repeated units are sequence-identical or only role-equivalent;
+- observed residue/domain coverage in the solved periodic graph;
+- observed number of strand realizations/copies where that quantity is
+  meaningful;
+- observed repeat-phase assignments when distinguishable; and
+- a topological closure/return length when the repeat phase closes only after
+  several crystallographic symmetry/unit-cell steps.
+
+The last item is important. Designed internal symmetry need not be commensurate
+with the local crystallographic presentation. A repeat-bearing strand may
+participate in a lattice whose symmetry advances the strand through repeat
+phases and returns to the original phase only after a longer superperiod. In a
+known lab-style example, a fivefold repeat-bearing object was accommodated in a
+fourfold/screw lattice and the repeat phase closed only after twenty unit-cell
+steps. The crystal is not wrong and the strand is not 'missing copies'; the
+designed repeat count has simply ceased to be a local tile-copy invariant.
+
+Similarly, a declared repeat-bearing strand may be only partly used by the
+observed assembly. Some repeated domains or residue ranges may be disordered,
+absent, or excluded from the ordered crystal while other parts of the same
+input strand remain structurally incorporated. Topo Net must therefore track
+coverage at residue/domain level rather than reducing strand presence to a
+single boolean.
+
+Useful observed classifications may include:
+
+- `FULLY_USED` — the complete input strand is represented in the periodic
+  graph;
+- `PARTIALLY_USED` — only a defined subset of residues/repeat domains is
+  structurally represented;
+- `ABSENT` — no defensible mapping of the supplied strand is observed;
+- `REORGANIZED` — the strand is present but its repeat/copy organization does
+  not match the declared tile model;
+- `LONG_PERIOD` — repeat phase returns only after a longer topological
+  closure/superperiod than the nominal tile; and
+- `UNRESOLVED` — the available coordinates/sequence symmetry do not permit a
+  unique interpretation.
+
+These are descriptive states, not failure grades.
+
+### Repeat-aware net finding
+
+The future tile/net finder should explicitly look for repeat-bearing strands,
+but must never use repeat order as an instruction to force a mapping. Its
+evidence order should be roughly:
+
+1. Prefer an explicit user/project repeat annotation when supplied.
+2. Retain exact/reviewed repeated-domain definitions from the full input
+   sequence sheet.
+3. When no annotation exists, detect candidate internal repeats only as
+   descriptive hypotheses; low-complexity/repetitive sequence alone must not
+   authorize a tile assignment.
+4. Map repeat domains onto the periodic crystal graph and record possible
+   repeat-phase correspondences.
+5. Follow connectivity through crystallographic symmetry and determine whether
+   repeat phase closes locally, over a longer sequence of symmetry/unit-cell
+   steps, or remains unresolved.
+6. Compare declared versus observed stoichiometry, repeat usage and closure as
+   separate facts. Do not collapse them into one compatibility score.
+
+Conceptually this is a small monodromy/phase problem on the periodic graph:
+walking through symmetry-connected copies may advance a repeat-bearing strand
+through its internal phases before returning to the original phase. Topo Net
+does not need mathematical jargon in the UI, but the backend should preserve
+that distinction because it naturally handles repeat counts that nature
+frustrates, extends, or reorganizes.
+
+A dramatic emergent assembly—such as an intended incomplete triangle producing
+a cuboctahedral object—should therefore be able to preserve the original input
+strand stoichiometry and repeat annotations while assigning a different
+`EMERGENT` tile/periodic organization. The design sheet remains evidence of
+what was built; the periodic graph records what crystallized.
+
 ### Topo Surgeon / Topo Doctor
 
 Topo Net surgery will sometimes produce locally awkward coordinate geometry,
