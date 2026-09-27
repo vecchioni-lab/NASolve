@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-10",
+  "version": "2026-09-27-oak-11",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,8 +105,8 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "status": "fresh-native-structured-provider-check-optional",
-    "remaining_gate": "Optional confidence check before merge/readiness: repeat the same provenance-bound real-W shadow case against a fresh run that already contains native structured model_provider provenance. The full NASolve regression gate is passed."
+    "status": "none-for-current-experimental-scope",
+    "remaining_gate": "No further validation gate is required for the current backend-only experimental Scout v2 scope. AutoMR/PostMR runtime integration and any promotion to authority remain separate future work."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -234,9 +234,20 @@
       "github_ci": false,
       "scope": "full NASolve regression suite after provenance-bound Scout v2 source/test/docs changes",
       "note": "User reported 672 passed. No runtime or subtest count was reported in this checkpoint."
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "62a1acddf2940b3a5e651fe79aeeeab21627fe53",
+      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "fresh ED run_013 native structured model_provider provenance shadow test through provider_assessment + model_provider Scout v2 interface",
+      "result": "PROPOSED; provider_bound=true; caller_codes=false; 6 mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives 12/11/16/17/10 unexplained; runtime_authority=false"
     }
   ],
-  "current_validation_status": "OAK_V2_FULL_REGRESSION_PASSED_FRESH_NATIVE_PROVIDER_CHECK_OPTIONAL",
+  "current_validation_status": "OAK_V2_VALIDATION_COMPLETE_BACKEND_ONLY_NON_RUNTIME",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -548,7 +559,8 @@
       "live_pipeline_changed": false,
       "runtime_authority": false,
       "real_w_shadow_validation_status": "PASSED_WITH_VERIFIED_HISTORICAL_PROVIDER_BRIDGE",
-      "full_regression_status": "PASSED_672_LOCAL_TESTS"
+      "full_regression_status": "PASSED_672_LOCAL_TESTS",
+      "fresh_native_provider_validation_status": "PASSED_RUN_013"
     },
     "real_w_attempt_3": {
       "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_PROVENANCE_BOUND",
@@ -596,13 +608,52 @@
         10
       ],
       "interpretation": "The provenance-bound provider interface reproduced the same unique zero-unexplained mapping from the real renamed-W nuisance case without a caller-supplied residue dictionary. Historical provider provenance was bridged only from explicit verified run facts."
+    },
+    "real_w_attempt_4": {
+      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_FRESH_NATIVE_PROVIDER",
+      "dataset_context": "ED fresh run_013 preflight reproduced from run_011 intent",
+      "interface": "provider_assessment + native structured model_provider",
+      "source_run": "run_013",
+      "model_provider": {
+        "frame": "W",
+        "kind": "standard-frame-catalogue",
+        "location": "frame-catalogue",
+        "selection": "fallback",
+        "selector": "C_G.pdb"
+      },
+      "provider_model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
+      "provider_baseline_bound": true,
+      "provider_codes_caller_supplied": false,
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 1,
+      "runtime_authority": false,
+      "proposed_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 4,
+        "unexplained_mismatch_count": 0
+      },
+      "alternative_unexplained_mismatch_counts": [
+        12,
+        11,
+        16,
+        17,
+        10
+      ],
+      "interpretation": "Fresh current-schema AutoMR preflight supplied native structured model_provider provenance. The provenance-bound Scout v2 interface reproduced the same unique zero-unexplained mapping without historical-schema reconstruction or caller-supplied residue codes."
     }
   },
   "active_development_branch": {
     "name": "oak",
     "pull_request": 22,
     "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "FULL_REGRESSION_PASSED_FRESH_NATIVE_PROVIDER_CHECK_OPTIONAL"
+    "status": "VALIDATION_COMPLETE_BACKEND_ONLY_NON_RUNTIME"
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
