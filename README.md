@@ -812,8 +812,14 @@ inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
 registration on the actual MR solution before PostMR changes logical sites, and
 a separate bounded Registration/Recut Rescue only for reviewed representation
 problems. Guided cases use the Registration Net described in
-[construct registration](docs/construct-registration.md). The minimum real-data
-validation queue is kept in
+[construct registration](docs/construct-registration.md). A later opt-in Topo Net
+extension is being designed specifically for periodic nucleic-acid frameworks:
+it separates full input strands, tile hypotheses, the observed periodic crystal
+graph and incidental ASU serialization. The design also preserves intended
+strand stoichiometry and repeat-bearing/root-strand annotations while allowing
+the observed lattice to show partial strand use, reorganized repeat order or
+long-period repeat-phase closure rather than forcing the synthesis design onto
+the crystal. The minimum real-data validation queue is kept in
 [construct-registration-live-checks.md](docs/construct-registration-live-checks.md).
 
 ## Preparing an accepted MR solution
