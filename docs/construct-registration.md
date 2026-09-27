@@ -321,8 +321,13 @@ provider coordinates, and records the source-model SHA-256 in the returned
 baseline evidence.
 
 This provenance-bound implementation remains experimental and non-runtime.
-Focused local tests are pending after the code change; the previously recorded
-41-test checkpoint predates this slice.
+The focused Construct Registration suite now passes **43 tests locally** at
+checkout/test head `507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying
+source-behavior head remains
+`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added guardrail tests
+explicitly reject incomplete provider target coverage and provider-selector/source
+mismatch. Real-W shadow validation through this new provenance-bound interface
+remains separate from the earlier dictionary-based shadow result.
 
 ### Guided mode
 
