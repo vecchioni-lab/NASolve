@@ -401,9 +401,10 @@ without losing why an earlier rule existed.
 
 The minimum human/real-workflow validation queue is maintained separately in
 [`construct-registration-live-checks.md`](construct-registration-live-checks.md).
-Keep that list intentionally small and trigger-based; it exists so clean-W,
-8D93-style recut, 8D31-like multiplicity, guided ambiguity and bounded multi-PDB
-live checks are not forgotten as implementation context moves across chats.
+Keep the top-level queue trigger-based, with project-scoped banks beneath it;
+it exists so clean-W wiring, blind 8D93 -> 3GBI surgery, 8D31-like multiplicity,
+repeat/root-strand closure, emergent-tile cases, guided ambiguity and bounded
+multi-PDB checks are not forgotten as implementation context moves across chats.
 
 Validation history is preserved rather than overwritten:
 
