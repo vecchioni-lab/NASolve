@@ -264,17 +264,41 @@ Guided mode is reserved for crystallographically interesting cases such as:
 - sticky-end/arm coverage differences; or
 - several non-equivalent registrations.
 
-The **Registration Net** will be a simple 2-D SVG/HTML schematic, not a second
-molecular viewer. It should show logical strands, coordinate fragments,
-symmetry/ASU seams, complete/partial copies, sticky ends, important logical
-sites and mapping bands. Minimal click actions will accept/reassign fragments,
-select equivalent cuts/recipes, mark partial/extraneous fragments and preview
-recuts; Coot remains the coordinate editor.
+The **Registration Net** remains the general 2-D SVG/HTML mapping view for
+logical strands, coordinate fragments, symmetry/ASU seams, complete/partial
+copies, sticky ends, important logical sites and mapping bands. It is not a
+second molecular viewer; Coot remains the coordinate editor.
 
-The first planned validation ladder begins with ordinary W identity
-registration and an 8D93-style -> W recut fixture, then chain renaming,
-numbering offsets, chain splits, multicopy/partial-copy ASUs and bounded
-multi-PDB MR candidates.
+A separate opt-in **Topo Net** extension is now planned for explicitly declared
+periodic self-assembling frameworks. Topo Net should show the current ASU plus
+only connected symmetry mates and operate on a periodic molecular graph rather
+than treating the current PDB chain serialization as chemistry. It should let a
+user preview moving an ASU seam past residues, moving symmetry-equivalent
+fragments across the chosen ASU, split/join/relabel/renumber operations and
+newly exposed sticky ends before coordinates are materialized.
+
+Critical semantic distinction: an ASU seam may create a coordinate-file
+"false nick" while the logical strand remains chemically continuous through a
+symmetry operation. Such a representation seam keeps continuation-phosphate
+intent and must not be reinterpreted as a true free 5-prime terminus merely
+because the PDB starts a new chain there. A true chemical nick remains a
+different, stronger edit that changes the covalent graph and terminus chemistry.
+
+Materialization should write an immutable surgery manifest, use exact symmetry
+transforms/chain operations in Coot, then re-run Phenix interpretation. Two
+later empirical gates are required before automation: (1) determine whether a
+Phenix symmetry-operation bond can safely enforce the seam connection without
+uncontrolled phosphate-angle/clash behavior; and (2) practice bounded
+single-residue Coot RSR on several disposable recuts where a phosphate/O3-prime
+connection is initially too long, auditing which atoms move and whether Phenix
+then interprets the linkage cleanly.
+
+The first planned blind topology-surgery fixture is **8D93 -> 3GBI-style
+representation without coordinate cheating**: the transform receives 8D93,
+symmetry and requested cut intent, while 3GBI coordinates are withheld until
+the post-transform comparison. Ordinary W identity registration, chain
+renaming/numbering offsets, multicopy/partial-copy ASUs and bounded multi-PDB MR
+checks remain separate validation rungs.
 
 ### Birch implementation checkpoint
 
