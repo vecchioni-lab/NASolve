@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-12",
+  "version": "2026-09-27-oak-13",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -301,7 +301,10 @@
       "bounded multi-PDB MR live check when selection policy exists",
       "symmetry-spanning phosphate bond/restraint experiment before automatic enforcement",
       "bounded single-residue Coot RSR seam-repair practice before automation",
-      "blind 8D93 to 3GBI-style Topo Net surgery check when executable"
+      "blind 8D93 to 3GBI-style Topo Net surgery check when executable",
+      "3GBI/8D93 project-scoped representation-seam and Topo Surgeon repair ladder",
+      "P4_132 two-triangle-ASU tile-versus-ASU multiplicity validation",
+      "full-strand and emergent-tile project-scoped reconstruction/ambiguity validation"
     ]
   },
   "latest_focused_validation": {
@@ -670,7 +673,7 @@
       "docs/development-handoff.md immediate working edge",
       "active pull request body / branch description"
     ],
-    "rule": "Keep these synchronized as implementation or inference policy changes so a new chat or collaborator can recover current state without conversation history."
+    "rule": "Keep code/current inference policy and future Topo Net design intent synchronized across active docs. Preserve the separation between input strands, tile hypotheses, periodic crystal graph and ASU serialization; keep project-scoped human validation queues explicit."
   },
   "future_topo_net_design": {
     "status": "PLANNED_NOT_CURRENT_RUNTIME_SCOPE",
@@ -759,6 +762,81 @@
         "materialize a Phenix-interpretable model",
         "compare with 3GBI only after transformation"
       ]
+    },
+    "primary_problem_bias": {
+      "domain": "designed 3-D DNA lattices / periodic nucleic-acid frameworks",
+      "strategy": "Solve this family well first; generalize later rather than weakening the initial topology semantics with generic crystallographic abstractions."
+    },
+    "design_state_layers": [
+      {
+        "layer": "input_strand_inventory",
+        "authority": "experimental intent",
+        "meaning": "Complete synthesized/declared strands, modifications and intended stoichiometry/copy counts when known.",
+        "caveat": "A declared strand may be absent from the solved crystal and observed copy number may disagree with the recipe."
+      },
+      {
+        "layer": "tile_hypothesis",
+        "authority": "declared or interpreted assembly model",
+        "statuses": [
+          "DECLARED",
+          "INFERRED",
+          "EMERGENT",
+          "UNRESOLVED"
+        ],
+        "meaning": "Finite design/assembly unit including junctions, sticky ends, true nicks/termini and design-level multiplicity."
+      },
+      {
+        "layer": "periodic_crystal_graph",
+        "authority": "observed structural interpretation",
+        "meaning": "Actual repeating molecular connectivity implied by coordinates plus crystallographic symmetry."
+      },
+      {
+        "layer": "asu_serialization",
+        "authority": "coordinate representation only",
+        "meaning": "One ASU/PDB cut of the periodic graph including chain labels, residue numbering, representation seams and realized tile fragments/copies."
+      }
+    ],
+    "tile_hypothesis_policy": {
+      "ordinary_case": "Use an explicitly declared tile/project design when available.",
+      "full_strand_reconstruction": "When complete input strands are supplied, they outrank ASU chain fragments as design evidence and may be mapped into the periodic graph under reviewed fail-closed rules.",
+      "emergent_case": "If the solved periodic graph cannot be represented faithfully by the declared tile, propose an EMERGENT tile hypothesis while retaining the declared tile as experimental intent.",
+      "ambiguous_case": "If more than one non-equivalent finite tile decomposition survives, remain UNRESOLVED and require expert review.",
+      "multiplicity_separation": "Tile identity, number of tile copies realized in the ASU, and coordinate-chain decomposition are separate dimensions.",
+      "example": "A P4_132 ASU containing two complete triangle copies does not redefine the triangle tile; it reports two realized tile copies in that ASU."
+    },
+    "input_strand_edge_cases": [
+      "declared strand absent from observed structure",
+      "several copies of one input strand",
+      "fewer or more effective tile copies than the input recipe",
+      "one input strand split among ASU/symmetry fragments",
+      "declared tile inconsistent with observed periodic graph",
+      "several non-equivalent tile hypotheses compatible with the evidence",
+      "no faithful finite tile decomposition currently known"
+    ],
+    "topo_surgeon": {
+      "status": "PLANNED_BOUNDED_REPAIR_LAYER",
+      "position": "Between Topo Net preview/materialization and expert manual Coot fallback.",
+      "purpose": "Repair locally awkward geometry caused by reslicing, mutation, chain reconstruction or imperfect MR coordinates without hiding uncertainty.",
+      "candidate_operations": [
+        "exact symmetry materialization without relaxation",
+        "reviewed mutation-before versus mutation-after materialization variants",
+        "single-residue Coot RSR at the affected seam",
+        "slightly broader local Coot repair only after minimal repair fails",
+        "alternate reviewed split/join orderings",
+        "later experimentally validated symmetry-spanning bond policies"
+      ],
+      "audit_dimensions": [
+        "Phenix local bond/angle geometry and .geo interpretation",
+        "phosphate orientation and cross-symmetry clashes",
+        "base-plane integrity",
+        "reviewed pairing/stacking geometry when applicable",
+        "sugar/backbone distortion",
+        "unintended neighboring/remote coordinate movement",
+        "residue/deposition identity preservation",
+        "realization of intended periodic connectivity"
+      ],
+      "selection_policy": "No hidden composite topology score. Apply reviewed hard gates; preserve surviving alternatives for inspection when necessary.",
+      "manual_fallback": "Open exact model/maps/symmetry seam in Coot for an expert user, then import the saved repaired PDB as a new immutable USER_REVIEWED checkpoint while retaining failed automated attempts."
     }
   }
 }
