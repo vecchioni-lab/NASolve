@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-8",
+  "version": "2026-09-27-oak-9",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,8 +105,8 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "status": "provenance-bound-real-w-shadow-rerun-pending",
-    "remaining_gate": "Exercise the renamed ED run_011 real-W Scout v2 case through the new provider_assessment + model_provider provenance interface before any runtime-promotion discussion."
+    "status": "full-regression-and-fresh-structured-provider-check-pending",
+    "remaining_gate": "Before PR readiness, run the full NASolve regression suite and preferably repeat the same provenance-bound real-W shadow check against a fresh run that already contains structured model_provider provenance, avoiding historical-schema reconstruction."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -212,9 +212,20 @@
       "reported_by": "user-local-run",
       "github_ci": false,
       "scope": "provenance-bound Scout v2 provider evidence plus explicit rejection tests for incomplete provider coverage and provider-selector/source mismatch"
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "b1ee6847fea998d1003efe674ddd3052c2fcf58f",
+      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "renamed ED run_011 real-W Scout v2 shadow rerun through provider_assessment + model_provider provenance-bound interface, with historical provider record reconstructed only from verified model path/source/SHA facts",
+      "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained; provider_bound=true; caller_codes=false; runtime_authority=false"
     }
   ],
-  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_43_FOCUSED_PASSED_REAL_W_INTERFACE_RERUN_PENDING",
+  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_REAL_W_SHADOW_PASSED",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -527,14 +538,62 @@
         "never accept a caller-supplied site-to-code residue dictionary"
       ],
       "live_pipeline_changed": false,
-      "runtime_authority": false
+      "runtime_authority": false,
+      "real_w_shadow_validation_status": "PASSED_WITH_VERIFIED_HISTORICAL_PROVIDER_BRIDGE"
+    },
+    "real_w_attempt_3": {
+      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_PROVENANCE_BOUND",
+      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
+      "interface": "provider_assessment + model_provider",
+      "historical_run_provider_bridge": {
+        "structured_model_provider_present": false,
+        "reconstruction_mode": "manual-read-only-from-explicit-historical-run-facts",
+        "verified_inputs": {
+          "model_path": "MR_frames/5W6W/C_G.pdb",
+          "model_source": "standard frame catalogue (W; fallback C_G.pdb)",
+          "model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817"
+        },
+        "reconstructed_provider": {
+          "kind": "standard-frame-catalogue",
+          "selection": "fallback",
+          "frame": "W",
+          "location": "frame-catalogue",
+          "selector": "C_G.pdb"
+        },
+        "note": "The provider record was reconstructed only after exact path/source/SHA assertions against the current provider model; no residue identities were supplied by the caller."
+      },
+      "provider_baseline_bound": true,
+      "provider_codes_caller_supplied": false,
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 1,
+      "runtime_authority": false,
+      "proposed_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 4,
+        "unexplained_mismatch_count": 0
+      },
+      "alternative_unexplained_mismatch_counts": [
+        12,
+        11,
+        16,
+        17,
+        10
+      ],
+      "interpretation": "The provenance-bound provider interface reproduced the same unique zero-unexplained mapping from the real renamed-W nuisance case without a caller-supplied residue dictionary. Historical provider provenance was bridged only from explicit verified run facts."
     }
   },
   "active_development_branch": {
     "name": "oak",
     "pull_request": 22,
     "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "PROVIDER_PROVENANCE_FOCUSED_VALIDATED_REAL_W_INTERFACE_RERUN_PENDING"
+    "status": "PROVIDER_PROVENANCE_REAL_W_SHADOW_PASSED_FULL_REGRESSION_PENDING"
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
