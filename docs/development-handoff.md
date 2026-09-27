@@ -196,6 +196,29 @@ hard gates, transformations, attempts and stopping reason without rewriting the
 recipient's authoritative observations, Free-R set, target chemistry or failed
 branch.
 
+### Near-horizon geometry-diverse campaign milestone
+
+A forthcoming real validation case contains geometry-diverse datasets with one
+prepared PDB search model and associated sequence definition per dataset. This
+is now recorded in the campaign roadmap as a **near-horizon, not immediate**
+milestone.
+
+The first executable slice should simply generalize the existing campaign
+planner/executor to admit frozen nonstandard per-dataset model providers and
+their sequence sources, while preserving the normal guarded stage engines.
+Each dataset remains scientifically independent: no geometry-family inference,
+cross-dataset model ranking, solved-sibling reuse or Campaign Doctor rescue is
+authorized merely because the datasets share a campaign.
+
+For the first live slice, model-to-sequence correspondence must be unambiguous.
+Nontrivial registration, recuts, split chains, unexpected multiplicity or other
+representation ambiguity should stop only that dataset for inspection. A small
+3-5 dataset geometry-diverse campaign is the preferred live fixture once the
+underlying data are stable enough for repeatable validation.
+
+This milestone is intentionally downstream of the current Oak Scout-v2 work and
+should not expand PR #22's implementation scope.
+
 ## Construct registration: next structural robustness layer
 
 The next planned scientific infrastructure is **Construct Registration**:
