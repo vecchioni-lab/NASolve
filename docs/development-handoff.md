@@ -314,6 +314,27 @@ structure may place two complete triangular tile copies in one ASU without
 making the ASU itself the tile. Tile multiplicity, ASU multiplicity and
 coordinate-chain decomposition must remain separate reported dimensions.
 
+Repeat-bearing/root strands need their own design facts. Many tile families
+contain one central/root strand with an internal n-fold repeated role while
+other strands occur at higher per-tile copy number. Preserve intended
+copies-per-tile and internal repeat order separately in the tile sequence
+sheet; neither should be inferred from incidental ASU chain counts.
+
+The observed periodic graph may violate both expectations. Record repeat-domain
+coverage and repeat phase when possible, including cases where only part of a
+root strand is ordered/used. Also allow a long topological closure: a known
+fivefold repeat-bearing object embedded in a fourfold/screw lattice returned
+to its original repeat phase only after twenty unit-cell steps. That is not a
+missing-copy failure. It is an observed periodic organization in which the
+nominal root-strand copy/repeat count is no longer a local tile invariant.
+
+The net finder should explicitly consume declared root/repeat annotations and
+may propose repeats from full sequences only as non-authoritative hypotheses.
+It should map repeat domains into the periodic graph, follow phase changes
+through symmetry, and report local closure, long-period closure, partial use,
+reorganization or unresolved phase as separate descriptive facts. It must not
+force the designed n-fold order onto the structure.
+
 Topo surgery also needs a bounded local repair layer rather than assuming one
 Coot action always works. A future **Topo Surgeon/Doctor** may branch a small
 declared set of materialization/mutation/RSR strategies, then compare Phenix
