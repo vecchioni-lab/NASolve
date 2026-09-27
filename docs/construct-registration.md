@@ -326,8 +326,17 @@ checkout/test head `507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying
 source-behavior head remains
 `c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added guardrail tests
 explicitly reject incomplete provider target coverage and provider-selector/source
-mismatch. Real-W shadow validation through this new provenance-bound interface
-remains separate from the earlier dictionary-based shadow result.
+mismatch.
+
+The renamed real-W shadow case has now also passed through the new
+`provider_assessment + model_provider` interface with exactly one
+zero-unexplained A->M/B->N/C->P/D->Q proposal (38 exact + 4 provider-explained;
+alternatives 12/11/16/17/10 unexplained). Provider evidence was bound, no caller
+residue-code dictionary was supplied, and `runtime_authority` remained false.
+Because historical ED `run_011` predates the structured provider field, the
+shadow script reconstructed only provider facts first verified independently
+from the run's model path, model_source and recorded model SHA-256, then checked
+that SHA against the assessed current `C_G.pdb` before Scout ran.
 
 ### Guided mode
 
