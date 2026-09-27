@@ -289,9 +289,9 @@ This is deliberately not runtime authority:
 - AutoMR/PostMR do not call it;
 - repeated/indistinguishable strands remain ambiguous;
 - assignment enumeration is bounded and fails closed; and
-- caller-supplied provider baseline identities are not production provenance.
-  Runtime use would require binding those identities to a reviewed/versioned
-  provider or model-family record.
+- provider baseline evidence must remain provenance-bound to the assessed
+  provider model and reviewed/provider record; caller-supplied residue-code
+  dictionaries are not accepted.
 
 The point of Oak is to test whether categorical design evidence is strong enough
 to disambiguate the real W rename case safely before any policy is promoted.
@@ -794,8 +794,11 @@ Planned artifacts may include:
 ```text
 Model/registration_scout.json
 Phaser/asu_registration.json
+Model/topology_surgery_manifest.json
 Reports/registration-net.svg
 Reports/registration-net.html
+Reports/topo-net.svg
+Reports/topo-net.html
 ```
 
 The final solution/campaign report should retain:
@@ -857,12 +860,19 @@ dataset's coordinate serialization become the next dataset's assumed truth.
 1. Identity registration on an ordinary current W model.
 2. Chain rename and arbitrary residue-number offset with unchanged geometry.
 3. One logical strand split across multiple coordinate chains.
-4. Reviewed equivalent ASU cut using the 8D93-style -> W representation.
-5. Sticky-end boundary change and terminal-phosphate difference.
-6. Two complete registered copies caused by an unexpected ASU multiplicity.
-7. One complete plus one partial copy.
-8. Multiple dataset PDB candidates with bounded MR attempts.
-9. Guided Registration Net correction and exact replay from the frozen manifest.
-10. Campaign Doctor consumption of registration-aware donor/recipient facts.
+4. Disposable symmetry-spanning phosphate experiment: compare no symmetry bond
+   with an explicit Phenix symmetry-operation bond and inspect full local
+   geometry/nonbonded behavior before defining any automatic bond policy.
+5. Several disposable Coot single-residue RSR seam repairs with before/after
+   coordinate and Phenix-interpretation audits.
+6. Blind 8D93 -> 3GBI-style Topo Net surgery with 3GBI withheld until
+   post-transform validation.
+7. Sticky-end boundary change while preserving representation-seam versus true
+   chemical-nick semantics.
+8. Two complete registered copies caused by an unexpected ASU multiplicity.
+9. One complete plus one partial copy.
+10. Multiple dataset PDB candidates with bounded MR attempts.
+11. Guided Registration Net correction and exact replay from the frozen manifest.
+12. Campaign Doctor consumption of registration-aware donor/recipient facts.
 
 Topology-rich/non-equivalent lattice interpretation remains a later layer.
