@@ -430,10 +430,19 @@ checkout `316ac43eaf85a63cf675828bb8960a28f0db2773` also passed the **full
 NASolve regression suite: 672 tests locally**. No runtime or subtest count was
 reported for this checkpoint; it is user-local validation, not GitHub CI.
 
-The merge-grade regression gate is therefore green. One remaining optional
-confidence check is to repeat the same provenance-bound real-W shadow case
-against a fresh run that natively contains structured `model_provider`
-provenance rather than requiring historical-schema reconstruction.
+The merge-grade regression gate is therefore green. The remaining confidence
+check has also now passed: a fresh current-schema ED `run_013` preflight was
+created from the same run_011 scientific intent, and the renamed-W shadow case
+was repeated using its native structured `model_provider` record plus a fresh
+assessment of the referenced `C_G.pdb`. The result was identical: provider
+bound true, caller codes false, exactly one zero-unexplained
+A->M/B->N/C->P/D->Q proposal (38 exact + 4 provider-explained; alternatives
+12/11/16/17/10 unexplained), with `runtime_authority = false`.
+
+The current backend-only Scout v2 scope is therefore fully validated for its
+stated purpose. AutoMR/PostMR integration, automatic application, authoritative
+registration and any promotion of Scout v2 into runtime decision-making remain
+separate future work and are not implied by this validation.
 
 ### First real-data registration shadow check
 
