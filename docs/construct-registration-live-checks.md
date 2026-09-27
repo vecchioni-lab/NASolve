@@ -128,13 +128,15 @@ The full NASolve regression suite also passed locally with **664 tests and 222
 subtests** in **61.70 s** on checkout
 `cc0ad6ab537cc61e17e13bc562e4ae8667461e8d`.
 
-Oak's previously validated Scout v2 code head
+Oak's earlier Scout v2 checkpoint at code head
 `189fd4589a8c8f2a0191e21e99cec22b428e6a1c` had **41 focused tests passing**.
-The provenance-bound provider-evidence slice at code head
-`c515a37dc41fa8bb1935d2c80c825ebef8153177` has now also passed
-**41 focused tests locally** at checkout head
-`36c369bdfd75602340882805a6dc03f2c193c58d`. This validates the new
-provider-assessment/provenance boundary without changing the live pipeline.
+After binding provider evidence to the assessed catalogue model/provenance and
+adding explicit fail-closed tests for incomplete provider coverage and
+provider-selector/source mismatch, the focused suite now passes **43 tests
+locally** at checkout/test head
+`507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying source-behavior
+head remains `c515a37dc41fa8bb1935d2c80c825ebef8153177`. This validates the
+new provider-assessment/provenance boundary without changing the live pipeline.
 
 When a live check above is completed, record the dataset/run/checkpoint and code
 commit in the development handoff or the machine-readable intent ledger. Avoid
