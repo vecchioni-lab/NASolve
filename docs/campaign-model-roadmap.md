@@ -224,6 +224,30 @@ to nature. The periodic structure may omit a declared strand, use unexpected
 copy numbers/stoichiometry, or realize a more abstract assembly. Those
 disagreements must remain visible rather than being repaired by inference.
 
+Tile sequence/design sheets should therefore preserve **intended per-strand
+stoichiometry** explicitly. They should also support repeat-bearing/root
+strands with an optional declared internal repeat order and repeated-domain
+ranges. Intended strand copies per tile and internal repeat order are separate
+dimensions and neither is an observed-crystal invariant.
+
+The net finder should be repeat-aware. When a root/center strand with repeated
+domains is declared, preserve that annotation directly. When it is not
+declared, candidate repeats may be detected only as descriptive hypotheses and
+must not force a mapping from low-complexity sequence alone. The periodic graph
+should record residue/domain coverage, observed repeat phases when
+distinguishable, and the number of crystallographic symmetry/unit-cell steps
+needed for the repeat phase to return to itself.
+
+This supports long-period/frustrated cases in which local lattice symmetry and
+the designed repeat order do not coincide. A known lab-style fivefold
+repeat-bearing object in a fourfold/screw lattice closed its repeat phase only
+after twenty unit-cell steps; the correct description is a long topological
+closure, not a stoichiometry error. Likewise, an intended incomplete triangle
+may crystallize as a cuboctahedral emergent assembly whose root-strand use no
+longer obeys the declared tile copy model. Partial use of one strand must also
+be representable at residue/repeat-domain level rather than only as
+present/absent.
+
 A future bounded **Topo Surgeon/Doctor** should sit between Topo Net preview and
 expert manual repair. It may try a small immutable budget of reviewed local
 materialization/mutation/Coot-repair variants, compare local Phenix geometry,
