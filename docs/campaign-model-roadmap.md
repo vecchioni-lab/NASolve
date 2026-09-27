@@ -225,6 +225,40 @@ sequence / construct specification
 
 The campaign may share design logic while each dataset has its own model, expected symmetry, and MR state. The campaign schema must therefore avoid encoding "one frame model plus mutations" as a universal assumption.
 
+### Near-horizon executable geometry-diverse campaign slice
+
+A concrete forthcoming validation case is now available: a curated campaign in
+which each dataset directory already contains its own prepared PDB search model
+and associated sequence definition, while the constructs differ substantially
+in geometry.
+
+This is a **near-horizon milestone, not the immediate Oak task**. The first
+executable slice should remain deliberately conservative:
+
+- admit one explicit or uniquely discovered nonstandard PDB provider per dataset
+  into campaign planning/execution;
+- freeze the exact provider-model bytes/checksum and provider provenance;
+- freeze both the original sequence-source bytes/checksum and the parsed
+  chain-labelled effective sequence target;
+- run each dataset independently through the existing guarded
+  AutoMR -> PostMR -> conditional AutoSol -> AutoRefine spine;
+- require the prepared model to have an unambiguous correspondence to its own
+  supplied sequence for the first slice; registration ambiguity, chain
+  splits/recuts, unexpected multiplicity or other nontrivial representation
+  problems stop that dataset for inspection rather than being guessed; and
+- preserve the existing campaign behavior that one blocked/inspection dataset
+  does not stop unrelated members.
+
+This milestone explicitly does **not** infer a shared geometry family from
+campaign membership, rank models across datasets, transfer solved coordinates
+between siblings, score topology/geometry similarity or authorize Campaign
+Doctor rescue. Geometry-aware family reasoning and cross-dataset reuse remain
+later reviewed layers.
+
+A small real campaign of roughly 3-5 geometry-diverse datasets with curated
+per-dataset PDB + sequence inputs is the preferred live validation fixture once
+those data are mature enough to serve as a stable test set.
+
 ## Campaign Doctor: cross-dataset model rescue
 
 Campaign Doctor policy and rescue execution remain future work above the
