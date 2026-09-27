@@ -629,12 +629,17 @@ a strong planned validation fixture because it exercises an equivalent ASU cut,
 different chain labels, sticky-end boundary change and terminal-phosphate
 difference while retaining the same broad geometry.
 
-## Registration Net
+## Registration Net and Topo Net
 
-The user-facing visualization should be simple, attractive and functional rather
-than a second molecular graphics package.
+The user-facing visualization should stay simple, attractive and functional
+rather than becoming a second molecular graphics package.
 
-The preferred view is a clean 2-D SVG/HTML schematic with:
+The general **Registration Net** remains the ordinary mapping view. It explains
+how logical construct sites map onto one coordinate realization and is useful
+for renamed chains, numbering offsets, split fragments, copy multiplicity,
+partial copies and guided registration.
+
+The preferred Registration Net is a clean 2-D SVG/HTML schematic with:
 
 - logical strands drawn as rounded ribbons with consistent strand colors;
 - residue ticks grouped into ranges rather than one large text table;
@@ -671,12 +676,110 @@ Guided controls should remain few and direct:
 - preview a recut; and
 - open the corresponding coordinates in Coot.
 
-Coot remains the coordinate editor/viewer. The Registration Net explains and
-selects the logical mapping; accepted recut/split/join operations may then be
-materialized through controlled Coot/coordinate tooling with full provenance.
+### Topo Net: explicit periodic-framework surgery mode
 
-The same net should have a static report form suitable for final campaign,
-curation and deposition provenance.
+**Topo Net** is a framework-specific extension of Registration Net, not the
+default registration UI. It may be invoked only by explicit user/campaign intent
+for a designed periodic self-assembling framework. NASolve must not infer
+"framework topology mode" merely from a crystal structure or campaign
+membership.
+
+Topo Net should show one central ASU plus only the symmetry mates that actually
+connect to it. Its underlying preview model is a periodic molecular graph rather
+than a PDB serialization. Residue/fragment instances retain logical identity,
+coordinate identity, symmetry operation/unit-cell translation and current ASU
+ownership. Edge types remain explicit, for example:
+
+- covalent backbone continuity;
+- designed sticky-end/pairing connectivity;
+- symmetry/ASU correspondence; and
+- later reviewed topology-specific relationships.
+
+A reslice changes which symmetry-equivalent residues belong to the chosen ASU
+representative; it does not move the physical periodic object. The preview must
+recompute chain decomposition, exposed sticky ends, termini, logical mapping,
+expected backbone continuity, mutation/chemistry propagation and downstream
+restraint consequences immediately.
+
+Useful Topo Net actions include:
+
+- move an ASU seam past a residue;
+- move a symmetry-equivalent fragment from one side of the ASU representation
+  to the other;
+- split/join/relabel/renumber coordinate chains;
+- move a **true chemical nick** only through an explicitly stronger operation;
+- inspect the symmetry mate that completes one periodic connection;
+- preview newly exposed sticky ends or termini; and
+- open the affected residues/symmetry mates in Coot.
+
+### Representation seams ("false nicks") versus chemical nicks
+
+An ASU cut may force a chemically continuous strand to be serialized as two
+coordinate-chain fragments. This is a **representation seam**, informally a
+"false nick": the coordinate file is broken at the ASU boundary, but the logical
+polymer remains covalently continuous through a crystallographic symmetry
+operation.
+
+Representation seams and true chemical nicks must never share semantics.
+
+For a representation seam:
+
+- logical backbone continuity remains present across the recorded symmetry
+  operation;
+- the continuation phosphate remains part of the continuous backbone even when
+  it appears at the start of a coordinate chain;
+- that phosphate must not be reinterpreted as an ordinary free 5-prime terminus
+  or receive terminal-OP3 chemistry merely because the PDB serialization starts
+  a chain there; and
+- moving the seam changes ASU representation, not construct chemistry.
+
+A true chemical nick instead changes the covalent graph and creates real
+termini. Moving such a nick can change phosphate/terminus intent and therefore
+requires explicit user intent plus downstream chemistry/restraint regeneration.
+
+### Materialization, Coot repair and Phenix enforcement
+
+Topo Net itself should remain preview/intent logic. Applying a reviewed surgery
+writes an immutable transformation manifest first. Coot/controlled coordinate
+tooling then materializes the selected symmetry-equivalent coordinates,
+split/join/relabel/renumber operations and any approved local coordinate repair.
+The resulting model is re-assessed and passed through Phenix interpretation
+before refinement.
+
+Some recuts may place a phosphate and its symmetry-related O3-prime partner too
+far apart for Phenix to recognize/refine the intended backbone cleanly. A
+single-residue Coot real-space-refinement repair near the seam is therefore a
+plausible future primitive, but it must be learned empirically before
+automation. Validation should measure which atoms move, confirm that the
+intended connection becomes geometrically sensible, verify that unrelated
+coordinates are preserved, and re-run Phenix geometry interpretation after
+every repair.
+
+Likewise, NASolve must not automatically force a symmetry-spanning covalent bond
+yet. Phenix supports custom bonds to symmetry copies, but the full
+symmetry-spanning phosphate angle geometry must be validated separately. A
+bond-distance restraint without trustworthy O3-prime-P-O angle control may
+still permit a locally wrong phosphate orientation or clash. Until a dedicated
+live experiment demonstrates safe behavior, symmetry-bond enforcement remains
+experimental-only and visibly provenance-tagged.
+
+### Blind topology-surgery validation
+
+The preferred end-to-end Topo Net fixture is **8D93 -> 3GBI-style
+representation without coordinate cheating**. The surgery engine receives the
+8D93 periodic object, crystallographic symmetry and requested logical/cut intent;
+it must not read 3GBI coordinates while generating the transformed model.
+3GBI is used only afterward as an independent validator of the resulting
+periodic graph, chain boundaries/sticky ends and symmetry-equivalent coordinate
+representation.
+
+Coot remains the atomic coordinate editor/viewer throughout. Registration Net
+and Topo Net explain/select logical and topological intent; Coot materializes
+local coordinate consequences; Phenix audits/enforces the resulting chemistry
+and geometry.
+
+Both nets should have static report forms suitable for final campaign, curation
+and deposition provenance.
 
 ## Reporting
 
