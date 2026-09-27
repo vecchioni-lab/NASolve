@@ -178,6 +178,27 @@ non-equivalent mappings. These decisions are frozen as provenance and rendered
 through a simple interactive **Registration Net**, with Coot remaining the
 coordinate editor.
 
+For explicitly declared periodic self-assembling frameworks, a separate
+**Topo Net** extension of Registration Net is planned. Topo Net reasons over a
+periodic molecular graph and lets the user preview symmetry-aware ASU reslicing,
+chain split/join/relabel/renumber operations, representation seams ("false
+nicks"), true chemical nicks, and newly exposed sticky ends before any
+coordinates are changed. Framework mode is opt-in user/campaign intent, never a
+guess from coordinates.
+
+A representation seam is not a chemical nick: the coordinate serialization may
+break the chain at the ASU boundary while logical phosphodiester continuity
+persists through a symmetry operation. Continuation-phosphate intent must remain
+internal-backbone chemistry and must not be mistaken for an ordinary free
+5-prime terminus merely because a new coordinate chain starts there.
+
+Materialization remains downstream of the preview: exact symmetry transforms
+and chain operations are recorded in an immutable manifest, Coot performs the
+coordinate surgery/local repair, and Phenix audits the resulting geometry.
+Automatic symmetry-spanning bond restraints and automated single-residue Coot
+RSR repair are deliberately deferred until dedicated live experiments establish
+safe repeatable behavior.
+
 ## Mirroring
 
 `mirror = true` remains the simple human-facing D/L chirality switch.
@@ -451,7 +472,7 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 
 8. **Partially implemented backend-only:** Construct Registration core, fast identity/renumbering Scout v1, frozen Scout provenance, registration transition facts, guided simple-chain resolution, and read-only multi-PDB candidate scouting exist. Authoritative post-MR registration, multiplicity inference, Registration Net UI, and live AutoMR/PostMR wiring remain future work.
 9. **Experimental on Oak:** the design-aware Scout v2 proposal rule passes the renamed-real-W shadow case for the intended reason. With the complete verified `5W6W/C_G.pdb` provider identity set A:12/A:13=DC and B:3/B:4=DG, exactly one complete mapping has zero unexplained mismatches: A->M/B->N/C->P/D->Q, with 38 exact and 4 provider-explained sites; every alternative retains at least 10 unexplained mismatches. Oak removes caller-supplied provider residue dictionaries: the helper derives provider identities from an assessed standard frame-catalogue model and binds them to the provider record plus source-model SHA-256. This provenance-bound code passes **43 focused tests locally**, including explicit rejection of incomplete provider coverage and provider-selector/source mismatch. The renamed-real-W shadow case passed first through a verified historical-provider bridge and then through a fresh current-schema ED `run_013` with native structured `model_provider` provenance, reproducing the same unique zero-unexplained mapping with provider binding true, caller codes false and runtime authority false. The current Oak checkout also passed the **full NASolve regression suite: 672 tests locally**. The current backend-only Scout v2 scope is therefore fully validated for its stated purpose; live AutoMR/PostMR integration and runtime authority remain separate future work.
-10. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates.
+10. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates, including opt-in Topo Net framework surgery. Before automation, validate symmetry-spanning phosphate bond/restraint behavior on a disposable ordinary PDB and establish a bounded repeatable Coot single-residue RSR repair primitive. The first blind end-to-end topology fixture is 8D93 -> 3GBI-style representation, with 3GBI coordinates withheld until post-transform validation.
 11. **Partially implemented:** dataset PDB candidate inventory/scouting, provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation/selection remains future work. External model generation (including AlphaFold) is upstream, not a NASolve provider-execution responsibility.
 12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
 
