@@ -111,10 +111,41 @@ Observed:
 
 Interpretation: the categorical zero-unexplained uniqueness rule disambiguated
 the real renamed-W case only after the missing provider identities became
-explicit evidence. It did not choose a merely best-scoring mapping. This
-completes the Oak shadow-validation gate, but does not authorize live
-AutoMR/PostMR use. Production inference still requires reviewed/versioned
-provider provenance rather than a caller-supplied residue dictionary.
+explicit evidence. It did not choose a merely best-scoring mapping.
+
+### Oak Scout v2 third real-W attempt — provenance-bound provider interface
+
+The same renamed ED `run_011` shadow case was then repeated through the newer
+`provider_assessment + model_provider` interface. The historical run predates
+the structured `model_provider` field, so the provider record was reconstructed
+manually and read-only **only after** verifying all explicit historical facts:
+
+- source model path resolves to `MR_frames/5W6W/C_G.pdb`;
+- model source is `standard frame catalogue (W; fallback C_G.pdb)`;
+- recorded source-model SHA-256 is
+  `d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817`;
+- that SHA-256 matches the current assessed provider model exactly.
+
+No residue-code dictionary was supplied.
+
+Observed:
+
+- provider baseline provenance bound: **true**;
+- caller-supplied provider codes: **false**;
+- status: `PROPOSED`;
+- complete assignments: **6**;
+- zero-unexplained assignments: **1**;
+- proposed mapping: `A->M, B->N, C->P, D->Q`;
+- intended mapping: **38 exact, 0 target-history, 4 provider, 0 unexplained**;
+- alternatives retained **12, 11, 16, 17, and 10** unexplained mismatches; and
+- `runtime_authority = false`.
+
+Interpretation: the provenance-bound interface reproduced the same scientific
+answer without laundering an old run's missing structured metadata into
+certainty. Historical provider provenance was bridged only from explicit
+verified path/source/checksum facts; residue identities came from the assessed
+provider coordinates. This completes the intended real-W shadow validation for
+the new provider interface, but still does not authorize live AutoMR/PostMR use.
 
 ## Current validation note
 
