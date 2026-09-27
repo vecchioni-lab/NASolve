@@ -796,8 +796,13 @@ frame-catalogue model and bound to the existing provider record plus exact model
 SHA-256. This provenance-bound implementation remains experimental, but the
 focused Construct Registration suite now passes **43 tests locally**, including
 explicit rejection of incomplete provider coverage and provider-selector/source
-mismatch. Real-W shadow validation through the new provenance-bound interface
-remains a separate gate before any runtime integration is considered.
+mismatch. The renamed real-W shadow case has also now passed through this
+provenance-bound interface: exactly one zero-unexplained A->M/B->N/C->P/D->Q
+proposal, with provider evidence derived from the assessed C_G.pdb coordinates,
+no caller residue dictionary, and runtime authority still false. Because the
+historical run predates structured model_provider provenance, that shadow check
+reconstructed only provider facts independently verified from the old run's
+model path/source/checksum.
 
 The intended live architecture remains: cheap non-mutating Registration Scout
 inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
