@@ -29,7 +29,9 @@ NASolve documentation is organized by role, not chronology.
 - [`construct-registration.md`](construct-registration.md) — logical
   construct-to-coordinate registration design, the merged core/Scout v1
   boundary, the current Oak experimental Scout v2 proposal layer, and the
-  forward-looking Registration Net / opt-in Topo Net framework-surgery design;
+  forward-looking Registration Net / opt-in Topo Net framework-surgery design,
+  including tile hypotheses, representation seams and bounded Topo Surgeon
+  repair/fallback semantics;
   [`construct-registration-intent.json`](construct-registration-intent.json)
   records machine-readable inference policy, validation checkpoints, and real-W
   attempt history, while
