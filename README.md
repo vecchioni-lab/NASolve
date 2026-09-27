@@ -802,7 +802,10 @@ proposal, with provider evidence derived from the assessed C_G.pdb coordinates,
 no caller residue dictionary, and runtime authority still false. Because the
 historical run predates structured model_provider provenance, that shadow check
 reconstructed only provider facts independently verified from the old run's
-model path/source/checksum.
+model path/source/checksum. A fresh current-schema ED `run_013` preflight was
+then created from the same scientific intent and reproduced the identical
+unique zero-unexplained mapping using native structured `model_provider`
+provenance, eliminating the historical-schema caveat.
 
 The intended live architecture remains: cheap non-mutating Registration Scout
 inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
