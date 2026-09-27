@@ -22,6 +22,74 @@ the live pipeline.
 | ☐ | **When guided ambiguity handling gets a UI/CLI** | Exercise a deliberately ambiguous short repeat / single-base-overhang mapping. | NASolve shows the alternatives instead of guessing; the user can select one minimal mapping decision; that choice freezes/replays exactly and does not silently become a global recipe. |
 | ☐ | **When bounded multi-PDB MR selection is enabled** | Put several plausible PDBs in one dataset and inspect the candidate report before/after MR attempts. | Every candidate and rejection remains visible with immutable file identity; no filename or registration-score shortcut silently chooses a model; any automatic choice follows the reviewed MR policy and materially different successful interpretations remain inspectable. |
 
+## Project-scoped future Topo Net human test bank
+
+These checks are intentionally grouped by real project/fixture rather than as
+one universal topology checklist. Do not run them until the corresponding
+backend/UI primitive exists. Preserve exact input model/run/commit and the
+observed human/Coot behavior when a check is eventually completed.
+
+### 3GBI / 8D93 recut project
+
+- **Representation-seam chemistry:** verify that an ASU-cut "false nick"
+  preserves logical phosphodiester continuity and continuation-phosphate intent
+  while a true chemical nick remains a distinct edit.
+- **Symmetry-bond experiment:** on a disposable ordinary DNA PDB, compare no
+  symmetry bond with an explicit Phenix symmetry-operation P-O3-prime bond;
+  inspect `.geo`, refinement, phosphate angles/orientation and local
+  cross-symmetry contacts before allowing any automatic symmetry-bond policy.
+- **Coot seam-repair practice:** create several deliberately awkward recuts
+  where the intended phosphate/O3-prime distance is initially too long; try
+  one-residue Coot RSR first, record exactly which atoms move, then expand the
+  repair radius only when the minimal attempt fails. Re-run Phenix
+  interpretation after every attempt.
+- **Mutation/surgery ordering:** on the same local seam, compare reviewed
+  mutation-before-materialization versus mutation-after-materialization paths
+  when both are scientifically meaningful; reject routes that curse base
+  planes, stacking, sugar/backbone geometry or residue identity.
+- **Topo Surgeon bounded rescue:** require each automated repair recipe to
+  produce a separate immutable candidate with local geometry/stacking audits;
+  if none passes hard gates, prompt for expert Coot repair and import the saved
+  PDB as a new immutable user-reviewed checkpoint.
+- **Blind end-to-end transform:** transform 8D93 into a 3GBI-style ASU without
+  reading 3GBI coordinates during surgery. Only afterward compare periodic
+  graph, ASU ownership, chain decomposition, sticky ends and symmetry-equivalent
+  coordinates with 3GBI.
+
+### P4_132 cubic / two-triangle-ASU project
+
+- **Tile versus ASU multiplicity:** preserve the triangle as the tile hypothesis
+  even when the crystallographic ASU contains two complete triangle copies;
+  report tile multiplicity and ASU multiplicity separately.
+- **Copy registration:** map input strands/logical sites into both complete tile
+  copies without silently treating one ASU as a new tile definition.
+- **Symmetry slicing:** verify that junctions, sticky ends and ordinary backbone
+  segments can be cut by ASU boundaries while immutable design features remain
+  attached to the tile/strand model rather than to incidental PDB chain ends.
+- **Mutation/restraint propagation:** apply logical mutations/restraints to
+  every appropriate complete registered copy while preserving copy-specific
+  coordinate provenance.
+
+### Full-strand / emergent-tile project
+
+- **Declared full-strand inventory:** supply complete synthesized strand lists
+  and verify they outrank ASU-derived chain fragments as design evidence.
+- **Missing-strand case:** include a declared input strand that is not observed
+  in the solved structure; NASolve must report the discrepancy rather than
+  invent coordinates or force it into the tile.
+- **Unexpected stoichiometry/copy case:** allow the crystal to use more/fewer
+  effective copies than the input recipe declared; preserve both experimental
+  intent and observed periodic multiplicity.
+- **Tile reconstruction:** when a declared tile maps uniquely from full strands
+  into the periodic graph, mark it `INFERRED`/confirmed with explicit evidence;
+  do not derive it merely from ASU chain names.
+- **Emergent tile:** construct a case where the observed periodic graph cannot
+  be faithfully represented by the declared tile. Produce an `EMERGENT` tile
+  hypothesis while retaining the declared tile as experimental intent.
+- **Ambiguous tile:** if multiple non-equivalent finite tile decompositions
+  survive, remain `UNRESOLVED` and require an expert choice rather than hiding
+  the ambiguity behind one preferred graph.
+
 ## Completed shadow live checks
 
 ### Clean W registration semantics — ED run_011
