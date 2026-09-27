@@ -144,8 +144,43 @@ Interpretation: the provenance-bound interface reproduced the same scientific
 answer without laundering an old run's missing structured metadata into
 certainty. Historical provider provenance was bridged only from explicit
 verified path/source/checksum facts; residue identities came from the assessed
-provider coordinates. This completes the intended real-W shadow validation for
-the new provider interface, but still does not authorize live AutoMR/PostMR use.
+provider coordinates.
+
+### Oak Scout v2 fourth real-W attempt — fresh native provider provenance
+
+A fresh current-schema AutoMR preflight was then created as ED `run_013`,
+reproducing the scientific intent of `run_011` (standard W, pair E:D,
+`w-metal-scaffold` sequence reference, D:1 5-prime phosphate). Phaser was not
+run; the purpose was to generate a fresh frozen run with native structured
+`model_provider` provenance.
+
+The renamed-W shadow case was repeated directly from `run_013` using:
+
+- the run's native `inputs.model_provider` record;
+- the literal provider model referenced by the run;
+- a fresh `ModelAssessment` of that provider model; and
+- the run's frozen `sequence_family_target.json`.
+
+Observed:
+
+- provider: standard-frame catalogue W fallback `C_G.pdb`;
+- provider SHA-256:
+  `d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817`;
+- provider baseline provenance bound: **true**;
+- caller-supplied provider codes: **false**;
+- status: `PROPOSED`;
+- complete assignments: **6**;
+- zero-unexplained assignments: **1**;
+- proposed mapping: `A->M, B->N, C->P, D->Q`;
+- intended mapping: **38 exact, 0 target-history, 4 provider, 0 unexplained**;
+- alternatives retained **12, 11, 16, 17, and 10** unexplained mismatches; and
+- `runtime_authority = false`.
+
+Interpretation: the same scientific answer is reproduced from a fresh
+current-schema run with native provider provenance, eliminating the historical
+schema-reconstruction caveat. This completes the intended validation for the
+current backend-only Scout v2 scope. It still does not authorize live
+AutoMR/PostMR integration or runtime authority.
 
 ## Current validation note
 
