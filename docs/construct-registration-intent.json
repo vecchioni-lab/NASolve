@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-13",
+  "version": "2026-09-27-oak-14",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -304,7 +304,8 @@
       "blind 8D93 to 3GBI-style Topo Net surgery check when executable",
       "3GBI/8D93 project-scoped representation-seam and Topo Surgeon repair ladder",
       "P4_132 two-triangle-ASU tile-versus-ASU multiplicity validation",
-      "full-strand and emergent-tile project-scoped reconstruction/ambiguity validation"
+      "full-strand and emergent-tile project-scoped reconstruction/ambiguity validation",
+      "repeat-bearing/root-strand local closure, long-period closure, phase ambiguity and partial-use project checks"
     ]
   },
   "latest_focused_validation": {
@@ -811,7 +812,11 @@
       "one input strand split among ASU/symmetry fragments",
       "declared tile inconsistent with observed periodic graph",
       "several non-equivalent tile hypotheses compatible with the evidence",
-      "no faithful finite tile decomposition currently known"
+      "no faithful finite tile decomposition currently known",
+      "repeat-bearing/root strand whose designed internal repeat order is not locally commensurate with lattice symmetry",
+      "repeat phase that closes only after a long symmetry/unit-cell path",
+      "partial use of one repeat-bearing strand",
+      "identical repeat units whose phase cannot be uniquely assigned"
     ],
     "topo_surgeon": {
       "status": "PLANNED_BOUNDED_REPAIR_LAYER",
@@ -837,6 +842,63 @@
       ],
       "selection_policy": "No hidden composite topology score. Apply reviewed hard gates; preserve surviving alternatives for inspection when necessary.",
       "manual_fallback": "Open exact model/maps/symmetry seam in Coot for an expert user, then import the saved repaired PDB as a new immutable USER_REVIEWED checkpoint while retaining failed automated attempts."
+    },
+    "tile_sequence_sheet": {
+      "purpose": "Preserve real input-strand design intent independently from ASU serialization and observed crystal organization.",
+      "per_strand_fields": [
+        "strand_id",
+        "full_sequence",
+        "declared_modifications",
+        "intended_copies_per_tile",
+        "optional_assembly_input_ratio",
+        "optional_tile_role such as ROOT/CENTER/ARM/EDGE or project-specific role",
+        "optional_designed_internal_repeat_order",
+        "optional_repeat_domain residue/range definitions",
+        "repeat_units_sequence_identical_or_role_equivalent"
+      ],
+      "rule": "Intended copies per tile and internal repeat order are separate design dimensions. Neither may be reconstructed from ASU chain counts."
+    },
+    "repeat_bearing_strands": {
+      "status": "PLANNED_REPEAT_AWARE_NOT_A_HARD_SYMMETRY_CONSTRAINT",
+      "rationale": "Many designed DNA tiles contain a central/root strand with an internal n-fold repeated role while other strands occur at different copy number. Nature may frustrate or reorganize either the tile stoichiometry or the internal repeat organization.",
+      "observed_fields": [
+        "residue/domain coverage",
+        "observed strand realizations where meaningful",
+        "repeat-phase mapping when distinguishable",
+        "symmetry/unit-cell path needed for repeat phase to return",
+        "declared-versus-observed stoichiometry",
+        "declared-versus-observed repeat organization"
+      ],
+      "descriptive_states": [
+        "FULLY_USED",
+        "PARTIALLY_USED",
+        "ABSENT",
+        "REORGANIZED",
+        "LONG_PERIOD",
+        "UNRESOLVED"
+      ],
+      "long_period_semantics": "The periodic crystal may advance a repeat-bearing strand through internal phases under symmetry and return to its original phase only after a longer topological closure than the nominal tile. This is not automatically a stoichiometry error.",
+      "known_style_example": "A fivefold repeat-bearing object accommodated in a fourfold/screw lattice may close its repeat phase only after twenty unit-cell steps.",
+      "partial_use_semantics": "A supplied strand may be only partly ordered/incorporated. Preserve exact residue/repeat-domain coverage; do not reduce strand presence to one boolean."
+    },
+    "repeat_aware_net_finder": {
+      "use_declared_annotations_first": true,
+      "candidate_repeat_detection_without_annotation": "descriptive hypothesis only",
+      "low_complexity_sequence_can_authorize_mapping": false,
+      "operations": [
+        "map reviewed repeat domains onto the periodic crystal graph",
+        "retain multiple possible repeat-phase correspondences when repeats are indistinguishable",
+        "follow connectivity through crystallographic symmetry",
+        "measure whether repeat phase closes locally, over a longer path, or remains unresolved",
+        "compare design stoichiometry, repeat usage, coverage and closure as separate facts"
+      ],
+      "forbidden": [
+        "force designed n-fold repeat order onto the crystal",
+        "treat internal repeat count as observed strand copy count",
+        "invent missing repeat domains or residues",
+        "collapse repeat/stoichiometry disagreement into one compatibility score"
+      ],
+      "backend_note": "This can be represented as a repeat-phase/monodromy problem on the periodic graph without exposing that jargon in the user interface."
     }
   }
 }
