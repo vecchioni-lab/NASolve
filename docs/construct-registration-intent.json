@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-11",
+  "version": "2026-09-27-oak-12",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -298,7 +298,10 @@
       "8D93-style non-identity recut live check when executable",
       "8D31-like complete/partial multiplicity live check when executable",
       "guided ambiguity live check when UI/CLI exists",
-      "bounded multi-PDB MR live check when selection policy exists"
+      "bounded multi-PDB MR live check when selection policy exists",
+      "symmetry-spanning phosphate bond/restraint experiment before automatic enforcement",
+      "bounded single-residue Coot RSR seam-repair practice before automation",
+      "blind 8D93 to 3GBI-style Topo Net surgery check when executable"
     ]
   },
   "latest_focused_validation": {
@@ -668,5 +671,94 @@
       "active pull request body / branch description"
     ],
     "rule": "Keep these synchronized as implementation or inference policy changes so a new chat or collaborator can recover current state without conversation history."
+  },
+  "future_topo_net_design": {
+    "status": "PLANNED_NOT_CURRENT_RUNTIME_SCOPE",
+    "invocation_policy": "Explicit user/campaign opt-in for designed periodic self-assembling frameworks only; never inferred from coordinates or campaign membership.",
+    "ui_relationship": {
+      "registration_net": "General logical-to-coordinate mapping and guided registration view.",
+      "topo_net": "Framework-specific extension for periodic molecular-graph visualization and symmetry-aware ASU surgery preview.",
+      "coot": "Atomic coordinate materialization and bounded local repair.",
+      "phenix": "Post-materialization chemistry/geometry interpretation and refinement audit."
+    },
+    "periodic_graph_preview": {
+      "central_asu_plus_connected_symmetry_mates": true,
+      "edge_types": [
+        "covalent backbone continuity",
+        "designed sticky-end/pairing connectivity",
+        "symmetry/ASU correspondence",
+        "later reviewed topology-specific relationships"
+      ],
+      "preview_actions": [
+        "move ASU seam past a residue",
+        "move a symmetry-equivalent fragment across the chosen ASU representation",
+        "split/join/relabel/renumber coordinate chains",
+        "preview newly exposed sticky ends and termini",
+        "move a true chemical nick only as an explicitly stronger chemistry-changing operation",
+        "open affected coordinates and symmetry mates in Coot"
+      ],
+      "coordinate_editing": false
+    },
+    "representation_seam_policy": {
+      "term": "representation seam (false nick)",
+      "chemical_nick": false,
+      "logical_backbone_continuity_preserved": true,
+      "continuity_crosses_crystallographic_symmetry": true,
+      "continuation_phosphate_preserved": true,
+      "must_not_be_reinterpreted_as_free_five_prime_terminus": true,
+      "must_not_gain_terminal_op3_chemistry_from_chain_start_alone": true,
+      "true_chemical_nick_is_separate_edit": true
+    },
+    "materialization_policy": {
+      "preview_before_apply": true,
+      "immutable_surgery_manifest_required": true,
+      "exact_symmetry_transform_before_local_repair": true,
+      "coot_materializes_coordinates": true,
+      "phenix_interpretation_required_after_materialization": true,
+      "automatic_symmetry_bond_enforcement": false,
+      "automatic_coot_single_residue_rsr": false
+    },
+    "symmetry_bond_experiment": {
+      "status": "REQUIRED_BEFORE_AUTOMATION",
+      "rationale": "Phenix supports custom bonds to symmetry copies, but full symmetry-spanning phosphate angle behavior is not yet validated for NASolve. Bond-only enforcement may be insufficient to preserve local phosphate orientation/clash behavior.",
+      "minimum_test": [
+        "use a disposable ordinary DNA PDB with a known representation seam",
+        "compare no symmetry bond versus an explicit symmetry-operation P-O3-prime bond",
+        "inspect Phenix geometry output and refinement behavior",
+        "audit P-O3-prime distance and nearby phosphate/O3-prime nonbonded contacts",
+        "do not promote a symmetry-bond policy unless local phosphate geometry is chemically sane and repeatable"
+      ]
+    },
+    "coot_seam_rsr_experiment": {
+      "status": "REQUIRED_BEFORE_AUTOMATION",
+      "rationale": "Some reslices may leave the intended phosphate/O3-prime connection too long for Phenix to interpret cleanly; bounded single-residue Coot RSR may repair this but must be characterized empirically.",
+      "minimum_test": [
+        "practice on several disposable recut cases",
+        "restrict RSR to the intended single residue/local seam",
+        "record before/after coordinates for moved atoms",
+        "verify unrelated regions remain unchanged",
+        "re-run Phenix interpretation and geometry audit",
+        "promote only a repeatable bounded operation"
+      ]
+    },
+    "blind_validation_fixture": {
+      "source": "8D93",
+      "target_representation": "3GBI-style",
+      "no_coordinate_cheating": true,
+      "transform_inputs": [
+        "8D93 coordinates",
+        "crystallographic symmetry",
+        "requested logical/cut intent"
+      ],
+      "withheld_until_validation": "3GBI coordinates",
+      "validation_goals": [
+        "preserve the periodic molecular graph",
+        "reproduce the requested ASU ownership and chain decomposition",
+        "show correct sticky ends and representation seams",
+        "keep true chemical nicks distinct from representation seams",
+        "materialize a Phenix-interpretable model",
+        "compare with 3GBI only after transformation"
+      ]
+    }
   }
 }
