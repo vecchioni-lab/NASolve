@@ -163,11 +163,15 @@ Oak's earlier Scout v2 checkpoint at code head
 `189fd4589a8c8f2a0191e21e99cec22b428e6a1c` had **41 focused tests passing**.
 After binding provider evidence to the assessed catalogue model/provenance and
 adding explicit fail-closed tests for incomplete provider coverage and
-provider-selector/source mismatch, the focused suite now passes **43 tests
-locally** at checkout/test head
+provider-selector/source mismatch, the focused suite passed **43 tests locally**
+at checkout/test head
 `507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying source-behavior
-head remains `c515a37dc41fa8bb1935d2c80c825ebef8153177`. This validates the
-new provider-assessment/provenance boundary without changing the live pipeline.
+head remains `c515a37dc41fa8bb1935d2c80c825ebef8153177`.
+
+The current Oak checkout at
+`316ac43eaf85a63cf675828bb8960a28f0db2773` then passed the **full NASolve
+regression suite: 672 tests locally**. No runtime or subtest count was reported
+for this checkpoint. This is user-local validation, not GitHub CI.
 
 When a live check above is completed, record the dataset/run/checkpoint and code
 commit in the development handoff or the machine-readable intent ledger. Avoid
