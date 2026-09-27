@@ -70,6 +70,35 @@ observed human/Coot behavior when a check is eventually completed.
   every appropriate complete registered copy while preserving copy-specific
   coordinate provenance.
 
+### Repeat-bearing / root-strand symmetry-frustration project
+
+- **Sequence-sheet semantics:** enter a tile with a declared root/center strand,
+  intended per-strand tile stoichiometry and an internal n-fold repeat. Verify
+  that intended copies-per-tile and internal repeat order remain separate
+  fields and are not reconstructed from ASU chain counts.
+- **Ordinary local closure:** use a design where root-strand repeat phases map
+  cleanly around the intended tile; verify each repeated domain can be mapped
+  to the periodic graph and the repeat phase closes locally without creating
+  extra strand copies.
+- **Long-period closure:** use the known-style fivefold repeat-bearing object in
+  a fourfold/screw lattice. Verify that Topo Net can follow repeat phase through
+  symmetry and report closure only after the observed twenty-unit-cell path
+  rather than calling the structure stoichiometrically invalid.
+- **Indistinguishable repeats:** remove/withhold phase-discriminating evidence
+  from a repeat-bearing strand and verify that identical repeat units remain
+  phase-ambiguous instead of being arbitrarily numbered.
+- **Partial root-strand use:** exercise a structure in which only part of one
+  supplied repeat-bearing strand is ordered/incorporated. Report exact
+  residue/repeat-domain coverage as `PARTIALLY_USED`; do not force the missing
+  part into density or mark the entire strand absent.
+- **Reorganized root use:** use a structure whose observed repeat/copy
+  organization differs from the declared tile while the strand itself remains
+  present. Preserve the declared repeat/stoichiometry as input intent and mark
+  the observed organization `REORGANIZED` or `LONG_PERIOD` as appropriate.
+- **Emergent polyhedral assembly:** use the known-style incomplete-triangle
+  input that yields a cuboctahedral assembly. Verify that the original strand
+  stoichiometry/repeat annotations survive as provenance while the tile/periodic
+  interpretation is permitted to become `EMERGENT`.
 ### Full-strand / emergent-tile project
 
 - **Declared full-strand inventory:** supply complete synthesized strand lists
