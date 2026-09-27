@@ -338,6 +338,13 @@ shadow script reconstructed only provider facts first verified independently
 from the run's model path, model_source and recorded model SHA-256, then checked
 that SHA against the assessed current `C_G.pdb` before Scout ran.
 
+That historical bridge was then removed from the validation entirely: a fresh
+current-schema ED `run_013` AutoMR preflight was created from the same
+scientific intent and supplied native structured `model_provider` provenance.
+Repeating the renamed-W shadow case directly from `run_013` reproduced the
+same unique zero-unexplained mapping with provider binding true, caller codes
+false and `runtime_authority = false`.
+
 ### Guided mode
 
 Guided mode is for a dataset whose crystallographic interpretation itself has
