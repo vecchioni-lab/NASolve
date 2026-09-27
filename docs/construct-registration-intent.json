@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-9",
+  "version": "2026-09-27-oak-10",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -105,8 +105,8 @@
   },
   "pending_validation": {
     "branch": "oak",
-    "status": "full-regression-and-fresh-structured-provider-check-pending",
-    "remaining_gate": "Before PR readiness, run the full NASolve regression suite and preferably repeat the same provenance-bound real-W shadow check against a fresh run that already contains structured model_provider provenance, avoiding historical-schema reconstruction."
+    "status": "fresh-native-structured-provider-check-optional",
+    "remaining_gate": "Optional confidence check before merge/readiness: repeat the same provenance-bound real-W shadow case against a fresh run that already contains native structured model_provider provenance. The full NASolve regression gate is passed."
   },
   "stage_transition_policy": {
     "implemented": true,
@@ -223,9 +223,20 @@
       "github_ci": false,
       "scope": "renamed ED run_011 real-W Scout v2 shadow rerun through provider_assessment + model_provider provenance-bound interface, with historical provider record reconstructed only from verified model path/source/SHA facts",
       "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained; provider_bound=true; caller_codes=false; runtime_authority=false"
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "316ac43eaf85a63cf675828bb8960a28f0db2773",
+      "passed_tests": 672,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "full NASolve regression suite after provenance-bound Scout v2 source/test/docs changes",
+      "note": "User reported 672 passed. No runtime or subtest count was reported in this checkpoint."
     }
   ],
-  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_REAL_W_SHADOW_PASSED",
+  "current_validation_status": "OAK_V2_FULL_REGRESSION_PASSED_FRESH_NATIVE_PROVIDER_CHECK_OPTIONAL",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -294,17 +305,14 @@
     "note": "Includes explicit fail-closed coverage for incomplete provider target coverage and provider-selector/source mismatch."
   },
   "latest_full_validation": {
-    "date": "2026-09-26",
-    "branch": "birch",
-    "checkout_head": "cc0ad6ab537cc61e17e13bc562e4ae8667461e8d",
-    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+    "date": "2026-09-27",
+    "branch": "oak",
+    "checkout_head": "316ac43eaf85a63cf675828bb8960a28f0db2773",
     "command_scope": "full NASolve pytest suite",
-    "passed_tests": 664,
-    "passed_subtests": 222,
-    "elapsed_seconds": 61.7,
+    "passed_tests": 672,
     "reported_by": "user-local-run",
     "github_ci": false,
-    "note": "Checkout included documentation-only commits after the validated code head; no source/test code changed after code_head."
+    "note": "Current Oak full-suite checkpoint after provenance-bound Scout v2 changes."
   },
   "shadow_live_validation": {
     "date": "2026-09-26",
@@ -539,7 +547,8 @@
       ],
       "live_pipeline_changed": false,
       "runtime_authority": false,
-      "real_w_shadow_validation_status": "PASSED_WITH_VERIFIED_HISTORICAL_PROVIDER_BRIDGE"
+      "real_w_shadow_validation_status": "PASSED_WITH_VERIFIED_HISTORICAL_PROVIDER_BRIDGE",
+      "full_regression_status": "PASSED_672_LOCAL_TESTS"
     },
     "real_w_attempt_3": {
       "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_PROVENANCE_BOUND",
@@ -593,7 +602,7 @@
     "name": "oak",
     "pull_request": 22,
     "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "PROVIDER_PROVENANCE_REAL_W_SHADOW_PASSED_FULL_REGRESSION_PENDING"
+    "status": "FULL_REGRESSION_PASSED_FRESH_NATIVE_PROVIDER_CHECK_OPTIONAL"
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
