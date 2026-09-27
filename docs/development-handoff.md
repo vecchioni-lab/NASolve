@@ -411,10 +411,24 @@ The provenance-bound helper plus its new fail-closed coverage now passes
 `507745a0b7166f05229f6c3501d5e1f694db93e2`; the source-behavior head remains
 `c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added tests explicitly
 reject incomplete provider target coverage and provider-selector/source-model
-mismatch. The result is user-local, not GitHub CI. Scout v2 remains experimental
-and non-runtime; the next scientific validation should exercise the real
-renamed-W case through this new provider-assessment/provenance interface before
-any promotion discussion.
+mismatch. The result is user-local, not GitHub CI.
+
+The real renamed-W case has now also passed through the new
+`provider_assessment + model_provider` interface. Because ED `run_011`
+predates structured `model_provider` provenance, the shadow script reconstructed
+only the standard-frame fallback provider facts already proven by the old run's
+model path, `model_source`, and source-model SHA-256, then asserted that checksum
+against the current `C_G.pdb` before Scout ran. No residue-code dictionary was
+supplied. The result remained exactly one zero-unexplained proposal
+A->M/B->N/C->P/D->Q (38 exact + 4 provider-explained; alternatives
+12/11/16/17/10 unexplained), with provider provenance bound and
+`runtime_authority = false`.
+
+Scout v2 therefore remains experimental/non-runtime, but its focused tests and
+intended real-W provenance-bound shadow gate are now green. Before PR readiness,
+run the full NASolve regression suite and preferably repeat this check against a
+fresh run that natively contains structured `model_provider` provenance rather
+than requiring historical-schema reconstruction.
 
 ### First real-data registration shadow check
 
