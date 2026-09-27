@@ -1150,8 +1150,8 @@ Current validation state is summarized in
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
 - search unbounded refinement recipes or run several campaign jobs concurrently;
 - apply the final H3/R3 notation patch;
-- perform construct/ASU registration, guided Registration Net editing, or
-  registration-aware recut rescue; or
+- perform construct/ASU registration, guided Registration Net editing, opt-in
+  Topo Net framework surgery, or registration-aware recut rescue; or
 - search multiple catalogue/dataset models automatically.
 
 These operations are deliberately kept behind later validation gates rather
