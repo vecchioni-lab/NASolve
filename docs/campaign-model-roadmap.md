@@ -199,6 +199,40 @@ Automatic symmetry-spanning bond restraints and automated single-residue Coot
 RSR repair are deliberately deferred until dedicated live experiments establish
 safe repeatable behavior.
 
+For the first Topo Net generation, model the problem explicitly as **3-D DNA
+lattice tessellation under crystallographic symmetry**, rather than trying to
+solve generic crystallographic topology. Keep four layers distinct:
+
+```text
+full input strands / synthesis intent
+        -> tile hypothesis
+        -> observed periodic crystal graph
+        -> ASU serialization
+```
+
+The tile hypothesis is normally declared but may be reconstructed from full
+strand lists and the solved periodic graph. It may also become `EMERGENT` when
+the observed structure cannot be represented faithfully by the declared tile,
+or `UNRESOLVED` when several non-equivalent finite decompositions remain. ASU
+multiplicity must not redefine the tile: for example, a P4_132 ASU containing
+two copies of a triangular tile should report two realized copies while
+retaining the triangle as the tile hypothesis.
+
+Full synthesized strand lists are higher-authority design evidence than ASU
+chain fragments, but they are still experimental intent rather than a command
+to nature. The periodic structure may omit a declared strand, use unexpected
+copy numbers/stoichiometry, or realize a more abstract assembly. Those
+disagreements must remain visible rather than being repaired by inference.
+
+A future bounded **Topo Surgeon/Doctor** should sit between Topo Net preview and
+expert manual repair. It may try a small immutable budget of reviewed local
+materialization/mutation/Coot-repair variants, compare local Phenix geometry,
+phosphate/clash behavior, base planes, stacking/pair restraints and unintended
+coordinate motion, and retain every attempt. If no candidate passes hard
+chemical gates, the expected fallback is to open the exact seam in Coot for an
+expert user, then import the manually repaired PDB as a provenance-rich
+checkpoint.
+
 ## Mirroring
 
 `mirror = true` remains the simple human-facing D/L chirality switch.
