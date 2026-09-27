@@ -737,6 +737,132 @@ A true chemical nick instead changes the covalent graph and creates real
 termini. Moving such a nick can change phosphate/terminus intent and therefore
 requires explicit user intent plus downstream chemistry/restraint regeneration.
 
+### Tile design, periodic object and ASU are distinct layers
+
+Topo Net should be biased toward the actual family of problems NASolve is being
+built for first: **designed 3-D DNA lattices / periodic nucleic-acid
+frameworks**. Generalization to other polymer crystals can come later. Avoid
+weakening the first implementation by pretending every crystallographic object
+has the same design semantics.
+
+For these systems, four distinct state layers should remain explicit:
+
+1. **Input strand inventory** — the real synthesized/declared full strand
+   sequences, modifications and intended stoichiometry/copy counts when known.
+2. **Tile hypothesis** — the intended or inferred finite assembly unit:
+   junctions, sticky ends, strand connectivity, internal nicks/termini and
+   design-level multiplicity. This is usually supplied by the user/project, but
+   it may be incomplete or wrong.
+3. **Periodic crystal graph** — the actual repeating molecular connectivity
+   implied by the solved coordinates plus crystallographic symmetry.
+4. **ASU serialization** — one coordinate-file cut of that periodic object,
+   including representation seams, chain labels, residue numbering and the
+   number/fragments of tile copies that happen to fall inside the ASU.
+
+These layers must not be collapsed. In particular:
+
+- an ASU may contain two copies of a triangle tile without redefining the
+  triangle itself;
+- symmetry may slice a tile through junctions, sticky ends or ordinary backbone
+  segments;
+- a representation seam can create a coordinate-file nick that is not a
+  chemical nick;
+- a declared strand may be absent from the observed crystal structure;
+- the crystal may use a different effective stoichiometry/copy number from the
+  input recipe; and
+- in difficult cases, the scientifically meaningful "tile" may emerge only
+  after the periodic graph is understood.
+
+Topo Net should therefore treat the tile as a **hypothesis with provenance**,
+not a permanent truth. A tile record may be:
+
+- `DECLARED` — supplied explicitly by the user/project;
+- `INFERRED` — reconstructed uniquely from full input strands plus observed
+  periodic connectivity under reviewed rules;
+- `EMERGENT` — proposed from the solved periodic graph because the observed
+  assembly cannot be represented faithfully by the declared tile without
+  contradiction; or
+- `UNRESOLVED` — more than one non-equivalent tile interpretation remains.
+
+A declared tile always remains visible as experimental intent even if the
+observed crystal suggests another organization.
+
+### Full-strand input and tile reconstruction
+
+When the user can provide the actual complete strand list, that strand inventory
+should outrank ASU-derived chain sequences as design evidence. ASU chain
+sequences are coordinate serialization; they may be fragments or symmetry-cut
+pieces of the real strands.
+
+A future Topo Net compiler may therefore attempt:
+
+```text
+full input strands
+    -> candidate strand-to-periodic-graph mappings
+    -> tile hypothesis/hypotheses
+    -> ASU representation
+```
+
+This must remain fail-closed. It must allow:
+
+- a supplied strand that is not observed in the final structure;
+- several copies of one input strand;
+- fewer/more effective tile copies than the input recipe expected;
+- one input strand split among ASU/symmetry fragments;
+- different tile hypotheses compatible with the same local sequence evidence;
+  and
+- the possibility that no faithful finite tile decomposition is yet known.
+
+The goal is not to force nature back into the synthesis spreadsheet. It is to
+use the spreadsheet as high-authority experimental intent while allowing the
+solved periodic object to disagree visibly.
+
+### Topo Surgeon / Topo Doctor
+
+Topo Net surgery will sometimes produce locally awkward coordinate geometry,
+especially after mutation, reslicing or chain reconstruction from imperfect MR
+models. These failures are not all equivalent and should not be hidden inside a
+single deterministic "fix" command.
+
+A future bounded **Topo Surgeon** (or Topo Doctor) may consume one immutable
+surgery proposal and try a small declared repair budget. Candidate operations
+might include reviewed combinations of:
+
+- exact symmetry materialization without coordinate relaxation;
+- local mutation before versus after seam materialization;
+- one-residue Coot RSR at the affected phosphate/backbone junction;
+- a slightly broader local Coot repair only after the one-residue variant fails;
+- alternate reviewed split/join orderings; and
+- later, experimentally validated symmetry-spanning bond policies.
+
+Each repair attempt must be a separate immutable branch with before/after
+coordinates, exact Coot/Phenix actions and stopping reason.
+
+Comparison must be chemically local rather than merely numerical. Candidate
+repairs should be audited for, as applicable:
+
+- Phenix bond/angle outliers and local `.geo` interpretation;
+- phosphate orientation and cross-symmetry clashes;
+- base-plane integrity;
+- base-pair/stacking geometry from reviewed NARestraints targets when
+  applicable;
+- sugar/backbone distortion;
+- unintended movement of neighboring or remote atoms;
+- preservation of residue/deposition identity; and
+- whether the intended periodic connectivity is actually realized.
+
+No single composite "topology score" should silently pick a result. A reviewed
+policy may apply hard gates and then present surviving candidates for
+inspection.
+
+If the bounded repair budget cannot produce a trustworthy result, expert manual
+Coot work is an expected fallback, not a pipeline failure. Topo mode already
+implies an expert user. NASolve should open the exact model/maps/symmetry context
+needed for repair, instruct the user what seam/fragment requires attention, then
+allow the user to save/import a corrected PDB as a new immutable checkpoint.
+That manual model must retain the failed automated attempts and user-review
+provenance rather than erasing them.
+
 ### Materialization, Coot repair and Phenix enforcement
 
 Topo Net itself should remain preview/intent logic. Applying a reviewed surgery
