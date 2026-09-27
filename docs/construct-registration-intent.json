@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-oak-7",
+  "version": "2026-09-27-oak-8",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -199,9 +199,22 @@
       "reported_by": "user-local-run",
       "github_ci": false,
       "scope": "provenance-bound Scout v2 provider evidence interface plus existing Construct Registration tests"
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "test_code_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 43,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "provenance-bound Scout v2 provider evidence plus explicit rejection tests for incomplete provider coverage and provider-selector/source mismatch"
     }
   ],
-  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_FOCUSED_PASSED_REAL_W_INTERFACE_RERUN_PENDING",
+  "current_validation_status": "OAK_V2_PROVIDER_PROVENANCE_43_FOCUSED_PASSED_REAL_W_INTERFACE_RERUN_PENDING",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -256,17 +269,18 @@
     ]
   },
   "latest_focused_validation": {
-    "date": "2026-09-26",
+    "date": "2026-09-27",
     "branch": "oak",
-    "checkout_head": "36c369bdfd75602340882805a6dc03f2c193c58d",
-    "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-    "reported_pass_count": 41,
+    "checkout_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+    "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+    "test_code_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+    "reported_pass_count": 43,
     "files": [
       "tests/test_construct_registration.py"
     ],
     "reported_by": "user-local-run",
     "github_ci": false,
-    "note": "Provenance-bound Scout v2 provider evidence interface plus existing Construct Registration tests."
+    "note": "Includes explicit fail-closed coverage for incomplete provider target coverage and provider-selector/source mismatch."
   },
   "latest_full_validation": {
     "date": "2026-09-26",
@@ -502,7 +516,7 @@
     },
     "provenance_binding_slice": {
       "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-      "validation_status": "PASSED_FOCUSED_LOCAL_TESTS",
+      "validation_status": "PASSED_43_FOCUSED_LOCAL_TESTS",
       "behavior": [
         "accept provider evidence only as provider_assessment plus model_provider provenance",
         "require standard frame-catalogue provenance",
