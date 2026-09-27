@@ -1233,6 +1233,71 @@ class ConstructRegistrationTests(unittest.TestCase):
                     },
                 )
 
+    def test_design_aware_v2_rejects_provider_with_incomplete_target_coverage(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model_root = root / "model"
+            provider_root = root / "provider"
+            model_root.mkdir()
+            provider_root.mkdir()
+            model = assessment(
+                model_root,
+                [("M", 1, "DA"), ("M", 2, "DC")],
+            )
+            provider = assessment(
+                provider_root,
+                [("A", 1, "DA")],
+            )
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+                ("A:2", [("family_reference", "DC")]),
+            )
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "cover exactly the logical target site set",
+            ):
+                propose_design_aware_chain_mapping(
+                    model,
+                    logical_target,
+                    provider_assessment=provider,
+                    model_provider={
+                        "kind": "explicit-standard-model",
+                        "selection": "user-forced",
+                        "frame": "W",
+                        "location": "frame-catalogue",
+                        "selector": "model.pdb",
+                    },
+                )
+
+    def test_design_aware_v2_rejects_provider_selector_assessment_mismatch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model_root = root / "model"
+            provider_root = root / "provider"
+            model_root.mkdir()
+            provider_root.mkdir()
+            model = assessment(model_root, [("M", 1, "DA")])
+            provider = assessment(provider_root, [("A", 1, "DA")])
+            logical_target = historical_target(
+                ("A:1", [("family_reference", "DA")]),
+            )
+            with self.assertRaisesRegex(
+                ConstructRegistrationError,
+                "does not match model-provider selector",
+            ):
+                propose_design_aware_chain_mapping(
+                    model,
+                    logical_target,
+                    provider_assessment=provider,
+                    model_provider={
+                        "kind": "explicit-standard-model",
+                        "selection": "user-forced",
+                        "frame": "W",
+                        "location": "frame-catalogue",
+                        "selector": "different.pdb",
+                    },
+                )
+
     def test_logical_inventory_is_read_only_and_can_exclude_partial_copies(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
