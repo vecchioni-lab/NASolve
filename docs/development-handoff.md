@@ -425,10 +425,15 @@ A->M/B->N/C->P/D->Q (38 exact + 4 provider-explained; alternatives
 `runtime_authority = false`.
 
 Scout v2 therefore remains experimental/non-runtime, but its focused tests and
-intended real-W provenance-bound shadow gate are now green. Before PR readiness,
-run the full NASolve regression suite and preferably repeat this check against a
-fresh run that natively contains structured `model_provider` provenance rather
-than requiring historical-schema reconstruction.
+intended real-W provenance-bound shadow gate are now green. The current Oak
+checkout `316ac43eaf85a63cf675828bb8960a28f0db2773` also passed the **full
+NASolve regression suite: 672 tests locally**. No runtime or subtest count was
+reported for this checkpoint; it is user-local validation, not GitHub CI.
+
+The merge-grade regression gate is therefore green. One remaining optional
+confidence check is to repeat the same provenance-bound real-W shadow case
+against a fresh run that natively contains structured `model_provider`
+provenance rather than requiring historical-schema reconstruction.
 
 ### First real-data registration shadow check
 
