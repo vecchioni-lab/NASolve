@@ -793,8 +793,11 @@ every alternative retained at least 10 unexplained mismatches. The helper still
 reports `runtime_authority = false`. Oak now removes the free-floating
 site->code input entirely: provider evidence is derived from the assessed
 frame-catalogue model and bound to the existing provider record plus exact model
-SHA-256. This provenance-bound implementation is still experimental and awaits
-focused local validation before any runtime integration is considered.
+SHA-256. This provenance-bound implementation remains experimental, but the
+focused Construct Registration suite now passes **43 tests locally**, including
+explicit rejection of incomplete provider coverage and provider-selector/source
+mismatch. Real-W shadow validation through the new provenance-bound interface
+remains a separate gate before any runtime integration is considered.
 
 The intended live architecture remains: cheap non-mutating Registration Scout
 inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
