@@ -444,6 +444,20 @@ stated purpose. AutoMR/PostMR integration, automatic application, authoritative
 registration and any promotion of Scout v2 into runtime decision-making remain
 separate future work and are not implied by this validation.
 
+### Oak branch-readiness sweep
+
+A final user-local readiness sweep on the current Oak checkout reported:
+
+- authority audit: no live callers of
+  `propose_design_aware_chain_mapping` outside its defining module;
+- patch hygiene: `git diff --check main...oak` produced no output;
+- runtime health: `./nasolve check` passed with Python 3.12.14,
+  NARestraints 1.1.2, Phenix 2.2.1 and Coot 1.3.3.
+
+This sweep changes no scientific behavior. It confirms that the experimental
+Scout v2 helper remains isolated from the live pipeline, the branch diff is
+whitespace-clean, and the configured local crystallographic runtime is healthy.
+
 ### First real-data registration shadow check
 
 The new registration core was then exercised read-only against existing ED
