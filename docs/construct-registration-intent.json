@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-14",
+  "version": "2026-09-27-oak-15",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -295,7 +295,6 @@
     "required_categories": [
       "full regression before substantial merge",
       "clean W identity-path live check when registration is wired",
-      "8D93-style non-identity recut live check when executable",
       "8D31-like complete/partial multiplicity live check when executable",
       "guided ambiguity live check when UI/CLI exists",
       "bounded multi-PDB MR live check when selection policy exists",
