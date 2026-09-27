@@ -374,10 +374,10 @@ have **zero unexplained mismatches**, and every alternative must have at least
 one. A mapping with merely fewer unexplained mismatches is still ambiguous.
 
 The helper is not runtime authority, cannot apply a mapping, and is not called
-by AutoMR/PostMR. Provider-baseline codes are caller-supplied experimental
-evidence for now; production use requires versioned/provider-bound provenance.
-Focused Oak validation is green: **41 tests passed locally** in
-`tests/test_construct_registration.py` at code head
+by AutoMR/PostMR. Provider-baseline evidence is now derived from an assessed
+standard frame-catalogue model plus NASolve's existing provider provenance;
+free-floating caller residue dictionaries are no longer accepted. The original
+Oak v2 checkpoint had **41 focused tests passing locally** at code head
 `189fd4589a8c8f2a0191e21e99cec22b428e6a1c`.
 
 The first renamed real-W v2 shadow case supplied only A:13=DC and B:3=DG as
@@ -406,13 +406,15 @@ provenance, exact target-site coverage and provider-selector/source-model
 agreement, and returns the derived residue baseline bound to the source model's
 SHA-256. Runtime authority remains false and AutoMR/PostMR still do not call it.
 
-This provenance-bound source/test slice has now passed **41 focused tests
-locally** at checkout head
-`36c369bdfd75602340882805a6dc03f2c193c58d`, with source/test code head
-`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The result is user-local, not
-GitHub CI. Scout v2 remains experimental and non-runtime; the next scientific
-validation should exercise the real renamed-W case through this new
-provider-assessment/provenance interface before any promotion discussion.
+The provenance-bound helper plus its new fail-closed coverage now passes
+**43 focused tests locally** at checkout/test head
+`507745a0b7166f05229f6c3501d5e1f694db93e2`; the source-behavior head remains
+`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added tests explicitly
+reject incomplete provider target coverage and provider-selector/source-model
+mismatch. The result is user-local, not GitHub CI. Scout v2 remains experimental
+and non-runtime; the next scientific validation should exercise the real
+renamed-W case through this new provider-assessment/provenance interface before
+any promotion discussion.
 
 ### First real-data registration shadow check
 
