@@ -293,6 +293,37 @@ single-residue Coot RSR on several disposable recuts where a phosphate/O3-prime
 connection is initially too long, auditing which atoms move and whether Phenix
 then interprets the linkage cleanly.
 
+Topo Net should also preserve a stronger design hierarchy than ASU chain
+serialization. For framework work, keep four layers separate:
+
+- complete synthesized/input strand inventory;
+- tile hypothesis (usually declared, but possibly inferred/emergent);
+- observed periodic crystal graph under symmetry; and
+- one incidental ASU/PDB serialization of that periodic object.
+
+Input strands are high-authority experimental intent, not guaranteed observed
+content. A strand may be absent from the solved structure; copy number may
+differ from the synthesis recipe; one strand may be split among symmetry/ASU
+fragments; and the scientifically useful tile can become more abstract than
+the original design. Tile status should therefore permit `DECLARED`, `INFERRED`,
+`EMERGENT` and `UNRESOLVED` outcomes while retaining the original declared tile
+for provenance.
+
+This distinction matters for known lab-style multiplicity cases: a P4_132
+structure may place two complete triangular tile copies in one ASU without
+making the ASU itself the tile. Tile multiplicity, ASU multiplicity and
+coordinate-chain decomposition must remain separate reported dimensions.
+
+Topo surgery also needs a bounded local repair layer rather than assuming one
+Coot action always works. A future **Topo Surgeon/Doctor** may branch a small
+declared set of materialization/mutation/RSR strategies, then compare Phenix
+local geometry, phosphate/clash behavior, base planes, pairing/stacking
+restraints and unintended coordinate movement. Every attempt remains immutable.
+If automated repair cannot produce a trustworthy local model, expert manual
+Coot work is an expected Topo-mode fallback; NASolve should open the exact
+model/maps/seam, then import the user's repaired PDB as a new user-reviewed
+checkpoint without erasing failed automated attempts.
+
 The first planned blind topology-surgery fixture is **8D93 -> 3GBI-style
 representation without coordinate cheating**: the transform receives 8D93,
 symmetry and requested cut intent, while 3GBI coordinates are withheld until
