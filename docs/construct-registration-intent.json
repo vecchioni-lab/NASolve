@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-29",
+  "version": "2026-09-28-pine-30",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1174,7 +1174,8 @@
         "id": 6,
         "name": "explicit_workflow_recipe",
         "goal": "Validate campaign-owned Refine Doctor continuation, then freeze campaign endpoint/conditional graph as versioned recipe data with optional human semantic policy 'apply Doctor as needed'.",
-        "status": "CAMPAIGN_DOCTOR_BRIDGE_IMPLEMENTED_UNVALIDATED_WORKFLOW_RECIPE_CONTRACT_NEXT"
+        "status": "CAMPAIGN_DOCTOR_LIVE_GREEN_FULL_REGRESSION_PENDING_WORKFLOW_RECIPE_NEXT",
+        "note": "Focused tests passed and real QiC Doctor produced refine-002 via fixed-scattering while preserving postmr as current. One stale CLI test expectation was corrected; rerun full campaign/full suite before full validation."
       },
       {
         "id": 7,
@@ -1244,7 +1245,10 @@
       "default campaign endpoint remains autorefine; refine-doctor continuation is explicit",
       "future workflow recipe semantic option: 'apply Doctor as needed' (exact schema spelling deferred)",
       "future GUI visually builds the same backend recipe from supported capabilities/defaults",
-      "all CLI interaction decisions must have GUI-equivalent backend actions"
+      "all CLI interaction decisions must have GUI-equivalent backend actions",
+      "public scientist-facing name is Scout; v1/v2 are internal implementation-provenance labels only",
+      "campaign-owned QiC Refine Doctor live run succeeded: refine-002 fixed-scattering Rwork/Rfree 0.1500/0.1502; postmr current preserved; no auto-selection",
+      "full regression validation remains pending rerun after stale CLI expectation fix"
     ]
   },
   "campaign_development_branch": {
@@ -1291,9 +1295,10 @@
     ],
     "current_phase": [
       "real W orchestration smoke validation remains complete",
-      "campaign-owned Refine Doctor bridge is implemented-unvalidated",
-      "user is running regression gates before any live QiC Doctor mutation",
-      "if regression gates pass, execute Doctor only on QiC through campaign provenance"
+      "campaign-owned Refine Doctor live QiC continuation succeeded",
+      "focused campaign Doctor regression passed",
+      "stale CLI regression expectation corrected",
+      "campaign family + full NASolve regression rerun still required before full regression validation"
     ],
     "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
     "completion_rule": "Satisfied for W orchestration only; does not satisfy prepared-nonstandard geometry-diverse live gate.",
@@ -1417,6 +1422,24 @@
         }
       },
       "interpretation": "Real W campaign orchestration is validated: one-command continuation, conditional AutoSol skip/run, independent dataset review isolation, exact run/checkpoint ownership, COMPLETE_WITH_FLAGS summary and integrity-preserving exit status all behaved as intended."
+    },
+    "doctor_live_result": {
+      "dataset": "QiC_120325_0513",
+      "status": "REFINE_DOCTOR_RECOMMEND",
+      "source_checkpoint": "refine-001",
+      "recommended_checkpoint": "refine-002",
+      "recipe": "RefineDoctor/ML-fixed-scattering",
+      "r_work": 0.15,
+      "r_free": 0.1502,
+      "strict_success": true,
+      "current_checkpoint_preserved": true,
+      "actual_current_checkpoint": "postmr",
+      "free_r_audit": {
+        "status": "NOISY",
+        "fraction": 0.04456448345712356,
+        "independent_groups": 66
+      },
+      "auto_selected": false
     }
   },
   "documentation_continuity": {
@@ -1438,7 +1461,7 @@
     "update_rule": "Propagate material intent changes immediately to the smallest authoritative doc set; do not broaden README/architecture unless their scope actually changed; promote validation status in a small follow-up after evidence arrives."
   },
   "current_position": {
-    "status": "SESSION_ACTIVE_QIC_CAMPAIGN_DOCTOR_VALIDATION_IN_PROGRESS",
+    "status": "QIC_CAMPAIGN_DOCTOR_LIVE_SUCCEEDED_FULL_REGRESSION_PENDING",
     "date": "2026-09-28",
     "runtime_behavior_head": "93a85edeaed357302fb4952ada760b1855b57b3a",
     "current_branch": "pine",
@@ -1455,10 +1478,14 @@
       "dataset": "QiC_120325_0513",
       "campaign": "/tmp/NASolve-W-live-20260928",
       "run": "QiC_120325_0513/AutoMR/run_001",
-      "current_checkpoint": "postmr",
-      "review_checkpoint": "refine-001",
-      "doctor_invoked": false,
-      "guardrail": "Do not run standalone Refine Doctor on this campaign-owned run; integrate Doctor as a campaign-owned workflow transition first."
+      "original_current_checkpoint": "postmr",
+      "original_review_checkpoint": "refine-001",
+      "doctor_invoked": true,
+      "doctor_result": "REFINE_DOCTOR_RECOMMEND",
+      "recommended_checkpoint": "refine-002",
+      "actual_current_checkpoint_after_doctor": "postmr",
+      "auto_selected": false,
+      "guardrail": "Recommendation remains inspection-only; explicit selection is still required."
     },
     "next_order": [
       "finish current campaign-owned Refine Doctor regression/live validation",
@@ -1472,16 +1499,28 @@
     "local_worktree_guardrail": "Known untracked scientific data, patches, bundles, old environments and example runs are user-local and must not be staged/deleted/renamed without explicit instruction.",
     "in_progress": {
       "feature": "campaign-owned Refine Doctor continuation",
-      "implementation_status": "IMPLEMENTED_UNVALIDATED",
-      "behavior": [
-        "refine-doctor exists as explicit optional campaign stage after AUTOREFINE_REVIEW",
-        "default campaign endpoint remains autorefine; Doctor does not run implicitly",
-        "explicit --through refine-doctor may continue only eligible refinement-review datasets",
-        "Doctor receives exact AutoRefine review receipt dependency",
-        "out-of-band run-report mutation blocks Doctor",
-        "Doctor recommendation remains inspection-only and does not auto-select current checkpoint"
-      ],
-      "validation": "User is currently running syntax + focused campaign Doctor regression + campaign family + full NASolve regression, followed conditionally by the real QiC campaign Doctor live run."
+      "implementation_status": "LIVE_SUCCEEDED_FULL_REGRESSION_PENDING",
+      "evidence": {
+        "focused_regression": "4 tests + 4 subtests passed",
+        "campaign_family_before_stale_test_fix": "130 passed + 85 subtests; one obsolete CLI expectation reported twice",
+        "live_qic": {
+          "status": "REFINE_DOCTOR_RECOMMEND",
+          "source_checkpoint": "refine-001",
+          "recommended_checkpoint": "refine-002",
+          "recipe": "RefineDoctor/ML-fixed-scattering",
+          "r_work": 0.15,
+          "r_free": 0.1502,
+          "r_free_minus_r_work": 0.0002,
+          "strict_success": true,
+          "current_checkpoint_preserved": true,
+          "actual_current_checkpoint": "postmr",
+          "free_r_audit_status": "NOISY",
+          "free_r_fraction": 0.04456448345712356,
+          "independent_free_r_groups": 66,
+          "stop_reason": "numerical-pass"
+        }
+      },
+      "remaining_gate": "Rerun campaign family and full NASolve regression after correcting stale CLI test expectation."
     }
   },
   "workflow_recipe_product_intent": {
@@ -1537,5 +1576,14 @@
       "after tests/live evidence, promote only the claims directly supported by that evidence",
       "prefer a small follow-up edit over a broad rewrite when only validation status changed"
     ]
+  },
+  "scout_naming": {
+    "public_name": "Scout",
+    "internal_generation_labels": [
+      "Scout v1",
+      "Scout v2"
+    ],
+    "rule": "Use Scout on scientist-facing CLI/GUI/README/reports. Use v1/v2 only in developer/machine provenance when distinguishing implementation generations or historical validation.",
+    "runtime_status": "Merged Scout-v2 helper remains proposal-only/non-runtime; public naming does not imply runtime promotion."
   }
 }
