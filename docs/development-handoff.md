@@ -254,7 +254,9 @@ eligibility policy -> attempt-local derived-provider provenance -> one explicit
 donor rescue -> bounded automatic donor enumeration. None of those should be
 smuggled into the first heterogeneous campaign milestone.
 
-Pine work remains separate from Oak/PR #22.
+Pine campaign work remains a separate development scope above the now-merged
+Oak mainline. PR #22 is complete; Pine does not turn Scout v2 into runtime
+authority.
 
 ### Current live orchestration validation: four-member W campaign
 
