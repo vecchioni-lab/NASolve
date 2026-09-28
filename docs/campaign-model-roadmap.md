@@ -248,6 +248,29 @@ longer obeys the declared tile copy model. Partial use of one strand must also
 be representable at residue/repeat-domain level rather than only as
 present/absent.
 
+Junctions should become explicit tile/topology records rather than being
+reconstructed from incidental ASU chain adjacency. A declared junction may
+retain its logical arms, strand/residue membership, true nicks/termini, sticky
+ends, optional coaxial pairing/stacking expectations and root/repeat roles even
+when crystallographic symmetry slices that junction across ASU fragments.
+Undeclared junctions may be proposed from the periodic graph only as
+provenance-rich hypotheses until uniquely supported or user-confirmed.
+
+Topo Net should also remain open as a persistent checkpoint workbench. Surgery,
+optional Coot repair and a bounded Refine action should each create immutable
+children and return their results to the same GUI rather than forcing the user
+through repeated terminal/Coot setup cycles. The first refine action should
+reuse a short ordinary audited AutoRefine path; local-selection refinement is a
+later validation problem.
+
+The GUI should keep diagnostics compact by default: current checkpoint,
+Rwork/Rfree, refinement state and a local-warning indicator. Selecting a
+residue, seam or junction should populate focused Phenix bond/angle outliers,
+phosphate connectivity/clashes, base-plane and sugar/backbone geometry,
+reviewed pairing/stacking deviations, mutation/registration state and later
+reviewed residue-density metrics. Diagnostic selections should round-trip to
+the same atoms in Coot.
+
 A future bounded **Topo Surgeon/Doctor** should sit between Topo Net preview and
 expert manual repair. It may try a small immutable budget of reviewed local
 materialization/mutation/Coot-repair variants, compare local Phenix geometry,
