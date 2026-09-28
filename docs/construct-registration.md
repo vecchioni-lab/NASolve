@@ -913,6 +913,92 @@ strand stoichiometry and repeat annotations while assigning a different
 `EMERGENT` tile/periodic organization. The design sheet remains evidence of
 what was built; the periodic graph records what crystallized.
 
+### Junctions are first-class design objects
+
+Junctions must not be inferred only from whichever residues happen to share one
+ASU. They are design/topology objects that can survive ASU recutting, be split
+across symmetry mates, or become represented by several coordinate fragments.
+
+A future tile/strand declaration should therefore support explicit junction
+records independent of PDB chain boundaries. A junction record may contain:
+
+- a stable junction ID and optional human name;
+- member logical strands and residue/domain ranges;
+- declared arm count and arm identities;
+- optional root/center strand role and repeat-domain participation;
+- the intended connectivity order between arms/strands;
+- true chemical nicks/termini that belong to the junction design;
+- sticky ends attached to junction arms;
+- optional expected coaxial stacking/pairing relationships;
+- whether the junction itself is an invariant tile feature even when the ASU
+  cuts through it; and
+- provenance/status such as `DECLARED`, `INFERRED`, `EMERGENT`, or
+  `UNRESOLVED` when the solved structure changes the junction interpretation.
+
+Topo Net should render the junction as one logical object even when its
+coordinate realization is distributed across several ASU/symmetry fragments.
+Cutting/re-pasting an ASU representation must therefore move fragment ownership
+without silently creating or destroying a logical junction.
+
+The future net finder may reconstruct undeclared junction hypotheses from
+periodic connectivity, strand mappings, pairing/stacking evidence and symmetry,
+but it must keep those hypotheses non-authoritative until the evidence is
+unique or the user confirms them. This is especially important for emergent
+assemblies where crystallography changes the meaningful definition of the
+tile itself.
+
+### Persistent Topo workbench and refine loop
+
+Topo Net should be a persistent workbench, not a one-shot report or cutter.
+The user should be able to perform surgery, refine the resulting checkpoint,
+inspect compact metrics, and continue operating without closing/restarting the
+GUI.
+
+A conceptual loop is:
+
+```text
+Topo Net checkpoint
+    -> cut / paste / junction / seam / mutation operation
+    -> immutable surgery child checkpoint
+    -> optional Coot local repair
+    -> bounded Refine action
+    -> immutable refinement child checkpoint
+    -> local + global diagnostics returned to the same Topo session
+    -> accept / compare / operate again
+```
+
+The first Refine button should prefer an ordinary short audited AutoRefine
+child rather than inventing an unvalidated local-refinement engine. The UI may
+focus its diagnostics on selected/touched residues even if the refinement
+itself is initially whole-model. Selection-restricted Phenix refinement can be
+added later only after dedicated validation shows that it is stable around
+DNA backbones, junctions and symmetry seams.
+
+The persistent workbench should expose only compact global status by default,
+for example current checkpoint, Rwork/Rfree, refinement status and whether
+selected local geometry contains hard failures. Detailed diagnostics should
+expand only for the selected residue/junction/seam so the molecular/topological
+display is not swallowed by tables.
+
+Useful selectable local diagnostics may include, where available:
+
+- Phenix bond/angle outliers involving the selected residues;
+- phosphate O3-prime-P distance and local backbone interpretation;
+- nearby cross-symmetry clashes/nonbonded contacts;
+- base-plane distortion;
+- NARestraints pairing/stacking deviations when reviewed restraints exist;
+- sugar/backbone geometry outliers;
+- residue identity/mutation state and whether the intended logical site is
+  actually realized;
+- map-fit/residue-density metrics when a reviewed reproducible extractor is
+  available; and
+- before/after coordinate displacement for the last surgery/repair/refinement.
+
+Clicking a diagnostic should select/center the same residues in Coot. Conversely,
+a Topo Net residue/junction selection should populate this local diagnostic
+panel. The workbench remains an orchestrator above Coot and the immutable
+checkpoint graph; it does not become a replacement atomic modeler.
+
 ### Topo Surgeon / Topo Doctor
 
 Topo Net surgery will sometimes produce locally awkward coordinate geometry,
