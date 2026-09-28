@@ -242,8 +242,14 @@ campaign-owned transition before it is used on a campaign-owned run: standalone
 Doctor appends history to `RUN/report.json`, while the completed AutoRefine
 campaign receipt intentionally freezes/checksums that report. Running standalone
 Doctor after the receipt would therefore appear as out-of-band report drift.
-The campaign-aware version must publish its own job/receipt/dependencies and
-retain Doctor's existing non-auto-selection semantics.
+Pine now contains an **implemented-unvalidated** campaign-owned Refine Doctor
+bridge with that shape: an explicit optional `refine-doctor` stage after
+`AUTOREFINE_REVIEW`, exact AutoRefine receipt dependency, report-integrity
+checking, and preserved non-auto-selection semantics. The default campaign
+endpoint remains AutoRefine; Doctor runs only when explicitly continued through
+the Doctor boundary until workflow-recipe policy is implemented. Do not call
+this bridge validated until the current regression bundle and real QiC live run
+complete successfully.
 
 The intended workflow-recipe policy is simple at the human level: a recipe may
 include **"apply Doctor as needed"** or omit it. Omission leaves an eligible
