@@ -131,6 +131,33 @@ with terminal output.
 - **Manual model return:** import a manually repaired Coot PDB as a new immutable
   review checkpoint while retaining its parent and failed automated attempts.
 
+## Live tree / notification-stream project
+
+- **Running node animation:** launch a campaign stage and verify the active
+  dataset/node/edge shows restrained activity without changing its scientific
+  status color prematurely.
+- **Reduced motion:** disable animation and verify the same RUNNING state remains
+  obvious through a static activity badge/ring.
+- **Authoritative publication:** verify a completion/checkpoint node does not
+  appear before the backend receipt/checkpoint record is published.
+- **Live campaign updates:** run several sequential stages and verify Navigator,
+  campaign workspace and dataset model tree update without manual reload.
+- **External CLI update:** change campaign/checkpoint state from CLI while the GUI
+  is open; verify the live tree and event stream reconcile from authoritative
+  files.
+- **Human event wording:** confirm representative events are intelligible without
+  internal tokens, e.g. "refinement 21 passed", "PostMR needs your review", and
+  "new retry attempt is ready".
+- **Technical drill-down:** expand each human event and verify exact backend
+  status, run/checkpoint ID, relevant metrics, raw diagnostic and artifact/log
+  references remain accessible.
+- **Event coalescing:** heartbeats/repeated RUNNING observations must not flood
+  the stream; one stage-start and one terminal/review event are sufficient.
+- **Attention semantics:** events requiring human action appear in both the
+  notification filter and Needs Attention without creating a second state store.
+- **Read/dismiss semantics:** marking an event read or clearing a GUI notification
+  changes only machine-local UI state and never campaign/checkpoint provenance.
+
 ## Activity / process project
 
 - **Progress:** long-running Phenix work reports progress/activity without
