@@ -10,7 +10,8 @@ NASolve documentation is organized by role, not chronology.
   artifact/checkpoint invariants, and stage responsibilities.
 - [`gui.md`](gui.md) — planned modular NASolve GUI shell, scientific hierarchy,
   checkpoint/model tree, semantic colors, CLI capability coverage and
-  capability-driven extensibility contract.
+  capability-driven extensibility contract; [`gui-live-checks.md`](gui-live-checks.md)
+  is the human validation queue for shell/navigation/accessibility/interoperability.
 - [`development-handoff.md`](development-handoff.md) — current validated state,
   immediate next work, active scientific caveats, and known blockers.
 - [`collaboration.md`](collaboration.md) — workspace, portability, Git, and
