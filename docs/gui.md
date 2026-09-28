@@ -264,23 +264,111 @@ Provenance should use progressive disclosure. Main views should say, for example
 "standard frame catalogue / provider verified"; exact checksums and frozen paths
 remain one disclosure click away.
 
+## Live campaign/tree activity
+
+When a campaign or long-running action is active, the GUI should feel alive
+without becoming visually noisy.
+
+The scientific Navigator and model/checkpoint tree should update from
+authoritative campaign/job/checkpoint records while work proceeds. The GUI may
+use filesystem watching plus bounded polling/reconciliation, but it must derive
+state from NASolve records rather than treating animation or subprocess stdout
+as authority.
+
+A currently running operation should be recognizable at low visual intensity.
+Recommended semantics:
+
+- running node: blue active ring/pulse or subtle perimeter shimmer;
+- running edge: restrained moving dot/dash/progress treatment from source toward
+  the operation/result node;
+- active dataset/campaign item: small nonintrusive activity glyph;
+- reduced-motion mode: replace animation with a static blue activity badge;
+- completed transition: animation stops and the node/edge immediately adopts
+  its ordinary success/review/failure semantic state.
+
+Avoid flashing/blinking at high contrast. Motion should indicate activity, not
+demand attention.
+
+The live tree should update when, for example:
+
+- a campaign dataset enters preflight/Phaser/PostMR/AutoSol/AutoRefine;
+- a new numbered run is allocated;
+- a new checkpoint/refinement child is published;
+- the current checkpoint changes;
+- a stage becomes solved/review/blocked/no-solution;
+- a pause request reaches a stage boundary;
+- a retry creates a new immutable attempt; or
+- an external CLI action changes authoritative project state.
+
+The GUI should tolerate partial publication. It must not invent a successful
+node before the corresponding immutable backend record/receipt/checkpoint exists.
+
+## Human-readable event stream / notifications
+
+The shell should include a **Notifications / Events** stream as a tab or mode of
+the bottom Activity drawer, not a floating window.
+
+Its default language should summarize meaningful NASolve state changes without
+forcing the user to read internal status tokens or logs. Examples:
+
+- `Crystal-B: refinement 21 passed the numerical gate`
+- `Crystal-B: current checkpoint changed to refine-021`
+- `Crystal-C: PostMR needs your review`
+- `Crystal-D: molecular replacement did not find a solution in this attempt`
+- `Campaign paused after Crystal-A PostMR completed`
+- `Crystal-F: a new retry attempt is ready`
+
+Every event should retain structured provenance:
+
+- timestamp;
+- campaign/design/dataset/run/checkpoint scope;
+- event type/severity;
+- short human summary;
+- authoritative backend status/record reference;
+- optional details/metrics;
+- relevant artifact/log links; and
+- whether user attention is required.
+
+Clicking/expanding an event reveals the technical layer: exact NASolve status
+tokens, checkpoint IDs, TFZ/R factors, provider/recipe identity, raw diagnostic,
+record/artifact paths and logs as applicable. This keeps jargon accessible
+without requiring CLI/GUI swapping.
+
+Prefer typed events derived from structured state transitions. Do not parse
+free-form stdout as the scientific source of truth when a structured record
+exists. The event adapter may use logs only for supplementary detail.
+
+To avoid notification spam:
+
+- coalesce repeated unchanged RUNNING/heartbeat observations;
+- surface stage start once and stage completion/review/failure once;
+- prioritize attention/completion/checkpoint-change events;
+- allow filters for All / Attention / Completed / System;
+- retain a bounded machine-local read marker without modifying scientific
+  artifacts; and
+- never make dismissing/reading a notification alter campaign scientific state.
+
 ## Activity drawer
 
-The bottom drawer replaces most transient report/log windows.
+The bottom drawer replaces most transient report/log windows and contains at
+least **Events** and **Technical Log** views.
 
 Collapsed form may show one line:
 
 ```text
-Phenix refinement complete - refine-011 - 0 warnings
+Crystal-B - refinement 21 passed - refine-021
 ```
 
-Expanded form may show:
+Expanded **Events** view shows the high-level human-readable stream above.
+
+Expanded **Technical Log** view may show:
 
 - currently running backend action and stage;
 - stdout/stderr/log tail;
-- progress events;
+- low-level progress/heartbeat information;
 - warnings/errors;
 - exact generated command/backend action for forensic use;
+- structured status/receipt identifiers; and
 - links to full immutable reports/artifacts.
 
 Closing/collapsing the drawer does not stop work.
