@@ -1140,6 +1140,17 @@ Phenix/Coot across four W datasets: three reached numerical refinement success,
 while one dataset that used the anomalous AutoSol path was correctly retained as
 a refinement-review case without stopping the other three.
 
+A campaign refinement-review case can be continued explicitly through the
+campaign-owned bounded Refine Doctor stage:
+
+```bash
+./nasolve campaign run CAMPAIGN_ROOT --dataset DATASET --through refine-doctor
+```
+
+Doctor preserves campaign provenance and does not automatically select its
+recommended checkpoint; inspect the recommended model/maps before deliberately
+making it current.
+
 Use `campaign pause examples` from another terminal to stop after the active
 stage finishes. Keep the execution terminal open; this first executor runs in
 the foreground on macOS/Linux. See [campaign execution](docs/campaign-execution.md)
