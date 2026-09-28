@@ -464,8 +464,17 @@ Current CLI:
 GUI:
 
 - Campaign workspace and Navigator;
+- **visual workflow-recipe builder** that exposes only backend-supported,
+  validated capabilities;
+- sensible defaults preselected where the backend has a real default, with
+  advanced/rare choices progressively disclosed;
+- recipe preview/validation showing the same frozen backend policy the CLI would
+  consume—no GUI-only workflow configuration;
+- optional future **"apply Doctor as needed"** control. When off/absent, review
+  states stop for attention; when enabled, only eligible bounded Doctor
+  transitions may run automatically;
 - Plan button;
-- stage-through dropdown;
+- stage-through dropdown for explicit validation/debug boundaries;
 - Run selected / Run campaign;
 - Pause after active stage;
 - Retry selected dataset;
@@ -551,10 +560,15 @@ Current CLI includes:
 GUI:
 
 - Doctor from selected eligible node;
+- recipe-level "apply Doctor as needed" may launch Doctor automatically at an
+  eligible review gate, but does not itself authorize selecting a candidate;
 - bounded options shown before launch;
 - candidate siblings rendered directly in the tree;
 - recommended/inspection candidate highlighted descriptively;
-- Open in Coot / Make current remain separate actions.
+- **Inspect/Open in Coot**, **Yes/No confirmation**, and **Make Current / keep
+  current** are explicit GUI actions equivalent to the CLI interaction;
+- Open in Coot / Make Current remain separate actions, preserving viewed versus
+  current semantics.
 
 ### Checkpoints
 
@@ -676,6 +690,13 @@ Keyboard shortcuts should supplement, not replace, visible discoverable actions.
 
 Avoid routine modal dialogs.
 
+Every interactive CLI prompt must have a GUI-equivalent choice with the same
+meaning. A terminal `y/n` prompt normally becomes two explicit actions/buttons;
+an inspect prompt becomes an Open in Coot/Inspect action; a Doctor selection
+prompt becomes a candidate-selection action in the model tree/Inspector. GUI
+defaults must match CLI/backend defaults and must never silently answer a prompt
+on the user's behalf.
+
 Use inline Inspector/action-popover confirmation for ordinary branching actions.
 Reserve blocking confirmation for genuinely dangerous/irreversible external
 operations. NASolve's internal immutable branching should make most scientific
@@ -741,3 +762,7 @@ Coot bridge and long-running activity handling.
 11. Conditional/skipped stages and future workflow-recipe endpoints are rendered
     from authoritative backend records; the GUI never infers a stronger
     scientific requirement from stage order alone.
+12. The visual recipe builder exposes only backend-supported/validated options
+    and serializes the same workflow recipe consumed by CLI execution.
+13. Every interactive CLI decision has a GUI-equivalent action with the same
+    default, eligibility, provenance and scientific consequence.
