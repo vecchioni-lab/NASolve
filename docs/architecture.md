@@ -697,10 +697,11 @@ The validated default coordinator stage order is:
 preflight -> Phaser -> PostMR -> conditional AutoSol -> AutoRefine
 ```
 
-Pine additionally contains an **implemented-unvalidated explicit continuation**
+Pine additionally contains a **regression + live validated explicit continuation**
 from `AUTOREFINE_REVIEW` into a campaign-owned `refine-doctor` stage. This is
-not part of the default endpoint and is not yet a validated durable contract;
-the current local regression/live QiC run is the evidence gate.
+not part of the default endpoint: it remains an explicit continuation unless a
+future frozen workflow recipe opts into Doctor-as-needed behavior. Doctor
+recommendation does not auto-select a checkpoint.
 
 AutoSol is a **conditional stage gate**, not a mandatory scientific operation.
 PostMR records whether a supported anomalous candidate exists. When it does not,
