@@ -1151,8 +1151,9 @@ Current validation state is summarized in
 - search unbounded refinement recipes or run several campaign jobs concurrently;
 - apply the final H3/R3 notation patch;
 - perform construct/ASU registration, guided Registration Net editing, the
-  planned generic checkpoint-tree GUI, topology-informed Topo Net framework
-  surgery, or registration-aware recut rescue; or
+  planned modular one-window GUI ([design contract](docs/gui.md)) with
+  checkpoint-tree/campaign navigation and CLI-operable actions, topology-informed
+  Topo Net framework surgery, or registration-aware recut rescue; or
 - search multiple catalogue/dataset models automatically.
 
 These operations are deliberately kept behind later validation gates rather
