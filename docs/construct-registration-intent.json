@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-oak-17",
+  "version": "2026-09-28-oak-18",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -307,7 +307,11 @@
       "repeat-bearing/root-strand local closure, long-period closure, phase ambiguity and partial-use project checks",
       "junction declaration, persistent Topo surgery/refine loop, compact local metrics and Coot round-trip validation",
       "minimal semi-junction, variable-valence junction and false-junction-candidate validation",
-      "generic model-tree GUI validation for long refinement lineages, pinned panels and historical branching"
+      "generic model-tree GUI validation for long refinement lineages, pinned panels and historical branching",
+      "GUI root/workspace selection and CLI coexistence refresh validation",
+      "GUI semantic color plus redundant shape/fill accessibility validation",
+      "GUI existing-CLI capability coverage and context-eligibility validation",
+      "GUI extensibility validation using one newly registered backend action without shell redesign"
     ]
   },
   "latest_focused_validation": {
@@ -1000,5 +1004,86 @@
       "traverse backward without deleting descendants"
     ],
     "reuse": "Standalone normal-mode GUI and Topo Net must share this same graph component and lineage semantics."
+  },
+  "future_gui_design": {
+    "status": "PLANNED_NOT_CURRENT_RUNTIME_SCOPE",
+    "contract": "docs/gui.md",
+    "principle": "One application shell over authoritative NASolve artifacts and backend operations; no GUI-only scientific state or second lineage system.",
+    "scientific_hierarchy": [
+      "root/project",
+      "campaign",
+      "optional design",
+      "dataset",
+      "run"
+    ],
+    "model_lineage": "Central immutable stage/checkpoint graph scoped by the selected scientific hierarchy object.",
+    "shell": {
+      "navigator": "left scientific hierarchy and attention filters",
+      "workspace": "center Overview/Tree/Compare/Topology/Campaign contextual modes",
+      "inspector": "right contextual metadata and eligible actions",
+      "activity_drawer": "bottom collapsible progress/log/warning surface",
+      "external_atomic_editor": "Coot remains the intentional external window"
+    },
+    "root_workspace": {
+      "open_root_selector": true,
+      "recent_roots": true,
+      "active_workspace_bridge": true,
+      "external_cli_refresh": true,
+      "rule": "Root/recent state is machine-local UI state and never scientific provenance."
+    },
+    "selection_semantics": {
+      "current": "authoritative backend pointer; changes only by audited operation",
+      "viewed": "transient inspection only",
+      "pinned": "GUI comparison/navigation memory only",
+      "selected": "UI focus only"
+    },
+    "semantic_visual_tokens": {
+      "ordinary_node": "hollow neutral grey/black",
+      "current_checkpoint": "blue filled plus strong double-ring/target marker",
+      "pinned_or_bookmarked": "blue checkpoint styling plus pin/star badge",
+      "accepted_ancestry_checkpoint": "green filled",
+      "needs_review": "yellow/amber plus ! badge",
+      "blocked_or_failed": "red plus x/stop badge",
+      "skipped": "hollow neutral dashed",
+      "viewed_not_current": "separate focus halo retaining underlying semantic style",
+      "current_success_path": "green stronger edge",
+      "other_lineage": "neutral visible edge",
+      "rule": "Color is never the only state carrier; shape/fill/badge/line style redundantly encodes meaning."
+    },
+    "cli_gui_coverage": [
+      "runtime check and Phenix/Coot configuration",
+      "workspace use/status/clear",
+      "preset validation",
+      "campaign plan/status/run/pause/retry and stage-through selection",
+      "AutoMR preflight/execute and common/advanced options",
+      "PostMR review/options and backbone-review",
+      "conditional AutoSol",
+      "AutoRefine source/recipe/cycles",
+      "Refine Doctor source/cycles/max-trials and inspection/selection",
+      "checkpoint list/bookmark/manual import/replacement observations/select",
+      "show/open in Coot for current, stage or explicit checkpoint"
+    ],
+    "extensibility": {
+      "action_registry": true,
+      "inspector_section_registry": true,
+      "workspace_view_registry": true,
+      "semantic_status_theme_registry": true,
+      "backend_schema_version_awareness": true,
+      "unknown_optional_fields_safe": true,
+      "command_palette": true,
+      "principle": "New backend capabilities should normally register actions/metadata/views into existing shell regions rather than require layout redesign."
+    },
+    "graph_behavior": [
+      "pan/zoom",
+      "collapse repetitive refinement chains while preserving branch points",
+      "pin important nodes as comparison panels",
+      "inspect without changing current",
+      "branch from eligible historical nodes",
+      "open any resolvable node in Coot without selection",
+      "share one graph component between normal mode and Topo Net"
+    ],
+    "attention_queue": "Filter/view over authoritative backend states such as registration ambiguity, MR/refinement review, backbone review, failed stages, topology repair and frozen-input integrity issues.",
+    "design_layer": "Optional first-class grouping for multiple datasets sharing stable construct/design metadata; never inferred from similar filenames/sequences alone.",
+    "modal_policy": "Avoid routine modal dialogs; immutable branching and inline Inspector/action-popover confirmation should make most scientific actions reversible by traversal."
   }
 }
