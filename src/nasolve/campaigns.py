@@ -975,7 +975,7 @@ def _validate_plan(payload: Any) -> None:
             elif config["mode"] == "nonstandard" and schema_version >= 2:
                 if any(config.get(field) is not None for field in (
                     "frame", "pair", "pair_ligands", "model_pair", "exact_pair_model",
-                    "frame_sequence", "sequence_reference",
+                    "frame_sequence",
                 )):
                     raise CampaignError(
                         f"Malformed campaign state: invalid {name} nonstandard frame/pair context"
