@@ -268,6 +268,108 @@ class CampaignStageTests(unittest.TestCase):
         )
         self.assertTrue((run / "Model/model_compatibility_facts.json").is_file())
 
+    def test_nonstandard_sequence_file_preflight_uses_only_frozen_campaign_resources(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        models = dataset / "models"
+        models.mkdir()
+        source_model = models / "search.pdb"
+        source_model.write_text(model_text())
+        source_sequence = dataset / "construct.fasta"
+        source_sequence.write_text(">A\nAC\n")
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\n"
+            "mode = nonstandard\n"
+            "model = models/search.pdb\n"
+            "sequence_file = construct.fasta\n"
+            "model_family = triangle-v1\n"
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        expected_model = (
+            self.root / self.dataset["inputs"]["model"]["relative_path"]
+        ).read_bytes()
+        expected_sequence = (
+            self.root / self.dataset["inputs"]["sequence_source"]["relative_path"]
+        ).read_bytes()
+
+        # The content-addressed campaign resources are authoritative after plan.
+        source_model.unlink()
+        source_sequence.unlink()
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+        with patch(
+            "nasolve.automr.resolve_automr_input",
+            side_effect=AssertionError("No source-folder/model rediscovery"),
+        ):
+            result = self.stage("preflight")
+
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        snapshot = (run / "nasolve.input.txt").read_text()
+
+        self.assertEqual(result["status"], "READY_POST_MR_MUTATION")
+        self.assertEqual(report["mode"], "nonstandard")
+        self.assertIsNone(report["frame"])
+        self.assertEqual(report["inputs"]["model_provider"], {
+            "kind": "explicit-nonstandard-model",
+            "selection": "user-forced",
+            "location": "dataset",
+            "selector": "models/search.pdb",
+            "construct_family": "triangle-v1",
+        })
+        self.assertEqual(report["inputs"]["model_selector"], "models/search.pdb")
+        self.assertEqual(report["post_mr_plan"]["sequences"], {"A": "AC"})
+        self.assertIsNone(report["post_mr_plan"]["standard_pair"])
+        self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], [])
+        self.assertEqual(report["post_mr_plan"]["phosphate_intent"]["source"], "none")
+        self.assertEqual((run / "Model/input_model.pdb").read_bytes(), expected_model)
+        frozen_sequence = Path(report["inputs"]["sequence_file"])
+        self.assertTrue(frozen_sequence.is_file())
+        self.assertEqual(frozen_sequence.read_bytes(), expected_sequence)
+        self.assertIn("model = models/search.pdb", snapshot)
+        self.assertIn("[sequences]\nA = AC", snapshot)
+        self.assertNotIn("sequence_file", snapshot)
+        self.assertTrue(
+            any(path.endswith("/frozen/sequence_source.fasta") for path in result["artifacts"])
+        )
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_discovered_nonstandard_preflight_preserves_discovery_provenance(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        source_model = dataset / "search.pdb"
+        source_model.write_text(model_text())
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\nmode = nonstandard\n\n"
+            "[sequences]\nA = AC\n"
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        expected_model = (
+            self.root / self.dataset["inputs"]["model"]["relative_path"]
+        ).read_bytes()
+
+        source_model.unlink()
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+        result = self.stage("preflight")
+
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        snapshot = (run / "nasolve.input.txt").read_text()
+
+        self.assertEqual(report["inputs"]["model_provider"], {
+            "kind": "discovered-nonstandard-model",
+            "selection": "single-pdb-discovery",
+            "location": "dataset",
+            "selector": "search.pdb",
+        })
+        self.assertIsNone(report["inputs"]["model_selector"])
+        self.assertIsNone(report["inputs"]["sequence_file"])
+        self.assertEqual((run / "Model/input_model.pdb").read_bytes(), expected_model)
+        self.assertIn("model = search.pdb", snapshot)
+        self.assertIn("[sequences]\nA = AC", snapshot)
+
     def test_preflight_uses_frozen_catalogue_and_does_not_generate_dataset_config(self):
         self.plan(config=False)
         shutil.rmtree(self.frames.parent)
