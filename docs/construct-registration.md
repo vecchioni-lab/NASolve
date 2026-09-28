@@ -266,8 +266,10 @@ its real-W shadow history is frozen in
 
 ### Experimental design-aware Scout v2 proposal
 
-Oak adds a separate **experimental, non-runtime** proposal helper to test the
-lesson from the renamed real-W validation without changing Scout v1.
+Oak introduced a separate **experimental, non-runtime** proposal helper to test
+the lesson from the renamed real-W validation without changing Scout v1. Oak/PR
+#22 has since been merged to `main`; the helper remains experimental and has
+**not** thereby become runtime authority.
 
 The helper evaluates every complete simple one-to-one chain mapping and
 classifies each target-identity difference as:
@@ -293,8 +295,11 @@ This is deliberately not runtime authority:
   provider model and reviewed/provider record; caller-supplied residue-code
   dictionaries are not accepted.
 
-The point of Oak is to test whether categorical design evidence is strong enough
-to disambiguate the real W rename case safely before any policy is promoted.
+The purpose of this merged Oak work is to test whether categorical design
+evidence is strong enough to disambiguate the real W rename case safely before
+any policy is promoted. Merge status and runtime-authority status are separate:
+the code is present on main, but ordinary AutoMR/PostMR execution still does not
+treat Scout v2 proposals as authoritative mappings.
 
 The first renamed-real-W v2 shadow attempt remained `AMBIGUOUS`, which was the
 correct fail-closed result for incomplete evidence. Only A:13=DC and B:3=DG had
@@ -311,8 +316,8 @@ produced exactly one zero-unexplained proposal:
 `runtime_authority = false`. This validates the experimental categorical rule
 on the real rename nuisance case without promoting it into runtime authority.
 
-Oak's next code slice now binds that provenance explicitly. Scout v2 no longer
-accepts an ad hoc site->code dictionary. Optional provider-baseline evidence must
+The final Oak implementation binds that provenance explicitly. Scout v2 no
+longer accepts an ad hoc site->code dictionary. Optional provider-baseline evidence must
 arrive as the actual assessed provider model plus NASolve's existing
 model-provider record. The helper accepts only standard frame-catalogue
 provenance, requires exact logical-site coverage, verifies that the provider
@@ -1173,6 +1178,11 @@ requiring user interaction.
 
 Historical runs without registration artifacts remain readable under their
 existing literal chain/residue semantics.
+
+Oak/PR #22 is now merged to main, but this does not change the compatibility
+boundary: Scout v2 remains proposal-only/non-runtime until a separate reviewed
+integration explicitly promotes it. Pine campaign work must not use its merge
+status as justification to bypass the simple/unambiguous prepared-model gate.
 
 Hemlock/Moss and later sequence/compatibility layers should eventually consume
 logical-site registration when one is present rather than assuming raw
