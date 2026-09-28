@@ -29,6 +29,34 @@ one universal topology checklist. Do not run them until the corresponding
 backend/UI primitive exists. Preserve exact input model/run/commit and the
 observed human/Coot behavior when a check is eventually completed.
 
+### Junction declaration / persistent-workbench project
+
+- **Declared junction survives ASU recut:** define a junction from logical
+  strands/residue ranges, then reslice the ASU so the junction spans several
+  coordinate/symmetry fragments. Verify the logical junction identity, arm
+  identities and true nicks/termini remain unchanged.
+- **Junction reconstruction:** withhold the explicit junction declaration and
+  verify that the periodic graph can propose the same junction only when
+  connectivity/strand/symmetry evidence is unique; otherwise remain
+  `UNRESOLVED` and request expert confirmation.
+- **Sticky-end/junction separation:** verify that a sticky end attached to a
+  junction arm remains a real design feature while nearby representation seams
+  may move or disappear under reslicing.
+- **Persistent surgery/refine loop:** from one open Topo session, create a
+  surgery child checkpoint, perform optional bounded Coot repair, launch a
+  short audited AutoRefine child and return to the same session without losing
+  selection/provenance context.
+- **Compact metric panel:** verify that default display shows only checkpoint,
+  Rwork/Rfree/refinement state and a local-warning summary; selecting a
+  residue/seam/junction expands only relevant local Phenix geometry, phosphate
+  connectivity/clashes, base-plane/sugar/backbone and reviewed stacking/pairing
+  diagnostics.
+- **Coot round-trip:** clicking one local diagnostic centers/selects the same
+  atoms in Coot, and selecting the corresponding Topo object repopulates the
+  same diagnostic context without changing the active checkpoint.
+- **Refine lineage:** every Refine action creates an immutable checkpoint child
+  rather than overwriting the surgical model; rejected refinement children
+  remain inspectable/replayable.
 ### 3GBI / 8D93 recut project
 
 - **Representation-seam chemistry:** verify that an ASU-cut "false nick"
