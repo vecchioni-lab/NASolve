@@ -782,10 +782,10 @@ This permits a new experimental campaign to ship a versioned preset/workflow
 directory without changing common run allocation, provenance, safety gates,
 Coot/Phenix isolation, or downstream reporting.
 
-The GUI is a second control surface over this same contract. A visual recipe
-builder may expose defaults, toggles and validated option sets, but it must
-serialize to the same frozen backend workflow recipe and may not invent a
-GUI-only scientific stage or policy. Likewise, interactive CLI transitions
+The GUI is a second control surface over this same contract. The **visual recipe builder**
+may expose defaults, toggles and validated option sets, but it must serialize to
+the same frozen backend workflow recipe and may not invent a GUI-only scientific
+stage or policy. Likewise, interactive CLI transitions
 (inspection, yes/no confirmation, continuation from review, Doctor inspection
 and checkpoint selection) must map to equivalent backend actions in the GUI.
 
