@@ -161,6 +161,41 @@ Status checks read the frozen plan and execution record without launching tools.
 Exit code `0` does not approve the structure. Read the per-dataset state,
 checkpoint, integrity and diagnostic fields when automating the command.
 
+## Current four-member W live validation
+
+A disposable real-environment campaign is currently being used to validate the
+coordinator independently of the newer nonstandard-provider path. The sandbox
+is `/tmp/NASolve-W-live-20260928` and contains clean top-level copies of:
+
+- `DOHU`;
+- `QiC_120325_0513`;
+- `QE_120325_0607`; and
+- `EG_091325-0302`.
+
+The first phase is intentionally planning-only:
+
+```bash
+./nasolve check
+./nasolve campaign plan /tmp/NASolve-W-live-20260928 \
+  --preset 5w6w \
+  --frames-dir "$PWD/MR_frames"
+./nasolve campaign status /tmp/NASolve-W-live-20260928
+```
+
+No scientific stage should be launched until all four planned members and their
+frozen intent are inspected. If all four are `DISCOVERED`, the next live phase
+runs the same frozen campaign through the ordinary stage spine. The desired
+human summary after execution is one row/card per dataset containing at least:
+
+`dataset -> status -> exact run -> checkpoint -> diagnostic`
+
+This W campaign validates real multi-dataset orchestration, isolation and
+solution reporting with the user's actual external tools. It does **not** count
+as the prepared-nonstandard geometry-diverse Pine live gate.
+
+Do not mark this validation complete until the actual terminal output has been
+reviewed and any inspection/block outcomes have been understood.
+
 ## Validation limits
 
 Regression tests use controlled stage workers and external-tool fixtures to
