@@ -12,6 +12,16 @@ Inference-policy changes should update both that record and this document so
 later validation can distinguish a code regression from an intentional policy
 revision.
 
+### Naming convention
+
+**Scientist/user-facing name: `Scout`.** Internal development notes may retain
+`Scout v1` and `Scout v2` where the distinction is necessary to explain
+implementation history, test provenance or policy evolution. Those suffixes are
+not product generations and should not appear in the normal CLI, GUI, README or
+scientist-facing reports. When the feature becomes runtime-visible, present it
+simply as **Scout** and keep the internal generation/version provenance in
+machine/developer records.
+
 ## Primary inference domain
 
 The primary target is **designed self-assembling nucleic-acid crystals**, not an
