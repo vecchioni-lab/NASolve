@@ -49,11 +49,34 @@ directories and symbolic-link directories do not become datasets. Repeat
 whole root. The names must stay within that root.
 
 Dataset discovery reuses the ordinary AutoMR rules: one authoritative MTZ,
-one processing metadata CIF, and one summary. The first planner supports the
-standard W/5W6W frame. Catalogue selection remains the default, but a dataset may
-explicitly force one PDB from its own directory or the selected frame catalogue.
-Unsupported modes or frames are reported as blocked. Automatic/shared/sibling
-model providers remain later roadmap steps.
+one processing metadata CIF, and one summary. New campaign plans use **schema 2**.
+They support both the existing standard W/5W6W route and a deliberately
+conservative prepared-nonstandard route. Existing schema-1 W plans remain
+readable and executable without migration.
+
+For standard W datasets, catalogue selection remains the default and a dataset
+may explicitly force one PDB from its own directory or the selected frame
+catalogue.
+
+For a prepared nonstandard dataset, `nasolve.txt` must explicitly set
+`mode = nonstandard`. Planning then accepts either one named dataset-relative
+PDB or exactly one discovered top-level PDB. The dataset must also supply an
+explicit complete chain-labelled target, either inline under `[sequences]` or
+through `[automr] sequence_file`. Planning freezes:
+
+- the exact model bytes/checksum and provider provenance;
+- the exact raw sequence-source bytes/checksum;
+- the parsed effective chain-labelled sequence target; and
+- the ordinary observations/metadata/configuration provenance.
+
+The raw model/sequence source may later disappear without changing the frozen
+campaign authority. Nonstandard datasets do not inherit the W frame/pair,
+W sequence-thread overlays, or the W recipe's D:1 terminal-phosphate intent.
+Nontrivial construct registration, split/recut chains, unexpected multiplicity
+and topology remain inspection stops rather than inferred fixes.
+
+3GBI campaign execution, shared/sibling model providers and automatic
+cross-dataset model reuse remain later roadmap steps.
 
 `DISCOVERED` means input and model selection succeeded. It does **not** assert
 that the MTZ contains usable arrays, symmetry agrees, the model passes its full
@@ -76,14 +99,47 @@ unsupported policies and unsafe resource paths. Optional named resources are
 relative to the preset directory and must resolve within it. Presets contain
 typed settings; they cannot supply shell commands.
 
-For the settings supported here, precedence is NASolve defaults, then preset,
-then explicitly supplied `nasolve.txt` values. An explicitly written `false`
+For standard W members, precedence is NASolve defaults, then preset, then
+explicitly supplied `nasolve.txt` values. An explicitly written `false`
 overrides a preset's `true`; an omitted value inherits the preset. Sequences
 and explicit mutations use the existing dataset intent parser. An explicit
 dataset `[automr] sequence_reference` is also resolved during planning. Its
 selector remains visible in the effective configuration while the exact
-reference bytes are copied into the campaign resource store. The resolved
-configuration is stored per dataset, while the original input file is preserved.
+reference bytes are copied into the campaign resource store.
+
+An explicitly nonstandard dataset is different: its own model/sequence request
+is authoritative, so W-specific AutoMR defaults from the selected preset are
+not applied. The preset still supplies the bounded shared stage policy
+(PostMR/AutoSol/AutoRefine settings). For a geometry-diverse real campaign, a
+small project-local preset with a neutral project ID is preferable to displaying
+the built-in `5w6w` name even though the nonstandard datasets would not inherit
+W chemistry. The resolved configuration is stored per dataset while the
+original input file is preserved.
+
+### Prepared nonstandard providers
+
+A first-slice nonstandard member may use:
+
+```ini
+[automr]
+mode = nonstandard
+model = models/search.pdb
+sequence_file = construct.fasta
+model_family = triangle-v1
+```
+
+or omit `model =` when exactly one top-level PDB exists. The optional
+`model_family` is explicit provenance only; it does not authorize sibling
+reuse or Campaign Doctor rescue.
+
+The sequence file may be chain-labelled FASTA or `CHAIN = SEQUENCE` text.
+Inline `[sequences]` is also accepted. Planning rejects a nonstandard member
+without a complete explicit target, and currently rejects W-family sequence
+threads on nonstandard members.
+
+The frozen effective target is the parsed chain map. The frozen raw sequence
+source remains separate provenance so later code can verify what user input
+produced that target without reparsing an unfrozen file.
 
 ### Explicit standard-model providers
 
@@ -255,9 +311,9 @@ or the numerical and structural acceptance gates.
 
 ## Execute the saved plan
 
-The [campaign executor](campaign-execution.md) composes one standard W/5W6W
-candidate per dataset using the existing scientific stages. It verifies this
-same schema-1 plan before running and stores durable progress separately.
-Existing plans remain compatible; do not delete or regenerate a plan to use
-the executor. Automatic Doctor selection, approval, reporting PDFs and
-deposition remain later work.
+The [campaign executor](campaign-execution.md) composes one frozen candidate
+per dataset using the existing scientific stages. Schema-2 plans may mix
+standard W and prepared nonstandard members; existing schema-1 W plans remain
+compatible and need no regeneration. Durable execution progress is stored
+separately from the immutable plan. Automatic Doctor selection, approval,
+reporting PDFs and deposition remain later work.
