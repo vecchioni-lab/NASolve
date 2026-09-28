@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-25",
+  "version": "2026-09-28-pine-26",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1135,7 +1135,7 @@
     }
   },
   "cli_first_campaign_runway": {
-    "status": "PINE_W_POSTMR_LIVE_GREEN_AUTOREFINE_RESUME_PENDING_NONSTANDARD_LIVE_PENDING",
+    "status": "PINE_REAL_W_ORCHESTRATION_VALIDATED_NONSTANDARD_LIVE_PENDING",
     "gui_branch_condition": "Do not begin GUI implementation until the real prepared-nonstandard/geometry-diverse campaign gate passes and minimal explicit Design grouping is CLI-functional. The easier W live campaign validates orchestration only.",
     "steps": [
       {
@@ -1167,14 +1167,14 @@
         "id": 5,
         "name": "campaign_regression_and_real_w_orchestration",
         "goal": "Validate W compatibility, nonstandard/mixed fixture behavior, relocation/pause/retry/isolation, plus an easier real multi-dataset W campaign under actual Phenix/Coot.",
-        "status": "FIXTURE_GREEN_REAL_W_PLANNING_PHASER_POSTMR_GREEN_AUTOREFINE_RESUME_PENDING",
-        "note": "Four-member W sandbox passed planning/integrity and real preflight/Phaser/PostMR 4/4; plain campaign run through default AutoRefine is next."
+        "status": "COMPLETE_FIXTURE_AND_REAL_W_VALIDATION",
+        "note": "Four-member W campaign completed under real Phenix/Coot: DOHU/EG/QE SOLVED with AutoSol SKIPPED; QiC AUTOSOL_READY then AWAITING_INSPECTION after numerical refinement failure; campaign COMPLETE_WITH_FLAGS, integrity OK."
       },
       {
         "id": 6,
         "name": "explicit_workflow_recipe",
-        "goal": "Freeze intended campaign endpoint and conditional transition graph as versioned recipe data; preserve conditional AutoSol SKIPPED/run semantics and fail-closed dataset stops.",
-        "status": "NEXT_BACKEND_SEMANTIC_AFTER_CURRENT_W_LIVE_CHECK"
+        "goal": "Freeze campaign endpoint and conditional graph as versioned recipe data, including campaign-owned bounded Refine Doctor escalation with immutable job/receipt/dependency provenance.",
+        "status": "NEXT_BACKEND_SEMANTIC"
       },
       {
         "id": 7,
@@ -1235,18 +1235,21 @@
       "AutoSol is a conditional campaign stage: no anomalous candidate -> accepted SKIPPED without launching phenix.autosol",
       "real four-member W campaign passed planning/integrity and real preflight/Phaser/PostMR 4/4",
       "workflow endpoint/conditional graph is not yet first-class frozen recipe data",
-      "merged Scout v2 remains experimental proposal-only and non-runtime"
+      "merged Scout v2 remains experimental proposal-only and non-runtime",
+      "real four-member W campaign completed: 3 SOLVED + 1 AWAITING_INSPECTION, COMPLETE_WITH_FLAGS, integrity OK",
+      "DOHU/EG/QE AutoSol SKIPPED; QiC AUTOSOL_READY then refinement review",
+      "standalone Refine Doctor must not mutate a campaign-owned completed run report outside campaign receipt provenance"
     ]
   },
   "campaign_development_branch": {
     "name": "pine",
     "base": "oak",
     "purpose": "Schema-2 prepared nonstandard and mixed campaign planning/execution before GUI implementation.",
-    "status": "FIXTURE_GREEN_REAL_W_POSTMR_GREEN_AUTOREFINE_RESUME_PENDING_NONSTANDARD_LIVE_PENDING",
+    "status": "REAL_W_ORCHESTRATION_VALIDATED_NONSTANDARD_LIVE_PENDING",
     "registration_boundary": "Oak/PR #22 remains the separate backend-only Scout-v2 registration branch; Pine does not promote Scout v2 to runtime authority.",
     "mainline_merge_commit": "fec66ebeddbd525684824576b705460324ec0a14",
     "pine_reconciliation_commit": "aa56e9b",
-    "note": "Synthetic heterogeneous backend is closed; four-member real W campaign passed planning/preflight/Phaser/PostMR. Current live action is plain unattended resume through AutoRefine. First-class workflow recipe semantics and the real prepared-nonstandard geometry-diverse live gate remain pending."
+    "note": "Synthetic heterogeneous backend is closed and the four-member real W campaign is validated end-to-end through conditional AutoSol/AutoRefine with one correct review stop. Next backend semantic is explicit workflow recipe + campaign-owned Refine Doctor transition; real prepared-nonstandard geometry-diverse live gate remains pending."
   },
   "local_validation_baseline": {
     "tested_branch": "pine",
@@ -1271,7 +1274,7 @@
   },
   "current_live_validation": {
     "id": "pine-real-w-orchestration-2026-09-28",
-    "status": "POSTMR_PASSED_UNATTENDED_AUTOREFINE_RESUME_PENDING",
+    "status": "COMPLETE_W_ORCHESTRATION_VALIDATED",
     "purpose": "Validate real multi-dataset campaign orchestration and campaign-level solution reporting with actual Phenix/Coot before the prepared-nonstandard geometry-diverse datasets are available.",
     "sandbox": "/tmp/NASolve-W-live-20260928",
     "datasets": [
@@ -1281,14 +1284,12 @@
       "EG_091325-0302"
     ],
     "current_phase": [
-      "resume the frozen four-member W campaign with plain campaign run",
-      "allow conditional AutoSol to SKIP without launching phenix.autosol when PostMR reports no supported anomalous candidate",
-      "allow AutoSol to execute only where PostMR evidence requires it",
-      "continue eligible datasets through AutoRefine under the frozen preset",
-      "record dataset -> final status -> exact run -> AutoSol skipped/ran -> checkpoint -> diagnostic"
+      "W orchestration smoke validation is closed",
+      "do not run standalone Refine Doctor on campaign-owned QiC until campaign-owned Doctor transition exists",
+      "next Pine-specific live gate is a real 3-5 member prepared-nonstandard/geometry-diverse campaign when inputs are supplied"
     ],
     "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
-    "completion_rule": "Do not mark passed until real terminal output and resulting scientific stage outcomes are inspected.",
+    "completion_rule": "Satisfied for W orchestration only; does not satisfy prepared-nonstandard geometry-diverse live gate.",
     "planning_result": {
       "runtime": {
         "python": "3.12.14",
@@ -1302,10 +1303,6 @@
       "frozen_input_integrity": "OK",
       "chemistry": "All four members froze W recipe 5w6w@1.1.0 with D:1 as explicit 5-prime-phosphate/OP3 intent."
     },
-    "next_if_postmr_acceptable": [
-      "continue eligible datasets through conditional AutoSol and AutoRefine",
-      "record final solved/review/failed solution list"
-    ],
     "postmr_result": {
       "campaign_exit_code": 0,
       "status_exit_code": 0,
@@ -1335,7 +1332,7 @@
       "interpretation": "All four completed real preflight, Phaser and PostMR. next_stage=autosol is a conditional stage boundary; AutoSol is skipped without launching phenix.autosol when PostMR reports no anomalous candidate."
     },
     "workflow_recipe_requirement": {
-      "status": "FIRST_CLASS_BACKEND_DESIGN_REQUIRED_AFTER_CURRENT_LIVE_CHECK",
+      "status": "NEXT_BACKEND_SEMANTIC",
       "principle": "A selected/frozen campaign workflow recipe should explicitly declare the intended endpoint and conditional stage graph so one command advances each eligible dataset autonomously until a recipe-declared terminal state; current plain campaign run already behaves unattended through AutoRefine, but the journey is executor-defined.",
       "current_partial_support": [
         "plain campaign run already defaults through AutoRefine",
@@ -1346,8 +1343,44 @@
       "missing_first_class_semantics": [
         "recipe-declared workflow endpoint",
         "recipe-declared conditional stage graph instead of hard-coded order/default endpoint",
-        "later bounded Doctor escalation policy"
-      ]
+        "campaign-owned bounded Refine Doctor transition with job/receipt/dependency provenance",
+        "later broader bounded Doctor escalation policy"
+      ],
+      "doctor_integration_guardrail": "Standalone Refine Doctor preserves current checkpoint and never auto-selects, but it updates RUN/report.json. Completed campaign AutoRefine receipts checksum that report, so out-of-band Doctor would be detected as drift. Integrate Doctor as a campaign-owned transition rather than weakening receipt integrity."
+    },
+    "final_result": {
+      "campaign_state": "COMPLETE_WITH_FLAGS",
+      "campaign_exit_code": 3,
+      "status_exit_code": 3,
+      "frozen_integrity": "OK",
+      "datasets": {
+        "DOHU": {
+          "run": "DOHU/AutoMR/run_001",
+          "autosol": "SKIPPED",
+          "final_status": "SOLVED",
+          "checkpoint": "refine-001"
+        },
+        "EG_091325-0302": {
+          "run": "EG_091325-0302/AutoMR/run_001",
+          "autosol": "SKIPPED",
+          "final_status": "SOLVED",
+          "checkpoint": "refine-001"
+        },
+        "QE_120325_0607": {
+          "run": "QE_120325_0607/AutoMR/run_001",
+          "autosol": "SKIPPED",
+          "final_status": "SOLVED",
+          "checkpoint": "refine-001"
+        },
+        "QiC_120325_0513": {
+          "run": "QiC_120325_0513/AutoMR/run_001",
+          "autosol": "AUTOSOL_READY",
+          "final_status": "AWAITING_INSPECTION",
+          "checkpoint": "refine-001",
+          "diagnostic": "Refinement completed, but numerical acceptance criteria were not met"
+        }
+      },
+      "interpretation": "Real W campaign orchestration is validated: one-command continuation, conditional AutoSol skip/run, independent dataset review isolation, exact run/checkpoint ownership, COMPLETE_WITH_FLAGS summary and integrity-preserving exit status all behaved as intended."
     }
   },
   "documentation_continuity": {
