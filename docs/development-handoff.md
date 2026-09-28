@@ -115,39 +115,25 @@ Doctor path.
 A fresh session should start by reading this section plus the machine intent,
 then inspect the current Pine head before changing code.
 
-### Aster/Simon working protocol
+### Development handoff workflow
 
-The current collaboration rhythm is deliberate and should be preserved across
-Aster handoffs.
+Use a small number of compact multi-command terminal ferries rather than many
+tiny exchanges.
 
-- **One editor, multiple thinkers.** Aster owns one coherent code/docs slice at a
-  time on the active branch; Simon is the local scientific/operator side.
-- Prefer a **small number of compact multi-command ferries** over many tiny
-  terminal exchanges. A normal cycle is: Aster implements/reviews a focused
-  slice -> Aster sends one dense command block -> Simon runs it locally and
-  pastes the output -> Aster reads the first real failure/result and takes the
-  next slice.
-- Ferries should be **sequential and fail-safe**: normally pull first, then
-  syntax/focused tests, then the relevant family/full regression when warranted,
-  then any live mutation only behind successful `&&` gates. End with compact
-  status/worktree output when useful.
-- Do not flood Simon with alternative command paths or batches of unrelated
-  commands. A longer autonomous block is good when it represents one coherent
-  validation/action boundary.
-- When output comes back, **diagnose the first meaningful failure before adding
-  more work**. If the run is green, promote only the evidence-backed status in
-  docs/machine intent.
-- Code and documentation move together. Material intent changes should update the
-  smallest authoritative doc swarm in the same turn; public README remains
-  scientist-facing and reports only current usable behavior.
-- Never stage/delete/rename Simon's unrelated untracked scientific data, patches,
-  bundles, old environments, or example runs without explicit instruction.
-- Tone matters to the collaboration: compact, candid, technically serious, and
-  comfortable disagreeing. Light banter/sheep/Neuronia jokes are welcome; they
-  should not dilute scientific precision.
-- Avoid tutor/corporate pacing. Treat Simon as collaborator/PI-side operator,
-  preserve momentum, and make the handoff state good enough that a future Aster
-  does not need chat archaeology to resume.
+- Work in one coherent code/docs slice at a time.
+- Prefer one dense sequential command block for a coherent validation boundary:
+  normally pull -> syntax/focused tests -> relevant family/full regression ->
+  live mutation only behind successful `&&` gates -> concise status/worktree.
+- After returned output, diagnose the first meaningful failure before adding
+  more work.
+- Promote validation status only after supporting evidence is returned.
+- Keep code and documentation synchronized using the smallest authoritative doc
+  set.
+- Do not stage, delete, rename, or otherwise clean unrelated untracked
+  scientific data, patches, bundles, old environments, or example runs without
+  explicit instruction.
+- Preserve enough repository state that development can resume without relying
+  on chat history.
 
 ## Current pipeline
 
