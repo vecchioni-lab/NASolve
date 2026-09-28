@@ -180,10 +180,11 @@ supported anomalous candidate is present, the AutoSol stage records accepted
 status `SKIPPED` and does not launch `phenix.autosol`. Review/failure of one
 dataset does not stop unrelated campaign members.
 
-Pine now also contains an **implemented-unvalidated** explicit
+Pine now also contains a **regression + live validated** explicit
 `AUTOREFINE_REVIEW -> refine-doctor` continuation for campaign-owned Refine
 Doctor provenance. It is deliberately not automatic and not part of default
-campaign completion while its regression/live validation is in progress.
+campaign completion; a future workflow recipe may opt into Doctor-as-needed
+behavior.
 
 The longer-term registration-aware target graph is:
 
@@ -603,11 +604,16 @@ unattended through AutoRefine, but that endpoint remains executor-defined rather
 than recipe-declared. A database execution index and general multi-candidate DAG
 remain future work.
 
-The current real W smoke test is an orchestration validation, not the Pine
-prepared-nonstandard live gate. The donor/recipient comparison layer is
-descriptive only: automatic Doctor eligibility/selection and the later
-approval/deposition workflow are not implied by numerical success or by matching
-compatibility facts.
+The current real W smoke test plus QiC Doctor continuation validate campaign
+orchestration through explicit `refine-doctor`. The next stress test is the
+user-local `examples/TestSets/` campaign (roughly nine datasets): one invocation
+from MR through conditional AutoSol, AutoRefine and explicit Doctor continuation,
+with honest review/block outcomes preserved. This does not replace the later
+prepared-nonstandard geometry-diverse Pine live gate.
+
+The donor/recipient comparison layer is descriptive only: automatic cross-dataset
+Doctor eligibility/selection and the later approval/deposition workflow are not
+implied by numerical success or by matching compatibility facts.
 
 ## Deferred decisions
 
