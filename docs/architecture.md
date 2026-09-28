@@ -484,6 +484,10 @@ embedded in specialized workspaces such as Topo Net. Specialized workspaces may
 add domain-specific overlays, but all state-changing actions still create
 ordinary immutable checkpoint/model-lineage nodes.
 
+The durable application-shell, scientific hierarchy, color/status semantics,
+CLI-to-GUI coverage and capability-driven extensibility rules are defined in
+[the GUI design contract](gui.md).
+
 `nasolve checkpoints add RUN --name NAME` creates a bookmark without copying
 the current node. Supplying `--model` imports a manual model into the run as a
 new review child. `--mtz` is a deliberate observation replacement for an
