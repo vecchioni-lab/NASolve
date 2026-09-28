@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-26-juniper-1",
+  "version": "2026-09-28-oak-20",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -103,7 +103,11 @@
     "scope": "construct registration core, artifact provenance and conservative Scout synthetic tests",
     "note": "This checkpoint predates the descriptive chain-evidence and frozen Scout artifact additions."
   },
-  "pending_validation": null,
+  "pending_validation": {
+    "branch": "oak",
+    "status": "none-for-current-experimental-scope",
+    "remaining_gate": "No further validation gate is required for the current backend-only experimental Scout v2 scope. AutoMR/PostMR runtime integration and any promotion to authority remain separate future work."
+  },
   "stage_transition_policy": {
     "implemented": true,
     "kind": "construct-registration-transition",
@@ -161,9 +165,89 @@
       "reported_by": "user-local-run",
       "github_ci": false,
       "scope": "full NASolve regression suite"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "oak",
+      "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 41,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "experimental design-aware Scout v2 proposal helper plus existing Construct Registration tests"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "28e8dee96b6458d25733f296f8e83d03c229a014",
+      "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "renamed ED run_011 real-W Scout v2 shadow rerun with complete verified C_G provider identity set",
+      "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained mismatches; runtime_authority=false"
+    },
+    {
+      "date": "2026-09-26",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "36c369bdfd75602340882805a6dc03f2c193c58d",
+      "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 41,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "provenance-bound Scout v2 provider evidence interface plus existing Construct Registration tests"
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "test_code_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+      "focused_test_file": "tests/test_construct_registration.py",
+      "reported_pass_count": 43,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "provenance-bound Scout v2 provider evidence plus explicit rejection tests for incomplete provider coverage and provider-selector/source mismatch"
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "b1ee6847fea998d1003efe674ddd3052c2fcf58f",
+      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "renamed ED run_011 real-W Scout v2 shadow rerun through provider_assessment + model_provider provenance-bound interface, with historical provider record reconstructed only from verified model path/source/SHA facts",
+      "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained; provider_bound=true; caller_codes=false; runtime_authority=false"
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "316ac43eaf85a63cf675828bb8960a28f0db2773",
+      "passed_tests": 672,
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "full NASolve regression suite after provenance-bound Scout v2 source/test/docs changes",
+      "note": "User reported 672 passed. No runtime or subtest count was reported in this checkpoint."
+    },
+    {
+      "date": "2026-09-27",
+      "status": "PASSED",
+      "branch": "oak",
+      "checkout_head": "62a1acddf2940b3a5e651fe79aeeeab21627fe53",
+      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "reported_by": "user-local-run",
+      "github_ci": false,
+      "scope": "fresh ED run_013 native structured model_provider provenance shadow test through provider_assessment + model_provider Scout v2 interface",
+      "result": "PROPOSED; provider_bound=true; caller_codes=false; 6 mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives 12/11/16/17/10 unexplained; runtime_authority=false"
     }
   ],
-  "current_validation_status": "FULL_SUITE_PASSED",
+  "current_validation_status": "OAK_V2_VALIDATION_COMPLETE_BACKEND_ONLY_NON_RUNTIME",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -211,36 +295,48 @@
     "required_categories": [
       "full regression before substantial merge",
       "clean W identity-path live check when registration is wired",
-      "8D93-style non-identity recut live check when executable",
       "8D31-like complete/partial multiplicity live check when executable",
       "guided ambiguity live check when UI/CLI exists",
-      "bounded multi-PDB MR live check when selection policy exists"
+      "bounded multi-PDB MR live check when selection policy exists",
+      "symmetry-spanning phosphate bond/restraint experiment before automatic enforcement",
+      "bounded single-residue Coot RSR seam-repair practice before automation",
+      "blind 8D93 to 3GBI-style Topo Net surgery check when executable",
+      "3GBI/8D93 project-scoped representation-seam and Topo Surgeon repair ladder",
+      "P4_132 two-triangle-ASU tile-versus-ASU multiplicity validation",
+      "full-strand and emergent-tile project-scoped reconstruction/ambiguity validation",
+      "repeat-bearing/root-strand local closure, long-period closure, phase ambiguity and partial-use project checks",
+      "junction declaration, persistent Topo surgery/refine loop, compact local metrics and Coot round-trip validation",
+      "minimal semi-junction, variable-valence junction and false-junction-candidate validation",
+      "generic model-tree GUI validation for long refinement lineages, pinned panels and historical branching",
+      "GUI root/workspace selection and CLI coexistence refresh validation",
+      "GUI semantic color plus redundant shape/fill accessibility validation",
+      "GUI existing-CLI capability coverage and context-eligibility validation",
+      "GUI extensibility validation using one newly registered backend action without shell redesign"
     ]
   },
   "latest_focused_validation": {
-    "date": "2026-09-26",
-    "branch": "birch",
-    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
-    "reported_pass_count": 44,
+    "date": "2026-09-27",
+    "branch": "oak",
+    "checkout_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+    "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+    "test_code_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
+    "reported_pass_count": 43,
     "files": [
-      "tests/test_construct_registration.py",
-      "tests/test_model_candidates.py"
+      "tests/test_construct_registration.py"
     ],
     "reported_by": "user-local-run",
-    "github_ci": false
+    "github_ci": false,
+    "note": "Includes explicit fail-closed coverage for incomplete provider target coverage and provider-selector/source mismatch."
   },
   "latest_full_validation": {
-    "date": "2026-09-26",
-    "branch": "birch",
-    "checkout_head": "cc0ad6ab537cc61e17e13bc562e4ae8667461e8d",
-    "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
+    "date": "2026-09-27",
+    "branch": "oak",
+    "checkout_head": "316ac43eaf85a63cf675828bb8960a28f0db2773",
     "command_scope": "full NASolve pytest suite",
-    "passed_tests": 664,
-    "passed_subtests": 222,
-    "elapsed_seconds": 61.7,
+    "passed_tests": 672,
     "reported_by": "user-local-run",
     "github_ci": false,
-    "note": "Checkout included documentation-only commits after the validated code head; no source/test code changed after code_head."
+    "note": "Current Oak full-suite checkpoint after provenance-bound Scout v2 changes."
   },
   "shadow_live_validation": {
     "date": "2026-09-26",
@@ -350,7 +446,7 @@
     "interpretation": "Current conservative ambiguity is scientifically safe; known design intent contains strong discriminating evidence, but that evidence remains non-decisional under Scout v1."
   },
   "proposed_design_aware_inference_v2": {
-    "status": "PROPOSED_NOT_IMPLEMENTED",
+    "status": "IMPLEMENTED_EXPERIMENTAL_NOT_RUNTIME_AUTHORITY",
     "principle": "Prefer categorical consistency with declared construct intent over generic sequence-similarity scoring.",
     "candidate_evidence": [
       "whether candidate mismatches occur only at sites already declared to change between the family/reference construct and this dataset target",
@@ -364,6 +460,748 @@
       "single-base overhangs and short repeated motifs may remain intrinsically ambiguous",
       "modified-site declarations are intent evidence, not proof of MR correctness",
       "real-data validation is required before promotion into runtime authority"
+    ]
+  },
+  "design_aware_scout_v2_experiment": {
+    "status": "IMPLEMENTED_EXPERIMENTAL_PROVIDER_PROVENANCE_FOCUSED_VALIDATED",
+    "function": "propose_design_aware_chain_mapping",
+    "runtime_authority": false,
+    "automatic_application_authorized": false,
+    "input_evidence": [
+      "complete simple one-to-one chain assignments from existing length/offset constraints",
+      "explicit per-site target assignment history",
+      "optional literal residue identities derived from an assessed standard frame-catalogue provider model and bound to existing model-provider provenance"
+    ],
+    "mismatch_classes": [
+      "DECLARED_TARGET_HISTORY",
+      "REVIEWED_PROVIDER_BASELINE",
+      "UNEXPLAINED"
+    ],
+    "proposal_rule": "Propose a mapping only when exactly one complete one-to-one chain mapping has zero unexplained mismatches and every alternative has at least one. Never choose merely because it has fewer unexplained mismatches.",
+    "fail_closed": [
+      "chain-count mismatch",
+      "logical chain with no simple candidate",
+      "no complete one-to-one mapping",
+      "more than one zero-unexplained mapping",
+      "no zero-unexplained mapping",
+      "assignment enumeration budget exceeded"
+    ],
+    "assignment_budget_default": 128,
+    "assignment_budget_maximum": 1024,
+    "provider_baseline_runtime_requirement": "Caller-supplied residue-code dictionaries are no longer accepted. The experimental helper derives provider identities from the exact assessed frame-catalogue model plus NASolve model-provider provenance; runtime promotion remains separately unreviewed.",
+    "weighted_sequence_score_used": false,
+    "live_pipeline_changed": false,
+    "real_w_attempt_1": {
+      "status": "AMBIGUOUS_EXPECTED_FAIL_CLOSED",
+      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
+      "supplied_provider_codes": {
+        "A:13": "DC",
+        "B:3": "DG"
+      },
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 0,
+      "intended_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 2,
+        "unexplained_mismatch_count": 2
+      },
+      "root_cause": "Experimental provider evidence was incomplete, not that the intended chain mapping was wrong."
+    },
+    "verified_provider_identity_set": {
+      "source": "MR_frames/5W6W/C_G.pdb",
+      "codes": {
+        "A:12": "DC",
+        "A:13": "DC",
+        "B:3": "DG",
+        "B:4": "DG"
+      },
+      "note": "A:13/B:3 are known family-baseline differences; A:12/B:4 are provider-pair identities. Production inference must bind these facts to reviewed/versioned provider provenance."
+    },
+    "real_w_attempt_2": {
+      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED",
+      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
+      "supplied_provider_codes": {
+        "A:12": "DC",
+        "A:13": "DC",
+        "B:3": "DG",
+        "B:4": "DG"
+      },
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 1,
+      "runtime_authority": false,
+      "proposed_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 4,
+        "unexplained_mismatch_count": 0
+      },
+      "alternative_unexplained_mismatch_counts": [
+        12,
+        11,
+        16,
+        17,
+        10
+      ],
+      "interpretation": "Exactly one complete mapping achieved zero unexplained mismatches only after the complete verified provider identity set was supplied; the helper remained proposal-only and non-runtime."
+    },
+    "provenance_binding_slice": {
+      "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
+      "validation_status": "PASSED_43_FOCUSED_LOCAL_TESTS",
+      "behavior": [
+        "accept provider evidence only as provider_assessment plus model_provider provenance",
+        "require standard frame-catalogue provenance",
+        "require exact logical target-site coverage",
+        "require model-provider selector to match the assessed provider source model",
+        "derive residue codes from literal provider coordinates",
+        "bind returned provider baseline to source-model SHA-256 and byte size",
+        "never accept a caller-supplied site-to-code residue dictionary"
+      ],
+      "live_pipeline_changed": false,
+      "runtime_authority": false,
+      "real_w_shadow_validation_status": "PASSED_WITH_VERIFIED_HISTORICAL_PROVIDER_BRIDGE",
+      "full_regression_status": "PASSED_672_LOCAL_TESTS",
+      "fresh_native_provider_validation_status": "PASSED_RUN_013"
+    },
+    "real_w_attempt_3": {
+      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_PROVENANCE_BOUND",
+      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
+      "interface": "provider_assessment + model_provider",
+      "historical_run_provider_bridge": {
+        "structured_model_provider_present": false,
+        "reconstruction_mode": "manual-read-only-from-explicit-historical-run-facts",
+        "verified_inputs": {
+          "model_path": "MR_frames/5W6W/C_G.pdb",
+          "model_source": "standard frame catalogue (W; fallback C_G.pdb)",
+          "model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817"
+        },
+        "reconstructed_provider": {
+          "kind": "standard-frame-catalogue",
+          "selection": "fallback",
+          "frame": "W",
+          "location": "frame-catalogue",
+          "selector": "C_G.pdb"
+        },
+        "note": "The provider record was reconstructed only after exact path/source/SHA assertions against the current provider model; no residue identities were supplied by the caller."
+      },
+      "provider_baseline_bound": true,
+      "provider_codes_caller_supplied": false,
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 1,
+      "runtime_authority": false,
+      "proposed_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 4,
+        "unexplained_mismatch_count": 0
+      },
+      "alternative_unexplained_mismatch_counts": [
+        12,
+        11,
+        16,
+        17,
+        10
+      ],
+      "interpretation": "The provenance-bound provider interface reproduced the same unique zero-unexplained mapping from the real renamed-W nuisance case without a caller-supplied residue dictionary. Historical provider provenance was bridged only from explicit verified run facts."
+    },
+    "real_w_attempt_4": {
+      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_FRESH_NATIVE_PROVIDER",
+      "dataset_context": "ED fresh run_013 preflight reproduced from run_011 intent",
+      "interface": "provider_assessment + native structured model_provider",
+      "source_run": "run_013",
+      "model_provider": {
+        "frame": "W",
+        "kind": "standard-frame-catalogue",
+        "location": "frame-catalogue",
+        "selection": "fallback",
+        "selector": "C_G.pdb"
+      },
+      "provider_model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
+      "provider_baseline_bound": true,
+      "provider_codes_caller_supplied": false,
+      "assignment_count": 6,
+      "eligible_zero_unexplained_count": 1,
+      "runtime_authority": false,
+      "proposed_mapping": {
+        "selection": {
+          "A": "M",
+          "B": "N",
+          "C": "P",
+          "D": "Q"
+        },
+        "exact_match_count": 38,
+        "declared_target_history_difference_count": 0,
+        "reviewed_provider_difference_count": 4,
+        "unexplained_mismatch_count": 0
+      },
+      "alternative_unexplained_mismatch_counts": [
+        12,
+        11,
+        16,
+        17,
+        10
+      ],
+      "interpretation": "Fresh current-schema AutoMR preflight supplied native structured model_provider provenance. The provenance-bound Scout v2 interface reproduced the same unique zero-unexplained mapping without historical-schema reconstruction or caller-supplied residue codes."
+    }
+  },
+  "active_development_branch": {
+    "name": "oak",
+    "pull_request": 22,
+    "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
+    "status": "VALIDATION_COMPLETE_BACKEND_ONLY_NON_RUNTIME"
+  },
+  "documentation_sync_policy": {
+    "required_on_meaningful_inference_changes": true,
+    "surfaces": [
+      "README.md human-facing current capability/boundary",
+      "docs/README.md active documentation map",
+      "docs/construct-registration.md subsystem design/implementation contract",
+      "docs/construct-registration-intent.json machine-readable policy and validation history",
+      "docs/construct-registration-live-checks.md minimum human/real-data validation queue",
+      "docs/campaign-model-roadmap.md forward-looking implementation status",
+      "docs/development-handoff.md immediate working edge",
+      "active pull request body / branch description"
+    ],
+    "rule": "Keep code/current inference policy and future Topo Net design intent synchronized across active docs. Preserve the separation between input strands, tile hypotheses, periodic crystal graph and ASU serialization; keep project-scoped human validation queues explicit."
+  },
+  "future_topo_net_design": {
+    "status": "PLANNED_NOT_CURRENT_RUNTIME_SCOPE",
+    "invocation_policy": "Explicit user/campaign opt-in for designed periodic self-assembling frameworks only; never inferred from coordinates or campaign membership.",
+    "ui_relationship": {
+      "registration_net": "General logical-to-coordinate mapping and guided registration view.",
+      "topo_net": "Framework-specific extension for periodic molecular-graph visualization and symmetry-aware ASU surgery preview.",
+      "coot": "Atomic coordinate materialization and bounded local repair.",
+      "phenix": "Post-materialization chemistry/geometry interpretation and refinement audit."
+    },
+    "periodic_graph_preview": {
+      "central_asu_plus_connected_symmetry_mates": true,
+      "edge_types": [
+        "covalent backbone continuity",
+        "designed sticky-end/pairing connectivity",
+        "symmetry/ASU correspondence",
+        "later reviewed topology-specific relationships"
+      ],
+      "preview_actions": [
+        "move ASU seam past a residue",
+        "move a symmetry-equivalent fragment across the chosen ASU representation",
+        "split/join/relabel/renumber coordinate chains",
+        "preview newly exposed sticky ends and termini",
+        "move a true chemical nick only as an explicitly stronger chemistry-changing operation",
+        "open affected coordinates and symmetry mates in Coot"
+      ],
+      "coordinate_editing": false
+    },
+    "representation_seam_policy": {
+      "term": "representation seam (false nick)",
+      "chemical_nick": false,
+      "logical_backbone_continuity_preserved": true,
+      "continuity_crosses_crystallographic_symmetry": true,
+      "continuation_phosphate_preserved": true,
+      "must_not_be_reinterpreted_as_free_five_prime_terminus": true,
+      "must_not_gain_terminal_op3_chemistry_from_chain_start_alone": true,
+      "true_chemical_nick_is_separate_edit": true
+    },
+    "materialization_policy": {
+      "preview_before_apply": true,
+      "immutable_surgery_manifest_required": true,
+      "exact_symmetry_transform_before_local_repair": true,
+      "coot_materializes_coordinates": true,
+      "phenix_interpretation_required_after_materialization": true,
+      "automatic_symmetry_bond_enforcement": false,
+      "automatic_coot_single_residue_rsr": false
+    },
+    "symmetry_bond_experiment": {
+      "status": "REQUIRED_BEFORE_AUTOMATION",
+      "rationale": "Phenix supports custom bonds to symmetry copies, but full symmetry-spanning phosphate angle behavior is not yet validated for NASolve. Bond-only enforcement may be insufficient to preserve local phosphate orientation/clash behavior.",
+      "minimum_test": [
+        "use a disposable ordinary DNA PDB with a known representation seam",
+        "compare no symmetry bond versus an explicit symmetry-operation P-O3-prime bond",
+        "inspect Phenix geometry output and refinement behavior",
+        "audit P-O3-prime distance and nearby phosphate/O3-prime nonbonded contacts",
+        "do not promote a symmetry-bond policy unless local phosphate geometry is chemically sane and repeatable"
+      ]
+    },
+    "coot_seam_rsr_experiment": {
+      "status": "REQUIRED_BEFORE_AUTOMATION",
+      "rationale": "Some reslices may leave the intended phosphate/O3-prime connection too long for Phenix to interpret cleanly; bounded single-residue Coot RSR may repair this but must be characterized empirically.",
+      "minimum_test": [
+        "practice on several disposable recut cases",
+        "restrict RSR to the intended single residue/local seam",
+        "record before/after coordinates for moved atoms",
+        "verify unrelated regions remain unchanged",
+        "re-run Phenix interpretation and geometry audit",
+        "promote only a repeatable bounded operation"
+      ]
+    },
+    "blind_validation_fixture": {
+      "source": "8D93",
+      "target_representation": "3GBI-style",
+      "no_coordinate_cheating": true,
+      "transform_inputs": [
+        "8D93 coordinates",
+        "crystallographic symmetry",
+        "requested logical/cut intent"
+      ],
+      "withheld_until_validation": "3GBI coordinates",
+      "validation_goals": [
+        "preserve the periodic molecular graph",
+        "reproduce the requested ASU ownership and chain decomposition",
+        "show correct sticky ends and representation seams",
+        "keep true chemical nicks distinct from representation seams",
+        "materialize a Phenix-interpretable model",
+        "compare with 3GBI only after transformation"
+      ]
+    },
+    "primary_problem_bias": {
+      "domain": "designed 3-D DNA lattices / periodic nucleic-acid frameworks",
+      "strategy": "Solve this family well first; generalize later rather than weakening the initial topology semantics with generic crystallographic abstractions."
+    },
+    "design_state_layers": [
+      {
+        "layer": "input_strand_inventory",
+        "authority": "experimental intent",
+        "meaning": "Complete synthesized/declared strands, modifications and intended stoichiometry/copy counts when known.",
+        "caveat": "A declared strand may be absent from the solved crystal and observed copy number may disagree with the recipe."
+      },
+      {
+        "layer": "tile_hypothesis",
+        "authority": "declared or interpreted assembly model",
+        "statuses": [
+          "DECLARED",
+          "INFERRED",
+          "EMERGENT",
+          "UNRESOLVED"
+        ],
+        "meaning": "Finite design/assembly unit including junctions, sticky ends, true nicks/termini and design-level multiplicity."
+      },
+      {
+        "layer": "periodic_crystal_graph",
+        "authority": "observed structural interpretation",
+        "meaning": "Actual repeating molecular connectivity implied by coordinates plus crystallographic symmetry."
+      },
+      {
+        "layer": "asu_serialization",
+        "authority": "coordinate representation only",
+        "meaning": "One ASU/PDB cut of the periodic graph including chain labels, residue numbering, representation seams and realized tile fragments/copies."
+      }
+    ],
+    "tile_hypothesis_policy": {
+      "ordinary_case": "Use an explicitly declared tile/project design when available.",
+      "full_strand_reconstruction": "When complete input strands are supplied, they outrank ASU chain fragments as design evidence and may be mapped into the periodic graph under reviewed fail-closed rules.",
+      "emergent_case": "If the solved periodic graph cannot be represented faithfully by the declared tile, propose an EMERGENT tile hypothesis while retaining the declared tile as experimental intent.",
+      "ambiguous_case": "If more than one non-equivalent finite tile decomposition survives, remain UNRESOLVED and require expert review.",
+      "multiplicity_separation": "Tile identity, number of tile copies realized in the ASU, and coordinate-chain decomposition are separate dimensions.",
+      "example": "A P4_132 ASU containing two complete triangle copies does not redefine the triangle tile; it reports two realized tile copies in that ASU."
+    },
+    "input_strand_edge_cases": [
+      "declared strand absent from observed structure",
+      "several copies of one input strand",
+      "fewer or more effective tile copies than the input recipe",
+      "one input strand split among ASU/symmetry fragments",
+      "declared tile inconsistent with observed periodic graph",
+      "several non-equivalent tile hypotheses compatible with the evidence",
+      "no faithful finite tile decomposition currently known",
+      "repeat-bearing/root strand whose designed internal repeat order is not locally commensurate with lattice symmetry",
+      "repeat phase that closes only after a long symmetry/unit-cell path",
+      "partial use of one repeat-bearing strand",
+      "identical repeat units whose phase cannot be uniquely assigned"
+    ],
+    "topo_surgeon": {
+      "status": "PLANNED_BOUNDED_REPAIR_LAYER",
+      "position": "Between Topo Net preview/materialization and expert manual Coot fallback.",
+      "purpose": "Repair locally awkward geometry caused by reslicing, mutation, chain reconstruction or imperfect MR coordinates without hiding uncertainty.",
+      "candidate_operations": [
+        "exact symmetry materialization without relaxation",
+        "reviewed mutation-before versus mutation-after materialization variants",
+        "single-residue Coot RSR at the affected seam",
+        "slightly broader local Coot repair only after minimal repair fails",
+        "alternate reviewed split/join orderings",
+        "later experimentally validated symmetry-spanning bond policies"
+      ],
+      "audit_dimensions": [
+        "Phenix local bond/angle geometry and .geo interpretation",
+        "phosphate orientation and cross-symmetry clashes",
+        "base-plane integrity",
+        "reviewed pairing/stacking geometry when applicable",
+        "sugar/backbone distortion",
+        "unintended neighboring/remote coordinate movement",
+        "residue/deposition identity preservation",
+        "realization of intended periodic connectivity"
+      ],
+      "selection_policy": "No hidden composite topology score. Apply reviewed hard gates; preserve surviving alternatives for inspection when necessary.",
+      "manual_fallback": "Open exact model/maps/symmetry seam in Coot for an expert user, then import the saved repaired PDB as a new immutable USER_REVIEWED checkpoint while retaining failed automated attempts."
+    },
+    "tile_sequence_sheet": {
+      "purpose": "Preserve real input-strand design intent independently from ASU serialization and observed crystal organization.",
+      "per_strand_fields": [
+        "strand_id",
+        "full_sequence",
+        "declared_modifications",
+        "intended_copies_per_tile",
+        "optional_assembly_input_ratio",
+        "optional_tile_role such as ROOT/CENTER/ARM/EDGE or project-specific role",
+        "optional_designed_internal_repeat_order",
+        "optional_repeat_domain residue/range definitions",
+        "repeat_units_sequence_identical_or_role_equivalent"
+      ],
+      "rule": "Intended copies per tile and internal repeat order are separate design dimensions. Neither may be reconstructed from ASU chain counts."
+    },
+    "repeat_bearing_strands": {
+      "status": "PLANNED_REPEAT_AWARE_NOT_A_HARD_SYMMETRY_CONSTRAINT",
+      "rationale": "Many designed DNA tiles contain a central/root strand with an internal n-fold repeated role while other strands occur at different copy number. Nature may frustrate or reorganize either the tile stoichiometry or the internal repeat organization.",
+      "observed_fields": [
+        "residue/domain coverage",
+        "observed strand realizations where meaningful",
+        "repeat-phase mapping when distinguishable",
+        "symmetry/unit-cell path needed for repeat phase to return",
+        "declared-versus-observed stoichiometry",
+        "declared-versus-observed repeat organization"
+      ],
+      "descriptive_states": [
+        "FULLY_USED",
+        "PARTIALLY_USED",
+        "ABSENT",
+        "REORGANIZED",
+        "LONG_PERIOD",
+        "UNRESOLVED"
+      ],
+      "long_period_semantics": "The periodic crystal may advance a repeat-bearing strand through internal phases under symmetry and return to its original phase only after a longer topological closure than the nominal tile. This is not automatically a stoichiometry error.",
+      "known_style_example": "A fivefold repeat-bearing object accommodated in a fourfold/screw lattice may close its repeat phase only after twenty unit-cell steps.",
+      "partial_use_semantics": "A supplied strand may be only partly ordered/incorporated. Preserve exact residue/repeat-domain coverage; do not reduce strand presence to one boolean."
+    },
+    "repeat_aware_net_finder": {
+      "use_declared_annotations_first": true,
+      "candidate_repeat_detection_without_annotation": "descriptive hypothesis only",
+      "low_complexity_sequence_can_authorize_mapping": false,
+      "operations": [
+        "map reviewed repeat domains onto the periodic crystal graph",
+        "retain multiple possible repeat-phase correspondences when repeats are indistinguishable",
+        "follow connectivity through crystallographic symmetry",
+        "measure whether repeat phase closes locally, over a longer path, or remains unresolved",
+        "compare design stoichiometry, repeat usage, coverage and closure as separate facts"
+      ],
+      "forbidden": [
+        "force designed n-fold repeat order onto the crystal",
+        "treat internal repeat count as observed strand copy count",
+        "invent missing repeat domains or residues",
+        "collapse repeat/stoichiometry disagreement into one compatibility score"
+      ],
+      "backend_note": "This can be represented as a repeat-phase/monodromy problem on the periodic graph without exposing that jargon in the user interface."
+    },
+    "junction_model": {
+      "status": "PLANNED_POLYMORPHIC_TOPOLOGY_OBJECT",
+      "principle": "A junction is not defined by arm count. The minimal primitive is one local directed-backbone passage/connection at a topological node; larger four/six/eight-arm neighborhoods are derived context around one or more such primitives.",
+      "declaration_fields": [
+        "stable junction id / optional name",
+        "one or more minimal backbone-passage primitives",
+        "member logical strands",
+        "member residue/domain ranges",
+        "optional observed/contextual arm count and arm identities",
+        "optional root/center strand and repeat-domain participation",
+        "intended local connectivity/routing",
+        "true chemical nicks and termini",
+        "sticky ends associated with the junction neighborhood",
+        "optional reviewed coaxial stacking/pairing expectations",
+        "whether the junction is an invariant tile feature under ASU slicing"
+      ],
+      "evidence_states": [
+        "DECLARED",
+        "CANDIDATE",
+        "INFERRED",
+        "EMERGENT",
+        "REJECTED",
+        "UNRESOLVED"
+      ],
+      "inference_policy": {
+        "declared_junctions": "highest-authority design intent",
+        "candidate_generation": "periodic connectivity, strand mapping, reviewed pairing/stacking evidence and symmetry may generate hypotheses",
+        "automatic_authority": "only when uniquely supported under reviewed rules",
+        "ambiguous_case": "remain CANDIDATE/UNRESOLVED and require expert confirmation",
+        "false_positive_case": "packing/serialization coincidences may be explicitly REJECTED without changing the periodic graph"
+      },
+      "asu_policy": "ASU or tile recutting may change the displayed local arm neighborhood and fragment ownership but must not silently create, destroy or redefine the underlying junction primitive.",
+      "motivating_semijunction": "The topology-based lattice-engineering preprint motivates the minimal primitive: a semi-junction can arise from strand routing/nicking at a crossing and is not ontologically defined by the four-arm neighborhood in which it appears."
+    },
+    "persistent_workbench": {
+      "status": "PLANNED_CHECKPOINT_ORCHESTRATOR",
+      "principle": "Keep Topo Net open across surgery, Coot repair, refinement and comparison; every state-changing action creates an immutable checkpoint child.",
+      "loop": [
+        "select residue/seam/junction in Topo Net",
+        "perform previewed surgery/topology edit",
+        "materialize immutable surgery child checkpoint",
+        "optional bounded Coot repair child",
+        "launch bounded Refine action",
+        "create immutable refinement child checkpoint",
+        "return metrics and model state to the same Topo session",
+        "accept/compare/operate again"
+      ],
+      "first_refine_behavior": "Use a short ordinary audited AutoRefine child from the selected topology checkpoint. Do not introduce selection-restricted Phenix refinement until separately validated.",
+      "default_compact_metrics": [
+        "current checkpoint",
+        "Rwork",
+        "Rfree",
+        "refinement status",
+        "local hard-warning summary"
+      ],
+      "selected_local_metrics": [
+        "Phenix bond/angle outliers involving selected residues",
+        "phosphate O3-prime-P connectivity/distance",
+        "nearby cross-symmetry clashes/nonbonded contacts",
+        "base-plane integrity",
+        "reviewed NARestraints pairing/stacking deviations",
+        "sugar/backbone geometry",
+        "logical registration and mutation state",
+        "reviewed residue/map-fit metrics when a reproducible extractor exists",
+        "before/after coordinate displacement for the last operation"
+      ],
+      "coot_round_trip": true,
+      "ui_policy": "Keep detailed metrics collapsed until a residue/seam/junction is selected so diagnostics do not consume the topology display."
+    },
+    "umbrella_label": {
+      "term": "topology-informed automation",
+      "meaning": "Topology may inform hypotheses, candidate generation, recutting, repair selection, refinement diagnostics and branch comparison, but does not override chemistry, diffraction evidence, fail-closed registration rules or expert review."
+    }
+  },
+  "generic_model_tree_gui": {
+    "status": "PLANNED_REUSABLE_GUI_COMPONENT",
+    "data_model": "Use the existing immutable checkpoint/model lineage; do not create a second GUI-only history.",
+    "scope": [
+      "MR",
+      "PostMR",
+      "AutoSol",
+      "ordinary refinement chains",
+      "Refine Doctor branches",
+      "manual imports",
+      "topology surgery",
+      "future re-MR attempts from refined or historical models"
+    ],
+    "interactions": [
+      "pan/zoom lineage graph",
+      "collapse/expand repetitive refinement chains",
+      "pin/bookmark important historical nodes as comparison panels",
+      "inspect metrics for siblings or parent/child nodes without selecting",
+      "open a node in Coot without changing the current pointer",
+      "select an eligible historical checkpoint using the existing audited selection operation",
+      "launch a new explicit branch from an eligible historical node",
+      "traverse backward without deleting descendants"
+    ],
+    "reuse": "Standalone normal-mode GUI and Topo Net must share this same graph component and lineage semantics."
+  },
+  "future_gui_design": {
+    "status": "PLANNED_NOT_CURRENT_RUNTIME_SCOPE",
+    "contract": "docs/gui.md",
+    "principle": "One application shell over authoritative NASolve artifacts and backend operations; no GUI-only scientific state or second lineage system.",
+    "scientific_hierarchy": [
+      "root/project",
+      "campaign",
+      "optional design",
+      "dataset",
+      "run"
+    ],
+    "model_lineage": "Central immutable stage/checkpoint graph scoped by the selected scientific hierarchy object.",
+    "shell": {
+      "navigator": "left scientific hierarchy and attention filters",
+      "workspace": "center Overview/Tree/Compare/Topology/Campaign contextual modes",
+      "inspector": "right contextual metadata and eligible actions",
+      "activity_drawer": "bottom collapsible progress/log/warning surface",
+      "external_atomic_editor": "Coot remains the intentional external window"
+    },
+    "root_workspace": {
+      "open_root_selector": true,
+      "recent_roots": true,
+      "active_workspace_bridge": true,
+      "external_cli_refresh": true,
+      "rule": "Root/recent state is machine-local UI state and never scientific provenance."
+    },
+    "selection_semantics": {
+      "current": "authoritative backend pointer; changes only by audited operation",
+      "viewed": "transient inspection only",
+      "pinned": "GUI comparison/navigation memory only",
+      "selected": "UI focus only"
+    },
+    "semantic_visual_tokens": {
+      "ordinary_node": "hollow neutral grey/black",
+      "current_checkpoint": "blue filled plus strong double-ring/target marker",
+      "pinned_or_bookmarked": "blue checkpoint styling plus pin/star badge",
+      "accepted_ancestry_checkpoint": "green filled",
+      "needs_review": "yellow/amber plus ! badge",
+      "blocked_or_failed": "red plus x/stop badge",
+      "skipped": "hollow neutral dashed",
+      "viewed_not_current": "separate focus halo retaining underlying semantic style",
+      "current_success_path": "green stronger edge",
+      "other_lineage": "neutral visible edge",
+      "rule": "Color is never the only state carrier; shape/fill/badge/line style redundantly encodes meaning."
+    },
+    "cli_gui_coverage": [
+      "runtime check and Phenix/Coot configuration",
+      "workspace use/status/clear",
+      "preset validation",
+      "campaign plan/status/run/pause/retry and stage-through selection",
+      "AutoMR preflight/execute and common/advanced options",
+      "PostMR review/options and backbone-review",
+      "conditional AutoSol",
+      "AutoRefine source/recipe/cycles",
+      "Refine Doctor source/cycles/max-trials and inspection/selection",
+      "checkpoint list/bookmark/manual import/replacement observations/select",
+      "show/open in Coot for current, stage or explicit checkpoint"
+    ],
+    "extensibility": {
+      "action_registry": true,
+      "inspector_section_registry": true,
+      "workspace_view_registry": true,
+      "semantic_status_theme_registry": true,
+      "backend_schema_version_awareness": true,
+      "unknown_optional_fields_safe": true,
+      "command_palette": true,
+      "principle": "New backend capabilities should normally register actions/metadata/views into existing shell regions rather than require layout redesign."
+    },
+    "graph_behavior": [
+      "pan/zoom",
+      "collapse repetitive refinement chains while preserving branch points",
+      "pin important nodes as comparison panels",
+      "inspect without changing current",
+      "branch from eligible historical nodes",
+      "open any resolvable node in Coot without selection",
+      "share one graph component between normal mode and Topo Net"
+    ],
+    "attention_queue": "Filter/view over authoritative backend states such as registration ambiguity, MR/refinement review, backbone review, failed stages, topology repair and frozen-input integrity issues.",
+    "design_layer": "Optional first-class grouping for multiple datasets sharing stable construct/design metadata; never inferred from similar filenames/sequences alone.",
+    "modal_policy": "Avoid routine modal dialogs; immutable branching and inline Inspector/action-popover confirmation should make most scientific actions reversible by traversal.",
+    "live_checks": "docs/gui-live-checks.md",
+    "validation_projects": [
+      "shell/navigation/root selection",
+      "current/viewed/pinned separation",
+      "semantic color + redundant non-color accessibility",
+      "long model/checkpoint lineage",
+      "campaign/design scope switching",
+      "CLI/GUI interoperability",
+      "existing CLI capability coverage",
+      "capability-driven extensibility",
+      "Coot bridge",
+      "activity/process handling"
+    ],
+    "live_activity": {
+      "status": "PLANNED_STRUCTURED_EVENT_RECONCILIATION",
+      "tree_updates": "Navigator and model/checkpoint tree reconcile from authoritative campaign/job/checkpoint records while work runs.",
+      "running_visuals": [
+        "low-intensity blue active ring/pulse or perimeter treatment on running node",
+        "restrained moving edge dot/dash for active transition",
+        "static activity badge/ring when reduced motion is enabled"
+      ],
+      "publication_rule": "Do not show a completed/checkpoint node before the authoritative receipt/checkpoint record exists.",
+      "event_stream": {
+        "location": "Events/Notifications tab inside the bottom Activity drawer",
+        "default_language": "human-readable summaries without requiring internal status jargon",
+        "examples": [
+          "refinement 21 passed the numerical gate",
+          "current checkpoint changed to refine-021",
+          "PostMR needs your review",
+          "molecular replacement did not find a solution in this attempt",
+          "campaign paused after the active stage completed"
+        ],
+        "technical_drilldown": [
+          "exact backend status token",
+          "run/checkpoint id",
+          "relevant TFZ/R factors/metrics",
+          "raw diagnostic",
+          "record/artifact references",
+          "logs"
+        ],
+        "source_of_truth": "typed structured state transitions; stdout/logs supplementary only",
+        "coalescing": "Do not emit repeated heartbeat/unchanged RUNNING observations as separate human events.",
+        "read_state": "machine-local UI only; reading/dismissing never alters scientific state"
+      }
+    }
+  },
+  "cli_first_campaign_runway": {
+    "status": "PLANNED_NEXT_BACKEND_SEQUENCE_AFTER_OAK",
+    "gui_branch_condition": "Do not begin GUI implementation until a basic heterogeneous per-dataset-PDB campaign and minimal explicit Design grouping are CLI-functional and live-validated.",
+    "steps": [
+      {
+        "id": 1,
+        "name": "close_oak",
+        "goal": "Close/merge the current validated Scout v2 backend-only branch without adding campaign or GUI runtime scope."
+      },
+      {
+        "id": 2,
+        "name": "nonstandard_campaign_plan_schema",
+        "goal": "Add backward-compatible newer campaign plan schema admitting one explicit/uniquely discovered nonstandard PDB plus frozen raw sequence source and parsed target per dataset; keep schema-1 W plans readable/executable."
+      },
+      {
+        "id": 3,
+        "name": "generalize_frozen_selection",
+        "goal": "Preserve existing standard-W campaign_stages._frozen_selection behavior and add nonstandard materialization from frozen campaign resources with no source-folder/catalogue rediscovery."
+      },
+      {
+        "id": 4,
+        "name": "conservative_heterogeneous_gate",
+        "goal": "First slice requires simple/unambiguous model-to-target correspondence; recuts, split chains, multiplicity surprises or topology ambiguity stop only that dataset."
+      },
+      {
+        "id": 5,
+        "name": "campaign_regression",
+        "goal": "Validate W compatibility plus nonstandard/mixed plans, relocation, pause/resume, retry, drift blocking and independent dataset failure behavior."
+      },
+      {
+        "id": 6,
+        "name": "real_geometry_diverse_campaign",
+        "goal": "Run 3-5 curated datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case."
+      },
+      {
+        "id": 7,
+        "name": "explicit_design_identity",
+        "goal": "Add stable explicit design_id/shared design metadata grouping; never infer membership from filenames, sequence similarity or mere campaign co-membership."
+      }
+    ],
+    "campaign_doctor_ready_steps": [
+      {
+        "id": 8,
+        "name": "campaign_candidate_matrix",
+        "goal": "Read-only campaign-wide enumeration of solved checkpoint candidates versus explicitly related unsolved recipients using existing candidate/comparison facts; no score/rank/rescue authorization."
+      },
+      {
+        "id": 9,
+        "name": "reviewed_donor_eligibility",
+        "goal": "Define categorical project/preset donor gates over explicit design/family relation, checkpoint state/review, target coverage/identity or supported transformation, mirror/chirality constraints, chemistry and budget."
+      },
+      {
+        "id": 10,
+        "name": "attempt_local_rescue_provider",
+        "goal": "Freeze donor dataset/checkpoint/model checksum, comparison evidence, policy identity and transformations beneath a new recipient attempt without mutating plan, failed attempt, observations, Free-R or target."
+      },
+      {
+        "id": 11,
+        "name": "explicit_donor_rescue",
+        "goal": "First rescue requires user-named eligible donor checkpoint and recipient; direct donor-model MR only under strict policy, then ordinary recipient stage gates."
+      },
+      {
+        "id": 12,
+        "name": "bounded_campaign_doctor",
+        "goal": "After explicit rescue validation, allow small policy-eligible donor enumeration under a declared attempt budget; preserve every rescue branch and stop for materially different interpretations."
+      },
+      {
+        "id": 13,
+        "name": "later_transforms",
+        "goal": "Donor mutation, ensembles/libraries, geometry/topology provider transforms and broader cross-design rescue remain separate reviewed increments."
+      }
     ]
   }
 }

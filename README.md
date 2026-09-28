@@ -766,18 +766,61 @@ recipient-target site/identity differences, relative mirror-transform context,
 and recipient symmetry/copy-number facts. It does not score, rank, select,
 authorize, export, or retry any donor model.
 
-The next planned robustness layer is **Construct Registration**. It will map
-logical construct sites onto whatever chain names, residue numbers, chain
-splits, ASU cut and copy multiplicity actually appear in a search model or MR
-solution. The common W path should remain nearly invisible: a cheap
-non-mutating Registration Scout runs inside AutoMR preflight, plausible models
-go through ordinary MR first, and the actual MR solution receives the
-authoritative ASU registration before PostMR mutates logical sites. If MR fails
-or a reviewed representation problem is known, a separate bounded
-Registration/Recut Rescue may materialize an equivalent cut or chain
-representation with full provenance. Guided cases use the simple interactive
-Registration Net described in
-[construct registration](docs/construct-registration.md).
+The next planned robustness layer is **Construct Registration**. Its backend
+foundation is now implemented and tested, but it is **not yet wired into live
+AutoMR/PostMR execution**. The merged core can represent logical construct sites
+independently of coordinate chain labels/numbering, freeze Registration Scout
+provenance, compare registration across stages, support explicit guided
+simple-chain choices, and inventory multiple dataset PDB candidates and run Registration Scout on
+them without selecting one.
+
+Scout v1 remains conservative: ordinary identity/renumbering cases can be
+described deterministically, while renamed repetitive strands remain ambiguous
+rather than being ranked by sequence similarity. The current Oak development
+branch adds an **experimental Scout v2 proposal helper** that tests a stricter
+design-aware rule: propose a one-to-one chain mapping only when exactly one
+complete mapping has zero **unexplained** mismatches after accounting for
+explicit target-history and reviewed provider identities. It is proposal-only,
+cannot alter coordinates, and is not runtime authority.
+
+Oak's first renamed-real-W v2 shadow run deliberately stayed `AMBIGUOUS`
+because the experimental provider evidence omitted A:12=DC and B:4=DG.
+After direct verification of the complete four-site identity set in
+`MR_frames/5W6W/C_G.pdb` (A:12/A:13=DC; B:3/B:4=DG), the same shadow case
+produced exactly one zero-unexplained proposal: A->M, B->N, C->P, D->Q.
+That mapping contained 38 exact identities and 4 provider-explained differences;
+every alternative retained at least 10 unexplained mismatches. The helper still
+reports `runtime_authority = false`. Oak now removes the free-floating
+site->code input entirely: provider evidence is derived from the assessed
+frame-catalogue model and bound to the existing provider record plus exact model
+SHA-256. This provenance-bound implementation remains experimental, but the
+focused Construct Registration suite now passes **43 tests locally**, including
+explicit rejection of incomplete provider coverage and provider-selector/source
+mismatch. The renamed real-W shadow case has also now passed through this
+provenance-bound interface: exactly one zero-unexplained A->M/B->N/C->P/D->Q
+proposal, with provider evidence derived from the assessed C_G.pdb coordinates,
+no caller residue dictionary, and runtime authority still false. Because the
+historical run predates structured model_provider provenance, that shadow check
+reconstructed only provider facts independently verified from the old run's
+model path/source/checksum. A fresh current-schema ED `run_013` preflight was
+then created from the same scientific intent and reproduced the identical
+unique zero-unexplained mapping using native structured `model_provider`
+provenance, eliminating the historical-schema caveat.
+
+The intended live architecture remains: cheap non-mutating Registration Scout
+inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
+registration on the actual MR solution before PostMR changes logical sites, and
+a separate bounded Registration/Recut Rescue only for reviewed representation
+problems. Guided cases use the Registration Net described in
+[construct registration](docs/construct-registration.md). A later opt-in Topo Net
+extension is being designed specifically for periodic nucleic-acid frameworks:
+it separates full input strands, tile hypotheses, the observed periodic crystal
+graph and incidental ASU serialization. The design also preserves intended
+strand stoichiometry and repeat-bearing/root-strand annotations while allowing
+the observed lattice to show partial strand use, reorganized repeat order or
+long-period repeat-phase closure rather than forcing the synthesis design onto
+the crystal. The minimum real-data validation queue is kept in
+[construct-registration-live-checks.md](docs/construct-registration-live-checks.md).
 
 ## Preparing an accepted MR solution
 
@@ -1107,8 +1150,10 @@ Current validation state is summarized in
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
 - search unbounded refinement recipes or run several campaign jobs concurrently;
 - apply the final H3/R3 notation patch;
-- perform construct/ASU registration, guided Registration Net editing, or
-  registration-aware recut rescue; or
+- perform construct/ASU registration, guided Registration Net editing, the
+  planned modular one-window GUI ([design contract](docs/gui.md)) with
+  checkpoint-tree/campaign navigation and CLI-operable actions, topology-informed
+  Topo Net framework surgery, or registration-aware recut rescue; or
 - search multiple catalogue/dataset models automatically.
 
 These operations are deliberately kept behind later validation gates rather

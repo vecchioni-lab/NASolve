@@ -453,6 +453,41 @@ Checkpoint listing is read-only: it validates an existing
 registry without rewriting it, or derives a validated PostMR root in memory
 without creating files. Modifying operations still initialize the registry.
 
+### Future graphical checkpoint-tree view
+
+The immutable checkpoint registry is also the natural data model for a future
+generic NASolve GUI. The GUI must visualize the existing graph rather than
+create a second lineage system.
+
+A **tree/graph mode** should show stage and model lineage across MR, PostMR,
+AutoSol, ordinary refinements, Refine Doctor branches, manual imports, topology
+surgery children and later re-MR attempts started from refined models. A
+forty-refinement run should remain navigable as a graph rather than a flat
+chronological list.
+
+Useful graph operations are read/select/branch operations already compatible
+with checkpoint semantics:
+
+- pan/zoom through the lineage tree;
+- collapse repetitive refinement chains into expandable groups;
+- pin/bookmark important models as visible panels/cards;
+- compare siblings or parent/child metrics without changing the current pointer;
+- select any eligible node as the current checkpoint through the existing
+  audited selection operation;
+- launch `show`/Coot for one node without selecting it;
+- branch a new refinement, Doctor, topology-surgery or later MR attempt from an
+  explicit source node; and
+- traverse back to an earlier model without deleting descendants.
+
+The same graph component should be usable standalone in normal NASolve mode and
+embedded in specialized workspaces such as Topo Net. Specialized workspaces may
+add domain-specific overlays, but all state-changing actions still create
+ordinary immutable checkpoint/model-lineage nodes.
+
+The durable application-shell, scientific hierarchy, color/status semantics,
+CLI-to-GUI coverage and capability-driven extensibility rules are defined in
+[the GUI design contract](gui.md).
+
 `nasolve checkpoints add RUN --name NAME` creates a bookmark without copying
 the current node. Supplying `--model` imports a manual model into the run as a
 new review child. `--mtz` is a deliberate observation replacement for an

@@ -196,6 +196,50 @@ hard gates, transformations, attempts and stopping reason without rewriting the
 recipient's authoritative observations, Free-R set, target chemistry or failed
 branch.
 
+### Next CLI milestone: geometry-diverse campaign before GUI implementation
+
+A forthcoming real validation case contains geometry-diverse datasets with one
+prepared PDB search model and associated sequence definition per dataset. Once
+the current Oak Scout-v2 branch is closed/merged, this should become the **next
+campaign implementation milestone**, still on the CLI/backend rather than in the
+GUI.
+
+The first executable slice should generalize the existing campaign
+planner/executor to admit frozen nonstandard per-dataset model providers and
+their exact sequence sources while preserving the normal guarded stage engines.
+Keep existing schema-1 W plans readable/executable; introduce a
+backward-compatible newer plan schema rather than redefining old frozen plans.
+The current concrete executor choke point is
+`campaign_stages._frozen_selection()`, which still rejects anything except
+`mode=standard, frame=W`.
+
+Each dataset remains scientifically independent: no geometry-family inference,
+cross-dataset model ranking, solved-sibling reuse or Campaign Doctor rescue is
+authorized merely because the datasets share a campaign.
+
+For the first live slice, model-to-sequence correspondence must be simple and
+unambiguous. Nontrivial registration, recuts, split chains, unexpected
+multiplicity or other representation ambiguity should stop only that dataset
+for inspection. A real 3-5 dataset geometry-diverse campaign should then run
+through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine with pause/resume,
+retry, relocation and frozen-input integrity still intact.
+
+After that live campaign is green, add minimal explicit `design_id` grouping
+for datasets sharing a stable construct/design record. Do not infer design
+membership from filenames or sequence similarity.
+
+**GUI branch point:** only after the basic heterogeneous campaign and Design
+identity are CLI-functional should implementation attention split into the GUI.
+The GUI then visualizes stable backend concepts rather than inventing them.
+
+The Campaign Doctor runway after that branch point is already mapped in the
+campaign roadmap: read-only campaign-wide donor/recipient facts -> reviewed
+eligibility policy -> attempt-local derived-provider provenance -> one explicit
+donor rescue -> bounded automatic donor enumeration. None of those should be
+smuggled into the first heterogeneous campaign milestone.
+
+This work remains intentionally outside PR #22's implementation scope.
+
 ## Construct registration: next structural robustness layer
 
 The next planned scientific infrastructure is **Construct Registration**:
@@ -241,17 +285,163 @@ Guided mode is reserved for crystallographically interesting cases such as:
 - sticky-end/arm coverage differences; or
 - several non-equivalent registrations.
 
-The **Registration Net** will be a simple 2-D SVG/HTML schematic, not a second
-molecular viewer. It should show logical strands, coordinate fragments,
-symmetry/ASU seams, complete/partial copies, sticky ends, important logical
-sites and mapping bands. Minimal click actions will accept/reassign fragments,
-select equivalent cuts/recipes, mark partial/extraneous fragments and preview
-recuts; Coot remains the coordinate editor.
+The **Registration Net** remains the general 2-D SVG/HTML mapping view for
+logical strands, coordinate fragments, symmetry/ASU seams, complete/partial
+copies, sticky ends, important logical sites and mapping bands. It is not a
+second molecular viewer; Coot remains the coordinate editor.
 
-The first planned validation ladder begins with ordinary W identity
-registration and an 8D93-style -> W recut fixture, then chain renaming,
-numbering offsets, chain splits, multicopy/partial-copy ASUs and bounded
-multi-PDB MR candidates.
+A separate opt-in **Topo Net** extension is now planned for explicitly declared
+periodic self-assembling frameworks. Topo Net should show the current ASU plus
+only connected symmetry mates and operate on a periodic molecular graph rather
+than treating the current PDB chain serialization as chemistry. It should let a
+user preview moving an ASU seam past residues, moving symmetry-equivalent
+fragments across the chosen ASU, split/join/relabel/renumber operations and
+newly exposed sticky ends before coordinates are materialized.
+
+Critical semantic distinction: an ASU seam may create a coordinate-file
+"false nick" while the logical strand remains chemically continuous through a
+symmetry operation. Such a representation seam keeps continuation-phosphate
+intent and must not be reinterpreted as a true free 5-prime terminus merely
+because the PDB starts a new chain there. A true chemical nick remains a
+different, stronger edit that changes the covalent graph and terminus chemistry.
+
+Materialization should write an immutable surgery manifest, use exact symmetry
+transforms/chain operations in Coot, then re-run Phenix interpretation. Two
+later empirical gates are required before automation: (1) determine whether a
+Phenix symmetry-operation bond can safely enforce the seam connection without
+uncontrolled phosphate-angle/clash behavior; and (2) practice bounded
+single-residue Coot RSR on several disposable recuts where a phosphate/O3-prime
+connection is initially too long, auditing which atoms move and whether Phenix
+then interprets the linkage cleanly.
+
+The umbrella term for this planned family is **topology-informed automation**:
+topology may inform hypotheses, recuts, local repairs and branch diagnostics,
+but it never overrides chemistry, diffraction evidence, fail-closed rules or
+expert review.
+
+Topo Net should also preserve a stronger design hierarchy than ASU chain
+serialization. For framework work, keep four layers separate:
+
+- complete synthesized/input strand inventory;
+- tile hypothesis (usually declared, but possibly inferred/emergent);
+- observed periodic crystal graph under symmetry; and
+- one incidental ASU/PDB serialization of that periodic object.
+
+Input strands are high-authority experimental intent, not guaranteed observed
+content. A strand may be absent from the solved structure; copy number may
+differ from the synthesis recipe; one strand may be split among symmetry/ASU
+fragments; and the scientifically useful tile can become more abstract than
+the original design. Tile status should therefore permit `DECLARED`, `INFERRED`,
+`EMERGENT` and `UNRESOLVED` outcomes while retaining the original declared tile
+for provenance.
+
+This distinction matters for known lab-style multiplicity cases: a P4_132
+structure may place two complete triangular tile copies in one ASU without
+making the ASU itself the tile. Tile multiplicity, ASU multiplicity and
+coordinate-chain decomposition must remain separate reported dimensions.
+
+Repeat-bearing/root strands need their own design facts. Many tile families
+contain one central/root strand with an internal n-fold repeated role while
+other strands occur at higher per-tile copy number. Preserve intended
+copies-per-tile and internal repeat order separately in the tile sequence
+sheet; neither should be inferred from incidental ASU chain counts.
+
+The observed periodic graph may violate both expectations. Record repeat-domain
+coverage and repeat phase when possible, including cases where only part of a
+root strand is ordered/used. Also allow a long topological closure: a known
+fivefold repeat-bearing object embedded in a fourfold/screw lattice returned
+to its original repeat phase only after twenty unit-cell steps. That is not a
+missing-copy failure. It is an observed periodic organization in which the
+nominal root-strand copy/repeat count is no longer a local tile invariant.
+
+The net finder should explicitly consume declared root/repeat annotations and
+may propose repeats from full sequences only as non-authoritative hypotheses.
+It should map repeat domains into the periodic graph, follow phase changes
+through symmetry, and report local closure, long-period closure, partial use,
+reorganization or unresolved phase as separate descriptive facts. It must not
+force the designed n-fold order onto the structure.
+
+Junctions are now part of the intended Topo model as first-class topological
+objects, but **junction arity is not the definition**. The minimal primitive is
+a local directed-backbone passage/connection at a node; a single backbone can
+be sufficient (the semi-junction is the motivating example). Four-, six- or
+eight-arm junctions are contextual neighborhoods around one or more such
+passages. ASU recutting may split that realization across symmetry fragments
+without changing the underlying junction.
+
+Junction declarations/hypotheses should therefore preserve stable logical
+strand/residue participation, routing, true nicks/termini, sticky ends and
+optional reviewed stacking/pairing expectations while treating observed arm
+count as derived metadata. Net-finder discoveries remain `CANDIDATE` until
+uniquely supported or user-confirmed; emergent high-valence nodes such as the
+cuboctahedral case must be allowed, while apparent packing contacts may be
+`REJECTED`.
+
+Topo Net should be a persistent workbench above the checkpoint graph rather
+than a one-shot cutter. A user should be able to operate on a seam/junction,
+materialize a child, optionally perform bounded Coot repair, press Refine, and
+receive the resulting refinement child plus diagnostics back into the same GUI
+without closing/restarting the topology session. The first Refine action should
+use a short ordinary audited AutoRefine path; selection-restricted refinement
+is intentionally later work.
+
+This work exposes a useful **generic NASolve GUI** seam. The existing immutable
+checkpoint graph should become a reusable model-tree view for normal workflows:
+MR, PostMR, AutoSol, long refinement chains, Doctor siblings, manual imports,
+topology surgery and later re-MR-from-refined-model attempts should all appear
+in one traversable lineage. Important checkpoints can be pinned as panels,
+repetitive refine chains can collapse, and historical nodes can be selected or
+used as explicit new branch sources without deleting descendants. Topo Net
+should embed this same component rather than maintain a private history.
+
+The dedicated [GUI design contract](gui.md) now records the broader shell:
+Campaign -> optional Design -> Dataset -> Run scientific navigation; one-window
+Navigator / Workspace / Inspector / Activity layout; root/recent-workspace
+selection; explicit viewed/current/pinned separation; semantic colors with
+redundant shape/fill cues; and GUI coverage for existing CLI operations
+(environment/config, workspace, presets, campaign actions, AutoMR/PostMR,
+backbone review, AutoSol, AutoRefine/Doctor, checkpoints and Coot inspection).
+The shell is capability-driven: future backend actions/metadata/views should
+register into existing surfaces rather than require a new window or bespoke
+history model.
+
+Live campaigns should update the Navigator/tree from authoritative execution
+records with restrained running-node/edge activity. The bottom Activity drawer
+has a human-readable Events/Notifications stream (for example "refinement 21
+passed", "PostMR needs your review", "current checkpoint changed") plus
+expandable exact backend tokens, metrics, diagnostics and logs. Repeated
+heartbeats are coalesced; reduced-motion mode uses static activity markers.
+
+The corresponding [GUI human live-check queue](gui-live-checks.md) covers shell
+navigation, live campaign/event reconciliation, long model trees,
+color/accessibility semantics, campaign/design scope changes, CLI/GUI
+interoperability, Coot round-trip and a "register one new action without shell
+redesign" extensibility test.
+
+Keep the workbench display sparse. Global chips may show current checkpoint,
+Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
+junction expands only the relevant local diagnostics: Phenix bond/angle
+outliers, phosphate connectivity and clashes, base-plane/sugar/backbone
+geometry, reviewed pairing/stacking deviations, mutation/registration state,
+and later validated residue-density metrics. Selections should round-trip to
+Coot so abstract Topo operations and atomic inspection stay coupled.
+
+Topo surgery also needs a bounded local repair layer rather than assuming one
+Coot action always works. A future **Topo Surgeon/Doctor** may branch a small
+declared set of materialization/mutation/RSR strategies, then compare Phenix
+local geometry, phosphate/clash behavior, base planes, pairing/stacking
+restraints and unintended coordinate movement. Every attempt remains immutable.
+If automated repair cannot produce a trustworthy local model, expert manual
+Coot work is an expected Topo-mode fallback; NASolve should open the exact
+model/maps/seam, then import the user's repaired PDB as a new user-reviewed
+checkpoint without erasing failed automated attempts.
+
+The first planned blind topology-surgery fixture is **8D93 -> 3GBI-style
+representation without coordinate cheating**: the transform receives 8D93,
+symmetry and requested cut intent, while 3GBI coordinates are withheld until
+the post-transform comparison. Ordinary W identity registration, chain
+renaming/numbering offsets, multicopy/partial-copy ASUs and bounded multi-PDB MR
+checks remain separate validation rungs.
 
 ### Birch implementation checkpoint
 
@@ -302,9 +492,10 @@ without losing why an earlier rule existed.
 
 The minimum human/real-workflow validation queue is maintained separately in
 [`construct-registration-live-checks.md`](construct-registration-live-checks.md).
-Keep that list intentionally small and trigger-based; it exists so clean-W,
-8D93-style recut, 8D31-like multiplicity, guided ambiguity and bounded multi-PDB
-live checks are not forgotten as implementation context moves across chats.
+Keep the top-level queue trigger-based, with project-scoped banks beneath it;
+it exists so clean-W wiring, blind 8D93 -> 3GBI surgery, 8D31-like multiplicity,
+repeat/root-strand closure, emergent-tile cases, guided ambiguity and bounded
+multi-PDB checks are not forgotten as implementation context moves across chats.
 
 Validation history is preserved rather than overwritten:
 
@@ -338,6 +529,102 @@ inference experiment: classify mismatches as **declared construct-change sites**
 versus **unexpected mismatches**, and allow automatic disambiguation only when
 one complete one-to-one chain mapping has zero unexpected mismatches and every alternative has
 at least one. This is recorded as proposed policy, not runtime authority.
+
+### Oak: experimental design-aware Scout v2
+
+Following the renamed-chain real-W result, Oak prototypes a **proposal-only**
+design-aware helper. It enumerates bounded complete one-to-one chain mappings
+and classifies differences using explicit target assignment history plus an
+optional reviewed-provider baseline map.
+
+The hard proposal rule is intentionally non-scoring: exactly one mapping must
+have **zero unexplained mismatches**, and every alternative must have at least
+one. A mapping with merely fewer unexplained mismatches is still ambiguous.
+
+The helper is not runtime authority, cannot apply a mapping, and is not called
+by AutoMR/PostMR. Provider-baseline evidence is now derived from an assessed
+standard frame-catalogue model plus NASolve's existing provider provenance;
+free-floating caller residue dictionaries are no longer accepted. The original
+Oak v2 checkpoint had **41 focused tests passing locally** at code head
+`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`.
+
+The first renamed real-W v2 shadow case supplied only A:13=DC and B:3=DG as
+provider evidence and correctly stayed `AMBIGUOUS`: 6 complete mappings,
+0 zero-unexplained mappings; the intended mapping had 38 exact,
+2 provider-explained and 2 unexplained sites. Direct inspection of
+`MR_frames/5W6W/C_G.pdb` verified that the missing provider-pair identities
+were A:12=DC and B:4=DG.
+
+The same case was then repeated with all four verified provider identities
+(A:12/A:13=DC; B:3/B:4=DG). v2 returned `PROPOSED` with exactly one
+zero-unexplained mapping: A->M, B->N, C->P, D->Q. That mapping had 38 exact,
+0 target-history, 4 provider-explained and 0 unexplained sites; the five
+alternatives retained 12, 11, 16, 17 and 10 unexplained mismatches.
+`runtime_authority` remained false.
+
+This validates the experimental zero-unexplained uniqueness rule on the real-W
+rename nuisance case without promoting it into runtime authority.
+
+Oak has now implemented the next provenance slice at code head
+`c515a37dc41fa8bb1935d2c80c825ebef8153177`: Scout v2 no longer accepts an
+ad hoc provider residue dictionary. Optional provider evidence is derived from
+an actual `ModelAssessment` of a standard frame-catalogue model plus NASolve's
+existing `model_provider` record. The helper requires frame-catalogue
+provenance, exact target-site coverage and provider-selector/source-model
+agreement, and returns the derived residue baseline bound to the source model's
+SHA-256. Runtime authority remains false and AutoMR/PostMR still do not call it.
+
+The provenance-bound helper plus its new fail-closed coverage now passes
+**43 focused tests locally** at checkout/test head
+`507745a0b7166f05229f6c3501d5e1f694db93e2`; the source-behavior head remains
+`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added tests explicitly
+reject incomplete provider target coverage and provider-selector/source-model
+mismatch. The result is user-local, not GitHub CI.
+
+The real renamed-W case has now also passed through the new
+`provider_assessment + model_provider` interface. Because ED `run_011`
+predates structured `model_provider` provenance, the shadow script reconstructed
+only the standard-frame fallback provider facts already proven by the old run's
+model path, `model_source`, and source-model SHA-256, then asserted that checksum
+against the current `C_G.pdb` before Scout ran. No residue-code dictionary was
+supplied. The result remained exactly one zero-unexplained proposal
+A->M/B->N/C->P/D->Q (38 exact + 4 provider-explained; alternatives
+12/11/16/17/10 unexplained), with provider provenance bound and
+`runtime_authority = false`.
+
+Scout v2 therefore remains experimental/non-runtime, but its focused tests and
+intended real-W provenance-bound shadow gate are now green. The current Oak
+checkout `316ac43eaf85a63cf675828bb8960a28f0db2773` also passed the **full
+NASolve regression suite: 672 tests locally**. No runtime or subtest count was
+reported for this checkpoint; it is user-local validation, not GitHub CI.
+
+The merge-grade regression gate is therefore green. The remaining confidence
+check has also now passed: a fresh current-schema ED `run_013` preflight was
+created from the same run_011 scientific intent, and the renamed-W shadow case
+was repeated using its native structured `model_provider` record plus a fresh
+assessment of the referenced `C_G.pdb`. The result was identical: provider
+bound true, caller codes false, exactly one zero-unexplained
+A->M/B->N/C->P/D->Q proposal (38 exact + 4 provider-explained; alternatives
+12/11/16/17/10 unexplained), with `runtime_authority = false`.
+
+The current backend-only Scout v2 scope is therefore fully validated for its
+stated purpose. AutoMR/PostMR integration, automatic application, authoritative
+registration and any promotion of Scout v2 into runtime decision-making remain
+separate future work and are not implied by this validation.
+
+### Oak branch-readiness sweep
+
+A final user-local readiness sweep on the current Oak checkout reported:
+
+- authority audit: no live callers of
+  `propose_design_aware_chain_mapping` outside its defining module;
+- patch hygiene: `git diff --check main...oak` produced no output;
+- runtime health: `./nasolve check` passed with Python 3.12.14,
+  NARestraints 1.1.2, Phenix 2.2.1 and Coot 1.3.3.
+
+This sweep changes no scientific behavior. It confirms that the experimental
+Scout v2 helper remains isolated from the live pipeline, the branch diff is
+whitespace-clean, and the configured local crystallographic runtime is healthy.
 
 ### First real-data registration shadow check
 

@@ -256,11 +256,94 @@ registration: copy coverage, complete/partial multiplicity, complete-copy
 identity classes and single-copy coordinate realization remain separate
 dimensions with no acceptance or PostMR verdict.
 
-The focused Birch registration suite was reported locally as **23 passing
-tests** at code head `4452295c3330de6d55bddd75b01be21f39afb222`. The newer
-design-evidence, frozen-Scout and registration-transition additions are
-explicitly marked pending validation in
+The first focused Birch registration checkpoint reported **23 passing tests**
+at code head `4452295c3330de6d55bddd75b01be21f39afb222`. The later merged
+Birch registration/model-candidate bundle reached **44 focused tests passing**
+plus a full NASolve regression of **664 tests and 222 subtests**. Oak's
+experimental Scout v2 helper subsequently reached **41 focused tests passing**;
+its real-W shadow history is frozen in
 [`construct-registration-intent.json`](construct-registration-intent.json).
+
+### Experimental design-aware Scout v2 proposal
+
+Oak adds a separate **experimental, non-runtime** proposal helper to test the
+lesson from the renamed real-W validation without changing Scout v1.
+
+The helper evaluates every complete simple one-to-one chain mapping and
+classifies each target-identity difference as:
+
+- `DECLARED_TARGET_HISTORY` when the observed residue identity appears in an
+  earlier explicit target assignment at that logical site;
+- `REVIEWED_PROVIDER_BASELINE` when it matches an explicitly supplied provider
+  baseline identity for that logical site; or
+- `UNEXPLAINED` otherwise.
+
+It may return a proposal only when **exactly one** complete mapping has zero
+unexplained mismatches and every alternative has at least one. It never chooses
+the mapping with merely the lowest mismatch count and never constructs a
+weighted sequence-similarity score.
+
+This is deliberately not runtime authority:
+
+- it cannot apply its proposal;
+- AutoMR/PostMR do not call it;
+- repeated/indistinguishable strands remain ambiguous;
+- assignment enumeration is bounded and fails closed; and
+- provider baseline evidence must remain provenance-bound to the assessed
+  provider model and reviewed/provider record; caller-supplied residue-code
+  dictionaries are not accepted.
+
+The point of Oak is to test whether categorical design evidence is strong enough
+to disambiguate the real W rename case safely before any policy is promoted.
+
+The first renamed-real-W v2 shadow attempt remained `AMBIGUOUS`, which was the
+correct fail-closed result for incomplete evidence. Only A:13=DC and B:3=DG had
+been supplied; the intended mapping therefore still contained two unexplained
+differences. Direct inspection of the actual `MR_frames/5W6W/C_G.pdb`
+provider verified the complete relevant identity set:
+`A:12=DC`, `A:13=DC`, `B:3=DG`, `B:4=DG`.
+
+Repeating the same shadow case with all four verified provider identities
+produced exactly one zero-unexplained proposal:
+`A->M, B->N, C->P, D->Q`. It contained 38 exact identities and 4
+`REVIEWED_PROVIDER_BASELINE` differences; every alternative retained at least
+10 `UNEXPLAINED` mismatches. The helper still reported
+`runtime_authority = false`. This validates the experimental categorical rule
+on the real rename nuisance case without promoting it into runtime authority.
+
+Oak's next code slice now binds that provenance explicitly. Scout v2 no longer
+accepts an ad hoc site->code dictionary. Optional provider-baseline evidence must
+arrive as the actual assessed provider model plus NASolve's existing
+model-provider record. The helper accepts only standard frame-catalogue
+provenance, requires exact logical-site coverage, verifies that the provider
+selector matches the assessed source model, derives every residue code from the
+provider coordinates, and records the source-model SHA-256 in the returned
+baseline evidence.
+
+This provenance-bound implementation remains experimental and non-runtime.
+The focused Construct Registration suite now passes **43 tests locally** at
+checkout/test head `507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying
+source-behavior head remains
+`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added guardrail tests
+explicitly reject incomplete provider target coverage and provider-selector/source
+mismatch.
+
+The renamed real-W shadow case has now also passed through the new
+`provider_assessment + model_provider` interface with exactly one
+zero-unexplained A->M/B->N/C->P/D->Q proposal (38 exact + 4 provider-explained;
+alternatives 12/11/16/17/10 unexplained). Provider evidence was bound, no caller
+residue-code dictionary was supplied, and `runtime_authority` remained false.
+Because historical ED `run_011` predates the structured provider field, the
+shadow script reconstructed only provider facts first verified independently
+from the run's model path, model_source and recorded model SHA-256, then checked
+that SHA against the assessed current `C_G.pdb` before Scout ran.
+
+That historical bridge was then removed from the validation entirely: a fresh
+current-schema ED `run_013` AutoMR preflight was created from the same
+scientific intent and supplied native structured `model_provider` provenance.
+Repeating the renamed-W shadow case directly from `run_013` reproduced the
+same unique zero-unexplained mapping with provider binding true, caller codes
+false and `runtime_authority = false`.
 
 ### Guided mode
 
@@ -546,12 +629,17 @@ a strong planned validation fixture because it exercises an equivalent ASU cut,
 different chain labels, sticky-end boundary change and terminal-phosphate
 difference while retaining the same broad geometry.
 
-## Registration Net
+## Registration Net and Topo Net
 
-The user-facing visualization should be simple, attractive and functional rather
-than a second molecular graphics package.
+The user-facing visualization should stay simple, attractive and functional
+rather than becoming a second molecular graphics package.
 
-The preferred view is a clean 2-D SVG/HTML schematic with:
+The general **Registration Net** remains the ordinary mapping view. It explains
+how logical construct sites map onto one coordinate realization and is useful
+for renamed chains, numbering offsets, split fragments, copy multiplicity,
+partial copies and guided registration.
+
+The preferred Registration Net is a clean 2-D SVG/HTML schematic with:
 
 - logical strands drawn as rounded ribbons with consistent strand colors;
 - residue ticks grouped into ranges rather than one large text table;
@@ -588,12 +676,440 @@ Guided controls should remain few and direct:
 - preview a recut; and
 - open the corresponding coordinates in Coot.
 
-Coot remains the coordinate editor/viewer. The Registration Net explains and
-selects the logical mapping; accepted recut/split/join operations may then be
-materialized through controlled Coot/coordinate tooling with full provenance.
+### Topo Net: explicit periodic-framework surgery mode
 
-The same net should have a static report form suitable for final campaign,
-curation and deposition provenance.
+**Topo Net** is a framework-specific extension of Registration Net, not the
+default registration UI. It may be invoked only by explicit user/campaign intent
+for a designed periodic self-assembling framework. NASolve must not infer
+"framework topology mode" merely from a crystal structure or campaign
+membership.
+
+Topo Net should show one central ASU plus only the symmetry mates that actually
+connect to it. Its underlying preview model is a periodic molecular graph rather
+than a PDB serialization. Residue/fragment instances retain logical identity,
+coordinate identity, symmetry operation/unit-cell translation and current ASU
+ownership. Edge types remain explicit, for example:
+
+- covalent backbone continuity;
+- designed sticky-end/pairing connectivity;
+- symmetry/ASU correspondence; and
+- later reviewed topology-specific relationships.
+
+A reslice changes which symmetry-equivalent residues belong to the chosen ASU
+representative; it does not move the physical periodic object. The preview must
+recompute chain decomposition, exposed sticky ends, termini, logical mapping,
+expected backbone continuity, mutation/chemistry propagation and downstream
+restraint consequences immediately.
+
+Useful Topo Net actions include:
+
+- move an ASU seam past a residue;
+- move a symmetry-equivalent fragment from one side of the ASU representation
+  to the other;
+- split/join/relabel/renumber coordinate chains;
+- move a **true chemical nick** only through an explicitly stronger operation;
+- inspect the symmetry mate that completes one periodic connection;
+- preview newly exposed sticky ends or termini; and
+- open the affected residues/symmetry mates in Coot.
+
+### Representation seams ("false nicks") versus chemical nicks
+
+An ASU cut may force a chemically continuous strand to be serialized as two
+coordinate-chain fragments. This is a **representation seam**, informally a
+"false nick": the coordinate file is broken at the ASU boundary, but the logical
+polymer remains covalently continuous through a crystallographic symmetry
+operation.
+
+Representation seams and true chemical nicks must never share semantics.
+
+For a representation seam:
+
+- logical backbone continuity remains present across the recorded symmetry
+  operation;
+- the continuation phosphate remains part of the continuous backbone even when
+  it appears at the start of a coordinate chain;
+- that phosphate must not be reinterpreted as an ordinary free 5-prime terminus
+  or receive terminal-OP3 chemistry merely because the PDB serialization starts
+  a chain there; and
+- moving the seam changes ASU representation, not construct chemistry.
+
+A true chemical nick instead changes the covalent graph and creates real
+termini. Moving such a nick can change phosphate/terminus intent and therefore
+requires explicit user intent plus downstream chemistry/restraint regeneration.
+
+### Tile design, periodic object and ASU are distinct layers
+
+Topo Net should be biased toward the actual family of problems NASolve is being
+built for first: **designed 3-D DNA lattices / periodic nucleic-acid
+frameworks**. Generalization to other polymer crystals can come later. Avoid
+weakening the first implementation by pretending every crystallographic object
+has the same design semantics.
+
+For these systems, four distinct state layers should remain explicit:
+
+1. **Input strand inventory** — the real synthesized/declared full strand
+   sequences, modifications and intended stoichiometry/copy counts when known.
+2. **Tile hypothesis** — the intended or inferred finite assembly unit:
+   junctions, sticky ends, strand connectivity, internal nicks/termini and
+   design-level multiplicity. This is usually supplied by the user/project, but
+   it may be incomplete or wrong.
+3. **Periodic crystal graph** — the actual repeating molecular connectivity
+   implied by the solved coordinates plus crystallographic symmetry.
+4. **ASU serialization** — one coordinate-file cut of that periodic object,
+   including representation seams, chain labels, residue numbering and the
+   number/fragments of tile copies that happen to fall inside the ASU.
+
+These layers must not be collapsed. In particular:
+
+- an ASU may contain two copies of a triangle tile without redefining the
+  triangle itself;
+- symmetry may slice a tile through junctions, sticky ends or ordinary backbone
+  segments;
+- a representation seam can create a coordinate-file nick that is not a
+  chemical nick;
+- a declared strand may be absent from the observed crystal structure;
+- the crystal may use a different effective stoichiometry/copy number from the
+  input recipe; and
+- in difficult cases, the scientifically meaningful "tile" may emerge only
+  after the periodic graph is understood.
+
+Topo Net should therefore treat the tile as a **hypothesis with provenance**,
+not a permanent truth. A tile record may be:
+
+- `DECLARED` — supplied explicitly by the user/project;
+- `INFERRED` — reconstructed uniquely from full input strands plus observed
+  periodic connectivity under reviewed rules;
+- `EMERGENT` — proposed from the solved periodic graph because the observed
+  assembly cannot be represented faithfully by the declared tile without
+  contradiction; or
+- `UNRESOLVED` — more than one non-equivalent tile interpretation remains.
+
+A declared tile always remains visible as experimental intent even if the
+observed crystal suggests another organization.
+
+### Full-strand input and tile reconstruction
+
+When the user can provide the actual complete strand list, that strand inventory
+should outrank ASU-derived chain sequences as design evidence. ASU chain
+sequences are coordinate serialization; they may be fragments or symmetry-cut
+pieces of the real strands.
+
+A future Topo Net compiler may therefore attempt:
+
+```text
+full input strands
+    -> candidate strand-to-periodic-graph mappings
+    -> tile hypothesis/hypotheses
+    -> ASU representation
+```
+
+This must remain fail-closed. It must allow:
+
+- a supplied strand that is not observed in the final structure;
+- several copies of one input strand;
+- fewer/more effective tile copies than the input recipe expected;
+- one input strand split among ASU/symmetry fragments;
+- different tile hypotheses compatible with the same local sequence evidence;
+  and
+- the possibility that no faithful finite tile decomposition is yet known.
+
+The goal is not to force nature back into the synthesis spreadsheet. It is to
+use the spreadsheet as high-authority experimental intent while allowing the
+solved periodic object to disagree visibly.
+
+### Repeat-bearing / root strands and stoichiometry
+
+Many designed DNA tiles contain one strand with an internal repeated pattern or
+declared n-fold role: for example, the central/root strand of a tensegrity
+triangle. These strands need explicit representation because two different
+ideas are otherwise easy to conflate:
+
+- **tile stoichiometry** — how many copies of each complete input strand were
+  intended per designed tile; and
+- **internal repeat order** — how many repeated domains/roles exist within one
+  repeat-bearing strand.
+
+Both belong in the design-level tile/strand sheet when known. They are
+experimental intent, not constraints that the observed crystal must obey.
+
+A repeat-aware strand record should therefore be able to retain, at minimum:
+
+- full input strand identity and sequence;
+- intended copies per declared tile / input stoichiometry;
+- optional declared tile role such as `ROOT`, `CENTER`, `ARM`, `EDGE`, or a
+  project-specific free-form role;
+- optional designed internal repeat order;
+- optional residue/domain ranges for the repeated units when known;
+- whether repeated units are sequence-identical or only role-equivalent;
+- observed residue/domain coverage in the solved periodic graph;
+- observed number of strand realizations/copies where that quantity is
+  meaningful;
+- observed repeat-phase assignments when distinguishable; and
+- a topological closure/return length when the repeat phase closes only after
+  several crystallographic symmetry/unit-cell steps.
+
+The last item is important. Designed internal symmetry need not be commensurate
+with the local crystallographic presentation. A repeat-bearing strand may
+participate in a lattice whose symmetry advances the strand through repeat
+phases and returns to the original phase only after a longer superperiod. In a
+known lab-style example, a fivefold repeat-bearing object was accommodated in a
+fourfold/screw lattice and the repeat phase closed only after twenty unit-cell
+steps. The crystal is not wrong and the strand is not 'missing copies'; the
+designed repeat count has simply ceased to be a local tile-copy invariant.
+
+Similarly, a declared repeat-bearing strand may be only partly used by the
+observed assembly. Some repeated domains or residue ranges may be disordered,
+absent, or excluded from the ordered crystal while other parts of the same
+input strand remain structurally incorporated. Topo Net must therefore track
+coverage at residue/domain level rather than reducing strand presence to a
+single boolean.
+
+Useful observed classifications may include:
+
+- `FULLY_USED` — the complete input strand is represented in the periodic
+  graph;
+- `PARTIALLY_USED` — only a defined subset of residues/repeat domains is
+  structurally represented;
+- `ABSENT` — no defensible mapping of the supplied strand is observed;
+- `REORGANIZED` — the strand is present but its repeat/copy organization does
+  not match the declared tile model;
+- `LONG_PERIOD` — repeat phase returns only after a longer topological
+  closure/superperiod than the nominal tile; and
+- `UNRESOLVED` — the available coordinates/sequence symmetry do not permit a
+  unique interpretation.
+
+These are descriptive states, not failure grades.
+
+### Repeat-aware net finding
+
+The future tile/net finder should explicitly look for repeat-bearing strands,
+but must never use repeat order as an instruction to force a mapping. Its
+evidence order should be roughly:
+
+1. Prefer an explicit user/project repeat annotation when supplied.
+2. Retain exact/reviewed repeated-domain definitions from the full input
+   sequence sheet.
+3. When no annotation exists, detect candidate internal repeats only as
+   descriptive hypotheses; low-complexity/repetitive sequence alone must not
+   authorize a tile assignment.
+4. Map repeat domains onto the periodic crystal graph and record possible
+   repeat-phase correspondences.
+5. Follow connectivity through crystallographic symmetry and determine whether
+   repeat phase closes locally, over a longer sequence of symmetry/unit-cell
+   steps, or remains unresolved.
+6. Compare declared versus observed stoichiometry, repeat usage and closure as
+   separate facts. Do not collapse them into one compatibility score.
+
+Conceptually this is a small monodromy/phase problem on the periodic graph:
+walking through symmetry-connected copies may advance a repeat-bearing strand
+through its internal phases before returning to the original phase. Topo Net
+does not need mathematical jargon in the UI, but the backend should preserve
+that distinction because it naturally handles repeat counts that nature
+frustrates, extends, or reorganizes.
+
+A dramatic emergent assembly—such as an intended incomplete triangle producing
+a cuboctahedral object—should therefore be able to preserve the original input
+strand stoichiometry and repeat annotations while assigning a different
+`EMERGENT` tile/periodic organization. The design sheet remains evidence of
+what was built; the periodic graph records what crystallized.
+
+### Junctions are first-class topological objects
+
+Junctions must not be inferred only from whichever residues happen to share one
+ASU, and **arm count must not define what a junction is**. The minimal primitive
+is a local directed-backbone connection/passage at a topological node: one
+backbone can be sufficient. Familiar four-, six- or eight-arm junctions are
+larger local neighborhoods assembled around one or more such passages.
+
+This matches the topology-based lattice-engineering framework: the DNA
+backbones are treated as directed paths with local topological features, and a
+semi-junction arises when strand routing/nicking changes the connectivity at a
+crossing. The observed arm count is therefore a derived structural descriptor,
+not the ontology of the junction itself.
+
+A future tile/strand declaration should support explicit junction records
+independent of PDB chain boundaries. A junction record may contain:
+
+- a stable junction ID and optional human name;
+- one or more minimal backbone-passage primitives;
+- member logical strands and residue/domain ranges;
+- optional contextual/observed arm count and arm identities;
+- optional root/center strand role and repeat-domain participation;
+- the intended local connectivity/routing between strands/domains;
+- true chemical nicks/termini that belong to the junction design;
+- sticky ends associated with nearby junction domains;
+- optional expected coaxial stacking/pairing relationships;
+- whether the junction itself is an invariant tile feature even when the ASU
+  cuts through it; and
+- separate declaration/evidence state.
+
+Declaration/evidence state should distinguish at least:
+
+- `DECLARED` — part of the input tile/design intent;
+- `CANDIDATE` — a structurally plausible junction proposed from the periodic
+  graph but not yet authoritative;
+- `INFERRED` — uniquely supported under reviewed rules;
+- `EMERGENT` — a real observed junction/topological node not present in the
+  declared tile model;
+- `REJECTED` — a candidate connection judged to be a packing/serialization
+  coincidence rather than a junction; and
+- `UNRESOLVED` — several non-equivalent interpretations remain.
+
+Topo Net should render one logical junction even when its coordinate
+realization is distributed across several ASU/symmetry fragments. Recutting an
+ASU may change which fragments expose that junction, and a tile-level recut may
+change which local neighborhood is convenient to call an arm, without silently
+creating or destroying the underlying backbone-passage primitive.
+
+The future net finder may reconstruct undeclared junction hypotheses from
+periodic connectivity, strand mappings, pairing/stacking evidence and symmetry,
+but must keep them `CANDIDATE` until the evidence is unique or the user confirms
+them. This is particularly important for high-valence emergent structures such
+as cuboctahedral assemblies: six- or eight-arm junction neighborhoods may be
+real, while other apparent contacts may merely be an artifact of one chosen
+tile/ASU cut.
+
+### Persistent Topo workbench and refine loop
+
+Topo Net should be a persistent workbench, not a one-shot report or cutter.
+The user should be able to perform surgery, refine the resulting checkpoint,
+inspect compact metrics, and continue operating without closing/restarting the
+GUI.
+
+A conceptual loop is:
+
+```text
+Topo Net checkpoint
+    -> cut / paste / junction / seam / mutation operation
+    -> immutable surgery child checkpoint
+    -> optional Coot local repair
+    -> bounded Refine action
+    -> immutable refinement child checkpoint
+    -> local + global diagnostics returned to the same Topo session
+    -> accept / compare / operate again
+```
+
+The first Refine button should prefer an ordinary short audited AutoRefine
+child rather than inventing an unvalidated local-refinement engine. The UI may
+focus its diagnostics on selected/touched residues even if the refinement
+itself is initially whole-model. Selection-restricted Phenix refinement can be
+added later only after dedicated validation shows that it is stable around
+DNA backbones, junctions and symmetry seams.
+
+The persistent workbench should expose only compact global status by default,
+for example current checkpoint, Rwork/Rfree, refinement status and whether
+selected local geometry contains hard failures. Detailed diagnostics should
+expand only for the selected residue/junction/seam so the molecular/topological
+display is not swallowed by tables.
+
+Useful selectable local diagnostics may include, where available:
+
+- Phenix bond/angle outliers involving the selected residues;
+- phosphate O3-prime-P distance and local backbone interpretation;
+- nearby cross-symmetry clashes/nonbonded contacts;
+- base-plane distortion;
+- NARestraints pairing/stacking deviations when reviewed restraints exist;
+- sugar/backbone geometry outliers;
+- residue identity/mutation state and whether the intended logical site is
+  actually realized;
+- map-fit/residue-density metrics when a reviewed reproducible extractor is
+  available; and
+- before/after coordinate displacement for the last surgery/repair/refinement.
+
+Clicking a diagnostic should select/center the same residues in Coot. Conversely,
+a Topo Net residue/junction selection should populate this local diagnostic
+panel. The workbench remains an orchestrator above Coot and the immutable
+checkpoint graph; it does not become a replacement atomic modeler.
+
+### Topo Surgeon / Topo Doctor
+
+Topo Net surgery will sometimes produce locally awkward coordinate geometry,
+especially after mutation, reslicing or chain reconstruction from imperfect MR
+models. These failures are not all equivalent and should not be hidden inside a
+single deterministic "fix" command.
+
+A future bounded **Topo Surgeon** (or Topo Doctor) may consume one immutable
+surgery proposal and try a small declared repair budget. Candidate operations
+might include reviewed combinations of:
+
+- exact symmetry materialization without coordinate relaxation;
+- local mutation before versus after seam materialization;
+- one-residue Coot RSR at the affected phosphate/backbone junction;
+- a slightly broader local Coot repair only after the one-residue variant fails;
+- alternate reviewed split/join orderings; and
+- later, experimentally validated symmetry-spanning bond policies.
+
+Each repair attempt must be a separate immutable branch with before/after
+coordinates, exact Coot/Phenix actions and stopping reason.
+
+Comparison must be chemically local rather than merely numerical. Candidate
+repairs should be audited for, as applicable:
+
+- Phenix bond/angle outliers and local `.geo` interpretation;
+- phosphate orientation and cross-symmetry clashes;
+- base-plane integrity;
+- base-pair/stacking geometry from reviewed NARestraints targets when
+  applicable;
+- sugar/backbone distortion;
+- unintended movement of neighboring or remote atoms;
+- preservation of residue/deposition identity; and
+- whether the intended periodic connectivity is actually realized.
+
+No single composite "topology score" should silently pick a result. A reviewed
+policy may apply hard gates and then present surviving candidates for
+inspection.
+
+If the bounded repair budget cannot produce a trustworthy result, expert manual
+Coot work is an expected fallback, not a pipeline failure. Topo mode already
+implies an expert user. NASolve should open the exact model/maps/symmetry context
+needed for repair, instruct the user what seam/fragment requires attention, then
+allow the user to save/import a corrected PDB as a new immutable checkpoint.
+That manual model must retain the failed automated attempts and user-review
+provenance rather than erasing them.
+
+### Materialization, Coot repair and Phenix enforcement
+
+Topo Net itself should remain preview/intent logic. Applying a reviewed surgery
+writes an immutable transformation manifest first. Coot/controlled coordinate
+tooling then materializes the selected symmetry-equivalent coordinates,
+split/join/relabel/renumber operations and any approved local coordinate repair.
+The resulting model is re-assessed and passed through Phenix interpretation
+before refinement.
+
+Some recuts may place a phosphate and its symmetry-related O3-prime partner too
+far apart for Phenix to recognize/refine the intended backbone cleanly. A
+single-residue Coot real-space-refinement repair near the seam is therefore a
+plausible future primitive, but it must be learned empirically before
+automation. Validation should measure which atoms move, confirm that the
+intended connection becomes geometrically sensible, verify that unrelated
+coordinates are preserved, and re-run Phenix geometry interpretation after
+every repair.
+
+Likewise, NASolve must not automatically force a symmetry-spanning covalent bond
+yet. Phenix supports custom bonds to symmetry copies, but the full
+symmetry-spanning phosphate angle geometry must be validated separately. A
+bond-distance restraint without trustworthy O3-prime-P-O angle control may
+still permit a locally wrong phosphate orientation or clash. Until a dedicated
+live experiment demonstrates safe behavior, symmetry-bond enforcement remains
+experimental-only and visibly provenance-tagged.
+
+### Blind topology-surgery validation
+
+The preferred end-to-end Topo Net fixture is **8D93 -> 3GBI-style
+representation without coordinate cheating**. The surgery engine receives the
+8D93 periodic object, crystallographic symmetry and requested logical/cut intent;
+it must not read 3GBI coordinates while generating the transformed model.
+3GBI is used only afterward as an independent validator of the resulting
+periodic graph, chain boundaries/sticky ends and symmetry-equivalent coordinate
+representation.
+
+Coot remains the atomic coordinate editor/viewer throughout. Registration Net
+and Topo Net explain/select logical and topological intent; Coot materializes
+local coordinate consequences; Phenix audits/enforces the resulting chemistry
+and geometry.
+
+Both nets should have static report forms suitable for final campaign, curation
+and deposition provenance.
 
 ## Reporting
 
@@ -608,8 +1124,11 @@ Planned artifacts may include:
 ```text
 Model/registration_scout.json
 Phaser/asu_registration.json
+Model/topology_surgery_manifest.json
 Reports/registration-net.svg
 Reports/registration-net.html
+Reports/topo-net.svg
+Reports/topo-net.html
 ```
 
 The final solution/campaign report should retain:
@@ -671,12 +1190,19 @@ dataset's coordinate serialization become the next dataset's assumed truth.
 1. Identity registration on an ordinary current W model.
 2. Chain rename and arbitrary residue-number offset with unchanged geometry.
 3. One logical strand split across multiple coordinate chains.
-4. Reviewed equivalent ASU cut using the 8D93-style -> W representation.
-5. Sticky-end boundary change and terminal-phosphate difference.
-6. Two complete registered copies caused by an unexpected ASU multiplicity.
-7. One complete plus one partial copy.
-8. Multiple dataset PDB candidates with bounded MR attempts.
-9. Guided Registration Net correction and exact replay from the frozen manifest.
-10. Campaign Doctor consumption of registration-aware donor/recipient facts.
+4. Disposable symmetry-spanning phosphate experiment: compare no symmetry bond
+   with an explicit Phenix symmetry-operation bond and inspect full local
+   geometry/nonbonded behavior before defining any automatic bond policy.
+5. Several disposable Coot single-residue RSR seam repairs with before/after
+   coordinate and Phenix-interpretation audits.
+6. Blind 8D93 -> 3GBI-style Topo Net surgery with 3GBI withheld until
+   post-transform validation.
+7. Sticky-end boundary change while preserving representation-seam versus true
+   chemical-nick semantics.
+8. Two complete registered copies caused by an unexpected ASU multiplicity.
+9. One complete plus one partial copy.
+10. Multiple dataset PDB candidates with bounded MR attempts.
+11. Guided Registration Net correction and exact replay from the frozen manifest.
+12. Campaign Doctor consumption of registration-aware donor/recipient facts.
 
 Topology-rich/non-equivalent lattice interpretation remains a later layer.

@@ -384,6 +384,468 @@ def _unique_chain_assignment(
     return None, len(solutions) > 1
 
 
+def _target_assignment_history(
+    target: Mapping[str, object],
+) -> dict[str, list[dict[str, str]]]:
+    """Return validated per-site assignment history for one complete target."""
+    ordered_sites, target_codes = _target_inventory(target)
+    by_site: dict[str, list[dict[str, str]]] = {}
+    rows = {
+        row.get("site"): row
+        for row in target["sites"]
+        if isinstance(row, Mapping)
+    }
+    for site in ordered_sites:
+        row = rows.get(site)
+        if row is None:
+            raise ConstructRegistrationError(
+                "Logical construct target is missing assignment history"
+            )
+        assignments = row.get("assignments")
+        if not isinstance(assignments, list) or not assignments:
+            raise ConstructRegistrationError(
+                f"Logical construct target {site} has no assignment history"
+            )
+        checked: list[dict[str, str]] = []
+        for item in assignments:
+            if (
+                not isinstance(item, Mapping)
+                or set(item) != {"source", "residue_code"}
+                or not isinstance(item["source"], str)
+                or not item["source"]
+                or not isinstance(item["residue_code"], str)
+                or _CODE.fullmatch(item["residue_code"]) is None
+            ):
+                raise ConstructRegistrationError(
+                    f"Malformed assignment history for logical site {site}"
+                )
+            checked.append({
+                "source": item["source"],
+                "residue_code": item["residue_code"],
+            })
+        if checked[-1]["residue_code"] != target_codes[site]:
+            raise ConstructRegistrationError(
+                f"Final assignment history disagrees with target identity at {site}"
+            )
+        by_site[site] = checked
+    return by_site
+
+
+def _enumerate_chain_assignments(
+    logical_order: Sequence[str],
+    candidates: Mapping[str, Sequence[Mapping[str, object]]],
+    *,
+    max_assignments: int,
+) -> tuple[list[dict[str, Mapping[str, object]]], bool]:
+    """Enumerate complete one-to-one chain assignments under a strict budget."""
+    solutions: list[dict[str, Mapping[str, object]]] = []
+    overflow = False
+
+    def visit(
+        index: int,
+        used: set[str],
+        chosen: dict[str, Mapping[str, object]],
+    ) -> None:
+        nonlocal overflow
+        if overflow:
+            return
+        if index == len(logical_order):
+            if len(solutions) >= max_assignments:
+                overflow = True
+                return
+            solutions.append(dict(chosen))
+            return
+        logical_chain = logical_order[index]
+        for option in candidates.get(logical_chain, ()):
+            coordinate_chain = option.get("coordinate_chain")
+            if not isinstance(coordinate_chain, str) or coordinate_chain in used:
+                continue
+            used.add(coordinate_chain)
+            chosen[logical_chain] = option
+            visit(index + 1, used, chosen)
+            chosen.pop(logical_chain, None)
+            used.remove(coordinate_chain)
+            if overflow:
+                return
+
+    visit(0, set(), {})
+    return solutions, overflow
+
+
+def _reviewed_provider_identity_baseline(
+    provider_assessment: ModelAssessment | None,
+    model_provider: Mapping[str, object] | None,
+    target_codes: Mapping[str, str],
+) -> tuple[dict[str, str], dict[str, object] | None]:
+    """Derive provider residue evidence from one exact reviewed catalogue model.
+
+    The evidence is accepted only from the existing standard frame catalogue
+    provider seam. Residue codes are read from the assessed provider coordinates;
+    callers cannot supply an independent site->code dictionary.
+    """
+    if provider_assessment is None and model_provider is None:
+        return {}, None
+    if provider_assessment is None or model_provider is None:
+        raise ConstructRegistrationError(
+            "Provider baseline evidence requires both a provider assessment "
+            "and model-provider provenance"
+        )
+    if not isinstance(model_provider, Mapping):
+        raise ConstructRegistrationError("Model-provider provenance must be a mapping")
+
+    kind = model_provider.get("kind")
+    selection = model_provider.get("selection")
+    frame = model_provider.get("frame")
+    location = model_provider.get("location")
+    selector = model_provider.get("selector")
+    if (
+        kind not in {"standard-frame-catalogue", "explicit-standard-model"}
+        or location != "frame-catalogue"
+        or not isinstance(selection, str)
+        or not selection
+        or not isinstance(frame, str)
+        or not frame
+        or not isinstance(selector, str)
+        or not selector
+    ):
+        raise ConstructRegistrationError(
+            "Provider baseline evidence must come from an explicit reviewed "
+            "standard frame-catalogue provider"
+        )
+
+    provider_inventory = _coordinate_inventory(provider_assessment)
+    expected_sites = set(target_codes)
+    observed_sites = set(provider_inventory)
+    if observed_sites != expected_sites:
+        missing = sorted(expected_sites - observed_sites)
+        unexpected = sorted(observed_sites - expected_sites)
+        raise ConstructRegistrationError(
+            "Reviewed provider baseline must cover exactly the logical target "
+            f"site set; missing={missing}, unexpected={unexpected}"
+        )
+
+    selector_name = Path(selector).name
+    source_name = Path(provider_assessment.source).name
+    if selector_name != source_name:
+        raise ConstructRegistrationError(
+            "Provider assessment does not match model-provider selector"
+        )
+
+    provider = {
+        "kind": kind,
+        "selection": selection,
+        "frame": frame,
+        "location": location,
+        "selector": selector,
+    }
+    construct_family = model_provider.get("construct_family")
+    if construct_family is not None:
+        if not isinstance(construct_family, str) or not construct_family:
+            raise ConstructRegistrationError(
+                "Model-provider construct family is malformed"
+            )
+        provider["construct_family"] = construct_family
+
+    codes = {
+        site: provider_inventory[site]
+        for site in sorted(target_codes)
+    }
+    baseline = {
+        "schema_version": 1,
+        "kind": "reviewed-provider-residue-baseline",
+        "provider": provider,
+        "source_model": {
+            "sha256": provider_assessment.sha256,
+            "byte_size": provider_assessment.byte_size,
+            "polymer_residue_count": provider_assessment.polymer_residue_count,
+        },
+        "site_count": len(codes),
+        "residue_codes": codes,
+        "semantics": {
+            "codes_derived_from_provider_coordinates": True,
+            "caller_supplied_residue_codes": False,
+            "provider_source_is_frame_catalogue": True,
+        },
+    }
+    return codes, baseline
+
+
+def propose_design_aware_chain_mapping(
+    assessment: ModelAssessment,
+    target: Mapping[str, object],
+    *,
+    provider_assessment: ModelAssessment | None = None,
+    model_provider: Mapping[str, object] | None = None,
+    max_assignments: int = 128,
+) -> dict[str, object]:
+    """Experimentally propose one chain mapping from explicit design evidence.
+
+    This is deliberately NOT runtime authority. It evaluates every complete
+    one-to-one simple chain assignment and classifies residue differences as:
+
+    - DECLARED_TARGET_HISTORY: the observed code appears in an earlier explicit
+      target assignment for that logical site;
+    - REVIEWED_PROVIDER_BASELINE: the observed code matches the literal residue
+      identity derived from one exact reviewed frame-catalogue provider model; or
+    - UNEXPLAINED: neither explicit evidence source accounts for the mismatch.
+
+    Exactly one assignment may be proposed only when it has zero unexplained
+    mismatches and every alternative has at least one. Match counts are never
+    converted into a weighted similarity score.
+    """
+    if (
+        type(max_assignments) is not int
+        or max_assignments < 1
+        or max_assignments > 1024
+    ):
+        raise ConstructRegistrationError(
+            "Design-aware assignment budget must be an integer from 1 to 1024"
+        )
+
+    coordinate = _coordinate_inventory(assessment)
+    logical_order, logical_ids, target_codes = _target_chains(target)
+    history = _target_assignment_history(target)
+    _, candidates = _simple_chain_candidates(assessment, target)
+
+    provider_codes, provider_baseline = _reviewed_provider_identity_baseline(
+        provider_assessment,
+        model_provider,
+        target_codes,
+    )
+
+    common_semantics = {
+        "experimental_only": True,
+        "runtime_authority": False,
+        "automatic_application_authorized": False,
+        "weighted_sequence_score_used": False,
+        "zero_unexplained_required": True,
+        "alternatives_must_have_unexplained": True,
+        "provider_baseline_provenance_bound": provider_baseline is not None,
+        "provider_baseline_codes_are_caller_supplied": False,
+    }
+
+    coordinate_chains = list(assessment.polymer_residue_ids_by_chain)
+    if len(logical_order) != len(coordinate_chains):
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-design-aware-proposal",
+            "status": "UNRESOLVED",
+            "reason": (
+                "logical and coordinate chain counts differ; design-aware v2 "
+                "does not infer split chains or multiplicity"
+            ),
+            "model": {
+                "sha256": assessment.sha256,
+                "polymer_residue_count": assessment.polymer_residue_count,
+            },
+            "target": {
+                "reference": target.get("reference"),
+                "site_count": len(target_codes),
+            },
+            "provider_baseline": provider_baseline,
+            "assignment_count": 0,
+            "eligible_assignment_count": 0,
+            "assignments": [],
+            "proposed_selection": None,
+            "semantics": common_semantics,
+        }
+
+    if any(not rows for rows in candidates.values()):
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-design-aware-proposal",
+            "status": "UNRESOLVED",
+            "reason": (
+                "at least one logical chain has no simple length/offset candidate"
+            ),
+            "model": {
+                "sha256": assessment.sha256,
+                "polymer_residue_count": assessment.polymer_residue_count,
+            },
+            "target": {
+                "reference": target.get("reference"),
+                "site_count": len(target_codes),
+            },
+            "provider_baseline": provider_baseline,
+            "assignment_count": 0,
+            "eligible_assignment_count": 0,
+            "assignments": [],
+            "proposed_selection": None,
+            "semantics": common_semantics,
+        }
+
+    assignments, overflow = _enumerate_chain_assignments(
+        logical_order,
+        candidates,
+        max_assignments=max_assignments,
+    )
+    if overflow:
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-design-aware-proposal",
+            "status": "UNRESOLVED",
+            "reason": (
+                f"more than {max_assignments} complete one-to-one chain "
+                "assignments satisfy simple constraints; proposal budget exceeded"
+            ),
+            "model": {
+                "sha256": assessment.sha256,
+                "polymer_residue_count": assessment.polymer_residue_count,
+            },
+            "target": {
+                "reference": target.get("reference"),
+                "site_count": len(target_codes),
+            },
+            "provider_baseline": provider_baseline,
+            "assignment_count": len(assignments),
+            "eligible_assignment_count": 0,
+            "assignments": [],
+            "proposed_selection": None,
+            "semantics": common_semantics,
+        }
+
+    if not assignments:
+        return {
+            "schema_version": 1,
+            "kind": "construct-registration-design-aware-proposal",
+            "status": "UNRESOLVED",
+            "reason": "no complete one-to-one chain mapping satisfies simple constraints",
+            "model": {
+                "sha256": assessment.sha256,
+                "polymer_residue_count": assessment.polymer_residue_count,
+            },
+            "target": {
+                "reference": target.get("reference"),
+                "site_count": len(target_codes),
+            },
+            "provider_baseline": provider_baseline,
+            "assignment_count": 0,
+            "eligible_assignment_count": 0,
+            "assignments": [],
+            "proposed_selection": None,
+            "semantics": common_semantics,
+        }
+
+    records: list[dict[str, object]] = []
+    eligible_indices: list[int] = []
+    for assignment in assignments:
+        selection: list[dict[str, object]] = []
+        differences: list[dict[str, str]] = []
+        exact_count = 0
+        target_history_count = 0
+        provider_count = 0
+        unexplained_count = 0
+
+        for logical_chain in logical_order:
+            option = assignment[logical_chain]
+            coordinate_chain = option["coordinate_chain"]
+            coordinate_ids = assessment.polymer_residue_ids_by_chain[
+                coordinate_chain
+            ]
+            selection.append({
+                "logical_chain": logical_chain,
+                "coordinate_chain": coordinate_chain,
+                "residue_number_offset": option["residue_number_offset"],
+            })
+            for logical_resid, coordinate_resid in zip(
+                logical_ids[logical_chain],
+                coordinate_ids,
+            ):
+                logical_site = f"{logical_chain}:{logical_resid}"
+                coordinate_site = f"{coordinate_chain}:{coordinate_resid}"
+                observed = coordinate[coordinate_site]
+                intended = target_codes[logical_site]
+                if observed == intended:
+                    exact_count += 1
+                    continue
+
+                prior_codes = {
+                    item["residue_code"]
+                    for item in history[logical_site][:-1]
+                }
+                if observed in prior_codes:
+                    classification = "DECLARED_TARGET_HISTORY"
+                    target_history_count += 1
+                elif provider_codes.get(logical_site) == observed:
+                    classification = "REVIEWED_PROVIDER_BASELINE"
+                    provider_count += 1
+                else:
+                    classification = "UNEXPLAINED"
+                    unexplained_count += 1
+                differences.append({
+                    "logical_site": logical_site,
+                    "coordinate_site": coordinate_site,
+                    "coordinate_residue_code": observed,
+                    "target_residue_code": intended,
+                    "classification": classification,
+                })
+
+        eligible = unexplained_count == 0
+        if eligible:
+            eligible_indices.append(len(records))
+        records.append({
+            "selection": selection,
+            "evidence": {
+                "exact_match_count": exact_count,
+                "declared_target_history_difference_count": target_history_count,
+                "reviewed_provider_difference_count": provider_count,
+                "unexplained_mismatch_count": unexplained_count,
+                "differences": differences,
+            },
+            "eligible_zero_unexplained": eligible,
+        })
+
+    if len(eligible_indices) == 1 and len(records) > 1:
+        winner = records[eligible_indices[0]]
+        status = "PROPOSED"
+        reason = (
+            "exactly one complete one-to-one chain mapping has zero unexplained "
+            "mismatches while every alternative has at least one"
+        )
+        proposed_selection = winner["selection"]
+    elif len(eligible_indices) == 1 and len(records) == 1:
+        winner = records[eligible_indices[0]]
+        status = "PROPOSED"
+        reason = (
+            "the only complete one-to-one chain mapping has zero unexplained "
+            "mismatches"
+        )
+        proposed_selection = winner["selection"]
+    else:
+        status = "AMBIGUOUS"
+        proposed_selection = None
+        if not eligible_indices:
+            reason = (
+                "no complete one-to-one chain mapping has zero unexplained mismatches"
+            )
+        else:
+            reason = (
+                "more than one complete one-to-one chain mapping has zero "
+                "unexplained mismatches"
+            )
+
+    return {
+        "schema_version": 1,
+        "kind": "construct-registration-design-aware-proposal",
+        "status": status,
+        "reason": reason,
+        "model": {
+            "sha256": assessment.sha256,
+            "polymer_residue_count": assessment.polymer_residue_count,
+        },
+        "target": {
+            "reference": target.get("reference"),
+            "site_count": len(target_codes),
+        },
+        "provider_baseline": provider_baseline,
+        "assignment_count": len(records),
+        "eligible_assignment_count": len(eligible_indices),
+        "assignments": records,
+        "proposed_selection": proposed_selection,
+        "semantics": common_semantics,
+    }
+
+
 def scout_simple_registration(
     assessment: ModelAssessment,
     target: Mapping[str, object],
@@ -1703,6 +2165,7 @@ __all__ = [
     "load_construct_registration",
     "load_registration_scout",
     "logical_inventory_by_copy",
+    "propose_design_aware_chain_mapping",
     "scout_simple_registration",
     "validate_construct_registration",
     "validate_registration_scout",
