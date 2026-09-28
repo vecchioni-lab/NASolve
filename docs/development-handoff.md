@@ -373,6 +373,17 @@ repetitive refine chains can collapse, and historical nodes can be selected or
 used as explicit new branch sources without deleting descendants. Topo Net
 should embed this same component rather than maintain a private history.
 
+The dedicated [GUI design contract](gui.md) now records the broader shell:
+Campaign -> optional Design -> Dataset -> Run scientific navigation; one-window
+Navigator / Workspace / Inspector / Activity layout; root/recent-workspace
+selection; explicit viewed/current/pinned separation; semantic colors with
+redundant shape/fill cues; and GUI coverage for existing CLI operations
+(environment/config, workspace, presets, campaign actions, AutoMR/PostMR,
+backbone review, AutoSol, AutoRefine/Doctor, checkpoints and Coot inspection).
+The shell is capability-driven: future backend actions/metadata/views should
+register into existing surfaces rather than require a new window or bespoke
+history model.
+
 Keep the workbench display sparse. Global chips may show current checkpoint,
 Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
 junction expands only the relevant local diagnostics: Phenix bond/angle
