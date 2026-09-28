@@ -120,10 +120,21 @@ Current preset schema 1 freezes the conditional AutoSol policy and AutoRefine
 recipe/cycle count, but it does **not** yet declare the campaign workflow
 endpoint/transition graph itself. Today a plain `campaign run ROOT` uses the
 executor's fixed stage order and defaults through AutoRefine; `--through` is an
-explicit stop boundary. A future preset/workflow schema should freeze the
-intended endpoint and conditional transitions as versioned recipe data so the
-same one-command unattended behavior is project-declared rather than
-executor-implicit.
+explicit stop boundary.
+
+A future preset/workflow schema should freeze the intended endpoint and
+conditional transitions as versioned recipe data so the same one-command
+unattended behavior is project-declared rather than executor-implicit. One
+important optional policy is conceptually **"apply Doctor as needed"**. The exact
+field name is intentionally deferred. Absence means an eligible review stops for
+inspection; enabling it authorizes only the specific bounded Doctor transitions
+that the installed backend exposes and the recipe validates. It is not blanket
+permission for arbitrary recovery search or automatic checkpoint selection.
+
+The future GUI recipe builder must construct this same backend recipe, not a
+parallel GUI configuration. It may show sensible defaults and only currently
+supported/validated options; unavailable future capabilities stay absent or
+clearly disabled rather than being simulated in UI state.
 
 ### Prepared nonstandard providers
 
