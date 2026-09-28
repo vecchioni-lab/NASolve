@@ -454,8 +454,30 @@ def _campaign(args: argparse.Namespace) -> int:
                     print(f"    Sequence reference: {effective['sequence_reference']}")
                 if effective.get("sequence_thread"):
                     print(f"    Sequence thread: {effective['sequence_thread']['id']}")
-                if effective.get("model_selector"):
-                    provider = effective.get("model_provider") or {}
+                provider = effective.get("model_provider") or {}
+                if effective.get("mode") == "nonstandard":
+                    print("    Mode: nonstandard prepared-model")
+                    selector = provider.get("selector")
+                    if isinstance(selector, str) and selector:
+                        selection = provider.get("selection")
+                        selection_text = (
+                            "explicit" if selection == "user-forced"
+                            else "discovered" if selection == "single-pdb-discovery"
+                            else str(selection or "provider")
+                        )
+                        location = provider.get("location", "dataset")
+                        print(
+                            f"    Model: {selector} ({selection_text}; {location})"
+                        )
+                    sequence_source = effective.get("sequence_source")
+                    if isinstance(sequence_source, dict):
+                        source_kind = sequence_source.get("kind")
+                        source_selector = sequence_source.get("selector")
+                        if source_kind == "sequence-file":
+                            print(f"    Sequence source: {source_selector} (frozen file)")
+                        elif source_kind == "inline-config":
+                            print("    Sequence source: nasolve.txt [sequences]")
+                elif effective.get("model_selector"):
                     location = provider.get("location", "explicit")
                     print(
                         f"    Model override: {effective['model_selector']} "
