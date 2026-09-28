@@ -394,9 +394,22 @@ between siblings, score topology/geometry similarity or authorize Campaign
 Doctor rescue. Geometry-aware family reasoning and cross-dataset reuse remain
 later reviewed layers.
 
-The next live gate is a small real campaign of roughly 3-5 geometry-diverse
-datasets with curated per-dataset PDB + sequence inputs using the user's actual
-Phenix/Coot installations.
+The next Pine-specific live gate is a small real campaign of roughly 3-5
+geometry-diverse datasets with curated per-dataset PDB + sequence inputs using
+the user's actual Phenix/Coot installations.
+
+Before those geometry-diverse inputs are supplied, an **intermediate real W
+orchestration validation is in progress** on a disposable four-member sandbox:
+`DOHU`, `QiC_120325_0513`, `QE_120325_0607`, and
+`EG_091325-0302`. This test is intentionally easier scientifically. It is
+meant to validate real multi-dataset coordination, stage isolation, numbered
+run/checkpoint ownership, and campaign-level solution reporting with the user's
+actual Phenix/Coot environment. It does not satisfy the prepared-nonstandard
+geometry-diverse live gate.
+
+The first phase of that W validation is planning/status only. The campaign
+should not be called live-validated until the plan output is inspected and the
+scientific stages have actually run.
 
 ### CLI-first implementation runway and GUI fork point
 
@@ -406,10 +419,11 @@ geometry-diverse campaign can execute end-to-end from frozen per-dataset inputs.
 
 The recommended sequence is:
 
-1. **Close the current Oak registration branch cleanly.** Keep Scout v2
-   backend-only/non-runtime unless a separate reviewed integration task is
-   opened. Campaign generalization should start from a stable merged baseline
-   rather than expanding PR #22 again.
+1. **Completed:** Oak/PR #22 was merged to `main` with merge commit
+   `fec66ebeddbd525684824576b705460324ec0a14`. Scout v2 remains
+   backend-only/non-runtime. Pine then merged the new mainline history without
+   changing its campaign tree, preserving a clean campaign branch above the
+   merged registration baseline.
 2. **Implemented on Pine:** backward-compatible schema-2 campaign plans admit
    one explicit or uniquely discovered nonstandard dataset PDB and freeze exact
    model/raw-sequence/parsed-target provenance while schema-1 W remains
