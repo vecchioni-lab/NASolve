@@ -196,28 +196,49 @@ hard gates, transformations, attempts and stopping reason without rewriting the
 recipient's authoritative observations, Free-R set, target chemistry or failed
 branch.
 
-### Near-horizon geometry-diverse campaign milestone
+### Next CLI milestone: geometry-diverse campaign before GUI implementation
 
 A forthcoming real validation case contains geometry-diverse datasets with one
-prepared PDB search model and associated sequence definition per dataset. This
-is now recorded in the campaign roadmap as a **near-horizon, not immediate**
-milestone.
+prepared PDB search model and associated sequence definition per dataset. Once
+the current Oak Scout-v2 branch is closed/merged, this should become the **next
+campaign implementation milestone**, still on the CLI/backend rather than in the
+GUI.
 
-The first executable slice should simply generalize the existing campaign
+The first executable slice should generalize the existing campaign
 planner/executor to admit frozen nonstandard per-dataset model providers and
-their sequence sources, while preserving the normal guarded stage engines.
+their exact sequence sources while preserving the normal guarded stage engines.
+Keep existing schema-1 W plans readable/executable; introduce a
+backward-compatible newer plan schema rather than redefining old frozen plans.
+The current concrete executor choke point is
+`campaign_stages._frozen_selection()`, which still rejects anything except
+`mode=standard, frame=W`.
+
 Each dataset remains scientifically independent: no geometry-family inference,
 cross-dataset model ranking, solved-sibling reuse or Campaign Doctor rescue is
 authorized merely because the datasets share a campaign.
 
-For the first live slice, model-to-sequence correspondence must be unambiguous.
-Nontrivial registration, recuts, split chains, unexpected multiplicity or other
-representation ambiguity should stop only that dataset for inspection. A small
-3-5 dataset geometry-diverse campaign is the preferred live fixture once the
-underlying data are stable enough for repeatable validation.
+For the first live slice, model-to-sequence correspondence must be simple and
+unambiguous. Nontrivial registration, recuts, split chains, unexpected
+multiplicity or other representation ambiguity should stop only that dataset
+for inspection. A real 3-5 dataset geometry-diverse campaign should then run
+through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine with pause/resume,
+retry, relocation and frozen-input integrity still intact.
 
-This milestone is intentionally downstream of the current Oak Scout-v2 work and
-should not expand PR #22's implementation scope.
+After that live campaign is green, add minimal explicit `design_id` grouping
+for datasets sharing a stable construct/design record. Do not infer design
+membership from filenames or sequence similarity.
+
+**GUI branch point:** only after the basic heterogeneous campaign and Design
+identity are CLI-functional should implementation attention split into the GUI.
+The GUI then visualizes stable backend concepts rather than inventing them.
+
+The Campaign Doctor runway after that branch point is already mapped in the
+campaign roadmap: read-only campaign-wide donor/recipient facts -> reviewed
+eligibility policy -> attempt-local derived-provider provenance -> one explicit
+donor rescue -> bounded automatic donor enumeration. None of those should be
+smuggled into the first heterogeneous campaign milestone.
+
+This work remains intentionally outside PR #22's implementation scope.
 
 ## Construct registration: next structural robustness layer
 
@@ -382,10 +403,20 @@ redundant shape/fill cues; and GUI coverage for existing CLI operations
 backbone review, AutoSol, AutoRefine/Doctor, checkpoints and Coot inspection).
 The shell is capability-driven: future backend actions/metadata/views should
 register into existing surfaces rather than require a new window or bespoke
-history model. The corresponding [GUI human live-check queue](gui-live-checks.md)
-covers shell navigation, long model trees, color/accessibility semantics,
-campaign/design scope changes, CLI/GUI interoperability, Coot round-trip and a
-"register one new action without shell redesign" extensibility test.
+history model.
+
+Live campaigns should update the Navigator/tree from authoritative execution
+records with restrained running-node/edge activity. The bottom Activity drawer
+has a human-readable Events/Notifications stream (for example "refinement 21
+passed", "PostMR needs your review", "current checkpoint changed") plus
+expandable exact backend tokens, metrics, diagnostics and logs. Repeated
+heartbeats are coalesced; reduced-motion mode uses static activity markers.
+
+The corresponding [GUI human live-check queue](gui-live-checks.md) covers shell
+navigation, live campaign/event reconciliation, long model trees,
+color/accessibility semantics, campaign/design scope changes, CLI/GUI
+interoperability, Coot round-trip and a "register one new action without shell
+redesign" extensibility test.
 
 Keep the workbench display sparse. Global chips may show current checkpoint,
 Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
