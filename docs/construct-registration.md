@@ -913,39 +913,61 @@ strand stoichiometry and repeat annotations while assigning a different
 `EMERGENT` tile/periodic organization. The design sheet remains evidence of
 what was built; the periodic graph records what crystallized.
 
-### Junctions are first-class design objects
+### Junctions are first-class topological objects
 
 Junctions must not be inferred only from whichever residues happen to share one
-ASU. They are design/topology objects that can survive ASU recutting, be split
-across symmetry mates, or become represented by several coordinate fragments.
+ASU, and **arm count must not define what a junction is**. The minimal primitive
+is a local directed-backbone connection/passage at a topological node: one
+backbone can be sufficient. Familiar four-, six- or eight-arm junctions are
+larger local neighborhoods assembled around one or more such passages.
 
-A future tile/strand declaration should therefore support explicit junction
-records independent of PDB chain boundaries. A junction record may contain:
+This matches the topology-based lattice-engineering framework: the DNA
+backbones are treated as directed paths with local topological features, and a
+semi-junction arises when strand routing/nicking changes the connectivity at a
+crossing. The observed arm count is therefore a derived structural descriptor,
+not the ontology of the junction itself.
+
+A future tile/strand declaration should support explicit junction records
+independent of PDB chain boundaries. A junction record may contain:
 
 - a stable junction ID and optional human name;
+- one or more minimal backbone-passage primitives;
 - member logical strands and residue/domain ranges;
-- declared arm count and arm identities;
+- optional contextual/observed arm count and arm identities;
 - optional root/center strand role and repeat-domain participation;
-- the intended connectivity order between arms/strands;
+- the intended local connectivity/routing between strands/domains;
 - true chemical nicks/termini that belong to the junction design;
-- sticky ends attached to junction arms;
+- sticky ends associated with nearby junction domains;
 - optional expected coaxial stacking/pairing relationships;
 - whether the junction itself is an invariant tile feature even when the ASU
   cuts through it; and
-- provenance/status such as `DECLARED`, `INFERRED`, `EMERGENT`, or
-  `UNRESOLVED` when the solved structure changes the junction interpretation.
+- separate declaration/evidence state.
 
-Topo Net should render the junction as one logical object even when its
-coordinate realization is distributed across several ASU/symmetry fragments.
-Cutting/re-pasting an ASU representation must therefore move fragment ownership
-without silently creating or destroying a logical junction.
+Declaration/evidence state should distinguish at least:
+
+- `DECLARED` — part of the input tile/design intent;
+- `CANDIDATE` — a structurally plausible junction proposed from the periodic
+  graph but not yet authoritative;
+- `INFERRED` — uniquely supported under reviewed rules;
+- `EMERGENT` — a real observed junction/topological node not present in the
+  declared tile model;
+- `REJECTED` — a candidate connection judged to be a packing/serialization
+  coincidence rather than a junction; and
+- `UNRESOLVED` — several non-equivalent interpretations remain.
+
+Topo Net should render one logical junction even when its coordinate
+realization is distributed across several ASU/symmetry fragments. Recutting an
+ASU may change which fragments expose that junction, and a tile-level recut may
+change which local neighborhood is convenient to call an arm, without silently
+creating or destroying the underlying backbone-passage primitive.
 
 The future net finder may reconstruct undeclared junction hypotheses from
 periodic connectivity, strand mappings, pairing/stacking evidence and symmetry,
-but it must keep those hypotheses non-authoritative until the evidence is
-unique or the user confirms them. This is especially important for emergent
-assemblies where crystallography changes the meaningful definition of the
-tile itself.
+but must keep them `CANDIDATE` until the evidence is unique or the user confirms
+them. This is particularly important for high-valence emergent structures such
+as cuboctahedral assemblies: six- or eight-arm junction neighborhoods may be
+real, while other apparent contacts may merely be an artifact of one chosen
+tile/ASU cut.
 
 ### Persistent Topo workbench and refine loop
 
