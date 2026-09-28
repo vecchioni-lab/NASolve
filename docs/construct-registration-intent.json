@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-21",
+  "version": "2026-09-28-pine-22",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -666,7 +666,10 @@
     "name": "oak",
     "pull_request": 22,
     "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "VALIDATION_COMPLETE_BACKEND_ONLY_NON_RUNTIME"
+    "status": "MERGED_TO_MAIN_BACKEND_ONLY_NON_RUNTIME",
+    "merge_commit": "fec66ebeddbd525684824576b705460324ec0a14",
+    "merged_at": "2026-09-28T13:34:35Z",
+    "note": "Oak/PR #22 is complete on main; Scout v2 remains backend-only/non-runtime authority."
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
@@ -1132,15 +1135,15 @@
     }
   },
   "cli_first_campaign_runway": {
-    "status": "PINE_BACKEND_IMPLEMENTED_REAL_LIVE_CAMPAIGN_PENDING",
+    "status": "PINE_FIXTURE_GREEN_REAL_W_ORCHESTRATION_IN_PROGRESS_NONSTANDARD_LIVE_PENDING",
     "gui_branch_condition": "Do not begin GUI implementation until the Pine heterogeneous campaign backend passes the real 3-5 dataset Phenix/Coot live gate and minimal explicit Design grouping is CLI-functional.",
     "steps": [
       {
         "id": 1,
         "name": "close_oak",
         "goal": "Close/merge the current validated Scout v2 backend-only branch without adding campaign or GUI runtime scope.",
-        "status": "SEPARATE_OAK_SCOPE_PRESERVED",
-        "note": "Pine was branched from Oak without expanding PR #22 runtime scope; Oak remains separately tracked rather than being folded into campaign implementation."
+        "status": "COMPLETED_MERGED_TO_MAIN",
+        "note": "Oak/PR #22 merged with merge commit fec66ebeddbd525684824576b705460324ec0a14; Pine reconciled the mainline merge with aa56e9b."
       },
       {
         "id": 2,
@@ -1170,7 +1173,8 @@
         "id": 6,
         "name": "real_geometry_diverse_campaign",
         "goal": "Run 3-5 curated datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case.",
-        "status": "NEXT_REAL_LIVE_GATE"
+        "status": "PREPARED_NONSTANDARD_LIVE_GATE_PENDING_INPUTS",
+        "note": "An intermediate four-member real W campaign is currently validating orchestration and solution reporting; it does not replace this geometry-diverse gate."
       },
       {
         "id": 7,
@@ -1227,7 +1231,57 @@
     "name": "pine",
     "base": "oak",
     "purpose": "Schema-2 prepared nonstandard and mixed campaign planning/execution before GUI implementation.",
-    "status": "BACKEND_IMPLEMENTED_FIXTURE_VALIDATION_PENDING_FINAL_LOCAL_BUNDLE_AND_REAL_LIVE_CAMPAIGN",
-    "registration_boundary": "Oak/PR #22 remains the separate backend-only Scout-v2 registration branch; Pine does not promote Scout v2 to runtime authority."
+    "status": "FIXTURE_GREEN_REAL_W_ORCHESTRATION_IN_PROGRESS_NONSTANDARD_LIVE_PENDING",
+    "registration_boundary": "Oak/PR #22 remains the separate backend-only Scout-v2 registration branch; Pine does not promote Scout v2 to runtime authority.",
+    "mainline_merge_commit": "fec66ebeddbd525684824576b705460324ec0a14",
+    "pine_reconciliation_commit": "aa56e9b",
+    "note": "Synthetic heterogeneous backend is closed; current live task is an easier four-member W orchestration run, followed later by the real prepared-nonstandard geometry-diverse live gate."
+  },
+  "local_validation_baseline": {
+    "tested_branch": "pine",
+    "tested_commit": "8c2c42311cc5497721da70360453a9d7acab0ffa",
+    "history_reconciliation_commit": "aa56e9b",
+    "full_suite": {
+      "tests_passed": 684,
+      "subtests_passed": 226,
+      "runtime_seconds": 51.35
+    },
+    "campaign_bundle": {
+      "tests_passed": 150,
+      "subtests_passed": 90,
+      "runtime_seconds": 21.31
+    },
+    "newest_mixed_cli_slice": {
+      "tests_passed": 5,
+      "runtime_seconds": 3.39
+    },
+    "patch_hygiene": "git diff --check oak...pine clean before Oak/mainline reconciliation",
+    "source": "user-local Python 3.12 development environment; not GitHub CI"
+  },
+  "current_live_validation": {
+    "id": "pine-real-w-orchestration-2026-09-28",
+    "status": "PLANNING_AND_STATUS_IN_PROGRESS",
+    "purpose": "Validate real multi-dataset campaign orchestration and campaign-level solution reporting with actual Phenix/Coot before the prepared-nonstandard geometry-diverse datasets are available.",
+    "sandbox": "/tmp/NASolve-W-live-20260928",
+    "datasets": [
+      "DOHU",
+      "QiC_120325_0513",
+      "QE_120325_0607",
+      "EG_091325-0302"
+    ],
+    "current_phase": [
+      "copy only top-level authoritative dataset files into disposable sandbox",
+      "run nasolve check",
+      "campaign plan with 5w6w preset and explicit MR_frames root",
+      "campaign status",
+      "inspect all four frozen members before launching scientific stages"
+    ],
+    "next_if_all_discovered": [
+      "run all four through ordinary campaign stage spine",
+      "preserve local review/failure isolation",
+      "emit dataset -> status -> run -> checkpoint -> diagnostic solution summary"
+    ],
+    "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
+    "completion_rule": "Do not mark passed until real terminal output and resulting scientific stage outcomes are inspected."
   }
 }
