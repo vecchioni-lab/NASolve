@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-23",
+  "version": "2026-09-28-pine-24",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1260,7 +1260,7 @@
   },
   "current_live_validation": {
     "id": "pine-real-w-orchestration-2026-09-28",
-    "status": "PLANNING_PASSED_POSTMR_PHASE_NEXT",
+    "status": "POSTMR_PASSED_DEFAULT_AUTOREFINE_RESUME_NEXT",
     "purpose": "Validate real multi-dataset campaign orchestration and campaign-level solution reporting with actual Phenix/Coot before the prepared-nonstandard geometry-diverse datasets are available.",
     "sandbox": "/tmp/NASolve-W-live-20260928",
     "datasets": [
@@ -1270,10 +1270,10 @@
       "EG_091325-0302"
     ],
     "current_phase": [
-      "run all four datasets through campaign --through postmr",
-      "allow local MR/PostMR review/failure stops without stopping unrelated members",
-      "inspect campaign-level status before AutoSol/AutoRefine",
-      "summarize dataset -> status -> exact run -> checkpoint/next stage -> diagnostic"
+      "resume the frozen campaign with plain campaign run (default through autorefine)",
+      "allow conditional AutoSol to skip or execute per PostMR evidence",
+      "allow each dataset to stop independently at review/block/solved outcomes",
+      "record dataset -> final status -> exact run -> checkpoint -> AutoSol skipped/ran -> diagnostic"
     ],
     "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
     "completion_rule": "Do not mark passed until real terminal output and resulting scientific stage outcomes are inspected.",
@@ -1293,6 +1293,49 @@
     "next_if_postmr_acceptable": [
       "continue eligible datasets through conditional AutoSol and AutoRefine",
       "record final solved/review/failed solution list"
-    ]
+    ],
+    "postmr_result": {
+      "campaign_exit_code": 0,
+      "status_exit_code": 0,
+      "integrity": "OK",
+      "datasets": {
+        "DOHU": {
+          "run": "DOHU/AutoMR/run_001",
+          "status": "PAUSED",
+          "next_stage": "autosol"
+        },
+        "EG_091325-0302": {
+          "run": "EG_091325-0302/AutoMR/run_001",
+          "status": "PAUSED",
+          "next_stage": "autosol"
+        },
+        "QE_120325_0607": {
+          "run": "QE_120325_0607/AutoMR/run_001",
+          "status": "PAUSED",
+          "next_stage": "autosol"
+        },
+        "QiC_120325_0513": {
+          "run": "QiC_120325_0513/AutoMR/run_001",
+          "status": "PAUSED",
+          "next_stage": "autosol"
+        }
+      },
+      "interpretation": "All four completed real preflight, Phaser and PostMR. next_stage=autosol is a conditional stage boundary; AutoSol is skipped without launching phenix.autosol when PostMR reports no anomalous candidate."
+    },
+    "workflow_recipe_requirement": {
+      "status": "PLANNED_AFTER_CURRENT_LIVE_VALIDATION",
+      "principle": "A selected/frozen campaign recipe should explicitly declare the intended endpoint and conditional stage graph so one run command can advance every eligible dataset autonomously until a recipe-declared terminal state.",
+      "current_partial_support": [
+        "plain campaign run already defaults through AutoRefine",
+        "preset freezes AutoSol when-anomalous policy",
+        "preset freezes AutoRefine recipe and cycle count",
+        "dataset scientific stops remain independent"
+      ],
+      "missing_first_class_semantics": [
+        "recipe-declared workflow endpoint",
+        "recipe-declared conditional stage graph instead of hard-coded order/default endpoint",
+        "later bounded Doctor escalation policy"
+      ]
+    }
   }
 }
