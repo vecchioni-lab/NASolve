@@ -30,8 +30,9 @@ NASolve documentation is organized by role, not chronology.
   construct-to-coordinate registration design, the merged core/Scout v1
   boundary, the current Oak experimental Scout v2 proposal layer, and the
   forward-looking Registration Net / opt-in Topo Net framework-surgery design,
-  including tile hypotheses, representation seams, repeat-bearing/root strands,
-  long-period repeat-phase closure and bounded Topo Surgeon repair/fallback
+  including tile hypotheses, first-class junction declarations, representation
+  seams, repeat-bearing/root strands, long-period repeat-phase closure, a
+  persistent surgery/refine workbench and bounded Topo Surgeon repair/fallback
   semantics;
   [`construct-registration-intent.json`](construct-registration-intent.json)
   records machine-readable inference policy, validation checkpoints, and real-W
