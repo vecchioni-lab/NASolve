@@ -358,29 +358,35 @@ sequence / construct specification
 
 The campaign may share design logic while each dataset has its own model, expected symmetry, and MR state. The campaign schema must therefore avoid encoding "one frame model plus mutations" as a universal assumption.
 
-### Near-horizon executable geometry-diverse campaign slice
+### Pine: executable geometry-diverse campaign slice
 
-A concrete forthcoming validation case is now available: a curated campaign in
-which each dataset directory already contains its own prepared PDB search model
-and associated sequence definition, while the constructs differ substantially
-in geometry.
+Pine now implements the deliberately conservative prepared-model slice for a
+curated campaign in which each dataset already contains its own PDB search model
+and associated sequence definition.
 
-This is a **near-horizon milestone, not the immediate Oak task**. The first
-executable slice should remain deliberately conservative:
+Implemented backend behavior:
 
-- admit one explicit or uniquely discovered nonstandard PDB provider per dataset
-  into campaign planning/execution;
-- freeze the exact provider-model bytes/checksum and provider provenance;
-- freeze both the original sequence-source bytes/checksum and the parsed
-  chain-labelled effective sequence target;
-- run each dataset independently through the existing guarded
-  AutoMR -> PostMR -> conditional AutoSol -> AutoRefine spine;
-- require the prepared model to have an unambiguous correspondence to its own
-  supplied sequence for the first slice; registration ambiguity, chain
-  splits/recuts, unexpected multiplicity or other nontrivial representation
-  problems stop that dataset for inspection rather than being guessed; and
-- preserve the existing campaign behavior that one blocked/inspection dataset
-  does not stop unrelated members.
+- new plans use schema 2 while existing schema-1 W plans remain executable;
+- one explicit or uniquely discovered nonstandard PDB provider may be frozen per
+  dataset;
+- exact provider-model bytes/checksum/provider provenance are frozen;
+- both the original sequence-source bytes/checksum and parsed chain-labelled
+  effective sequence target are frozen;
+- nonstandard requests reconstruct AutoMR input only from campaign resources,
+  without source-folder or catalogue rediscovery;
+- standard W and nonstandard members may coexist under one sequential
+  coordinator;
+- nonstandard members do not inherit W frame/pair, W sequence-thread overlays or
+  W recipe D:1 phosphate intent;
+- fixture-backed execution reaches the existing
+  AutoMR -> PostMR -> conditional AutoSol -> AutoRefine spine, including
+  relocation; and
+- one blocked/inspection dataset continues not to stop unrelated members.
+
+The first slice still requires the prepared model to have an unambiguous
+correspondence to its supplied sequence. Registration ambiguity, chain
+splits/recuts, unexpected multiplicity or other nontrivial representation
+problems stop that dataset for inspection rather than being guessed.
 
 This milestone explicitly does **not** infer a shared geometry family from
 campaign membership, rank models across datasets, transfer solved coordinates
@@ -388,9 +394,9 @@ between siblings, score topology/geometry similarity or authorize Campaign
 Doctor rescue. Geometry-aware family reasoning and cross-dataset reuse remain
 later reviewed layers.
 
-A small real campaign of roughly 3-5 geometry-diverse datasets with curated
-per-dataset PDB + sequence inputs is the preferred live validation fixture once
-those data are mature enough to serve as a stable test set.
+The next live gate is a small real campaign of roughly 3-5 geometry-diverse
+datasets with curated per-dataset PDB + sequence inputs using the user's actual
+Phenix/Coot installations.
 
 ### CLI-first implementation runway and GUI fork point
 
@@ -404,28 +410,21 @@ The recommended sequence is:
    backend-only/non-runtime unless a separate reviewed integration task is
    opened. Campaign generalization should start from a stable merged baseline
    rather than expanding PR #22 again.
-2. **Introduce a backward-compatible campaign-plan schema for nonstandard
-   per-dataset providers.** Keep existing schema-1 W plans readable/executable.
-   A newer plan schema should admit one explicit or uniquely discovered
-   nonstandard dataset PDB, freeze its exact bytes/checksum/provider provenance,
-   and freeze both the original sequence-source bytes and parsed effective
-   chain-labelled target.
-3. **Generalize frozen campaign preflight materialization.** The current
-   `campaign_stages._frozen_selection()` hard-stops unless
-   `mode=standard, frame=W`. Preserve that exact W branch, then add a
-   nonstandard branch that reconstructs ordinary standalone
-   `ResolvedAutoMRInput` only from frozen campaign resources—no catalogue or
-   source-folder rediscovery.
-4. **Keep the first heterogeneous slice deliberately boring.** Require one
-   prepared model with simple/unambiguous correspondence to its own supplied
-   target. Nontrivial registration, chain recutting, multiplicity surprises or
-   topology stop only that dataset for inspection. Do not make Scout v2 runtime
-   authority merely to unblock this milestone.
-5. **Regression-test mixed and failure behavior.** Cover standard-W plans,
-   nonstandard plans, optionally mixed campaigns, relocation, pause/resume,
-   explicit retry, blocked/inspection members, model/sequence checksum drift,
-   and the rule that one failed dataset does not stop unrelated members.
-6. **Run a real 3-5 dataset geometry-diverse CLI campaign** through
+2. **Implemented on Pine:** backward-compatible schema-2 campaign plans admit
+   one explicit or uniquely discovered nonstandard dataset PDB and freeze exact
+   model/raw-sequence/parsed-target provenance while schema-1 W remains
+   executable.
+3. **Implemented on Pine:** frozen campaign preflight materialization now
+   reconstructs standard W or nonstandard `ResolvedAutoMRInput` only from
+   checksum-bound campaign resources, with no catalogue/source rediscovery.
+4. **Implemented as the current guardrail:** the heterogeneous slice requires
+   one prepared model with simple/unambiguous correspondence to its own target;
+   nontrivial registration, recutting, multiplicity or topology remain local
+   inspection stops. Scout v2 is still not runtime authority.
+5. **Implemented in fixture-backed regression:** standard-W, nonstandard and
+   mixed campaigns exercise relocation plus existing campaign failure/isolation
+   semantics. Real external-tool validation remains separate.
+6. **Next live gate: run a real 3-5 dataset geometry-diverse CLI campaign** through
    AutoMR -> PostMR -> conditional AutoSol -> AutoRefine. Inspect exact run
    ownership/checkpoints and at least one blocked/review case. This completes
    the first **basic heterogeneous campaign** milestone.
