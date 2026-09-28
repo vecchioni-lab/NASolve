@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-oak-16",
+  "version": "2026-09-28-oak-17",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -305,7 +305,9 @@
       "P4_132 two-triangle-ASU tile-versus-ASU multiplicity validation",
       "full-strand and emergent-tile project-scoped reconstruction/ambiguity validation",
       "repeat-bearing/root-strand local closure, long-period closure, phase ambiguity and partial-use project checks",
-      "junction declaration, persistent Topo surgery/refine loop, compact local metrics and Coot round-trip validation"
+      "junction declaration, persistent Topo surgery/refine loop, compact local metrics and Coot round-trip validation",
+      "minimal semi-junction, variable-valence junction and false-junction-candidate validation",
+      "generic model-tree GUI validation for long refinement lineages, pinned panels and historical branching"
     ]
   },
   "latest_focused_validation": {
@@ -901,28 +903,38 @@
       "backend_note": "This can be represented as a repeat-phase/monodromy problem on the periodic graph without exposing that jargon in the user interface."
     },
     "junction_model": {
-      "status": "PLANNED_FIRST_CLASS_TOPOLOGY_OBJECT",
-      "principle": "Junction identity belongs to tile/topology intent and must survive ASU recutting or symmetry fragmentation.",
+      "status": "PLANNED_POLYMORPHIC_TOPOLOGY_OBJECT",
+      "principle": "A junction is not defined by arm count. The minimal primitive is one local directed-backbone passage/connection at a topological node; larger four/six/eight-arm neighborhoods are derived context around one or more such primitives.",
       "declaration_fields": [
         "stable junction id / optional name",
+        "one or more minimal backbone-passage primitives",
         "member logical strands",
         "member residue/domain ranges",
-        "declared arm count and arm identities",
+        "optional observed/contextual arm count and arm identities",
         "optional root/center strand and repeat-domain participation",
-        "intended connectivity order",
+        "intended local connectivity/routing",
         "true chemical nicks and termini",
-        "sticky ends attached to arms",
+        "sticky ends associated with the junction neighborhood",
         "optional reviewed coaxial stacking/pairing expectations",
-        "whether junction is an invariant tile feature under ASU slicing",
-        "provenance/status DECLARED/INFERRED/EMERGENT/UNRESOLVED"
+        "whether the junction is an invariant tile feature under ASU slicing"
+      ],
+      "evidence_states": [
+        "DECLARED",
+        "CANDIDATE",
+        "INFERRED",
+        "EMERGENT",
+        "REJECTED",
+        "UNRESOLVED"
       ],
       "inference_policy": {
         "declared_junctions": "highest-authority design intent",
-        "undeclared_junctions": "may be proposed from periodic connectivity, strand mapping, reviewed pairing/stacking evidence and symmetry",
+        "candidate_generation": "periodic connectivity, strand mapping, reviewed pairing/stacking evidence and symmetry may generate hypotheses",
         "automatic_authority": "only when uniquely supported under reviewed rules",
-        "ambiguous_case": "remain UNRESOLVED and require expert confirmation"
+        "ambiguous_case": "remain CANDIDATE/UNRESOLVED and require expert confirmation",
+        "false_positive_case": "packing/serialization coincidences may be explicitly REJECTED without changing the periodic graph"
       },
-      "asu_policy": "ASU recutting changes coordinate realization/fragment ownership but must not silently create, destroy or redefine a logical junction."
+      "asu_policy": "ASU or tile recutting may change the displayed local arm neighborhood and fragment ownership but must not silently create, destroy or redefine the underlying junction primitive.",
+      "motivating_semijunction": "The topology-based lattice-engineering preprint motivates the minimal primitive: a semi-junction can arise from strand routing/nicking at a crossing and is not ontologically defined by the four-arm neighborhood in which it appears."
     },
     "persistent_workbench": {
       "status": "PLANNED_CHECKPOINT_ORCHESTRATOR",
@@ -958,6 +970,35 @@
       ],
       "coot_round_trip": true,
       "ui_policy": "Keep detailed metrics collapsed until a residue/seam/junction is selected so diagnostics do not consume the topology display."
+    },
+    "umbrella_label": {
+      "term": "topology-informed automation",
+      "meaning": "Topology may inform hypotheses, candidate generation, recutting, repair selection, refinement diagnostics and branch comparison, but does not override chemistry, diffraction evidence, fail-closed registration rules or expert review."
     }
+  },
+  "generic_model_tree_gui": {
+    "status": "PLANNED_REUSABLE_GUI_COMPONENT",
+    "data_model": "Use the existing immutable checkpoint/model lineage; do not create a second GUI-only history.",
+    "scope": [
+      "MR",
+      "PostMR",
+      "AutoSol",
+      "ordinary refinement chains",
+      "Refine Doctor branches",
+      "manual imports",
+      "topology surgery",
+      "future re-MR attempts from refined or historical models"
+    ],
+    "interactions": [
+      "pan/zoom lineage graph",
+      "collapse/expand repetitive refinement chains",
+      "pin/bookmark important historical nodes as comparison panels",
+      "inspect metrics for siblings or parent/child nodes without selecting",
+      "open a node in Coot without changing the current pointer",
+      "select an eligible historical checkpoint using the existing audited selection operation",
+      "launch a new explicit branch from an eligible historical node",
+      "traverse backward without deleting descendants"
+    ],
+    "reuse": "Standalone normal-mode GUI and Topo Net must share this same graph component and lineage semantics."
   }
 }
