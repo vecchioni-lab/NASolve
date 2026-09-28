@@ -787,17 +787,22 @@ implementation edge are maintained in `development-handoff.md`.
 The campaign planner freezes inputs and project policy; the sequential executor
 adds guarded stage composition and saved progress. Pine's schema-2 prepared
 nonstandard/mixed backend is fixture-green. A real four-member W campaign has
-also passed planning, preflight, Phaser and PostMR under the user's actual
-Phenix/Coot installation; its plain unattended resume through the default
-AutoRefine endpoint is the current live check. The separate real
+now completed under the user's actual Phenix/Coot installation: three members
+reached `SOLVED` at `refine-001` with AutoSol correctly skipped, while QiC
+ran AutoSol successfully and then stopped at `AWAITING_INSPECTION` because its
+first refinement failed the numerical gate. The campaign ended
+`COMPLETE_WITH_FLAGS` with frozen integrity `OK`. The separate real
 prepared-nonstandard geometry-diverse campaign remains pending until those input
 datasets are available.
 
 The read-only Campaign Doctor provenance/comparison prerequisites are implemented.
-The next campaign-semantic additions are: (1) complete the live W orchestration
-check; (2) validate a real 3-5 member prepared-nonstandard/geometry-diverse
-campaign; (3) add explicit stable Design identity; and (4) make the selected
-campaign workflow endpoint/conditional graph first-class frozen recipe data.
+The next campaign-semantic additions are: (1) make the selected campaign workflow
+endpoint/conditional graph first-class frozen recipe data, including a
+campaign-owned Refine Doctor transition; (2) validate a real 3-5 member
+prepared-nonstandard/geometry-diverse campaign; and (3) add explicit stable
+Design identity. Standalone Refine Doctor must not be invoked against a completed
+campaign-owned run until that transition exists, because Doctor updates the run
+report while campaign receipts intentionally checksum completed-stage reports.
 
 Construct registration remains the next structural robustness layer: a cheap
 non-mutating Registration Scout before Phaser, authoritative ASU Registration
