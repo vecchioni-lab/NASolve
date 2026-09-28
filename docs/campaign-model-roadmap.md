@@ -463,13 +463,12 @@ The recommended sequence is:
    semantics. The easier four-member real W campaign has independently passed
    planning plus real preflight/Phaser/PostMR; its unattended AutoRefine resume
    is the current live orchestration check.
-6. **Add explicit workflow-recipe semantics, including campaign-owned Refine
-   Doctor escalation.** Freeze the intended campaign endpoint and conditional
-   transition graph as recipe data. The current fixed stage order already
-   handles conditional AutoSol correctly and a plain `campaign run` defaults
-   through AutoRefine; the missing piece is making that journey
-   explicit/versioned rather than executor-implicit. Doctor must publish its own
-   campaign job/receipt instead of mutating a completed stage report out of band.
+6. **Campaign-owned Refine Doctor explicit path is now regression + live
+   validated; add workflow-recipe semantics next.** The explicit
+   `AUTOREFINE_REVIEW -> refine-doctor` continuation now has its own immutable
+   job/receipt/dependency provenance and preserves non-auto-selection. The next
+   semantic step is freezing the intended endpoint and conditional transition
+   graph as recipe data, including optional Doctor-as-needed behavior.
 7. **Next Pine-specific live gate: run a real 3-5 dataset geometry-diverse CLI
    campaign** through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine.
    Inspect exact run ownership/checkpoints and at least one blocked/review case.
