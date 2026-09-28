@@ -116,6 +116,15 @@ the built-in `5w6w` name even though the nonstandard datasets would not inherit
 W chemistry. The resolved configuration is stored per dataset while the
 original input file is preserved.
 
+Current preset schema 1 freezes the conditional AutoSol policy and AutoRefine
+recipe/cycle count, but it does **not** yet declare the campaign workflow
+endpoint/transition graph itself. Today a plain `campaign run ROOT` uses the
+executor's fixed stage order and defaults through AutoRefine; `--through` is an
+explicit stop boundary. A future preset/workflow schema should freeze the
+intended endpoint and conditional transitions as versioned recipe data so the
+same one-command unattended behavior is project-declared rather than
+executor-implicit.
+
 ### Prepared nonstandard providers
 
 A first-slice nonstandard member may use:
