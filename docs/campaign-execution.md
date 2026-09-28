@@ -253,11 +253,12 @@ The real QiC campaign continuation has now succeeded: Doctor consumed
 `refine-001`, ran `RefineDoctor/ML-fixed-scattering`, and produced
 `refine-002` with Rwork/Rfree = 0.1500/0.1502. It returned
 `REFINE_DOCTOR_RECOMMEND`, preserved `postmr` as current, and did not
-auto-select the candidate. Focused regression passed 4 tests + 4 subtests.
-The broader campaign suite then exposed one obsolete CLI test that still
-expected `--through refine-doctor` to be unsupported; that expectation has
-been corrected. Full campaign/full-suite rerun is still required before calling
-the bridge fully regression-validated.
+auto-select the candidate. Focused regression passed 4 tests + 4 subtests. After correcting the obsolete
+CLI expectation, the campaign executor CLI passed 9 tests + 4 subtests, the
+entire campaign family passed 132 tests + 85 subtests, and the full NASolve
+regression passed 688 tests + 224 subtests. Patch/doc hygiene also passed.
+The campaign-owned Refine Doctor continuation is therefore **regression + live
+validated** for its current explicit scope.
 
 The intended workflow-recipe policy is simple at the human level: a recipe may
 include **"apply Doctor as needed"** or omit it. Omission leaves an eligible
@@ -271,6 +272,15 @@ surfaces. CLI prompts/commands and future GUI actions are alternate interfaces
 to the same backend operations: inspect/open in Coot, yes/no confirmation,
 continue from review, inspect Doctor candidates, and explicitly select a
 checkpoint.
+
+**Next live campaign stress test:** use the user-local `examples/TestSets/`
+folder (roughly nine datasets) as one frozen campaign and execute from MR through
+`--through refine-doctor` in a single invocation. Each member should advance
+independently through conditional AutoSol, AutoRefine and, only when refinement
+lands in review, the campaign-owned Doctor stage. The success criterion is not
+"nine green statuses at any cost"; it is one command producing the maximum
+scientifically valid set of solved/recommended/inspection outcomes while
+preserving any honest blockers.
 
 ## Validation limits
 
