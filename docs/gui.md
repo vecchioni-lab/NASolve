@@ -303,6 +303,16 @@ The live tree should update when, for example:
 The GUI should tolerate partial publication. It must not invent a successful
 node before the corresponding immutable backend record/receipt/checkpoint exists.
 
+Conditional stages must preserve their backend meaning. For example, campaign
+state may say the next stage boundary is `autosol` even though PostMR evidence
+will cause that stage to record accepted status `SKIPPED` without launching
+`phenix.autosol`. The GUI should render this as skipped/not-applicable, never
+as a failure and never as evidence that AutoSol was scientifically required.
+
+When first-class campaign workflow recipes are added, the GUI should display the
+frozen recipe identity, intended endpoint and conditional path as backend-owned
+state. It must not maintain a separate GUI-only notion of "what should run next."
+
 ## Human-readable event stream / notifications
 
 The shell should include a **Notifications / Events** stream as a tab or mode of
@@ -728,3 +738,6 @@ Coot bridge and long-running activity handling.
    requiring a new standalone window.
 9. CLI remains a complete interoperable control surface.
 10. GUI state must never become the only copy of scientific intent or history.
+11. Conditional/skipped stages and future workflow-recipe endpoints are rendered
+    from authoritative backend records; the GUI never infers a stronger
+    scientific requirement from stage order alone.
