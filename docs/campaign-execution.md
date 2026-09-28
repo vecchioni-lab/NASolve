@@ -211,17 +211,33 @@ within the fixed built-in stage order: each dataset independently evaluates
 conditional AutoSol, skips or runs it as appropriate, then advances to
 AutoRefine unless a scientific gate stops that dataset.
 
+The unattended resume has now completed:
+
+- DOHU: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
+- EG_091325-0302: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
+- QE_120325_0607: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
+- QiC_120325_0513: `AUTOSOL_READY`, then `AWAITING_INSPECTION` at
+  `refine-001` because numerical refinement acceptance failed.
+
+The campaign ended `COMPLETE_WITH_FLAGS` with frozen integrity `OK`.
+Run/status exit code 3 correctly represented the QiC review case while the other
+three datasets completed independently.
+
+This closes the **real W orchestration smoke validation**. It demonstrates
+one-command multi-dataset progression, conditional AutoSol skip/run behavior,
+independent dataset stops, exact run/checkpoint ownership and a useful final
+solution/review list. It does **not** count as the prepared-nonstandard
+geometry-diverse Pine live gate.
+
 Future campaign-recipe work should make the **workflow endpoint and conditional
 graph explicit frozen recipe data** rather than leaving the endpoint implicit in
-the executor default. That extension should preserve the current fail-closed
-per-dataset stops and immutable stage provenance.
-
-This W campaign validates real multi-dataset orchestration, isolation and
-solution reporting with the user's actual external tools. It does **not** count
-as the prepared-nonstandard geometry-diverse Pine live gate.
-
-Do not mark the W campaign itself complete until the scientific-stage outputs
-have been reviewed and any inspection/block outcomes have been understood.
+the executor default. Refine Doctor escalation also needs to become a
+campaign-owned transition before it is used on a campaign-owned run: standalone
+Doctor appends history to `RUN/report.json`, while the completed AutoRefine
+campaign receipt intentionally freezes/checksums that report. Running standalone
+Doctor after the receipt would therefore appear as out-of-band report drift.
+The campaign-aware version must publish its own job/receipt/dependencies and
+retain Doctor's existing non-auto-selection semantics.
 
 ## Validation limits
 
