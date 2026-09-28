@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-31",
+  "version": "2026-09-28-pine-32",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1607,5 +1607,34 @@
     ],
     "rule": "Use Scout on scientist-facing CLI/GUI/README/reports. Use v1/v2 only in developer/machine provenance when distinguishing implementation generations or historical validation.",
     "runtime_status": "Merged Scout-v2 helper remains proposal-only/non-runtime; public naming does not imply runtime promotion."
+  },
+  "collaboration_protocol": {
+    "status": "ACTIVE_PROJECT_WORKING_STYLE",
+    "principle": "One editor, multiple thinkers; work in coherent slices and exchange a small number of compact multi-command terminal ferries.",
+    "roles": {
+      "aster": "Own focused implementation/documentation slices, inspect returned evidence, patch the first meaningful failure, and maintain continuity docs.",
+      "simon": "Local scientific/operator side: run the compact ferry, return terminal output, inspect science when required, and steer priorities."
+    },
+    "ferry_pattern": [
+      "Aster completes one coherent code/docs slice before asking Simon to run commands.",
+      "Prefer one or a few dense sequential command blocks rather than many tiny commands or multiple alternatives.",
+      "Typical ferry order: git pull -> syntax/focused regression -> campaign/family/full regression when warranted -> live action only behind successful && gates -> concise status/worktree.",
+      "Simon pastes output; Aster diagnoses the first meaningful failure/result before issuing the next ferry.",
+      "Promote validation status only after supporting evidence is returned."
+    ],
+    "documentation_pattern": [
+      "Material intent changes update the smallest authoritative doc swarm in the same development turn.",
+      "README is scientist/customer-facing and contains only current usable behavior.",
+      "Developer provenance/history stays in durable dev docs and machine intent."
+    ],
+    "local_guardrail": "Never stage, delete, rename or clean unrelated untracked scientific data, patches, bundles, old environments or example runs without explicit instruction.",
+    "tone": "Compact, candid, collaborative and technically serious; disagreement is welcome. Light sheep/Neuronia banter is part of the working rhythm but never substitutes for precision.",
+    "anti_patterns": [
+      "many tiny terminal ferries",
+      "unrelated command batches",
+      "multiple alternative command paths when one safe path is known",
+      "corporate/tutor pacing",
+      "requiring chat archaeology to understand current state"
+    ]
   }
 }
