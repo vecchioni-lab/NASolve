@@ -8,6 +8,9 @@ NASolve documentation is organized by role, not chronology.
   normal commands, and why the major safeguards exist.
 - [`architecture.md`](architecture.md) — durable implementation contracts,
   artifact/checkpoint invariants, and stage responsibilities.
+- [`gui.md`](gui.md) — planned modular NASolve GUI shell, scientific hierarchy,
+  checkpoint/model tree, semantic colors, CLI capability coverage and
+  capability-driven extensibility contract.
 - [`development-handoff.md`](development-handoff.md) — current validated state,
   immediate next work, active scientific caveats, and known blockers.
 - [`collaboration.md`](collaboration.md) — workspace, portability, Git, and
