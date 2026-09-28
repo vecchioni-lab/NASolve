@@ -831,11 +831,42 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
         if resolved.allow_p1_standard:
             lines.append("allow_p1_standard = true")
     else:
-        relative_model = (
-            resolved.model_selector
-            if resolved.model_selector is not None
-            else resolved.model.relative_to(resolved.dataset.root).as_posix()
-        )
+        if resolved.model_selector is not None:
+            relative_model = resolved.model_selector
+        elif (
+            isinstance(resolved.model_provider, Mapping)
+            and resolved.model_provider.get("kind") == "discovered-nonstandard-model"
+        ):
+            selector = resolved.model_provider.get("selector")
+            if (
+                not isinstance(selector, str)
+                or not selector
+                or "\\" in selector
+                or any(char in selector for char in "\r\n\x00")
+            ):
+                raise AutoMRInputError(
+                    "Discovered nonstandard model provider has a malformed selector"
+                )
+            selector_path = Path(selector)
+            if (
+                selector_path.is_absolute()
+                or len(selector_path.parts) != 1
+                or any(part in {"", ".", ".."} for part in selector_path.parts)
+                or selector_path.suffix.casefold() != ".pdb"
+            ):
+                raise AutoMRInputError(
+                    "Discovered nonstandard model provider must name one top-level PDB"
+                )
+            relative_model = selector
+        else:
+            try:
+                relative_model = resolved.model.relative_to(
+                    resolved.dataset.root
+                ).as_posix()
+            except ValueError as exc:
+                raise AutoMRInputError(
+                    "Nonstandard model is outside the dataset and has no portable selector provenance"
+                ) from exc
         lines.append(f"model = {relative_model}")
         if resolved.model_family is not None:
             lines.append(f"model_family = {resolved.model_family}")
