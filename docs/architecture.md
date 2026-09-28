@@ -756,7 +756,11 @@ be able to declare, in typed data:
   requires it;
 - whether an unaccepted optional branch stops for inspection or may fall back
   to a reviewed ordinary path;
-- bounded Doctor/recovery policies once separately validated; and
+- bounded Doctor/recovery policies once separately validated. A future recipe
+  may opt into the semantic policy "apply Doctor as needed"; omission leaves the
+  review as an inspection stop. Enabling the policy authorizes only declared,
+  backend-supported bounded Doctors and does not imply automatic checkpoint
+  selection; and
 - human-facing recipe identity/version suitable for provenance and GUI display.
 
 Further frame/project policy may also declare:
@@ -772,6 +776,13 @@ The orchestration layers consume frozen models, targets, policy and capabilities
 This permits a new experimental campaign to ship a versioned preset/workflow
 directory without changing common run allocation, provenance, safety gates,
 Coot/Phenix isolation, or downstream reporting.
+
+The GUI is a second control surface over this same contract. A visual recipe
+builder may expose defaults, toggles and validated option sets, but it must
+serialize to the same frozen backend workflow recipe and may not invent a
+GUI-only scientific stage or policy. Likewise, interactive CLI transitions
+(inspection, yes/no confirmation, continuation from review, Doctor inspection
+and checkpoint selection) must map to equivalent backend actions in the GUI.
 
 Model generation is not part of NASolve's runtime contract. A separate optional
 NAPrep package may manage design/data records and externally generated model
