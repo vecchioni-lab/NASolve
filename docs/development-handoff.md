@@ -8,6 +8,49 @@ scientifically blocked, and what should happen next.
 Durable behavior belongs in `architecture.md` or the relevant subsystem
 document. Superseded handoffs and validation diaries live under `docs/history/`.
 
+## Read this first: current development edge
+
+For a fresh development session, recover state in this order:
+
+1. **Mainline registration state:** Oak/PR #22 is merged to `main` at
+   `fec66ebeddbd525684824576b705460324ec0a14`. The design-aware Scout-v2
+   helper is present but remains **experimental, proposal-only and non-runtime**.
+   Do not promote it merely because Oak merged.
+2. **Active campaign branch:** `pine` sits above the merged Oak mainline and
+   carries the schema-2 prepared-nonstandard/mixed campaign backend plus current
+   campaign documentation. Synthetic campaign validation is closed at
+   **684 tests + 226 subtests** on runtime head `8c2c423`; subsequent Pine
+   changes through this handoff are documentation/history reconciliation unless
+   explicitly noted otherwise.
+3. **Real W live campaign:** disposable sandbox
+   `/tmp/NASolve-W-live-20260928` contains `DOHU`,
+   `QiC_120325_0513`, `QE_120325_0607`, and `EG_091325-0302`.
+   Planning/integrity passed 4/4, and real preflight + Phaser + PostMR passed
+   4/4 with campaign-owned `AutoMR/run_001` for every member.
+4. **Current live action:** resume that frozen W campaign with plain
+   `./nasolve campaign run /tmp/NASolve-W-live-20260928`. A plain run already
+   advances through the executor's default AutoRefine endpoint. AutoSol is
+   conditional: datasets without a supported anomalous candidate record
+   accepted `SKIPPED` and do not launch `phenix.autosol`.
+5. **Do not confuse this with the Pine-specific live gate.** The real
+   3-5-member prepared-nonstandard/geometry-diverse campaign is still pending
+   because those datasets have not yet been supplied. The easy W flock validates
+   orchestration, not the new scientific provider path.
+6. **New campaign abstraction to add:** make the selected/frozen campaign
+   workflow recipe explicitly declare the endpoint and conditional stage graph.
+   Today the one-command unattended behavior exists, but the journey is still
+   executor-defined rather than recipe-defined.
+7. **After the real geometry-diverse live gate:** add explicit stable
+   `design_id` grouping, then the generic GUI shell may fork. Campaign Doctor
+   continues on the separately mapped path:
+   read-only candidate matrix -> reviewed eligibility -> attempt-local donor
+   provenance -> explicit donor rescue -> bounded enumeration.
+
+Scientific invariants remain stronger than convenience: immutable attempts,
+frozen observations/Free-R/targets, fail-closed ambiguity, one dataset's
+review/failure not stopping unrelated members, and no hidden score/ranking used
+to authorize donor reuse or registration.
+
 ## Current pipeline
 
 The guarded standalone spine is operational:
