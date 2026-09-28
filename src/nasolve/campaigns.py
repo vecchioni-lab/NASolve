@@ -408,6 +408,10 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
                 else "thread" if sequence_thread is not None else None
             ),
             "sequence_thread": applied_thread,
+            # The effective target is the resolver's parsed sequence mapping.
+            # For sequence_file inputs, intent.sequences is deliberately empty;
+            # raw source bytes are frozen separately as sequence_source.
+            "sequences": dict(resolved.sequences),
             "mutations": {site: asdict(ligand) for site, ligand in resolved.mutations.items()},
         })
         # Config parsing and discovery must describe the exact bytes frozen above.
