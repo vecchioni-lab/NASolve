@@ -71,6 +71,7 @@ class CampaignTests(unittest.TestCase):
                 patch("subprocess.Popen", side_effect=AssertionError("No external programs")):
             plan = self.plan()
             status = campaign_status(self.root)
+        self.assertEqual(plan["schema_version"], 2)
         self.assertEqual(plan["state"], "PLANNED")
         self.assertEqual(plan["validation_scope"], "input_and_model_selection")
         self.assertEqual(plan["counts"], {"total": 1, "discovered": 1, "blocked": 0,
@@ -135,7 +136,7 @@ class CampaignTests(unittest.TestCase):
         self.assertFalse(omitted["exact_pair_model"])
         self.assertEqual(omitted["model_name"], "C_G.pdb")
 
-    def test_builtin_requires_dataset_pair_and_rejects_unsupported_mode_or_frame(self):
+    def test_builtin_requires_dataset_pair_and_nonstandard_requires_model_and_sequence(self):
         self.dataset("good", "[automr]\npair = C:G\n")
         self.dataset("missing")
         self.dataset("nonstandard", "[automr]\nmode = nonstandard\n")
@@ -144,9 +145,10 @@ class CampaignTests(unittest.TestCase):
         entries = {entry["id"]: entry for entry in plan["datasets"]}
         self.assertEqual(entries["good"]["status"], "DISCOVERED")
         self.assertIn("ordered pair", entries["missing"]["diagnostic"])
-        for name in ("nonstandard", "wrong_frame"):
-            self.assertEqual(entries[name]["status"], "BLOCKED")
-            self.assertIn("only standard W/5W6W", entries[name]["diagnostic"])
+        self.assertEqual(entries["nonstandard"]["status"], "BLOCKED")
+        self.assertIn("MODEL_REQUIRED", entries["nonstandard"]["diagnostic"])
+        self.assertEqual(entries["wrong_frame"]["status"], "BLOCKED")
+        self.assertIn("standard W/5W6W or explicitly nonstandard", entries["wrong_frame"]["diagnostic"])
 
     def test_unknown_chemistry_is_local_and_explicit_model_does_not_bypass_guards(self):
         self.dataset("unknown", "[automr]\npair = UNRECOGNIZED:DG\n")
@@ -280,6 +282,138 @@ class CampaignTests(unittest.TestCase):
         (dataset / "alternate.pdb").unlink()
         shutil.rmtree(self.frames)
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+
+    def test_schema2_freezes_explicit_nonstandard_model_and_sequence_file(self):
+        dataset = self.dataset(
+            "nonstandard",
+            "[automr]\n"
+            "mode = nonstandard\n"
+            "model = models/search.pdb\n"
+            "sequence_file = construct.fasta\n"
+            "model_family = triangle-v1\n",
+        )
+        models = dataset / "models"
+        models.mkdir()
+        (models / "search.pdb").write_text(model_text())
+        (dataset / "construct.fasta").write_text(">A\nACGT\n>B\nTGCA\n")
+
+        plan = self.plan()
+        self.assertEqual(plan["schema_version"], 2)
+        entry = plan["datasets"][0]
+        self.assertEqual(entry["status"], "DISCOVERED")
+        effective = entry["effective_config"]
+        self.assertEqual(effective["mode"], "nonstandard")
+        self.assertIsNone(effective["frame"])
+        self.assertIsNone(effective["pair"])
+        self.assertIsNone(effective["pair_ligands"])
+        self.assertEqual(effective["sequences"], {"A": "ACGT", "B": "TGCA"})
+        self.assertEqual(effective["model_provider"], {
+            "kind": "explicit-nonstandard-model",
+            "selection": "user-forced",
+            "location": "dataset",
+            "selector": "models/search.pdb",
+            "construct_family": "triangle-v1",
+        })
+        self.assertEqual(effective["model_source"], "nasolve.txt")
+        self.assertEqual(effective["phosphate_intent"]["source"], "none")
+        self.assertEqual(effective["allow_op3_sites"], [])
+        self.assertEqual(effective["sequence_source"]["kind"], "sequence-file")
+        self.assertEqual(effective["sequence_source"]["selector"], "construct.fasta")
+        self.assertEqual(
+            effective["sequence_source"]["artifact"],
+            entry["inputs"]["sequence_source"],
+        )
+        frozen_model = self.root / entry["inputs"]["model"]["relative_path"]
+        frozen_sequence = self.root / entry["inputs"]["sequence_source"]["relative_path"]
+        self.assertEqual(frozen_model.read_bytes(), (models / "search.pdb").read_bytes())
+        self.assertEqual(frozen_sequence.read_bytes(), (dataset / "construct.fasta").read_bytes())
+
+        # Frozen content-addressed resources preserve the source bytes even if the
+        # original model/sequence file later disappear. The original nasolve.txt
+        # remains an authoritative dataset input under current campaign integrity.
+        (models / "search.pdb").unlink()
+        (dataset / "construct.fasta").unlink()
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_schema2_freezes_discovered_nonstandard_model_and_inline_sequence_source(self):
+        dataset = self.dataset(
+            "nonstandard",
+            "[automr]\nmode = nonstandard\n\n"
+            "[sequences]\nA = ACGT\nB = TGCA\n",
+        )
+        (dataset / "search.pdb").write_text(model_text())
+
+        entry = self.plan()["datasets"][0]
+        self.assertEqual(entry["status"], "DISCOVERED")
+        effective = entry["effective_config"]
+        self.assertEqual(effective["model_provider"], {
+            "kind": "discovered-nonstandard-model",
+            "selection": "single-pdb-discovery",
+            "location": "dataset",
+            "selector": "search.pdb",
+        })
+        self.assertIsNone(effective["model_selector"])
+        self.assertEqual(effective["sequence_source"]["kind"], "inline-config")
+        self.assertEqual(effective["sequence_source"]["selector"], "nasolve.txt")
+        frozen = self.root / entry["inputs"]["sequence_source"]["relative_path"]
+        self.assertEqual(frozen.read_bytes(), (dataset / "nasolve.txt").read_bytes())
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_nonstandard_campaign_fails_closed_without_target_or_with_w_thread(self):
+        missing_target = self.dataset(
+            "missing_target",
+            "[automr]\nmode = nonstandard\nmodel = search.pdb\n",
+        )
+        (missing_target / "search.pdb").write_text(model_text())
+
+        threaded = self.dataset(
+            "threaded",
+            "[automr]\nmode = nonstandard\nmodel = search.pdb\n\n"
+            "[sequences]\nA = ACGT\n",
+        )
+        (threaded / "search.pdb").write_text(model_text())
+        (self.root / "nasolve-campaign.toml").write_text(
+            'schema_version = 1\n'
+            '[sequence_threads.w-family]\n'
+            'datasets = ["threaded"]\n'
+            'sequence_reference = "w-metal-scaffold"\n'
+        )
+
+        entries = {entry["id"]: entry for entry in self.plan()["datasets"]}
+        self.assertEqual(entries["missing_target"]["status"], "BLOCKED")
+        self.assertIn("explicit complete sequence source", entries["missing_target"]["diagnostic"])
+        self.assertEqual(entries["threaded"]["status"], "BLOCKED")
+        self.assertIn("cannot be applied to a nonstandard", entries["threaded"]["diagnostic"])
+
+    def test_nonstandard_sequence_source_forgery_is_rejected_after_resigning(self):
+        dataset = self.dataset(
+            "nonstandard",
+            "[automr]\nmode = nonstandard\nmodel = search.pdb\n"
+            "sequence_file = construct.fasta\n",
+        )
+        (dataset / "search.pdb").write_text(model_text())
+        (dataset / "construct.fasta").write_text(">A\nACGT\n")
+        self.plan()
+        original = self.state_path().read_bytes()
+
+        mutations = [
+            lambda value: value["datasets"][0]["effective_config"]["sequence_source"].update(
+                selector="../escape.fasta"
+            ),
+            lambda value: value["datasets"][0]["effective_config"]["sequence_source"].update(
+                kind="invented"
+            ),
+            lambda value: value["datasets"][0]["effective_config"].update(sequence_source=None),
+            lambda value: value["datasets"][0]["effective_config"]["model_provider"].update(
+                kind="standard-frame-catalogue"
+            ),
+        ]
+        for index, mutate in enumerate(mutations):
+            self.state_path().write_bytes(original)
+            self.rewrite_state(mutate, resign=True)
+            with self.subTest(index=index), self.assertRaises(CampaignError):
+                campaign_status(self.root)
 
     def test_duplicate_authoritative_reflections_are_reported_without_collapsing(self):
         self.dataset("z", content=b"duplicate")
@@ -559,9 +693,11 @@ class CampaignTests(unittest.TestCase):
         )
         self.plan()
         def make_legacy(value):
+            value["schema_version"] = 1
             config = value["datasets"][0]["effective_config"]
             config.pop("sequence_reference_source", None)
             config.pop("sequence_thread", None)
+            config.pop("sequence_source", None)
             config.pop("model_selector", None)
             config.pop("model_provider", None)
         self.rewrite_state(make_legacy, resign=True)
