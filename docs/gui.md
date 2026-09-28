@@ -748,6 +748,12 @@ Coot bridge and long-running activity handling.
 
 ## Human-facing invariants
 
+User-facing feature names should describe scientific capability rather than
+internal implementation generations. In particular, the registration preflight
+feature is displayed simply as **Scout**. Internal developer/machine provenance
+may retain `Scout v1` / `Scout v2` where needed to distinguish historical
+implementations.
+
 1. One main NASolve window.
 2. Coot is the intentional external atomic viewer/editor.
 3. Clicking/viewing never changes the current scientific pointer.
