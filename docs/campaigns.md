@@ -137,6 +137,10 @@ may declare:
   distances;
 - AutoRefine recipe, numerical continuation criteria, and validation policy;
 - bounded Doctor trial definitions and candidate-selection policy;
+- workflow-level Doctor policy, including the future semantic option
+  **"apply Doctor as needed"**: absent means stop at the review gate; enabled
+  means run only the applicable bounded Doctor(s) already exposed by the backend,
+  while preserving explicit inspection/selection semantics;
 - reporting and PDF policy;
 - later curate, Table 1, and deposition policy; and
 - imported/external provider provenance and reviewed model transformations.
@@ -424,10 +428,17 @@ navigation. If several candidates are solution-ready and none is selected,
 approval must present or require a choice rather than guessing.
 
 An inspection queue reports exact commands for opening candidates and
-checkpoints in Coot. Static PDFs can contain file links and copyable commands,
-but reliable one-click Coot launching requires a later local dashboard or a
-registered local URL handler. A local `nasolve campaign serve` dashboard is the
-preferred future direction for clickable inspection and branch selection.
+checkpoints in Coot. Every interactive CLI decision must correspond to a backend
+action that the future GUI can invoke directly: open/inspect in Coot, yes/no
+confirmation, explicit continuation from a review gate, Doctor candidate
+inspection, and checkpoint selection/Make Current. The GUI may replace terminal
+prompts with buttons, cards or action popovers, but the eligibility rule,
+default, provenance and resulting state must be identical.
+
+Static PDFs can contain file links and copyable commands. The planned native GUI
+is the preferred interactive surface for clickable inspection and branch
+selection; a local web dashboard remains an optional implementation detail, not
+the scientific authority.
 
 ## Approval and reopening
 
@@ -550,8 +561,11 @@ identifiers and the exact approved snapshot submitted.
    recipe should explicitly declare its intended endpoint and conditional stage
    graph instead of relying on the executor's hard-coded stage order/default
    endpoint. Preserve current conditional AutoSol skip/run behavior and
-   fail-closed per-dataset stops. Bounded Doctor escalation belongs only after
-   its own validation.
+   fail-closed per-dataset stops. A recipe may optionally request
+   **"apply Doctor as needed"**; omission leaves review states for inspection,
+   while opt-in may traverse only validated bounded Doctor transitions. Doctor
+   recommendation and checkpoint selection remain separate unless a later,
+   separately validated policy explicitly changes that.
 7. Add explicit stable Design grouping/identity for datasets sharing one
    construct/design record. Do not infer Design membership from filenames or
    similarity.
