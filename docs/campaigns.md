@@ -500,18 +500,35 @@ identifiers and the exact approved snapshot submitted.
 3. **Implemented:** one resumable sequential 5W6W execution path using the
    existing AutoMR/PostMR/conditional AutoSol/AutoRefine stages, including
    pause and explicit retry.
-4. **Prerequisites implemented; policy/execution still future:** read-only
+4. **Next CLI milestone:** generalize planning/execution to one frozen
+   nonstandard per-dataset PDB provider plus an exact frozen sequence target,
+   while preserving existing schema-1 W plans and all pause/retry/relocation
+   safeguards.
+5. **Next live milestone:** run a small real geometry-diverse campaign through
+   AutoMR/PostMR/conditional AutoSol/AutoRefine, with ambiguous representation
+   problems stopping only the affected dataset.
+6. Add explicit stable Design grouping/identity for datasets sharing one
+   construct/design record. Do not infer Design membership from filenames or
+   similarity.
+7. **Prerequisites implemented; policy/execution still future:** read-only
    checkpoint-candidate descriptors and donor-checkpoint versus recipient-run
-   comparisons now provide provenance-rich inputs for Campaign Doctor. Reviewed
-   donor eligibility rules, bounded rescue candidate generation/selection, and
-   the inspection queue are not implemented yet.
-5. Add machine-readable summaries and per-dataset/campaign PDF rendering.
-6. Add multi-candidate DAGs, shared-parent execution, budgets, and bounded
-   rescue comparison/selection under explicit policy.
-7. Add a local dashboard for status, Coot launch, tree navigation, and approval.
-8. Add Model Doctor and project-specific recovery extensions.
-9. Add curate and the lab Table 1 specification.
-10. Add deposition preparation, validation, and explicit submission.
+   comparisons now provide provenance-rich inputs for Campaign Doctor. Add a
+   campaign-wide read-only candidate view, then a reviewed donor eligibility
+   policy and attempt-local rescue-provider provenance before any automatic
+   donor selection.
+8. Validate one explicit-donor recipient rescue before adding bounded automatic
+   Campaign Doctor donor enumeration. Preserve the failed recipient attempt,
+   observations, Free-R set and every rescue candidate.
+9. **GUI fork is allowed after the basic heterogeneous campaign + Design layer
+   are CLI-functional.** The planned modular GUI then visualizes the same
+   campaign/checkpoint state rather than compensating for missing backend
+   semantics.
+10. Add machine-readable summaries and per-dataset/campaign PDF rendering.
+11. Add broader multi-candidate DAGs, shared-parent execution, model
+   libraries/ensembles and rescue budgets under explicit policy.
+12. Add Model Doctor and project-specific recovery extensions.
+13. Add curate and the lab Table 1 specification.
+14. Add deposition preparation, validation, and explicit submission.
 
 The implemented campaign slice provides `preset check`, `campaign plan`,
 `campaign status`, `campaign run`, `campaign pause`, and explicit
