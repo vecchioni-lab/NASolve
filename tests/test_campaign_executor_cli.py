@@ -134,12 +134,26 @@ class CampaignExecutorCLITests(unittest.TestCase):
         self.assertEqual((code, output), (2, ""))
         self.assertIn("exactly one --dataset", error)
 
-    def test_unsupported_stage_and_missing_retry_dataset_are_rejected(self):
-        for arguments in (
-            ["campaign", "run", "examples", "--through", "refine-doctor"],
-            ["campaign", "retry", "examples"],
-        ):
-            with self.subTest(arguments=arguments), redirect_stderr(io.StringIO()):
-                with self.assertRaises(SystemExit) as caught:
-                    main(arguments)
-            self.assertEqual(caught.exception.code, 2)
+    def test_refine_doctor_boundary_is_forwarded_to_campaign_executor(self):
+        expected = execution_record(status="AWAITING_INSPECTION", state="COMPLETE_WITH_FLAGS")
+        expected["execution"]["datasets"][0]["next_stage"] = None
+        with patch("nasolve.campaign_execution.execute_campaign", return_value=expected) as run:
+            code, output, error = self.invoke([
+                "campaign", "run", "examples", "--dataset", "DOHU",
+                "--through", "refine-doctor",
+            ])
+        self.assertEqual((code, error), (3, ""))
+        run.assert_called_once_with(
+            Path("examples"),
+            datasets=("DOHU",),
+            through="refine-doctor",
+            phenix_root=None,
+            progress=unittest.mock.ANY,
+        )
+        self.assertIn("AWAITING_INSPECTION", output)
+
+    def test_missing_retry_dataset_is_rejected(self):
+        with redirect_stderr(io.StringIO()):
+            with self.assertRaises(SystemExit) as caught:
+                main(["campaign", "retry", "examples"])
+        self.assertEqual(caught.exception.code, 2)
