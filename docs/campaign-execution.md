@@ -217,7 +217,13 @@ The unattended resume has now completed:
 - EG_091325-0302: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
 - QE_120325_0607: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
 - QiC_120325_0513: `AUTOSOL_READY`, then `AWAITING_INSPECTION` at
-  `refine-001` because numerical refinement acceptance failed.
+  `refine-001` because numerical refinement acceptance failed. The final
+  refinement had Rwork/Rfree = 0.1646/0.1561
+  (`Rfree - Rwork = -0.0085`), clashscore 32.23, and a terminal-phosphate
+  geometry audit `PASS` with maximum normalized deviation 1.74 sigma. Its
+  iodine `B:4` anomalous site refined to f'' = 7.51547 at wavelength
+  1.377618 A. `refine-001` remained REVIEW/non-current; current stayed
+  `postmr`.
 
 The campaign ended `COMPLETE_WITH_FLAGS` with frozen integrity `OK`.
 Run/status exit code 3 correctly represented the QiC review case while the other
