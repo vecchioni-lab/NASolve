@@ -258,12 +258,15 @@ be representable at residue/repeat-domain level rather than only as
 present/absent.
 
 Junctions should become explicit tile/topology records rather than being
-reconstructed from incidental ASU chain adjacency. A declared junction may
-retain its logical arms, strand/residue membership, true nicks/termini, sticky
-ends, optional coaxial pairing/stacking expectations and root/repeat roles even
-when crystallographic symmetry slices that junction across ASU fragments.
-Undeclared junctions may be proposed from the periodic graph only as
-provenance-rich hypotheses until uniquely supported or user-confirmed.
+reconstructed from incidental ASU chain adjacency. Their primitive identity is
+a local directed-backbone passage/connection, not a fixed arm count; four-,
+six- or eight-arm neighborhoods are derived context. A declared junction may
+retain its strand/residue membership, routing, true nicks/termini, sticky ends,
+optional coaxial pairing/stacking expectations and root/repeat roles even when
+crystallographic symmetry slices that junction across ASU fragments. Undeclared
+junctions may be proposed from the periodic graph only as provenance-rich
+candidates until uniquely supported or user-confirmed; false/packing candidates
+must remain rejectable.
 
 Topo Net should also remain open as a persistent checkpoint workbench. Surgery,
 optional Coot repair and a bounded Refine action should each create immutable
@@ -281,6 +284,15 @@ Important models can be pinned as comparison panels, long runs of repetitive
 refines can collapse, and any eligible historical node can become an explicit
 new branch source without deleting descendants. Topo Net should embed this same
 graph component rather than inventing its own history model.
+
+The full GUI shell is specified in [the GUI design contract](gui.md): one main
+window with Navigator / Workspace / Inspector / Activity drawer, optional
+Campaign -> Design -> Dataset -> Run scientific hierarchy, semantic
+color+shape status tokens, root/recent-workspace selection, current-versus-viewed
+separation, and a capability-driven action/Inspector/view registry. Existing CLI
+operations should become GUI actions through backend descriptors so future
+NASolve features normally register into the shell instead of forcing layout
+redesign.
 
 The GUI should keep diagnostics compact by default: current checkpoint,
 Rwork/Rfree, refinement state and a local-warning indicator. Selecting a
