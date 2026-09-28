@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from functools import partial
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from nasolve.automr_input import AutoMRInputError
@@ -565,6 +566,83 @@ class CampaignStageTests(unittest.TestCase):
         registry = json.loads((run / "AutoRefine/checkpoints.json").read_text())
         self.assertEqual(registry["current"], "postmr")
         self.assertTrue(any(path.endswith("checkpoints.json") for path in result["artifacts"]))
+
+    def test_campaign_refine_doctor_receipts_new_trials_and_preserves_current(self):
+        run = make_refine_run(self.root)
+        self.set_run(run)
+        self.phenix.executables.update({
+            "phenix.refine": make_refine(self.tools, final_work=0.24, final_free=0.22),
+            "phenix.mtz.dump": refine_dump(self.tools),
+        })
+        review = self.stage("autorefine", run)
+        self.assertEqual(review["status"], "AUTOREFINE_REVIEW")
+        self.assertFalse(review["selected_as_current"])
+
+        def doctor_engine(
+            doctor_run, refine_executable, mtz_dump_executable, *,
+            phenix_version, environment, from_checkpoint, macro_cycles, max_trials,
+        ):
+            self.assertEqual(doctor_run, run)
+            self.assertEqual(from_checkpoint, "refine-001")
+            self.assertEqual((macro_cycles, max_trials), (3, 5))
+            doctor = run / "RefineDoctor" / "doctor_001"
+            doctor.mkdir(parents=True)
+            report_path = doctor / "report.json"
+            report_path.write_text('{"status":"REFINE_DOCTOR_RECOMMEND"}\n')
+            audit_log = doctor / "free_r_audit.log"
+            audit_log.write_text("valid\n")
+            round_two = run / "AutoRefine" / "round_002"
+            round_two.mkdir()
+            (round_two / "doctor_trial.dat").write_text("trial\n")
+            report = json.loads((run / "report.json").read_text())
+            report["refine_doctor"] = {
+                "status": "REFINE_DOCTOR_RECOMMEND",
+                "source_checkpoint": "refine-001",
+                "recommended_checkpoint": "refine-002",
+            }
+            (run / "report.json").write_text(json.dumps(report))
+            return SimpleNamespace(
+                status="REFINE_DOCTOR_RECOMMEND",
+                message="A bounded refinement branch is recommended for inspection",
+                exit_code=0,
+                run_directory=run,
+                doctor_directory=doctor,
+                source_checkpoint="refine-001",
+                current_checkpoint_preserved=True,
+                recommended_checkpoint="refine-002",
+                recommendation="Inspect refine-002 before selecting it",
+                audit=SimpleNamespace(log_path=audit_log),
+                trials=(SimpleNamespace(round_directory=round_two),),
+                report_path=report_path,
+            )
+
+        with patch(
+            "nasolve.campaign_stages.execute_refine_doctor",
+            side_effect=doctor_engine,
+        ):
+            result = self.stage("refine-doctor", run)
+
+        self.assertEqual(result["status"], "REFINE_DOCTOR_RECOMMEND")
+        self.assertEqual(result["source_checkpoint"], "refine-001")
+        self.assertEqual(result["recommended_checkpoint"], "refine-002")
+        self.assertEqual(result["checkpoint"], "refine-002")
+        self.assertTrue(result["current_checkpoint_preserved"])
+        self.assertIn("Inspect refine-002", result["message"])
+        self.assertTrue(
+            any(path.endswith("RefineDoctor/doctor_001/report.json") for path in result["artifacts"])
+        )
+        self.assertTrue(
+            any(path.endswith("AutoRefine/round_002/doctor_trial.dat") for path in result["artifacts"])
+        )
+        self.assertTrue(
+            any(path.endswith("refine-doctor-checkpoints.json") for path in result["artifacts"])
+        )
+        self.assertEqual(
+            (self.root / result["run_report_snapshot"]).read_bytes(),
+            (run / "report.json").read_bytes(),
+        )
+        registry = json.loads((run / "AutoRefine/checkpoints.json").read_text())
+        self.assertEqual(registry["current"], "postmr")
 
     def test_mean_refinement_returns_numerical_success_without_visual_approval(self):
         run = make_refine_run(self.root, autosol=False)
