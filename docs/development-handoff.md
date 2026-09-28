@@ -293,6 +293,11 @@ single-residue Coot RSR on several disposable recuts where a phosphate/O3-prime
 connection is initially too long, auditing which atoms move and whether Phenix
 then interprets the linkage cleanly.
 
+The umbrella term for this planned family is **topology-informed automation**:
+topology may inform hypotheses, recuts, local repairs and branch diagnostics,
+but it never overrides chemistry, diffraction evidence, fail-closed rules or
+expert review.
+
 Topo Net should also preserve a stronger design hierarchy than ASU chain
 serialization. For framework work, keep four layers separate:
 
@@ -335,13 +340,21 @@ through symmetry, and report local closure, long-period closure, partial use,
 reorganization or unresolved phase as separate descriptive facts. It must not
 force the designed n-fold order onto the structure.
 
-Junctions are now part of the intended Topo model as first-class logical
-objects. A junction declaration should survive ASU recutting and may span
-several symmetry/coordinate fragments while retaining stable logical arm
-identities, member strands/residue ranges, true nicks/termini, sticky ends and
-optional reviewed stacking/pairing expectations. Junctions inferred from an
-emergent periodic graph remain hypotheses until uniquely supported or
-user-confirmed.
+Junctions are now part of the intended Topo model as first-class topological
+objects, but **junction arity is not the definition**. The minimal primitive is
+a local directed-backbone passage/connection at a node; a single backbone can
+be sufficient (the semi-junction is the motivating example). Four-, six- or
+eight-arm junctions are contextual neighborhoods around one or more such
+passages. ASU recutting may split that realization across symmetry fragments
+without changing the underlying junction.
+
+Junction declarations/hypotheses should therefore preserve stable logical
+strand/residue participation, routing, true nicks/termini, sticky ends and
+optional reviewed stacking/pairing expectations while treating observed arm
+count as derived metadata. Net-finder discoveries remain `CANDIDATE` until
+uniquely supported or user-confirmed; emergent high-valence nodes such as the
+cuboctahedral case must be allowed, while apparent packing contacts may be
+`REJECTED`.
 
 Topo Net should be a persistent workbench above the checkpoint graph rather
 than a one-shot cutter. A user should be able to operate on a seam/junction,
@@ -350,6 +363,15 @@ receive the resulting refinement child plus diagnostics back into the same GUI
 without closing/restarting the topology session. The first Refine action should
 use a short ordinary audited AutoRefine path; selection-restricted refinement
 is intentionally later work.
+
+This work exposes a useful **generic NASolve GUI** seam. The existing immutable
+checkpoint graph should become a reusable model-tree view for normal workflows:
+MR, PostMR, AutoSol, long refinement chains, Doctor siblings, manual imports,
+topology surgery and later re-MR-from-refined-model attempts should all appear
+in one traversable lineage. Important checkpoints can be pinned as panels,
+repetitive refine chains can collapse, and historical nodes can be selected or
+used as explicit new branch sources without deleting descendants. Topo Net
+should embed this same component rather than maintain a private history.
 
 Keep the workbench display sparse. Global chips may show current checkpoint,
 Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
