@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-24",
+  "version": "2026-09-28-pine-25",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1135,82 +1135,88 @@
     }
   },
   "cli_first_campaign_runway": {
-    "status": "PINE_FIXTURE_GREEN_REAL_W_ORCHESTRATION_IN_PROGRESS_NONSTANDARD_LIVE_PENDING",
-    "gui_branch_condition": "Do not begin GUI implementation until the Pine heterogeneous campaign backend passes the real 3-5 dataset Phenix/Coot live gate and minimal explicit Design grouping is CLI-functional.",
+    "status": "PINE_W_POSTMR_LIVE_GREEN_AUTOREFINE_RESUME_PENDING_NONSTANDARD_LIVE_PENDING",
+    "gui_branch_condition": "Do not begin GUI implementation until the real prepared-nonstandard/geometry-diverse campaign gate passes and minimal explicit Design grouping is CLI-functional. The easier W live campaign validates orchestration only.",
     "steps": [
       {
         "id": 1,
         "name": "close_oak",
-        "goal": "Close/merge the current validated Scout v2 backend-only branch without adding campaign or GUI runtime scope.",
+        "goal": "Close/merge the validated Scout v2 backend-only branch without promoting Scout v2 to runtime authority.",
         "status": "COMPLETED_MERGED_TO_MAIN",
-        "note": "Oak/PR #22 merged with merge commit fec66ebeddbd525684824576b705460324ec0a14; Pine reconciled the mainline merge with aa56e9b."
+        "note": "Oak/PR #22 merged with fec66ebeddbd525684824576b705460324ec0a14; Pine reconciled the mainline merge with aa56e9b."
       },
       {
         "id": 2,
         "name": "nonstandard_campaign_plan_schema",
-        "goal": "Add backward-compatible newer campaign plan schema admitting one explicit/uniquely discovered nonstandard PDB plus frozen raw sequence source and parsed target per dataset; keep schema-1 W plans readable/executable.",
+        "goal": "Backward-compatible schema-2 campaign plans admit one explicit/uniquely discovered nonstandard PDB plus frozen raw sequence source and parsed target per dataset; schema-1 W remains readable/executable.",
         "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
       },
       {
         "id": 3,
         "name": "generalize_frozen_selection",
-        "goal": "Preserve existing standard-W campaign_stages._frozen_selection behavior and add nonstandard materialization from frozen campaign resources with no source-folder/catalogue rediscovery.",
+        "goal": "Preserve standard-W frozen selection and add nonstandard reconstruction only from checksum-bound campaign resources with no source/catalogue rediscovery.",
         "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
       },
       {
         "id": 4,
         "name": "conservative_heterogeneous_gate",
-        "goal": "First slice requires simple/unambiguous model-to-target correspondence; recuts, split chains, multiplicity surprises or topology ambiguity stop only that dataset.",
+        "goal": "Require simple/unambiguous prepared-model correspondence; recuts, split chains, multiplicity surprises or topology ambiguity stop only that dataset.",
         "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
       },
       {
         "id": 5,
-        "name": "campaign_regression",
-        "goal": "Validate W compatibility plus nonstandard/mixed plans, relocation, pause/resume, retry, drift blocking and independent dataset failure behavior.",
-        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
+        "name": "campaign_regression_and_real_w_orchestration",
+        "goal": "Validate W compatibility, nonstandard/mixed fixture behavior, relocation/pause/retry/isolation, plus an easier real multi-dataset W campaign under actual Phenix/Coot.",
+        "status": "FIXTURE_GREEN_REAL_W_PLANNING_PHASER_POSTMR_GREEN_AUTOREFINE_RESUME_PENDING",
+        "note": "Four-member W sandbox passed planning/integrity and real preflight/Phaser/PostMR 4/4; plain campaign run through default AutoRefine is next."
       },
       {
         "id": 6,
-        "name": "real_geometry_diverse_campaign",
-        "goal": "Run 3-5 curated datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case.",
-        "status": "PREPARED_NONSTANDARD_LIVE_GATE_PENDING_INPUTS",
-        "note": "An intermediate four-member real W campaign is currently validating orchestration and solution reporting; it does not replace this geometry-diverse gate."
+        "name": "explicit_workflow_recipe",
+        "goal": "Freeze intended campaign endpoint and conditional transition graph as versioned recipe data; preserve conditional AutoSol SKIPPED/run semantics and fail-closed dataset stops.",
+        "status": "NEXT_BACKEND_SEMANTIC_AFTER_CURRENT_W_LIVE_CHECK"
       },
       {
         "id": 7,
+        "name": "real_geometry_diverse_campaign",
+        "goal": "Run 3-5 curated prepared-nonstandard/geometry-diverse datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case.",
+        "status": "PREPARED_NONSTANDARD_LIVE_GATE_PENDING_INPUTS"
+      },
+      {
+        "id": 8,
         "name": "explicit_design_identity",
         "goal": "Add stable explicit design_id/shared design metadata grouping; never infer membership from filenames, sequence similarity or mere campaign co-membership.",
-        "status": "FUTURE_AFTER_REAL_LIVE_GATE"
+        "status": "FUTURE_AFTER_REAL_GEOMETRY_DIVERSE_LIVE_GATE"
       }
     ],
     "campaign_doctor_ready_steps": [
       {
-        "id": 8,
+        "id": 9,
         "name": "campaign_candidate_matrix",
         "goal": "Read-only campaign-wide enumeration of solved checkpoint candidates versus explicitly related unsolved recipients using existing candidate/comparison facts; no score/rank/rescue authorization."
       },
       {
-        "id": 9,
+        "id": 10,
         "name": "reviewed_donor_eligibility",
-        "goal": "Define categorical project/preset donor gates over explicit design/family relation, checkpoint state/review, target coverage/identity or supported transformation, mirror/chirality constraints, chemistry and budget."
+        "goal": "Define categorical donor gates over explicit Design/family relation, checkpoint status/review, target coverage/identity or supported transformation, mirror/chirality, chemistry and budget."
       },
       {
-        "id": 10,
+        "id": 11,
         "name": "attempt_local_rescue_provider",
         "goal": "Freeze donor dataset/checkpoint/model checksum, comparison evidence, policy identity and transformations beneath a new recipient attempt without mutating plan, failed attempt, observations, Free-R or target."
       },
       {
-        "id": 11,
-        "name": "explicit_donor_rescue",
-        "goal": "First rescue requires user-named eligible donor checkpoint and recipient; direct donor-model MR only under strict policy, then ordinary recipient stage gates."
-      },
-      {
         "id": 12,
-        "name": "bounded_campaign_doctor",
-        "goal": "After explicit rescue validation, allow small policy-eligible donor enumeration under a declared attempt budget; preserve every rescue branch and stop for materially different interpretations."
+        "name": "explicit_donor_rescue",
+        "goal": "First rescue requires user-named eligible donor checkpoint and recipient; direct donor-model MR only under strict policy, then ordinary recipient gates."
       },
       {
         "id": 13,
+        "name": "bounded_campaign_doctor",
+        "goal": "After explicit rescue validation, allow small policy-eligible donor enumeration under a declared attempt budget; preserve every branch and stop for materially different interpretations."
+      },
+      {
+        "id": 14,
         "name": "later_transforms",
         "goal": "Donor mutation, ensembles/libraries, geometry/topology provider transforms and broader cross-design rescue remain separate reviewed increments."
       }
@@ -1224,18 +1230,23 @@
       "standard W and nonstandard members may coexist under one sequential coordinator",
       "nonstandard members do not inherit W frame/pair, W sequence-thread overlays or W D:1 phosphate intent",
       "fixture-backed nonstandard execution reaches AutoMR/PostMR/conditional AutoSol/AutoRefine and survives relocation",
-      "mixed W/nonstandard fixture execution preserves separate scientific contexts"
+      "mixed W/nonstandard fixture execution preserves separate scientific contexts",
+      "plain campaign run currently defaults through AutoRefine",
+      "AutoSol is a conditional campaign stage: no anomalous candidate -> accepted SKIPPED without launching phenix.autosol",
+      "real four-member W campaign passed planning/integrity and real preflight/Phaser/PostMR 4/4",
+      "workflow endpoint/conditional graph is not yet first-class frozen recipe data",
+      "merged Scout v2 remains experimental proposal-only and non-runtime"
     ]
   },
   "campaign_development_branch": {
     "name": "pine",
     "base": "oak",
     "purpose": "Schema-2 prepared nonstandard and mixed campaign planning/execution before GUI implementation.",
-    "status": "FIXTURE_GREEN_REAL_W_ORCHESTRATION_IN_PROGRESS_NONSTANDARD_LIVE_PENDING",
+    "status": "FIXTURE_GREEN_REAL_W_POSTMR_GREEN_AUTOREFINE_RESUME_PENDING_NONSTANDARD_LIVE_PENDING",
     "registration_boundary": "Oak/PR #22 remains the separate backend-only Scout-v2 registration branch; Pine does not promote Scout v2 to runtime authority.",
     "mainline_merge_commit": "fec66ebeddbd525684824576b705460324ec0a14",
     "pine_reconciliation_commit": "aa56e9b",
-    "note": "Synthetic heterogeneous backend is closed; current live task is an easier four-member W orchestration run, followed later by the real prepared-nonstandard geometry-diverse live gate."
+    "note": "Synthetic heterogeneous backend is closed; four-member real W campaign passed planning/preflight/Phaser/PostMR. Current live action is plain unattended resume through AutoRefine. First-class workflow recipe semantics and the real prepared-nonstandard geometry-diverse live gate remain pending."
   },
   "local_validation_baseline": {
     "tested_branch": "pine",
@@ -1260,7 +1271,7 @@
   },
   "current_live_validation": {
     "id": "pine-real-w-orchestration-2026-09-28",
-    "status": "POSTMR_PASSED_DEFAULT_AUTOREFINE_RESUME_NEXT",
+    "status": "POSTMR_PASSED_UNATTENDED_AUTOREFINE_RESUME_PENDING",
     "purpose": "Validate real multi-dataset campaign orchestration and campaign-level solution reporting with actual Phenix/Coot before the prepared-nonstandard geometry-diverse datasets are available.",
     "sandbox": "/tmp/NASolve-W-live-20260928",
     "datasets": [
@@ -1270,10 +1281,11 @@
       "EG_091325-0302"
     ],
     "current_phase": [
-      "resume the frozen campaign with plain campaign run (default through autorefine)",
-      "allow conditional AutoSol to skip or execute per PostMR evidence",
-      "allow each dataset to stop independently at review/block/solved outcomes",
-      "record dataset -> final status -> exact run -> checkpoint -> AutoSol skipped/ran -> diagnostic"
+      "resume the frozen four-member W campaign with plain campaign run",
+      "allow conditional AutoSol to SKIP without launching phenix.autosol when PostMR reports no supported anomalous candidate",
+      "allow AutoSol to execute only where PostMR evidence requires it",
+      "continue eligible datasets through AutoRefine under the frozen preset",
+      "record dataset -> final status -> exact run -> AutoSol skipped/ran -> checkpoint -> diagnostic"
     ],
     "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
     "completion_rule": "Do not mark passed until real terminal output and resulting scientific stage outcomes are inspected.",
@@ -1323,8 +1335,8 @@
       "interpretation": "All four completed real preflight, Phaser and PostMR. next_stage=autosol is a conditional stage boundary; AutoSol is skipped without launching phenix.autosol when PostMR reports no anomalous candidate."
     },
     "workflow_recipe_requirement": {
-      "status": "PLANNED_AFTER_CURRENT_LIVE_VALIDATION",
-      "principle": "A selected/frozen campaign recipe should explicitly declare the intended endpoint and conditional stage graph so one run command can advance every eligible dataset autonomously until a recipe-declared terminal state.",
+      "status": "FIRST_CLASS_BACKEND_DESIGN_REQUIRED_AFTER_CURRENT_LIVE_CHECK",
+      "principle": "A selected/frozen campaign workflow recipe should explicitly declare the intended endpoint and conditional stage graph so one command advances each eligible dataset autonomously until a recipe-declared terminal state; current plain campaign run already behaves unattended through AutoRefine, but the journey is executor-defined.",
       "current_partial_support": [
         "plain campaign run already defaults through AutoRefine",
         "preset freezes AutoSol when-anomalous policy",
@@ -1337,5 +1349,22 @@
         "later bounded Doctor escalation policy"
       ]
     }
+  },
+  "documentation_continuity": {
+    "status": "AUDITED_AND_RECONCILED",
+    "purpose": "Keep current runtime behavior, live validation, merged Oak registration scope, future workflow recipe, geometry-diverse gate, Design/GUI fork and Campaign Doctor runway consistent across durable docs.",
+    "read_first": "docs/development-handoff.md#read-this-first-current-development-edge",
+    "audited_documents": [
+      "docs/development-handoff.md",
+      "docs/campaign-execution.md",
+      "docs/campaign-planning.md",
+      "docs/campaign-model-roadmap.md",
+      "docs/campaigns.md",
+      "docs/architecture.md",
+      "docs/gui.md",
+      "docs/construct-registration.md",
+      "docs/construct-registration-intent.json",
+      "README.md"
+    ]
   }
 }
