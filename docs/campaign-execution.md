@@ -187,19 +187,34 @@ All four members froze the expected W recipe chemistry with D:1 as the explicit
 5-prime-phosphate/OP3 site. No scientific stage had been launched at the time
 of that check.
 
-The next live phase is intentionally bounded at **PostMR**:
+The bounded **PostMR** phase has now completed successfully for all four
+datasets. Every member completed preflight, Phaser and PostMR in campaign-owned
+`AutoMR/run_001`; campaign and status both exited 0, frozen integrity remained
+`OK`, and all four paused at the next conditional AutoSol gate.
+
+The coordinator's generic `next_stage = autosol` display is a stage-boundary
+label, not evidence that AutoSol is scientifically required. At execution time,
+the stage engine verifies PostMR's anomalous report. If
+`autosol_required = false`, it records accepted status `SKIPPED` and does not
+launch `phenix.autosol`.
+
+The next live command can therefore simply resume to the ordinary default
+endpoint:
 
 ```bash
-./nasolve campaign run /tmp/NASolve-W-live-20260928 --through postmr
+./nasolve campaign run /tmp/NASolve-W-live-20260928
 ./nasolve campaign status /tmp/NASolve-W-live-20260928
 ```
 
-Run/status output should then be summarized as:
+A plain campaign run defaults through AutoRefine. This is already unattended
+within the fixed built-in stage order: each dataset independently evaluates
+conditional AutoSol, skips or runs it as appropriate, then advances to
+AutoRefine unless a scientific gate stops that dataset.
 
-`dataset -> status -> exact run -> checkpoint/next stage -> diagnostic`
-
-Only after the MR/PostMR outcomes are inspected should the campaign continue
-into AutoSol/AutoRefine.
+Future campaign-recipe work should make the **workflow endpoint and conditional
+graph explicit frozen recipe data** rather than leaving the endpoint implicit in
+the executor default. That extension should preserve the current fail-closed
+per-dataset stops and immutable stage provenance.
 
 This W campaign validates real multi-dataset orchestration, isolation and
 solution reporting with the user's actual external tools. It does **not** count
