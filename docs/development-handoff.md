@@ -22,25 +22,36 @@ For a fresh development session, recover state in this order:
    **684 tests + 226 subtests** on runtime head `8c2c423`; subsequent Pine
    changes through this handoff are documentation/history reconciliation unless
    explicitly noted otherwise.
-3. **Real W live campaign:** disposable sandbox
-   `/tmp/NASolve-W-live-20260928` contains `DOHU`,
+3. **Real W live campaign is now complete as an orchestration validation.**
+   Disposable sandbox `/tmp/NASolve-W-live-20260928` contains `DOHU`,
    `QiC_120325_0513`, `QE_120325_0607`, and `EG_091325-0302`.
-   Planning/integrity passed 4/4, and real preflight + Phaser + PostMR passed
-   4/4 with campaign-owned `AutoMR/run_001` for every member.
-4. **Current live action:** resume that frozen W campaign with plain
-   `./nasolve campaign run /tmp/NASolve-W-live-20260928`. A plain run already
-   advances through the executor's default AutoRefine endpoint. AutoSol is
-   conditional: datasets without a supported anomalous candidate record
-   accepted `SKIPPED` and do not launch `phenix.autosol`.
-5. **Do not confuse this with the Pine-specific live gate.** The real
+   Planning/integrity passed 4/4; real preflight + Phaser + PostMR passed 4/4;
+   one plain unattended resume then advanced all four through conditional
+   AutoSol and AutoRefine.
+4. **Final W result:** DOHU, EG and QE reached `SOLVED` at `refine-001`;
+   each correctly recorded AutoSol `SKIPPED`. QiC correctly required AutoSol,
+   reached `AUTOSOL_READY`, then stopped at `refine-001` as
+   `AWAITING_INSPECTION` because numerical refinement acceptance failed.
+   Campaign state was `COMPLETE_WITH_FLAGS`, integrity remained `OK`, and
+   campaign/status exit code 3 correctly reflected the one review case.
+5. **Do not run standalone Refine Doctor on the campaign-owned QiC run yet.**
+   Doctor is itself checkpoint-preserving and non-auto-selecting, but currently
+   appends Doctor history into the run `report.json`. Campaign AutoRefine has
+   already checksummed that report in its immutable receipt; an out-of-band
+   Doctor invocation would therefore look like post-stage report drift on the
+   next campaign reconciliation. Campaign-aware Doctor must be an explicit
+   workflow/stage transition with its own receipt/provenance before we exercise
+   that rescue on this live campaign.
+6. **Do not confuse this with the Pine-specific live gate.** The real
    3-5-member prepared-nonstandard/geometry-diverse campaign is still pending
    because those datasets have not yet been supplied. The easy W flock validates
    orchestration, not the new scientific provider path.
-6. **New campaign abstraction to add:** make the selected/frozen campaign
-   workflow recipe explicitly declare the endpoint and conditional stage graph.
-   Today the one-command unattended behavior exists, but the journey is still
-   executor-defined rather than recipe-defined.
-7. **After the real geometry-diverse live gate:** add explicit stable
+7. **New campaign abstraction to add:** make the selected/frozen campaign
+   workflow recipe explicitly declare the endpoint and conditional stage graph,
+   including later bounded Refine Doctor escalation as a campaign-owned
+   transition. Today the one-command unattended behavior exists, but the journey
+   is still executor-defined rather than recipe-defined.
+8. **After the real geometry-diverse live gate:** add explicit stable
    `design_id` grouping, then the generic GUI shell may fork. Campaign Doctor
    continues on the separately mapped path:
    read-only candidate matrix -> reviewed eligibility -> attempt-local donor
@@ -365,8 +376,29 @@ run command, and let each dataset advance independently until solved, review,
 blocked, or another recipe-declared terminal state. Later reviewed Doctor
 escalation may join that graph, but must remain bounded and provenance-rich.
 
-The next live phase for this W sandbox is now a plain campaign resume through
-its default AutoRefine endpoint.
+The unattended resume has now completed and closes the W orchestration smoke
+test:
+
+| Dataset | AutoSol | Final campaign state | Checkpoint |
+| --- | --- | --- | --- |
+| DOHU | `SKIPPED` | `SOLVED` | `refine-001` |
+| EG_091325-0302 | `SKIPPED` | `SOLVED` | `refine-001` |
+| QE_120325_0607 | `SKIPPED` | `SOLVED` | `refine-001` |
+| QiC_120325_0513 | `AUTOSOL_READY` | `AWAITING_INSPECTION` | `refine-001` |
+
+Campaign state was `COMPLETE_WITH_FLAGS`, frozen integrity remained `OK`,
+and both run/status returned exit code 3 because QiC correctly remained a review
+case. This is desirable scientific isolation: the three unrelated members were
+not held back, and the questionable result was not promoted to solved.
+
+QiC is also the motivating kind of dataset for Refine Doctor, but **do not run
+standalone Doctor directly on this campaign-owned run yet**. Refine Doctor
+preserves the selected current checkpoint and never auto-selects a recommendation,
+but it updates the run-level `report.json` with Doctor history. The campaign
+AutoRefine receipt has already frozen/checksummed that report, so an out-of-band
+Doctor invocation would be detected as report drift during later reconciliation.
+The correct next implementation is a campaign-owned Doctor transition with its
+own receipt and recipe policy.
 
 The later Pine-specific live gate remains a real 3-5 member prepared
 nonstandard/geometry-diverse campaign once those datasets are available.
