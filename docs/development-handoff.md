@@ -287,13 +287,21 @@ nonstandard live gate. Its purpose is narrower and useful:
   (dataset -> status -> run -> checkpoint -> diagnostic) suitable for later GUI
   and Campaign Doctor presentation.
 
-The current command sequence first copies only authoritative top-level dataset
-files into the disposable sandbox, runs `nasolve check`, then performs
-`campaign plan` and `campaign status` **without launching crystallographic
-stages**. Do not record this W live validation as passed until that terminal
-output is inspected. If all four datasets are `DISCOVERED`, the next step is
-to run the campaign through the ordinary stage spine and inspect the resulting
-solution/review list.
+The planning/status phase has now passed in the real user environment:
+
+- `nasolve check`: Python 3.12.14, NARestraints 1.1.2, Phenix 2.2.1 and
+  Coot 1.3.3 all reported OK;
+- all four datasets were `DISCOVERED`;
+- zero datasets were blocked;
+- frozen input integrity was `OK`; and
+- every member froze the expected W recipe chemistry with D:1 as the explicit
+  5-prime-phosphate/OP3 site.
+
+No crystallographic stage had been launched at that point. The next live phase
+is to run **all four only through PostMR first**, then inspect the campaign-level
+MR/preparation outcomes before committing time to AutoSol/AutoRefine. The
+desired summary remains dataset -> status -> exact run -> checkpoint/next stage
+-> diagnostic.
 
 The later Pine-specific live gate remains a real 3-5 member prepared
 nonstandard/geometry-diverse campaign once those datasets are available.
