@@ -62,6 +62,33 @@ frozen observations/Free-R/targets, fail-closed ambiguity, one dataset's
 review/failure not stopping unrelated members, and no hidden score/ranking used
 to authorize donor reuse or registration.
 
+### Session stop-state — 2026-09-28
+
+This is the intended clean stopping point for the current development session:
+
+- Pine's runtime behavior is unchanged since the validated campaign backend
+  code head `8c2c423`; work after that point in this session was branch-history
+  reconciliation and documentation.
+- The four-member real W campaign smoke test is **closed and successful as an
+  orchestration validation**: 3 `SOLVED`, 1 `AWAITING_INSPECTION`, with
+  conditional AutoSol behaving correctly and frozen integrity preserved.
+- QiC is intentionally left untouched at `postmr` current /
+  `refine-001` REVIEW. Do not run standalone Refine Doctor on this
+  campaign-owned run.
+- The next backend implementation target is **first-class workflow recipe
+  semantics plus a campaign-owned Refine Doctor transition** with immutable
+  job/receipt/dependency provenance.
+- The next scientific live gate after that is the real 3-5 member
+  prepared-nonstandard/geometry-diverse campaign once those inputs are supplied.
+- Only after that gate should explicit `design_id` grouping be added, followed
+  by the GUI fork.
+- Known user-local untracked scientific data, patches, bundles, old environments
+  and example runs remain intentionally untracked. Do not stage, delete, rename
+  or otherwise "clean up" them unless the user explicitly asks.
+
+A fresh session should start by reading this section plus the machine intent,
+then inspect the current Pine head before changing code.
+
 ## Current pipeline
 
 The guarded standalone spine is operational:
