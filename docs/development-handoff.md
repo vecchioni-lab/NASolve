@@ -78,13 +78,11 @@ Doctor path.
 
 - Validated pre-Doctor campaign behavior remains anchored by the prior
   684-test/226-subtest baseline and the completed four-member W campaign.
-- Pine now also contains a campaign-owned Refine Doctor bridge. Focused
-  regression is green (**4 tests + 4 subtests**) and the real QiC campaign Doctor
-  ran successfully through campaign provenance. The broader campaign suite
-  reached **130 passed + 85 subtests** with one obsolete CLI expectation reported
-  twice: the test still treated `--through refine-doctor` as unsupported. That
-  stale expectation has now been corrected; a clean rerun of the campaign/full
-  suites is still required before calling the bridge fully regression-validated.
+- The campaign-owned Refine Doctor bridge is now **fully regression + live
+  validated**. Focused regression passed 4 tests + 4 subtests; the corrected CLI
+  suite passed **9 tests + 4 subtests**; the entire campaign family passed
+  **132 tests + 85 subtests**; and the full NASolve regression passed
+  **688 tests + 224 subtests** in 58.19 s. Patch/doc hygiene also passed.
 - Live QiC Doctor result: source `refine-001`; bounded
   `RefineDoctor/ML-fixed-scattering` produced `refine-002` with
   Rwork/Rfree = **0.1500/0.1502**, satisfying the strict numerical gate.
@@ -98,10 +96,16 @@ Doctor path.
   `refine-001` REVIEW. Do not run standalone Refine Doctor on this
   campaign-owned run.
 - The next backend implementation target is **first-class workflow recipe
-  semantics plus a campaign-owned Refine Doctor transition** with immutable
-  job/receipt/dependency provenance.
-- The next scientific live gate after that is the real 3-5 member
-  prepared-nonstandard/geometry-diverse campaign once those inputs are supplied.
+  semantics** so a recipe can opt into "apply Doctor as needed" without requiring
+  an explicit `--through refine-doctor` boundary.
+- The immediate next live test is the user-local `examples/TestSets/` folder
+  (roughly nine datasets). Run the whole prepared campaign in one invocation
+  from MR through conditional AutoSol, AutoRefine, and explicit campaign Doctor
+  continuation, then summarize dataset -> final status -> exact run ->
+  checkpoint/recommendation. The objective is one command producing as many
+  scientifically valid inspectable solutions as the folder permits.
+- The separate prepared-nonstandard/geometry-diverse Pine live gate still
+  remains after that when those dedicated inputs are supplied.
 - Only after that gate should explicit `design_id` grouping be added, followed
   by the GUI fork.
 - Known user-local untracked scientific data, patches, bundles, old environments
@@ -126,22 +130,20 @@ unless a user explicitly selects another one.
 
 Latest local code regression baseline on Pine:
 
-- **684 tests passed** in the full NASolve suite;
-- **226 subtests passed**;
-- full-suite runtime: **51.35 s**;
-- campaign-focused bundle: **150 tests + 90 subtests passed** in **21.31 s**;
-- newest mixed/CLI slice: **5 tests passed** in **3.39 s**; and
-- `git diff --check oak...pine` was clean before Oak's merge commit was
-  reconciled into Pine.
+- **688 tests passed** in the full NASolve suite;
+- **224 subtests passed**;
+- full-suite runtime: **58.19 s**;
+- campaign family: **132 tests + 85 subtests passed** in **24.08 s**;
+- campaign executor CLI: **9 tests + 4 subtests passed** in **0.24 s**;
+- campaign Doctor focused slice: **4 tests + 4 subtests passed** in **4.77 s**;
+- patch/doc hygiene passed; and
+- the real QiC campaign Doctor live continuation passed through immutable
+  campaign provenance.
 
 These results were reported from the active Python 3.12 development environment
-on Pine checkout `8c2c42311cc5497721da70360453a9d7acab0ffa`. PR #22 (Oak)
-was then merged to `main` with merge commit
-`fec66ebeddbd525684824576b705460324ec0a14`, and Pine incorporated that
-mainline merge as history-only reconciliation commit
-`aa56e9b` ("Merge Oak mainline into Pine"). GitHub then reported Pine ahead of
-`main` and not behind. The untracked local scientific/test artifacts were left
-untouched throughout. This is a user-local test result, not GitHub CI.
+on Pine after the campaign-owned Refine Doctor bridge and stale CLI regression
+fix. This is a user-local validation result, not GitHub CI. The untracked local
+scientific/test artifacts were left untouched.
 
 ## Terminal-phosphate chemistry
 
