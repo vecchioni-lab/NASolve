@@ -691,11 +691,16 @@ retain their normal processor allocation. Execution consumes the plan's frozen
 resolved configuration and resource snapshots rather than rediscovering a model,
 sequence source, frame catalogue, or project policy.
 
-The current coordinator stage order is:
+The validated default coordinator stage order is:
 
 ```text
 preflight -> Phaser -> PostMR -> conditional AutoSol -> AutoRefine
 ```
+
+Pine additionally contains an **implemented-unvalidated explicit continuation**
+from `AUTOREFINE_REVIEW` into a campaign-owned `refine-doctor` stage. This is
+not part of the default endpoint and is not yet a validated durable contract;
+the current local regression/live QiC run is the evidence gate.
 
 AutoSol is a **conditional stage gate**, not a mandatory scientific operation.
 PostMR records whether a supported anomalous candidate exists. When it does not,
