@@ -1173,9 +1173,19 @@ without launching scientific stages:
 
 The planner records valid and blocked datasets independently, input checksums,
 resolved configuration, and portable copies of selected models and preset
-resources under `NASolveCampaign/`. Status checks detect changed or missing
-frozen inputs. Existing dataset files, runs and checkpoint selections are
-preserved. A saved plan is immutable; use `status` rather than planning over it.
+resources under `NASolveCampaign/`. New plans use schema 2 and may contain
+standard W members, prepared nonstandard PDB+sequence members, or both.
+Existing schema-1 W plans remain executable. Status checks detect changed or
+missing frozen inputs. Existing dataset files, runs and checkpoint selections
+are preserved. A saved plan is immutable; use `status` rather than planning
+over it.
+
+A prepared nonstandard member explicitly declares `mode = nonstandard`, one
+dataset-relative/discovered PDB and a complete chain-labelled target (inline
+`[sequences]` or `sequence_file`). NASolve freezes the model bytes, raw
+sequence source and parsed target separately. Nonstandard members do not inherit
+the W frame/pair or D:1 chemistry merely because the selected campaign preset
+also supports W datasets.
 
 `DISCOVERED` means input and model selection passed; the scientific preflight
 and execution gates still remain. The sequential executor runs those existing
@@ -1203,12 +1213,15 @@ for interruption handling, explicit retries and live-test commands, and
 
 ## Project presets and model providers
 
-The versioned `5w6w` planning preset describes the current standard workflow.
-Future projects can add preset directories rather than new project-name
-branches in the workflow code. Later preset schemas can declare an MR catalogue
-and fallback, site roles, sequence resources, restraint policy, AutoSol
-sequence, metalation recipe, imported provider provenance, registration/cut
-recipes and model-search budgets.
+The versioned `5w6w` planning preset describes the standard W workflow.
+Prepared nonstandard members explicitly override the W AutoMR layer while using
+the selected preset's bounded shared stage policies. For a geometry-diverse real
+campaign, use a small project-local preset with a neutral project ID so the
+human-facing campaign identity reflects the project even though the current
+stage-policy schema remains conservative. Future preset schemas can declare
+broader MR catalogues/fallbacks, site roles, sequence resources, restraint
+policy, AutoSol sequence, metalation recipes, imported provider provenance,
+registration/cut recipes and model-search budgets.
 
 NASolve does **not** invoke AlphaFold. A separately developed upstream NAPrep
 package may organize designs/data and externally generated model candidates,
