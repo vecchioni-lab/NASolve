@@ -26,10 +26,11 @@ from .coot_runtime import CootDiscoveryError, discover_coot
 from .phenix_runtime import PhenixInstallation, discover_phenix
 from .phaser import execute_phaser
 from .postmr import prepare_postmr
+from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
 
 
-STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine")
+STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor")
 
 
 class CampaignStageError(CampaignError):
@@ -399,7 +400,7 @@ def execute_stage(
                 raise CampaignStageError("AUTOSOL_READY has no heavy-atom model or refinement data")
             required.extend([result.heavy_atom_model, result.refinement_data])
         extra["matched_distance"] = result.matched_distance
-    else:
+    elif stage == "autorefine":
         refine_policy = _object(policy.get("autorefine"), "AutoRefine policy")
         if refine_policy != {"recipe": "AutoRefine/default", "cycles": 5}:
             raise CampaignStageError("Unsupported campaign AutoRefine recipe")
@@ -423,6 +424,51 @@ def execute_stage(
         required.append(registry_snapshot)
         extra.update(checkpoint=result.checkpoint_id, selected_as_current=result.selected_as_current,
                      statistics=result.statistics)
+    else:
+        autorefine = _object(report.get("autorefine"), "AutoRefine review report")
+        if autorefine.get("status") != "AUTOREFINE_REVIEW":
+            raise CampaignStageError(
+                "Campaign Refine Doctor requires an AUTOREFINE_REVIEW source"
+            )
+        source_checkpoint = autorefine.get("checkpoint")
+        if not isinstance(source_checkpoint, str) or not source_checkpoint:
+            raise CampaignStageError("AutoRefine review has no source checkpoint")
+        if autorefine.get("selected_as_current") is not False:
+            raise CampaignStageError(
+                "Campaign Refine Doctor requires the review checkpoint to remain non-current"
+            )
+        result = execute_refine_doctor(
+            run,
+            _program(phenix, "phenix.refine"),
+            _program(phenix, "phenix.mtz.dump"),
+            phenix_version=phenix.version,
+            environment=phenix.environment,
+            from_checkpoint=source_checkpoint,
+            macro_cycles=3,
+            max_trials=5,
+        )
+        if result.current_checkpoint_preserved is not True:
+            raise CampaignStageError("Refine Doctor changed the current checkpoint")
+        stage_directory = result.doctor_directory
+        required = [result.report_path, result.audit.log_path]
+        trial_artifacts: list[str] = []
+        for trial in result.trials:
+            trial_artifacts.extend(_tree_files(root, trial.round_directory))
+        registry_snapshot = attempt / "refine-doctor-checkpoints.json"
+        with registry_snapshot.open("xb") as handle:
+            handle.write((run / "AutoRefine" / "checkpoints.json").read_bytes())
+        required.append(registry_snapshot)
+        inspection_checkpoint = result.recommended_checkpoint or result.source_checkpoint
+        extra.update(
+            checkpoint=inspection_checkpoint,
+            source_checkpoint=result.source_checkpoint,
+            recommended_checkpoint=result.recommended_checkpoint,
+            current_checkpoint_preserved=result.current_checkpoint_preserved,
+            recommendation=result.recommendation,
+            doctor_exit_code=result.exit_code,
+            artifacts=trial_artifacts,
+            message=f"{result.message}: {result.recommendation}",
+        )
     required.append(result.report_path)
     # report.json changes in later stages. Preserve its exact boundary contents
     # for the coordinator rather than treating the live report as immutable.
