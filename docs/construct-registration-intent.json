@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-27",
+  "version": "2026-09-28-pine-28",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1429,5 +1429,38 @@
       "docs/construct-registration-intent.json",
       "README.md"
     ]
+  },
+  "current_position": {
+    "status": "SESSION_CLOSED_CLEANLY",
+    "date": "2026-09-28",
+    "runtime_behavior_head": "8c2c42311cc5497721da70360453a9d7acab0ffa",
+    "current_branch": "pine",
+    "completed_now": [
+      "Oak/PR #22 merged to main without promoting Scout v2 to runtime authority",
+      "schema-2 prepared-nonstandard/mixed campaign backend fixture validation",
+      "real four-member W campaign orchestration smoke validation",
+      "conditional AutoSol skip/run behavior under real Phenix/Coot",
+      "independent dataset review isolation",
+      "QiC numerical review fingerprint capture",
+      "documentation continuity audit"
+    ],
+    "preserved_live_review_case": {
+      "dataset": "QiC_120325_0513",
+      "campaign": "/tmp/NASolve-W-live-20260928",
+      "run": "QiC_120325_0513/AutoMR/run_001",
+      "current_checkpoint": "postmr",
+      "review_checkpoint": "refine-001",
+      "doctor_invoked": false,
+      "guardrail": "Do not run standalone Refine Doctor on this campaign-owned run; integrate Doctor as a campaign-owned workflow transition first."
+    },
+    "next_order": [
+      "first-class frozen workflow recipe endpoint/conditional graph",
+      "campaign-owned bounded Refine Doctor transition with job/receipt/dependency provenance",
+      "real 3-5 member prepared-nonstandard/geometry-diverse live campaign",
+      "explicit stable design_id grouping",
+      "generic GUI fork",
+      "later Campaign Doctor donor-rescue runway"
+    ],
+    "local_worktree_guardrail": "Known untracked scientific data, patches, bundles, old environments and example runs are user-local and must not be staged/deleted/renamed without explicit instruction."
   }
 }
