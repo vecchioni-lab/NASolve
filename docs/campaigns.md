@@ -1,8 +1,10 @@
 # NASolve campaigns and project presets
 
-Status: architecture and roadmap. Versioned 5W6W presets, immutable campaign
-planning/status, and one sequential resumable candidate path are implemented;
-see [campaign planning](campaign-planning.md) and
+Status: architecture and roadmap. Versioned presets, immutable schema-2
+campaign planning/status, and one sequential resumable candidate path are
+implemented for standard W plus prepared nonstandard per-dataset PDB/sequence
+inputs; existing schema-1 W plans remain executable. See
+[campaign planning](campaign-planning.md) and
 [campaign execution](campaign-execution.md) for available commands and limits.
 The broader candidate-selection, Doctor, approval, reporting and deposition
 commands described below remain planned.
@@ -18,11 +20,15 @@ The campaign layer orchestrates the existing guarded stage engines. It must not
 reimplement Phaser, Coot, ReadySet, AutoSol, Phenix refinement, NARestraints,
 or their safety checks.
 
-The first supported production preset is 5W6W. The architecture must also
-support later project presets with different MR catalogues, sequences,
-metalation strategies, restraint policies, AutoSol protocols, refinement
-recipes, and imported model providers. Model generation itself is upstream;
-NASolve does not invoke AlphaFold.
+The first supported production preset is 5W6W. Schema-2 planning can also host
+prepared nonstandard datasets whose explicit model/sequence intent suppresses
+W-specific AutoMR defaults and chemistry while retaining the selected campaign's
+bounded shared stage policy. A neutral project-local preset ID is recommended
+for a geometry-diverse real campaign so the human-facing project identity is not
+misleading. The architecture must also support later project presets with
+different MR catalogues, sequences, metalation strategies, restraint policies,
+AutoSol protocols, refinement recipes, and imported model providers. Model
+generation itself is upstream; NASolve does not invoke AlphaFold.
 
 ## Core principles
 
@@ -500,13 +506,15 @@ identifiers and the exact approved snapshot submitted.
 3. **Implemented:** one resumable sequential 5W6W execution path using the
    existing AutoMR/PostMR/conditional AutoSol/AutoRefine stages, including
    pause and explicit retry.
-4. **Next CLI milestone:** generalize planning/execution to one frozen
-   nonstandard per-dataset PDB provider plus an exact frozen sequence target,
-   while preserving existing schema-1 W plans and all pause/retry/relocation
-   safeguards.
-5. **Next live milestone:** run a small real geometry-diverse campaign through
-   AutoMR/PostMR/conditional AutoSol/AutoRefine, with ambiguous representation
-   problems stopping only the affected dataset.
+4. **Implemented on Pine; live geometry-diverse validation pending:** schema-2
+   planning/execution for one frozen nonstandard per-dataset PDB provider plus
+   an exact frozen raw+parsed sequence target, while preserving schema-1 W plan
+   execution and pause/retry/relocation safeguards.
+5. **Implemented in fixture-backed regression; real live gate pending:** standard
+   W and prepared nonstandard members can coexist under one sequential campaign
+   coordinator without frame/pair/chemistry leakage. Run a small real
+   geometry-diverse campaign next, with ambiguous representation problems
+   stopping only the affected dataset.
 6. Add explicit stable Design grouping/identity for datasets sharing one
    construct/design record. Do not infer Design membership from filenames or
    similarity.
