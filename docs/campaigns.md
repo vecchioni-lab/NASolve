@@ -180,6 +180,11 @@ supported anomalous candidate is present, the AutoSol stage records accepted
 status `SKIPPED` and does not launch `phenix.autosol`. Review/failure of one
 dataset does not stop unrelated campaign members.
 
+Pine now also contains an **implemented-unvalidated** explicit
+`AUTOREFINE_REVIEW -> refine-doctor` continuation for campaign-owned Refine
+Doctor provenance. It is deliberately not automatic and not part of default
+campaign completion while its regression/live validation is in progress.
+
 The longer-term registration-aware target graph is:
 
 ```text
