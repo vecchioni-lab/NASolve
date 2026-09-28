@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-22",
+  "version": "2026-09-28-pine-23",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1260,7 +1260,7 @@
   },
   "current_live_validation": {
     "id": "pine-real-w-orchestration-2026-09-28",
-    "status": "PLANNING_AND_STATUS_IN_PROGRESS",
+    "status": "PLANNING_PASSED_POSTMR_PHASE_NEXT",
     "purpose": "Validate real multi-dataset campaign orchestration and campaign-level solution reporting with actual Phenix/Coot before the prepared-nonstandard geometry-diverse datasets are available.",
     "sandbox": "/tmp/NASolve-W-live-20260928",
     "datasets": [
@@ -1270,18 +1270,29 @@
       "EG_091325-0302"
     ],
     "current_phase": [
-      "copy only top-level authoritative dataset files into disposable sandbox",
-      "run nasolve check",
-      "campaign plan with 5w6w preset and explicit MR_frames root",
-      "campaign status",
-      "inspect all four frozen members before launching scientific stages"
-    ],
-    "next_if_all_discovered": [
-      "run all four through ordinary campaign stage spine",
-      "preserve local review/failure isolation",
-      "emit dataset -> status -> run -> checkpoint -> diagnostic solution summary"
+      "run all four datasets through campaign --through postmr",
+      "allow local MR/PostMR review/failure stops without stopping unrelated members",
+      "inspect campaign-level status before AutoSol/AutoRefine",
+      "summarize dataset -> status -> exact run -> checkpoint/next stage -> diagnostic"
     ],
     "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
-    "completion_rule": "Do not mark passed until real terminal output and resulting scientific stage outcomes are inspected."
+    "completion_rule": "Do not mark passed until real terminal output and resulting scientific stage outcomes are inspected.",
+    "planning_result": {
+      "runtime": {
+        "python": "3.12.14",
+        "narestraints": "1.1.2",
+        "phenix": "2.2.1",
+        "coot": "1.3.3"
+      },
+      "total": 4,
+      "discovered": 4,
+      "blocked": 0,
+      "frozen_input_integrity": "OK",
+      "chemistry": "All four members froze W recipe 5w6w@1.1.0 with D:1 as explicit 5-prime-phosphate/OP3 intent."
+    },
+    "next_if_postmr_acceptable": [
+      "continue eligible datasets through conditional AutoSol and AutoRefine",
+      "record final solved/review/failed solution list"
+    ]
   }
 }
