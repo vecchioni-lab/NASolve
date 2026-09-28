@@ -1,10 +1,11 @@
 # Execute a frozen campaign
 
-The first executor runs one standard W/5W6W candidate per selected dataset,
-sequentially, using the existing AutoMR preflight, Phaser, PostMR, conditional
-AutoSol and AutoRefine engines. It consumes the immutable schema-1 plan created
-by [campaign planning](campaign-planning.md). Existing saved plans need no
-migration or replacement.
+The executor runs one frozen candidate per selected dataset, sequentially,
+using the existing AutoMR preflight, Phaser, PostMR, conditional AutoSol and
+AutoRefine engines. New schema-2 plans may contain standard W/5W6W members,
+prepared nonstandard PDB+sequence members, or both in one campaign. Existing
+schema-1 W plans remain readable/executable and need no migration or
+replacement.
 
 ## First live check
 
@@ -56,6 +57,13 @@ An explicit Phenix installation applies to this invocation:
 
 The executor uses machine-local external-tool discovery but does not change
 the active workspace. Use explicit run paths when inspecting campaign results.
+
+For a prepared nonstandard member, execution reconstructs the AutoMR request
+only from the checksum-bound campaign resources. It does not rediscover the
+source PDB/FASTA, apply W frame/pair chemistry, or reinterpret campaign
+membership as model compatibility. Its supplied chain-labelled target is
+validated against the frozen search model by the ordinary AutoMR preflight.
+Representation ambiguity still stops that dataset for inspection.
 
 ## Local inspection stops
 
@@ -157,7 +165,13 @@ checkpoint, integrity and diagnostic fields when automating the command.
 
 Regression tests use controlled stage workers and external-tool fixtures to
 exercise dispatch, scientific stops, artifact verification, interruption,
-resume and relocation. Real campaign execution with the user's Phenix/Coot
-installations remains the live check above. The existing standalone DOHU
-validation does not by itself validate every campaign recovery path or the
-QiC phased path on a new Phenix installation.
+resume and relocation. Pine also exercises prepared nonstandard execution
+through the real NASolve stage engines with fixture crystallographic programs,
+including relocation, plus a mixed W/nonstandard campaign under one
+coordinator.
+
+Real geometry-diverse campaign execution with the user's Phenix/Coot
+installations remains the next live gate. The existing standalone DOHU
+validation does not by itself validate every campaign recovery path, the QiC
+phased path on a new Phenix installation, or a 3-5 member prepared-nonstandard
+campaign.
