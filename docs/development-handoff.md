@@ -15,7 +15,8 @@ For a fresh development session, recover state in this order:
 1. **Mainline registration state:** Oak/PR #22 is merged to `main` at
    `fec66ebeddbd525684824576b705460324ec0a14`. The design-aware Scout-v2
    helper is present but remains **experimental, proposal-only and non-runtime**.
-   Do not promote it merely because Oak merged.
+   Do not promote it merely because Oak merged. **Public/scientist-facing name is
+   simply `Scout`; v1/v2 labels are internal development provenance only.**
 2. **Active campaign branch:** `pine` sits above the merged Oak mainline and
    carries the schema-2 prepared-nonstandard/mixed campaign backend plus current
    campaign documentation. Synthetic campaign validation is closed at
@@ -77,11 +78,19 @@ Doctor path.
 
 - Validated pre-Doctor campaign behavior remains anchored by the prior
   684-test/226-subtest baseline and the completed four-member W campaign.
-- Pine now also contains an **in-progress campaign-owned Refine Doctor bridge**
-  after that baseline. It adds an explicit `refine-doctor` campaign stage,
-  review-receipt dependency handling, CLI `--through refine-doctor`, and focused
-  regression coverage. **Do not call this bridge validated until the current
-  local regression bundle and real QiC Doctor run report back green.**
+- Pine now also contains a campaign-owned Refine Doctor bridge. Focused
+  regression is green (**4 tests + 4 subtests**) and the real QiC campaign Doctor
+  ran successfully through campaign provenance. The broader campaign suite
+  reached **130 passed + 85 subtests** with one obsolete CLI expectation reported
+  twice: the test still treated `--through refine-doctor` as unsupported. That
+  stale expectation has now been corrected; a clean rerun of the campaign/full
+  suites is still required before calling the bridge fully regression-validated.
+- Live QiC Doctor result: source `refine-001`; bounded
+  `RefineDoctor/ML-fixed-scattering` produced `refine-002` with
+  Rwork/Rfree = **0.1500/0.1502**, satisfying the strict numerical gate.
+  Doctor returned `REFINE_DOCTOR_RECOMMEND`, preserved actual current
+  checkpoint `postmr`, and did not auto-select its recommendation. Free-R audit
+  was `NOISY` (66 independent groups; fraction 0.04456), not invalid.
 - The four-member real W campaign smoke test is **closed and successful as an
   orchestration validation**: 3 `SOLVED`, 1 `AWAITING_INSPECTION`, with
   conditional AutoSol behaving correctly and frozen integrity preserved.
@@ -937,3 +946,9 @@ only the claims the evidence supports.
 Chat history is working memory, never the sole design authority. A future Aster
 should be able to reconstruct the current design and epistemic status from the
 repo alone.
+
+README cleanup must never be used as a reason to delete developer provenance.
+Public simplification and developer continuity are separate operations. The
+2026-09-28 README cleanup was verified to have changed **README only**; Scout
+generation history, registration/topology design, GUI contract, campaign Doctor
+runway and workflow-recipe intent remain in the dev swarm.
