@@ -1,3 +1,4 @@
+import hashlib
 import json
 import shutil
 import tempfile
@@ -80,6 +81,25 @@ class CampaignExecutionTests(unittest.TestCase):
     def test_read_only_status_does_not_create_execution(self):
         self.assertIsNone(execution_status(self.root)["execution"])
         self.assertFalse((self.root / EXECUTION).exists())
+
+    def test_schema1_w_plan_remains_executable(self):
+        plan_path = self.root / "NASolveCampaign" / "plan.json"
+        plan = json.loads(plan_path.read_text())
+        plan["schema_version"] = 1
+        for entry in plan["datasets"]:
+            entry["effective_config"].pop("sequence_source", None)
+        plan.pop("fingerprint", None)
+        plan["fingerprint"] = hashlib.sha256(json.dumps(
+            plan, sort_keys=True, separators=(",", ":"), allow_nan=False,
+        ).encode()).hexdigest()
+        plan_path.write_text(json.dumps(plan, sort_keys=True, indent=2) + "\n")
+
+        result = execute_campaign(self.root, datasets=("A",), through="preflight")
+        self.assertEqual(self.calls, [("A", "preflight")])
+        item = self.items(result)["A"]
+        self.assertEqual(item["status"], "PAUSED")
+        self.assertEqual(item["next_stage"], "phaser")
+
 
     def test_sequential_execution_freezes_receipts_and_preserves_plan_workspace_and_existing_run(self):
         old = self.root / "A" / "AutoMR" / "run_007"
