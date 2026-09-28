@@ -776,8 +776,8 @@ them without selecting one.
 
 Scout v1 remains conservative: ordinary identity/renumbering cases can be
 described deterministically, while renamed repetitive strands remain ambiguous
-rather than being ranked by sequence similarity. The current Oak development
-branch adds an **experimental Scout v2 proposal helper** that tests a stricter
+rather than being ranked by sequence similarity. Oak/PR #22, now merged to
+`main`, added an **experimental Scout v2 proposal helper** that tests a stricter
 design-aware rule: propose a one-to-one chain mapping only when exactly one
 complete mapping has zero **unexplained** mismatches after accounting for
 explicit target-history and reviewed provider identities. It is proposal-only,
@@ -1189,8 +1189,8 @@ also supports W datasets.
 
 `DISCOVERED` means input and model selection passed; the scientific preflight
 and execution gates still remain. The sequential executor runs those existing
-engines and saves progress separately from the immutable plan. For a first
-check, run one dataset through PostMR, then continue it:
+engines and saves progress separately from the immutable plan. For a cautious
+first check, you can stop one dataset after PostMR and then resume it:
 
 ```bash
 ./nasolve campaign run examples --dataset DOHU --through postmr
@@ -1199,11 +1199,17 @@ check, run one dataset through PostMR, then continue it:
 ```
 
 The second `run` continues the same campaign-owned numbered run after verifying
-its completed stages. It does not repeat MR or PostMR. A scientific review or
-technical failure stops that dataset while other selected datasets continue.
-AutoSol runs only when the prepared model has a supported anomalous candidate;
-unaccepted phasing stops for inspection. Numerical refinement success retains
-the selected checkpoint and still requires model/map inspection.
+its completed stages. It does not repeat MR or PostMR. A plain
+`campaign run ROOT` otherwise defaults through AutoRefine and can advance all
+eligible datasets unattended through the current fixed stage order.
+
+A scientific review or technical failure stops only that dataset while other
+selected datasets continue. AutoSol is conditional: when PostMR finds no
+supported anomalous candidate, the campaign records an accepted `SKIPPED`
+AutoSol stage and does not launch `phenix.autosol`; when anomalous evidence
+requires it, AutoSol runs under the frozen policy. Unaccepted phasing stops for
+inspection. Numerical refinement success retains the selected checkpoint and
+still requires model/map inspection.
 
 Use `campaign pause examples` from another terminal to stop after the active
 stage finishes. Keep the execution terminal open; this first executor runs in
@@ -1218,10 +1224,16 @@ Prepared nonstandard members explicitly override the W AutoMR layer while using
 the selected preset's bounded shared stage policies. For a geometry-diverse real
 campaign, use a small project-local preset with a neutral project ID so the
 human-facing campaign identity reflects the project even though the current
-stage-policy schema remains conservative. Future preset schemas can declare
-broader MR catalogues/fallbacks, site roles, sequence resources, restraint
-policy, AutoSol sequence, metalation recipes, imported provider provenance,
-registration/cut recipes and model-search budgets.
+stage-policy schema remains conservative.
+
+The current preset freezes conditional AutoSol policy and the AutoRefine
+recipe/cycle count, but the campaign endpoint/transition graph is still
+executor-defined. A future workflow-preset schema should make that journey
+explicit/versioned so one selected recipe fully declares how far the campaign
+runs and which conditional/recovery branches are allowed. Future preset schemas
+can also declare broader MR catalogues/fallbacks, site roles, sequence
+resources, restraint policy, AutoSol sequence, metalation recipes, imported
+provider provenance, registration/cut recipes and model-search budgets.
 
 NASolve does **not** invoke AlphaFold. A separately developed upstream NAPrep
 package may organize designs/data and externally generated model candidates,
