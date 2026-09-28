@@ -392,6 +392,92 @@ A small real campaign of roughly 3-5 geometry-diverse datasets with curated
 per-dataset PDB + sequence inputs is the preferred live validation fixture once
 those data are mature enough to serve as a stable test set.
 
+### CLI-first implementation runway and GUI fork point
+
+Do not begin GUI implementation by compensating for missing campaign backend
+semantics. The next campaign work should remain CLI-first until one real
+geometry-diverse campaign can execute end-to-end from frozen per-dataset inputs.
+
+The recommended sequence is:
+
+1. **Close the current Oak registration branch cleanly.** Keep Scout v2
+   backend-only/non-runtime unless a separate reviewed integration task is
+   opened. Campaign generalization should start from a stable merged baseline
+   rather than expanding PR #22 again.
+2. **Introduce a backward-compatible campaign-plan schema for nonstandard
+   per-dataset providers.** Keep existing schema-1 W plans readable/executable.
+   A newer plan schema should admit one explicit or uniquely discovered
+   nonstandard dataset PDB, freeze its exact bytes/checksum/provider provenance,
+   and freeze both the original sequence-source bytes and parsed effective
+   chain-labelled target.
+3. **Generalize frozen campaign preflight materialization.** The current
+   `campaign_stages._frozen_selection()` hard-stops unless
+   `mode=standard, frame=W`. Preserve that exact W branch, then add a
+   nonstandard branch that reconstructs ordinary standalone
+   `ResolvedAutoMRInput` only from frozen campaign resources—no catalogue or
+   source-folder rediscovery.
+4. **Keep the first heterogeneous slice deliberately boring.** Require one
+   prepared model with simple/unambiguous correspondence to its own supplied
+   target. Nontrivial registration, chain recutting, multiplicity surprises or
+   topology stop only that dataset for inspection. Do not make Scout v2 runtime
+   authority merely to unblock this milestone.
+5. **Regression-test mixed and failure behavior.** Cover standard-W plans,
+   nonstandard plans, optionally mixed campaigns, relocation, pause/resume,
+   explicit retry, blocked/inspection members, model/sequence checksum drift,
+   and the rule that one failed dataset does not stop unrelated members.
+6. **Run a real 3-5 dataset geometry-diverse CLI campaign** through
+   AutoMR -> PostMR -> conditional AutoSol -> AutoRefine. Inspect exact run
+   ownership/checkpoints and at least one blocked/review case. This completes
+   the first **basic heterogeneous campaign** milestone.
+7. **Add minimal explicit Design identity/grouping.** Let a campaign manifest
+   bind datasets to a stable `design_id` and optional shared design metadata;
+   do not infer shared design from filenames, sequence similarity or campaign
+   co-membership. This creates the backend object the future GUI Design level
+   will display and gives later donor policy a reviewed relationship primitive.
+
+**GUI branch point:** after steps 1-7 are green, the campaign is sufficiently
+functional and semantically stable to begin the generic GUI shell without
+making the GUI invent missing campaign concepts. GUI work may then proceed in
+parallel with later Campaign Doctor backend work.
+
+### Campaign Doctor-ready backend runway
+
+Before broad automatic Campaign Doctor rescue, preserve these additional backend
+milestones as a CLI/read-only progression:
+
+8. **Campaign-wide donor/recipient candidate view.** Enumerate verified solved
+   checkpoint candidates and compare each against explicitly related unsolved
+   recipients using the already implemented descriptor/comparison primitives.
+   Emit structured facts only—no rank, score or rescue authorization.
+9. **Reviewed donor eligibility policy.** Define a conservative project/preset
+   policy over explicit Design/family relationship, checkpoint status/review,
+   target/site coverage, residue identity or explicitly supported
+   transformation, mirror/chirality constraints, chemistry and rescue budget.
+   Eligibility must be explainable as categorical gates rather than a hidden
+   similarity score.
+10. **Attempt-local derived-provider provenance.** A rescue candidate must be
+    frozen beneath a new recipient attempt with donor dataset/checkpoint/model
+    checksum, compatibility evidence, transformations and policy identity.
+    Never rewrite the campaign plan, recipient observations/Free-R flags or the
+    failed original attempt.
+11. **First explicit-donor rescue CLI.** Require the user to name one eligible
+    donor checkpoint and one recipient. Start with direct donor-model MR only
+    under the strictest policy; do not rank several donors or mutate/ensemble
+    them yet. Continue successful MR through the ordinary recipient PostMR /
+    AutoSol / AutoRefine gates.
+12. **Bounded Campaign Doctor mode.** Only after explicit-donor rescue is
+    validated, allow the Doctor to enumerate a small policy-eligible donor set
+    under a declared attempt budget. Preserve every rescue candidate/attempt and
+    stop for inspection when alternatives imply materially different
+    interpretations.
+13. **Later expansions:** donor-to-recipient mutation, model libraries,
+    ensembles, geometry/topology-aware provider transforms and cross-design
+    rescue remain separate reviewed increments.
+
+This sequence intentionally makes "Campaign Doctor" an orchestration layer over
+validated campaign/provider/checkpoint primitives rather than a monolithic model
+ranking system.
+
 ## Campaign Doctor: cross-dataset model rescue
 
 Campaign Doctor policy and rescue execution remain future work above the
