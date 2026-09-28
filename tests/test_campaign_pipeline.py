@@ -190,6 +190,91 @@ class CampaignPipelineTests(unittest.TestCase):
         self.assertEqual((self.root / "NASolveCampaign/plan.json").read_bytes(), plan_bytes)
         self.assertEqual(execution_status(self.root)["execution"]["datasets"][0]["status"], "SOLVED")
 
+    def test_mixed_standard_and_nonstandard_campaign_share_one_executor_without_context_leakage(self):
+        self.root = self.base / "mixed-original"
+        self.root.mkdir()
+
+        frames = self.base / "mixed-frames" / "5W6W"
+        frames.mkdir(parents=True)
+        (frames / "C_G.pdb").write_text(postmr_model_text("DC", "DG"))
+        (frames / "seq_base.txt").write_text("C\n\nG\n")
+
+        standard = make_dataset(self.root / "standard", include_model=False)
+        (standard / "staraniso-alldata.mtz").write_bytes(b"standard-observations")
+        (standard / "nasolve.txt").write_text(
+            "[automr]\nmode = standard\nframe = W\npair = C:G\nallow_op3_sites =\n"
+        )
+
+        nonstandard = make_dataset(self.root / "nonstandard", include_model=False)
+        (nonstandard / "staraniso-alldata.mtz").write_bytes(b"nonstandard-observations")
+        models = nonstandard / "models"
+        models.mkdir()
+        source_model = models / "search.pdb"
+        source_model.write_text(model_text())
+        source_sequence = nonstandard / "construct.fasta"
+        source_sequence.write_text(">A\nAC\n")
+        (nonstandard / "nasolve.txt").write_text(
+            "[automr]\n"
+            "mode = nonstandard\n"
+            "model = models/search.pdb\n"
+            "sequence_file = construct.fasta\n"
+        )
+
+        plan = plan_campaign(self.root, frames_directory=frames.parent)
+        self.assertEqual(plan["schema_version"], 2)
+        planned = {entry["id"]: entry for entry in plan["datasets"]}
+        self.assertEqual(
+            {name: entry["effective_config"]["mode"] for name, entry in planned.items()},
+            {"nonstandard": "nonstandard", "standard": "standard"},
+        )
+        self.assertEqual(planned["standard"]["effective_config"]["frame"], "W")
+        self.assertEqual(planned["standard"]["effective_config"]["allow_op3_sites"], [])
+        self.assertIsNone(planned["nonstandard"]["effective_config"]["frame"])
+        self.assertEqual(planned["nonstandard"]["effective_config"]["allow_op3_sites"], [])
+        self.assertEqual(
+            planned["nonstandard"]["effective_config"]["phosphate_intent"]["source"],
+            "none",
+        )
+
+        shutil.rmtree(frames.parent)
+        source_model.unlink()
+        source_sequence.unlink()
+
+        self.jobs.clear()
+        result = execute_campaign(self.root)
+        items = {item["id"]: item for item in result["execution"]["datasets"]}
+        self.assertEqual(result["execution"]["state"], "COMPLETE")
+        self.assertEqual(set(items), {"nonstandard", "standard"})
+        self.assertEqual({item["status"] for item in items.values()}, {"SOLVED"})
+        self.assertEqual(
+            self.jobs,
+            [stage for _dataset in ("nonstandard", "standard") for stage in
+             ("preflight", "phaser", "postmr", "autosol", "autorefine")],
+        )
+
+        nonstandard_report = json.loads(
+            (self.root / items["nonstandard"]["run"] / "report.json").read_text()
+        )
+        standard_report = json.loads(
+            (self.root / items["standard"]["run"] / "report.json").read_text()
+        )
+        self.assertEqual(nonstandard_report["mode"], "nonstandard")
+        self.assertIsNone(nonstandard_report["frame"])
+        self.assertIsNone(nonstandard_report["post_mr_plan"]["standard_pair"])
+        self.assertEqual(nonstandard_report["post_mr_plan"]["sequences"], {"A": "AC"})
+        self.assertEqual(
+            nonstandard_report["inputs"]["model_provider"]["kind"],
+            "explicit-nonstandard-model",
+        )
+        self.assertEqual(standard_report["mode"], "standard")
+        self.assertEqual(standard_report["frame"]["name"], "W")
+        self.assertIsNotNone(standard_report["post_mr_plan"]["standard_pair"])
+        self.assertEqual(
+            standard_report["inputs"]["model_provider"]["kind"],
+            "standard-frame-catalogue",
+        )
+        self.assertEqual(execution_status(self.root)["execution"]["state"], "COMPLETE")
+
     def test_changed_readyset_dictionary_blocks_resume_before_refinement(self):
         result = execute_campaign(self.root, through="postmr")
         item = result["execution"]["datasets"][0]
