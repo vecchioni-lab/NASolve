@@ -682,19 +682,35 @@ consuming it and stores execution progress separately. See
 
 ## Campaign execution contract
 
-`campaign_execution` composes one standard W/5W6W path per dataset through the
-existing scientific engines. The foreground executor is local and sequential;
-individual Phenix stages retain their normal processor allocation. It consumes
-the plan's resolved configuration and resource snapshots rather than choosing
-a new model from a possibly changed source catalogue.
+`campaign_execution` composes one frozen candidate per dataset through the
+existing scientific engines. New campaign plans use **schema 2** and may contain
+standard W/5W6W members, prepared nonstandard PDB+sequence members, or a mixture
+of both; existing schema-1 W plans remain readable and executable. The
+foreground executor is local and sequential, while individual Phenix stages
+retain their normal processor allocation. Execution consumes the plan's frozen
+resolved configuration and resource snapshots rather than rediscovering a model,
+sequence source, frame catalogue, or project policy.
 
-The immutable plan remains schema 1. Separate schema-1 execution state under
-`NASolveCampaign/execution/` records the plan fingerprint, exact attempt/run
-ownership, stage progress, checkpoint, diagnostic and inspection requirement.
-Atomic updates, campaign/dataset locks, process identity and heartbeat records
-protect against competing execution and expose interrupted work. Stage workers
-execute in owned process groups so cancellation can terminate their external
-tool children. A pause request finishes the active stage before stopping.
+The current coordinator stage order is:
+
+```text
+preflight -> Phaser -> PostMR -> conditional AutoSol -> AutoRefine
+```
+
+AutoSol is a **conditional stage gate**, not a mandatory scientific operation.
+PostMR records whether a supported anomalous candidate exists. When it does not,
+the campaign records accepted status `SKIPPED` and does not launch
+`phenix.autosol`. When it does, the frozen AutoSol policy applies. A plain
+`campaign run ROOT` currently advances eligible datasets through AutoRefine;
+`--through STAGE` is an explicit validation/debugging stop boundary.
+
+Separate schema-1 execution state under `NASolveCampaign/execution/` records
+the plan fingerprint, exact attempt/run ownership, stage progress, checkpoint,
+diagnostic and inspection requirement. Atomic updates, campaign/dataset locks,
+process identity and heartbeat records protect against competing execution and
+expose interrupted work. Stage workers execute in owned process groups so
+cancellation can terminate their external-tool children. A pause request
+finishes the active stage before stopping.
 
 Resumption verifies saved stage results and checksummed artifacts before
 continuing. It never adopts an unrelated newest run, guesses artifacts by
@@ -710,15 +726,40 @@ pass records its selected checkpoint as `SOLVED` with both
 `numerical_success = true` and `inspection_required = true`. Final structural
 approval, automatic Doctor selection and deposition remain separate future
 layers. The existing observation, Free-R, chemistry and checkpoint selection
-gates are preserved. See [campaign execution](campaign-execution.md) for the
-command and recovery contract.
+gates are preserved.
+
+The current unattended behavior still relies on the executor's fixed stage
+order and default AutoRefine endpoint. A future preset/campaign workflow schema
+should freeze the intended endpoint and conditional stage graph explicitly so a
+single selected campaign recipe defines how far each dataset should advance and
+which bounded recovery branches are permitted. That future abstraction must not
+weaken the existing fail-closed per-dataset stops or immutable stage provenance.
+
+See [campaign execution](campaign-execution.md) for the command and recovery
+contract.
 
 ## Project preset direction
 
 The first planning preset makes a bounded set of project settings declarative.
 Further frame and project policy should use data rather than additional
-conditionals keyed to names such as `5W6W`. A later preset manifest beside each
-frame catalogue can declare:
+conditionals keyed to names such as `5W6W`. The current schema already freezes
+W/nonstandard AutoMR defaults, PostMR policy, conditional
+`autosol.policy = when-anomalous`, AutoRefine recipe/cycle count, resources and
+declared chemistry.
+
+A later preset/workflow manifest should also make the **campaign journey**
+explicit rather than leaving its endpoint implicit in the executor. It should
+be able to declare, in typed data:
+
+- the intended terminal stage or terminal outcome for the campaign recipe;
+- conditional stage transitions such as AutoSol only when PostMR evidence
+  requires it;
+- whether an unaccepted optional branch stops for inspection or may fall back
+  to a reviewed ordinary path;
+- bounded Doctor/recovery policies once separately validated; and
+- human-facing recipe identity/version suitable for provenance and GUI display.
+
+Further frame/project policy may also declare:
 
 - model providers, exact-pair catalogues, fallbacks, and copy/symmetry policy;
 - standard sites, chain sequences, and restraint resources or modes;
@@ -727,10 +768,10 @@ frame catalogue can declare:
 - the AutoSol sequence resource and phasing defaults; and
 - imported external-provider provenance/capabilities.
 
-The orchestration layers consume a frozen model plus declared capabilities.
-This permits a new experimental campaign to ship a versioned preset directory
-without changing common run allocation, provenance, safety gates, Coot/Phenix
-isolation, or downstream reporting.
+The orchestration layers consume frozen models, targets, policy and capabilities.
+This permits a new experimental campaign to ship a versioned preset/workflow
+directory without changing common run allocation, provenance, safety gates,
+Coot/Phenix isolation, or downstream reporting.
 
 Model generation is not part of NASolve's runtime contract. A separate optional
 NAPrep package may manage design/data records and externally generated model
@@ -744,19 +785,31 @@ Earlier end-to-end local validation is preserved in
 implementation edge are maintained in `development-handoff.md`.
 
 The campaign planner freezes inputs and project policy; the sequential executor
-adds guarded stage composition and saved progress. The read-only Campaign
-Doctor provenance/comparison prerequisites are now implemented.
+adds guarded stage composition and saved progress. Pine's schema-2 prepared
+nonstandard/mixed backend is fixture-green. A real four-member W campaign has
+also passed planning, preflight, Phaser and PostMR under the user's actual
+Phenix/Coot installation; its plain unattended resume through the default
+AutoRefine endpoint is the current live check. The separate real
+prepared-nonstandard geometry-diverse campaign remains pending until those input
+datasets are available.
 
-The next structural robustness layer is construct registration: a cheap
+The read-only Campaign Doctor provenance/comparison prerequisites are implemented.
+The next campaign-semantic additions are: (1) complete the live W orchestration
+check; (2) validate a real 3-5 member prepared-nonstandard/geometry-diverse
+campaign; (3) add explicit stable Design identity; and (4) make the selected
+campaign workflow endpoint/conditional graph first-class frozen recipe data.
+
+Construct registration remains the next structural robustness layer: a cheap
 non-mutating Registration Scout before Phaser, authoritative ASU Registration
 on the MR solution before PostMR, a guided Registration Net for ambiguous
 cases, and bounded Registration/Recut Rescue candidates only when ordinary MR
-or representation mapping needs them. Current clean W runs must retain an
-identity-like fast path.
+or representation mapping needs them. The merged Scout-v2 helper remains
+experimental/non-runtime; current clean W runs must retain an identity-like fast
+path.
 
 Reviewed Campaign Doctor eligibility/rescue policy and richer inspection
-summaries remain the next major orchestration steps after this registration
-foundation.
+summaries remain later orchestration steps after these campaign/registration
+foundations.
 
 Campaign orchestration should reuse frozen inputs, immutable numbered runs,
 and checkpoint lineage, with resumable per-dataset progress and explicit
