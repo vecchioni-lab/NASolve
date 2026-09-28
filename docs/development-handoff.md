@@ -335,6 +335,30 @@ through symmetry, and report local closure, long-period closure, partial use,
 reorganization or unresolved phase as separate descriptive facts. It must not
 force the designed n-fold order onto the structure.
 
+Junctions are now part of the intended Topo model as first-class logical
+objects. A junction declaration should survive ASU recutting and may span
+several symmetry/coordinate fragments while retaining stable logical arm
+identities, member strands/residue ranges, true nicks/termini, sticky ends and
+optional reviewed stacking/pairing expectations. Junctions inferred from an
+emergent periodic graph remain hypotheses until uniquely supported or
+user-confirmed.
+
+Topo Net should be a persistent workbench above the checkpoint graph rather
+than a one-shot cutter. A user should be able to operate on a seam/junction,
+materialize a child, optionally perform bounded Coot repair, press Refine, and
+receive the resulting refinement child plus diagnostics back into the same GUI
+without closing/restarting the topology session. The first Refine action should
+use a short ordinary audited AutoRefine path; selection-restricted refinement
+is intentionally later work.
+
+Keep the workbench display sparse. Global chips may show current checkpoint,
+Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
+junction expands only the relevant local diagnostics: Phenix bond/angle
+outliers, phosphate connectivity and clashes, base-plane/sugar/backbone
+geometry, reviewed pairing/stacking deviations, mutation/registration state,
+and later validated residue-density metrics. Selections should round-trip to
+Coot so abstract Topo operations and atomic inspection stay coupled.
+
 Topo surgery also needs a bounded local repair layer rather than assuming one
 Coot action always works. A future **Topo Surgeon/Doctor** may branch a small
 declared set of materialization/mutation/RSR strategies, then compare Phenix
