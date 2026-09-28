@@ -4,7 +4,7 @@ import shlex
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import ANY, patch
 
 from nasolve.campaigns import CampaignError
 from nasolve.cli import main
@@ -148,7 +148,7 @@ class CampaignExecutorCLITests(unittest.TestCase):
             datasets=("DOHU",),
             through="refine-doctor",
             phenix_root=None,
-            progress=unittest.mock.ANY,
+            progress=ANY,
         )
         self.assertIn("AWAITING_INSPECTION", output)
 
