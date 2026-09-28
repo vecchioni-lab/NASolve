@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-26",
+  "version": "2026-09-28-pine-27",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1238,7 +1238,8 @@
       "merged Scout v2 remains experimental proposal-only and non-runtime",
       "real four-member W campaign completed: 3 SOLVED + 1 AWAITING_INSPECTION, COMPLETE_WITH_FLAGS, integrity OK",
       "DOHU/EG/QE AutoSol SKIPPED; QiC AUTOSOL_READY then refinement review",
-      "standalone Refine Doctor must not mutate a campaign-owned completed run report outside campaign receipt provenance"
+      "standalone Refine Doctor must not mutate a campaign-owned completed run report outside campaign receipt provenance",
+      "QiC live review fingerprint: Rwork/Rfree 0.1646/0.1561, gap -0.0085; terminal geometry PASS max 1.74 sigma; B:4 iodine f'' 7.51547; refine-001 REVIEW/non-current, current postmr"
     ]
   },
   "campaign_development_branch": {
@@ -1377,7 +1378,36 @@
           "autosol": "AUTOSOL_READY",
           "final_status": "AWAITING_INSPECTION",
           "checkpoint": "refine-001",
-          "diagnostic": "Refinement completed, but numerical acceptance criteria were not met"
+          "diagnostic": "Refinement completed, but numerical acceptance criteria were not met",
+          "numerical_fingerprint": {
+            "r_work": 0.1646,
+            "r_free": 0.1561,
+            "r_free_minus_r_work": -0.0085,
+            "clashscore": 32.23,
+            "terminal_geometry_audit": {
+              "status": "PASS",
+              "requires_review": false,
+              "expected_restraint_count": 11,
+              "restraint_count": 11,
+              "max_sigma_deviation": 1.74
+            },
+            "anomalous_site": {
+              "site": "B:4",
+              "element": "I",
+              "wavelength": 1.377618,
+              "refined_f_double_prime": 7.51547,
+              "refined_f_prime": -5.98383,
+              "autosol_status": "AUTOSOL_READY",
+              "use_for_refinement": true
+            },
+            "checkpoint_state": {
+              "refine_001_status": "REVIEW",
+              "refine_001_selected_as_current": false,
+              "current": "postmr"
+            },
+            "doctor_state": "NONE; campaign-owned run remains untouched by standalone Refine Doctor"
+          },
+          "interpretation": "Numerical/statistical review case, not terminal-phosphate chemistry failure; ideal live target for future campaign-owned Refine Doctor transition."
         }
       },
       "interpretation": "Real W campaign orchestration is validated: one-command continuation, conditional AutoSol skip/run, independent dataset review isolation, exact run/checkpoint ownership, COMPLETE_WITH_FLAGS summary and integrity-preserving exit status all behaved as intended."
