@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-28",
+  "version": "2026-09-28-pine-29",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1173,8 +1173,8 @@
       {
         "id": 6,
         "name": "explicit_workflow_recipe",
-        "goal": "Freeze campaign endpoint and conditional graph as versioned recipe data, including campaign-owned bounded Refine Doctor escalation with immutable job/receipt/dependency provenance.",
-        "status": "NEXT_BACKEND_SEMANTIC"
+        "goal": "Validate campaign-owned Refine Doctor continuation, then freeze campaign endpoint/conditional graph as versioned recipe data with optional human semantic policy 'apply Doctor as needed'.",
+        "status": "CAMPAIGN_DOCTOR_BRIDGE_IMPLEMENTED_UNVALIDATED_WORKFLOW_RECIPE_CONTRACT_NEXT"
       },
       {
         "id": 7,
@@ -1239,7 +1239,12 @@
       "real four-member W campaign completed: 3 SOLVED + 1 AWAITING_INSPECTION, COMPLETE_WITH_FLAGS, integrity OK",
       "DOHU/EG/QE AutoSol SKIPPED; QiC AUTOSOL_READY then refinement review",
       "standalone Refine Doctor must not mutate a campaign-owned completed run report outside campaign receipt provenance",
-      "QiC live review fingerprint: Rwork/Rfree 0.1646/0.1561, gap -0.0085; terminal geometry PASS max 1.74 sigma; B:4 iodine f'' 7.51547; refine-001 REVIEW/non-current, current postmr"
+      "QiC live review fingerprint: Rwork/Rfree 0.1646/0.1561, gap -0.0085; terminal geometry PASS max 1.74 sigma; B:4 iodine f'' 7.51547; refine-001 REVIEW/non-current, current postmr",
+      "campaign-owned Refine Doctor bridge implemented on Pine but not yet validated by current local/live run",
+      "default campaign endpoint remains autorefine; refine-doctor continuation is explicit",
+      "future workflow recipe semantic option: 'apply Doctor as needed' (exact schema spelling deferred)",
+      "future GUI visually builds the same backend recipe from supported capabilities/defaults",
+      "all CLI interaction decisions must have GUI-equivalent backend actions"
     ]
   },
   "campaign_development_branch": {
@@ -1285,9 +1290,10 @@
       "EG_091325-0302"
     ],
     "current_phase": [
-      "W orchestration smoke validation is closed",
-      "do not run standalone Refine Doctor on campaign-owned QiC until campaign-owned Doctor transition exists",
-      "next Pine-specific live gate is a real 3-5 member prepared-nonstandard/geometry-diverse campaign when inputs are supplied"
+      "real W orchestration smoke validation remains complete",
+      "campaign-owned Refine Doctor bridge is implemented-unvalidated",
+      "user is running regression gates before any live QiC Doctor mutation",
+      "if regression gates pass, execute Doctor only on QiC through campaign provenance"
     ],
     "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
     "completion_rule": "Satisfied for W orchestration only; does not satisfy prepared-nonstandard geometry-diverse live gate.",
@@ -1414,7 +1420,7 @@
     }
   },
   "documentation_continuity": {
-    "status": "AUDITED_AND_RECONCILED",
+    "status": "AUDITED_RECONCILED_AND_INCREMENTAL_SYNC_RULE_RECORDED",
     "purpose": "Keep current runtime behavior, live validation, merged Oak registration scope, future workflow recipe, geometry-diverse gate, Design/GUI fork and Campaign Doctor runway consistent across durable docs.",
     "read_first": "docs/development-handoff.md#read-this-first-current-development-edge",
     "audited_documents": [
@@ -1428,12 +1434,13 @@
       "docs/construct-registration.md",
       "docs/construct-registration-intent.json",
       "README.md"
-    ]
+    ],
+    "update_rule": "Propagate material intent changes immediately to the smallest authoritative doc set; do not broaden README/architecture unless their scope actually changed; promote validation status in a small follow-up after evidence arrives."
   },
   "current_position": {
-    "status": "SESSION_CLOSED_CLEANLY",
+    "status": "SESSION_ACTIVE_QIC_CAMPAIGN_DOCTOR_VALIDATION_IN_PROGRESS",
     "date": "2026-09-28",
-    "runtime_behavior_head": "8c2c42311cc5497721da70360453a9d7acab0ffa",
+    "runtime_behavior_head": "93a85edeaed357302fb4952ada760b1855b57b3a",
     "current_branch": "pine",
     "completed_now": [
       "Oak/PR #22 merged to main without promoting Scout v2 to runtime authority",
@@ -1454,13 +1461,81 @@
       "guardrail": "Do not run standalone Refine Doctor on this campaign-owned run; integrate Doctor as a campaign-owned workflow transition first."
     },
     "next_order": [
-      "first-class frozen workflow recipe endpoint/conditional graph",
-      "campaign-owned bounded Refine Doctor transition with job/receipt/dependency provenance",
+      "finish current campaign-owned Refine Doctor regression/live validation",
+      "promote documentation status only if evidence supports it",
+      "design first-class frozen workflow recipe endpoint/conditional graph including optional 'apply Doctor as needed'",
       "real 3-5 member prepared-nonstandard/geometry-diverse live campaign",
       "explicit stable design_id grouping",
-      "generic GUI fork",
+      "generic GUI fork with visual recipe builder and full CLI interaction parity",
       "later Campaign Doctor donor-rescue runway"
     ],
-    "local_worktree_guardrail": "Known untracked scientific data, patches, bundles, old environments and example runs are user-local and must not be staged/deleted/renamed without explicit instruction."
+    "local_worktree_guardrail": "Known untracked scientific data, patches, bundles, old environments and example runs are user-local and must not be staged/deleted/renamed without explicit instruction.",
+    "in_progress": {
+      "feature": "campaign-owned Refine Doctor continuation",
+      "implementation_status": "IMPLEMENTED_UNVALIDATED",
+      "behavior": [
+        "refine-doctor exists as explicit optional campaign stage after AUTOREFINE_REVIEW",
+        "default campaign endpoint remains autorefine; Doctor does not run implicitly",
+        "explicit --through refine-doctor may continue only eligible refinement-review datasets",
+        "Doctor receives exact AutoRefine review receipt dependency",
+        "out-of-band run-report mutation blocks Doctor",
+        "Doctor recommendation remains inspection-only and does not auto-select current checkpoint"
+      ],
+      "validation": "User is currently running syntax + focused campaign Doctor regression + campaign family + full NASolve regression, followed conditionally by the real QiC campaign Doctor live run."
+    }
+  },
+  "workflow_recipe_product_intent": {
+    "status": "PLANNED_CONTRACT_FIELD_NAMES_DEFERRED",
+    "principle": "One frozen campaign recipe should declare the endpoint and conditional graph used by both CLI and GUI.",
+    "doctor_policy": {
+      "human_semantics": "apply Doctor as needed",
+      "exact_schema_spelling": "DEFERRED",
+      "absent": "Eligible review states stop for inspection.",
+      "enabled": "Only backend-supported, separately validated, bounded stage-specific Doctors may run automatically when their eligibility gate is met.",
+      "does_not_authorize": [
+        "arbitrary recovery search",
+        "automatic selection of a Doctor-recommended checkpoint",
+        "weakening scientific hard gates"
+      ]
+    },
+    "gui_recipe_builder": {
+      "role": "Visual constructor/editor for the same backend workflow recipe consumed by CLI execution.",
+      "allowed_options": "Expose only capabilities/options the backend actually supports and has enabled; future/unavailable capabilities remain absent or clearly disabled.",
+      "defaults": "GUI defaults must be the backend/CLI defaults, not separate UI choices.",
+      "provenance": "Saving/running from GUI produces the same frozen recipe/provenance as CLI."
+    },
+    "cli_gui_interaction_parity": [
+      "inspect/open in Coot",
+      "yes/no confirmation",
+      "explicit continuation from review",
+      "Doctor candidate inspection",
+      "checkpoint selection / Make Current",
+      "keep current / decline selection"
+    ],
+    "interaction_rule": "GUI may change presentation (buttons/cards/popovers/tree actions) but not eligibility, defaults, provenance or scientific consequence."
+  },
+  "documentation_update_discipline": {
+    "status": "ACTIVE_PROJECT_RULE",
+    "principle": "Small material changes in scientific/product intent are propagated in the same development turn so chat never becomes the sole design authority.",
+    "smallest_authoritative_swarm": [
+      "relevant subsystem contract",
+      "architecture.md only for durable invariant/system-boundary changes",
+      "development-handoff.md for immediate implementation edge",
+      "construct-registration-intent.json when future Aster/automation continuity depends on the distinction",
+      "gui.md when interaction semantics change",
+      "README.md only when current user-facing workflow changes"
+    ],
+    "epistemic_states": [
+      "planned",
+      "implemented-unvalidated",
+      "fixture-validated",
+      "live-validated"
+    ],
+    "guardrails": [
+      "do not invent final schema field names merely to synchronize docs",
+      "do not call implementation validated before evidence arrives",
+      "after tests/live evidence, promote only the claims directly supported by that evidence",
+      "prefer a small follow-up edit over a broad rewrite when only validation status changed"
+    ]
   }
 }
