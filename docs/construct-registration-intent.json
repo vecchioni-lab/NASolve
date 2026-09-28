@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-oak-20",
+  "version": "2026-09-28-pine-21",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1132,43 +1132,51 @@
     }
   },
   "cli_first_campaign_runway": {
-    "status": "PLANNED_NEXT_BACKEND_SEQUENCE_AFTER_OAK",
-    "gui_branch_condition": "Do not begin GUI implementation until a basic heterogeneous per-dataset-PDB campaign and minimal explicit Design grouping are CLI-functional and live-validated.",
+    "status": "PINE_BACKEND_IMPLEMENTED_REAL_LIVE_CAMPAIGN_PENDING",
+    "gui_branch_condition": "Do not begin GUI implementation until the Pine heterogeneous campaign backend passes the real 3-5 dataset Phenix/Coot live gate and minimal explicit Design grouping is CLI-functional.",
     "steps": [
       {
         "id": 1,
         "name": "close_oak",
-        "goal": "Close/merge the current validated Scout v2 backend-only branch without adding campaign or GUI runtime scope."
+        "goal": "Close/merge the current validated Scout v2 backend-only branch without adding campaign or GUI runtime scope.",
+        "status": "SEPARATE_OAK_SCOPE_PRESERVED",
+        "note": "Pine was branched from Oak without expanding PR #22 runtime scope; Oak remains separately tracked rather than being folded into campaign implementation."
       },
       {
         "id": 2,
         "name": "nonstandard_campaign_plan_schema",
-        "goal": "Add backward-compatible newer campaign plan schema admitting one explicit/uniquely discovered nonstandard PDB plus frozen raw sequence source and parsed target per dataset; keep schema-1 W plans readable/executable."
+        "goal": "Add backward-compatible newer campaign plan schema admitting one explicit/uniquely discovered nonstandard PDB plus frozen raw sequence source and parsed target per dataset; keep schema-1 W plans readable/executable.",
+        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
       },
       {
         "id": 3,
         "name": "generalize_frozen_selection",
-        "goal": "Preserve existing standard-W campaign_stages._frozen_selection behavior and add nonstandard materialization from frozen campaign resources with no source-folder/catalogue rediscovery."
+        "goal": "Preserve existing standard-W campaign_stages._frozen_selection behavior and add nonstandard materialization from frozen campaign resources with no source-folder/catalogue rediscovery.",
+        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
       },
       {
         "id": 4,
         "name": "conservative_heterogeneous_gate",
-        "goal": "First slice requires simple/unambiguous model-to-target correspondence; recuts, split chains, multiplicity surprises or topology ambiguity stop only that dataset."
+        "goal": "First slice requires simple/unambiguous model-to-target correspondence; recuts, split chains, multiplicity surprises or topology ambiguity stop only that dataset.",
+        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
       },
       {
         "id": 5,
         "name": "campaign_regression",
-        "goal": "Validate W compatibility plus nonstandard/mixed plans, relocation, pause/resume, retry, drift blocking and independent dataset failure behavior."
+        "goal": "Validate W compatibility plus nonstandard/mixed plans, relocation, pause/resume, retry, drift blocking and independent dataset failure behavior.",
+        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
       },
       {
         "id": 6,
         "name": "real_geometry_diverse_campaign",
-        "goal": "Run 3-5 curated datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case."
+        "goal": "Run 3-5 curated datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case.",
+        "status": "NEXT_REAL_LIVE_GATE"
       },
       {
         "id": 7,
         "name": "explicit_design_identity",
-        "goal": "Add stable explicit design_id/shared design metadata grouping; never infer membership from filenames, sequence similarity or mere campaign co-membership."
+        "goal": "Add stable explicit design_id/shared design metadata grouping; never infer membership from filenames, sequence similarity or mere campaign co-membership.",
+        "status": "FUTURE_AFTER_REAL_LIVE_GATE"
       }
     ],
     "campaign_doctor_ready_steps": [
@@ -1202,6 +1210,24 @@
         "name": "later_transforms",
         "goal": "Donor mutation, ensembles/libraries, geometry/topology provider transforms and broader cross-design rescue remain separate reviewed increments."
       }
+    ],
+    "current_backend_facts": [
+      "new campaign plans use schema 2",
+      "schema-1 W plans remain readable and executable",
+      "one explicit or uniquely discovered nonstandard PDB provider per dataset",
+      "raw sequence-source bytes/checksum and parsed effective target frozen separately",
+      "frozen nonstandard preflight reconstructs ResolvedAutoMRInput without source/catalogue rediscovery",
+      "standard W and nonstandard members may coexist under one sequential coordinator",
+      "nonstandard members do not inherit W frame/pair, W sequence-thread overlays or W D:1 phosphate intent",
+      "fixture-backed nonstandard execution reaches AutoMR/PostMR/conditional AutoSol/AutoRefine and survives relocation",
+      "mixed W/nonstandard fixture execution preserves separate scientific contexts"
     ]
+  },
+  "campaign_development_branch": {
+    "name": "pine",
+    "base": "oak",
+    "purpose": "Schema-2 prepared nonstandard and mixed campaign planning/execution before GUI implementation.",
+    "status": "BACKEND_IMPLEMENTED_FIXTURE_VALIDATION_PENDING_FINAL_LOCAL_BUNDLE_AND_REAL_LIVE_CAMPAIGN",
+    "registration_boundary": "Oak/PR #22 remains the separate backend-only Scout-v2 registration branch; Pine does not promote Scout v2 to runtime authority."
   }
 }
