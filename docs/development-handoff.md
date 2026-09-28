@@ -46,29 +46,42 @@ For a fresh development session, recover state in this order:
    3-5-member prepared-nonstandard/geometry-diverse campaign is still pending
    because those datasets have not yet been supplied. The easy W flock validates
    orchestration, not the new scientific provider path.
-7. **New campaign abstraction to add:** make the selected/frozen campaign
-   workflow recipe explicitly declare the endpoint and conditional stage graph,
-   including later bounded Refine Doctor escalation as a campaign-owned
-   transition. Today the one-command unattended behavior exists, but the journey
-   is still executor-defined rather than recipe-defined.
-8. **After the real geometry-diverse live gate:** add explicit stable
-   `design_id` grouping, then the generic GUI shell may fork. Campaign Doctor
-   continues on the separately mapped path:
-   read-only candidate matrix -> reviewed eligibility -> attempt-local donor
-   provenance -> explicit donor rescue -> bounded enumeration.
+7. **Workflow-recipe product intent:** the selected/frozen campaign recipe
+   should declare its endpoint and conditional graph. A recipe may opt into the
+   plain-language policy **"apply Doctor as needed"** (exact schema spelling is
+   intentionally not frozen yet). When absent, an eligible review remains an
+   inspection stop. When enabled, only separately validated/bounded
+   stage-specific Doctors may run automatically at their eligible review gate;
+   Doctor recommendation/inspection/current-checkpoint semantics remain explicit.
+8. **GUI product intent:** after the real geometry-diverse gate and stable
+   `design_id`, the GUI should provide a visual campaign-recipe builder using
+   only backend capabilities that actually exist and have been enabled. Defaults
+   may be preselected, advanced options may be disclosed progressively, and the
+   resulting GUI recipe must serialize to the same backend recipe the CLI uses.
+   Every CLI interaction surface—inspect/open-in-Coot, yes/no confirmation,
+   review continuation, Doctor candidate inspection and checkpoint selection—
+   must have an equivalent GUI action with the same eligibility/provenance.
+9. **Later Campaign Doctor:** continue on the separately mapped donor-rescue
+   path: read-only candidate matrix -> reviewed eligibility -> attempt-local
+   donor provenance -> explicit donor rescue -> bounded enumeration.
 
 Scientific invariants remain stronger than convenience: immutable attempts,
 frozen observations/Free-R/targets, fail-closed ambiguity, one dataset's
 review/failure not stopping unrelated members, and no hidden score/ranking used
 to authorize donor reuse or registration.
 
-### Session stop-state — 2026-09-28
+### Current resumed state — 2026-09-28
 
-This is the intended clean stopping point for the current development session:
+The earlier clean stop-state was deliberately reopened to finish the live QiC
+Doctor path.
 
-- Pine's runtime behavior is unchanged since the validated campaign backend
-  code head `8c2c423`; work after that point in this session was branch-history
-  reconciliation and documentation.
+- Validated pre-Doctor campaign behavior remains anchored by the prior
+  684-test/226-subtest baseline and the completed four-member W campaign.
+- Pine now also contains an **in-progress campaign-owned Refine Doctor bridge**
+  after that baseline. It adds an explicit `refine-doctor` campaign stage,
+  review-receipt dependency handling, CLI `--through refine-doctor`, and focused
+  regression coverage. **Do not call this bridge validated until the current
+  local regression bundle and real QiC Doctor run report back green.**
 - The four-member real W campaign smoke test is **closed and successful as an
   orchestration validation**: 3 `SOLVED`, 1 `AWAITING_INSPECTION`, with
   conditional AutoSol behaving correctly and frozen integrity preserved.
@@ -889,11 +902,38 @@ These are not blockers for proactive terminal-phosphate protection:
 
 Use:
 
-- `README.md` for human workflow;
+- `README.md` for current human workflow;
 - `docs/README.md` as the documentation map;
 - `docs/architecture.md` for durable invariants;
 - subsystem docs for active scientific/technical contracts;
 - this file for immediate implementation state;
+- `docs/construct-registration-intent.json` for machine-readable current intent;
 - `docs/history/` for archaeology only.
 
-Future work should not require chat history to recover the active design.
+### Documentation synchronization discipline
+
+Treat small changes in scientific/product intent as real design changes and
+propagate them **in the same development turn**, before chat context becomes the
+only place they exist.
+
+Use the *smallest authoritative swarm* that preserves the idea:
+
+1. update the relevant subsystem contract for the changed behavior/intent;
+2. update `architecture.md` only when a durable invariant or system boundary
+   changed;
+3. update this handoff when the immediate implementation edge/next action changed;
+4. update machine intent whenever future automation/Aster continuity depends on
+   the distinction;
+5. update `gui.md` when the change affects interaction semantics;
+6. update README only when current user-facing workflow changes—not merely for a
+   future design thought.
+
+Do not invent final field names, claim implementation, or mark validation merely
+to make documents agree. Use explicit states such as **planned**,
+**implemented-unvalidated**, **fixture-validated**, and **live-validated**.
+After tests/live evidence arrive, make the smallest follow-up edit that promotes
+only the claims the evidence supports.
+
+Chat history is working memory, never the sole design authority. A future Aster
+should be able to reconstruct the current design and epistemic status from the
+repo alone.
