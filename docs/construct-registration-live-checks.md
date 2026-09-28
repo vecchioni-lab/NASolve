@@ -31,17 +31,30 @@ observed human/Coot behavior when a check is eventually completed.
 
 ### Junction declaration / persistent-workbench project
 
+- **Minimal semi-junction primitive:** declare a junction whose defining
+  topological content is one backbone passage/connection rather than a fixed
+  multi-arm object. Verify Topo Net does not require a four-arm label to
+  preserve or manipulate it.
+- **Variable-valence junctions:** exercise ordinary four-arm plus emergent
+  six- and eight-arm neighborhoods. Verify arm count is reported as derived
+  context and does not change the identity of the underlying junction
+  primitive(s).
 - **Declared junction survives ASU recut:** define a junction from logical
   strands/residue ranges, then reslice the ASU so the junction spans several
-  coordinate/symmetry fragments. Verify the logical junction identity, arm
-  identities and true nicks/termini remain unchanged.
+  coordinate/symmetry fragments. Verify the logical junction identity and true
+  nicks/termini remain unchanged even when the displayed arm neighborhood
+  changes.
 - **Junction reconstruction:** withhold the explicit junction declaration and
   verify that the periodic graph can propose the same junction only when
-  connectivity/strand/symmetry evidence is unique; otherwise remain
-  `UNRESOLVED` and request expert confirmation.
-- **Sticky-end/junction separation:** verify that a sticky end attached to a
-  junction arm remains a real design feature while nearby representation seams
-  may move or disappear under reslicing.
+  connectivity/strand/symmetry evidence is unique; otherwise retain a
+  `CANDIDATE`/`UNRESOLVED` state and request expert confirmation.
+- **False junction candidate:** create or identify a close packing contact that
+  resembles a node in one ASU/tile cut but lacks defensible backbone/topological
+  support. Verify it can be explicitly `REJECTED` without altering the periodic
+  graph.
+- **Sticky-end/junction separation:** verify that a sticky end associated with
+  a junction neighborhood remains a real design feature while nearby
+  representation seams may move or disappear under reslicing.
 - **Persistent surgery/refine loop:** from one open Topo session, create a
   surgery child checkpoint, perform optional bounded Coot repair, launch a
   short audited AutoRefine child and return to the same session without losing
@@ -57,6 +70,25 @@ observed human/Coot behavior when a check is eventually completed.
 - **Refine lineage:** every Refine action creates an immutable checkpoint child
   rather than overwriting the surgical model; rejected refinement children
   remain inspectable/replayable.
+
+### Generic model-tree GUI project
+
+- **Forty-refine readability:** render a deliberately long refinement lineage
+  and verify repetitive sequential refine nodes can collapse/expand without
+  hiding branch points or changing checkpoint state.
+- **Mixed-stage lineage:** show MR, PostMR, AutoSol, AutoRefine, Refine Doctor,
+  manual imports, topology surgery and a later re-MR-from-refined-model branch
+  in one graph with stage/type visually distinguishable.
+- **Pinned panels:** pin several important historical nodes as comparison cards
+  while traversing elsewhere in the tree; pinned views must not change the
+  current checkpoint.
+- **Branch from history:** choose an eligible older model and launch a new
+  explicit branch without deleting descendants or silently rewinding the
+  current lineage.
+- **Inspect without select:** open any resolvable model/checkpoint in Coot from
+  the tree without changing the current pointer.
+- **Shared graph component:** verify normal-mode GUI and Topo Net show the same
+  underlying checkpoint/model lineage rather than independent histories.
 ### 3GBI / 8D93 recut project
 
 - **Representation-seam chemistry:** verify that an ASU-cut "false nick"
