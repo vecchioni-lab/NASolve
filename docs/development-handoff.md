@@ -382,7 +382,10 @@ redundant shape/fill cues; and GUI coverage for existing CLI operations
 backbone review, AutoSol, AutoRefine/Doctor, checkpoints and Coot inspection).
 The shell is capability-driven: future backend actions/metadata/views should
 register into existing surfaces rather than require a new window or bespoke
-history model.
+history model. The corresponding [GUI human live-check queue](gui-live-checks.md)
+covers shell navigation, long model trees, color/accessibility semantics,
+campaign/design scope changes, CLI/GUI interoperability, Coot round-trip and a
+"register one new action without shell redesign" extensibility test.
 
 Keep the workbench display sparse. Global chips may show current checkpoint,
 Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
