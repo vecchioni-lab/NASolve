@@ -221,23 +221,9 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         allow_unreviewed_backbone=bool(effective.get("allow_unreviewed_backbone", False)),
     )
 
-    # A discovered nonstandard model had no user selector in the source request.
-    # The frozen bytes live outside the dataset, so use a formatting-only model
-    # path under the original dataset to preserve the canonical discovered name
-    # without changing provider/model_selector provenance in the actual run.
-    snapshot = resolved
-    if (
-        mode == "nonstandard"
-        and resolved.model_selector is None
-        and isinstance(provider, dict)
-        and provider.get("kind") == "discovered-nonstandard-model"
-    ):
-        selector = Path(_safe_relative(provider.get("selector"), "Frozen discovered model selector"))
-        snapshot = replace(resolved, model=files.root / selector)
-
     config = frozen / "nasolve.input.txt"
     with config.open("x", encoding="utf-8") as handle:
-        handle.write(format_intent(snapshot))
+        handle.write(format_intent(resolved))
     return replace(resolved, config_source=config)
 
 
