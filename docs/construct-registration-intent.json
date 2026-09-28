@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-27-oak-15",
+  "version": "2026-09-28-oak-16",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -304,7 +304,8 @@
       "3GBI/8D93 project-scoped representation-seam and Topo Surgeon repair ladder",
       "P4_132 two-triangle-ASU tile-versus-ASU multiplicity validation",
       "full-strand and emergent-tile project-scoped reconstruction/ambiguity validation",
-      "repeat-bearing/root-strand local closure, long-period closure, phase ambiguity and partial-use project checks"
+      "repeat-bearing/root-strand local closure, long-period closure, phase ambiguity and partial-use project checks",
+      "junction declaration, persistent Topo surgery/refine loop, compact local metrics and Coot round-trip validation"
     ]
   },
   "latest_focused_validation": {
@@ -898,6 +899,65 @@
         "collapse repeat/stoichiometry disagreement into one compatibility score"
       ],
       "backend_note": "This can be represented as a repeat-phase/monodromy problem on the periodic graph without exposing that jargon in the user interface."
+    },
+    "junction_model": {
+      "status": "PLANNED_FIRST_CLASS_TOPOLOGY_OBJECT",
+      "principle": "Junction identity belongs to tile/topology intent and must survive ASU recutting or symmetry fragmentation.",
+      "declaration_fields": [
+        "stable junction id / optional name",
+        "member logical strands",
+        "member residue/domain ranges",
+        "declared arm count and arm identities",
+        "optional root/center strand and repeat-domain participation",
+        "intended connectivity order",
+        "true chemical nicks and termini",
+        "sticky ends attached to arms",
+        "optional reviewed coaxial stacking/pairing expectations",
+        "whether junction is an invariant tile feature under ASU slicing",
+        "provenance/status DECLARED/INFERRED/EMERGENT/UNRESOLVED"
+      ],
+      "inference_policy": {
+        "declared_junctions": "highest-authority design intent",
+        "undeclared_junctions": "may be proposed from periodic connectivity, strand mapping, reviewed pairing/stacking evidence and symmetry",
+        "automatic_authority": "only when uniquely supported under reviewed rules",
+        "ambiguous_case": "remain UNRESOLVED and require expert confirmation"
+      },
+      "asu_policy": "ASU recutting changes coordinate realization/fragment ownership but must not silently create, destroy or redefine a logical junction."
+    },
+    "persistent_workbench": {
+      "status": "PLANNED_CHECKPOINT_ORCHESTRATOR",
+      "principle": "Keep Topo Net open across surgery, Coot repair, refinement and comparison; every state-changing action creates an immutable checkpoint child.",
+      "loop": [
+        "select residue/seam/junction in Topo Net",
+        "perform previewed surgery/topology edit",
+        "materialize immutable surgery child checkpoint",
+        "optional bounded Coot repair child",
+        "launch bounded Refine action",
+        "create immutable refinement child checkpoint",
+        "return metrics and model state to the same Topo session",
+        "accept/compare/operate again"
+      ],
+      "first_refine_behavior": "Use a short ordinary audited AutoRefine child from the selected topology checkpoint. Do not introduce selection-restricted Phenix refinement until separately validated.",
+      "default_compact_metrics": [
+        "current checkpoint",
+        "Rwork",
+        "Rfree",
+        "refinement status",
+        "local hard-warning summary"
+      ],
+      "selected_local_metrics": [
+        "Phenix bond/angle outliers involving selected residues",
+        "phosphate O3-prime-P connectivity/distance",
+        "nearby cross-symmetry clashes/nonbonded contacts",
+        "base-plane integrity",
+        "reviewed NARestraints pairing/stacking deviations",
+        "sugar/backbone geometry",
+        "logical registration and mutation state",
+        "reviewed residue/map-fit metrics when a reproducible extractor exists",
+        "before/after coordinate displacement for the last operation"
+      ],
+      "coot_round_trip": true,
+      "ui_policy": "Keep detailed metrics collapsed until a residue/seam/junction is selected so diagnostics do not consume the topology display."
     }
   }
 }
