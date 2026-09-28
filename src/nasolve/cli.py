@@ -82,8 +82,13 @@ def build_parser() -> argparse.ArgumentParser:
     campaign_run.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
     campaign_run.add_argument("--dataset", action="append", help="exact planned dataset name; repeat to select several")
     campaign_run.add_argument(
-        "--through", choices=("preflight", "phaser", "postmr", "autosol", "autorefine"),
-        default="autorefine", help="stop after this stage (default: autorefine)",
+        "--through",
+        choices=("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor"),
+        default="autorefine",
+        help=(
+            "stop after this stage (default: autorefine); refine-doctor is an "
+            "explicit continuation for AUTOREFINE_REVIEW datasets"
+        ),
     )
     campaign_run.add_argument("--json", action="store_true", help="print structured final status without progress messages")
     campaign_pause = campaign_sub.add_parser("pause", help="request a pause after the active stage finishes")
