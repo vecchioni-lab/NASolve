@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-oak-18",
+  "version": "2026-09-28-oak-19",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1084,6 +1084,19 @@
     ],
     "attention_queue": "Filter/view over authoritative backend states such as registration ambiguity, MR/refinement review, backbone review, failed stages, topology repair and frozen-input integrity issues.",
     "design_layer": "Optional first-class grouping for multiple datasets sharing stable construct/design metadata; never inferred from similar filenames/sequences alone.",
-    "modal_policy": "Avoid routine modal dialogs; immutable branching and inline Inspector/action-popover confirmation should make most scientific actions reversible by traversal."
+    "modal_policy": "Avoid routine modal dialogs; immutable branching and inline Inspector/action-popover confirmation should make most scientific actions reversible by traversal.",
+    "live_checks": "docs/gui-live-checks.md",
+    "validation_projects": [
+      "shell/navigation/root selection",
+      "current/viewed/pinned separation",
+      "semantic color + redundant non-color accessibility",
+      "long model/checkpoint lineage",
+      "campaign/design scope switching",
+      "CLI/GUI interoperability",
+      "existing CLI capability coverage",
+      "capability-driven extensibility",
+      "Coot bridge",
+      "activity/process handling"
+    ]
   }
 }
