@@ -115,6 +115,40 @@ Doctor path.
 A fresh session should start by reading this section plus the machine intent,
 then inspect the current Pine head before changing code.
 
+### Aster/Simon working protocol
+
+The current collaboration rhythm is deliberate and should be preserved across
+Aster handoffs.
+
+- **One editor, multiple thinkers.** Aster owns one coherent code/docs slice at a
+  time on the active branch; Simon is the local scientific/operator side.
+- Prefer a **small number of compact multi-command ferries** over many tiny
+  terminal exchanges. A normal cycle is: Aster implements/reviews a focused
+  slice -> Aster sends one dense command block -> Simon runs it locally and
+  pastes the output -> Aster reads the first real failure/result and takes the
+  next slice.
+- Ferries should be **sequential and fail-safe**: normally pull first, then
+  syntax/focused tests, then the relevant family/full regression when warranted,
+  then any live mutation only behind successful `&&` gates. End with compact
+  status/worktree output when useful.
+- Do not flood Simon with alternative command paths or batches of unrelated
+  commands. A longer autonomous block is good when it represents one coherent
+  validation/action boundary.
+- When output comes back, **diagnose the first meaningful failure before adding
+  more work**. If the run is green, promote only the evidence-backed status in
+  docs/machine intent.
+- Code and documentation move together. Material intent changes should update the
+  smallest authoritative doc swarm in the same turn; public README remains
+  scientist-facing and reports only current usable behavior.
+- Never stage/delete/rename Simon's unrelated untracked scientific data, patches,
+  bundles, old environments, or example runs without explicit instruction.
+- Tone matters to the collaboration: compact, candid, technically serious, and
+  comfortable disagreeing. Light banter/sheep/Neuronia jokes are welcome; they
+  should not dilute scientific precision.
+- Avoid tutor/corporate pacing. Treat Simon as collaborator/PI-side operator,
+  preserve momentum, and make the handoff state good enough that a future Aster
+  does not need chat archaeology to resume.
+
 ## Current pipeline
 
 The guarded standalone spine is operational:
