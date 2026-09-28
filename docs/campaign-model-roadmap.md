@@ -401,15 +401,27 @@ the user's actual Phenix/Coot installations.
 Before those geometry-diverse inputs are supplied, an **intermediate real W
 orchestration validation is in progress** on a disposable four-member sandbox:
 `DOHU`, `QiC_120325_0513`, `QE_120325_0607`, and
-`EG_091325-0302`. This test is intentionally easier scientifically. It is
-meant to validate real multi-dataset coordination, stage isolation, numbered
-run/checkpoint ownership, and campaign-level solution reporting with the user's
-actual Phenix/Coot environment. It does not satisfy the prepared-nonstandard
-geometry-diverse live gate.
+`EG_091325-0302`. This test is intentionally easier scientifically and does
+not satisfy the prepared-nonstandard geometry-diverse live gate.
 
-The first phase of that W validation is planning/status only. The campaign
-should not be called live-validated until the plan output is inspected and the
-scientific stages have actually run.
+That W validation has now passed:
+
+- real runtime discovery (`nasolve check`) under Python 3.12.14,
+  NARestraints 1.1.2, Phenix 2.2.1 and Coot 1.3.3;
+- campaign planning with 4/4 `DISCOVERED`, 0 blocked and frozen integrity
+  `OK`;
+- real campaign preflight/Phaser/PostMR on all four datasets;
+- exact campaign-owned `AutoMR/run_001` ownership for each member; and
+- clean pause at the next conditional AutoSol gate with campaign/status exit
+  code 0.
+
+The current live step is the **plain unattended campaign resume** through the
+executor's default AutoRefine endpoint. AutoSol is evaluated conditionally per
+PostMR evidence; datasets without a supported anomalous candidate record an
+accepted `SKIPPED` AutoSol stage without launching `phenix.autosol`.
+
+This live W run is useful evidence for the coordinator and solution-list UX,
+but the real prepared-nonstandard/geometry-diverse live gate remains pending.
 
 ### CLI-first implementation runway and GUI fork point
 
@@ -437,18 +449,25 @@ The recommended sequence is:
    inspection stops. Scout v2 is still not runtime authority.
 5. **Implemented in fixture-backed regression:** standard-W, nonstandard and
    mixed campaigns exercise relocation plus existing campaign failure/isolation
-   semantics. Real external-tool validation remains separate.
-6. **Next live gate: run a real 3-5 dataset geometry-diverse CLI campaign** through
-   AutoMR -> PostMR -> conditional AutoSol -> AutoRefine. Inspect exact run
-   ownership/checkpoints and at least one blocked/review case. This completes
-   the first **basic heterogeneous campaign** milestone.
-7. **Add minimal explicit Design identity/grouping.** Let a campaign manifest
+   semantics. The easier four-member real W campaign has independently passed
+   planning plus real preflight/Phaser/PostMR; its unattended AutoRefine resume
+   is the current live orchestration check.
+6. **Add explicit workflow-recipe semantics.** Freeze the intended campaign
+   endpoint and conditional transition graph as recipe data. The current fixed
+   stage order already handles conditional AutoSol correctly and a plain
+   `campaign run` defaults through AutoRefine; the missing piece is making that
+   journey explicit/versioned rather than executor-implicit.
+7. **Next Pine-specific live gate: run a real 3-5 dataset geometry-diverse CLI
+   campaign** through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine.
+   Inspect exact run ownership/checkpoints and at least one blocked/review case.
+   This completes the first **basic heterogeneous campaign** milestone.
+8. **Add minimal explicit Design identity/grouping.** Let a campaign manifest
    bind datasets to a stable `design_id` and optional shared design metadata;
    do not infer shared design from filenames, sequence similarity or campaign
    co-membership. This creates the backend object the future GUI Design level
    will display and gives later donor policy a reviewed relationship primitive.
 
-**GUI branch point:** after steps 1-7 are green, the campaign is sufficiently
+**GUI branch point:** after steps 1-8 are green, the campaign is sufficiently
 functional and semantically stable to begin the generic GUI shell without
 making the GUI invent missing campaign concepts. GUI work may then proceed in
 parallel with later Campaign Doctor backend work.
@@ -458,32 +477,32 @@ parallel with later Campaign Doctor backend work.
 Before broad automatic Campaign Doctor rescue, preserve these additional backend
 milestones as a CLI/read-only progression:
 
-8. **Campaign-wide donor/recipient candidate view.** Enumerate verified solved
+9. **Campaign-wide donor/recipient candidate view.** Enumerate verified solved
    checkpoint candidates and compare each against explicitly related unsolved
    recipients using the already implemented descriptor/comparison primitives.
    Emit structured facts only—no rank, score or rescue authorization.
-9. **Reviewed donor eligibility policy.** Define a conservative project/preset
+10. **Reviewed donor eligibility policy.** Define a conservative project/preset
    policy over explicit Design/family relationship, checkpoint status/review,
    target/site coverage, residue identity or explicitly supported
    transformation, mirror/chirality constraints, chemistry and rescue budget.
    Eligibility must be explainable as categorical gates rather than a hidden
    similarity score.
-10. **Attempt-local derived-provider provenance.** A rescue candidate must be
+11. **Attempt-local derived-provider provenance.** A rescue candidate must be
     frozen beneath a new recipient attempt with donor dataset/checkpoint/model
     checksum, compatibility evidence, transformations and policy identity.
     Never rewrite the campaign plan, recipient observations/Free-R flags or the
     failed original attempt.
-11. **First explicit-donor rescue CLI.** Require the user to name one eligible
+12. **First explicit-donor rescue CLI.** Require the user to name one eligible
     donor checkpoint and one recipient. Start with direct donor-model MR only
     under the strictest policy; do not rank several donors or mutate/ensemble
     them yet. Continue successful MR through the ordinary recipient PostMR /
     AutoSol / AutoRefine gates.
-12. **Bounded Campaign Doctor mode.** Only after explicit-donor rescue is
+13. **Bounded Campaign Doctor mode.** Only after explicit-donor rescue is
     validated, allow the Doctor to enumerate a small policy-eligible donor set
     under a declared attempt budget. Preserve every rescue candidate/attempt and
     stop for inspection when alternatives imply materially different
     interpretations.
-13. **Later expansions:** donor-to-recipient mutation, model libraries,
+14. **Later expansions:** donor-to-recipient mutation, model libraries,
     ensembles, geometry/topology-aware provider transforms and cross-design
     rescue remain separate reviewed increments.
 
