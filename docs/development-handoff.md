@@ -196,39 +196,49 @@ hard gates, transformations, attempts and stopping reason without rewriting the
 recipient's authoritative observations, Free-R set, target chemistry or failed
 branch.
 
-### Next CLI milestone: geometry-diverse campaign before GUI implementation
+### Pine: geometry-diverse campaign backend before GUI implementation
 
-A forthcoming real validation case contains geometry-diverse datasets with one
-prepared PDB search model and associated sequence definition per dataset. Once
-the current Oak Scout-v2 branch is closed/merged, this should become the **next
-campaign implementation milestone**, still on the CLI/backend rather than in the
-GUI.
+Pine is now the active campaign branch, created from Oak after the backend-only
+Scout-v2 scope was closed. It implements the first conservative heterogeneous
+campaign slice while leaving Oak/PR #22's runtime scope unchanged.
 
-The first executable slice should generalize the existing campaign
-planner/executor to admit frozen nonstandard per-dataset model providers and
-their exact sequence sources while preserving the normal guarded stage engines.
-Keep existing schema-1 W plans readable/executable; introduce a
-backward-compatible newer plan schema rather than redefining old frozen plans.
-The current concrete executor choke point is
-`campaign_stages._frozen_selection()`, which still rejects anything except
-`mode=standard, frame=W`.
+Current Pine behavior:
 
-Each dataset remains scientifically independent: no geometry-family inference,
-cross-dataset model ranking, solved-sibling reuse or Campaign Doctor rescue is
-authorized merely because the datasets share a campaign.
+- new campaign plans use schema 2;
+- existing schema-1 W plans remain readable **and executable**;
+- one explicit or uniquely discovered nonstandard PDB provider is allowed per
+  dataset;
+- the exact model bytes/checksum/provider provenance are content-addressed and
+  frozen;
+- a nonstandard dataset must supply an explicit complete chain-labelled target
+  via inline `[sequences]` or `sequence_file`;
+- the raw sequence-source bytes/checksum and the parsed effective sequence target
+  are frozen separately;
+- frozen nonstandard preflight reconstructs ordinary `ResolvedAutoMRInput`
+  without source-folder/catalogue rediscovery;
+- discovered-model provenance remains discovery provenance after resource
+  relocation rather than being rewritten as user selection;
+- W preset frame/pair, W sequence-thread overlays and W D:1 phosphate chemistry
+  do not leak into nonstandard members;
+- fixture-backed full execution reaches AutoMR -> PostMR -> conditional AutoSol
+  -> AutoRefine after deleting the original model/FASTA and after campaign
+  relocation; and
+- a mixed standard-W + nonstandard fixture campaign uses one coordinator while
+  retaining separate frame/target/provider contexts.
 
-For the first live slice, model-to-sequence correspondence must be simple and
-unambiguous. Nontrivial registration, recuts, split chains, unexpected
-multiplicity or other representation ambiguity should stop only that dataset
-for inspection. A real 3-5 dataset geometry-diverse campaign should then run
-through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine with pause/resume,
-retry, relocation and frozen-input integrity still intact.
+The guardrail remains deliberately narrow: model-to-sequence correspondence
+must be simple and unambiguous. Nontrivial registration, recuts, split chains,
+unexpected multiplicity or topology stop only that dataset for inspection.
+Scout v2 is not promoted merely to unblock campaign execution.
 
-After that live campaign is green, add minimal explicit `design_id` grouping
-for datasets sharing a stable construct/design record. Do not infer design
-membership from filenames or sequence similarity.
+**Next live gate:** run a real 3-5 dataset geometry-diverse campaign with the
+user's actual Phenix/Coot installations and inspect exact run/checkpoint
+ownership plus at least one review/block case. Only after that live gate should
+we add minimal explicit `design_id` grouping for datasets sharing a stable
+construct/design record. Do not infer design membership from filenames or
+sequence similarity.
 
-**GUI branch point:** only after the basic heterogeneous campaign and Design
+**GUI branch point:** only after the real heterogeneous campaign and Design
 identity are CLI-functional should implementation attention split into the GUI.
 The GUI then visualizes stable backend concepts rather than inventing them.
 
@@ -238,7 +248,7 @@ eligibility policy -> attempt-local derived-provider provenance -> one explicit
 donor rescue -> bounded automatic donor enumeration. None of those should be
 smuggled into the first heterogeneous campaign milestone.
 
-This work remains intentionally outside PR #22's implementation scope.
+Pine work remains separate from Oak/PR #22.
 
 ## Construct registration: next structural robustness layer
 
