@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-oak-19",
+  "version": "2026-09-28-oak-20",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1097,6 +1097,111 @@
       "capability-driven extensibility",
       "Coot bridge",
       "activity/process handling"
+    ],
+    "live_activity": {
+      "status": "PLANNED_STRUCTURED_EVENT_RECONCILIATION",
+      "tree_updates": "Navigator and model/checkpoint tree reconcile from authoritative campaign/job/checkpoint records while work runs.",
+      "running_visuals": [
+        "low-intensity blue active ring/pulse or perimeter treatment on running node",
+        "restrained moving edge dot/dash for active transition",
+        "static activity badge/ring when reduced motion is enabled"
+      ],
+      "publication_rule": "Do not show a completed/checkpoint node before the authoritative receipt/checkpoint record exists.",
+      "event_stream": {
+        "location": "Events/Notifications tab inside the bottom Activity drawer",
+        "default_language": "human-readable summaries without requiring internal status jargon",
+        "examples": [
+          "refinement 21 passed the numerical gate",
+          "current checkpoint changed to refine-021",
+          "PostMR needs your review",
+          "molecular replacement did not find a solution in this attempt",
+          "campaign paused after the active stage completed"
+        ],
+        "technical_drilldown": [
+          "exact backend status token",
+          "run/checkpoint id",
+          "relevant TFZ/R factors/metrics",
+          "raw diagnostic",
+          "record/artifact references",
+          "logs"
+        ],
+        "source_of_truth": "typed structured state transitions; stdout/logs supplementary only",
+        "coalescing": "Do not emit repeated heartbeat/unchanged RUNNING observations as separate human events.",
+        "read_state": "machine-local UI only; reading/dismissing never alters scientific state"
+      }
+    }
+  },
+  "cli_first_campaign_runway": {
+    "status": "PLANNED_NEXT_BACKEND_SEQUENCE_AFTER_OAK",
+    "gui_branch_condition": "Do not begin GUI implementation until a basic heterogeneous per-dataset-PDB campaign and minimal explicit Design grouping are CLI-functional and live-validated.",
+    "steps": [
+      {
+        "id": 1,
+        "name": "close_oak",
+        "goal": "Close/merge the current validated Scout v2 backend-only branch without adding campaign or GUI runtime scope."
+      },
+      {
+        "id": 2,
+        "name": "nonstandard_campaign_plan_schema",
+        "goal": "Add backward-compatible newer campaign plan schema admitting one explicit/uniquely discovered nonstandard PDB plus frozen raw sequence source and parsed target per dataset; keep schema-1 W plans readable/executable."
+      },
+      {
+        "id": 3,
+        "name": "generalize_frozen_selection",
+        "goal": "Preserve existing standard-W campaign_stages._frozen_selection behavior and add nonstandard materialization from frozen campaign resources with no source-folder/catalogue rediscovery."
+      },
+      {
+        "id": 4,
+        "name": "conservative_heterogeneous_gate",
+        "goal": "First slice requires simple/unambiguous model-to-target correspondence; recuts, split chains, multiplicity surprises or topology ambiguity stop only that dataset."
+      },
+      {
+        "id": 5,
+        "name": "campaign_regression",
+        "goal": "Validate W compatibility plus nonstandard/mixed plans, relocation, pause/resume, retry, drift blocking and independent dataset failure behavior."
+      },
+      {
+        "id": 6,
+        "name": "real_geometry_diverse_campaign",
+        "goal": "Run 3-5 curated datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case."
+      },
+      {
+        "id": 7,
+        "name": "explicit_design_identity",
+        "goal": "Add stable explicit design_id/shared design metadata grouping; never infer membership from filenames, sequence similarity or mere campaign co-membership."
+      }
+    ],
+    "campaign_doctor_ready_steps": [
+      {
+        "id": 8,
+        "name": "campaign_candidate_matrix",
+        "goal": "Read-only campaign-wide enumeration of solved checkpoint candidates versus explicitly related unsolved recipients using existing candidate/comparison facts; no score/rank/rescue authorization."
+      },
+      {
+        "id": 9,
+        "name": "reviewed_donor_eligibility",
+        "goal": "Define categorical project/preset donor gates over explicit design/family relation, checkpoint state/review, target coverage/identity or supported transformation, mirror/chirality constraints, chemistry and budget."
+      },
+      {
+        "id": 10,
+        "name": "attempt_local_rescue_provider",
+        "goal": "Freeze donor dataset/checkpoint/model checksum, comparison evidence, policy identity and transformations beneath a new recipient attempt without mutating plan, failed attempt, observations, Free-R or target."
+      },
+      {
+        "id": 11,
+        "name": "explicit_donor_rescue",
+        "goal": "First rescue requires user-named eligible donor checkpoint and recipient; direct donor-model MR only under strict policy, then ordinary recipient stage gates."
+      },
+      {
+        "id": 12,
+        "name": "bounded_campaign_doctor",
+        "goal": "After explicit rescue validation, allow small policy-eligible donor enumeration under a declared attempt budget; preserve every rescue branch and stop for materially different interpretations."
+      },
+      {
+        "id": 13,
+        "name": "later_transforms",
+        "goal": "Donor mutation, ensembles/libraries, geometry/topology provider transforms and broader cross-design rescue remain separate reviewed increments."
+      }
     ]
   }
 }
