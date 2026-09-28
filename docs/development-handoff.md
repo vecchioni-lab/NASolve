@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Status: **current working state — updated 2026-09-26**.
+Status: **current working state — updated 2026-09-28**.
 
 This file records the implementation edge: what is validated now, what is
 scientifically blocked, and what should happen next.
@@ -21,18 +21,24 @@ Numbered runs and checkpoint branches are immutable. Free-R flags are not
 regenerated for convenience. Refine Doctor preserves the current checkpoint
 unless a user explicitly selects another one.
 
-Latest local code regression baseline:
+Latest local code regression baseline on Pine:
 
-- **664 tests passed** in the full suite;
-- **222 subtests passed**;
-- full-suite runtime: **61.70 s**.
+- **684 tests passed** in the full NASolve suite;
+- **226 subtests passed**;
+- full-suite runtime: **51.35 s**;
+- campaign-focused bundle: **150 tests + 90 subtests passed** in **21.31 s**;
+- newest mixed/CLI slice: **5 tests passed** in **3.39 s**; and
+- `git diff --check oak...pine` was clean before Oak's merge commit was
+  reconciled into Pine.
 
-This was reported from the active Python 3.12 development environment on Birch
-checkout `cc0ad6ab537cc61e17e13bc562e4ae8667461e8d`. Registration source/test
-code was unchanged after code head
-`686830beb64907f2a1ba73fa1bdbff97f6dcc38d`; later Birch commits before the
-full run were documentation-only validation bookkeeping. This is a user-local
-test result, not GitHub CI.
+These results were reported from the active Python 3.12 development environment
+on Pine checkout `8c2c42311cc5497721da70360453a9d7acab0ffa`. PR #22 (Oak)
+was then merged to `main` with merge commit
+`fec66ebeddbd525684824576b705460324ec0a14`, and Pine incorporated that
+mainline merge as history-only reconciliation commit
+`aa56e9b` ("Merge Oak mainline into Pine"). GitHub then reported Pine ahead of
+`main` and not behind. The untracked local scientific/test artifacts were left
+untouched throughout. This is a user-local test result, not GitHub CI.
 
 ## Terminal-phosphate chemistry
 
@@ -249,6 +255,46 @@ donor rescue -> bounded automatic donor enumeration. None of those should be
 smuggled into the first heterogeneous campaign milestone.
 
 Pine work remains separate from Oak/PR #22.
+
+### Current live orchestration validation: four-member W campaign
+
+Before the prepared nonstandard geometry-diverse datasets are supplied, Pine is
+also being exercised on an intentionally easy **real W campaign** to validate
+campaign orchestration with the user's actual Phenix/Coot environment.
+
+The live sandbox is:
+
+`/tmp/NASolve-W-live-20260928`
+
+and is built from clean top-level copies of:
+
+- `DOHU`;
+- `QiC_120325_0513`;
+- `QE_120325_0607`; and
+- `EG_091325-0302`.
+
+This validation is **not** a substitute for the later geometry-diverse
+nonstandard live gate. Its purpose is narrower and useful:
+
+- verify a real multi-dataset campaign can plan and run sequentially under one
+  coordinator;
+- verify campaign-owned numbered runs/checkpoints are attributable per dataset;
+- confirm one review/failure remains local while other datasets continue;
+- exercise real Phenix/Coot rather than fixture executables; and
+- produce a compact campaign-level solution list
+  (dataset -> status -> run -> checkpoint -> diagnostic) suitable for later GUI
+  and Campaign Doctor presentation.
+
+The current command sequence first copies only authoritative top-level dataset
+files into the disposable sandbox, runs `nasolve check`, then performs
+`campaign plan` and `campaign status` **without launching crystallographic
+stages**. Do not record this W live validation as passed until that terminal
+output is inspected. If all four datasets are `DISCOVERED`, the next step is
+to run the campaign through the ordinary stage spine and inspect the resulting
+solution/review list.
+
+The later Pine-specific live gate remains a real 3-5 member prepared
+nonstandard/geometry-diverse campaign once those datasets are available.
 
 ## Construct registration: next structural robustness layer
 
