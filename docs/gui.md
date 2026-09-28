@@ -619,6 +619,14 @@ The GUI may render design grouping only when the backend supplies stable design
 identity. It must not infer that two datasets share a design merely from similar
 filenames or sequences.
 
+## Human validation
+
+The minimum human validation queue for the GUI shell is maintained in
+[`gui-live-checks.md`](gui-live-checks.md). It covers navigation, current versus
+viewed state, color/accessibility semantics, long lineage trees, campaign/design
+scope switching, CLI/GUI interoperability, capability-driven extensibility, the
+Coot bridge and long-running activity handling.
+
 ## Human-facing invariants
 
 1. One main NASolve window.
