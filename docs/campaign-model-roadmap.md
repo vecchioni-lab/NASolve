@@ -415,13 +415,24 @@ That W validation has now passed:
 - clean pause at the next conditional AutoSol gate with campaign/status exit
   code 0.
 
-The current live step is the **plain unattended campaign resume** through the
-executor's default AutoRefine endpoint. AutoSol is evaluated conditionally per
-PostMR evidence; datasets without a supported anomalous candidate record an
-accepted `SKIPPED` AutoSol stage without launching `phenix.autosol`.
+The unattended resume has now completed. DOHU, EG and QE reached `SOLVED` at
+`refine-001` with AutoSol correctly `SKIPPED`; QiC reached
+`AUTOSOL_READY` and then stopped at `refine-001` as
+`AWAITING_INSPECTION` because its numerical refinement gate failed. Campaign
+state was `COMPLETE_WITH_FLAGS`, frozen integrity remained `OK`, and exit
+code 3 correctly reflected the one review case.
 
-This live W run is useful evidence for the coordinator and solution-list UX,
-but the real prepared-nonstandard/geometry-diverse live gate remains pending.
+This closes the real W orchestration smoke test and is useful evidence for the
+coordinator and solution-list UX, but the real
+prepared-nonstandard/geometry-diverse live gate remains pending.
+
+The QiC outcome also exposes the next workflow seam: Refine Doctor should become
+a **campaign-owned recipe transition**. Standalone Doctor is deliberately
+checkpoint-preserving/non-auto-selecting, but it appends history to the run
+report after the campaign AutoRefine receipt has frozen that report checksum.
+Invoking it out of band would therefore appear as drift. Campaign integration
+must give Doctor its own job/receipt/dependency provenance rather than weakening
+the receipt check.
 
 ### CLI-first implementation runway and GUI fork point
 
@@ -452,11 +463,13 @@ The recommended sequence is:
    semantics. The easier four-member real W campaign has independently passed
    planning plus real preflight/Phaser/PostMR; its unattended AutoRefine resume
    is the current live orchestration check.
-6. **Add explicit workflow-recipe semantics.** Freeze the intended campaign
-   endpoint and conditional transition graph as recipe data. The current fixed
-   stage order already handles conditional AutoSol correctly and a plain
-   `campaign run` defaults through AutoRefine; the missing piece is making that
-   journey explicit/versioned rather than executor-implicit.
+6. **Add explicit workflow-recipe semantics, including campaign-owned Refine
+   Doctor escalation.** Freeze the intended campaign endpoint and conditional
+   transition graph as recipe data. The current fixed stage order already
+   handles conditional AutoSol correctly and a plain `campaign run` defaults
+   through AutoRefine; the missing piece is making that journey
+   explicit/versioned rather than executor-implicit. Doctor must publish its own
+   campaign job/receipt instead of mutating a completed stage report out of band.
 7. **Next Pine-specific live gate: run a real 3-5 dataset geometry-diverse CLI
    campaign** through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine.
    Inspect exact run ownership/checkpoints and at least one blocked/review case.
