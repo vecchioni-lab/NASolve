@@ -391,14 +391,31 @@ and both run/status returned exit code 3 because QiC correctly remained a review
 case. This is desirable scientific isolation: the three unrelated members were
 not held back, and the questionable result was not promoted to solved.
 
-QiC is also the motivating kind of dataset for Refine Doctor, but **do not run
-standalone Doctor directly on this campaign-owned run yet**. Refine Doctor
-preserves the selected current checkpoint and never auto-selects a recommendation,
-but it updates the run-level `report.json` with Doctor history. The campaign
-AutoRefine receipt has already frozen/checksummed that report, so an out-of-band
-Doctor invocation would be detected as report drift during later reconciliation.
-The correct next implementation is a campaign-owned Doctor transition with its
-own receipt and recipe policy.
+QiC is also the motivating kind of dataset for Refine Doctor. Its exact live
+review fingerprint is useful:
+
+- AutoSol: `AUTOSOL_READY`, `use_for_refinement = true`;
+- anomalous model site: iodine at `B:4`, wavelength 1.377618 A;
+- refined iodine f'' = 7.51547 and f' = -5.98383;
+- final `Rwork = 0.1646`, `Rfree = 0.1561`;
+- `Rfree - Rwork = -0.0085`, therefore the current strict numerical gate fails;
+- clashscore = 32.23;
+- terminal-phosphate geometry audit = `PASS`, 11/11 expected restraints, no
+  chemistry review required, maximum normalized deviation 1.74 sigma;
+- `refine-001` remains a REVIEW checkpoint and was **not selected current**;
+  current checkpoint remains `postmr`; and
+- no Refine Doctor directory exists yet.
+
+This is therefore a numerical/statistical review case, not a terminal-phosphate
+chemistry failure.
+
+**Do not run standalone Doctor directly on this campaign-owned run yet.**
+Refine Doctor preserves the selected current checkpoint and never auto-selects a
+recommendation, but it updates the run-level `report.json` with Doctor history.
+The campaign AutoRefine receipt has already frozen/checksummed that report, so
+an out-of-band Doctor invocation would be detected as report drift during later
+reconciliation. The correct next implementation is a campaign-owned Doctor
+transition with its own receipt and recipe policy.
 
 The later Pine-specific live gate remains a real 3-5 member prepared
 nonstandard/geometry-diverse campaign once those datasets are available.
