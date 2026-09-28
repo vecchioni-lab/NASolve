@@ -245,6 +245,19 @@ Doctor after the receipt would therefore appear as out-of-band report drift.
 The campaign-aware version must publish its own job/receipt/dependencies and
 retain Doctor's existing non-auto-selection semantics.
 
+The intended workflow-recipe policy is simple at the human level: a recipe may
+include **"apply Doctor as needed"** or omit it. Omission leaves an eligible
+review as an inspection stop. Opt-in permits the campaign to enter only
+validated, bounded stage-specific Doctor transitions when their eligibility
+conditions are met. It does not mean "try arbitrary fixes", and it does not by
+itself select a Doctor recommendation as current.
+
+The same review/inspection transitions must be operable from both control
+surfaces. CLI prompts/commands and future GUI actions are alternate interfaces
+to the same backend operations: inspect/open in Coot, yes/no confirmation,
+continue from review, inspect Doctor candidates, and explicitly select a
+checkpoint.
+
 ## Validation limits
 
 Regression tests use controlled stage workers and external-tool fixtures to
