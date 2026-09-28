@@ -1,4 +1,5 @@
 import shutil
+from dataclasses import replace
 import tempfile
 import unittest
 from pathlib import Path
@@ -223,6 +224,37 @@ class AutoMRInputTests(unittest.TestCase):
             (root / "two.pdb").write_text(model_text())
             with self.assertRaisesRegex(AutoMRInputError, "Ambiguous"):
                 resolve_automr_input(dataset, AutoMRIntent(), valid_ligand_codes=VALID)
+
+
+    def test_discovered_nonstandard_snapshot_uses_provider_selector_after_relocation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            dataset = make_dataset(base / "dataset")
+            resolved = resolve_automr_input(
+                dataset,
+                AutoMRIntent(mode="nonstandard"),
+                valid_ligand_codes=VALID,
+            )
+            self.assertEqual(resolved.model_selector, None)
+            self.assertEqual(
+                resolved.model_provider,
+                {
+                    "kind": "discovered-nonstandard-model",
+                    "selection": "single-pdb-discovery",
+                    "location": "dataset",
+                    "selector": "search.pdb",
+                },
+            )
+
+            frozen = base / "campaign" / "frozen" / "search.pdb"
+            frozen.parent.mkdir(parents=True)
+            shutil.copyfile(resolved.model, frozen)
+            relocated = replace(resolved, model=frozen)
+
+            snapshot = format_intent(relocated)
+            self.assertIn("model = search.pdb", snapshot)
+            self.assertNotIn(str(frozen), snapshot)
+            self.assertIsNone(relocated.model_selector)
 
     def test_shared_file_schema(self):
         with tempfile.TemporaryDirectory() as directory:
