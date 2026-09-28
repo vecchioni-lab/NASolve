@@ -297,11 +297,33 @@ The planning/status phase has now passed in the real user environment:
 - every member froze the expected W recipe chemistry with D:1 as the explicit
   5-prime-phosphate/OP3 site.
 
-No crystallographic stage had been launched at that point. The next live phase
-is to run **all four only through PostMR first**, then inspect the campaign-level
-MR/preparation outcomes before committing time to AutoSol/AutoRefine. The
-desired summary remains dataset -> status -> exact run -> checkpoint/next stage
--> diagnostic.
+The bounded real MR/PostMR phase has now also passed for all four datasets.
+Each dataset allocated campaign-owned `AutoMR/run_001`, completed preflight,
+Phaser and PostMR, and paused cleanly at the next conditional AutoSol stage.
+Campaign exit code and status exit code were both 0; frozen integrity remained
+`OK`.
+
+This wording matters: `next_stage = autosol` means the executor will evaluate
+the conditional AutoSol gate. It does **not** mean every dataset requires
+AutoSol. The stage engine reads PostMR anomalous evidence and returns `SKIPPED`
+without launching `phenix.autosol` when no supported nucleotide heavy atom is
+present. `SKIPPED` is an accepted campaign AutoSol outcome.
+
+A plain `campaign run ROOT` already defaults through AutoRefine, so the
+`--through postmr` boundary used here was a validation handbrake rather than a
+required interactive workflow. The selected preset already freezes
+`autosol.policy = when-anomalous` and the AutoRefine recipe/cycle count.
+
+**New workflow requirement:** evolve the preset/campaign recipe contract so the
+desired campaign endpoint and conditional stage graph are explicit recipe data,
+rather than relying on the executor's built-in stage order/default endpoint.
+The eventual common UX should be: select/freeze one campaign recipe, issue one
+run command, and let each dataset advance independently until solved, review,
+blocked, or another recipe-declared terminal state. Later reviewed Doctor
+escalation may join that graph, but must remain bounded and provenance-rich.
+
+The next live phase for this W sandbox is now a plain campaign resume through
+its default AutoRefine endpoint.
 
 The later Pine-specific live gate remains a real 3-5 member prepared
 nonstandard/geometry-diverse campaign once those datasets are available.
