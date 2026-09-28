@@ -199,6 +199,15 @@ Automatic symmetry-spanning bond restraints and automated single-residue Coot
 RSR repair are deliberately deferred until dedicated live experiments establish
 safe repeatable behavior.
 
+### Topology-informed automation
+
+The working umbrella for this future layer is **topology-informed automation**.
+Topology may inform candidate generation, junction/net hypotheses, recutting,
+repair choices, refinement diagnostics and branch comparison, but it does not
+override chemistry, diffraction evidence, fail-closed registration policy or
+expert review. This label is intentionally weaker than "topology-authoritative"
+automation.
+
 For the first Topo Net generation, model the problem explicitly as **3-D DNA
 lattice tessellation under crystallographic symmetry**, rather than trying to
 solve generic crystallographic topology. Keep four layers distinct:
@@ -262,6 +271,16 @@ children and return their results to the same GUI rather than forcing the user
 through repeated terminal/Coot setup cycles. The first refine action should
 reuse a short ordinary audited AutoRefine path; local-selection refinement is a
 later validation problem.
+
+This reveals a broader GUI seam rather than a Topo-only one. NASolve already
+has an immutable checkpoint graph; a generic **model-tree / checkpoint-tree
+view** should render that lineage for ordinary work as well. It should show MR,
+PostMR, AutoSol, refinement chains, Doctor siblings, manual imports, topology
+surgery and later re-MR-from-refined-model branches in one traversable graph.
+Important models can be pinned as comparison panels, long runs of repetitive
+refines can collapse, and any eligible historical node can become an explicit
+new branch source without deleting descendants. Topo Net should embed this same
+graph component rather than inventing its own history model.
 
 The GUI should keep diagnostics compact by default: current checkpoint,
 Rwork/Rfree, refinement state and a local-warning indicator. Selecting a
