@@ -104,15 +104,25 @@ Campaign/
 └── EG/
 ```
 
-Each dataset must contain the three authoritative processing inputs:
+For the **current implemented AutoPROC/STARANISO profile**, each dataset must
+contain three authoritative processing inputs:
 
-1. one accepted STARANISO/all-data MTZ;
+1. one accepted reflection MTZ (STARANISO/all-data is preferred when present);
 2. one matching `Data_1*` metadata CIF; and
 3. `summary.html`.
 
-It may also contain `nasolve.txt`, sequence files, custom models, or other
-preset-specific inputs. Existing NASolve output directories are never treated
-as new datasets.
+That is not intended to be a universal requirement for other laboratories.
+Future campaign import should classify datasets by capability rather than by
+processing vendor: MR-ready, refinement-ready, anomalous-ready and
+deposition-ready. A generic MTZ that satisfies the relevant crystallographic
+gates should eventually be solvable without AutoPROC companion files; later SCA
+support should use an explicit frozen import/conversion step. Missing
+deposition-only metadata should lock deposition/reporting actions, not the
+earlier scientific stages.
+
+A dataset may also contain `nasolve.txt`, sequence files, custom models, or
+other preset-specific inputs. Existing NASolve output directories are never
+treated as new datasets.
 
 Discovery is frozen before execution. The campaign records dataset identities,
 relative paths, input hashes, and the resolved input inventory. Files added
