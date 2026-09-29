@@ -76,11 +76,15 @@ The intended capability ladder is:
    deposition metadata should lock deposition/curation features rather than
    preventing otherwise valid MR/refinement work.
 
-The first compatibility expansion should be **generic MTZ input**: allow an MTZ
-whose contents satisfy the relevant capability gates without requiring
-AutoPROC-specific companion filenames. A later **SCA/Scalepack import adapter**
-may convert a validated SCA reflection file into a frozen downstream MTZ plus
-explicit provenance; SCA is not a current runtime input.
+The first compatibility expansion should admit **generic MTZ and SCA/Scalepack
+reflection input** based on capability rather than processing-vendor filenames.
+A validated SCA file can be passed directly to Phenix for molecular replacement,
+so MR support should not require an artificial pre-conversion step. NASolve's
+current runtime does not yet discover SCA, but a future SCA input adapter may
+freeze and pass the original SCA directly into the MR stage. If a later stage
+requires an MTZ-style array container, that stage may create a separately
+checksummed derived MTZ with explicit conversion provenance rather than treating
+conversion as part of the scientific identity of the source dataset.
 
 The GUI/campaign planner should therefore report capability badges and missing
 requirements (for example `MR READY`, `REFINEMENT BLOCKED: no Free-R set`,
