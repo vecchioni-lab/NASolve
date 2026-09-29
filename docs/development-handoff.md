@@ -71,6 +71,39 @@ frozen observations/Free-R/targets, fail-closed ambiguity, one dataset's
 review/failure not stopping unrelated members, and no hidden score/ranking used
 to authorize donor reuse or registration.
 
+### GZ11 forced restraint-geometry edge case
+
+The user-local TestSets campaign contains GZ11 with:
+
+```ini
+[automr]
+mode = standard
+frame = W
+pair = G:Z
+force = G:C
+```
+
+This historical `force` semantics has now been recovered and restored on Pine
+as **implemented-unvalidated** pending the next local regression ferry.
+
+- `pair = G:Z` is the actual intended residue identity/chemistry.
+- `force = G:C` is **not** a mutation and **not** a search-model override.
+- It requests G:C-like NARestraints pair geometry for the W standard pair only
+  (A:12/B:4), while preserving the actual G/Z residue atom mappings.
+- Scientific motivation: GZ11 is measured at pH 11, where Z is deprotonated and
+  C-like for the intended H-bond geometry.
+- The override is frozen separately through AutoMR/campaign provenance and must
+  apply exactly once to the designed pair; flanking frame-template pairs remain
+  inferred from their actual residues.
+- PostMR records both actual base classes and forced recipe classes. If the
+  designed sites are no longer paired together, or the requested recipe cannot
+  be generated, PostMR fails closed.
+
+The current packaged NASolve ligand directory does not contain `DZ.cif`.
+Before the live nine-dataset run, inspect the successful standalone GZ11
+provenance/local files to determine which reviewed DZ dictionary/construction
+path it used; do not guess or silently download one.
+
 ### Current resumed state — 2026-09-28
 
 The earlier clean stop-state was deliberately reopened to finish the live QiC
