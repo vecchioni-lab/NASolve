@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-28-pine-33",
+  "version": "2026-09-29-pine-34",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1512,7 +1512,8 @@
       "run dedicated prepared-nonstandard/geometry-diverse live campaign",
       "explicit stable design_id grouping",
       "generic GUI fork with visual recipe builder and full CLI interaction parity",
-      "later Campaign Doctor donor-rescue runway"
+      "later Campaign Doctor donor-rescue runway",
+      "generalize campaign reflection-input adapters/capabilities beyond AutoPROC without weakening Free-R/deposition gates"
     ],
     "local_worktree_guardrail": "Known untracked scientific data, patches, bundles, old environments and example runs are user-local and must not be staged/deleted/renamed without explicit instruction.",
     "in_progress": {
@@ -1624,5 +1625,31 @@
       "Developer provenance/history stays in durable dev docs and machine intent."
     ],
     "local_guardrail": "Never stage, delete, rename or clean unrelated untracked scientific data, patches, bundles, old environments or example runs without explicit instruction."
+  },
+  "reflection_input_compatibility": {
+    "status": "PLANNED_ARCHITECTURE_CURRENT_RUNTIME_AUTOPROC_PROFILE_ONLY",
+    "current_runtime": {
+      "reflections": "MTZ only; STARANISO/all-data preferred when uniquely present, otherwise one top-level MTZ may be selected",
+      "required_companions": [
+        "Data_1*.cif",
+        "summary.html"
+      ],
+      "sca_supported": false,
+      "interpretation": "Current companion-file requirements are input-adapter constraints, not universal scientific requirements."
+    },
+    "future_capabilities": {
+      "mr_ready": "Validated reflection observations plus cell/symmetry sufficient for molecular replacement.",
+      "refinement_ready": "MR-ready plus stable refinement observations and an authoritative Free-R set.",
+      "anomalous_ready": "Refinement-ready plus complete anomalous arrays and wavelength/element context required by guarded anomalous processing.",
+      "deposition_ready": "Sufficient collection/processing metadata for reporting, curation and deposition."
+    },
+    "design_rules": [
+      "Missing deposition metadata locks deposition/reporting features but must not block otherwise valid MR/refinement.",
+      "Missing or ambiguous Free-R continues to block guarded refinement; NASolve must not silently regenerate flags.",
+      "Generic MTZ is the first desired compatibility expansion.",
+      "SCA/Scalepack support is future work via an explicit frozen import/conversion adapter, not current runtime support.",
+      "Downstream stages should consume frozen internal capabilities/provenance rather than branch on processing-vendor filenames."
+    ],
+    "gui": "Campaign setup shows capability badges and exact missing requirements instead of one universal valid/invalid result."
   }
 }
