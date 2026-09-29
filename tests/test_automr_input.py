@@ -16,7 +16,7 @@ from nasolve.automr_input import (
 from .helpers import make_dataset, model_text
 
 
-VALID = {"1AP", "DT", "DA", "A", "5IU", "DG", "DC", "DF", "DE"}
+VALID = {"1AP", "DT", "DA", "A", "5IU", "DG", "DC", "DZ", "DF", "DE"}
 FORCED_W = Path(__file__).parents[1] / "MR_frames/5W6W/5W6W_noPO4.pdb"
 
 
@@ -63,6 +63,66 @@ class AutoMRInputTests(unittest.TestCase):
             self.assertEqual(
                 tuple(item.ligand_code for item in resolved.pair), ("1AP", "DT")
             )
+
+    def test_force_pair_is_restraint_geometry_not_model_or_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            dataset = make_dataset(base / "dataset", include_model=False)
+            config = dataset / "nasolve.txt"
+            config.write_text(
+                "[automr]\nmode = standard\nframe = W\n"
+                "pair = G:Z\nforce = G:C\n"
+            )
+            catalogue = base / "MR_frames" / "5W6W"
+            catalogue.mkdir(parents=True)
+            (catalogue / "C_G.pdb").write_text(model_text())
+
+            intent = read_intent(config)
+            self.assertEqual(intent.pair, "G:Z")
+            self.assertEqual(intent.force, "G:C")
+
+            resolved = resolve_automr_input(
+                dataset,
+                intent,
+                frames_dir=base / "MR_frames",
+                valid_ligand_codes=VALID,
+            )
+            self.assertEqual(
+                tuple(item.ligand_code for item in resolved.pair),
+                ("DG", "DZ"),
+            )
+            self.assertEqual(resolved.force_text, "G:C")
+            self.assertEqual(resolved.force_pair, ("G", "C"))
+            self.assertEqual(resolved.model.name, "C_G.pdb")
+            self.assertIn("pair = G:Z", format_intent(resolved))
+            self.assertIn("force = G:C", format_intent(resolved))
+
+    def test_force_pair_is_rejected_for_nonstandard_models(self):
+        with tempfile.TemporaryDirectory() as directory:
+            dataset = make_dataset(Path(directory))
+            with self.assertRaisesRegex(AutoMRInputError, "restraint geometry"):
+                resolve_automr_input(
+                    dataset,
+                    AutoMRIntent(mode="nonstandard", force="G:C"),
+                    valid_ligand_codes=VALID,
+                )
+
+    def test_force_pair_requires_two_known_base_classes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            dataset = make_dataset(base / "dataset", include_model=False)
+            catalogue = base / "MR_frames" / "5W6W"
+            catalogue.mkdir(parents=True)
+            (catalogue / "C_G.pdb").write_text(model_text())
+            with self.assertRaisesRegex(AutoMRInputError, "NARestraints base classes"):
+                resolve_automr_input(
+                    dataset,
+                    AutoMRIntent(
+                        mode="standard", frame="W", pair="G:Z", force="G:OHU",
+                    ),
+                    frames_dir=base / "MR_frames",
+                    valid_ligand_codes=VALID,
+                )
 
     def test_standard_model_override_can_select_frame_catalogue_without_pair_inference(self):
         with tempfile.TemporaryDirectory() as directory:
