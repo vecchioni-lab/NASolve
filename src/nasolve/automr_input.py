@@ -71,8 +71,6 @@ class ResolvedAutoMRInput:
     frame: FrameSpec | None
     pair_text: str | None
     pair: tuple[ResolvedLigand, ResolvedLigand] | None
-    force_text: str | None
-    force_pair: tuple[str, str] | None
     model: Path
     model_source: str
     model_pair: tuple[ResolvedLigand, ResolvedLigand] | None
@@ -95,6 +93,8 @@ class ResolvedAutoMRInput:
     model_family: str | None = None
     model_provider: dict[str, object] | None = None
     frame_sequence_source: Path | None = None
+    force_text: str | None = None
+    force_pair: tuple[str, str] | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
