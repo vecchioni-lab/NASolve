@@ -140,6 +140,14 @@ residues. Full sequences must match the resulting model-chain residue count,
 and explicit mutation targets must exist. Mutation precedence is full sequence,
 standard pair, then explicit mutation.
 
+A standard-frame input may additionally declare `force = FIRST:SECOND` to
+override **NARestraints pair-recipe classes only** for the designed standard
+pair. This is orthogonal to residue identity and model selection. For example,
+`pair = G:Z` plus `force = G:C` keeps the prepared residues G/Z while using
+the G:C H-bond recipe at the frame's designated pair sites. The override is
+site-scoped, frozen in provenance, and must not affect neighboring template
+pairs or rewrite coordinate residue names.
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants
