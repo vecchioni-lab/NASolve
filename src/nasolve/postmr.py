@@ -8,7 +8,7 @@ import re
 import shutil
 import subprocess
 from collections import OrderedDict
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from math import dist, sqrt
 from pathlib import Path
@@ -1002,11 +1002,106 @@ def _patch_narestraints_records(
     return patched, corrections
 
 
+def _restraint_geometry_override(
+    report: Mapping[str, object],
+    frame_name: str | None,
+) -> tuple[dict[str, str], dict[str, object] | None]:
+    """Resolve a frozen standard-pair recipe override without changing identity."""
+    plan = report.get("post_mr_plan")
+    if not isinstance(plan, Mapping):
+        raise PostMRPreparationError("Frozen report is missing its post-MR plan")
+    value = plan.get("restraint_geometry_override")
+    if value is None:
+        return {}, None
+    if not isinstance(value, Mapping):
+        raise PostMRPreparationError("Frozen restraint geometry override is malformed")
+    expected_fields = {
+        "schema_version", "source", "requested", "base_classes",
+        "scope", "changes_residue_identity",
+    }
+    if set(value) != expected_fields:
+        raise PostMRPreparationError("Frozen restraint geometry override has unexpected fields")
+    classes = value.get("base_classes")
+    if (
+        value.get("schema_version") != 1
+        or value.get("source") != "force"
+        or value.get("scope") != "standard_pair"
+        or value.get("changes_residue_identity") is not False
+        or not isinstance(classes, list)
+        or len(classes) != 2
+        or not all(
+            isinstance(item, str) and re.fullmatch(r"[ATGCDBSZPKXI]", item)
+            for item in classes
+        )
+        or value.get("requested") != ":".join(classes)
+    ):
+        raise PostMRPreparationError("Frozen restraint geometry override is inconsistent")
+    if not isinstance(frame_name, str):
+        raise PostMRPreparationError(
+            "Restraint geometry override requires a configured standard frame"
+        )
+    try:
+        spec = frame_postmr_spec(frame_name)
+    except KeyError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    site_classes = {
+        spec.sites[0].text: classes[0],
+        spec.sites[1].text: classes[1],
+    }
+    normalized = {
+        "schema_version": 1,
+        "source": "force",
+        "requested": value["requested"],
+        "base_classes": list(classes),
+        "scope": "standard_pair",
+        "sites": [spec.sites[0].text, spec.sites[1].text],
+        "changes_residue_identity": False,
+    }
+    return site_classes, normalized
+
+
+def _apply_restraint_geometry_override(
+    first: object,
+    second: object,
+    site_classes: Mapping[str, str],
+) -> tuple[object, object, dict[str, object] | None]:
+    """Override only PairResidue.base_class for the intended pair."""
+    if not site_classes:
+        return first, second, None
+    for residue in (first, second):
+        if not all(hasattr(residue, name) for name in ("chain", "resid", "base_class")):
+            raise PostMRPreparationError("NARestraints returned a malformed pair residue")
+    first_site = f"{getattr(first, 'chain')}:{getattr(first, 'resid')}"
+    second_site = f"{getattr(second, 'chain')}:{getattr(second, 'resid')}"
+    force_sites = set(site_classes)
+    present = {first_site, second_site} & force_sites
+    if not present:
+        return first, second, None
+    if present != force_sites:
+        raise PostMRPreparationError(
+            "Forced restraint-geometry sites are not paired together in the "
+            "NARestraints stretch"
+        )
+    before = [str(getattr(first, "base_class")), str(getattr(second, "base_class"))]
+    forced_first = replace(first, base_class=site_classes[first_site])
+    forced_second = replace(second, base_class=site_classes[second_site])
+    audit = {
+        "sites": [first_site, second_site],
+        "actual_base_classes": before,
+        "forced_base_classes": [
+            site_classes[first_site], site_classes[second_site],
+        ],
+    }
+    return forced_first, forced_second, audit
+
+
 def _default_narestraints_builder(
     pdb: Path,
     pairs: Path,
     output: Path,
-) -> list[dict[str, str]]:
+    *,
+    force_classes_by_site: Mapping[str, str] | None = None,
+) -> object:
     try:
         from restraints import builder
         from restraints.base_pairs import read_base_pair_file
@@ -1021,8 +1116,33 @@ def _default_narestraints_builder(
     records, corrections = _patch_narestraints_records(
         load_residue_records(), required_codes
     )
+    force_classes = dict(force_classes_by_site or {})
     original_loader = builder.load_residue_records
+    original_generate = None
+    applications: list[dict[str, object]] = []
     builder.load_residue_records = lambda: records
+    if force_classes:
+        original_generate = getattr(builder, "generate_pair_restraints", None)
+        if not callable(original_generate):
+            raise PostMRPreparationError(
+                "Installed NARestraints does not expose the pair-recipe hook "
+                "required for force = restraint geometry"
+            )
+
+        def generate_with_forced_geometry(first, second, **kwargs):
+            forced_first, forced_second, audit = _apply_restraint_geometry_override(
+                first, second, force_classes
+            )
+            block = original_generate(forced_first, forced_second, **kwargs)
+            if audit is not None:
+                if block is None:
+                    raise PostMRPreparationError(
+                        "NARestraints has no recipe for the requested forced pair geometry"
+                    )
+                applications.append(audit)
+            return block
+
+        builder.generate_pair_restraints = generate_with_forced_geometry
     try:
         builder.build_phil_from_pdb(
             pdb,
@@ -1032,6 +1152,18 @@ def _default_narestraints_builder(
         )
     finally:
         builder.load_residue_records = original_loader
+        if original_generate is not None:
+            builder.generate_pair_restraints = original_generate
+    if force_classes:
+        if len(applications) != 1:
+            raise PostMRPreparationError(
+                "Forced restraint geometry must apply exactly once to the intended "
+                f"standard pair; applied {len(applications)} time(s)"
+            )
+        return {
+            "compatibility_corrections": corrections,
+            "force_application": applications[0],
+        }
     return corrections
 
 
@@ -1460,6 +1592,14 @@ def prepare_postmr(
     }
     frame = report.get("frame")
     frame_name = frame.get("name") if isinstance(frame, Mapping) else None
+    force_classes_by_site, force_record = _restraint_geometry_override(
+        report, frame_name
+    )
+    if force_record is not None and modified_pairs_only:
+        raise PostMRPreparationError(
+            "force = restraint geometry requires the standard frame-template "
+            "NARestraints path; it cannot be combined with --modified-pairs-only"
+        )
     compatibility = restraints_dir / "narestraints_input.pdb"
     compatibility_codes = {
         code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
@@ -1554,8 +1694,14 @@ def prepare_postmr(
             if narestraints_builder is None:
                 builder_result = _default_narestraints_builder(
                     compatibility, pair_file, narestraints,
+                    force_classes_by_site=force_classes_by_site,
                 )
             else:
+                if force_record is not None:
+                    raise PostMRPreparationError(
+                        "A custom NARestraints builder cannot apply the frozen "
+                        "force = restraint-geometry override"
+                    )
                 builder_result = narestraints_builder(
                     compatibility, pair_file, narestraints
                 )
@@ -1567,6 +1713,36 @@ def prepare_postmr(
             isinstance(item, dict) for item in builder_result
         ):
             narestraints_report["compatibility_corrections"] = builder_result
+        elif isinstance(builder_result, Mapping):
+            corrections = builder_result.get("compatibility_corrections")
+            application = builder_result.get("force_application")
+            if (
+                not isinstance(corrections, list)
+                or not all(isinstance(item, dict) for item in corrections)
+            ):
+                raise PostMRPreparationError(
+                    "NARestraints builder returned malformed compatibility corrections"
+                )
+            narestraints_report["compatibility_corrections"] = corrections
+            if force_record is not None:
+                if not isinstance(application, Mapping):
+                    raise PostMRPreparationError(
+                        "Forced restraint geometry was not audited by NARestraints"
+                    )
+                narestraints_report["restraint_geometry_override"] = {
+                    **force_record,
+                    "application": dict(application),
+                }
+            elif application is not None:
+                raise PostMRPreparationError(
+                    "NARestraints reported an unexpected forced geometry application"
+                )
+        elif builder_result is not None:
+            raise PostMRPreparationError("NARestraints builder returned an unsupported report")
+        if force_record is not None and "restraint_geometry_override" not in narestraints_report:
+            raise PostMRPreparationError(
+                "Forced restraint geometry was not recorded in the PostMR report"
+            )
         if not narestraints.is_file():
             raise PostMRPreparationError("NARestraints did not create its expected output")
         narestraints_report.update({
