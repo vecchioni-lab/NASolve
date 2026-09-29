@@ -115,10 +115,12 @@ That is not intended to be a universal requirement for other laboratories.
 Future campaign import should classify datasets by capability rather than by
 processing vendor: MR-ready, refinement-ready, anomalous-ready and
 deposition-ready. A generic MTZ that satisfies the relevant crystallographic
-gates should eventually be solvable without AutoPROC companion files; later SCA
-support should use an explicit frozen import/conversion step. Missing
-deposition-only metadata should lock deposition/reporting actions, not the
-earlier scientific stages.
+gates should eventually be solvable without AutoPROC companion files. SCA/
+Scalepack should likewise be allowed as a direct MR source when Phenix can
+consume it; any MTZ derived later for refinement or analysis must be a separate
+checksummed artifact with explicit conversion provenance. Missing deposition-only
+metadata should lock deposition/reporting actions, not the earlier scientific
+stages.
 
 A dataset may also contain `nasolve.txt`, sequence files, custom models, or
 other preset-specific inputs. Existing NASolve output directories are never
