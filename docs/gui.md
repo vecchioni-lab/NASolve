@@ -470,9 +470,11 @@ a reason that structure solution itself is impossible.
 
 The first implemented profile remains AutoPROC/STARANISO MTZ +
 `Data_1*.cif` + `summary.html`. Future GUI import should also admit generic
-MTZ input when its contents satisfy the relevant gates, and later SCA/Scalepack
-through an explicit conversion/import step with frozen provenance. Unsupported
-formats remain visibly unavailable rather than being guessed.
+MTZ input when its contents satisfy the relevant gates, plus SCA/Scalepack as a
+direct MR-capable source when Phenix can consume it. If later stages need a
+derived MTZ, the GUI should show that as a separate provenance-bearing conversion
+artifact rather than hiding it inside import. Unsupported formats remain visibly
+unavailable rather than being guessed.
 
 Current CLI:
 
