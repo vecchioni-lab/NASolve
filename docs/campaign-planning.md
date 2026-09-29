@@ -95,6 +95,15 @@ For standard W datasets, catalogue selection remains the default and a dataset
 may explicitly force one PDB from its own directory or the selected frame
 catalogue.
 
+A separate historical input, `[automr] force = FIRST:SECOND`, describes
+**restraint geometry**, not model selection. Campaign planning freezes it
+independently from `pair`. The effective pair remains the target chemical
+identity; `force` supplies only the ordered NARestraints base classes for the
+frame's designated standard pair. Example: GZ11 uses `pair = G:Z` and
+`force = G:C`. Campaign status/provenance should make both visible so a
+scientist can distinguish "what residues were built" from "what pair geometry
+was restrained."
+
 For a prepared nonstandard dataset, `nasolve.txt` must explicitly set
 `mode = nonstandard`. Planning then accepts either one named dataset-relative
 PDB or exactly one discovered top-level PDB. The dataset must also supply an
