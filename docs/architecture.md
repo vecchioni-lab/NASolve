@@ -164,10 +164,13 @@ internal crystallographic input record with independent capabilities:
 
 AutoPROC/STARANISO + `Data_1*.cif` + `summary.html` is the first rich adapter.
 Generic MTZ should become another adapter without requiring Global Phasing
-filenames. SCA/Scalepack may later enter through a conversion/import adapter
-whose exact source file and conversion provenance are frozen. Downstream stages
-consume the frozen internal record/capabilities rather than branching on the
-name of the upstream processing suite.
+filenames. SCA/Scalepack should also be admissible as a direct MR reflection
+source because Phenix can consume it for molecular replacement. The original
+SCA remains the frozen authoritative source. If a downstream stage later needs
+an MTZ-style array container, NASolve may derive one under a separate immutable
+conversion record/checksum rather than making conversion a prerequisite for MR.
+Downstream stages consume the frozen internal record/capabilities rather than
+branching on the name of the upstream processing suite.
 
 A missing capability should disable only the dependent stage. In particular,
 missing deposition metadata must not invalidate an otherwise legitimate
