@@ -142,11 +142,37 @@ standard pair, then explicit mutation.
 
 ### Dataset and symmetry discovery
 
-Dataset discovery accepts the usual autoPROC/STARANISO naming variants rather
-than renaming raw inputs. It prefers a unique MTZ whose punctuation-insensitive
-name contains both `staraniso` and `alldata`, falling back to the only top-level
-MTZ when there is exactly one. Metadata is the unique case-insensitive
-`Data_1*.cif`; multiple candidates stop the run.
+Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants
+rather than renaming raw inputs. It prefers a unique MTZ whose
+punctuation-insensitive name contains both `staraniso` and `alldata`, falling
+back to the only top-level MTZ when there is exactly one. Metadata is the unique
+case-insensitive `Data_1*.cif`; multiple candidates stop the run. The current
+runtime also requires `summary.html`.
+
+These companion-file requirements are an **input-adapter limitation**, not a
+scientific invariant. The durable architecture should distinguish the reflection
+payload from optional/richer processing metadata.
+
+Future input adapters should compile source-specific material into one frozen
+internal crystallographic input record with independent capabilities:
+
+- `mr_ready`: observations + cell/symmetry sufficient for Phaser;
+- `refinement_ready`: validated refinement observations + authoritative Free-R;
+- `anomalous_ready`: complete anomalous arrays plus wavelength/element context;
+- `deposition_ready`: sufficient collection/processing metadata for downstream
+  curation/deposition.
+
+AutoPROC/STARANISO + `Data_1*.cif` + `summary.html` is the first rich adapter.
+Generic MTZ should become another adapter without requiring Global Phasing
+filenames. SCA/Scalepack may later enter through a conversion/import adapter
+whose exact source file and conversion provenance are frozen. Downstream stages
+consume the frozen internal record/capabilities rather than branching on the
+name of the upstream processing suite.
+
+A missing capability should disable only the dependent stage. In particular,
+missing deposition metadata must not invalidate an otherwise legitimate
+MR/refinement dataset, while missing/ambiguous Free-R must still block guarded
+refinement unless an explicit future policy safely creates and freezes one.
 
 The symmetry gate applies only to standard W/3GBI recipes. NASolve compares:
 
