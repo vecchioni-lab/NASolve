@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-29-pine-35",
+  "version": "2026-09-29-pine-36",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1652,5 +1652,32 @@
       "Downstream stages should consume frozen internal capabilities/provenance rather than branch on processing-vendor filenames."
     ],
     "gui": "Campaign setup shows capability badges and exact missing requirements instead of one universal valid/invalid result."
+  },
+  "forced_restraint_geometry": {
+    "status": "IMPLEMENTED_UNVALIDATED_PENDING_LOCAL_REGRESSION",
+    "input_key": "force",
+    "semantics": "Ordered NARestraints base-class recipe override for the designed standard pair; does not change residue identity or search-model selection.",
+    "scope": "Standard frame designated pair only; W currently maps to A:12/B:4.",
+    "provenance": [
+      "frozen nasolve.input.txt retains force = FIRST:SECOND",
+      "AutoMR post_mr_plan stores a structured restraint_geometry_override",
+      "campaign effective configuration freezes force text plus parsed base classes",
+      "PostMR audits actual base classes versus forced base classes"
+    ],
+    "guardrails": [
+      "nonstandard mode rejects force",
+      "force is incompatible with modified-pairs-only mode",
+      "forced sites must appear paired together",
+      "override must apply exactly once",
+      "missing forced recipe fails closed",
+      "coordinate residue identities are never rewritten by force"
+    ],
+    "live_edge_case": {
+      "dataset": "GZ11",
+      "pair": "G:Z",
+      "force": "G:C",
+      "condition": "pH 11; Z deprotonated/C-like for intended H-bond geometry",
+      "dictionary_followup": "Verify reviewed DZ construction/dictionary provenance from prior standalone success before live campaign PostMR; NASolve package currently has no DZ.cif."
+    }
   }
 }
