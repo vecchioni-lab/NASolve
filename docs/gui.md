@@ -452,6 +452,28 @@ GUI:
 
 ### Campaigns
 
+Campaign setup should not assume every laboratory uses AutoPROC/STARANISO.
+Before planning/running, the GUI should show a compact **input capability
+assessment** per dataset:
+
+- **MR-ready** — reflection observations + cell/symmetry are sufficient;
+- **Refinement-ready** — authoritative refinement observations and Free-R are
+  available;
+- **Anomalous-ready** — anomalous arrays plus required wavelength/element
+  context are available;
+- **Deposition-ready** — collection/processing metadata is sufficient for
+  curation/deposition.
+
+These are independent capabilities. A dataset may be MR/refinement-ready while
+deposition remains locked. Missing deposition metadata must not be presented as
+a reason that structure solution itself is impossible.
+
+The first implemented profile remains AutoPROC/STARANISO MTZ +
+`Data_1*.cif` + `summary.html`. Future GUI import should also admit generic
+MTZ input when its contents satisfy the relevant gates, and later SCA/Scalepack
+through an explicit conversion/import step with frozen provenance. Unsupported
+formats remain visibly unavailable rather than being guessed.
+
 Current CLI:
 
 - `campaign plan`;
