@@ -758,31 +758,32 @@ def _validate_plan(payload: Any) -> None:
                             f"Malformed campaign state: invalid {name}.sequence_reference"
                         )
             force_pair = config.get("force_pair")
-            if force_pair is not None:
-                if (
-                    not isinstance(force_pair, list)
-                    or len(force_pair) != 2
-                    or not all(
-                        isinstance(value, str)
-                        and re.fullmatch(r"[ATGCDBSZPKXI]", value) is not None
-                        for value in force_pair
-                    )
-                ):
+            if entry["status"] == "DISCOVERED":
+                if force_pair is not None:
+                    if (
+                        not isinstance(force_pair, list)
+                        or len(force_pair) != 2
+                        or not all(
+                            isinstance(value, str)
+                            and re.fullmatch(r"[ATGCDBSZPKXI]", value) is not None
+                            for value in force_pair
+                        )
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: invalid {name}.force_pair"
+                        )
+                    if config.get("force") != ":".join(force_pair):
+                        raise CampaignError(
+                            f"Malformed campaign state: inconsistent {name}.force"
+                        )
+                    if config.get("mode") != "standard":
+                        raise CampaignError(
+                            f"Malformed campaign state: restraint force is only valid in standard mode"
+                        )
+                elif config.get("force") is not None:
                     raise CampaignError(
-                        f"Malformed campaign state: invalid {name}.force_pair"
+                        f"Malformed campaign state: {name}.force lacks force_pair"
                     )
-                if config.get("force") != ":".join(force_pair):
-                    raise CampaignError(
-                        f"Malformed campaign state: inconsistent {name}.force"
-                    )
-                if config.get("mode") != "standard":
-                    raise CampaignError(
-                        f"Malformed campaign state: restraint force is only valid in standard mode"
-                    )
-            elif config.get("force") is not None:
-                raise CampaignError(
-                    f"Malformed campaign state: {name}.force lacks force_pair"
-                )
             try:
                 sites = validate_op3_sites(config.get("allow_op3_sites", []))
                 if "phosphate_intent" in config:
