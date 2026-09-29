@@ -1255,19 +1255,21 @@
     ],
     "next_live_stress_test": {
       "root": "examples/TestSets",
-      "expected_scale": "approximately 9 datasets; inspect actual contents first",
-      "execution_goal": "one campaign invocation from MR through explicit refine-doctor boundary",
-      "success_semantics": "maximize scientifically valid SOLVED / Doctor-recommended / inspection outcomes; preserve honest blockers rather than forcing success",
-      "summary_fields": [
-        "dataset",
-        "final status",
-        "exact run",
-        "AutoSol skipped/ran",
-        "AutoRefine checkpoint",
-        "Doctor skipped/ran",
-        "recommended checkpoint if any",
-        "diagnostic"
-      ]
+      "datasets": [
+        "DOHU",
+        "DT",
+        "DiU",
+        "EA",
+        "ED",
+        "FA",
+        "GZ11",
+        "Q5cm",
+        "QiC"
+      ],
+      "status": "INVENTORIED_BLOCKED_ON_FORCE_VALIDATION",
+      "execution_goal": "After force regression is green, create a disposable campaign and run MR through explicit refine-doctor boundary.",
+      "edge_case": "GZ11 pair=G:Z with force=G:C restraint geometry; preserve literal source intent.",
+      "success_semantics": "Maximum scientifically valid solved/recommended/inspection outcomes, with blockers preserved."
     }
   },
   "campaign_development_branch": {
@@ -1313,10 +1315,10 @@
       "EG_091325-0302"
     ],
     "current_phase": [
-      "real W orchestration smoke validation complete",
-      "campaign-owned Refine Doctor live QiC continuation complete",
-      "campaign-owned Refine Doctor full regression validation complete",
-      "next live stress test: user-local examples/TestSets multi-dataset campaign"
+      "real four-member W orchestration validation complete",
+      "campaign-owned QiC Refine Doctor regression + live validation complete",
+      "forced restraint-geometry support implemented on Pine; local validation pending",
+      "nine-dataset TestSets inventoried; no campaign plan created yet"
     ],
     "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
     "completion_rule": "Satisfied for W orchestration only; does not satisfy prepared-nonstandard geometry-diverse live gate.",
@@ -1479,8 +1481,8 @@
     "update_rule": "Propagate material intent changes immediately to the smallest authoritative doc set; do not broaden README/architecture unless their scope actually changed; promote validation status in a small follow-up after evidence arrives."
   },
   "current_position": {
-    "status": "CAMPAIGN_DOCTOR_REGRESSION_AND_LIVE_VALIDATED",
-    "date": "2026-09-28",
+    "status": "FORCED_RESTRAINT_GEOMETRY_IMPLEMENTED_UNVALIDATED_TESTSETS_PENDING",
+    "date": "2026-09-29",
     "runtime_behavior_head": "93a85edeaed357302fb4952ada760b1855b57b3a",
     "current_branch": "pine",
     "completed_now": [
@@ -1506,20 +1508,24 @@
       "guardrail": "Recommendation remains inspection-only; explicit selection is still required."
     },
     "next_order": [
-      "run user-local examples/TestSets as one end-to-end campaign through explicit refine-doctor boundary",
-      "summarize each dataset final status/run/checkpoint-or-recommendation without forcing blockers",
+      "pull latest Pine and run forced-restraint-geometry focused regression",
+      "run campaign/full regression needed to validate the new force path",
+      "verify GZ11 DZ dictionary/construction provenance from prior standalone success if PostMR requires it",
+      "plan disposable nine-dataset examples/TestSets campaign without editing the source folder",
+      "if planning is clean, run all eligible datasets from MR through explicit refine-doctor boundary",
+      "summarize dataset/status/run/AutoSol/AutoRefine/Doctor/recommended checkpoint/diagnostic",
       "implement first-class frozen workflow recipe endpoint/conditional graph including optional 'apply Doctor as needed'",
+      "generalize reflection-input adapters/capabilities for generic MTZ and direct SCA MR",
       "run dedicated prepared-nonstandard/geometry-diverse live campaign",
-      "explicit stable design_id grouping",
-      "generic GUI fork with visual recipe builder and full CLI interaction parity",
-      "later Campaign Doctor donor-rescue runway",
-      "generalize campaign reflection-input adapters/capabilities beyond AutoPROC without weakening Free-R/deposition gates"
+      "add explicit stable design_id grouping",
+      "fork generic GUI with visual recipe builder and CLI interaction parity",
+      "later Campaign Doctor donor-rescue runway"
     ],
     "local_worktree_guardrail": "Known untracked scientific data, patches, bundles, old environments and example runs are user-local and must not be staged/deleted/renamed without explicit instruction.",
     "in_progress": {
-      "feature": "first-class workflow recipe with optional Doctor-as-needed policy",
-      "implementation_status": "PLANNED",
-      "remaining_gate": "Implement recipe-declared endpoint/conditional graph; current explicit --through refine-doctor path is validated."
+      "feature": "GZ11 forced NARestraints geometry plus nine-dataset TestSets stress campaign",
+      "implementation_status": "FORCE_IMPLEMENTED_UNVALIDATED",
+      "remaining_gate": "Local force-focused regression, then campaign/full regression as warranted, then disposable TestSets planning/live execution."
     },
     "validation_baseline": {
       "full_suite": {
@@ -1678,6 +1684,37 @@
       "force": "G:C",
       "condition": "pH 11; Z deprotonated/C-like for intended H-bond geometry",
       "dictionary_followup": "Verify reviewed DZ construction/dictionary provenance from prior standalone success before live campaign PostMR; NASolve package currently has no DZ.cif."
-    }
+    },
+    "validation_note": "Parser/AutoMR/campaign/PostMR implementation and focused tests are present on Pine; Simon has not yet returned a local regression run for this feature."
+  },
+  "testsets_live_stress_test": {
+    "status": "INVENTORIED_NOT_PLANNED",
+    "root": "examples/TestSets",
+    "source_state": "user-local untracked folder; do not edit/clean without explicit instruction",
+    "datasets": [
+      "DOHU",
+      "DT",
+      "DiU",
+      "EA",
+      "ED",
+      "FA",
+      "GZ11",
+      "Q5cm",
+      "QiC"
+    ],
+    "count": 9,
+    "current_input_profile": "All nine currently contain one STARANISO/all-data MTZ, Data_1*.cif, summary.html and nasolve.txt.",
+    "historical_outputs": "EA and ED contain pre-existing AutoMR directories; campaign must allocate its own new numbered runs and not adopt/overwrite historical runs.",
+    "campaign_state": "No NASolveCampaign directory and no nasolve-campaign.toml at inventory time.",
+    "edge_case": {
+      "dataset": "GZ11",
+      "pair": "G:Z",
+      "force": "G:C",
+      "semantics": "Actual G/Z chemistry with G:C NARestraints recipe geometry at the designated standard pair only.",
+      "validation_gate": "Run force-focused/local regression before planning the nine-dataset campaign.",
+      "chemistry_followup": "Verify reviewed DZ dictionary/construction provenance from prior standalone success before live PostMR if packaged support is absent."
+    },
+    "intended_run": "After regression and planning gates, execute one disposable campaign from MR through explicit refine-doctor boundary.",
+    "success_semantics": "Maximize scientifically valid solved/recommended/inspection outcomes; preserve honest blockers."
   }
 }
