@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Status: **current working state — updated 2026-09-28**.
+Status: **current working state — updated 2026-09-29**.
 
 This file records the implementation edge: what is validated now, what is
 scientifically blocked, and what should happen next.
@@ -12,59 +12,70 @@ document. Superseded handoffs and validation diaries live under `docs/history/`.
 
 For a fresh development session, recover state in this order:
 
-1. **Mainline registration state:** Oak/PR #22 is merged to `main` at
-   `fec66ebeddbd525684824576b705460324ec0a14`. The design-aware Scout-v2
-   helper is present but remains **experimental, proposal-only and non-runtime**.
-   Do not promote it merely because Oak merged. **Public/scientist-facing name is
-   simply `Scout`; v1/v2 labels are internal development provenance only.**
-2. **Active campaign branch:** `pine` sits above the merged Oak mainline and
-   carries the schema-2 prepared-nonstandard/mixed campaign backend plus current
-   campaign documentation. Synthetic campaign validation is closed at
-   **684 tests + 226 subtests** on runtime head `8c2c423`; subsequent Pine
-   changes through this handoff are documentation/history reconciliation unless
-   explicitly noted otherwise.
-3. **Real W live campaign is now complete as an orchestration validation.**
-   Disposable sandbox `/tmp/NASolve-W-live-20260928` contains `DOHU`,
-   `QiC_120325_0513`, `QE_120325_0607`, and `EG_091325-0302`.
-   Planning/integrity passed 4/4; real preflight + Phaser + PostMR passed 4/4;
-   one plain unattended resume then advanced all four through conditional
-   AutoSol and AutoRefine.
-4. **Final W result:** DOHU, EG and QE reached `SOLVED` at `refine-001`;
-   each correctly recorded AutoSol `SKIPPED`. QiC correctly required AutoSol,
-   reached `AUTOSOL_READY`, then stopped at `refine-001` as
-   `AWAITING_INSPECTION` because numerical refinement acceptance failed.
-   Campaign state was `COMPLETE_WITH_FLAGS`, integrity remained `OK`, and
-   campaign/status exit code 3 correctly reflected the one review case.
-5. **Do not run standalone Refine Doctor on the campaign-owned QiC run yet.**
-   Doctor is itself checkpoint-preserving and non-auto-selecting, but currently
-   appends Doctor history into the run `report.json`. Campaign AutoRefine has
-   already checksummed that report in its immutable receipt; an out-of-band
-   Doctor invocation would therefore look like post-stage report drift on the
-   next campaign reconciliation. Campaign-aware Doctor must be an explicit
-   workflow/stage transition with its own receipt/provenance before we exercise
-   that rescue on this live campaign.
-6. **Do not confuse this with the Pine-specific live gate.** The real
-   3-5-member prepared-nonstandard/geometry-diverse campaign is still pending
-   because those datasets have not yet been supplied. The easy W flock validates
-   orchestration, not the new scientific provider path.
-7. **Workflow-recipe product intent:** the selected/frozen campaign recipe
-   should declare its endpoint and conditional graph. A recipe may opt into the
-   plain-language policy **"apply Doctor as needed"** (exact schema spelling is
-   intentionally not frozen yet). When absent, an eligible review remains an
-   inspection stop. When enabled, only separately validated/bounded
-   stage-specific Doctors may run automatically at their eligible review gate;
-   Doctor recommendation/inspection/current-checkpoint semantics remain explicit.
-8. **GUI product intent:** after the real geometry-diverse gate and stable
-   `design_id`, the GUI should provide a visual campaign-recipe builder using
-   only backend capabilities that actually exist and have been enabled. Defaults
-   may be preselected, advanced options may be disclosed progressively, and the
-   resulting GUI recipe must serialize to the same backend recipe the CLI uses.
-   Every CLI interaction surface—inspect/open-in-Coot, yes/no confirmation,
-   review continuation, Doctor candidate inspection and checkpoint selection—
-   must have an equivalent GUI action with the same eligibility/provenance.
-9. **Later Campaign Doctor:** continue on the separately mapped donor-rescue
-   path: read-only candidate matrix -> reviewed eligibility -> attempt-local
-   donor provenance -> explicit donor rescue -> bounded enumeration.
+1. **Registration state:** Oak/PR #22 is merged to `main` at
+   `fec66ebeddbd525684824576b705460324ec0a14`. The design-aware Scout
+   implementation remains **proposal-only/non-runtime**. Internally the dev
+   history distinguishes Scout v1/v2; scientist-facing language should simply
+   say **Scout**.
+2. **Active branch:** `pine`. The last fully returned local regression baseline
+   is **688 tests + 224 subtests**, with the campaign family at
+   **132 tests + 85 subtests** and campaign executor CLI at
+   **9 tests + 4 subtests**. That baseline includes the campaign-owned Refine
+   Doctor bridge and its live QiC validation.
+3. **Campaign-owned Refine Doctor is regression + live validated.** In the real
+   four-member W campaign, DOHU/EG/QE reached `SOLVED`; QiC required AutoSol,
+   initially stopped at `refine-001` review, then campaign-owned Doctor ran
+   `RefineDoctor/ML-fixed-scattering` and produced recommended `refine-002`
+   at Rwork/Rfree = **0.1500/0.1502**. Doctor preserved actual current
+   checkpoint `postmr` and did not auto-select the recommendation. Do not run
+   standalone Doctor out-of-band on a campaign-owned run; use campaign provenance.
+4. **Immediate code edge: GZ11 forced restraint geometry.** Pine now contains an
+   **implemented-unvalidated** `[automr] force = FIRST:SECOND` pathway.
+   `pair = G:Z` remains the actual chemistry/target; `force = G:C` overrides
+   only the NARestraints base-pair recipe for the designated W pair
+   A:12/B:4. Residue identity, model selection and flanking-pair inference remain
+   separate. Parser/AutoMR/campaign/PostMR code and focused tests are present,
+   but **Simon has not yet run the local regression ferry**. Do not promote this
+   feature to validated until that evidence returns.
+5. **Nine-dataset live stress test is staged conceptually, not yet planned.**
+   User-local `examples/TestSets/` contains exactly:
+   `DOHU`, `DT`, `DiU`, `EA`, `ED`, `FA`, `GZ11`, `Q5cm`, `QiC`.
+   All nine have the current AutoPROC/STARANISO MTZ + `Data_1*.cif` +
+   `summary.html` profile and `nasolve.txt`. EA/ED already contain historical
+   `AutoMR/` directories, which campaign execution should leave alone while
+   allocating a new numbered run. The TestSets root has **no**
+   `NASolveCampaign/` and no `nasolve-campaign.toml`; the source folder
+   remains untracked and untouched.
+6. **Do not rewrite GZ11 input.** Its literal
+   `pair = G:Z` / `force = G:C` is the intended edge case. Scientific
+   motivation: at pH 11, Z is deprotonated/C-like for the intended hydrogen-bond
+   geometry. The packaged repo currently exposes no `DZ.cif`; before live
+   PostMR, verify the reviewed DZ construction/dictionary provenance from the
+   previously successful standalone GZ11 path rather than guessing or fetching
+   chemistry silently.
+7. **Reflection-input compatibility roadmap:** current runtime still discovers
+   MTZ only and requires `Data_1*.cif` + `summary.html`. This is an adapter
+   limitation, not a scientific invariant. Future campaign setup should classify
+   `MR-ready`, `refinement-ready`, `anomalous-ready`, and
+   `deposition-ready` separately. Generic MTZ should work by content.
+   SCA/Scalepack is a legitimate **direct Phaser/MR source**; any later SCA->MTZ
+   derivation should exist only when a downstream stage needs MTZ arrays and must
+   carry separate checksum/provenance. Missing deposition metadata should lock
+   deposition, not structure solution.
+8. **Next product semantic after the live flock:** first-class frozen workflow
+   recipes declaring endpoint/conditional graph, including an optional human
+   semantic **"apply Doctor as needed"**. Current explicit
+   `--through refine-doctor` remains the validated path.
+9. **Separate Pine live gate still pending:** a dedicated real
+   prepared-nonstandard/geometry-diverse 3-5 dataset campaign. After that, add
+   explicit stable `design_id`, then allow the GUI fork. The GUI should visually
+   build the same backend recipe and expose CLI-equivalent inspect/confirm/select
+   operations.
+10. **Later Campaign Doctor:** campaign-wide donor rescue remains on its separate
+    runway: read-only candidate matrix -> reviewed eligibility -> attempt-local
+    donor provenance -> explicit donor rescue -> bounded enumeration. Do not
+    infer donor eligibility from similarity/ranking.
+
 
 Scientific invariants remain stronger than convenience: immutable attempts,
 frozen observations/Free-R/targets, fail-closed ambiguity, one dataset's
@@ -104,46 +115,29 @@ Before the live nine-dataset run, inspect the successful standalone GZ11
 provenance/local files to determine which reviewed DZ dictionary/construction
 path it used; do not guess or silently download one.
 
-### Current resumed state — 2026-09-28
+### Session handoff — 2026-09-29
 
-The earlier clean stop-state was deliberately reopened to finish the live QiC
-Doctor path.
+- **Validated baseline:** 688 tests + 224 subtests; campaign family
+  132 + 85 subtests; campaign-owned Refine Doctor regression + live validation
+  complete.
+- **Newest code beyond that baseline:** forced restraint-geometry support for
+  `force = FIRST:SECOND`, specifically needed by GZ11
+  (`pair = G:Z`, `force = G:C`). It is **implemented-unvalidated** until
+  Simon runs the pending local regression ferry.
+- **No nine-dataset campaign plan has been created yet.** Original
+  `examples/TestSets/` remains untracked and untouched.
+- **Next execution order:** pull latest Pine -> run force-focused regression ->
+  run relevant campaign/full regression -> inspect/confirm GZ11 DZ dictionary
+  provenance if needed -> plan a disposable TestSets campaign -> if all nine are
+  discovered, run the campaign from MR through explicit `refine-doctor`.
+- **Success criterion:** not "force nine greens"; one invocation should produce
+  the maximum scientifically valid solved/Doctor-recommended/inspection set,
+  preserving honest blockers and exact provenance.
+- **Source-data portability work is roadmap only:** generic MTZ and direct-SCA
+  capability modeling is documented but not implemented.
+- Known user-local untracked data, patches, bundles, environments and example
+  runs remain out of scope for cleanup unless Simon explicitly asks.
 
-- Validated pre-Doctor campaign behavior remains anchored by the prior
-  684-test/226-subtest baseline and the completed four-member W campaign.
-- The campaign-owned Refine Doctor bridge is now **fully regression + live
-  validated**. Focused regression passed 4 tests + 4 subtests; the corrected CLI
-  suite passed **9 tests + 4 subtests**; the entire campaign family passed
-  **132 tests + 85 subtests**; and the full NASolve regression passed
-  **688 tests + 224 subtests** in 58.19 s. Patch/doc hygiene also passed.
-- Live QiC Doctor result: source `refine-001`; bounded
-  `RefineDoctor/ML-fixed-scattering` produced `refine-002` with
-  Rwork/Rfree = **0.1500/0.1502**, satisfying the strict numerical gate.
-  Doctor returned `REFINE_DOCTOR_RECOMMEND`, preserved actual current
-  checkpoint `postmr`, and did not auto-select its recommendation. Free-R audit
-  was `NOISY` (66 independent groups; fraction 0.04456), not invalid.
-- The four-member real W campaign smoke test is **closed and successful as an
-  orchestration validation**: 3 `SOLVED`, 1 `AWAITING_INSPECTION`, with
-  conditional AutoSol behaving correctly and frozen integrity preserved.
-- QiC is intentionally left untouched at `postmr` current /
-  `refine-001` REVIEW. Do not run standalone Refine Doctor on this
-  campaign-owned run.
-- The next backend implementation target is **first-class workflow recipe
-  semantics** so a recipe can opt into "apply Doctor as needed" without requiring
-  an explicit `--through refine-doctor` boundary.
-- The immediate next live test is the user-local `examples/TestSets/` folder
-  (roughly nine datasets). Run the whole prepared campaign in one invocation
-  from MR through conditional AutoSol, AutoRefine, and explicit campaign Doctor
-  continuation, then summarize dataset -> final status -> exact run ->
-  checkpoint/recommendation. The objective is one command producing as many
-  scientifically valid inspectable solutions as the folder permits.
-- The separate prepared-nonstandard/geometry-diverse Pine live gate still
-  remains after that when those dedicated inputs are supplied.
-- Only after that gate should explicit `design_id` grouping be added, followed
-  by the GUI fork.
-- Known user-local untracked scientific data, patches, bundles, old environments
-  and example runs remain intentionally untracked. Do not stage, delete, rename
-  or otherwise "clean up" them unless the user explicitly asks.
 
 A fresh session should start by reading this section plus the machine intent,
 then inspect the current Pine head before changing code.
