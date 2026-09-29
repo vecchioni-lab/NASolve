@@ -100,6 +100,39 @@ class CampaignStageTests(unittest.TestCase):
         self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["A:1"])
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
 
+    def test_forced_restraint_geometry_survives_campaign_preflight_freezing(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\nmode = standard\nframe = W\n"
+            "pair = G:Z\nforce = G:C\n"
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        self.assertEqual(self.dataset["status"], "DISCOVERED", self.dataset["diagnostic"])
+        self.assertEqual(self.dataset["effective_config"]["pair"], "G:Z")
+        self.assertEqual(self.dataset["effective_config"]["force"], "G:C")
+        self.assertEqual(self.dataset["effective_config"]["force_pair"], ["G", "C"])
+
+        result = self.stage("preflight")
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        self.assertEqual(report["post_mr_plan"]["standard_pair"]["requested"], "G:Z")
+        self.assertEqual(
+            report["post_mr_plan"]["restraint_geometry_override"],
+            {
+                "schema_version": 1,
+                "source": "force",
+                "requested": "G:C",
+                "base_classes": ["G", "C"],
+                "scope": "standard_pair",
+                "changes_residue_identity": False,
+            },
+        )
+        frozen = (run / "nasolve.input.txt").read_text()
+        self.assertIn("pair = G:Z", frozen)
+        self.assertIn("force = G:C", frozen)
+
     def test_sequence_reference_preflight_uses_frozen_campaign_copy(self):
         dataset = make_dataset(self.root / "dataset", include_model=False)
         # This test exercises the sequence-family correspondence gate, so its
