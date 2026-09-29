@@ -48,11 +48,44 @@ directories and symbolic-link directories do not become datasets. Repeat
 `--dataset NAME` to select exact direct children rather than discovering the
 whole root. The names must stay within that root.
 
-Dataset discovery reuses the ordinary AutoMR rules: one authoritative MTZ,
-one processing metadata CIF, and one summary. New campaign plans use **schema 2**.
-They support both the existing standard W/5W6W route and a deliberately
-conservative prepared-nonstandard route. Existing schema-1 W plans remain
-readable and executable without migration.
+Dataset discovery currently reuses the ordinary AutoMR rules: one authoritative
+MTZ, one `Data_1*.cif` processing-metadata file, and one `summary.html`.
+This is the **current AutoPROC/STARANISO input profile**, not the intended
+universal campaign format. New campaign plans use **schema 2** and support both
+the existing standard W/5W6W route and a deliberately conservative
+prepared-nonstandard route. Existing schema-1 W plans remain readable and
+executable without migration.
+
+### Future reflection-input compatibility profiles
+
+Campaign setup should separate **what crystallographic work the available input
+can support** from **which processing package produced it**.
+
+The intended capability ladder is:
+
+1. **MR-ready** — a reflection dataset contains enough validated cell/symmetry
+   and observation information for molecular replacement.
+2. **Refinement-ready** — MR-ready plus a stable refinement observation array
+   and an authoritative Free-R set. NASolve must not silently regenerate Free-R
+   flags merely because a generic input omitted them; any future one-time
+   Free-R creation policy must be explicit, frozen and separately validated.
+3. **Anomalous-ready** — refinement-ready plus the anomalous arrays and
+   wavelength/element context required for the guarded AutoSol/anomalous path.
+4. **Deposition-ready** — the solved/refined dataset also has the processing,
+   collection and experiment metadata required for deposition/reporting. Missing
+   deposition metadata should lock deposition/curation features rather than
+   preventing otherwise valid MR/refinement work.
+
+The first compatibility expansion should be **generic MTZ input**: allow an MTZ
+whose contents satisfy the relevant capability gates without requiring
+AutoPROC-specific companion filenames. A later **SCA/Scalepack import adapter**
+may convert a validated SCA reflection file into a frozen downstream MTZ plus
+explicit provenance; SCA is not a current runtime input.
+
+The GUI/campaign planner should therefore report capability badges and missing
+requirements (for example `MR READY`, `REFINEMENT BLOCKED: no Free-R set`,
+`DEPOSITION LOCKED: processing metadata incomplete`) instead of treating
+absence of AutoPROC/STARANISO files as a universal dataset failure.
 
 For standard W datasets, catalogue selection remains the default and a dataset
 may explicitly force one PDB from its own directory or the selected frame
