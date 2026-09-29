@@ -136,6 +136,25 @@ class CampaignTests(unittest.TestCase):
         self.assertFalse(omitted["exact_pair_model"])
         self.assertEqual(omitted["model_name"], "C_G.pdb")
 
+    def test_forced_restraint_geometry_is_frozen_separately_from_pair_identity(self):
+        self.dataset(
+            "GZ11",
+            "[automr]\nmode = standard\nframe = W\n"
+            "pair = G:Z\nforce = G:C\n",
+        )
+        entry = self.plan()["datasets"][0]
+        self.assertEqual(entry["status"], "DISCOVERED", entry["diagnostic"])
+        config = entry["effective_config"]
+        self.assertEqual(config["pair"], "G:Z")
+        self.assertEqual(
+            [item["ligand_code"] for item in config["pair_ligands"]],
+            ["DG", "DZ"],
+        )
+        self.assertEqual(config["force"], "G:C")
+        self.assertEqual(config["force_pair"], ["G", "C"])
+        self.assertEqual(config["model_name"], "C_G.pdb")
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
     def test_builtin_requires_dataset_pair_and_nonstandard_requires_model_and_sequence(self):
         self.dataset("good", "[automr]\npair = C:G\n")
         self.dataset("missing")
