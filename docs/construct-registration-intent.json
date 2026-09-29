@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-29-pine-34",
+  "version": "2026-09-29-pine-35",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -1629,13 +1629,13 @@
   "reflection_input_compatibility": {
     "status": "PLANNED_ARCHITECTURE_CURRENT_RUNTIME_AUTOPROC_PROFILE_ONLY",
     "current_runtime": {
-      "reflections": "MTZ only; STARANISO/all-data preferred when uniquely present, otherwise one top-level MTZ may be selected",
+      "reflections": "MTZ only today; STARANISO/all-data preferred when uniquely present, otherwise one top-level MTZ may be selected",
       "required_companions": [
         "Data_1*.cif",
         "summary.html"
       ],
       "sca_supported": false,
-      "interpretation": "Current companion-file requirements are input-adapter constraints, not universal scientific requirements."
+      "interpretation": "Current discovery/runtime does not yet admit SCA, even though Phenix can use SCA directly for MR."
     },
     "future_capabilities": {
       "mr_ready": "Validated reflection observations plus cell/symmetry sufficient for molecular replacement.",
@@ -1646,8 +1646,9 @@
     "design_rules": [
       "Missing deposition metadata locks deposition/reporting features but must not block otherwise valid MR/refinement.",
       "Missing or ambiguous Free-R continues to block guarded refinement; NASolve must not silently regenerate flags.",
-      "Generic MTZ is the first desired compatibility expansion.",
-      "SCA/Scalepack support is future work via an explicit frozen import/conversion adapter, not current runtime support.",
+      "Generic MTZ is the first compatibility expansion beyond AutoPROC companion-file assumptions.",
+      "SCA/Scalepack is a direct MR-capable source and should not require pre-conversion merely to run Phaser.",
+      "If a downstream stage needs MTZ-style arrays, any SCA->MTZ derivation must be a separately checksummed provenance-bearing artifact.",
       "Downstream stages should consume frozen internal capabilities/provenance rather than branch on processing-vendor filenames."
     ],
     "gui": "Campaign setup shows capability badges and exact missing requirements instead of one universal valid/invalid result."
