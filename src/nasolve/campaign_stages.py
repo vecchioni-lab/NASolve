@@ -173,6 +173,26 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
     )
     if mode == "standard":
         pair = _pair(effective["pair_ligands"])
+        force_text = effective.get("force")
+        force_pair_value = effective.get("force_pair")
+        if force_pair_value is None:
+            force_pair = None
+            if force_text is not None:
+                raise CampaignStageError("Frozen restraint force lacks its base-class pair")
+        else:
+            if (
+                not isinstance(force_pair_value, list)
+                or len(force_pair_value) != 2
+                or not all(
+                    isinstance(value, str)
+                    and re.fullmatch(r"[ATGCDBSZPKXI]", value) is not None
+                    for value in force_pair_value
+                )
+            ):
+                raise CampaignStageError("Frozen restraint force pair is malformed")
+            force_pair = (force_pair_value[0], force_pair_value[1])
+            if force_text != ":".join(force_pair):
+                raise CampaignStageError("Frozen restraint force text and pair disagree")
         model_pair = (
             _pair(effective["model_pair"])
             if effective.get("model_pair") is not None else None
@@ -191,7 +211,11 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
             raise CampaignStageError("Nonstandard frozen selection contains standard-frame pair context")
         if effective.get("sequence_thread") is not None:
             raise CampaignStageError("Nonstandard frozen selection cannot use a W sequence thread")
+        if effective.get("force") is not None or effective.get("force_pair") is not None:
+            raise CampaignStageError("Nonstandard frozen selection cannot carry restraint force")
         pair = None
+        force_text = None
+        force_pair = None
         model_pair = None
         frame = None
         exact_pair_model = None
@@ -201,6 +225,7 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
     resolved = ResolvedAutoMRInput(
         dataset=files, mode=mode, frame=frame,
         pair_text=effective.get("pair"), pair=pair,
+        force_text=force_text, force_pair=force_pair,
         model=model, model_source=effective["model_source"],
         model_pair=model_pair,
         exact_pair_model=exact_pair_model,
