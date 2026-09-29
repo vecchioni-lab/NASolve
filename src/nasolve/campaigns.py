@@ -44,7 +44,8 @@ _EXCLUDED = {
 }
 _HASH = re.compile(r"[0-9a-f]{64}\Z")
 _AUTOMR_FIELDS = (
-    "mode", "frame", "pair", "model", "sequence_file", "mirror", "allow_p1_standard",
+    "mode", "frame", "pair", "force", "model", "sequence_file", "mirror",
+    "allow_p1_standard",
 )
 
 
@@ -239,6 +240,7 @@ def _merged_intent(dataset: Path, preset: ProjectPreset) -> AutoMRIntent:
 def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
     return {
         "mode": intent.mode, "frame": intent.frame, "pair": intent.pair,
+        "force": intent.force,
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
         "model_selector": intent.model,
         "model_family": intent.model_family,
@@ -384,6 +386,10 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "backbones": dict(resolved.backbone_sites),
             "allow_unreviewed_backbone": resolved.allow_unreviewed_backbone,
             "pair": resolved.pair_text,
+            "force": resolved.force_text,
+            "force_pair": (
+                list(resolved.force_pair) if resolved.force_pair is not None else None
+            ),
             "pair_ligands": (
                 [asdict(item) for item in resolved.pair]
                 if resolved.pair is not None else None
@@ -733,7 +739,7 @@ def _validate_plan(payload: Any) -> None:
                 except BackboneError as exc:
                     raise CampaignError(f"Malformed campaign backbone chemistry: {exc}") from exc
             for field in (
-                "mode", "frame", "pair", "sequence_reference",
+                "mode", "frame", "pair", "force", "sequence_reference",
                 "model_selector", "model_family",
             ):
                 if config.get(field) is not None:
@@ -751,6 +757,32 @@ def _validate_plan(payload: Any) -> None:
                         raise CampaignError(
                             f"Malformed campaign state: invalid {name}.sequence_reference"
                         )
+            force_pair = config.get("force_pair")
+            if force_pair is not None:
+                if (
+                    not isinstance(force_pair, list)
+                    or len(force_pair) != 2
+                    or not all(
+                        isinstance(value, str)
+                        and re.fullmatch(r"[ATGCDBSZPKXI]", value) is not None
+                        for value in force_pair
+                    )
+                ):
+                    raise CampaignError(
+                        f"Malformed campaign state: invalid {name}.force_pair"
+                    )
+                if config.get("force") != ":".join(force_pair):
+                    raise CampaignError(
+                        f"Malformed campaign state: inconsistent {name}.force"
+                    )
+                if config.get("mode") != "standard":
+                    raise CampaignError(
+                        f"Malformed campaign state: restraint force is only valid in standard mode"
+                    )
+            elif config.get("force") is not None:
+                raise CampaignError(
+                    f"Malformed campaign state: {name}.force lacks force_pair"
+                )
             try:
                 sites = validate_op3_sites(config.get("allow_op3_sites", []))
                 if "phosphate_intent" in config:
