@@ -1,8 +1,8 @@
 # Development handoff addendum — 2026-10-01
 
-Status: **category-based intermediate hops implemented and focused-tested;
-full regression/live integration pending; component conversion and dictionary
-repair remain separate work**.
+Status: **category-based intermediate hops implemented; 735 passing local tests
+reported by Simon after the validation ferry; new live integration pending;
+component conversion and dictionary repair remain separate work**.
 
 Read this addendum before the GZ11 sections of [development-handoff.md](development-handoff.md).
 It supersedes the 2026-09-29 immediate GZ11 validation/blocker statements, not the
@@ -31,11 +31,34 @@ change.
 
 Focused validation used an exact Git-blob-verified source module from Pine
 `97ab3e2` in an isolated Linux environment with a fixture library loader:
-**32 failing + 9 passing tests before; 41 passing after**. This is not a full
-NASolve suite, live workbook/Coot/Phenix validation or GitHub CI. The last
-user-returned full-suite baseline remains 694 tests + 224 subtests. No source
-checkout, original GZ11 run, or historical experiment was edited on Simon's
-machine by this change.
+**32 failing + 9 passing tests before; 41 passing after**. That isolated check
+was not a full NASolve suite, live workbook/Coot/Phenix validation or GitHub CI.
+After the local validation ferry for category-hop commit `88e2f53`, Simon
+reported **735 green tests**. This is a user-reported local full-suite pass;
+no raw transcript, exact checked-out SHA, subtest count or runtime accompanied
+that follow-up. Do not infer those fields or treat the report as new live
+crystallographic validation. The earlier 694 tests + 224 subtests remain
+historical evidence for their recorded code head.
+
+## Library-backed continuation: latest user clarification
+
+Do not stop merely because NASolve lacks a classification or special-case
+registry entry when the applicable library resolves the intended component and
+Phenix can interpret/refine it. Continue with source provenance and a warning
+for missing optional recognition/diagnostics; keep any inspection caveats
+visible. NASolve recognition is not a prerequisite for every valid component.
+
+Reserve necessary stops for unusable scientific inputs, an unresolvable
+required operation, or an external execution that cannot produce usable output.
+Known compatibility problems should receive supported audited corrections,
+not blanket rejection or silent removal of required restraints. Preserve
+actual target identity, observations/Free-R integrity and explicit user intent.
+A review flag is not itself a technical failure; unrelated campaign members
+should continue when one stage/dataset is blocked.
+
+This is agreed direction for the next bounded implementation, not a claim that
+existing runtime gates have been relaxed. The detailed policy is in
+[modified-component-preparation.md](modified-component-preparation.md).
 
 ## Recorded component-normalization intent
 
@@ -80,6 +103,9 @@ All live results below were reported by Simon from his local environment.
    present. The actual command consumed
    **PostMR/ReadySet/prepared_model.ligands.cif**, which retained those rows.
    Current stayed unchanged. This is not numerical refinement success.
+6. After the category-hop validation ferry, Simon reported **735 green tests**.
+   This updates the reported local regression baseline only; no new live
+   preparation/refinement or nine-member campaign outcome was reported.
 
 The retained pen was `nasolve-dz-dc-probe-kad1eax8` in Simon's macOS temporary
 directory, with `MR_snapshot/` and `probe_receipt.json`. It may expire; preserve
@@ -88,12 +114,14 @@ been launched or validated by these changes.
 
 ## Next bounded slice
 
-Run focused plus full local regression for the category hops. Then generalize
+The category-hop local full-suite pass has been reported. Next generalize
 the known alternative-torsion compatibility and effective dictionary authority
-without building an automatic chemical-repair engine. September 24 commit
-`d203d2e32effd8c5f7b4b319ee2774b05972aa82` added normalization but called it only
-for 1AP. The actual effective CIF must be checked after ReadySet/checkpoint
-selection; normalizing an unused input copy cannot fix this failure.
+without building an automatic chemical-repair engine. Apply the library-backed
+warning/continuation policy above rather than making unfamiliarity alone fatal.
+September 24 commit `d203d2e32effd8c5f7b4b319ee2774b05972aa82` added normalization
+but called it only for 1AP. The actual effective CIF must be checked after
+ReadySet/checkpoint selection; normalizing an unused input copy cannot fix
+this failure.
 
 Audit supported torsion alternatives, ordered/reversed quartets, period,
 existing alternatives and unequal uncertainties explicitly. Correct known
