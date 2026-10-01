@@ -19,11 +19,14 @@
       "application_boundary": "To be reviewed; preserve raw sources and historical frozen artifacts, record actual conversion in prepared derivatives."
     },
     {
-      "source_component": null,
+      "source_component": "1WA",
       "target_component": "DP",
-      "requested_policy": "NORMALIZE_THE_CORRESPONDING_PROBLEMATIC_P_COMPONENT_TO_DP",
-      "source_identity_status": "UNRESOLVED_DO_NOT_GUESS",
-      "implementation_status": "NOT_IMPLEMENTED_PENDING_IDENTIFICATION_AND_REVIEW"
+      "requested_policy": "NORMALIZE_1WA_TO_DP",
+      "user_clarification": "1WA for DP",
+      "source_identity_status": "USER_IDENTIFIED",
+      "direction_settled": true,
+      "implementation_status": "NOT_IMPLEMENTED_PENDING_REVIEW",
+      "chemical_equivalence_validated": false
     }
   ],
   "existing_curated_registry_snapshot": {
@@ -104,14 +107,14 @@
     "downstream_requirement": "Verify the normalized authoritative component actually reaches refinement and is not replaced by a conflicting ReadySet definition."
   },
   "next_session": [
-    "Review requested always 1W5 -> DZ policy and identify the source component to normalize to DP",
+    "Review requested component normalization policies: always 1W5 -> DZ and user-identified 1WA -> DP",
     "Agree generalized scaffold and dictionary contracts without relabelling pairing classes",
     "Implement reviewed NASolve changes with regression coverage",
     "Repeat bounded live preparation/refinement in a fresh experimental branch before production promotion"
   ],
   "guardrails": [
     "Documentation-only update; runtime changes deferred",
-    "No guessed DP source code or new mapping from uncertain 1W0 recollection",
+    "User-identified 1WA -> DP direction is recorded; chemistry and atom mapping still require review, and no new mapping is inferred from uncertain 1W0 recollection",
     "No blanket tautomer equivalence, pH inference or deposition rewrite",
     "Preserve input identity, source dictionaries, observations, Free-R and immutable failed attempts",
     "No installed-workbook mutation or silent dictionary fetching",
