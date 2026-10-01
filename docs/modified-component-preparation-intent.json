@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-01",
-  "status": "INTERMEDIATE_HOPS_IMPLEMENTED_USER_REPORTED_FULL_TEST_PASS_OTHER_CHANGES_PENDING",
+  "status": "DICTIONARY_AND_INTERMEDIATES_FULL_REGRESSION_VALIDATED_NATIVE_GZ11_PENDING",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -54,7 +54,7 @@
     ],
     "existing_curated_routes_keep_precedence": true,
     "canonical_routes_preserved": true,
-    "sugar_form": "DNA uses D-prefixed codes; RNA uses ribonucleotide codes, including U for T-category; unknown sugar is still a separate runtime error",
+    "sugar_form": "DNA uses D-prefixed codes; RNA uses its ribonucleotide (U for T-category); unknown sugar is still a separate runtime error",
     "n9_or_purine_pyrimidine_inference": "SUPERSEDED_NOT_USED",
     "intermediate_role_map_completeness_gate": false,
     "final_component_identity_changed": false,
@@ -67,7 +67,7 @@
     "reported_by": "user-local-run",
     "reported_full_tests": 735,
     "status": "USER_REPORTED_PASS",
-    "context": "After the validation ferry for category-hop commit 88e2f5369cfdcc4f5ad193fa089eae7eff0c814c",
+    "context": "After the validation ferry for category-hop commit 88e2f5369cfdcc4f5ad193fa089eae7eff0c814c; historical baseline, superseded by returned_dictionary_regression",
     "exact_checked_out_sha": null,
     "subtest_count": null,
     "runtime_seconds": null,
@@ -77,21 +77,34 @@
     "new_live_crystallographic_validation": false,
     "older_evidence_ref": "docs/history/modified-component-preparation-intent-2026-10-01.json"
   },
+  "returned_dictionary_regression": {
+    "reported_by": "user-local-run",
+    "base_checkout": "dd59b4fdb70967adc6c240e7599b0a67e69188e9",
+    "tested_working_tree_committed_as": "66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08",
+    "focused_tests": 151,
+    "focused_runtime_seconds": 3.66,
+    "full_tests": 771,
+    "full_subtests": 224,
+    "full_runtime_seconds": 66.78,
+    "status": "PASSED_FROM_USER_TRANSCRIPT",
+    "raw_transcript_supplied": true,
+    "published_to_pine": true,
+    "remote_ref_verified": true,
+    "independently_executed": false,
+    "github_ci": false,
+    "new_live_crystallographic_validation": false
+  },
   "current_blocker": {
-    "next_slice": "P1: effective-dictionary compatibility and authority",
+    "next_slice": "Read baseline campaign member outcomes, then fresh ordinary GZ11 native validation of the published dictionary patch",
     "experimental_postmr": "PASSED_DZ_VIA_DC_WITH_TEMPORARY_PROVIDER",
-    "experimental_refinement": "FAILED_BEFORE_R_STATISTICS",
+    "experimental_refinement": "HISTORICAL_PRE_PATCH_FAILURE_BEFORE_R_STATISTICS",
     "residue_site": "DZ B:4",
     "torsion_family": "C2e/C3e nyu0",
-    "atoms": [
-      "C4'",
-      "O4'",
-      "C1'",
-      "C2'"
-    ],
+    "atoms": ["C4'", "O4'", "C1'", "C2'"],
     "consumed_dictionary": "PostMR/ReadySet/prepared_model.ligands.cif",
     "torsion_history_commit": "d203d2e32effd8c5f7b4b319ee2774b05972aa82",
-    "current_dispatch": "1AP only",
+    "historical_dispatch": "1AP only before 66cb7a2",
+    "current_dispatch": "Content-based input/effective dictionary handling, independent of phosphate-profile presence",
     "production_gz11_refinement_validated": false,
     "details_ref": "docs/history/development-handoff-2026-10-01-addendum.md.txt"
   },
@@ -127,7 +140,7 @@
       "source/derivative provenance"
     ],
     "downstream_requirement": "The intended normalized definition must actually reach refinement, not be replaced by a conflicting ReadySet definition.",
-    "torsion_current_dispatch": "Input and effective dictionaries, independent of residue name and phosphate profiles; candidate pending live verification"
+    "torsion_current_dispatch": "Input and effective dictionaries, independent of residue name and phosphate profiles; full-checkout tests passed, native verification pending"
   },
   "guardrails": [
     "Pine merge gates and operational Scout priority live in the canonical handoff, not a duplicate evolving checklist here",
@@ -137,9 +150,10 @@
     "No installed-workbook changes, silent dictionary download, new 1W0 mapping or Scout authority promotion"
   ],
   "dictionary_compatibility_candidate": {
-    "status": "IMPLEMENTED_SOURCE_TESTED_PENDING_FULL_CHECKOUT_AND_LIVE",
+    "status": "IMPLEMENTED_FULL_CHECKOUT_REGRESSION_PASSED_NATIVE_VALIDATION_PENDING",
+    "code_commit": "66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08",
     "source_test_count": 34,
-    "source_test_scope": "Isolated actual source with real Bio.PDB and stubs for unrelated NASolve imports; not full checkout or Phenix",
+    "source_test_scope": "Historical isolated source test; later full-checkout evidence is in returned_dictionary_regression",
     "new_tests": [
       "tests/test_dictionary_compatibility.py",
       "tests/test_dictionary_postmr.py"
@@ -157,11 +171,20 @@
     "standing_component_conversions_implemented": false,
     "main_merge_authorized_by_this_evidence": false
   },
-  "running_baseline_campaign": {
+  "baseline_campaign": {
     "reported_by": "user",
     "started_before_dictionary_patch": true,
+    "command_returned_before_patch_applied": true,
     "source_head": "dd59b4fdb70967adc6c240e7599b0a67e69188e9",
-    "results_returned": false,
-    "rule": "Do not mutate its checkout until the campaign command returns; keep frozen baseline attempts unchanged"
+    "user_local_root": "~/NASolve-live-tests/TestSets-dd59b4f-jjra04s9",
+    "plan_exit": 0,
+    "run_exit": 3,
+    "status_exit": 3,
+    "original_copied_input_bytes_unchanged": true,
+    "outputs_retained": true,
+    "evidence_scope": "FERRY RESULT footer only",
+    "per_dataset_outcomes_returned": false,
+    "nine_member_gate_validated": false,
+    "next_action": "Read campaign status before choosing an exact campaign-owned fresh retry; preserve all existing attempts and frozen inputs"
   }
 }
