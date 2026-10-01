@@ -1,7 +1,9 @@
 # Modified-component preparation
 
-Status: **category-based construction hops implemented; focused source tests
-passed; full NASolve regression and new live integration pending**.
+Status: **category-based construction hops implemented; 41 focused source tests
+passed and Simon subsequently reported 735 passing local full-suite tests;
+new live integration pending**. Library-backed warning/continuation policy below
+is agreed development direction, not an implemented relaxation of runtime gates.
 
 ## Intermediate construction hops
 
@@ -12,8 +14,9 @@ replacement source of target atom definitions.
 For generic dictionary construction, use the recognized NARestraints `Source
 sheet` category below. Older records without a recognized sheet use `Base
 Analog` as the category. If neither supplies a recognized category, choose C.
-The actual target record must still exist: fallback C fills a missing
-**intermediate choice**, not a missing final residue identity or dictionary.
+The current generic constructor still requires a target record: fallback C
+fills a missing **intermediate choice**, not a missing final residue identity
+or dictionary. Broader library-backed continuation is discussed separately below.
 
 | Source category | Intermediate base |
 | --- | --- |
@@ -57,6 +60,37 @@ pending implementation review. Choosing an intermediate hop neither implements
 these conversions nor declares the two component definitions interchangeable.
 Raw inputs and frozen historical attempts retain their original identities.
 
+## Recognition failures versus scientific blockers
+
+Simon clarified after returning the category-hop regression: do not halt merely
+because NASolve does not recognize a component or lacks its own special-case
+classification when an applicable library supplies the intended component and
+Phenix can interpret/refine it. NASolve should delegate supported chemistry to
+the selected library rather than demand a duplicate internal registry.
+
+The agreed direction is to continue with a recorded warning and library-source
+provenance for a resolved library-backed component. Missing optional NASolve
+annotations or specialized diagnostics should disable/report only those extras,
+not veto otherwise usable refinement. Carry any remaining inspection caveat
+forward without declaring it final structural approval. Missing NASolve
+recognition and missing usable chemical definitions are different conditions.
+
+A stop remains appropriate when execution cannot produce a usable result or
+continuation would invalidate the intended science: for example, required
+component definitions cannot be resolved, target identity would be silently
+changed, required restraints remain unusable or contradictory, authoritative
+observations/Free-R integrity is lost, or an explicitly requested operation
+cannot be performed. Attempt supported, audited compatibility corrections first
+where available. Do not silently omit an explicit requested constraint merely
+to obtain a successful exit code. A scientific review flag is not itself a
+technical failure and need not prevent every downstream diagnostic action.
+
+Scope any necessary stop to the affected stage/dataset; unrelated campaign
+members should continue. The known DZ conflicting-dihedral result is a real
+execution blocker to repair, not evidence that every unfamiliar component must
+be rejected. This section records policy for the next implementation slice;
+no existing gate was changed by this documentation update.
+
 ## Effective dictionaries and bounded repair
 
 The next dictionary slice should audit the **actual effective refinement
@@ -64,7 +98,8 @@ bundle**, including ReadySet-generated CIFs, not just an earlier input file.
 Keep that small: identity/atom references, duplicate or conflicting restraints,
 finite positive numerical parameters where required, and source/derivative
 provenance. This is not a new monomer geometry library or a chemical inference
-engine.
+engine. Classify findings by their consequence rather than turning every
+unrecognized feature into an exception.
 
 Allow automatic corrections only for recognized transformations with defined
 semantics and an audit trail. Examples are a supported CCP4 alternative-torsion
@@ -95,8 +130,17 @@ missing-dictionary failures.
 
 The verified source module from Pine `97ab3e2` was tested in an isolated Linux
 Python environment with a fixture residue-library loader. The new tests returned
-32 failures and 9 passes before the patch, then **41 passes** after it. This is
-not a full NASolve suite, workbook audit, Coot run, or Phenix execution.
-Run the full suite on the normal checkout before live testing. Preserve failed
-GZ11 and experimental attempts; a category-hop pass does not resolve the known
-DZ dictionary/torsion refinement blocker.
+32 failures and 9 passes before the patch, then **41 passes** after it. That
+isolated check was not a full NASolve suite, workbook audit, Coot run, or Phenix
+execution.
+
+After the local validation ferry for category-hop commit `88e2f53`, Simon
+reported **735 green tests** on 2026-10-01. Record this as a user-reported local
+full-suite pass, not an independently executed run or GitHub CI. The follow-up
+did not include a raw test transcript, exact checked-out SHA, subtest count or
+runtime; none is inferred. The earlier 694-test/224-subtest result remains
+historical evidence for its separately recorded code head.
+
+New live integration remains pending. Preserve failed GZ11 and experimental
+attempts; the category-hop regression pass does not resolve the known DZ
+dictionary/torsion refinement blocker or validate the nine-dataset campaign.
