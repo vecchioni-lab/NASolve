@@ -126,7 +126,8 @@
       "no arbitrary conflict collapse",
       "source/derivative provenance"
     ],
-    "downstream_requirement": "The intended normalized definition must actually reach refinement, not be replaced by a conflicting ReadySet definition."
+    "downstream_requirement": "The intended normalized definition must actually reach refinement, not be replaced by a conflicting ReadySet definition.",
+    "torsion_current_dispatch": "Input and effective dictionaries, independent of residue name and phosphate profiles; candidate pending live verification"
   },
   "guardrails": [
     "Pine merge gates and operational Scout priority live in the canonical handoff, not a duplicate evolving checklist here",
@@ -134,5 +135,33 @@
     "Preserve raw/frozen identities, source dictionaries, observations/Free-R and failed attempts",
     "No arbitrary bond/protonation repair, blanket tautomer equivalence or inferred deposition rewrite",
     "No installed-workbook changes, silent dictionary download, new 1W0 mapping or Scout authority promotion"
-  ]
+  ],
+  "dictionary_compatibility_candidate": {
+    "status": "IMPLEMENTED_SOURCE_TESTED_PENDING_FULL_CHECKOUT_AND_LIVE",
+    "source_test_count": 34,
+    "source_test_scope": "Isolated actual source with real Bio.PDB and stubs for unrelated NASolve imports; not full checkout or Phenix",
+    "new_tests": [
+      "tests/test_dictionary_compatibility.py",
+      "tests/test_dictionary_postmr.py"
+    ],
+    "torsion_policy": "ccp4-alternates-primary-sigma-v2",
+    "source_and_effective_bundles": true,
+    "unclassified_conflicts": "retain unchanged with warnings for native interpretation",
+    "parameterized_inputs_override_generated": true,
+    "raw_ccd_can_defer_to_readyset": true,
+    "dz_source_git_blob": "9e6151658d2887ef3902d170c77752ccc90159d4",
+    "dz_resource_bundled": true,
+    "dz_constructor_parent": "DC",
+    "legacy_profile_scope": "Profiles without profile_codes remain 1AP-only",
+    "category_intermediates_changed": false,
+    "standing_component_conversions_implemented": false,
+    "main_merge_authorized_by_this_evidence": false
+  },
+  "running_baseline_campaign": {
+    "reported_by": "user",
+    "started_before_dictionary_patch": true,
+    "source_head": "dd59b4fdb70967adc6c240e7599b0a67e69188e9",
+    "results_returned": false,
+    "rule": "Do not mutate its checkout until the campaign command returns; keep frozen baseline attempts unchanged"
+  }
 }

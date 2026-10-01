@@ -1,146 +1,124 @@
 # Modified-component preparation
 
-Status: **category-based construction hops implemented; 41 focused source tests
-passed and Simon subsequently reported 735 passing local full-suite tests;
-new live integration pending**. Library-backed warning/continuation policy below
-is agreed development direction, not an implemented relaxation of runtime gates.
+Status: category hops are implemented with Simon's reported 735-test baseline.
+The effective-dictionary/DZ patch is implemented as a candidate with **34 isolated
+source tests passing**; full-checkout and live Phenix validation remain pending.
+Specific 1W5 -> DZ / 1WA -> DP conversions remain separate pending work.
 
 ## Intermediate construction hops
 
-A construction parent is a temporary Coot placement scaffold. It is not the
-final component, an inferred tautomer, the target's base-pair class, or a
-replacement source of target atom definitions.
+The intermediate is a Coot placement convenience, not the final identity,
+protonation state, pairing class or target atom dictionary. A recognized
+NARestraints `Source sheet` wins; older records use `Base Analog`; an
+unclassified intermediate uses C. Existing curated routes keep precedence.
 
-For generic dictionary construction, use the recognized NARestraints `Source
-sheet` category below. Older records without a recognized sheet use `Base
-Analog` as the category. If neither supplies a recognized category, choose C.
-The current generic constructor still requires a target record: fallback C
-fills a missing **intermediate choice**, not a missing final residue identity
-or dictionary. Broader library-backed continuation is discussed separately below.
-
-| Source category | Intermediate base |
+| Category | Intermediate |
 | --- | --- |
 | adenine / A | A |
 | guanine / G | G |
 | cytosine / C | C |
 | thymine / T | T |
 | uracil / U | U |
-| Z | C |
-| P | G |
-| D | A |
-| B | G |
-| S | C |
-| I | A |
-| X | G |
-| K | C |
-| unique | C |
+| Z, S, K, unique | C |
+| P, B, X | G |
+| D, I | A |
 | Unclassified intermediate | C |
 
-DNA uses the corresponding D-prefixed code; RNA uses the ribonucleotide code
-(and U for a T-category intermediate). Existing curated routes and their
-sulfur/halogen placement rules keep precedence. Canonical mutation behavior is
-unchanged. The ordinary PostMR script already skips a redundant intermediate
-mutation when the residue is the selected parent.
+DNA uses D-prefixed codes; RNA uses its ribonucleotide (U for a T-category hop).
+The existing script skips a redundant mutation when already at the parent.
+There is no N9, purine/pyrimidine or complete atom-role-map gate at this step.
+The final component/dictionary, actual mutation and backbone checks remain
+separate. The category table replaces, rather than supplements, the earlier
+N9 proposal. No NARestraints workbook data or pairing class is rewritten.
 
-This explicit user-approved table **replaces the N9 and purine/pyrimidine
-inference proposal**. Do not add N9-presence, ring-family or atom-role-completeness
-requirements to choose this temporary hop. Sugar compatibility and the actual
-final construction, dictionary, identity, backbone and refinement checks remain
-separate responsibilities. The existing mutation action records `parent_code`;
-no checkpoint/report schema migration is introduced.
+## Component identity and the DZ resource
 
-For example, DZ uses DC as the intermediate while its final identity and
-NARestraints category remain DZ and Z. `force = G:C` still changes only the
-requested inter-residue recipe. No installed workbook data are changed.
+The requested standing conversions **1W5 -> DZ** and **1WA -> DP** remain
+pending: shipping DZ and choosing a DC intermediate do not implement source
+component conversion. Raw input and historical identities remain unchanged.
 
-## Component identity is a separate policy
+DZ is now supplied as a local parameterized resource from MonomerLibrary
+`d/DZ.cif`, Git blob `9e6151658d2887ef3902d170c77752ccc90159d4`.
+The packaged adaptation changes `NON-POLYMER` to `DNA`, with source numerical
+geometry, atom names, planes and chirality retained. Its regression reconstructs
+the upstream bytes and checks the Git hash. No runtime download or experimental
+registry injection is needed. Validation checks DZ's C1'-C1 C-glycoside,
+parameterization, component identity and base-plane coverage. This is not a
+pH-dependent protonation correction or final structural approval.
 
-The recorded requested conversions are 1W5 -> DZ and 1WA -> DP. They remain
-pending implementation review. Choosing an intermediate hop neither implements
-these conversions nor declares the two component definitions interchangeable.
-Raw inputs and frozen historical attempts retain their original identities.
+DZ keeps final identity DZ, NARestraints class Z, and DC as its construction
+scaffold. The explicit `force = G:C` override still affects only the selected
+inter-residue pairing recipe.
 
-## Recognition failures versus scientific blockers
+## Effective dictionary preparation
 
-Simon clarified after returning the category-hop regression: do not halt merely
-because NASolve does not recognize a component or lacks its own special-case
-classification when an applicable library supplies the intended component and
-Phenix can interpret/refine it. NASolve should delegate supported chemistry to
-the selected library rather than demand a duplicate internal registry.
+PostMR now snapshots each explicit source in
+`PostMR/Restraints/source_dictionaries/` before creating a runtime derivative.
+The effective bundle is prepared after ReadySet independently of whether a
+linked-phosphate profile exists. Existing nonempty `refinement_restraints` and
+`view_dictionaries` references bind the actual inputs used by descendants;
+empty manifests are not added to dictionary-free native models.
 
-The agreed direction is to continue with a recorded warning and library-source
-provenance for a resolved library-backed component. Missing optional NASolve
-annotations or specialized diagnostics should disable/report only those extras,
-not veto otherwise usable refinement. Carry any remaining inspection caveat
-forward without declaring it final structural approval. Missing NASolve
-recognition and missing usable chemical definitions are different conditions.
+Explicit parameterized component inputs take precedence over generated copies.
+Construction-only CCD graphs still defer to ReadySet's numerical definitions.
+Selection uses component IDs in the content, not filenames. Other generated
+components and modification-only CIFs are retained. Raw ReadySet output remains
+provenance, not an implicit override of the frozen effective definition.
 
-A stop remains appropriate when execution cannot produce a usable result or
-continuation would invalidate the intended science: for example, required
-component definitions cannot be resolved, target identity would be silently
-changed, required restraints remain unusable or contradictory, authoritative
-observations/Free-R integrity is lost, or an explicitly requested operation
-cannot be performed. Attempt supported, audited compatibility corrections first
-where available. Do not silently omit an explicit requested constraint merely
-to obtain a successful exit code. A scientific review flag is not itself a
-technical failure and need not prevent every downstream diagnostic action.
+Supported C2e/C3e alternative-torsion rows are converted for every component,
+including components found only in the effective generated dictionary. Grouping
+uses component identity plus ordered atom quartets (or full reversal), never
+an arbitrary permutation of four names. Existing alternate values survive.
+Equivalent duplicate rows may be folded; unrelated competing targets, different
+periods and unsupported layouts remain intact with warnings for native
+interpretation rather than receiving guessed chemical repairs.
 
-Scope any necessary stop to the affected stage/dataset; unrelated campaign
-members should continue. The known DZ conflicting-dihedral result is a real
-execution blocker to repair, not evidence that every unfamiliar component must
-be rejected. This section records policy for the next implementation slice;
-no existing gate was changed by this documentation update.
+**Unequal uncertainties:** retain the first row's sigma, as CCTBX's own
+alternative conversion does, and record all source rows and their uncertainties.
+This preserves the angle alternatives, not independent weights for each angle;
+the receipt states that distinction explicitly. It does not flatten every DNA
+sugar to one pucker or delete all torsion restraints to suppress an error.
 
-## Effective dictionaries and bounded repair
+Reference implementation inspected: CCTBX `mmtbx/monomer_library/server.py`,
+`convert_ccp4_tor_list`. NASolve's stricter ordered-quartet and recognized-family
+checks avoid generalizing its sorted-atom grouping to unrelated torsions.
 
-The next dictionary slice should audit the **actual effective refinement
-bundle**, including ReadySet-generated CIFs, not just an earlier input file.
-Keep that small: identity/atom references, duplicate or conflicting restraints,
-finite positive numerical parameters where required, and source/derivative
-provenance. This is not a new monomer geometry library or a chemical inference
-engine. Classify findings by their consequence rather than turning every
-unrecognized feature into an exception.
+`postmr.dictionary_compatibility` is additive schema-1 adaptation provenance;
+its source/output references use the existing run anchors, hashes and sizes.
+`dictionary_precedence` records the selected policy, authoritative components
+and exact effective dictionaries. No checkpoint schema migration is needed.
 
-Allow automatic corrections only for recognized transformations with defined
-semantics and an audit trail. Examples are a supported CCP4 alternative-torsion
-conversion or choosing an explicitly authoritative component over a conflicting
-ReadySet copy. Existing connectivity-selected OP3 handling remains separate.
-Do not infer an arbitrary missing bond, alter bond order/protonation, remove a
-restraint, or widen its uncertainty merely because refinement otherwise errors.
-Final plane restraints alone do not validate every internal bond or sugar.
+## Linked phosphate and continuation
 
-The GZ11 audit exposed DZ B:4 C2e/C3e alternative rows for C4'-O4'-C1'-C2'.
-The command consumed `PostMR/ReadySet/prepared_model.ligands.cif`, which retained
-the alternatives. The current normalizer is still called only for 1AP. Its
-future generalization must preserve legitimate angle alternatives, distinguish
-ordered/reversed quartets from arbitrary permutations, and document how period,
-existing alternative fields and unequal uncertainties are handled. Do not
-collapse all sugar conformations to one fixed torsion target.
+New DZ profiles use the existing connectivity-selected NASnoOP3 mechanism only
+at verified internally linked sites; explicit terminal phosphate intent remains
+unchanged. An explicit `profile_codes` scope is frozen for new DZ profiles.
+Legacy profiles lacking that field remain 1AP-only and are not reinterpreted
+when another supported component is added.
 
-No generalized bond repair, torsion conversion, dictionary-precedence rewrite,
-or new DZ/DP dictionary is implemented by the category-hop patch.
+Missing optional NASolve recognition should not veto library-backed chemistry.
+This patch leaves unfamiliar torsion representations intact with warnings and
+defers unsupported cases to Phenix. It does not implement the entire broader
+library-backed construction fallback. Required missing definitions, failed
+execution, contradictory usable restraints, changed target identity or lost
+observation/Free-R integrity remain real blockers for the affected dataset.
 
-## Validation boundary
+Keep a small known-problem list and supported, audited transformations. Do not
+infer arbitrary missing bonds, bond orders, protonation or new ideal distances
+merely to obtain a zero exit code. Base planarity alone does not validate every
+internal bond. A numerical pass is not structural approval.
 
-`tests/test_construction_scaffolds.py` exercises all nine requested categories
-for DNA and RNA, source-sheet priority, legacy category fallback, default C,
-independence from N9/role inference, unchanged target identities/library records,
-ordinary category routes, retained curated recipes, sugar checks and separate
-missing-dictionary failures.
+## Validation and next action
 
-The verified source module from Pine `97ab3e2` was tested in an isolated Linux
-Python environment with a fixture residue-library loader. The new tests returned
-32 failures and 9 passes before the patch, then **41 passes** after it. That
-isolated check was not a full NASolve suite, workbook audit, Coot run, or Phenix
-execution.
+The 34 tests in `test_dictionary_compatibility.py` were executed in an isolated
+source harness with real Bio.PDB parsing/writing and stubs for unrelated NASolve
+imports. They cover representation, unequal-sigma receipts, source preservation,
+unknown-case continuation, DZ provenance/topology checks, effective dictionary
+precedence and legacy profile scope. This is not a complete checkout test.
 
-After the local validation ferry for category-hop commit `88e2f53`, Simon
-reported **735 green tests** on 2026-10-01. Record this as a user-reported local
-full-suite pass, not an independently executed run or GitHub CI. The follow-up
-did not include a raw test transcript, exact checked-out SHA, subtest count or
-runtime; none is inferred. The earlier 694-test/224-subtest result remains
-historical evidence for its separately recorded code head.
-
-New live integration remains pending. Preserve failed GZ11 and experimental
-attempts; the category-hop regression pass does not resolve the known DZ
-dictionary/torsion refinement blocker or validate the nine-dataset campaign.
+`test_dictionary_postmr.py` adds full-checkout PostMR/checkpoint/view/relocation
+regressions using fixture external tools. Run it with the existing construction,
+1AP and full suites before committing/pushing the local patch. A new actual
+Phenix/Coot run must still confirm the ordinary GZ11 path. Preserve the running
+pre-patch campaign as baseline evidence; do not apply changes to its checkout
+until it has returned. Do not overwrite any failed numbered run.

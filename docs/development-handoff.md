@@ -27,7 +27,8 @@ plans. Do not load every historical handoff for an ordinary implementation turn.
 | Prepared nonstandard and mixed schema-2 campaigns | Implemented and fixture-tested, including relocation. Real geometry-diverse campaign still pending; schema-1 support retained. |
 | `pair = G:Z` / `force = G:C` | Separate identity/recipe pathways, regression-tested; real NARestraints generation and experimental PostMR audits passed. Not a production GZ11 refinement pass. |
 | Category-based intermediate mutation hops (`88e2f53`) | 41 focused source tests passed; Simon subsequently reported 735 passing local full-suite tests. New production live integration pending. |
-| Component normalization and generalized dictionary compatibility | `1W5 -> DZ`, `1WA -> DP`, target dictionaries, broader torsion conversion/effective-dictionary handling remain pending. |
+| Effective dictionary compatibility and DZ | Candidate implemented: content-based alternative torsions, independent effective bundle, pinned DZ dictionary and scoped linked-phosphate profile. 34 isolated source tests passed; full-checkout/live verification remains required. |
+| Component normalization | Standing `1W5 -> DZ` and `1WA -> DP` conversions and the DP resource remain pending; dictionary compatibility does not implement them. |
 | Registration/Scout | Merged backend primitives and validated design-aware shadow proposal; not yet the operational AutoMR/PostMR decision path. |
 
 The **735-test** report is the current user-reported baseline. No exact checkout
@@ -57,11 +58,19 @@ assumed. Preserve its failed checkpoint and the original GZ11 run. `Refine_74`
 is Simon's manual pre-NASolve model and is not evidence NASolve introduced 1W5.
 The probe is evidence, not the production solution or a permanent override.
 
-Next: implement the bounded effective-dictionary adapter/authority fix (P1).
+Next: validate the P1 dictionary/DZ candidate in the full checkout, then run
+fresh GZ11 under the ordinary pipeline. The candidate supplies DZ locally,
+normalizes supported source/effective torsions and freezes the selected bundle
+independently of phosphate profiles. Its 34 isolated source tests do not replace
+full-suite or actual Phenix/Coot validation. The category-hop table remains
+unchanged. Specific 1W5/1WA conversions are still P2.
+
+Simon started the nine-member campaign before this dictionary patch. Retain
+that run as pre-patch baseline evidence; do not apply/pull source changes until
+its command returns. Its output has not yet been returned at this checkpoint.
 Use [modified-component preparation](modified-component-preparation.md) and
-[component intent](modified-component-preparation-intent.json), not another
-unchanged live retry. Construction, component identity, inter-residue recipes,
-and dictionary compatibility are separate responsibilities.
+[component intent](modified-component-preparation-intent.json). Construction,
+component identity, pairing recipes and dictionary compatibility stay separate.
 
 ## Pine close-out
 

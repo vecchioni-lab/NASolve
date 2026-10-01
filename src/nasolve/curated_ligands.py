@@ -46,6 +46,18 @@ class CuratedLigand:
 
 
 CURATED_LIGANDS: dict[str, CuratedLigand] = {
+    "DZ": CuratedLigand(
+        code="DZ",
+        dictionary_filename="DZ.cif",
+        accepted_model_labels=("DZ",),
+        narestraints_label="DZ",
+        description="Z nucleotide; parameterized MonomerLibrary C-glycoside definition",
+        parent_code="DC",
+        deposition_code="DZ",
+        required_bonds=(("C1'", "C1"), ("C2", "O2"), ("C4", "N4"),
+                        ("C5", "N"), ("N", "ON1"), ("N", "ON2"), ("P", "O5'")),
+        forbidden_bonds=(("C1'", "N1"),),
+    ),
     "DE": CuratedLigand(
         code="DE",
         dictionary_filename="DE.cif",
@@ -365,6 +377,9 @@ def validate_curated_dictionary(code: str, path: Path) -> None:
         ligand = CURATED_LIGANDS[code]
     except KeyError as exc:
         raise KeyError(f"No curated NASolve ligand is registered for {code}") from exc
+    if code == "DZ":
+        from .ligand_profiles import validate_dz_dictionary
+        validate_dz_dictionary(path)
     if code == "1AP":
         # The official CCD graph alone is not a refinement restraint dictionary.
         from .ligand_profiles import _blocks

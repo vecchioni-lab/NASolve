@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Dictionary compatibility
+
+- Generalized recognized CCP4 alternative-torsion conversion beyond 1AP,
+  including the effective ReadySet bundle. Preserve primary sigma with explicit
+  unequal-uncertainty provenance rather than claiming lossless weight conversion.
+- Freeze parameterized input dictionary authority independently of phosphate
+  profiles; retain construction-only CCD fallback to ReadySet and portable
+  effective refinement/view references. Unknown representation conflicts warn
+  and remain for native interpretation rather than receiving guessed repairs.
+- Added a pinned parameterized DZ dictionary and its DC construction route,
+  plus connectivity-selected DZ linked-phosphate handling without reinterpreting
+  legacy 1AP profiles. Existing category intermediates are unchanged.
+- Standing 1W5 -> DZ / 1WA -> DP conversions remain a separate pending slice.
+
 ### Changed
 
 - Generic modified-component construction now selects temporary Coot parents by

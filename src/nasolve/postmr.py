@@ -28,8 +28,10 @@ from .backbone import (
     BackboneError, ensure_five_prime_phosphates, requested_backbone_policy,
 )
 from .ligand_profiles import (
-    AUTHORITATIVE_CODES, combine_dictionary_inputs, effective_restraints,
-    normalize_ccp4_torsion_alternates,
+    AUTHORITATIVE_CODES, LINKED_PROFILE_CODES,
+    combine_dictionary_inputs, effective_restraints,
+    normalize_ccp4_torsion_alternates, freeze_dictionary_audits,
+    _parameterized_codes,
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
 )
 from .run_context import artifact_reference, resolve_artifact_path
@@ -1766,6 +1768,7 @@ def prepare_postmr(
         | (residue_codes & set(ligand_sources))
     )
     copied_cifs: list[Path] = []
+    dictionary_input_audit: list[dict] = []
     for code in ligand_codes:
         try:
             source = ligand_sources.get(code) or ligand_dictionary(code, data_root).resolve()
@@ -1774,10 +1777,20 @@ def prepare_postmr(
             raise PostMRPreparationError(str(exc)) from exc
         ligand_specs.setdefault(code, ligand_definition(code))
         destination = restraints_dir / source.name
-        if code == "1AP":
-            normalize_ccp4_torsion_alternates(source, destination)
-        else:
-            shutil.copyfile(source, destination)
+        # Retain the exact input separately from its runtime representation.
+        source_directory = restraints_dir / "source_dictionaries"
+        source_directory.mkdir(exist_ok=True)
+        source_snapshot = source_directory / f"{code}.cif"
+        source_sha = file_sha256(source)
+        shutil.copyfile(source, source_snapshot)
+        if (file_sha256(source_snapshot) != source_sha
+                or file_sha256(source) != source_sha):
+            raise PostMRPreparationError(f"Dictionary changed while freezing {code}")
+        try:
+            normalize_ccp4_torsion_alternates(
+                source_snapshot, destination, audit=dictionary_input_audit)
+        except (PhosphateError, ValueError, OSError) as exc:
+            raise PostMRPreparationError(f"Dictionary preparation failed for {code}: {exc}") from exc
         copied_cifs.append(destination)
         restraint_paths.append(destination)
     readyset_cif: Path | None = None
@@ -1789,11 +1802,12 @@ def prepare_postmr(
             raise PostMRPreparationError(str(exc)) from exc
 
     profile = None
-    if set(ligand_codes) & AUTHORITATIVE_CODES:
+    if set(ligand_codes) & LINKED_PROFILE_CODES:
         try:
             profile, modification_paths = write_linked_profile(
                 prepared, restraints_dir, allow_op3_sites=allowed_op3,
-                passthrough_sites=passthrough_sites)
+                passthrough_sites=passthrough_sites,
+                profile_codes=(LINKED_PROFILE_CODES if "DZ" in ligand_codes else AUTHORITATIVE_CODES))
         except PhosphateError as exc:
             raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
         restraint_paths.extend(modification_paths)
@@ -1834,13 +1848,14 @@ def prepare_postmr(
         })
     except PhosphateError as exc:
         raise PostMRPreparationError(f"ReadySet phosphate/profile validation failed: {exc}") from exc
-    effective = None
-    view_dictionaries = None
-    if profile is not None:
-        try:
-            effective, view_dictionaries = effective_restraints(restraint_paths, generated_cif, restraints_dir)
-        except PhosphateError as exc:
-            raise PostMRPreparationError(f"Cannot freeze authoritative dictionary inputs: {exc}") from exc
+    dictionary_effective_audit: list[dict] = []
+    try:
+        effective, view_dictionaries = effective_restraints(
+            restraint_paths, generated_cif, restraints_dir,
+            normalize_effective=True, audit=dictionary_effective_audit,
+            prefer_parameterized_inputs=True)
+    except (PhosphateError, ValueError, OSError) as exc:
+        raise PostMRPreparationError(f"Cannot prepare effective dictionary inputs: {exc}") from exc
     anomalous_candidates = scan_anomalous_candidates(final_model)
 
     postmr_payload = {
@@ -1915,14 +1930,26 @@ def prepare_postmr(
     }
     if profile is not None:
         postmr_payload["linked_phosphate_profile"] = profile
+    # These lists are independent of the linked-phosphate profile. A native,
+    # dictionary-free model needs no empty manifest (legacy readers reject it).
+    if effective:
         postmr_payload["refinement_restraints"] = [frozen_reference(path, run) for path in effective]
+    if view_dictionaries:
         postmr_payload["view_dictionaries"] = [frozen_reference(path, run) for path in view_dictionaries]
-        postmr_payload["dictionary_precedence"] = {
-            "policy": "reviewed-1ap-over-readyset-v1",
-            "authoritative_codes": sorted(set(ligand_codes) & AUTHORITATIVE_CODES),
-            "sources": {path.stem: frozen_reference(path, run) for path in copied_cifs
-                        if path.stem in AUTHORITATIVE_CODES},
-        }
+    postmr_payload["dictionary_compatibility"] = {
+        "schema_version": 1,
+        "input_adaptations": freeze_dictionary_audits(dictionary_input_audit, run),
+        "effective_adaptations": freeze_dictionary_audits(dictionary_effective_audit, run),
+        "policy": "ccp4-alternates-primary-sigma-v2",
+    }
+    postmr_payload["dictionary_precedence"] = {
+        "policy": "parameterized-inputs-over-readyset-v2",
+        "authoritative_codes": sorted(
+            (set(ligand_codes) & AUTHORITATIVE_CODES)
+            | {code for path in copied_cifs for code in _parameterized_codes(path)}),
+        "sources": {path.stem: frozen_reference(path, run) for path in copied_cifs},
+        "effective_dictionaries": [frozen_reference(path, run) for path in view_dictionaries],
+    }
     postmr_report = postmr / "report.json"
     _write_json(postmr_report, postmr_payload)
     (postmr / "postmr.log").write_text(
