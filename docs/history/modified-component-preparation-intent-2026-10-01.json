@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "kind": "modified-component-preparation-development-intent",
+  "date": "2026-10-01",
+  "status": "INTERMEDIATE_HOPS_IMPLEMENTED_USER_REPORTED_FULL_TEST_PASS_OTHER_CHANGES_PENDING",
+  "runtime_authority": false,
+  "human_note": "docs/development-handoff-2026-10-01-addendum.md",
+  "subsystem_contract": "docs/modified-component-preparation.md",
+  "supersedes_scope": "2026-09-29 immediate GZ11 status and the N9/purine-pyrimidine construction proposal; no registration or campaign policy promotion",
+  "user_requested_component_normalization": [
+    {
+      "source_component": "1W5",
+      "target_component": "DZ",
+      "requested_policy": "ALWAYS_NORMALIZE_1W5_TO_DZ",
+      "user_clarification": "we want 1W5 to go to DZ always",
+      "ph_conditioned": false,
+      "direction_settled": true,
+      "implementation_status": "NOT_IMPLEMENTED_PENDING_REVIEW",
+      "chemical_equivalence_validated": false,
+      "application_boundary": "To be reviewed; preserve raw sources and historical frozen artifacts, record actual conversion in prepared derivatives."
+    },
+    {
+      "source_component": "1WA",
+      "target_component": "DP",
+      "requested_policy": "NORMALIZE_1WA_TO_DP",
+      "user_clarification": "1WA for DP",
+      "source_identity_status": "USER_IDENTIFIED",
+      "direction_settled": true,
+      "implementation_status": "NOT_IMPLEMENTED_PENDING_REVIEW",
+      "chemical_equivalence_validated": false
+    }
+  ],
+  "construction_hop_policy": {
+    "status": "IMPLEMENTED_USER_REPORTED_FULL_REGRESSION_PASS_NEW_LIVE_INTEGRATION_PENDING",
+    "implementation": "src/nasolve/curated_ligands.py:construction_parent_code",
+    "category_intermediates": {"Z": "C", "P": "G", "D": "A", "B": "G", "S": "C", "I": "A", "X": "G", "K": "C", "unique": "C"},
+    "default_intermediate": "C",
+    "category_precedence": ["recognized Source sheet", "recognized Base Analog for legacy records", "default C"],
+    "existing_curated_routes_keep_precedence": true,
+    "canonical_routes_preserved": true,
+    "sugar_form": "DNA uses D-prefixed codes; RNA uses ribonucleotide codes, including U for a T-category hop; unknown sugar remains a separate error",
+    "n9_or_purine_pyrimidine_inference": "SUPERSEDED_NOT_USED",
+    "intermediate_role_map_completeness_gate": false,
+    "final_component_identity_changed": false,
+    "pairing_class_changed": false,
+    "workbook_changed": false,
+    "missing_final_target_or_dictionary_is_not_supplied_by_fallback": true,
+    "provenance": "Existing mutation_actions.parent_code; no checkpoint/report schema migration"
+  },
+  "construction_hop_validation": {
+    "source_ref": "97ab3e2668062661dc8d0018d2607b17edf0ef51",
+    "baseline_source_blob": "1d33cc37d5cad293de54ef7c1d2e2c7dfd52fb96",
+    "method": "Isolated Git-blob-verified source module in Linux Python with fixture residue-library loader",
+    "test_file": "tests/test_construction_scaffolds.py",
+    "before": {"failed": 32, "passed": 9},
+    "after": {"passed": 41},
+    "full_suite_run": false,
+    "actual_workbook_run": false,
+    "live_coot_phenix_run": false,
+    "github_ci": false,
+    "scope_note": "Historical isolated check only; the later user-reported full suite is recorded separately."
+  },
+  "returned_category_hop_regression": {
+    "date": "2026-10-01",
+    "reported_by": "user-local-run",
+    "reported_full_tests": 735,
+    "status": "USER_REPORTED_PASS",
+    "context": "Returned after the local validation ferry for category-hop implementation commit 88e2f5369cfdcc4f5ad193fa089eae7eff0c814c",
+    "exact_checked_out_sha": null,
+    "subtest_count": null,
+    "runtime_seconds": null,
+    "raw_transcript_supplied": false,
+    "independently_executed": false,
+    "github_ci": false,
+    "new_live_crystallographic_validation": false
+  },
+  "library_backed_continuation_policy": {
+    "status": "USER_AGREED_DIRECTION_PENDING_RUNTIME_IMPLEMENTATION",
+    "nasolve_recognition_failure_alone_is_fatal": false,
+    "continue_when": "The applicable selected library resolves the intended component and Phenix can interpret/refine it; record the library source and any missing optional recognition or diagnostics as warnings.",
+    "optional_features": "Report or disable unavailable optional annotations/diagnostics without vetoing otherwise usable refinement.",
+    "inspection": "Carry unresolved review caveats forward; continuation is not final structural approval.",
+    "necessary_stops": [
+      "No usable required component definition or scientific input can be resolved",
+      "External execution cannot produce a usable result",
+      "Required restraints remain unusable or contradictory after supported corrections",
+      "Continuation would silently change intended target identity or omit an explicit required operation",
+      "Authoritative observations or Free-R integrity is lost"
+    ],
+    "stop_scope": "Affected stage or dataset; unrelated campaign members continue",
+    "repair_policy": "Apply recognized audited compatibility transformations where available; do not silently discard required restraints or invent chemistry.",
+    "existing_runtime_gates_changed_by_this_note": false
+  },
+  "existing_curated_registry_snapshot": {
+    "source": "src/nasolve/curated_ligands.py",
+    "inspected_ref": "1ba0130fb648e87178a6c7dcaac6a64117ba11d0",
+    "codes": ["DE", "DF", "1AP", "S6G", "C38", "5IU"],
+    "note": "Different exception types, not a universal tautomer-equivalence list; do not create a 1W0 mapping from uncertain recollection."
+  },
+  "returned_local_regression": {
+    "code_head": "0803989b1c51c6aae7d50a3fcb11835e5280e533",
+    "reported_by": "user-local-run",
+    "github_ci": false,
+    "force_focused_tests": 6,
+    "relevant_tests": 115,
+    "relevant_subtests": 50,
+    "full_tests": 694,
+    "full_subtests": 224,
+    "full_runtime_seconds": 53.6,
+    "syntax_patch_hygiene_json_parse": "PASSED"
+  },
+  "live_validation": {
+    "reported_by": "user-local-run",
+    "historical_force_probe": {
+      "status": "PASSED_FOR_REPORTED_INPUTS",
+      "actual_classes": ["G", "Z"],
+      "forced_recipe_classes": ["G", "C"],
+      "model": "examples/TestSets/GZ11/Refine_74/Restraints_refine_074.pdb",
+      "model_pair_codes": ["DG", "1W5"],
+      "pair_file_caveat": "Historical DOHU PostMR Std_padd.txt, not verified against today's packaged source.",
+      "historical_model_authority": "Manual pre-NASolve work; not proof NASolve introduced 1W5."
+    },
+    "fresh_gz11": {
+      "run": "examples/TestSets/GZ11/AutoMR/run_002",
+      "mr_status": "MR_SUCCESS",
+      "tfz": 12.2,
+      "target_codes": ["DG", "DZ"],
+      "force_recipe": ["G", "C"],
+      "postmr_status": "BLOCKED_BEFORE_MUTATION",
+      "blocker": "No construction parent for DNA / Base Analog Z",
+      "one_w5_seen_in_printed_new_run_inventory": false,
+      "source_config_unchanged": true
+    },
+    "dz_via_dc_experimental_probe": {
+      "pen_basename": "nasolve-dz-dc-probe-kad1eax8",
+      "run_under_pen": "MR_snapshot",
+      "receipt_under_pen": "probe_receipt.json",
+      "temporary_location_may_expire": true,
+      "source": "Copied accepted GZ11 run_002 MR snapshot",
+      "production_code_modified": false,
+      "original_run_unchanged": true,
+      "postmr_status": "POSTMR_READY",
+      "b4_route": ["DG", "DC", "DZ"],
+      "final_pair_codes": ["DG", "DZ"],
+      "force_audit": "Actual G/Z -> recipe G/C",
+      "dictionary": "Explicit checksum-pinned parameterized MonomerLibrary DZ dictionary, group adapted to DNA in the experiment",
+      "refinement_checkpoint": "refine-001",
+      "refinement_recipe": "Probe/DZ-via-DC",
+      "refinement_cycles": 5,
+      "refinement_status": "AUTOREFINE_FAILED",
+      "failure": "Conflicting DZ B:4 C3e-nyu0 dihedral restraints",
+      "conflicting_atoms": ["C4'", "O4'", "C1'", "C2'"],
+      "effective_component_dictionary": "PostMR/ReadySet/prepared_model.ligands.cif",
+      "current_checkpoint_unchanged": true,
+      "numerical_refinement_validated": false,
+      "production_integration_validated": false,
+      "structurally_approved": false
+    }
+  },
+  "generalization_review": {
+    "ownership": "NASolve construction and dictionary adaptation; retain NARestraints atom-role mappings and pair/stacking semantics",
+    "separate_concerns": ["component normalization", "construction scaffold", "torsion representation", "effective dictionary precedence"],
+    "scaffold_policy": "Implemented explicit category hops above; the N9/family-inference proposal is retired",
+    "torsion_history_commit": "d203d2e32effd8c5f7b4b319ee2774b05972aa82",
+    "torsion_current_dispatch": "1AP only; unchanged by the construction-hop patch",
+    "torsion_review_requires": ["ordered or correctly reversed quartets", "period compatibility", "unequal uncertainties", "existing alternate fields", "no collapsing unrelated conflicts", "source/derivative provenance"],
+    "downstream_requirement": "Verify the normalized authoritative component actually reaches refinement and is not replaced by a conflicting ReadySet definition.",
+    "audit_recommendation": "Small effective-dictionary audit plus recognized provenance-bearing fixes; classify nonfatal findings as warnings, not a new monomer library or arbitrary automatic bond/protonation repair"
+  },
+  "next_session": [
+    "Category-hop full regression reported green at 735 tests; retain this evidence separately from the earlier isolated 41-test check",
+    "Generalize known torsion compatibility and effective dictionary authority as a separate bounded slice, honoring library-backed warning/continuation policy",
+    "Provide reviewed target dictionaries and implement the requested 1W5 -> DZ / 1WA -> DP normalization separately",
+    "Repeat bounded live preparation/refinement in a fresh experimental branch before production promotion"
+  ],
+  "guardrails": [
+    "Intermediate selection implemented; generalized dictionary and component conversion changes remain pending",
+    "No N9 or purine/pyrimidine gate for choosing a temporary hop",
+    "A default intermediate does not invent a missing final component definition or change its target identity",
+    "NASolve unfamiliarity alone should not veto a component resolved and supported by the applicable library",
+    "No blanket tautomer equivalence, pH inference, arbitrary bond repair or deposition rewrite",
+    "Preserve input identity, source dictionaries, observations, Free-R and immutable failed attempts",
+    "No installed-workbook mutation or silent dictionary fetching",
+    "No promotion of the nine-dataset campaign or Scout runtime authority"
+  ]
+}
