@@ -9,175 +9,162 @@ plans. Do not load every historical handoff for an ordinary implementation turn.
 
 - Active work: `pine`, draft [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
   into `main`. Latest user-tested dictionary code was committed and pushed as
-  `66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08`. Re-read the live ref before editing.
+  `66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08`. The fresh GZ11 transcript explicitly
+  prints checkout `66cb7a2`. Re-read the live ref before editing.
 - Oak is already merged: [PR #22](https://github.com/vecchioni-lab/NASolve/pull/22),
-  2026-09-28, merge `fec66ebeddbd525684824576b705460324ec0a14`. Its remaining remote
+  2026-09-28, merge `fec66ebeddbd525684576b705460324ec0a14`. Its remaining remote
   branch has no additional work to merge. Check local-only work before retiring
   local references. Closing Oak does not promote Scout into runtime authority.
 - Simon authorized routine integration/merge decisions and compact validation
-  ferries at our discretion. That is not permission to skip the evidence gates
-  below, overwrite scientific artifacts, or force-delete unmerged local work.
+  ferries at our discretion. Preserve scientific artifacts and local-only work;
+  mergeability alone does not satisfy the evidence gates below.
 
-## Current evidence, not new validation
+## Current evidence
 
 | Capability | Supported state |
 | --- | --- |
 | Standalone AutoMR -> PostMR -> conditional AutoSol -> AutoRefine | Operational guarded spine with immutable checkpoints. |
 | Four-member W campaign and campaign-owned Refine Doctor | Earlier explicit continuation was live-validated: DOHU/EG/QE solved numerically; QiC Doctor recommended `refine-002` at 0.1500/0.1502, leaving `postmr` current. Same-invocation continuation has a newly identified defect below. |
 | Prepared nonstandard and mixed schema-2 campaigns | Implemented and fixture-tested, including relocation. Real geometry-diverse campaign still pending; schema-1 support retained. |
-| `pair = G:Z` / `force = G:C` | Separate identity/recipe pathways, regression-tested; real NARestraints generation and experimental PostMR audits passed. Not a production GZ11 refinement pass. |
-| Category-based intermediate mutation hops (`88e2f53`) | Retained in the dictionary patch and its passing full regression. New production live integration pending. |
-| Effective dictionary compatibility and DZ (`66cb7a2`) | Implemented and full-checkout regression-tested: 151 focused tests; 771 full tests + 224 subtests. Packaged DZ, content-based torsion adaptation and effective-bundle handling still require native GZ11 validation. |
-| Pre-patch nine-member TestSets campaign | Member status returned: four numerical solutions, three PostMR blockers and two inspection cases; all integrity OK. QiC did not enter Doctor in the initial invocation. See baseline details below; P4 is not closed. |
+| `pair = G:Z` / `force = G:C` | Separate identity/recipe pathways, regression-tested; earlier real NARestraints and experimental PostMR audits passed. Fresh production GZ11 now reached SOLVED; its detailed force audit has not yet been returned. |
+| Category-based intermediate mutation hops | Included in passing dictionary-patch regression and the fresh successful GZ11 workflow. Do not infer new live validation for every category. |
+| Effective dictionary compatibility and DZ (`66cb7a2`) | 151 focused tests and 771 full tests + 224 subtests passed. Fresh ordinary campaign-owned GZ11 reached `SOLVED` at `run_002/refine-001`; the former execution blocker no longer prevents refinement. Detailed effective-bundle/local-geometry inspection remains pending. |
+| Nine-member campaign after the GZ11 retry | Five numerical solutions, two preparation blockers and two inspection cases; frozen input/member integrity OK. P4 Doctor/resume coverage is not yet complete. |
 | Component normalization | Standing `1W5 -> DZ` and `1WA -> DP` conversions and the DP resource remain pending; dictionary compatibility does not implement them. |
 | Registration/Scout | Merged backend primitives and validated design-aware shadow proposal; not yet the operational AutoMR/PostMR decision path. |
 
-The latest local transcript reports **151 focused tests in 3.66 s** and
-**771 tests + 224 subtests in 66.78 s**. The apply/validate/publish ferry started
-from `dd59b4f`, tested the patched working tree, then committed and pushed that
-code as `66cb7a2`. This is returned user-local pytest evidence, not GitHub CI or
-new native Coot/Phenix validation. The earlier 735-test report and 694 + 224
-transcript are historical baselines. Do not repeat unchanged full regression
-merely to update documentation.
+Latest returned regression: **151 focused tests in 3.66 s**, then **771 tests +
+224 subtests in 66.78 s**. The ferry tested a working tree based on `dd59b4f`,
+then committed/pushed it as `66cb7a2`. This is user-local pytest evidence, not CI.
+The 735-test report and 694 + 224 transcript remain historical baselines.
+Do not repeat unchanged full regression merely to update documentation.
 
-## Immediate live check
+## Fresh GZ11 result and immediate next action
 
-Fresh `examples/TestSets/GZ11/AutoMR/run_002` reached MR_SUCCESS, TFZ 12.20, with
-DG/DZ frozen as the target and G/C only as the pair-restraint recipe. At that
-code head, PostMR stopped before mutation on the missing DZ construction parent.
-The category-hop implementation subsequently addressed that lookup.
+Campaign root: `~/NASolve-live-tests/TestSets-dd59b4f-jjra04s9`.
+On checkout **66cb7a2**, Simon used ordinary `campaign retry --dataset GZ11`
+followed by `campaign run --dataset GZ11 --through autorefine`. It allocated
+**attempt_002 / GZ11/AutoMR/run_002**, rather than reusing failed PostMR outputs.
+The returned stage trace proceeds through preflight, Phaser, PostMR, the AutoSol
+gate and AutoRefine, ending **SOLVED**, checkpoint **refine-001**, integrity OK.
+No temporary dictionary/provider injection appears in this invocation.
 
-The copied-MR DZ-via-DC probe reached POSTMR_READY: B:4 DG -> DC -> DZ, A:12 DG,
-with an actual G/Z -> recipe G/C audit. Refinement then failed before R statistics
-on DZ B:4 C2e/C3e alternative sugar torsions over C4'-O4'-C1'-C2'. The actual
-command consumed **PostMR/ReadySet/prepared_model.ligands.cif**, whose definition
-still contained competing rows. This is the historical failure the new patch
-targets, not a post-patch result.
+The final campaign status remains `COMPLETE_WITH_FLAGS`; retry/run/status all
+returned 3 because other members remain flagged. GZ11 itself passed numerical
+refinement criteria. The four earlier numerical solutions retain their original
+run/checkpoint paths. The old GZ11 campaign `run_001` remains historical.
 
-The retained experiment was `nasolve-dz-dc-probe-kad1eax8` in Simon's macOS temp
-area (`MR_snapshot/`, `probe_receipt.json`); availability must be checked, not
-assumed. Preserve its failed checkpoint and the original GZ11 run. `Refine_74`
-is Simon's manual pre-NASolve model and is not evidence NASolve introduced 1W5.
-The probe is evidence, not the production solution or a permanent override.
+This is live ordinary-pipeline execution evidence for the dictionary fix, not
+merely another unit-test or temporary-probe pass. Do not rerun it merely to
+collect evidence: inspect the successful checkpoint and its reports. The
+transcript does not contain exact R factors, native tool versions, final atom
+inventory, detailed force/effective-dictionary audit or local geometry values;
+those are pending inspection, not inferred from SOLVED. The AutoSol stage name
+alone does not show whether its engine ran or the conditional gate skipped it.
+Structural approval and P2 component conversions are not established.
 
-The published patch supplies DZ locally, normalizes supported source/effective
-torsions and freezes the selected bundle independently of phosphate profiles.
-Its full-checkout regression is now green. Next: explicitly retry **only GZ11**
-in the existing baseline campaign, then run that member through `autorefine`
-to isolate native dictionary validation from the Doctor continuation defect.
-Use campaign retry/run, not standalone edits to a campaign-owned run. This
-creates a new attempt and numbered run while retaining the frozen input plan
-and previous outputs. No post-patch native result is recorded yet.
-The category-hop table remains unchanged. Specific 1W5/1WA conversions remain P2.
-Use [modified-component preparation](modified-component-preparation.md) and
-[component intent](modified-component-preparation-intent.json). Construction,
-component identity, pairing recipes and dictionary compatibility stay separate.
+Next: inspect `GZ11/AutoMR/run_002`, `refine-001`, and the existing PostMR/refinement
+receipts for identities, G/Z -> G/C application, effective dictionaries and local
+geometry. Then fix/test the bounded same-invocation Doctor transition below;
+track DiU and 5CM resource issues without touching successful runs. No new full
+campaign or Scout execution is needed to inspect this result.
+
+Historical distinction: `examples/TestSets/GZ11/AutoMR/run_002` in the source
+checkout was an earlier blocked standalone run, not this successful campaign
+run. The temporary `nasolve-dz-dc-probe-kad1eax8/MR_snapshot` reached preparation
+but failed on DZ sugar alternatives; it too is historical. Manual `Refine_74`
+is not proof NASolve introduced 1W5. Preserve all three histories. Details are
+in [history](history/README.md); current component policy is in
+[modified-component preparation](modified-component-preparation.md) and
+[component intent](modified-component-preparation-intent.json).
 
 ## Nine-member baseline results
 
-The pre-patch campaign at `~/NASolve-live-tests/TestSets-dd59b4f-jjra04s9`
-finished before the dictionary patch was applied. Returned footer: plan/run/status
-0/3/3, original copied-input bytes unchanged, outputs retained. Subsequent
-read-only status reports `COMPLETE_WITH_FLAGS`, nine planned members, frozen
-input integrity OK and integrity OK for every member. All reported runs are
-`DATASET/AutoMR/run_001` under this campaign root.
+Before the patch, the campaign at the root above returned plan/run/status
+0/3/3 with copied source-input bytes unchanged and all input/member integrity
+OK. Every initial member used `DATASET/AutoMR/run_001`. After the patched GZ11
+retry, the returned status is:
 
 | Member(s) | Returned outcome |
 | --- | --- |
-| DOHU, DT, ED, FA | `SOLVED`, checkpoint `refine-001`; numerical criteria passed, model/map inspection still required. ED retained `w-metal-scaffold`. |
-| DiU | `BLOCKED` in PostMR: implausible ideal C5-I5 distance **8.843 A at B:4**. Investigate dictionary ideal coordinates/atom correspondence; this is not a measured refined bond or a reason to widen the construction guard. |
-| EA | `AWAITING_INSPECTION` at MR, **TFZ 7.60**. No review acceptance for this new attempt is implied by older manual work. |
-| GZ11 | `BLOCKED` in PostMR: missing local `DZ.cif` on the pre-patch code. The new resource is installed; its native construction/refinement check remains pending. |
-| Q5cm | `BLOCKED` in PostMR: missing local `5CM.cif`. Separate resource follow-up; do not infer it was supplied by the DZ patch. |
-| QiC | `AWAITING_INSPECTION`, `refine-001`, next stage `refine-doctor`. Status reports eligibility, not a completed Doctor trial or a recommendation. |
+| DOHU, DT, ED, FA | `SOLVED`, original `run_001/refine-001`; inspection still required. ED retains `w-metal-scaffold`. |
+| GZ11 | Initially missing `DZ.cif`; patched attempt_002 now `SOLVED`, `run_002/refine-001`, integrity OK. Detailed inspection pending. |
+| DiU | `BLOCKED` in PostMR: implausible ideal C5-I5 distance **8.843 A at B:4**. Inspect dictionary coordinates/atom correspondence; not a measured refined bond or a reason to widen the guard. |
+| EA | `AWAITING_INSPECTION` at MR, **TFZ 7.60**. No review acceptance is implied by older manual work. |
+| Q5cm | `BLOCKED` in PostMR: missing local `5CM.cif`; not supplied by the DZ patch. |
+| QiC | `AWAITING_INSPECTION`, `refine-001`, next stage `refine-doctor`. Eligibility is not a completed Doctor trial. |
 
 The initial ferry requested `--through refine-doctor`, yet QiC stopped before
-that stage. Inspection of `campaign_execution.execute_campaign` at `79588ac`
-finds the cause: its post-stage loop break still admits only DISCOVERED/PAUSED,
-whereas `_runnable(item, through)` already permits eligible refinement REVIEW
-for the explicitly requested Doctor endpoint. A second invocation can enter
-Doctor; the single-invocation transition is not complete. Fix/test this bounded
-coordinator defect separately, including ordinary default-endpoint behavior,
-MR review isolation, recommendation non-selection and resumed-vs-fresh runs.
-No coordinator patch or new Doctor execution is implied by this note.
+that stage. `campaign_execution.execute_campaign` at `79588ac` has a post-stage
+break admitting only DISCOVERED/PAUSED, while `_runnable(item, through)` already
+permits eligible refinement REVIEW for the explicit Doctor endpoint. A second
+invocation can enter Doctor; the single-invocation transition needs a code/test
+fix. Cover default-endpoint behavior, MR review isolation, recommendation
+non-selection and resumed versus fresh execution. No fix or new Doctor result
+is implied by the GZ11 retry, which deliberately ended at AutoRefine.
 
-This baseline demonstrates member-local stops with other members reaching
-numerical solutions; it does not close P4's Doctor/resume/current-pointer gates
-or replace P5. Preserve all attempts. Campaign retry/status may still return 3
-because other members are flagged; do not mistake that for a failed retry or
-suppress the selected run with an unconditional `&&` chain.
+Member-local failure isolation is demonstrated; P4's Doctor/resume/current-pointer
+coverage and P5 remain separate. Preserve attempts. Retry/status can return 3
+because other members are flagged; do not suppress a successful selected retry
+with an unconditional `&&` chain.
 
 ## Pine close-out
 
-This is the finite merge path mirrored by PR #23. P1 is implemented with full
-regression evidence; native confirmation remains pending under P3. P4 now has
-reviewed member status and a concrete same-invocation Doctor defect, not a
-completed gate. Record exact code/evidence when closing each.
+P1 has implementation, full regression and fresh live execution evidence. P3's
+normal execution passed; its detailed identity/force/bundle/local-geometry
+inspection remains. P4 has member outcomes plus a concrete coordinator defect.
+Do not automatically close every gate or approve a structure from a SOLVED flag.
 
 | Gate | Completion evidence |
 | --- | --- |
-| **P1 — Effective dictionary compatibility** | Generalize the supported CCP4 alternative-torsion handling beyond the 1AP-only dispatch; the effective refinement bundle retains it after ReadySet/checkpoint creation. Regress 1AP and ordinary/curated cases, ordered/reversed quartets, periods, existing alternatives and unequal uncertainties. Preserve source/derivative provenance; no arbitrary chemical repair. |
-| **P2 — Specific component normalization** | Implement the requested standing `1W5 -> DZ` and `1WA -> DP` preparation policy with usable target definitions, reviewed atom correspondence and conversion provenance. Preserve raw/frozen originals; do not assume changing a name realizes the target chemistry. |
-| **P3 — Normal GZ11 live path** | Fresh ordinary preparation/refinement without the temporary registry override. Audit DG/DZ identities, G/Z -> G/C force application, effective dictionaries, and local component/backbone geometry. Usable REVIEW is acceptable; no fabricated numerical pass. |
-| **P4 — Nine-member TestSets campaign** | One frozen disposable campaign through explicit campaign-owned `--through refine-doctor`, accounting for every dataset and checking integrity/resume/isolation/current-pointer behavior. Fix and validate the identified same-invocation Doctor transition. Solved, recommended, REVIEW, NO_SOLUTION and genuine BLOCKED outcomes all remain reportable; nine greens are not required. |
-| **P5 — Prepared-nonstandard live campaign** | Real 3-5-member geometry-diverse prepared-PDB + exact-sequence campaign with Phenix/Coot. Check ownership and review/block behavior. W-only or simulated workers do not replace this gate; no new registration/model generator is required. |
-| **P6 — Final candidate regression/review** | Focused and full suite on the final code, exact SHA/commands/results/runtime versions, available CI/diff checks, and consistent user guide/subsystem/handoff/intent/changelog. No scientific data is uploaded implicitly. |
-| **P7 — Merge and retire branches** | Merge PR #23 only after P1-P6; verify ancestry, inspect Simon's status/worktrees/local-only commits, then switch/pull main and retire merged Pine/Oak references without force or data cleanup. |
+| **P1 — Effective dictionary compatibility** | Generalized input/effective torsion handling and authoritative selection are implemented and regression-tested; fresh GZ11 numerical execution passed. Check its exact effective-bundle receipt alongside P3 inspection. |
+| **P2 — Specific component normalization** | Implement standing `1W5 -> DZ` and `1WA -> DP` preparation with target definitions, atom correspondence and conversion provenance. Preserve raw/frozen originals. |
+| **P3 — Normal GZ11 live path** | Fresh ordinary execution passed on 66cb7a2. Finish inspection of DG/DZ identities, G/Z -> G/C force audit, effective dictionaries and local component/backbone geometry in the existing successful checkpoint. |
+| **P4 — Nine-member TestSets campaign** | Account for every member and validate integrity/resume/isolation/current-pointer behavior through campaign-owned Doctor; fix and validate the same-invocation transition. Legitimate REVIEW/NO_SOLUTION/BLOCKED outcomes are not failures to manufacture away. |
+| **P5 — Prepared-nonstandard live campaign** | Real 3-5-member geometry-diverse prepared-PDB + exact-sequence campaign with Phenix/Coot, ownership and review/block checks. W-only or simulated workers do not substitute. |
+| **P6 — Final candidate regression/review** | Final-code focused/full suite, exact SHA/commands/results/tool versions, diff/available CI review and consistent documentation. No scientific-data upload implied. |
+| **P7 — Merge and retire branches** | Merge PR #23 after P1-P6; verify ancestry and local status/worktrees/commits, switch/pull main and retire merged Pine/Oak references without force or data cleanup. |
 
-Use [campaign execution](campaign-execution.md) for receipt ownership and stage
-semantics. The merge does **not** require GUI/Design implementation, Scout
-runtime promotion, Topo Net/Surgeon, donor rescue, more model providers, generic
-MTZ/SCA input, a workflow-recipe builder, or a universal chemistry library.
-Known residue fixes are welcome; recognition of every possible component is
-not a gate. Changes to this finite scope must be explicit, not implied.
+Use [campaign execution](campaign-execution.md) for receipt ownership. GUI/Design,
+Scout runtime promotion, Topo Net/Surgeon, donor rescue, new providers, generic
+MTZ/SCA input, workflow-recipe builders and a universal chemistry library are
+not Pine merge prerequisites. Keep the scope finite and changes explicit.
 
 ## After Pine: operational Scout
 
-**Next priority after returning to main: make Scout usable in the ordinary
-CLI/AutoMR/PostMR workflow. Do not wait for GUI, Topo Net or donor rescue.**
-The existing [registration contract](construct-registration.md),
+**Next after returning to main: operational CLI/AutoMR/PostMR Scout, without
+waiting for GUI, Topo Net or donor rescue.** The [registration contract](construct-registration.md),
 [registration intent](construct-registration-intent.json) and
-[live-check queue](construct-registration-live-checks.md) remain the technical
-basis. This priority statement does not silently grant runtime authority.
+[live-check queue](construct-registration-live-checks.md) remain authoritative.
+This priority statement does not grant runtime authority.
 
-Plan the next bounded integration around:
+1. Cheap non-mutating preflight on actual frozen candidates/constructs, persisted
+   evidence and CLI/campaign reporting; ordinary W remains simple.
+2. Post-MR registration and logical-site handoff under reviewed application
+   rules; proposals, accepted mappings and coordinate edits stay distinct.
+3. Ordinary/renamed/renumbered-W and ambiguity live checks plus provenance,
+   continuation and regression before claiming operational coverage.
 
-1. Cheap, non-mutating Scout preflight on the actual frozen candidate/construct,
-   with persisted results and clear CLI/campaign reporting; keep the ordinary W
-   path simple and try plausible preserved MR candidates before expensive recuts.
-2. Post-MR registration and logical-site handoff under an explicit reviewed
-   promotion/application policy. Proposal, accepted mapping and coordinate edit
-   remain different events; ambiguous mappings retain guided review.
-3. Real ordinary-W, renamed/renumbered-W and ambiguity checks plus provenance,
-   continuation and regression checks before claiming operational coverage.
-
-Reuse the validated provider-bound zero-unexplained uniqueness rule; no hidden
-similarity ranking or caller-supplied unbound residue dictionary. Broader ASU
-cuts, multiplicity, topology and rescue follow their own reviewed/live gates.
-Design-before-GUI remains intact but is not a new prerequisite for CLI Scout.
+Reuse provider-bound zero-unexplained uniqueness, not hidden similarity ranking
+or unbound caller dictionaries. Broader ASU cuts/multiplicity/topology/rescue
+keep their own gates. Design-before-GUI is not a prerequisite for CLI Scout.
 
 ## Working and documentation discipline
 
-Continue on library-backed chemistry when missing NASolve recognition is only
-an optional annotation/diagnostic limitation; record provenance and warnings.
+Library-backed chemistry should continue when missing NASolve recognition is
+only an optional annotation/diagnostic limitation; retain warnings/provenance.
 Necessary stops belong to unusable required operations or scientific-integrity
-failures, scoped to the affected dataset. This is agreed continuation direction,
-not a claim that all broader runtime gates have already been changed.
+failures and remain dataset-local. Broader gate relaxation is not yet claimed.
 
-Use one coherent implementation slice and one sequential ferry, then diagnose
-the first meaningful outcome. Final code changes get focused/full regression
-and exact live-tool evidence where relevant. Documentation-only edits get
-link/JSON/diff checks and must not promote scientific validation status.
+One coherent slice and one sequential ferry, then diagnose the first meaningful
+outcome. Code changes get focused/full regression and relevant live evidence;
+docs-only edits must not promote unobserved scientific validation. Keep status
+here, policy in subsystem docs, archaeology in history and PR #23 as the review
+tracker. Update machine intent without copying entire diaries. Public README
+changes require changed usable behavior, not another session note.
 
-Keep current status and ordering here, component policy in its subsystem doc,
-registration policy in its own contract, and archival detail in history. Update
-machine development intent with references rather than repeating entire diaries.
-PR #23 tracks review/check boxes against this path. Update the public README
-only for changed usable behavior; do not expand it with session notes.
-
-Preserve immutable models, dictionaries, observations/Free-R, maps and failed
-attempts. No unrelated untracked sheep, patches, environments or local-only
-commits are staged/deleted. Historical DE/sulfur and 1AP issues remain in the
-[earlier audits](history/README.md); this consolidation approves no chemistry.
-The [October 1 addendum](development-handoff-2026-10-01-addendum.md) is now a
-redirect, not another current-state authority.
+Preserve immutable models/dictionaries, observations/Free-R, maps and attempts.
+Do not stage/delete unrelated untracked data, patches, environments or commits.
+Historical DE/sulfur and 1AP issues remain in the [earlier audits](history/README.md);
+their chemistry is not approved by this result. The
+[October 1 addendum](development-handoff-2026-10-01-addendum.md) is a redirect.
