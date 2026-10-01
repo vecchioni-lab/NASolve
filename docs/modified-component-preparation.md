@@ -1,9 +1,11 @@
 # Modified-component preparation
 
-Status: category hops are implemented with Simon's reported 735-test baseline.
-The effective-dictionary/DZ patch is implemented as a candidate with **34 isolated
-source tests passing**; full-checkout and live Phenix validation remain pending.
-Specific 1W5 -> DZ / 1WA -> DP conversions remain separate pending work.
+Status: category hops and the effective-dictionary/DZ patch are implemented.
+Simon's apply/validate/publish ferry passed **151 focused tests and 771 full tests
+plus 224 subtests**, then published the tested code as `66cb7a2`. Native GZ11
+validation remains pending. Specific 1W5 -> DZ / 1WA -> DP conversions are
+separate pending work. Current evidence and next action are in the
+[development handoff](development-handoff.md).
 
 ## Intermediate construction hops
 
@@ -110,15 +112,20 @@ internal bond. A numerical pass is not structural approval.
 
 ## Validation and next action
 
-The 34 tests in `test_dictionary_compatibility.py` were executed in an isolated
-source harness with real Bio.PDB parsing/writing and stubs for unrelated NASolve
-imports. They cover representation, unequal-sigma receipts, source preservation,
-unknown-case continuation, DZ provenance/topology checks, effective dictionary
-precedence and legacy profile scope. This is not a complete checkout test.
+The original isolated source harness passed 34 tests using real Bio.PDB and
+stubs for unrelated imports. That historical check is now supplemented by
+Simon's full-checkout regression transcript: 151 focused tests in 3.66 s and
+771 tests + 224 subtests in 66.78 s. The tested working tree was committed as
+`66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08` and pushed to Pine.
 
-`test_dictionary_postmr.py` adds full-checkout PostMR/checkpoint/view/relocation
-regressions using fixture external tools. Run it with the existing construction,
-1AP and full suites before committing/pushing the local patch. A new actual
-Phenix/Coot run must still confirm the ordinary GZ11 path. Preserve the running
-pre-patch campaign as baseline evidence; do not apply changes to its checkout
-until it has returned. Do not overwrite any failed numbered run.
+Coverage includes construction hops, representation, unequal-sigma receipts,
+source preservation, unknown-case continuation, DZ provenance/topology,
+effective dictionary precedence, legacy profile scope and fixture-backed
+PostMR/checkpoint/view/relocation behavior. This is local pytest evidence,
+not GitHub CI or native crystallographic validation.
+
+A fresh actual Phenix/Coot run must still confirm ordinary GZ11 preparation
+and refinement without the temporary provider. The pre-patch campaign has
+returned; its footer reports exits 0/3/3 and unchanged source-input bytes, but
+per-dataset outcomes remain to be inspected. Preserve those baseline attempts;
+do not overwrite old PostMR outputs or call them validation of the new patch.
