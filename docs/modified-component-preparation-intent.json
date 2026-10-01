@@ -95,7 +95,7 @@
     "new_live_crystallographic_validation": false
   },
   "current_blocker": {
-    "next_slice": "Read baseline campaign member outcomes, then fresh ordinary GZ11 native validation of the published dictionary patch",
+    "next_slice": "Campaign-owned fresh GZ11 retry through autorefine using published dictionary patch; isolate native validation from the separate same-invocation Doctor defect",
     "experimental_postmr": "PASSED_DZ_VIA_DC_WITH_TEMPORARY_PROVIDER",
     "experimental_refinement": "HISTORICAL_PRE_PATCH_FAILURE_BEFORE_R_STATISTICS",
     "residue_site": "DZ B:4",
@@ -182,9 +182,28 @@
     "status_exit": 3,
     "original_copied_input_bytes_unchanged": true,
     "outputs_retained": true,
-    "evidence_scope": "FERRY RESULT footer only",
-    "per_dataset_outcomes_returned": false,
+    "evidence_scope": "Ferry footer plus returned read-only per-dataset campaign status",
+    "per_dataset_outcomes_returned": true,
+    "execution_state": "COMPLETE_WITH_FLAGS",
+    "all_member_and_frozen_input_integrity": "OK",
+    "outcome_counts": {"SOLVED": 4, "BLOCKED": 3, "AWAITING_INSPECTION": 2},
+    "member_results_ref": "docs/development-handoff.md#nine-member-baseline-results",
+    "component_followups": {
+      "GZ11": "Pre-patch missing DZ.cif; resource now supplied, fresh native retry pending",
+      "Q5cm": "Missing local 5CM.cif; not supplied by the DZ patch",
+      "DiU": "Reported ideal C5-I5 distance 8.843 A at B:4; inspect dictionary/atom mapping, not a measured refined bond"
+    },
+    "doctor_continuation": {
+      "QiC_status": "AWAITING_INSPECTION",
+      "checkpoint": "refine-001",
+      "next_stage": "refine-doctor",
+      "initial_ferry_endpoint": "refine-doctor",
+      "code_defect": "execute_campaign post-stage break bypasses _runnable and stops on AUTOREFINE_REVIEW before Doctor in the same invocation",
+      "inspected_ref": "79588aca4e403e53ea05d9bcd6204d974c792576",
+      "fix_status": "NOT_IMPLEMENTED",
+      "new_doctor_result_validated": false
+    },
     "nine_member_gate_validated": false,
-    "next_action": "Read campaign status before choosing an exact campaign-owned fresh retry; preserve all existing attempts and frozen inputs"
+    "next_action": "Retry only GZ11 through campaign-owned autorefine, preserving old attempts and frozen inputs; other flags may keep CLI exit 3 even after successful retry scheduling"
   }
 }
