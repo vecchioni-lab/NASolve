@@ -303,6 +303,16 @@ The live tree should update when, for example:
 The GUI should tolerate partial publication. It must not invent a successful
 node before the corresponding immutable backend record/receipt/checkpoint exists.
 
+Conditional stages must preserve their backend meaning. For example, campaign
+state may say the next stage boundary is `autosol` even though PostMR evidence
+will cause that stage to record accepted status `SKIPPED` without launching
+`phenix.autosol`. The GUI should render this as skipped/not-applicable, never
+as a failure and never as evidence that AutoSol was scientifically required.
+
+When first-class campaign workflow recipes are added, the GUI should display the
+frozen recipe identity, intended endpoint and conditional path as backend-owned
+state. It must not maintain a separate GUI-only notion of "what should run next."
+
 ## Human-readable event stream / notifications
 
 The shell should include a **Notifications / Events** stream as a tab or mode of
@@ -442,6 +452,30 @@ GUI:
 
 ### Campaigns
 
+Campaign setup should not assume every laboratory uses AutoPROC/STARANISO.
+Before planning/running, the GUI should show a compact **input capability
+assessment** per dataset:
+
+- **MR-ready** — reflection observations + cell/symmetry are sufficient;
+- **Refinement-ready** — authoritative refinement observations and Free-R are
+  available;
+- **Anomalous-ready** — anomalous arrays plus required wavelength/element
+  context are available;
+- **Deposition-ready** — collection/processing metadata is sufficient for
+  curation/deposition.
+
+These are independent capabilities. A dataset may be MR/refinement-ready while
+deposition remains locked. Missing deposition metadata must not be presented as
+a reason that structure solution itself is impossible.
+
+The first implemented profile remains AutoPROC/STARANISO MTZ +
+`Data_1*.cif` + `summary.html`. Future GUI import should also admit generic
+MTZ input when its contents satisfy the relevant gates, plus SCA/Scalepack as a
+direct MR-capable source when Phenix can consume it. If later stages need a
+derived MTZ, the GUI should show that as a separate provenance-bearing conversion
+artifact rather than hiding it inside import. Unsupported formats remain visibly
+unavailable rather than being guessed.
+
 Current CLI:
 
 - `campaign plan`;
@@ -454,8 +488,17 @@ Current CLI:
 GUI:
 
 - Campaign workspace and Navigator;
+- **visual workflow-recipe builder** that exposes only backend-supported,
+  validated capabilities;
+- sensible defaults preselected where the backend has a real default, with
+  advanced/rare choices progressively disclosed;
+- recipe preview/validation showing the same frozen backend policy the CLI would
+  consume—no GUI-only workflow configuration;
+- optional future **"apply Doctor as needed"** control. When off/absent, review
+  states stop for attention; when enabled, only eligible bounded Doctor
+  transitions may run automatically;
 - Plan button;
-- stage-through dropdown;
+- stage-through dropdown for explicit validation/debug boundaries;
 - Run selected / Run campaign;
 - Pause after active stage;
 - Retry selected dataset;
@@ -541,10 +584,15 @@ Current CLI includes:
 GUI:
 
 - Doctor from selected eligible node;
+- recipe-level "apply Doctor as needed" may launch Doctor automatically at an
+  eligible review gate, but does not itself authorize selecting a candidate;
 - bounded options shown before launch;
 - candidate siblings rendered directly in the tree;
 - recommended/inspection candidate highlighted descriptively;
-- Open in Coot / Make current remain separate actions.
+- **Inspect/Open in Coot**, **Yes/No confirmation**, and **Make Current / keep
+  current** are explicit GUI actions equivalent to the CLI interaction;
+- Open in Coot / Make Current remain separate actions, preserving viewed versus
+  current semantics.
 
 ### Checkpoints
 
@@ -666,6 +714,13 @@ Keyboard shortcuts should supplement, not replace, visible discoverable actions.
 
 Avoid routine modal dialogs.
 
+Every interactive CLI prompt must have a GUI-equivalent choice with the same
+meaning. A terminal `y/n` prompt normally becomes two explicit actions/buttons;
+an inspect prompt becomes an Open in Coot/Inspect action; a Doctor selection
+prompt becomes a candidate-selection action in the model tree/Inspector. GUI
+defaults must match CLI/backend defaults and must never silently answer a prompt
+on the user's behalf.
+
 Use inline Inspector/action-popover confirmation for ordinary branching actions.
 Reserve blocking confirmation for genuinely dangerous/irreversible external
 operations. NASolve's internal immutable branching should make most scientific
@@ -717,6 +772,12 @@ Coot bridge and long-running activity handling.
 
 ## Human-facing invariants
 
+User-facing feature names should describe scientific capability rather than
+internal implementation generations. In particular, the registration preflight
+feature is displayed simply as **Scout**. Internal developer/machine provenance
+may retain `Scout v1` / `Scout v2` where needed to distinguish historical
+implementations.
+
 1. One main NASolve window.
 2. Coot is the intentional external atomic viewer/editor.
 3. Clicking/viewing never changes the current scientific pointer.
@@ -728,3 +789,10 @@ Coot bridge and long-running activity handling.
    requiring a new standalone window.
 9. CLI remains a complete interoperable control surface.
 10. GUI state must never become the only copy of scientific intent or history.
+11. Conditional/skipped stages and future workflow-recipe endpoints are rendered
+    from authoritative backend records; the GUI never infers a stronger
+    scientific requirement from stage order alone.
+12. The visual recipe builder exposes only backend-supported/validated options
+    and serializes the same workflow recipe consumed by CLI execution.
+13. Every interactive CLI decision has a GUI-equivalent action with the same
+    default, eligibility, provenance and scientific consequence.

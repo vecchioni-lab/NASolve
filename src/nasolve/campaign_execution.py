@@ -122,6 +122,25 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
         if not (directory / "job.json").exists():
             if directory.exists() and any(directory.iterdir()):
                 raise CampaignError(f"Incomplete {stage} job publication; inspect the retained attempt")
+            if stage == "refine-doctor" and last is not None:
+                _report_unchanged(root, last)
+                if last.get("status") == "AUTOREFINE_READY":
+                    item.update(
+                        status="SOLVED", next_stage=None, numerical_success=True,
+                        inspection_required=True,
+                        diagnostic="Numerical refinement criteria passed; inspect the model and maps before approval",
+                    )
+                    return dependencies
+                if last.get("status") == "AUTOREFINE_REVIEW":
+                    item.update(
+                        status="AWAITING_INSPECTION", next_stage="refine-doctor",
+                        numerical_success=False, inspection_required=True,
+                        diagnostic=(
+                            "Refinement review is eligible for explicit campaign Refine Doctor; "
+                            "run with --through refine-doctor to continue"
+                        ),
+                    )
+                    return dependencies
             if last is not None:
                 _report_unchanged(root, last)
             item.update(status="PAUSED" if last else "DISCOVERED", next_stage=stage,
@@ -159,7 +178,10 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
             return dependencies
         receipt = read_receipt(root, directory, job)
         finished = directory / "process-finished.json"
-        if finished.exists() and receipt["status"] in ACCEPTED[stage]:
+        continuable_review = (
+            stage == "autorefine" and receipt["status"] == "AUTOREFINE_REVIEW"
+        )
+        if finished.exists() and (receipt["status"] in ACCEPTED[stage] or continuable_review):
             completion = read_record(finished)
             return_code = completion.get("return_code")
             recovered = completion.get("recovered_from_receipt") == receipt["record_sha256"]
@@ -167,6 +189,16 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
                 raise CampaignError("Worker exited unsuccessfully despite an accepted stage receipt")
         item.update(run=receipt.get("run"), checkpoint=receipt.get("checkpoint"), diagnostic=receipt["message"])
         item["attempts"][-1]["run"] = item["run"]
+        if continuable_review:
+            if (receipt.get("run") is None or not isinstance(receipt.get("checkpoint"), str)
+                    or receipt.get("selected_as_current") is not False):
+                raise CampaignError("Refinement review cannot enter Doctor without a preserved review checkpoint")
+            dependencies.append({
+                "job_sha256": job["record_sha256"],
+                "receipt_sha256": receipt["record_sha256"],
+            })
+            last = receipt
+            continue
         if receipt["status"] not in ACCEPTED[stage]:
             status = "NO_SOLUTION" if receipt["status"] == "MR_FAILED" else (
                 "AWAITING_INSPECTION" if receipt["status"] in {"MR_REVIEW", "AUTOSOL_REVIEW", "AUTOSOL_WARNING", "AUTOREFINE_REVIEW"}
@@ -180,6 +212,13 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
             raise CampaignError("Accepted refinement has no selected checkpoint")
         dependencies.append({"job_sha256": job["record_sha256"], "receipt_sha256": receipt["record_sha256"]})
         last = receipt
+        if stage == "refine-doctor":
+            item.update(
+                status="AWAITING_INSPECTION", next_stage=None,
+                numerical_success=False, inspection_required=True,
+                diagnostic=receipt["message"],
+            )
+            return dependencies
     assert last is not None
     _report_unchanged(root, last)
     item.update(status="SOLVED", next_stage=None, numerical_success=True, inspection_required=True,
@@ -276,6 +315,16 @@ def retry_dataset(root: Path, dataset: str) -> dict[str, Any]:
     return execution_status(root)
 
 
+def _runnable(item: dict[str, Any], through: str) -> bool:
+    if item["status"] in {"DISCOVERED", "PAUSED"}:
+        return True
+    return (
+        through == "refine-doctor"
+        and item["status"] == "AWAITING_INSPECTION"
+        and item.get("next_stage") == "refine-doctor"
+    )
+
+
 def execute_campaign(
     root: Path, *, datasets: tuple[str, ...] | None = None, through: str = "autorefine",
     phenix_root: str | None = None, progress: Callable[[str], None] | None = None,
@@ -308,7 +357,7 @@ def execute_campaign(
         _save(root, state)
         stopped = False
         for item in state["datasets"]:
-            if item["id"] not in selected or item["status"] not in {"DISCOVERED", "PAUSED"}:
+            if item["id"] not in selected or not _runnable(item, through):
                 continue
             if not item["attempts"]:
                 _start_attempt(item, "initial execution")
@@ -320,7 +369,7 @@ def execute_campaign(
                 # Recheck frozen inputs and every completed stage at each boundary.
                 plan = campaign_status(root)
                 _reconcile(root, plan, state)
-                if item["status"] not in {"DISCOVERED", "PAUSED"}:
+                if not _runnable(item, through):
                     break
                 stage = item["next_stage"]
                 dependencies = _inspect_attempt(root, plan, item)

@@ -8,9 +8,8 @@ classifies the solution by TFZ.
 
 The current release provides **AutoMR**, **PostMR**, a conditional
 **AutoSol** branch, checkpointed **AutoRefine**, bounded **Refine Doctor**
-triage, sequential campaign execution from frozen plans, and read-only
-campaign provenance primitives for comparing search models, solved
-checkpoints, and recipient targets without authorizing reuse. PostMR constructs
+triage, and sequential campaign execution from frozen plans with per-dataset
+review isolation. PostMR constructs
 supported modified nucleotides through Coot, restores trusted parent
 coordinates, can apply complete chain sequences, generates either the 5W6W
 restraint stack or modification-scoped pair restraints, supplies curated or
@@ -147,15 +146,6 @@ exact `show RUN --checkpoint ID` command when the same view resolver used by
 `show` can resolve that checkpoint's model and maps, so you can inspect an
 unselected result without changing the current checkpoint. If resolution fails,
 it reports the reason and directs you to the log and report instead.
-
-NASolve also has a read-only checkpoint-candidate descriptor primitive for
-future campaign reasoning. It verifies one checkpoint's lineage, model checksum,
-literal polymer inventory, source-observation provenance, frozen chemistry and
-complete sequence-family target when available. The checkpoint model is compared
-afresh with that frozen target rather than assumed to match because of ancestry.
-This descriptor does **not** select, export or reuse the checkpoint. Existing
-checkpoint `usable`/`REVIEW`/`SUCCESS` state is reported as local lineage
-state only; cross-dataset donor eligibility remains unset.
 
 If a structurally sound result remains under review—for example, because a
 small test set gives `Rwork >= Rfree`—run the bounded triage layer:
@@ -440,7 +430,7 @@ disables every AutoBuild path.
 | Required request | Frame plus ordered pair | One PDB, found or named |
 | Space-group rule | H3/R3; P1 only through the explicit shunt | No standard-frame symmetry gate |
 | Standard-site change | Exact catalogue pair, fallback mutation, or conservative target application for a forced model | Use explicit mutation sites |
-| Complete sequence | May be introduced by a future frame preset | Chain-labelled sequence file or inline chains |
+| Complete sequence | Optional explicit reference/thread/dataset target | Chain-labelled sequence file or inline chains |
 | Optional mirror | `--mirror` on the selected/forced standard model | `--mirror` on the selected dataset model |
 | Typical command | `nasolve automr DATASET -W --pair E:G --execute` | `nasolve automr DATASET --execute` |
 
@@ -757,70 +747,6 @@ missing declarations remain `UNKNOWN`. This is still not a reuse decision.
 Absolute D/L chirality is currently unknown even when `mirror` is false;
 NASolve records only whether it applied the explicit mirror transform. See
 [model compatibility facts](docs/model-compatibility-facts.md).
-
-For future Campaign Doctor work, NASolve can also compare a verified Fern
-checkpoint candidate directly against another AutoMR run's frozen recipient
-intent. This cross-dataset comparison is read-only and descriptive: it reports
-source mode/frame context, target-reference context, literal donor-model versus
-recipient-target site/identity differences, relative mirror-transform context,
-and recipient symmetry/copy-number facts. It does not score, rank, select,
-authorize, export, or retry any donor model.
-
-The next planned robustness layer is **Construct Registration**. Its backend
-foundation is now implemented and tested, but it is **not yet wired into live
-AutoMR/PostMR execution**. The merged core can represent logical construct sites
-independently of coordinate chain labels/numbering, freeze Registration Scout
-provenance, compare registration across stages, support explicit guided
-simple-chain choices, and inventory multiple dataset PDB candidates and run Registration Scout on
-them without selecting one.
-
-Scout v1 remains conservative: ordinary identity/renumbering cases can be
-described deterministically, while renamed repetitive strands remain ambiguous
-rather than being ranked by sequence similarity. The current Oak development
-branch adds an **experimental Scout v2 proposal helper** that tests a stricter
-design-aware rule: propose a one-to-one chain mapping only when exactly one
-complete mapping has zero **unexplained** mismatches after accounting for
-explicit target-history and reviewed provider identities. It is proposal-only,
-cannot alter coordinates, and is not runtime authority.
-
-Oak's first renamed-real-W v2 shadow run deliberately stayed `AMBIGUOUS`
-because the experimental provider evidence omitted A:12=DC and B:4=DG.
-After direct verification of the complete four-site identity set in
-`MR_frames/5W6W/C_G.pdb` (A:12/A:13=DC; B:3/B:4=DG), the same shadow case
-produced exactly one zero-unexplained proposal: A->M, B->N, C->P, D->Q.
-That mapping contained 38 exact identities and 4 provider-explained differences;
-every alternative retained at least 10 unexplained mismatches. The helper still
-reports `runtime_authority = false`. Oak now removes the free-floating
-site->code input entirely: provider evidence is derived from the assessed
-frame-catalogue model and bound to the existing provider record plus exact model
-SHA-256. This provenance-bound implementation remains experimental, but the
-focused Construct Registration suite now passes **43 tests locally**, including
-explicit rejection of incomplete provider coverage and provider-selector/source
-mismatch. The renamed real-W shadow case has also now passed through this
-provenance-bound interface: exactly one zero-unexplained A->M/B->N/C->P/D->Q
-proposal, with provider evidence derived from the assessed C_G.pdb coordinates,
-no caller residue dictionary, and runtime authority still false. Because the
-historical run predates structured model_provider provenance, that shadow check
-reconstructed only provider facts independently verified from the old run's
-model path/source/checksum. A fresh current-schema ED `run_013` preflight was
-then created from the same scientific intent and reproduced the identical
-unique zero-unexplained mapping using native structured `model_provider`
-provenance, eliminating the historical-schema caveat.
-
-The intended live architecture remains: cheap non-mutating Registration Scout
-inside AutoMR preflight, ordinary MR first when plausible, authoritative ASU
-registration on the actual MR solution before PostMR changes logical sites, and
-a separate bounded Registration/Recut Rescue only for reviewed representation
-problems. Guided cases use the Registration Net described in
-[construct registration](docs/construct-registration.md). A later opt-in Topo Net
-extension is being designed specifically for periodic nucleic-acid frameworks:
-it separates full input strands, tile hypotheses, the observed periodic crystal
-graph and incidental ASU serialization. The design also preserves intended
-strand stoichiometry and repeat-bearing/root-strand annotations while allowing
-the observed lattice to show partial strand use, reorganized repeat order or
-long-period repeat-phase closure rather than forcing the synthesis design onto
-the crystal. The minimum real-data validation queue is kept in
-[construct-registration-live-checks.md](docs/construct-registration-live-checks.md).
 
 ## Preparing an accepted MR solution
 
@@ -1150,15 +1076,13 @@ Current validation state is summarized in
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
 - search unbounded refinement recipes or run several campaign jobs concurrently;
 - apply the final H3/R3 notation patch;
-- perform construct/ASU registration, guided Registration Net editing, the
-  planned modular one-window GUI ([design contract](docs/gui.md)) with
-  checkpoint-tree/campaign navigation and CLI-operable actions, topology-informed
-  Topo Net framework surgery, or registration-aware recut rescue; or
-- search multiple catalogue/dataset models automatically.
+- perform construct/ASU registration or registration-aware recut rescue; or
+- search multiple catalogue/dataset models automatically or reuse solved sibling
+  structures automatically.
 
-These operations are deliberately kept behind later validation gates rather
-than being implied by an MR success. Always inspect the molecular-replacement
-solution and electron density before treating it as a solved structure.
+These capabilities are outside the current runtime. Always inspect the
+molecular-replacement solution and electron density before treating it as a
+solved structure.
 
 ## Plan and run a dataset campaign
 
@@ -1173,14 +1097,24 @@ without launching scientific stages:
 
 The planner records valid and blocked datasets independently, input checksums,
 resolved configuration, and portable copies of selected models and preset
-resources under `NASolveCampaign/`. Status checks detect changed or missing
-frozen inputs. Existing dataset files, runs and checkpoint selections are
-preserved. A saved plan is immutable; use `status` rather than planning over it.
+resources under `NASolveCampaign/`. New plans use schema 2 and may contain
+standard W members, prepared nonstandard PDB+sequence members, or both.
+Existing schema-1 W plans remain executable. Status checks detect changed or
+missing frozen inputs. Existing dataset files, runs and checkpoint selections
+are preserved. A saved plan is immutable; use `status` rather than planning
+over it.
+
+A prepared nonstandard member explicitly declares `mode = nonstandard`, one
+dataset-relative/discovered PDB and a complete chain-labelled target (inline
+`[sequences]` or `sequence_file`). NASolve freezes the model bytes, raw
+sequence source and parsed target separately. Nonstandard members do not inherit
+the W frame/pair or D:1 chemistry merely because the selected campaign preset
+also supports W datasets.
 
 `DISCOVERED` means input and model selection passed; the scientific preflight
 and execution gates still remain. The sequential executor runs those existing
-engines and saves progress separately from the immutable plan. For a first
-check, run one dataset through PostMR, then continue it:
+engines and saves progress separately from the immutable plan. For a cautious
+first check, you can stop one dataset after PostMR and then resume it:
 
 ```bash
 ./nasolve campaign run examples --dataset DOHU --through postmr
@@ -1189,11 +1123,33 @@ check, run one dataset through PostMR, then continue it:
 ```
 
 The second `run` continues the same campaign-owned numbered run after verifying
-its completed stages. It does not repeat MR or PostMR. A scientific review or
-technical failure stops that dataset while other selected datasets continue.
-AutoSol runs only when the prepared model has a supported anomalous candidate;
-unaccepted phasing stops for inspection. Numerical refinement success retains
-the selected checkpoint and still requires model/map inspection.
+its completed stages. It does not repeat MR or PostMR. A plain
+`campaign run ROOT` otherwise defaults through AutoRefine and can advance all
+eligible datasets unattended through the current fixed stage order.
+
+A scientific review or technical failure stops only that dataset while other
+selected datasets continue. AutoSol is conditional: when PostMR finds no
+supported anomalous candidate, the campaign records an accepted `SKIPPED`
+AutoSol stage and does not launch `phenix.autosol`; when anomalous evidence
+requires it, AutoSol runs under the frozen policy. Unaccepted phasing stops for
+inspection. Numerical refinement success retains the selected checkpoint and
+still requires model/map inspection.
+
+This sequential campaign path has been exercised end-to-end with real
+Phenix/Coot across four W datasets: three reached numerical refinement success,
+while one dataset that used the anomalous AutoSol path was correctly retained as
+a refinement-review case without stopping the other three.
+
+A campaign refinement-review case can be continued explicitly through the
+campaign-owned bounded Refine Doctor stage:
+
+```bash
+./nasolve campaign run CAMPAIGN_ROOT --dataset DATASET --through refine-doctor
+```
+
+Doctor preserves campaign provenance and does not automatically select its
+recommended checkpoint; inspect the recommended model/maps before deliberately
+making it current.
 
 Use `campaign pause examples` from another terminal to stop after the active
 stage finishes. Keep the execution terminal open; this first executor runs in
@@ -1203,32 +1159,24 @@ for interruption handling, explicit retries and live-test commands, and
 
 ## Project presets and model providers
 
-The versioned `5w6w` planning preset describes the current standard workflow.
-Future projects can add preset directories rather than new project-name
-branches in the workflow code. Later preset schemas can declare an MR catalogue
-and fallback, site roles, sequence resources, restraint policy, AutoSol
-sequence, metalation recipe, imported provider provenance, registration/cut
-recipes and model-search budgets.
+The versioned `5w6w` planning preset describes the standard W workflow.
+Prepared nonstandard members explicitly override the W AutoMR layer while using
+the selected preset's bounded shared stage policies. For a geometry-diverse real
+campaign, use a small project-local preset with a neutral project ID so the
+human-facing campaign identity reflects the project even though the current
+stage-policy schema remains conservative.
 
-NASolve does **not** invoke AlphaFold. A separately developed upstream NAPrep
-package may organize designs/data and externally generated model candidates,
-but it is optional: carefully prepared folders/manifests remain valid direct
-NASolve inputs. Once imported, NASolve owns the crystallographic decision tree,
-campaign management, Campaign Doctor, curation/reporting and deposition
-provenance.
+The current preset freezes the standard W AutoMR defaults, PostMR policy,
+conditional AutoSol policy, AutoRefine recipe/cycle count, resources, and
+declared chemistry. Prepared nonstandard members supply their own model/sequence
+request while retaining the selected preset's bounded shared stage policy.
 
-This keeps project-specific scientific choices in versioned data while the
+NASolve does **not** invoke AlphaFold or another model-generation service.
+Supply the intended search-model PDB explicitly when using a nonstandard model.
+Project-specific scientific choices remain frozen in versioned inputs while the
 pipeline retains common validation, provenance, non-overwrite behavior, and
-external-tool isolation.
-
-The [development direction](docs/architecture.md#next-development-priorities)
-now has the read-only Campaign Doctor provenance prerequisites in place:
-checkpoint-candidate description plus donor-checkpoint versus recipient-run
-comparison. The next campaign step is a reviewed eligibility policy and bounded
-rescue execution; descriptive facts do not themselves select or reuse a model.
-Modified-pair restraint geometry remains a separate validation track. Numerical
-acceptance and model/map inspection remain separate outcomes; validation scores
-retain the scientific context of each project.
+external-tool isolation. Numerical acceptance and model/map inspection remain
+separate outcomes.
 
 ## Problems and reproducibility
 

@@ -8,7 +8,31 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Dictionary compatibility
+
+- Generalized recognized CCP4 alternative-torsion conversion beyond 1AP,
+  including the effective ReadySet bundle. Preserve primary sigma with explicit
+  unequal-uncertainty provenance rather than claiming lossless weight conversion.
+- Freeze parameterized input dictionary authority independently of phosphate
+  profiles; retain construction-only CCD fallback to ReadySet and portable
+  effective refinement/view references. Unknown representation conflicts warn
+  and remain for native interpretation rather than receiving guessed repairs.
+- Added a pinned parameterized DZ dictionary and its DC construction route,
+  plus connectivity-selected DZ linked-phosphate handling without reinterpreting
+  legacy 1AP profiles. Existing category intermediates are unchanged.
+- Standing 1W5 -> DZ / 1WA -> DP conversions remain a separate pending slice.
+
 ### Changed
+
+- Generic modified-component construction now selects temporary Coot parents by
+  the user-reviewed sheet/category policy: Z/S/K/unique -> C, P/B/X -> G,
+  D/I -> A, with C for an unclassified intermediate. A recognized Source sheet
+  takes precedence; legacy records use Base Analog as the category. DNA/RNA
+  selects the corresponding sugar form. Existing curated recipes retain priority.
+  This replaces the proposed N9/purine-pyrimidine inference gate, without changing
+  final component identity, NARestraints mappings/recipes, or frozen old runs.
+  Final dictionary and geometry validation remain separate; no automatic bond
+  repair, tautomer conversion, new dictionary or torsion policy is introduced.
 
 - Added schema-1 semantic `terminal_geometry_protection` checkpoint provenance. Protected sites, sigma, Phenix-derived ideal source, mechanism, and the run-local protection restraint artifact now inherit with refinement/manual children; attempts to stack a second protection record fail closed.
 - Generalized the OP3-specific policy into an explicit standard-phosphodiester backbone contract. `five_prime_phosphate_sites` is the preferred user-facing name (legacy `allow_op3_sites` remains readable). PostMR now treats a requested 5'-terminal phosphate as the complete P/OP1/OP2/OP3 group, preserving a complete group, completing missing OP3 from existing P/OP1/OP2, or seeding a whole missing group from O5'-C5' with recorded idealized starting geometry. Partial ambiguous groups still fail closed.

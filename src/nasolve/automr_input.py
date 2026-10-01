@@ -40,6 +40,7 @@ class AutoMRIntent:
     mode: str | None = None
     frame: str | None = None
     pair: str | None = None
+    force: str | None = None
     model: str | None = None
     model_family: str | None = None
     sequence_file: str | None = None
@@ -92,6 +93,8 @@ class ResolvedAutoMRInput:
     model_family: str | None = None
     model_provider: dict[str, object] | None = None
     frame_sequence_source: Path | None = None
+    force_text: str | None = None
+    force_pair: tuple[str, str] | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
@@ -99,6 +102,7 @@ _ALLOWED_AUTOMR_KEYS = {
     "mode",
     "frame",
     "pair",
+    "force",
     "model",
     "model_family",
     "sequence_file",
@@ -122,6 +126,33 @@ def _validated_model_family(value: object) -> str | None:
             "model_family must use 1-64 letters, numbers, dot, underscore or hyphen"
         )
     return family
+
+
+_RESTRAINT_BASE_CLASSES = frozenset({
+    "A", "T", "G", "C", "D", "B", "S", "Z", "P", "K", "X", "I",
+})
+
+
+def _validated_force_pair(value: object) -> tuple[str, str] | None:
+    """Validate an explicit NARestraints base-class recipe override."""
+    if value is None:
+        return None
+    if not isinstance(value, str):
+        raise AutoMRInputError("force must be an ordered base-class pair such as G:C")
+    text = value.strip()
+    if not text:
+        return None
+    parts = [part.strip().upper() for part in text.split(":")]
+    if (
+        len(parts) != 2
+        or any(len(part) != 1 or part not in _RESTRAINT_BASE_CLASSES for part in parts)
+    ):
+        allowed = ", ".join(sorted(_RESTRAINT_BASE_CLASSES))
+        raise AutoMRInputError(
+            "force must contain exactly two NARestraints base classes "
+            f"(FIRST:SECOND; allowed classes: {allowed})"
+        )
+    return parts[0], parts[1]
 
 
 def _validated_sequences(
@@ -297,6 +328,7 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         mode=automr.get("mode") or None,
         frame=automr.get("frame") or None,
         pair=automr.get("pair") or None,
+        force=automr.get("force") or None,
         model=automr.get("model") or None,
         model_family=_validated_model_family(automr.get("model_family")),
         sequence_file=automr.get("sequence_file") or None,
@@ -635,6 +667,10 @@ def resolve_automr_input(
         mode = "nonstandard"
 
     pair_text = pair_override or intent.pair
+    force_pair = _validated_force_pair(intent.force)
+    force_text = (
+        ":".join(force_pair) if force_pair is not None else None
+    )
     frame: FrameSpec | None = None
     pair: tuple[ResolvedLigand, ResolvedLigand] | None = None
     model_pair: tuple[ResolvedLigand, ResolvedLigand] | None = None
@@ -703,6 +739,11 @@ def resolve_automr_input(
         if pair_text:
             raise AutoMRInputError(
                 "pair = is only valid in standard mode; use exact [mutations] sites for nonstandard models"
+            )
+        if force_pair is not None:
+            raise AutoMRInputError(
+                "force = is only valid for a standard-frame pair; it changes "
+                "restraint geometry, not residue identity"
             )
         model, model_source = _resolve_dataset_model(dataset.root, model_selector)
         model_provider = {
@@ -794,6 +835,8 @@ def resolve_automr_input(
         frame=frame,
         pair_text=pair_text,
         pair=pair,
+        force_text=force_text,
+        force_pair=force_pair,
         model=model,
         model_source=model_source,
         model_pair=model_pair,
@@ -824,6 +867,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
     if resolved.mode == "standard":
         assert resolved.frame is not None and resolved.pair_text is not None
         lines.extend([f"frame = {resolved.frame.name}", f"pair = {resolved.pair_text}"])
+        if resolved.force_text is not None:
+            lines.append(f"force = {resolved.force_text}")
         if resolved.model_selector is not None:
             lines.append(f"model = {resolved.model_selector}")
         if resolved.model_family is not None:
@@ -831,11 +876,42 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
         if resolved.allow_p1_standard:
             lines.append("allow_p1_standard = true")
     else:
-        relative_model = (
-            resolved.model_selector
-            if resolved.model_selector is not None
-            else resolved.model.relative_to(resolved.dataset.root).as_posix()
-        )
+        if resolved.model_selector is not None:
+            relative_model = resolved.model_selector
+        elif (
+            isinstance(resolved.model_provider, Mapping)
+            and resolved.model_provider.get("kind") == "discovered-nonstandard-model"
+        ):
+            selector = resolved.model_provider.get("selector")
+            if (
+                not isinstance(selector, str)
+                or not selector
+                or "\\" in selector
+                or any(char in selector for char in "\r\n\x00")
+            ):
+                raise AutoMRInputError(
+                    "Discovered nonstandard model provider has a malformed selector"
+                )
+            selector_path = Path(selector)
+            if (
+                selector_path.is_absolute()
+                or len(selector_path.parts) != 1
+                or any(part in {"", ".", ".."} for part in selector_path.parts)
+                or selector_path.suffix.casefold() != ".pdb"
+            ):
+                raise AutoMRInputError(
+                    "Discovered nonstandard model provider must name one top-level PDB"
+                )
+            relative_model = selector
+        else:
+            try:
+                relative_model = resolved.model.relative_to(
+                    resolved.dataset.root
+                ).as_posix()
+            except ValueError as exc:
+                raise AutoMRInputError(
+                    "Nonstandard model is outside the dataset and has no portable selector provenance"
+                ) from exc
         lines.append(f"model = {relative_model}")
         if resolved.model_family is not None:
             lines.append(f"model_family = {resolved.model_family}")

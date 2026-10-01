@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from functools import partial
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from nasolve.automr_input import AutoMRInputError
@@ -98,6 +99,39 @@ class CampaignStageTests(unittest.TestCase):
         report = json.loads((self.root / result["run"] / "report.json").read_text())
         self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["A:1"])
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_forced_restraint_geometry_survives_campaign_preflight_freezing(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\nmode = standard\nframe = W\n"
+            "pair = G:Z\nforce = G:C\n"
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        self.assertEqual(self.dataset["status"], "DISCOVERED", self.dataset["diagnostic"])
+        self.assertEqual(self.dataset["effective_config"]["pair"], "G:Z")
+        self.assertEqual(self.dataset["effective_config"]["force"], "G:C")
+        self.assertEqual(self.dataset["effective_config"]["force_pair"], ["G", "C"])
+
+        result = self.stage("preflight")
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        self.assertEqual(report["post_mr_plan"]["standard_pair"]["requested"], "G:Z")
+        self.assertEqual(
+            report["post_mr_plan"]["restraint_geometry_override"],
+            {
+                "schema_version": 1,
+                "source": "force",
+                "requested": "G:C",
+                "base_classes": ["G", "C"],
+                "scope": "standard_pair",
+                "changes_residue_identity": False,
+            },
+        )
+        frozen = (run / "nasolve.input.txt").read_text()
+        self.assertIn("pair = G:Z", frozen)
+        self.assertIn("force = G:C", frozen)
 
     def test_sequence_reference_preflight_uses_frozen_campaign_copy(self):
         dataset = make_dataset(self.root / "dataset", include_model=False)
@@ -267,6 +301,108 @@ class CampaignStageTests(unittest.TestCase):
             ["D:1"],
         )
         self.assertTrue((run / "Model/model_compatibility_facts.json").is_file())
+
+    def test_nonstandard_sequence_file_preflight_uses_only_frozen_campaign_resources(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        models = dataset / "models"
+        models.mkdir()
+        source_model = models / "search.pdb"
+        source_model.write_text(model_text())
+        source_sequence = dataset / "construct.fasta"
+        source_sequence.write_text(">A\nAC\n")
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\n"
+            "mode = nonstandard\n"
+            "model = models/search.pdb\n"
+            "sequence_file = construct.fasta\n"
+            "model_family = triangle-v1\n"
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        expected_model = (
+            self.root / self.dataset["inputs"]["model"]["relative_path"]
+        ).read_bytes()
+        expected_sequence = (
+            self.root / self.dataset["inputs"]["sequence_source"]["relative_path"]
+        ).read_bytes()
+
+        # The content-addressed campaign resources are authoritative after plan.
+        source_model.unlink()
+        source_sequence.unlink()
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+        with patch(
+            "nasolve.automr.resolve_automr_input",
+            side_effect=AssertionError("No source-folder/model rediscovery"),
+        ):
+            result = self.stage("preflight")
+
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        snapshot = (run / "nasolve.input.txt").read_text()
+
+        self.assertEqual(result["status"], "READY_POST_MR_MUTATION")
+        self.assertEqual(report["mode"], "nonstandard")
+        self.assertIsNone(report["frame"])
+        self.assertEqual(report["inputs"]["model_provider"], {
+            "kind": "explicit-nonstandard-model",
+            "selection": "user-forced",
+            "location": "dataset",
+            "selector": "models/search.pdb",
+            "construct_family": "triangle-v1",
+        })
+        self.assertEqual(report["inputs"]["model_selector"], "models/search.pdb")
+        self.assertEqual(report["post_mr_plan"]["sequences"], {"A": "AC"})
+        self.assertIsNone(report["post_mr_plan"]["standard_pair"])
+        self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], [])
+        self.assertEqual(report["post_mr_plan"]["phosphate_intent"]["source"], "none")
+        self.assertEqual((run / "Model/input_model.pdb").read_bytes(), expected_model)
+        frozen_sequence = Path(report["inputs"]["sequence_file"])
+        self.assertTrue(frozen_sequence.is_file())
+        self.assertEqual(frozen_sequence.read_bytes(), expected_sequence)
+        self.assertIn("model = models/search.pdb", snapshot)
+        self.assertIn("[sequences]\nA = AC", snapshot)
+        self.assertNotIn("sequence_file", snapshot)
+        self.assertTrue(
+            any(path.endswith("/frozen/sequence_source.fasta") for path in result["artifacts"])
+        )
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_discovered_nonstandard_preflight_preserves_discovery_provenance(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        source_model = dataset / "search.pdb"
+        source_model.write_text(model_text())
+        (dataset / "nasolve.txt").write_text(
+            "[automr]\nmode = nonstandard\n\n"
+            "[sequences]\nA = AC\n"
+        )
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        expected_model = (
+            self.root / self.dataset["inputs"]["model"]["relative_path"]
+        ).read_bytes()
+
+        source_model.unlink()
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+        result = self.stage("preflight")
+
+        run = self.root / result["run"]
+        report = json.loads((run / "report.json").read_text())
+        snapshot = (run / "nasolve.input.txt").read_text()
+
+        self.assertEqual(report["inputs"]["model_provider"], {
+            "kind": "discovered-nonstandard-model",
+            "selection": "single-pdb-discovery",
+            "location": "dataset",
+            "selector": "search.pdb",
+        })
+        self.assertIsNone(report["inputs"]["model_selector"])
+        self.assertIsNone(report["inputs"]["sequence_file"])
+        self.assertEqual((run / "Model/input_model.pdb").read_bytes(), expected_model)
+        self.assertIn("model = search.pdb", snapshot)
+        self.assertIn("[sequences]\nA = AC", snapshot)
 
     def test_preflight_uses_frozen_catalogue_and_does_not_generate_dataset_config(self):
         self.plan(config=False)
@@ -463,6 +599,83 @@ class CampaignStageTests(unittest.TestCase):
         registry = json.loads((run / "AutoRefine/checkpoints.json").read_text())
         self.assertEqual(registry["current"], "postmr")
         self.assertTrue(any(path.endswith("checkpoints.json") for path in result["artifacts"]))
+
+    def test_campaign_refine_doctor_receipts_new_trials_and_preserves_current(self):
+        run = make_refine_run(self.root)
+        self.set_run(run)
+        self.phenix.executables.update({
+            "phenix.refine": make_refine(self.tools, final_work=0.24, final_free=0.22),
+            "phenix.mtz.dump": refine_dump(self.tools),
+        })
+        review = self.stage("autorefine", run)
+        self.assertEqual(review["status"], "AUTOREFINE_REVIEW")
+        self.assertFalse(review["selected_as_current"])
+
+        def doctor_engine(
+            doctor_run, refine_executable, mtz_dump_executable, *,
+            phenix_version, environment, from_checkpoint, macro_cycles, max_trials,
+        ):
+            self.assertEqual(doctor_run, run)
+            self.assertEqual(from_checkpoint, "refine-001")
+            self.assertEqual((macro_cycles, max_trials), (3, 5))
+            doctor = run / "RefineDoctor" / "doctor_001"
+            doctor.mkdir(parents=True)
+            report_path = doctor / "report.json"
+            report_path.write_text('{"status":"REFINE_DOCTOR_RECOMMEND"}\n')
+            audit_log = doctor / "free_r_audit.log"
+            audit_log.write_text("valid\n")
+            round_two = run / "AutoRefine" / "round_002"
+            round_two.mkdir()
+            (round_two / "doctor_trial.dat").write_text("trial\n")
+            report = json.loads((run / "report.json").read_text())
+            report["refine_doctor"] = {
+                "status": "REFINE_DOCTOR_RECOMMEND",
+                "source_checkpoint": "refine-001",
+                "recommended_checkpoint": "refine-002",
+            }
+            (run / "report.json").write_text(json.dumps(report))
+            return SimpleNamespace(
+                status="REFINE_DOCTOR_RECOMMEND",
+                message="A bounded refinement branch is recommended for inspection",
+                exit_code=0,
+                run_directory=run,
+                doctor_directory=doctor,
+                source_checkpoint="refine-001",
+                current_checkpoint_preserved=True,
+                recommended_checkpoint="refine-002",
+                recommendation="Inspect refine-002 before selecting it",
+                audit=SimpleNamespace(log_path=audit_log),
+                trials=(SimpleNamespace(round_directory=round_two),),
+                report_path=report_path,
+            )
+
+        with patch(
+            "nasolve.campaign_stages.execute_refine_doctor",
+            side_effect=doctor_engine,
+        ):
+            result = self.stage("refine-doctor", run)
+
+        self.assertEqual(result["status"], "REFINE_DOCTOR_RECOMMEND")
+        self.assertEqual(result["source_checkpoint"], "refine-001")
+        self.assertEqual(result["recommended_checkpoint"], "refine-002")
+        self.assertEqual(result["checkpoint"], "refine-002")
+        self.assertTrue(result["current_checkpoint_preserved"])
+        self.assertIn("Inspect refine-002", result["message"])
+        self.assertTrue(
+            any(path.endswith("RefineDoctor/doctor_001/report.json") for path in result["artifacts"])
+        )
+        self.assertTrue(
+            any(path.endswith("AutoRefine/round_002/doctor_trial.dat") for path in result["artifacts"])
+        )
+        self.assertTrue(
+            any(path.endswith("refine-doctor-checkpoints.json") for path in result["artifacts"])
+        )
+        self.assertEqual(
+            (self.root / result["run_report_snapshot"]).read_bytes(),
+            (run / "report.json").read_bytes(),
+        )
+        registry = json.loads((run / "AutoRefine/checkpoints.json").read_text())
+        self.assertEqual(registry["current"], "postmr")
 
     def test_mean_refinement_returns_numerical_success_without_visual_approval(self):
         run = make_refine_run(self.root, autosol=False)

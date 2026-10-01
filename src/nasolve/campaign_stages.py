@@ -26,10 +26,11 @@ from .coot_runtime import CootDiscoveryError, discover_coot
 from .phenix_runtime import PhenixInstallation, discover_phenix
 from .phaser import execute_phaser
 from .postmr import prepare_postmr
+from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
 
 
-STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine")
+STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor")
 
 
 class CampaignStageError(CampaignError):
@@ -89,29 +90,39 @@ def _pair(value: object) -> tuple[ResolvedLigand, ResolvedLigand]:
 
 
 def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> ResolvedAutoMRInput:
-    """Materialize the chosen model without consulting the original catalogue."""
+    """Materialize one checksum-bound campaign selection without rediscovery."""
     if dataset.get("status") != "DISCOVERED":
         raise CampaignStageError("Only a discovered campaign dataset can enter preflight")
     name = dataset["id"]
     effective = _object(dataset.get("effective_config"), "Frozen effective configuration")
     inputs = _object(dataset.get("inputs"), "Frozen inputs")
-    if effective.get("mode") != "standard" or effective.get("frame") != "W":
-        raise CampaignStageError("Campaign execution supports only frozen standard W selections")
+    mode = effective.get("mode")
+    if mode not in {"standard", "nonstandard"}:
+        raise CampaignStageError("Frozen campaign selection has an unsupported mode")
+
     model_name = Path(_safe_relative(effective.get("model_name"), "Frozen model name"))
     if len(model_name.parts) != 1 or model_name.suffix.lower() != ".pdb":
         raise CampaignStageError("Frozen model name must be one PDB filename")
     if effective.get("model") != inputs.get("model"):
         raise CampaignStageError("Frozen selected model and input reference disagree")
-    if effective.get("frame_sequence") != inputs.get("frame_sequence"):
-        raise CampaignStageError("Frozen frame sequence references disagree")
+
     frozen = attempt / "frozen"
     frozen.mkdir()
     model = frozen / model_name
     _copy_resource(root, inputs.get("model"), model)
+
     frame_sequence_source = None
-    if inputs.get("frame_sequence") is not None:
-        frame_sequence_source = frozen / "seq_base.txt"
-        _copy_resource(root, inputs["frame_sequence"], frame_sequence_source)
+    if mode == "standard":
+        if effective.get("frame") != "W":
+            raise CampaignStageError("Campaign execution currently supports standard W or nonstandard selections")
+        if effective.get("frame_sequence") != inputs.get("frame_sequence"):
+            raise CampaignStageError("Frozen frame sequence references disagree")
+        if inputs.get("frame_sequence") is not None:
+            frame_sequence_source = frozen / "seq_base.txt"
+            _copy_resource(root, inputs["frame_sequence"], frame_sequence_source)
+    elif effective.get("frame_sequence") is not None or inputs.get("frame_sequence") is not None:
+        raise CampaignStageError("Nonstandard frozen selection cannot carry a frame sequence")
+
     sequence_reference_label = effective.get("sequence_reference")
     sequence_reference_record = inputs.get("sequence_reference")
     if (sequence_reference_label is None) != (sequence_reference_record is None):
@@ -126,36 +137,107 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
             raise CampaignStageError("Frozen sequence-reference selector is malformed")
         sequence_reference = frozen / "sequence_reference.json"
         _copy_resource(root, sequence_reference_record, sequence_reference)
+
+    sequence_file = None
+    sequence_source = effective.get("sequence_source")
+    if mode == "nonstandard":
+        if not isinstance(effective.get("sequences"), dict) or not effective["sequences"]:
+            raise CampaignStageError("Nonstandard frozen selection requires explicit sequences")
+        if not isinstance(sequence_source, dict):
+            raise CampaignStageError("Nonstandard frozen selection lacks sequence-source provenance")
+        if sequence_source.get("artifact") != inputs.get("sequence_source"):
+            raise CampaignStageError("Frozen sequence-source provenance disagrees with inputs")
+        source_kind = sequence_source.get("kind")
+        selector = _safe_relative(sequence_source.get("selector"), "Frozen sequence source")
+        if source_kind == "sequence-file":
+            suffix = Path(selector).suffix or ".txt"
+            sequence_file = frozen / f"sequence_source{suffix}"
+            _copy_resource(root, inputs["sequence_source"], sequence_file)
+        elif source_kind == "inline-config":
+            if selector != "nasolve.txt":
+                raise CampaignStageError("Frozen inline sequence source must be nasolve.txt")
+        else:
+            raise CampaignStageError("Frozen sequence source has an unsupported kind")
+    elif sequence_source is not None or inputs.get("sequence_source") is not None:
+        raise CampaignStageError("Standard frozen selection cannot carry nonstandard sequence-source provenance")
+
     files = DatasetFiles(
         root=root / name,
         reflections=_reference(root, inputs.get("reflections"), dataset=name),
         metadata=_reference(root, inputs.get("metadata"), dataset=name),
         summary=_reference(root, inputs.get("summary"), dataset=name),
     )
-    resolved = ResolvedAutoMRInput(
-        dataset=files, mode="standard", frame=normalize_frame("W"),
-        pair_text=effective["pair"], pair=_pair(effective["pair_ligands"]),
-        model=model, model_source=effective["model_source"],
-        model_pair=(
+    provider = (
+        dict(effective["model_provider"])
+        if effective.get("model_provider") is not None else None
+    )
+    if mode == "standard":
+        pair = _pair(effective["pair_ligands"])
+        force_text = effective.get("force")
+        force_pair_value = effective.get("force_pair")
+        if force_pair_value is None:
+            force_pair = None
+            if force_text is not None:
+                raise CampaignStageError("Frozen restraint force lacks its base-class pair")
+        else:
+            if (
+                not isinstance(force_pair_value, list)
+                or len(force_pair_value) != 2
+                or not all(
+                    isinstance(value, str)
+                    and re.fullmatch(r"[ATGCDBSZPKXI]", value) is not None
+                    for value in force_pair_value
+                )
+            ):
+                raise CampaignStageError("Frozen restraint force pair is malformed")
+            force_pair = (force_pair_value[0], force_pair_value[1])
+            if force_text != ":".join(force_pair):
+                raise CampaignStageError("Frozen restraint force text and pair disagree")
+        model_pair = (
             _pair(effective["model_pair"])
             if effective.get("model_pair") is not None else None
-        ),
-        exact_pair_model=effective["exact_pair_model"],
-        catalogue_warnings=tuple(effective["catalogue_warnings"]),
-        allow_p1_standard=effective["allow_p1_standard"], mirror=effective["mirror"],
-        sequences=dict(effective["sequences"]), sequence_file=None,
-        sequence_reference=sequence_reference,
-        sequence_reference_label=sequence_reference_label,
-        sequence_thread=(
+        )
+        frame = normalize_frame("W")
+        exact_pair_model = effective["exact_pair_model"]
+        catalogue_warnings = tuple(effective["catalogue_warnings"])
+        sequence_thread = (
             dict(effective["sequence_thread"])
             if effective.get("sequence_thread") is not None else None
-        ),
+        )
+    else:
+        if any(effective.get(field) is not None for field in (
+            "frame", "pair", "pair_ligands", "model_pair", "exact_pair_model",
+        )):
+            raise CampaignStageError("Nonstandard frozen selection contains standard-frame pair context")
+        if effective.get("sequence_thread") is not None:
+            raise CampaignStageError("Nonstandard frozen selection cannot use a W sequence thread")
+        if effective.get("force") is not None or effective.get("force_pair") is not None:
+            raise CampaignStageError("Nonstandard frozen selection cannot carry restraint force")
+        pair = None
+        force_text = None
+        force_pair = None
+        model_pair = None
+        frame = None
+        exact_pair_model = None
+        catalogue_warnings = ()
+        sequence_thread = None
+
+    resolved = ResolvedAutoMRInput(
+        dataset=files, mode=mode, frame=frame,
+        pair_text=effective.get("pair"), pair=pair,
+        force_text=force_text, force_pair=force_pair,
+        model=model, model_source=effective["model_source"],
+        model_pair=model_pair,
+        exact_pair_model=exact_pair_model,
+        catalogue_warnings=catalogue_warnings,
+        allow_p1_standard=effective["allow_p1_standard"], mirror=effective["mirror"],
+        sequences=dict(effective["sequences"]), sequence_file=sequence_file,
+        sequence_reference=sequence_reference,
+        sequence_reference_label=sequence_reference_label,
+        sequence_thread=sequence_thread,
         model_selector=effective.get("model_selector"),
         model_family=effective.get("model_family"),
-        model_provider=(
-            dict(effective["model_provider"])
-            if effective.get("model_provider") is not None else None
-        ),
+        model_provider=provider,
         frame_sequence_source=frame_sequence_source,
         mutations={site: _ligand(ligand) for site, ligand in effective["mutations"].items()},
         config_source=None,
@@ -164,6 +246,7 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         backbone_sites=dict(effective.get("backbones", {})),
         allow_unreviewed_backbone=bool(effective.get("allow_unreviewed_backbone", False)),
     )
+
     config = frozen / "nasolve.input.txt"
     with config.open("x", encoding="utf-8") as handle:
         handle.write(format_intent(resolved))
@@ -342,7 +425,7 @@ def execute_stage(
                 raise CampaignStageError("AUTOSOL_READY has no heavy-atom model or refinement data")
             required.extend([result.heavy_atom_model, result.refinement_data])
         extra["matched_distance"] = result.matched_distance
-    else:
+    elif stage == "autorefine":
         refine_policy = _object(policy.get("autorefine"), "AutoRefine policy")
         if refine_policy != {"recipe": "AutoRefine/default", "cycles": 5}:
             raise CampaignStageError("Unsupported campaign AutoRefine recipe")
@@ -366,6 +449,51 @@ def execute_stage(
         required.append(registry_snapshot)
         extra.update(checkpoint=result.checkpoint_id, selected_as_current=result.selected_as_current,
                      statistics=result.statistics)
+    else:
+        autorefine = _object(report.get("autorefine"), "AutoRefine review report")
+        if autorefine.get("status") != "AUTOREFINE_REVIEW":
+            raise CampaignStageError(
+                "Campaign Refine Doctor requires an AUTOREFINE_REVIEW source"
+            )
+        source_checkpoint = autorefine.get("checkpoint")
+        if not isinstance(source_checkpoint, str) or not source_checkpoint:
+            raise CampaignStageError("AutoRefine review has no source checkpoint")
+        if autorefine.get("selected_as_current") is not False:
+            raise CampaignStageError(
+                "Campaign Refine Doctor requires the review checkpoint to remain non-current"
+            )
+        result = execute_refine_doctor(
+            run,
+            _program(phenix, "phenix.refine"),
+            _program(phenix, "phenix.mtz.dump"),
+            phenix_version=phenix.version,
+            environment=phenix.environment,
+            from_checkpoint=source_checkpoint,
+            macro_cycles=3,
+            max_trials=5,
+        )
+        if result.current_checkpoint_preserved is not True:
+            raise CampaignStageError("Refine Doctor changed the current checkpoint")
+        stage_directory = result.doctor_directory
+        required = [result.report_path, result.audit.log_path]
+        trial_artifacts: list[str] = []
+        for trial in result.trials:
+            trial_artifacts.extend(_tree_files(root, trial.round_directory))
+        registry_snapshot = attempt / "refine-doctor-checkpoints.json"
+        with registry_snapshot.open("xb") as handle:
+            handle.write((run / "AutoRefine" / "checkpoints.json").read_bytes())
+        required.append(registry_snapshot)
+        inspection_checkpoint = result.recommended_checkpoint or result.source_checkpoint
+        extra.update(
+            checkpoint=inspection_checkpoint,
+            source_checkpoint=result.source_checkpoint,
+            recommended_checkpoint=result.recommended_checkpoint,
+            current_checkpoint_preserved=result.current_checkpoint_preserved,
+            recommendation=result.recommendation,
+            doctor_exit_code=result.exit_code,
+            artifacts=trial_artifacts,
+            message=f"{result.message}: {result.recommendation}",
+        )
     required.append(result.report_path)
     # report.json changes in later stages. Preserve its exact boundary contents
     # for the coordinator rather than treating the live report as immutable.
