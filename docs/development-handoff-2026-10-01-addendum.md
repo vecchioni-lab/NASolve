@@ -17,9 +17,10 @@ Simon clarified: **we WANT 1W5 to go to DZ ALWAYS**.
   requested standing component-normalization policy, not a pH-conditioned
   fallback, an optional preference for this one GZ11 run, or a request to
   preserve 1W5 as the preferred final component.
-- Simon also wants the corresponding problematic P component to become **DP**.
-  The source component code is **not yet identified**. Keep it unresolved; do
-  not guess a CCD identifier from the remembered Z or DE cases.
+- Simon identified the corresponding problematic P component as **1WA**:
+  the requested normalization is **1WA -> DP**. The source identifier and
+  direction are now supplied by the user; chemistry and implementation review
+  remain pending.
 - These are specific additions to the curated problematic-component policy,
   separate from general construction-scaffold inference and torsion conversion.
   Tautomer/identity details, atom correspondence, dictionary provenance and the
@@ -82,8 +83,8 @@ been validated or launched by this documentation checkpoint.
 
 Keep four independent responsibilities explicit:
 
-- **Component normalization:** requested 1W5 -> DZ always; unidentified source
-  -> DP pending identification. Do not implement broad tautomer guessing.
+- **Component normalization:** requested 1W5 -> DZ always, and user-identified
+  1WA -> DP. Both await implementation review. Do not implement broad tautomer guessing.
 - **Construction scaffold:** preserve working explicit recipes, then consider a
   validated purine/pyrimidine role-map fallback. Simon's N9 means the workbook's
   canonical atom-role COLUMN, not a literal PDB atom name. DA/A versus DC/C is a
@@ -107,9 +108,9 @@ normalization commit, `src/nasolve/curated_ligands.py`, `ligand_profiles.py` and
 OP3 removal and authoritative dictionary propagation; it does not justify
 indiscriminate OP3 deletion or weakening component-specific topology checks.
 
-Next session: review this intent and identify the DP source component; agree the
-normalization and general scaffold/dictionary contracts; patch NASolve with
-regressions; then repeat the bounded live test in a fresh experimental branch.
+Next session: review the requested 1W5 -> DZ and 1WA -> DP normalization policies;
+agree the normalization and general scaffold/dictionary contracts; patch NASolve
+with regressions; then repeat the bounded live test in a fresh experimental branch.
 No installed NARestraints workbook edits, silent dictionary downloads, changed
 observations/Free-R flags, overwritten failed attempts, or production chemistry
 changes are authorized by this note.
