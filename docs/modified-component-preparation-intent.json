@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "kind": "modified-component-preparation-development-intent",
+  "date": "2026-10-01",
+  "status": "RECORDED_FOR_REVIEW_NOT_IMPLEMENTED",
+  "runtime_authority": false,
+  "human_note": "docs/development-handoff-2026-10-01-addendum.md",
+  "supersedes_scope": "2026-09-29 immediate GZ11 validation and blocker statements only; no registration or campaign policy promotion",
+  "user_requested_component_normalization": [
+    {
+      "source_component": "1W5",
+      "target_component": "DZ",
+      "requested_policy": "ALWAYS_NORMALIZE_1W5_TO_DZ",
+      "user_clarification": "we want 1W5 to go to DZ always",
+      "ph_conditioned": false,
+      "direction_settled": true,
+      "implementation_status": "NOT_IMPLEMENTED_PENDING_REVIEW",
+      "chemical_equivalence_validated": false,
+      "application_boundary": "To be reviewed; preserve raw sources and historical frozen artifacts, record actual conversion in prepared derivatives."
+    },
+    {
+      "source_component": null,
+      "target_component": "DP",
+      "requested_policy": "NORMALIZE_THE_CORRESPONDING_PROBLEMATIC_P_COMPONENT_TO_DP",
+      "source_identity_status": "UNRESOLVED_DO_NOT_GUESS",
+      "implementation_status": "NOT_IMPLEMENTED_PENDING_IDENTIFICATION_AND_REVIEW"
+    }
+  ],
+  "existing_curated_registry_snapshot": {
+    "source": "src/nasolve/curated_ligands.py",
+    "inspected_ref": "1ba0130fb648e87178a6c7dcaac6a64117ba11d0",
+    "codes": ["DE", "DF", "1AP", "S6G", "C38", "5IU"],
+    "note": "Different exception types, not a universal tautomer-equivalence list; do not create a 1W0 mapping from uncertain recollection."
+  },
+  "returned_local_regression": {
+    "code_head": "0803989b1c51c6aae7d50a3fcb11835e5280e533",
+    "reported_by": "user-local-run",
+    "github_ci": false,
+    "force_focused_tests": 6,
+    "relevant_tests": 115,
+    "relevant_subtests": 50,
+    "full_tests": 694,
+    "full_subtests": 224,
+    "full_runtime_seconds": 53.6,
+    "syntax_patch_hygiene_json_parse": "PASSED"
+  },
+  "live_validation": {
+    "reported_by": "user-local-run",
+    "historical_force_probe": {
+      "status": "PASSED_FOR_REPORTED_INPUTS",
+      "actual_classes": ["G", "Z"],
+      "forced_recipe_classes": ["G", "C"],
+      "model": "examples/TestSets/GZ11/Refine_74/Restraints_refine_074.pdb",
+      "model_pair_codes": ["DG", "1W5"],
+      "pair_file_caveat": "Historical DOHU PostMR Std_padd.txt, not verified against today's packaged source.",
+      "historical_model_authority": "Manual pre-NASolve work; not proof NASolve introduced 1W5."
+    },
+    "fresh_gz11": {
+      "run": "examples/TestSets/GZ11/AutoMR/run_002",
+      "mr_status": "MR_SUCCESS",
+      "tfz": 12.2,
+      "target_codes": ["DG", "DZ"],
+      "force_recipe": ["G", "C"],
+      "postmr_status": "BLOCKED_BEFORE_MUTATION",
+      "blocker": "No construction parent for DNA / Base Analog Z",
+      "one_w5_seen_in_printed_new_run_inventory": false,
+      "source_config_unchanged": true
+    },
+    "dz_via_dc_experimental_probe": {
+      "pen_basename": "nasolve-dz-dc-probe-kad1eax8",
+      "run_under_pen": "MR_snapshot",
+      "receipt_under_pen": "probe_receipt.json",
+      "temporary_location_may_expire": true,
+      "source": "Copied accepted GZ11 run_002 MR snapshot",
+      "production_code_modified": false,
+      "original_run_unchanged": true,
+      "postmr_status": "POSTMR_READY",
+      "b4_route": ["DG", "DC", "DZ"],
+      "final_pair_codes": ["DG", "DZ"],
+      "force_audit": "Actual G/Z -> recipe G/C",
+      "dictionary": "Explicit checksum-pinned parameterized MonomerLibrary DZ dictionary, group adapted to DNA in the experiment",
+      "refinement_checkpoint": "refine-001",
+      "refinement_recipe": "Probe/DZ-via-DC",
+      "refinement_cycles": 5,
+      "refinement_status": "AUTOREFINE_FAILED",
+      "failure": "Conflicting DZ B:4 C3e-nyu0 dihedral restraints",
+      "conflicting_atoms": ["C4'", "O4'", "C1'", "C2'"],
+      "effective_component_dictionary": "PostMR/ReadySet/prepared_model.ligands.cif",
+      "current_checkpoint_unchanged": true,
+      "numerical_refinement_validated": false,
+      "production_integration_validated": false,
+      "structurally_approved": false
+    }
+  },
+  "generalization_review": {
+    "ownership": "NASolve construction and dictionary adaptation; retain NARestraints atom-role mappings and pair/stacking semantics",
+    "separate_concerns": ["component normalization", "construction scaffold", "torsion representation", "effective dictionary precedence"],
+    "scaffold_proposal": "Preserve existing reviewed routes; consider DA/A for validated purine-like and DC/C for validated pyrimidine-like canonical role maps.",
+    "n9_means": "Canonical workbook atom-role column, not the actual target atom name",
+    "absence_guard": "Missing N9 metadata is not positive pyrimidine evidence",
+    "torsion_history_commit": "d203d2e32effd8c5f7b4b319ee2774b05972aa82",
+    "torsion_current_dispatch": "1AP only",
+    "torsion_review_requires": ["ordered or correctly reversed quartets", "period compatibility", "unequal uncertainties", "existing alternate fields", "no collapsing unrelated conflicts", "source/derivative provenance"],
+    "downstream_requirement": "Verify the normalized authoritative component actually reaches refinement and is not replaced by a conflicting ReadySet definition."
+  },
+  "next_session": [
+    "Review requested always 1W5 -> DZ policy and identify the source component to normalize to DP",
+    "Agree generalized scaffold and dictionary contracts without relabelling pairing classes",
+    "Implement reviewed NASolve changes with regression coverage",
+    "Repeat bounded live preparation/refinement in a fresh experimental branch before production promotion"
+  ],
+  "guardrails": [
+    "Documentation-only update; runtime changes deferred",
+    "No guessed DP source code or new mapping from uncertain 1W0 recollection",
+    "No blanket tautomer equivalence, pH inference or deposition rewrite",
+    "Preserve input identity, source dictionaries, observations, Free-R and immutable failed attempts",
+    "No installed-workbook mutation or silent dictionary fetching",
+    "No promotion of the nine-dataset campaign or Scout runtime authority"
+  ]
+}

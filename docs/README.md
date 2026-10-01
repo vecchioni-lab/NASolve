@@ -2,6 +2,18 @@
 
 NASolve documentation is organized by role, not chronology.
 
+## Temporary current-session checkpoint — 2026-10-01
+
+Read [the October 1 handoff addendum](development-handoff-2026-10-01-addendum.md)
+and [its machine-readable review intent](modified-component-preparation-intent.json)
+first when resuming GZ11 / modified-component work. They record the returned
+694-test regression, experimental DZ-via-DC preparation, the observed refinement
+torsion blocker, and Simon's explicit requested **1W5 -> DZ always** policy plus
+an unidentified source -> DP follow-up. These are documentation-only notes for
+later review/patching; no production identity normalization is implemented.
+They supersede the September 29 immediate GZ11 validation/blocker statements in
+the main handoff and machine-intent snapshot, not the broader roadmap.
+
 ## Start here
 
 - [`../README.md`](../README.md) — human-facing overview, installation,
@@ -13,7 +25,9 @@ NASolve documentation is organized by role, not chronology.
   capability-driven extensibility contract; [`gui-live-checks.md`](gui-live-checks.md)
   is the human validation queue for shell/navigation/accessibility/interoperability.
 - [`development-handoff.md`](development-handoff.md) — current validated state,
-  immediate next work, active scientific caveats, and known blockers.
+  immediate next work, active scientific caveats, and known blockers; read the
+  [October 1 addendum](development-handoff-2026-10-01-addendum.md) first for the
+  newer GZ11 / modified-component checkpoint.
 - [`collaboration.md`](collaboration.md) — workspace, portability, Git, and
   artifact-handling rules.
 
@@ -49,7 +63,8 @@ NASolve documentation is organized by role, not chronology.
   implementation boundary.
 
 Machine-readable schemas and small recipe examples beside these files are part
-of the active contract.
+of the active contract. The October 1 component-preparation JSON is explicitly
+a pending-review development note, not a runtime schema or component registry.
 
 ## History
 
