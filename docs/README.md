@@ -2,17 +2,19 @@
 
 NASolve documentation is organized by role, not chronology.
 
-## Temporary current-session checkpoint — 2026-10-01
+## Current modified-component checkpoint — 2026-10-01
 
-Read [the October 1 handoff addendum](development-handoff-2026-10-01-addendum.md)
-and [its machine-readable review intent](modified-component-preparation-intent.json)
-first when resuming GZ11 / modified-component work. They record the returned
-694-test regression, experimental DZ-via-DC preparation, the observed refinement
-torsion blocker, and Simon's explicit requested **1W5 -> DZ always** policy plus
-an unidentified source -> DP follow-up. These are documentation-only notes for
-later review/patching; no production identity normalization is implemented.
-They supersede the September 29 immediate GZ11 validation/blocker statements in
-the main handoff and machine-intent snapshot, not the broader roadmap.
+Read [the October 1 handoff addendum](development-handoff-2026-10-01-addendum.md),
+[the component-preparation contract](modified-component-preparation.md), and
+[its machine-readable intent](modified-component-preparation-intent.json) first
+when resuming GZ11 / modified-component work. Category-based intermediate hops
+are implemented and focused-tested; the earlier N9/family-inference proposal is
+retired. Full regression and live integration remain pending. The documents also
+retain the 694-test baseline, experimental DZ-via-DC preparation, the observed
+refinement torsion blocker, and the requested 1W5 -> DZ / 1WA -> DP conversions.
+Those identity conversions and generalized dictionary repair remain unimplemented.
+These records supersede the September 29 immediate GZ11 status, not the broader
+campaign, registration or GUI roadmap.
 
 ## Start here
 
@@ -33,6 +35,9 @@ the main handoff and machine-intent snapshot, not the broader roadmap.
 
 ## Active subsystem contracts
 
+- [`modified-component-preparation.md`](modified-component-preparation.md) —
+  intermediate construction hops, separate component-identity policy, and the
+  bounded effective-dictionary audit/repair direction.
 - [`sequence-family-targets.md`](sequence-family-targets.md) — explicit
   sequence-reference target assembly, standalone AutoMR/PostMR integration, and
   campaign sequence-thread inheritance.
@@ -63,8 +68,8 @@ the main handoff and machine-intent snapshot, not the broader roadmap.
   implementation boundary.
 
 Machine-readable schemas and small recipe examples beside these files are part
-of the active contract. The October 1 component-preparation JSON is explicitly
-a pending-review development note, not a runtime schema or component registry.
+of the active contract. The October 1 component-preparation JSON records mixed
+implementation/review status; it is not a runtime schema or component registry.
 
 ## History
 

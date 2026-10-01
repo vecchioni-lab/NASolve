@@ -2,10 +2,11 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-01",
-  "status": "RECORDED_FOR_REVIEW_NOT_IMPLEMENTED",
+  "status": "INTERMEDIATE_HOPS_IMPLEMENTED_FOCUSED_TESTED_OTHER_CHANGES_PENDING",
   "runtime_authority": false,
   "human_note": "docs/development-handoff-2026-10-01-addendum.md",
-  "supersedes_scope": "2026-09-29 immediate GZ11 validation and blocker statements only; no registration or campaign policy promotion",
+  "subsystem_contract": "docs/modified-component-preparation.md",
+  "supersedes_scope": "2026-09-29 immediate GZ11 status and the N9/purine-pyrimidine construction proposal; no registration or campaign policy promotion",
   "user_requested_component_normalization": [
     {
       "source_component": "1W5",
@@ -29,6 +30,35 @@
       "chemical_equivalence_validated": false
     }
   ],
+  "construction_hop_policy": {
+    "status": "IMPLEMENTED_FOCUSED_TESTED_PENDING_FULL_AND_LIVE_VALIDATION",
+    "implementation": "src/nasolve/curated_ligands.py:construction_parent_code",
+    "category_intermediates": {"Z": "C", "P": "G", "D": "A", "B": "G", "S": "C", "I": "A", "X": "G", "K": "C", "unique": "C"},
+    "default_intermediate": "C",
+    "category_precedence": ["recognized Source sheet", "recognized Base Analog for legacy records", "default C"],
+    "existing_curated_routes_keep_precedence": true,
+    "canonical_routes_preserved": true,
+    "sugar_form": "DNA uses D-prefixed codes; RNA uses ribonucleotide codes, including U for a T-category hop; unknown sugar remains a separate error",
+    "n9_or_purine_pyrimidine_inference": "SUPERSEDED_NOT_USED",
+    "intermediate_role_map_completeness_gate": false,
+    "final_component_identity_changed": false,
+    "pairing_class_changed": false,
+    "workbook_changed": false,
+    "missing_final_target_or_dictionary_is_not_supplied_by_fallback": true,
+    "provenance": "Existing mutation_actions.parent_code; no checkpoint/report schema migration"
+  },
+  "construction_hop_validation": {
+    "source_ref": "97ab3e2668062661dc8d0018d2607b17edf0ef51",
+    "baseline_source_blob": "1d33cc37d5cad293de54ef7c1d2e2c7dfd52fb96",
+    "method": "Isolated Git-blob-verified source module in Linux Python with fixture residue-library loader",
+    "test_file": "tests/test_construction_scaffolds.py",
+    "before": {"failed": 32, "passed": 9},
+    "after": {"passed": 41},
+    "full_suite_run": false,
+    "actual_workbook_run": false,
+    "live_coot_phenix_run": false,
+    "github_ci": false
+  },
   "existing_curated_registry_snapshot": {
     "source": "src/nasolve/curated_ligands.py",
     "inspected_ref": "1ba0130fb648e87178a6c7dcaac6a64117ba11d0",
@@ -98,24 +128,24 @@
   "generalization_review": {
     "ownership": "NASolve construction and dictionary adaptation; retain NARestraints atom-role mappings and pair/stacking semantics",
     "separate_concerns": ["component normalization", "construction scaffold", "torsion representation", "effective dictionary precedence"],
-    "scaffold_proposal": "Preserve existing reviewed routes; consider DA/A for validated purine-like and DC/C for validated pyrimidine-like canonical role maps.",
-    "n9_means": "Canonical workbook atom-role column, not the actual target atom name",
-    "absence_guard": "Missing N9 metadata is not positive pyrimidine evidence",
+    "scaffold_policy": "Implemented explicit category hops above; the N9/family-inference proposal is retired",
     "torsion_history_commit": "d203d2e32effd8c5f7b4b319ee2774b05972aa82",
-    "torsion_current_dispatch": "1AP only",
+    "torsion_current_dispatch": "1AP only; unchanged by the construction-hop patch",
     "torsion_review_requires": ["ordered or correctly reversed quartets", "period compatibility", "unequal uncertainties", "existing alternate fields", "no collapsing unrelated conflicts", "source/derivative provenance"],
-    "downstream_requirement": "Verify the normalized authoritative component actually reaches refinement and is not replaced by a conflicting ReadySet definition."
+    "downstream_requirement": "Verify the normalized authoritative component actually reaches refinement and is not replaced by a conflicting ReadySet definition.",
+    "audit_recommendation": "Small effective-dictionary audit plus recognized provenance-bearing fixes; not a new monomer library or arbitrary automatic bond/protonation repair"
   },
   "next_session": [
-    "Review requested component normalization policies: always 1W5 -> DZ and user-identified 1WA -> DP",
-    "Agree generalized scaffold and dictionary contracts without relabelling pairing classes",
-    "Implement reviewed NASolve changes with regression coverage",
+    "Run focused and full local regression for the intermediate-hop implementation",
+    "Generalize known torsion compatibility and effective dictionary authority as a separate bounded slice",
+    "Provide reviewed target dictionaries and implement the requested 1W5 -> DZ / 1WA -> DP normalization separately",
     "Repeat bounded live preparation/refinement in a fresh experimental branch before production promotion"
   ],
   "guardrails": [
-    "Documentation-only update; runtime changes deferred",
-    "User-identified 1WA -> DP direction is recorded; chemistry and atom mapping still require review, and no new mapping is inferred from uncertain 1W0 recollection",
-    "No blanket tautomer equivalence, pH inference or deposition rewrite",
+    "Intermediate selection implemented; generalized dictionary and component conversion changes remain pending",
+    "No N9 or purine/pyrimidine gate for choosing a temporary hop",
+    "A default intermediate does not invent a missing final component definition or change its target identity",
+    "No blanket tautomer equivalence, pH inference, arbitrary bond repair or deposition rewrite",
     "Preserve input identity, source dictionaries, observations, Free-R and immutable failed attempts",
     "No installed-workbook mutation or silent dictionary fetching",
     "No promotion of the nine-dataset campaign or Scout runtime authority"

@@ -11,6 +11,7 @@ import shlex
 from dataclasses import dataclass
 from math import dist, isfinite
 from pathlib import Path
+from typing import Mapping
 
 
 @dataclass(frozen=True)
@@ -129,12 +130,46 @@ _PARENT_CODES = {
     ("RNA", "A"): "A",
     ("RNA", "C"): "C",
     ("RNA", "G"): "G",
+    ("RNA", "T"): "U",
     ("RNA", "U"): "U",
 }
 
 
+# User-reviewed intermediate hops (2026-10-01). These choose a temporary
+# Coot scaffold, NOT the target identity, pairing class, or protonation state.
+_CONSTRUCTION_BASES = {
+    "ADENINE": "A", "A": "A",
+    "GUANINE": "G", "G": "G",
+    "CYTOSINE": "C", "C": "C",
+    "THYMINE": "T", "T": "T",
+    "URACIL": "U", "U": "U",
+    "Z": "C", "P": "G", "D": "A", "B": "G",
+    "S": "C", "I": "A", "X": "G", "K": "C", "UNIQUE": "C",
+}
+
+
+def construction_parent_code(record: Mapping[str, object]) -> str:
+    """Choose a temporary mutation hop without inferring the final chemistry.
+
+    A recognized source sheet wins. Legacy records without a recognized sheet
+    use Base Analog as the category; an unclassified category falls back to C.
+    N9 presence, ring-family inference and atom-role completeness do not gate
+    this intermediate choice. The final component/dictionary checks still apply.
+    """
+    sugar = str(record.get("Sugar Type") or "").strip().upper()
+    if sugar not in {"DNA", "RNA"}:
+        raise ValueError(
+            "Cannot choose a construction sugar for "
+            f"{record.get('Ligand code')}: Sugar Type={sugar!r}"
+        )
+    sheet = str(record.get("Source sheet") or "").strip().upper()
+    category = str(record.get("Base Analog") or "").strip().upper()
+    base = _CONSTRUCTION_BASES.get(sheet, _CONSTRUCTION_BASES.get(category, "C"))
+    return _PARENT_CODES[(sugar, base)]
+
+
 def ligand_definition(code: str) -> CuratedLigand:
-    """Return a curated override or infer a conservative CCD definition."""
+    """Return target identity plus a curated or category-selected construction hop."""
     if code in CURATED_LIGANDS:
         return CURATED_LIGANDS[code]
     try:
@@ -151,15 +186,7 @@ def ligand_definition(code: str) -> CuratedLigand:
             f"Expected one NARestraints record for {code}, found {len(matches)}"
         )
     record = matches[0]
-    sugar = str(record.get("Sugar Type") or "").upper()
-    base = str(record.get("Base Analog") or "").upper()
-    try:
-        parent_code = _PARENT_CODES[(sugar, base)]
-    except KeyError as exc:
-        raise ValueError(
-            f"Cannot infer a canonical parent for {code}: "
-            f"Sugar Type={sugar!r}, Base Analog={base!r}"
-        ) from exc
+    parent_code = construction_parent_code(record)
     return CuratedLigand(
         code=code,
         dictionary_filename=f"{code}.cif",
@@ -392,6 +419,7 @@ __all__ = [
     "AtomSubstitution",
     "CuratedLigand",
     "RingSubstituent",
+    "construction_parent_code",
     "curated_dictionary",
     "dictionary_ideal_bond_length",
     "ligand_data_directory",
