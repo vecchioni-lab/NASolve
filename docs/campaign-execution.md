@@ -1,5 +1,19 @@
 # Execute a frozen campaign
 
+## Explicit Doctor continuation
+
+`--through refine-doctor` applies in the initial run as well as on resume.
+A newly reached AutoRefine REVIEW with an eligible preserved checkpoint
+continues in the same invocation under the normal receipt/integrity checks.
+The default `autorefine` endpoint still stops for inspection. MR/AutoSol
+reviews and technical failures do not acquire Doctor eligibility. A
+recommendation remains unselected, and a completed Doctor receipt is not
+executed again. Stage-boundary pause requests still take precedence.
+
+The prior post-stage loop used a narrower status-only test than resume;
+it now reuses `_runnable(item, through)`. Current validation evidence and
+the live QiC result belong in [the handoff](development-handoff.md).
+
 The executor runs one frozen candidate per selected dataset, sequentially,
 using the existing AutoMR preflight, Phaser, PostMR, conditional AutoSol and
 AutoRefine engines. New schema-2 plans may contain standard W/5W6W members,

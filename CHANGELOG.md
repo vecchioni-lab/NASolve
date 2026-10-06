@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Fixed
+
+- An explicit campaign `--through refine-doctor` now continues a newly
+  encountered AutoRefine REVIEW into campaign-owned Doctor in the same
+  invocation. Entry, resume and post-stage progression share the existing
+  endpoint-aware eligibility rule. The default AutoRefine endpoint, other
+  review/failure stops, receipt checks, pause handling and non-selection
+  of Doctor recommendations are unchanged. No schema migration.
+
 ### Dictionary compatibility
 
 - Generalized recognized CCP4 alternative-torsion conversion beyond 1AP,

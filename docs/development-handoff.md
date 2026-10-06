@@ -24,7 +24,7 @@ plans. Do not load every historical handoff for an ordinary implementation turn.
 | Capability | Supported state |
 | --- | --- |
 | Standalone AutoMR -> PostMR -> conditional AutoSol -> AutoRefine | Operational guarded spine with immutable checkpoints. |
-| Four-member W campaign and campaign-owned Refine Doctor | Earlier explicit continuation was live-validated: DOHU/EG/QE solved numerically; QiC Doctor recommended `refine-002` at 0.1500/0.1502, leaving `postmr` current. Same-invocation continuation has a newly identified defect below. |
+| Four-member W campaign and campaign-owned Refine Doctor | Earlier explicit continuation was live-validated: DOHU/EG/QE solved numerically; QiC Doctor recommended `refine-002` at 0.1500/0.1502, leaving `postmr` current. The same-invocation fix is implemented below; new native confirmation remains pending. |
 | Prepared nonstandard and mixed schema-2 campaigns | Implemented and fixture-tested, including relocation. Real geometry-diverse campaign still pending; schema-1 support retained. |
 | `pair = G:Z` / `force = G:C` | Separate identity/recipe pathways, regression-tested; earlier real NARestraints and experimental PostMR audits passed. Fresh production GZ11 now reached SOLVED and passed Simon's requested visual check; its detailed force receipt has not yet been returned. |
 | Category-based intermediate mutation hops | Included in passing dictionary-patch regression and the fresh successful GZ11 workflow. Do not infer new live validation for every category. |
@@ -70,7 +70,7 @@ name alone does not establish whether its engine ran or the gate skipped it.
 This documentation record does not change the local checkpoint's approval
 state, assert deposition readiness or implement P2 component conversions.
 
-Next code slice: fix/test the bounded same-invocation Doctor transition below.
+Next live slice: validate the same-invocation Doctor fix with a fresh campaign-owned QiC attempt.
 Complete the remaining GZ11 receipt review from its saved outputs without
 rerunning the successful structure. Track DiU and 5CM resource issues without
 touching successful runs. Scout remains after Pine campaign closure.
@@ -100,14 +100,14 @@ retry, the returned status is:
 | Q5cm | `BLOCKED` in PostMR: missing local `5CM.cif`; not supplied by the DZ patch. |
 | QiC | `AWAITING_INSPECTION`, `refine-001`, next stage `refine-doctor`. Eligibility is not a completed Doctor trial. |
 
-The initial ferry requested `--through refine-doctor`, yet QiC stopped before
-that stage. `campaign_execution.execute_campaign` at `79588ac` has a post-stage
-break admitting only DISCOVERED/PAUSED, while `_runnable(item, through)` already
-permits eligible refinement REVIEW for the explicit Doctor endpoint. A second
-invocation can enter Doctor; the single-invocation transition needs a code/test
-fix. Cover default-endpoint behavior, MR review isolation, recommendation
-non-selection and resumed versus fresh execution. No fix or new Doctor result
-is implied by the GZ11 retry, which deliberately ended at AutoRefine.
+The baseline's same-invocation Doctor skip is addressed by reusing
+`_runnable(item, through)` at the post-stage break. An explicitly requested
+Doctor endpoint can now consume a new AutoRefine REVIEW; the default
+endpoint, other stops, pause, verified receipts and non-selection remain
+unchanged. Tests cover fresh/resumed invocation, early review/failure,
+once-only execution, drift, member isolation and the real stage engines
+with fixture executables/checkpoints. Full-checkout validation is recorded
+by the ferry below; fresh native QiC confirmation is still separate.
 
 Member-local failure isolation is demonstrated; P4's Doctor/resume/current-pointer
 coverage and P5 remain separate. Preserve attempts. Retry/status can return 3
@@ -119,7 +119,7 @@ with an unconditional `&&` chain.
 P1 has implementation, full regression and fresh live execution evidence. P3's
 normal execution and requested user visual inspection passed; detailed saved
 receipts and numerical audit values remain to be reviewed. P4 has member outcomes
-plus a concrete coordinator defect. This update does not close every gate or
+plus an implemented coordinator fix pending new native confirmation. This update does not close every gate or
 change checkpoint approval state.
 
 | Gate | Completion evidence |
@@ -127,7 +127,7 @@ change checkpoint approval state.
 | **P1 — Effective dictionary compatibility** | Generalized input/effective torsion handling and authoritative selection are implemented and regression-tested; fresh GZ11 numerical execution and user visual inspection passed. Check its exact effective-bundle receipt alongside P3. |
 | **P2 — Specific component normalization** | Implement standing `1W5 -> DZ` and `1WA -> DP` preparation with target definitions, atom correspondence and conversion provenance. Preserve raw/frozen originals. |
 | **P3 — Normal GZ11 live path** | Fresh ordinary execution passed on 66cb7a2; the requested G/Z model/map visual inspection subsequently passed according to Simon. Complete exact identity/force/effective-input and numerical geometry evidence from saved reports; no repeated execution or visual check required. |
-| **P4 — Nine-member TestSets campaign** | Account for every member and validate integrity/resume/isolation/current-pointer behavior through campaign-owned Doctor; fix and validate the same-invocation transition. Legitimate REVIEW/NO_SOLUTION/BLOCKED outcomes are not failures to manufacture away. |
+| **P4 — Nine-member TestSets campaign** | Account for every member and validate integrity/resume/isolation/current-pointer behavior through campaign-owned Doctor; validate the implemented same-invocation transition on fresh native QiC. Legitimate REVIEW/NO_SOLUTION/BLOCKED outcomes are not failures to manufacture away. |
 | **P5 — Prepared-nonstandard live campaign** | Real 3-5-member geometry-diverse prepared-PDB + exact-sequence campaign with Phenix/Coot, ownership and review/block checks. W-only or simulated workers do not substitute. |
 | **P6 — Final candidate regression/review** | Final-code focused/full suite, exact SHA/commands/results/tool versions, diff/available CI review and consistent documentation. No scientific-data upload implied. |
 | **P7 — Merge and retire branches** | Merge PR #23 after P1-P6; verify ancestry and local status/worktrees/commits, switch/pull main and retire merged Pine/Oak references without force or data cleanup. |
@@ -175,3 +175,17 @@ Do not stage/delete unrelated untracked data, patches, environments or commits.
 Historical DE/sulfur and 1AP issues remain in the [earlier audits](history/README.md);
 their chemistry is not approved by this result. The
 [October 1 addendum](development-handoff-2026-10-01-addendum.md) is a redirect.
+
+## Doctor-transition patch validation
+
+The local apply/validate ferry tested the working tree based on `a3353c5`.
+Campaign family: **148 passed, 85 subtests passed in 37.94s**. Full suite: **785 passed, 224 subtests passed in 67.75s (0:01:07)**.
+Tested coordinator Git blob: `23a4cab2f32d3e91e65c8e4ad4fe7b794e1eac27`.
+This is local regression evidence, not CI or a new native Doctor result.
+The command prints the resulting commit and retains exact logs/receipts outside Git.
+
+The next live ferry explicitly retries only QiC and requests the Doctor
+endpoint in one run invocation. Old QiC and successful GZ11 runs remain
+intact. If ordinary refinement passes directly, report that result rather
+than manufacturing a review; it does not exercise the Doctor transition.
+P4 and the main merge remain open until their evidence is reviewed.

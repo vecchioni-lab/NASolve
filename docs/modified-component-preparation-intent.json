@@ -35,9 +35,23 @@
   "construction_hop_policy": {
     "status": "IMPLEMENTED_FULL_REGRESSION_PASS_GZ11_LIVE_WORKFLOW_PASS_OTHER_CATEGORIES_NOT_NEWLY_LIVE_VALIDATED",
     "implementation": "src/nasolve/curated_ligands.py:construction_parent_code",
-    "category_intermediates": {"Z": "C", "P": "G", "D": "A", "B": "G", "S": "C", "I": "A", "X": "G", "K": "C", "unique": "C"},
+    "category_intermediates": {
+      "Z": "C",
+      "P": "G",
+      "D": "A",
+      "B": "G",
+      "S": "C",
+      "I": "A",
+      "X": "G",
+      "K": "C",
+      "unique": "C"
+    },
     "default_intermediate": "C",
-    "category_precedence": ["recognized Source sheet", "recognized Base Analog for legacy records", "default C"],
+    "category_precedence": [
+      "recognized Source sheet",
+      "recognized Base Analog for legacy records",
+      "default C"
+    ],
     "existing_curated_routes_keep_precedence": true,
     "canonical_routes_preserved": true,
     "sugar_form": "DNA uses D-prefixed codes; RNA uses its ribonucleotide (U for T-category); unknown sugar is still a separate runtime error",
@@ -82,12 +96,17 @@
   },
   "current_blocker": {
     "status": "HISTORICAL_EXECUTION_BLOCKER_PASSED_IN_FRESH_ORDINARY_RUN",
-    "next_slice": "Fix/test same-invocation campaign Doctor; complete remaining GZ11 receipt review from saved outputs without repeating the successful run or visual check",
+    "next_slice": "Validate the implemented same-invocation Doctor transition on fresh QiC; GZ11 visual inspection already passed",
     "experimental_postmr": "PASSED_DZ_VIA_DC_WITH_TEMPORARY_PROVIDER",
     "experimental_refinement": "HISTORICAL_PRE_PATCH_FAILURE_BEFORE_R_STATISTICS",
     "residue_site": "DZ B:4",
     "torsion_family": "C2e/C3e nyu0",
-    "atoms": ["C4'", "O4'", "C1'", "C2'"],
+    "atoms": [
+      "C4'",
+      "O4'",
+      "C1'",
+      "C2'"
+    ],
     "consumed_dictionary": "PostMR/ReadySet/prepared_model.ligands.cif",
     "consumed_dictionary_scope": "Historical failed temporary probe only; do not assign this path as the fresh successful run's effective definition without inspecting its receipt",
     "torsion_history_commit": "d203d2e32effd8c5f7b4b319ee2774b05972aa82",
@@ -108,12 +127,22 @@
     "checkpoint": "refine-001",
     "requested_endpoint": "autorefine",
     "invocation": "ordinary campaign retry/run, no temporary provider override",
-    "stages_reported": ["preflight", "phaser", "postmr", "autosol", "autorefine"],
+    "stages_reported": [
+      "preflight",
+      "phaser",
+      "postmr",
+      "autosol",
+      "autorefine"
+    ],
     "autosol_launched_or_skipped": "NOT_SHOWN_BY_STAGE_BOUNDARY_LOG",
     "status": "SOLVED",
     "numerical_criteria_passed": true,
     "frozen_input_and_member_integrity": "OK",
-    "exit_codes": {"retry": 3, "run": 3, "status": 3},
+    "exit_codes": {
+      "retry": 3,
+      "run": 3,
+      "status": 3
+    },
     "exit_code_scope": "Other campaign members remain flagged; not GZ11 failure",
     "rwork": null,
     "rfree": null,
@@ -143,15 +172,33 @@
     "status": "USER_AGREED_DIRECTION_PENDING_RUNTIME_IMPLEMENTATION",
     "nasolve_recognition_failure_alone_is_fatal": false,
     "continue_when": "Applicable library resolves intended component and Phenix can use it; retain provenance and warning/inspection caveats for optional diagnostics.",
-    "necessary_stops": ["Unusable required definitions or scientific inputs", "External execution cannot produce usable output", "Contradictory required restraints after supported corrections", "Silent target change or omission of explicit required operation", "Observation/Free-R integrity failure"],
+    "necessary_stops": [
+      "Unusable required definitions or scientific inputs",
+      "External execution cannot produce usable output",
+      "Contradictory required restraints after supported corrections",
+      "Silent target change or omission of explicit required operation",
+      "Observation/Free-R integrity failure"
+    ],
     "stop_scope": "Affected stage/dataset; unrelated members continue",
     "known_component_exceptions_supported": true,
     "existing_runtime_gates_changed_by_this_note": false
   },
   "generalization_review": {
     "ownership": "NASolve construction/dictionaries; NARestraints retains atom-role and pair/stacking semantics",
-    "separate_concerns": ["component normalization", "construction scaffold", "torsion representation", "effective dictionary precedence"],
-    "torsion_review_requires": ["ordered or correctly reversed quartets", "period compatibility", "unequal uncertainties", "existing alternate fields", "no arbitrary conflict collapse", "source/derivative provenance"],
+    "separate_concerns": [
+      "component normalization",
+      "construction scaffold",
+      "torsion representation",
+      "effective dictionary precedence"
+    ],
+    "torsion_review_requires": [
+      "ordered or correctly reversed quartets",
+      "period compatibility",
+      "unequal uncertainties",
+      "existing alternate fields",
+      "no arbitrary conflict collapse",
+      "source/derivative provenance"
+    ],
     "downstream_requirement": "Intended normalized definition must reach refinement; inspect the successful run's receipt rather than infer exact dictionary details from SOLVED.",
     "torsion_current_dispatch": "Input and effective dictionaries independent of residue name and phosphate profiles; regression and fresh GZ11 execution passed"
   },
@@ -168,7 +215,10 @@
     "code_commit": "66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08",
     "source_test_count": 34,
     "source_test_scope": "Historical isolated test; later checkout and live evidence are recorded separately",
-    "new_tests": ["tests/test_dictionary_compatibility.py", "tests/test_dictionary_postmr.py"],
+    "new_tests": [
+      "tests/test_dictionary_compatibility.py",
+      "tests/test_dictionary_postmr.py"
+    ],
     "torsion_policy": "ccp4-alternates-primary-sigma-v2",
     "source_and_effective_bundles": true,
     "unclassified_conflicts": "retain unchanged with warnings for native interpretation",
@@ -197,7 +247,11 @@
     "per_dataset_outcomes_returned": true,
     "execution_state": "COMPLETE_WITH_FLAGS",
     "all_member_and_frozen_input_integrity": "OK",
-    "outcome_counts": {"SOLVED": 4, "BLOCKED": 3, "AWAITING_INSPECTION": 2},
+    "outcome_counts": {
+      "SOLVED": 4,
+      "BLOCKED": 3,
+      "AWAITING_INSPECTION": 2
+    },
     "member_results_ref": "docs/development-handoff.md#nine-member-baseline-results",
     "component_followups": {
       "GZ11": "Pre-patch missing DZ.cif; patched attempt_002 SOLVED and user visual inspection passed; detailed receipt review remains",
@@ -211,18 +265,43 @@
       "initial_ferry_endpoint": "refine-doctor",
       "code_defect": "execute_campaign post-stage break bypasses _runnable and stops on AUTOREFINE_REVIEW before Doctor in the same invocation",
       "inspected_ref": "79588aca4e403e53ea05d9bcd6204d974c792576",
-      "fix_status": "NOT_IMPLEMENTED",
-      "new_doctor_result_validated": false
+      "fix_status": "IMPLEMENTED_LOCAL_REGRESSION_PASSED_NATIVE_PENDING",
+      "new_doctor_result_validated": false,
+      "fix": "Post-stage break uses the same _runnable(item, through) predicate as entry/resume",
+      "test_file": "tests/test_campaign_doctor_transition.py",
+      "schema_migration": false,
+      "validation": {
+        "base": "a3353c5001e64dc5196c1df4cb684cc9f479b136",
+        "source_after_git_blob": "23a4cab2f32d3e91e65c8e4ad4fe7b794e1eac27",
+        "focused_summary": "148 passed, 85 subtests passed in 37.94s",
+        "full_summary": "785 passed, 224 subtests passed in 67.75s (0:01:07)"
+      }
     },
     "nine_member_gate_validated": false,
-    "next_action": "Fix/test same-invocation Doctor; complete remaining GZ11 receipts from saved outputs, preserving all attempts and the passed visual check"
+    "next_action": "Fresh campaign-owned QiC attempt through refine-doctor after patch regression; preserve successful GZ11 and every baseline attempt"
   },
   "campaign_after_gz11_retry": {
     "execution_state": "COMPLETE_WITH_FLAGS",
-    "outcome_counts": {"SOLVED": 5, "BLOCKED": 2, "AWAITING_INSPECTION": 2},
-    "solved": ["DOHU", "DT", "ED", "FA", "GZ11"],
-    "blocked": ["DiU", "Q5cm"],
-    "awaiting_inspection": ["EA", "QiC"],
+    "outcome_counts": {
+      "SOLVED": 5,
+      "BLOCKED": 2,
+      "AWAITING_INSPECTION": 2
+    },
+    "solved": [
+      "DOHU",
+      "DT",
+      "ED",
+      "FA",
+      "GZ11"
+    ],
+    "blocked": [
+      "DiU",
+      "Q5cm"
+    ],
+    "awaiting_inspection": [
+      "EA",
+      "QiC"
+    ],
     "all_member_and_frozen_input_integrity": "OK",
     "other_members_retain_reported_run_checkpoint_paths": true,
     "nine_member_gate_validated": false

@@ -417,7 +417,9 @@ def execute_campaign(
                 _reconcile(root, plan, state)
                 _save(root, state)
                 tell(f"{item['id']}: {item['status']}; {item['diagnostic']}")
-                if item["status"] not in {"DISCOVERED", "PAUSED"}:
+                # Honor the same endpoint-aware eligibility as entry/resume:
+                # a new refinement REVIEW can enter explicitly requested Doctor.
+                if not _runnable(item, through):
                     break
             _save(root, state)
             if stopped:
