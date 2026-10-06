@@ -1,5 +1,17 @@
 # Execute a frozen campaign
 
+## Opt-in full-auto exception to guarded stops
+
+[Preset schema 2 full auto](campaign-full-auto.md) adds explicitly frozen review
+trial and provisional-selection permissions. The guarded stop/non-selection
+rules below continue to describe existing schema-1 recipes and campaigns.
+Full auto may trial borderline MR without changing its status, continue without
+rejected phases when requested, run bounded Doctor and select its verified
+passing recommendation without user approval. CLI `--through` overrides the
+recipe endpoint; no endpoint argument uses the frozen recipe default.
+The original TestSets plan does not gain these permissions retroactively.
+
+
 ## Explicit Doctor continuation
 
 `--through refine-doctor` applies in the initial run as well as on resume.

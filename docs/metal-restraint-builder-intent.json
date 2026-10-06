@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "kind": "metal-restraint-builder-development-intent",
+  "date": "2026-10-06",
+  "status": "PLANNED_NOT_IMPLEMENTED",
+  "runtime_authority": false,
+  "contract": "docs/metal-restraint-builder.md",
+  "examples_owner": "Simon",
+  "examples_received": false,
+  "pine_merge_prerequisite": false,
+  "views": [
+    "toggleable NASolve GUI workspace",
+    "optional small standalone or detached window"
+  ],
+  "shared_backend": true,
+  "interaction": [
+    "clickable atom spheres",
+    "select metal species per site",
+    "draw coordination overlays",
+    "edit distance and angle restraints",
+    "save/load/select named recipes"
+  ],
+  "preview_changes_coordinates": false,
+  "preview_changes_covalent_topology": false,
+  "role_mapping": {
+    "authority": "NARestraints Ligands.xlsx canonical role columns",
+    "examples": [
+      "O4",
+      "N3"
+    ],
+    "role_is_not_literal_atom_name": true,
+    "template": "logical residue slot plus canonical atom role",
+    "application": "exact coordinate atom and actual element; explicit alternate/symmetry context when needed",
+    "unmapped_selection": "allow concrete-only draft; do not invent a reusable role",
+    "transfer_is_not_chemical_equivalence": true
+  },
+  "hypotheses": [
+    "square planar",
+    "N3-N3",
+    "O4-O4",
+    "one metal",
+    "two metals",
+    "homometal",
+    "heterometal"
+  ],
+  "parameters": [
+    "metal-donor distances",
+    "donor-metal-donor angles",
+    "target values and uncertainties with units",
+    "explicit optional additional constraints"
+  ],
+  "numerical_target_source": "user-supplied examples or explicitly reviewed sources; not invented",
+  "provenance": [
+    "recipe version/hash",
+    "source checkpoint/model hash",
+    "role-map source fingerprint",
+    "resolved atoms/elements",
+    "instance overrides",
+    "emitted refinement restraints"
+  ],
+  "separate_actions": [
+    "author template",
+    "bind to a model",
+    "preview constraints",
+    "materialize missing metal if explicitly requested",
+    "refine child",
+    "select or reject checkpoint"
+  ],
+  "implementation_choices_pending": [
+    "recipe serialization",
+    "renderer/toolkit",
+    "backend module ownership",
+    "metal placement UI"
+  ],
+  "does_not_change": [
+    "mutation intermediate table",
+    "raw sources and frozen attempts",
+    "observations/Free-R",
+    "existing checkpoint choice",
+    "current Pine/Scout priority"
+  ]
+}

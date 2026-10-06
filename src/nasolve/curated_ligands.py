@@ -116,6 +116,13 @@ CURATED_LIGANDS: dict[str, CuratedLigand] = {
         forbidden_bonds=(("C4", "I"), ("C6", "I")),
         ring_substituents=(RingSubstituent("I", "C5", ("C4", "C6")),),
     ),
+    "5CM": CuratedLigand(
+        code="5CM", dictionary_filename="5CM.cif",
+        accepted_model_labels=("5CM",), narestraints_label="5CM",
+        description="5-methyl-2'-deoxycytidine-5'-monophosphate",
+        parent_code="DC", deposition_code="5CM",
+        required_bonds=(("C1'", "N1"), ("C5", "C5A"), ("P", "O5'")),
+    ),
     "5IU": CuratedLigand(
         code="5IU",
         dictionary_filename="5IU.cif",
@@ -351,7 +358,11 @@ def dictionary_ideal_bond_length(path: Path, atom_1: str, atom_2: str) -> float:
                 break
             fields = shlex.split(row, comments=True, posix=False)
             if len(fields) > max(atom_index, *coordinate_indices):
-                atom = fields[atom_index].strip("'\"")
+                atom = fields[atom_index]
+                # Remove only a matching surrounding quote pair. A prime
+                # belongs to the atom name: C5-prime must never replace C5.
+                if len(atom) >= 2 and atom[0] == atom[-1] and atom[0] in {"\"", "'"}:
+                    atom = atom[1:-1]
                 if atom in {atom_1, atom_2}:
                     try:
                         coordinates[atom] = tuple(

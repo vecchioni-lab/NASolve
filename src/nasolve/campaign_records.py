@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from .campaigns import CampaignError, _canonical, _file_identity, _json_object, _safe_relative
+from .campaign_policy import continuation_warning
 
 
 STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor")
@@ -187,6 +188,8 @@ def verify_dependencies(root: Path, job: dict[str, Any], plan: dict[str, Any]) -
         previous = read_job(root, directory / "job.json", plan)
         receipt = read_receipt(root, directory, previous)
         accepted = receipt["status"] in ACCEPTED[stage]
+        if continuation_warning(plan["preset"]["policy"], stage, receipt) is not None:
+            accepted = True  # Trial permission; original REVIEW/WARNING is preserved.
         if (
             job["stage"] == "refine-doctor"
             and stage == "autorefine"

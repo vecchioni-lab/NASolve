@@ -84,9 +84,9 @@ def build_parser() -> argparse.ArgumentParser:
     campaign_run.add_argument(
         "--through",
         choices=("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor"),
-        default="autorefine",
+        default=None,
         help=(
-            "stop after this stage (default: autorefine); refine-doctor is an "
+            "stop after this stage (default: frozen recipe endpoint; guarded recipes use autorefine); refine-doctor is an "
             "explicit continuation for AUTOREFINE_REVIEW datasets"
         ),
     )
@@ -488,6 +488,13 @@ def _campaign(args: argparse.Namespace) -> int:
                         f"    Model override: {effective['model_selector']} "
                         f"({location})"
                     )
+            if item.get("provisional"):
+                print("    PROVISIONAL FULL-AUTO RESULT: inspect maps, model and decisions before accepting.")
+            for warning in item.get("scientific_warnings", []):
+                print("    WARNING: " + str(warning))
+            if item.get("provisional_selection"):
+                selection = item["provisional_selection"]
+                print(f"    Automatic working choice: {selection['selected_checkpoint']}; prior current: {selection['previous_current']}; not user-approved")
             if item.get("diagnostic"):
                 print(f"    {item['diagnostic']}")
             if item.get("run"):
@@ -516,6 +523,8 @@ def _campaign(args: argparse.Namespace) -> int:
             item["status"] in {"BLOCKED", "NO_SOLUTION", "AWAITING_INSPECTION", "DRIFT"}
             for item in execution["datasets"]
         )
+    if execution is not None:
+        flagged = flagged or any(item.get("scientific_warnings") for item in execution["datasets"])
     return 3 if flagged else 0
 
 
@@ -1243,6 +1252,15 @@ def _show(args: argparse.Namespace) -> int:
         print(f"Coot view error: {exc}", file=sys.stderr)
         return 2
     print(f"Opened {result.stage} in run: {result.run_directory}")
+    # Review warnings travel with the run even outside campaign status.
+    try:
+        automation = json.loads((result.run_directory / "report.json").read_text()).get("campaign_automation")
+    except (OSError, ValueError, AttributeError):
+        automation = None
+    if isinstance(automation, dict):
+        print("PROVISIONAL FULL-AUTO: inspect the maps/model and decision history; this is not user approval.")
+        for warning in automation.get("warnings", []):
+            print("WARNING: " + str(warning))
     print(f"Model source: {result.source}")
     print(f"Model: {result.model_path}")
     print(f"Map source: {result.map_source}")

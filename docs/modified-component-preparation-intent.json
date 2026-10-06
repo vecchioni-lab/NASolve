@@ -275,7 +275,8 @@
         "source_after_git_blob": "23a4cab2f32d3e91e65c8e4ad4fe7b794e1eac27",
         "focused_summary": "148 passed, 85 subtests passed in 37.94s",
         "full_summary": "785 passed, 224 subtests passed in 67.75s (0:01:07)"
-      }
+      },
+      "new_doctor_result_ref": "returned_qic_same_invocation_validation"
     },
     "nine_member_gate_validated": false,
     "next_action": "Fresh campaign-owned QiC attempt through refine-doctor after patch regression; preserve successful GZ11 and every baseline attempt"
@@ -305,5 +306,122 @@
     "all_member_and_frozen_input_integrity": "OK",
     "other_members_retain_reported_run_checkpoint_paths": true,
     "nine_member_gate_validated": false
-  }
+  },
+  "full_auto_policy": {
+    "status": "LOCAL_FULL_REGRESSION_PASSED_NATIVE_FULL_AUTO_PENDING",
+    "contract": "docs/campaign-full-auto.md",
+    "preset_schema": 2,
+    "requires_new_frozen_plan": true,
+    "legacy_guarded_behavior_unchanged": true,
+    "trialled_mr": "MR_REVIEW with original 7 <= TFZ < 8 retained",
+    "doctor": "existing bounded recommender only",
+    "automatic_selection": "separate provisional working choice; never USER_APPROVED",
+    "user_veto": "existing checkpoint selection; no reselection on completed-stage resume"
+  },
+  "component_lookup_followup": {
+    "status": "USER_LOCAL_LOOKUP_AUDIT_PASSED_NATIVE_COMPONENT_RUNS_PENDING",
+    "DiU": {
+      "cause": "CIF quote stripping erased C5-prime and overwrote ring C5",
+      "correct_ring_C5_I5_distance": 2.0951107369301507,
+      "incorrect_sugar_C5prime_I5_distance": 8.843030419488558,
+      "supplier_coordinates_changed": false,
+      "iodine_diagnostics": "expected atom, candidate, accepted phases and selected-branch anomalous usage kept distinct"
+    },
+    "5CM": {
+      "identity": "5CM",
+      "construction_parent": "DC",
+      "pair_class_changed": false,
+      "source_repository": "MonomerLibrary/monomers",
+      "source_path": "5/5CM.cif",
+      "source_git_blob": "a8a590f15f0b50c42ed9ad46d59eec3aab11d583",
+      "runtime_download": false,
+      "workbook_modified": false
+    }
+  },
+  "returned_qic_same_invocation_validation": {
+    "reported_by": "user-local-transcript",
+    "published_code_head_verified": "d3e1fa389b73843edb5bf33569622cf7b839220e",
+    "run": "QiC/AutoMR/run_002",
+    "attempt": 2,
+    "requested_endpoint": "refine-doctor",
+    "same_invocation_transition": true,
+    "status": "REFINE_DOCTOR_RECOMMEND",
+    "recommended_checkpoint": "refine-002",
+    "current_checkpoint": "postmr",
+    "old_reports_registries_plan_preserved": true,
+    "other_members_preserved": true,
+    "scope": "guarded policy; not new full-auto selection validation",
+    "rwork": null,
+    "rfree": null
+  },
+  "full_auto_patch_recovery": {
+    "status": "LOCAL_FULL_REGRESSION_PASSED",
+    "base_commit": "d3e1fa389b73843edb5bf33569622cf7b839220e",
+    "contract": "docs/full-auto-patch-handoff.md",
+    "original_returned_tests": {
+      "failed": 1,
+      "passed": 350,
+      "subtests_passed": 59,
+      "runtime_seconds": 48.72
+    },
+    "publication_at_failure": false,
+    "native_runs_launched": false,
+    "failure": "Legacy Doctor mock lacks AutoRefineResult checkpoint_id/report_path",
+    "production_audit_weakened": false,
+    "returned_component_audit": {
+      "5CM_records": 1,
+      "5CM_sheet": "cytosine",
+      "5CM_base_analog": "C",
+      "5CM_sugar": "DNA",
+      "5CM_parent": "DC",
+      "5CM_dictionary_resolved": true,
+      "5IU_ring_C5_I5_distance": 2.0951107369301507,
+      "5IU_sugar_C5prime_I5_distance": 8.843030419488558
+    },
+    "returned_tests": {
+      "fixture": {
+        "summary": "1 passed in 2.87s",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_campaign_stages.py::CampaignStageTests::test_campaign_refine_doctor_receipts_new_trials_and_preserves_current"
+        ]
+      },
+      "focused": {
+        "summary": "351 passed, 59 subtests passed in 49.26s",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_campaign_full_auto_policy.py",
+          "tests/test_campaign_full_auto_pipeline.py",
+          "tests/test_component_lookup_repairs.py",
+          "tests/test_presets.py",
+          "tests/test_campaigns.py",
+          "tests/test_campaign_execution.py",
+          "tests/test_campaign_doctor_transition.py",
+          "tests/test_campaign_pipeline.py",
+          "tests/test_campaign_stages.py",
+          "tests/test_campaign_executor_cli.py",
+          "tests/test_construction_scaffolds.py",
+          "tests/test_dictionary_compatibility.py",
+          "tests/test_dictionary_postmr.py",
+          "tests/test_linked_phosphate_profile.py"
+        ]
+      },
+      "full": {
+        "summary": "851 passed, 224 subtests passed in 80.67s (0:01:20)",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q"
+        ]
+      }
+    }
+  },
+  "metal_restraint_builder_ref": "docs/metal-restraint-builder-intent.json"
 }

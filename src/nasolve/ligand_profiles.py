@@ -25,7 +25,7 @@ from .backbone import requested_backbone_policy
 # Legacy profiles without an explicit scope remain 1AP-only. Never reinterpret
 # their frozen inventory when adding another supported component.
 AUTHORITATIVE_CODES = frozenset({"1AP"})
-LINKED_PROFILE_CODES = AUTHORITATIVE_CODES | {"DZ"}
+LINKED_PROFILE_CODES = AUTHORITATIVE_CODES | {"DZ", "5CM"}
 MOD_ID = "NASnoOP3"
 MOD_CIF = """data_mod_NASnoOP3
 loop_

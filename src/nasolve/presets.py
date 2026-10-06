@@ -1,7 +1,8 @@
 """Strict, portable project policies for campaign planning.
 
-Schema 1 describes only the existing standard W stage path. It cannot supply
-commands, Doctor trials, or arbitrary refinement recipes. Loading a preset is
+Schema 1 retains the guarded stage path. Schema 2 adds a frozen workflow
+opt-in for bounded full-auto trials and provisional selection. Neither schema
+can supply shell commands or arbitrary refinement programs. Loading a preset is
 read-only and does not discover external scientific programs or run a stage.
 """
 
@@ -18,6 +19,7 @@ from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
 from .phosphate import PhosphateError, validate_op3_sites
+from .campaign_policy import workflow_policy
 
 try:
     import tomllib
@@ -92,7 +94,7 @@ class ProjectPreset:
 
 _TOP_LEVEL = {
     "schema_version", "id", "version", "description", "automr", "postmr",
-    "autosol", "autorefine", "resources", "chemistry",
+    "autosol", "autorefine", "resources", "chemistry", "workflow",
 }
 _DEFAULTS: dict[str, dict[str, Any]] = {
     "automr": {
@@ -230,23 +232,36 @@ def load_preset(source: str | Path = "5w6w") -> ProjectPreset:
         raise PresetError(f"Invalid preset TOML in {path.name}: {exc}") from exc
     _reject_nonfinite(data)
     _unknown_keys(data, _TOP_LEVEL, "preset")
-    if type(data.get("schema_version")) is not int or data["schema_version"] != 1:
-        raise PresetError("Unsupported preset schema_version; expected integer 1")
+    if type(data.get("schema_version")) is not int or data["schema_version"] not in {1, 2}:
+        raise PresetError("Unsupported preset schema_version; expected integer 1 or 2")
+    try:
+        workflow = workflow_policy(data)
+    except ValueError as exc:
+        raise PresetError(str(exc)) from exc
     preset_id = _text(data.get("id"), "id")
     version = _text(data.get("version"), "version")
     policy: dict[str, Any] = {
-        "schema_version": 1, "id": preset_id, "version": version,
+        "schema_version": data["schema_version"], "id": preset_id, "version": version,
         "description": _text(data.get("description", ""), "description", empty=True),
     }
+    if data["schema_version"] == 2:
+        policy["workflow"] = workflow
     for name, defaults in _DEFAULTS.items():
         supplied = _table(data, name)
         allowed = set(defaults) | ({"pair"} if name == "automr" else set())
         _unknown_keys(supplied, allowed, name)
         resolved = {**defaults, **supplied}
+        if (name == "autosol" and workflow["mode"] == "full-auto"
+                and "on_unaccepted" not in supplied):
+            resolved["on_unaccepted"] = "continue-without-phases"
         for key, default in defaults.items():
             value = resolved[key]
             if type(value) is not type(default):
                 raise PresetError(f"{name}.{key} must be {type(default).__name__}")
+            if (name == "autosol" and key == "on_unaccepted"
+                    and workflow["mode"] == "full-auto"
+                    and value == "continue-without-phases"):
+                continue
             if type(default) is not bool and value != default:
                 raise PresetError(f"Unsupported {name}.{key}: expected {default!r}")
         if name == "automr" and "pair" in resolved:

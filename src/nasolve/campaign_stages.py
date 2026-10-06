@@ -28,6 +28,9 @@ from .phaser import execute_phaser
 from .postmr import prepare_postmr
 from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
+from .campaign_policy import (workflow_policy, continuation_warning,
+    select_provisional_recommendation, record_runtime_policy)
+from .anomalous_expectations import iodine_refinement_audit
 
 
 STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor")
@@ -339,22 +342,33 @@ def execute_stage(
         run = _contained(root / name / "AutoMR", run, "Campaign run")
         if run.parent != root / name / "AutoMR" or not re.fullmatch(r"run_\d{3,}", run.name):
             raise CampaignStageError("Campaign run must be one numbered AutoMR directory")
+    workflow = workflow_policy(policy)
     config = load_config()
     report = _read_report(run / "report.json") if run is not None else None
     if report is not None and report.get("workflow") != "automr":
         raise CampaignStageError("Campaign stage requires an AutoMR run")
     if stage == "autosol" and not _autosol_required(report):
+        warnings = list((_postmr_report(report).get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
+        outcome = {"status": "SKIPPED", "message": (
+            "No detected nucleotide anomalous candidate; inspect iodine warnings"
+            if warnings else "PostMR found no nucleotide heavy atom; AutoSol is not required"),
+            "scientific_warnings": warnings}
+        automation = record_runtime_policy(run, policy, stage, outcome)
         snapshot = _snapshot_report(root, attempt, run)
-        return {
-            "status": "SKIPPED", "message": "PostMR found no nucleotide heavy atom; AutoSol is not required",
+        return {**outcome,
             "run": run.relative_to(root).as_posix(), "artifacts": [snapshot],
             "run_report_snapshot": snapshot, "tool_versions": {},
+            **({"automation_policy": workflow} if automation is not None else {}),
         }
     if stage == "autorefine" and _autosol_required(report):
         autosol = _object(report.get("autosol"), "Accepted AutoSol report")
         if (autosol.get("status") != "AUTOSOL_READY"
                 or autosol.get("use_for_refinement") is not True):
-            raise CampaignStageError("The anomalous branch requires AUTOSOL_READY before refinement")
+            if (continuation_warning(policy, "autosol", autosol) is None
+                    or autosol.get("use_for_refinement") is True):
+                raise CampaignStageError("The anomalous branch requires AUTOSOL_READY before refinement")
+            # Native AutoRefine may use anomalous observations without importing
+            # unaccepted phases. It still requires usable observations and Free-R.
     phenix = discover_phenix(config, explicit=phenix_root)
     versions = {"phenix": phenix.version}
     extra: dict[str, Any] = {}
@@ -382,7 +396,8 @@ def execute_stage(
             required.extend([stage_directory / "mr_solution.pdb", stage_directory / "mr_solution.mtz"])
         extra.update(tfz=result.tfz, llg=result.llg)
     elif stage == "postmr":
-        if report.get("status") != "MR_SUCCESS":
+        mr_trial = report.get("status") == "MR_REVIEW" and workflow["mode"] == "full-auto"
+        if report.get("status") != "MR_SUCCESS" and not mr_trial:
             raise CampaignStageError("Campaign PostMR requires MR_SUCCESS; review is an inspection stop")
         coot = None
         try:
@@ -399,12 +414,16 @@ def execute_stage(
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
             modified_pairs_only=postmr_policy["modified_pairs_only"],
+            allow_mr_review=mr_trial,
         )
         stage_directory = result.postmr_directory
         required = [result.model_path, result.readyset_log, *result.restraint_paths]
     elif stage == "autosol":
         autosol_policy = _object(policy.get("autosol"), "AutoSol policy")
-        if autosol_policy != {"policy": "when-anomalous", "on_unaccepted": "inspect"}:
+        allowed_autosol = [{"policy": "when-anomalous", "on_unaccepted": "inspect"}]
+        if workflow["mode"] == "full-auto":
+            allowed_autosol.append({"policy": "when-anomalous", "on_unaccepted": "continue-without-phases"})
+        if autosol_policy not in allowed_autosol:
             raise CampaignStageError("Unsupported campaign AutoSol policy")
         result = execute_autosol(
             run, _program(phenix, "phenix.autosol"), _program(phenix, "phenix.mtz.dump"),
@@ -416,7 +435,9 @@ def execute_stage(
             warning = _read_report(result.report_path)
             extra["message"] = (
                 f"AutoSol phases were not accepted: {warning.get('failure_reason', result.message)}; "
-                "campaign stopped for inspection"
+                + ("full-auto will try refinement without these phases"
+                   if continuation_warning(policy, "autosol", warning) is not None
+                   else "campaign stopped for inspection")
             )
         elif not required:
             raise CampaignStageError("Completed AutoSol stage has no console log")
@@ -479,6 +500,7 @@ def execute_stage(
         trial_artifacts: list[str] = []
         for trial in result.trials:
             trial_artifacts.extend(_tree_files(root, trial.round_directory))
+        selection = select_provisional_recommendation(run, result, policy)
         registry_snapshot = attempt / "refine-doctor-checkpoints.json"
         with registry_snapshot.open("xb") as handle:
             handle.write((run / "AutoRefine" / "checkpoints.json").read_bytes())
@@ -494,6 +516,29 @@ def execute_stage(
             artifacts=trial_artifacts,
             message=f"{result.message}: {result.recommendation}",
         )
+        selected_trial = next((trial for trial in result.trials
+                               if trial.checkpoint_id == inspection_checkpoint), None)
+        if selected_trial is not None:
+            audit = iodine_refinement_audit(_read_report(run / "report.json"), _read_report(selected_trial.report_path))
+            audit["checkpoint"] = inspection_checkpoint
+            extra["iodine_anomalous_audit"] = audit
+            extra["scientific_warnings"] = audit["warnings"]
+        if selection is not None:
+            extra.update(provisional_selection=selection,
+                         doctor_current_checkpoint_preserved=True,
+                         current_checkpoint_preserved=selection["previous_current"] == selection["selected_checkpoint"])
+    if stage == "postmr":
+        postmr_result = _read_report(result.report_path)
+        extra["scientific_warnings"] = list((postmr_result.get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
+    if stage == "autorefine":
+        audit = iodine_refinement_audit(_read_report(run / "report.json"), _read_report(result.report_path))
+        extra["iodine_anomalous_audit"] = audit
+        extra["scientific_warnings"] = audit["warnings"]
+    outcome = {**extra, "status": result.status}
+    automation = record_runtime_policy(run, policy, stage, outcome)
+    if automation is not None:
+        extra["automation_policy"] = workflow
+        extra["scientific_warnings"] = automation["warnings"]
     required.append(result.report_path)
     # report.json changes in later stages. Preserve its exact boundary contents
     # for the coordinator rather than treating the live report as immutable.

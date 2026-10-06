@@ -72,7 +72,7 @@ class CampaignExecutorCLITests(unittest.TestCase):
         self.assertEqual((code, error), (0, ""))
         self.assertEqual(json.loads(output), expected)
         run.assert_called_once_with(
-            Path("."), datasets=None, through="autorefine", phenix_root=None, progress=None,
+            Path("."), datasets=None, through=None, phenix_root=None, progress=None,
         )
 
     def test_status_reports_current_execution_and_numerical_pass_without_approval(self):

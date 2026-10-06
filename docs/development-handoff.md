@@ -19,12 +19,41 @@ plans. Do not load every historical handoff for an ordinary implementation turn.
   ferries at our discretion. Preserve scientific artifacts and local-only work;
   mergeability alone does not satisfy the evidence gates below.
 
+## Active local recovery and continuity
+
+The full-auto/component candidate and its Doctor fixture repair passed the
+local failing-test, focused and full suites. Exact commands/results are in
+[the recovery checkpoint](full-auto-patch-handoff.md); verify the published head
+from its receipt rather than reapplying either ferry. Native full-auto and
+DiU/5CM results remain pending. No native run starts in the recovery.
+
+The [metal-restraint builder](metal-restraint-builder.md) is a new planned
+GUI/small-window recipe authoring tool using canonical workbook atom roles.
+It is not implemented and does not add a Pine merge gate or displace Scout.
+Its numerical examples will come from Simon.
+
+## New authorized slice: recipe-controlled full auto
+
+The [full-auto contract](campaign-full-auto.md) is the current bounded policy:
+preset schema 2, optional borderline-MR trial, explicit phase fallback, bounded
+Doctor and reversible provisional recommendation selection. This intentionally
+relaxes the earlier no-auto-selection rule **only for the opt-in recipe**; core
+Doctor and all frozen guarded campaigns retain non-selection. It never writes
+USER_APPROVED or changes observations/Free-R. New policy requires a new frozen
+campaign, not editing the existing TestSets plan.
+
+The patch also fixes DiU's prime-stripping parser bug (C5' overwrote C5, giving
+8.843 A instead of the existing dictionary's 2.095 A), adds the pinned 5CM
+resource, and audits iodine detection/anomalous/phase usage. They are installed in the local candidate; the recovery checkpoint records
+the returned audit and the outstanding suite/native gates.
+Existing intermediate hops and P2 conversion boundaries remain unchanged.
+
 ## Current evidence
 
 | Capability | Supported state |
 | --- | --- |
 | Standalone AutoMR -> PostMR -> conditional AutoSol -> AutoRefine | Operational guarded spine with immutable checkpoints. |
-| Four-member W campaign and campaign-owned Refine Doctor | Earlier explicit continuation was live-validated: DOHU/EG/QE solved numerically; QiC Doctor recommended `refine-002` at 0.1500/0.1502, leaving `postmr` current. The same-invocation fix is implemented below; new native confirmation remains pending. |
+| Four-member W campaign and campaign-owned Refine Doctor | Earlier explicit continuation was live-validated: DOHU/EG/QE solved numerically; QiC Doctor recommended `refine-002` at 0.1500/0.1502, leaving `postmr` current. The returned native QiC attempt_002 now entered Doctor in the same invocation and recommended refine-002 without changing current. |
 | Prepared nonstandard and mixed schema-2 campaigns | Implemented and fixture-tested, including relocation. Real geometry-diverse campaign still pending; schema-1 support retained. |
 | `pair = G:Z` / `force = G:C` | Separate identity/recipe pathways, regression-tested; earlier real NARestraints and experimental PostMR audits passed. Fresh production GZ11 now reached SOLVED and passed Simon's requested visual check; its detailed force receipt has not yet been returned. |
 | Category-based intermediate mutation hops | Included in passing dictionary-patch regression and the fresh successful GZ11 workflow. Do not infer new live validation for every category. |
@@ -33,10 +62,11 @@ plans. Do not load every historical handoff for an ordinary implementation turn.
 | Component normalization | Standing `1W5 -> DZ` and `1WA -> DP` conversions and the DP resource remain pending; dictionary compatibility does not implement them. |
 | Registration/Scout | Merged backend primitives and validated design-aware shadow proposal; not yet the operational AutoMR/PostMR decision path. |
 
-Latest returned regression: **151 focused tests in 3.66 s**, then **771 tests +
-224 subtests in 66.78 s**. The ferry tested a working tree based on `dd59b4f`,
-then committed/pushed it as `66cb7a2`. This is user-local pytest evidence, not CI.
-The 735-test report and 694 + 224 transcript remain historical baselines.
+Published baseline evidence: dictionary patch `66cb7a2` passed 151 focused
+tests and 771 tests + 224 subtests; the subsequent Doctor patch `d3e1fa3` passed
+148 campaign tests + 85 subtests and 785 tests + 224 subtests. These are local
+regressions, not CI. The newer full-auto recovery evidence is in the linked
+recovery checkpoint; do not promote it from earlier totals.
 Do not repeat unchanged full regression merely to update documentation.
 
 ## Fresh GZ11 result and immediate next action
@@ -70,7 +100,7 @@ name alone does not establish whether its engine ran or the gate skipped it.
 This documentation record does not change the local checkpoint's approval
 state, assert deposition readiness or implement P2 component conversions.
 
-Next live slice: validate the same-invocation Doctor fix with a fresh campaign-owned QiC attempt.
+Next: validate the full-auto/component patch, then use a new explicitly full-auto plan for EA/DiU/Q5cm and the selection checks. The guarded QiC transition has now passed natively.
 Complete the remaining GZ11 receipt review from its saved outputs without
 rerunning the successful structure. Track DiU and 5CM resource issues without
 touching successful runs. Scout remains after Pine campaign closure.
@@ -98,7 +128,7 @@ retry, the returned status is:
 | DiU | `BLOCKED` in PostMR: implausible ideal C5-I5 distance **8.843 A at B:4**. Inspect dictionary coordinates/atom correspondence; not a measured refined bond or a reason to widen the guard. |
 | EA | `AWAITING_INSPECTION` at MR, **TFZ 7.60**. No review acceptance is implied by older manual work. |
 | Q5cm | `BLOCKED` in PostMR: missing local `5CM.cif`; not supplied by the DZ patch. |
-| QiC | `AWAITING_INSPECTION`, `refine-001`, next stage `refine-doctor`. Eligibility is not a completed Doctor trial. |
+| QiC | Guarded attempt_002/run_002 entered Doctor in the same invocation; REFINE_DOCTOR_RECOMMEND for refine-002, current postmr, no further next stage. Old artifacts/plan and other members preserved. This is not new full-auto selection evidence. |
 
 The baseline's same-invocation Doctor skip is addressed by reusing
 `_runnable(item, through)` at the post-stage break. An explicitly requested
@@ -107,7 +137,7 @@ endpoint, other stops, pause, verified receipts and non-selection remain
 unchanged. Tests cover fresh/resumed invocation, early review/failure,
 once-only execution, drift, member isolation and the real stage engines
 with fixture executables/checkpoints. Full-checkout validation is recorded
-by the ferry below; fresh native QiC confirmation is still separate.
+by the ferry below. The returned native trace now confirms the same-invocation transition, recommendation and preservation checks.
 
 Member-local failure isolation is demonstrated; P4's Doctor/resume/current-pointer
 coverage and P5 remain separate. Preserve attempts. Retry/status can return 3
@@ -119,7 +149,7 @@ with an unconditional `&&` chain.
 P1 has implementation, full regression and fresh live execution evidence. P3's
 normal execution and requested user visual inspection passed; detailed saved
 receipts and numerical audit values remain to be reviewed. P4 has member outcomes
-plus an implemented coordinator fix pending new native confirmation. This update does not close every gate or
+plus the now-passed native coordinator transition. Full-auto/component policy is an explicitly user-authorized addition to the bounded P4 work. This update does not close every gate or
 change checkpoint approval state.
 
 | Gate | Completion evidence |
@@ -127,7 +157,7 @@ change checkpoint approval state.
 | **P1 — Effective dictionary compatibility** | Generalized input/effective torsion handling and authoritative selection are implemented and regression-tested; fresh GZ11 numerical execution and user visual inspection passed. Check its exact effective-bundle receipt alongside P3. |
 | **P2 — Specific component normalization** | Implement standing `1W5 -> DZ` and `1WA -> DP` preparation with target definitions, atom correspondence and conversion provenance. Preserve raw/frozen originals. |
 | **P3 — Normal GZ11 live path** | Fresh ordinary execution passed on 66cb7a2; the requested G/Z model/map visual inspection subsequently passed according to Simon. Complete exact identity/force/effective-input and numerical geometry evidence from saved reports; no repeated execution or visual check required. |
-| **P4 — Nine-member TestSets campaign** | Account for every member and validate integrity/resume/isolation/current-pointer behavior through campaign-owned Doctor; validate the implemented same-invocation transition on fresh native QiC. Legitimate REVIEW/NO_SOLUTION/BLOCKED outcomes are not failures to manufacture away. |
+| **P4 — Nine-member TestSets campaign** | Account for every member and validate integrity/resume/isolation/current-pointer behavior through campaign-owned Doctor; Guarded native QiC transition passed; now validate the newly requested full-auto policy and the DiU/5CM fixes under a new frozen recipe. Legitimate REVIEW/NO_SOLUTION/BLOCKED outcomes are not failures to manufacture away. |
 | **P5 — Prepared-nonstandard live campaign** | Real 3-5-member geometry-diverse prepared-PDB + exact-sequence campaign with Phenix/Coot, ownership and review/block checks. W-only or simulated workers do not substitute. |
 | **P6 — Final candidate regression/review** | Final-code focused/full suite, exact SHA/commands/results/tool versions, diff/available CI review and consistent documentation. No scientific-data upload implied. |
 | **P7 — Merge and retire branches** | Merge PR #23 after P1-P6; verify ancestry and local status/worktrees/commits, switch/pull main and retire merged Pine/Oak references without force or data cleanup. |
@@ -184,8 +214,8 @@ Tested coordinator Git blob: `23a4cab2f32d3e91e65c8e4ad4fe7b794e1eac27`.
 This is local regression evidence, not CI or a new native Doctor result.
 The command prints the resulting commit and retains exact logs/receipts outside Git.
 
-The next live ferry explicitly retries only QiC and requests the Doctor
-endpoint in one run invocation. Old QiC and successful GZ11 runs remain
-intact. If ordinary refinement passes directly, report that result rather
-than manufacturing a review; it does not exercise the Doctor transition.
-P4 and the main merge remain open until their evidence is reviewed.
+The returned native ferry ran QiC attempt_002/run_002 through Doctor within
+one invocation and returned REFINE_DOCTOR_RECOMMEND for refine-002. Current
+remained postmr. Other members, old run reports, checkpoint registries and plan
+were unchanged. This closes that guarded transition's live check, not full-auto
+selection or the remaining P4/P5/P2 gates. Main remains unmerged.

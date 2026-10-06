@@ -627,6 +627,15 @@ class CampaignStageTests(unittest.TestCase):
             round_two = run / "AutoRefine" / "round_002"
             round_two.mkdir()
             (round_two / "doctor_trial.dat").write_text("trial\n")
+            # A real AutoRefineResult supplies both checkpoint_id and report_path.
+            # Deliberately differ from the source anomalous/phase refinement so
+            # the audit must read the presented trial, not the source checkpoint.
+            trial_report_path = round_two / "report.json"
+            trial_report_path.write_text(json.dumps({
+                "status": "AUTOREFINE_READY", "checkpoint": "refine-002",
+                "refinement": {"anomalous": False, "use_experimental_phases": False},
+                "inputs": {"observation_labels": ["IMEAN", "SIGIMEAN"]},
+            }))
             report = json.loads((run / "report.json").read_text())
             report["refine_doctor"] = {
                 "status": "REFINE_DOCTOR_RECOMMEND",
@@ -645,7 +654,11 @@ class CampaignStageTests(unittest.TestCase):
                 recommended_checkpoint="refine-002",
                 recommendation="Inspect refine-002 before selecting it",
                 audit=SimpleNamespace(log_path=audit_log),
-                trials=(SimpleNamespace(round_directory=round_two),),
+                trials=(SimpleNamespace(
+                    round_directory=round_two,
+                    checkpoint_id="refine-002",
+                    report_path=trial_report_path,
+                ),),
                 report_path=report_path,
             )
 
@@ -661,6 +674,16 @@ class CampaignStageTests(unittest.TestCase):
         self.assertEqual(result["checkpoint"], "refine-002")
         self.assertTrue(result["current_checkpoint_preserved"])
         self.assertIn("Inspect refine-002", result["message"])
+        audit = result["iodine_anomalous_audit"]
+        self.assertEqual(audit["checkpoint"], "refine-002")
+        self.assertFalse(audit["anomalous_refinement"])
+        self.assertFalse(audit["experimental_phases_used"])
+        self.assertEqual(audit["observation_labels"], ["IMEAN", "SIGIMEAN"])
+        self.assertTrue(audit["iodine_candidates"])
+        self.assertTrue(any("did not use anomalous" in warning
+                            for warning in result["scientific_warnings"]))
+        self.assertTrue(any(path.endswith("AutoRefine/round_002/report.json")
+                            for path in result["artifacts"]))
         self.assertTrue(
             any(path.endswith("RefineDoctor/doctor_001/report.json") for path in result["artifacts"])
         )

@@ -98,8 +98,22 @@ Amsterdam > Triangle-17 > Crystal-B > run_004
 Each breadcrumb component is clickable.
 
 The user may resize/collapse Navigator, Inspector and Activity panes, but routine
-operations should not create detached NASolve windows. Coot is the intentional
-external-window exception.
+operations should not create detached NASolve windows. Coot remains the
+external coordinate editor. The planned metal-restraint builder is an explicit
+optional small-window exception, sharing its backend and state with the docked
+workspace rather than creating a second application.
+
+## Metal-coordination recipe workspace
+
+The planned [metal-restraint builder](metal-restraint-builder.md) may toggle as a
+workspace or a small standalone/detached companion. Clickable atom spheres and
+metal selectors create visible distance/angle restraint overlays, not immediate
+coordinate edits. Save/load/select recipes by canonical NARestraints atom-role
+columns (O4/N3), bind them to actual atoms for a run, and refine explicit variants
+as ordinary checkpoint children. One-/two-metal and heterometal examples will be
+supplied by Simon. The builder reuses the same backend in both views; numerical
+targets and recipe format are not frozen yet. This is future design, not Pine
+implementation or a prerequisite for operational Scout.
 
 ## Root/workspace selection
 

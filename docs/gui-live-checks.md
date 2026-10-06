@@ -168,3 +168,13 @@ with terminal output.
   appropriate node/attention state without losing previous checkpoints.
 - **Close/reopen:** reopening the GUI reconstructs state from authoritative
   project artifacts rather than requiring an in-memory session history.
+
+## Future metal-restraint builder checks
+
+See [the builder contract](metal-restraint-builder.md). Once Simon supplies
+examples: verify docked/small-window parity; clickable atoms/metals and visible
+restraint overlays without coordinate movement; role-to-renamed-atom resolution;
+save/load/reapply across supported bases; one-/two-metal and heterometal recipes;
+and a separately launched refinement child receiving the exact emitted targets
+and uncertainties. Confirm unresolved donor selection is local to that recipe,
+not a global workflow veto. No GUI test is claimed run by this note.

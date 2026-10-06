@@ -1,5 +1,17 @@
 # Modified-component preparation
 
+## DiU and 5CM follow-up
+
+See the [full-auto/component contract](campaign-full-auto.md#diu-iodine-and-5cm).
+The DiU failure was NASolve stripping a meaningful prime from C5', not an
+8.843-A bond in the ligand dictionary. Matching-quote removal fixes the lookup
+without changing supplied coordinates or widening the guard. 5CM receives a
+pinned local parameterized dictionary, retains its 5CM/C identity semantics and
+uses DC as the construction hop. New 5CM phosphate profiles use explicit scope
+and verified connectivity; old profiles retain their recorded scope. Native
+DiU/5CM results remain pending, distinct from the successful GZ11 check.
+
+
 Status: category hops and the effective-dictionary/DZ patch are implemented.
 Simon's ferry passed **151 focused tests and 771 full tests plus 224 subtests**,
 then published the tested code as `66cb7a2`. A fresh ordinary campaign-owned

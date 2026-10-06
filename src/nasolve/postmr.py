@@ -1807,7 +1807,7 @@ def prepare_postmr(
             profile, modification_paths = write_linked_profile(
                 prepared, restraints_dir, allow_op3_sites=allowed_op3,
                 passthrough_sites=passthrough_sites,
-                profile_codes=(LINKED_PROFILE_CODES if "DZ" in ligand_codes else AUTHORITATIVE_CODES))
+                profile_codes=(AUTHORITATIVE_CODES | (set(ligand_codes) & LINKED_PROFILE_CODES)))
         except PhosphateError as exc:
             raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
         restraint_paths.extend(modification_paths)
@@ -1857,6 +1857,8 @@ def prepare_postmr(
     except (PhosphateError, ValueError, OSError) as exc:
         raise PostMRPreparationError(f"Cannot prepare effective dictionary inputs: {exc}") from exc
     anomalous_candidates = scan_anomalous_candidates(final_model)
+    from .anomalous_expectations import audit_iodine_targets
+    iodine_expectations = audit_iodine_targets(final_model, anomalous_candidates)
 
     postmr_payload = {
         "status": "POSTMR_READY",
@@ -1922,6 +1924,7 @@ def prepare_postmr(
         },
         "anomalous": {
             "trigger_elements": sorted(DEFAULT_ANOMALOUS_ELEMENTS),
+            "iodine_expectations": iodine_expectations,
             "autosol_required": bool(anomalous_candidates),
             "candidates": anomalous_candidates,
         },

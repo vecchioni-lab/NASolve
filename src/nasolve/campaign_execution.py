@@ -13,6 +13,7 @@ from .campaign_records import (
     read_receipt, read_record, run_path, write_record,
 )
 from .campaigns import CampaignError, campaign_status
+from .campaign_policy import workflow_policy, default_endpoint, continuation_warning, INSPECTION_WARNING
 
 
 def _new_state(plan: dict[str, Any]) -> dict[str, Any]:
@@ -110,7 +111,9 @@ def _recover_completions(root: Path, plan: dict[str, Any], state: dict[str, Any]
 
 def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> list[dict[str, str]]:
     item.update(run=None, checkpoint=None, next_stage="preflight", numerical_success=False,
-                inspection_required=False, live_process=False)
+                inspection_required=False, live_process=False, scientific_warnings=[],
+                provisional=workflow_policy(plan["preset"]["policy"])["mode"] == "full-auto",
+                provisional_selection=None)
     if not item["attempts"]:
         item.update(status="DISCOVERED", diagnostic="Ready for scientific preflight")
         return []
@@ -178,10 +181,11 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
             return dependencies
         receipt = read_receipt(root, directory, job)
         finished = directory / "process-finished.json"
+        trial_warning = continuation_warning(plan["preset"]["policy"], stage, receipt)
         continuable_review = (
             stage == "autorefine" and receipt["status"] == "AUTOREFINE_REVIEW"
         )
-        if finished.exists() and (receipt["status"] in ACCEPTED[stage] or continuable_review):
+        if finished.exists() and (receipt["status"] in ACCEPTED[stage] or continuable_review or trial_warning is not None):
             completion = read_record(finished)
             return_code = completion.get("return_code")
             recovered = completion.get("recovered_from_receipt") == receipt["record_sha256"]
@@ -189,6 +193,16 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
                 raise CampaignError("Worker exited unsuccessfully despite an accepted stage receipt")
         item.update(run=receipt.get("run"), checkpoint=receipt.get("checkpoint"), diagnostic=receipt["message"])
         item["attempts"][-1]["run"] = item["run"]
+        for warning in receipt.get("scientific_warnings", []):
+            if warning not in item["scientific_warnings"]:
+                item["scientific_warnings"].append(warning)
+        if trial_warning is not None:
+            if trial_warning not in item["scientific_warnings"]:
+                item["scientific_warnings"].append(trial_warning)
+            dependencies.append({"job_sha256": job["record_sha256"],
+                                 "receipt_sha256": receipt["record_sha256"]})
+            last = receipt
+            continue
         if continuable_review:
             if (receipt.get("run") is None or not isinstance(receipt.get("checkpoint"), str)
                     or receipt.get("selected_as_current") is not False):
@@ -201,7 +215,7 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
             continue
         if receipt["status"] not in ACCEPTED[stage]:
             status = "NO_SOLUTION" if receipt["status"] == "MR_FAILED" else (
-                "AWAITING_INSPECTION" if receipt["status"] in {"MR_REVIEW", "AUTOSOL_REVIEW", "AUTOSOL_WARNING", "AUTOREFINE_REVIEW"}
+                "AWAITING_INSPECTION" if receipt["status"] in {"MR_REVIEW", "AUTOSOL_REVIEW", "AUTOSOL_WARNING", "AUTOREFINE_REVIEW", "AUTOREFINE_ANOMALOUS_FALLBACK"}
                 else "BLOCKED")
             item.update(status=status, next_stage=None, inspection_required=True)
             return dependencies
@@ -213,11 +227,22 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
         dependencies.append({"job_sha256": job["record_sha256"], "receipt_sha256": receipt["record_sha256"]})
         last = receipt
         if stage == "refine-doctor":
-            item.update(
-                status="AWAITING_INSPECTION", next_stage=None,
-                numerical_success=False, inspection_required=True,
-                diagnostic=receipt["message"],
-            )
+            selection = receipt.get("provisional_selection")
+            if selection is not None:
+                if (not workflow_policy(plan["preset"]["policy"])["select_recommendation"]
+                        or not isinstance(selection, dict)
+                        or receipt["status"] != "REFINE_DOCTOR_RECOMMEND"
+                        or selection.get("user_approved") is not False
+                        or selection.get("selected_checkpoint") != receipt.get("recommended_checkpoint")
+                        or receipt.get("checkpoint") != receipt.get("recommended_checkpoint")):
+                    raise CampaignError("Unapproved or inconsistent automatic checkpoint selection")
+                item.update(status="SOLVED", next_stage=None, numerical_success=True,
+                            inspection_required=True, provisional=True,
+                            provisional_selection=selection, diagnostic=INSPECTION_WARNING)
+            else:
+                item.update(status="AWAITING_INSPECTION", next_stage=None,
+                            numerical_success=False, inspection_required=True,
+                            diagnostic=receipt["message"])
             return dependencies
     assert last is not None
     _report_unchanged(root, last)
@@ -241,7 +266,8 @@ def _reconcile(root: Path, plan: dict[str, Any], state: dict[str, Any]) -> None:
     state["state"] = (
         "RUNNING" if "RUNNING" in statuses else
         "PAUSED" if statuses & {"DISCOVERED", "PAUSED"} else
-        "COMPLETE_WITH_FLAGS" if statuses - {"SOLVED"} else "COMPLETE"
+        "COMPLETE_WITH_FLAGS" if (statuses - {"SOLVED"} or
+            any(item.get("scientific_warnings") for item in state["datasets"])) else "COMPLETE"
     )
 
 
@@ -326,16 +352,18 @@ def _runnable(item: dict[str, Any], through: str) -> bool:
 
 
 def execute_campaign(
-    root: Path, *, datasets: tuple[str, ...] | None = None, through: str = "autorefine",
+    root: Path, *, datasets: tuple[str, ...] | None = None, through: str | None = None,
     phenix_root: str | None = None, progress: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     """Execute eligible datasets sequentially, continuing only from verified receipts."""
     if os.name != "posix":
         raise CampaignError("Campaign execution currently requires macOS or Linux (POSIX process groups)")
-    if through not in STAGES:
+    if through is not None and through not in STAGES:
         raise CampaignError(f"Unknown campaign stop stage: {through}")
     root = root.expanduser().resolve()
     plan = campaign_status(root)
+    if through is None:
+        through = default_endpoint(plan["preset"]["policy"])
     known = {entry["id"] for entry in plan["datasets"]}
     selected = known if datasets is None else set(datasets)
     if not selected or not selected <= known:

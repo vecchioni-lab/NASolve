@@ -25,6 +25,7 @@ from .automr_input import (
     normalize_frame, read_intent, resolve_automr_input,
 )
 from .presets import PresetError, ProjectPreset, load_preset
+from .campaign_policy import workflow_policy
 from .campaign_threads import (
     SequenceThreadError, membership_by_dataset, parse_sequence_threads,
 )
@@ -664,10 +665,14 @@ def _validate_plan(payload: Any) -> None:
     policy = _require(preset.get("policy"), dict, "preset.policy")
     _required_fields(policy, {"schema_version", "id", "version", "description", "automr",
                              "postmr", "autosol", "autorefine", "resources"}, "preset.policy")
-    if (type(policy["schema_version"]) is not int or policy["schema_version"] != 1
+    if (type(policy["schema_version"]) is not int or policy["schema_version"] not in {1, 2}
             or policy["id"] != preset["id"] or policy["version"] != preset["version"]
             or _digest(_canonical(policy)) != preset["config_sha256"]):
         raise CampaignError("Malformed campaign state: inconsistent preset policy identity")
+    try:
+        workflow_policy(policy)
+    except ValueError as exc:
+        raise CampaignError(f"Malformed campaign workflow: {exc}") from exc
     _require(policy["description"], str, "preset.policy.description")
     for section in ("automr", "postmr", "autosol", "autorefine"):
         _require(policy[section], dict, f"preset.policy.{section}")

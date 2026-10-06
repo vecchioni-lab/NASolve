@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recipe-controlled autonomy and component lookup
+
+- Added opt-in preset schema 2 full-auto workflow: preserve borderline MR REVIEW
+  while trialling downstream refinement, optional unaccepted-phase fallback,
+  recipe-owned Doctor endpoint and separately audited provisional selection of
+  its verified passing recommendation. Schema-1/guarded behavior is unchanged.
+  No automatic USER_APPROVED state, global Rfree search or old-plan upgrade.
+- Fixed ideal-coordinate CIF atom parsing that confused C5' with C5 and produced
+  DiU's false 8.843-A C5-I5 distance; supplied dictionary coordinates are unchanged.
+- Added a pinned parameterized 5CM resource/DC route and connectivity-scoped
+  phosphate handling; no NARestraints workbook or pair-class changes.
+- Record iodine expectations and actual phasing/anomalous-refinement diagnostics
+  for ordinary refinement and the presented Doctor trial. Insufficient anomalous
+  data is flagged rather than fabricated.
+
+
 ### Fixed
 
 - An explicit campaign `--through refine-doctor` now continues a newly

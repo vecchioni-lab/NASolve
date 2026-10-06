@@ -1,5 +1,11 @@
 # NASolve documentation map
 
+For the currently applied full-auto patch, see [recovery checkpoint](full-auto-patch-handoff.md).
+The planned [metal-coordination recipe builder](metal-restraint-builder.md) has
+[development intent](metal-restraint-builder-intent.json); it is not runtime code.
+
+The current opt-in autonomy/component slice is in [campaign full auto](campaign-full-auto.md); the handoff retains merge ordering and validation status.
+
 Read by role, not by chronology. Start with the
 [current development handoff](development-handoff.md) for the Pine -> main
 close-out, evidence limits and operational Scout priority immediately afterward.
