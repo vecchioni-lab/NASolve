@@ -17,6 +17,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Modified-base W scaffold Saenger overlays (candidate; native pending)
+
+- New PostMR derivatives preserve the packaged 17-pair W secondary template
+  but replace only those fixed Saenger-class blocks whose *prepared* residues
+  are modified. The affected pairs are validated atom-for-atom against the
+  loaded NARestraints workbook and an explicit named recipe; absence of a
+  supported geometry blocks the affected dataset instead of guessing.
+- Generated run-local `Std_padd.txt` adds the modified pairs that are not
+  already listed; the existing single NARestraints PHIL emits their 2/3
+  hydrogen-bond edits, planes and parallelity with no duplicated global stacking
+  or user `force = G:C`. Retain unaffected Saenger blocks, other pair
+  restraints, and D:1 terminal phosphate protection unchanged.
+- Record the original and resulting file checksums, modified sites, identities,
+  old Saenger classes, explicit recipes/contact counts and workbook compatibility
+  corrections in `postmr.narestraints.frame_secondary_overlay`. Old runs,
+  frozen plans, the original W resource and all other modes remain untouched.
+- Added ordinary/no-overlap, modified C:G/T:A, unsupported chemistry, malformed
+  template and pre-existing explicit-pair regressions. User-local full-suite
+  and native Phenix/AutoRefine checks are **pending** before inclusion in Pine.
+
 ### Reviewed long deposition component names in annotated sequences
 
 - Exact `(A1AAZ)` token remains frozen literally but becomes native PDB residue
