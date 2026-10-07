@@ -126,14 +126,15 @@ def test_two_modified_scaffold_pairs_are_replaced_by_atom_role_recipes(tmp_path)
     stretches = read_base_pair_file(pair_file)
     assert len(stretches) == 3
     assert sum(len(x.pairs()) for x in stretches) == 5
-    assert ("A:7", "C:9") == (
-        f"{stretches[1].pairs()[0].base1.chain}:{stretches[1].pairs()[0].base1.resid}",
-        f"{stretches[1].pairs()[0].base2.chain}:{stretches[1].pairs()[0].base2.resid}",
-    )
-    assert ("A:19", "D:4") == (
-        f"{stretches[2].pairs()[0].base1.chain}:{stretches[2].pairs()[0].base1.resid}",
-        f"{stretches[2].pairs()[0].base2.chain}:{stretches[2].pairs()[0].base2.resid}",
-    )
+    added_pairs = {
+        (
+            f"{pair.base1.chain}:{pair.base1.resid}",
+            f"{pair.base2.chain}:{pair.base2.resid}",
+        )
+        for stretch in stretches[1:]
+        for pair in stretch.pairs()
+    }
+    assert added_pairs == {("A:7", "C:9"), ("A:19", "D:4")}
     assert source.read_text(encoding="utf-8") == original_text
     assert original_pair == "A 11:13\nB 5:3\n"
     assert "A 11:13\nB 5:3" in pair_file.read_text()
