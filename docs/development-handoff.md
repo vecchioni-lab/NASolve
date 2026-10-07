@@ -52,6 +52,15 @@ replace incompatible assignments only through an audited, chemically
 reviewed restraint route. This new blocker does **not** invalidate the
 Z:P native PostMR contacts and is not a reason to relax terminal-phosphate
 protection. The run is BLOCKED; refinement and human review remain pending.
+A read-only role probe using the real run-local model confirmed
+**5CM:G -> GC / 3 bonds and DF:A -> AT / 2 bonds**, each with planarity and
+parallelity. [NASolve draft PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
+is the separate, unvalidated candidate fix: replace only the two incompatible
+hardcoded Saenger blocks in **new** W PostMR output; append the explicit
+NARestraints pairs to the run-local Std_padd, preserve the other 15 W blocks,
+the packaged template and terminal D:1 phosphate policy. It includes
+workbook-based and fail-closed tests. **User-local focused/full pytest and
+native Phenix continuation remain pending**; original run_001/run_002 preserved.
 Details and the human-test boundaries are in
 [native modified-pair validation](native-modified-pair-live-validation.md).
 A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
