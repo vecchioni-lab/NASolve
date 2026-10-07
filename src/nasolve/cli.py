@@ -91,6 +91,10 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     campaign_run.add_argument("--json", action="store_true", help="print structured final status without progress messages")
+    campaign_run.add_argument(
+        "--no-activate", action="store_true",
+        help="do not make an unambiguous single-dataset result the local active Coot view",
+    )
     campaign_pause = campaign_sub.add_parser("pause", help="request a pause after the active stage finishes")
     campaign_pause.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
     campaign_pause.add_argument("--json", action="store_true", help="print structured status")
@@ -333,6 +337,80 @@ def _remember_workspace(config: AppConfig, run: Path) -> None:
     )
 
 
+def _remember_single_campaign_view(
+    args: argparse.Namespace, result: Mapping[str, object]
+) -> Path | None:
+    """Make one verified campaign result accessible as bare 'nasolve show'.
+
+    Only a clearly selected single dataset may change machine-local workspace
+    convenience state. Scientific plans, runs, checkpoint selection and
+    multi-dataset batch behavior are never modified.
+    """
+    if getattr(args, "no_activate", False) or result.get("integrity") != "OK":
+        return None
+    execution = result.get("execution")
+    if not isinstance(execution, Mapping):
+        return None
+    progress = execution.get("datasets")
+    if not isinstance(progress, list):
+        return None
+    selected = args.dataset
+    if selected is None:
+        planned = result.get("datasets")
+        if not isinstance(planned, list) or len(planned) != 1:
+            return None
+        selected_id = planned[0].get("id") if isinstance(planned[0], Mapping) else None
+    elif len(selected) == 1:
+        selected_id = selected[0]
+    else:
+        return None
+    if not isinstance(selected_id, str):
+        return None
+    matches = [
+        item for item in progress
+        if isinstance(item, Mapping) and item.get("id") == selected_id
+    ]
+    if len(matches) != 1:
+        return None
+    item = matches[0]
+    if item.get("status") not in {"PAUSED", "SOLVED", "AWAITING_INSPECTION"}:
+        return None
+    if item.get("integrity", "OK") != "OK":
+        return None
+    candidate = item.get("run")
+    if not isinstance(candidate, str):
+        return None
+    relative = Path(candidate)
+    if (
+        relative.is_absolute() or len(relative.parts) != 3
+        or relative.parts[:2] != (selected_id, "AutoMR")
+        or not relative.parts[2].startswith("run_")
+        or not relative.parts[2][4:].isdigit()
+    ):
+        return None
+    root = args.root.expanduser().resolve()
+    actual = root / relative
+    report_path = actual / "report.json"
+    try:
+        # Resolve only an owned, readable run. No scanning other campaigns,
+        # fallback to an older result, or silent path substitution.
+        if actual.resolve().parent != (root / selected_id / "AutoMR").resolve():
+            return None
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        if (
+            not isinstance(report, Mapping)
+            or report.get("workflow") != "automr"
+            or report.get("stage") not in {"phaser", "postmr", "autosol", "autorefine"}
+        ):
+            return None
+    except (OSError, ValueError, TypeError):
+        return None
+    config = load_config()
+    _remember_workspace(config, actual)
+    save_config(config)
+    return actual
+
+
 def _workspace(args: argparse.Namespace) -> int:
     try:
         config = load_config()
@@ -422,6 +500,14 @@ def _campaign(args: argparse.Namespace) -> int:
     except CampaignError as exc:
         print(f"Campaign error: {exc}", file=sys.stderr)
         return 2
+    activated_view: Path | None = None
+    if args.campaign_action == "run":
+        try:
+            activated_view = _remember_single_campaign_view(args, result)
+        except (OSError, ConfigError, ValueError) as exc:
+            # A machine-local shortcut must never retroactively fail an
+            # already completed scientific stage.
+            print(f"Workspace view not updated: {exc}", file=sys.stderr)
     counts = result["counts"]
     execution = result.get("execution")
     if args.json:
@@ -517,6 +603,8 @@ def _campaign(args: argparse.Namespace) -> int:
                 print(f"    {issue}")
         for issue in result.get("integrity_issues", []):
             print(f"  {issue}")
+        if activated_view is not None:
+            print("Active Coot view: ./nasolve show (selected run's current checkpoint)")
     flagged = counts["blocked"] or result.get("integrity") == "DRIFT"
     if execution is not None:
         flagged = flagged or any(
@@ -1231,7 +1319,14 @@ def _show(args: argparse.Namespace) -> int:
     try:
         config = load_config()
         if args.target is None:
-            run = _workspace_run(None, config)
+            if config.workspace.run:
+                run = _workspace_run(None, config)
+            else:
+                # Dataset-only workspace selection is a valid zero-path view.
+                dataset = _workspace_dataset(
+                    None, config, current_directory_fallback=False
+                )
+                run = resolve_run("last", dataset)
         else:
             dataset = args.dataset
             if str(args.target).casefold() == "last" and dataset is None:
