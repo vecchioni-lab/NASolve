@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Updated 2026-10-06. **Finish Pine, merge to main, then make Scout operational.**
+Updated 2026-10-07. **Finish Pine -> main -> blind AlphaFold geometry campaign -> Scout.**
 This is the single current-state and close-out entry point. Subsystem documents
 own detailed contracts; history owns the earlier experiments and superseded
 plans. Do not load every historical handoff for an ordinary implementation turn.
@@ -19,18 +19,24 @@ plans. Do not load every historical handoff for an ordinary implementation turn.
   ferries at our discretion. Preserve scientific artifacts and local-only work;
   mergeability alone does not satisfy the evidence gates below.
 
-## Active local recovery and continuity
+## Current implementation slice and continuity
 
-The full-auto/component candidate and its Doctor fixture repair passed the
-local failing-test, focused and full suites. Exact commands/results are in
-[the recovery checkpoint](full-auto-patch-handoff.md); verify the published head
-from its receipt rather than reapplying either ferry. Native full-auto and
-DiU/5CM results remain pending. No native run starts in the recovery.
+The phase-use reporting patch is published as debd4af; returned tests were
+109 focused and 878 full tests + 224 subtests. Full-auto has four native
+numerical solutions, including EA's retained MR review, DiU iodine handling,
+Q5cm preparation and QiC's provisional refine-002 selection. Exact evidence
+and the distinctions from older guarded runs are in the
+[full-auto checkpoint](full-auto-patch-handoff.md); old recovery ferries are done.
 
-The [metal-restraint builder](metal-restraint-builder.md) is a new planned
-GUI/small-window recipe authoring tool using canonical workbook atom roles.
-It is not implemented and does not add a Pine merge gate or displace Scout.
-Its numerical examples will come from Simon.
+P2 preferred-component preparation is now implemented in the candidate:
+1W5 -> DZ and 1WA -> DP with explicit mapped derivatives, a pinned DP resource
+and source/target provenance. Full-checkout/native confirmation is the next
+ferry, not yet claimed. See [component preparation](modified-component-preparation.md#standing-preferred-component-preparation-p2).
+Do not rerun the successful GZ11/full-auto cohorts for this separate slice.
+
+The [metal-restraint builder](metal-restraint-builder.md) remains planned work,
+not a merge gate. Post-Pine ordering is now the blind geometry campaign first,
+then Scout; details below. No new study files have been read or run here.
 
 ## New authorized slice: recipe-controlled full auto
 
@@ -59,7 +65,7 @@ Existing intermediate hops and P2 conversion boundaries remain unchanged.
 | Category-based intermediate mutation hops | Included in passing dictionary-patch regression and the fresh successful GZ11 workflow. Do not infer new live validation for every category. |
 | Effective dictionary compatibility and DZ (`66cb7a2`) | 151 focused tests and 771 full tests + 224 subtests passed. Fresh ordinary GZ11 reached `SOLVED` at `run_002/refine-001`; Simon subsequently inspected that model/maps in Coot and reported a successful visual result. Detailed effective-bundle receipts and numerical local-geometry values remain unreturned. |
 | Nine-member campaign after the GZ11 retry | Five numerical solutions, two preparation blockers and two inspection cases; frozen input/member integrity OK. P4 Doctor/resume coverage is not yet complete. |
-| Component normalization | Standing `1W5 -> DZ` and `1WA -> DP` conversions and the DP resource remain pending; dictionary compatibility does not implement them. |
+| Component normalization | P2 candidate implements 1W5 -> DZ / 1WA -> DP with DP resource and mapped derivatives; full-checkout and native validation pending. |
 | Registration/Scout | Merged backend primitives and validated design-aware shadow proposal; not yet the operational AutoMR/PostMR decision path. |
 
 Published baseline evidence: dictionary patch `66cb7a2` passed 151 focused
@@ -155,7 +161,7 @@ change checkpoint approval state.
 | Gate | Completion evidence |
 | --- | --- |
 | **P1 — Effective dictionary compatibility** | Generalized input/effective torsion handling and authoritative selection are implemented and regression-tested; fresh GZ11 numerical execution and user visual inspection passed. Check its exact effective-bundle receipt alongside P3. |
-| **P2 — Specific component normalization** | Implement standing `1W5 -> DZ` and `1WA -> DP` preparation with target definitions, atom correspondence and conversion provenance. Preserve raw/frozen originals. |
+| **P2 — Specific component normalization** | Validate the implemented candidate in focused/full regression and native preparation. Confirm raw preservation, target definitions, mapped atoms and conversion provenance. |
 | **P3 — Normal GZ11 live path** | Fresh ordinary execution passed on 66cb7a2; the requested G/Z model/map visual inspection subsequently passed according to Simon. Complete exact identity/force/effective-input and numerical geometry evidence from saved reports; no repeated execution or visual check required. |
 | **P4 — Nine-member TestSets campaign** | Account for every member and validate integrity/resume/isolation/current-pointer behavior through campaign-owned Doctor; Guarded native QiC transition passed; now validate the newly requested full-auto policy and the DiU/5CM fixes under a new frozen recipe. Legitimate REVIEW/NO_SOLUTION/BLOCKED outcomes are not failures to manufacture away. |
 | **P5 — Prepared-nonstandard live campaign** | Real 3-5-member geometry-diverse prepared-PDB + exact-sequence campaign with Phenix/Coot, ownership and review/block checks. W-only or simulated workers do not substitute. |
@@ -167,24 +173,54 @@ Scout runtime promotion, Topo Net/Surgeon, donor rescue, new providers, generic
 MTZ/SCA input, workflow-recipe builders and a universal chemistry library are
 not Pine merge prerequisites. Keep the scope finite and changes explicit.
 
-## After Pine: operational Scout
+## After Pine: blind AlphaFold geometry campaign, then Scout
 
-**Next after returning to main: operational CLI/AutoMR/PostMR Scout, without
-waiting for GUI, Topo Net or donor rescue.** The [registration contract](construct-registration.md),
+Simon requested this ordering on 2026-10-07: **finish Pine -> return to main ->
+prospective blind AlphaFold/PDB + sequence campaign -> operational Scout**.
+He has diffraction datasets, predicted models and sequences but does not know
+the experimental answers. No files or model variants for that study have been
+inspected or selected at this checkpoint.
+
+Use the existing prepared-nonstandard route first: explicit dataset-local PDB,
+complete chain-labelled sequences, and the ordinary frozen diffraction inputs.
+Scout is not a prerequisite when the supplied model and target have usable
+one-to-one chain/residue correspondence. Check that correspondence rather than
+assuming it from AlphaFold's name. If registration, recuts or extra copies are
+actually needed, report that specific limitation; do not introduce Scout merely
+because the overall geometry is new. Correct sequence is not evidence of the
+crystal conformation or asymmetric-unit composition.
+
+Before freezing the blind campaign, inspect file format/conversion, chain IDs,
+numbering, polymer identity, completeness, confidence-versus-B-field meaning,
+and the existing AutoPROC/STARANISO/Free-R input requirements. Preserve raw
+prediction/confidence files. Do not apply a protein-specific pLDDT trimming rule
+to nucleic acids without checking its applicability. Any preparation is a
+recorded derivative, not an edit of the original prediction.
+
+Freeze the candidate set and recipe before looking at MR/refinement outcomes;
+keep all successes/reviews/failures and unchanged Free-R provenance. No solved
+answer model, hand-tuned target coordinates or outcome-driven choice is slipped
+into the initial blind baseline. Later hypotheses get explicit new attempts.
+Numerical success is not independent truth validation; inspect density and
+geometry without claiming that unknown answers have been verified.
+
+This additional post-Pine experiment does not become a new Pine merge gate or
+silently waive the existing small P5 prepared-model smoke check. Do not turn it
+into a prerequisite for shipping the completed bounded Pine work. The existing
+[prepared input contract](campaign-planning.md#prepared-nonstandard-providers)
+remains the starting point; no AlphaFold runtime adapter is claimed here.
+
+<a id="after-pine-operational-scout"></a>
+### Operational Scout follows the blind baseline
+
+The [registration contract](construct-registration.md),
 [registration intent](construct-registration-intent.json) and
-[live-check queue](construct-registration-live-checks.md) remain authoritative.
-This priority statement does not grant runtime authority.
-
-1. Cheap non-mutating preflight on actual frozen candidates/constructs, persisted
-   evidence and CLI/campaign reporting; ordinary W remains simple.
-2. Post-MR registration and logical-site handoff under reviewed application
-   rules; proposals, accepted mappings and coordinate edits stay distinct.
-3. Ordinary/renamed/renumbered-W and ambiguity live checks plus provenance,
-   continuation and regression before claiming operational coverage.
-
-Reuse provider-bound zero-unexplained uniqueness, not hidden similarity ranking
-or unbound caller dictionaries. Broader ASU cuts/multiplicity/topology/rescue
-keep their own gates. Design-before-GUI is not a prerequisite for CLI Scout.
+[live-check queue](construct-registration-live-checks.md) remain the technical
+basis. Prioritize ordinary CLI/AutoMR preflight, persisted evidence and the
+post-MR logical-site handoff, without waiting for the GUI or metal editor.
+Proposal, accepted mapping and coordinate edit stay distinct. Preserve the
+provider-bound zero-unexplained rule and ordinary/renamed/ambiguous live checks.
+This reprioritization does not promote Scout into runtime authority.
 
 ## Working and documentation discipline
 

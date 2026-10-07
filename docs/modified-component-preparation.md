@@ -1,24 +1,10 @@
 # Modified-component preparation
 
-## DiU and 5CM follow-up
-
-See the [full-auto/component contract](campaign-full-auto.md#diu-iodine-and-5cm).
-The DiU failure was NASolve stripping a meaningful prime from C5', not an
-8.843-A bond in the ligand dictionary. Matching-quote removal fixes the lookup
-without changing supplied coordinates or widening the guard. 5CM receives a
-pinned local parameterized dictionary, retains its 5CM/C identity semantics and
-uses DC as the construction hop. New 5CM phosphate profiles use explicit scope
-and verified connectivity; old profiles retain their recorded scope. Native
-DiU/5CM results remain pending, distinct from the successful GZ11 check.
-
-
-Status: category hops and the effective-dictionary/DZ patch are implemented.
-Simon's ferry passed **151 focused tests and 771 full tests plus 224 subtests**,
-then published the tested code as `66cb7a2`. A fresh ordinary campaign-owned
-GZ11 retry on that checkout now reached **SOLVED**, `run_002/refine-001`.
-Detailed receipt/local-geometry and model/map inspection remain pending;
-`1W5 -> DZ` / `1WA -> DP` conversions are separate unimplemented work.
-Current evidence and next action are in the [development handoff](development-handoff.md).
+Current status and exact evidence are in the [development handoff](development-handoff.md)
+and [full-auto checkpoint](full-auto-patch-handoff.md). DZ and the category
+hops passed the ordinary GZ11 path and Simon's visual check. DiU and 5CM now
+have native full-auto execution evidence. P2 below is implemented in a candidate
+and still requires returned full-checkout/native validation.
 
 ## Intermediate construction hops
 
@@ -48,9 +34,8 @@ N9 proposal. No NARestraints workbook data or pairing class is rewritten.
 
 ## Component identity and the DZ resource
 
-The requested standing conversions **1W5 -> DZ** and **1WA -> DP** remain
-pending: shipping DZ and choosing a DC intermediate do not implement source
-component conversion. Raw input and historical identities remain unchanged.
+The standing conversions are specified below under P2. Raw input and
+historical identities remain unchanged.
 
 DZ is supplied as a local parameterized resource from MonomerLibrary
 `d/DZ.cif`, Git blob `9e6151658d2887ef3902d170c77752ccc90159d4`.
@@ -64,6 +49,71 @@ pH-dependent protonation correction or final structural approval.
 DZ keeps final identity DZ, NARestraints class Z, and DC as its construction
 scaffold. The explicit `force = G:C` override still affects only the selected
 inter-residue pairing recipe.
+
+## Standing preferred-component preparation (P2)
+
+The candidate implements **1W5 -> DZ always** and **1WA -> DP** for new PostMR
+preparations. It is not pH-conditioned and does not rewrite a completed run.
+Raw PDB/configuration/Phaser/sequence-family targets stay frozen; executable
+prepared targets and the conversion receipt are separate from those originals.
+A source at a site explicitly targeted for a different residue still undergoes
+that requested mutation; neither path is allowed to leave 1W5/1WA as a final
+prepared target. No new 8RO/1W0/DE/DF equivalence is introduced.
+
+For an already placed source component, the reviewed correspondence retains
+all mapped heavy-atom coordinates, occupancy, B values, sites and alternates.
+Each source/target pair has the same 23 heavy-atom names/elements and adjacency.
+Phosphate aliases O1P/O2P/O3P map to OP1/OP2/OP3. This is an explicit atom map,
+not N9-based scaffold inference or general tautomer-equivalence detection.
+
+Source hydrogen atoms and formal-charge annotations are not carried into the
+new chemical state. Source intra-residue CONECT records are removed in favor
+of the target dictionary; external heavy-atom links survive. Coordinate-linked
+ANISOU/SIGATM/SIGUIJ/TER/LINK labels follow the conversion. Removed metadata is
+accounted for and the complete source stays preserved. Missing atoms are not
+invented; ordinary native preparation retains authority over usable geometry.
+Unknown heavy-atom correspondence, collisions and unsupported mirrored-source
+conversion are affected-dataset errors, not guesses or campaign-wide stops.
+
+The target dictionary supplies bond orders and numerical geometry. In the
+reviewed source definitions, 1W5 has C2-O2 SINGLE and DZ has C2-O2 DOUBLE;
+1WA has C6-O6 SINGLE and DP has C6-O6 DOUBLE. The CCD also distinguishes 1WA's
++2 formal charge from DP's neutral component. Therefore this policy is more
+than renaming a residue and is not a blanket claim that these identifiers are
+chemically synonymous. No source protonation is inferred from pH.
+
+If the site needs construction from a different residue, existing Coot parent
+hops remain: DZ uses DC, DP uses DG. All other category hops stay unchanged.
+NARestraints still uses its target Z/P categories and mapped atom-role columns;
+`force = G:C` remains only an explicitly requested inter-residue recipe.
+
+DP is supplied from MonomerLibrary d/DP.cif, exact source Git blob
+`50218f6ebd8ccaa5582c32286c675f466d8a6d0d`. Only the component group is adapted
+from NON-POLYMER to DNA. Atom names, numerical geometry, planes and chirality
+are unchanged; DP.provenance.json records source/packaged hashes. No runtime
+fetch is needed. The source group can be reconstructed to verify the Git hash.
+DP uses the existing content-based torsion adapter, effective-dictionary
+precedence and connectivity-selected phosphate profile; legacy frozen 1AP
+profiles keep their old scope.
+
+`postmr.component_normalization` records policy preferred-DZ-DP-v1, requested
+versus prepared targets, the actual coordinate conversion and exact target
+dictionaries. Existing mutation_actions record final prepared identities for
+subsequent validation. Source/derivative references are run-anchored and hashed.
+Old reports without this field are not reinterpreted, and source dictionaries,
+raw MR models, observations/Free-R and old checkpoints are not overwritten.
+
+Validation: source-level conversion/preservation tests and actual DP/DZ
+parameterization/adaptation checks have passed in the assistant environment.
+Full-checkout tests and native DP/alias preparation remain pending until the
+local ferry returns. Tests include the ordinary PostMR path with fixture
+ReadySet, explicit and ambient aliases, frozen intent, effective target CIFs,
+linked phosphate and downstream model validation. Do not claim native coverage
+or structural approval merely by implementing the conversion.
+
+Source review: MonomerLibrary 1W5 blob b309086c6d215b6ae48d7beb4654b9e278633005;
+1WA blob c4d547e90bbe99595e44d674248a3613350dc54d. Pinned target DP and existing
+DZ definitions are compared by atom identity/adjacency, not numerical equality.
 
 ## Effective dictionary preparation
 
@@ -125,28 +175,39 @@ internal bond. A numerical pass is not structural approval.
 
 ## Validation and next action
 
-The original isolated source harness passed 34 tests using real Bio.PDB and
-stubs for unrelated imports. Simon then returned full-checkout regression:
-151 focused tests in 3.66 s; 771 tests + 224 subtests in 66.78 s. The tested
-working tree was committed as `66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08` and
-pushed to Pine. Coverage includes construction hops, representation,
-unequal-sigma receipts, source preservation, unknown-case continuation, DZ
-provenance/topology, effective precedence, legacy profile scope and
-fixture-backed PostMR/checkpoint/view/relocation. These are local tests, not CI.
+Use the current handoff and P2 section above. Completed native GZ11/full-auto
+runs stay preserved; a new conversion test must not overwrite or relabel them.
+Focused/full regression precedes publication of this candidate. A native alias
+preparation/DP refinement check remains distinct from the earlier DZ test.
 
-**Native workflow result:** on printed checkout `66cb7a2`, ordinary campaign
-retry/run for GZ11 proceeded through preflight, Phaser, PostMR, the AutoSol gate
-and AutoRefine to SOLVED at campaign-owned `attempt_002`,
-`GZ11/AutoMR/run_002`, checkpoint `refine-001`. Frozen input and member integrity
-were OK. The previous missing-resource/torsion execution blocker no longer
-prevents this workflow from completing numerical refinement. The run used no
-temporary registry injection. The exact campaign root and evidence limits are
-recorded in the handoff and machine intent, rather than repeated here.
+### P2 fixture geometry recovery (2026-10-07)
 
-The returned status is not a detailed component audit: exact R values, final
-atom inventory, force application, effective-CIF receipt, local geometry and
-model/map inspection still need reading from the successful outputs. It also
-does not identify whether the AutoSol stage ran its engine or skipped it.
-Inspect the existing successful checkpoint rather than rerunning GZ11. Do not
-confuse it with the earlier blocked standalone run_002 or the temporary probe.
-The separate component conversions and other campaign blockers remain pending.
+The first P2 focused run returned 4 failed, 268 passed and 20 subtests in
+22.20 s, before any full-suite run or publication. The four new PostMR tests
+placed the preceding O3' at P + (-1.6, 0, 0), irrespective of monomer orientation.
+That synthetic source already failed the unchanged phosphate guard at 28.5
+(DZ fixture) or 29.8 degrees (DP fixture), before component normalization.
+The same angles persisted after conversion: conversion did not create them.
+
+The fixture now places incoming O3' at 1.6 A along the dictionary P-to-OP3
+ray. This is test-data construction, not an automatic repair of real structures
+or a change to the supplier dictionary. New tests check valid source geometry,
+unchanged geometry after normalization and continued rejection of the original
+bad placement. Existing PostMR integration assertions remain intact.
+An isolated check used the exact phosphate.py Git blob
+ca5def196ae0a53de1b19e8e625b914b3e8b841b: 34 conversion cases and four new
+geometry cases passed (38 total). This is not full-checkout/native validation.
+The recovery retains the failed parent receipt/log and uses a separate child
+receipt for focused/full-suite validation and gated publication. No production
+source or dictionary is changed by this fixture correction. The later returned
+regression section records the complete-checkout result only after it passes.
+
+### Returned local P2 regression
+
+Tested source based on e13df41e027942d855475fa882d882237cbe5e1e.
+focused: **276 passed, 20 subtests passed in 20.59s**.
+
+full: **927 passed, 224 subtests passed in 78.72s (0:01:18)**.
+
+Full-checkout regression is complete for these bytes. Native DP/alias
+preparation remains pending; no scientific run or main merge was launched.

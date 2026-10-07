@@ -181,13 +181,14 @@ passed ordinary execution and Simon's visual Coot check; no repeated lap is
 needed. Guarded QiC run_002 recommended refine-002 while current stayed postmr;
 that is distinct from the NEW campaign's provisional automatic selection.
 
-Next code slice is the existing P2 standing preparation conversions:
-1W5->DZ and 1WA->DP, including the usable DP resource and explicit atom
-correspondence/provenance. These remain unimplemented; shipping target
-resources or choosing a construction intermediate does not implement them.
+The P2 candidate now implements standing 1W5->DZ and 1WA->DP preparation,
+including the DP resource and mapped-derivative provenance. Returned full-checkout
+and native conversion validation remain pending; this is not another full-auto
+rerun. The component contract owns the exact P2 behavior.
 Complete the remaining prepared-nonstandard and campaign inspection/resume
 checks and final-candidate review under the finite Pine gates, merge to main,
-then operational Scout. No main merge is authorized by this note.
+then Simon's new blind AlphaFold/PDB + sequence geometry campaign, followed
+by operational Scout. No main merge is authorized by this note.
 
 The [metal-restraint builder](metal-restraint-builder.md) and its
 [machine intent](metal-restraint-builder-intent.json) are published future

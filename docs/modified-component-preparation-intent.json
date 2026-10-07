@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
-  "date": "2026-10-06",
-  "status": "DICTIONARY_REGRESSION_AND_GZ11_LIVE_VISUAL_CHECK_PASSED_DETAILED_RECEIPTS_PENDING",
+  "date": "2026-10-07",
+  "status": "P2_FULL_CHECKOUT_REGRESSION_PASSED_NATIVE_PENDING",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
   "work_queue_ref": "docs/development-handoff.md#pine-close-out",
-  "next_project_priority_ref": "docs/development-handoff.md#after-pine-operational-scout",
+  "next_project_priority_ref": "docs/development-handoff.md#after-pine-blind-alphafold-geometry-campaign-then-scout",
   "history_snapshot": "docs/history/modified-component-preparation-intent-2026-10-01.json",
   "scope": "Component development policy and returned validation evidence. No runtime schema migration or gate relaxation; detailed status and ordering remain in the handoff.",
   "user_requested_component_normalization": [
@@ -18,8 +18,10 @@
       "user_clarification": "we want 1W5 to go to DZ always",
       "ph_conditioned": false,
       "direction_settled": true,
-      "implementation_status": "NOT_IMPLEMENTED_PENDING_REVIEW",
-      "chemical_equivalence_validated": false
+      "implementation_status": "FULL_CHECKOUT_REGRESSION_PASSED_NATIVE_PENDING",
+      "chemical_equivalence_validated": false,
+      "policy": "preferred-DZ-DP-v1",
+      "source_and_frozen_intent_preserved": true
     },
     {
       "source_component": "1WA",
@@ -28,8 +30,10 @@
       "user_clarification": "1WA for DP",
       "source_identity_status": "USER_IDENTIFIED",
       "direction_settled": true,
-      "implementation_status": "NOT_IMPLEMENTED_PENDING_REVIEW",
-      "chemical_equivalence_validated": false
+      "implementation_status": "FULL_CHECKOUT_REGRESSION_PASSED_NATIVE_PENDING",
+      "chemical_equivalence_validated": false,
+      "policy": "preferred-DZ-DP-v1",
+      "source_and_frozen_intent_preserved": true
     }
   ],
   "construction_hop_policy": {
@@ -423,5 +427,78 @@
       }
     }
   },
-  "metal_restraint_builder_ref": "docs/metal-restraint-builder-intent.json"
+  "metal_restraint_builder_ref": "docs/metal-restraint-builder-intent.json",
+  "p2_component_preparation": {
+    "status": "FULL_CHECKOUT_REGRESSION_PASSED_NATIVE_PENDING",
+    "implementation": "src/nasolve/component_normalization.py",
+    "targets": {
+      "1W5": "DZ",
+      "1WA": "DP"
+    },
+    "ph_conditioned": false,
+    "raw_sources_and_old_reports_changed": false,
+    "intermediate_hops_changed": false,
+    "coordinate_map": "explicit same heavy-atom identities; phosphate spelling aliases only",
+    "source_hydrogens_and_charge_carried_forward": false,
+    "dictionary_authority": "parameterized target definition",
+    "dp_source_git_blob": "50218f6ebd8ccaa5582c32286c675f466d8a6d0d",
+    "dp_group_adaptation": "NON-POLYMER to DNA only",
+    "runtime_download": false,
+    "native_validation": false,
+    "local_validation": [
+      {
+        "label": "focused",
+        "summary": "276 passed, 20 subtests passed in 20.59s",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_component_normalization.py",
+          "tests/test_component_normalization_postmr.py",
+          "tests/test_construction_scaffolds.py",
+          "tests/test_dictionary_compatibility.py",
+          "tests/test_dictionary_postmr.py",
+          "tests/test_linked_phosphate_profile.py",
+          "tests/test_postmr.py",
+          "tests/test_sequence_family_integration.py",
+          "tests/test_campaign_full_auto_pipeline.py",
+          "tests/test_phase_usage_audit.py"
+        ],
+        "log_sha256": "d65993c11a3909c189d753daeaa984cccc8cf2e34bd296bf3b7e09a86829fe77"
+      },
+      {
+        "label": "full",
+        "summary": "927 passed, 224 subtests passed in 78.72s (0:01:18)",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q"
+        ],
+        "log_sha256": "313c97f0629190baadee3c4b5da7649d373c48991cc92af4167b5f362967a321"
+      }
+    ],
+    "tested_base": "e13df41e027942d855475fa882d882237cbe5e1e"
+  },
+  "post_pine_order": [
+    "merge-Pine-and-return-to-main",
+    "blind-AlphaFold-geometry-campaign",
+    "operational-Scout"
+  ],
+  "blind_geometry_campaign": {
+    "status": "USER_REQUESTED_NOT_RUN_FILES_NOT_INSPECTED",
+    "inputs_reported_by_user": [
+      "diffraction datasets",
+      "AlphaFold PDBs",
+      "sequences"
+    ],
+    "experimental_answers_known_to_user": false,
+    "route": "prepared-nonstandard first; explicit chain-labelled targets",
+    "scout_prerequisite": "only if actual correspondence/registration needs it, not for model provenance alone",
+    "new_pine_merge_gate": false,
+    "existing_P5_smoke_gate_waived": false,
+    "preserve_blind_baseline": true,
+    "details_ref": "docs/development-handoff.md#after-pine-blind-alphafold-geometry-campaign-then-scout"
+  }
 }

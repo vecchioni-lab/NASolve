@@ -21,6 +21,11 @@ from .curated_ligands import (
     ligand_dictionary,
     validate_ligand_dictionary,
 )
+from .component_normalization import (
+    POLICY as COMPONENT_POLICY, PREFERRED_COMPONENTS,
+    normalize_model as normalize_component_model, preparation_targets,
+    target_changes as component_target_changes, validate_preferred_dictionary,
+)
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
 from .model_assessment import file_sha256
 from .phosphate import PhosphateError, sanitize_phosphates, requested_op3_sites
@@ -336,12 +341,30 @@ def build_mutation_plan(
     report: Mapping[str, object], model: Path, *, run_directory: Path | None = None,
 ) -> tuple[MutationAction, ...]:
     actions: list[MutationAction] = []
-    for site, target in _target_sites(report, model, run_directory=run_directory).items():
+    raw_targets = _target_sites(report, model, run_directory=run_directory)
+    try:
+        targets = preparation_targets(raw_targets, model)
+    except (OSError, UnicodeError, ValueError) as exc:
+        raise PostMRPreparationError(f"Component target preparation failed: {exc}") from exc
+    # The frozen request stays raw; these are the explicitly normalized targets
+    # for a NEW PostMR derivative. Existing completed reports are not re-read
+    # through this policy during checkpoint inspection or refinement.
+    inputs = report.get("inputs")
+    if (isinstance(inputs, Mapping) and inputs.get("mirror") is True
+            and (component_target_changes(raw_targets) or any(
+                residue_name(model, site) in PREFERRED_COMPONENTS for site in targets))):
+        raise PostMRPreparationError("Preferred-component conversion of mirrored models needs a reviewed L-sugar route")
+    for site, target in targets.items():
         current = residue_name(model, site)
         parent_code: str | None = None
         deposition_code: str | None = None
         if current == target:
             method = "none"
+        elif PREFERRED_COMPONENTS.get(current) == target:
+            # Reviewed identity heavy-atom map; no canonical scaffold hop is
+            # needed to replace a source chemical definition already placed.
+            method = "component-normalization"
+            deposition_code = target
         elif target in _MIRRORED_CANONICAL_CODES.values():
             raise PostMRPreparationError(
                 f"Mirrored mutation {site} {current}->{target} requires the guarded "
@@ -1489,7 +1512,8 @@ def prepare_postmr(
         else build_mutation_plan(report, original)
     )
     target_ligand_codes = sorted({
-        action.after for action in actions if action.method == "coot-parent-overlap"
+        action.after for action in actions
+        if action.method in {"coot-parent-overlap", "component-normalization"}
     })
     ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
     ligand_sources: dict[str, Path] = {}
@@ -1500,6 +1524,35 @@ def prepare_postmr(
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
         ligand_sources[code] = dictionary
+
+    raw_targets = _target_sites(report, original, run_directory=run)
+    requested_changes = component_target_changes(raw_targets)
+    conversions = {action.site: (action.before, action.after) for action in actions
+                   if action.method == "component-normalization"}
+    component_record = None
+    coot_input = original
+    if requested_changes or conversions:
+        component_record = {
+            "schema_version": 1, "policy": COMPONENT_POLICY,
+            "requested_target_changes": requested_changes,
+            "coordinate_conversion": None,
+            "frozen_input_intent_unchanged": True,
+            "ph_conditioned": False,
+        }
+    if conversions:
+        coot_input = model_dir / "component_normalized.pdb"
+        try:
+            for target in sorted({after for before, after in conversions.values()}):
+                validate_preferred_dictionary(target, ligand_sources[target])
+            converted = normalize_component_model(original, coot_input, conversions)
+        except (OSError, UnicodeError, ValueError) as exc:
+            raise PostMRPreparationError(f"Component normalization failed: {exc}") from exc
+        assert component_record is not None
+        component_record["coordinate_conversion"] = {
+            **converted,
+            "source": frozen_reference(original, run),
+            "output": frozen_reference(coot_input, run),
+        }
 
     coot_actions = tuple(
         action
@@ -1531,7 +1584,7 @@ def prepare_postmr(
             action.after: ligand_sources[action.after] for action in overlap_actions
         }
         _, coot_log = _run_coot(
-            original,
+            coot_input,
             raw_after_coot,
             coot_actions,
             coot_executable,
@@ -1562,7 +1615,7 @@ def prepare_postmr(
         else:
             shutil.copyfile(geometry_after_coot, after_coot)
     else:
-        shutil.copyfile(original, after_coot)
+        shutil.copyfile(coot_input, after_coot)
 
     terminal_ready = model_dir / "terminal_phosphate_model.pdb"
     try:
@@ -1931,6 +1984,14 @@ def prepare_postmr(
         "prepared_model": str(final_model),
         "prepared_sha256": file_sha256(final_model),
     }
+    if component_record is not None:
+        normalized_codes = {item["prepared_code"] for item in requested_changes}
+        normalized_codes.update(after for before, after in conversions.values())
+        component_record["target_dictionaries"] = {
+            code: frozen_reference(restraints_dir / "source_dictionaries" / f"{code}.cif", run)
+            for code in sorted(normalized_codes)
+        }
+        postmr_payload["component_normalization"] = component_record
     if profile is not None:
         postmr_payload["linked_phosphate_profile"] = profile
     # These lists are independent of the linked-phosphate profile. A native,

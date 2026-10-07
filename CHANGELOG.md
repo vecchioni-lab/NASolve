@@ -1,5 +1,14 @@
 # Changelog
 
+## P2 preferred-component preparation (candidate)
+
+- Normalize 1W5 to DZ and 1WA to DP only in new prepared derivatives; keep raw inputs and old checkpoints.
+- Supply pinned parameterized DP, preserve mapped heavy-atom placement, and record target chemistry/provenance.
+- Retain existing category hops, force semantics, dictionary compatibility and legacy phosphate scopes.
+- Record the user-requested post-Pine blind AlphaFold geometry campaign before operational Scout.
+- Full-checkout and native conversion validation remain pending until returned.
+
+
 All notable user-visible, compatibility, schema, and reproducibility changes
 to NASolve are recorded here.
 

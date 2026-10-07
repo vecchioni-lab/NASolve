@@ -46,6 +46,14 @@ class CuratedLigand:
 
 
 CURATED_LIGANDS: dict[str, CuratedLigand] = {
+    "DP": CuratedLigand(
+        code="DP", dictionary_filename="DP.cif",
+        accepted_model_labels=("DP",), narestraints_label="DP",
+        description="P nucleotide; reviewed parameterized target for 1WA preparation",
+        parent_code="DG", deposition_code="DP",
+        required_bonds=(("C1'", "N9"), ("C6", "O6"), ("C2", "N2"),
+                        ("C4", "N5"), ("N5", "C7"), ("C7", "C8"), ("P", "O5'")),
+    ),
     "DZ": CuratedLigand(
         code="DZ",
         dictionary_filename="DZ.cif",
@@ -388,6 +396,9 @@ def validate_curated_dictionary(code: str, path: Path) -> None:
         ligand = CURATED_LIGANDS[code]
     except KeyError as exc:
         raise KeyError(f"No curated NASolve ligand is registered for {code}") from exc
+    if code == "DP":
+        from .component_normalization import validate_preferred_dictionary
+        validate_preferred_dictionary(code, path)
     if code == "DZ":
         from .ligand_profiles import validate_dz_dictionary
         validate_dz_dictionary(path)
