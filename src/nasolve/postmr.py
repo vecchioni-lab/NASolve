@@ -27,6 +27,9 @@ from .component_normalization import (
     target_changes as component_target_changes, validate_preferred_dictionary,
 )
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
+from .frame_secondary_overlay import (
+    FrameSecondaryOverlayError, prepare_frame_modified_secondary_overlay,
+)
 from .model_assessment import file_sha256
 from .phosphate import PhosphateError, sanitize_phosphates, requested_op3_sites
 from .backbone import (
@@ -1748,8 +1751,17 @@ def prepare_postmr(
         pair_file = restraints_dir / "Std_padd.txt"
         secondary = restraints_dir / spec.secondary_structure_file
         shutil.copyfile(pair_source, pair_file)
-        shutil.copyfile(secondary_source, secondary)
         _rewrite_codes(prepared, compatibility, compatibility_codes)
+        try:
+            secondary_overlay = prepare_frame_modified_secondary_overlay(
+                prepared, compatibility, secondary_source, secondary, pair_file,
+                patch_records=_patch_narestraints_records,
+            )
+        except (FrameSecondaryOverlayError, ValueError, OSError) as exc:
+            raise PostMRPreparationError(
+                f"Modified W secondary-structure chemistry is not reviewable: {exc}"
+            ) from exc
+        narestraints_report["frame_secondary_overlay"] = secondary_overlay
         narestraints = restraints_dir / "narestraints_Std_padd.phil"
         try:
             if narestraints_builder is None:
