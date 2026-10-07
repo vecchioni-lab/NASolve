@@ -1,9 +1,10 @@
 # Recipe-controlled full auto
 
-Status: full-auto/component candidate plus Doctor fixture repair passed local
-fixture, focused and full regression. See [recovery evidence](full-auto-patch-handoff.md)
-for exact results and the separate publication step. Native EA/DiU/5CM and
-full-auto selection checks remain pending. Guarded behavior stays the default.
+Status: the full-auto/component patch is published; a fresh native campaign
+returned four SOLVED outcomes (EA, DiU, Q5cm and provisionally selected QiC).
+See [live evidence and reporting follow-up](full-auto-patch-handoff.md) for
+exact checkpoints, test results and remaining inspection/merge checks.
+Guarded behavior stays the default; numerical success is not user approval.
 
 ## Permission to investigate, not automatic approval
 
@@ -87,6 +88,17 @@ AutoSol returned accepted phases, anomalous observations/scattering were used,
 and experimental phases were actually used. These are distinct statements.
 Do not force anomalous mode or invent wavelength/Bijvoet observations when data
 cannot support it; preserve the resulting diagnostic.
+
+Phase-use diagnostics distinguish `experimental_phases_requested` (the option),
+`experimental_phase_inputs_present` (this report names a phase file and four
+nonempty distinct coefficient labels), and `experimental_phases_used` (both).
+They include `phase_file`, `phase_labels` and
+`phase_usage_basis = "reported-refinement-inputs-v1"`. A true option without
+inputs does not mean phases were used; available AutoSol phases do not prove
+a Doctor branch used them. The check reads only the supplied report and makes
+no new scientific decisions or filesystem-existence assumptions. Missing
+legacy input details cannot establish positive use. Historical receipts are
+not rewritten when the reporting code is corrected.
 
 5CM is the requested methyl-deoxycytidine component. The earlier run resolved
 its identity and then failed to locate the local dictionary. Supply the unchanged

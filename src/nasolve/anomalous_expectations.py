@@ -53,6 +53,20 @@ def iodine_refinement_audit(run_report: Mapping[str, Any],
     warnings = list((anomalous.get("iodine_expectations") or {}).get("warnings", []))
     enabled = (refinement.get("refinement") or {}).get("anomalous") is True
     autosol = run_report.get("autosol") or {}
+    # A default permission is not evidence of supplied experimental phases.
+    # Use this exact refinement report, never a parent/AutoSol availability flag.
+    # This is a reporting check, not a new phase-file reader or execution gate.
+    inputs = refinement.get("inputs") or {}
+    phase_requested = (refinement.get("refinement") or {}).get("use_experimental_phases") is True
+    phase_file = inputs.get("phase_file")
+    raw_phase_labels = inputs.get("phase_labels")
+    phase_labels = list(raw_phase_labels) if isinstance(raw_phase_labels, (list, tuple)) else []
+    phase_inputs_present = (
+        isinstance(phase_file, str) and bool(phase_file.strip())
+        and len(phase_labels) == 4
+        and all(isinstance(label, str) and bool(label.strip()) for label in phase_labels)
+        and len({label.strip() for label in phase_labels}) == 4
+    )
     if (expected or iodine) and not enabled:
         warnings.append(
             "Iodine was expected or detected, but this refinement did not use anomalous "
@@ -62,6 +76,11 @@ def iodine_refinement_audit(run_report: Mapping[str, Any],
     return {"schema_version": 1, "expected_atoms": expected, "iodine_candidates": iodine,
             "anomalous_refinement": enabled,
             "autosol_status": autosol.get("status", "NOT_RUN"),
-            "experimental_phases_used": (refinement.get("refinement") or {}).get("use_experimental_phases") is True,
-            "observation_labels": (refinement.get("inputs") or {}).get("observation_labels"),
+            "experimental_phases_requested": phase_requested,
+            "experimental_phase_inputs_present": phase_inputs_present,
+            "experimental_phases_used": phase_requested and phase_inputs_present,
+            "phase_file": phase_file,
+            "phase_labels": phase_labels,
+            "phase_usage_basis": "reported-refinement-inputs-v1",
+            "observation_labels": inputs.get("observation_labels"),
             "warnings": warnings}

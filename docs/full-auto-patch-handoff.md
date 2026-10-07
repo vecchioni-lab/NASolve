@@ -31,7 +31,7 @@ TestSets campaign. SOLVED means numerical workflow success, not user approval.
 | DiU | SOLVED; refine-001 | 0.2072 / 0.2202 |
 | EA | SOLVED; refine-001; original MR_REVIEW retained at TFZ 7.60 | 0.1603 / 0.1776 |
 | Q5cm | SOLVED; refine-001 | 0.2094 / 0.2304 |
-| QiC | SOLVED; Doctor recommendation refine-002 provisionally selected | Selected trial metrics not exported in this receipt |
+| QiC | SOLVED; Doctor recommendation refine-002 provisionally selected | 0.1500 / 0.1502 (subsequent saved-report extraction) |
 
 EA's warning survives in campaign automation and downstream receipts. Its
 Phaser result remains MR_REVIEW; the subsequent refinement passed without
@@ -44,8 +44,10 @@ F(+), SIGF(+), F(-), SIGF(-), with I5 scattering actually in the diagnostic:
 parameter_mode=refine, final f''=4.71288, calculated f''=3.367204189300537,
 occupancy=1.0, B=241.63 and wavelength=1.00744. These are reported values for
 inspection, not a new approval or a reason to invent a chemistry correction.
-The phase-use audit says true, but confirm consumed phase inputs as described
-below before treating that flag alone as proof of experimental-phase use.
+The subsequent read-only extraction confirms phase_option=True with
+inputs.phase_file=overall_best_refine_data.mtz and
+inputs.phase_labels=[HLAM, HLBM, HLCM, HLDM]. DiU supplied experimental phases;
+this conclusion no longer depends on the defective audit Boolean alone.
 
 Q5cm passed ordinary preparation and refinement with the supplied resource;
 the former missing-local-dictionary blocker no longer prevents this workflow.
@@ -58,8 +60,12 @@ the frozen recipe. The selection records its source, reason and
 user_approved=false. Thus current_checkpoint_preserved=false for the complete
 campaign stage and doctor_current_checkpoint_preserved=true are consistent,
 not an integrity failure. The selected-branch audit reports anomalous refinement
-on Bijvoet amplitudes with experimental phases disabled. Do not assign the
-refine-001 statistics, or old guarded Doctor statistics, to selected refine-002.
+on Bijvoet amplitudes with experimental phases disabled. The later read-only
+extraction from this exact selected checkpoint reports Rwork/Rfree
+0.1500/0.1502, recipe RefineDoctor/ML-fixed-scattering, anomalous=True,
+scattering=fixed, phase_option=False, phase_file=None and phase_labels=[].
+These selected-trial numbers were returned separately, not exported in the
+original receipt or borrowed from the older guarded campaign.
 
 The receipt reports final_integrity=OK, changed_baseline_files=[], the new plan
 unchanged, identical initial/final code heads, and no tracked changes afterward.
@@ -78,13 +84,35 @@ refinement.use_experimental_phases, which `autorefine.py` records as the request
 argument. It does not inspect inputs.phase_file or inputs.phase_labels.
 Permission to use phases is not evidence that phases were supplied or consumed.
 
-Next read the saved refinement reports for DiU/EA/Q5cm refine-001 and QiC
-refine-002. Obtain selected-checkpoint R values, phase_file, phase_labels,
-use_experimental_phases and anomalous_parameter_mode. Then make a narrowly
-scoped audit correction with fixtures for requested-but-absent phase inputs,
-actual supplied phase inputs, and Doctor's deliberate no-phase branch. Leave
-old receipts immutable; corrected audits belong in derived evidence or future
-runs. No diagnostic code change has been made by this note.
+Simon has now returned that saved-report extraction (2026-10-07):
+
+| Exact checkpoint | Phase option | Phase file / labels | Anomalous / scattering |
+| --- | --- | --- | --- |
+| DiU refine-001 | true | overall_best_refine_data.mtz; HLAM, HLBM, HLCM, HLDM | true / refine |
+| EA refine-001 | true | None; [] | false / refine (inactive setting) |
+| Q5cm refine-001 | true | None; [] | false / refine (inactive setting) |
+| QiC refine-002 | false | None; [] | true / fixed |
+
+The small reporting correction now distinguishes requested permission, supplied
+phase inputs, and phase usage derived from both. Positive usage requires the
+option plus a nonblank phase-file locator and a complete recorded four-label
+set in THIS refinement report. AutoSol availability, a parent's report or the
+word "refine" in an inactive scattering option cannot substitute for those
+inputs. This is not a new file-integrity or chemistry gate: do not reopen phase
+files merely to interpret historical reports after relocation.
+
+The audit retains its existing schema-1 fields and adds requested/input/basis
+evidence; it does not change AutoRefine parameters, scientific acceptance,
+checkpoint selection, or any stored campaign receipt. Older records can still
+contain the inaccurate Boolean. Preserve them; interpret their actual inputs
+or produce separate derived evidence rather than rewriting checksums/history.
+
+Validation here: 27 new report-only cases (25 failed / 2 passed before; all
+27 pass after) plus 43 existing pure full-auto policy/diagnostic cases: **70
+passed**. Actual fetched source blobs were used in an isolated package;
+this is not the full NASolve suite or another Phenix/Coot execution. The patch
+ferry runs focused and full-checkout regression before commit/push. No new
+scientific run is required for this diagnostic-only correction.
 
 The exported statistics have null bond_rmsd/angle_rmsd; do not interpret null as
 zero. Terminal D:1 geometry audits pass in the initial AutoRefine records, with
