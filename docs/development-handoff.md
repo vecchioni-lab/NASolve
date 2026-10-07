@@ -41,8 +41,20 @@ guanine-like (N1/N2/O6), and an in-memory corrected-role/stacking probe passed.
 The user audited **six correct site identities**, **all three expected
 Z:P H-bond contacts exactly once**, A1AAZ->DF deposition provenance,
 **42/42 sequence identities with zero mismatches** and no geometry override.
-The attempt is paused before AutoSol; refinement and human review still
-pending. A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
+The subsequent AutoSol boundary was correctly skipped (zero anomalous
+candidates, no iodine warning). The first native AutoRefine continuation
+**BLOCKED before refinement**, while Phenix's proactive phosphate geometry
+interpretation rejected stale W-template Saenger class 20 at
+A:19=DF / D:4=DA: `Sorry: Saenger class does not match residue names`.
+The W template also hardcodes Saenger 19 at the modified
+A:7=5CM / C:9=DG pair; enumerate both actual run-local annotations and
+replace incompatible assignments only through an audited, chemically
+reviewed restraint route. This new blocker does **not** invalidate the
+Z:P native PostMR contacts and is not a reason to relax terminal-phosphate
+protection. The run is BLOCKED; refinement and human review remain pending.
+Details and the human-test boundaries are in
+[native modified-pair validation](native-modified-pair-live-validation.md).
+A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
 contains the proposed Z:P and K:X role/stacking corrections, workbook-backed
 B:S/Z:P/K:X/D:T regression and a staging-only native W matrix helper.
 Its [GitHub Actions run 37688052270](https://github.com/vecchioni-lab/NARestraints/actions/runs/37688052270)
