@@ -159,6 +159,37 @@ The campaign is `COMPLETE_WITH_FLAGS` / `BLOCKED`. Resume only through
 an explicit fresh retry or a scientifically reviewed, separately frozen
 new campaign, not by overwriting `run_002` or its report.
 
+## Proposed narrow NASolve fix — candidate, not yet native validated
+
+An explicit read-only `run_002/PostMR/Restraints/narestraints_input.pdb`
+workbook-role probe was returned **PASS**: 5CM:G maps C:G and supplies
+**3/3** H bonds plus planar/parallel restraints; DF:A maps T:A and supplies
+**2/2** H bonds plus planar/parallel restraints. The existing reviewed
+process-local DF O2=S2 to S1 workbook compatibility correction was also
+reported; no files or artifacts were modified.
+
+Isolated NASolve candidate `fix/w-modified-saenger-overlay` adds
+`src/nasolve/frame_secondary_overlay.py` and calls it at **new** standard
+W PostMR preparation. It examines every literal template base-pair site
+against the newly prepared PDB, fails closed unless NARestraints recognizes
+the intended chemistry and can generate order-independent atom-specific
+bonds/planes, drops *only those* inherited Saenger blocks, and appends
+nonduplicated explicit pairs to the run-local `Std_padd.txt`. The existing
+NARestraints builder then emits one combined edited PHIL with existing
+stacking ownership unchanged. It logs counts, site identities, old class
+assignments, recipe/bond counts and source/result hashes. Unaffected template
+pairs, standard frame W resource, frozen input/Free-R, all historical
+PostMR models and D:1 terminal-phosphate protection remain unmodified.
+
+The newly added tests cover the literal 17 -> 15 + 2 modified-pair replacement,
+two-/three-bond geometry from the real workbook, preserving ordinary/no-overlap
+runs, refusing unsupported pair chemistry, rejecting a malformed template
+and avoiding duplicate explicit pairs. **All new-code tests, full NASolve
+regressions and the first actual Phenix retry are pending** at the time of
+this candidate checkpoint: neither the older failed `run_002` nor the
+previous successful `run_001` is overwritten. Review the exact frozen
+recipe inputs before deciding on a new numbered campaign attempt.
+
 ## Five independent native W challenges
 
 A repeatable **staging-only** helper is maintained on upstream PR #4 at
