@@ -1,7 +1,12 @@
 # Full-auto patch publication and live-validation checkpoint
 
-Updated 2026-10-07. **Published runtime: `984f75db45607e119ad7fc224ae04cc5d0ffded7`.
-The four-member native full-auto campaign has now returned four SOLVED results.**
+Updated 2026-10-07. **Live campaign runtime: `984f75db45607e119ad7fc224ae04cc5d0ffded7`.
+The four-member native full-auto campaign returned four SOLVED results.**
+The subsequent reporting correction is published as
+`debd4af553c25d83526fc58185f56a23cbb92f23`: Simon returned **109 focused tests
+in 21.05 s and 878 full tests + 224 subtests in 77.23 s**, all passing.
+The remote Pine ref was independently verified at that commit. These are
+user-local pytest results, not CI or a new native campaign execution.
 Recovery and publication are complete. Do not reapply the patch, repeat its
 recovery, or rerun successful structures merely to refresh documentation.
 The [development handoff](development-handoff.md) owns project ordering;
@@ -76,15 +81,17 @@ four members being SOLVED; do not hide it by weakening status reporting.
 
 ## Bounded follow-up: reporting precision, not another campaign rerun
 
-EA and Q5cm have AutoSol SKIPPED/NOT_RUN yet their iodine audits say
+This reporting follow-up is now implemented, regression-tested and published
+at `debd4af`; the following describes the preserved historical discrepancy.
+EA and Q5cm have AutoSol SKIPPED/NOT_RUN yet their original iodine audits say
 experimental_phases_used=true. Source inspection at tested commit 984f75d
-explains the diagnostic weakness: `iodine_refinement_audit` in
-`src/nasolve/anomalous_expectations.py` copies
+explained the diagnostic weakness: `iodine_refinement_audit` in
+`src/nasolve/anomalous_expectations.py` copied
 refinement.use_experimental_phases, which `autorefine.py` records as the request
-argument. It does not inspect inputs.phase_file or inputs.phase_labels.
+argument. It did not inspect inputs.phase_file or inputs.phase_labels.
 Permission to use phases is not evidence that phases were supplied or consumed.
 
-Simon has now returned that saved-report extraction (2026-10-07):
+Simon returned that saved-report extraction (2026-10-07):
 
 | Exact checkpoint | Phase option | Phase file / labels | Anomalous / scattering |
 | --- | --- | --- | --- |
@@ -107,12 +114,24 @@ checkpoint selection, or any stored campaign receipt. Older records can still
 contain the inaccurate Boolean. Preserve them; interpret their actual inputs
 or produce separate derived evidence rather than rewriting checksums/history.
 
-Validation here: 27 new report-only cases (25 failed / 2 passed before; all
-27 pass after) plus 43 existing pure full-auto policy/diagnostic cases: **70
-passed**. Actual fetched source blobs were used in an isolated package;
-this is not the full NASolve suite or another Phenix/Coot execution. The patch
-ferry runs focused and full-checkout regression before commit/push. No new
-scientific run is required for this diagnostic-only correction.
+Initial isolated validation comprised 27 new report-only cases (25 failed /
+2 passed before; all 27 passed after) plus 43 existing pure policy/diagnostic
+cases: 70 passed. This was source-level evidence, not a full checkout.
+
+Simon's subsequent local patch ferry, based on `cf2df92`, passed:
+
+| Reporting-patch regression | Result |
+| --- | --- |
+| Focused: phase audit, full-auto policy, campaign stages, full-auto pipeline | 109 passed in 21.05 s |
+| Full NASolve suite | 878 passed, 224 subtests passed in 77.23 s |
+
+The command applied `NASolve_phase_usage_audit.patch`, ran those suites with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, passed unstaged/staged diff checks,
+then committed and pushed exactly four source/test/documentation files as
+`debd4af553c25d83526fc58185f56a23cbb92f23`. Returned status showed no tracked
+changes and only the existing untracked files. The remote ref was verified.
+No new native execution or historical-receipt rewrite accompanied this fix.
+No reapplication, repeat pytest or repeat campaign is needed for this slice.
 
 The exported statistics have null bond_rmsd/angle_rmsd; do not interpret null as
 zero. Terminal D:1 geometry audits pass in the initial AutoRefine records, with
@@ -125,20 +144,21 @@ normalization remain separate, as does final-candidate review/merge.
 
 ## Published patch and regression provenance
 
-The published payload includes recipe-schema-2 full auto, the DiU parser fix,
-parameterized 5CM, iodine diagnostics, the Doctor fixture repair, and
-continuity/metal-builder documentation. A 5CM-only .gitattributes exception
+The published full-auto payload includes recipe-schema-2 full auto, the DiU
+parser fix, parameterized 5CM, iodine diagnostics, the Doctor fixture repair,
+and continuity/metal-builder documentation. A 5CM-only .gitattributes exception
 preserves the checksum-pinned supplier bytes; it is not a numerical CIF edit.
 
-| User-local regression before publication | Result |
+| Original full-auto user-local regression before publication | Result |
 | --- | --- |
 | Previously failing Doctor fixture | 1 passed in 2.87 s |
 | Focused selection | 351 passed, 59 subtests passed in 49.26 s |
 | Full suite | 851 passed, 224 subtests passed in 80.67 s |
 
-The recovered tree was based on d3e1fa3 and published as 984f75d. These are
-returned local pytest results, not GitHub CI. No new pytest or native execution
-was performed while recording this receipt review.
+That recovered tree was based on d3e1fa3 and published as 984f75d. These are
+historical returned local pytest results, not GitHub CI; the newer reporting
+patch's 878 + 224 full-suite result is recorded above. This documentation-only
+synchronization executes no tests or native scientific programs.
 
 Retain the original, fixture-recovery and publication receipts beneath
 `~/NASolve-live-tests/full-auto-component-patch-jf62b0z4/`. The original failure
@@ -161,9 +181,13 @@ passed ordinary execution and Simon's visual Coot check; no repeated lap is
 needed. Guarded QiC run_002 recommended refine-002 while current stayed postmr;
 that is distinct from the NEW campaign's provisional automatic selection.
 
-Complete the finite Pine gates, merge to main, then operational Scout.
-Standing 1W5->DZ and 1WA->DP preparation conversions remain P2; shipping target
-resources does not implement them. No main merge is authorized by this note.
+Next code slice is the existing P2 standing preparation conversions:
+1W5->DZ and 1WA->DP, including the usable DP resource and explicit atom
+correspondence/provenance. These remain unimplemented; shipping target
+resources or choosing a construction intermediate does not implement them.
+Complete the remaining prepared-nonstandard and campaign inspection/resume
+checks and final-candidate review under the finite Pine gates, merge to main,
+then operational Scout. No main merge is authorized by this note.
 
 The [metal-restraint builder](metal-restraint-builder.md) and its
 [machine intent](metal-restraint-builder-intent.json) are published future
