@@ -161,7 +161,8 @@ class CampaignShowActivationTests(unittest.TestCase):
                 (["--no-activate"], "SOLVED", 0),
                 ([], "BLOCKED", 3),
             ):
-                with self.subTest(args=args, status=status), (
+                with (
+                    self.subTest(args=args, status=status),
                     patch("nasolve.campaign_execution.execute_campaign",
                           return_value=_solved_result(root, target, status=status)),
                     patch("nasolve.cli.load_config",
