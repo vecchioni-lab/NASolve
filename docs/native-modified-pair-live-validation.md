@@ -30,9 +30,15 @@ contains a candidate change to Z:P **and K:X** role orientation and stacking
 planes, leaves B:S correctly ordered and D:T as its own named recipe, and adds
 workbook-based category tests. The upstream `GC` designation is a **shared
 geometry template**, not a requested or silently inserted `force = G:C`.
-The PR is not yet merged, released, or shown to have passed user-local native
-Phenix/NARestraints validation. If workbook-backed checks disagree, fix their
-interpretation instead of weakening required atom-contact checks.
+The PR is not merged or released, and **no user-local native PostMR or
+Phenix validation of this candidate has returned**. GitHub Actions PR run
+[37688052270](https://github.com/vecchioni-lab/NARestraints/actions/runs/37688052270)
+passed Python **3.10, 3.12 and 3.14**, including the build/wheel/sdist
+checks and the added **source-checkout-only native-matrix staging tests**.
+The publish job was skipped. This is automated qualification against the
+*committed* workbook, not verification of the user's dirty local workbook
+or the frozen NASolve native run. If future workbook-backed checks disagree,
+fix their interpretation instead of weakening required atom-contact checks.
 
 ## Local-workspace protection — mandatory
 
@@ -172,7 +178,7 @@ automatically close Pine P5 prepared-nonstandard or future Scout/GUI gates.
 | Existing Z:P donor native MR | **PASSED** | TFZ 12.9, LLG 210.0, frozen inputs intact in retained run_001 |
 | Existing Z:P donor native PostMR | **BLOCKED** | Z assigned G-role, unmapped N2; original logs retained |
 | Corrected in-memory Z:P role probe | **PASSED (probe only)** | Three anchors, inverse order and stacking-plane mapping; package unchanged |
-| Upstream draft PR #4 / workbook regressions | **PATCHED, LOCAL VALIDATION PENDING** | Run against independent committed candidate workbook |
+| Upstream draft PR #4 / workbook regressions | **CI PASS 3.10/3.12/3.14; USER-LOCAL PENDING** | Workflow 37688052270; local clean-candidate import + full tests pending |
 | Fresh 5-case matrix stage/plan/native run | **NOT RUN** | Each frozen case has its own immutable files and status |
 | Native prepared identities and refinement | **NOT RUN** | Per-family PostMR + Phenix evidence; dictionary absence may BLOCK |
 | Human Coot/maps/PHIL/.geo review | **NOT RUN** | Explicit human verdict per inspected case |
