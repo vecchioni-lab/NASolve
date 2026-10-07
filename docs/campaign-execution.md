@@ -45,12 +45,24 @@ From the NASolve checkout on a Mac with Phenix and Coot configured:
 ```
 
 The command prints the exact new numbered run owned by this campaign attempt.
-Earlier standalone runs remain available. Inspect the new PostMR model using
-that printed path:
+Earlier standalone runs remain available. After an **explicit single-dataset**
+campaign run completes a viewable stage, NASolve makes that verified run the
+**active machine-local Coot workspace**, so the next command can be simply:
+
+```bash
+./nasolve show
+```
+
+This opens the selected run's **current checkpoint**, or PostMR/Phaser if
+refinement is not yet available. To inspect the earlier stage explicitly,
+the printed numbered path still works:
 
 ```bash
 ./nasolve show /exact/path/printed/by/campaign/status --stage postmr
 ```
+
+The active workspace is convenience state, not a scientific checkpoint
+selection or approval.
 
 Then continue the same attempt through refinement:
 
