@@ -17,6 +17,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Pathless campaign result viewing (candidate, local validation pending)
+
+- An **explicit single-dataset** `campaign run` now selects its verified,
+  viewable numbered AutoMR run as the **machine-local active workspace run**
+  on a successful/pause-for-review stage boundary. A following bare
+  `nasolve show` opens that run's **current selected checkpoint**, not an old
+  MR run, while still respecting the explicit `--checkpoint` and `--stage`
+  overrides and not altering scientific checkpoint selection or user approval.
+- `nasolve show` also works after `workspace use DATASET` (without an active
+  run) by selecting the dataset's last numbered readable run. It never scans
+  unrelated datasets or silently guesses a campaign target.
+- Multi-dataset runs, blocked/drifted/unviewable stages and explicit
+  `campaign run --no-activate` do **not** overwrite active workspace state.
+  The activation is a convenience stored in user configuration only, not in
+  the frozen plan, run directory, Free-R, Coot models or checkpoint registry.
+- The earlier explicit `show RUN --checkpoint refine-001` printed
+  `refined_001.pdb` and matching refined maps correctly. This patch addresses
+  stale active-workspace selection, not an unverified corruption of Coot's
+  actual loaded model or window focus. Local focused/full regression pending.
+
 ### Reviewed long deposition component names in annotated sequences
 
 - Exact `(A1AAZ)` token remains frozen literally but becomes native PDB residue
