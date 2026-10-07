@@ -67,6 +67,15 @@ Component-code overlays must already be resolved by the existing identity/alias
 layer. Checking their syntax here does not certify dictionary availability,
 connectivity, handedness, or a supported mutation route.
 
+Sequence-reference chains, thread sequences and dataset sequence overlays now
+share the parenthetical literal-CCD syntax, e.g. `AC(5CM)GT(DZ)` is six residues.
+Each source layer assigns one **resolved component code** per explicitly numbered
+site; the stored sequence remains legible and the layer-specific assignment
+history remains intact. A later `[mutations]` / site-chemistry override retains
+its existing higher precedence. Long registered CCD tokens remain representable
+in this abstract target contract even when the current PDB-only PostMR emitter
+requires a separately reviewed short refinement representation.
+
 The primitive has no dependency on a mutable workspace, a current checkpoint,
 Phenix/Coot, or inferred dataset grouping. It does not build coordinates.
 The caller supplies the explicitly resolved thread/dataset membership and

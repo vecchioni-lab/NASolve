@@ -13,6 +13,7 @@ from .phosphate import PhosphateError, validate_op3_sites, validate_phosphate_in
 from .backbone import BackboneError, validate_backbone_sites
 from .presets import PresetError, ProjectPreset, load_preset
 from .residue_aliases import LigandCodeError, ResolvedLigand, resolve_ligand, resolve_pair
+from .sequence_syntax import SequenceSyntaxError, canonical_sequence
 
 
 class AutoMRInputError(RuntimeError):
@@ -158,25 +159,28 @@ def _validated_force_pair(value: object) -> tuple[str, str] | None:
 def _validated_sequences(
     sequences: Mapping[str, str],
     context: str,
+    valid_ligand_codes: Collection[str] | None = None,
 ) -> dict[str, str]:
     validated: dict[str, str] = {}
     for raw_chain, raw_sequence in sequences.items():
+        if not isinstance(raw_chain, str):
+            raise AutoMRInputError(f"{context} chain names must be text")
         chain = raw_chain.strip()
-        sequence = "".join(raw_sequence.split()).upper()
-        if not chain or not sequence:
+        if not chain:
             raise AutoMRInputError(f"{context} chain names and sequences cannot be empty")
         if len(chain) != 1:
             raise AutoMRInputError(
                 f"{context} chain {chain!r} must be one PDB chain identifier"
             )
-        invalid = sorted(set(sequence) - set("ACGTU"))
-        if invalid:
-            raise AutoMRInputError(
-                f"{context} chain {chain} contains unsupported sequence symbol(s): "
-                + ", ".join(invalid)
-            )
         if chain in validated:
             raise AutoMRInputError(f"{context} contains duplicate chain {chain!r}")
+        try:
+            sequence = canonical_sequence(
+                raw_sequence, context=f"{context} chain {chain}",
+                valid_ligand_codes=valid_ligand_codes,
+            )
+        except SequenceSyntaxError as exc:
+            raise AutoMRInputError(str(exc)) from exc
         validated[chain] = sequence
     return validated
 
@@ -294,10 +298,9 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         raise AutoMRInputError(
             "[automr] allow_unreviewed_backbone must be true or false"
         ) from exc
-    sequences = _validated_sequences({
-        chain.strip(): "".join(sequence.split())
-        for chain, sequence in parser["sequences"].items()
-    } if "sequences" in parser else {}, "[sequences]")
+    sequences = _validated_sequences(
+        dict(parser["sequences"]) if "sequences" in parser else {}, "[sequences]"
+    )
     mutations = {
         site.strip(): residue.strip()
         for site, residue in parser["mutations"].items()
@@ -761,7 +764,7 @@ def resolve_automr_input(
         model_provider["construct_family"] = model_family
 
     sequence_file: Path | None = None
-    sequences = dict(intent.sequences)
+    sequences = _validated_sequences(intent.sequences, "Sequence", valid_ligand_codes)
     if intent.sequence_file:
         if mode != "nonstandard":
             raise AutoMRInputError("sequence_file is currently supported only in nonstandard mode")

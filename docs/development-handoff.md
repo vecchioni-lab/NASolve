@@ -21,6 +21,16 @@ preserves earlier states. Do not ingest every historical handoff for routine wor
 
 ## Current implementation slice and continuity
 
+The next additive candidate is one-residue-per-token annotated FASTA/sequence
+support: `CCGC(5CM)AA(DZ)TGC(A1AAZ)` is 12 explicit sites. Shared parsing is
+used by input/sequence-reference/thread, frozen campaign targets, AutoMR length
+checks and PostMR mutation plans. Each parenthesized token must name a known
+literal ligand; `[mutations]` already supports registered ligands. Five-character
+codes remain logical targets but require an explicit reviewed PDB alias or a
+future mmCIF emitter for native coordinate output. This syntax patch requires
+its returned focused/full regression; it is not native chemistry validation,
+and does not replace the planned Z:P alias-pair live check or move Scout forward.
+
 **P2 implementation, fixture recovery, full-checkout regression and publication
 are complete. Native DP/alias validation remains the next live check.**
 Do not reapply or resume either P2 installer merely to refresh this record.

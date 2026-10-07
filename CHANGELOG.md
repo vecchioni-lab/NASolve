@@ -17,6 +17,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Annotated CCD sequence tokens
+
+- Chain-labelled FASTA, `CHAIN = SEQUENCE`, inline `[sequences]`, frozen campaign
+  targets and sequence-family/thread overlays accept `(CCD)` as one residue.
+  Validate literal modified-component tokens against the ligand registry;
+  ordinary one-letter sequences retain their previous meaning and behavior.
+- AutoMR sequence-length checks and PostMR target construction now count parsed
+  residues rather than characters. Keep exact per-site chemistry and provenance;
+  `[mutations]` retains its higher-precedence per-site declarations.
+- Explicitly reject long CCD targets at the PDB-only native-emission boundary,
+  rather than silently truncating or inventing equivalences. Dictionary, model,
+  phosphate and experimental-evidence gates are unchanged; no historical runs
+  are rewritten.
+
 ### Recipe-controlled autonomy and component lookup
 
 - Added opt-in preset schema 2 full-auto workflow: preserve borderline MR REVIEW

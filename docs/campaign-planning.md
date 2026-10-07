@@ -207,6 +207,42 @@ The frozen effective target is the parsed chain map. The frozen raw sequence
 source remains separate provenance so later code can verify what user input
 produced that target without reparsing an unfrozen file.
 
+### Modified ligands in chain-labelled sequences
+
+Sequence text now supports literal parenthesized component codes in addition to
+ordinary A/C/G/T/U letters. Each `(CODE)` token occupies **one** residue, not
+its character count. For example, a 12-residue DNA target is:
+
+```text
+>A
+CCGC(5CM)AA(DZ)TGC(A1AAZ)
+```
+
+This notation also works in `CHAIN = SEQUENCE` files and inline `[sequences]`,
+including explicit sequence-reference and campaign-thread overlays. Canonical
+letters retain their ordinary DNA/RNA meaning; `(CODE)` is a **literal**
+NARestraints/curated ligand identifier, not a one-letter alias. So `(DZ)` means
+DZ; the W-frame `pair = Z:P` setting is a separate two-site shorthand, not a
+FASTA convention. Component-token validity is checked against the installed
+ligand registry, with unknown/malformed/nested tokens rejected at input time.
+Whitespaces/FASTA wrapping do not introduce positions. Every new campaign keeps
+the complete annotated string and checksum-frozen original input. Its
+one-code-per-residue target is resolved deterministically from those tokens at
+execution, using the frozen chain/residue inventory rather than guessing
+numbering from the sequence.
+
+An accepted ligand **identifier** is not proof that the current PDB/Coot/
+ReadySet/Phenix route can construct or refine it. Parenthetical 4- or 5-character
+codes (such as `A1AAZ` when registered) are parseable and retain their exact
+logical identity; the current PDB-only PostMR backend explicitly stops before
+writing a target whose literal code exceeds the three-character PDB field.
+Only an independently reviewed compatible refinement code or a future mmCIF
+adapter can extend that boundary—never truncation or guessed equivalence.
+Existing `[mutations]` sites already accept any registered ligand code and
+remain the most-specific explicit site overrides. Their ordinary construction,
+dictionary, phosphate and chemistry guards still apply. No old frozen plan,
+completed model or scientific checkpoint is retroactively changed.
+
 ### Explicit standard-model providers
 
 A standard W dataset may set `[automr] model = NAME.pdb`. The selector is

@@ -41,6 +41,7 @@ from .ligand_profiles import (
 )
 from .run_context import artifact_reference, resolve_artifact_path
 from .sequence_reference import SequenceReferenceError
+from .sequence_syntax import SequenceSyntaxError, sequence_residue_codes
 from .sequence_family import (
     load_frozen_sequence_family, audit_sequence_family_model, sequence_family_inventory,
 )
@@ -225,23 +226,21 @@ def _sequence_targets(
             raise PostMRPreparationError(
                 f"Sequence chain {chain!r} has no frozen residue inventory"
             )
-        sequence = sequence_value.upper()
-        if len(sequence) != len(residue_values):
+        is_rna = _chain_is_rna(model, chain, set(residue_values))
+        polymer = "RNA" if is_rna else "DNA"
+        try:
+            codes = sequence_residue_codes(
+                sequence_value, polymer, context=f"Sequence for {polymer} chain {chain}"
+            )
+        except SequenceSyntaxError as exc:
+            raise PostMRPreparationError(str(exc)) from exc
+        if len(codes) != len(residue_values):
             raise PostMRPreparationError(
-                f"Sequence for chain {chain} has length {len(sequence)}, but the "
+                f"Sequence for chain {chain} has length {len(codes)}, but the "
                 f"frozen model inventory contains {len(residue_values)} residues"
             )
-        is_rna = _chain_is_rna(model, chain, set(residue_values))
-        mapping = _RNA_SEQUENCE_CODES if is_rna else _DNA_SEQUENCE_CODES
-        incompatible = sorted(set(sequence) - set(mapping))
-        if incompatible:
-            polymer = "RNA" if is_rna else "DNA"
-            raise PostMRPreparationError(
-                f"Sequence for {polymer} chain {chain} contains incompatible symbol(s): "
-                + ", ".join(incompatible)
-            )
-        for resid, symbol in zip(residue_values, sequence):
-            targets[f"{chain}:{resid}"] = mapping[symbol]
+        for resid, code in zip(residue_values, codes):
+            targets[f"{chain}:{resid}"] = code
     return targets
 
 
@@ -355,6 +354,13 @@ def build_mutation_plan(
                 residue_name(model, site) in PREFERRED_COMPONENTS for site in targets))):
         raise PostMRPreparationError("Preferred-component conversion of mirrored models needs a reviewed L-sugar route")
     for site, target in targets.items():
+        if len(target) > 3:
+            raise PostMRPreparationError(
+                f"Target ligand {target} at {site} is registered, but a literal "
+                "four/five-character code cannot fit the three-character PDB "
+                "residue field; use an explicitly reviewed compatible PDB "
+                "refinement code rather than truncating its identity"
+            )
         current = residue_name(model, site)
         parent_code: str | None = None
         deposition_code: str | None = None
