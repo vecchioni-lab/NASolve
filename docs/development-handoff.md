@@ -29,14 +29,20 @@ targeting and regression at **`9ef67fc`**. Simon returned **175 focused tests +
 matrix keeps A:7 5CM/C:9 DG, A:19 DF/D:4 DA, and A:12 DZ/B:4 DP with
 `pair = Z:P` (no `force` override).
 
-The *first actual native* GZ11_ZP test is already underway:
+The first native GZ11_ZP attempt is retained as
 `~/NASolve-live-tests/zp-paired-native-oiipj_t2/GZ11_ZP/AutoMR/run_001`.
-Its 42-residue preflight/integrity and native Phaser passed with **TFZ 12.9,
-LLG 210**. PostMR correctly **BLOCKED** on a real NARestraints role error:
-`A:12 (Z) has no mapped atom 'N2' for GC recipe`. The installed model audit
-showed Z is cytosine-like (O2/N3/N4) and P guanine-like (N1/N2/O6).
-An in-memory corrected-role and stacking test passed without changing the
-installed package. A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
+Its native Phaser passed with **TFZ 12.9, LLG 210**; PostMR **BLOCKED**
+on a real NARestraints role error: `A:12 (Z) has no mapped atom 'N2' for
+GC recipe`. Read-only audit confirmed Z is cytosine-like (O2/N3/N4) and P
+guanine-like (N1/N2/O6), and an in-memory corrected-role/stacking probe passed.
+**Native replay with clean corrected NAR candidate succeeded:** explicit
+`campaign retry` preserved the first failure, and
+`GZ11_ZP/AutoMR/run_002` passed preflight, Phaser and native PostMR.
+The user audited **six correct site identities**, **all three expected
+Z:P H-bond contacts exactly once**, A1AAZ->DF deposition provenance,
+**42/42 sequence identities with zero mismatches** and no geometry override.
+The attempt is paused before AutoSol; refinement and human review still
+pending. A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
 contains the proposed Z:P and K:X role/stacking corrections, workbook-backed
 B:S/Z:P/K:X/D:T regression and a staging-only native W matrix helper.
 Its [GitHub Actions run 37688052270](https://github.com/vecchioni-lab/NARestraints/actions/runs/37688052270)
