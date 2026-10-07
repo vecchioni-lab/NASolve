@@ -364,7 +364,7 @@ def _remember_single_campaign_view(
         selected_id = selected[0]
     else:
         return None
-    if not isinstance(selected_id, str):
+    if not isinstance(selected_id, str) or not selected_id or "/" in selected_id or "\\" in selected_id or selected_id in {".", ".."}:
         return None
     matches = [
         item for item in progress
@@ -394,13 +394,16 @@ def _remember_single_campaign_view(
     try:
         # Resolve only an owned, readable run. No scanning other campaigns,
         # fallback to an older result, or silent path substitution.
-        if actual.resolve().parent != (root / selected_id / "AutoMR").resolve():
+        if (
+            not actual.resolve().is_relative_to(root)
+            or actual.resolve().parent != (root / selected_id / "AutoMR").resolve()
+        ):
             return None
         report = json.loads(report_path.read_text(encoding="utf-8"))
         if (
             not isinstance(report, Mapping)
             or report.get("workflow") != "automr"
-            or report.get("stage") not in {"phaser", "postmr", "autosol", "autorefine"}
+            or report.get("stage") not in {"phaser", "postmr", "autosol", "autorefine", "refine-doctor"}
         ):
             return None
     except (OSError, ValueError, TypeError):
