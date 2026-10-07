@@ -1,9 +1,11 @@
 # Native modified-pair matrix and human-test ledger
 
-Updated 2026-10-07. **Status: one Z:P native attempt BLOCKED at PostMR; the
-upstream candidate role fix is in draft PR #4; no follow-up native matrix or
-human chemical/model approval has yet been performed.** This is the live
-evidence contract, not an automated success claim.
+Updated 2026-10-07. **Status: the original Z:P attempt was BLOCKED at PostMR,
+but the corrected NARestraints candidate has since completed a new native
+PostMR attempt and passed explicit residue-identity and pair-restraint audits.**
+The five-case B:S/Z:P/K:X/D:T/control matrix has not yet run, and neither
+refinement nor human chemical/model approval has been performed. This ledger
+records actual evidence rather than automatically promoting numerical progress.
 
 ## Scope and original failed observation
 
@@ -30,15 +32,22 @@ contains a candidate change to Z:P **and K:X** role orientation and stacking
 planes, leaves B:S correctly ordered and D:T as its own named recipe, and adds
 workbook-based category tests. The upstream `GC` designation is a **shared
 geometry template**, not a requested or silently inserted `force = G:C`.
-The PR is not merged or released, and **no user-local native PostMR or
-Phenix validation of this candidate has returned**. GitHub Actions PR run
+The PR is not merged or released. **User-local native Z:P PostMR with the
+candidate has now passed**; refinement and visual chemical approval remain
+pending. GitHub Actions PR run
 [37688052270](https://github.com/vecchioni-lab/NARestraints/actions/runs/37688052270)
 passed Python **3.10, 3.12 and 3.14**, including the build/wheel/sdist
 checks and the added **source-checkout-only native-matrix staging tests**.
 The publish job was skipped. This is automated qualification against the
 *committed* workbook, not verification of the user's dirty local workbook
-or the frozen NASolve native run. If future workbook-backed checks disagree,
-fix their interpretation instead of weakening required atom-contact checks.
+or the user's uncommitted NARestraints workbook. The user verified the
+clean-worktree import and reported **21/21 focused tests green**. The first
+full-suite invocation from NASolve returned **30 passed / 5 failed**, all
+five caused by a relative `examples/D3X3.pdb` or `examples/9L5Z.pdb`
+path from the wrong working directory. The user then reported a green rerun
+from inside the clean worktree; exact full-suite totals were not supplied.
+If future workbook-backed checks disagree, fix their interpretation instead
+of weakening required atom-contact checks.
 
 ## Local-workspace protection — mandatory
 
@@ -66,6 +75,41 @@ sibling tree. Do not overwrite an installed NARestraints distribution before
 this controlled check; record package version, branch commit and workbook
 blob hash. Run the upstream focused and complete pytest suites using that
 candidate, including tests under `tests/test_modified_pair_roles.py`.
+
+## Corrected native Z:P replay — completed through PostMR
+
+The user fetched the candidate, created an independent detached worktree
+`../NARestraints-pairfix` at `f367a961cf7ba39425e455742ea5ef8fa5272c25`,
+and supplied `PYTHONPATH="$PWD/../NARestraints-pairfix:$PWD/src"` to the
+existing NASolve executor. The old failure was preserved as `run_001`.
+The explicit `campaign retry` created **attempt_002**, which passed native
+preflight and Phaser and returned **POSTMR_READY** at
+`~/NASolve-live-tests/zp-paired-native-oiipj_t2/GZ11_ZP/AutoMR/run_002`.
+The campaign reported frozen input integrity `OK` and paused before AutoSol.
+The rerun transcript did not report a new TFZ; the original attempt's TFZ
+12.9/LLG 210 remain the recorded native MR figures.
+
+The user ran a separate **read-only audit** of the new
+`run_002/PostMR/report.json`, its `prepared_model` and the actual
+`narestraints_Std_padd.phil`. Returned evidence:
+
+- `A:7=5CM`, `C:9=DG`, `A:19=DF`, `D:4=DA`, `A:12=DZ`,
+  `B:4=DP`, **all six correct**.
+- Exactly one restraint bond per intended Z:P contact:
+  `P.N2/Z.O2`, `P.N1/Z.N3`, `P.O6/Z.N4`, **3/3**.
+- No `restraint_geometry_override`; user did not request `force = G:C`.
+- `requested_target_changes` includes A:19 `A1AAZ -> DF` with
+  `basis=reviewed-deposition-to-pdb-code`.
+- `sequence_family_audit.status=PASS`, `target_count=42`,
+  `mismatches=[]`, scope explicitly **residue identities only**.
+  Prepared-model SHA256:
+  `69fe6cf642365ba5157095a4195e75d62894937913ce75e2ae0ca7916558c4af`.
+
+This **closes the previously blocked native PostMR construction/NARestraints
+contact-selection gate for Z:P**, but not effective Phenix geometry,
+Rwork/Rfree, Coot visual review, source-native `1W5/1WA` normalization,
+the remaining family matrix, human approval or release. Do not erase or
+rewrite `run_001`; do not repeat `run_002` after it advances.
 
 ## Five independent native W challenges
 
@@ -178,9 +222,10 @@ automatically close Pine P5 prepared-nonstandard or future Scout/GUI gates.
 | Existing Z:P donor native MR | **PASSED** | TFZ 12.9, LLG 210.0, frozen inputs intact in retained run_001 |
 | Existing Z:P donor native PostMR | **BLOCKED** | Z assigned G-role, unmapped N2; original logs retained |
 | Corrected in-memory Z:P role probe | **PASSED (probe only)** | Three anchors, inverse order and stacking-plane mapping; package unchanged |
-| Upstream draft PR #4 / workbook regressions | **CI PASS 3.10/3.12/3.14; USER-LOCAL PENDING** | Workflow 37688052270; local clean-candidate import + full tests pending |
+| Upstream draft PR #4 / workbook regressions | **CI PASS 3.10/3.12/3.14; USER-LOCAL GREEN REPORTED** | 21/21 focused; full worktree-cwd rerun reported green; exact full totals not supplied |
 | Fresh 5-case matrix stage/plan/native run | **NOT RUN** | Each frozen case has its own immutable files and status |
-| Native prepared identities and refinement | **NOT RUN** | Per-family PostMR + Phenix evidence; dictionary absence may BLOCK |
+| Z:P native replay and contact/identity audit | **PASSED THROUGH POSTMR** | Preserved run_001; attempt_002 run_002; six correct identities, three correct pair contacts, A1AAZ->DF, 42 targets zero mismatches, no force |
+| Native refinement / other family matrix | **NOT RUN** | Z:P next stage AutoSol; D:T, B:S, K:X and control still require independent native checks, missing dictionaries may BLOCK |
 | Human Coot/maps/PHIL/.geo review | **NOT RUN** | Explicit human verdict per inspected case |
 | Pine P5 geometry-diverse nonstandard test | **SEPARATELY PENDING** | Not discharged by W-only modified-base matrix |
 | Topo/Registration/GUI human cases | **AS RECORDED IN THEIR QUEUES** | No status change from this note |
