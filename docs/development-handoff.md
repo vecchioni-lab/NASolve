@@ -67,10 +67,18 @@ confirmed 17 original W pairs became **15 retained Saenger + 2 explicit**
 `force` override and D:1 phosphate policy preserved. Native
 Phenix **AutoRefine returned `SOLVED` (numerical), checkpoint
 `refine-001`**, frozen campaign integrity OK. Original
-`run_001`/`run_002` are preserved. **Rwork/Rfree, detailed geometry, model
-maps and explicit human Coot acceptance are still pending inspection.**
-Neither B:S/K:X/D:T native matrix nor source 1W5/1WA conversion gate is
-closed by this W-only synthetic-target challenge. See
+`run_001`/`run_002` are preserved. The user opened `run_003/refine-001` in Coot and reported
+**human visual PASS for overall refinement quality**: bond and base-plane
+geometry are present; mild plane deviations are acceptable and should not
+trigger gratuitously stronger restraints. CLI output named the refined PDB
+and MTZ, despite a reported possible older MR display; resolve visual
+window/session provenance separately, do not claim checkpoint-selection
+corruption without supporting evidence. Rwork/Rfree and individual-site
+map/clash/.geo metrics are not yet copied into the ledger, and approval
+is limited to this **software integration challenge**, not experimental
+validation of modified chemistry or deposition. Neither B:S/K:X/D:T
+native matrix nor source 1W5/1WA conversion gate is closed by this
+W-only synthetic-target test. See
 [native modified-pair validation](native-modified-pair-live-validation.md).
 A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
 contains the proposed Z:P and K:X role/stacking corrections, workbook-backed
