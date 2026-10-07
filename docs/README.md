@@ -34,6 +34,10 @@ close-out, evidence limits and operational Scout priority immediately afterward.
   keeps descriptive evidence separate from donor eligibility.
 - [Backbone chemistry](backbone-chemistry.md): phosphodiester/terminal intent,
   protection, passthrough review and accompanying schema/recipe examples.
+- [Native modified-pair/human evidence matrix](native-modified-pair-live-validation.md):
+  independent B:S, Z:P, K:X and D:T live checks, the A:T control, actual
+  NARestraints workbook-role gates, manual Coot acceptance and protection of
+  the separate dirty NARestraints development checkout.
 - [Construct registration](construct-registration.md),
   [registration intent](construct-registration-intent.json) and
   [live checks](construct-registration-live-checks.md): Scout/registration
