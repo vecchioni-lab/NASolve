@@ -39,9 +39,12 @@ An in-memory corrected-role and stacking test passed without changing the
 installed package. A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
 contains the proposed Z:P and K:X role/stacking corrections, workbook-backed
 B:S/Z:P/K:X/D:T regression and a staging-only native W matrix helper.
-**Do not merge/ship it until local workbook/full tests and the relevant native
-check have returned**. This does not waive other P2 source-alias conversion
-evidence or count as a structural approval.
+Its [GitHub Actions run 37688052270](https://github.com/vecchioni-lab/NARestraints/actions/runs/37688052270)
+passed Python 3.10/3.12/3.14, including wheel/sdist and the separate
+source-checkout stager tests (publish skipped). **Do not merge/ship it until
+user-local clean-candidate testing and native checks have returned.** CI
+does not validate the modified local workbook or the native chemistry and
+does not waive other P2 source-alias conversion evidence or human approval.
 
 The sibling `../NARestraints` checkout is on
 `feature/terminal-phosphate-op3-angles` with a modified
