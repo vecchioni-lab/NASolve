@@ -4,8 +4,11 @@ Updated 2026-10-07. **Status: the original Z:P attempt was BLOCKED at PostMR,
 but the corrected NARestraints candidate has since completed a new native
 PostMR attempt and passed explicit residue-identity and pair-restraint audits.**
 The five-case B:S/Z:P/K:X/D:T/control matrix has not yet run, and neither
-refinement nor human chemical/model approval has been performed. This ledger
-records actual evidence rather than automatically promoting numerical progress.
+successful refinement nor human chemical/model approval has been performed.
+The first native AutoRefine continuation of Z:P `run_002` is now **BLOCKED
+before refinement**, due to a separate Saenger classification error on the
+A:19 DF/D:4 DA pair in Phenix secondary-structure interpretation.
+This ledger records actual evidence rather than automatically promoting numerical progress.
 
 ## Scope and original failed observation
 
@@ -110,6 +113,51 @@ contact-selection gate for Z:P**, but not effective Phenix geometry,
 Rwork/Rfree, Coot visual review, source-native `1W5/1WA` normalization,
 the remaining family matrix, human approval or release. Do not erase or
 rewrite `run_001`; do not repeat `run_002` after it advances.
+
+## AutoRefine blocker after successful Z:P PostMR — pending resolution
+
+The user continued corrected native `GZ11_ZP/AutoMR/run_002` through the
+conditional AutoSol boundary. The read-only report showed zero anomalous
+candidates, `autosol_required=False`, no phase import and no iodine warnings.
+The campaign advanced to `autorefine`.
+
+The first native `--through autorefine` then returned
+`AutoRefineError`: `phenix.pdb_interpretation` exited 1 while
+`_prepare_terminal_phosphate_protection` was obtaining a pre-refinement
+`.geo` file, **before refinement was started**. Its terminal error was:
+
+```text
+('A', 'U') A F 20
+DA D   4    DF A  19
+Sorry: Saenger class does not match residue names
+```
+
+The canonical W frame template at
+`src/nasolve/data/restraints/5W6W_secondary_structure.eff` contains a
+fixed `saenger_class = 20` `base_pair` for A:19/D:4, historically the
+unmodified A:T-like pair, while native PostMR prepared A:19=DF
+(2-thiothymidine) opposite D:4=DA. It also contains `saenger_class = 19`
+at the newly modified A:7=5CM/C:9=DG pair. These legacy fixed-class
+annotations are suspect when reused with sequence-level modified targets.
+**This is a separate secondary-structure compatibility problem, not a
+regression in the repaired Z:P hydrogen-bond contacts**, which passed their
+independent native PostMR audit.
+
+Next gate: read-only inspect the *actual run-local* 17-pair secondary
+template against the prepared model and enumerate every modified site using
+hardcoded Saenger classes. Then design a **scoped, audited, per-run**
+secondary-structure adjustment for affected pairs, preserving constraints
+through compatible NARestraints atom-role recipes (or blocking when no
+chemically reviewed replacement exists). Do not edit the frozen plan,
+postmr outputs, historic attempts, site-specific phosphate policy, or
+remove all secondary-structure restraints. Do not silently substitute
+`saenger_class=0` or disable hydrogen bonds as a passing shortcut.
+
+Actual round/checkpoint creation has not been observed and no Rwork/Rfree
+was returned; this error happened during proactive geometry generation.
+The campaign is `COMPLETE_WITH_FLAGS` / `BLOCKED`. Resume only through
+an explicit fresh retry or a scientifically reviewed, separately frozen
+new campaign, not by overwriting `run_002` or its report.
 
 ## Five independent native W challenges
 
@@ -225,7 +273,8 @@ automatically close Pine P5 prepared-nonstandard or future Scout/GUI gates.
 | Upstream draft PR #4 / workbook regressions | **CI PASS 3.10/3.12/3.14; USER-LOCAL GREEN REPORTED** | 21/21 focused; full worktree-cwd rerun reported green; exact full totals not supplied |
 | Fresh 5-case matrix stage/plan/native run | **NOT RUN** | Each frozen case has its own immutable files and status |
 | Z:P native replay and contact/identity audit | **PASSED THROUGH POSTMR** | Preserved run_001; attempt_002 run_002; six correct identities, three correct pair contacts, A1AAZ->DF, 42 targets zero mismatches, no force |
-| Native refinement / other family matrix | **NOT RUN** | Z:P next stage AutoSol; D:T, B:S, K:X and control still require independent native checks, missing dictionaries may BLOCK |
+| Z:P AutoSol / first AutoRefine continuation | **AutoSol SKIPPED; AutoRefine BLOCKED before refinement** | No anomalous candidate, then A:19 DF / D:4 DA failed frozen W Saenger-20 class check during Phenix geometry preparation |
+| Native refinement / other family matrix | **PENDING** | Refined Z:P geometry not obtained; D:T, B:S, K:X and control still require independent native checks; dictionaries may BLOCK |
 | Human Coot/maps/PHIL/.geo review | **NOT RUN** | Explicit human verdict per inspected case |
 | Pine P5 geometry-diverse nonstandard test | **SEPARATELY PENDING** | Not discharged by W-only modified-base matrix |
 | Topo/Registration/GUI human cases | **AS RECORDED IN THEIR QUEUES** | No status change from this note |
