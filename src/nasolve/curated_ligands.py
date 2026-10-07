@@ -147,6 +147,14 @@ CURATED_LIGANDS: dict[str, CuratedLigand] = {
 
 CURATED_LIGAND_CODES = frozenset(CURATED_LIGANDS)
 
+# Reviewed CCD deposition name which cannot fit a three-character PDB residue
+# field. This is a deliberate, exact mapping to the lab's curated refinement
+# component, not a generic CCD prefix/truncation or tautomer inference.
+# The five-character identity remains intact in source sequence intent.
+PDB_DEPOSITION_ALIASES = {"A1AAZ": "DF"}
+if CURATED_LIGANDS["DF"].deposition_code != "A1AAZ":
+    raise RuntimeError("Reviewed A1AAZ -> DF deposition mapping disagrees with the curated ligand")
+
 
 _PARENT_CODES = {
     ("DNA", "A"): "DA",
@@ -452,6 +460,7 @@ def validate_curated_dictionary(code: str, path: Path) -> None:
 
 __all__ = [
     "CURATED_LIGAND_CODES",
+    "PDB_DEPOSITION_ALIASES",
     "CURATED_LIGANDS",
     "AtomSubstitution",
     "CuratedLigand",

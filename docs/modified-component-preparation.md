@@ -50,6 +50,21 @@ DZ keeps final identity DZ, NARestraints class Z, and DC as its construction
 scaffold. The explicit `force = G:C` override still affects only the selected
 inter-residue pairing recipe.
 
+## Reviewed long deposition-code bridge
+
+PDB cannot carry a five-character residue name. The one approved exact
+exception is target `(A1AAZ)` -> **DF**: DF's curated deposition identity is
+A1AAZ and the PDB-compatible working definition is the already-reviewed DF.
+This is a requested-to-prepared *target* identity mapping, **not** a source
+heavy-atom normalization analogous to 1W5 -> DZ or 1WA -> DP. The original
+five-character string stays in the frozen sequence/family target and the
+`postmr.component_normalization.requested_target_changes` record gains
+`basis=reviewed-deposition-to-pdb-code`. The target dictionary/refinement
+component is DF and its recorded deposition identity remains A1AAZ.
+Other unreviewed long CCD names still fail before PDB output; neither generic
+truncation nor coordinate/dictionary guessing is authorized. Native validation
+of this explicit bridge remains separate from the previous P2 regression.
+
 ## Standing preferred-component preparation (P2)
 
 The candidate implements **1W5 -> DZ always** and **1WA -> DP** for new PostMR

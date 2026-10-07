@@ -13,6 +13,8 @@ from pathlib import Path
 from types import MappingProxyType
 from typing import Mapping
 
+from .curated_ligands import PDB_DEPOSITION_ALIASES
+
 POLICY = "preferred-DZ-DP-v1"
 PREFERRED_COMPONENTS = MappingProxyType({"1W5": "DZ", "1WA": "DP"})
 BACKBONE_ELEMENTS = {
@@ -40,6 +42,15 @@ def preferred_component(code: str) -> str:
     return PREFERRED_COMPONENTS.get(code, code)
 
 
+def prepared_target_code(code: str) -> str:
+    """Emit reviewed long deposition identity under its exact PDB-compatible name.
+
+    This mapping is for an explicit target, not for rewriting source coordinates
+    or discovering equivalent chemistry. All non-reviewed long codes still stop.
+    """
+    return PDB_DEPOSITION_ALIASES.get(code, preferred_component(code))
+
+
 def _identity(line: str, offset: int = 0) -> tuple[str, str] | None:
     if len(line) < offset + 27:
         return None
@@ -53,7 +64,7 @@ def preparation_targets(targets: Mapping[str, str], model: Path) -> OrderedDict[
     An explicit target at a site still wins over retaining its source residue.
     The original target mapping and coordinate bytes are never changed here.
     """
-    result = OrderedDict((site, preferred_component(code)) for site, code in targets.items())
+    result = OrderedDict((site, prepared_target_code(code)) for site, code in targets.items())
     for line in model.read_text(encoding="utf-8").splitlines():
         if line.startswith(("ATOM  ", "HETATM")) and (identity := _identity(line)):
             site, code = identity
@@ -63,8 +74,17 @@ def preparation_targets(targets: Mapping[str, str], model: Path) -> OrderedDict[
 
 
 def target_changes(targets: Mapping[str, str]) -> list[dict[str, str]]:
-    return [{"site": site, "requested_code": code, "prepared_code": preferred_component(code)}
-            for site, code in targets.items() if preferred_component(code) != code]
+    """Freeze an exact requested-to-prepared mapping with distinct authority."""
+    changes: list[dict[str, str]] = []
+    for site, code in targets.items():
+        prepared = prepared_target_code(code)
+        if prepared == code:
+            continue
+        entry = {"site": site, "requested_code": code, "prepared_code": prepared}
+        if code in PDB_DEPOSITION_ALIASES:
+            entry["basis"] = "reviewed-deposition-to-pdb-code"
+        changes.append(entry)
+    return changes
 
 
 def _mapped_atom(name: str, element: str, target: str) -> tuple[str | None, str]:

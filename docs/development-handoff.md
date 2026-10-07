@@ -21,6 +21,18 @@ preserves earlier states. Do not ingest every historical handoff for routine wor
 
 ## Current implementation slice and continuity
 
+Annotated-sequence code was published as `719c6e45cc932bd5216584ee652a3fa1c33419c9`
+per Simon's returned ferry footer and remote branch inspection. Next finite
+slice: exercise DNA annotated sequence **at ordinary W sites**, alongside
+`pair=Z:P`; add exactly reviewed deposition-name bridge `A1AAZ -> DF`
+while keeping the five-character request/frozen family target intact. Test A:7 `(5CM)` opposite C:9 `(DG)` and A:19 `(A1AAZ)`/DF
+opposite D:4 A, preserving the original A:4 C/C:12 G pairing and
+the independent A:12 DZ/B:4 DP pair. The bracketed `(DG)` at C:9
+also exercises two-letter annotations without adding exotic chemistry. Require focused/full local
+regression before publishing this slice; subsequent native campaign is
+separate live evidence and must not be claimed from fixture passing.
+
+
 The next additive candidate is one-residue-per-token annotated FASTA/sequence
 support: `CCGC(5CM)AA(DZ)TGC(A1AAZ)` is 12 explicit sites. Shared parsing is
 used by input/sequence-reference/thread, frozen campaign targets, AutoMR length

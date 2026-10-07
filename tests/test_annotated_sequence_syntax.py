@@ -96,15 +96,23 @@ def test_inline_and_chain_labelled_fasta_share_the_same_grammar(tmp_path, monkey
     assert _validated_sequences({"A": EXAMPLE.lower()}, "inline", LIGANDS) == {"A": EXAMPLE}
 
 
-def test_bracket_chemistry_cannot_be_truncated_into_pdb_and_is_still_a_valid_token(tmp_path, monkeypatch):
+def test_reviewed_long_deposition_token_uses_df_without_truncation(tmp_path, monkeypatch):
     installed_stub(monkeypatch)
     path = synthetic_model(tmp_path / "model.pdb", 12)
     report = {
         "post_mr_plan": {"sequences": {"A": EXAMPLE}, "standard_pair": None, "mutations": {}},
         "model_assessment": {"polymer_residue_ids_by_chain": {"A": [str(i) for i in range(1, 13)]}},
     }
-    with pytest.raises(PostMRPreparationError, match="A1AAZ.*three-character PDB"):
-        build_mutation_plan(report, path)
+    # A1AAZ has a *reviewed* PDB-compatible code (DF); arbitrary 4/5-letter
+    # target identities still have a separate fail-closed test.
+    original = path.read_bytes()
+    actions = build_mutation_plan(report, path)
+    assert path.read_bytes() == original
+    assert (actions[11].site, actions[11].after, actions[11].method) == (
+        "A:12", "DF", "coot-parent-overlap",
+    )
+    assert actions[11].parent_code == "DT"
+    assert actions[11].deposition_code == "A1AAZ"
     # A model whose targets fit PDB exercises the existing parent/scaffold route.
     report["post_mr_plan"]["sequences"]["A"] = EXAMPLE.replace("(A1AAZ)", "(DP)")
     actions = build_mutation_plan(report, path)

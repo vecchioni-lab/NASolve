@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reviewed long deposition component names in annotated sequences
+
+- Exact `(A1AAZ)` token remains frozen literally but becomes native PDB residue
+  **DF** at PostMR preparation via the reviewed DF deposition-code mapping;
+  requested/prepared provenance is explicit. Other long CCD tokens still stop
+  rather than being truncated or chemically guessed. Added a W Z:P + modified
+  off-pair-site paired W sequence regression (5CM:G, DF:A, C:G, Z:P). Native chemistry remains to be tested.
+
 ### Annotated CCD sequence tokens
 
 - Chain-labelled FASTA, `CHAIN = SEQUENCE`, inline `[sequences]`, frozen campaign

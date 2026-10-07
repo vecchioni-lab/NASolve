@@ -69,8 +69,9 @@ def parse_sequence_tokens(
                     except ValueError as exc:
                         raise SequenceSyntaxError(f"{context}: {exc}") from exc
                 else:
-                    from .curated_ligands import CURATED_LIGAND_CODES
-                    allowed = frozenset(valid_ligand_codes) | CURATED_LIGAND_CODES
+                    from .curated_ligands import CURATED_LIGAND_CODES, PDB_DEPOSITION_ALIASES
+                    allowed = (frozenset(valid_ligand_codes) | CURATED_LIGAND_CODES
+                               | frozenset(PDB_DEPOSITION_ALIASES))
             if code not in allowed:
                 raise SequenceSyntaxError(
                     f"{context}: unknown literal ligand code ({code}); use a code "

@@ -9,6 +9,30 @@ defaults and existing frozen runs remain unchanged. Explicit campaign
 sequence-thread inheritance is supported; thread membership remains target
 metadata and does not imply model compatibility or reuse.
 
+## Reviewed A1AAZ / DF bridge for native PDB targets
+
+The exact parenthetical token `(A1AAZ)` is preserved as requested CCD/deposition
+identity through the annotated sequence, campaign freeze and family target.
+At **new PostMR preparation**, only this explicitly reviewed name is mapped to
+lab-compatible **DF** (the curated 2-thiothymidine), with a separate requested-
+versus-prepared record and `basis=reviewed-deposition-to-pdb-code`. The DF
+package lists `deposition_code=A1AAZ`; the constructed PDB uses DF, never a
+five-letter truncation. This does not infer chemical equivalence for arbitrary
+CCD names; any other unreviewed 4/5-character PDB target still stops.
+
+A paired W sequence-level test uses `GAGCAG(5CM)CTGTATGGACA(A1AAZ)CA` for chain A
+(21 residues), and `G(DG)CTGCT` for chain C (7 residues). The
+explicit targets are A:7 5CM/C:9 DG, A:19 A1AAZ->DF/D:4 DA,
+and the independent standard A:12 DZ/B:4 DP pair. A:4 DC/C:12
+DG remains the ordinary C:G pair. B and D retain their frozen
+reference sequences. C:9 `(DG)` tests two-letter token parsing,
+A:7 `(5CM)` three-letter, and A:19 `(A1AAZ)` five-letter. All
+target pairs are design hypotheses; a native refinement result
+does not prove the synthetic chemistry of the diffraction data. All such native tests
+are explicit synthetic **target chemistry challenges**, not claims about the
+unknown measured chemistry of the chosen diffraction set. Do not replace the
+real original dataset's coordinates, observations or historical runs.
+
 ## Scope and scientific boundary
 
 A sequence-defined construct family is one supported design model, not the
