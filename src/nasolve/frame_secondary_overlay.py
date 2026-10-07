@@ -34,7 +34,7 @@ _SAENGER = re.compile(r"\bsaenger_class\s*=\s*(\d+)\b")
 
 def _site(block: str, key: str) -> str:
     match = re.search(
-        rf"\b{key}\s*=\s*chain\s+['\"]?([^\s'\"\}]+)['\"]?"
+        rf"\b{key}\s*=\s*chain\s+['\"]?([^\s'\"]+)['\"]?"
         rf"\s+and\s+resid\s+([\w]+)\b",
         block,
     )
