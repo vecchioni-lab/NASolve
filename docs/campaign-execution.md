@@ -93,8 +93,15 @@ An explicit Phenix installation applies to this invocation:
 ./nasolve --phenix-root /path/to/phenix campaign run examples --dataset DOHU
 ```
 
-The executor uses machine-local external-tool discovery but does not change
-the active workspace. Use explicit run paths when inspecting campaign results.
+The executor uses machine-local external-tool discovery. Its **CLI** makes a
+viewable, unambiguous single-dataset run the active machine-local workspace
+after the stage boundary, allowing `./nasolve show` with no path. Multi-dataset
+runs, blocked/drifted/unviewable results, or
+`campaign run --no-activate` do not change workspace selection. Scientific
+stage artifacts, frozen inputs, Free-R and the checkpoint registry are never
+rewritten. Explicit `show RUN --checkpoint ID` keeps its exact semantics;
+Coot windows launched previously may remain open and are not brought forward
+or replaced by this shortcut.
 
 For a prepared nonstandard member, execution reconstructs the AutoMR request
 only from the checksum-bound campaign resources. It does not rediscover the
