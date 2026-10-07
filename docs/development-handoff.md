@@ -8,10 +8,11 @@ preserves earlier states. Do not ingest every historical handoff for routine wor
 ## Branches and scope
 
 - Active branch: `pine`, draft [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-  into `main`. Latest published, user-tested P2 code:
-  **`dec56c29e48f4e7118c8f56a119a07968ee66f10`**. The GitHub connection verified
-  that remote head after Simon returned the publication transcript. Re-read the
-  live ref before editing; documentation commits may follow this runtime commit.
+  into `main`. Latest **published and locally regression-tested runtime** is
+  **`9ef67fcc98ee1e923e70a86126ffe880d363dd17`**; previous P2 code
+  `dec56c2` and annotated grammar `719c6e` are ancestors. The returned native
+  Z:P attempt failed in NARestraints PostMR, not in the earlier tests.
+  Re-read the live ref before editing; documentation-only commits may follow.
 - Oak was merged in [PR #22](https://github.com/vecchioni-lab/NASolve/pull/22)
   on 2026-09-28. Check ancestry and local-only work before retiring references.
   A remaining Oak branch does not imply another implementation prerequisite.
@@ -21,27 +22,37 @@ preserves earlier states. Do not ingest every historical handoff for routine wor
 
 ## Current implementation slice and continuity
 
-Annotated-sequence code was published as `719c6e45cc932bd5216584ee652a3fa1c33419c9`
-per Simon's returned ferry footer and remote branch inspection. Next finite
-slice: exercise DNA annotated sequence **at ordinary W sites**, alongside
-`pair=Z:P`; add exactly reviewed deposition-name bridge `A1AAZ -> DF`
-while keeping the five-character request/frozen family target intact. Test A:7 `(5CM)` opposite C:9 `(DG)` and A:19 `(A1AAZ)`/DF
-opposite D:4 A, preserving the original A:4 C/C:12 G pairing and
-the independent A:12 DZ/B:4 DP pair. The bracketed `(DG)` at C:9
-also exercises two-letter annotations without adding exotic chemistry. Require focused/full local
-regression before publishing this slice; subsequent native campaign is
-separate live evidence and must not be claimed from fixture passing.
+The annotated chain-sequence grammar is published as `719c6e`, with the
+reviewed literal `(A1AAZ)` -> working PDB code `DF` bridge, paired-site
+targeting and regression at **`9ef67fc`**. Simon returned **175 focused tests +
+23 subtests** and **955 full tests + 224 subtests**, all passing. The frozen W
+matrix keeps A:7 5CM/C:9 DG, A:19 DF/D:4 DA, and A:12 DZ/B:4 DP with
+`pair = Z:P` (no `force` override).
 
+The *first actual native* GZ11_ZP test is already underway:
+`~/NASolve-live-tests/zp-paired-native-oiipj_t2/GZ11_ZP/AutoMR/run_001`.
+Its 42-residue preflight/integrity and native Phaser passed with **TFZ 12.9,
+LLG 210**. PostMR correctly **BLOCKED** on a real NARestraints role error:
+`A:12 (Z) has no mapped atom 'N2' for GC recipe`. The installed model audit
+showed Z is cytosine-like (O2/N3/N4) and P guanine-like (N1/N2/O6).
+An in-memory corrected-role and stacking test passed without changing the
+installed package. A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
+contains the proposed Z:P and K:X role/stacking corrections, workbook-backed
+B:S/Z:P/K:X/D:T regression and a staging-only native W matrix helper.
+**Do not merge/ship it until local workbook/full tests and the relevant native
+check have returned**. This does not waive other P2 source-alias conversion
+evidence or count as a structural approval.
 
-The next additive candidate is one-residue-per-token annotated FASTA/sequence
-support: `CCGC(5CM)AA(DZ)TGC(A1AAZ)` is 12 explicit sites. Shared parsing is
-used by input/sequence-reference/thread, frozen campaign targets, AutoMR length
-checks and PostMR mutation plans. Each parenthesized token must name a known
-literal ligand; `[mutations]` already supports registered ligands. Five-character
-codes remain logical targets but require an explicit reviewed PDB alias or a
-future mmCIF emitter for native coordinate output. This syntax patch requires
-its returned focused/full regression; it is not native chemistry validation,
-and does not replace the planned Z:P alias-pair live check or move Scout forward.
+The sibling `../NARestraints` checkout is on
+`feature/terminal-phosphate-op3-angles` with a modified
+`restraints/data/Ligands.xlsx`, other uncommitted work and an Excel lockfile.
+**Do not checkout/reset/stash/clean/reinstall over that directory.** Validate the
+PR using an independent worktree/clone in the same NASolve terminal. The
+[bounded live modified-pair matrix and human evidence ledger](native-modified-pair-live-validation.md)
+records the new B:S/Z:P/K:X/D:T plus canonical A:T cases, missing native
+dictionary blockers, steps, and human Coot/PHIL/.geo review. It links but does
+not close the separately scoped [Registration/Topo human tests](construct-registration-live-checks.md)
+or [GUI human tests](gui-live-checks.md).
 
 **P2 implementation, fixture recovery, full-checkout regression and publication
 are complete. Native DP/alias validation remains the next live check.**
