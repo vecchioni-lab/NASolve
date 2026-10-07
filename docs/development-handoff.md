@@ -80,15 +80,23 @@ validation of modified chemistry or deposition. Neither B:S/K:X/D:T
 native matrix nor source 1W5/1WA conversion gate is closed by this
 W-only synthetic-target test. See
 [native modified-pair validation](native-modified-pair-live-validation.md).
-A separate [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
-contains the proposed Z:P and K:X role/stacking corrections, workbook-backed
-B:S/Z:P/K:X/D:T regression and a staging-only native W matrix helper.
-Its [GitHub Actions run 37688052270](https://github.com/vecchioni-lab/NARestraints/actions/runs/37688052270)
-passed Python 3.10/3.12/3.14, including wheel/sdist and the separate
-source-checkout stager tests (publish skipped). **Do not merge/ship it until
-user-local clean-candidate testing and native checks have returned.** CI
-does not validate the modified local workbook or the native chemistry and
-does not waive other P2 source-alias conversion evidence or human approval.
+**NARestraints is now published as
+[v1.1.3](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3).**
+[PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4) merged
+to `main` as **a9264f9** after workbook-backed B:S/Z:P/K:X/D:T
+regression, locally confirmed Z:P native PostMR and combined NASolve
+numerical refinement, and positive human overall Coot inspection.
+The final [release workflow 37702686885](https://github.com/vecchioni-lab/NARestraints/actions/runs/37702686885)
+passed Python **3.10, 3.12 and 3.14**, built/tested noneditable wheel/sdist,
+and published `v1.1.3` with the wheel, source tarball and SHA256SUMS.
+The original workbook, NAR v1.1.2 release/tag and user's dirty NAR feature
+checkout were not touched. NASolve's **published Pine dependency metadata**
+now points at immutable NAR `v1.1.3`; the user's existing NASolve
+`.venv` was not automatically modified. B:S/K:X standalone workbook
+tests are green, but missing native NASolve dictionaries mean the planned
+independent five-member W campaign and P2 source 1W5/1WA normalization
+remain pending. This release is not a claim of experimental modified
+chemistry in the donor GZ11 observations.
 
 The sibling `../NARestraints` checkout is on
 `feature/terminal-phosphate-op3-angles` with a modified
