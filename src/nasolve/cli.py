@@ -260,7 +260,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     show.add_argument(
         "target", nargs="?",
-        help="run directory, 'last', or omit to use the active workspace run",
+        help="run directory, 'last', or omit to use the active run (or newest run in the active dataset)",
     )
     show.add_argument(
         "dataset", nargs="?", type=Path,
