@@ -1,14 +1,14 @@
 # Native modified-pair matrix and human-test ledger
 
-Updated 2026-10-07. **Status: the original Z:P attempt was BLOCKED at PostMR,
-but the corrected NARestraints candidate has since completed a new native
-PostMR attempt and passed explicit residue-identity and pair-restraint audits.**
-The five-case B:S/Z:P/K:X/D:T/control matrix has not yet run, and neither
-successful refinement nor human chemical/model approval has been performed.
-The first native AutoRefine continuation of Z:P `run_002` is now **BLOCKED
-before refinement**, due to a separate Saenger classification error on the
-A:19 DF/D:4 DA pair in Phenix secondary-structure interpretation.
-This ledger records actual evidence rather than automatically promoting numerical progress.
+Updated 2026-10-08. **Native W Z:P+5CM:G+DF:A integration reached SOLVED
+(numerical), attempt_003/run_003/refine-001**, using isolated candidate NASolve
+PR #24 and NARestraints PR #4, Phenix 2.2.1 and Coot 1.3.3. The two earlier
+failed attempts are retained, the 17→15+2 post-MR restraint overlay has a
+returned read-only audit, and the full NASolve regression passed **961 tests
+plus 224 subtests**. **Human Coot/map inspection, real chemistry acceptance,
+the separate five-case family matrix, and eventual merges/releases remain
+PENDING.** This is a software-integrity challenge on unrelated GZ11 data,
+not a demonstrated experimental Z:P crystal.
 
 ## Scope and original failed observation
 
@@ -159,7 +159,7 @@ The campaign is `COMPLETE_WITH_FLAGS` / `BLOCKED`. Resume only through
 an explicit fresh retry or a scientifically reviewed, separately frozen
 new campaign, not by overwriting `run_002` or its report.
 
-## Proposed narrow NASolve fix — candidate, not yet native validated
+## Scoped NASolve Saenger overlay — candidate, native numerical path validated
 
 An explicit read-only `run_002/PostMR/Restraints/narestraints_input.pdb`
 workbook-role probe was returned **PASS**: 5CM:G maps C:G and supplies
@@ -181,14 +181,63 @@ assignments, recipe/bond counts and source/result hashes. Unaffected template
 pairs, standard frame W resource, frozen input/Free-R, all historical
 PostMR models and D:1 terminal-phosphate protection remain unmodified.
 
-The newly added tests cover the literal 17 -> 15 + 2 modified-pair replacement,
-two-/three-bond geometry from the real workbook, preserving ordinary/no-overlap
-runs, refusing unsupported pair chemistry, rejecting a malformed template
-and avoiding duplicate explicit pairs. **All new-code tests, full NASolve
-regressions and the first actual Phenix retry are pending** at the time of
-this candidate checkpoint: neither the older failed `run_002` nor the
-previous successful `run_001` is overwritten. Review the exact frozen
-recipe inputs before deciding on a new numbered campaign attempt.
+The added regressions cover the literal 17 -> 15 + 2 modified-pair
+replacement, two-/three-bond geometry from the real workbook, ordinary
+no-overlap runs, unsupported-chemistry rejection, malformed templates and
+duplicate avoidance. **34 focused + 961 full NASolve tests and 224 subtests
+passed**, and native `run_003` reached `SOLVED`/`refine-001` with frozen
+integrity OK. The detailed returned evidence is recorded below. The
+numerical result is not human structural approval, and previous
+`run_001`/`run_002` remain untouched.
+
+## Native attempt_003 — numerical refinement success, human gate still open
+
+After isolated candidate [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
+was fetched into a **detached** `../NASolve-saengerfix` worktree at
+`6f93c43`, with `../NARestraints-pairfix` providing the corrected
+NARestraints, the user ran focused regression (**34 passed**) and full
+NASolve regression (**961 passed, 224 subtests passed, 93.84 seconds**).
+Tests were executed using the NASolve project's existing `.venv`,
+`PYTHONPATH` pointing to the isolated code, and the committed NARestraints
+workbook; original dirty NAR and NASolve checkouts were preserved.
+
+The user performed `campaign retry` for the immutable frozen
+`~/NASolve-live-tests/zp-paired-native-oiipj_t2` campaign, creating
+`attempt_003` and **new** `GZ11_ZP/AutoMR/run_003`. With both patched
+libraries in `PYTHONPATH`, native preflight, Phaser and PostMR completed
+and paused at AutoSol. The read-only native `run_003/PostMR/report.json`
+audit returned:
+
+- `base_pair_count=17`, `retained_saenger_count=15`,
+  `replaced_saenger_count=2`, `explicit_new_pair_count=2`.
+- A:7/C:9 5CM:G mapped to **GC/3 explicit H bonds**;
+  A:19/D:4 DF:A to **AT/2 explicit H bonds**.
+- The run-local secondary file contained exactly 15 Saenger blocks; both
+  reviewed modified pairs appeared in the run-local pair input.
+- `restraint_geometry_override` absent, D:1 terminal-phosphate OP3
+  authorization preserved, and sequence-family mismatches empty.
+- The actual source template, model and older `run_001`/`run_002` records
+  were not modified.
+
+The campaign then continued to the AutoSol boundary and paused at AutoRefine.
+A subsequent `--through autorefine` executed native Phenix and returned:
+
+```text
+GZ11_ZP: SOLVED; Numerical refinement criteria passed; inspect the model and maps before approval
+Campaign execution: COMPLETE; frozen input integrity: OK
+Run: .../GZ11_ZP/AutoMR/run_003
+Checkpoint: refine-001
+```
+
+**Numerical status is supported by the reported CLI output only**:
+Rwork/Rfree, detailed geometry/.geo metrics and electron-density fit have
+not yet been copied into this ledger and should be read from the checkpoint
+or inspected in Coot before human approval. The campaign is not permission
+to deposit or claim these modified bases exist in GZ11 reflections.
+Neither B:S, K:X nor D:T has yet cleared its own native matrix gate.
+The candidate PRs remain unmerged until review and appropriate release
+qualification; a passed native W integration is not a proxy for unavailable
+B:S/K:X component dictionaries.
 
 ## Five independent native W challenges
 
@@ -305,7 +354,8 @@ automatically close Pine P5 prepared-nonstandard or future Scout/GUI gates.
 | Fresh 5-case matrix stage/plan/native run | **NOT RUN** | Each frozen case has its own immutable files and status |
 | Z:P native replay and contact/identity audit | **PASSED THROUGH POSTMR** | Preserved run_001; attempt_002 run_002; six correct identities, three correct pair contacts, A1AAZ->DF, 42 targets zero mismatches, no force |
 | Z:P AutoSol / first AutoRefine continuation | **AutoSol SKIPPED; AutoRefine BLOCKED before refinement** | No anomalous candidate, then A:19 DF / D:4 DA failed frozen W Saenger-20 class check during Phenix geometry preparation |
-| Native refinement / other family matrix | **PENDING** | Refined Z:P geometry not obtained; D:T, B:S, K:X and control still require independent native checks; dictionaries may BLOCK |
+| Z:P corrected W native AutoRefine `run_003` | **SOLVED (numerical), HUMAN REVIEW PENDING** | Campaign COMPLETE, frozen integrity OK, checkpoint `refine-001`; full 961/224 regression; no Rwork/Rfree copied into ledger yet |
+| Other family matrix | **NOT RUN** | D:T, B:S, K:X and A:T control still require independent native tests; dictionaries may BLOCK |
 | Human Coot/maps/PHIL/.geo review | **NOT RUN** | Explicit human verdict per inspected case |
 | Pine P5 geometry-diverse nonstandard test | **SEPARATELY PENDING** | Not discharged by W-only modified-base matrix |
 | Topo/Registration/GUI human cases | **AS RECORDED IN THEIR QUEUES** | No status change from this note |
