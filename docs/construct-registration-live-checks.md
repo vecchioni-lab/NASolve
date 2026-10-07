@@ -10,6 +10,14 @@ implementation moves across branches, chats and campaign work.
 Do not mark a check complete before the relevant layer is actually wired into
 the live pipeline.
 
+**Separate live chemistry/human qualification:** the user-requested
+[NARestraints B:S, Z:P, K:X, D:T and A:T native matrix](native-modified-pair-live-validation.md)
+has its own frozen-input, upstream-workbook, PostMR, refinement and manual Coot
+checks. A failed Z:P PostMR attempt and proposed upstream role correction are
+recorded there. They do **not** promote registration, Topo Net or GUI tests
+to complete; the Scout shadow evidence already marked complete below remains
+valid at its original, narrower scope.
+
 | Status | Trigger | Human check | Minimum pass condition |
 | --- | --- | --- | --- |
 | ☑ | **Before merging a substantial registration backend branch** | Run the focused registration/model-candidate tests **and the full NASolve regression suite**. | **Birch complete:** focused bundle 44/44 green; full suite 664 tests + 222 subtests green. **Oak Scout v2 complete for its backend-only scope:** 43 focused tests green; full suite 672 tests green; final authority/diff/runtime readiness sweep also passed. No unrelated regression observed. |
