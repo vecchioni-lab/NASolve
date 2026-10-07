@@ -17,6 +17,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### NARestraints 1.1.3 released dependency
+
+- Use the immutable [NARestraints v1.1.3](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3)
+  Git tag as NASolve's declared Python dependency. It fixes upstream Z:P
+  and K:X geometry-role orientation and modified-base stacking, preserves
+  B:S and D:T roles, and retains the original committed Ligands.xlsx.
+- The native W Z:P+5CM:G+DF:A integration path reached numerical SOLVED
+  with a separate candidate NASolve Saenger overlay and user Coot visual PASS.
+  Source-native 1W5/1WA alias conversion and independent B:S/K:X/D:T
+  native matrix checks remain separately pending.
+- Updating dependency metadata does not mutate the user's existing installed
+  .venv, original dirty NARestraints source checkout, frozen inputs or
+  completed scientific runs.
+
 ### Reviewed long deposition component names in annotated sequences
 
 - Exact `(A1AAZ)` token remains frozen literally but becomes native PDB residue
