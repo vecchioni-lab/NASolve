@@ -5,10 +5,14 @@ Updated 2026-10-08. **Native W Z:P+5CM:G+DF:A integration reached SOLVED
 PR #24 and NARestraints PR #4, Phenix 2.2.1 and Coot 1.3.3. The two earlier
 failed attempts are retained, the 17→15+2 post-MR restraint overlay has a
 returned read-only audit, and the full NASolve regression passed **961 tests
-plus 224 subtests**. **Human Coot/map inspection, real chemistry acceptance,
-the separate five-case family matrix, and eventual merges/releases remain
-PENDING.** This is a software-integrity challenge on unrelated GZ11 data,
-not a demonstrated experimental Z:P crystal.
+plus 224 subtests**. **Human Coot inspection of the refined model has now been reported
+PASS for overall software-generated model quality**: visible bond and plane
+geometry with some acceptable base-plane wobble; do not tighten restraint
+weights to erase that observation. The user did not provide individual
+per-site map/clash measurements or `.geo` deviations. Real experimental
+chemistry acceptance, the separate five-case family matrix and eventual
+merges/releases remain **PENDING**. This is a software-integrity challenge
+on unrelated GZ11 data, not a demonstrated experimental Z:P crystal.
 
 ## Scope and original failed observation
 
@@ -229,11 +233,26 @@ Run: .../GZ11_ZP/AutoMR/run_003
 Checkpoint: refine-001
 ```
 
-**Numerical status is supported by the reported CLI output only**:
-Rwork/Rfree, detailed geometry/.geo metrics and electron-density fit have
-not yet been copied into this ledger and should be read from the checkpoint
-or inspected in Coot before human approval. The campaign is not permission
-to deposit or claim these modified bases exist in GZ11 reflections.
+**Human follow-up on refine-001:** user launched
+`nasolve show ... --checkpoint refine-001`. The CLI printed
+`AutoRefine/round_001/refined_001.pdb` and `refined_001.mtz` as
+explicit model and map sources, and Coot launched under
+`CootGUI/autorefine/refine-001`. The user subsequently reported that
+the refinement **looks great in Coot**, with bonds and planes present,
+and planes slightly wobbly but acceptably so; no stronger restraint
+forcing is requested. Record **HUMAN_INSPECTED_PASS — visible
+model/bond/plane quality**, not numerical or experimental endorsement.
+The user also reported an apparent MR-model display despite CLI
+selection of the refined checkpoint; provenance output identifies the
+correct refined paths. Treat that as an unconfirmed GUI/window/source
+display discrepancy, not evidence of a falsely selected checkpoint.
+A separate CLI usability improvement should make bare `nasolve show`
+target the just-completed single-dataset campaign run.
+
+**Refinement metrics not yet copied into this ledger:** Rwork/Rfree,
+exact .geo deviations and individual-site electron-density/clash assessments
+should be read from the checkpoint. The campaign is not permission to
+deposit or claim these modified bases exist in GZ11 reflections.
 Neither B:S, K:X nor D:T has yet cleared its own native matrix gate.
 The candidate PRs remain unmerged until review and appropriate release
 qualification; a passed native W integration is not a proxy for unavailable
@@ -356,6 +375,7 @@ automatically close Pine P5 prepared-nonstandard or future Scout/GUI gates.
 | Z:P AutoSol / first AutoRefine continuation | **AutoSol SKIPPED; AutoRefine BLOCKED before refinement** | No anomalous candidate, then A:19 DF / D:4 DA failed frozen W Saenger-20 class check during Phenix geometry preparation |
 | Z:P corrected W native AutoRefine `run_003` | **SOLVED (numerical), HUMAN REVIEW PENDING** | Campaign COMPLETE, frozen integrity OK, checkpoint `refine-001`; full 961/224 regression; no Rwork/Rfree copied into ledger yet |
 | Other family matrix | **NOT RUN** | D:T, B:S, K:X and A:T control still require independent native tests; dictionaries may BLOCK |
-| Human Coot/maps/PHIL/.geo review | **NOT RUN** | Explicit human verdict per inspected case |
+| Human Coot overall model/bond/plane review | **INSPECTED_PASS (reported by user)** | refine-001 opened; bonds and planes present, acceptable moderate plane deviations; site-resolved maps/.geo still unreported |
+| Site-resolved maps, contacts and .geo audit | **PENDING** | Not inferred from overall Coot inspection; experimental chemistry unverified |
 | Pine P5 geometry-diverse nonstandard test | **SEPARATELY PENDING** | Not discharged by W-only modified-base matrix |
 | Topo/Registration/GUI human cases | **AS RECORDED IN THEIR QUEUES** | No status change from this note |
