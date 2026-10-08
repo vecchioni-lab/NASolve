@@ -206,10 +206,13 @@ Status checks read the frozen plan and execution record without launching tools.
 Exit code `0` does not approve the structure. Read the per-dataset state,
 checkpoint, integrity and diagnostic fields when automating the command.
 
-## Current four-member W live validation
+## Historical four-member W live validation — 2026-09-28
 
-A disposable real-environment campaign is currently being used to validate the
-coordinator independently of the newer nonstandard-provider path. The sandbox
+The following is a **dated native checkpoint**, not an active campaign or
+the current next action. It records a disposable real-environment validation
+of the W coordinator independently of the newer nonstandard-provider path.
+For active work see the [current handoff](development-handoff.md) and the
+[later full-auto native checkpoint](full-auto-patch-handoff.md). The sandbox
 is `/tmp/NASolve-W-live-20260928` and contains clean top-level copies of:
 
 - `DOHU`;
