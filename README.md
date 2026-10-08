@@ -236,6 +236,15 @@ density map, completed PostMR, or Phaser. Explicit `--stage` and `--checkpoint`
 options leave the selection unchanged. The console identifies the run, model,
 checkpoint, and map source.
 
+After `./nasolve campaign run ROOT --dataset DATASET` reaches a viewable stage,
+that **single-dataset** run becomes the machine-local active workspace view.
+A following `./nasolve show` therefore opens its current checkpoint without
+recalling any path. `workspace use DATASET` alone also permits bare
+`./nasolve show` (newest numbered readable run in that dataset). For batch
+campaigns, failed/unviewable stages, or `--no-activate`, the prior active
+workspace is preserved. This convenience does not select/approve a new
+scientific checkpoint or change Coot windows already open.
+
 AutoMR shows the Phaser model and map. PostMR shows the ReadySet model and its
 ligand dictionaries, using accepted AutoSol density when available and the
 Phaser map otherwise. AutoSol shows the prepared ReadySet model with its
