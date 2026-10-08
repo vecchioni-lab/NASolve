@@ -41,22 +41,25 @@ approval.
    validation; none contains numerical geometry parameters. A **Cedar draft
    patch** now resolves these from configured Phenix before Coot, with
    SHA256 source snapshots and a fail-closed numerical ReadySet gate.
-   **Latest user-local validation on `d1bf3ea` (2026-10-09):** expanded
-   PostMR/Saenger/Cedar suite **50 passed + 31 subtests (5.28 s)**.
-   The full suite returned **1 failed, 981 passed + 257 subtests (87.21 s)**:
-   `test_dz_hop_does_not_supply_a_missing_final_dictionary` expected the old
-   generic error text, while missing curated DZ correctly raised the specific
-   `FileNotFoundError`. Only that test's expected message is corrected in the
-   follow-up; updated-head full regression and native PostMR remain pending.
-   Earlier `1042ca1` results remain historical, not current-head validation.
-   **Protect all nine reviewed CIFs:** 1AP, DE, DF, S6G, C38, 5IU,
-   5CM, DZ, DP. They load from NASolve's bundled `ligands/CODE.cif`
-   even if Phenix supplies a competing CCD, and missing/invalid curated
-   chemistry fails closed. The `A1AAZ→DF` bridge and DE (not
-   incorrect 8RO) remain intentional. `OHU.cif` is bundled local-first
-   but not a curated exception. The expanded Cedar matrix audits all nine
-   source paths and the generated Coot loader; it passed in the focused
-   suite above. This is regression evidence, not native refinement proof.
+   **Latest user-local validation (2026-10-09):** full suite at
+   `ccb7608b21d5bb994a973130298edaced24acf0c` **982 passed + 257 subtests
+   (75.90 s)**. Earlier focused PostMR/Saenger/Cedar at `d1bf3ea` passed
+   **50 + 31 subtests (5.28 s)**. Its sole full-suite failure was a stale
+   expected missing-DZ diagnostic; `ccb7608` corrected only that assertion
+   and documentation. Native PostMR/ReadySet remains pending. Documentation
+   updates after this receipt do not imply new runtime validation.
+   **Reassess the nine bundled entries by evidence:** the
+   [ligand audit](modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
+   separates actual overrides, identity bridges, construction recipes and
+   unchanged supplier copies. 5CM is unchanged upstream data; 5IU's long-bond
+   failure was the corrected C5/C5' parser bug. S6G/C38/5IU are candidate
+   generic sources, pending installed-source comparison. **DE's old geometry
+   repair remains unresolved**; do not label it validated simply because it
+   is bundled. Preserve 1AP/DZ/DP profiles and `A1AAZ→DF`. Current code still
+   loads all nine locally and fails closed when missing/invalid; no resource
+   or guard is removed by the audit. `OHU.cif` stays local-first, non-curated.
+   The expanded Cedar matrix audits all nine source paths and Coot loaders;
+   Python regression evidence does not certify native chemical geometry.
    Prefer validated Phenix/CCD monomers only for non-curated components, and
    where supported produce an **audited, frozen derivative**, never
    fabricate bonds/stereochemistry from NARestraints' atom-role mappings.

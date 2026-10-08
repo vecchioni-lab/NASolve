@@ -22,7 +22,17 @@ entries are reconstructed from repository history.
 - Update the construction-hop regression to expect the specific missing-curated-DZ
   diagnostic. It still requires `FileNotFoundError`; curated dictionary precedence,
   the no-fallback guard and runtime behavior are unchanged. The old expectation
-  was the sole failure in the user-local full suite at `d1bf3ea`; rerun pending.
+  was the sole failure in the user-local full suite at `d1bf3ea`. The corrected
+  `ccb7608` passed **982 tests + 257 subtests (75.90 s)** locally; native
+  ReadySet and combined-family validation remain separate gates.
+
+### Bundled ligand provenance audit
+
+- Distinguish parameterized adaptations, identity/construction exceptions and
+  unchanged supplier resources in the existing component guide. Confirm the
+  unchanged 5CM source and 5IU parser defect; restore the unresolved DE geometry
+  warning from the archived review. Dictionary bytes, lookup policy and runtime
+  chemistry are unchanged; installed-source comparison remains pending.
 
 ### Contributor continuity and branch lifecycle
 

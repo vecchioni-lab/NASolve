@@ -13,6 +13,53 @@ four-member DiU/5CM full-auto results live in the
 subsections below document their then-current stages rather than overriding
 this update.
 
+## Bundled ligand audit (2026-10-09)
+
+Audit code point: `ccb7608b21d5bb994a973130298edaced24acf0c`. The nine
+`CURATED_LIGANDS` entries combine source selection, construction recipes,
+identity bridges and numerical restraint profiles. Membership is not evidence
+that an upstream CIF was defective, nor that the bundled numerical geometry
+has completed scientific review. This audit changes documentation only.
+
+| Component | Evidence from history and source comparison | Recommendation |
+| --- | --- | --- |
+| **1AP** | `af08c5a` replaced a raw CCD graph with parameterized MonomerLibrary data after the failed eLBOW attempt. Direct comparison with pinned source blob `1be06d4bb0848891fd3e7dca22d217dd2ad1b69b` finds only audit comments and `NON-POLYMER -> DNA`; numerical geometry is unchanged. | Retain the parameterized override and selected phosphate profile. The failed generated dictionary and polymer typing, not a demonstrated defect in all upstream 1AP sources, justify this route. |
+| **DE** | The current eLBOW file has never changed since its addition at `b8317b0`. September's 1AP integration and handoff explicitly leave DE geometry defective and replacement unapproved. It is byte-identical to the historical repository-root eLBOW `8RO.cif` after changing the component label to DE; that historical file is not proof of official CCD equivalence. | Retain the lab identity/construction exception, but reopen geometry repair. Do not describe the existing file as a validated repaired dictionary or infer an approved `8RO -> DE` conversion. |
+| **DF** | Added at `b8317b0` ("mutation works; patched DF"); retains the laboratory working label, `C2-S1` construction and explicit deposition identity `A1AAZ`. The source has a CCD graph and coordinates, not numerical bond targets. | Retain the exact identity bridge and sulfur-placement recipe. Comparison with the installed A1AAZ source is pending; a renamed source is still needed by today's three-character PDB route. |
+| **DZ** | Direct comparison with pinned MonomerLibrary blob `9e6151658d2887ef3902d170c77752ccc90159d4` finds comments and `NON-POLYMER -> DNA` only. Numerical geometry is unchanged. | Retain the parameterized DNA resource and C-glycoside/linked-phosphate treatment; this is a sourced adaptation, not invented geometry. |
+| **DP** | Direct comparison with pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` finds only `NON-POLYMER -> DNA`. Numerical geometry is unchanged. | Retain the parameterized DNA resource and linked-phosphate treatment. True source-native P2 validation remains separate. |
+| **5CM** | Added at `984f75d` after Q5cm stopped because the then-local-only resolver lacked a file. It is byte-for-byte identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`; no supplier repair. | Remove the *broken-dictionary* classification. This remains a useful pinned numerical resource; removing it needs native proof that the generic route supplies compatible numerical geometry and phosphate handling. |
+| **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. Exact installed-CCD equality is not yet checked. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is not Benner S (IMC); that selection error does not establish a dictionary defect. |
+| **C38** | Added at `739e6df` with iodine construction/AutoSol support; no subsequent CIF edits or identified supplier repair. The current coordinate reader gives ring `C5-I` = 2.094074 A. Installed-CCD equality is pending. | Candidate for generic source lookup, preserving iodine placement/topology and numerical-generation checks. |
+| **5IU** | Added at `739e6df`; CIF bytes have not changed. `984f75d` fixed the parser stripping the prime from `C5'`: direct calculation gives ring `C5-I5` = 2.095111 A and sugar `C5'-I5` = 8.843030 A. | Candidate for generic source lookup. The long apparent iodine bond was a NASolve parser defect; preserve the fix and iodine-placement rule. Installed-CCD equality is pending. |
+
+Evidence: [1AP integration](history/1ap-phosphate-integration.md),
+[September handoff](history/development-handoff-2026-09-29.md.txt),
+[component/parser recovery](full-auto-patch-handoff.md),
+the three packaged provenance JSON files, and per-file Git history through the
+audit code point. Upstream comparison used the exact Git blobs in
+[MonomerLibrary/monomers](https://github.com/MonomerLibrary/monomers), not a
+moving branch or a claim about the user's installed Phenix version. The four
+downloaded source blobs and all nine NASolve CIFs were hashed against their
+Git identities; the coordinate checks used the audited NASolve reader.
+
+**DE remains an unresolved scientific item.** The current file declares group
+`rna`, lacks OP3 and lists `C4-S4` as a single bond with a 1.816 A target. These
+are source observations, not permission to edit bond order, targets or terminal
+chemistry automatically. The archived note explicitly requires reviewed monomer
+geometry and a fresh ED comparison before changing the sulfur pair target.
+Passing limited topology checks or the full Python suite does not close that
+review; no later committed DE replacement was found.
+
+**Migration boundary:** inspect installed Phenix source identity, atom names,
+elements/charges, bonds/stereochemistry and ideal coordinates before replacing
+the source-only copies. Keep construction recipes independently of file-source
+policy. `DF`, `S6G`, `C38` and `5IU` need generated numerical restraints; `1AP`,
+`DE`, `5CM`, `DZ` and `DP` contain numerical fields, which alone do not certify
+their quality. Do not delete the four candidate resources or relax the current
+missing-curated-file guard until the replacement route has the appropriate
+native evidence. Existing frozen dictionaries and runs retain their provenance.
+
 ## Intermediate construction hops
 
 The intermediate is a Coot placement convenience, not the final identity,
