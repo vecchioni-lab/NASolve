@@ -4,9 +4,9 @@ Updated **2026-10-08**. **Z:P + off-pair 5CM:G/DF:A integration:
 SOLVED numerically, user visual PASS.** User now requests **one combined
 D:T+B:S+Z:P+K:X W challenge** before isolated follow-up controls;
 this simultaneous native experiment is **NOT RUN**.
-Upstream **NARestraints v1.1.3 is released**,
-but NASolve's Saenger-overlay [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-is **not merged into Pine**. This file is the current scientific/evidence
+Upstream **NARestraints v1.1.3 is released**, and the audited NASolve
+Saenger-overlay [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
+**merged into Pine** at `0017081` after green integrated regression. This file is the current scientific/evidence
 ledger; the detailed original attempt chronology is
 [archived](history/native-modified-pair-2026-10-08-pre-consolidation.md).
 See the [compact handoff](development-handoff.md) for project-wide priority.
@@ -16,12 +16,12 @@ See the [compact handoff](development-handoff.md) for project-wide priority.
 | Gate | Current verdict | Evidence / boundary |
 | --- | --- | --- |
 | NARestraints Z:P + K:X role/stacking fix | **RELEASED v1.1.3** | [Release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`, wheel/sdist/SHA256SUMS, CI green Python 3.10/3.12/3.14. Committed `Ligands.xlsx` unchanged. |
-| Isolated NASolve PR #24 code | **FULL REGRESSION PASS, not integrated** | 34 focused; 961 full + 224 subtests; user-worktree `../NASolve-saengerfix` with corrected upstream NARestraints. Requires a new **combined Pine** test after PR reconciliation. |
+| NASolve PR #24 Saenger overlay | **MERGED into Pine; combined regression PASS** | User's exact reconciled `612881d` returned **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**, with real workbook-based 4-family simultaneous fixture. Native only tested for Z:P+5CM:G+DF:A previously. |
 | Native Z:P preparation, modified-W overlay | **PASS** | `run_003` PostMR: 17 original W pairs → 15 unchanged Saenger + 2 explicit modified pairs (5CM:G GC/3 contacts; DF:A AT/2). Z:P atom-role correction separately audited; 42 sequence-family targets, zero mismatches, no `force = G:C`. |
 | Native Z:P/W AutoRefine | **SOLVED (numerical)** | New `GZ11_ZP/AutoMR/run_003`, `refine-001`; frozen integrity OK; D:1 phosphate protection retained. No Rwork/Rfree numbers or final `.geo` metrics copied into this ledger. |
 | Human Coot review of `run_003` | **INSPECTED_PASS (overall visual only)** | User reported excellent refinement appearance, bonds and planes present and mild tolerable nonideal planarity. Individual-site map/clash/angular statistics and true experimental chemistry remain unverified. |
 | `nasolve show` workflow | **USER LIVE PASS** | PR #25 merged at `e8613bf`; user `workspace use` for existing `run_003`, then **bare `./nasolve show` succeeded in Coot**. New-campaign automatic workspace activation has regression, not yet this specific live exercise. |
-| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four separate named pair sites, plus 5CM:G and DF:A. New workbook regression also pending user execution. IGU/IMC/CGY/DX dictionaries absent from committed resources. |
+| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four distinct named pair sites, plus 5CM:G and DF:A. **Workbook overlay regression passed**, but genuine native chemistry/monomer preparation is NOT RUN. IGU/IMC/CGY/DX CIFs still absent from committed resources. |
 | Five independent A:T/D:T/B:S/Z:P/K:X controls | **OPTIONAL DIAGNOSTIC FALLBACK; NOT RUN** | Retain released upstream staging helper for later failure isolation; do not mistake its five datasets for the requested simultaneous test. |
 | Independent source `1W5→DZ`, `1WA→DP` P2 | **SEPARATELY PENDING NATIVE** | This 42-residue synthetic-target W test does not exercise genuine source-code normalization. |
 | Prepared nonstandard P5, Registration/Topo/GUI | **SEPARATE WORKSTREAMS** | Their prior evidence and unfinished gates retain exactly their original scope. |
@@ -100,20 +100,23 @@ its existing CIF cannot substitute for `IMC`. The 2026-10-08
 user correction is supported by the published IMC-containing
 [PDB 7SDK](https://www.rcsb.org/structure/7SDK), but the exact S-role
 atom mapping must still pass the bundled-workbook regression.
-Find or obtain authoritative, checked monomer definitions for these
-three codes, verify atom names/coordinates, component group, chemistry
-and provenance, and preserve source bytes before making derived
-NASolve resources. If unavailable, **BLOCK** the combined native
+Resolve existing, authoritative Phenix/CCD monomer definitions for these
+**four** codes using a validated library-first pathway. Verify atom
+names, coordinates, component group, bonds, stereochemistry and source
+provenance; only then freeze a derived per-run dictionary or curate a
+known-problem exception. NARestraints workbook roles alone cannot define
+complete monomer geometry. If unavailable, **BLOCK** the combined native
 PostMR attempt with that reason; do not invent molecules, mislabel
 canonical ones or count a skipped chemistry case as a pass.
 
 The first candidate mixed-family unit run on the old S6G fixture
 returned **39 passed, 1 failed, 2 subtests passed**. The new case correctly
 stopped with `No reviewed NARestraints recipe for B:G` at A:6/C:10;
-NARestraints had read S6G as G-like. Following the user's correction,
-the isolated candidate now uses **IMC** and explicitly asserts the
-published workbook classifies it as Benner **S**, plus exact bond counts.
-**The corrected regression is pending rerun; no green result claimed.**
+NARestraints had read S6G as G-like. Following the user's correction, the candidate uses **IMC**, explicitly
+asserts the published workbook classifies it as Benner **S**, and checks
+exact pair contact counts. **The corrected mixed-family case passed
+1/1; full focused integration passed 40 + 2 subtests and full NASolve
+passed 967 + 226 subtests (85.38 s).**
 
 The released upstream
 [NARestraints five-case source stager](https://github.com/vecchioni-lab/NARestraints/blob/v1.1.3/scripts/stage_nasolve_pair_matrix.py)
@@ -126,12 +129,14 @@ stager/config and disjoint hashed copies are needed before planning.
 
 ## Execution gates — one frozen combined dataset, stage by stage
 
-1. **Integrate the code safely:** the remote PR #24 candidate is reconciled
-   to current Pine and has a new workbook-backed **four-family simultaneous**
-   helper test, not yet locally executed. Confirm clean NARestraints
-   **v1.1.3** imports and workbook SHA, run focused/full NASolve regression
-   on the **combined head**, and merge PR #24 only after review/green.
-   Do not modify the user's dirty sibling NARestraints workbook.
+1. **Overlay integration complete:** PR #24 is merged to Pine at
+   `0017081`. The exact tested integrated candidate had all current Pine
+   code and passed **40 focused + 2 subtests**, **967 full + 226 subtests**.
+   It checks D:T, B:S (IGU:IMC), K:X, 5CM:G, DF:A against the real
+   NARestraints workbook, with Z:P retained in the frame Std_padd.
+   The native **all-family** experiment remains unrun. Verify installed
+   v1.1.3 imports/workbook checksum before new execution; do not
+   modify the dirty sibling NARestraints tree.
 2. **Source component dictionaries first:** review authoritative
    `IGU`, `IMC`, `CGY`, `DX` monomer CIFs and atom-role compatibility, explicitly
    documenting any missing names/dictionaries. No synthetic source data
