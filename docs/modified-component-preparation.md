@@ -196,12 +196,14 @@ infer arbitrary missing bonds, bond orders, protonation or new ideal distances
 merely to obtain a zero exit code. Base planarity alone does not validate every
 internal bond. A numerical pass is not structural approval.
 
-## Validation and next action
+## Historical P2 fixture recovery and returned local regression
 
-Use the current handoff and P2 section above. Completed native GZ11/full-auto
-runs stay preserved; a new conversion test must not overwrite or relabel them.
-Focused/full regression precedes publication of this candidate. A native alias
-preparation/DP refinement check remains distinct from the earlier DZ test.
+The following describes the **2026-10-07 debugging and publication sequence**,
+not a still-pending full-checkout run. P2 implementation and full regression
+passed, as recorded at the top of this document. Completed native
+GZ11/full-auto runs remain preserved; a **new** source-native
+`1W5/1WA` alias and DP refinement check must not overwrite or relabel
+those successes, nor be confused with ordinary DZ model validation.
 
 ### P2 fixture geometry recovery (2026-10-07)
 
