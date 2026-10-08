@@ -19,7 +19,7 @@ historical handoffs as current instructions.
   model, plus the existing 5CM:G and DF:A contextual pairs. The
   original independent A:T/D:T/B:S/Z:P/K:X staging helper is retained
   as a diagnostic fallback, **not** today's default experiment. **D:A
-  is not a registered recipe.** IGU/CGY/DX authoritative monomer CIFs
+  is not a registered recipe.** IGU/IMC/CGY/DX authoritative monomer CIFs
   are missing from NASolve and must be verified before native PostMR.
 - **Still required for Pine:** [specific component P2](modified-component-preparation.md)
   true 1W5→DZ/1WA→DP native provenance and the small real
