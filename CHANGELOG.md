@@ -17,7 +17,7 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-### Pathless campaign result viewing (candidate, local validation pending)
+### Pathless campaign result viewing — tested
 
 - An **explicit single-dataset** `campaign run` now selects its verified,
   viewable numbered AutoMR run as the **machine-local active workspace run**
@@ -35,7 +35,21 @@ entries are reconstructed from repository history.
 - The earlier explicit `show RUN --checkpoint refine-001` printed
   `refined_001.pdb` and matching refined maps correctly. This patch addresses
   stale active-workspace selection, not an unverified corruption of Coot's
-  actual loaded model or window focus. Local focused/full regression pending.
+  actual loaded model or window focus. User-local focused 59 tests + 30 subtests and full 960 tests + 226 subtests passed.
+
+### NARestraints 1.1.3 released dependency
+
+- Use the immutable [NARestraints v1.1.3](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3)
+  Git tag as NASolve's declared Python dependency. It fixes upstream Z:P
+  and K:X geometry-role orientation and modified-base stacking, preserves
+  B:S and D:T roles, and retains the original committed Ligands.xlsx.
+- The native W Z:P+5CM:G+DF:A integration path reached numerical SOLVED
+  with a separate candidate NASolve Saenger overlay and user Coot visual PASS.
+  Source-native 1W5/1WA alias conversion and independent B:S/K:X/D:T
+  native matrix checks remain separately pending.
+- Updating dependency metadata does not mutate the user's existing installed
+  .venv, original dirty NARestraints source checkout, frozen inputs or
+  completed scientific runs.
 
 ### Reviewed long deposition component names in annotated sequences
 

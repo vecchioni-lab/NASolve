@@ -34,27 +34,31 @@ G-like GC-template role and P the C-like role. An *in-memory* correction to
 P=G-like/Z=C-like passed three-contact selection, reversed input order and
 stacking-plane checks; installed files and the failed run remained unchanged.
 
-Upstream [NARestraints draft PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
-contains a candidate change to Z:P **and K:X** role orientation and stacking
-planes, leaves B:S correctly ordered and D:T as its own named recipe, and adds
-workbook-based category tests. The upstream `GC` designation is a **shared
-geometry template**, not a requested or silently inserted `force = G:C`.
-The PR is not merged or released. **User-local native Z:P PostMR with the
-candidate has now passed**; refinement and visual chemical approval remain
-pending. GitHub Actions PR run
-[37688052270](https://github.com/vecchioni-lab/NARestraints/actions/runs/37688052270)
-passed Python **3.10, 3.12 and 3.14**, including the build/wheel/sdist
-checks and the added **source-checkout-only native-matrix staging tests**.
-The publish job was skipped. This is automated qualification against the
-*committed* workbook, not verification of the user's dirty local workbook
-or the user's uncommitted NARestraints workbook. The user verified the
-clean-worktree import and reported **21/21 focused tests green**. The first
-full-suite invocation from NASolve returned **30 passed / 5 failed**, all
-five caused by a relative `examples/D3X3.pdb` or `examples/9L5Z.pdb`
-path from the wrong working directory. The user then reported a green rerun
-from inside the clean worktree; exact full-suite totals were not supplied.
-If future workbook-backed checks disagree, fix their interpretation instead
-of weakening required atom-contact checks.
+Upstream [NARestraints PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4)
+is **merged and released** as
+[v1.1.3](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3),
+`main` commit **a9264f9**. It corrects Z:P and K:X role orientation
+and stacking planes, retains correct B:S/D:T handling and adds workbook-based
+regression checks. The upstream `GC` designation is a **shared geometry
+template**, not a requested or silently inserted `force = G:C`.
+Final [release run 37702686885](https://github.com/vecchioni-lab/NARestraints/actions/runs/37702686885)
+passed **Python 3.10, 3.12 and 3.14**, verified noneditable wheel and
+source-distribution tests, and published a new immutable tag plus wheel,
+tarball and SHA-256 manifest. The committed workbook, existing v1.1.2
+tag/release and user's modified local `Ligands.xlsx` were not altered.
+NASolve Pine now declares the v1.1.3 Git tag as its install dependency;
+the existing user-local NASolve `.venv` is **not automatically upgraded**.
+
+The user earlier verified the clean candidate import and reported **21/21
+focused NARestraints tests green**. The first full-suite run from the
+wrong working directory returned **30 passed / 5 failed** solely due to
+relative `examples/D3X3.pdb` and `examples/9L5Z.pdb` fixture paths;
+rerunning from the clean NAR worktree was reported green (exact totals
+not supplied). Actual Z:P native PostMR, the combined NASolve Phenix
+numerical refinement and overall human Coot visual review subsequently
+passed as described below. This does **not** validate the user's
+uncommitted workbook edits or complete missing-component native B:S/K:X
+tests; scientific controls remain in place.
 
 ## Local-workspace protection — mandatory
 
@@ -223,13 +227,15 @@ exact .geo deviations and individual-site electron-density/clash assessments
 should be read from the checkpoint. The campaign is not permission to
 deposit or claim these modified bases exist in GZ11 reflections.
 Neither B:S, K:X nor D:T has yet cleared its own native matrix gate.
-The candidate PRs remain unmerged until review and appropriate release
-qualification; a passed native W integration is not a proxy for unavailable
-B:S/K:X component dictionaries.
+NARestraints v1.1.3 is published; the separate NASolve Saenger-overlay
+PR #24 remains a candidate pending final integration into Pine.
+A passed W integration is not a proxy for unavailable B:S/K:X
+component dictionaries.
 
 ## Five independent native W challenges
 
-A repeatable **staging-only** helper is maintained on upstream PR #4 at
+A repeatable **staging-only** helper is available in released NARestraints
+source (introduced in upstream PR #4) at
 `scripts/stage_nasolve_pair_matrix.py`. Called from the NASolve checkout
 with `--nasolve-root "$PWD"`, it copies the known GZ11 MTZ/CIF/HTML and
 `MR_frames/5W6W/5W6W_noPO4.pdb` into a new, disjoint
@@ -338,7 +344,7 @@ automatically close Pine P5 prepared-nonstandard or future Scout/GUI gates.
 | Existing Z:P donor native MR | **PASSED** | TFZ 12.9, LLG 210.0, frozen inputs intact in retained run_001 |
 | Existing Z:P donor native PostMR | **BLOCKED** | Z assigned G-role, unmapped N2; original logs retained |
 | Corrected in-memory Z:P role probe | **PASSED (probe only)** | Three anchors, inverse order and stacking-plane mapping; package unchanged |
-| Upstream draft PR #4 / workbook regressions | **CI PASS 3.10/3.12/3.14; USER-LOCAL GREEN REPORTED** | 21/21 focused; full worktree-cwd rerun reported green; exact full totals not supplied |
+| Upstream NARestraints 1.1.3 / workbook regressions | **RELEASED, CI PASS 3.10/3.12/3.14** | main a9264f9; immutable tag, wheel/tarball/SHA256SUMS; 21/21 focused local; full worktree-cwd run reported green |
 | Fresh 5-case matrix stage/plan/native run | **NOT RUN** | Each frozen case has its own immutable files and status |
 | Z:P native replay and contact/identity audit | **PASSED THROUGH POSTMR** | Preserved run_001; attempt_002 run_002; six correct identities, three correct pair contacts, A1AAZ->DF, 42 targets zero mismatches, no force |
 | Z:P AutoSol / first AutoRefine continuation | **AutoSol SKIPPED; AutoRefine BLOCKED before refinement** | No anomalous candidate, then A:19 DF / D:4 DA failed frozen W Saenger-20 class check during Phenix geometry preparation |
