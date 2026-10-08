@@ -17,8 +17,9 @@ natively and requires missing IGU/IMC/CGY/DX dictionary provenance.
 The released NARestraints v1.1.3 workbook/recipe tests do not replace
 that native gate. An earlier **separate** Z:P+5CM:G/DF:A integration
 run reached numerical SOLVED with overall user Coot visual PASS,
-using NASolve Saenger-overlay PR #24, which is still under
-integration review. Five independent family runs remain a
+using the Saenger-overlay implementation now merged via NASolve
+PR #24 (Pine `0017081`; **967 full tests + 226 subtests** on the
+tested integrated candidate). Five independent family runs remain a
 **diagnostic fallback**, not a finished matrix. None of this promotes
 registration, Topo Net or GUI tests to complete; the Scout shadow
 evidence retains its original, narrower scope.
