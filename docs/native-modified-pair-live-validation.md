@@ -21,7 +21,7 @@ See the [compact handoff](development-handoff.md) for project-wide priority.
 | Native Z:P/W AutoRefine | **SOLVED (numerical)** | New `GZ11_ZP/AutoMR/run_003`, `refine-001`; frozen integrity OK; D:1 phosphate protection retained. No Rwork/Rfree numbers or final `.geo` metrics copied into this ledger. |
 | Human Coot review of `run_003` | **INSPECTED_PASS (overall visual only)** | User reported excellent refinement appearance, bonds and planes present and mild tolerable nonideal planarity. Individual-site map/clash/angular statistics and true experimental chemistry remain unverified. |
 | `nasolve show` workflow | **USER LIVE PASS** | PR #25 merged at `e8613bf`; user `workspace use` for existing `run_003`, then **bare `./nasolve show` succeeded in Coot**. New-campaign automatic workspace activation has regression, not yet this specific live exercise. |
-| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four separate named pair sites, plus 5CM:G and DF:A. New workbook regression also pending user execution. IGU/CGY/DX dictionaries absent from committed resources. |
+| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four separate named pair sites, plus 5CM:G and DF:A. New workbook regression also pending user execution. IGU/IMC/CGY/DX dictionaries absent from committed resources. |
 | Five independent A:T/D:T/B:S/Z:P/K:X controls | **OPTIONAL DIAGNOSTIC FALLBACK; NOT RUN** | Retain released upstream staging helper for later failure isolation; do not mistake its five datasets for the requested simultaneous test. |
 | Independent source `1W5→DZ`, `1WA→DP` P2 | **SEPARATELY PENDING NATIVE** | This 42-residue synthetic-target W test does not exercise genuine source-code normalization. |
 | Prepared nonstandard P5, Registration/Topo/GUI | **SEPARATE WORKSTREAMS** | Their prior evidence and unfinished gates retain exactly their original scope. |
@@ -45,7 +45,7 @@ that already have the corresponding canonical geometric class:
 | Role | W pair sites | Original W geometry | Target component codes | Reviewed recipe |
 | --- | --- | --- | --- | --- |
 | **D:T** | **A:5 / C:11** | A:T | **1AP / DT** | `D_T`, distinct D-family chemistry |
-| **B:S** | **A:6 / C:10** | G:C | **IGU / S6G** | `GC` geometry with B=G-like, S=C-like |
+| **B:S** | **A:6 / C:10** | G:C | **IGU / IMC** | `GC` geometry with B=G-like, S=C-like |
 | **Z:P** | **A:12 / B:4** | A:T, in explicit `Std_padd` | **DZ / DP** | `GC` geometry, P=G-like, Z=C-like |
 | **K:X** | **A:20 / D:3** | C:G | **CGY / DX** | `GC` geometry, X=G-like, K=C-like |
 | Prior 5CM:G context | A:7 / C:9 | C:G | **5CM / DG** | `GC` geometry |
@@ -77,7 +77,7 @@ sequence_reference = w-metal-scaffold
 
 [sequences]
 A = GAGC(1AP)(IGU)(5CM)CTGTATGGACA(A1AAZ)(CGY)A
-C = GG(S6G)TGCT
+C = GG(IMC)TGCT
 D = CT(DX)ATGT
 ```
 
@@ -94,13 +94,26 @@ yet passed native preflight, PostMR or Phenix refinement.
 
 Actual NASolve Pine source audit on 2026-10-08 confirms packaged
 `S6G.cif`, `1AP.cif`, `DZ.cif`, `DP.cif`, `5CM.cif` and
-`DF.cif`, but **not `IGU.cif`, `CGY.cif` or `DX.cif`**.
+`DF.cif`, but **not `IGU.cif`, `IMC.cif`, `CGY.cif` or `DX.cif`**.
+`S6G` is thioguanine and is G-like, **not** the Benner S analogue;
+its existing CIF cannot substitute for `IMC`. The 2026-10-08
+user correction is supported by the published IMC-containing
+[PDB 7SDK](https://www.rcsb.org/structure/7SDK), but the exact S-role
+atom mapping must still pass the bundled-workbook regression.
 Find or obtain authoritative, checked monomer definitions for these
 three codes, verify atom names/coordinates, component group, chemistry
 and provenance, and preserve source bytes before making derived
 NASolve resources. If unavailable, **BLOCK** the combined native
 PostMR attempt with that reason; do not invent molecules, mislabel
 canonical ones or count a skipped chemistry case as a pass.
+
+The first candidate mixed-family unit run on the old S6G fixture
+returned **39 passed, 1 failed, 2 subtests passed**. The new case correctly
+stopped with `No reviewed NARestraints recipe for B:G` at A:6/C:10;
+NARestraints had read S6G as G-like. Following the user's correction,
+the isolated candidate now uses **IMC** and explicitly asserts the
+published workbook classifies it as Benner **S**, plus exact bond counts.
+**The corrected regression is pending rerun; no green result claimed.**
 
 The released upstream
 [NARestraints five-case source stager](https://github.com/vecchioni-lab/NARestraints/blob/v1.1.3/scripts/stage_nasolve_pair_matrix.py)
@@ -120,7 +133,7 @@ stager/config and disjoint hashed copies are needed before planning.
    on the **combined head**, and merge PR #24 only after review/green.
    Do not modify the user's dirty sibling NARestraints workbook.
 2. **Source component dictionaries first:** review authoritative
-   `IGU`, `CGY`, `DX` monomer CIFs and atom-role compatibility, explicitly
+   `IGU`, `IMC`, `CGY`, `DX` monomer CIFs and atom-role compatibility, explicitly
    documenting any missing names/dictionaries. No synthetic source data
    becomes a release resource without scientific provenance.
 3. **Stage and freeze *one* combined challenge:** allocate a fresh disjoint
