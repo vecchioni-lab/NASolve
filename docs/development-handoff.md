@@ -40,8 +40,18 @@ approval.
    validation; none contains numerical geometry parameters. A **Cedar draft
    patch** now resolves these from configured Phenix before Coot, with
    SHA256 source snapshots and a fail-closed numerical ReadySet gate.
-   This patch is NOT yet locally regression-tested or native-qualified.
-   Prefer validated Phenix/CCD monomers before curated overrides, and
+   **User-local focused tests passed** (Cedar 10 + 4 subtests;
+   PostMR/Saenger/Cedar 45 + 4 subtests) on `1042ca1`, but native
+   integrated PostMR and full Cedar regression remain pending.
+   **Protect all nine reviewed CIFs:** 1AP, DE, DF, S6G, C38, 5IU,
+   5CM, DZ, DP. They load from NASolve's bundled `ligands/CODE.cif`
+   even if Phenix supplies a competing CCD, and missing/invalid curated
+   chemistry fails closed. The `A1AAZ→DF` bridge and DE (not
+   incorrect 8RO) remain intentional. `OHU.cif` is bundled local-first
+   but not a curated exception. An additional Cedar test matrix now audits
+   all nine source paths and the generated Coot loader; those newer tests
+   are pending user-local execution.
+   Prefer validated Phenix/CCD monomers only for non-curated components, and
    where supported produce an **audited, frozen derivative**, never
    fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
    Keep exceptional local recipes only for demonstrated broken cases.
