@@ -14,10 +14,13 @@ historical handoffs as current instructions.
   unmerged** despite a successful isolated native Phenix refinement and
   overall human Coot visual PASS.
 - **Next chemistry test, after PR #24 integration:**
-  [five-member native modified-pair matrix](native-modified-pair-live-validation.md)
-  — independent **A:T control, D:T, B:S, Z:P, K:X** datasets in one frozen
-  campaign. **Not** D:A, and **not** all four noncanonical pairs in one PDB.
-  Missing native component dictionaries remain meaningful blockers.
+  [one simultaneous modified-pair model](native-modified-pair-live-validation.md)
+  — distinct **D:T, B:S, Z:P and K:X** sites in the same 42-residue W
+  model, plus the existing 5CM:G and DF:A contextual pairs. The
+  original independent A:T/D:T/B:S/Z:P/K:X staging helper is retained
+  as a diagnostic fallback, **not** today's default experiment. **D:A
+  is not a registered recipe.** IGU/CGY/DX authoritative monomer CIFs
+  are missing from NASolve and must be verified before native PostMR.
 - **Still required for Pine:** [specific component P2](modified-component-preparation.md)
   true 1W5→DZ/1WA→DP native provenance and the small real
   prepared-nonstandard P5 test. Then final review/merge. After Pine:
@@ -39,7 +42,7 @@ historical handoffs as current instructions.
 | Work area | Read here |
 | --- | --- |
 | Modified residues, CCD aliases and terminal phosphate | [Modified-component preparation](modified-component-preparation.md), [backbone chemistry](backbone-chemistry.md), [sequence-family targets](sequence-family-targets.md) |
-| Pair recipes, successful Z:P run, five-case next matrix | [Native modified-pair validation](native-modified-pair-live-validation.md) |
+| Pair recipes, successful Z:P run, combined four-family next challenge | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
