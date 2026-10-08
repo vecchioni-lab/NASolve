@@ -47,7 +47,7 @@ def _sample_model(path: Path, *, changed: bool = True,
         # A:T -> D:T uses the distinct diaminopurine recipe.
         specifications.extend([
             ("A", 5, "1AP"), ("C", 11, "DT"),
-            ("A", 6, "IGU"), ("C", 10, "S6G"),
+            ("A", 6, "IGU"), ("C", 10, "IMC"),
             ("A", 20, "CGY"), ("D", 3, "DX"),
         ])
     output = []
@@ -217,6 +217,17 @@ def test_four_named_families_plus_modified_context_share_one_overlay(tmp_path):
     This is a workbook/atom-role regression, not a native test of missing
     IGU/CGY/DX ligand CIFs or experimental chemistry.
     """
+    # IMC is the intended Benner S component. S6G is thioguanine
+    # (G-like) and must not be relabelled or used as an S surrogate.
+    imc_records = [
+        record for record in load_residue_records()
+        if record.get("Ligand code") == "IMC"
+    ]
+    assert any(
+        r.get("Source sheet") == "S" and r.get("Base Analog") == "S"
+        for r in imc_records
+    ), "Reviewed Benner S component IMC is not S-mapped in the bundled workbook"
+
     model, source, secondary, pair_file = _run(tmp_path, mixed=True)
     before_secondary = source.read_bytes()
 
@@ -230,17 +241,17 @@ def test_four_named_families_plus_modified_context_share_one_overlay(tmp_path):
             )
     replacements = {frozenset(item["sites"]): item for item in result["replacements"]}
     expected = {
-        frozenset(("A:5", "C:11")): (["1AP", "DT"], "D_T"),
-        frozenset(("A:6", "C:10")): (["IGU", "S6G"], "GC"),
-        frozenset(("A:20", "D:3")): (["CGY", "DX"], "GC"),
-        frozenset(("A:7", "C:9")): (["5CM", "DG"], "GC"),
-        frozenset(("A:19", "D:4")): (["DF", "DA"], "AT"),
+        frozenset(("A:5", "C:11")): (["1AP", "DT"], "D_T", 3),
+        frozenset(("A:6", "C:10")): (["IGU", "IMC"], "GC", 3),
+        frozenset(("A:20", "D:3")): (["CGY", "DX"], "GC", 3),
+        frozenset(("A:7", "C:9")): (["5CM", "DG"], "GC", 3),
+        frozenset(("A:19", "D:4")): (["DF", "DA"], "AT", 2),
     }
     assert set(replacements) == set(expected)
-    for pair, (codes, recipe) in expected.items():
+    for pair, (codes, recipe, bonds) in expected.items():
         assert replacements[pair]["prepared_codes"] == codes
         assert replacements[pair]["narestraints_recipe"] == recipe
-        assert replacements[pair]["explicit_bond_count"] >= 1
+        assert replacements[pair]["explicit_bond_count"] == bonds
     assert secondary.read_text().count("base_pair {") == 12
     assert source.read_bytes() == before_secondary
     assert sum(len(s.pairs()) for s in read_base_pair_file(pair_file)) == 8
