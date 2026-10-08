@@ -29,7 +29,13 @@ entries are reconstructed from repository history.
   **simultaneously**, including Z:P in the existing Std_padd range and the
   already tested 5CM:G / DF:A off-pair context. This extra regression still
   needs user-local execution on the integrated Pine head; no native
-  mixed-family run or missing-CIF fabrication is claimed.
+  mixed-family run or missing-CIF fabrication is claimed. The first local
+  mixed-fixture run correctly **failed closed** for an incorrectly chosen
+  `S6G` thioguanine (B:G instead of B:S): **39 passed, 1 failed,
+  2 subtests passed**. The user's corrected Benner S candidate **IMC**
+  replaces S6G in the still-unexecuted revised regression; the test now
+  asserts the actual S workbook category and expected bond counts.
+  `IMC.cif` remains absent from committed NASolve resources.
 - The original isolated W Z:P+5CM:G+DF:A patch passed 34 focused and 961 full
   NASolve tests + 224 subtests, native Phenix numerical SOLVED/refine-001,
   frozen inputs OK, and user Coot visual inspection of bonds/planes PASS.
