@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-08**. **Active candidate: `cedar`; integration branch: `pine`.**
+Updated **2026-10-09**. **Active candidate: `cedar`; integration branch: `pine`.**
 Finish Cedar's existing validation gates and merge it into Pine, then retire
 Cedar. Finish the bounded Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
 into `main`, then the **blind AlphaFold geometry baseline**, then
@@ -41,17 +41,22 @@ approval.
    validation; none contains numerical geometry parameters. A **Cedar draft
    patch** now resolves these from configured Phenix before Coot, with
    SHA256 source snapshots and a fail-closed numerical ReadySet gate.
-   **User-local focused tests passed** (Cedar 10 + 4 subtests;
-   PostMR/Saenger/Cedar 45 + 4 subtests) on `1042ca1`, but native
-   integrated PostMR and full Cedar regression remain pending.
+   **Latest user-local validation on `d1bf3ea` (2026-10-09):** expanded
+   PostMR/Saenger/Cedar suite **50 passed + 31 subtests (5.28 s)**.
+   The full suite returned **1 failed, 981 passed + 257 subtests (87.21 s)**:
+   `test_dz_hop_does_not_supply_a_missing_final_dictionary` expected the old
+   generic error text, while missing curated DZ correctly raised the specific
+   `FileNotFoundError`. Only that test's expected message is corrected in the
+   follow-up; updated-head full regression and native PostMR remain pending.
+   Earlier `1042ca1` results remain historical, not current-head validation.
    **Protect all nine reviewed CIFs:** 1AP, DE, DF, S6G, C38, 5IU,
    5CM, DZ, DP. They load from NASolve's bundled `ligands/CODE.cif`
    even if Phenix supplies a competing CCD, and missing/invalid curated
    chemistry fails closed. The `A1AAZ→DF` bridge and DE (not
    incorrect 8RO) remain intentional. `OHU.cif` is bundled local-first
-   but not a curated exception. An additional Cedar test matrix now audits
-   all nine source paths and the generated Coot loader; those newer tests
-   are pending user-local execution.
+   but not a curated exception. The expanded Cedar matrix audits all nine
+   source paths and the generated Coot loader; it passed in the focused
+   suite above. This is regression evidence, not native refinement proof.
    Prefer validated Phenix/CCD monomers only for non-curated components, and
    where supported produce an **audited, frozen derivative**, never
    fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
@@ -170,6 +175,10 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
   Local `main` was fast-forwarded to `fec66eb`. The final worktree inventory
   contains only the original `NASolve` checkout on Pine and active detached
   `NASolve-cedar`; retire Cedar after its existing gates and integration.
+  On 2026-10-09 the clean `NARestraints-pairfix` checkout and merged role-fix
+  remote branch were also retired after verifying equivalence with v1.1.3;
+  original NARestraints remains protected. `NASolve-lab-notes` is intentionally
+  retained as a private notebook at the user's request.
 - **One terminal action per user turn** for live NASolve debugging, then
   inspect the output before proceeding. Preserve the user's dirty
   `../NARestraints` tree (including unpublished `Ligands.xlsx` and Excel

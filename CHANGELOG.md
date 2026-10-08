@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar regression diagnostic alignment
+
+- Update the construction-hop regression to expect the specific missing-curated-DZ
+  diagnostic. It still requires `FileNotFoundError`; curated dictionary precedence,
+  the no-fallback guard and runtime behavior are unchanged. The old expectation
+  was the sole failure in the user-local full suite at `d1bf3ea`; rerun pending.
+
 ### Contributor continuity and branch lifecycle
 
 - Consult the existing documentation and validation history before inferring

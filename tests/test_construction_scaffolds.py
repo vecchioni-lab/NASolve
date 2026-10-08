@@ -93,5 +93,5 @@ def test_curated_chemistry_routes_keep_precedence(monkeypatch):
 def test_dz_hop_does_not_supply_a_missing_final_dictionary(monkeypatch, tmp_path):
     install_records(monkeypatch, [{"Ligand code": "DZ", "Sugar Type": "DNA", "Source sheet": "Z", "Base Analog": "Z"}])
     assert ligand_definition("DZ").parent_code == "DC"
-    with pytest.raises(FileNotFoundError, match="No local CCD dictionary for DZ"):
+    with pytest.raises(FileNotFoundError, match="Curated dictionary for DZ is missing"):
         ligand_dictionary("DZ", tmp_path)
