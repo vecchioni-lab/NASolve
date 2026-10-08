@@ -12,27 +12,38 @@ handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.m
 | Workstream | Verified result | Remaining gate |
 | --- | --- | --- |
 | NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
-| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) is **still unmerged**, but its branch now includes latest Pine plus the previously successful overlay and a new combined-family workbook regression. Original isolated **34 focused** and **961 full + 224 subtests** passed; native Z:P `run_003/refine-001` SOLVED numerically with positive user Coot inspection. | Run focused/full regressions on the **newly reconciled candidate**, verify v1.1.3 import, then merge to Pine. The added multi-family test is **not yet executed**. |
+| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
 | Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
 | P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
 | Campaigns / full auto | Ordinary guarded MR→PostMR→conditional AutoSol→refinement and immutable checkpoints work. Separate EA/DiU/Q5cm/QiC full-auto campaign reached numerical SOLVED for all four, preserving EA MR_REVIEW and QiC provisional (not user-approved) selection. | Bounded evidence review and user-veto/resume where still missing; do not rerun passed cohorts merely to refresh docs. |
 | Prepared nonstandard P5 | Explicit per-dataset PDB/sequence and mixed schema-2 campaigns implemented and fixture-tested. | Small **3–5-member real geometry-diverse** native smoke check; W-only successes cannot substitute. |
 | Scout / registration / Topo / GUI | Registration/Scout shadow primitives and earlier scoped checks are recorded. | Operational Scout, symmetry surgery, Topo and GUI remain separate future work, **not** claimed complete. |
 
-**Do not combine these test totals:** PR #24 and PR #25 passed in *different
-isolated checkout heads*. The post-integration Pine composition has not
-been reported through a fresh full suite. Numerical `SOLVED` is not
-experimental-chemistry confirmation, user approval or deposition authority.
+**Integrated code regression:** the last pre-merge PR #24 head contained
+PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
+combined head returned **967 tests + 226 subtests PASS** before squash
+merge. The post-merge Pine checkout has not been rerun on the user's terminal.
+One earlier first-pass mixed fixture with S6G instead of Benner IMC correctly
+failed closed as B:G; the reviewed IMC replacement passed. Neither unit
+tests nor numerical `SOLVED` establish experimental chemistry or deposition
+approval.
 
 ## Immediate next scientific work — one bounded sequence
 
-1. **Integrate the proven modified-W overlay.** [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-   has been reconciled in its separate remote branch with current Pine
-   (including NARestraints v1.1.3 and pathless Coot `show`).
-   Its extra **all-four-family workbook regression has not yet run**.
-   Test focused/full on that *combined code head*, verify exact import and
-   workbook identity, then review/merge; protect D:1 phosphate and all
-   unaffected Saenger pairs. No native model or old run is overwritten.
+1. **Next engineering slice — library-first generic monomer resolver.**
+   With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
+   merged, the combined-family workbook regression is green, but four
+   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve.
+   NASolve currently requires a local `CODE.cif` before Coot parent-overlap,
+   whereas ReadySet normally runs *after* that placement. Resolve existing
+   validated Phenix/CCD monomers before asking for curated overrides, and
+   where supported produce an **audited, frozen derivative**, never
+   fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
+   Keep exceptional local recipes only for demonstrated broken cases.
+   Review prospective HelixWeld/HelixMeld implementations before making
+   them providers; no verified integration yet. Pin/run against released
+   NARestraints v1.1.3 with exact import verification; don't edit the
+   user's dirty workbook or historical native models.
 2. **Attempt one simultaneous four-family W model first**, as explicitly
    requested by the user on 2026-10-08. Use distinct original W paired sites:
    **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/IMC),
