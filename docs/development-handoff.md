@@ -5,6 +5,34 @@ This is the current-state and finite close-out entry point. Subsystem contracts
 own policy, the linked validation records own detailed evidence, and Git/history
 preserves earlier states. Do not ingest every historical handoff for routine work.
 
+## 2026-10-08 live CLI/Coot acceptance — pathless show
+
+[NASolve PR #25](https://github.com/vecchioni-lab/NASolve/pull/25)
+is **merged into Pine** (commit `e8613bf`). An isolated candidate
+`../NASolve-showfix` returned **59 focused tests + 30 subtests** and
+**960 full tests + 226 subtests**. The user safely fast-forwarded their
+original Pine checkout (untracked scientific data and patch files preserved),
+then ran `./nasolve workspace use` for frozen
+`GZ11_ZP/AutoMR/run_003`, followed by **bare `./nasolve show`**.
+The user reported **'Worked great! Success'** and returned a Coot screenshot
+of an intact displayed base pair with visible dashed hydrogen-bond links.
+Record **USER LIVE PASS for pathless viewing of the existing active run**.
+The user had selected that run manually because it predated PR #25; automatic
+activation after a newly executed single-dataset campaign is still covered
+by the tests rather than this particular native follow-up. This user review
+confirms usability but does not change dataset chemistry, refinement metrics
+or scientific status.
+
+**Separate future geometry question, not a blocker for the show fix:** the
+user observed an angled pair of directional hydrogen-bond contacts and would
+like to explore more nearly linear geometry between the named N1/N3 and
+O4/N6 sites. First inspect the exact donor/hydrogen/acceptor assignment,
+restraint type, target values, weights and refined geometry. Do not blindly
+enforce a heavy-atom 180-degree angle, force ideal base planarity, or edit
+the accepted native `run_003`. Preserve this as a new scientific-restraint
+debugging case, independent of the **PASS** on pathless viewing and overall
+visible model quality.
+
 ## Branches and scope
 
 - Active branch: `pine`, draft [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
