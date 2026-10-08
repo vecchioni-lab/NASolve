@@ -5,6 +5,27 @@ are not current instructions: branch names, commands, test counts, paths and
 next steps may be obsolete. Start with the [current handoff](../development-handoff.md),
 then the relevant contract from the [documentation map](../README.md).
 
+## October 8 consolidation — last long current-state records
+
+These two files preserve the full pre-prune bodies (with an archival banner).
+Current priority moved into one short
+[handoff](../development-handoff.md), and the exact five-case scientific
+matrix into one [live ledger](../native-modified-pair-live-validation.md).
+Source commit before pruning:
+`eaa6b201b947fbd19dcf17648947d513ca8a053a`.
+
+- [Development handoff before pruning](development-handoff-2026-10-08-pre-consolidation.md):
+  previous long Pine P1–P7 chronology, all prior full-auto cases, provenance
+  records, PR #24/#25 evolution and historical next-step statements.
+- [Native modified-pair ledger before pruning](native-modified-pair-2026-10-08-pre-consolidation.md):
+  literal run_001 N2 failure, run_002 Saenger failure, run_003 numerical
+  success, workbook/dictionary audits and per-gate test plan as recorded
+  before the latest user live `nasolve show` acceptance.
+
+**Do not execute their old next-step commands or promote superseded
+statuses.** Every original pre-prune source also remains in Git at the
+source commit; these files are for forensic readability only.
+
 ## Exact snapshots retained during the October 1 consolidation
 
 Source commit: `859a29cc77d1c37cb277be8242b3cfb8590ed7f4`.
