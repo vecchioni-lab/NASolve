@@ -11,7 +11,7 @@ handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.m
 
 | Workstream | Verified result | Remaining gate |
 | --- | --- | --- |
-| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/CGY/DX CIFs first. |
+| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
 | Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) is **still unmerged**, but its branch now includes latest Pine plus the previously successful overlay and a new combined-family workbook regression. Original isolated **34 focused** and **961 full + 224 subtests** passed; native Z:P `run_003/refine-001` SOLVED numerically with positive user Coot inspection. | Run focused/full regressions on the **newly reconciled candidate**, verify v1.1.3 import, then merge to Pine. The added multi-family test is **not yet executed**. |
 | Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
 | P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
@@ -35,7 +35,7 @@ experimental-chemistry confirmation, user approval or deposition authority.
    unaffected Saenger pairs. No native model or old run is overwritten.
 2. **Attempt one simultaneous four-family W model first**, as explicitly
    requested by the user on 2026-10-08. Use distinct original W paired sites:
-   **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/S6G),
+   **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/IMC),
    **Z:P at A:12/B:4** (DZ/DP, existing `pair=Z:P` route), and
    **K:X at A:20/D:3** (CGY/DX). Keep the prior off-pair A:7/C:9
    **5CM:G** and A:19/D:4 **DF:A** simultaneously. These sites align
@@ -43,7 +43,7 @@ experimental-chemistry confirmation, user approval or deposition authority.
    but are still **proposed design intent**, not frozen/validated.
    The Saenger overlay should retain **12 original Saenger blocks and
    replace 5 with explicit pairs**; the central Z:P stays in Std_padd.
-   **Before any native run**, locate source-verified `IGU`, `CGY`, `DX`
+   **Before any native run**, locate source-verified `IGU`, `IMC`, `CGY`, `DX`
    monomer dictionaries (absent from committed NASolve resources) and
    audit the actual W model/42-site sequence targets, restraint interfaces,
    atom names and phosphate policy. Do not invent CIFs, force chemistry
