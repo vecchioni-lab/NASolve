@@ -10,7 +10,9 @@ in this repository.
 2. Read `README.md`, `docs/README.md`, `docs/architecture.md`,
    `docs/development-handoff.md`, `docs/collaboration.md`, and the `Unreleased`
    section of `CHANGELOG.md`. Files under `docs/history/` are evidence, not
-   current instructions.
+   current instructions. Consult the relevant recorded decisions and validation
+   evidence before inferring intent; follow the [branch and worktree lifecycle](docs/collaboration.md#branch-and-worktree-lifecycle)
+   to keep one active development line and retire completed work promptly.
 3. Identify whether the change affects crystallographic behavior,
    compatibility, artifact schemas, portability, or reproducibility.
 

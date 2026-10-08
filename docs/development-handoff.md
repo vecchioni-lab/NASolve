@@ -1,7 +1,8 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-08**. **Working branch: `pine`.** Finish the bounded
-Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
+Updated **2026-10-08**. **Active candidate: `cedar`; integration branch: `pine`.**
+Finish Cedar's existing validation gates and merge it into Pine, then retire
+Cedar. Finish the bounded Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
 into `main`, then the **blind AlphaFold geometry baseline**, then
 **operational Scout**. No GUI/Topo Net implementation is a prerequisite.
 This is the compact active handoff, not a chronology. The complete previous
@@ -153,10 +154,19 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Work discipline and doc ownership
 
+- **Read the relevant doc swarm before inferring context:** start here and
+  follow the documentation map to subsystem contracts and prior evidence.
+  Verify historical claims against the actual commit and returned output.
+- **One active development branch and one everyday checkout.** Follow the
+  [branch lifecycle](collaboration.md#branch-and-worktree-lifecycle): merge when
+  the scoped scientific gates support it, then retire completed branches and
+  disposable worktrees promptly. Additional worktrees are bounded exceptions.
+  PR #24 and #25 branch tips match their squash-merge file trees in Pine;
+  `NASolve-showfix` was locally removed on 2026-10-08. Its remote branch and
+  the Saenger worktree/branch still await retirement; audit local contents first.
 - **One terminal action per user turn** for live NASolve debugging, then
-  inspect the output before proceeding. Prefer isolated Git worktrees
-  for candidates. Preserve the user's dirty `../NARestraints` tree (including
-  unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
+  inspect the output before proceeding. Preserve the user's dirty
+  `../NARestraints` tree (including unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
   untracked files/patches, all immutable numbered runs, maps and Free-R.
 - Do not represent an unrun test as passing. Keep native-tool receipt,
   chemical identity, numerical statistics and human Coot verdict as

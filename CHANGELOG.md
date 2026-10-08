@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Contributor continuity and branch lifecycle
+
+- Consult the existing documentation and validation history before inferring
+  project intent. Prefer one active development branch and everyday checkout,
+  integrate after scoped scientific gates pass, and promptly retire audited
+  completed branches/worktrees. Runtime behavior and scientific gates are unchanged.
+
 ### Modified-base W Saenger overlays — isolated native integration PASS
 
 - In new W PostMR derivatives, match actual prepared modified bases against
