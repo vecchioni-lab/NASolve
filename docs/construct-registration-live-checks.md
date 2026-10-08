@@ -13,7 +13,7 @@ the live pipeline.
 **Separate live chemistry/human qualification:** the user has elected
 [one combined D:T+B:S+Z:P+K:X W challenge](native-modified-pair-live-validation.md)
 with four distinct sites plus 5CM:G and DF:A; this **has not yet run**
-natively and requires missing IGU/CGY/DX dictionary provenance.
+natively and requires missing IGU/IMC/CGY/DX dictionary provenance.
 The released NARestraints v1.1.3 workbook/recipe tests do not replace
 that native gate. An earlier **separate** Z:P+5CM:G/DF:A integration
 run reached numerical SOLVED with overall user Coot visual PASS,
