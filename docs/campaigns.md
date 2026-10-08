@@ -1,8 +1,10 @@
 # NASolve campaigns and project presets
 
-Status: architecture and roadmap. Versioned 5W6W presets, immutable campaign
-planning/status, and one sequential resumable candidate path are implemented;
-see [campaign planning](campaign-planning.md) and
+Status: architecture and roadmap. Versioned presets, immutable schema-2
+campaign planning/status, and one sequential resumable candidate path are
+implemented for standard W plus prepared nonstandard per-dataset PDB/sequence
+inputs; existing schema-1 W plans remain executable. See
+[campaign planning](campaign-planning.md) and
 [campaign execution](campaign-execution.md) for available commands and limits.
 The broader candidate-selection, Doctor, approval, reporting and deposition
 commands described below remain planned.
@@ -18,11 +20,15 @@ The campaign layer orchestrates the existing guarded stage engines. It must not
 reimplement Phaser, Coot, ReadySet, AutoSol, Phenix refinement, NARestraints,
 or their safety checks.
 
-The first supported production preset is 5W6W. The architecture must also
-support later project presets with different MR catalogues, sequences,
-metalation strategies, restraint policies, AutoSol protocols, refinement
-recipes, and imported model providers. Model generation itself is upstream;
-NASolve does not invoke AlphaFold.
+The first supported production preset is 5W6W. Schema-2 planning can also host
+prepared nonstandard datasets whose explicit model/sequence intent suppresses
+W-specific AutoMR defaults and chemistry while retaining the selected campaign's
+bounded shared stage policy. A neutral project-local preset ID is recommended
+for a geometry-diverse real campaign so the human-facing project identity is not
+misleading. The architecture must also support later project presets with
+different MR catalogues, sequences, metalation strategies, restraint policies,
+AutoSol protocols, refinement recipes, and imported model providers. Model
+generation itself is upstream; NASolve does not invoke AlphaFold.
 
 ## Core principles
 
@@ -98,15 +104,27 @@ Campaign/
 └── EG/
 ```
 
-Each dataset must contain the three authoritative processing inputs:
+For the **current implemented AutoPROC/STARANISO profile**, each dataset must
+contain three authoritative processing inputs:
 
-1. one accepted STARANISO/all-data MTZ;
+1. one accepted reflection MTZ (STARANISO/all-data is preferred when present);
 2. one matching `Data_1*` metadata CIF; and
 3. `summary.html`.
 
-It may also contain `nasolve.txt`, sequence files, custom models, or other
-preset-specific inputs. Existing NASolve output directories are never treated
-as new datasets.
+That is not intended to be a universal requirement for other laboratories.
+Future campaign import should classify datasets by capability rather than by
+processing vendor: MR-ready, refinement-ready, anomalous-ready and
+deposition-ready. A generic MTZ that satisfies the relevant crystallographic
+gates should eventually be solvable without AutoPROC companion files. SCA/
+Scalepack should likewise be allowed as a direct MR source when Phenix can
+consume it; any MTZ derived later for refinement or analysis must be a separate
+checksummed artifact with explicit conversion provenance. Missing deposition-only
+metadata should lock deposition/reporting actions, not the earlier scientific
+stages.
+
+A dataset may also contain `nasolve.txt`, sequence files, custom models, or
+other preset-specific inputs. Existing NASolve output directories are never
+treated as new datasets.
 
 Discovery is frozen before execution. The campaign records dataset identities,
 relative paths, input hashes, and the resolved input inventory. Files added
@@ -131,6 +149,10 @@ may declare:
   distances;
 - AutoRefine recipe, numerical continuation criteria, and validation policy;
 - bounded Doctor trial definitions and candidate-selection policy;
+- workflow-level Doctor policy, including the future semantic option
+  **"apply Doctor as needed"**: absent means stop at the review gate; enabled
+  means run only the applicable bounded Doctor(s) already exposed by the backend,
+  while preserving explicit inspection/selection semantics;
 - reporting and PDF policy;
 - later curate, Table 1, and deposition policy; and
 - imported/external provider provenance and reviewed model transformations.
@@ -149,7 +171,34 @@ The fully resolved configuration is frozen in each dataset run.
 
 ## Scientific stage graph
 
-The ordinary 5W6W policy is:
+Keep the **current executable campaign graph** separate from the broader
+registration/Doctor target architecture.
+
+Current Pine campaign execution is:
+
+```text
+frozen input/model/target validation
+  -> AutoMR preflight
+  -> Phaser
+  -> PostMR
+  -> conditional AutoSol
+  -> AutoRefine
+  -> SOLVED / REVIEW / BLOCKED / NO_SOLUTION
+```
+
+A plain `campaign run ROOT` currently advances eligible datasets through the
+default AutoRefine endpoint. AutoSol is conditional on PostMR evidence: when no
+supported anomalous candidate is present, the AutoSol stage records accepted
+status `SKIPPED` and does not launch `phenix.autosol`. Review/failure of one
+dataset does not stop unrelated campaign members.
+
+Pine now also contains a **regression + live validated** explicit
+`AUTOREFINE_REVIEW -> refine-doctor` continuation for campaign-owned Refine
+Doctor provenance. It is deliberately not automatic and not part of default
+campaign completion; a future workflow recipe may opt into Doctor-as-needed
+behavior.
+
+The longer-term registration-aware target graph is:
 
 ```text
 data validation
@@ -169,9 +218,14 @@ data validation
   -> deposit preparation and submission
 ```
 
-AutoSol remains conditional on supported anomalous candidates and usable
-anomalous data. AutoSol warning/failure may permit the ordinary MR refinement
-path to continue without experimental phases when the preset allows it.
+That second graph is **not all current runtime behavior**. In particular, the
+merged design-aware Scout-v2 helper remains experimental/non-runtime, automatic
+ASU Registration/Recut Rescue is not yet the campaign authority, and automatic
+campaign Doctor escalation remains future work.
+
+AutoSol warning/failure may later permit the ordinary MR refinement path to
+continue without experimental phases when an explicit reviewed workflow recipe
+allows it. Current policy remains fail-closed for unaccepted anomalous branches.
 
 ReadySet's validated model and combined ligand CIF remain the refinement
 inputs. The campaign must not fall back silently to the original MR model or
@@ -392,10 +446,17 @@ navigation. If several candidates are solution-ready and none is selected,
 approval must present or require a choice rather than guessing.
 
 An inspection queue reports exact commands for opening candidates and
-checkpoints in Coot. Static PDFs can contain file links and copyable commands,
-but reliable one-click Coot launching requires a later local dashboard or a
-registered local URL handler. A local `nasolve campaign serve` dashboard is the
-preferred future direction for clickable inspection and branch selection.
+checkpoints in Coot. Every interactive CLI decision must correspond to a backend
+action that the future GUI can invoke directly: open/inspect in Coot, yes/no
+confirmation, explicit continuation from a review gate, Doctor candidate
+inspection, and checkpoint selection/Make Current. The GUI may replace terminal
+prompts with buttons, cards or action popovers, but the eligibility rule,
+default, provenance and resulting state must be identical.
+
+Static PDFs can contain file links and copyable commands. The planned native GUI
+is the preferred interactive surface for clickable inspection and branch
+selection; a local web dashboard remains an optional implementation detail, not
+the scientific authority.
 
 ## Approval and reopening
 
@@ -497,52 +558,74 @@ identifiers and the exact approved snapshot submitted.
 2. **Implemented:** strict dataset discovery, input freezing, campaign state
    storage, explicit sequence-reference freezing, and root
    `nasolve-campaign.toml` sequence threads.
-3. **Implemented:** one resumable sequential 5W6W execution path using the
-   existing AutoMR/PostMR/conditional AutoSol/AutoRefine stages, including
-   pause and explicit retry.
-4. **Next CLI milestone:** generalize planning/execution to one frozen
-   nonstandard per-dataset PDB provider plus an exact frozen sequence target,
-   while preserving existing schema-1 W plans and all pause/retry/relocation
-   safeguards.
-5. **Next live milestone:** run a small real geometry-diverse campaign through
-   AutoMR/PostMR/conditional AutoSol/AutoRefine, with ambiguous representation
-   problems stopping only the affected dataset.
-6. Add explicit stable Design grouping/identity for datasets sharing one
+3. **Implemented and now real-environment checked through PostMR:** one resumable
+   sequential 5W6W execution path using AutoMR/PostMR/conditional
+   AutoSol/AutoRefine, including pause and explicit retry. In the four-member
+   W live campaign (`DOHU`, `QiC_120325_0513`, `QE_120325_0607`,
+   `EG_091325-0302`), planning/integrity and real preflight/Phaser/PostMR
+   passed 4/4 under Phenix 2.2.1 and Coot 1.3.3. The plain unattended resume
+   through the default AutoRefine endpoint is the current live check.
+4. **Implemented on Pine; real prepared-nonstandard validation pending:**
+   schema-2 planning/execution for one frozen nonstandard per-dataset PDB
+   provider plus an exact frozen raw+parsed sequence target, while preserving
+   schema-1 W plan execution and pause/retry/relocation safeguards.
+5. **Implemented in fixture-backed regression; real geometry-diverse gate
+   pending:** standard W and prepared nonstandard members can coexist under one
+   sequential coordinator without frame/pair/chemistry leakage. Run a small
+   real 3-5 member prepared-nonstandard/geometry-diverse campaign when those
+   inputs are available, with ambiguous representation problems stopping only
+   the affected dataset.
+6. **Add first-class workflow-recipe semantics.** The selected/frozen campaign
+   recipe should explicitly declare its intended endpoint and conditional stage
+   graph instead of relying on the executor's hard-coded stage order/default
+   endpoint. Preserve current conditional AutoSol skip/run behavior and
+   fail-closed per-dataset stops. A recipe may optionally request
+   **"apply Doctor as needed"**; omission leaves review states for inspection,
+   while opt-in may traverse only validated bounded Doctor transitions. Doctor
+   recommendation and checkpoint selection remain separate unless a later,
+   separately validated policy explicitly changes that.
+7. Add explicit stable Design grouping/identity for datasets sharing one
    construct/design record. Do not infer Design membership from filenames or
    similarity.
-7. **Prerequisites implemented; policy/execution still future:** read-only
+8. **Prerequisites implemented; policy/execution still future:** read-only
    checkpoint-candidate descriptors and donor-checkpoint versus recipient-run
    comparisons now provide provenance-rich inputs for Campaign Doctor. Add a
    campaign-wide read-only candidate view, then a reviewed donor eligibility
    policy and attempt-local rescue-provider provenance before any automatic
    donor selection.
-8. Validate one explicit-donor recipient rescue before adding bounded automatic
+9. Validate one explicit-donor recipient rescue before adding bounded automatic
    Campaign Doctor donor enumeration. Preserve the failed recipient attempt,
    observations, Free-R set and every rescue candidate.
-9. **GUI fork is allowed after the basic heterogeneous campaign + Design layer
-   are CLI-functional.** The planned modular GUI then visualizes the same
-   campaign/checkpoint state rather than compensating for missing backend
-   semantics.
-10. Add machine-readable summaries and per-dataset/campaign PDF rendering.
-11. Add broader multi-candidate DAGs, shared-parent execution, model
-   libraries/ensembles and rescue budgets under explicit policy.
-12. Add Model Doctor and project-specific recovery extensions.
-13. Add curate and the lab Table 1 specification.
-14. Add deposition preparation, validation, and explicit submission.
+10. **GUI fork is allowed after the basic heterogeneous campaign + Design layer
+    are CLI-functional.** The GUI should consume the workflow recipe/state as
+    backend authority rather than inventing its own progression semantics.
+11. Add machine-readable summaries and per-dataset/campaign PDF rendering.
+12. Add broader multi-candidate DAGs, shared-parent execution, model
+    libraries/ensembles and rescue budgets under explicit policy.
+13. Add Model Doctor and project-specific recovery extensions.
+14. Add curate and the lab Table 1 specification.
+15. Add deposition preparation, validation, and explicit submission.
 
 The implemented campaign slice provides `preset check`, `campaign plan`,
 `campaign status`, `campaign run`, `campaign pause`, and explicit
 `campaign retry` with immutable planning state, portable resource snapshots,
 integrity verification, and per-dataset execution records. Planning can also
 freeze explicit sequence threads and provider/target provenance used by later
-run-level compatibility records. A database execution index and general
-multi-candidate DAG remain future work.
+run-level compatibility records. A plain `campaign run` currently runs
+unattended through AutoRefine, but that endpoint remains executor-defined rather
+than recipe-declared. A database execution index and general multi-candidate DAG
+remain future work.
 
-Real Phenix/Coot campaign smoke checks remain necessary alongside the
-regression suite. The new donor/recipient comparison layer is descriptive only:
-automatic Doctor eligibility/selection and the later approval/deposition
-workflow are not implied by numerical success or by matching compatibility
-facts.
+The current real W smoke test plus QiC Doctor continuation validate campaign
+orchestration through explicit `refine-doctor`. The next stress test is the
+user-local `examples/TestSets/` campaign (roughly nine datasets): one invocation
+from MR through conditional AutoSol, AutoRefine and explicit Doctor continuation,
+with honest review/block outcomes preserved. This does not replace the later
+prepared-nonstandard geometry-diverse Pine live gate.
+
+The donor/recipient comparison layer is descriptive only: automatic cross-dataset
+Doctor eligibility/selection and the later approval/deposition workflow are not
+implied by numerical success or by matching compatibility facts.
 
 ## Deferred decisions
 

@@ -1,7 +1,8 @@
 """Reviewed monomer profiles and per-site linked-phosphate modifications.
 
 1AP is the first reviewed profile. Do not infer new chemistry for other codes.
-Numerical dictionary restraints are preserved; models are never edited here.
+Source dictionaries are preserved; supported runtime adaptations are audited.
+Models are never edited here.
 """
 from __future__ import annotations
 
@@ -14,13 +15,17 @@ from typing import Mapping, Sequence
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 from Bio.PDB.mmcifio import MMCIFIO
 
+from .dictionary_compatibility import normalize_torsion_block, TORSION_POLICY
 from .model_assessment import file_sha256
 from .phosphate import (PhosphateError, _atoms, audit_phosphates,
                         requested_op3_sites, validate_op3_sites)
 from .run_context import artifact_reference
 from .backbone import requested_backbone_policy
 
+# Legacy profiles without an explicit scope remain 1AP-only. Never reinterpret
+# their frozen inventory when adding another supported component.
 AUTHORITATIVE_CODES = frozenset({"1AP"})
+LINKED_PROFILE_CODES = AUTHORITATIVE_CODES | {"DZ", "DP", "5CM"}
 MOD_ID = "NASnoOP3"
 MOD_CIF = """data_mod_NASnoOP3
 loop_
@@ -82,77 +87,113 @@ def _component_ids(block: _Block) -> set[str]:
     return set(block.values.get("_chem_comp_atom.comp_id", []))
 
 
-def normalize_ccp4_torsion_alternates(source: Path, output: Path) -> bool:
-    """Materialize a Phenix-compatible copy of CCP4 alternative torsions.
-
-    Some CCP4 monomer dictionaries encode alternative conformations as
-    multiple torsion rows over the same four atoms. Phenix expects those
-    alternatives folded into ``_chem_comp_tor.alt_value_angle`` instead of
-    simultaneous conflicting proxies. The reviewed source is never modified.
-    """
-    rendered: list[str] = []
+def _normalized_dictionary(source: Path) -> tuple[str, list[dict], bool]:
+    rendered = []
+    events = []
     changed = False
-
-    atom_keys = tuple(f"_chem_comp_tor.atom_id_{index}" for index in range(1, 5))
-    angle_key = "_chem_comp_tor.value_angle"
-    alt_key = "_chem_comp_tor.alt_value_angle"
-
     for block in _blocks(source):
-        values = dict(block.values)
+        values, block_events = normalize_torsion_block(block.values)
+        block_changed = values != block.values
+        changed = changed or block_changed
+        rendered.append(_emit(values) if block_changed else block.text)
+        events.extend({"block": block.values["data_"], **event} for event in block_events)
+    text = ("# NASolve runtime torsion adaptation; source unchanged.\n"
+            + "\n".join(rendered)) if changed else source.read_text(encoding="utf-8")
+    return text, events, changed
 
-        if alt_key in values or angle_key not in values:
-            rendered.append(block.text)
-            continue
 
-        columns = [values.get(key, []) for key in atom_keys]
-        angles = values.get(angle_key, [])
-        count = len(angles)
+def _dictionary_audit(source: Path, output: Path, events: list[dict], changed: bool) -> dict:
+    # Paths here are descriptive provenance. Operational inputs are separately
+    # frozen as run-anchored, checksum-bound refinement/view references.
+    return {"source": str(source), "source_sha256": file_sha256(source),
+            "output": str(output), "output_sha256": file_sha256(output),
+            "policy": TORSION_POLICY, "changed": changed, "events": events}
 
-        if not count or any(len(column) != count for column in columns):
-            rendered.append(block.text)
-            continue
 
-        first_for_atoms: dict[tuple[str, ...], int] = {}
-        keep: list[int] = []
-        alternatives: dict[int, list[str]] = {}
+def normalize_ccp4_torsion_alternates(
+    source: Path, output: Path, *, audit: list[dict] | None = None,
+) -> bool:
+    """Create a runtime derivative; preserve recognized alternatives and source.
 
-        for index in range(count):
-            atom_set = tuple(sorted(column[index] for column in columns))
-            first = first_for_atoms.get(atom_set)
-            if first is None:
-                first_for_atoms[atom_set] = index
-                keep.append(index)
-                alternatives[index] = []
-                continue
-
-            changed = True
-            angle = angles[index]
-            if angle != angles[first] and angle not in alternatives[first]:
-                alternatives[first].append(angle)
-
-        if len(keep) == count:
-            rendered.append(block.text)
-            continue
-
-        for key, column in list(values.items()):
-            if key.startswith("_chem_comp_tor.") and isinstance(column, list):
-                values[key] = [column[index] for index in keep]
-
-        values[alt_key] = [
-            ",".join(alternatives[index]) if alternatives[index] else "."
-            for index in keep
-        ]
-        rendered.append(_emit(values))
-
+    Unknown conflicts remain intact with warnings for native interpretation.
+    The first row's sigma is retained explicitly, matching CCTBX's conversion.
+    """
+    text, events, changed = _normalized_dictionary(source)
     with output.open("x", encoding="utf-8") as handle:
-        handle.write(
-            "# Runtime Phenix compatibility adaptation: CCP4 duplicate torsion "
-            "targets folded into _chem_comp_tor.alt_value_angle. "
-            "Reviewed source unchanged.\n"
-        )
-        handle.write("\n".join(rendered))
-
+        handle.write(text)
+    if audit is not None:
+        audit.append(_dictionary_audit(source, output, events, changed))
     return changed
+
+
+def dictionary_component_codes(path: Path) -> set[str]:
+    """Read component identity from CIF content, never from its filename."""
+    codes = set()
+    for block in _blocks(path):
+        codes.update(block.values.get("_chem_comp.id", []))
+        for key, column in block.values.items():
+            if key.startswith("_chem_comp_") and key.endswith(".comp_id"):
+                codes.update(column)
+    return codes - {"", ".", "?"}
+
+
+def _parameterized_codes(path: Path) -> set[str]:
+    """Which explicit inputs already contain usable numerical monomer targets?
+
+    A raw CCD graph remains a construction source, not an authoritative
+    replacement for the numerical dictionary subsequently supplied by ReadySet.
+    This is a capability check, not a second chemical library.
+    """
+    from math import isfinite
+    usable = set()
+    for block in _blocks(path):
+        v = block.values
+        codes = _component_ids(block)
+        names = v.get("_chem_comp_atom.atom_id", [])
+        energies = v.get("_chem_comp_atom.type_energy", [])
+        bonds = v.get("_chem_comp_bond.atom_id_1", [])
+        if (len(codes) != 1 or not names or len(energies) != len(names)
+                or any(value in {"", ".", "?"} for value in energies) or not bonds):
+            continue
+        try:
+            valid = all(len(v.get(key, [])) == len(bonds) and all(
+                isfinite(float(value)) and float(value) > 0 for value in v[key])
+                for key in ("_chem_comp_bond.value_dist", "_chem_comp_bond.value_dist_esd"))
+        except (ValueError, TypeError, OverflowError):
+            valid = False
+        if valid:
+            usable.update(codes)
+    return usable
+
+
+def validate_dz_dictionary(path: Path) -> None:
+    """Check the selected DZ identity/parameterization, not its pairing recipe."""
+    blocks = _blocks(path)
+    groups = [group for block in blocks
+              for group in block.values.get("_chem_comp.group", [])]
+    if dictionary_component_codes(path) != {"DZ"} or groups != ["DNA"]:
+        raise ValueError("DZ dictionary must declare only DNA-group DZ")
+    if _parameterized_codes(path) != {"DZ"}:
+        raise ValueError("DZ requires parameterized atom energy types and bond targets")
+    component = next(block.values for block in blocks if _component_ids(block))
+    names = component.get("_chem_comp_atom.atom_id", [])
+    elements = dict(zip(names, component.get("_chem_comp_atom.type_symbol", [])))
+    if elements.get("C1") != "C" or "N1" in elements:
+        raise ValueError("DZ requires its C-glycoside atom C1, not a DC N1 atom")
+    planes: dict[str, set[str]] = {}
+    for plane, atom in zip(component.get("_chem_comp_plane_atom.plane_id", []),
+                           component.get("_chem_comp_plane_atom.atom_id", [])):
+        planes.setdefault(plane, set()).add(atom)
+    if not any({"C1", "C2", "N3", "C4", "C5", "C6", "N4", "O2"} <= plane
+               for plane in planes.values()):
+        raise ValueError("DZ base-plane definition is incomplete")
+
+
+def freeze_dictionary_audits(records: Sequence[dict], run: Path) -> list[dict]:
+    """Turn adaptation receipts into normal portable NASolve references."""
+    return [{**record, "source": frozen_reference(Path(record["source"]), run),
+             "output": frozen_reference(Path(record["output"]), run)}
+            for record in records]
 
 
 def combine_dictionary_inputs(paths: Sequence[Path], output: Path) -> None:
@@ -225,11 +266,11 @@ def _exclude_components(source: Path, codes: set[str], output: Path) -> tuple[Pa
     return output, present
 
 
-def _profile_inventory(model: Path) -> dict[str, str]:
+def _profile_inventory(model: Path, codes: frozenset[str] = AUTHORITATIVE_CODES) -> dict[str, str]:
     residues = {}
     for atom in _atoms(model.read_text(encoding="utf-8").splitlines(keepends=True)):
         code = atom.line[17:20].strip()
-        if code in AUTHORITATIVE_CODES:
+        if code in codes:
             residues[atom.site] = code
     return residues
 
@@ -237,8 +278,11 @@ def _profile_inventory(model: Path) -> dict[str, str]:
 def write_linked_profile(
     model: Path, directory: Path, *, allow_op3_sites: tuple[str, ...] = (),
     passthrough_sites: tuple[str, ...] = (),
+    profile_codes: frozenset[str] = AUTHORITATIVE_CODES,
 ) -> tuple[dict[str, object], tuple[Path, ...]]:
-    inventory = _profile_inventory(model)
+    if not profile_codes <= LINKED_PROFILE_CODES:
+        raise PhosphateError("Unsupported linked-phosphate component profile")
+    inventory = _profile_inventory(model, profile_codes)
     audit = audit_phosphates(
         model, allow_op3_sites=allow_op3_sites, inspect_sites=tuple(inventory),
         passthrough_sites=passthrough_sites,
@@ -265,7 +309,10 @@ def write_linked_profile(
                 handle.write("refinement.pdb_interpretation.apply_cif_modification {\n"
                              f"  data_mod = {MOD_ID}\n  residue_selection = {item['selection']}\n}}\n")
         paths = (cif, phil)
-    return {"schema_version": 1, "inventory": inventory, "modifications": modifications}, paths
+    profile = {"schema_version": 1, "inventory": inventory, "modifications": modifications}
+    if profile_codes != AUTHORITATIVE_CODES:
+        profile["profile_codes"] = sorted(profile_codes)
+    return profile, paths
 
 
 def validate_model_phosphate_policy(model: Path, report: Mapping[str, object]) -> dict[str, object]:
@@ -279,7 +326,11 @@ def validate_model_phosphate_policy(model: Path, report: Mapping[str, object]) -
     if profile is not None:
         if not isinstance(profile, Mapping) or profile.get("schema_version") != 1:
             raise PhosphateError("Malformed linked-phosphate profile")
-        if profile.get("inventory") != _profile_inventory(model):
+        scope = profile.get("profile_codes", sorted(AUTHORITATIVE_CODES))
+        if (not isinstance(scope, list) or not all(isinstance(code, str) for code in scope)
+                or len(scope) != len(set(scope)) or not set(scope) <= LINKED_PROFILE_CODES):
+            raise PhosphateError("Malformed linked-phosphate component scope")
+        if profile.get("inventory") != _profile_inventory(model, frozenset(scope)):
             raise PhosphateError("Reviewed nucleotide identities changed; prepare new dictionary profiles")
         modifications = profile.get("modifications")
         if not isinstance(modifications, list) or any(
@@ -301,22 +352,63 @@ def validate_model_phosphate_policy(model: Path, report: Mapping[str, object]) -
 
 
 def effective_restraints(
-    paths: Sequence[Path], generated: Path | None, directory: Path,
+    paths: Sequence[Path], generated: Path | None, directory: Path, *,
+    normalize_effective: bool = False, audit: list[dict] | None = None,
+    prefer_parameterized_inputs: bool = False,
 ) -> tuple[list[Path], list[Path]]:
-    """Resolve CIF precedence once, before checkpoint creation (not at reuse)."""
-    cifs = [p for p in paths if p.suffix.lower() == ".cif" and p.name != "linked_phosphate.cif"]
-    codes = {p.stem for p in cifs} & AUTHORITATIVE_CODES
+    """Freeze the effective CIF authority, independently of phosphate profiles.
+
+    Explicit parameterized definitions win over generated copies when requested
+    by PostMR. Construction-only CCD graphs still defer to ReadySet. Legacy
+    direct callers retain the original 1AP policy unless they opt into the new
+    bundle path. Raw generated CIFs and all source definitions remain intact.
+    """
+    cifs = [p for p in paths if p.suffix.lower() == ".cif" and not is_modification_only(p)]
+    ids = {p: dictionary_component_codes(p) for p in cifs}
+    codes = set().union(*(value & AUTHORITATIVE_CODES for value in ids.values())) if ids else set()
+    if prefer_parameterized_inputs:
+        for path in cifs:
+            codes.update(_parameterized_codes(path))
     other = [p for p in paths if p not in cifs]
     dictionaries = []
     generated_codes = set()
     if generated is not None:
-        filtered, generated_codes = _exclude_components(
-            generated, codes, directory / "readyset_supplement.cif")
-        if filtered is not None:
-            dictionaries.append(filtered)
-    for cif in cifs:
-        if cif.stem in codes or generated is None or cif.stem not in generated_codes:
+        if codes:
+            filtered, generated_codes = _exclude_components(
+                generated, codes, directory / "readyset_supplement.cif")
+            if filtered is not None:
+                dictionaries.append(filtered)
+        else:
+            # No explicit override: preserve the native generated path unless
+            # normalization below actually needs a changed derivative.
+            dictionaries.append(generated)
+            generated_codes = dictionary_component_codes(generated)
+    for index, cif in enumerate(cifs):
+        # Remove only components actually superseded by the chosen generated
+        # definition; a multi-block input may retain other components.
+        overlap = ids[cif] & generated_codes
+        if not overlap:
             dictionaries.append(cif)
+        elif ids[cif] - overlap:
+            filtered, _ = _exclude_components(
+                cif, overlap, directory / f"input_supplement_{index:03d}.cif")
+            if filtered is not None:
+                dictionaries.append(filtered)
+    if normalize_effective:
+        selected = []
+        for index, source in enumerate(dictionaries):
+            text, events, changed = _normalized_dictionary(source)
+            output = source
+            if changed:
+                effective_dir = directory / "effective_dictionaries"
+                effective_dir.mkdir(exist_ok=True)
+                output = effective_dir / f"{index:03d}_{source.name}"
+                with output.open("x", encoding="utf-8") as handle:
+                    handle.write(text)
+            if audit is not None:
+                audit.append(_dictionary_audit(source, output, events, changed))
+            selected.append(output)
+        dictionaries = selected
     return [*other, *dictionaries], dictionaries
 
 

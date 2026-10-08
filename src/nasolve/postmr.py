@@ -8,7 +8,7 @@ import re
 import shutil
 import subprocess
 from collections import OrderedDict
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from math import dist, sqrt
 from pathlib import Path
@@ -21,19 +21,30 @@ from .curated_ligands import (
     ligand_dictionary,
     validate_ligand_dictionary,
 )
+from .component_normalization import (
+    POLICY as COMPONENT_POLICY, PREFERRED_COMPONENTS,
+    normalize_model as normalize_component_model, preparation_targets,
+    target_changes as component_target_changes, validate_preferred_dictionary,
+)
 from .frame_postmr import frame_postmr_spec, restraint_data_directory
+from .frame_secondary_overlay import (
+    FrameSecondaryOverlayError, prepare_frame_modified_secondary_overlay,
+)
 from .model_assessment import file_sha256
 from .phosphate import PhosphateError, sanitize_phosphates, requested_op3_sites
 from .backbone import (
     BackboneError, ensure_five_prime_phosphates, requested_backbone_policy,
 )
 from .ligand_profiles import (
-    AUTHORITATIVE_CODES, combine_dictionary_inputs, effective_restraints,
-    normalize_ccp4_torsion_alternates,
+    AUTHORITATIVE_CODES, LINKED_PROFILE_CODES,
+    combine_dictionary_inputs, effective_restraints,
+    normalize_ccp4_torsion_alternates, freeze_dictionary_audits,
+    _parameterized_codes,
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
 )
 from .run_context import artifact_reference, resolve_artifact_path
 from .sequence_reference import SequenceReferenceError
+from .sequence_syntax import SequenceSyntaxError, sequence_residue_codes
 from .sequence_family import (
     load_frozen_sequence_family, audit_sequence_family_model, sequence_family_inventory,
 )
@@ -218,23 +229,21 @@ def _sequence_targets(
             raise PostMRPreparationError(
                 f"Sequence chain {chain!r} has no frozen residue inventory"
             )
-        sequence = sequence_value.upper()
-        if len(sequence) != len(residue_values):
+        is_rna = _chain_is_rna(model, chain, set(residue_values))
+        polymer = "RNA" if is_rna else "DNA"
+        try:
+            codes = sequence_residue_codes(
+                sequence_value, polymer, context=f"Sequence for {polymer} chain {chain}"
+            )
+        except SequenceSyntaxError as exc:
+            raise PostMRPreparationError(str(exc)) from exc
+        if len(codes) != len(residue_values):
             raise PostMRPreparationError(
-                f"Sequence for chain {chain} has length {len(sequence)}, but the "
+                f"Sequence for chain {chain} has length {len(codes)}, but the "
                 f"frozen model inventory contains {len(residue_values)} residues"
             )
-        is_rna = _chain_is_rna(model, chain, set(residue_values))
-        mapping = _RNA_SEQUENCE_CODES if is_rna else _DNA_SEQUENCE_CODES
-        incompatible = sorted(set(sequence) - set(mapping))
-        if incompatible:
-            polymer = "RNA" if is_rna else "DNA"
-            raise PostMRPreparationError(
-                f"Sequence for {polymer} chain {chain} contains incompatible symbol(s): "
-                + ", ".join(incompatible)
-            )
-        for resid, symbol in zip(residue_values, sequence):
-            targets[f"{chain}:{resid}"] = mapping[symbol]
+        for resid, code in zip(residue_values, codes):
+            targets[f"{chain}:{resid}"] = code
     return targets
 
 
@@ -334,12 +343,37 @@ def build_mutation_plan(
     report: Mapping[str, object], model: Path, *, run_directory: Path | None = None,
 ) -> tuple[MutationAction, ...]:
     actions: list[MutationAction] = []
-    for site, target in _target_sites(report, model, run_directory=run_directory).items():
+    raw_targets = _target_sites(report, model, run_directory=run_directory)
+    try:
+        targets = preparation_targets(raw_targets, model)
+    except (OSError, UnicodeError, ValueError) as exc:
+        raise PostMRPreparationError(f"Component target preparation failed: {exc}") from exc
+    # The frozen request stays raw; these are the explicitly normalized targets
+    # for a NEW PostMR derivative. Existing completed reports are not re-read
+    # through this policy during checkpoint inspection or refinement.
+    inputs = report.get("inputs")
+    if (isinstance(inputs, Mapping) and inputs.get("mirror") is True
+            and (component_target_changes(raw_targets) or any(
+                residue_name(model, site) in PREFERRED_COMPONENTS for site in targets))):
+        raise PostMRPreparationError("Preferred-component conversion of mirrored models needs a reviewed L-sugar route")
+    for site, target in targets.items():
+        if len(target) > 3:
+            raise PostMRPreparationError(
+                f"Target ligand {target} at {site} is registered, but a literal "
+                "four/five-character code cannot fit the three-character PDB "
+                "residue field; use an explicitly reviewed compatible PDB "
+                "refinement code rather than truncating its identity"
+            )
         current = residue_name(model, site)
         parent_code: str | None = None
         deposition_code: str | None = None
         if current == target:
             method = "none"
+        elif PREFERRED_COMPONENTS.get(current) == target:
+            # Reviewed identity heavy-atom map; no canonical scaffold hop is
+            # needed to replace a source chemical definition already placed.
+            method = "component-normalization"
+            deposition_code = target
         elif target in _MIRRORED_CANONICAL_CODES.values():
             raise PostMRPreparationError(
                 f"Mirrored mutation {site} {current}->{target} requires the guarded "
@@ -1002,11 +1036,106 @@ def _patch_narestraints_records(
     return patched, corrections
 
 
+def _restraint_geometry_override(
+    report: Mapping[str, object],
+    frame_name: str | None,
+) -> tuple[dict[str, str], dict[str, object] | None]:
+    """Resolve a frozen standard-pair recipe override without changing identity."""
+    plan = report.get("post_mr_plan")
+    if not isinstance(plan, Mapping):
+        raise PostMRPreparationError("Frozen report is missing its post-MR plan")
+    value = plan.get("restraint_geometry_override")
+    if value is None:
+        return {}, None
+    if not isinstance(value, Mapping):
+        raise PostMRPreparationError("Frozen restraint geometry override is malformed")
+    expected_fields = {
+        "schema_version", "source", "requested", "base_classes",
+        "scope", "changes_residue_identity",
+    }
+    if set(value) != expected_fields:
+        raise PostMRPreparationError("Frozen restraint geometry override has unexpected fields")
+    classes = value.get("base_classes")
+    if (
+        value.get("schema_version") != 1
+        or value.get("source") != "force"
+        or value.get("scope") != "standard_pair"
+        or value.get("changes_residue_identity") is not False
+        or not isinstance(classes, list)
+        or len(classes) != 2
+        or not all(
+            isinstance(item, str) and re.fullmatch(r"[ATGCDBSZPKXI]", item)
+            for item in classes
+        )
+        or value.get("requested") != ":".join(classes)
+    ):
+        raise PostMRPreparationError("Frozen restraint geometry override is inconsistent")
+    if not isinstance(frame_name, str):
+        raise PostMRPreparationError(
+            "Restraint geometry override requires a configured standard frame"
+        )
+    try:
+        spec = frame_postmr_spec(frame_name)
+    except KeyError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    site_classes = {
+        spec.sites[0].text: classes[0],
+        spec.sites[1].text: classes[1],
+    }
+    normalized = {
+        "schema_version": 1,
+        "source": "force",
+        "requested": value["requested"],
+        "base_classes": list(classes),
+        "scope": "standard_pair",
+        "sites": [spec.sites[0].text, spec.sites[1].text],
+        "changes_residue_identity": False,
+    }
+    return site_classes, normalized
+
+
+def _apply_restraint_geometry_override(
+    first: object,
+    second: object,
+    site_classes: Mapping[str, str],
+) -> tuple[object, object, dict[str, object] | None]:
+    """Override only PairResidue.base_class for the intended pair."""
+    if not site_classes:
+        return first, second, None
+    for residue in (first, second):
+        if not all(hasattr(residue, name) for name in ("chain", "resid", "base_class")):
+            raise PostMRPreparationError("NARestraints returned a malformed pair residue")
+    first_site = f"{getattr(first, 'chain')}:{getattr(first, 'resid')}"
+    second_site = f"{getattr(second, 'chain')}:{getattr(second, 'resid')}"
+    force_sites = set(site_classes)
+    present = {first_site, second_site} & force_sites
+    if not present:
+        return first, second, None
+    if present != force_sites:
+        raise PostMRPreparationError(
+            "Forced restraint-geometry sites are not paired together in the "
+            "NARestraints stretch"
+        )
+    before = [str(getattr(first, "base_class")), str(getattr(second, "base_class"))]
+    forced_first = replace(first, base_class=site_classes[first_site])
+    forced_second = replace(second, base_class=site_classes[second_site])
+    audit = {
+        "sites": [first_site, second_site],
+        "actual_base_classes": before,
+        "forced_base_classes": [
+            site_classes[first_site], site_classes[second_site],
+        ],
+    }
+    return forced_first, forced_second, audit
+
+
 def _default_narestraints_builder(
     pdb: Path,
     pairs: Path,
     output: Path,
-) -> list[dict[str, str]]:
+    *,
+    force_classes_by_site: Mapping[str, str] | None = None,
+) -> object:
     try:
         from restraints import builder
         from restraints.base_pairs import read_base_pair_file
@@ -1021,8 +1150,33 @@ def _default_narestraints_builder(
     records, corrections = _patch_narestraints_records(
         load_residue_records(), required_codes
     )
+    force_classes = dict(force_classes_by_site or {})
     original_loader = builder.load_residue_records
+    original_generate = None
+    applications: list[dict[str, object]] = []
     builder.load_residue_records = lambda: records
+    if force_classes:
+        original_generate = getattr(builder, "generate_pair_restraints", None)
+        if not callable(original_generate):
+            raise PostMRPreparationError(
+                "Installed NARestraints does not expose the pair-recipe hook "
+                "required for force = restraint geometry"
+            )
+
+        def generate_with_forced_geometry(first, second, **kwargs):
+            forced_first, forced_second, audit = _apply_restraint_geometry_override(
+                first, second, force_classes
+            )
+            block = original_generate(forced_first, forced_second, **kwargs)
+            if audit is not None:
+                if block is None:
+                    raise PostMRPreparationError(
+                        "NARestraints has no recipe for the requested forced pair geometry"
+                    )
+                applications.append(audit)
+            return block
+
+        builder.generate_pair_restraints = generate_with_forced_geometry
     try:
         builder.build_phil_from_pdb(
             pdb,
@@ -1032,6 +1186,18 @@ def _default_narestraints_builder(
         )
     finally:
         builder.load_residue_records = original_loader
+        if original_generate is not None:
+            builder.generate_pair_restraints = original_generate
+    if force_classes:
+        if len(applications) != 1:
+            raise PostMRPreparationError(
+                "Forced restraint geometry must apply exactly once to the intended "
+                f"standard pair; applied {len(applications)} time(s)"
+            )
+        return {
+            "compatibility_corrections": corrections,
+            "force_application": applications[0],
+        }
     return corrections
 
 
@@ -1355,7 +1521,8 @@ def prepare_postmr(
         else build_mutation_plan(report, original)
     )
     target_ligand_codes = sorted({
-        action.after for action in actions if action.method == "coot-parent-overlap"
+        action.after for action in actions
+        if action.method in {"coot-parent-overlap", "component-normalization"}
     })
     ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
     ligand_sources: dict[str, Path] = {}
@@ -1366,6 +1533,35 @@ def prepare_postmr(
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
         ligand_sources[code] = dictionary
+
+    raw_targets = _target_sites(report, original, run_directory=run)
+    requested_changes = component_target_changes(raw_targets)
+    conversions = {action.site: (action.before, action.after) for action in actions
+                   if action.method == "component-normalization"}
+    component_record = None
+    coot_input = original
+    if requested_changes or conversions:
+        component_record = {
+            "schema_version": 1, "policy": COMPONENT_POLICY,
+            "requested_target_changes": requested_changes,
+            "coordinate_conversion": None,
+            "frozen_input_intent_unchanged": True,
+            "ph_conditioned": False,
+        }
+    if conversions:
+        coot_input = model_dir / "component_normalized.pdb"
+        try:
+            for target in sorted({after for before, after in conversions.values()}):
+                validate_preferred_dictionary(target, ligand_sources[target])
+            converted = normalize_component_model(original, coot_input, conversions)
+        except (OSError, UnicodeError, ValueError) as exc:
+            raise PostMRPreparationError(f"Component normalization failed: {exc}") from exc
+        assert component_record is not None
+        component_record["coordinate_conversion"] = {
+            **converted,
+            "source": frozen_reference(original, run),
+            "output": frozen_reference(coot_input, run),
+        }
 
     coot_actions = tuple(
         action
@@ -1397,7 +1593,7 @@ def prepare_postmr(
             action.after: ligand_sources[action.after] for action in overlap_actions
         }
         _, coot_log = _run_coot(
-            original,
+            coot_input,
             raw_after_coot,
             coot_actions,
             coot_executable,
@@ -1428,7 +1624,7 @@ def prepare_postmr(
         else:
             shutil.copyfile(geometry_after_coot, after_coot)
     else:
-        shutil.copyfile(original, after_coot)
+        shutil.copyfile(coot_input, after_coot)
 
     terminal_ready = model_dir / "terminal_phosphate_model.pdb"
     try:
@@ -1460,6 +1656,14 @@ def prepare_postmr(
     }
     frame = report.get("frame")
     frame_name = frame.get("name") if isinstance(frame, Mapping) else None
+    force_classes_by_site, force_record = _restraint_geometry_override(
+        report, frame_name
+    )
+    if force_record is not None and modified_pairs_only:
+        raise PostMRPreparationError(
+            "force = restraint geometry requires the standard frame-template "
+            "NARestraints path; it cannot be combined with --modified-pairs-only"
+        )
     compatibility = restraints_dir / "narestraints_input.pdb"
     compatibility_codes = {
         code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
@@ -1547,15 +1751,30 @@ def prepare_postmr(
         pair_file = restraints_dir / "Std_padd.txt"
         secondary = restraints_dir / spec.secondary_structure_file
         shutil.copyfile(pair_source, pair_file)
-        shutil.copyfile(secondary_source, secondary)
         _rewrite_codes(prepared, compatibility, compatibility_codes)
+        try:
+            secondary_overlay = prepare_frame_modified_secondary_overlay(
+                prepared, compatibility, secondary_source, secondary, pair_file,
+                patch_records=_patch_narestraints_records,
+            )
+        except (FrameSecondaryOverlayError, ValueError, OSError) as exc:
+            raise PostMRPreparationError(
+                f"Modified W secondary-structure chemistry is not reviewable: {exc}"
+            ) from exc
+        narestraints_report["frame_secondary_overlay"] = secondary_overlay
         narestraints = restraints_dir / "narestraints_Std_padd.phil"
         try:
             if narestraints_builder is None:
                 builder_result = _default_narestraints_builder(
                     compatibility, pair_file, narestraints,
+                    force_classes_by_site=force_classes_by_site,
                 )
             else:
+                if force_record is not None:
+                    raise PostMRPreparationError(
+                        "A custom NARestraints builder cannot apply the frozen "
+                        "force = restraint-geometry override"
+                    )
                 builder_result = narestraints_builder(
                     compatibility, pair_file, narestraints
                 )
@@ -1567,6 +1786,36 @@ def prepare_postmr(
             isinstance(item, dict) for item in builder_result
         ):
             narestraints_report["compatibility_corrections"] = builder_result
+        elif isinstance(builder_result, Mapping):
+            corrections = builder_result.get("compatibility_corrections")
+            application = builder_result.get("force_application")
+            if (
+                not isinstance(corrections, list)
+                or not all(isinstance(item, dict) for item in corrections)
+            ):
+                raise PostMRPreparationError(
+                    "NARestraints builder returned malformed compatibility corrections"
+                )
+            narestraints_report["compatibility_corrections"] = corrections
+            if force_record is not None:
+                if not isinstance(application, Mapping):
+                    raise PostMRPreparationError(
+                        "Forced restraint geometry was not audited by NARestraints"
+                    )
+                narestraints_report["restraint_geometry_override"] = {
+                    **force_record,
+                    "application": dict(application),
+                }
+            elif application is not None:
+                raise PostMRPreparationError(
+                    "NARestraints reported an unexpected forced geometry application"
+                )
+        elif builder_result is not None:
+            raise PostMRPreparationError("NARestraints builder returned an unsupported report")
+        if force_record is not None and "restraint_geometry_override" not in narestraints_report:
+            raise PostMRPreparationError(
+                "Forced restraint geometry was not recorded in the PostMR report"
+            )
         if not narestraints.is_file():
             raise PostMRPreparationError("NARestraints did not create its expected output")
         narestraints_report.update({
@@ -1590,6 +1839,7 @@ def prepare_postmr(
         | (residue_codes & set(ligand_sources))
     )
     copied_cifs: list[Path] = []
+    dictionary_input_audit: list[dict] = []
     for code in ligand_codes:
         try:
             source = ligand_sources.get(code) or ligand_dictionary(code, data_root).resolve()
@@ -1598,10 +1848,20 @@ def prepare_postmr(
             raise PostMRPreparationError(str(exc)) from exc
         ligand_specs.setdefault(code, ligand_definition(code))
         destination = restraints_dir / source.name
-        if code == "1AP":
-            normalize_ccp4_torsion_alternates(source, destination)
-        else:
-            shutil.copyfile(source, destination)
+        # Retain the exact input separately from its runtime representation.
+        source_directory = restraints_dir / "source_dictionaries"
+        source_directory.mkdir(exist_ok=True)
+        source_snapshot = source_directory / f"{code}.cif"
+        source_sha = file_sha256(source)
+        shutil.copyfile(source, source_snapshot)
+        if (file_sha256(source_snapshot) != source_sha
+                or file_sha256(source) != source_sha):
+            raise PostMRPreparationError(f"Dictionary changed while freezing {code}")
+        try:
+            normalize_ccp4_torsion_alternates(
+                source_snapshot, destination, audit=dictionary_input_audit)
+        except (PhosphateError, ValueError, OSError) as exc:
+            raise PostMRPreparationError(f"Dictionary preparation failed for {code}: {exc}") from exc
         copied_cifs.append(destination)
         restraint_paths.append(destination)
     readyset_cif: Path | None = None
@@ -1613,11 +1873,12 @@ def prepare_postmr(
             raise PostMRPreparationError(str(exc)) from exc
 
     profile = None
-    if set(ligand_codes) & AUTHORITATIVE_CODES:
+    if set(ligand_codes) & LINKED_PROFILE_CODES:
         try:
             profile, modification_paths = write_linked_profile(
                 prepared, restraints_dir, allow_op3_sites=allowed_op3,
-                passthrough_sites=passthrough_sites)
+                passthrough_sites=passthrough_sites,
+                profile_codes=(AUTHORITATIVE_CODES | (set(ligand_codes) & LINKED_PROFILE_CODES)))
         except PhosphateError as exc:
             raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
         restraint_paths.extend(modification_paths)
@@ -1658,14 +1919,17 @@ def prepare_postmr(
         })
     except PhosphateError as exc:
         raise PostMRPreparationError(f"ReadySet phosphate/profile validation failed: {exc}") from exc
-    effective = None
-    view_dictionaries = None
-    if profile is not None:
-        try:
-            effective, view_dictionaries = effective_restraints(restraint_paths, generated_cif, restraints_dir)
-        except PhosphateError as exc:
-            raise PostMRPreparationError(f"Cannot freeze authoritative dictionary inputs: {exc}") from exc
+    dictionary_effective_audit: list[dict] = []
+    try:
+        effective, view_dictionaries = effective_restraints(
+            restraint_paths, generated_cif, restraints_dir,
+            normalize_effective=True, audit=dictionary_effective_audit,
+            prefer_parameterized_inputs=True)
+    except (PhosphateError, ValueError, OSError) as exc:
+        raise PostMRPreparationError(f"Cannot prepare effective dictionary inputs: {exc}") from exc
     anomalous_candidates = scan_anomalous_candidates(final_model)
+    from .anomalous_expectations import audit_iodine_targets
+    iodine_expectations = audit_iodine_targets(final_model, anomalous_candidates)
 
     postmr_payload = {
         "status": "POSTMR_READY",
@@ -1731,22 +1995,43 @@ def prepare_postmr(
         },
         "anomalous": {
             "trigger_elements": sorted(DEFAULT_ANOMALOUS_ELEMENTS),
+            "iodine_expectations": iodine_expectations,
             "autosol_required": bool(anomalous_candidates),
             "candidates": anomalous_candidates,
         },
         "prepared_model": str(final_model),
         "prepared_sha256": file_sha256(final_model),
     }
+    if component_record is not None:
+        normalized_codes = {item["prepared_code"] for item in requested_changes}
+        normalized_codes.update(after for before, after in conversions.values())
+        component_record["target_dictionaries"] = {
+            code: frozen_reference(restraints_dir / "source_dictionaries" / f"{code}.cif", run)
+            for code in sorted(normalized_codes)
+        }
+        postmr_payload["component_normalization"] = component_record
     if profile is not None:
         postmr_payload["linked_phosphate_profile"] = profile
+    # These lists are independent of the linked-phosphate profile. A native,
+    # dictionary-free model needs no empty manifest (legacy readers reject it).
+    if effective:
         postmr_payload["refinement_restraints"] = [frozen_reference(path, run) for path in effective]
+    if view_dictionaries:
         postmr_payload["view_dictionaries"] = [frozen_reference(path, run) for path in view_dictionaries]
-        postmr_payload["dictionary_precedence"] = {
-            "policy": "reviewed-1ap-over-readyset-v1",
-            "authoritative_codes": sorted(set(ligand_codes) & AUTHORITATIVE_CODES),
-            "sources": {path.stem: frozen_reference(path, run) for path in copied_cifs
-                        if path.stem in AUTHORITATIVE_CODES},
-        }
+    postmr_payload["dictionary_compatibility"] = {
+        "schema_version": 1,
+        "input_adaptations": freeze_dictionary_audits(dictionary_input_audit, run),
+        "effective_adaptations": freeze_dictionary_audits(dictionary_effective_audit, run),
+        "policy": "ccp4-alternates-primary-sigma-v2",
+    }
+    postmr_payload["dictionary_precedence"] = {
+        "policy": "parameterized-inputs-over-readyset-v2",
+        "authoritative_codes": sorted(
+            (set(ligand_codes) & AUTHORITATIVE_CODES)
+            | {code for path in copied_cifs for code in _parameterized_codes(path)}),
+        "sources": {path.stem: frozen_reference(path, run) for path in copied_cifs},
+        "effective_dictionaries": [frozen_reference(path, run) for path in view_dictionaries],
+    }
     postmr_report = postmr / "report.json"
     _write_json(postmr_report, postmr_payload)
     (postmr / "postmr.log").write_text(

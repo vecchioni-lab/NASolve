@@ -1,692 +1,155 @@
-# NASolve development handoff
-
-Status: **current working state — updated 2026-09-26**.
-
-This file records the implementation edge: what is validated now, what is
-scientifically blocked, and what should happen next.
-
-Durable behavior belongs in `architecture.md` or the relevant subsystem
-document. Superseded handoffs and validation diaries live under `docs/history/`.
-
-## Current pipeline
-
-The guarded standalone spine is operational:
-
-```text
-AutoMR -> PostMR -> conditional AutoSol -> AutoRefine
-       -> conditional Refine Doctor -> inspection / explicit selection
-```
-
-Numbered runs and checkpoint branches are immutable. Free-R flags are not
-regenerated for convenience. Refine Doctor preserves the current checkpoint
-unless a user explicitly selects another one.
-
-Latest local code regression baseline:
-
-- **664 tests passed** in the full suite;
-- **222 subtests passed**;
-- full-suite runtime: **61.70 s**.
-
-This was reported from the active Python 3.12 development environment on Birch
-checkout `cc0ad6ab537cc61e17e13bc562e4ae8667461e8d`. Registration source/test
-code was unchanged after code head
-`686830beb64907f2a1ba73fa1bdbff97f6dcc38d`; later Birch commits before the
-full run were documentation-only validation bookkeeping. This is a user-local
-test result, not GitHub CI.
-
-## Terminal-phosphate chemistry
-
-The W/5W6W recipe explicitly declares the designed D:1 5-prime phosphate.
-
-PostMR treats a requested standard 5-prime terminal phosphate as the complete
-P/OP1/OP2/OP3 group:
-
-- preserve a complete valid group;
-- complete P/OP1/OP2 by adding OP3;
-- construct a wholly missing group from the local O5'-C5'-C4' sugar frame;
-- fail closed on ambiguous partial groups, incoming/internal O3'-P conflicts,
-  cyclic-like geometry, or other contradictory chemistry.
-
-`MR_frames/5W6W/5W6W_noPO4.pdb` is a forced validation fixture, not a normal
-catalogue fallback.
-
-Live ED `run_010` validation confirmed that a wholly missing D:1 phosphate can
-be constructed, survive ReadySet, pass Phenix interpretation, and enter
-refinement.
-
-### Geometry ownership
-
-Keep these responsibilities separate:
-
-- **Phenix** supplies authoritative native terminal-phosphate geometry.
-- **NASolve** owns terminal intent, construction, provenance, geometry audit,
-  and local protection policy.
-- **NARestraints** owns reviewed pairing/stacking geometry and must not
-  duplicate Phenix's native terminal-phosphate geometry.
-
-Constructor coordinates are starting geometry only, not a second native
-refinement target.
-
-### Refinement audit and Doctor rescue
-
-An unprotected refinement exposed a real low-information failure: one native
-P-centered phosphate angle moved to approximately 7 sigma from its Phenix
-target while the global R factors remained superficially reasonable.
-
-AutoRefine now audits declared terminal phosphates from Phenix's final geometry
-output. Eleven restraints are expected per site:
-
-- four P-O bonds;
-- six P-centered angles;
-- one P-O5'-C5' angle.
-
-A >=5-sigma local violation forces `AUTOREFINE_REVIEW` independently of the
-global numerical gate.
-
-Refine Doctor was live-validated from `refine-003`. It branched from the clean
-`postmr` parent, generated six local Phenix `action = change` angle protections
-using Phenix-derived ideals, and created `refine-004`.
-
-`refine-004` reported:
-
-- Rwork/Rfree = 0.1735 / 0.1707;
-- terminal audit `PASS`;
-- 11/11 expected restraints found;
-- zero severe restraints.
-
-It remained a numerical user-review case because Rwork was still slightly above
-Rfree. Chemical validity and numerical acceptance are intentionally separate.
-
-## Proactive terminal protection: live-validated
-
-Production AutoRefine now protects a declared standard terminal phosphate from
-**refinement #1** rather than deliberately allowing an unprotected refinement
-before Doctor rescue.
-
-For a declared site on an unprotected lineage, AutoRefine now:
-
-1. runs `phenix.pdb_interpretation ... write_geo=True` on the inherited
-   model/restraint bundle before creating the numbered refinement round;
-2. requires a complete native Phenix geometry snapshot with all 11 expected
-   terminal-phosphate restraints per site;
-3. derives the six P-centered angle ideals from that Phenix geometry rather
-   than from a NASolve hard-coded target table;
-4. writes local `action = change` protection at sigma = 1 degree;
-5. stores the source `.geo`, interpretation log, and protection PHIL inside the
-   new AutoRefine round;
-6. attaches schema-1 semantic protection provenance to the checkpoint;
-7. passes the protection restraint to the first coordinate refinement;
-8. inherits the same protection through AutoRefine/manual descendants without
-   stacking duplicate protection files; and
-9. retains the final 11-restraint geometry audit after every refinement.
-
-Preparation fails closed before `round_00N` is created if Phenix interpretation
-is unavailable or the declared terminal geometry is incomplete.
-
-Live ED `run_010` validation from the clean `postmr` parent created
-`refine-005` with proactive protection already present in the actual
-`phenix.refine` command. It reported:
-
-- Rwork/Rfree = 0.1735 / 0.1707;
-- semantic protection for D:1 with six angles at sigma = 1 degree;
-- ideal source = pre-refinement `phenix.pdb_interpretation` geometry;
-- final terminal audit `PASS`;
-- 11/11 expected restraints found;
-- maximum final normalized deviation = 4.27 sigma under the tightened
-  1-degree protection;
-- zero severe restraints.
-
-`refine-005` therefore reached the same protected endpoint as the earlier
-Doctor rescue `refine-004` without requiring an unprotected sacrificial
-refinement first. Its `AUTOREFINE_REVIEW` status is numerical only because
-Rwork remains slightly above Rfree; the terminal chemistry itself passes.
-
-A future advanced opt-out may disable proactive protection deliberately, but it
-must remain explicit, visible in provenance, and must not disable the final
-geometry audit.
-
-## Unsupported backbone chemistry
-
-Ordinary DNA/RNA-like phosphodiester chemistry is the automatic default.
-
-Unsupported GNA/PNA/TNA/other linkage chemistry is never guessed.
-`experimental_passthrough` bypasses only the standard linkage validator at the
-declared site and remains visibly unreviewed until a human Coot review is
-recorded.
-
-The interactive passthrough review path has now been live-validated on a
-disposable copy of ED `run_010` using a synthetic A:12
-`experimental_passthrough` declaration. NASolve opened the intended
-`refine-005` model/maps in real Coot, waited for human confirmation, and wrote a
-portable `USER_REVIEWED` record containing the run-anchored model reference,
-model SHA-256, flagged site, timestamp, and preserved passthrough provenance.
-This validated the review UX/provenance path only; it does not assert
-non-standard chemistry at A:12.
-
-## Campaign provenance and Doctor groundwork
-
-Sequential campaign execution from immutable plans is operational for the
-current standard W path. Planning freezes explicit dataset/model/reference
-choices, supports root `nasolve-campaign.toml` sequence threads, and keeps
-run/checkpoint lineage immutable.
-
-The donor/recipient provenance stack is now implemented in read-only layers:
-
-- complete explicit sequence-family targets and search-model mismatch
-  provenance when a target is available;
-- checksum-bound model compatibility fact sheets for every fresh AutoMR run;
-- explicit provider-side `model_family` declarations bound to a named model,
-  never inferred from frame, filename, sequence thread, or similarity;
-- checkpoint-candidate descriptors that re-verify the selected checkpoint
-  model, observations, lineage, literal residue inventory, chemistry context,
-  and frozen target comparison; and
-- donor-checkpoint versus recipient-run comparisons that re-verify both sides
-  and compare literal donor site/residue inventory against the recipient's own
-  frozen target while keeping source frame/reference/mirror facts as context.
-
-These layers are deliberately **descriptive only**. They do not rank donors,
-declare donor eligibility, declare recipient compatibility, authorize rescue,
-or reuse a solved sibling automatically. Source observations remain donor
-provenance rather than recipient evidence.
-
-The next campaign orchestration edge is therefore a separate reviewed
-eligibility/rescue policy that consumes these facts under a bounded budget.
-That future layer must record the exact donor checkpoint, recipient, applicable
-hard gates, transformations, attempts and stopping reason without rewriting the
-recipient's authoritative observations, Free-R set, target chemistry or failed
-branch.
-
-### Next CLI milestone: geometry-diverse campaign before GUI implementation
-
-A forthcoming real validation case contains geometry-diverse datasets with one
-prepared PDB search model and associated sequence definition per dataset. Once
-the current Oak Scout-v2 branch is closed/merged, this should become the **next
-campaign implementation milestone**, still on the CLI/backend rather than in the
-GUI.
-
-The first executable slice should generalize the existing campaign
-planner/executor to admit frozen nonstandard per-dataset model providers and
-their exact sequence sources while preserving the normal guarded stage engines.
-Keep existing schema-1 W plans readable/executable; introduce a
-backward-compatible newer plan schema rather than redefining old frozen plans.
-The current concrete executor choke point is
-`campaign_stages._frozen_selection()`, which still rejects anything except
-`mode=standard, frame=W`.
-
-Each dataset remains scientifically independent: no geometry-family inference,
-cross-dataset model ranking, solved-sibling reuse or Campaign Doctor rescue is
-authorized merely because the datasets share a campaign.
-
-For the first live slice, model-to-sequence correspondence must be simple and
-unambiguous. Nontrivial registration, recuts, split chains, unexpected
-multiplicity or other representation ambiguity should stop only that dataset
-for inspection. A real 3-5 dataset geometry-diverse campaign should then run
-through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine with pause/resume,
-retry, relocation and frozen-input integrity still intact.
-
-After that live campaign is green, add minimal explicit `design_id` grouping
-for datasets sharing a stable construct/design record. Do not infer design
-membership from filenames or sequence similarity.
-
-**GUI branch point:** only after the basic heterogeneous campaign and Design
-identity are CLI-functional should implementation attention split into the GUI.
-The GUI then visualizes stable backend concepts rather than inventing them.
-
-The Campaign Doctor runway after that branch point is already mapped in the
-campaign roadmap: read-only campaign-wide donor/recipient facts -> reviewed
-eligibility policy -> attempt-local derived-provider provenance -> one explicit
-donor rescue -> bounded automatic donor enumeration. None of those should be
-smuggled into the first heterogeneous campaign milestone.
-
-This work remains intentionally outside PR #22's implementation scope.
-
-## Construct registration: next structural robustness layer
-
-The next planned scientific infrastructure is **Construct Registration**:
-logical construct sites must be separated from incidental PDB chain names,
-residue numbering and ASU cuts.
-
-The design contract is
-[`construct-registration.md`](construct-registration.md). It now records the
-full expected failure-mode inventory, automatic-versus-guided triage matrix,
-user-escalation rules, reporting escalation, Registration Net interaction model,
-reviewed recipe promotion rules, and the rationale for preferring Scout -> MR
--> authoritative ASU registration over heavy pre-MR coordinate surgery.
-
-The intended timing is:
-
-```text
-logical construct manifest
-    -> AutoMR Registration Scout (cheap, non-mutating)
-    -> ordinary MR first when plausible
-    -> authoritative ASU Registration on the MR solution
-    -> PostMR logical-site sequence/chemistry
-```
-
-MR itself is often the most useful coordinate registry. NASolve should not
-require heavy recutting, renumbering or mutation of a plausible search model
-before learning whether it solves.
-
-If MR fails, or a reviewed representation problem is known, a separate bounded
-**Registration/Recut Rescue** may build a transformed candidate with frozen
-provenance. Planned reviewed transforms include equivalent ASU cuts,
-split/join/relabel/renumber operations, sticky-end/boundary changes and
-explicitly reviewed boundary chemistry.
-
-The common W path must stay cheap: an identity-like single-copy registration
-should pass automatically without user interaction.
-
-Guided mode is reserved for crystallographically interesting cases such as:
-
-- equivalent but nontrivial ASU cuts;
-- renamed/renumbered/split logical strands;
-- unexpected complete copy multiplicity;
-- one complete plus a partial copy;
-- sticky-end/arm coverage differences; or
-- several non-equivalent registrations.
-
-The **Registration Net** remains the general 2-D SVG/HTML mapping view for
-logical strands, coordinate fragments, symmetry/ASU seams, complete/partial
-copies, sticky ends, important logical sites and mapping bands. It is not a
-second molecular viewer; Coot remains the coordinate editor.
-
-A separate opt-in **Topo Net** extension is now planned for explicitly declared
-periodic self-assembling frameworks. Topo Net should show the current ASU plus
-only connected symmetry mates and operate on a periodic molecular graph rather
-than treating the current PDB chain serialization as chemistry. It should let a
-user preview moving an ASU seam past residues, moving symmetry-equivalent
-fragments across the chosen ASU, split/join/relabel/renumber operations and
-newly exposed sticky ends before coordinates are materialized.
-
-Critical semantic distinction: an ASU seam may create a coordinate-file
-"false nick" while the logical strand remains chemically continuous through a
-symmetry operation. Such a representation seam keeps continuation-phosphate
-intent and must not be reinterpreted as a true free 5-prime terminus merely
-because the PDB starts a new chain there. A true chemical nick remains a
-different, stronger edit that changes the covalent graph and terminus chemistry.
-
-Materialization should write an immutable surgery manifest, use exact symmetry
-transforms/chain operations in Coot, then re-run Phenix interpretation. Two
-later empirical gates are required before automation: (1) determine whether a
-Phenix symmetry-operation bond can safely enforce the seam connection without
-uncontrolled phosphate-angle/clash behavior; and (2) practice bounded
-single-residue Coot RSR on several disposable recuts where a phosphate/O3-prime
-connection is initially too long, auditing which atoms move and whether Phenix
-then interprets the linkage cleanly.
-
-The umbrella term for this planned family is **topology-informed automation**:
-topology may inform hypotheses, recuts, local repairs and branch diagnostics,
-but it never overrides chemistry, diffraction evidence, fail-closed rules or
-expert review.
-
-Topo Net should also preserve a stronger design hierarchy than ASU chain
-serialization. For framework work, keep four layers separate:
-
-- complete synthesized/input strand inventory;
-- tile hypothesis (usually declared, but possibly inferred/emergent);
-- observed periodic crystal graph under symmetry; and
-- one incidental ASU/PDB serialization of that periodic object.
-
-Input strands are high-authority experimental intent, not guaranteed observed
-content. A strand may be absent from the solved structure; copy number may
-differ from the synthesis recipe; one strand may be split among symmetry/ASU
-fragments; and the scientifically useful tile can become more abstract than
-the original design. Tile status should therefore permit `DECLARED`, `INFERRED`,
-`EMERGENT` and `UNRESOLVED` outcomes while retaining the original declared tile
-for provenance.
-
-This distinction matters for known lab-style multiplicity cases: a P4_132
-structure may place two complete triangular tile copies in one ASU without
-making the ASU itself the tile. Tile multiplicity, ASU multiplicity and
-coordinate-chain decomposition must remain separate reported dimensions.
-
-Repeat-bearing/root strands need their own design facts. Many tile families
-contain one central/root strand with an internal n-fold repeated role while
-other strands occur at higher per-tile copy number. Preserve intended
-copies-per-tile and internal repeat order separately in the tile sequence
-sheet; neither should be inferred from incidental ASU chain counts.
-
-The observed periodic graph may violate both expectations. Record repeat-domain
-coverage and repeat phase when possible, including cases where only part of a
-root strand is ordered/used. Also allow a long topological closure: a known
-fivefold repeat-bearing object embedded in a fourfold/screw lattice returned
-to its original repeat phase only after twenty unit-cell steps. That is not a
-missing-copy failure. It is an observed periodic organization in which the
-nominal root-strand copy/repeat count is no longer a local tile invariant.
-
-The net finder should explicitly consume declared root/repeat annotations and
-may propose repeats from full sequences only as non-authoritative hypotheses.
-It should map repeat domains into the periodic graph, follow phase changes
-through symmetry, and report local closure, long-period closure, partial use,
-reorganization or unresolved phase as separate descriptive facts. It must not
-force the designed n-fold order onto the structure.
-
-Junctions are now part of the intended Topo model as first-class topological
-objects, but **junction arity is not the definition**. The minimal primitive is
-a local directed-backbone passage/connection at a node; a single backbone can
-be sufficient (the semi-junction is the motivating example). Four-, six- or
-eight-arm junctions are contextual neighborhoods around one or more such
-passages. ASU recutting may split that realization across symmetry fragments
-without changing the underlying junction.
-
-Junction declarations/hypotheses should therefore preserve stable logical
-strand/residue participation, routing, true nicks/termini, sticky ends and
-optional reviewed stacking/pairing expectations while treating observed arm
-count as derived metadata. Net-finder discoveries remain `CANDIDATE` until
-uniquely supported or user-confirmed; emergent high-valence nodes such as the
-cuboctahedral case must be allowed, while apparent packing contacts may be
-`REJECTED`.
-
-Topo Net should be a persistent workbench above the checkpoint graph rather
-than a one-shot cutter. A user should be able to operate on a seam/junction,
-materialize a child, optionally perform bounded Coot repair, press Refine, and
-receive the resulting refinement child plus diagnostics back into the same GUI
-without closing/restarting the topology session. The first Refine action should
-use a short ordinary audited AutoRefine path; selection-restricted refinement
-is intentionally later work.
-
-This work exposes a useful **generic NASolve GUI** seam. The existing immutable
-checkpoint graph should become a reusable model-tree view for normal workflows:
-MR, PostMR, AutoSol, long refinement chains, Doctor siblings, manual imports,
-topology surgery and later re-MR-from-refined-model attempts should all appear
-in one traversable lineage. Important checkpoints can be pinned as panels,
-repetitive refine chains can collapse, and historical nodes can be selected or
-used as explicit new branch sources without deleting descendants. Topo Net
-should embed this same component rather than maintain a private history.
-
-The dedicated [GUI design contract](gui.md) now records the broader shell:
-Campaign -> optional Design -> Dataset -> Run scientific navigation; one-window
-Navigator / Workspace / Inspector / Activity layout; root/recent-workspace
-selection; explicit viewed/current/pinned separation; semantic colors with
-redundant shape/fill cues; and GUI coverage for existing CLI operations
-(environment/config, workspace, presets, campaign actions, AutoMR/PostMR,
-backbone review, AutoSol, AutoRefine/Doctor, checkpoints and Coot inspection).
-The shell is capability-driven: future backend actions/metadata/views should
-register into existing surfaces rather than require a new window or bespoke
-history model.
-
-Live campaigns should update the Navigator/tree from authoritative execution
-records with restrained running-node/edge activity. The bottom Activity drawer
-has a human-readable Events/Notifications stream (for example "refinement 21
-passed", "PostMR needs your review", "current checkpoint changed") plus
-expandable exact backend tokens, metrics, diagnostics and logs. Repeated
-heartbeats are coalesced; reduced-motion mode uses static activity markers.
-
-The corresponding [GUI human live-check queue](gui-live-checks.md) covers shell
-navigation, live campaign/event reconciliation, long model trees,
-color/accessibility semantics, campaign/design scope changes, CLI/GUI
-interoperability, Coot round-trip and a "register one new action without shell
-redesign" extensibility test.
-
-Keep the workbench display sparse. Global chips may show current checkpoint,
-Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
-junction expands only the relevant local diagnostics: Phenix bond/angle
-outliers, phosphate connectivity and clashes, base-plane/sugar/backbone
-geometry, reviewed pairing/stacking deviations, mutation/registration state,
-and later validated residue-density metrics. Selections should round-trip to
-Coot so abstract Topo operations and atomic inspection stay coupled.
-
-Topo surgery also needs a bounded local repair layer rather than assuming one
-Coot action always works. A future **Topo Surgeon/Doctor** may branch a small
-declared set of materialization/mutation/RSR strategies, then compare Phenix
-local geometry, phosphate/clash behavior, base planes, pairing/stacking
-restraints and unintended coordinate movement. Every attempt remains immutable.
-If automated repair cannot produce a trustworthy local model, expert manual
-Coot work is an expected Topo-mode fallback; NASolve should open the exact
-model/maps/seam, then import the user's repaired PDB as a new user-reviewed
-checkpoint without erasing failed automated attempts.
-
-The first planned blind topology-surgery fixture is **8D93 -> 3GBI-style
-representation without coordinate cheating**: the transform receives 8D93,
-symmetry and requested cut intent, while 3GBI coordinates are withheld until
-the post-transform comparison. Ordinary W identity registration, chain
-renaming/numbering offsets, multicopy/partial-copy ASUs and bounded multi-PDB MR
-checks remain separate validation rungs.
-
-### Birch implementation checkpoint
-
-The first backend-only slice is now implemented on the `birch` development
-branch without changing any existing AutoMR/PostMR call path.
-
-Implemented:
-
-- strict logical-site -> coordinate-site registration records;
-- complete, multicopy and partial-copy representation;
-- complete-copy-only logical mutation/chemistry expansion;
-- checksum-bound freeze/load provenance and semantic revalidation;
-- exact accounting for mapped and unmapped polymer residues;
-- read-only logical inventories for later Hemlock/Moss/Campaign Doctor use;
-- conservative Registration Scout v1 for identity, same-name constant residue
-  offsets, unique whole-chain rename, and rename-plus-offset cases;
-- descriptive per-candidate design-identity evidence that is explicitly barred
-  from Scout assignment/ranking;
-- checksum-bound `Model/registration_scout.json` freeze/load with semantic
-  revalidation; and
-- a non-decisional registration-transition comparison for later
-  Scout-versus-authoritative-MR reporting;
-- UI-independent guided resolution for ambiguous simple chain assignments,
-  restricted to explicit user selections among already enumerated Scout
-  candidates;
-- read-only top-level dataset PDB candidate inventory with valid/invalid
-  diagnostics, per-file SHA-256/size and a stable candidate-set fingerprint;
-  and
-- read-only conservative Registration Scout across every valid discovered PDB,
-  with no ranking, selection or MR authorization.
-
-Scout v1 deliberately does not use sequence-similarity ranking, modified-site
-similarity, symmetry expansion, split-chain inference, copy-number inference or
-topology. Ambiguous renamed chains remain ambiguous rather than being selected
-by a hidden score.
-
-The primary inference regime is designed self-assembling nucleic-acid crystals:
-input construct sequence/modification/boundary intent is normally known and
-short designed strands are usually less repetitive than generic polymers.
-Repeated short motifs and single-base overhangs remain explicit ambiguity
-hazards rather than ignored corner cases.
-
-The machine-readable development policy is
-[`construct-registration-intent.json`](construct-registration-intent.json).
-Policy changes should update that file alongside the human design contract so
-real-data testing can intentionally backtrack or revise inference behavior
-without losing why an earlier rule existed.
-
-The minimum human/real-workflow validation queue is maintained separately in
-[`construct-registration-live-checks.md`](construct-registration-live-checks.md).
-Keep the top-level queue trigger-based, with project-scoped banks beneath it;
-it exists so clean-W wiring, blind 8D93 -> 3GBI surgery, 8D31-like multiplicity,
-repeat/root-strand closure, emergent-tile cases, guided ambiguity and bounded
-multi-PDB checks are not forgotten as implementation context moves across chats.
-
-Validation history is preserved rather than overwritten:
-
-- the earlier Birch checkpoint at code head
-  `4452295c3330de6d55bddd75b01be21f39afb222` had **23 focused registration
-  tests passing locally**;
-- the current Birch bundle at code head
-  `686830beb64907f2a1ba73fa1bdbff97f6dcc38d` has **44 focused tests passing locally** across
-  `tests/test_construct_registration.py` and
-  `tests/test_model_candidates.py`.
-
-Both are user-local checkpoints, not GitHub CI. The full NASolve regression
-suite subsequently passed with **664 tests and 222 subtests**, satisfying the
-remaining merge gate for PR #17.
-
-### Renamed-chain real-W ambiguity check
-
-A second read-only ED `run_011` test renamed coordinate chains
-`A/B/C/D -> M/N/P/Q` without changing coordinates/residue identities.
-
-Scout v1 returned `AMBIGUOUS`, as designed, because multiple equal-length
-one-to-one chain assignments satisfied its current length/offset rules. Its non-decisional
-design evidence strongly identified the intended mapping (A->M 19/2, B->N 5/2,
-C->P 7/0, D->Q 7/0; alternatives carried many more mismatches). Explicit guided
-selection of A->M, B->N, C->P, D->Q yielded `REGISTERED_COMPLETE`, one copy,
-4 target-identity mismatches and no coordinate edit.
-
-This validates both the conservative refusal-to-guess behavior and the guided
-resolution primitive on real W coordinates. It also suggests the next reviewed
-inference experiment: classify mismatches as **declared construct-change sites**
-versus **unexpected mismatches**, and allow automatic disambiguation only when
-one complete one-to-one chain mapping has zero unexpected mismatches and every alternative has
-at least one. This is recorded as proposed policy, not runtime authority.
-
-### Oak: experimental design-aware Scout v2
-
-Following the renamed-chain real-W result, Oak prototypes a **proposal-only**
-design-aware helper. It enumerates bounded complete one-to-one chain mappings
-and classifies differences using explicit target assignment history plus an
-optional reviewed-provider baseline map.
-
-The hard proposal rule is intentionally non-scoring: exactly one mapping must
-have **zero unexplained mismatches**, and every alternative must have at least
-one. A mapping with merely fewer unexplained mismatches is still ambiguous.
-
-The helper is not runtime authority, cannot apply a mapping, and is not called
-by AutoMR/PostMR. Provider-baseline evidence is now derived from an assessed
-standard frame-catalogue model plus NASolve's existing provider provenance;
-free-floating caller residue dictionaries are no longer accepted. The original
-Oak v2 checkpoint had **41 focused tests passing locally** at code head
-`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`.
-
-The first renamed real-W v2 shadow case supplied only A:13=DC and B:3=DG as
-provider evidence and correctly stayed `AMBIGUOUS`: 6 complete mappings,
-0 zero-unexplained mappings; the intended mapping had 38 exact,
-2 provider-explained and 2 unexplained sites. Direct inspection of
-`MR_frames/5W6W/C_G.pdb` verified that the missing provider-pair identities
-were A:12=DC and B:4=DG.
-
-The same case was then repeated with all four verified provider identities
-(A:12/A:13=DC; B:3/B:4=DG). v2 returned `PROPOSED` with exactly one
-zero-unexplained mapping: A->M, B->N, C->P, D->Q. That mapping had 38 exact,
-0 target-history, 4 provider-explained and 0 unexplained sites; the five
-alternatives retained 12, 11, 16, 17 and 10 unexplained mismatches.
-`runtime_authority` remained false.
-
-This validates the experimental zero-unexplained uniqueness rule on the real-W
-rename nuisance case without promoting it into runtime authority.
-
-Oak has now implemented the next provenance slice at code head
-`c515a37dc41fa8bb1935d2c80c825ebef8153177`: Scout v2 no longer accepts an
-ad hoc provider residue dictionary. Optional provider evidence is derived from
-an actual `ModelAssessment` of a standard frame-catalogue model plus NASolve's
-existing `model_provider` record. The helper requires frame-catalogue
-provenance, exact target-site coverage and provider-selector/source-model
-agreement, and returns the derived residue baseline bound to the source model's
-SHA-256. Runtime authority remains false and AutoMR/PostMR still do not call it.
-
-The provenance-bound helper plus its new fail-closed coverage now passes
-**43 focused tests locally** at checkout/test head
-`507745a0b7166f05229f6c3501d5e1f694db93e2`; the source-behavior head remains
-`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added tests explicitly
-reject incomplete provider target coverage and provider-selector/source-model
-mismatch. The result is user-local, not GitHub CI.
-
-The real renamed-W case has now also passed through the new
-`provider_assessment + model_provider` interface. Because ED `run_011`
-predates structured `model_provider` provenance, the shadow script reconstructed
-only the standard-frame fallback provider facts already proven by the old run's
-model path, `model_source`, and source-model SHA-256, then asserted that checksum
-against the current `C_G.pdb` before Scout ran. No residue-code dictionary was
-supplied. The result remained exactly one zero-unexplained proposal
-A->M/B->N/C->P/D->Q (38 exact + 4 provider-explained; alternatives
-12/11/16/17/10 unexplained), with provider provenance bound and
-`runtime_authority = false`.
-
-Scout v2 therefore remains experimental/non-runtime, but its focused tests and
-intended real-W provenance-bound shadow gate are now green. The current Oak
-checkout `316ac43eaf85a63cf675828bb8960a28f0db2773` also passed the **full
-NASolve regression suite: 672 tests locally**. No runtime or subtest count was
-reported for this checkpoint; it is user-local validation, not GitHub CI.
-
-The merge-grade regression gate is therefore green. The remaining confidence
-check has also now passed: a fresh current-schema ED `run_013` preflight was
-created from the same run_011 scientific intent, and the renamed-W shadow case
-was repeated using its native structured `model_provider` record plus a fresh
-assessment of the referenced `C_G.pdb`. The result was identical: provider
-bound true, caller codes false, exactly one zero-unexplained
-A->M/B->N/C->P/D->Q proposal (38 exact + 4 provider-explained; alternatives
-12/11/16/17/10 unexplained), with `runtime_authority = false`.
-
-The current backend-only Scout v2 scope is therefore fully validated for its
-stated purpose. AutoMR/PostMR integration, automatic application, authoritative
-registration and any promotion of Scout v2 into runtime decision-making remain
-separate future work and are not implied by this validation.
-
-### Oak branch-readiness sweep
-
-A final user-local readiness sweep on the current Oak checkout reported:
-
-- authority audit: no live callers of
-  `propose_design_aware_chain_mapping` outside its defining module;
-- patch hygiene: `git diff --check main...oak` produced no output;
-- runtime health: `./nasolve check` passed with Python 3.12.14,
-  NARestraints 1.1.2, Phenix 2.2.1 and Coot 1.3.3.
-
-This sweep changes no scientific behavior. It confirms that the experimental
-Scout v2 helper remains isolated from the live pipeline, the branch diff is
-whitespace-clean, and the configured local crystallographic runtime is healthy.
-
-### First real-data registration shadow check
-
-The new registration core was then exercised read-only against existing ED
-`run_011` using its frozen 42-site target:
-
-- search model: `REGISTERED` by `identity-site-map`, 4 identity mismatches;
-- PostMR ReadySet model: `REGISTERED` by `identity-site-map`, 0 mismatches;
-- transition: copy structure `SAME`, multiplicity `SAME`, complete-copy
-  identity classes `DIFFERENT`, single-copy coordinate realization `SAME`.
-
-This is the expected scientific behavior: PostMR changed logical residue
-identity while the coordinate registration itself remained stable. It is a
-useful real-W validation of the abstraction, but **not** yet a live pipeline
-integration test because registration was invoked manually against an already
-completed run.
-
-## NAPrep boundary
-
-NAPrep is a separate optional upstream design/data-management package, analogous
-in separation to NARestraints. It may organize design records, sequences,
-sample/collection metadata, folders and externally generated model candidates.
-
-NASolve does **not** invoke AlphaFold.
-
-NASolve remains responsible for the crystallographic/campaign decision tree
-once a curated handoff exists: AutoMR, Construct Registration, PostMR, AutoSol,
-refinement, Campaign Doctor, reporting/curation and deposition. NAPrep must not
-become a second campaign manager that re-infers NASolve's downstream decisions.
-
-Direct manually prepared NASolve inputs remain supported; NAPrep is not a
-runtime requirement.
-
-## Separate scientific follow-up
-
-These are not blockers for proactive terminal-phosphate protection:
-
-- **DE dictionary** remains defective/unapproved for production refinement.
-- sulfur-containing pair target geometry still needs a reviewed source/target
-  audit;
-- provisional `force = G:C` should change pair restraint geometry only, never
-  residue or deposition identity;
-- a future MR Doctor may add preset-specific checks such as 5W6W sticky-end
-  packing, but must not globally redefine TFZ 7 as success;
-- Final Model Doctor / curate / deposition should preserve explicit evidence
-  provenance rather than assuming every artifact comes from the selected
-  coordinate checkpoint;
-- Construct Registration/Registration Net and bounded recut rescue are the next
-  structural robustness layer before broad automatic Campaign Doctor rescue;
-- reviewed Campaign Doctor eligibility and bounded rescue execution remain a
-  major orchestration layer; donor provenance and donor-to-recipient descriptive
-  comparison prerequisites are already implemented.
-
-## Documentation rule
-
-Use:
-
-- `README.md` for human workflow;
-- `docs/README.md` as the documentation map;
-- `docs/architecture.md` for durable invariants;
-- subsystem docs for active scientific/technical contracts;
-- this file for immediate implementation state;
-- `docs/history/` for archaeology only.
-
-Future work should not require chat history to recover the active design.
+# NASolve development handoff — current state
+
+Updated **2026-10-08**. **Working branch: `pine`.** Finish the bounded
+Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
+into `main`, then the **blind AlphaFold geometry baseline**, then
+**operational Scout**. No GUI/Topo Net implementation is a prerequisite.
+This is the compact active handoff, not a chronology. The complete previous
+handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.md).
+
+## Executive state
+
+| Workstream | Verified result | Remaining gate |
+| --- | --- | --- |
+| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
+| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
+| Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
+| P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
+| Campaigns / full auto | Ordinary guarded MR→PostMR→conditional AutoSol→refinement and immutable checkpoints work. Separate EA/DiU/Q5cm/QiC full-auto campaign reached numerical SOLVED for all four, preserving EA MR_REVIEW and QiC provisional (not user-approved) selection. | Bounded evidence review and user-veto/resume where still missing; do not rerun passed cohorts merely to refresh docs. |
+| Prepared nonstandard P5 | Explicit per-dataset PDB/sequence and mixed schema-2 campaigns implemented and fixture-tested. | Small **3–5-member real geometry-diverse** native smoke check; W-only successes cannot substitute. |
+| Scout / registration / Topo / GUI | Registration/Scout shadow primitives and earlier scoped checks are recorded. | Operational Scout, symmetry surgery, Topo and GUI remain separate future work, **not** claimed complete. |
+
+**Integrated code regression:** the last pre-merge PR #24 head contained
+PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
+combined head returned **967 tests + 226 subtests PASS** before squash
+merge. The post-merge Pine checkout has not been rerun on the user's terminal.
+One earlier first-pass mixed fixture with S6G instead of Benner IMC correctly
+failed closed as B:G; the reviewed IMC replacement passed. Neither unit
+tests nor numerical `SOLVED` establish experimental chemistry or deposition
+approval.
+
+## Immediate next scientific work — one bounded sequence
+
+1. **Next engineering slice — library-first generic monomer resolver.**
+   With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
+   merged, the combined-family workbook regression is green, but four
+   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve.
+   NASolve currently requires a local `CODE.cif` before Coot parent-overlap,
+   whereas ReadySet normally runs *after* that placement. Resolve existing
+   validated Phenix/CCD monomers before asking for curated overrides, and
+   where supported produce an **audited, frozen derivative**, never
+   fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
+   Keep exceptional local recipes only for demonstrated broken cases.
+   Review prospective HelixWeld/HelixMeld implementations before making
+   them providers; no verified integration yet. Pin/run against released
+   NARestraints v1.1.3 with exact import verification; don't edit the
+   user's dirty workbook or historical native models.
+2. **Attempt one simultaneous four-family W model first**, as explicitly
+   requested by the user on 2026-10-08. Use distinct original W paired sites:
+   **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/IMC),
+   **Z:P at A:12/B:4** (DZ/DP, existing `pair=Z:P` route), and
+   **K:X at A:20/D:3** (CGY/DX). Keep the prior off-pair A:7/C:9
+   **5CM:G** and A:19/D:4 **DF:A** simultaneously. These sites align
+   their source A:T/G:C/C:G templates with reviewed NARestraints roles,
+   but are still **proposed design intent**, not frozen/validated.
+   The Saenger overlay should retain **12 original Saenger blocks and
+   replace 5 with explicit pairs**; the central Z:P stays in Std_padd.
+   **Before any native run**, locate source-verified `IGU`, `IMC`, `CGY`, `DX`
+   monomer dictionaries (absent from committed NASolve resources) and
+   audit the actual W model/42-site sequence targets, restraint interfaces,
+   atom names and phosphate policy. Do not invent CIFs, force chemistry
+   to G:C, or silently downgrade to the old five-independent-matrix plan.
+   One *new* frozen single-member campaign, one stage boundary at a time,
+   with preserved failures and human Coot/.geo checks; independent A:T,
+   D:T, B:S, Z:P, K:X datasets remain a **diagnostic fallback**, not
+   today's required first trial. **D:A is unsupported**; D:T is the
+   reviewed three-hydrogen-bond D-family recipe, while `DA` means
+   ordinary DNA adenine.
+3. **Close the independent P2 source-native gate** (`1W5→DZ`,
+   `1WA→DP`) with actual source components and verified dictionaries,
+   source-to-target atom mapping, raw preservation and native refinement.
+   This is not the same as already successful Z:P synthetic-target model.
+4. **Finish the bounded Pine close-out:** retain existing GZ11 and multi-member
+   saved receipts; resolve remaining exact effective-dictionary evidence (P1),
+   saved normal-GZ11 evidence (P3), and limited campaign human-veto/current-
+   pointer evidence (P4), plus **P5** geometry-diverse real smoke check.
+   Then final integrated tests/review **P6**, followed by [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
+   merge/ancestry verification **P7**. Do not clean, reset or prune original
+   scientific artifacts to retire branches.
+
+The exact **combined-first site layout**, candidate chain sequences,
+dictionary sourcing gate, optional independent controls, immutable Z:P
+attempt history and human-verdict limits live in the
+[native modified-pair ledger](native-modified-pair-live-validation.md).
+The [modified-component contract](modified-component-preparation.md) owns
+1W5/1WA mapping and source-preservation rules. [Campaign execution](campaign-execution.md)
+owns CLI semantics; [full-auto checkpoint](full-auto-patch-handoff.md) retains
+the completed four-member validation.
+
+## Preserved W native evidence and user review
+
+The original frozen synthetic-target dataset is
+`~/NASolve-live-tests/zp-paired-native-oiipj_t2`. It uses **real GZ11
+diffraction observations** but altered target chemistry; it is **not**
+evidence the experimental crystal contained the tested modifications.
+
+- **`run_001`:** retained Z:P PostMR **BLOCKED** by the former reversed
+  role mapping (Z lacked G-like N2). Native Phaser TFZ **12.9**, LLG **210**.
+- **`run_002`:** corrected NARestraints Z:P PostMR **PASS**: expected
+  `P.N2/Z.O2`, `P.N1/Z.N3`, `P.O6/Z.N4` contacts, all 42 target
+  identities checked, no `force` override. First AutoRefine **BLOCKED**
+  before refinement by old W Saenger classes at modified 5CM:G and DF:A.
+- **`run_003`:** PR #24 candidate; frozen integrity **OK**, 17 template
+  pairs → **15 unchanged Saenger + 2 explicit modified** (5CM:G GC/3 bonds;
+  DF:A AT/2). D:1 phosphate protection retained, sequence-family
+  mismatches empty, AutoSol correctly skipped; native AutoRefine returned
+  **`SOLVED`, `refine-001`**. User's Coot inspection reported **good bonds
+  and planes**, tolerable nonideal planarity: **INSPECTED_PASS for overall
+  visual software integration**, not site-resolved density or experimental
+  chemistry. Exact Rwork/Rfree, `.geo` and per-site map/clash metrics are
+  still to be recorded if needed.
+- **`./nasolve show`:** after PR #25 integration the user selected
+  `run_003` as their active workspace and confirmed bare `show` launched
+  the expected model in Coot. **Live usability gate passed**.
+
+**Separately parked geometry question:** user noticed tilted/directional
+hydrogen-bond contacts in the displayed modified pair (named N1/N3 and
+O4/N6 sites). First verify the exact donor–H–acceptor assignment, atom
+definitions, existing restraint angular terms and achieved geometry before
+deciding whether directional terms are appropriate. **Do not simply fix a
+heavy-atom angle at 180°, enforce flat base planes, or edit `run_003`.**
+Not a blocker for `show` or for the successful native integration.
+
+## After Pine: blind AlphaFold baseline, then operational Scout
+
+The user requested this order on 2026-10-07. Use the existing prepared-
+nonstandard path with **frozen** supplied predictions, complete chain-labelled
+sequences and untouched diffraction/Free-R; audit chain/residue correspondence,
+coordinate/ASU completeness, model confidence/B factors and input metadata.
+Predicted coordinates are *unseen candidate models*, not solved truth.
+Do not consult outcome structures during blind candidate selection. Preserve
+every success and failure; later hypotheses get new attempts.
+
+Then promote Scout along the
+[registration contract](construct-registration.md) and
+[human live-check queue](construct-registration-live-checks.md); keep guided
+ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
+[metal restraint builder](metal-restraint-builder.md) are separate later scopes.
+
+## Work discipline and doc ownership
+
+- **One terminal action per user turn** for live NASolve debugging, then
+  inspect the output before proceeding. Prefer isolated Git worktrees
+  for candidates. Preserve the user's dirty `../NARestraints` tree (including
+  unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
+  untracked files/patches, all immutable numbered runs, maps and Free-R.
+- Do not represent an unrun test as passing. Keep native-tool receipt,
+  chemical identity, numerical statistics and human Coot verdict as
+  separate fields. Confirm environment imports instead of assuming the
+  v1.1.3 metadata pin upgraded a preexisting `.venv`.
+- **This file** owns current priorities/results; the
+  [documentation map](README.md) routes to active subsystem contracts;
+  the [native ledger](native-modified-pair-live-validation.md) owns exact
+  pair-matrix evidence and per-member status. Earlier full chronology
+  is preserved [in history](history/development-handoff-2026-10-08-pre-consolidation.md)
+  and Git. Do not re-append old session logs here.

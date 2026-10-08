@@ -140,13 +140,50 @@ residues. Full sequences must match the resulting model-chain residue count,
 and explicit mutation targets must exist. Mutation precedence is full sequence,
 standard pair, then explicit mutation.
 
+A standard-frame input may additionally declare `force = FIRST:SECOND` to
+override **NARestraints pair-recipe classes only** for the designed standard
+pair. This is orthogonal to residue identity and model selection. For example,
+`pair = G:Z` plus `force = G:C` keeps the prepared residues G/Z while using
+the G:C H-bond recipe at the frame's designated pair sites. The override is
+site-scoped, frozen in provenance, and must not affect neighboring template
+pairs or rewrite coordinate residue names.
+
 ### Dataset and symmetry discovery
 
-Dataset discovery accepts the usual autoPROC/STARANISO naming variants rather
-than renaming raw inputs. It prefers a unique MTZ whose punctuation-insensitive
-name contains both `staraniso` and `alldata`, falling back to the only top-level
-MTZ when there is exactly one. Metadata is the unique case-insensitive
-`Data_1*.cif`; multiple candidates stop the run.
+Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants
+rather than renaming raw inputs. It prefers a unique MTZ whose
+punctuation-insensitive name contains both `staraniso` and `alldata`, falling
+back to the only top-level MTZ when there is exactly one. Metadata is the unique
+case-insensitive `Data_1*.cif`; multiple candidates stop the run. The current
+runtime also requires `summary.html`.
+
+These companion-file requirements are an **input-adapter limitation**, not a
+scientific invariant. The durable architecture should distinguish the reflection
+payload from optional/richer processing metadata.
+
+Future input adapters should compile source-specific material into one frozen
+internal crystallographic input record with independent capabilities:
+
+- `mr_ready`: observations + cell/symmetry sufficient for Phaser;
+- `refinement_ready`: validated refinement observations + authoritative Free-R;
+- `anomalous_ready`: complete anomalous arrays plus wavelength/element context;
+- `deposition_ready`: sufficient collection/processing metadata for downstream
+  curation/deposition.
+
+AutoPROC/STARANISO + `Data_1*.cif` + `summary.html` is the first rich adapter.
+Generic MTZ should become another adapter without requiring Global Phasing
+filenames. SCA/Scalepack should also be admissible as a direct MR reflection
+source because Phenix can consume it for molecular replacement. The original
+SCA remains the frozen authoritative source. If a downstream stage later needs
+an MTZ-style array container, NASolve may derive one under a separate immutable
+conversion record/checksum rather than making conversion a prerequisite for MR.
+Downstream stages consume the frozen internal record/capabilities rather than
+branching on the name of the upstream processing suite.
+
+A missing capability should disable only the dependent stage. In particular,
+missing deposition metadata must not invalidate an otherwise legitimate
+MR/refinement dataset, while missing/ambiguous Free-R must still block guarded
+refinement unless an explicit future policy safely creates and freezes one.
 
 The symmetry gate applies only to standard W/3GBI recipes. NASolve compares:
 
@@ -682,19 +719,41 @@ consuming it and stores execution progress separately. See
 
 ## Campaign execution contract
 
-`campaign_execution` composes one standard W/5W6W path per dataset through the
-existing scientific engines. The foreground executor is local and sequential;
-individual Phenix stages retain their normal processor allocation. It consumes
-the plan's resolved configuration and resource snapshots rather than choosing
-a new model from a possibly changed source catalogue.
+`campaign_execution` composes one frozen candidate per dataset through the
+existing scientific engines. New campaign plans use **schema 2** and may contain
+standard W/5W6W members, prepared nonstandard PDB+sequence members, or a mixture
+of both; existing schema-1 W plans remain readable and executable. The
+foreground executor is local and sequential, while individual Phenix stages
+retain their normal processor allocation. Execution consumes the plan's frozen
+resolved configuration and resource snapshots rather than rediscovering a model,
+sequence source, frame catalogue, or project policy.
 
-The immutable plan remains schema 1. Separate schema-1 execution state under
-`NASolveCampaign/execution/` records the plan fingerprint, exact attempt/run
-ownership, stage progress, checkpoint, diagnostic and inspection requirement.
-Atomic updates, campaign/dataset locks, process identity and heartbeat records
-protect against competing execution and expose interrupted work. Stage workers
-execute in owned process groups so cancellation can terminate their external
-tool children. A pause request finishes the active stage before stopping.
+The validated default coordinator stage order is:
+
+```text
+preflight -> Phaser -> PostMR -> conditional AutoSol -> AutoRefine
+```
+
+Pine additionally contains a **regression + live validated explicit continuation**
+from `AUTOREFINE_REVIEW` into a campaign-owned `refine-doctor` stage. This is
+not part of the default endpoint: it remains an explicit continuation unless a
+future frozen workflow recipe opts into Doctor-as-needed behavior. Doctor
+recommendation does not auto-select a checkpoint.
+
+AutoSol is a **conditional stage gate**, not a mandatory scientific operation.
+PostMR records whether a supported anomalous candidate exists. When it does not,
+the campaign records accepted status `SKIPPED` and does not launch
+`phenix.autosol`. When it does, the frozen AutoSol policy applies. A plain
+`campaign run ROOT` currently advances eligible datasets through AutoRefine;
+`--through STAGE` is an explicit validation/debugging stop boundary.
+
+Separate schema-1 execution state under `NASolveCampaign/execution/` records
+the plan fingerprint, exact attempt/run ownership, stage progress, checkpoint,
+diagnostic and inspection requirement. Atomic updates, campaign/dataset locks,
+process identity and heartbeat records protect against competing execution and
+expose interrupted work. Stage workers execute in owned process groups so
+cancellation can terminate their external-tool children. A pause request
+finishes the active stage before stopping.
 
 Resumption verifies saved stage results and checksummed artifacts before
 continuing. It never adopts an unrelated newest run, guesses artifacts by
@@ -710,15 +769,44 @@ pass records its selected checkpoint as `SOLVED` with both
 `numerical_success = true` and `inspection_required = true`. Final structural
 approval, automatic Doctor selection and deposition remain separate future
 layers. The existing observation, Free-R, chemistry and checkpoint selection
-gates are preserved. See [campaign execution](campaign-execution.md) for the
-command and recovery contract.
+gates are preserved.
+
+The current unattended behavior still relies on the executor's fixed stage
+order and default AutoRefine endpoint. A future preset/campaign workflow schema
+should freeze the intended endpoint and conditional stage graph explicitly so a
+single selected campaign recipe defines how far each dataset should advance and
+which bounded recovery branches are permitted. That future abstraction must not
+weaken the existing fail-closed per-dataset stops or immutable stage provenance.
+
+See [campaign execution](campaign-execution.md) for the command and recovery
+contract.
 
 ## Project preset direction
 
 The first planning preset makes a bounded set of project settings declarative.
 Further frame and project policy should use data rather than additional
-conditionals keyed to names such as `5W6W`. A later preset manifest beside each
-frame catalogue can declare:
+conditionals keyed to names such as `5W6W`. The current schema already freezes
+W/nonstandard AutoMR defaults, PostMR policy, conditional
+`autosol.policy = when-anomalous`, AutoRefine recipe/cycle count, resources and
+declared chemistry.
+
+A later preset/workflow manifest should also make the **campaign journey**
+explicit rather than leaving its endpoint implicit in the executor. It should
+be able to declare, in typed data:
+
+- the intended terminal stage or terminal outcome for the campaign recipe;
+- conditional stage transitions such as AutoSol only when PostMR evidence
+  requires it;
+- whether an unaccepted optional branch stops for inspection or may fall back
+  to a reviewed ordinary path;
+- bounded Doctor/recovery policies once separately validated. A future recipe
+  may opt into the semantic policy "apply Doctor as needed"; omission leaves the
+  review as an inspection stop. Enabling the policy authorizes only declared,
+  backend-supported bounded Doctors and does not imply automatic checkpoint
+  selection; and
+- human-facing recipe identity/version suitable for provenance and GUI display.
+
+Further frame/project policy may also declare:
 
 - model providers, exact-pair catalogues, fallbacks, and copy/symmetry policy;
 - standard sites, chain sequences, and restraint resources or modes;
@@ -727,10 +815,17 @@ frame catalogue can declare:
 - the AutoSol sequence resource and phasing defaults; and
 - imported external-provider provenance/capabilities.
 
-The orchestration layers consume a frozen model plus declared capabilities.
-This permits a new experimental campaign to ship a versioned preset directory
-without changing common run allocation, provenance, safety gates, Coot/Phenix
-isolation, or downstream reporting.
+The orchestration layers consume frozen models, targets, policy and capabilities.
+This permits a new experimental campaign to ship a versioned preset/workflow
+directory without changing common run allocation, provenance, safety gates,
+Coot/Phenix isolation, or downstream reporting.
+
+The GUI is a second control surface over this same contract. The **visual recipe builder**
+may expose defaults, toggles and validated option sets, but it must serialize to
+the same frozen backend workflow recipe and may not invent a GUI-only scientific
+stage or policy. Likewise, interactive CLI transitions
+(inspection, yes/no confirmation, continuation from review, Doctor inspection
+and checkpoint selection) must map to equivalent backend actions in the GUI.
 
 Model generation is not part of NASolve's runtime contract. A separate optional
 NAPrep package may manage design/data records and externally generated model
@@ -744,19 +839,36 @@ Earlier end-to-end local validation is preserved in
 implementation edge are maintained in `development-handoff.md`.
 
 The campaign planner freezes inputs and project policy; the sequential executor
-adds guarded stage composition and saved progress. The read-only Campaign
-Doctor provenance/comparison prerequisites are now implemented.
+adds guarded stage composition and saved progress. Pine's schema-2 prepared
+nonstandard/mixed backend is fixture-green. A real four-member W campaign has
+now completed under the user's actual Phenix/Coot installation: three members
+reached `SOLVED` at `refine-001` with AutoSol correctly skipped, while QiC
+ran AutoSol successfully and then stopped at `AWAITING_INSPECTION` because its
+first refinement failed the numerical gate. The campaign ended
+`COMPLETE_WITH_FLAGS` with frozen integrity `OK`. The separate real
+prepared-nonstandard geometry-diverse campaign remains pending until those input
+datasets are available.
 
-The next structural robustness layer is construct registration: a cheap
+The read-only Campaign Doctor provenance/comparison prerequisites are implemented.
+The next campaign-semantic additions are: (1) make the selected campaign workflow
+endpoint/conditional graph first-class frozen recipe data, including a
+campaign-owned Refine Doctor transition; (2) validate a real 3-5 member
+prepared-nonstandard/geometry-diverse campaign; and (3) add explicit stable
+Design identity. Standalone Refine Doctor must not be invoked against a completed
+campaign-owned run until that transition exists, because Doctor updates the run
+report while campaign receipts intentionally checksum completed-stage reports.
+
+Construct registration remains the next structural robustness layer: a cheap
 non-mutating Registration Scout before Phaser, authoritative ASU Registration
 on the MR solution before PostMR, a guided Registration Net for ambiguous
 cases, and bounded Registration/Recut Rescue candidates only when ordinary MR
-or representation mapping needs them. Current clean W runs must retain an
-identity-like fast path.
+or representation mapping needs them. The merged Scout-v2 helper remains
+experimental/non-runtime; current clean W runs must retain an identity-like fast
+path.
 
 Reviewed Campaign Doctor eligibility/rescue policy and richer inspection
-summaries remain the next major orchestration steps after this registration
-foundation.
+summaries remain later orchestration steps after these campaign/registration
+foundations.
 
 Campaign orchestration should reuse frozen inputs, immutable numbered runs,
 and checkpoint lineage, with resumable per-dataset progress and explicit

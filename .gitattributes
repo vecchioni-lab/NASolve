@@ -1,0 +1,4 @@
+# Preserve unchanged, checksum-pinned MonomerLibrary 5CM source bytes.
+# Provenance and hash regression: src/nasolve/data/ligands/5CM.provenance.json
+# Exempt only this source file's trailing spaces, not other whitespace errors.
+/src/nasolve/data/ligands/5CM.cif whitespace=-blank-at-eol

@@ -35,6 +35,7 @@ from .run_context import artifact_reference
 from .phosphate import phosphate_intent_summary, validate_phosphate_intent, PhosphateError
 from .backbone import make_backbone_policy
 from .sequence_reference import SequenceReferenceError
+from .sequence_syntax import SequenceSyntaxError, sequence_length
 from .sequence_family import prepare_sequence_family, freeze_sequence_family
 from .search_model_comparison import freeze_search_model_comparison
 from .frame_postmr import frame_postmr_spec
@@ -89,8 +90,22 @@ def _post_mr_plan(resolved: ResolvedAutoMRInput) -> dict[str, object]:
             "ordered_roles": ["first standard site", "second standard site"],
             "site_assignment": "pending standard-frame site manifest",
         }
+    restraint_geometry_override = None
+    if resolved.force_pair is not None:
+        restraint_geometry_override = {
+            "schema_version": 1,
+            "source": "force",
+            "requested": resolved.force_text,
+            "base_classes": list(resolved.force_pair),
+            "scope": "standard_pair",
+            "changes_residue_identity": False,
+        }
     return {
         "allow_op3_sites": list(resolved.allow_op3_sites),
+        **(
+            {"restraint_geometry_override": restraint_geometry_override}
+            if restraint_geometry_override is not None else {}
+        ),
         "backbone_policy": make_backbone_policy(
             resolved.backbone_sites,
             allow_unreviewed=resolved.allow_unreviewed_backbone,
@@ -130,10 +145,15 @@ def _validate_edit_targets(
                 raise AutoMRInputError(
                     f"{source} chain {chain!r} is absent from the MR model; available chains: {available}"
                 )
-            if not isinstance(sequence, str) or len(sequence) != model_length:
+            try:
+                target_length = sequence_length(
+                    sequence, context=f"{source} chain {chain}"
+                )
+            except SequenceSyntaxError as exc:
+                raise AutoMRInputError(str(exc)) from exc
+            if target_length != model_length:
                 raise AutoMRInputError(
-                    f"{source} for chain {chain} has length "
-                    f"{len(sequence) if isinstance(sequence, str) else 'invalid'}, "
+                    f"{source} for chain {chain} has length {target_length}, "
                     f"but the MR model contains {model_length} polymer residues"
                 )
     thread_sites = (

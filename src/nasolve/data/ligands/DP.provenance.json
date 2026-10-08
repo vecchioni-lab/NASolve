@@ -1,0 +1,20 @@
+{
+  "component": "DP",
+  "source": "MonomerLibrary/monomers:d/DP.cif",
+  "source_git_blob": "50218f6ebd8ccaa5582c32286c675f466d8a6d0d",
+  "source_sha256": "3753104cececf26aade545f618d1c8481e1ab59f5e853bbacd3e69cd06bbddce",
+  "source_url": "https://github.com/MonomerLibrary/monomers/blob/master/d/DP.cif",
+  "packaged_sha256": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+  "adaptations": [
+    {
+      "field": "_chem_comp.group",
+      "before": "NON-POLYMER",
+      "after": "DNA"
+    }
+  ],
+  "numerical_geometry_changed": false,
+  "runtime_download": false,
+  "preparation_policy": "1WA -> DP; explicit target chemistry, not tautomer-equivalence inference",
+  "construction_parent": "DG",
+  "native_validation": "PENDING"
+}

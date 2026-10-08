@@ -116,7 +116,7 @@ mode = "standard"
 
 
 @pytest.mark.parametrize("field", [
-    'schema_version = 2', 'schema_version = true', 'schema_version = 1.0',
+    'schema_version = 3', 'schema_version = true', 'schema_version = 1.0',
     'schema_version = "1"', 'schema_version = 0',
 ])
 def test_rejects_unsupported_schema_versions_and_wrong_types(tmp_path, field):

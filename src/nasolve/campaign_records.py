@@ -16,14 +16,21 @@ from pathlib import Path
 from typing import Any
 
 from .campaigns import CampaignError, _canonical, _file_identity, _json_object, _safe_relative
+from .campaign_policy import continuation_warning
 
 
-STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine")
+STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor")
 EXECUTION = "NASolveCampaign/execution"
 ACCEPTED = {
     "preflight": {"READY", "READY_POST_MR_MUTATION", "READY_WITH_RED_FLAG"},
     "phaser": {"MR_SUCCESS"}, "postmr": {"POSTMR_READY"},
     "autosol": {"AUTOSOL_READY", "SKIPPED"}, "autorefine": {"AUTOREFINE_READY"},
+    "refine-doctor": {
+        "REFINE_DOCTOR_GOOD_ENOUGH",
+        "REFINE_DOCTOR_RECOMMEND",
+        "REFINE_DOCTOR_REVIEW",
+        "REFINE_DOCTOR_FLAG_REPAIR_REQUIRED",
+    },
 }
 
 
@@ -180,10 +187,23 @@ def verify_dependencies(root: Path, job: dict[str, Any], plan: dict[str, Any]) -
         directory = path_in(root, job_relative(job["dataset"], job["attempt"], stage))
         previous = read_job(root, directory / "job.json", plan)
         receipt = read_receipt(root, directory, previous)
+        accepted = receipt["status"] in ACCEPTED[stage]
+        if continuation_warning(plan["preset"]["policy"], stage, receipt) is not None:
+            accepted = True  # Trial permission; original REVIEW/WARNING is preserved.
+        if (
+            job["stage"] == "refine-doctor"
+            and stage == "autorefine"
+            and receipt["status"] == "AUTOREFINE_REVIEW"
+        ):
+            # Campaign Doctor is an explicit continuation from a preserved
+            # refinement review checkpoint. This does not make REVIEW an
+            # ordinary accepted AutoRefine outcome for any other downstream
+            # stage or for normal campaign completion.
+            accepted = True
         if (not isinstance(dependency, dict)
                 or dependency.get("job_sha256") != previous["record_sha256"]
                 or dependency.get("receipt_sha256") != receipt["record_sha256"]
-                or receipt["status"] not in ACCEPTED[stage]
+                or not accepted
                 or receipt.get("run") != job.get("run")):
             raise CampaignError("Stage dependency is unaccepted or belongs to another run")
         last = receipt

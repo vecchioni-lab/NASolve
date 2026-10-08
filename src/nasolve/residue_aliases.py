@@ -68,9 +68,12 @@ def known_ligand_codes() -> frozenset[str]:
         records = load_residue_records()
     except Exception as exc:  # pragma: no cover - surfaced with useful context
         raise LigandCodeError(f"Could not load the NARestraints residue library: {exc}") from exc
-    from .curated_ligands import CURATED_LIGAND_CODES
+    from .curated_ligands import CURATED_LIGAND_CODES, PDB_DEPOSITION_ALIASES
 
-    return frozenset(str(record["Ligand code"]) for record in records) | CURATED_LIGAND_CODES
+    # Allow specifically reviewed deposition names in annotated sequences; this
+    # does not make arbitrary five-character CCD codes PDB-emittable.
+    return (frozenset(str(record["Ligand code"]) for record in records)
+            | CURATED_LIGAND_CODES | frozenset(PDB_DEPOSITION_ALIASES))
 
 
 def resolve_ligand(

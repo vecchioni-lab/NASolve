@@ -59,9 +59,16 @@ Explicit paths always take precedence. Clear the pointer with:
 nasolve workspace clear
 ```
 
-A newly allocated AutoMR run becomes active automatically. Passing an explicit
-one-off run to a later stage does not change the saved selection; use
-`workspace use` when the switch should persist.
+A newly allocated standalone AutoMR run becomes active automatically. An
+unambiguous **single-dataset `campaign run`** now also makes its verified,
+viewable result the active run, so `nasolve show` can open the **current
+checkpoint with no path**. A dataset-only workspace selection lets bare
+`nasolve show` choose that dataset's latest numbered readable run. Explicit
+run/`--checkpoint`/`--stage` requests remain authoritative. Multi-dataset
+campaigns and `campaign run --no-activate` preserve the previous active run.
+A blocked/unviewable campaign result cannot silently become the active view.
+Passing an explicit one-off run to other stages does not by itself change the
+saved selection; use `workspace use` when the switch should persist.
 
 The pointer lives in the platform-specific NASolve user configuration. It is a
 small JSON value, starts no process, duplicates no crystallographic files, and

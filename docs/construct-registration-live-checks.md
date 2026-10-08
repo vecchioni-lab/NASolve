@@ -10,6 +10,20 @@ implementation moves across branches, chats and campaign work.
 Do not mark a check complete before the relevant layer is actually wired into
 the live pipeline.
 
+**Separate live chemistry/human qualification:** the user has elected
+[one combined D:T+B:S+Z:P+K:X W challenge](native-modified-pair-live-validation.md)
+with four distinct sites plus 5CM:G and DF:A; this **has not yet run**
+natively and requires missing IGU/IMC/CGY/DX dictionary provenance.
+The released NARestraints v1.1.3 workbook/recipe tests do not replace
+that native gate. An earlier **separate** Z:P+5CM:G/DF:A integration
+run reached numerical SOLVED with overall user Coot visual PASS,
+using the Saenger-overlay implementation now merged via NASolve
+PR #24 (Pine `0017081`; **967 full tests + 226 subtests** on the
+tested integrated candidate). Five independent family runs remain a
+**diagnostic fallback**, not a finished matrix. None of this promotes
+registration, Topo Net or GUI tests to complete; the Scout shadow
+evidence retains its original, narrower scope.
+
 | Status | Trigger | Human check | Minimum pass condition |
 | --- | --- | --- | --- |
 | ☑ | **Before merging a substantial registration backend branch** | Run the focused registration/model-candidate tests **and the full NASolve regression suite**. | **Birch complete:** focused bundle 44/44 green; full suite 664 tests + 222 subtests green. **Oak Scout v2 complete for its backend-only scope:** 43 focused tests green; full suite 672 tests green; final authority/diff/runtime readiness sweep also passed. No unrelated regression observed. |

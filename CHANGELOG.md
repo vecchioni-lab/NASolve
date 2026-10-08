@@ -1,5 +1,14 @@
 # Changelog
 
+## P2 preferred-component preparation (candidate)
+
+- Normalize 1W5 to DZ and 1WA to DP only in new prepared derivatives; keep raw inputs and old checkpoints.
+- Supply pinned parameterized DP, preserve mapped heavy-atom placement, and record target chemistry/provenance.
+- Retain existing category hops, force semantics, dictionary compatibility and legacy phosphate scopes.
+- Record the user-requested post-Pine blind AlphaFold geometry campaign before operational Scout.
+- Full-checkout and native conversion validation remain pending until returned.
+
+
 All notable user-visible, compatibility, schema, and reproducibility changes
 to NASolve are recorded here.
 
@@ -8,7 +17,137 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Modified-base W Saenger overlays — isolated native integration PASS
+
+- In new W PostMR derivatives, match actual prepared modified bases against
+  the reviewed NARestraints v1.1.3 atom-role workbook and replace **only**
+  incompatible legacy Saenger class blocks with one run-local explicit
+  NARestraints pair input. Retain all unaffected canonical W pairs, normal
+  stacking, input/model/Free-R provenance and D:1 phosphate protection.
+- With B:S, K:X and D:T on three additional distinct W sites, the new
+  workbook-backed regression exercises four named modified families
+  **simultaneously**, including Z:P in the existing Std_padd range and the
+  already tested 5CM:G / DF:A off-pair context. This extra regression still
+  needs user-local execution on the integrated Pine head; no native
+  mixed-family run or missing-CIF fabrication is claimed. The first local
+  mixed-fixture run correctly **failed closed** for an incorrectly chosen
+  `S6G` thioguanine (B:G instead of B:S): **39 passed, 1 failed,
+  2 subtests passed**. The user's corrected Benner S candidate **IMC**
+  replaces S6G in the still-unexecuted revised regression; the test now
+  asserts the actual S workbook category and expected bond counts.
+  `IMC.cif` remains absent from committed NASolve resources.
+- The original isolated W Z:P+5CM:G+DF:A patch passed 34 focused and 961 full
+  NASolve tests + 224 subtests, native Phenix numerical SOLVED/refine-001,
+  frozen inputs OK, and user Coot visual inspection of bonds/planes PASS.
+  Historical attempts, original W resource and upstream NARestraints workbook
+  remain untouched. Experimental chemistry is not proven by the donor data.
+
+### Pathless campaign result viewing — tested
+
+- An **explicit single-dataset** `campaign run` now selects its verified,
+  viewable numbered AutoMR run as the **machine-local active workspace run**
+  on a successful/pause-for-review stage boundary. A following bare
+  `nasolve show` opens that run's **current selected checkpoint**, not an old
+  MR run, while still respecting the explicit `--checkpoint` and `--stage`
+  overrides and not altering scientific checkpoint selection or user approval.
+- `nasolve show` also works after `workspace use DATASET` (without an active
+  run) by selecting the dataset's last numbered readable run. It never scans
+  unrelated datasets or silently guesses a campaign target.
+- Multi-dataset runs, blocked/drifted/unviewable stages and explicit
+  `campaign run --no-activate` do **not** overwrite active workspace state.
+  The activation is a convenience stored in user configuration only, not in
+  the frozen plan, run directory, Free-R, Coot models or checkpoint registry.
+- The earlier explicit `show RUN --checkpoint refine-001` printed
+  `refined_001.pdb` and matching refined maps correctly. This patch addresses
+  stale active-workspace selection, not an unverified corruption of Coot's
+  actual loaded model or window focus. User-local focused 59 tests + 30 subtests and full 960 tests + 226 subtests passed.
+
+### NARestraints 1.1.3 released dependency
+
+- Use the immutable [NARestraints v1.1.3](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3)
+  Git tag as NASolve's declared Python dependency. It fixes upstream Z:P
+  and K:X geometry-role orientation and modified-base stacking, preserves
+  B:S and D:T roles, and retains the original committed Ligands.xlsx.
+- The native W Z:P+5CM:G+DF:A integration path reached numerical SOLVED
+  with a separate candidate NASolve Saenger overlay and user Coot visual PASS.
+  Source-native 1W5/1WA alias conversion and independent B:S/K:X/D:T
+  native matrix checks remain separately pending.
+- Updating dependency metadata does not mutate the user's existing installed
+  .venv, original dirty NARestraints source checkout, frozen inputs or
+  completed scientific runs.
+
+### Reviewed long deposition component names in annotated sequences
+
+- Exact `(A1AAZ)` token remains frozen literally but becomes native PDB residue
+  **DF** at PostMR preparation via the reviewed DF deposition-code mapping;
+  requested/prepared provenance is explicit. Other long CCD tokens still stop
+  rather than being truncated or chemically guessed. Added a W Z:P + modified
+  off-pair-site paired W sequence regression (5CM:G, DF:A, C:G, Z:P). Native chemistry remains to be tested.
+
+### Annotated CCD sequence tokens
+
+- Chain-labelled FASTA, `CHAIN = SEQUENCE`, inline `[sequences]`, frozen campaign
+  targets and sequence-family/thread overlays accept `(CCD)` as one residue.
+  Validate literal modified-component tokens against the ligand registry;
+  ordinary one-letter sequences retain their previous meaning and behavior.
+- AutoMR sequence-length checks and PostMR target construction now count parsed
+  residues rather than characters. Keep exact per-site chemistry and provenance;
+  `[mutations]` retains its higher-precedence per-site declarations.
+- Explicitly reject long CCD targets at the PDB-only native-emission boundary,
+  rather than silently truncating or inventing equivalences. Dictionary, model,
+  phosphate and experimental-evidence gates are unchanged; no historical runs
+  are rewritten.
+
+### Recipe-controlled autonomy and component lookup
+
+- Added opt-in preset schema 2 full-auto workflow: preserve borderline MR REVIEW
+  while trialling downstream refinement, optional unaccepted-phase fallback,
+  recipe-owned Doctor endpoint and separately audited provisional selection of
+  its verified passing recommendation. Schema-1/guarded behavior is unchanged.
+  No automatic USER_APPROVED state, global Rfree search or old-plan upgrade.
+- Fixed ideal-coordinate CIF atom parsing that confused C5' with C5 and produced
+  DiU's false 8.843-A C5-I5 distance; supplied dictionary coordinates are unchanged.
+- Added a pinned parameterized 5CM resource/DC route and connectivity-scoped
+  phosphate handling; no NARestraints workbook or pair-class changes.
+- Record iodine expectations and actual phasing/anomalous-refinement diagnostics
+  for ordinary refinement and the presented Doctor trial. Insufficient anomalous
+  data is flagged rather than fabricated.
+
+
+### Fixed
+
+- An explicit campaign `--through refine-doctor` now continues a newly
+  encountered AutoRefine REVIEW into campaign-owned Doctor in the same
+  invocation. Entry, resume and post-stage progression share the existing
+  endpoint-aware eligibility rule. The default AutoRefine endpoint, other
+  review/failure stops, receipt checks, pause handling and non-selection
+  of Doctor recommendations are unchanged. No schema migration.
+
+### Dictionary compatibility
+
+- Generalized recognized CCP4 alternative-torsion conversion beyond 1AP,
+  including the effective ReadySet bundle. Preserve primary sigma with explicit
+  unequal-uncertainty provenance rather than claiming lossless weight conversion.
+- Freeze parameterized input dictionary authority independently of phosphate
+  profiles; retain construction-only CCD fallback to ReadySet and portable
+  effective refinement/view references. Unknown representation conflicts warn
+  and remain for native interpretation rather than receiving guessed repairs.
+- Added a pinned parameterized DZ dictionary and its DC construction route,
+  plus connectivity-selected DZ linked-phosphate handling without reinterpreting
+  legacy 1AP profiles. Existing category intermediates are unchanged.
+- Standing 1W5 -> DZ / 1WA -> DP conversions remain a separate pending slice.
+
 ### Changed
+
+- Generic modified-component construction now selects temporary Coot parents by
+  the user-reviewed sheet/category policy: Z/S/K/unique -> C, P/B/X -> G,
+  D/I -> A, with C for an unclassified intermediate. A recognized Source sheet
+  takes precedence; legacy records use Base Analog as the category. DNA/RNA
+  selects the corresponding sugar form. Existing curated recipes retain priority.
+  This replaces the proposed N9/purine-pyrimidine inference gate, without changing
+  final component identity, NARestraints mappings/recipes, or frozen old runs.
+  Final dictionary and geometry validation remain separate; no automatic bond
+  repair, tautomer conversion, new dictionary or torsion policy is introduced.
 
 - Added schema-1 semantic `terminal_geometry_protection` checkpoint provenance. Protected sites, sigma, Phenix-derived ideal source, mechanism, and the run-local protection restraint artifact now inherit with refinement/manual children; attempts to stack a second protection record fail closed.
 - Generalized the OP3-specific policy into an explicit standard-phosphodiester backbone contract. `five_prime_phosphate_sites` is the preferred user-facing name (legacy `allow_op3_sites` remains readable). PostMR now treats a requested 5'-terminal phosphate as the complete P/OP1/OP2/OP3 group, preserving a complete group, completing missing OP3 from existing P/OP1/OP2, or seeding a whole missing group from O5'-C5' with recorded idealized starting geometry. Partial ambiguous groups still fail closed.

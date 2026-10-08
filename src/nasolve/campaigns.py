@@ -25,6 +25,7 @@ from .automr_input import (
     normalize_frame, read_intent, resolve_automr_input,
 )
 from .presets import PresetError, ProjectPreset, load_preset
+from .campaign_policy import workflow_policy
 from .campaign_threads import (
     SequenceThreadError, membership_by_dataset, parse_sequence_threads,
 )
@@ -36,6 +37,7 @@ class CampaignError(RuntimeError):
 
 _STATE_DIRECTORY = "NASolveCampaign"
 _SCOPE = "input_and_model_selection"
+_PLAN_SCHEMA_VERSION = 2
 _EXCLUDED = {
     "automr", "postmr", "autosol", "autorefine", "cootgui", "refinedoctor",
     "nasolvecampaign", "env", "venv", "virtualenv", "conda", "miniconda",
@@ -43,7 +45,8 @@ _EXCLUDED = {
 }
 _HASH = re.compile(r"[0-9a-f]{64}\Z")
 _AUTOMR_FIELDS = (
-    "mode", "frame", "pair", "model", "sequence_file", "mirror", "allow_p1_standard",
+    "mode", "frame", "pair", "force", "model", "sequence_file", "mirror",
+    "allow_p1_standard",
 )
 
 
@@ -221,6 +224,13 @@ def _merged_intent(dataset: Path, preset: ProjectPreset) -> AutoMRIntent:
         parser = _parser()
         parser.read_string(config.read_text(encoding="utf-8"))
         supplied = set(parser["automr"])
+
+    # An explicitly nonstandard dataset is its own model/construct request.
+    # Do not leak W-frame defaults (frame/pair/chemistry context) into it merely
+    # because the campaign uses the current 5W6W stage-policy preset.
+    if intent.mode and intent.mode.strip().casefold() == "nonstandard":
+        return intent
+
     defaults = preset.automr_defaults
     for name in _AUTOMR_FIELDS:
         if name not in supplied and name in defaults:
@@ -231,6 +241,7 @@ def _merged_intent(dataset: Path, preset: ProjectPreset) -> AutoMRIntent:
 def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
     return {
         "mode": intent.mode, "frame": intent.frame, "pair": intent.pair,
+        "force": intent.force,
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
         "model_selector": intent.model,
         "model_family": intent.model_family,
@@ -262,15 +273,38 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             path = getattr(files, role)
             entry["inputs"][role] = _input_ref(root, dataset, path)
         intent = _merged_intent(dataset, preset)
+        configured_mode = intent.mode.strip().casefold() if intent.mode else None
+        if configured_mode == "nonstandard" and sequence_thread is not None:
+            raise AutoMRInputError(
+                "Sequence threads currently describe the standard W family and cannot be applied "
+                "to a nonstandard campaign dataset"
+            )
         dataset_sequence_reference = intent.sequence_reference
         if sequence_thread is not None and intent.sequence_reference is None:
             intent.sequence_reference = sequence_thread["sequence_reference"]
         entry["effective_config"] = _intent_config(intent)
-        if (not intent.mode or intent.mode.strip().casefold() != "standard"
-                or not intent.frame or normalize_frame(intent.frame).name != "W"):
-            raise AutoMRInputError("Campaign schema 1 supports only standard W/5W6W datasets")
-        located_frames = locate_frames_directory(frames_directory, environ={})
-        resolved = resolve_automr_input(dataset, intent, frames_dir=located_frames, environ={}, recipe=preset)
+
+        located_frames = None
+        if configured_mode != "nonstandard":
+            if (not intent.mode or intent.mode.strip().casefold() != "standard"
+                    or not intent.frame or normalize_frame(intent.frame).name != "W"):
+                raise AutoMRInputError(
+                    "Campaign schema 2 supports standard W/5W6W or explicitly nonstandard datasets"
+                )
+            located_frames = locate_frames_directory(frames_directory, environ={})
+            resolved = resolve_automr_input(
+                dataset, intent, frames_dir=located_frames, environ={}, recipe=preset
+            )
+        else:
+            resolved = resolve_automr_input(
+                dataset, intent, frames_dir=None, environ={}, recipe=None
+            )
+            if not resolved.sequences:
+                raise AutoMRInputError(
+                    "Nonstandard campaign datasets require an explicit complete sequence source "
+                    "(inline [sequences] or [automr] sequence_file)"
+                )
+
         applied_thread = None
         if sequence_thread is not None:
             applied_thread = {
@@ -279,23 +313,33 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
                 "site_codes": dict(sequence_thread["site_codes"]),
             }
             resolved = replace(resolved, sequence_thread=applied_thread)
+
         provider = resolved.model_provider
         if not isinstance(provider, dict):
             raise CampaignError("Resolved model provider provenance is missing")
         if provider.get("kind") == "standard-frame-catalogue":
+            assert located_frames is not None
             _contained(located_frames, resolved.model, "Selected catalogue model")
         elif provider.get("kind") == "explicit-standard-model":
+            assert located_frames is not None
             if provider.get("location") == "frame-catalogue":
                 _contained(located_frames, resolved.model, "Explicit frame-catalogue model")
             elif provider.get("location") == "dataset":
                 _contained(dataset, resolved.model, "Explicit dataset model")
             else:
                 raise CampaignError("Explicit standard model has an unsupported provider location")
+        elif provider.get("kind") in {
+            "explicit-nonstandard-model", "discovered-nonstandard-model",
+        }:
+            if resolved.mode != "nonstandard" or provider.get("location") != "dataset":
+                raise CampaignError("Nonstandard model provider provenance is inconsistent")
+            _contained(dataset, resolved.model, "Nonstandard dataset model")
         else:
-            raise CampaignError("Campaign schema 1 requires a standard-frame model provider")
+            raise CampaignError("Unsupported campaign model-provider kind")
+
         model_data = _resource_bytes(resolved.model)
         if not model_data:
-            raise AutoMRInputError("Selected catalogue model is empty")
+            raise AutoMRInputError("Selected MR model is empty")
         model = _resource_ref(staging, model_data)
         entry["inputs"]["model"] = model
         sequence_reference = None
@@ -306,17 +350,51 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             entry["inputs"]["sequence_reference"] = sequence_reference
         sequence = resolved.frame_sequence_source
         if sequence is not None:
+            assert located_frames is not None
             _contained(located_frames, sequence, "Catalogue sequence")
             entry["inputs"]["frame_sequence"] = _resource_ref(staging, _resource_bytes(sequence))
+
+        sequence_source = None
+        if resolved.mode == "nonstandard":
+            if resolved.sequence_file is not None:
+                _contained(dataset, resolved.sequence_file, "Nonstandard sequence file")
+                source_artifact = _resource_ref(staging, _resource_bytes(resolved.sequence_file))
+                sequence_source = {
+                    "kind": "sequence-file",
+                    "selector": intent.sequence_file,
+                    "artifact": source_artifact,
+                }
+            elif intent.source is not None and resolved.sequences:
+                source_artifact = _resource_ref(staging, _resource_bytes(intent.source))
+                sequence_source = {
+                    "kind": "inline-config",
+                    "selector": "nasolve.txt",
+                    "artifact": source_artifact,
+                }
+            else:
+                raise AutoMRInputError(
+                    "Nonstandard campaign target sequences lack a freezeable source"
+                )
+            entry["inputs"]["sequence_source"] = source_artifact
+
         if intent.source is not None:
             entry["inputs"]["config"] = entry["inputs"]["discovery:nasolve.txt"]
         entry["effective_config"].update({
-            "mode": resolved.mode, "frame": resolved.frame.name,
+            "mode": resolved.mode,
+            "frame": resolved.frame.name if resolved.frame is not None else None,
             "allow_op3_sites": list(resolved.allow_op3_sites),
             "phosphate_intent": resolved.phosphate_intent,
             "backbones": dict(resolved.backbone_sites),
             "allow_unreviewed_backbone": resolved.allow_unreviewed_backbone,
-            "pair": resolved.pair_text, "pair_ligands": [asdict(item) for item in resolved.pair],
+            "pair": resolved.pair_text,
+            "force": resolved.force_text,
+            "force_pair": (
+                list(resolved.force_pair) if resolved.force_pair is not None else None
+            ),
+            "pair_ligands": (
+                [asdict(item) for item in resolved.pair]
+                if resolved.pair is not None else None
+            ),
             "model": model, "model_name": resolved.model.name,
             "model_source": resolved.model_source,
             "model_selector": resolved.model_selector,
@@ -330,12 +408,17 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             "catalogue_warnings": list(resolved.catalogue_warnings),
             "config_source": entry["inputs"].get("config"),
             "frame_sequence": entry["inputs"].get("frame_sequence"),
+            "sequence_source": sequence_source,
             "sequence_reference": resolved.sequence_reference_label,
             "sequence_reference_source": (
                 "dataset" if dataset_sequence_reference is not None
                 else "thread" if sequence_thread is not None else None
             ),
             "sequence_thread": applied_thread,
+            # The effective target is the resolver's parsed sequence mapping.
+            # For sequence_file inputs, intent.sequences is deliberately empty;
+            # raw source bytes are frozen separately as sequence_source.
+            "sequences": dict(resolved.sequences),
             "mutations": {site: asdict(ligand) for site, ligand in resolved.mutations.items()},
         })
         # Config parsing and discovery must describe the exact bytes frozen above.
@@ -466,7 +549,7 @@ def plan_campaign(root: Path, *, preset: str | Path = "5w6w",
             ]
             _duplicates(entries)
             payload = {
-                "schema_version": 1, "state": "PLANNED", "validation_scope": _SCOPE,
+                "schema_version": _PLAN_SCHEMA_VERSION, "state": "PLANNED", "validation_scope": _SCOPE,
                 "preset": frozen_preset, "datasets": entries, "counts": _counts(entries),
                 **({"sequence_threads": frozen_threads} if frozen_threads is not None else {}),
             }
@@ -567,8 +650,9 @@ def _validate_plan(payload: Any) -> None:
     _require(payload, dict, "record")
     _required_fields(payload, {"schema_version", "state", "validation_scope", "preset",
                                "datasets", "counts", "fingerprint"}, "record")
-    if type(payload.get("schema_version")) is not int or payload["schema_version"] != 1:
-        raise CampaignError("Unsupported campaign schema_version; expected integer 1")
+    schema_version = payload.get("schema_version")
+    if type(schema_version) is not int or schema_version not in {1, 2}:
+        raise CampaignError("Unsupported campaign schema_version; expected integer 1 or 2")
     if payload.get("state") != "PLANNED" or payload.get("validation_scope") != _SCOPE:
         raise CampaignError("Malformed campaign state: unsupported state or validation scope")
     preset = _require(payload.get("preset"), dict, "preset")
@@ -581,10 +665,14 @@ def _validate_plan(payload: Any) -> None:
     policy = _require(preset.get("policy"), dict, "preset.policy")
     _required_fields(policy, {"schema_version", "id", "version", "description", "automr",
                              "postmr", "autosol", "autorefine", "resources"}, "preset.policy")
-    if (type(policy["schema_version"]) is not int or policy["schema_version"] != 1
+    if (type(policy["schema_version"]) is not int or policy["schema_version"] not in {1, 2}
             or policy["id"] != preset["id"] or policy["version"] != preset["version"]
             or _digest(_canonical(policy)) != preset["config_sha256"]):
         raise CampaignError("Malformed campaign state: inconsistent preset policy identity")
+    try:
+        workflow_policy(policy)
+    except ValueError as exc:
+        raise CampaignError(f"Malformed campaign workflow: {exc}") from exc
     _require(policy["description"], str, "preset.policy.description")
     for section in ("automr", "postmr", "autosol", "autorefine"):
         _require(policy[section], dict, f"preset.policy.{section}")
@@ -638,7 +726,9 @@ def _validate_plan(payload: Any) -> None:
         inputs = _require(entry.get("inputs"), dict, f"{name}.inputs")
         for role, reference in inputs.items():
             _validate_ref(reference, f"{name}.{role}",
-                          resource_prefix if role in {"model", "frame_sequence", "sequence_reference"} else name)
+                          resource_prefix if role in {
+                              "model", "frame_sequence", "sequence_reference", "sequence_source"
+                          } else name)
         config = entry.get("effective_config")
         if config is not None:
             _require(config, dict, f"{name}.effective_config")
@@ -654,7 +744,7 @@ def _validate_plan(payload: Any) -> None:
                 except BackboneError as exc:
                     raise CampaignError(f"Malformed campaign backbone chemistry: {exc}") from exc
             for field in (
-                "mode", "frame", "pair", "sequence_reference",
+                "mode", "frame", "pair", "force", "sequence_reference",
                 "model_selector", "model_family",
             ):
                 if config.get(field) is not None:
@@ -672,6 +762,33 @@ def _validate_plan(payload: Any) -> None:
                         raise CampaignError(
                             f"Malformed campaign state: invalid {name}.sequence_reference"
                         )
+            force_pair = config.get("force_pair")
+            if entry["status"] == "DISCOVERED":
+                if force_pair is not None:
+                    if (
+                        not isinstance(force_pair, list)
+                        or len(force_pair) != 2
+                        or not all(
+                            isinstance(value, str)
+                            and re.fullmatch(r"[ATGCDBSZPKXI]", value) is not None
+                            for value in force_pair
+                        )
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: invalid {name}.force_pair"
+                        )
+                    if config.get("force") != ":".join(force_pair):
+                        raise CampaignError(
+                            f"Malformed campaign state: inconsistent {name}.force"
+                        )
+                    if config.get("mode") != "standard":
+                        raise CampaignError(
+                            f"Malformed campaign state: restraint force is only valid in standard mode"
+                        )
+                elif config.get("force") is not None:
+                    raise CampaignError(
+                        f"Malformed campaign state: {name}.force lacks force_pair"
+                    )
             try:
                 sites = validate_op3_sites(config.get("allow_op3_sites", []))
                 if "phosphate_intent" in config:
@@ -726,6 +843,30 @@ def _validate_plan(payload: Any) -> None:
                                 ("frame_sequence", "frame_sequence")):
                 if field in config and config[field] != inputs.get(role):
                     raise CampaignError(f"Malformed campaign state: inconsistent {name}.{field}")
+            sequence_source = config.get("sequence_source")
+            if sequence_source is not None:
+                sequence_source = _require(
+                    sequence_source, dict, f"{name}.sequence_source"
+                )
+                if set(sequence_source) != {"kind", "selector", "artifact"}:
+                    raise CampaignError(
+                        f"Malformed campaign state: invalid {name}.sequence_source"
+                    )
+                if sequence_source.get("kind") not in {"sequence-file", "inline-config"}:
+                    raise CampaignError(
+                        f"Malformed campaign state: invalid {name}.sequence_source kind"
+                    )
+                selector = _safe_relative(
+                    sequence_source.get("selector"), f"{name}.sequence_source.selector"
+                )
+                if sequence_source["kind"] == "inline-config" and selector != "nasolve.txt":
+                    raise CampaignError(
+                        f"Malformed campaign state: inline {name}.sequence_source must be nasolve.txt"
+                    )
+                if sequence_source.get("artifact") != inputs.get("sequence_source"):
+                    raise CampaignError(
+                        f"Malformed campaign state: inconsistent {name}.sequence_source artifact"
+                    )
             if entry["status"] == "DISCOVERED":
                 selected_reference = config.get("sequence_reference")
                 frozen_reference = inputs.get("sequence_reference")
@@ -810,6 +951,41 @@ def _validate_plan(payload: Any) -> None:
                         raise CampaignError(
                             f"Malformed campaign state: invalid {name}.model_provider"
                         )
+                elif kind in {
+                    "explicit-nonstandard-model", "discovered-nonstandard-model",
+                } and schema_version >= 2:
+                    model_family = config.get("model_family")
+                    expected_provider_fields = {
+                        "kind", "selection", "location", "selector"
+                    } | ({"construct_family"} if model_family is not None else set())
+                    selector = provider.get("selector")
+                    if type(selector) is str:
+                        selector_path = Path(
+                            _safe_relative(selector, f"{name}.model_provider.selector")
+                        )
+                    else:
+                        selector_path = Path("")
+                    explicit = kind == "explicit-nonstandard-model"
+                    if (
+                        set(provider) != expected_provider_fields
+                        or provider.get("selection")
+                        != ("user-forced" if explicit else "single-pdb-discovery")
+                        or provider.get("location") != "dataset"
+                        or type(selector) is not str or not selector
+                        or selector_path.suffix.casefold() != ".pdb"
+                        or config.get("model_name") != selector_path.name
+                        or config.get("model_selector") != (selector if explicit else None)
+                        or provider.get("construct_family") != model_family
+                        or config.get("model_source")
+                        != ("nasolve.txt" if explicit else "dataset discovery")
+                    ):
+                        raise CampaignError(
+                            f"Malformed campaign state: invalid {name}.model_provider"
+                        )
+                    if not explicit and len(selector_path.parts) != 1:
+                        raise CampaignError(
+                            f"Malformed campaign state: discovered {name} model must be top-level"
+                        )
                 else:
                     raise CampaignError(
                         f"Malformed campaign state: unsupported {name}.model_provider"
@@ -818,9 +994,6 @@ def _validate_plan(payload: Any) -> None:
                 raise CampaignError(
                     f"Malformed campaign state: model selector has no provider provenance"
                 )
-            if config["mode"] != "standard" or config["frame"] != "W" or not config["pair"]:
-                raise CampaignError("Malformed campaign state: invalid discovered W configuration")
-            _require(config["exact_pair_model"], bool, f"{name}.exact_pair_model")
             for field in ("model_name", "model_source"):
                 _require(config[field], str, f"{name}.{field}")
             model_name_path = Path(_safe_relative(config["model_name"], f"{name}.model_name"))
@@ -828,10 +1001,49 @@ def _validate_plan(payload: Any) -> None:
                 raise CampaignError(
                     f"Malformed campaign state: invalid {name}.model_name"
                 )
-            for field in ("pair_ligands", "catalogue_warnings"):
-                _require(config[field], list, f"{name}.{field}")
-            if config["model_pair"] is not None:
-                _require(config["model_pair"], list, f"{name}.model_pair")
+            _require(config["catalogue_warnings"], list, f"{name}.catalogue_warnings")
+
+            if config["mode"] == "standard":
+                if config["frame"] != "W" or not config["pair"]:
+                    raise CampaignError("Malformed campaign state: invalid discovered W configuration")
+                _require(config["exact_pair_model"], bool, f"{name}.exact_pair_model")
+                _require(config["pair_ligands"], list, f"{name}.pair_ligands")
+                if config["model_pair"] is not None:
+                    _require(config["model_pair"], list, f"{name}.model_pair")
+                if schema_version == 1 and config.get("sequence_source") is not None:
+                    raise CampaignError(
+                        "Malformed campaign state: schema 1 cannot contain sequence_source"
+                    )
+            elif config["mode"] == "nonstandard" and schema_version >= 2:
+                if any(config.get(field) is not None for field in (
+                    "frame", "pair", "pair_ligands", "model_pair", "exact_pair_model",
+                    "frame_sequence",
+                )):
+                    raise CampaignError(
+                        f"Malformed campaign state: invalid {name} nonstandard frame/pair context"
+                    )
+                if config["catalogue_warnings"]:
+                    raise CampaignError(
+                        f"Malformed campaign state: nonstandard {name} has catalogue warnings"
+                    )
+                sequences = _require(config.get("sequences"), dict, f"{name}.sequences")
+                if not sequences:
+                    raise CampaignError(
+                        f"Malformed campaign state: nonstandard {name} requires explicit sequences"
+                    )
+                if config.get("sequence_thread") is not None:
+                    raise CampaignError(
+                        f"Malformed campaign state: nonstandard {name} cannot use a W sequence thread"
+                    )
+                if config.get("sequence_source") is None or "sequence_source" not in inputs:
+                    raise CampaignError(
+                        f"Malformed campaign state: nonstandard {name} lacks frozen sequence source"
+                    )
+            else:
+                raise CampaignError(
+                    "Malformed campaign state: schema 1 supports only standard W; "
+                    "schema 2 supports standard W or nonstandard datasets"
+                )
         group = _require(entry.get("duplicate_group"), list, f"{name}.duplicate_group")
         for member in group:
             _dataset_name(member)

@@ -82,10 +82,19 @@ def build_parser() -> argparse.ArgumentParser:
     campaign_run.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
     campaign_run.add_argument("--dataset", action="append", help="exact planned dataset name; repeat to select several")
     campaign_run.add_argument(
-        "--through", choices=("preflight", "phaser", "postmr", "autosol", "autorefine"),
-        default="autorefine", help="stop after this stage (default: autorefine)",
+        "--through",
+        choices=("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor"),
+        default=None,
+        help=(
+            "stop after this stage (default: frozen recipe endpoint; guarded recipes use autorefine); refine-doctor is an "
+            "explicit continuation for AUTOREFINE_REVIEW datasets"
+        ),
     )
     campaign_run.add_argument("--json", action="store_true", help="print structured final status without progress messages")
+    campaign_run.add_argument(
+        "--no-activate", action="store_true",
+        help="do not make an unambiguous single-dataset result the local active Coot view",
+    )
     campaign_pause = campaign_sub.add_parser("pause", help="request a pause after the active stage finishes")
     campaign_pause.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
     campaign_pause.add_argument("--json", action="store_true", help="print structured status")
@@ -251,7 +260,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     show.add_argument(
         "target", nargs="?",
-        help="run directory, 'last', or omit to use the active workspace run",
+        help="run directory, 'last', or omit to use the active run (or newest run in the active dataset)",
     )
     show.add_argument(
         "dataset", nargs="?", type=Path,
@@ -326,6 +335,83 @@ def _remember_workspace(config: AppConfig, run: Path) -> None:
     config.workspace.dataset = str(
         resolved.parent.parent if resolved.parent.name == "AutoMR" else resolved.parent
     )
+
+
+def _remember_single_campaign_view(
+    args: argparse.Namespace, result: Mapping[str, object]
+) -> Path | None:
+    """Make one verified campaign result accessible as bare 'nasolve show'.
+
+    Only a clearly selected single dataset may change machine-local workspace
+    convenience state. Scientific plans, runs, checkpoint selection and
+    multi-dataset batch behavior are never modified.
+    """
+    if getattr(args, "no_activate", False) or result.get("integrity") != "OK":
+        return None
+    execution = result.get("execution")
+    if not isinstance(execution, Mapping):
+        return None
+    progress = execution.get("datasets")
+    if not isinstance(progress, list):
+        return None
+    selected = args.dataset
+    if selected is None:
+        planned = result.get("datasets")
+        if not isinstance(planned, list) or len(planned) != 1:
+            return None
+        selected_id = planned[0].get("id") if isinstance(planned[0], Mapping) else None
+    elif len(selected) == 1:
+        selected_id = selected[0]
+    else:
+        return None
+    if not isinstance(selected_id, str) or not selected_id or "/" in selected_id or "\\" in selected_id or selected_id in {".", ".."}:
+        return None
+    matches = [
+        item for item in progress
+        if isinstance(item, Mapping) and item.get("id") == selected_id
+    ]
+    if len(matches) != 1:
+        return None
+    item = matches[0]
+    if item.get("status") not in {"PAUSED", "SOLVED", "AWAITING_INSPECTION"}:
+        return None
+    if item.get("integrity", "OK") != "OK":
+        return None
+    candidate = item.get("run")
+    if not isinstance(candidate, str):
+        return None
+    relative = Path(candidate)
+    if (
+        relative.is_absolute() or len(relative.parts) != 3
+        or relative.parts[:2] != (selected_id, "AutoMR")
+        or not relative.parts[2].startswith("run_")
+        or not relative.parts[2][4:].isdigit()
+    ):
+        return None
+    root = args.root.expanduser().resolve()
+    actual = root / relative
+    report_path = actual / "report.json"
+    try:
+        # Resolve only an owned, readable run. No scanning other campaigns,
+        # fallback to an older result, or silent path substitution.
+        if (
+            not actual.resolve().is_relative_to(root)
+            or actual.resolve().parent != (root / selected_id / "AutoMR").resolve()
+        ):
+            return None
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        if (
+            not isinstance(report, Mapping)
+            or report.get("workflow") != "automr"
+            or report.get("stage") not in {"phaser", "postmr", "autosol", "autorefine", "refine-doctor"}
+        ):
+            return None
+    except (OSError, ValueError, TypeError):
+        return None
+    config = load_config()
+    _remember_workspace(config, actual)
+    save_config(config)
+    return actual
 
 
 def _workspace(args: argparse.Namespace) -> int:
@@ -417,6 +503,14 @@ def _campaign(args: argparse.Namespace) -> int:
     except CampaignError as exc:
         print(f"Campaign error: {exc}", file=sys.stderr)
         return 2
+    activated_view: Path | None = None
+    if args.campaign_action == "run":
+        try:
+            activated_view = _remember_single_campaign_view(args, result)
+        except (OSError, ConfigError, ValueError) as exc:
+            # A machine-local shortcut must never retroactively fail an
+            # already completed scientific stage.
+            print(f"Workspace view not updated: {exc}", file=sys.stderr)
     counts = result["counts"]
     execution = result.get("execution")
     if args.json:
@@ -454,13 +548,42 @@ def _campaign(args: argparse.Namespace) -> int:
                     print(f"    Sequence reference: {effective['sequence_reference']}")
                 if effective.get("sequence_thread"):
                     print(f"    Sequence thread: {effective['sequence_thread']['id']}")
-                if effective.get("model_selector"):
-                    provider = effective.get("model_provider") or {}
+                provider = effective.get("model_provider") or {}
+                if effective.get("mode") == "nonstandard":
+                    print("    Mode: nonstandard prepared-model")
+                    selector = provider.get("selector")
+                    if isinstance(selector, str) and selector:
+                        selection = provider.get("selection")
+                        selection_text = (
+                            "explicit" if selection == "user-forced"
+                            else "discovered" if selection == "single-pdb-discovery"
+                            else str(selection or "provider")
+                        )
+                        location = provider.get("location", "dataset")
+                        print(
+                            f"    Model: {selector} ({selection_text}; {location})"
+                        )
+                    sequence_source = effective.get("sequence_source")
+                    if isinstance(sequence_source, dict):
+                        source_kind = sequence_source.get("kind")
+                        source_selector = sequence_source.get("selector")
+                        if source_kind == "sequence-file":
+                            print(f"    Sequence source: {source_selector} (frozen file)")
+                        elif source_kind == "inline-config":
+                            print("    Sequence source: nasolve.txt [sequences]")
+                elif effective.get("model_selector"):
                     location = provider.get("location", "explicit")
                     print(
                         f"    Model override: {effective['model_selector']} "
                         f"({location})"
                     )
+            if item.get("provisional"):
+                print("    PROVISIONAL FULL-AUTO RESULT: inspect maps, model and decisions before accepting.")
+            for warning in item.get("scientific_warnings", []):
+                print("    WARNING: " + str(warning))
+            if item.get("provisional_selection"):
+                selection = item["provisional_selection"]
+                print(f"    Automatic working choice: {selection['selected_checkpoint']}; prior current: {selection['previous_current']}; not user-approved")
             if item.get("diagnostic"):
                 print(f"    {item['diagnostic']}")
             if item.get("run"):
@@ -483,12 +606,16 @@ def _campaign(args: argparse.Namespace) -> int:
                 print(f"    {issue}")
         for issue in result.get("integrity_issues", []):
             print(f"  {issue}")
+        if activated_view is not None:
+            print("Active Coot view: ./nasolve show (selected run's current checkpoint)")
     flagged = counts["blocked"] or result.get("integrity") == "DRIFT"
     if execution is not None:
         flagged = flagged or any(
             item["status"] in {"BLOCKED", "NO_SOLUTION", "AWAITING_INSPECTION", "DRIFT"}
             for item in execution["datasets"]
         )
+    if execution is not None:
+        flagged = flagged or any(item.get("scientific_warnings") for item in execution["datasets"])
     return 3 if flagged else 0
 
 
@@ -1195,7 +1322,14 @@ def _show(args: argparse.Namespace) -> int:
     try:
         config = load_config()
         if args.target is None:
-            run = _workspace_run(None, config)
+            if config.workspace.run:
+                run = _workspace_run(None, config)
+            else:
+                # Dataset-only workspace selection is a valid zero-path view.
+                dataset = _workspace_dataset(
+                    None, config, current_directory_fallback=False
+                )
+                run = resolve_run("last", dataset)
         else:
             dataset = args.dataset
             if str(args.target).casefold() == "last" and dataset is None:
@@ -1216,6 +1350,15 @@ def _show(args: argparse.Namespace) -> int:
         print(f"Coot view error: {exc}", file=sys.stderr)
         return 2
     print(f"Opened {result.stage} in run: {result.run_directory}")
+    # Review warnings travel with the run even outside campaign status.
+    try:
+        automation = json.loads((result.run_directory / "report.json").read_text()).get("campaign_automation")
+    except (OSError, ValueError, AttributeError):
+        automation = None
+    if isinstance(automation, dict):
+        print("PROVISIONAL FULL-AUTO: inspect the maps/model and decision history; this is not user approval.")
+        for warning in automation.get("warnings", []):
+            print("WARNING: " + str(warning))
     print(f"Model source: {result.source}")
     print(f"Model: {result.model_path}")
     print(f"Map source: {result.map_source}")

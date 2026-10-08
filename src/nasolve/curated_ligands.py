@@ -11,6 +11,7 @@ import shlex
 from dataclasses import dataclass
 from math import dist, isfinite
 from pathlib import Path
+from typing import Mapping
 
 
 @dataclass(frozen=True)
@@ -45,6 +46,26 @@ class CuratedLigand:
 
 
 CURATED_LIGANDS: dict[str, CuratedLigand] = {
+    "DP": CuratedLigand(
+        code="DP", dictionary_filename="DP.cif",
+        accepted_model_labels=("DP",), narestraints_label="DP",
+        description="P nucleotide; reviewed parameterized target for 1WA preparation",
+        parent_code="DG", deposition_code="DP",
+        required_bonds=(("C1'", "N9"), ("C6", "O6"), ("C2", "N2"),
+                        ("C4", "N5"), ("N5", "C7"), ("C7", "C8"), ("P", "O5'")),
+    ),
+    "DZ": CuratedLigand(
+        code="DZ",
+        dictionary_filename="DZ.cif",
+        accepted_model_labels=("DZ",),
+        narestraints_label="DZ",
+        description="Z nucleotide; parameterized MonomerLibrary C-glycoside definition",
+        parent_code="DC",
+        deposition_code="DZ",
+        required_bonds=(("C1'", "C1"), ("C2", "O2"), ("C4", "N4"),
+                        ("C5", "N"), ("N", "ON1"), ("N", "ON2"), ("P", "O5'")),
+        forbidden_bonds=(("C1'", "N1"),),
+    ),
     "DE": CuratedLigand(
         code="DE",
         dictionary_filename="DE.cif",
@@ -103,6 +124,13 @@ CURATED_LIGANDS: dict[str, CuratedLigand] = {
         forbidden_bonds=(("C4", "I"), ("C6", "I")),
         ring_substituents=(RingSubstituent("I", "C5", ("C4", "C6")),),
     ),
+    "5CM": CuratedLigand(
+        code="5CM", dictionary_filename="5CM.cif",
+        accepted_model_labels=("5CM",), narestraints_label="5CM",
+        description="5-methyl-2'-deoxycytidine-5'-monophosphate",
+        parent_code="DC", deposition_code="5CM",
+        required_bonds=(("C1'", "N1"), ("C5", "C5A"), ("P", "O5'")),
+    ),
     "5IU": CuratedLigand(
         code="5IU",
         dictionary_filename="5IU.cif",
@@ -119,6 +147,14 @@ CURATED_LIGANDS: dict[str, CuratedLigand] = {
 
 CURATED_LIGAND_CODES = frozenset(CURATED_LIGANDS)
 
+# Reviewed CCD deposition name which cannot fit a three-character PDB residue
+# field. This is a deliberate, exact mapping to the lab's curated refinement
+# component, not a generic CCD prefix/truncation or tautomer inference.
+# The five-character identity remains intact in source sequence intent.
+PDB_DEPOSITION_ALIASES = {"A1AAZ": "DF"}
+if CURATED_LIGANDS["DF"].deposition_code != "A1AAZ":
+    raise RuntimeError("Reviewed A1AAZ -> DF deposition mapping disagrees with the curated ligand")
+
 
 _PARENT_CODES = {
     ("DNA", "A"): "DA",
@@ -129,12 +165,46 @@ _PARENT_CODES = {
     ("RNA", "A"): "A",
     ("RNA", "C"): "C",
     ("RNA", "G"): "G",
+    ("RNA", "T"): "U",
     ("RNA", "U"): "U",
 }
 
 
+# User-reviewed intermediate hops (2026-10-01). These choose a temporary
+# Coot scaffold, NOT the target identity, pairing class, or protonation state.
+_CONSTRUCTION_BASES = {
+    "ADENINE": "A", "A": "A",
+    "GUANINE": "G", "G": "G",
+    "CYTOSINE": "C", "C": "C",
+    "THYMINE": "T", "T": "T",
+    "URACIL": "U", "U": "U",
+    "Z": "C", "P": "G", "D": "A", "B": "G",
+    "S": "C", "I": "A", "X": "G", "K": "C", "UNIQUE": "C",
+}
+
+
+def construction_parent_code(record: Mapping[str, object]) -> str:
+    """Choose a temporary mutation hop without inferring the final chemistry.
+
+    A recognized source sheet wins. Legacy records without a recognized sheet
+    use Base Analog as the category; an unclassified category falls back to C.
+    N9 presence, ring-family inference and atom-role completeness do not gate
+    this intermediate choice. The final component/dictionary checks still apply.
+    """
+    sugar = str(record.get("Sugar Type") or "").strip().upper()
+    if sugar not in {"DNA", "RNA"}:
+        raise ValueError(
+            "Cannot choose a construction sugar for "
+            f"{record.get('Ligand code')}: Sugar Type={sugar!r}"
+        )
+    sheet = str(record.get("Source sheet") or "").strip().upper()
+    category = str(record.get("Base Analog") or "").strip().upper()
+    base = _CONSTRUCTION_BASES.get(sheet, _CONSTRUCTION_BASES.get(category, "C"))
+    return _PARENT_CODES[(sugar, base)]
+
+
 def ligand_definition(code: str) -> CuratedLigand:
-    """Return a curated override or infer a conservative CCD definition."""
+    """Return target identity plus a curated or category-selected construction hop."""
     if code in CURATED_LIGANDS:
         return CURATED_LIGANDS[code]
     try:
@@ -151,15 +221,7 @@ def ligand_definition(code: str) -> CuratedLigand:
             f"Expected one NARestraints record for {code}, found {len(matches)}"
         )
     record = matches[0]
-    sugar = str(record.get("Sugar Type") or "").upper()
-    base = str(record.get("Base Analog") or "").upper()
-    try:
-        parent_code = _PARENT_CODES[(sugar, base)]
-    except KeyError as exc:
-        raise ValueError(
-            f"Cannot infer a canonical parent for {code}: "
-            f"Sugar Type={sugar!r}, Base Analog={base!r}"
-        ) from exc
+    parent_code = construction_parent_code(record)
     return CuratedLigand(
         code=code,
         dictionary_filename=f"{code}.cif",
@@ -312,7 +374,11 @@ def dictionary_ideal_bond_length(path: Path, atom_1: str, atom_2: str) -> float:
                 break
             fields = shlex.split(row, comments=True, posix=False)
             if len(fields) > max(atom_index, *coordinate_indices):
-                atom = fields[atom_index].strip("'\"")
+                atom = fields[atom_index]
+                # Remove only a matching surrounding quote pair. A prime
+                # belongs to the atom name: C5-prime must never replace C5.
+                if len(atom) >= 2 and atom[0] == atom[-1] and atom[0] in {"\"", "'"}:
+                    atom = atom[1:-1]
                 if atom in {atom_1, atom_2}:
                     try:
                         coordinates[atom] = tuple(
@@ -338,6 +404,12 @@ def validate_curated_dictionary(code: str, path: Path) -> None:
         ligand = CURATED_LIGANDS[code]
     except KeyError as exc:
         raise KeyError(f"No curated NASolve ligand is registered for {code}") from exc
+    if code == "DP":
+        from .component_normalization import validate_preferred_dictionary
+        validate_preferred_dictionary(code, path)
+    if code == "DZ":
+        from .ligand_profiles import validate_dz_dictionary
+        validate_dz_dictionary(path)
     if code == "1AP":
         # The official CCD graph alone is not a refinement restraint dictionary.
         from .ligand_profiles import _blocks
@@ -388,10 +460,12 @@ def validate_curated_dictionary(code: str, path: Path) -> None:
 
 __all__ = [
     "CURATED_LIGAND_CODES",
+    "PDB_DEPOSITION_ALIASES",
     "CURATED_LIGANDS",
     "AtomSubstitution",
     "CuratedLigand",
     "RingSubstituent",
+    "construction_parent_code",
     "curated_dictionary",
     "dictionary_ideal_bond_length",
     "ligand_data_directory",
