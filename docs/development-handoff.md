@@ -161,12 +161,19 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
   [branch lifecycle](collaboration.md#branch-and-worktree-lifecycle): merge when
   the scoped scientific gates support it, then retire completed branches and
   disposable worktrees promptly. Additional worktrees are bounded exceptions.
-  PR #24 and #25 branch tips match their squash-merge file trees in Pine;
-  `NASolve-showfix` was locally removed on 2026-10-08. Its remote branch and
-  the Saenger worktree/branch still await retirement; audit local contents first.
+  **Cleanup verified user-local on 2026-10-08:** PR #24/#25 worktrees and
+  remote branches are retired after local-file audits and exact file-tree
+  equivalence with their squash merges in Pine. Their original commits remain
+  accessible through the merged PR histories. Nine historical local branches
+  were removed only after proving full containment in Pine; the stale temporary
+  worktree registration was pruned with its commit preserved in main/Pine.
+  Local `main` was fast-forwarded to `fec66eb`. The final worktree inventory
+  contains only the original `NASolve` checkout on Pine and active detached
+  `NASolve-cedar`; retire Cedar after its existing gates and integration.
 - **One terminal action per user turn** for live NASolve debugging, then
   inspect the output before proceeding. Preserve the user's dirty
-  `../NARestraints` tree (including unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
+  `../NARestraints` tree (including unpublished `Ligands.xlsx` and Excel
+  lockfile), the original NASolve
   untracked files/patches, all immutable numbered runs, maps and Free-R.
 - Do not represent an unrun test as passing. Keep native-tool receipt,
   chemical identity, numerical statistics and human Coot verdict as
