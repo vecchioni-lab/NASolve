@@ -21,7 +21,7 @@ See the [compact handoff](development-handoff.md) for project-wide priority.
 | Native Z:P/W AutoRefine | **SOLVED (numerical)** | New `GZ11_ZP/AutoMR/run_003`, `refine-001`; frozen integrity OK; D:1 phosphate protection retained. No Rwork/Rfree numbers or final `.geo` metrics copied into this ledger. |
 | Human Coot review of `run_003` | **INSPECTED_PASS (overall visual only)** | User reported excellent refinement appearance, bonds and planes present and mild tolerable nonideal planarity. Individual-site map/clash/angular statistics and true experimental chemistry remain unverified. |
 | `nasolve show` workflow | **USER LIVE PASS** | PR #25 merged at `e8613bf`; user `workspace use` for existing `run_003`, then **bare `./nasolve show` succeeded in Coot**. New-campaign automatic workspace activation has regression, not yet this specific live exercise. |
-| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four distinct named pair sites, plus 5CM:G and DF:A. **Workbook overlay regression passed**, but genuine native chemistry/monomer preparation is NOT RUN. IGU/IMC/CGY/DX CIFs still absent from committed resources. |
+| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One model with four named pair sites, plus 5CM:G and DF:A. **Workbook overlay regression passed**, Phenix packaged CCD lookup and isolated Coot monomer construction for IGU/IMC/CGY/DX **PASS**, but ReadySet numerical generation and combined native run **NOT TESTED**. CIFs remain unbundled in NASolve. |
 | Five independent A:T/D:T/B:S/Z:P/K:X controls | **OPTIONAL DIAGNOSTIC FALLBACK; NOT RUN** | Retain released upstream staging helper for later failure isolation; do not mistake its five datasets for the requested simultaneous test. |
 | Independent source `1W5→DZ`, `1WA→DP` P2 | **SEPARATELY PENDING NATIVE** | This 42-residue synthetic-target W test does not exercise genuine source-code normalization. |
 | Prepared nonstandard P5, Registration/Topo/GUI | **SEPARATE WORKSTREAMS** | Their prior evidence and unfinished gates retain exactly their original scope. |
@@ -101,11 +101,22 @@ user correction is supported by the published IMC-containing
 [PDB 7SDK](https://www.rcsb.org/structure/7SDK), but the exact S-role
 atom mapping must still pass the bundled-workbook regression.
 Resolve existing, authoritative Phenix/CCD monomer definitions for these
-**four** codes using a validated library-first pathway. Verify atom
-names, coordinates, component group, bonds, stereochemistry and source
-provenance; only then freeze a derived per-run dictionary or curate a
-known-problem exception. NARestraints workbook roles alone cannot define
-complete monomer geometry. If unavailable, **BLOCK** the combined native
+**four** codes using a validated library-first pathway. The user confirmed
+they are **already present** in configured Phenix 2.2.1 at
+`lib/python3.11/site-packages/chem_data/chemical_components/<letter>/data_<CODE>.cif`.
+All four pass NASolve CCD identity checks; all four are **not
+parameterized** (`_parameterized_codes` returned false).
+A real headless Coot 1.3.3 test read the four CIFs (status **41–44**)
+and constructed the four monomers (molecule IDs **0–3**). NASolve's
+packaged `CODE.cif` files remain absent, but the chemistry is not missing.
+
+**Cedar branch** now has a draft generic Phenix CCD resolver and
+a guard against using unparameterized raw CCD inputs if ReadySet does not
+provide numerical restraint targets; the new code has NOT YET passed local
+regression or native PostMR. Verify Coot output atom names, phosphate
+connectivity, ReadySet/eLBOW parameterisation, and frozen provenance before
+calling this a native pass. NARestraints workbook roles alone cannot
+define complete monomer geometry. If unavailable, **BLOCK** the combined native
 PostMR attempt with that reason; do not invent molecules, mislabel
 canonical ones or count a skipped chemistry case as a pass.
 
@@ -137,10 +148,12 @@ stager/config and disjoint hashed copies are needed before planning.
    The native **all-family** experiment remains unrun. Verify installed
    v1.1.3 imports/workbook checksum before new execution; do not
    modify the dirty sibling NARestraints tree.
-2. **Source component dictionaries first:** review authoritative
-   `IGU`, `IMC`, `CGY`, `DX` monomer CIFs and atom-role compatibility, explicitly
-   documenting any missing names/dictionaries. No synthetic source data
-   becomes a release resource without scientific provenance.
+2. **Source graphs located; numerical geometry next:** all four official
+   Phenix CCD files were located and Coot constructed each monomer.
+   Validate Cedar's resolver, then obtain and verify ReadySet/eLBOW
+   numerical targets for each component, with exact atom names, covalent
+   connectivity and phosphate/dictionary provenance. Raw CCD graphs may
+   not masquerade as refinement dictionaries.
 3. **Stage and freeze *one* combined challenge:** allocate a fresh disjoint
    directory under `~/NASolve-live-tests`, hash/copy the real GZ11
    reflections/CIF/summary and W search model, record the exact above
