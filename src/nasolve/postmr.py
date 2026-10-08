@@ -1444,6 +1444,40 @@ def _run_readyset(
     return checked, log, generated_cif if generated_cif.is_file() else None, command, phosphate_audit
 
 
+def _require_generic_parameterization(
+    sources: Mapping[str, Mapping[str, object]],
+    generated_cif: Path | None,
+    readyset_log: Path,
+) -> None:
+    """Reject generic source-only CCD graphs without final numerical targets.
+
+    Curated ligand behavior remains unchanged: only non-curated, unparameterized
+    inputs must be backed by a parameterized ReadySet component of the same ID.
+    """
+    try:
+        generated = (
+            _parameterized_codes(generated_cif)
+            if generated_cif is not None else set()
+        )
+    except (OSError, ValueError, TypeError) as exc:
+        raise PostMRPreparationError(
+            f"Cannot audit ReadySet numerical ligand targets: {exc}; inspect {readyset_log}"
+        ) from exc
+    missing = sorted(
+        code for code, source_info in sources.items()
+        if code not in CURATED_LIGANDS
+        and not source_info["parameterized"]
+        and code not in generated
+    )
+    if missing:
+        raise PostMRPreparationError(
+            "ReadySet did not generate parameterized ligand restraints for "
+            + ", ".join(missing)
+            + f"; inspect {readyset_log}. Raw CCD chemistry cannot substitute for "
+            "numerical bond/angle targets; use validated eLBOW preparation if needed."
+        )
+
+
 def _write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -1912,25 +1946,9 @@ def prepare_postmr(
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
     )
-    # CCD atom/bond graphs are sufficient for Coot construction, but not for
-    # Phenix refinement. Do not silently pass an unparameterized *generic*
-    # input on to refine if ReadySet failed to produce numerical restraints.
-    generated_parameters = (
-        _parameterized_codes(generated_cif) if generated_cif is not None else set()
+    _require_generic_parameterization(
+        dictionary_source_provenance, generated_cif, readyset_log
     )
-    missing_parameters = sorted(
-        code for code, source_info in dictionary_source_provenance.items()
-        if code not in CURATED_LIGANDS
-        and not source_info["parameterized"]
-        and code not in generated_parameters
-    )
-    if missing_parameters:
-        raise PostMRPreparationError(
-            "ReadySet did not generate parameterized ligand restraints for "
-            + ", ".join(missing_parameters)
-            + f"; inspect {readyset_log}. Raw CCD chemistry cannot substitute for "
-            "numerical bond/angle targets; use validated eLBOW preparation if needed."
-        )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
     family_audit = None
