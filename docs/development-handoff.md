@@ -11,7 +11,7 @@ handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.m
 
 | Workstream | Verified result | Remaining gate |
 | --- | --- | --- |
-| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
+| NARestraints | **v1.1.3 released and installed** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Active user .venv imported 1.1.3 from site-packages; workbook SHA-256 `94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2`. | Combined Z:P/B:S/K:X/D:T native challenge pending; raw CCD source chemistry is found and Coot construction validated, but refinement parameters still need native proof. |
 | Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
 | Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
 | P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
@@ -33,10 +33,15 @@ approval.
 1. **Next engineering slice — library-first generic monomer resolver.**
    With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
    merged, the combined-family workbook regression is green, but four
-   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve.
-   NASolve currently requires a local `CODE.cif` before Coot parent-overlap,
-   whereas ReadySet normally runs *after* that placement. Resolve existing
-   validated Phenix/CCD monomers before asking for curated overrides, and
+   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve,
+   but Phenix 2.2.1's `chem_data/chemical_components` contains all four.
+   User ran **real headless Coot**: dictionaries loaded (41–44) and all four
+   monomers constructed (0–3). Each CCD graph passes NASolve identity
+   validation; none contains numerical geometry parameters. A **Cedar draft
+   patch** now resolves these from configured Phenix before Coot, with
+   SHA256 source snapshots and a fail-closed numerical ReadySet gate.
+   This patch is NOT yet locally regression-tested or native-qualified.
+   Prefer validated Phenix/CCD monomers before curated overrides, and
    where supported produce an **audited, frozen derivative**, never
    fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
    Keep exceptional local recipes only for demonstrated broken cases.
