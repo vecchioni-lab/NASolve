@@ -245,4 +245,4 @@ def test_four_named_families_plus_modified_context_share_one_overlay(tmp_path):
     assert source.read_bytes() == before_secondary
     assert sum(len(s.pairs()) for s in read_base_pair_file(pair_file)) == 8
     # A:12/B:4 Z:P stays in the original three-pair Std_padd stretch.
-    assert "A 11:13\\nB 5:3" in pair_file.read_text()
+    assert "A 11:13\nB 5:3" in pair_file.read_text()
