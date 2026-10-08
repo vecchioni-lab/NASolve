@@ -10,16 +10,18 @@ implementation moves across branches, chats and campaign work.
 Do not mark a check complete before the relevant layer is actually wired into
 the live pipeline.
 
-**Separate live chemistry/human qualification:** the
-[five-member B:S, Z:P, K:X, D:T and A:T native matrix](native-modified-pair-live-validation.md)
-has its own frozen-input, released upstream NARestraints v1.1.3 workbook,
-PostMR, refinement and manual Coot checks. A **separate** Z:P + 5CM:G/DF:A
-integration run already reached numerical SOLVED with overall visual Coot
-PASS, using the still-unmerged NASolve Saenger-overlay PR #24. The *new
-five-member matrix itself remains NOT RUN*; required dictionaries may still
-block B:S/K:X. None of this promotes registration, Topo Net or GUI tests
-to complete; the Scout shadow evidence below retains its original, narrower
-scope.
+**Separate live chemistry/human qualification:** the user has elected
+[one combined D:T+B:S+Z:P+K:X W challenge](native-modified-pair-live-validation.md)
+with four distinct sites plus 5CM:G and DF:A; this **has not yet run**
+natively and requires missing IGU/IMC/CGY/DX dictionary provenance.
+The released NARestraints v1.1.3 workbook/recipe tests do not replace
+that native gate. An earlier **separate** Z:P+5CM:G/DF:A integration
+run reached numerical SOLVED with overall user Coot visual PASS,
+using NASolve Saenger-overlay PR #24, which is still under
+integration review. Five independent family runs remain a
+**diagnostic fallback**, not a finished matrix. None of this promotes
+registration, Topo Net or GUI tests to complete; the Scout shadow
+evidence retains its original, narrower scope.
 
 | Status | Trigger | Human check | Minimum pass condition |
 | --- | --- | --- | --- |

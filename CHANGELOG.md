@@ -17,6 +17,31 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Modified-base W Saenger overlays — isolated native integration PASS
+
+- In new W PostMR derivatives, match actual prepared modified bases against
+  the reviewed NARestraints v1.1.3 atom-role workbook and replace **only**
+  incompatible legacy Saenger class blocks with one run-local explicit
+  NARestraints pair input. Retain all unaffected canonical W pairs, normal
+  stacking, input/model/Free-R provenance and D:1 phosphate protection.
+- With B:S, K:X and D:T on three additional distinct W sites, the new
+  workbook-backed regression exercises four named modified families
+  **simultaneously**, including Z:P in the existing Std_padd range and the
+  already tested 5CM:G / DF:A off-pair context. This extra regression still
+  needs user-local execution on the integrated Pine head; no native
+  mixed-family run or missing-CIF fabrication is claimed. The first local
+  mixed-fixture run correctly **failed closed** for an incorrectly chosen
+  `S6G` thioguanine (B:G instead of B:S): **39 passed, 1 failed,
+  2 subtests passed**. The user's corrected Benner S candidate **IMC**
+  replaces S6G in the still-unexecuted revised regression; the test now
+  asserts the actual S workbook category and expected bond counts.
+  `IMC.cif` remains absent from committed NASolve resources.
+- The original isolated W Z:P+5CM:G+DF:A patch passed 34 focused and 961 full
+  NASolve tests + 224 subtests, native Phenix numerical SOLVED/refine-001,
+  frozen inputs OK, and user Coot visual inspection of bonds/planes PASS.
+  Historical attempts, original W resource and upstream NARestraints workbook
+  remain untouched. Experimental chemistry is not proven by the donor data.
+
 ### Pathless campaign result viewing — tested
 
 - An **explicit single-dataset** `campaign run` now selects its verified,

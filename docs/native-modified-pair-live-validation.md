@@ -1,8 +1,10 @@
 # Native modified-base pair matrix — live validation ledger
 
 Updated **2026-10-08**. **Z:P + off-pair 5CM:G/DF:A integration:
-SOLVED numerically, user visual PASS.** The *independent five-member native
-pair matrix remains NOT RUN*. Upstream **NARestraints v1.1.3 is released**,
+SOLVED numerically, user visual PASS.** User now requests **one combined
+D:T+B:S+Z:P+K:X W challenge** before isolated follow-up controls;
+this simultaneous native experiment is **NOT RUN**.
+Upstream **NARestraints v1.1.3 is released**,
 but NASolve's Saenger-overlay [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
 is **not merged into Pine**. This file is the current scientific/evidence
 ledger; the detailed original attempt chronology is
@@ -19,7 +21,8 @@ See the [compact handoff](development-handoff.md) for project-wide priority.
 | Native Z:P/W AutoRefine | **SOLVED (numerical)** | New `GZ11_ZP/AutoMR/run_003`, `refine-001`; frozen integrity OK; D:1 phosphate protection retained. No Rwork/Rfree numbers or final `.geo` metrics copied into this ledger. |
 | Human Coot review of `run_003` | **INSPECTED_PASS (overall visual only)** | User reported excellent refinement appearance, bonds and planes present and mild tolerable nonideal planarity. Individual-site map/clash/angular statistics and true experimental chemistry remain unverified. |
 | `nasolve show` workflow | **USER LIVE PASS** | PR #25 merged at `e8613bf`; user `workspace use` for existing `run_003`, then **bare `./nasolve show` succeeded in Coot**. New-campaign automatic workspace activation has regression, not yet this specific live exercise. |
-| Five fresh A:T/D:T/B:S/Z:P/K:X datasets | **NOT STAGED/PLANNED/NATIVELY RUN** | Requires fresh frozen copies, a review of alias/ligand-CIF availability, and sequential isolated stage receipts. |
+| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four separate named pair sites, plus 5CM:G and DF:A. New workbook regression also pending user execution. IGU/IMC/CGY/DX dictionaries absent from committed resources. |
+| Five independent A:T/D:T/B:S/Z:P/K:X controls | **OPTIONAL DIAGNOSTIC FALLBACK; NOT RUN** | Retain released upstream staging helper for later failure isolation; do not mistake its five datasets for the requested simultaneous test. |
 | Independent source `1W5→DZ`, `1WA→DP` P2 | **SEPARATELY PENDING NATIVE** | This 42-residue synthetic-target W test does not exercise genuine source-code normalization. |
 | Prepared nonstandard P5, Registration/Topo/GUI | **SEPARATE WORKSTREAMS** | Their prior evidence and unfinished gates retain exactly their original scope. |
 
@@ -28,90 +31,135 @@ hypothetical modified target identities. Neither an automated SOLVED result
 nor an overall Coot PASS shows the *actual experimental GZ11 crystal* has
 Z:P, B:S, K:X, D:T, 5CM or DF, or permits deposition of such a model.
 
-## The next chemistry experiment: five **independent** W datasets
+## Next chemistry experiment — **one simultaneous four-family W model**
 
-Use the [released NARestraints v1.1.3 staging-only helper](https://github.com/vecchioni-lab/NARestraints/blob/v1.1.3/scripts/stage_nasolve_pair_matrix.py)
-(`scripts/stage_nasolve_pair_matrix.py` from a clean v1.1.3 source checkout)
-to stage **one fresh root containing five separately named dataset copies**.
-**This is not four pairs simultaneously in one crystal.** Each member has the
-same real GZ11 MTZ/CIF/summary inputs and W starting model, same reviewed
-`w-metal-scaffold` reference, same two *off-pair* modifications, but
-its own A:12/B:4 `pair =` target and independent result.
+The user explicitly prefers to test **all four named modified-pair families
+in the same model**, so their common backbone, stacking, Saenger-template
+and effective-dictionary interactions are exercised together. This is a
+**single new synthetic-target W dataset**, not four independent 42-residue
+models. Retain the original frozen Z:P run untouched.
 
-| Member | Ordered requested pair A:12/B:4 | Expected PDB residue codes | Native readiness / rationale |
-| --- | --- | --- | --- |
-| `A_T_CONTROL` | **A:T** | `DA / DT` | Canonical A:T role control in the *same modified context*; `DA` is canonical DNA adenine, **not** the D-family base. |
-| `D_T` | **D:T** | `1AP / DT` | Distinct diaminopurine-like **D:T** template, already workbook-tested. **D:A is not registered**; do not silently substitute it. |
-| `B_S` | **B:S** | `IGU / S6G` | Recipe is independently workbook-tested; `IGU.cif` was missing from the last audited NASolve library. |
-| `Z_P` | **Z:P** | `DZ / DP` | Upstream role orientation corrected and one standalone native integration run succeeded; new frozen matrix member remains independently unrun. |
-| `K_X` | **K:X** | `CGY / DX` | Recipe is workbook-tested; `CGY.cif` and `DX.cif` were missing at last audit. |
+The proposed pairing layout deliberately uses distinct source W sites
+that already have the corresponding canonical geometric class:
 
-Common off-pair sequence requests, retained in **every** member:
+| Role | W pair sites | Original W geometry | Target component codes | Reviewed recipe |
+| --- | --- | --- | --- | --- |
+| **D:T** | **A:5 / C:11** | A:T | **1AP / DT** | `D_T`, distinct D-family chemistry |
+| **B:S** | **A:6 / C:10** | G:C | **IGU / IMC** | `GC` geometry with B=G-like, S=C-like |
+| **Z:P** | **A:12 / B:4** | A:T, in explicit `Std_padd` | **DZ / DP** | `GC` geometry, P=G-like, Z=C-like |
+| **K:X** | **A:20 / D:3** | C:G | **CGY / DX** | `GC` geometry, X=G-like, K=C-like |
+| Prior 5CM:G context | A:7 / C:9 | C:G | **5CM / DG** | `GC` geometry |
+| Prior DF:A context | A:19 / D:4 | T:A | **DF / DA** | `AT` geometry |
+
+This layout has no shared paired-site ownership, but A:5/A:6/A:7
+form *adjacent* backbone positions, deliberately stressing simultaneous
+restraining and packing. The `GC` and `AT` designations are shared
+**restraint geometry templates**, not canonical identity substitutions.
+**D:A has no registered recipe**: `D:T` uses 1AP and DT, whereas
+`DA` is canonical DNA adenine. The test must never fabricate a
+`D:A` pair or write `force = G:C`.
+
+### Proposed 42-site sequence request — review before freezing
+
+This is a **candidate**, derived from the versioned
+`w-metal-scaffold` 21/7/7/7 site inventory and the existing
+reviewed `A1AAZ→DF` alias. The `pair = Z:P` route used successfully
+in `run_003` targets A:12/B:4; the other named pairs and prior off-pair
+modifications are supplied as site-specific chain sequence changes.
 
 ```ini
 [automr]
 mode = standard
 frame = W
-model = zp_input_W.pdb
+pair = Z:P
+model = combined_input_W.pdb
 sequence_reference = w-metal-scaffold
-# pair = <one exact member's ordered recipe>
 
 [sequences]
-A = GAGCAG(5CM)CTGTATGGACA(A1AAZ)CA
-C = G(DG)CTGCT
+A = GAGC(1AP)(IGU)(5CM)CTGTATGGACA(A1AAZ)(CGY)A
+C = GG(IMC)TGCT
+D = CT(DX)ATGT
 ```
 
-This yields A:7 5CM / C:9 DG and A:19 reviewed `A1AAZ→DF` /
-D:4 DA alongside the single tested A:12/B:4 pair. NARestraints' `GC`
-and `AT` descriptions are **geometry templates**, not identity changes.
-No default `force = G:C` or automatic dictionary synthesis is authorized.
+B remains the referenced canonical sequence until the explicit Z:P
+selector prepares B:4=DP. Verify the full compiled targets independently
+against the *actual* frozen 42-residue model. The tested Saenger overlay
+would see five modified template pairs (D:T, B:S, K:X, 5CM:G, DF:A):
+**17 inherited W Saenger blocks → 12 retained + 5 replaced**;
+the central Z:P site is already within the frame's ordinary
+`Std_padd` input. This exact combined configuration has **not**
+yet passed native preflight, PostMR or Phenix refinement.
 
-The helper verifies source hashes, 42-residue W model chain counts
-(A=21, B/C/D=7), copies files into
-`~/NASolve-live-tests/nar-pair-matrix-*`, writes five `nasolve.txt`
-files and `staging-manifest.json`, and reports missing native ligand
-dictionaries. **Staging does not plan, launch Phenix or Coot, or certify
-component availability.** Recheck the current manifest at execution time;
-the previous `IGU/CGY/DX` absence is not a permanent fact of the system.
-A missing CIF is a meaningful **BLOCK**, not an invitation to invent a
-monomer, quietly change pair identity, or reuse a chemically wrong dictionary.
+### Dictionary availability is a hard prerequisite
 
-## Execution gates (run each boundary; keep failures)
+Actual NASolve Pine source audit on 2026-10-08 confirms packaged
+`S6G.cif`, `1AP.cif`, `DZ.cif`, `DP.cif`, `5CM.cif` and
+`DF.cif`, but **not `IGU.cif`, `IMC.cif`, `CGY.cif` or `DX.cif`**.
+`S6G` is thioguanine and is G-like, **not** the Benner S analogue;
+its existing CIF cannot substitute for `IMC`. The 2026-10-08
+user correction is supported by the published IMC-containing
+[PDB 7SDK](https://www.rcsb.org/structure/7SDK), but the exact S-role
+atom mapping must still pass the bundled-workbook regression.
+Find or obtain authoritative, checked monomer definitions for these
+three codes, verify atom names/coordinates, component group, chemistry
+and provenance, and preserve source bytes before making derived
+NASolve resources. If unavailable, **BLOCK** the combined native
+PostMR attempt with that reason; do not invent molecules, mislabel
+canonical ones or count a skipped chemistry case as a pass.
 
-1. **Code/dependency preflight:** reconcile and validate NASolve PR #24
-   with current Pine and immutable **NARestraints v1.1.3**. From the NASolve
-   Python environment record the real `restraints.__file__`, distribution
-   version, workbook/hash and NASolve commit; the declared dependency pin
-   does not itself upgrade an old `.venv`. No testing through the user's dirty
-   `../NARestraints` feature checkout.
-2. **Stage, review, then freeze once:** invoke the released staging script
-   from a clean source checkout with `--nasolve-root "$PWD"` from the
-   original NASolve terminal. Inspect missing `.cif` reports and ordered
-   recipes, then `campaign plan --preset 5w6w` on the *new* root with
-   explicit frame resource provenance. Confirm immutable input hashes,
-   one member per pair, correct sequence-family intent and no `force`
-   override. Never modify or reuse the existing Z:P root.
-3. **Native one boundary at a time:** preflight → Phaser → PostMR for each
-   eligible member, recording TFZ/LLG, actual A:12/B:4 residues,
-   off-pair 5CM/G and DF/A identities, named recipe/contact count,
-   stacking/plane authority, any missing dictionary, `A1AAZ→DF` audit
-   and D:1 phosphate policy. A blocked member stays preserved while
-   others may continue; do not mark it PASS.
-4. **Conditional AutoSol then AutoRefine only if preparation works.**
-   Record actual map provenance, whether phases ran or were skipped,
-   numerical Rwork/Rfree, checkpoint, effective PHIL/`.geo`, warnings
-   and unchanged Free-R. Every saved attempt remains immutable.
-5. **Human Coot/geometry review:** inspect all viable A:12/B:4 contacts,
-   A:7/C:9 and A:19/D:4 off-pair restraints, sugar/phosphate, clashes,
-   difference maps, stacking and the actual `.geo` angular geometry.
-   Record reviewer, date, exact code/input/run/checkpoint and one of
-   `INSPECTED_PASS`, `INSPECTED_REVIEW` or `INSPECTED_FAIL`.
-   A numerical solver result never writes `user_approved`.
+The first candidate mixed-family unit run on the old S6G fixture
+returned **39 passed, 1 failed, 2 subtests passed**. The new case correctly
+stopped with `No reviewed NARestraints recipe for B:G` at A:6/C:10;
+NARestraints had read S6G as G-like. Following the user's correction,
+the isolated candidate now uses **IMC** and explicitly asserts the
+published workbook classifies it as Benner **S**, plus exact bond counts.
+**The corrected regression is pending rerun; no green result claimed.**
 
-Only **after independent families** are scientifically mapped should an
-optional **combined mixed-pair stress model** be proposed. That is a *new*
-hypothesis/frozen campaign, with independently reviewed sites and monomers,
-not an implicit sixth case or a reinterpretation of these five datasets.
+The released upstream
+[NARestraints five-case source stager](https://github.com/vecchioni-lab/NARestraints/blob/v1.1.3/scripts/stage_nasolve_pair_matrix.py)
+still stages **five separate** W datasets (A:T control, D:T, B:S,
+Z:P, K:X), not this simultaneous test. Keep it as an optional
+**diagnostic fallback** when an individual pair needs isolation.
+Do not point it at the combined root or conflate its manifest with
+the requested experiment. A reviewed **new source-only** combined
+stager/config and disjoint hashed copies are needed before planning.
+
+## Execution gates — one frozen combined dataset, stage by stage
+
+1. **Integrate the code safely:** the remote PR #24 candidate is reconciled
+   to current Pine and has a new workbook-backed **four-family simultaneous**
+   helper test, not yet locally executed. Confirm clean NARestraints
+   **v1.1.3** imports and workbook SHA, run focused/full NASolve regression
+   on the **combined head**, and merge PR #24 only after review/green.
+   Do not modify the user's dirty sibling NARestraints workbook.
+2. **Source component dictionaries first:** review authoritative
+   `IGU`, `IMC`, `CGY`, `DX` monomer CIFs and atom-role compatibility, explicitly
+   documenting any missing names/dictionaries. No synthetic source data
+   becomes a release resource without scientific provenance.
+3. **Stage and freeze *one* combined challenge:** allocate a fresh disjoint
+   directory under `~/NASolve-live-tests`, hash/copy the real GZ11
+   reflections/CIF/summary and W search model, record the exact above
+   sequence request and aliases. Confirm all **42 compiled targets**,
+   4 named pair identities at 4 disjoint sites, 2 off-pair contextual
+   modifications, 5 Saenger replacements, and D:1 phosphate policy.
+   Do not reuse/alter any of `run_001`, `run_002`, `run_003`.
+4. **Native stages one at a time:** preflight → Phaser → PostMR →
+   conditional AutoSol → AutoRefine if preparation passes. Record exact
+   atom contacts and planes/stacking for **all four named families**,
+   source/effective dictionaries, Saenger overlay counts, target
+   mismatches, TFZ/LLG, Rwork/Rfree, map authority, Free-R and geometry
+   warnings. Preserve and diagnose any BLOCKED stage.
+5. **Human Coot review:** inspect all six paired sites, nearby backbone,
+   phosphate, sugar pucker, angular hydrogen bonds, stacking, difference
+   maps, clashes and actual `.geo` output. Record reviewer, date,
+   run/checkpoint, selected PHIL and `INSPECTED_PASS`,
+   `INSPECTED_REVIEW` or `INSPECTED_FAIL`; `SOLVED` alone never
+   grants experimental approval. Follow with **isolated five-member
+   controls only when diagnostic resolution demands it**.
+
+**Scientific scope:** this remains a software compatibility test on
+unrelated GZ11 diffraction, *not* proof the original crystal contains
+the artificially requested bases or permission to deposit the model.
 
 ## Historical Z:P attempts — preserved, never rerun in place
 
