@@ -10,13 +10,16 @@ implementation moves across branches, chats and campaign work.
 Do not mark a check complete before the relevant layer is actually wired into
 the live pipeline.
 
-**Separate live chemistry/human qualification:** the user-requested
-[NARestraints B:S, Z:P, K:X, D:T and A:T native matrix](native-modified-pair-live-validation.md)
-has its own frozen-input, upstream-workbook, PostMR, refinement and manual Coot
-checks. A failed Z:P PostMR attempt and proposed upstream role correction are
-recorded there. They do **not** promote registration, Topo Net or GUI tests
-to complete; the Scout shadow evidence already marked complete below remains
-valid at its original, narrower scope.
+**Separate live chemistry/human qualification:** the
+[five-member B:S, Z:P, K:X, D:T and A:T native matrix](native-modified-pair-live-validation.md)
+has its own frozen-input, released upstream NARestraints v1.1.3 workbook,
+PostMR, refinement and manual Coot checks. A **separate** Z:P + 5CM:G/DF:A
+integration run already reached numerical SOLVED with overall visual Coot
+PASS, using the still-unmerged NASolve Saenger-overlay PR #24. The *new
+five-member matrix itself remains NOT RUN*; required dictionaries may still
+block B:S/K:X. None of this promotes registration, Topo Net or GUI tests
+to complete; the Scout shadow evidence below retains its original, narrower
+scope.
 
 | Status | Trigger | Human check | Minimum pass condition |
 | --- | --- | --- | --- |

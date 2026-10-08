@@ -28,7 +28,8 @@ _NA_ROLES = (
 
 
 def _sample_model(path: Path, *, changed: bool = True,
-                  unknown: bool = False, incompatible: bool = False) -> None:
+                  unknown: bool = False, incompatible: bool = False,
+                  mixed: bool = False) -> None:
     records = load_residue_records()
     specifications = [
         ("A", 7, "ZZZ" if unknown else "5CM" if changed else "DC"),
@@ -39,6 +40,16 @@ def _sample_model(path: Path, *, changed: bool = True,
         ("A", 12, "DZ"),
         ("B", 4, "DP"),
     ]
+    if mixed:
+        # Same W model, four *different* named families present at once,
+        # including the central Z:P pair already covered by Std_padd.
+        # G:C -> B:S and C:G -> K:X retain actual role orientation;
+        # A:T -> D:T uses the distinct diaminopurine recipe.
+        specifications.extend([
+            ("A", 5, "1AP"), ("C", 11, "DT"),
+            ("A", 6, "IGU"), ("C", 10, "S6G"),
+            ("A", 20, "CGY"), ("D", 3, "DX"),
+        ])
     output = []
     serial = 0
     for chain, site, code in specifications:
@@ -66,10 +77,11 @@ def _sample_model(path: Path, *, changed: bool = True,
 
 
 def _run(tmp_path: Path, *, changed: bool = True,
-         unknown: bool = False, incompatible: bool = False):
+         unknown: bool = False, incompatible: bool = False,
+         mixed: bool = False):
     model = tmp_path / "input.pdb"
     _sample_model(model, changed=changed, unknown=unknown,
-                  incompatible=incompatible)
+                  incompatible=incompatible, mixed=mixed)
     source = _W_RESOURCE / "5W6W_secondary_structure.eff"
     secondary = tmp_path / "5W6W_secondary_structure.eff"
     pair_file = tmp_path / "Std_padd.txt"
@@ -197,3 +209,40 @@ def test_existing_explicit_pair_does_not_get_duplicated(tmp_path):
     assert pair_file.read_text().count("A 7\nC 9") == 1
     assert pair_file.read_text() != before
     assert sum(len(s.pairs()) for s in read_base_pair_file(pair_file)) == 5
+
+
+def test_four_named_families_plus_modified_context_share_one_overlay(tmp_path):
+    """One run may contain Z:P, D:T, B:S, K:X, 5CM:G and DF:A together.
+
+    This is a workbook/atom-role regression, not a native test of missing
+    IGU/CGY/DX ligand CIFs or experimental chemistry.
+    """
+    model, source, secondary, pair_file = _run(tmp_path, mixed=True)
+    before_secondary = source.read_bytes()
+
+    result = prepare_frame_modified_secondary_overlay(
+        model, model, source, secondary, pair_file,
+        patch_records=_patch_narestraints_records,
+    )
+    assert (result["base_pair_count"], result["retained_saenger_count"],
+            result["replaced_saenger_count"], result["explicit_new_pair_count"]) == (
+                17, 12, 5, 5,
+            )
+    replacements = {frozenset(item["sites"]): item for item in result["replacements"]}
+    expected = {
+        frozenset(("A:5", "C:11")): (["1AP", "DT"], "D_T"),
+        frozenset(("A:6", "C:10")): (["IGU", "S6G"], "GC"),
+        frozenset(("A:20", "D:3")): (["CGY", "DX"], "GC"),
+        frozenset(("A:7", "C:9")): (["5CM", "DG"], "GC"),
+        frozenset(("A:19", "D:4")): (["DF", "DA"], "AT"),
+    }
+    assert set(replacements) == set(expected)
+    for pair, (codes, recipe) in expected.items():
+        assert replacements[pair]["prepared_codes"] == codes
+        assert replacements[pair]["narestraints_recipe"] == recipe
+        assert replacements[pair]["explicit_bond_count"] >= 1
+    assert secondary.read_text().count("base_pair {") == 12
+    assert source.read_bytes() == before_secondary
+    assert sum(len(s.pairs()) for s in read_base_pair_file(pair_file)) == 8
+    # A:12/B:4 Z:P stays in the original three-pair Std_padd stretch.
+    assert "A 11:13\\nB 5:3" in pair_file.read_text()

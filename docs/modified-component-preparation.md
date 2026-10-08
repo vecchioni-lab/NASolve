@@ -1,10 +1,17 @@
 # Modified-component preparation
 
-Current status and exact evidence are in the [development handoff](development-handoff.md)
-and [full-auto checkpoint](full-auto-patch-handoff.md). DZ and the category
-hops passed the ordinary GZ11 path and Simon's visual check. DiU and 5CM now
-have native full-auto execution evidence. P2 below is implemented in a candidate
-and still requires returned full-checkout/native validation.
+**Current (2026-10-08):** P2 specific component preparation is **implemented
+in Pine**, and user-local regression passed **276 focused + 20 subtests**
+and **927 full + 224 subtests** on the published P2 code point `dec56c2`.
+The independent **real source-component `1W5→DZ` / `1WA→DP`
+native preparation, DP dictionary and refinement provenance check is still
+PENDING**. This is not discharged by successful synthetic-target W Z:P
+refinement or the earlier ordinary DZ GZ11 visual PASS. Exact current
+priority is in the [short handoff](development-handoff.md); completed
+four-member DiU/5CM full-auto results live in the
+[full-auto checkpoint](full-auto-patch-handoff.md). Historical validation
+subsections below document their then-current stages rather than overriding
+this update.
 
 ## Intermediate construction hops
 
@@ -118,13 +125,14 @@ subsequent validation. Source/derivative references are run-anchored and hashed.
 Old reports without this field are not reinterpreted, and source dictionaries,
 raw MR models, observations/Free-R and old checkpoints are not overwritten.
 
-Validation: source-level conversion/preservation tests and actual DP/DZ
-parameterization/adaptation checks have passed in the assistant environment.
-Full-checkout tests and native DP/alias preparation remain pending until the
-local ferry returns. Tests include the ordinary PostMR path with fixture
-ReadySet, explicit and ambient aliases, frozen intent, effective target CIFs,
-linked phosphate and downstream model validation. Do not claim native coverage
-or structural approval merely by implementing the conversion.
+Validation: source-level conversion/preservation, DP/DZ parameterization/
+adaptation, ordinary PostMR fixture ReadySet, explicit/ambient aliases,
+frozen intent, effective target CIFs, linked phosphate and downstream model
+checks have passed. **The local full-checkout ferry returned green**
+(276 focused + 20 subtests; 927 full + 224 subtests; see detailed historical
+receipt below). **Actual native source `1W5/1WA` conversion and DP
+refinement remain untested.** Do not claim native coverage or structural
+approval merely by implementing conversion.
 
 Source review: MonomerLibrary 1W5 blob b309086c6d215b6ae48d7beb4654b9e278633005;
 1WA blob c4d547e90bbe99595e44d674248a3613350dc54d. Pinned target DP and existing
@@ -188,12 +196,14 @@ infer arbitrary missing bonds, bond orders, protonation or new ideal distances
 merely to obtain a zero exit code. Base planarity alone does not validate every
 internal bond. A numerical pass is not structural approval.
 
-## Validation and next action
+## Historical P2 fixture recovery and returned local regression
 
-Use the current handoff and P2 section above. Completed native GZ11/full-auto
-runs stay preserved; a new conversion test must not overwrite or relabel them.
-Focused/full regression precedes publication of this candidate. A native alias
-preparation/DP refinement check remains distinct from the earlier DZ test.
+The following describes the **2026-10-07 debugging and publication sequence**,
+not a still-pending full-checkout run. P2 implementation and full regression
+passed, as recorded at the top of this document. Completed native
+GZ11/full-auto runs remain preserved; a **new** source-native
+`1W5/1WA` alias and DP refinement check must not overwrite or relabel
+those successes, nor be confused with ordinary DZ model validation.
 
 ### P2 fixture geometry recovery (2026-10-07)
 

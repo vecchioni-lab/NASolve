@@ -17,25 +17,58 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-### Modified-base W scaffold Saenger overlays (candidate; native pending)
+### Modified-base W Saenger overlays — isolated native integration PASS
 
-- New PostMR derivatives preserve the packaged 17-pair W secondary template
-  but replace only those fixed Saenger-class blocks whose *prepared* residues
-  are modified. The affected pairs are validated atom-for-atom against the
-  loaded NARestraints workbook and an explicit named recipe; absence of a
-  supported geometry blocks the affected dataset instead of guessing.
-- Generated run-local `Std_padd.txt` adds the modified pairs that are not
-  already listed; the existing single NARestraints PHIL emits their 2/3
-  hydrogen-bond edits, planes and parallelity with no duplicated global stacking
-  or user `force = G:C`. Retain unaffected Saenger blocks, other pair
-  restraints, and D:1 terminal phosphate protection unchanged.
-- Record the original and resulting file checksums, modified sites, identities,
-  old Saenger classes, explicit recipes/contact counts and workbook compatibility
-  corrections in `postmr.narestraints.frame_secondary_overlay`. Old runs,
-  frozen plans, the original W resource and all other modes remain untouched.
-- Added ordinary/no-overlap, modified C:G/T:A, unsupported chemistry, malformed
-  template and pre-existing explicit-pair regressions. User-local full-suite
-  and native Phenix/AutoRefine checks are **pending** before inclusion in Pine.
+- In new W PostMR derivatives, match actual prepared modified bases against
+  the reviewed NARestraints v1.1.3 atom-role workbook and replace **only**
+  incompatible legacy Saenger class blocks with one run-local explicit
+  NARestraints pair input. Retain all unaffected canonical W pairs, normal
+  stacking, input/model/Free-R provenance and D:1 phosphate protection.
+- With B:S, K:X and D:T on three additional distinct W sites, the new
+  workbook-backed regression exercises four named modified families
+  **simultaneously**, including Z:P in the existing Std_padd range and the
+  already tested 5CM:G / DF:A off-pair context. This extra regression still
+  needs user-local execution on the integrated Pine head; no native
+  mixed-family run or missing-CIF fabrication is claimed.
+- The original isolated W Z:P+5CM:G+DF:A patch passed 34 focused and 961 full
+  NASolve tests + 224 subtests, native Phenix numerical SOLVED/refine-001,
+  frozen inputs OK, and user Coot visual inspection of bonds/planes PASS.
+  Historical attempts, original W resource and upstream NARestraints workbook
+  remain untouched. Experimental chemistry is not proven by the donor data.
+
+### Pathless campaign result viewing — tested
+
+- An **explicit single-dataset** `campaign run` now selects its verified,
+  viewable numbered AutoMR run as the **machine-local active workspace run**
+  on a successful/pause-for-review stage boundary. A following bare
+  `nasolve show` opens that run's **current selected checkpoint**, not an old
+  MR run, while still respecting the explicit `--checkpoint` and `--stage`
+  overrides and not altering scientific checkpoint selection or user approval.
+- `nasolve show` also works after `workspace use DATASET` (without an active
+  run) by selecting the dataset's last numbered readable run. It never scans
+  unrelated datasets or silently guesses a campaign target.
+- Multi-dataset runs, blocked/drifted/unviewable stages and explicit
+  `campaign run --no-activate` do **not** overwrite active workspace state.
+  The activation is a convenience stored in user configuration only, not in
+  the frozen plan, run directory, Free-R, Coot models or checkpoint registry.
+- The earlier explicit `show RUN --checkpoint refine-001` printed
+  `refined_001.pdb` and matching refined maps correctly. This patch addresses
+  stale active-workspace selection, not an unverified corruption of Coot's
+  actual loaded model or window focus. User-local focused 59 tests + 30 subtests and full 960 tests + 226 subtests passed.
+
+### NARestraints 1.1.3 released dependency
+
+- Use the immutable [NARestraints v1.1.3](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3)
+  Git tag as NASolve's declared Python dependency. It fixes upstream Z:P
+  and K:X geometry-role orientation and modified-base stacking, preserves
+  B:S and D:T roles, and retains the original committed Ligands.xlsx.
+- The native W Z:P+5CM:G+DF:A integration path reached numerical SOLVED
+  with a separate candidate NASolve Saenger overlay and user Coot visual PASS.
+  Source-native 1W5/1WA alias conversion and independent B:S/K:X/D:T
+  native matrix checks remain separately pending.
+- Updating dependency metadata does not mutate the user's existing installed
+  .venv, original dirty NARestraints source checkout, frozen inputs or
+  completed scientific runs.
 
 ### Reviewed long deposition component names in annotated sequences
 

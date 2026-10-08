@@ -45,12 +45,24 @@ From the NASolve checkout on a Mac with Phenix and Coot configured:
 ```
 
 The command prints the exact new numbered run owned by this campaign attempt.
-Earlier standalone runs remain available. Inspect the new PostMR model using
-that printed path:
+Earlier standalone runs remain available. After an **explicit single-dataset**
+campaign run completes a viewable stage, NASolve makes that verified run the
+**active machine-local Coot workspace**, so the next command can be simply:
+
+```bash
+./nasolve show
+```
+
+This opens the selected run's **current checkpoint**, or PostMR/Phaser if
+refinement is not yet available. To inspect the earlier stage explicitly,
+the printed numbered path still works:
 
 ```bash
 ./nasolve show /exact/path/printed/by/campaign/status --stage postmr
 ```
+
+The active workspace is convenience state, not a scientific checkpoint
+selection or approval.
 
 Then continue the same attempt through refinement:
 
@@ -81,8 +93,15 @@ An explicit Phenix installation applies to this invocation:
 ./nasolve --phenix-root /path/to/phenix campaign run examples --dataset DOHU
 ```
 
-The executor uses machine-local external-tool discovery but does not change
-the active workspace. Use explicit run paths when inspecting campaign results.
+The executor uses machine-local external-tool discovery. Its **CLI** makes a
+viewable, unambiguous single-dataset run the active machine-local workspace
+after the stage boundary, allowing `./nasolve show` with no path. Multi-dataset
+runs, blocked/drifted/unviewable results, or
+`campaign run --no-activate` do not change workspace selection. Scientific
+stage artifacts, frozen inputs, Free-R and the checkpoint registry are never
+rewritten. Explicit `show RUN --checkpoint ID` keeps its exact semantics;
+Coot windows launched previously may remain open and are not brought forward
+or replaced by this shortcut.
 
 For a prepared nonstandard member, execution reconstructs the AutoMR request
 only from the checksum-bound campaign resources. It does not rediscover the
@@ -187,10 +206,13 @@ Status checks read the frozen plan and execution record without launching tools.
 Exit code `0` does not approve the structure. Read the per-dataset state,
 checkpoint, integrity and diagnostic fields when automating the command.
 
-## Current four-member W live validation
+## Historical four-member W live validation — 2026-09-28
 
-A disposable real-environment campaign is currently being used to validate the
-coordinator independently of the newer nonstandard-provider path. The sandbox
+The following is a **dated native checkpoint**, not an active campaign or
+the current next action. It records a disposable real-environment validation
+of the W coordinator independently of the newer nonstandard-provider path.
+For active work see the [current handoff](development-handoff.md) and the
+[later full-auto native checkpoint](full-auto-patch-handoff.md). The sandbox
 is `/tmp/NASolve-W-live-20260928` and contains clean top-level copies of:
 
 - `DOHU`;
