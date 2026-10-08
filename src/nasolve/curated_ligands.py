@@ -252,15 +252,59 @@ def curated_dictionary(code: str, data_root: Path | None = None) -> Path:
     return path
 
 
-def ligand_dictionary(code: str, data_root: Path | None = None) -> Path:
-    """Resolve the reviewed override or a local official CCD dictionary."""
+def ligand_dictionary(
+    code: str,
+    data_root: Path | None = None,
+    *,
+    ready_set_executable: Path | None = None,
+) -> Path:
+    """Choose a local reviewed dictionary, or a verified installed Phenix CCD.
+
+    The canonical construction parent and component identity come from
+    NARestraints.  The Phenix chemical components library supplies *source
+    chemistry*, not automatically authoritative numerical restraints:
+    ReadySet must still generate those when the CCD graph lacks parameters.
+
+    Deliberately never fall back from a missing curated dictionary.  Those
+    resources have reviewed chemistry/parameterization which the raw CCD
+    cannot silently replace.
+    """
     ligand = ligand_definition(code)
     path = ligand_data_directory(data_root) / ligand.dictionary_filename
-    if not path.is_file():
+    if path.is_file():
+        return path
+    if code in CURATED_LIGANDS:
         raise FileNotFoundError(
-            f"No local CCD dictionary for {code}: expected {path}"
+            f"Curated dictionary for {code} is missing: {path}"
         )
-    return path
+    if ready_set_executable is None:
+        raise FileNotFoundError(
+            f"No local CCD dictionary for {code}: expected {path}; "
+            "Phenix ReadySet executable was not supplied for library lookup"
+        )
+
+    # The configured executable is authoritative for which Phenix installation
+    # is used.  In Phenix 2.2, official CCDs live in the bundled chem_data
+    # package under lib/pythonX.Y/site-packages, not in CODE.cif filenames.
+    from re import fullmatch
+    if fullmatch(r"[A-Z0-9]{1,3}", code) is None:
+        raise ValueError(f"Unsafe or non-PDB CCD component code {code!r}")
+    executable = Path(ready_set_executable).expanduser().resolve()
+    install_root = executable.parent.parent
+    relative = (
+        f"lib/python*/site-packages/chem_data/chemical_components/"
+        f"{code[0].lower()}/data_{code}.cif"
+    )
+    candidates = sorted(p.resolve() for p in install_root.glob(relative) if p.is_file())
+    if len(candidates) != 1:
+        raise FileNotFoundError(
+            f"Expected one Phenix CCD for {code} beside {executable}, "
+            f"found {len(candidates)} in {install_root / relative}"
+        )
+    # The caller validates component identity before using this source;
+    # neither file naming nor NARestraints family classification alone is
+    # authority to change the full chemical graph.
+    return candidates[0]
 
 
 def validate_ligand_dictionary(code: str, path: Path) -> None:
