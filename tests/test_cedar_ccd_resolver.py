@@ -1,17 +1,24 @@
 """Cedar regression: generic Phenix CCD sources, no new chemistry catalogue."""
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
 from nasolve.curated_ligands import (
+    CURATED_LIGANDS,
+    PDB_DEPOSITION_ALIASES,
+    ligand_data_directory,
+    ligand_definition,
     ligand_dictionary,
     validate_ligand_dictionary,
 )
 from nasolve.ligand_profiles import _parameterized_codes
 from nasolve.postmr import (
+    MutationAction,
     PostMRPreparationError,
+    _coot_script,
     _require_generic_parameterization,
 )
 
@@ -92,6 +99,96 @@ class CedarCCDResolverTests(unittest.TestCase):
             ligand_dictionary(
                 "1AP", self.data_root, ready_set_executable=self.executable
             )
+
+    def test_every_curated_cif_wins_even_when_phenix_has_competing_ccd(self) -> None:
+        """Nine known problem residues must always use their reviewed CIFs.
+
+        Check the actual bundled sources, chemical validation, and the Coot
+        script that loads each source before parent-overlap reconstruction.
+        """
+        self.assertEqual(
+            set(CURATED_LIGANDS),
+            {"1AP", "DE", "DF", "S6G", "C38", "5IU", "5CM", "DZ", "DP"},
+        )
+        chosen: dict[str, Path] = {}
+        fake_ccds: dict[str, Path] = {}
+        actions: list[MutationAction] = []
+        parents: dict[str, Path] = {}
+        for index, code in enumerate(sorted(CURATED_LIGANDS), start=1):
+            with self.subTest(code=code):
+                fake_ccds[code] = self.ccd(code)
+                path = ligand_dictionary(
+                    code, ready_set_executable=self.executable
+                )
+                expected = ligand_data_directory() / CURATED_LIGANDS[code].dictionary_filename
+                self.assertEqual(path.resolve(), expected.resolve())
+                self.assertTrue(path.is_file(), f"Missing reviewed source for {code}")
+                validate_ligand_dictionary(code, path)
+                self.assertNotEqual(path.resolve(), fake_ccds[code].resolve())
+                chosen[code] = path
+                ligand = ligand_definition(code)
+                site = f"A:{index}"
+                actions.append(MutationAction(
+                    site, ligand.parent_code, code, "coot-parent-overlap",
+                    parent_code=ligand.parent_code,
+                    deposition_code=ligand.deposition_code,
+                ))
+                parents[site] = self.root / f"parent_{code}.pdb"
+        script = _coot_script(
+            self.root / "source.pdb", self.root / "after_coot.pdb",
+            tuple(actions), chosen, parents,
+        )
+        for code, source in chosen.items():
+            with self.subTest(coot_code=code):
+                self.assertIn(
+                    f"coot.read_cif_dictionary({json.dumps(str(source))})",
+                    script,
+                )
+                self.assertIn(
+                    f"coot.get_monomer_from_dictionary({code!r}, 0)", script
+                )
+                self.assertNotIn(str(fake_ccds[code]), script)
+
+    def test_missing_any_curated_cif_never_falls_back_to_phenix(self) -> None:
+        """The known-problem library is not an optional overlay."""
+        for code in sorted(CURATED_LIGANDS):
+            with self.subTest(code=code):
+                self.ccd(code)
+                with self.assertRaisesRegex(
+                    FileNotFoundError, f"Curated dictionary for {code} is missing"
+                ):
+                    ligand_dictionary(
+                        code, self.data_root,
+                        ready_set_executable=self.executable,
+                    )
+
+    def test_wrong_reviewed_local_chemistry_stops_instead_of_using_ccd(self) -> None:
+        """Even with a matching component ID, DE must retain C4-S4 topology."""
+        self.ccd("DE")
+        invalid = self.data_root / "ligands" / "DE.cif"
+        invalid.write_text(ccd_text("DE"))
+        source = ligand_dictionary(
+            "DE", self.data_root, ready_set_executable=self.executable
+        )
+        self.assertEqual(source, invalid)
+        with self.assertRaisesRegex(ValueError, "C4-S4"):
+            validate_ligand_dictionary("DE", source)
+
+    def test_local_ohu_is_preserved_without_making_it_curated(self) -> None:
+        """Existing OHU local data path is separate from the reviewed exceptions."""
+        self.assertNotIn("OHU", CURATED_LIGANDS)
+        competing = self.ccd("OHU")
+        source = ligand_dictionary("OHU", ready_set_executable=self.executable)
+        self.assertEqual(source.resolve(), (ligand_data_directory() / "OHU.cif").resolve())
+        self.assertNotEqual(source.resolve(), competing.resolve())
+        validate_ligand_dictionary("OHU", source)
+
+    def test_de_and_df_deposition_identity_bridges_are_unchanged(self) -> None:
+        self.assertEqual(PDB_DEPOSITION_ALIASES["A1AAZ"], "DF")
+        self.assertEqual(ligand_definition("DF").deposition_code, "A1AAZ")
+        self.assertEqual(ligand_definition("DF").parent_code, "DT")
+        self.assertEqual(ligand_definition("DE").parent_code, "DT")
+        self.assertNotIn("8RO", CURATED_LIGANDS)
 
     def test_mismatched_component_id_fails_after_discovery(self) -> None:
         self.ccd("IGU", identity="IMC")
