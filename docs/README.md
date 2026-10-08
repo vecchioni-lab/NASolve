@@ -10,11 +10,12 @@ historical handoffs as current instructions.
 
 - **Current project queue:** [Development handoff](development-handoff.md).
   NARestraints **v1.1.3 is released**; NASolve PR #25 pathless Coot `show`
-  is merged and user-live verified; **modified-W Saenger PR #24 remains
-  unmerged** despite a successful isolated native Phenix refinement and
-  overall human Coot visual PASS.
-- **Next chemistry test, after PR #24 integration:**
-  [one simultaneous modified-pair model](native-modified-pair-live-validation.md)
+  is merged and user-live verified; **modified-W Saenger PR #24 is also
+  merged** (commit `0017081`) after **40 focused + 2 subtests**
+  and **967 full + 226 subtests**. The earlier native Z:P Phenix
+  refinement and overall Coot visual PASS remain preserved.
+- **Next chemistry work:** library-first **generic monomer dictionary
+  resolver**, then [one simultaneous modified-pair model](native-modified-pair-live-validation.md)
   — distinct **D:T, B:S, Z:P and K:X** sites in the same 42-residue W
   model, plus the existing 5CM:G and DF:A contextual pairs. The
   original independent A:T/D:T/B:S/Z:P/K:X staging helper is retained
