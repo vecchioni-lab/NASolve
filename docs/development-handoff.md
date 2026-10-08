@@ -1,327 +1,135 @@
-# NASolve development handoff
+# NASolve development handoff — current state
 
-Updated 2026-10-07. **Finish Pine -> main -> blind AlphaFold geometry campaign -> Scout.**
-This is the current-state and finite close-out entry point. Subsystem contracts
-own policy, the linked validation records own detailed evidence, and Git/history
-preserves earlier states. Do not ingest every historical handoff for routine work.
+Updated **2026-10-08**. **Working branch: `pine`.** Finish the bounded
+Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
+into `main`, then the **blind AlphaFold geometry baseline**, then
+**operational Scout**. No GUI/Topo Net implementation is a prerequisite.
+This is the compact active handoff, not a chronology. The complete previous
+handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.md).
 
-## 2026-10-08 live CLI/Coot acceptance — pathless show
+## Executive state
 
-[NASolve PR #25](https://github.com/vecchioni-lab/NASolve/pull/25)
-is **merged into Pine** (commit `e8613bf`). An isolated candidate
-`../NASolve-showfix` returned **59 focused tests + 30 subtests** and
-**960 full tests + 226 subtests**. The user safely fast-forwarded their
-original Pine checkout (untracked scientific data and patch files preserved),
-then ran `./nasolve workspace use` for frozen
-`GZ11_ZP/AutoMR/run_003`, followed by **bare `./nasolve show`**.
-The user reported **'Worked great! Success'** and returned a Coot screenshot
-of an intact displayed base pair with visible dashed hydrogen-bond links.
-Record **USER LIVE PASS for pathless viewing of the existing active run**.
-The user had selected that run manually because it predated PR #25; automatic
-activation after a newly executed single-dataset campaign is still covered
-by the tests rather than this particular native follow-up. This user review
-confirms usability but does not change dataset chemistry, refinement metrics
-or scientific status.
+| Workstream | Verified result | Remaining gate |
+| --- | --- | --- |
+| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | Independent native B:S/K:X/D:T matrix; locally installed package may still be v1.1.2. |
+| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) in **separate candidate branch, not yet in Pine**. Isolated **34 focused** and **961 full + 224 subtests** passed. Native `GZ11_ZP` `run_003/refine-001` reached **SOLVED (numerical)**; user inspected bonds/planes positively in Coot. | Reconcile PR #24 with latest Pine and 1.1.3 dependency, rerun focused/full tests, integrate after review. |
+| Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
+| P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
+| Campaigns / full auto | Ordinary guarded MR→PostMR→conditional AutoSol→refinement and immutable checkpoints work. Separate EA/DiU/Q5cm/QiC full-auto campaign reached numerical SOLVED for all four, preserving EA MR_REVIEW and QiC provisional (not user-approved) selection. | Bounded evidence review and user-veto/resume where still missing; do not rerun passed cohorts merely to refresh docs. |
+| Prepared nonstandard P5 | Explicit per-dataset PDB/sequence and mixed schema-2 campaigns implemented and fixture-tested. | Small **3–5-member real geometry-diverse** native smoke check; W-only successes cannot substitute. |
+| Scout / registration / Topo / GUI | Registration/Scout shadow primitives and earlier scoped checks are recorded. | Operational Scout, symmetry surgery, Topo and GUI remain separate future work, **not** claimed complete. |
 
-**Separate future geometry question, not a blocker for the show fix:** the
-user observed an angled pair of directional hydrogen-bond contacts and would
-like to explore more nearly linear geometry between the named N1/N3 and
-O4/N6 sites. First inspect the exact donor/hydrogen/acceptor assignment,
-restraint type, target values, weights and refined geometry. Do not blindly
-enforce a heavy-atom 180-degree angle, force ideal base planarity, or edit
-the accepted native `run_003`. Preserve this as a new scientific-restraint
-debugging case, independent of the **PASS** on pathless viewing and overall
-visible model quality.
+**Do not combine these test totals:** PR #24 and PR #25 passed in *different
+isolated checkout heads*. The post-integration Pine composition has not
+been reported through a fresh full suite. Numerical `SOLVED` is not
+experimental-chemistry confirmation, user approval or deposition authority.
 
-## Branches and scope
+## Immediate next scientific work — one bounded sequence
 
-- Active branch: `pine`, draft [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-  into `main`. Latest **published and locally regression-tested runtime** is
-  **`9ef67fcc98ee1e923e70a86126ffe880d363dd17`**; previous P2 code
-  `dec56c2` and annotated grammar `719c6e` are ancestors. The returned native
-  Z:P attempt failed in NARestraints PostMR, not in the earlier tests.
-  Re-read the live ref before editing; documentation-only commits may follow.
-- Oak was merged in [PR #22](https://github.com/vecchioni-lab/NASolve/pull/22)
-  on 2026-09-28. Check ancestry and local-only work before retiring references.
-  A remaining Oak branch does not imply another implementation prerequisite.
-- Simon authorized routine integration decisions and compact sequential ferries.
-  Preserve scientific and local-only work. No main merge has been performed by
-  this update; passing Git mergeability is not the remaining validation evidence.
+1. **Integrate the proven modified-W overlay.** [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
+   still diverges from current Pine (including the NARestraints `v1.1.3`
+   pin and pathless-show merge). Reconcile code/docs without overwriting
+   native attempts or dirty worktrees. Execute focused and full regression on
+   the **actual combined head**, verify exact NARestraints import/version from
+   NASolve's environment, and merge only once green. Do **not** remove
+   Saenger protection globally or weaken D:1 terminal-phosphate policy.
+2. **Stage the independent W pairing matrix:** canonical **A:T control**,
+   **D:T**, **B:S**, **Z:P** and **K:X**. This is **one frozen campaign with five
+   distinct dataset members**, *not* one molecule simultaneously carrying all
+   four experimental pairs. Each member differs at A:12/B:4, while retaining
+   A:7 5CM:G and A:19 DF:A for common modified-context coverage. The
+   released NARestraints source has staging-only
+   `scripts/stage_nasolve_pair_matrix.py`; review its missing-dictionary
+   manifest *before planning*. At last audit **IGU, CGY and DX** native CIFs
+   were absent from NASolve, so B:S/K:X may legitimately **BLOCK**. No
+   invented monomers or silent `force = G:C`. Run stage boundaries
+   sequentially, keep every result and human-inspect eligible models.
+   The **D-family test is D:T (1AP/DT)**; **DA/DT** is the *canonical A:T*
+   control. There is **no registered D:A pairing recipe**.
+3. **Close the independent P2 source-native gate** (`1W5→DZ`,
+   `1WA→DP`) with actual source components and verified dictionaries,
+   source-to-target atom mapping, raw preservation and native refinement.
+   This is not the same as already successful Z:P synthetic-target model.
+4. **Finish the bounded Pine close-out:** retain existing GZ11 and multi-member
+   saved receipts; resolve remaining exact effective-dictionary evidence (P1),
+   saved normal-GZ11 evidence (P3), and limited campaign human-veto/current-
+   pointer evidence (P4), plus **P5** geometry-diverse real smoke check.
+   Then final integrated tests/review **P6**, followed by [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
+   merge/ancestry verification **P7**. Do not clean, reset or prune original
+   scientific artifacts to retire branches.
 
-## Current implementation slice and continuity
+The exact five-case recipes, alias names, staging procedure, individual
+scientific gates, immutable Z:P attempt history and human-verdict limits live
+in the [native modified-pair ledger](native-modified-pair-live-validation.md).
+The [modified-component contract](modified-component-preparation.md) owns
+1W5/1WA mapping and source-preservation rules. [Campaign execution](campaign-execution.md)
+owns CLI semantics; [full-auto checkpoint](full-auto-patch-handoff.md) retains
+the completed four-member validation.
 
-The annotated chain-sequence grammar is published as `719c6e`, with the
-reviewed literal `(A1AAZ)` -> working PDB code `DF` bridge, paired-site
-targeting and regression at **`9ef67fc`**. Simon returned **175 focused tests +
-23 subtests** and **955 full tests + 224 subtests**, all passing. The frozen W
-matrix keeps A:7 5CM/C:9 DG, A:19 DF/D:4 DA, and A:12 DZ/B:4 DP with
-`pair = Z:P` (no `force` override).
+## Preserved W native evidence and user review
 
-The first native GZ11_ZP attempt is retained as
-`~/NASolve-live-tests/zp-paired-native-oiipj_t2/GZ11_ZP/AutoMR/run_001`.
-Its native Phaser passed with **TFZ 12.9, LLG 210**; PostMR **BLOCKED**
-on a real NARestraints role error: `A:12 (Z) has no mapped atom 'N2' for
-GC recipe`. Read-only audit confirmed Z is cytosine-like (O2/N3/N4) and P
-guanine-like (N1/N2/O6), and an in-memory corrected-role/stacking probe passed.
-**Native replay with clean corrected NAR candidate succeeded:** explicit
-`campaign retry` preserved the first failure, and
-`GZ11_ZP/AutoMR/run_002` passed preflight, Phaser and native PostMR.
-The user audited **six correct site identities**, **all three expected
-Z:P H-bond contacts exactly once**, A1AAZ->DF deposition provenance,
-**42/42 sequence identities with zero mismatches** and no geometry override.
-The subsequent AutoSol boundary was correctly skipped (zero anomalous
-candidates, no iodine warning). The first native AutoRefine continuation
-**BLOCKED before refinement**, while Phenix's proactive phosphate geometry
-interpretation rejected stale W-template Saenger class 20 at
-A:19=DF / D:4=DA: `Sorry: Saenger class does not match residue names`.
-The W template also hardcodes Saenger 19 at the modified
-A:7=5CM / C:9=DG pair; enumerate both actual run-local annotations and
-replace incompatible assignments only through an audited, chemically
-reviewed restraint route. This new blocker does **not** invalidate the
-Z:P native PostMR contacts and is not a reason to relax terminal-phosphate
-protection. The run is BLOCKED; refinement and human review remain pending.
-A read-only role probe using the real run-local model confirmed
-**5CM:G -> GC / 3 bonds and DF:A -> AT / 2 bonds**, each with planarity and
-parallelity. [NASolve draft PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-is the separate, unvalidated candidate fix: replace only the two incompatible
-hardcoded Saenger blocks in **new** W PostMR output; append the explicit
-NARestraints pairs to the run-local Std_padd, preserve the other 15 W blocks,
-the packaged template and terminal D:1 phosphate policy. It includes
-workbook-based and fail-closed tests. **User-local focused 34/34 and
-full 961 tests + 224 subtests passed.** User-local native attempt_003
-prepared a distinct `GZ11_ZP/AutoMR/run_003` and the read-only PostMR audit
-confirmed 17 original W pairs became **15 retained Saenger + 2 explicit**
-(5CM:G GC/3 bonds, DF:A AT/2 bonds), zero sequence mismatches, no
-`force` override and D:1 phosphate policy preserved. Native
-Phenix **AutoRefine returned `SOLVED` (numerical), checkpoint
-`refine-001`**, frozen campaign integrity OK. Original
-`run_001`/`run_002` are preserved. The user opened `run_003/refine-001` in Coot and reported
-**human visual PASS for overall refinement quality**: bond and base-plane
-geometry are present; mild plane deviations are acceptable and should not
-trigger gratuitously stronger restraints. CLI output named the refined PDB
-and MTZ, despite a reported possible older MR display; resolve visual
-window/session provenance separately, do not claim checkpoint-selection
-corruption without supporting evidence. Rwork/Rfree and individual-site
-map/clash/.geo metrics are not yet copied into the ledger, and approval
-is limited to this **software integration challenge**, not experimental
-validation of modified chemistry or deposition. Neither B:S/K:X/D:T
-native matrix nor source 1W5/1WA conversion gate is closed by this
-W-only synthetic-target test. See
-[native modified-pair validation](native-modified-pair-live-validation.md).
-**NARestraints is now published as
-[v1.1.3](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3).**
-[PR #4](https://github.com/vecchioni-lab/NARestraints/pull/4) merged
-to `main` as **a9264f9** after workbook-backed B:S/Z:P/K:X/D:T
-regression, locally confirmed Z:P native PostMR and combined NASolve
-numerical refinement, and positive human overall Coot inspection.
-The final [release workflow 37702686885](https://github.com/vecchioni-lab/NARestraints/actions/runs/37702686885)
-passed Python **3.10, 3.12 and 3.14**, built/tested noneditable wheel/sdist,
-and published `v1.1.3` with the wheel, source tarball and SHA256SUMS.
-The original workbook, NAR v1.1.2 release/tag and user's dirty NAR feature
-checkout were not touched. NASolve's **published Pine dependency metadata**
-now points at immutable NAR `v1.1.3`; the user's existing NASolve
-`.venv` was not automatically modified. B:S/K:X standalone workbook
-tests are green, but missing native NASolve dictionaries mean the planned
-independent five-member W campaign and P2 source 1W5/1WA normalization
-remain pending. This release is not a claim of experimental modified
-chemistry in the donor GZ11 observations.
+The original frozen synthetic-target dataset is
+`~/NASolve-live-tests/zp-paired-native-oiipj_t2`. It uses **real GZ11
+diffraction observations** but altered target chemistry; it is **not**
+evidence the experimental crystal contained the tested modifications.
 
-The sibling `../NARestraints` checkout is on
-`feature/terminal-phosphate-op3-angles` with a modified
-`restraints/data/Ligands.xlsx`, other uncommitted work and an Excel lockfile.
-**Do not checkout/reset/stash/clean/reinstall over that directory.** Validate the
-PR using an independent worktree/clone in the same NASolve terminal. The
-[bounded live modified-pair matrix and human evidence ledger](native-modified-pair-live-validation.md)
-records the new B:S/Z:P/K:X/D:T plus canonical A:T cases, missing native
-dictionary blockers, steps, and human Coot/PHIL/.geo review. It links but does
-not close the separately scoped [Registration/Topo human tests](construct-registration-live-checks.md)
-or [GUI human tests](gui-live-checks.md).
+- **`run_001`:** retained Z:P PostMR **BLOCKED** by the former reversed
+  role mapping (Z lacked G-like N2). Native Phaser TFZ **12.9**, LLG **210**.
+- **`run_002`:** corrected NARestraints Z:P PostMR **PASS**: expected
+  `P.N2/Z.O2`, `P.N1/Z.N3`, `P.O6/Z.N4` contacts, all 42 target
+  identities checked, no `force` override. First AutoRefine **BLOCKED**
+  before refinement by old W Saenger classes at modified 5CM:G and DF:A.
+- **`run_003`:** PR #24 candidate; frozen integrity **OK**, 17 template
+  pairs → **15 unchanged Saenger + 2 explicit modified** (5CM:G GC/3 bonds;
+  DF:A AT/2). D:1 phosphate protection retained, sequence-family
+  mismatches empty, AutoSol correctly skipped; native AutoRefine returned
+  **`SOLVED`, `refine-001`**. User's Coot inspection reported **good bonds
+  and planes**, tolerable nonideal planarity: **INSPECTED_PASS for overall
+  visual software integration**, not site-resolved density or experimental
+  chemistry. Exact Rwork/Rfree, `.geo` and per-site map/clash metrics are
+  still to be recorded if needed.
+- **`./nasolve show`:** after PR #25 integration the user selected
+  `run_003` as their active workspace and confirmed bare `show` launched
+  the expected model in Coot. **Live usability gate passed**.
 
-**P2 implementation, fixture recovery, full-checkout regression and publication
-are complete. Native DP/alias validation remains the next live check.**
-Do not reapply or resume either P2 installer merely to refresh this record.
+**Separately parked geometry question:** user noticed tilted/directional
+hydrogen-bond contacts in the displayed modified pair (named N1/N3 and
+O4/N6 sites). First verify the exact donor–H–acceptor assignment, atom
+definitions, existing restraint angular terms and achieved geometry before
+deciding whether directional terms are appropriate. **Do not simply fix a
+heavy-atom angle at 180°, enforce flat base planes, or edit `run_003`.**
+Not a blocker for `show` or for the successful native integration.
 
-| Returned local P2 regression | Result |
-| --- | --- |
-| Focused conversion/PostMR/dictionary/campaign checks | 276 passed, 20 subtests passed in 20.59 s |
-| Full NASolve suite | 927 passed, 224 subtests passed in 78.72 s |
+## After Pine: blind AlphaFold baseline, then operational Scout
 
-The recovered tree was based on `e13df41` and committed/pushed as `dec56c2`
-after unstaged and staged diff hygiene passed. Returned status showed no tracked
-changes and only existing untracked files. These are Simon's local pytest
-results, not independently executed CI or a native DP refinement result.
+The user requested this order on 2026-10-07. Use the existing prepared-
+nonstandard path with **frozen** supplied predictions, complete chain-labelled
+sequences and untouched diffraction/Free-R; audit chain/residue correspondence,
+coordinate/ASU completeness, model confidence/B factors and input metadata.
+Predicted coordinates are *unseen candidate models*, not solved truth.
+Do not consult outcome structures during blind candidate selection. Preserve
+every success and failure; later hypotheses get new attempts.
 
-Original failed evidence: `~/NASolve-live-tests/p2-components-lh21asu3/receipt.json`
-and `focused.log`. Successful recovery/publication receipt:
-`~/NASolve-live-tests/p2-components-lh21asu3/fixture-geometry-recovery/receipt.json`.
-Those are user-local provenance, not repository inputs; preserve both histories.
+Then promote Scout along the
+[registration contract](construct-registration.md) and
+[human live-check queue](construct-registration-live-checks.md); keep guided
+ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
+[metal restraint builder](metal-restraint-builder.md) are separate later scopes.
 
-The four initial integration failures came from synthetic incoming O3' placement,
-not conversion-induced geometry. The fixture correction changed one test file
-and its documentation, not the production phosphate guard or supplier geometry.
-See [P2 details](modified-component-preparation.md#standing-preferred-component-preparation-p2)
-and its [returned regression](modified-component-preparation.md#returned-local-p2-regression).
+## Work discipline and doc ownership
 
-P2 supplies new prepared-derivative `1W5 -> DZ` and `1WA -> DP` normalization,
-explicit atom correspondence, target dictionaries and source/target provenance.
-DP uses the DG construction hop; DZ uses DC. Other intermediate rules and the
-separate pair-geometry override remain settled. Frozen raw inputs and completed
-checkpoints are not retrospectively relabelled.
-
-The [metal-restraint builder](metal-restraint-builder.md) remains planned,
-not implemented or a Pine gate. Its examples/numerical targets will come from
-Simon. The post-Pine blind study has not yet supplied files for inspection here.
-
-## New authorized slice: recipe-controlled full auto
-
-[Full auto](campaign-full-auto.md) is implemented, published and exercised by a
-fresh four-member native campaign. Its typed schema-2 recipe authorizes retained
-borderline MR trials, explicit rejected-phase fallback, bounded Doctor and
-reversible provisional selection. Core Doctor and old guarded recipes remain
-non-selecting. Automatic selection never writes USER_APPROVED or changes Free-R.
-A new policy requires a new frozen plan, not editing the old TestSets manifest.
-
-Native EA/DiU/Q5cm/QiC execution and the actual supplied phase inputs are recorded
-in the [full-auto checkpoint](full-auto-patch-handoff.md). The reporting-only
-phase-use correction was published as `debd4af`, with 109 focused tests and
-878 full tests + 224 subtests before P2. Old inaccurate audit Booleans remain
-historical; no stored receipts were rewritten. No repeat campaign is needed
-for that completed diagnostic correction.
-
-## Current evidence
-
-| Capability | Supported state |
-| --- | --- |
-| Ordinary AutoMR -> PostMR -> conditional AutoSol -> AutoRefine | Operational spine with immutable checkpoints. |
-| Category hops/effective dictionaries/DZ | Published and regression-tested; fresh ordinary GZ11 and Simon's requested visual check passed. Detailed saved receipt review remains. |
-| Guarded campaign Doctor | Fresh QiC entered Doctor within one invocation; recommended refine-002 while current remained postmr; preservation checks passed. |
-| Full-auto campaign | EA, DiU, Q5cm and QiC all SOLVED numerically. EA retained MR_REVIEW/TFZ 7.60; DiU supplied anomalous observations and HL phases; QiC provisionally selected refine-002 without user approval. |
-| P2 preferred components | `dec56c2` published after 276 focused / 927 full tests; DP resource and conversions implemented. Native conversion/DP check pending. |
-| Prepared nonstandard/mixed campaigns | Implemented and fixture-tested, including relocation; small real geometry-diverse check remains P5. |
-| Scout | Backend primitives exist; not yet the ordinary runtime registration/decision path. |
-
-Older 694/735/771/785/851/878 test totals are historical, not the current P2
-baseline. Do not rerun an unchanged full suite solely for documentation changes.
-
-## Fresh GZ11 result and immediate next action
-
-Guarded root: `~/NASolve-live-tests/TestSets-dd59b4f-jjra04s9`.
-On `66cb7a2`, fresh GZ11 attempt_002 / `GZ11/AutoMR/run_002` reached SOLVED
-at `refine-001`. Simon opened its matching refined model/maps in Coot and,
-asked to inspect DG A:12 / DZ B:4 and adjoining backbone, reported a passed
-local visual check: "It's a perfect speckled sheep." No repeated run or
-repeated visual confirmation is needed for that check.
-
-Read remaining exact identity/force/effective-bundle and geometry evidence from
-the saved outputs. Do not invent numerical values or treat a stage name alone
-as proof AutoSol ran rather than skipped. This successful campaign run is not
-the earlier blocked standalone `examples/TestSets/GZ11/AutoMR/run_002`, the
-failed temporary DZ-provider MR_snapshot, or manual Refine_74. Preserve them.
-
-**Immediate next live work is P2**, using a bounded new preparation/refinement
-check with explicit source components and recorded provenance. First identify
-suitable local source inputs; distinguish genuine source components from any
-synthetic exercise. Do not relabel the successful GZ11 model and call that
-independent DP validation, overwrite old outputs, or claim the already-passed
-DZ workflow proves the new conversion path. Current P2 native evidence is absent.
-
-## Nine-member baseline results
-
-The old guarded plan and attempts remain historical evidence, all last reported
-with integrity OK. Its initial failures were isolated rather than blocking the
-whole campaign. Later full-auto results belong to a NEW root:
-`~/NASolve-live-tests/full-auto-984f75d-kaxrtv9w`.
-
-| Member(s) | Preserved evidence |
-| --- | --- |
-| DOHU, DT, ED, FA | Guarded run_001/refine-001 SOLVED numerically; inspection separate. ED retains w-metal-scaffold. |
-| GZ11 | Guarded run_002/refine-001 SOLVED; requested user visual check passed. |
-| DiU | Guarded history stopped on the prime-stripping lookup bug; new full-auto run_001/refine-001 SOLVED, 0.2072/0.2202. |
-| EA | Guarded MR review at TFZ 7.60; new full-auto run_001/refine-001 SOLVED, 0.1603/0.1776, retaining the warning. |
-| Q5cm | Guarded history lacked 5CM.cif; new full-auto run_001/refine-001 SOLVED, 0.2094/0.2304. |
-| QiC | Guarded run_002 recommended refine-002 with postmr current. New full-auto run_001 provisionally selected refine-002, 0.1500/0.1502, ML-fixed-scattering, no experimental phases. |
-
-Full-auto preservation checks passed for the old state, new frozen plan and
-code head. Numerical outcomes are not structural approval. User-veto/resume
-still needs its recorded live exercise; rejected-AutoSol fallback was not
-exercised by these successful/skipped gates. Do not manufacture a failure or
-repeat the whole cohort just to make a scenario occur. Campaign exit 3 can
-reflect retained warnings/other members, so do not accidentally suppress a
-selected retry with an unconditional retry && run chain.
-
-## Pine close-out
-
-Keep the existing gates finite. Code and test completion are not native
-validation, and native numerical success is not model/map approval.
-
-| Gate | Remaining completion evidence |
-| --- | --- |
-| **P1 — Effective dictionary compatibility** | Published, regression-tested and used in ordinary GZ11; finish exact effective-bundle review alongside P3. |
-| **P2 — Specific component normalization** | Implementation/full regression/publication passed at dec56c2. Native alias preparation and DP refinement; confirm raw preservation, target definitions, atom correspondence and conversion provenance. |
-| **P3 — Normal GZ11 live path** | Ordinary execution and requested user visual check passed. Finish saved receipt/numerical evidence; no repeated execution or visual check. |
-| **P4 — Nine-member TestSets campaign** | Member isolation, guarded Doctor and fresh four-member full-auto behaviors demonstrated. Finish bounded inspection/resume/user-veto/current-pointer evidence without demanding every scientific outcome be green. |
-| **P5 — Prepared-nonstandard live campaign** | Existing small 3-5-member real prepared-PDB/exact-sequence geometry-diverse check with native engines and ownership/review checks. W-only/fixture evidence is not a substitute. |
-| **P6 — Final candidate regression/review** | Exact final code/test commands/results/tool versions, diff/available CI review and consistent docs. P2's 927+224 is the current returned full-suite baseline; new code changes require their relevant regression. |
-| **P7 — Merge and retire branches** | After P1-P6, merge PR #23, verify ancestry/local worktrees/commits, switch/pull main and retire merged Pine/Oak references without force or data cleanup. |
-
-GUI/Design implementation, Scout promotion, Topo Net/Surgeon, donor rescue,
-new providers, generic MTZ/SCA import, recipe builders and a universal chemistry
-library are not additional Pine merge prerequisites.
-
-## After Pine: blind AlphaFold geometry campaign, then Scout
-
-Simon requested this order on 2026-10-07. He has diffraction datasets, predicted
-PDBs and sequences but does not know the experimental answers. No study files
-or prediction variants have been inspected/selected here.
-
-Start with the [prepared nonstandard route](campaign-planning.md#prepared-nonstandard-providers):
-explicit dataset-local PDB, complete chain-labelled target and normal frozen
-reflection inputs. Scout is unnecessary when actual chain/residue correspondence
-is usable. Check it rather than assuming it from AlphaFold's name. Registration,
-recuts or extra copies merit a specific limitation, not a blanket Scout gate.
-Correct sequence is not evidence of crystal geometry or ASU composition.
-
-Inspect format/conversion, chain IDs, numbering, polymer identity, completeness,
-confidence-versus-B-field meaning and current AutoPROC/STARANISO/Free-R input
-requirements. Preserve raw prediction/confidence files and record preparation
-as derivatives. Do not blindly apply protein-specific pLDDT trimming to DNA.
-Freeze the first candidate set and recipe before viewing outcomes; retain all
-successes/reviews/failures. No solved answer models or outcome-driven candidate
-selection enter the blind baseline. Later hypotheses get new attempts.
-
-This larger post-Pine study does not enlarge Pine or silently waive the existing
-small P5 smoke check. Numerical success is not independent truth validation;
-inspect density and geometry. No new AlphaFold runtime adapter is claimed.
-
-<a id="after-pine-operational-scout"></a>
-### Operational Scout follows the blind baseline
-
-The [registration contract](construct-registration.md),
-[registration intent](construct-registration-intent.json) and
-[live-check queue](construct-registration-live-checks.md) remain authoritative.
-Prioritize ordinary CLI/AutoMR preflight, persisted evidence and PostMR logical
-site handoff without waiting for GUI or the metal editor. Keep proposals,
-accepted mappings and coordinate edits distinct; preserve provider-bound
-zero-unexplained uniqueness and ordinary/renamed/ambiguous live checks.
-Reprioritization does not grant Scout runtime authority.
-
-## Working and documentation discipline
-
-One coherent slice and one sequential ferry, then the first meaningful outcome.
-Missing optional NASolve annotations should not veto supported library-backed
-chemistry. Necessary integrity/required-operation stops remain dataset-local.
-Retain explicit known-component corrections, not arbitrary chemistry guessing.
-
-Keep current status here, policy in subsystem docs, archaeology in history and
-PR #23 as the review tracker. Docs-only updates must not promote unseen native
-validation. Preserve models, dictionaries, observations/Free-R, maps, attempts
-and unrelated untracked files/environments/patches. Do not reset, stash, clean or
-upload those scientific artifacts as part of a code/documentation ferry.
-
-## Doctor-transition patch validation
-
-Historical patch d3e1fa3 passed 148 campaign tests + 85 subtests and 785 full
-tests + 224 subtests. The guarded native QiC result and preservation evidence
-are recorded above and in the [full-auto checkpoint](full-auto-patch-handoff.md).
-It is not pending recovery. The old detailed handoff remains available in Git
-at dec56c2; the [history index](history/README.md) owns earlier experiments.
+- **One terminal action per user turn** for live NASolve debugging, then
+  inspect the output before proceeding. Prefer isolated Git worktrees
+  for candidates. Preserve the user's dirty `../NARestraints` tree (including
+  unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
+  untracked files/patches, all immutable numbered runs, maps and Free-R.
+- Do not represent an unrun test as passing. Keep native-tool receipt,
+  chemical identity, numerical statistics and human Coot verdict as
+  separate fields. Confirm environment imports instead of assuming the
+  v1.1.3 metadata pin upgraded a preexisting `.venv`.
+- **This file** owns current priorities/results; the
+  [documentation map](README.md) routes to active subsystem contracts;
+  the [native ledger](native-modified-pair-live-validation.md) owns exact
+  pair-matrix evidence and per-member status. Earlier full chronology
+  is preserved [in history](history/development-handoff-2026-10-08-pre-consolidation.md)
+  and Git. Do not re-append old session logs here.
