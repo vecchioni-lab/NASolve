@@ -50,7 +50,7 @@ approval.
    `tests/test_cedar_ccd_resolver.py`. The earlier isolated relocation check
    also passed. Native PostMR/ReadySet and combined-family scientific
    validation remain pending; the regression receipt does not close them.
-   **Reassess the nine bundled entries by evidence:** the
+   **Nine-entry source audit complete for inspected versions:** the
    [ligand audit](modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
    separates actual overrides, identity bridges, construction recipes and
    unchanged supplier copies. 5CM is unchanged upstream data; 5IU's long-bond
@@ -71,8 +71,15 @@ approval.
    Preserve the mandatory 1W5/1WA -> DZ/DP overrides. The two Phenix paths
    per component are verified aliases of one file (`python3.1 -> python3.11`).
    Cedar now deduplicates resolved paths while rejecting separate competing
-   files. The fix now has full local regression coverage; next compare
-   DF/A1AAZ contents with the component-label bridge accounted for.
+   files. The fix now has full local regression coverage. DF and installed
+   A1AAZ differ only in component labels and trailing whitespace, verified
+   against the installed hash. The user created the A1AAZ deposition from
+   lab DF; retain the inverse runtime label bridge. Keep the specific bundled
+   roles of 1AP/DE/DF/DZ/DP. S6G/C38/5IU and 5CM are ordinary sourced data,
+   with placement and numerical-profile needs preserved independently.
+   Return to Cedar's existing native ReadySet/PostMR qualification next.
+   Source migration, general placement and new aliases are follow-up work,
+   not additional gates for the bounded Cedar change.
    Placement recipes and dictionary-source selection have separate purposes; see the
    [scope decision](modified-component-preparation.md#lab-labels-and-placement-scope).
    Prefer validated Phenix/CCD monomers only for non-curated components, and

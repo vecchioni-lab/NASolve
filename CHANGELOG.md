@@ -28,7 +28,10 @@ entries are reconstructed from repository history.
 - Record the user's exact installed-source hashes: bundled C38 and 5IU match
   Phenix byte-for-byte; S6G differs only in trailing whitespace, verified by
   reproducing the installed hash from normalized bundled bytes. DF/A1AAZ
-  still needs content comparison. Add a symlink regression and retain the
+  also matches after component-label and line-end normalization; preserve
+  the short-label bridge and the user-reported DF-to-A1AAZ deposition history.
+  The source audit is complete; DE geometry remains unresolved, and no CIF
+  or placement rule is removed. Add a symlink regression and retain the
   genuine-ambiguity check. User-local validation at
   `1443979` passed **16 focused + 31 subtests (2.45 s)** and **983 full +
   257 subtests (80.81 s)**. Native preparation/geometry validation remains

@@ -25,7 +25,7 @@ has completed scientific review. This audit changes documentation only.
 | --- | --- | --- |
 | **1AP** | `af08c5a` replaced a raw CCD graph with parameterized MonomerLibrary data after the failed eLBOW attempt. Direct comparison with pinned source blob `1be06d4bb0848891fd3e7dca22d217dd2ad1b69b` finds only audit comments and `NON-POLYMER -> DNA`; numerical geometry is unchanged. | Retain the parameterized override and selected phosphate profile. The failed generated dictionary and polymer typing, not a demonstrated defect in all upstream 1AP sources, justify this route. |
 | **DE** | The current eLBOW file has never changed since its addition at `b8317b0`. September's 1AP integration and handoff explicitly leave DE geometry defective and replacement unapproved. It is byte-identical to the historical repository-root eLBOW `8RO.cif` after changing the component label to DE; that historical file is not proof of official CCD equivalence. | Retain the lab identity/construction exception, but reopen geometry repair. Do not describe the existing file as a validated repaired dictionary or infer an approved `8RO -> DE` conversion. |
-| **DF** | Added at `b8317b0` ("mutation works; patched DF"); retains the laboratory working label, `C2-S1` construction and explicit deposition identity `A1AAZ`. The source has a CCD graph and coordinates, not numerical bond targets. | Retain the exact identity bridge and sulfur-placement recipe. Comparison with the installed A1AAZ source is pending; a renamed source is still needed by today's three-character PDB route. |
+| **DF** | Added at `b8317b0` ("mutation works; patched DF"); retains the laboratory working label, `C2-S1` construction and deposition identity `A1AAZ`. User comparison found only component-label and trailing-whitespace differences. Restoring A1AAZ labels in the Git-verified DF file and trimming line ends reproduces the installed Phenix SHA-256 exactly. This is a graph/coordinate source without numerical bond targets. | Retain the short working label, exact identity bridge and sulfur-placement recipe. No additional chemical repair relative to the inspected A1AAZ source is present. The user reports creating the A1AAZ deposition from lab DF; historical origin and runtime label conversion have opposite directions. |
 | **DZ** | Direct comparison with pinned MonomerLibrary blob `9e6151658d2887ef3902d170c77752ccc90159d4` finds comments and `NON-POLYMER -> DNA` only. Numerical geometry is unchanged. | Retain the parameterized DNA resource and C-glycoside/linked-phosphate treatment; this is a sourced adaptation, not invented geometry. |
 | **DP** | Direct comparison with pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` finds only `NON-POLYMER -> DNA`. Numerical geometry is unchanged. | Retain the parameterized DNA resource and linked-phosphate treatment. True source-native P2 validation remains separate. |
 | **5CM** | Added at `984f75d` after Q5cm stopped because the then-local-only resolver lacked a file. It is byte-for-byte identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`; no supplier repair. | Remove the *broken-dictionary* classification. This remains a useful pinned numerical resource; removing it needs native proof that the generic route supplies compatible numerical geometry and phosphate handling. |
@@ -51,13 +51,21 @@ geometry and a fresh ED comparison before changing the sulfur pair target.
 Passing limited topology checks or the full Python suite does not close that
 review; no later committed DE replacement was found.
 
-**Migration boundary:** inspect installed Phenix source identity, atom names,
-elements/charges, bonds/stereochemistry and ideal coordinates before replacing
-the source-only copies. Keep construction recipes independently of file-source
-policy. `DF`, `S6G`, `C38` and `5IU` need generated numerical restraints; `1AP`,
+**Audit decision:** retain the specific bundled roles of 1AP, DE, DF, DZ and
+DP, with DE geometry still unresolved. S6G/C38/5IU contain no supplier-chemistry
+repairs; their placement recipes remain needed independently of source lookup.
+5CM is an unchanged, pinned parameterized MonomerLibrary resource, rather than
+a broken-source exception. The nine-entry source audit is complete for the
+inspected versions; it does not certify DE geometry or native parameterization.
+
+**Migration boundary:** source identity, atom names, elements/charges,
+bonds/stereochemistry and coordinates match for the inspected S6G/C38/5IU
+Phenix sources and the DF/A1AAZ bridge. This establishes source equivalence,
+not the native readiness of a replacement lookup route. Keep construction
+recipes independently of file-source policy. `DF`, `S6G`, `C38` and `5IU` need generated numerical restraints; `1AP`,
 `DE`, `5CM`, `DZ` and `DP` contain numerical fields, which alone do not certify
-their quality. Do not delete the four candidate resources or relax the current
-missing-curated-file guard until the replacement route has the appropriate
+their quality. Do not remove S6G/C38/5IU/5CM resources or relax the current
+missing-curated-file guard until their replacement routes have appropriate
 native evidence. Existing frozen dictionaries and runs retain their provenance.
 
 ### Lab labels and placement scope
@@ -118,7 +126,7 @@ SHA-256 values are compared with Git-verified NASolve CIF bytes below.
 | S6G | `c84f5f1bdbb6155431290d7d342435d1ad4ef17b0100776ec99d6b8ea3f3bf3b` | Exact match after removing line-end spaces/tabs from bundled S6G; no chemical difference or CIF repair. |
 | C38 | `852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5` | Exact match to bundled C38; no NASolve CIF repair. |
 | 5IU | `c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73` | Exact match to bundled 5IU; no NASolve CIF repair. |
-| A1AAZ | `49022f8c86017f27a8a2364c35f17ca07eb2364dbdb18d66df996226756b1ac6` | Different from bundled DF as labelled; compare chemistry with the explicit identity bridge accounted for. |
+| A1AAZ | `49022f8c86017f27a8a2364c35f17ca07eb2364dbdb18d66df996226756b1ac6` | Exact match after restoring A1AAZ component labels in bundled DF and trimming line ends; no additional chemical difference. |
 
 Cedar's resolver now counts unique **resolved paths**, so symlink aliases no
 longer cause false ambiguity. Two distinct resolved files still fail closed,
@@ -176,6 +184,11 @@ scaffold. The explicit `force = G:C` override still affects only the selected
 inter-residue pairing recipe.
 
 ## Reviewed long deposition-code bridge
+
+User-reported provenance (2026-10-09): the A1AAZ PDB deposition was built
+from the laboratory's DF definition. Recorded origin is DF -> A1AAZ;
+NASolve's runtime conversion goes from deposition identity back to the short
+working label. The comparison confirms agreement of the current dictionaries.
 
 PDB cannot carry a five-character residue name. The one approved exact
 exception is target `(A1AAZ)` -> **DF**: DF's curated deposition identity is
