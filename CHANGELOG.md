@@ -17,6 +17,64 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar native probe scope
+
+- Record successful installed-source lookup for IGU/IMC/CGY/DX and the native
+  IGU construction result. Correct the ad hoc mutation-probe inventory to
+  expect OP3 absence; preserve production phosphate cleanup and explicit
+  terminal intent. Refresh the native ledger with the existing 983-test
+  receipt and verified source hashes. ReadySet/native PostMR qualification
+  remains pending. No runtime, dictionary, coordinate or schema changes.
+
+### Phenix CCD symlink discovery
+
+- Count unique resolved CCD paths in the configured Phenix installation.
+  Phenix 2.2.1-6174 exposes its Python 3.11 library through a `python3.1`
+  symlink; treating both paths as separate dictionaries falsely blocked
+  generic lookup. Separate files still fail as ambiguous, even with identical
+  bytes. Curated precedence, identity checks and numerical-generation gates
+  are unchanged; no CIF, placement recipe or artifact schema changes.
+- Record the user's exact installed-source hashes: bundled C38 and 5IU match
+  Phenix byte-for-byte; S6G differs only in trailing whitespace, verified by
+  reproducing the installed hash from normalized bundled bytes. DF/A1AAZ
+  also matches after component-label and line-end normalization; preserve
+  the short-label bridge and the user-reported DF-to-A1AAZ deposition history.
+  The source audit is complete; DE geometry remains unresolved, and no CIF
+  or placement rule is removed. Add a symlink regression and retain the
+  genuine-ambiguity check. User-local validation at
+  `1443979` passed **16 focused + 31 subtests (2.45 s)** and **983 full +
+  257 subtests (80.81 s)**. Native preparation/geometry validation remains
+  separate and pending.
+
+### Cedar regression diagnostic alignment
+
+- Update the construction-hop regression to expect the specific missing-curated-DZ
+  diagnostic. It still requires `FileNotFoundError`; curated dictionary precedence,
+  the no-fallback guard and runtime behavior are unchanged. The old expectation
+  was the sole failure in the user-local full suite at `d1bf3ea`. The corrected
+  `ccb7608` passed **982 tests + 257 subtests (75.90 s)** locally; native
+  ReadySet and combined-family validation remain separate gates.
+
+### Bundled ligand provenance audit
+
+- Distinguish parameterized adaptations, identity/construction exceptions and
+  unchanged supplier resources in the existing component guide. Confirm the
+  unchanged 5CM source and 5IU parser defect; restore the unresolved DE geometry
+  warning from the archived review. Dictionary bytes, lookup policy and runtime
+  chemistry are unchanged; installed-source comparison remains pending.
+- Clarify lab Q/DQ -> S6G and S/DS -> N-linked IMC intent, distinguishing the
+  currently implemented Q alias from pending DQ/S/DS aliases and the different
+  C-linked hachimoji S chemistry. Separate sulfur/iodine placement from CIF
+  defects; record the duplicate-path diagnosis needed for installed CCD lookup.
+  No alias, coordinate, dictionary or resolver implementation changes here.
+
+### Contributor continuity and branch lifecycle
+
+- Consult the existing documentation and validation history before inferring
+  project intent. Prefer one active development branch and everyday checkout,
+  integrate after scoped scientific gates pass, and promptly retire audited
+  completed branches/worktrees. Runtime behavior and scientific gates are unchanged.
+
 ### Modified-base W Saenger overlays — isolated native integration PASS
 
 - In new W PostMR derivatives, match actual prepared modified bases against

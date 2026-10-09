@@ -1,6 +1,6 @@
 # Native modified-base pair matrix — live validation ledger
 
-Updated **2026-10-08**. **Z:P + off-pair 5CM:G/DF:A integration:
+Updated **2026-10-09**. **Z:P + off-pair 5CM:G/DF:A integration:
 SOLVED numerically, user visual PASS.** User now requests **one combined
 D:T+B:S+Z:P+K:X W challenge** before isolated follow-up controls;
 this simultaneous native experiment is **NOT RUN**.
@@ -21,7 +21,7 @@ See the [compact handoff](development-handoff.md) for project-wide priority.
 | Native Z:P/W AutoRefine | **SOLVED (numerical)** | New `GZ11_ZP/AutoMR/run_003`, `refine-001`; frozen integrity OK; D:1 phosphate protection retained. No Rwork/Rfree numbers or final `.geo` metrics copied into this ledger. |
 | Human Coot review of `run_003` | **INSPECTED_PASS (overall visual only)** | User reported excellent refinement appearance, bonds and planes present and mild tolerable nonideal planarity. Individual-site map/clash/angular statistics and true experimental chemistry remain unverified. |
 | `nasolve show` workflow | **USER LIVE PASS** | PR #25 merged at `e8613bf`; user `workspace use` for existing `run_003`, then **bare `./nasolve show` succeeded in Coot**. New-campaign automatic workspace activation has regression, not yet this specific live exercise. |
-| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four distinct named pair sites, plus 5CM:G and DF:A. **Workbook overlay regression passed**, but genuine native chemistry/monomer preparation is NOT RUN. IGU/IMC/CGY/DX CIFs still absent from committed resources. |
+| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One model with four named pair sites, plus 5CM:G and DF:A. **Workbook overlay regression passed**, Phenix packaged CCD lookup and isolated Coot monomer construction for IGU/IMC/CGY/DX **PASS**, but ReadySet numerical generation and combined native run **NOT TESTED**. CIFs remain unbundled in NASolve. |
 | Five independent A:T/D:T/B:S/Z:P/K:X controls | **OPTIONAL DIAGNOSTIC FALLBACK; NOT RUN** | Retain released upstream staging helper for later failure isolation; do not mistake its five datasets for the requested simultaneous test. |
 | Independent source `1W5→DZ`, `1WA→DP` P2 | **SEPARATELY PENDING NATIVE** | This 42-residue synthetic-target W test does not exercise genuine source-code normalization. |
 | Prepared nonstandard P5, Registration/Topo/GUI | **SEPARATE WORKSTREAMS** | Their prior evidence and unfinished gates retain exactly their original scope. |
@@ -95,25 +95,71 @@ yet passed native preflight, PostMR or Phenix refinement.
 Actual NASolve Pine source audit on 2026-10-08 confirms packaged
 `S6G.cif`, `1AP.cif`, `DZ.cif`, `DP.cif`, `5CM.cif` and
 `DF.cif`, but **not `IGU.cif`, `IMC.cif`, `CGY.cif` or `DX.cif`**.
-`S6G` is thioguanine and is G-like, **not** the Benner S analogue;
-its existing CIF cannot substitute for `IMC`. The 2026-10-08
+`S6G` is thioguanine and is G-like; the lab's **S/DS means IMC**,
+N-linked 5-methyl-isodeoxycytidine. IMC is distinct from the C-linked S used
+in modern hachimoji chemistry; see the [identity clarification](modified-component-preparation.md#lab-labels-and-placement-scope).
+The S6G CIF cannot substitute for IMC. The 2026-10-08
 user correction is supported by the published IMC-containing
 [PDB 7SDK](https://www.rcsb.org/structure/7SDK), but the exact S-role
 atom mapping must still pass the bundled-workbook regression.
 Resolve existing, authoritative Phenix/CCD monomer definitions for these
-**four** codes using a validated library-first pathway. Verify atom
-names, coordinates, component group, bonds, stereochemistry and source
-provenance; only then freeze a derived per-run dictionary or curate a
-known-problem exception. NARestraints workbook roles alone cannot define
-complete monomer geometry. If unavailable, **BLOCK** the combined native
-PostMR attempt with that reason; do not invent molecules, mislabel
-canonical ones or count a skipped chemistry case as a pass.
+**four** codes using a validated library-first pathway. The user confirmed
+they are **already present** in configured Phenix 2.2.1 at
+`lib/python3.11/site-packages/chem_data/chemical_components/<letter>/data_<CODE>.cif`.
+All four pass NASolve CCD identity checks; all four are **not
+parameterized** (`_parameterized_codes` returned false).
+A real headless Coot 1.3.3 test read the four CIFs (status **41–44**)
+and constructed the four monomers (molecule IDs **0–3**). NASolve's
+packaged `CODE.cif` files remain absent, but the chemistry is not missing.
+
+**Cedar branch** has a draft generic Phenix CCD resolver and a guard against
+using unparameterized raw CCD inputs if ReadySet does not provide numerical
+restraint targets. User-local regression at `1443979` passed **16 focused +
+31 subtests (2.45 s)** and **983 full + 257 subtests (80.81 s)**. The duplicate
+Phenix paths are verified symlink aliases; Cedar counts unique resolved paths.
+On 2026-10-09 the user's checkout at `e5a22fc` resolved and identity-validated
+all four files through the actual configured Phenix 2.2.1 installation.
+`_parameterized_codes` still returned false for each:
+
+| Component | Installed source SHA256 |
+| --- | --- |
+| IGU | `1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f` |
+| IMC | `c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c` |
+| CGY | `14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d` |
+| DX | `6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0` |
+
+**IGU construction probe:** under the user's `NASolve-live-tests` anchor,
+`cedar-igu-readyset-i1cfveeg/` retains `source_IGU.cif`, `build_igu.py`,
+`coot.log`, `IGU.pdb` and `probe.json`. Real headless Coot 1.3.3 returned
+successfully. The ad hoc full-CCD heavy-atom check then reported only
+`missing={('OP3', 'O'): 1}; extra={}`. That check used the wrong expectation
+for the intended mutation-oriented probe: OP3 is excluded from this probe's
+expected atom set. Do not add OP3 merely to satisfy the diagnostic. The user
+reaffirmed the existing mutation policy; this is a probe correction, not a
+dictionary defect or a request to change production phosphate behavior.
+The original receipt was written before the failed check and does not record
+an inventory PASS. Preserve it and record subsequent checks separately.
+
+The production contract remains connectivity-aware cleanup before NARestraints
+and after ReadySet, with selected-site `NASnoOP3` dictionary profiles where
+applicable. Explicitly declared terminal-phosphate chemistry, including W D:1,
+has its own existing contract. A standalone construction/parameterization
+probe does not establish polymer connectivity or close that native gate.
+
+**Next:** run the native ReadySet numerical-target probe on the OP3-free IGU
+model. ReadySet has not yet run for this probe. Native PostMR and the combined
+challenge remain pending. Verify final atom names, covalent connectivity,
+numerical restraints and frozen provenance before calling them native passes.
+NARestraints workbook roles alone cannot define complete monomer geometry.
+If unavailable, **BLOCK** the combined native PostMR attempt with that reason;
+do not invent molecules, mislabel canonical ones or count a skipped chemistry
+case as a pass.
 
 The first candidate mixed-family unit run on the old S6G fixture
 returned **39 passed, 1 failed, 2 subtests passed**. The new case correctly
 stopped with `No reviewed NARestraints recipe for B:G` at A:6/C:10;
 NARestraints had read S6G as G-like. Following the user's correction, the candidate uses **IMC**, explicitly
-asserts the published workbook classifies it as Benner **S**, and checks
+asserts the published workbook classifies it in category **S**, and checks
 exact pair contact counts. **The corrected mixed-family case passed
 1/1; full focused integration passed 40 + 2 subtests and full NASolve
 passed 967 + 226 subtests (85.38 s).**
@@ -137,10 +183,12 @@ stager/config and disjoint hashed copies are needed before planning.
    The native **all-family** experiment remains unrun. Verify installed
    v1.1.3 imports/workbook checksum before new execution; do not
    modify the dirty sibling NARestraints tree.
-2. **Source component dictionaries first:** review authoritative
-   `IGU`, `IMC`, `CGY`, `DX` monomer CIFs and atom-role compatibility, explicitly
-   documenting any missing names/dictionaries. No synthetic source data
-   becomes a release resource without scientific provenance.
+2. **Source graphs located; numerical geometry next:** all four official
+   Phenix CCD files were located and Coot constructed each monomer.
+   Cedar's installed-source lookup is now verified; obtain and verify ReadySet/eLBOW
+   numerical targets for each component, with exact atom names, covalent
+   connectivity and phosphate/dictionary provenance. Raw CCD graphs may
+   not masquerade as refinement dictionaries.
 3. **Stage and freeze *one* combined challenge:** allocate a fresh disjoint
    directory under `~/NASolve-live-tests`, hash/copy the real GZ11
    reflections/CIF/summary and W search model, record the exact above

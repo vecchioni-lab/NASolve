@@ -13,6 +13,132 @@ four-member DiU/5CM full-auto results live in the
 subsections below document their then-current stages rather than overriding
 this update.
 
+## Bundled ligand audit (2026-10-09)
+
+Audit code point: `ccb7608b21d5bb994a973130298edaced24acf0c`. The nine
+`CURATED_LIGANDS` entries combine source selection, construction recipes,
+identity bridges and numerical restraint profiles. Membership is not evidence
+that an upstream CIF was defective, nor that the bundled numerical geometry
+has completed scientific review. This audit changes documentation only.
+
+| Component | Evidence from history and source comparison | Recommendation |
+| --- | --- | --- |
+| **1AP** | `af08c5a` replaced a raw CCD graph with parameterized MonomerLibrary data after the failed eLBOW attempt. Direct comparison with pinned source blob `1be06d4bb0848891fd3e7dca22d217dd2ad1b69b` finds only audit comments and `NON-POLYMER -> DNA`; numerical geometry is unchanged. | Retain the parameterized override and selected phosphate profile. The failed generated dictionary and polymer typing, not a demonstrated defect in all upstream 1AP sources, justify this route. |
+| **DE** | The current eLBOW file has never changed since its addition at `b8317b0`. September's 1AP integration and handoff explicitly leave DE geometry defective and replacement unapproved. It is byte-identical to the historical repository-root eLBOW `8RO.cif` after changing the component label to DE; that historical file is not proof of official CCD equivalence. | Retain the lab identity/construction exception, but reopen geometry repair. Do not describe the existing file as a validated repaired dictionary or infer an approved `8RO -> DE` conversion. |
+| **DF** | Added at `b8317b0` ("mutation works; patched DF"); retains the laboratory working label, `C2-S1` construction and deposition identity `A1AAZ`. User comparison found only component-label and trailing-whitespace differences. Restoring A1AAZ labels in the Git-verified DF file and trimming line ends reproduces the installed Phenix SHA-256 exactly. This is a graph/coordinate source without numerical bond targets. | Retain the short working label, exact identity bridge and sulfur-placement recipe. No additional chemical repair relative to the inspected A1AAZ source is present. The user reports creating the A1AAZ deposition from lab DF; historical origin and runtime label conversion have opposite directions. |
+| **DZ** | Direct comparison with pinned MonomerLibrary blob `9e6151658d2887ef3902d170c77752ccc90159d4` finds comments and `NON-POLYMER -> DNA` only. Numerical geometry is unchanged. | Retain the parameterized DNA resource and C-glycoside/linked-phosphate treatment; this is a sourced adaptation, not invented geometry. |
+| **DP** | Direct comparison with pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` finds only `NON-POLYMER -> DNA`. Numerical geometry is unchanged. | Retain the parameterized DNA resource and linked-phosphate treatment. True source-native P2 validation remains separate. |
+| **5CM** | Added at `984f75d` after Q5cm stopped because the then-local-only resolver lacked a file. It is byte-for-byte identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`; no supplier repair. | Remove the *broken-dictionary* classification. This remains a useful pinned numerical resource; removing it needs native proof that the generic route supplies compatible numerical geometry and phosphate handling. |
+| **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. The user-supplied complete diff shows trailing whitespace only. Removing line-end spaces/tabs from the Git-verified bundled source reproduces the installed Phenix SHA-256 exactly; atom names, charges, bond orders, stereochemistry, coordinates and metadata are unchanged. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is thioguanine; the lab's S is IMC. That selection error does not establish a dictionary defect. |
+| **C38** | Added at `739e6df` with iodine construction/AutoSol support; no subsequent CIF edits or identified supplier repair. The current coordinate reader gives ring `C5-I` = 2.094074 A. Its bytes match the user's installed Phenix 2.2.1-6174 CCD exactly. | Candidate for generic source lookup, preserving iodine placement/topology and numerical-generation checks. |
+| **5IU** | Added at `739e6df`; CIF bytes have not changed. `984f75d` fixed the parser stripping the prime from `C5'`: direct calculation gives ring `C5-I5` = 2.095111 A and sugar `C5'-I5` = 8.843030 A. | Candidate for generic source lookup. The long apparent iodine bond was a NASolve parser defect; preserve the fix and iodine-placement rule. Its bytes match the user's installed Phenix 2.2.1-6174 CCD exactly. |
+
+Evidence: [1AP integration](history/1ap-phosphate-integration.md),
+[September handoff](history/development-handoff-2026-09-29.md.txt),
+[component/parser recovery](full-auto-patch-handoff.md),
+the three packaged provenance JSON files, and per-file Git history through the
+audit code point. Upstream comparison used the exact Git blobs in
+[MonomerLibrary/monomers](https://github.com/MonomerLibrary/monomers), not a
+moving branch or a claim about the user's installed Phenix version. The four
+downloaded source blobs and all nine NASolve CIFs were hashed against their
+Git identities; the coordinate checks used the audited NASolve reader.
+
+**DE remains an unresolved scientific item.** The current file declares group
+`rna`, lacks OP3 and lists `C4-S4` as a single bond with a 1.816 A target. These
+are source observations, not permission to edit bond order, targets or terminal
+chemistry automatically. The archived note explicitly requires reviewed monomer
+geometry and a fresh ED comparison before changing the sulfur pair target.
+Passing limited topology checks or the full Python suite does not close that
+review; no later committed DE replacement was found.
+
+**Audit decision:** retain the specific bundled roles of 1AP, DE, DF, DZ and
+DP, with DE geometry still unresolved. S6G/C38/5IU contain no supplier-chemistry
+repairs; their placement recipes remain needed independently of source lookup.
+5CM is an unchanged, pinned parameterized MonomerLibrary resource, rather than
+a broken-source exception. The nine-entry source audit is complete for the
+inspected versions; it does not certify DE geometry or native parameterization.
+
+**Migration boundary:** source identity, atom names, elements/charges,
+bonds/stereochemistry and coordinates match for the inspected S6G/C38/5IU
+Phenix sources and the DF/A1AAZ bridge. This establishes source equivalence,
+not the native readiness of a replacement lookup route. Keep construction
+recipes independently of file-source policy. `DF`, `S6G`, `C38` and `5IU` need generated numerical restraints; `1AP`,
+`DE`, `5CM`, `DZ` and `DP` contain numerical fields, which alone do not certify
+their quality. Do not remove S6G/C38/5IU/5CM resources or relax the current
+missing-curated-file guard until their replacement routes have appropriate
+native evidence. Existing frozen dictionaries and runs retain their provenance.
+
+### Lab labels and placement scope
+
+User clarification on 2026-10-09 fixes the intended lab vocabulary below.
+These names do not establish equivalence to a similarly named official CCD
+component. The existing `1W5 -> DZ` and `1WA -> DP` chemistry overrides stay.
+
+| Lab name | Intended component | Current implementation at `afc4496` |
+| --- | --- | --- |
+| F / DF | 2-thio-dT, deposition identity A1AAZ | F -> DF and A1AAZ -> DF are implemented for the working PDB route. |
+| E / DE | 4-thio-dT, preserving the exception for the problematic 8RO source | E -> DE is implemented. This does not certify the old DE geometry or make the official 8RO graph an approved source. |
+| Q / DQ | S6G thioguanine | Q -> S6G exists; DQ is not an implemented alias. |
+| S / DS | IMC, N-linked 5-methyl-isodeoxycytidine | Literal IMC is accepted; S and DS are not implemented input aliases. |
+
+The released [NARestraints v1.1.3 table](https://github.com/vecchioni-lab/NARestraints/blob/a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691/restraints/data/Ligands.xlsx)
+contains DE/DF placeholders and IMC/S6G records, but no DQ or DS rows.
+A future lab-alias bridge should resolve DQ -> S6G and S/DS -> IMC while
+retaining requested labels in provenance; it need not create DQ/DS CIF copies.
+The user's separate unpublished workbook is outside this audit.
+
+IMC's `C1'-N1` bond is explicit in MonomerLibrary source blob
+`d6701f39a17afee7763894d4133a4844a83720e6`.
+The C-linked S in [modern ALIEN/hachimoji work](https://doi.org/10.1038/s41467-025-61991-9)
+is different chemistry. Describe the combined challenge as lab B:S = IGU:IMC;
+earlier wording equating IMC with that C-linked S was too broad. No official
+CCD assignment for the bare code DS is inferred from the lab name.
+
+**Placement is a separate concern from source repair.** Current
+`postmr._restore_shared_parent_coordinates` restores shared same-element atoms
+after Coot overlap. Its declared sulfur substitutions place the new atom along
+the canonical parent C-O vector, retaining the C-S distance measured in the
+raw Coot-built monomer. Its declared iodine substituents point away from the
+midpoint of the two mapped ring neighbors and use the CIF ideal-coordinate
+C-I distance. These preserve placement relative to the restored scaffold;
+neither operation demonstrates a supplier CIF defect. The broad sulfur
+sanity interval is not an element-specific validated refinement target.
+
+The intended direction is reusable placement from an unambiguous chemical
+graph/anchor mapping and sourced geometry, with dictionary-source policy
+independent of the recipe. Numerical bond/angle targets, when available, should
+be preferred to treating generated coordinates as geometry authority. Apply
+a terminal-substituent rule only to a matching chemical environment; an S/F/Cl/Br/I
+element label alone is insufficient. Keep the current scoped recipes while
+validating a replacement. Add a bundled override when a demonstrated source
+defect or representation requirement warrants one, with exact source and
+reviewed differences; do not build a blanket repaired sulfur/halogen library.
+No 5CM source defect was found.
+
+**Installed-source receipt (2026-10-09):** the user read and hashed the four
+Phenix **2.2.1-6174** files without executing Phenix or Coot. For each component,
+`lib/python3.1/...` and `lib/python3.11/...` resolve to the same file under
+`lib/python3.11/site-packages/chem_data/chemical_components/`. The returned
+SHA-256 values are compared with Git-verified NASolve CIF bytes below.
+
+| Installed component | Installed SHA-256 | Bundled comparison |
+| --- | --- | --- |
+| S6G | `c84f5f1bdbb6155431290d7d342435d1ad4ef17b0100776ec99d6b8ea3f3bf3b` | Exact match after removing line-end spaces/tabs from bundled S6G; no chemical difference or CIF repair. |
+| C38 | `852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5` | Exact match to bundled C38; no NASolve CIF repair. |
+| 5IU | `c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73` | Exact match to bundled 5IU; no NASolve CIF repair. |
+| A1AAZ | `49022f8c86017f27a8a2364c35f17ca07eb2364dbdb18d66df996226756b1ac6` | Exact match after restoring A1AAZ component labels in bundled DF and trimming line ends; no additional chemical difference. |
+
+Cedar's resolver now counts unique **resolved paths**, so symlink aliases no
+longer cause false ambiguity. Two distinct resolved files still fail closed,
+even when their bytes match; no arbitrary glob selection or content-based
+source merging is introduced. The regression recreates this relative Python
+directory symlink and checks genuine ambiguity alongside it. Bundled precedence,
+identity validation and numerical parameterization requirements remain intact.
+This lookup fix and source equality do not certify native geometry or remove
+any CIF. User-local focused and full-checkout regression passed at `1443979`;
+see the current [handoff](development-handoff.md) for exact commands/counts
+and the separate, still-pending native validation.
+
 ## Intermediate construction hops
 
 The intermediate is a Coot placement convenience, not the final identity,
@@ -58,6 +184,11 @@ scaffold. The explicit `force = G:C` override still affects only the selected
 inter-residue pairing recipe.
 
 ## Reviewed long deposition-code bridge
+
+User-reported provenance (2026-10-09): the A1AAZ PDB deposition was built
+from the laboratory's DF definition. Recorded origin is DF -> A1AAZ;
+NASolve's runtime conversion goes from deposition identity back to the short
+working label. The comparison confirms agreement of the current dictionaries.
 
 PDB cannot carry a five-character residue name. The one approved exact
 exception is target `(A1AAZ)` -> **DF**: DF's curated deposition identity is

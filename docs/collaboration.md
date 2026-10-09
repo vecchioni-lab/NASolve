@@ -14,6 +14,36 @@ but are not implementation instructions.
 
 See [`docs/README.md`](README.md) for the complete documentation map.
 
+Before diagnosing an established problem or proposing a change, read the current
+handoff and the relevant subsystem contract. Follow their links to validation
+receipts, history and Git when prior decisions or failed attempts matter.
+Use recorded evidence before reconstructing intent from chat memory or inference;
+verify it against the actual checkout and name any remaining uncertainty.
+Update the smallest authoritative document rather than creating another status
+file or appending a session transcript.
+
+## Branch and worktree lifecycle
+
+Prefer **one active development branch and one everyday checkout**. Arboreal
+branch names are welcome. Integrate completed, reviewed work into its parent
+branch, and the development branch into `main`, as soon as its bounded scientific
+and software acceptance gates support it. A longer-lived branch is acceptable;
+parallel branches and worktrees need a concrete isolation reason, a named
+integration target and a retirement point recorded in the current handoff.
+Future features must not become new gates for an otherwise complete change.
+
+Retire completed or explicitly abandoned branches, PRs and disposable worktrees
+promptly. Verify exact local and remote heads, integration (including file-tree
+or patch equivalence after squash merges), unique commits, active processes,
+and tracked, untracked and ignored files first. Preserve scientific runs, source
+data, maps, Free-R, environments, unpublished workbooks and local-only work.
+Remove only audited disposable worktrees, then their retired branches and stale
+references; never force deletion to make housekeeping appear complete.
+
+Keep current branch, integration target, tested commit and remaining gates in
+the existing development handoff. Public code, documentation and PR descriptions
+use professional language; private collaboration jokes remain in private notes.
+
 ## Command available from any directory
 
 The tracked launcher can be linked into an existing `PATH` directory. From the

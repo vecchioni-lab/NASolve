@@ -1,7 +1,8 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-08**. **Working branch: `pine`.** Finish the bounded
-Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
+Updated **2026-10-09**. **Active candidate: `cedar`; integration branch: `pine`.**
+Finish Cedar's existing validation gates and merge it into Pine, then retire
+Cedar. Finish the bounded Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
 into `main`, then the **blind AlphaFold geometry baseline**, then
 **operational Scout**. No GUI/Topo Net implementation is a prerequisite.
 This is the compact active handoff, not a chronology. The complete previous
@@ -11,7 +12,7 @@ handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.m
 
 | Workstream | Verified result | Remaining gate |
 | --- | --- | --- |
-| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
+| NARestraints | **v1.1.3 released and installed** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Active user .venv imported 1.1.3 from site-packages; workbook SHA-256 `94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2`. | Combined Z:P/B:S/K:X/D:T native challenge pending; raw CCD source chemistry is found and Coot construction validated, but refinement parameters still need native proof. |
 | Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
 | Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
 | P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
@@ -23,7 +24,7 @@ handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.m
 PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
 combined head returned **967 tests + 226 subtests PASS** before squash
 merge. The post-merge Pine checkout has not been rerun on the user's terminal.
-One earlier first-pass mixed fixture with S6G instead of Benner IMC correctly
+One earlier first-pass mixed fixture with S6G instead of the lab's IMC correctly
 failed closed as B:G; the reviewed IMC replacement passed. Neither unit
 tests nor numerical `SOLVED` establish experimental chemistry or deposition
 approval.
@@ -33,10 +34,63 @@ approval.
 1. **Next engineering slice — library-first generic monomer resolver.**
    With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
    merged, the combined-family workbook regression is green, but four
-   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve.
-   NASolve currently requires a local `CODE.cif` before Coot parent-overlap,
-   whereas ReadySet normally runs *after* that placement. Resolve existing
-   validated Phenix/CCD monomers before asking for curated overrides, and
+   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve,
+   but Phenix 2.2.1's `chem_data/chemical_components` contains all four.
+   User ran **real headless Coot**: dictionaries loaded (41–44) and all four
+   monomers constructed (0–3). Each CCD graph passes NASolve identity
+   validation; none contains numerical geometry parameters. A **Cedar draft
+   patch** now resolves these from configured Phenix before Coot, with
+   SHA256 source snapshots and a fail-closed numerical ReadySet gate.
+   **Latest user-local validation (2026-10-09):** tested commit
+   `1443979b2308e4a2e507f0859370b44e0e124a86`, including the Phenix symlink
+   fix: focused Cedar **16 passed + 31 subtests (2.45 s)**; full suite
+   **983 passed + 257 subtests (80.81 s)**. Both ran from `NASolve-cedar`
+   with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD/src"`
+   and `../NASolve/.venv/bin/python -m pytest -q`; the focused run selected
+   `tests/test_cedar_ccd_resolver.py`. The earlier isolated relocation check
+   also passed. Native PostMR/ReadySet and combined-family scientific
+   validation remain pending; the regression receipt does not close them.
+   **Nine-entry source audit complete for inspected versions:** the
+   [ligand audit](modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
+   separates actual overrides, identity bridges, construction recipes and
+   unchanged supplier copies. 5CM is unchanged upstream data; 5IU's long-bond
+   failure was the corrected C5/C5' parser bug. C38 and 5IU exactly match
+   the user's installed Phenix 2.2.1-6174 sources by SHA-256. S6G also matches
+   after removing trailing whitespace, with no chemical difference. These
+   remain candidate generic sources, with construction recipes and
+   numerical-generation checks retained.
+   **DE's old geometry
+   repair remains unresolved**; do not label it validated simply because it
+   is bundled. Preserve 1AP/DZ/DP profiles and `A1AAZ→DF`. Current code still
+   loads all nine locally and fails closed when missing/invalid; no resource
+   or guard is removed by the audit. `OHU.cif` stays local-first, non-curated.
+   The expanded Cedar matrix audits all nine source paths and Coot loaders;
+   Python regression evidence does not certify native chemical geometry.
+   Lab Q/DQ denotes S6G; lab S/DS denotes N-linked IMC, distinct from
+   C-linked hachimoji S. Q works today; DQ/S/DS aliases are not implemented.
+   Preserve the mandatory 1W5/1WA -> DZ/DP overrides. The two Phenix paths
+   per component are verified aliases of one file (`python3.1 -> python3.11`).
+   Cedar now deduplicates resolved paths while rejecting separate competing
+   files. The fix now has full local regression coverage. DF and installed
+   A1AAZ differ only in component labels and trailing whitespace, verified
+   against the installed hash. The user created the A1AAZ deposition from
+   lab DF; retain the inverse runtime label bridge. Keep the specific bundled
+   roles of 1AP/DE/DF/DZ/DP. S6G/C38/5IU and 5CM are ordinary sourced data,
+   with placement and numerical-profile needs preserved independently.
+   Actual installed-source lookup is now verified for IGU/IMC/CGY/DX;
+   all four still lack numerical targets. The new headless IGU construction
+   probe returned successfully, with OP3 as the only difference from the full
+   CCD heavy-atom set. Correct that ad hoc check to expect the OP3-free
+   mutation-oriented probe; do not add OP3 or change the existing phosphate
+   contract. ReadySet has not yet run on this probe. The exact source hashes,
+   retained probe artifacts and scope are in the
+   [native ledger](native-modified-pair-live-validation.md#dictionary-availability-is-a-hard-prerequisite).
+   Continue Cedar's existing native ReadySet/PostMR qualification next.
+   Source migration, general placement and new aliases are follow-up work,
+   not additional gates for the bounded Cedar change.
+   Placement recipes and dictionary-source selection have separate purposes; see the
+   [scope decision](modified-component-preparation.md#lab-labels-and-placement-scope).
+   Prefer validated Phenix/CCD monomers only for non-curated components, and
    where supported produce an **audited, frozen derivative**, never
    fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
    Keep exceptional local recipes only for demonstrated broken cases.
@@ -138,10 +192,30 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Work discipline and doc ownership
 
+- **Read the relevant doc swarm before inferring context:** start here and
+  follow the documentation map to subsystem contracts and prior evidence.
+  Verify historical claims against the actual commit and returned output.
+- **One active development branch and one everyday checkout.** Follow the
+  [branch lifecycle](collaboration.md#branch-and-worktree-lifecycle): merge when
+  the scoped scientific gates support it, then retire completed branches and
+  disposable worktrees promptly. Additional worktrees are bounded exceptions.
+  **Cleanup verified user-local on 2026-10-08:** PR #24/#25 worktrees and
+  remote branches are retired after local-file audits and exact file-tree
+  equivalence with their squash merges in Pine. Their original commits remain
+  accessible through the merged PR histories. Nine historical local branches
+  were removed only after proving full containment in Pine; the stale temporary
+  worktree registration was pruned with its commit preserved in main/Pine.
+  Local `main` was fast-forwarded to `fec66eb`. The final worktree inventory
+  contains only the original `NASolve` checkout on Pine and active detached
+  `NASolve-cedar`; retire Cedar after its existing gates and integration.
+  On 2026-10-09 the clean `NARestraints-pairfix` checkout and merged role-fix
+  remote branch were also retired after verifying equivalence with v1.1.3;
+  original NARestraints remains protected. `NASolve-lab-notes` is intentionally
+  retained as a private notebook at the user's request.
 - **One terminal action per user turn** for live NASolve debugging, then
-  inspect the output before proceeding. Prefer isolated Git worktrees
-  for candidates. Preserve the user's dirty `../NARestraints` tree (including
-  unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
+  inspect the output before proceeding. Preserve the user's dirty
+  `../NARestraints` tree (including unpublished `Ligands.xlsx` and Excel
+  lockfile), the original NASolve
   untracked files/patches, all immutable numbered runs, maps and Free-R.
 - Do not represent an unrun test as passing. Keep native-tool receipt,
   chemical identity, numerical statistics and human Coot verdict as

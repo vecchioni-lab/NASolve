@@ -238,13 +238,18 @@ writing. Full sequences expand over the frozen per-chain residue inventory;
 application precedence is sequence, standard pair, then explicit mutation.
 Every ordinary base change restores the pre-Coot sugar/phosphate coordinates.
 For mutations outside the curated registry, `ligand_definition` requires one
-NARestraints record and derives a compatible Coot construction parent from
-`Sugar Type` and `Base Analog`. `ligand_dictionary` requires a local
-`ligands/CODE.cif`; no network retrieval occurs. The generic dictionary check
-verifies `_chem_comp.id`, while curated entries keep their explicit topology
-checks and take precedence. This permits OHU mutation with the included CIF
-without claiming general topology or atom-mapping inference. The inferred Coot
-parent is not necessarily the component's official CCD parent.
+NARestraints record and derives a Coot construction parent from `Sugar Type`
+and the recognized `Source sheet`, with `Base Analog` as the category fallback.
+`ligand_dictionary` prefers a local `ligands/CODE.cif`; otherwise, for registered
+non-curated components, it uses the CCD library beside the configured Phenix
+ReadySet executable. Symlink aliases count as one resolved source; separate
+files remain ambiguous even if their bytes match. No network retrieval or
+alternate-installation search occurs. The generic dictionary check verifies
+`_chem_comp.id`, while curated entries retain their explicit topology checks,
+local precedence and missing-file guard. Raw CCD graphs still need usable
+numerical restraints from ReadySet before `POSTMR_READY`. The existing local
+OHU route remains available without implying general topology or atom-mapping
+inference. A construction parent is not necessarily the official CCD parent.
 
 For mirrored runs, canonical targets are translated to the NARestraints L-side
 codes (`0DA`, `0DC`, `0DG`, `0DT`, and RNA equivalents). Exact mirrored models

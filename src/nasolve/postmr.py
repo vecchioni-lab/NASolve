@@ -1444,6 +1444,40 @@ def _run_readyset(
     return checked, log, generated_cif if generated_cif.is_file() else None, command, phosphate_audit
 
 
+def _require_generic_parameterization(
+    sources: Mapping[str, Mapping[str, object]],
+    generated_cif: Path | None,
+    readyset_log: Path,
+) -> None:
+    """Reject generic source-only CCD graphs without final numerical targets.
+
+    Curated ligand behavior remains unchanged: only non-curated, unparameterized
+    inputs must be backed by a parameterized ReadySet component of the same ID.
+    """
+    try:
+        generated = (
+            _parameterized_codes(generated_cif)
+            if generated_cif is not None else set()
+        )
+    except (OSError, ValueError, TypeError) as exc:
+        raise PostMRPreparationError(
+            f"Cannot audit ReadySet numerical ligand targets: {exc}; inspect {readyset_log}"
+        ) from exc
+    missing = sorted(
+        code for code, source_info in sources.items()
+        if code not in CURATED_LIGANDS
+        and not source_info["parameterized"]
+        and code not in generated
+    )
+    if missing:
+        raise PostMRPreparationError(
+            "ReadySet did not generate parameterized ligand restraints for "
+            + ", ".join(missing)
+            + f"; inspect {readyset_log}. Raw CCD chemistry cannot substitute for "
+            "numerical bond/angle targets; use validated eLBOW preparation if needed."
+        )
+
+
 def _write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
@@ -1526,13 +1560,17 @@ def prepare_postmr(
     })
     ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
     ligand_sources: dict[str, Path] = {}
+    initial_dictionary_hashes: dict[str, str] = {}
     for code in target_ligand_codes:
         try:
-            dictionary = ligand_dictionary(code, data_root).resolve()
+            dictionary = ligand_dictionary(
+                code, data_root, ready_set_executable=ready_set_executable
+            ).resolve()
             validate_ligand_dictionary(code, dictionary)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
         ligand_sources[code] = dictionary
+        initial_dictionary_hashes[code] = file_sha256(dictionary)
 
     raw_targets = _target_sites(report, original, run_directory=run)
     requested_changes = component_target_changes(raw_targets)
@@ -1840,9 +1878,12 @@ def prepare_postmr(
     )
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []
+    dictionary_source_provenance: dict[str, dict[str, object]] = {}
     for code in ligand_codes:
         try:
-            source = ligand_sources.get(code) or ligand_dictionary(code, data_root).resolve()
+            source = ligand_sources.get(code) or ligand_dictionary(
+                code, data_root, ready_set_executable=ready_set_executable
+            ).resolve()
             validate_ligand_dictionary(code, source)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
@@ -1853,6 +1894,19 @@ def prepare_postmr(
         source_directory.mkdir(exist_ok=True)
         source_snapshot = source_directory / f"{code}.cif"
         source_sha = file_sha256(source)
+        if code in initial_dictionary_hashes and source_sha != initial_dictionary_hashes[code]:
+            raise PostMRPreparationError(
+                f"Source dictionary for {code} changed since Coot mutation"
+            )
+        dictionary_source_provenance[code] = {
+            "origin": str(source),
+            "sha256": source_sha,
+            "kind": (
+                "installed-phenix-ccd" if code not in CURATED_LIGANDS
+                and source.name == f"data_{code}.cif" else "local-verified"
+            ),
+            "parameterized": code in _parameterized_codes(source),
+        }
         shutil.copyfile(source, source_snapshot)
         if (file_sha256(source_snapshot) != source_sha
                 or file_sha256(source) != source_sha):
@@ -1891,6 +1945,9 @@ def prepare_postmr(
         environment,
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
+    )
+    _require_generic_parameterization(
+        dictionary_source_provenance, generated_cif, readyset_log
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
@@ -2026,6 +2083,7 @@ def prepare_postmr(
     }
     postmr_payload["dictionary_precedence"] = {
         "policy": "parameterized-inputs-over-readyset-v2",
+        "input_source_provenance": dictionary_source_provenance,
         "authoritative_codes": sorted(
             (set(ligand_codes) & AUTHORITATIVE_CODES)
             | {code for path in copied_cifs for code in _parameterized_codes(path)}),
