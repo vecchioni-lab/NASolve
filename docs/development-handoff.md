@@ -55,9 +55,10 @@ approval.
    separates actual overrides, identity bridges, construction recipes and
    unchanged supplier copies. 5CM is unchanged upstream data; 5IU's long-bond
    failure was the corrected C5/C5' parser bug. C38 and 5IU exactly match
-   the user's installed Phenix 2.2.1-6174 sources by SHA-256; S6G differs,
-   and its content comparison remains pending. These remain candidate generic
-   sources with construction recipes and numerical-generation checks retained.
+   the user's installed Phenix 2.2.1-6174 sources by SHA-256. S6G also matches
+   after removing trailing whitespace, with no chemical difference. These
+   remain candidate generic sources, with construction recipes and
+   numerical-generation checks retained.
    **DE's old geometry
    repair remains unresolved**; do not label it validated simply because it
    is bundled. Preserve 1AP/DZ/DP profiles and `A1AAZ→DF`. Current code still
@@ -71,7 +72,7 @@ approval.
    per component are verified aliases of one file (`python3.1 -> python3.11`).
    Cedar now deduplicates resolved paths while rejecting separate competing
    files. The fix now has full local regression coverage; next compare
-   S6G and DF/A1AAZ contents.
+   DF/A1AAZ contents with the component-label bridge accounted for.
    Placement recipes and dictionary-source selection have separate purposes; see the
    [scope decision](modified-component-preparation.md#lab-labels-and-placement-scope).
    Prefer validated Phenix/CCD monomers only for non-curated components, and
