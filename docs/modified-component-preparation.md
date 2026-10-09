@@ -127,8 +127,9 @@ source merging is introduced. The regression recreates this relative Python
 directory symlink and checks genuine ambiguity alongside it. Bundled precedence,
 identity validation and numerical parameterization requirements remain intact.
 This lookup fix and source equality do not certify native geometry or remove
-any CIF. Full-checkout validation of the fix is still pending; see the current
-handoff for the separate regression and native receipts.
+any CIF. User-local focused and full-checkout regression passed at `1443979`;
+see the current [handoff](development-handoff.md) for exact commands/counts
+and the separate, still-pending native validation.
 
 ## Intermediate construction hops
 

@@ -41,19 +41,15 @@ approval.
    validation; none contains numerical geometry parameters. A **Cedar draft
    patch** now resolves these from configured Phenix before Coot, with
    SHA256 source snapshots and a fail-closed numerical ReadySet gate.
-   **Latest user-local validation (2026-10-09):** full suite at
-   `ccb7608b21d5bb994a973130298edaced24acf0c` **982 passed + 257 subtests
-   (75.90 s)**. Earlier focused PostMR/Saenger/Cedar at `d1bf3ea` passed
-   **50 + 31 subtests (5.28 s)**. Its sole full-suite failure was a stale
-   expected missing-DZ diagnostic; `ccb7608` corrected only that assertion
-   and documentation. Native PostMR/ReadySet remains pending. The subsequent
-   Phenix symlink fix changes runtime lookup and needs a new focused/full-suite
-   receipt; the `ccb7608` result does not cover it. Isolated source validation
-   ran four selected resolver tests against the released NARestraints loader:
-   the symlink/count cases failed before the fix; all four passed afterward
-   (0.480 s), after relocating the module snapshot and removing its old path.
-   This was an AST-selected unittest harness, not the full Cedar test module;
-   this agent environment lacks pytest/Biopython and a complete checkout.
+   **Latest user-local validation (2026-10-09):** tested commit
+   `1443979b2308e4a2e507f0859370b44e0e124a86`, including the Phenix symlink
+   fix: focused Cedar **16 passed + 31 subtests (2.45 s)**; full suite
+   **983 passed + 257 subtests (80.81 s)**. Both ran from `NASolve-cedar`
+   with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD/src"`
+   and `../NASolve/.venv/bin/python -m pytest -q`; the focused run selected
+   `tests/test_cedar_ccd_resolver.py`. The earlier isolated relocation check
+   also passed. Native PostMR/ReadySet and combined-family scientific
+   validation remain pending; the regression receipt does not close them.
    **Reassess the nine bundled entries by evidence:** the
    [ligand audit](modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
    separates actual overrides, identity bridges, construction recipes and
@@ -74,7 +70,8 @@ approval.
    Preserve the mandatory 1W5/1WA -> DZ/DP overrides. The two Phenix paths
    per component are verified aliases of one file (`python3.1 -> python3.11`).
    Cedar now deduplicates resolved paths while rejecting separate competing
-   files. Validate that fix locally, then compare S6G and DF/A1AAZ contents.
+   files. The fix now has full local regression coverage; next compare
+   S6G and DF/A1AAZ contents.
    Placement recipes and dictionary-source selection have separate purposes; see the
    [scope decision](modified-component-preparation.md#lab-labels-and-placement-scope).
    Prefer validated Phenix/CCD monomers only for non-curated components, and
