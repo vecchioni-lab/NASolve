@@ -1,6 +1,6 @@
 # Native modified-base pair matrix — live validation ledger
 
-Updated **2026-10-08**. **Z:P + off-pair 5CM:G/DF:A integration:
+Updated **2026-10-09**. **Z:P + off-pair 5CM:G/DF:A integration:
 SOLVED numerically, user visual PASS.** User now requests **one combined
 D:T+B:S+Z:P+K:X W challenge** before isolated follow-up controls;
 this simultaneous native experiment is **NOT RUN**.
@@ -95,8 +95,10 @@ yet passed native preflight, PostMR or Phenix refinement.
 Actual NASolve Pine source audit on 2026-10-08 confirms packaged
 `S6G.cif`, `1AP.cif`, `DZ.cif`, `DP.cif`, `5CM.cif` and
 `DF.cif`, but **not `IGU.cif`, `IMC.cif`, `CGY.cif` or `DX.cif`**.
-`S6G` is thioguanine and is G-like, **not** the Benner S analogue;
-its existing CIF cannot substitute for `IMC`. The 2026-10-08
+`S6G` is thioguanine and is G-like; the lab's **S/DS means IMC**,
+N-linked 5-methyl-isodeoxycytidine. IMC is distinct from the C-linked S used
+in modern hachimoji chemistry; see the [identity clarification](modified-component-preparation.md#lab-labels-and-placement-scope).
+The S6G CIF cannot substitute for IMC. The 2026-10-08
 user correction is supported by the published IMC-containing
 [PDB 7SDK](https://www.rcsb.org/structure/7SDK), but the exact S-role
 atom mapping must still pass the bundled-workbook regression.
@@ -112,8 +114,10 @@ packaged `CODE.cif` files remain absent, but the chemistry is not missing.
 
 **Cedar branch** now has a draft generic Phenix CCD resolver and
 a guard against using unparameterized raw CCD inputs if ReadySet does not
-provide numerical restraint targets; the new code has NOT YET passed local
-regression or native PostMR. Verify Coot output atom names, phosphate
+provide numerical restraint targets. User-local regression at `ccb7608`
+passed **982 tests + 257 subtests (75.90 s)**; native PostMR remains pending.
+A later source comparison returned two paths per component and skipped content
+checks; inspect their resolved targets before assuming native resolver readiness. Verify Coot output atom names, phosphate
 connectivity, ReadySet/eLBOW parameterisation, and frozen provenance before
 calling this a native pass. NARestraints workbook roles alone cannot
 define complete monomer geometry. If unavailable, **BLOCK** the combined native
@@ -124,7 +128,7 @@ The first candidate mixed-family unit run on the old S6G fixture
 returned **39 passed, 1 failed, 2 subtests passed**. The new case correctly
 stopped with `No reviewed NARestraints recipe for B:G` at A:6/C:10;
 NARestraints had read S6G as G-like. Following the user's correction, the candidate uses **IMC**, explicitly
-asserts the published workbook classifies it as Benner **S**, and checks
+asserts the published workbook classifies it in category **S**, and checks
 exact pair contact counts. **The corrected mixed-family case passed
 1/1; full focused integration passed 40 + 2 subtests and full NASolve
 passed 967 + 226 subtests (85.38 s).**

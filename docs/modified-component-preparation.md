@@ -29,7 +29,7 @@ has completed scientific review. This audit changes documentation only.
 | **DZ** | Direct comparison with pinned MonomerLibrary blob `9e6151658d2887ef3902d170c77752ccc90159d4` finds comments and `NON-POLYMER -> DNA` only. Numerical geometry is unchanged. | Retain the parameterized DNA resource and C-glycoside/linked-phosphate treatment; this is a sourced adaptation, not invented geometry. |
 | **DP** | Direct comparison with pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` finds only `NON-POLYMER -> DNA`. Numerical geometry is unchanged. | Retain the parameterized DNA resource and linked-phosphate treatment. True source-native P2 validation remains separate. |
 | **5CM** | Added at `984f75d` after Q5cm stopped because the then-local-only resolver lacked a file. It is byte-for-byte identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`; no supplier repair. | Remove the *broken-dictionary* classification. This remains a useful pinned numerical resource; removing it needs native proof that the generic route supplies compatible numerical geometry and phosphate handling. |
-| **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. Exact installed-CCD equality is not yet checked. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is not Benner S (IMC); that selection error does not establish a dictionary defect. |
+| **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. Exact installed-CCD equality is not yet checked. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is thioguanine; the lab's S is IMC. That selection error does not establish a dictionary defect. |
 | **C38** | Added at `739e6df` with iodine construction/AutoSol support; no subsequent CIF edits or identified supplier repair. The current coordinate reader gives ring `C5-I` = 2.094074 A. Installed-CCD equality is pending. | Candidate for generic source lookup, preserving iodine placement/topology and numerical-generation checks. |
 | **5IU** | Added at `739e6df`; CIF bytes have not changed. `984f75d` fixed the parser stripping the prime from `C5'`: direct calculation gives ring `C5-I5` = 2.095111 A and sugar `C5'-I5` = 8.843030 A. | Candidate for generic source lookup. The long apparent iodine bond was a NASolve parser defect; preserve the fix and iodine-placement rule. Installed-CCD equality is pending. |
 
@@ -59,6 +59,61 @@ policy. `DF`, `S6G`, `C38` and `5IU` need generated numerical restraints; `1AP`,
 their quality. Do not delete the four candidate resources or relax the current
 missing-curated-file guard until the replacement route has the appropriate
 native evidence. Existing frozen dictionaries and runs retain their provenance.
+
+### Lab labels and placement scope
+
+User clarification on 2026-10-09 fixes the intended lab vocabulary below.
+These names do not establish equivalence to a similarly named official CCD
+component. The existing `1W5 -> DZ` and `1WA -> DP` chemistry overrides stay.
+
+| Lab name | Intended component | Current implementation at `afc4496` |
+| --- | --- | --- |
+| F / DF | 2-thio-dT, deposition identity A1AAZ | F -> DF and A1AAZ -> DF are implemented for the working PDB route. |
+| E / DE | 4-thio-dT, preserving the exception for the problematic 8RO source | E -> DE is implemented. This does not certify the old DE geometry or make the official 8RO graph an approved source. |
+| Q / DQ | S6G thioguanine | Q -> S6G exists; DQ is not an implemented alias. |
+| S / DS | IMC, N-linked 5-methyl-isodeoxycytidine | Literal IMC is accepted; S and DS are not implemented input aliases. |
+
+The released [NARestraints v1.1.3 table](https://github.com/vecchioni-lab/NARestraints/blob/a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691/restraints/data/Ligands.xlsx)
+contains DE/DF placeholders and IMC/S6G records, but no DQ or DS rows.
+A future lab-alias bridge should resolve DQ -> S6G and S/DS -> IMC while
+retaining requested labels in provenance; it need not create DQ/DS CIF copies.
+The user's separate unpublished workbook is outside this audit.
+
+IMC's `C1'-N1` bond is explicit in MonomerLibrary source blob
+`d6701f39a17afee7763894d4133a4844a83720e6`.
+The C-linked S in [modern ALIEN/hachimoji work](https://doi.org/10.1038/s41467-025-61991-9)
+is different chemistry. Describe the combined challenge as lab B:S = IGU:IMC;
+earlier wording equating IMC with that C-linked S was too broad. No official
+CCD assignment for the bare code DS is inferred from the lab name.
+
+**Placement is a separate concern from source repair.** Current
+`postmr._restore_shared_parent_coordinates` restores shared same-element atoms
+after Coot overlap. Its declared sulfur substitutions place the new atom along
+the canonical parent C-O vector, retaining the C-S distance measured in the
+raw Coot-built monomer. Its declared iodine substituents point away from the
+midpoint of the two mapped ring neighbors and use the CIF ideal-coordinate
+C-I distance. These preserve placement relative to the restored scaffold;
+neither operation demonstrates a supplier CIF defect. The broad sulfur
+sanity interval is not an element-specific validated refinement target.
+
+The intended direction is reusable placement from an unambiguous chemical
+graph/anchor mapping and sourced geometry, with dictionary-source policy
+independent of the recipe. Numerical bond/angle targets, when available, should
+be preferred to treating generated coordinates as geometry authority. Apply
+a terminal-substituent rule only to a matching chemical environment; an S/F/Cl/Br/I
+element label alone is insufficient. Keep the current scoped recipes while
+validating a replacement. Add a bundled override when a demonstrated source
+defect or representation requirement warrants one, with exact source and
+reviewed differences; do not build a blanket repaired sulfur/halogen library.
+No 5CM source defect was found.
+
+The first installed-source comparison returned **two paths per component**
+for S6G, C38, 5IU and A1AAZ, so it compared no contents. Resolve paths and hashes
+before choosing sources. Cedar currently resolves each candidate path but does
+not deduplicate aliases of the same file; symlink duplicates could therefore
+trip its ambiguity guard. Distinct files or versions must not be selected by
+arbitrary glob order. Diagnosis and any resolver change remain pending local
+path evidence.
 
 ## Intermediate construction hops
 

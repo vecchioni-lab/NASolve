@@ -24,7 +24,7 @@ handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.m
 PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
 combined head returned **967 tests + 226 subtests PASS** before squash
 merge. The post-merge Pine checkout has not been rerun on the user's terminal.
-One earlier first-pass mixed fixture with S6G instead of Benner IMC correctly
+One earlier first-pass mixed fixture with S6G instead of the lab's IMC correctly
 failed closed as B:G; the reviewed IMC replacement passed. Neither unit
 tests nor numerical `SOLVED` establish experimental chemistry or deposition
 approval.
@@ -60,6 +60,13 @@ approval.
    or guard is removed by the audit. `OHU.cif` stays local-first, non-curated.
    The expanded Cedar matrix audits all nine source paths and Coot loaders;
    Python regression evidence does not certify native chemical geometry.
+   Lab Q/DQ denotes S6G; lab S/DS denotes N-linked IMC, distinct from
+   C-linked hachimoji S. Q works today; DQ/S/DS aliases are not implemented.
+   Preserve the mandatory 1W5/1WA -> DZ/DP overrides. The source comparison
+   found two paths for each of S6G/C38/5IU/A1AAZ and skipped content checks;
+   inspect resolved paths/hashes before changing lookup policy. Placement
+   recipes and dictionary-source selection have separate purposes; see the
+   [scope decision](modified-component-preparation.md#lab-labels-and-placement-scope).
    Prefer validated Phenix/CCD monomers only for non-curated components, and
    where supported produce an **audited, frozen derivative**, never
    fabricate bonds/stereochemistry from NARestraints' atom-role mappings.

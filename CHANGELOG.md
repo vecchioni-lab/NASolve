@@ -33,6 +33,11 @@ entries are reconstructed from repository history.
   unchanged 5CM source and 5IU parser defect; restore the unresolved DE geometry
   warning from the archived review. Dictionary bytes, lookup policy and runtime
   chemistry are unchanged; installed-source comparison remains pending.
+- Clarify lab Q/DQ -> S6G and S/DS -> N-linked IMC intent, distinguishing the
+  currently implemented Q alias from pending DQ/S/DS aliases and the different
+  C-linked hachimoji S chemistry. Separate sulfur/iodine placement from CIF
+  defects; record the duplicate-path diagnosis needed for installed CCD lookup.
+  No alias, coordinate, dictionary or resolver implementation changes here.
 
 ### Contributor continuity and branch lifecycle
 
