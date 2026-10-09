@@ -77,7 +77,15 @@ approval.
    lab DF; retain the inverse runtime label bridge. Keep the specific bundled
    roles of 1AP/DE/DF/DZ/DP. S6G/C38/5IU and 5CM are ordinary sourced data,
    with placement and numerical-profile needs preserved independently.
-   Return to Cedar's existing native ReadySet/PostMR qualification next.
+   Actual installed-source lookup is now verified for IGU/IMC/CGY/DX;
+   all four still lack numerical targets. The new headless IGU construction
+   probe returned successfully, with OP3 as the only difference from the full
+   CCD heavy-atom set. Correct that ad hoc check to expect the OP3-free
+   mutation-oriented probe; do not add OP3 or change the existing phosphate
+   contract. ReadySet has not yet run on this probe. The exact source hashes,
+   retained probe artifacts and scope are in the
+   [native ledger](native-modified-pair-live-validation.md#dictionary-availability-is-a-hard-prerequisite).
+   Continue Cedar's existing native ReadySet/PostMR qualification next.
    Source migration, general placement and new aliases are follow-up work,
    not additional gates for the bounded Cedar change.
    Placement recipes and dictionary-source selection have separate purposes; see the

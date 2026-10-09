@@ -112,17 +112,48 @@ A real headless Coot 1.3.3 test read the four CIFs (status **41–44**)
 and constructed the four monomers (molecule IDs **0–3**). NASolve's
 packaged `CODE.cif` files remain absent, but the chemistry is not missing.
 
-**Cedar branch** now has a draft generic Phenix CCD resolver and
-a guard against using unparameterized raw CCD inputs if ReadySet does not
-provide numerical restraint targets. User-local regression at `ccb7608`
-passed **982 tests + 257 subtests (75.90 s)**; native PostMR remains pending.
-A later source comparison returned two paths per component and skipped content
-checks; inspect their resolved targets before assuming native resolver readiness. Verify Coot output atom names, phosphate
-connectivity, ReadySet/eLBOW parameterisation, and frozen provenance before
-calling this a native pass. NARestraints workbook roles alone cannot
-define complete monomer geometry. If unavailable, **BLOCK** the combined native
-PostMR attempt with that reason; do not invent molecules, mislabel
-canonical ones or count a skipped chemistry case as a pass.
+**Cedar branch** has a draft generic Phenix CCD resolver and a guard against
+using unparameterized raw CCD inputs if ReadySet does not provide numerical
+restraint targets. User-local regression at `1443979` passed **16 focused +
+31 subtests (2.45 s)** and **983 full + 257 subtests (80.81 s)**. The duplicate
+Phenix paths are verified symlink aliases; Cedar counts unique resolved paths.
+On 2026-10-09 the user's checkout at `e5a22fc` resolved and identity-validated
+all four files through the actual configured Phenix 2.2.1 installation.
+`_parameterized_codes` still returned false for each:
+
+| Component | Installed source SHA256 |
+| --- | --- |
+| IGU | `1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f` |
+| IMC | `c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c` |
+| CGY | `14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d` |
+| DX | `6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0` |
+
+**IGU construction probe:** under the user's `NASolve-live-tests` anchor,
+`cedar-igu-readyset-i1cfveeg/` retains `source_IGU.cif`, `build_igu.py`,
+`coot.log`, `IGU.pdb` and `probe.json`. Real headless Coot 1.3.3 returned
+successfully. The ad hoc full-CCD heavy-atom check then reported only
+`missing={('OP3', 'O'): 1}; extra={}`. That check used the wrong expectation
+for the intended mutation-oriented probe: OP3 is excluded from this probe's
+expected atom set. Do not add OP3 merely to satisfy the diagnostic. The user
+reaffirmed the existing mutation policy; this is a probe correction, not a
+dictionary defect or a request to change production phosphate behavior.
+The original receipt was written before the failed check and does not record
+an inventory PASS. Preserve it and record subsequent checks separately.
+
+The production contract remains connectivity-aware cleanup before NARestraints
+and after ReadySet, with selected-site `NASnoOP3` dictionary profiles where
+applicable. Explicitly declared terminal-phosphate chemistry, including W D:1,
+has its own existing contract. A standalone construction/parameterization
+probe does not establish polymer connectivity or close that native gate.
+
+**Next:** run the native ReadySet numerical-target probe on the OP3-free IGU
+model. ReadySet has not yet run for this probe. Native PostMR and the combined
+challenge remain pending. Verify final atom names, covalent connectivity,
+numerical restraints and frozen provenance before calling them native passes.
+NARestraints workbook roles alone cannot define complete monomer geometry.
+If unavailable, **BLOCK** the combined native PostMR attempt with that reason;
+do not invent molecules, mislabel canonical ones or count a skipped chemistry
+case as a pass.
 
 The first candidate mixed-family unit run on the old S6G fixture
 returned **39 passed, 1 failed, 2 subtests passed**. The new case correctly
@@ -154,7 +185,7 @@ stager/config and disjoint hashed copies are needed before planning.
    modify the dirty sibling NARestraints tree.
 2. **Source graphs located; numerical geometry next:** all four official
    Phenix CCD files were located and Coot constructed each monomer.
-   Validate Cedar's resolver, then obtain and verify ReadySet/eLBOW
+   Cedar's installed-source lookup is now verified; obtain and verify ReadySet/eLBOW
    numerical targets for each component, with exact atom names, covalent
    connectivity and phosphate/dictionary provenance. Raw CCD graphs may
    not masquerade as refinement dictionaries.

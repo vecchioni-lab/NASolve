@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar native probe scope
+
+- Record successful installed-source lookup for IGU/IMC/CGY/DX and the native
+  IGU construction result. Correct the ad hoc mutation-probe inventory to
+  expect OP3 absence; preserve production phosphate cleanup and explicit
+  terminal intent. Refresh the native ledger with the existing 983-test
+  receipt and verified source hashes. ReadySet/native PostMR qualification
+  remains pending. No runtime, dictionary, coordinate or schema changes.
+
 ### Phenix CCD symlink discovery
 
 - Count unique resolved CCD paths in the configured Phenix installation.
