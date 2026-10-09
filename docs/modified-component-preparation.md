@@ -29,9 +29,9 @@ has completed scientific review. This audit changes documentation only.
 | **DZ** | Direct comparison with pinned MonomerLibrary blob `9e6151658d2887ef3902d170c77752ccc90159d4` finds comments and `NON-POLYMER -> DNA` only. Numerical geometry is unchanged. | Retain the parameterized DNA resource and C-glycoside/linked-phosphate treatment; this is a sourced adaptation, not invented geometry. |
 | **DP** | Direct comparison with pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` finds only `NON-POLYMER -> DNA`. Numerical geometry is unchanged. | Retain the parameterized DNA resource and linked-phosphate treatment. True source-native P2 validation remains separate. |
 | **5CM** | Added at `984f75d` after Q5cm stopped because the then-local-only resolver lacked a file. It is byte-for-byte identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`; no supplier repair. | Remove the *broken-dictionary* classification. This remains a useful pinned numerical resource; removing it needs native proof that the generic route supplies compatible numerical geometry and phosphate handling. |
-| **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. Exact installed-CCD equality is not yet checked. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is thioguanine; the lab's S is IMC. That selection error does not establish a dictionary defect. |
-| **C38** | Added at `739e6df` with iodine construction/AutoSol support; no subsequent CIF edits or identified supplier repair. The current coordinate reader gives ring `C5-I` = 2.094074 A. Installed-CCD equality is pending. | Candidate for generic source lookup, preserving iodine placement/topology and numerical-generation checks. |
-| **5IU** | Added at `739e6df`; CIF bytes have not changed. `984f75d` fixed the parser stripping the prime from `C5'`: direct calculation gives ring `C5-I5` = 2.095111 A and sugar `C5'-I5` = 8.843030 A. | Candidate for generic source lookup. The long apparent iodine bond was a NASolve parser defect; preserve the fix and iodine-placement rule. Installed-CCD equality is pending. |
+| **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. The user's installed Phenix CCD has a different SHA-256; the chemical significance of that difference remains unexamined. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is thioguanine; the lab's S is IMC. That selection error does not establish a dictionary defect. |
+| **C38** | Added at `739e6df` with iodine construction/AutoSol support; no subsequent CIF edits or identified supplier repair. The current coordinate reader gives ring `C5-I` = 2.094074 A. Its bytes match the user's installed Phenix 2.2.1-6174 CCD exactly. | Candidate for generic source lookup, preserving iodine placement/topology and numerical-generation checks. |
+| **5IU** | Added at `739e6df`; CIF bytes have not changed. `984f75d` fixed the parser stripping the prime from `C5'`: direct calculation gives ring `C5-I5` = 2.095111 A and sugar `C5'-I5` = 8.843030 A. | Candidate for generic source lookup. The long apparent iodine bond was a NASolve parser defect; preserve the fix and iodine-placement rule. Its bytes match the user's installed Phenix 2.2.1-6174 CCD exactly. |
 
 Evidence: [1AP integration](history/1ap-phosphate-integration.md),
 [September handoff](history/development-handoff-2026-09-29.md.txt),
@@ -107,13 +107,28 @@ defect or representation requirement warrants one, with exact source and
 reviewed differences; do not build a blanket repaired sulfur/halogen library.
 No 5CM source defect was found.
 
-The first installed-source comparison returned **two paths per component**
-for S6G, C38, 5IU and A1AAZ, so it compared no contents. Resolve paths and hashes
-before choosing sources. Cedar currently resolves each candidate path but does
-not deduplicate aliases of the same file; symlink duplicates could therefore
-trip its ambiguity guard. Distinct files or versions must not be selected by
-arbitrary glob order. Diagnosis and any resolver change remain pending local
-path evidence.
+**Installed-source receipt (2026-10-09):** the user read and hashed the four
+Phenix **2.2.1-6174** files without executing Phenix or Coot. For each component,
+`lib/python3.1/...` and `lib/python3.11/...` resolve to the same file under
+`lib/python3.11/site-packages/chem_data/chemical_components/`. The returned
+SHA-256 values are compared with Git-verified NASolve CIF bytes below.
+
+| Installed component | Installed SHA-256 | Bundled comparison |
+| --- | --- | --- |
+| S6G | `c84f5f1bdbb6155431290d7d342435d1ad4ef17b0100776ec99d6b8ea3f3bf3b` | Different bytes; content comparison remains pending. |
+| C38 | `852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5` | Exact match to bundled C38; no NASolve CIF repair. |
+| 5IU | `c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73` | Exact match to bundled 5IU; no NASolve CIF repair. |
+| A1AAZ | `49022f8c86017f27a8a2364c35f17ca07eb2364dbdb18d66df996226756b1ac6` | Different from bundled DF as labelled; compare chemistry with the explicit identity bridge accounted for. |
+
+Cedar's resolver now counts unique **resolved paths**, so symlink aliases no
+longer cause false ambiguity. Two distinct resolved files still fail closed,
+even when their bytes match; no arbitrary glob selection or content-based
+source merging is introduced. The regression recreates this relative Python
+directory symlink and checks genuine ambiguity alongside it. Bundled precedence,
+identity validation and numerical parameterization requirements remain intact.
+This lookup fix and source equality do not certify native geometry or remove
+any CIF. Full-checkout validation of the fix is still pending; see the current
+handoff for the separate regression and native receipts.
 
 ## Intermediate construction hops
 

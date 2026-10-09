@@ -17,6 +17,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Phenix CCD symlink discovery
+
+- Count unique resolved CCD paths in the configured Phenix installation.
+  Phenix 2.2.1-6174 exposes its Python 3.11 library through a `python3.1`
+  symlink; treating both paths as separate dictionaries falsely blocked
+  generic lookup. Separate files still fail as ambiguous, even with identical
+  bytes. Curated precedence, identity checks and numerical-generation gates
+  are unchanged; no CIF, placement recipe or artifact schema changes.
+- Record the user's exact installed-source hashes: bundled C38 and 5IU match
+  Phenix byte-for-byte. S6G and DF/A1AAZ need content comparison. Add a symlink
+  regression and retain the genuine-ambiguity check. Isolated source checks
+  pass; focused/full-checkout and native validation of this fix remain pending.
+
 ### Cedar regression diagnostic alignment
 
 - Update the construction-hop regression to expect the specific missing-curated-DZ

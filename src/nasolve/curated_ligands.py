@@ -295,7 +295,9 @@ def ligand_dictionary(
         f"lib/python*/site-packages/chem_data/chemical_components/"
         f"{code[0].lower()}/data_{code}.cif"
     )
-    candidates = sorted(p.resolve() for p in install_root.glob(relative) if p.is_file())
+    # Phenix may expose one Python library through several symlinked paths.
+    # Count each resolved source once; distinct copies remain ambiguous.
+    candidates = sorted({p.resolve() for p in install_root.glob(relative) if p.is_file()})
     if len(candidates) != 1:
         raise FileNotFoundError(
             f"Expected one Phenix CCD for {code} beside {executable}, "

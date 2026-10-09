@@ -46,14 +46,23 @@ approval.
    (75.90 s)**. Earlier focused PostMR/Saenger/Cedar at `d1bf3ea` passed
    **50 + 31 subtests (5.28 s)**. Its sole full-suite failure was a stale
    expected missing-DZ diagnostic; `ccb7608` corrected only that assertion
-   and documentation. Native PostMR/ReadySet remains pending. Documentation
-   updates after this receipt do not imply new runtime validation.
+   and documentation. Native PostMR/ReadySet remains pending. The subsequent
+   Phenix symlink fix changes runtime lookup and needs a new focused/full-suite
+   receipt; the `ccb7608` result does not cover it. Isolated source validation
+   ran four selected resolver tests against the released NARestraints loader:
+   the symlink/count cases failed before the fix; all four passed afterward
+   (0.480 s), after relocating the module snapshot and removing its old path.
+   This was an AST-selected unittest harness, not the full Cedar test module;
+   this agent environment lacks pytest/Biopython and a complete checkout.
    **Reassess the nine bundled entries by evidence:** the
    [ligand audit](modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
    separates actual overrides, identity bridges, construction recipes and
    unchanged supplier copies. 5CM is unchanged upstream data; 5IU's long-bond
-   failure was the corrected C5/C5' parser bug. S6G/C38/5IU are candidate
-   generic sources, pending installed-source comparison. **DE's old geometry
+   failure was the corrected C5/C5' parser bug. C38 and 5IU exactly match
+   the user's installed Phenix 2.2.1-6174 sources by SHA-256; S6G differs,
+   and its content comparison remains pending. These remain candidate generic
+   sources with construction recipes and numerical-generation checks retained.
+   **DE's old geometry
    repair remains unresolved**; do not label it validated simply because it
    is bundled. Preserve 1AP/DZ/DP profiles and `A1AAZ→DF`. Current code still
    loads all nine locally and fails closed when missing/invalid; no resource
@@ -62,10 +71,11 @@ approval.
    Python regression evidence does not certify native chemical geometry.
    Lab Q/DQ denotes S6G; lab S/DS denotes N-linked IMC, distinct from
    C-linked hachimoji S. Q works today; DQ/S/DS aliases are not implemented.
-   Preserve the mandatory 1W5/1WA -> DZ/DP overrides. The source comparison
-   found two paths for each of S6G/C38/5IU/A1AAZ and skipped content checks;
-   inspect resolved paths/hashes before changing lookup policy. Placement
-   recipes and dictionary-source selection have separate purposes; see the
+   Preserve the mandatory 1W5/1WA -> DZ/DP overrides. The two Phenix paths
+   per component are verified aliases of one file (`python3.1 -> python3.11`).
+   Cedar now deduplicates resolved paths while rejecting separate competing
+   files. Validate that fix locally, then compare S6G and DF/A1AAZ contents.
+   Placement recipes and dictionary-source selection have separate purposes; see the
    [scope decision](modified-component-preparation.md#lab-labels-and-placement-scope).
    Prefer validated Phenix/CCD monomers only for non-curated components, and
    where supported produce an **audited, frozen derivative**, never

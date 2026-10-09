@@ -198,11 +198,28 @@ class CedarCCDResolverTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "does not declare"):
             validate_ligand_dictionary("IGU", source)
 
+    def test_python_directory_symlink_is_one_ccd_source(self) -> None:
+        expected = self.ccd("IGU")
+        # Phenix 2.2.1 exposes python3.1 as a symlink to python3.11.
+        (self.phenix / "lib" / "python3.1").symlink_to(
+            "python3.11", target_is_directory=True
+        )
+        found = ligand_dictionary(
+            "IGU", self.data_root, ready_set_executable=self.executable
+        )
+        self.assertEqual(found, expected.resolve())
+        validate_ligand_dictionary("IGU", found)
+
     def test_absent_or_ambiguous_phenix_ccd_fails_closed(self) -> None:
         with self.assertRaisesRegex(FileNotFoundError, "Expected one Phenix CCD"):
             ligand_dictionary("IGU", self.data_root, ready_set_executable=self.executable)
         self.ccd("IGU", "3.11")
         self.ccd("IGU", "3.12")
+        (self.phenix / "lib" / "python3.1").symlink_to(
+            "python3.11", target_is_directory=True
+        )
+        # Separate copies remain ambiguous even with identical bytes; the
+        # additional alias must not make the source count three.
         with self.assertRaisesRegex(FileNotFoundError, "found 2"):
             ligand_dictionary("IGU", self.data_root, ready_set_executable=self.executable)
 
