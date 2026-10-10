@@ -18,7 +18,9 @@ repaired native interpretation, including DF linkage, effective bonds/chirality
 and preserved other/custom proxies. Bounded geometry minimization subsequently
 completed awaiting review and exposed a DP angle/planarity inconsistency.
 The exact relaxed model has user-reported Coot visual PASS; DP numerical
-repair/audit and full numerical qualification remain pending.
+repair/audit and full numerical qualification remain pending. The first DP
+generation stopped on a primed-ID seed-parser mismatch without a candidate;
+corrected serialization and consumer-reader preflight precede the next retry.
 This is not yet a fresh generic full-auto result. Exact evidence and the
 bounded recovery sequence belong in the [native ledger](native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery).
 
@@ -424,7 +426,10 @@ and continuation for ordinary passing cases. No AI interaction or NASolve source
 patch should be required during an ordinary run.
 
 1. Resolve/cache source bytes independently of the small reviewed-override
-   registry. Check graph, hydrogen attachments, formal charge, stereochemistry,
+   registry. Verify generated seeds with both an independent CIF round-trip and
+   the installed consumer reader; compare atom/bond/chirality fields before
+   generation (see `GRAPH-01` in the methods). Check graph, hydrogen attachments,
+   formal charge, stereochemistry,
    numerical terms/references, restraint coverage and effective Phenix proxies.
    Keep chemical-state differences and unsupported comparisons explicit.
 2. If declared policy permits regeneration, run a bounded, versioned generator

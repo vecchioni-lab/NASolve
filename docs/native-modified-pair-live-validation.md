@@ -355,23 +355,52 @@ This is **user-reported visual PASS** for that model; no screenshots were
 required or independently inspected. Preserve that positive visual verdict
 separately from the open DP numerical-restraint conflict and convergence review.
 
-### Next native boundary — DP candidate and audit
+### DP candidate attempt — blocked by seed-parser disagreement
 
-Generate a disposable DP candidate from the reviewed frozen graph, then audit
-source preservation, numerical angle/plane consistency and effective native
-restraints before a clean rerun. Keep the original DP source and successful
-visual model unchanged; generation alone must not adopt the candidate.
-The supplied `combined_dp_candidate.py` stages an untouched source plus a
-graph-only seed in a new `LIVE/combined-dp-candidate-*` directory. The seed
-preserves all **35 atoms / 37 bonds / 4 chirality declarations**, source
-coordinates, explicit charges and H attachments, and alias metadata. It removes
-old numerical targets/energy types and copied descriptors; the explicit graph
-is dianionic (OP2/OP3 each −1), whereas the copied SMILES describes neutral
-phosphate. No new protonation state is selected. AceDRG is called with `-K`
-(no further protonation adjustment) and `-p` (supplied starting coordinates). Source/seed checks
-passed offline; native generation and candidate audit remain pending.
-The visual PASS does not close full numerical qualification, establish
-convergence or imply MTZ/Free-R refinement or experimental chemical identity.
+The first attempt under `LIVE/combined-dp-candidate-csg41ov4` returned
+**BLOCKED**, AceDRG exit **1**, with no candidate produced or adopted. The
+supplied `DP_candidate_review.zip` SHA-256 is
+`ade2e48d70e59e748fcc1c47f3cebc7675e5ee424f4c425159229db914b1b902`;
+all **8** manifest entries were verified. The receipt confirms original source,
+frozen copy and seed unchanged. The failed seed SHA-256 is
+`93c4ebaee4467b235998dea62d03dee35de4bfa2c32e86c41b7c5d5a154f0312`.
+
+`combined_dp_candidate.py` preserved **35 atoms / 37 bonds / 4 chirality
+declarations**, source coordinates, explicit charges/H and alias metadata in
+a graph-only seed, excluding old numerical targets/types and copied neutral-
+phosphate descriptors. The selected graph remains dianionic (OP2/OP3 each −1);
+no new protonation state was selected. Generation used `-K` and `-p`.
+
+The emitted seed passed the Biopython round-trip but single-quoted primed IDs
+such as `'C5''` were mishandled by AceDRG's `aLineToAlist2` reader. AceDRG
+reported only **20 atoms / 21 bonds** and stopped with **KeyError: "'C5'"**.
+Offline replay also found zero parsed chirality declarations.
+This is a serialization/consumer-parser mismatch, not a new DP chemistry
+finding. A successful parse by the writer's own library was insufficient.
+
+### Next native boundary — quoted seed and consumer preflight
+
+The corrected disposable `combined_dp_candidate_v2.py` driver uses double
+quotes for primed atom IDs, verifies the exact seed round-trip, and preflights
+the installed AceDRG reader's atom/bond/chirality fields against the intended
+graph before generation. Offline replay of the unchanged source-extracted
+AceDRG `FileTransformer` class parsed the corrected seed as **35/37/4**, with
+coordinates present and OP2/OP3 charges −1. The selected **7 atom / 5 bond /
+7 chirality fields** matched exactly after removing one outer quote; additional
+reader-derived fields were outside that source comparison. Mutated atom,
+charge, coordinate, bond-order, chirality and coordinate-presence cases were
+rejected. Reader source SHA-256:
+`ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981`.
+Simulated parser/generator exits **19/17** also recorded BLOCKED, preserved
+source/seed hashes and produced valid manifest-backed review bundles. These
+are limited offline checks, not full AceDRG generation or an installed-runtime
+preflight. **The installed preflight, native retry and
+candidate audit remain pending.**
+Preserve the failed attempt and source; generate only in a new disposable
+workspace, with no automatic adoption. After generation, audit graph/state
+preservation, numerical angle/plane consistency and effective native restraints
+before a clean rerun. The relaxed model retains its user visual PASS; DP repair,
+full numerical qualification and convergence remain open.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

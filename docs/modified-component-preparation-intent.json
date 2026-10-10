@@ -161,8 +161,8 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "Disposable DP candidate generation from reviewed frozen graph; no automatic adoption",
-      "Source-preservation, numerical angle/plane and effective-native audits before a clean rerun",
+      "Retry DP generation with v2 double-quoted primed IDs and exact CIF/installed-AceDRG-reader agreement before generation",
+      "Audit any generated candidate for source preservation, angle/plane consistency and effective native terms before adoption/clean rerun",
       "Full numerical qualification/convergence remains open, separately from user visual PASS",
       "Ordinary full-auto reproduction after runtime integration"
     ],
@@ -177,7 +177,7 @@
       "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
       "native_adoption": true,
       "geometry_minimization_completed": true,
-      "next": "Generate and audit a disposable DP candidate before clean rerun; user visual PASS preserved for original relaxed model",
+      "next": "Native retry with combined_dp_candidate_v2.py parser preflight, then candidate audit; preserve failed attempt and user visual PASS",
       "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
       "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
       "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
@@ -227,6 +227,62 @@
         "evidence": "User-reported Coot verdict; no independent screenshot inspection",
         "numerical_qualification_closed": false
       }
+    },
+    "DP_generation_attempt": {
+      "status": "BLOCKED",
+      "root": "LIVE/combined-dp-candidate-csg41ov4",
+      "returncode": 1,
+      "review_zip_sha256": "ade2e48d70e59e748fcc1c47f3cebc7675e5ee424f4c425159229db914b1b902",
+      "manifest_hashes_verified": 8,
+      "seed_sha256": "93c4ebaee4467b235998dea62d03dee35de4bfa2c32e86c41b7c5d5a154f0312",
+      "intended_inventory": {
+        "atoms": 35,
+        "bonds": 37,
+        "chirality_declarations": 4
+      },
+      "AceDRG_parsed_inventory": {
+        "atoms": 20,
+        "bonds": 21,
+        "chirality_declarations": 0,
+        "evidence": "Native log reports atoms/bonds; unchanged-reader offline replay also establishes zero parsed chirality declarations"
+      },
+      "diagnosis": "Single-quoted primed atom IDs round-trip in Biopython but are mishandled by AceDRG aLineToAlist2; KeyError on quoted C5",
+      "originals_unchanged": true,
+      "candidate_produced": false,
+      "adopted_into_run": false,
+      "retry": "combined_dp_candidate_v2.py: double-quoted primed IDs, exact round-trip and installed reader atoms/bonds/chirality preflight",
+      "retry_native_status": "PENDING",
+      "retry_offline_validation": {
+        "scope": "Unchanged source-extracted AceDRG FileTransformer reader class only, not full generator/native execution",
+        "reader_source_sha256": "ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981",
+        "inventory": {
+          "atoms": 35,
+          "bonds": 37,
+          "chirality_declarations": 4
+        },
+        "selected_fields_matched": {
+          "atom": 7,
+          "bond": 5,
+          "chirality": 7
+        },
+        "normalization": "Remove one outer quote; additional reader-derived fields excluded from source-field comparison",
+        "has_coordinates": true,
+        "OP2_OP3_formal_charges": [
+          -1,
+          -1
+        ],
+        "rejected_mutations": [
+          "drop atom",
+          "change charge",
+          "change coordinate",
+          "change bond order",
+          "drop chirality",
+          "change chirality sign",
+          "hascoords false"
+        ],
+        "installed_preflight": "PENDING",
+        "simulated_failure_receipts": "Parser exit 19 and generator exit 17: BLOCKED, source/seed preserved, valid manifest-backed review ZIP"
+      }
     }
   },
   "smiles_cif_audit": {
@@ -272,7 +328,8 @@
       "ambiguous_chemistry": "Protonation, tautomer or target ambiguity requires declared intent/reviewed policy; no invented intent",
       "runtime_implemented": false
     },
-    "methods_ref": "docs/cif-restraint-audit-methods.md"
+    "methods_ref": "docs/cif-restraint-audit-methods.md",
+    "parser_agreement": "GRAPH-01 compares exact serialized atom/bond/chirality fields through an independent CIF reader and the installed consumer reader before generation"
   },
   "other_completed_evidence_refs": {
     "four_member_full_auto_and_doctor": "docs/full-auto-patch-handoff.md",

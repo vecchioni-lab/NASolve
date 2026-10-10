@@ -16,9 +16,10 @@ for actual behavior; history is evidence, not a second task queue.
   geometry minimization completed awaiting review. The target fell 97.45% and
   all chirality signs survived; original inputs and the manager were preserved.
   The user reports Coot visual PASS for all modified pairs. A separate DP
-  angle/plane inconsistency remains: generate and audit a disposable candidate
-  before a clean rerun. Full numerical qualification, convergence and fresh
-  ordinary full auto remain open.
+  angle/plane inconsistency remains. The first DP generation was blocked by a
+  primed-ID parser mismatch, without source changes or a candidate; next is a
+  corrected quoting/consumer-reader preflight and retry. Full numerical
+  qualification, convergence and fresh ordinary full auto remain open.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
 - **Queued:** deterministic SMILES/CIF assessment, then separately tested

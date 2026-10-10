@@ -42,7 +42,7 @@ decision thresholds. Do not invent a universal sigma cutoff.
 | Rule | Input and calculation | Output and limits |
 | --- | --- | --- |
 | `PROV-01` | Resolve declared anchored references; verify size/hash before and after; record ordered sources, precedence, code/tool versions and transformations. | Immutable provenance or an explicit missing/mismatch/ambiguity finding. No basename searching or silent substitution. |
-| `GRAPH-01` | Parse component identity, unique atom IDs, elements, bonds and all atom references; construct adjacency and explicit source-to-candidate atom map. | Missing/duplicate IDs, dangling references, graph changes and mapping ambiguity. A connected graph is not proof of chemical correctness. |
+| `GRAPH-01` | Parse component identity, unique atom IDs, elements, bonds and references; construct adjacency/mapping. Compare serialized seeds through an independent CIF reader and the installed consumer reader, including atom/bond/chirality fields. | Missing/duplicate IDs, parser disagreement, dangling references, graph changes and mapping ambiguity. Writer-library round-trip alone is insufficient; connectivity does not prove correct chemistry. |
 | `CHEM-01` | Compare mapped elements, bond orders/aromaticity, explicit H attachments, formal charges and declared stereochemistry under a recorded representation policy. | Separate changes and unsupported comparisons. Check valence using supported element/charge/bond conventions; do not guess unfamiliar coordination chemistry. |
 | `NUM-01` | Inventory required numerical categories; check finite values, units, usable uncertainties/weights, distinct atom references and restraint-specific connectivity. | Missing, unusable or suspicious terms. Presence of any numerical field does not establish complete parameterization. |
 | `TOR-01` | Compare ordered torsion quartets/full reversals, central bonds, periods, alternates, weights and native energetic/constant roles. | Exact redundancy, supported alternate family, competing term or unsupported representation. Do not equate arbitrary permutations or count zero-weight annotations as energetic restraints. |
@@ -67,6 +67,18 @@ interpreter, not merely a convenient file named `CODE.cif`. Preserve generator
 warnings, commands, environment/version receipts and failed candidates. Record
 whether target values were derived from the very model being assessed: low
 residuals against such targets are not independent validation of geometry.
+
+For `GRAPH-01`, validate the consumer's parsed content **before** expensive
+generation. Primed IDs are an observed interoperability case: the first DP seed
+round-tripped through Biopython with 35 atoms/37 bonds, but AceDRG interpreted
+only 20/21 and failed on a single-quoted primed ID. Use consumer-compatible
+serialization (double-quoted primed IDs in this retry), then compare selected
+source atom, bond and chirality fields exactly; counts alone are insufficient.
+Record permitted quote normalization and distinguish added consumer-derived
+fields from source changes. Offline reader replay is not installed generator
+validation. Preserve the failed seed/log. This is a parser failure, not
+permission to delete atoms, alter
+chemistry or weaken the inventory check.
 
 For `CHEM-01`, record explicit versus implicit hydrogen policy, aromaticity and
 resonance handling; report ambiguous graph maps instead of choosing one silently.
@@ -191,6 +203,7 @@ Future tests should use small synthetic reproductions of these failure modes.
 | [5CM active torsion](native-modified-pair-live-validation.md#5cm--confirmed-active-torsion-defect): `inputs/06_07_5CM.cif`, C4'–O4'–C1'–C2 at 340.7°/6.3°/period 1; correct C2' alternative 2.8°/6.1°. | Detect the suspicious/nonbonded proper quartet without renaming it. An explicitly reviewed single-reference correction plus existing normalizer yields primary 340.7°, alternate 2.8°, first sigma 6.3°; preserve source rows and native coverage. |
 | [DF generated replacement](native-modified-pair-live-validation.md#df--generated-replacement-and-source-audit): effective ReadySet supplement versus `DF-CANDIDATE/DF_source_CCD.cif` and `DF.cif`; incorrect aromatic sugar/bond targets and missing active sugar chirality. | Graph, numerical and native tests detect distinct failures. Source-preserving regenerated graph retains explicit H; linked `NASpDF` removes OP3/HOP3/HO3', retains HOP2, verifies the 21 heavy bonds/three signed sugar centres. Preserve old/new charge evidence; no inferred pH repair. |
 | [DP angle/plane conflict](native-modified-pair-live-validation.md#review-findings--dp-angleplane-inconsistency-remains-open): `inputs/08_09_DP.cif`; N5 with C4/C7/C6 in one plane. Targets 109.471°, 120.772°, 109.471° sum to 339.714°; achieved third angle 127.914° versus 109.471°/3°. | Report incompatible exact planar central targets and uncertainty-aware strain; do not manufacture 120° targets. Gram determinant ≈0.40233 permits a three-dimensional pyramid: the conflict is with planarity. Include valid exterior-branch and finite-width near-compatible counterexamples to prevent a universal sum-rule blocker. |
+| [DP seed-parser failure](native-modified-pair-live-validation.md#dp-candidate-attempt--blocked-by-seed-parser-disagreement): 35/37 source inventory became 20/21 in AceDRG before `KeyError: "'C5'"`. | Exercise primed and double-primed IDs across writer and consumer readers; require exact atoms/bonds/chirality agreement before generation. Preserve both failed and corrected seeds and unchanged sources; no candidate/adoption on failure. |
 | [Linked diagnostic](native-modified-pair-live-validation.md#linked-diagnostic--mechanics-pass-chemistry-still-pending), including fresh IMC and `LINKED/linked_audit.json`; [coverage evidence](native-modified-pair-live-validation.md#custom-restraint-coverage--preserved-baseline). | Renamed linkage H is found by adjacency; terminal OP3 survives; retained OP2 H is reported. Matching counts with wrong atoms fail coverage. Unsupported terminal/symmetry cases remain unassessed. |
 
 Also test quartet reversal versus arbitrary permutation, different periods,

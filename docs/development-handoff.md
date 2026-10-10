@@ -41,16 +41,18 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Generate and audit a disposable DP candidate before a clean rerun.**
-   The user reported **visual PASS** in Coot for the exact relaxed model: all
-   modified pairs looked satisfactory and WC-like. The
-   [native ledger](native-modified-pair-live-validation.md#user-visual-review--pass-for-the-relaxed-model)
-   binds that verdict to its model hash and records the separate numerical
-   DP angle/plane conflict. Use the reviewed frozen graph for a new candidate;
-   audit source preservation, numerical consistency and native effective terms
-   before adoption. Preserve the approved visual model and original dictionary.
-   **Full numerical qualification remains PENDING**; no convergence,
-   MTZ/Free-R refinement or production full-auto result is implied.
+1. **Retry DP generation with explicit quoting and consumer-parser preflight.**
+   The first disposable attempt was **BLOCKED**: AceDRG read 20 atoms/21 bonds
+   instead of 35/37 from single-quoted primed IDs, then failed on C5'. Sources
+   are unchanged and no candidate exists or was adopted. The corrected v2
+   driver checks double-quoted seed round-trip and the installed reader's
+   atom/bond/chirality interpretation before generation. Limited offline reader
+   replay passed 35/37/4 and mismatch rejection; installed preflight/native retry
+   remain pending. Audit any candidate before adoption or a clean rerun. The
+   [native ledger](native-modified-pair-live-validation.md#dp-candidate-attempt--blocked-by-seed-parser-disagreement)
+   owns the failure evidence. Preserve the user's **visual PASS** for the
+   relaxed model separately from open DP numerical repair, convergence and full
+   qualification; no MTZ/Free-R or production full-auto result is implied.
 2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
    The current trial used selected numerical CIFs in a frozen resource bundle
    and ad hoc linked derivatives. Acceptance is a new run from declared

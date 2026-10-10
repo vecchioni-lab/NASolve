@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### DP seed-parser retry
+
+- Record the blocked first DP generation: AceDRG misread single-quoted primed
+  IDs, with source bytes unchanged and no candidate/adoption. Add consumer-parser
+  agreement to `GRAPH-01` and queue a double-quoted seed plus installed-reader
+  preflight before retry. The prior model's user visual PASS is preserved;
+  numerical repair remains open. Documentation only.
+
 ### CIF/restraint audit methods
 
 - Capture automatable audit methods, known 5CM/DF/DP cases and proposed evidence
