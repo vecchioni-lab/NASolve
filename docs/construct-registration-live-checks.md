@@ -10,19 +10,14 @@ implementation moves across branches, chats and campaign work.
 Do not mark a check complete before the relevant layer is actually wired into
 the live pipeline.
 
-**Separate live chemistry/human qualification:** the user has elected
-[one combined D:T+B:S+Z:P+K:X W challenge](native-modified-pair-live-validation.md)
-with four distinct sites plus 5CM:G and DF:A; this **has not yet run**
-natively and requires missing IGU/IMC/CGY/DX dictionary provenance.
-The released NARestraints v1.1.3 workbook/recipe tests do not replace
-that native gate. An earlier **separate** Z:P+5CM:G/DF:A integration
-run reached numerical SOLVED with overall user Coot visual PASS,
-using the Saenger-overlay implementation now merged via NASolve
-PR #24 (Pine `0017081`; **967 full tests + 226 subtests** on the
-tested integrated candidate). Five independent family runs remain a
-**diagnostic fallback**, not a finished matrix. None of this promotes
-registration, Topo Net or GUI tests to complete; the Scout shadow
-evidence retains its original, narrower scope.
+**Separate chemistry status, checked October 10:** the
+[native ledger](native-modified-pair-live-validation.md) records the combined
+42-residue trial's preflight, Phaser, PostMR, generic-linkage diagnostic and
+custom-restraint coverage passes. Effective geometry qualification remains
+pending. These results do not complete any registration/Topo/GUI integration
+check. The [handoff](development-handoff.md) owns development order, including
+the planned post-geometry SMILES audit and post-Pine blind AlphaFold baseline
+before operational Scout.
 
 | Status | Trigger | Human check | Minimum pass condition |
 | --- | --- | --- | --- |
@@ -193,7 +188,7 @@ observed human/Coot behavior when a check is eventually completed.
   survive, remain `UNRESOLVED` and require an expert choice rather than hiding
   the ambiguity behind one preferred graph.
 
-## Completed shadow live checks
+## Historical completed shadow live checks — September 26–27, 2026
 
 ### Clean W registration semantics — ED run_011
 
@@ -355,13 +350,13 @@ schema-reconstruction caveat. This completes the intended validation for the
 current backend-only Scout v2 scope. It still does not authorize live
 AutoMR/PostMR integration or runtime authority.
 
-## Current validation note
+## Historical backend validation receipts — September 26–27, 2026
 
 The earlier Birch checkpoint at code head
 `4452295c3330de6d55bddd75b01be21f39afb222` had **23 focused registration
 tests passing locally**.
 
-The current Birch focused bundle has **44 tests passing locally** across
+The final Birch focused bundle had **44 tests passing locally** across
 `tests/test_construct_registration.py` and `tests/test_model_candidates.py`.
 The full NASolve regression suite also passed locally with **664 tests and 222
 subtests** in **61.70 s** on checkout
@@ -376,10 +371,13 @@ at checkout/test head
 `507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying source-behavior
 head remains `c515a37dc41fa8bb1935d2c80c825ebef8153177`.
 
-The current Oak checkout at
+The recorded Oak checkout at
 `316ac43eaf85a63cf675828bb8960a28f0db2773` then passed the **full NASolve
 regression suite: 672 tests locally**. No runtime or subtest count was reported
 for this checkpoint. This is user-local validation, not GitHub CI.
+
+These are completed backend receipts, not current Cedar regression counts.
+See the [handoff](development-handoff.md) for the latest returned validation.
 
 When a live check above is completed, record the dataset/run/checkpoint and code
 commit in the development handoff or the machine-readable intent ledger. Avoid

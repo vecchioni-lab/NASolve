@@ -122,6 +122,10 @@ New tests cover policy/schema/defaults, original MR evidence, explicit endpoints
 phase rejection without phase reuse, dependency propagation, provisional choice,
 non-selection of unusable outcomes, user veto surviving resume, iodine detection
 and selected-branch diagnostics, exact primed atom parsing, 5CM resource identity,
-installed workbook semantics and linked-phosphate scope. Full-checkout/native
-results must be recorded when returned. Do not repeat GZ11 merely to prove a
-separate new policy. P2 1W5->DZ / 1WA->DP conversions remain separate work.
+installed workbook semantics and linked-phosphate scope. Returned full-checkout
+and four-member native full-auto results are preserved in the
+[published checkpoint](full-auto-patch-handoff.md). Rejected-AutoSol continuation
+was not exercised by that native cohort; its members either accepted or skipped
+AutoSol. The [development handoff](development-handoff.md) owns remaining gates.
+Do not repeat GZ11 merely to prove a separate new policy. Source-native P2
+1W5->DZ / 1WA->DP conversion validation remains separate work.

@@ -1,229 +1,114 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-09**. **Active candidate: `cedar`; integration branch: `pine`.**
-Finish Cedar's existing validation gates and merge it into Pine, then retire
-Cedar. Finish the bounded Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-into `main`, then the **blind AlphaFold geometry baseline**, then
-**operational Scout**. No GUI/Topo Net implementation is a prerequisite.
-This is the compact active handoff, not a chronology. The complete previous
-handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.md).
+Updated **2026-10-10** from the returned native terminal record. **Active
+candidate: `cedar`; integration target: `pine` (draft PR #26), then `main`
+(draft PR #23).** Remote Cedar was verified at `a7edddf`; the terminal
+record checks its run against a saved local commit but does not print that
+commit. Do not assume the later diagnostic scripts are committed production
+behavior. Earlier wording is [backed up exactly](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## Executive state
+## Completed and open work
 
-| Workstream | Verified result | Remaining gate |
+| Workstream | Verified result | Still open |
 | --- | --- | --- |
-| NARestraints | **v1.1.3 released and installed** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Active user .venv imported 1.1.3 from site-packages; workbook SHA-256 `94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2`. | Combined Z:P/B:S/K:X/D:T native challenge pending; raw CCD source chemistry is found and Coot construction validated, but refinement parameters still need native proof. |
-| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
-| Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
-| P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
-| Campaigns / full auto | Ordinary guarded MR→PostMR→conditional AutoSol→refinement and immutable checkpoints work. Separate EA/DiU/Q5cm/QiC full-auto campaign reached numerical SOLVED for all four, preserving EA MR_REVIEW and QiC provisional (not user-approved) selection. | Bounded evidence review and user-veto/resume where still missing; do not rerun passed cohorts merely to refresh docs. |
-| Prepared nonstandard P5 | Explicit per-dataset PDB/sequence and mixed schema-2 campaigns implemented and fixture-tested. | Small **3–5-member real geometry-diverse** native smoke check; W-only successes cannot substitute. |
-| Scout / registration / Topo / GUI | Registration/Scout shadow primitives and earlier scoped checks are recorded. | Operational Scout, symmetry surgery, Topo and GUI remain separate future work, **not** claimed complete. |
+| NARestraints | **v1.1.3 released and installed**, `main a9264f9`; corrected Z:P/K:X roles, unchanged workbook. | Combined-model geometry qualification belongs to the NASolve native trial. |
+| W Saenger overlay / viewing | PR #24 merged at `0017081`; prior Z:P `run_003/refine-001` numerically SOLVED and overall user Coot visual PASS. PR #25 merged at `e8613bf`; bare `show` user-live PASS. | New-campaign automatic workspace activation has regression coverage, not a separate returned live verdict. |
+| Cedar source lookup | Installed Phenix CCD lookup for IGU/IMC/CGY/DX and Coot construction verified; symlink duplicates resolved. Nine bundled-source roles audited. | Acquisition, parameter generation and linkage must become a repeatable ordinary workflow; source availability alone does not certify geometry. |
+| Combined 42-residue W trial | **Preflight, Phaser and PostMR passed**; 42/42 identities, 12 retained + 5 replaced Saenger blocks, 8 explicit pairs, stacking enabled. | Effective sugar/glycosidic torsions and phosphate protonation; new geometry/refinement trial and human review. |
+| Generic linkage diagnostic | **GENERIC_LINKAGE_MECHANICS_PASS** with fresh IMC, no missing heavy atoms, preserved links and D:1 terminal phosphate. | Diagnostic-only derivatives, not integrated general PostMR support or chemistry approval. |
+| Custom restraint coverage | **21/21 bonds, 34/34 angles, 8/8 planes, 23/23 parallelities** matched; no exact duplicate planes/parallelities or overlap candidates. | Coverage is not achieved geometry. |
+| Ordinary/full-auto campaigns | Prior EA/DiU/Q5cm/QiC cohort reached numerical SOLVED with review/provisional distinctions preserved. | This does not prove a fresh arbitrary-component run without a prepared resource bundle. |
+| P2 / prepared nonstandard P5 | P2 preparation and nonstandard campaign paths implemented and fixture-tested. | Source-native `1W5→DZ` / `1WA→DP` provenance/refinement; 3–5 real geometry-diverse P5 models. |
+| Scout / Topo / GUI | Existing registration/shadow primitives and scoped evidence retained. | Operational Scout and topology surgery remain future work. |
 
-**Integrated code regression:** the last pre-merge PR #24 head contained
-PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
-combined head returned **967 tests + 226 subtests PASS** before squash
-merge. The post-merge Pine checkout has not been rerun on the user's terminal.
-One earlier first-pass mixed fixture with S6G instead of the lab's IMC correctly
-failed closed as B:G; the reviewed IMC replacement passed. Neither unit
-tests nor numerical `SOLVED` establish experimental chemistry or deposition
-approval.
+**Latest returned Cedar regression:** `1443979b2308e4a2e507f0859370b44e0e124a86`,
+**16 focused + 31 subtests (2.45 s)** and **983 full + 257 subtests
+(80.81 s)**, using `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD/src"`
+and `../NASolve/.venv/bin/python -m pytest -q` (focused file:
+`tests/test_cedar_ccd_resolver.py`). This receipt does not certify later
+unidentified local changes. NARestraints installed workbook SHA-256 remains
+`94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2`.
 
-## Immediate next scientific work — one bounded sequence
+## Immediate next work
 
-1. **Next engineering slice — library-first generic monomer resolver.**
-   With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-   merged, the combined-family workbook regression is green, but four
-   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve,
-   but Phenix 2.2.1's `chem_data/chemical_components` contains all four.
-   User ran **real headless Coot**: dictionaries loaded (41–44) and all four
-   monomers constructed (0–3). Each CCD graph passes NASolve identity
-   validation; none contains numerical geometry parameters. A **Cedar draft
-   patch** now resolves these from configured Phenix before Coot, with
-   SHA256 source snapshots and a fail-closed numerical ReadySet gate.
-   **Latest user-local validation (2026-10-09):** tested commit
-   `1443979b2308e4a2e507f0859370b44e0e124a86`, including the Phenix symlink
-   fix: focused Cedar **16 passed + 31 subtests (2.45 s)**; full suite
-   **983 passed + 257 subtests (80.81 s)**. Both ran from `NASolve-cedar`
-   with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD/src"`
-   and `../NASolve/.venv/bin/python -m pytest -q`; the focused run selected
-   `tests/test_cedar_ccd_resolver.py`. The earlier isolated relocation check
-   also passed. Native PostMR/ReadySet and combined-family scientific
-   validation remain pending; the regression receipt does not close them.
-   **Nine-entry source audit complete for inspected versions:** the
-   [ligand audit](modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
-   separates actual overrides, identity bridges, construction recipes and
-   unchanged supplier copies. 5CM is unchanged upstream data; 5IU's long-bond
-   failure was the corrected C5/C5' parser bug. C38 and 5IU exactly match
-   the user's installed Phenix 2.2.1-6174 sources by SHA-256. S6G also matches
-   after removing trailing whitespace, with no chemical difference. These
-   remain candidate generic sources, with construction recipes and
-   numerical-generation checks retained.
-   **DE's old geometry
-   repair remains unresolved**; do not label it validated simply because it
-   is bundled. Preserve 1AP/DZ/DP profiles and `A1AAZ→DF`. Current code still
-   loads all nine locally and fails closed when missing/invalid; no resource
-   or guard is removed by the audit. `OHU.cif` stays local-first, non-curated.
-   The expanded Cedar matrix audits all nine source paths and Coot loaders;
-   Python regression evidence does not certify native chemical geometry.
-   Lab Q/DQ denotes S6G; lab S/DS denotes N-linked IMC, distinct from
-   C-linked hachimoji S. Q works today; DQ/S/DS aliases are not implemented.
-   Preserve the mandatory 1W5/1WA -> DZ/DP overrides. The two Phenix paths
-   per component are verified aliases of one file (`python3.1 -> python3.11`).
-   Cedar now deduplicates resolved paths while rejecting separate competing
-   files. The fix now has full local regression coverage. DF and installed
-   A1AAZ differ only in component labels and trailing whitespace, verified
-   against the installed hash. The user created the A1AAZ deposition from
-   lab DF; retain the inverse runtime label bridge. Keep the specific bundled
-   roles of 1AP/DE/DF/DZ/DP. S6G/C38/5IU and 5CM are ordinary sourced data,
-   with placement and numerical-profile needs preserved independently.
-   Actual installed-source lookup is now verified for IGU/IMC/CGY/DX;
-   all four still lack numerical targets. The new headless IGU construction
-   probe returned successfully, with OP3 as the only difference from the full
-   CCD heavy-atom set. Correct that ad hoc check to expect the OP3-free
-   mutation-oriented probe; do not add OP3 or change the existing phosphate
-   contract. ReadySet has not yet run on this probe. The exact source hashes,
-   retained probe artifacts and scope are in the
-   [native ledger](native-modified-pair-live-validation.md#dictionary-availability-is-a-hard-prerequisite).
-   Continue Cedar's existing native ReadySet/PostMR qualification next.
-   Source migration, general placement and new aliases are follow-up work,
-   not additional gates for the bounded Cedar change.
-   Placement recipes and dictionary-source selection have separate purposes; see the
-   [scope decision](modified-component-preparation.md#lab-labels-and-placement-scope).
-   Prefer validated Phenix/CCD monomers only for non-curated components, and
-   where supported produce an **audited, frozen derivative**, never
-   fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
-   Keep exceptional local recipes only for demonstrated broken cases.
-   Review prospective HelixWeld/HelixMeld implementations before making
-   them providers; no verified integration yet. Pin/run against released
-   NARestraints v1.1.3 with exact import verification; don't edit the
-   user's dirty workbook or historical native models.
-2. **Attempt one simultaneous four-family W model first**, as explicitly
-   requested by the user on 2026-10-08. Use distinct original W paired sites:
-   **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/IMC),
-   **Z:P at A:12/B:4** (DZ/DP, existing `pair=Z:P` route), and
-   **K:X at A:20/D:3** (CGY/DX). Keep the prior off-pair A:7/C:9
-   **5CM:G** and A:19/D:4 **DF:A** simultaneously. These sites align
-   their source A:T/G:C/C:G templates with reviewed NARestraints roles,
-   but are still **proposed design intent**, not frozen/validated.
-   The Saenger overlay should retain **12 original Saenger blocks and
-   replace 5 with explicit pairs**; the central Z:P stays in Std_padd.
-   **Before any native run**, locate source-verified `IGU`, `IMC`, `CGY`, `DX`
-   monomer dictionaries (absent from committed NASolve resources) and
-   audit the actual W model/42-site sequence targets, restraint interfaces,
-   atom names and phosphate policy. Do not invent CIFs, force chemistry
-   to G:C, or silently downgrade to the old five-independent-matrix plan.
-   One *new* frozen single-member campaign, one stage boundary at a time,
-   with preserved failures and human Coot/.geo checks; independent A:T,
-   D:T, B:S, Z:P, K:X datasets remain a **diagnostic fallback**, not
-   today's required first trial. **D:A is unsupported**; D:T is the
-   reviewed three-hydrogen-bond D-family recipe, while `DA` means
-   ordinary DNA adenine.
-3. **Close the independent P2 source-native gate** (`1W5→DZ`,
-   `1WA→DP`) with actual source components and verified dictionaries,
-   source-to-target atom mapping, raw preservation and native refinement.
-   This is not the same as already successful Z:P synthetic-target model.
-4. **Finish the bounded Pine close-out:** retain existing GZ11 and multi-member
-   saved receipts; resolve remaining exact effective-dictionary evidence (P1),
-   saved normal-GZ11 evidence (P3), and limited campaign human-veto/current-
-   pointer evidence (P4), plus **P5** geometry-diverse real smoke check.
-   Then final integrated tests/review **P6**, followed by [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-   merge/ancestry verification **P7**. Do not clean, reset or prune original
-   scientific artifacts to retire branches.
+1. **Finish the effective-geometry audit, then attempt the combined geometry
+   trial in a new derivative.** Use the saved linked/coverage audits in the
+   [native ledger](native-modified-pair-live-validation.md). Review active
+   sugar/glycosidic torsions, weights/periodicity and phosphate protonation.
+   The old IMC C2-versus-C2' torsion problem was identified; fresh AceDRG IMC
+   passed graph/structural checks, but geometry qualification is still
+   **PENDING**. Preserve the original PostMR run and all failed probes.
+2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
+   The current trial used selected numerical CIFs in a frozen resource bundle
+   and ad hoc linked derivatives. Acceptance is a new run from declared
+   model/sequence intent and component codes, without per-run source patches
+   or a hand-prepared bundle. Cover already-present modified residues as well
+   as mutations; distinguish library acquisition/cache, numerical preparation,
+   verified polymer context and a small justified override registry. This is
+   the product goal, not an achieved result or an unlimited new Cedar gate.
+3. **Close the existing bounded Cedar/Pine gates.** Retain the prior P1/P3/P4
+   receipts and fill only missing effective-dictionary, normal-GZ11 and
+   user-veto/current-pointer evidence. Source-native P2 and real P5 remain
+   separate. Then integrated tests/review P6, Cedar→Pine and Pine→main P7
+   with ancestry verification and audited retirement. Do not rerun passed
+   cohorts just to refresh documentation.
 
-The exact **combined-first site layout**, candidate chain sequences,
-dictionary sourcing gate, optional independent controls, immutable Z:P
-attempt history and human-verdict limits live in the
-[native modified-pair ledger](native-modified-pair-live-validation.md).
-The [modified-component contract](modified-component-preparation.md) owns
-1W5/1WA mapping and source-preservation rules. [Campaign execution](campaign-execution.md)
-owns CLI semantics; [full-auto checkpoint](full-auto-patch-handoff.md) retains
-the completed four-member validation.
+The [component contract](modified-component-preparation.md) owns source
+chemistry and overrides; the [native ledger](native-modified-pair-live-validation.md)
+owns exact sites, hashes and returned stage results. **1W5→DZ and 1WA→DP
+remain mandatory reviewed transformations; A1AAZ→DF is a label bridge.**
+DE geometry remains unresolved. Q is implemented; DQ/S/DS aliases are not.
+Lab S/DS means N-linked IMC, not S6G or C-linked hachimoji S. Ordinary
+supplier copies must not become permanent exceptions merely because used.
 
-## Preserved W native evidence and user review
+## Roadmap after the combined geometry test
 
-The original frozen synthetic-target dataset is
-`~/NASolve-live-tests/zp-paired-native-oiipj_t2`. It uses **real GZ11
-diffraction observations** but altered target chemistry; it is **not**
-evidence the experimental crystal contained the tested modifications.
+The October 10 request inserts the **SMILES-assisted CIF audit after the
+current combined geometry trial and before Topo slicing / operational Scout**.
+This future tool is not a prerequisite for trying that geometry trial or an
+additional Cedar/Pine merge gate.
 
-- **`run_001`:** retained Z:P PostMR **BLOCKED** by the former reversed
-  role mapping (Z lacked G-like N2). Native Phaser TFZ **12.9**, LLG **210**.
-- **`run_002`:** corrected NARestraints Z:P PostMR **PASS**: expected
-  `P.N2/Z.O2`, `P.N1/Z.N3`, `P.O6/Z.N4` contacts, all 42 target
-  identities checked, no `force` override. First AutoRefine **BLOCKED**
-  before refinement by old W Saenger classes at modified 5CM:G and DF:A.
-- **`run_003`:** PR #24 candidate; frozen integrity **OK**, 17 template
-  pairs → **15 unchanged Saenger + 2 explicit modified** (5CM:G GC/3 bonds;
-  DF:A AT/2). D:1 phosphate protection retained, sequence-family
-  mismatches empty, AutoSol correctly skipped; native AutoRefine returned
-  **`SOLVED`, `refine-001`**. User's Coot inspection reported **good bonds
-  and planes**, tolerable nonideal planarity: **INSPECTED_PASS for overall
-  visual software integration**, not site-resolved density or experimental
-  chemistry. Exact Rwork/Rfree, `.geo` and per-site map/clash metrics are
-  still to be recorded if needed.
-- **`./nasolve show`:** after PR #25 integration the user selected
-  `run_003` as their active workspace and confirmed bare `show` launched
-  the expected model in Coot. **Live usability gate passed**.
+- **SMILES-assisted CIF audit (planned, not implemented):** assessment first,
+  comparing molecular graphs with atom mapping, charge/H/stereochemistry and
+  descriptor provenance. Keep self-consistency separate from independent
+  chemistry, and graph checks separate from numerical-restraint validation.
+  Reviewed transformations such as 1W5→DZ remain explicit. The detailed
+  [assessor contract](modified-component-preparation.md#proposed-smiles-and-cif-audit)
+  owns findings, uncertainty and repair boundaries.
+- **Blind AlphaFold baseline after bounded Pine close-out:** preserve frozen
+  predictions, observations and Free-R; avoid solved outcomes during blind
+  candidate selection. Before this trial, add **PDB and coordinate mmCIF input**
+  and an explicit **trust-model / no-sequence-file mode**, since supplied
+  predictions may have no separate sequences. These are requested adapter
+  capabilities, not implemented options. Record sequence as independently
+  unverified, skip sequence-driven mutations, and retain ordinary model/MR
+  checks. See [model roadmap](campaign-model-roadmap.md) and
+  [architecture](architecture.md) for the proposed contract.
+- **Then operational Scout / later Topo surgery**, following the existing
+  [registration contract](construct-registration.md) and
+  [live checks](construct-registration-live-checks.md). The earlier order
+  (blind AlphaFold baseline before operational Scout) remains. GUI/Topo Net
+  and the metal-restraint builder remain separate later scopes.
 
-**Separately parked geometry question:** user noticed tilted/directional
-hydrogen-bond contacts in the displayed modified pair (named N1/N3 and
-O4/N6 sites). First verify the exact donor–H–acceptor assignment, atom
-definitions, existing restraint angular terms and achieved geometry before
-deciding whether directional terms are appropriate. **Do not simply fix a
-heavy-atom angle at 180°, enforce flat base planes, or edit `run_003`.**
-Not a blocker for `show` or for the successful native integration.
+## Evidence and preservation
 
-## After Pine: blind AlphaFold baseline, then operational Scout
+The combined trial uses real GZ11 observations with hypothetical target
+modifications: it is a software integration test, not proof of the crystal's
+chemistry or deposition approval. Native completion, chemistry, numerical
+metrics and human review remain separate verdicts. The earlier Z:P overall
+Coot PASS is not a combined-model geometry verdict. The earlier directional
+hydrogen-bond question remains parked; never impose an arbitrary heavy-atom
+180° target or modify the successful old run to satisfy it.
 
-The user requested this order on 2026-10-07. Use the existing prepared-
-nonstandard path with **frozen** supplied predictions, complete chain-labelled
-sequences and untouched diffraction/Free-R; audit chain/residue correspondence,
-coordinate/ASU completeness, model confidence/B factors and input metadata.
-Predicted coordinates are *unseen candidate models*, not solved truth.
-Do not consult outcome structures during blind candidate selection. Preserve
-every success and failure; later hypotheses get new attempts.
+Follow the [branch/worktree lifecycle](collaboration.md#branch-and-worktree-lifecycle).
+One terminal action per user turn for native debugging, then inspect output.
+Preserve the original dirty NASolve checkout, unpublished NARestraints
+`Ligands.xlsx`/lockfiles, scientific runs, maps and Free-R. October 8–9
+completed-worktree cleanup remains recorded in the backup; the private
+lab-notes checkout was intentionally retained. Verify current laptop status
+before integration; this documentation audit did not inspect or clean it.
 
-Then promote Scout along the
-[registration contract](construct-registration.md) and
-[human live-check queue](construct-registration-live-checks.md); keep guided
-ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
-[metal restraint builder](metal-restraint-builder.md) are separate later scopes.
-
-## Work discipline and doc ownership
-
-- **Read the relevant doc swarm before inferring context:** start here and
-  follow the documentation map to subsystem contracts and prior evidence.
-  Verify historical claims against the actual commit and returned output.
-- **One active development branch and one everyday checkout.** Follow the
-  [branch lifecycle](collaboration.md#branch-and-worktree-lifecycle): merge when
-  the scoped scientific gates support it, then retire completed branches and
-  disposable worktrees promptly. Additional worktrees are bounded exceptions.
-  **Cleanup verified user-local on 2026-10-08:** PR #24/#25 worktrees and
-  remote branches are retired after local-file audits and exact file-tree
-  equivalence with their squash merges in Pine. Their original commits remain
-  accessible through the merged PR histories. Nine historical local branches
-  were removed only after proving full containment in Pine; the stale temporary
-  worktree registration was pruned with its commit preserved in main/Pine.
-  Local `main` was fast-forwarded to `fec66eb`. The final worktree inventory
-  contains only the original `NASolve` checkout on Pine and active detached
-  `NASolve-cedar`; retire Cedar after its existing gates and integration.
-  On 2026-10-09 the clean `NARestraints-pairfix` checkout and merged role-fix
-  remote branch were also retired after verifying equivalence with v1.1.3;
-  original NARestraints remains protected. `NASolve-lab-notes` is intentionally
-  retained as a private notebook at the user's request.
-- **One terminal action per user turn** for live NASolve debugging, then
-  inspect the output before proceeding. Preserve the user's dirty
-  `../NARestraints` tree (including unpublished `Ligands.xlsx` and Excel
-  lockfile), the original NASolve
-  untracked files/patches, all immutable numbered runs, maps and Free-R.
-- Do not represent an unrun test as passing. Keep native-tool receipt,
-  chemical identity, numerical statistics and human Coot verdict as
-  separate fields. Confirm environment imports instead of assuming the
-  v1.1.3 metadata pin upgraded a preexisting `.venv`.
-- **This file** owns current priorities/results; the
-  [documentation map](README.md) routes to active subsystem contracts;
-  the [native ledger](native-modified-pair-live-validation.md) owns exact
-  pair-matrix evidence and per-member status. Earlier full chronology
-  is preserved [in history](history/development-handoff-2026-10-08-pre-consolidation.md)
-  and Git. Do not re-append old session logs here.
+**Status ownership:** this handoff = current priorities; native ledger =
+exact trial evidence; subsystem docs = durable contracts; history/Git =
+earlier decisions. The October 10 reconciliation archives superseded text
+before shortening it and keeps chronology out of the active queue.

@@ -1,6 +1,9 @@
 # Campaign model, sequence, and recovery roadmap
 
-Status: design addendum for the campaign architecture. This document narrows the next development direction without replacing `campaigns.md`. It is deliberately broader than the current single-scaffold 5W6W execution slice.
+Status: durable design addendum for the campaign architecture, broader than the
+current W/5W6W execution slice. The [development handoff](development-handoff.md)
+owns current ordering and validation status; this document is not a second
+active work queue.
 
 ## Goal
 
@@ -337,10 +340,38 @@ NASolve does **not** invoke AlphaFold. Design/model-generation workflows belong
 upstream in NAPrep or another provider tool. NASolve consumes the resulting
 candidate coordinates plus their provenance.
 
-Every provider must record the source sequence/model, provider version or
-identity, transformation, checksums, and the exact model submitted to Phaser.
+Every provider must record the source model, any supplied sequence, provider
+version or identity, transformation, checksums, and the exact model submitted
+to Phaser. Missing independent sequence evidence must remain explicit.
 
 Different datasets in one campaign may use different providers.
+
+### Planned coordinate mmCIF and trusted-model input
+
+The requested MR input contract is **PDB or coordinate mmCIF**, including
+externally generated AlphaFold models. This is a planned extension; the current
+prepared-nonstandard campaign path still requires a PDB and an explicit complete
+chain-labelled target. A coordinate mmCIF is a model input, distinct from a
+chemical-component dictionary CIF or a diffraction/processing CIF.
+
+Add an explicit **trust the supplied model without a sequence file** mode.
+The option's CLI/config spelling is not yet fixed. In that mode, preserve and
+record the supplied coordinate model's residue identities, chain identifiers,
+numbering and atom inventory as the user's accepted starting model. If downstream
+preparation derives a target inventory from those coordinates, label it
+coordinate-derived. Neither the opt-in nor comparison with that same inventory
+establishes independent sequence verification, complete construct coverage,
+absolute chirality or experimentally validated chemistry. No separate sequence
+file should be invented or required merely to enter MR in this mode.
+
+Freeze the original bytes and format, trust-mode intent, available sequence
+evidence, and exact submitted MR model. If an external stage needs a PDB
+derivative, preserve a reversible identity mapping and checksum-bound conversion
+provenance; do not truncate long chain/component identifiers or silently lose
+atoms. If lossless representation is unavailable, report that specific stage
+limitation. Keep the ordinary model, diffraction and Free-R checks, and apply
+only explicitly supported post-MR chemistry. Trusting a search model does not
+authorize guessed sequence repairs or make it an approved final structure.
 
 ## Geometry-rich campaigns
 
@@ -398,41 +429,13 @@ The next Pine-specific live gate is a small real campaign of roughly 3-5
 geometry-diverse datasets with curated per-dataset PDB + sequence inputs using
 the user's actual Phenix/Coot installations.
 
-Before those geometry-diverse inputs are supplied, an **intermediate real W
-orchestration validation is in progress** on a disposable four-member sandbox:
-`DOHU`, `QiC_120325_0513`, `QE_120325_0607`, and
-`EG_091325-0302`. This test is intentionally easier scientifically and does
-not satisfy the prepared-nonstandard geometry-diverse live gate.
-
-That W validation has now passed:
-
-- real runtime discovery (`nasolve check`) under Python 3.12.14,
-  NARestraints 1.1.2, Phenix 2.2.1 and Coot 1.3.3;
-- campaign planning with 4/4 `DISCOVERED`, 0 blocked and frozen integrity
-  `OK`;
-- real campaign preflight/Phaser/PostMR on all four datasets;
-- exact campaign-owned `AutoMR/run_001` ownership for each member; and
-- clean pause at the next conditional AutoSol gate with campaign/status exit
-  code 0.
-
-The unattended resume has now completed. DOHU, EG and QE reached `SOLVED` at
-`refine-001` with AutoSol correctly `SKIPPED`; QiC reached
-`AUTOSOL_READY` and then stopped at `refine-001` as
-`AWAITING_INSPECTION` because its numerical refinement gate failed. Campaign
-state was `COMPLETE_WITH_FLAGS`, frozen integrity remained `OK`, and exit
-code 3 correctly reflected the one review case.
-
-This closes the real W orchestration smoke test and is useful evidence for the
-coordinator and solution-list UX, but the real
-prepared-nonstandard/geometry-diverse live gate remains pending.
-
-The QiC outcome also exposes the next workflow seam: Refine Doctor should become
-a **campaign-owned recipe transition**. Standalone Doctor is deliberately
-checkpoint-preserving/non-auto-selecting, but it appends history to the run
-report after the campaign AutoRefine receipt has frozen that report checksum.
-Invoking it out of band would therefore appear as drift. Campaign integration
-must give Doctor its own job/receipt/dependency provenance rather than weakening
-the receipt check.
+The real W orchestration smoke test and campaign-owned explicit Refine Doctor
+continuation have passed. A later schema-2 full-auto campaign also returned four
+numerical SOLVED outcomes, including a recipe-authorized provisional Doctor
+selection. These are distinct returned validations, preserved in the
+[full-auto checkpoint](full-auto-patch-handoff.md); they do not close the real
+prepared-nonstandard/geometry-diverse gate. The complete earlier roadmap wording
+is [archived](history/campaign-model-roadmap-2026-10-10-pre-reconciliation.md.txt).
 
 ### CLI-first implementation runway and GUI fork point
 
@@ -460,15 +463,16 @@ The recommended sequence is:
    inspection stops. Scout v2 is still not runtime authority.
 5. **Implemented in fixture-backed regression:** standard-W, nonstandard and
    mixed campaigns exercise relocation plus existing campaign failure/isolation
-   semantics. The easier four-member real W campaign has independently passed
-   planning plus real preflight/Phaser/PostMR; its unattended AutoRefine resume
-   is the current live orchestration check.
+   semantics. The easier four-member real W campaign completed its unattended
+   refinement path, and the later full-auto campaign completed separately.
 6. **Campaign-owned Refine Doctor explicit path is now regression + live
-   validated; add workflow-recipe semantics next.** The explicit
+   validated; bounded full-auto recipe policy is also implemented and live
+   checked.** The explicit
    `AUTOREFINE_REVIEW -> refine-doctor` continuation now has its own immutable
-   job/receipt/dependency provenance and preserves non-auto-selection. The next
-   semantic step is freezing the intended endpoint and conditional transition
-   graph as recipe data, including optional Doctor-as-needed behavior.
+   job/receipt/dependency provenance. Guarded execution preserves non-selection;
+   schema-2 full auto may authorize bounded Doctor escalation and provisional
+   selection under its frozen policy. A general configurable stage graph remains
+   separate future work; see [the full-auto contract](campaign-full-auto.md).
 7. **Next Pine-specific live gate: run a real 3-5 dataset geometry-diverse CLI
    campaign** through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine.
    Inspect exact run ownership/checkpoints and at least one blocked/review case.
@@ -698,7 +702,13 @@ A successful merged dataset becomes another processed-dataset candidate under th
 
 ## Roadmap insertion
 
-The existing campaign roadmap remains valid but should be interpreted with the following additions.
+The existing campaign roadmap remains valid but should be interpreted with the
+following additions. Current sequencing is owned by the
+[development handoff](development-handoff.md): finish the combined modified-W
+geometry test, then develop the assessment-only SMILES/CIF graph auditor before
+the Topo slicer/operational Scout work. Preserve the post-Pine blind AlphaFold
+geometry baseline before operational Scout. These future features do not add
+Cedar or Pine merge gates.
 
 ### Near-term: before broad campaign Doctor work
 
@@ -713,7 +723,7 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 ### Multi-candidate / model-provider stage
 
 8. **Partially implemented backend-only:** Construct Registration core, fast identity/renumbering Scout v1, frozen Scout provenance, registration transition facts, guided simple-chain resolution, and read-only multi-PDB candidate scouting exist. Authoritative post-MR registration, multiplicity inference, Registration Net UI, and live AutoMR/PostMR wiring remain future work.
-9. **Experimental on Oak:** the design-aware Scout v2 proposal rule passes the renamed-real-W shadow case for the intended reason. With the complete verified `5W6W/C_G.pdb` provider identity set A:12/A:13=DC and B:3/B:4=DG, exactly one complete mapping has zero unexplained mismatches: A->M/B->N/C->P/D->Q, with 38 exact and 4 provider-explained sites; every alternative retains at least 10 unexplained mismatches. Oak removes caller-supplied provider residue dictionaries: the helper derives provider identities from an assessed standard frame-catalogue model and binds them to the provider record plus source-model SHA-256. This provenance-bound code passes **43 focused tests locally**, including explicit rejection of incomplete provider coverage and provider-selector/source mismatch. The renamed-real-W shadow case passed first through a verified historical-provider bridge and then through a fresh current-schema ED `run_013` with native structured `model_provider` provenance, reproducing the same unique zero-unexplained mapping with provider binding true, caller codes false and runtime authority false. The current Oak checkout also passed the **full NASolve regression suite: 672 tests locally**. The current backend-only Scout v2 scope is therefore fully validated for its stated purpose; live AutoMR/PostMR integration and runtime authority remain separate future work.
+9. **Merged backend-only Scout v2:** the design-aware proposal helper binds assessed provider identities and source-model hashes, and passed its scoped renamed-W shadow checks. It remains experimental/non-runtime; live AutoMR/PostMR authority is future work. Exact historical mappings and test counts are preserved in the [registration live checks](construct-registration-live-checks.md) and the archived roadmap above, rather than serving as today's regression receipt.
 10. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates, including opt-in Topo Net framework surgery. Before automation, validate symmetry-spanning phosphate bond/restraint behavior on a disposable ordinary PDB and establish a bounded repeatable Coot single-residue RSR repair primitive. The first blind end-to-end topology fixture is 8D93 -> 3GBI-style representation, with 3GBI coordinates withheld until post-transform validation.
 11. **Partially implemented:** dataset PDB candidate inventory/scouting, provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation/selection remains future work. External model generation (including AlphaFold) is upstream, not a NASolve provider-execution responsibility.
 12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.

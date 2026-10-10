@@ -1,6 +1,6 @@
 # Modified-component preparation
 
-**Current (2026-10-08):** P2 specific component preparation is **implemented
+**Current (2026-10-10):** P2 specific component preparation is **implemented
 in Pine**, and user-local regression passed **276 focused + 20 subtests**
 and **927 full + 224 subtests** on the published P2 code point `dec56c2`.
 The independent **real source-component `1W5→DZ` / `1WA→DP`
@@ -9,9 +9,42 @@ PENDING**. This is not discharged by successful synthetic-target W Z:P
 refinement or the earlier ordinary DZ GZ11 visual PASS. Exact current
 priority is in the [short handoff](development-handoff.md); completed
 four-member DiU/5CM full-auto results live in the
-[full-auto checkpoint](full-auto-patch-handoff.md). Historical validation
-subsections below document their then-current stages rather than overriding
-this update.
+[full-auto checkpoint](full-auto-patch-handoff.md). The combined modified-W
+prepared-bundle run has passed PostMR, and separate native diagnostics passed
+generic linkage mechanics and custom-restraint coverage. Effective sugar/
+glycosidic torsions and phosphate protonation still need geometry qualification;
+this is not yet a fresh generic full-auto result. Exact receipts belong in the
+[native ledger](native-modified-pair-live-validation.md).
+
+## Generic preparation target and current boundary
+
+The intended user workflow is a fresh ordinary full-auto attempt from declared
+sequence/chemistry and a component code: resolve the source, obtain numerical
+restraints, prepare the actual polymer context, and carry the frozen effective
+definitions through PostMR and refinement without editing NASolve or selecting
+a test-only component preset. Ordinary acquired/cached source files must remain
+separate from the small registry of justified overrides. Existing reviewed
+1W5→DZ and 1WA→DP policy stays explicit. Unknown chemistry does not become an
+automatic guess merely because a source file exists.
+
+Cedar currently resolves local-first, then a unique source in the configured
+Phenix CCD installation for supported non-curated mutation targets. It does not
+fetch over the network, automatically try alternative numerical generators,
+collect every unchanged non-curated residue, or generically adapt every monomer
+dictionary to linked polymer chemistry. Raw graphs require numerical ReadySet
+output; the existing parameterized check is a limited energy-type/bond-target
+check, not a complete angle/torsion/chirality audit.
+
+The October 10 combined test used a prepared resource bundle. A later diagnostic
+substituted a freshly generated IMC dictionary and removed linkage leaving atoms
+and their attached hydrogens by graph, without changing frozen parent inputs.
+It established linkage mechanics for those four tested sites, not production
+integration or generalization to arbitrary sequence environments. Preserve this
+successful evidence, qualify the remaining geometry, then reproduce the
+preparation through ordinary runtime code in a fresh attempt. The acceptance
+check must cover relevant unchanged modified residues as well as mutations,
+with source hashes, derivative differences and effective native restraints
+recorded independently.
 
 ## Bundled ligand audit (2026-10-09)
 
@@ -137,7 +170,8 @@ identity validation and numerical parameterization requirements remain intact.
 This lookup fix and source equality do not certify native geometry or remove
 any CIF. User-local focused and full-checkout regression passed at `1443979`;
 see the current [handoff](development-handoff.md) for exact commands/counts
-and the separate, still-pending native validation.
+and the [native ledger](native-modified-pair-live-validation.md) for the later
+prepared-bundle and diagnostic results and their remaining geometry limits.
 
 ## Intermediate construction hops
 
@@ -200,8 +234,10 @@ five-character string stays in the frozen sequence/family target and the
 `basis=reviewed-deposition-to-pdb-code`. The target dictionary/refinement
 component is DF and its recorded deposition identity remains A1AAZ.
 Other unreviewed long CCD names still fail before PDB output; neither generic
-truncation nor coordinate/dictionary guessing is authorized. Native validation
-of this explicit bridge remains separate from the previous P2 regression.
+truncation nor coordinate/dictionary guessing is authorized. The combined-W
+PostMR identity audit verified requested A:19 A1AAZ as prepared DF within its
+42 matched targets. This does not close source-native P2 conversion or final
+geometry validation.
 
 ## Standing preferred-component preparation (P2)
 
@@ -260,8 +296,8 @@ Validation: source-level conversion/preservation, DP/DZ parameterization/
 adaptation, ordinary PostMR fixture ReadySet, explicit/ambient aliases,
 frozen intent, effective target CIFs, linked phosphate and downstream model
 checks have passed. **The local full-checkout ferry returned green**
-(276 focused + 20 subtests; 927 full + 224 subtests; see detailed historical
-receipt below). **Actual native source `1W5/1WA` conversion and DP
+(276 focused + 20 subtests; 927 full + 224 subtests; the detailed receipt is
+[archived](history/modified-component-preparation-2026-10-10-pre-reconciliation.md.txt)). **Actual native source `1W5/1WA` conversion and source-native DP
 refinement remain untested.** Do not claim native coverage or structural
 approval merely by implementing conversion.
 
@@ -309,7 +345,7 @@ and exact effective dictionaries. No checkpoint schema migration is needed.
 
 ## Linked phosphate and continuation
 
-New DZ profiles use the existing connectivity-selected NASnoOP3 mechanism only
+New 1AP/DZ/DP/5CM profiles use the connectivity-selected NASnoOP3 mechanism only
 at verified internally linked sites; explicit terminal phosphate intent remains
 unchanged. An explicit `profile_codes` scope is frozen for new DZ profiles.
 Legacy profiles lacking that field remain 1AP-only and are not reinterpreted
@@ -322,48 +358,53 @@ library-backed construction fallback. Required missing definitions, failed
 execution, contradictory usable restraints, changed target identity or lost
 observation/Free-R integrity remain real blockers for the affected dataset.
 
+The generic IGU/IMC/CGY/DX linked-dictionary changes remain separate diagnostic
+work. Their graph-driven removal of OP3 and linkage hydrogens cleared missing
+heavy-atom and dangling-reference checks while preserving D:1 terminal intent.
+The diagnostic retained source-specific OP2 protonation: IGU was anionic,
+whereas the other three retained an OP2 hydrogen and neutral formal charge.
+Mechanical success does not select a common protonation policy; that scientific
+question and effective geometry remain open.
+
 Keep a small known-problem list and supported, audited transformations. Do not
 infer arbitrary missing bonds, bond orders, protonation or new ideal distances
 merely to obtain a zero exit code. Base planarity alone does not validate every
 internal bond. A numerical pass is not structural approval.
 
-## Historical P2 fixture recovery and returned local regression
+## Proposed SMILES and CIF audit
 
-The following describes the **2026-10-07 debugging and publication sequence**,
-not a still-pending full-checkout run. P2 implementation and full regression
-passed, as recorded at the top of this document. Completed native
-GZ11/full-auto runs remain preserved; a **new** source-native
-`1W5/1WA` alias and DP refinement check must not overwrite or relabel
-those successes, nor be confused with ordinary DZ model validation.
+**Queued after the current combined geometry test and before Topo/Scout;
+not implemented and not a prerequisite for that geometry trial.** Start with a
+read-only assessor. Parse a declared SMILES descriptor and the CIF into molecular
+graphs; do not compare raw SMILES text. Match atom identity/connectivity under a
+recorded aromaticity convention and report bond-order, element, formal-charge,
+hydrogen and stereochemical differences separately. Keep an explicit atom map
+back to CIF names and report ambiguous or unsupported comparisons as such.
 
-### P2 fixture geometry recovery (2026-10-07)
+Record the descriptor's source, program/version and source checksum. A SMILES
+string copied from the same CIF is an internal consistency check, not independent
+proof of correct chemistry. A separate reviewed reference is required for an
+independent chemical comparison. Do not silently normalize tautomers or
+protonation states away. Reviewed 1W5→DZ/1WA→DP transformations must be audited
+against their intended target, retaining their explicit differences from the
+source; they are not graph-equivalence assertions. Linked derivatives should
+likewise be compared using the declared linkage changes and retained terminal
+intent rather than required to equal the isolated monomer.
 
-The first P2 focused run returned 4 failed, 268 passed and 20 subtests in
-22.20 s, before any full-suite run or publication. The four new PostMR tests
-placed the preceding O3' at P + (-1.6, 0, 0), irrespective of monomer orientation.
-That synthetic source already failed the unchanged phosphate guard at 28.5
-(DZ fixture) or 29.8 degrees (DP fixture), before component normalization.
-The same angles persisted after conversion: conversion did not create them.
+Pair graph comparison with a separate restraint check: valid atom references,
+finite numerical targets/uncertainties, duplicate or conflicting terms, chirality
+and planes, and effective sugar/glycosidic torsions in the native interpreter.
+SMILES alone cannot expose wrong numerical targets or a valid-but-wrong atom
+quartet such as IMC C2 in place of C2'. A passing graph comparison therefore
+cannot certify numerical geometry. The assessor should explain findings and
+their evidence without inventing repairs or turning optional unknowns into
+blanket campaign stops. Integration of any new runtime blocker needs its own
+justification and tests.
 
-The fixture now places incoming O3' at 1.6 A along the dictionary P-to-OP3
-ray. This is test-data construction, not an automatic repair of real structures
-or a change to the supplier dictionary. New tests check valid source geometry,
-unchanged geometry after normalization and continued rejection of the original
-bad placement. Existing PostMR integration assertions remain intact.
-An isolated check used the exact phosphate.py Git blob
-ca5def196ae0a53de1b19e8e625b914b3e8b841b: 34 conversion cases and four new
-geometry cases passed (38 total). This is not full-checkout/native validation.
-The recovery retains the failed parent receipt/log and uses a separate child
-receipt for focused/full-suite validation and gated publication. No production
-source or dictionary is changed by this fixture correction. The later returned
-regression section records the complete-checkout result only after it passes.
+## Historical validation evidence
 
-### Returned local P2 regression
-
-Tested source based on e13df41e027942d855475fa882d882237cbe5e1e.
-focused: **276 passed, 20 subtests passed in 20.59s**.
-
-full: **927 passed, 224 subtests passed in 78.72s (0:01:18)**.
-
-Full-checkout regression is complete for these bytes. Native DP/alias
-preparation remains pending; no scientific run or main merge was launched.
+The exact pre-reconciliation document, including the October 7 fixture recovery
+and returned P2 commands/results, is
+[archived](history/modified-component-preparation-2026-10-10-pre-reconciliation.md.txt).
+The companion [intent record](modified-component-preparation-intent.json) is a
+compact development summary, not runtime chemistry or registration authority.

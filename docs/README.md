@@ -1,34 +1,27 @@
 # NASolve documentation map
 
-Updated **2026-10-08**. **Start with the
-[current development handoff](development-handoff.md)** — the single short
-ledger of proven capabilities, remaining Pine gates and *next test*. Read
-subsystem contracts only for the subsystem being changed; do not ingest
-historical handoffs as current instructions.
+Updated **2026-10-10**. Start with the
+[current development handoff](development-handoff.md) for completed checks,
+remaining bounded gates and the next native action. Read subsystem contracts
+for actual behavior; history is evidence, not a second task queue.
 
 ## What's current?
 
-- **Current project queue:** [Development handoff](development-handoff.md).
-  NARestraints **v1.1.3 is released**; NASolve PR #25 pathless Coot `show`
-  is merged and user-live verified; **modified-W Saenger PR #24 is also
-  merged** (commit `0017081`) after **40 focused + 2 subtests**
-  and **967 full + 226 subtests**. The earlier native Z:P Phenix
-  refinement and overall Coot visual PASS remain preserved.
-- **Next chemistry work:** library-first **generic monomer dictionary
-  resolver**, then [one simultaneous modified-pair model](native-modified-pair-live-validation.md)
-  — distinct **D:T, B:S, Z:P and K:X** sites in the same 42-residue W
-  model, plus the existing 5CM:G and DF:A contextual pairs. The
-  original independent A:T/D:T/B:S/Z:P/K:X staging helper is retained
-  as a diagnostic fallback, **not** today's default experiment. **D:A
-  is not a registered recipe.** IGU/IMC/CGY/DX are **not packaged in NASolve**,
-  but Phenix 2.2.1's CCD library contains all four and a real Coot 1.3.3
-  probe constructed each one. The raw CCD files lack numerical geometry;
-  Cedar's generic resolver and ReadySet/eLBOW restraint preparation need
-  unit and native validation before PostMR is qualified.
-- **Still required for Pine:** [specific component P2](modified-component-preparation.md)
-  true 1W5→DZ/1WA→DP native provenance and the small real
-  prepared-nonstandard P5 test. Then final review/merge. After Pine:
-  blind AlphaFold geometry campaign, then operational Scout.
+- **Completed:** NARestraints v1.1.3; merged W Saenger overlay and pathless
+  viewing; installed generic CCD lookup; combined 42-target preflight,
+  Phaser and PostMR; generic linkage diagnostic and exact custom-restraint
+  coverage. [The native ledger](native-modified-pair-live-validation.md)
+  owns returned counts, dictionary hashes and evidence paths.
+- **Next:** qualify effective sugar/glycosidic torsions and phosphate
+  protonation, then run the combined geometry trial in a new derivative.
+  Current prepared-bundle diagnostics do not prove fresh ordinary full auto.
+- **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
+  real P5, followed by bounded integrated review/merges.
+- **Queued:** SMILES-assisted CIF audit after the current geometry trial,
+  before Topo/Scout. PDB + coordinate mmCIF and explicit trusted-model /
+  no-sequence input are requested prerequisites for the blind AlphaFold
+  baseline, not implemented options. The baseline remains after Pine
+  close-out and before operational Scout.
 
 ## User and contributor reading
 
@@ -46,7 +39,7 @@ historical handoffs as current instructions.
 | Work area | Read here |
 | --- | --- |
 | Modified residues, CCD aliases and terminal phosphate | [Modified-component preparation](modified-component-preparation.md), [backbone chemistry](backbone-chemistry.md), [sequence-family targets](sequence-family-targets.md) |
-| Pair recipes, successful Z:P run, combined four-family next challenge | [Native modified-pair validation](native-modified-pair-live-validation.md) |
+| Pair recipes, successful Z:P run, combined four-family native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
@@ -63,8 +56,8 @@ current Pine merge gate.
   preserves the earlier four-member real Phenix/Coot results. Its old
   implementation/recovery wording is **not** the current next step.
 - [History index](history/README.md) preserves earlier failures, handoffs
-  and provenance, including the **exact October 8 pre-prune handoff and
-  native pair ledger**. Read these only for forensic questions.
+  and provenance, including **exact October 8 and October 10 pre-reconciliation
+  snapshots**. Read these only for forensic questions.
 - [October 1 compatibility redirect](development-handoff-2026-10-01-addendum.md),
   [old DOHU validation](validation-dohu.md),
   [old 1AP integration](1ap-phosphate-integration.md) and

@@ -1,14 +1,5 @@
 # Changelog
 
-## P2 preferred-component preparation (candidate)
-
-- Normalize 1W5 to DZ and 1WA to DP only in new prepared derivatives; keep raw inputs and old checkpoints.
-- Supply pinned parameterized DP, preserve mapped heavy-atom placement, and record target chemistry/provenance.
-- Retain existing category hops, force semantics, dictionary compatibility and legacy phosphate scopes.
-- Record the user-requested post-Pine blind AlphaFold geometry campaign before operational Scout.
-- Full-checkout and native conversion validation remain pending until returned.
-
-
 All notable user-visible, compatibility, schema, and reproducibility changes
 to NASolve are recorded here.
 
@@ -16,6 +7,25 @@ The format follows Keep a Changelog. Until the first tagged release, historical
 entries are reconstructed from repository history.
 
 ## [Unreleased]
+
+### October 10 documentation reconciliation
+
+- Record the returned combined W preflight/Phaser/PostMR, fresh IMC structural
+  audit, generic linkage diagnostic and exact restraint-coverage results.
+  Geometry qualification and a fresh ordinary full-auto run remain pending.
+- Reconcile current source/ReadySet precedence and implemented recipe-controlled
+  full-auto behavior across contracts; replace superseded live queues with
+  authoritative pointers. Preserve shortened documents and development-intent
+  records byte-for-byte in the dated history archive; older changelog entries
+  below describe their original implementation checkpoints.
+- Queue a SMILES-assisted molecular-graph audit after the combined geometry
+  trial and before Topo/Scout. Record requested PDB/coordinate-mmCIF support and
+  an explicit trusted-model/no-sequence mode before the blind AlphaFold trial;
+  these are planned capabilities, with no new runtime option in this change.
+- Documentation checks: active links, intent JSON and exact archive hashes pass.
+  Isolated Linux/Python 3.12 regression returned **981 passed, 2 skipped,
+  257 subtests passed (29.50 s)**; this is not a new Phenix/Coot native receipt.
+- No source, dictionary, workbook, native run, reflection or Free-R changes.
 
 ### Cedar native probe scope
 

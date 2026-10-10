@@ -6,8 +6,11 @@ implemented for standard W plus prepared nonstandard per-dataset PDB/sequence
 inputs; existing schema-1 W plans remain executable. See
 [campaign planning](campaign-planning.md) and
 [campaign execution](campaign-execution.md) for available commands and limits.
-The broader candidate-selection, Doctor, approval, reporting and deposition
-commands described below remain planned.
+Schema-2 full auto adds bounded Refine Doctor escalation and provisional
+selection under explicit frozen policy; guarded behavior remains the default.
+Broader candidate search, cross-dataset Doctor, approval, reporting and
+deposition commands described below remain planned. The
+[development handoff](development-handoff.md) owns the current work queue.
 
 ## Purpose
 
@@ -149,10 +152,9 @@ may declare:
   distances;
 - AutoRefine recipe, numerical continuation criteria, and validation policy;
 - bounded Doctor trial definitions and candidate-selection policy;
-- workflow-level Doctor policy, including the future semantic option
-  **"apply Doctor as needed"**: absent means stop at the review gate; enabled
-  means run only the applicable bounded Doctor(s) already exposed by the backend,
-  while preserving explicit inspection/selection semantics;
+- workflow-level Doctor policy: schema 2 implements bounded Refine Doctor and
+  provisional-selection settings in [full auto](campaign-full-auto.md);
+  broader stage-specific Doctor policies remain future work;
 - reporting and PDF policy;
 - later curate, Table 1, and deposition policy; and
 - imported/external provider provenance and reviewed model transformations.
@@ -174,7 +176,7 @@ The fully resolved configuration is frozen in each dataset run.
 Keep the **current executable campaign graph** separate from the broader
 registration/Doctor target architecture.
 
-Current Pine campaign execution is:
+The current guarded campaign path is:
 
 ```text
 frozen input/model/target validation
@@ -186,17 +188,19 @@ frozen input/model/target validation
   -> SOLVED / REVIEW / BLOCKED / NO_SOLUTION
 ```
 
-A plain `campaign run ROOT` currently advances eligible datasets through the
-default AutoRefine endpoint. AutoSol is conditional on PostMR evidence: when no
+A plain `campaign run ROOT` with the guarded defaults advances eligible
+datasets through AutoRefine. AutoSol is conditional on PostMR evidence: when no
 supported anomalous candidate is present, the AutoSol stage records accepted
 status `SKIPPED` and does not launch `phenix.autosol`. Review/failure of one
 dataset does not stop unrelated campaign members.
 
 Pine now also contains a **regression + live validated** explicit
 `AUTOREFINE_REVIEW -> refine-doctor` continuation for campaign-owned Refine
-Doctor provenance. It is deliberately not automatic and not part of default
-campaign completion; a future workflow recipe may opt into Doctor-as-needed
-behavior.
+Doctor provenance. Schema-2 recipes may also enable bounded Doctor escalation
+with `workflow.run_doctor`. When no `--through` is given, that setting determines
+whether the endpoint is Refine Doctor or AutoRefine. Full auto may separately
+authorize provisional selection of a verified passing recommendation; guarded
+execution does not select it automatically. See [full auto](campaign-full-auto.md).
 
 The longer-term registration-aware target graph is:
 
@@ -220,16 +224,21 @@ data validation
 
 That second graph is **not all current runtime behavior**. In particular, the
 merged design-aware Scout-v2 helper remains experimental/non-runtime, automatic
-ASU Registration/Recut Rescue is not yet the campaign authority, and automatic
-campaign Doctor escalation remains future work.
+ASU Registration/Recut Rescue is not yet the campaign authority, and broader
+cross-dataset Campaign Doctor rescue remains future work.
 
-AutoSol warning/failure may later permit the ordinary MR refinement path to
-continue without experimental phases when an explicit reviewed workflow recipe
-allows it. Current policy remains fail-closed for unaccepted anomalous branches.
+Under full auto, a returned AutoSol WARNING/REVIEW may continue from the intact
+PostMR model without rejected phases when the frozen policy specifies
+`on_unaccepted = "continue-without-phases"`. Guarded policy retains the
+inspection stop. This permission does not recover arbitrary technical failures.
 
-ReadySet's validated model and combined ligand CIF remain the refinement
-inputs. The campaign must not fall back silently to the original MR model or
-uncombined dictionaries.
+Refinement consumes PostMR's validated final model and recorded effective
+restraint inputs. A successful ReadySet no-op may retain the prepared model
+after the same atom/phosphate audits. Explicit parameterized dictionaries take
+precedence over duplicate generated definitions; construction-only CCD graphs
+defer to generated numerical definitions that pass the parameterization gate.
+Source files and selection provenance
+remain preserved. The original MR model is not a silent preparation fallback.
 
 Generated NARestraints PHIL and project scaffold EFF files retain distinct
 roles. When both are present, the generated PHIL is authoritative and matching
@@ -269,9 +278,11 @@ policy or user decision creates its solution pointer.
 
 ## Automatic selection and statistical discipline
 
-Standalone Doctor commands may remain interactive. In campaign mode, the
-default is to execute the preset's bounded Doctor recipes and automatically
-select a candidate when it crosses the declared acceptance boundary.
+Standalone Doctor preserves the current checkpoint. Campaign defaults are
+guarded and do not automatically select its recommendation. Schema-2 full auto
+may explicitly enable bounded Doctor execution and provisional selection of a
+verified usable numerical SUCCESS recommendation. That selection remains
+distinct from user approval.
 
 Automatic selection follows a fixed recipe priority and chooses the first
 compatible branch that satisfies all declared criteria. It must not try an
@@ -360,15 +371,15 @@ distinguished from independent validation against the original Phaser model.
 ### Refine Doctor
 
 The existing Refine Doctor remains the bounded refinement finisher. Campaign
-mode may select its first successful preset-approved branch automatically;
-standalone use may prompt. Anomalous `f''` benchmarks remain attached even if
+mode may select its passing recommendation under the explicit full-auto policy;
+standalone use preserves current. Anomalous `f''` benchmarks remain attached even if
 later validation branches stop refining anomalous parameters.
 
 Standalone Doctor now implements bounded recovery for ordinary and anomalous
 data, finite trial budgets, and an inspection outcome when no eligible recipe
 passes. The original design proposal is archived under
 `history/refine-doctor-triage.md`. Broader data diagnostics and automatic
-campaign Doctor triggers remain planned; current implementation state lives in
+cross-dataset Campaign Doctor triggers remain planned; current implementation state lives in
 `development-handoff.md`.
 
 ### Final Model Doctor
@@ -558,13 +569,14 @@ identifiers and the exact approved snapshot submitted.
 2. **Implemented:** strict dataset discovery, input freezing, campaign state
    storage, explicit sequence-reference freezing, and root
    `nasolve-campaign.toml` sequence threads.
-3. **Implemented and now real-environment checked through PostMR:** one resumable
+3. **Implemented and real-environment checked through refinement:** one resumable
    sequential 5W6W execution path using AutoMR/PostMR/conditional
    AutoSol/AutoRefine, including pause and explicit retry. In the four-member
    W live campaign (`DOHU`, `QiC_120325_0513`, `QE_120325_0607`,
    `EG_091325-0302`), planning/integrity and real preflight/Phaser/PostMR
-   passed 4/4 under Phenix 2.2.1 and Coot 1.3.3. The plain unattended resume
-   through the default AutoRefine endpoint is the current live check.
+   passed 4/4 under Phenix 2.2.1 and Coot 1.3.3. The unattended resume
+   completed with three SOLVED outcomes and a preserved QiC review, followed
+   by the separately validated campaign-owned Doctor continuation.
 4. **Implemented on Pine; real prepared-nonstandard validation pending:**
    schema-2 planning/execution for one frozen nonstandard per-dataset PDB
    provider plus an exact frozen raw+parsed sequence target, while preserving
@@ -575,15 +587,13 @@ identifiers and the exact approved snapshot submitted.
    real 3-5 member prepared-nonstandard/geometry-diverse campaign when those
    inputs are available, with ambiguous representation problems stopping only
    the affected dataset.
-6. **Add first-class workflow-recipe semantics.** The selected/frozen campaign
-   recipe should explicitly declare its intended endpoint and conditional stage
-   graph instead of relying on the executor's hard-coded stage order/default
-   endpoint. Preserve current conditional AutoSol skip/run behavior and
-   fail-closed per-dataset stops. A recipe may optionally request
-   **"apply Doctor as needed"**; omission leaves review states for inspection,
-   while opt-in may traverse only validated bounded Doctor transitions. Doctor
-   recommendation and checkpoint selection remain separate unless a later,
-   separately validated policy explicitly changes that.
+6. **Implemented: bounded full-auto workflow policy; native cohort checked.**
+   Schema-2 recipes can authorize borderline-MR trials, continuation without
+   rejected AutoSol phases, bounded Refine Doctor and a separate provisional
+   selection. The endpoint follows frozen Doctor policy unless `--through`
+   overrides it. The native cohort did not exercise continuation after rejected
+   AutoSol phases; see the [validation limits](campaign-full-auto.md). A general
+   configurable stage graph remains future work.
 7. Add explicit stable Design grouping/identity for datasets sharing one
    construct/design record. Do not infer Design membership from filenames or
    similarity.
@@ -611,17 +621,15 @@ The implemented campaign slice provides `preset check`, `campaign plan`,
 `campaign retry` with immutable planning state, portable resource snapshots,
 integrity verification, and per-dataset execution records. Planning can also
 freeze explicit sequence threads and provider/target provenance used by later
-run-level compatibility records. A plain `campaign run` currently runs
-unattended through AutoRefine, but that endpoint remains executor-defined rather
-than recipe-declared. A database execution index and general multi-candidate DAG
-remain future work.
+run-level compatibility records. The frozen workflow policy determines the
+default endpoint within the implemented stage graph. A database execution index
+and general multi-candidate DAG remain future work.
 
-The current real W smoke test plus QiC Doctor continuation validate campaign
-orchestration through explicit `refine-doctor`. The next stress test is the
-user-local `examples/TestSets/` campaign (roughly nine datasets): one invocation
-from MR through conditional AutoSol, AutoRefine and explicit Doctor continuation,
-with honest review/block outcomes preserved. This does not replace the later
-prepared-nonstandard geometry-diverse Pine live gate.
+The earlier W smoke test, guarded QiC Doctor continuation and later four-member
+full-auto campaign are preserved in [the validation checkpoint](full-auto-patch-handoff.md).
+They do not replace the real prepared-nonstandard geometry-diverse gate. Consult
+the [development handoff](development-handoff.md) for remaining checks rather
+than rerunning these completed cohorts.
 
 The donor/recipient comparison layer is descriptive only: automatic cross-dataset
 Doctor eligibility/selection and the later approval/deposition workflow are not
@@ -632,7 +640,7 @@ implied by numerical success or by matching compatibility facts.
 The following details are intentionally deferred until their implementation
 stage:
 
-- exact TOML field names and preset inheritance syntax;
+- new TOML fields and richer preset inheritance beyond the implemented schema;
 - the lab Table 1 field set and visual format;
 - dashboard framework and local Coot-launch mechanism;
 - direct OneDep integration constraints and authentication;
