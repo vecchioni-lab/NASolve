@@ -414,24 +414,39 @@ This candidate is ready for a scoped native diagnostic, **not adopted or
 geometry-qualified**. Its source/audit evidence does not close the earlier
 minimization's convergence question or replace the user-approved visual model.
 
-### Next native boundary — DP interpretation with complete B:4 linkage
+### DP native diagnostic — preserved checker failure
 
-`combined_dp_native.py` will use the unchanged repaired **pre-minimization**
-model as the comparison baseline, substituting the new candidate only in a
-fresh diagnostic. Earlier B:4 DP interpretation applied `NASnoOP3` but retained
-free O3'-bound **H3** despite an outgoing `rna3p` link. Add a complementary,
-site-specific **NASdp3prime** modification deleting **H3** and setting
-**O3' to OC2**, alongside the existing OP3 modification; leave the isolated
-candidate source unchanged. The prepared driver checks candidate heavy bonds,
-angles, **19 heavy torsions** (13 active / 6 constant) and three signed sugar
-centres, with exact baseline preservation of non-DP, cross-link and custom
-proxies and all **868 model atoms/coordinates**. These are planned native checks,
-not returned results. Offline staging verified only the copied DP dictionary,
-modification CIF and site-profile PHIL change; all original hashes were preserved.
-A simulated native failure produced a BLOCKED receipt and valid review ZIP.
-No Phenix execution occurred in the container. **Native interpretation and candidate adoption remain
-pending.** The earlier relaxed model retains its
-user visual PASS; full numerical qualification remains open.
+`LIVE/combined-dp-native-_6jpz1i8` staged the audited DP candidate and requested
+B:4 `NASdp3prime` (delete H3, O3'→OC2) alongside `NASnoOP3`, on unchanged
+repaired pre-minimization coordinates. Its receipt is **BLOCKED**, diagnostic
+exit **2**, `DP heavy torsion coverage`; originals are unchanged. The supplied
+`DP_native_review.zip` SHA-256 is
+`97ba75e8a94b5cfdfee999056a9c54656834c113baf55c9db2d94b5340792a9a`;
+all **34** manifest entries were verified. Before stopping, checks passed for
+mapping/868 coordinates, unchanged non-DP/cross-link/custom proxies, **24 heavy
+bonds / 35 angles**, N5 targets and two base planes. Later sugar/effective-
+monomer checks did not execute; this receipt is **not a native full PASS**.
+
+Review found all **19 heavy torsions (13 active / 6 constant)** present and
+matching target, weight, period, kind and alternates under cctbx's documented
+proxy ordering. `dihedral.h` blob `ee41da7a84b3ae1155f39e70021abe943f6bb97e`
+sorts terminal and central index pairs independently, negating ideal/alternate
+angles per swap. The checker allowed only full reversal. This is a checker
+representation failure, not a chemistry change. Offline corrected-check replay
+passed all 19 torsions and three sugar chirals; missing/duplicate or altered
+central-pair/target/weight/period cases were rejected. Independent effective
+inventory found 33 atoms (35 minus OP3/H3) and preserved 1.607 ± 0.012 Å links;
+actual O3' energy typing still needs the added native capture.
+
+### Next native boundary — rerun the corrected checker
+
+`combined_dp_native_v2.py` repeats **identical inputs and modifications** in a
+fresh diagnostic, changing only the checker and progress/effective-field
+receipts. Offline staging confirmed all 15 scientific inputs and the model are
+byte-identical to the returned attempt. No new chemical edits are proposed.
+**Native rerun remains pending**;
+preserve the failed receipt and earlier user visual PASS. Full numerical
+qualification, convergence and production adoption remain open.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

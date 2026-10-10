@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### DP native checker correction
+
+- Preserve the blocked torsion-coverage receipt and partial checks. All 19 DP
+  heavy torsions match after verified cctbx index/sign normalization; queue a
+  checker-only v2 rerun with identical inputs/modifications. Record the lesson
+  in `TOR-01`; no chemical change or native full PASS is claimed.
+
 ### DP candidate generated and reviewed
 
 - Record successful v2 installed-reader preflight/generation and reviewed graph,

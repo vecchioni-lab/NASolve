@@ -117,6 +117,14 @@ component/polymer class and native handling, rather than requiring every possibl
 angle or signed centre indiscriminately.
 
 For `TOR-01`, use the engine's actual potential and alternative-angle semantics.
+Separate source-quartet comparisons from native proxy canonicalization. In
+cctbx `dihedral.h` blob `ee41da7a84b3ae1155f39e70021abe943f6bb97e`,
+`sort_i_seqs` independently swaps terminal 0↔3 and central 1↔2 indices,
+negating ideal/alternate angles for each swap; two swaps preserve sign. The DP
+checker missed valid proxies by allowing only full reversal. Match this verified
+engine representation, including kind/period/weight/alternates; do not authorize
+arbitrary source permutations. Test single/two swaps with a nonzero angle and
+reject missing/duplicate/wrong-central-pair or altered target/weight/period terms.
 Report nearest periodic angular displacement separately from energy. Do not
 apply one harmonic `delta/sigma` formula to every periodic or alternative term.
 Reconcile native atom ordering and sign conventions before comparing targets;
