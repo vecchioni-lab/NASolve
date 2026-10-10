@@ -18,8 +18,8 @@ not general production support. Earlier wording remains in Git and the
 | Cedar source lookup | Installed Phenix CCD lookup for IGU/IMC/CGY/DX and Coot construction verified; symlink duplicates resolved. Nine bundled-source roles audited. | Acquisition, parameter generation and linkage must become a repeatable ordinary workflow; source availability alone does not certify geometry. |
 | Combined 42-residue W trial | **Preflight, Phaser and PostMR passed**; 42/42 identities, 12 retained + 5 replaced Saenger blocks, 8 explicit pairs, stacking enabled. | Effective sugar/glycosidic torsions and phosphate protonation; new geometry/refinement trial and human review. |
 | Generic linkage diagnostic | **GENERIC_LINKAGE_MECHANICS_PASS** with fresh IMC, no missing heavy atoms, preserved links and D:1 terminal phosphate. | Diagnostic-only derivatives, not integrated general PostMR support or chemistry approval. |
-| Custom restraint coverage | **21/21 bonds, 34/34 angles, 8/8 planes, 23/23 parallelities** matched; no exact duplicate planes/parallelities or overlap candidates. | Recheck after the 5CM/DF substitutions; coverage is not achieved geometry. |
-| Effective 5CM / DF audit | Confirmed active 5CM wrong-atom torsion and ReadySet DF chemistry/chirality defects; scratch-only 5CM correction proof and native-generated DF source audit passed. | Neither candidate has been adopted in a corrected native interpretation or geometry trial. |
+| Custom restraint coverage | **21/21 bonds, 34/34 angles, 8/8 planes, 23/23 parallelities** matched; no exact duplicate planes/parallelities or overlap candidates. | Custom proxies remained preserved after native 5CM/DF adoption; coverage is not achieved geometry. |
+| Effective 5CM / DF recovery | **REPAIRED_NATIVE_INTERPRETATION_PASS**: corrected 5CM and linked DF adopted in a separate native diagnostic; 42 mappings, DF bonds/chirality, preserved custom/other proxies and unchanged 868-atom model verified. | Geometry minimization and inspection remain pending; original inputs are unchanged. |
 | Ordinary/full-auto campaigns | Prior EA/DiU/Q5cm/QiC cohort reached numerical SOLVED with review/provisional distinctions preserved. | This does not prove a fresh arbitrary-component run without a prepared resource bundle. |
 | P2 / prepared nonstandard P5 | P2 preparation and nonstandard campaign paths implemented and fixture-tested. | Source-native `1W5→DZ` / `1WA→DP` provenance/refinement; 3–5 real geometry-diverse P5 models. |
 | Scout / Topo / GUI | Existing registration/shadow primitives and scoped evidence retained. | Operational Scout and topology surgery remain future work. |
@@ -40,19 +40,15 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Reinterpret one fresh diagnostic with the bounded 5CM/DF corrections.**
-   The [native ledger](native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery)
-   owns exact hashes, defects and checks. Correct only 5CM's demonstrated
-   base-C2/sugar-C2' reference, apply the existing alternate normalizer, and use
-   the source-audited new DF candidate with a site-specific internal-link
-   modification. Preserve source-dependent OP2 protonation and explicitly record
-   the DF formal-charge difference. Verify 42 identities, effective torsion and
-   chirality/bond terms, links, custom-restraint coverage and D:1. **Then**, if the
-   checks support it, run disposable geometry minimization and assess strain,
-   displacement, chirality, paired sites, backbone and symmetry contacts.
-   Native adoption and the geometry result remain **PENDING**; retain every
-   original input and failed probe. Severe CGY starting strain is not by itself
-   evidence of a bad dictionary.
+1. **Run disposable geometry minimization from the repaired native manager.**
+   The [native ledger](native-modified-pair-live-validation.md#repaired-native-interpretation--returned-pass)
+   records the returned 5CM/DF interpretation PASS and verified 34-file bundle.
+   Preserve its frozen inputs and use the same interpreted restraints. Check
+   finite coordinates/energies, before/after per-term energies and raw geometry,
+   site displacement, chirality, paired sites, backbone, stacking and symmetry
+   contacts. This trial does not refine MTZ/Free-R or establish experimental
+   chemistry. **Geometry remains PENDING**; keep remaining strain and failures
+   visible. Severe CGY starting strain is not itself a dictionary defect.
 2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
    The current trial used selected numerical CIFs in a frozen resource bundle
    and ad hoc linked derivatives. Acceptance is a new run from declared

@@ -13,9 +13,9 @@ four-member DiU/5CM full-auto results live in the
 prepared-bundle run has passed PostMR, and separate native diagnostics passed
 generic linkage mechanics and custom-restraint coverage. The effective audit
 then exposed an active 5CM wrong-atom torsion and defective ReadySet DF geometry.
-A narrow 5CM correction was proved in scratch; a new native-generated DF
-candidate passed source-graph/numerical-reference checks. Corrected native
-interpretation, linkage adoption and geometry minimization remain pending.
+The narrow 5CM correction and source-audited DF candidate subsequently passed
+repaired native interpretation, including DF linkage, effective bonds/chirality
+and preserved other/custom proxies. Geometry minimization remains pending.
 This is not yet a fresh generic full-auto result. Exact evidence and the
 bounded recovery sequence belong in the [native ledger](native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery).
 
@@ -63,10 +63,10 @@ This audit changes documentation only.
 | --- | --- | --- |
 | **1AP** | `af08c5a` replaced a raw CCD graph with parameterized MonomerLibrary data after the failed eLBOW attempt. Direct comparison with pinned source blob `1be06d4bb0848891fd3e7dca22d217dd2ad1b69b` finds only audit comments and `NON-POLYMER -> DNA`; numerical geometry is unchanged. | Retain the parameterized override and selected phosphate profile. The failed generated dictionary and polymer typing, not a demonstrated defect in all upstream 1AP sources, justify this route. |
 | **DE** | The current eLBOW file has never changed since its addition at `b8317b0`. September's 1AP integration and handoff explicitly leave DE geometry defective and replacement unapproved. It is byte-identical to the historical repository-root eLBOW `8RO.cif` after changing the component label to DE; that historical file is not proof of official CCD equivalence. | Retain the lab identity/construction exception, but reopen geometry repair. Do not describe the existing file as a validated repaired dictionary or infer an approved `8RO -> DE` conversion. |
-| **DF** | Added at `b8317b0` ("mutation works; patched DF"); retains the laboratory working label, `C2-S1` construction and deposition identity `A1AAZ`. User comparison found only component-label and trailing-whitespace differences. Restoring A1AAZ labels in the Git-verified DF file and trimming line ends reproduces the installed Phenix SHA-256 exactly. This is a graph/coordinate source without numerical bond targets. | Retain the short working label, exact identity bridge and sulfur-placement recipe. No chemical repair relative to the inspected A1AAZ graph source is present. The October 10 effective ReadySet DF was defective; a fresh candidate preserves this source graph, but native adoption is pending. The user reports creating A1AAZ from lab DF; historical origin and runtime label conversion have opposite directions. |
+| **DF** | Added at `b8317b0` ("mutation works; patched DF"); retains the laboratory working label, `C2-S1` construction and deposition identity `A1AAZ`. User comparison found only component-label and trailing-whitespace differences. Restoring A1AAZ labels in the Git-verified DF file and trimming line ends reproduces the installed Phenix SHA-256 exactly. This is a graph/coordinate source without numerical bond targets. | Retain the short working label, exact identity bridge and sulfur-placement recipe. No chemical repair relative to the inspected A1AAZ graph source is present. The October 10 effective ReadySet DF was defective; a fresh candidate preserving this source graph passed separate native linkage/bond/chirality interpretation. Geometry remains pending. The user reports creating A1AAZ from lab DF; historical origin and runtime label conversion have opposite directions. |
 | **DZ** | Direct comparison with pinned MonomerLibrary blob `9e6151658d2887ef3902d170c77752ccc90159d4` finds comments and `NON-POLYMER -> DNA` only. Numerical geometry is unchanged. | Retain the parameterized DNA resource and C-glycoside/linked-phosphate treatment; this is a sourced adaptation, not invented geometry. |
 | **DP** | Direct comparison with pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` finds only `NON-POLYMER -> DNA`. Numerical geometry is unchanged. | Retain the parameterized DNA resource and linked-phosphate treatment. True source-native P2 validation remains separate. |
-| **5CM** | Added at `984f75d` after a missing-source failure; byte-identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`. The October 10 effective audit nevertheless found `C2e-nyu0` incorrectly referencing base C2 instead of sugar C2'. | Source equality remains true, but the earlier removal of the broken-dictionary classification is superseded for this exact version. A one-reference correction plus existing alternate normalization has a scratch proof only; native verification and any version/hash-scoped production repair remain pending. |
+| **5CM** | Added at `984f75d` after a missing-source failure; byte-identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`. The October 10 effective audit nevertheless found `C2e-nyu0` incorrectly referencing base C2 instead of sugar C2'. | Source equality remains true, but the earlier removal of the broken-dictionary classification is superseded for this exact version. The one-reference correction plus existing alternate normalization passed separate native interpretation. Geometry and any version/hash-scoped production repair remain pending. |
 | **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. The user-supplied complete diff shows trailing whitespace only. Removing line-end spaces/tabs from the Git-verified bundled source reproduces the installed Phenix SHA-256 exactly; atom names, charges, bond orders, stereochemistry, coordinates and metadata are unchanged. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is thioguanine; the lab's S is IMC. That selection error does not establish a dictionary defect. |
 | **C38** | Added at `739e6df` with iodine construction/AutoSol support; no subsequent CIF edits or identified supplier repair. The current coordinate reader gives ring `C5-I` = 2.094074 A. Its bytes match the user's installed Phenix 2.2.1-6174 CCD exactly. | Candidate for generic source lookup, preserving iodine placement/topology and numerical-generation checks. |
 | **5IU** | Added at `739e6df`; CIF bytes have not changed. `984f75d` fixed the parser stripping the prime from `C5'`: direct calculation gives ring `C5-I5` = 2.095111 A and sugar `C5'-I5` = 8.843030 A. | Candidate for generic source lookup. The long apparent iodine bond was a NASolve parser defect; preserve the fix and iodine-placement rule. Its bytes match the user's installed Phenix 2.2.1-6174 CCD exactly. |
@@ -92,9 +92,10 @@ review; no later committed DE replacement was found.
 **Audit decision:** retain the specific bundled roles of 1AP, DE, DF, DZ and
 DP, with DE geometry still unresolved. S6G/C38/5IU contain no supplier-chemistry
 repairs; their placement recipes remain needed independently of source lookup.
-5CM is an unchanged, pinned parameterized MonomerLibrary resource, rather than
-a broken-source exception. The nine-entry source audit is complete for the
-inspected versions; it does not certify DE geometry or native parameterization.
+5CM remains an unchanged pinned MonomerLibrary resource in production, but its
+exact-version atom-reference defect now has a separately native-verified
+derivative. The nine-entry source-equality audit does not certify numerical
+geometry; DE remains unresolved and generic runtime integration is unfinished.
 
 **Migration boundary:** source identity, atom names, elements/charges,
 bonds/stereochemistry and coordinates match for the inspected S6G/C38/5IU
@@ -151,7 +152,8 @@ element label alone is insufficient. Keep the current scoped recipes while
 validating a replacement. Add a bundled override when a demonstrated source
 defect or representation requirement warrants one, with exact source and
 reviewed differences; do not build a blanket repaired sulfur/halogen library.
-No 5CM source defect was found.
+The earlier source-equality audit did not detect the subsequently confirmed
+5CM torsion defect; its narrow correction has separate native evidence above.
 
 **Installed-source receipt (2026-10-09):** the user read and hashed the four
 Phenix **2.2.1-6174** files without executing Phenix or Coot. For each component,
@@ -432,7 +434,8 @@ patch should be required during an ordinary run.
 
 This is planned integration after the geometry test and before Topo/Scout, not
 implemented runtime recovery or a new gate on the current trial. The successful
-DF generation/source audit is evidence for one candidate, not proof that every
+DF generation/source audit and repaired native interpretation are evidence for
+one diagnostic, not proof that every
 ligand can already follow this path automatically.
 
 ## Historical validation evidence

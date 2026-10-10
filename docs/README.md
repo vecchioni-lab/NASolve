@@ -12,12 +12,11 @@ for actual behavior; history is evidence, not a second task queue.
   Phaser and PostMR; generic linkage diagnostic and exact custom-restraint
   coverage. [The native ledger](native-modified-pair-live-validation.md)
   owns returned counts, dictionary hashes and evidence paths.
-- **Current recovery:** effective 5CM and ReadySet DF defects are identified;
-  narrow 5CM correction proof and new DF source audit passed. Next, reinterpret
-  a fresh derivative with both candidates and verified DF linkage, then attempt
-  disposable geometry minimization if effective-restraint checks support it.
-  Native adoption is pending; source-specific phosphate states stay explicit.
-  Prepared-bundle diagnostics do not prove fresh ordinary full auto.
+- **Current recovery:** repaired 5CM/DF native interpretation passed, including
+  42 mappings, effective bonds/chirality and preserved other/custom proxies;
+  originals and all 868 model coordinates are unchanged. Next is disposable
+  geometry minimization with the same interpreted restraints. Geometry and a
+  fresh ordinary full-auto workflow remain unqualified.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
 - **Queued:** deterministic SMILES/CIF assessment, then separately tested

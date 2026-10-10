@@ -1,10 +1,10 @@
 # Native modified-base pair matrix — live validation ledger
 
 Updated **2026-10-10** from returned native output and the supplied, checksum-verified
-geometry and DF candidate bundles.
+geometry, DF candidate and repaired-native bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
-coverage recorded; 5CM/DF defects identified; DF candidate source audit PASS;
-corrected native interpretation and geometry qualification PENDING.** The
+coverage recorded; repaired 5CM/DF native interpretation PASS; geometry
+qualification PENDING.** The
 combined geometry minimization trial has not yet been run. This updates the earlier
 [exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
 See the [handoff](development-handoff.md) for current priorities.
@@ -21,9 +21,9 @@ See the [handoff](development-handoff.md) for current priorities.
 - [x] Exact custom-restraint target/weight coverage and duplicate checks.
 - [x] Supplied geometry bundle verified against all 23 manifest hashes; active
   5CM and ReadySet DF defects identified.
-- [x] Fresh DF generated natively; separate source-graph/numerical-reference audit
-  passed, without adopting it into the combined run.
-- [ ] Native adoption of the narrow 5CM correction and linked DF candidate.
+- [x] Fresh DF generated natively; source-graph/numerical-reference audit passed.
+- [x] Repaired native interpretation passed with the narrow 5CM correction and
+  linked DF candidate in a separate diagnostic; originals unchanged.
 - [ ] Effective sugar/glycosidic torsion and phosphate-protonation qualification.
 - [ ] New combined geometry/refinement trial, numerical metrics and per-site
   human Coot/.geo review.
@@ -213,10 +213,10 @@ recorded on October 9 did not establish correct geometry.
 A scratch-only proof changed that one atom reference and then used the existing
 CCP4-alternate normalizer. It produced one correct quartet with primary
 **340.7°**, alternate **2.8°**, retaining the first-row sigma **6.3°**. No
-supplier target was guessed. This derivative has **not yet been adopted or
-verified by native Phenix**, and the frozen source remains unchanged.
+supplier target was guessed. The later repaired-native diagnostic below
+verified this derivative in Phenix; the frozen source remains unchanged.
 
-### DF — generated replacement passed source audit, native adoption pending
+### DF — generated replacement and source audit
 
 The effective ReadySet DF supplement (SHA-256
 `b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20`)
@@ -244,36 +244,55 @@ include C1'–C2' **1.522 Å**, C3'–C4' **1.530 Å**, C1'–O4' **1.413 Å**,
 double C4=O4 **1.231 Å** and double C2=S1 **1.672 Å**. The generation log's two
 `non-ring atom 3 marked aromatic` warnings remain preserved; the final audited graph
 has no corresponding defect. Copied descriptors are not independent chemical
-validation. This passes the bounded source/numerical audit, **not native
-linkage, geometry minimization or scientific approval**.
+validation. This initial source/numerical audit was followed by the repaired
+native interpretation below; neither result is geometry minimization or
+scientific approval.
 
-### Next native boundary
+### Repaired native interpretation — returned PASS
 
-The supplied single-use `combined_repaired_native.py` driver stages this
-diagnostic under a new `LIVE/combined-repaired-native-*` directory, preserves
-originals, and writes `repaired_native_review.zip` with hashes and effective
-geometry details. Its staging and check logic were exercised offline; Phenix
-execution and any resulting pass remain pending returned native evidence.
-This driver is a diagnostic artifact, not an installed NASolve command.
+**REPAIRED** = `LIVE/combined-repaired-native-4v81kp0f`. Its `receipt.json`
+reports **REPAIRED_NATIVE_INTERPRETATION_PASS**, native exit **0**, repaired
+checks **PASS** and `originals_unchanged=true`, on the same Cedar `e7451eed`.
+The supplied `repaired_native_review.zip` has SHA-256
+`76345aca29e42353c55285a5d2b9bfaa4ff8aecee67bfc00c3ccc68f270b1651`;
+all **34** manifest entries were verified. The single-use diagnostic driver is
+not an installed NASolve command.
 
-1. Create a fresh diagnostic copy of the combined model and its **15 inputs**;
-   preserve all original hashes. Substitute only the narrow corrected/normalized
-   5CM derivative and the new DF candidate for the ReadySet DF supplement.
-2. Apply a site-specific DF internal-link modification deleting **OP3, HOP3 and
-   HO3'**, set O3' type to **OC2**, and retain the source OP2 hydrogen. Record the
-   chemical-state difference: old ReadySet DF assigned OP1 formal charge **−1**,
-   whereas the new source has formal charges **0**. This is not a pH correction
-   or a silently chosen common phosphate state.
-3. Reinterpret natively, then check **42 mappings**, no unexpected identities or
-   missing heavy atoms, one correct native 5CM quartet with its alternate, and
-   the three DF sugar chirality restraints/new bond targets. Recheck the other
-   links, exact custom-restraint coverage and protected D:1 terminal phosphate.
-4. Only if those checks support it, run disposable geometry minimization and
-   inspect strain, coordinate displacement, chirality, all six paired sites,
-   backbone/phosphate, stacking and symmetry contacts. Record failures and
-   remaining strain rather than assuming a passing result. The CGY starting
-   N1–C2–C1 angle (**1.58°** against **120.86°**) demonstrates severe starting
-   strain; that discrepancy alone is not a dictionary defect.
+The native checks verified the corrected 5CM quartet and alternate, all **21 DF
+heavy-atom bonds** and **3 signed sugar chirality restraints**. DF modification
+`NASpDF` deletes OP3/HOP3/HO3', retains HOP2 and sets O3' to OC2. The old DF
+OP1 formal charge −1 versus new source charges 0 remains recorded; this is not
+a pH correction. All **42 mappings** matched, with no missing heavy atoms or
+unexpected mappings. Non-target dihedrals, other preserved/custom proxies and
+D:1 were unchanged; the model still has **868 atoms with unchanged coordinates**.
+
+Native proxy counts are **1015 bonds / 0 ASU bonds / 1574 angles / 506 dihedrals /
+298 constant dihedrals / 158 chirality / 56 planarity / 58 parallelity**.
+The **506** active dihedrals carry energetic restraints; the **298 constant
+dihedrals** are preserved zero-weight connectivity annotations, not additional
+energetic torsions. Independent review found no new pre-minimization blocker.
+The adopted 5CM derivative SHA-256 is
+`61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562`;
+DF retains the candidate hash above. `repaired_geometry_details.json`,
+`native_audit.json`, `native_effective.phil`, `combined_W.geo` and `native.log`
+preserve the effective evidence. **Geometry qualification remains PENDING.**
+
+### Next native boundary — disposable geometry minimization
+
+The prepared single-use `combined_geometry_trial.py` driver uses direct cctbx
+L-BFGS with the same interpreted manager and all native restraint flags. Its
+bound is **at most 5 cycles × 500 iterations**, in a new sibling
+`LIVE/combined-geometry-trial-*` workspace, producing `geometry_trial_review.zip`.
+The script is prepared; **native execution and its outcome remain pending**.
+
+Use the same interpreted geometry manager and frozen repaired inputs in a new
+disposable derivative. Record finite coordinates/energies, unchanged input
+hashes, before/after per-term energies and raw geometry metrics, site-resolved
+displacements, chirality, all six paired sites, backbone/phosphate, stacking
+and symmetry contacts. This is a geometry-only trial: no MTZ/Free-R refinement
+or experimental validation is implied. Preserve failures and remaining strain.
+The CGY starting N1–C2–C1 angle (**1.58°** against **120.86°**) is severe
+starting strain; its discrepancy alone is not a dictionary defect.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

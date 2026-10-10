@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Repaired native interpretation
+
+- Record returned 5CM/DF repaired-native PASS, verified 34-file evidence bundle,
+  preserved original inputs/custom restraints and unchanged 868-atom model.
+  Next is disposable minimization with the same interpreted geometry manager;
+  achieved geometry and MTZ/Free-R refinement are not claimed. Documentation only.
+
 ### Combined geometry recovery plan
 
 - Record the checksum-verified linked geometry bundle, confirmed active 5CM
