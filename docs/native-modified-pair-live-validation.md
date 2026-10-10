@@ -4,8 +4,8 @@ Updated **2026-10-10** from returned native output and the supplied, checksum-ve
 geometry, DF candidate, repaired-native and minimization bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
 coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
-COMPLETED_AWAITING_REVIEW in its receipt; user visual PASS; DP numerical repair
-and overall geometry qualification PENDING.** This updates the earlier
+COMPLETED_AWAITING_REVIEW in its receipt; user visual PASS; DP native
+interpretation PASS; new DP geometry trial and full qualification PENDING.** This updates the earlier
 [exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
 See the [handoff](development-handoff.md) for current priorities.
 
@@ -26,11 +26,12 @@ See the [handoff](development-handoff.md) for current priorities.
   linked DF candidate in a separate diagnostic; originals unchanged.
 - [x] Bounded combined geometry minimization completed; metrics and 57-file
   evidence bundle returned, original inputs preserved.
-- [ ] Source-preserving DP numerical repair/audit and effective geometry
-  qualification; DP angle/plane inconsistency is now demonstrated.
+- [x] Source-preserving DP candidate and complete B:4 native interpretation
+  passed; original source and coordinates preserved.
+- [ ] Geometry trial with the new DP manager and full numerical qualification.
 - [x] User-reported Coot visual PASS for the exact relaxed model; all modified
   pairs looked satisfactory and WC-like.
-- [ ] DP numerical repair, full numerical qualification and later refinement;
+- [ ] Full numerical qualification and later refinement;
   source-specific phosphate states remain explicit.
 - [ ] Fresh ordinary full-auto run without preselected numerical resources
   or ad hoc linkage scripts.
@@ -438,15 +439,37 @@ central-pair/target/weight/period cases were rejected. Independent effective
 inventory found 33 atoms (35 minus OP3/H3) and preserved 1.607 ± 0.012 Å links;
 actual O3' energy typing still needs the added native capture.
 
-### Next native boundary — rerun the corrected checker
+### DP native v2 — returned PASS
 
-`combined_dp_native_v2.py` repeats **identical inputs and modifications** in a
-fresh diagnostic, changing only the checker and progress/effective-field
-receipts. Offline staging confirmed all 15 scientific inputs and the model are
-byte-identical to the returned attempt. No new chemical edits are proposed.
-**Native rerun remains pending**;
-preserve the failed receipt and earlier user visual PASS. Full numerical
-qualification, convergence and production adoption remain open.
+**DP-NATIVE** = `LIVE/combined-dp-native-abp6f409`. Its corrected-checker receipt
+reports **DP_NATIVE_INTERPRETATION_PASS**, exit **0**, DP checks **PASS** and
+originals unchanged. All **868 original pre-minimization atom coordinates**
+remain unchanged. The returned `DP_native_review.zip` SHA-256 is
+`6e0f33dab2cd179542e68269a7cca2806058d3b47c214af3d4fabddc189d2cf2`;
+all **33** manifest entries were verified. Manifest SHA-256:
+`5989ede3f755decfec0efbd88805feb58e0f44de51995cba2de66264baae6eae`;
+`native_audit.json` SHA-256:
+`e64d7a633e0ff3f2c42cae30808293a9ea61486ff3ae76a465c34f5f77ed8423`.
+
+Checks passed for **24 DP heavy bonds / 35 angles / 19 torsions**, the new N5
+angle targets and preserved non-DP/custom/cross-link proxies. Both **OP3 and H3
+are absent**; actual runtime **O3' energy type OC2** was captured. Native counts
+are **1015 bonds / 0 ASU bonds / 1574 angles / 501 active dihedrals /
+304 constant dihedrals / 158 chirality / 57 planes / 58 parallelity**.
+Effective atom charge fields were null: this receipt adds **no native charge
+claim** beyond the separately preserved source graph. The earlier blocked
+checker receipt remains intact; this pass belongs to the new diagnostic only.
+
+### Next native boundary — geometry trial with the DP-native manager
+
+The prepared `combined_dp_geometry_trial.py` starts from DP-NATIVE's original
+pre-minimization coordinates and uses its fixed interpreted manager in a fresh
+workspace, bounded to the same **5 cycles × 500 iterations**. Preserve inputs
+and compare per-term energy, N5 geometry, chirality, displacement, pairs,
+backbone and symmetry contacts. **Native execution and geometry qualification
+are pending**. The prior relaxed model's user visual PASS is preserved; it is
+not transferred to an unrun new trial. No convergence, MTZ/Free-R refinement or
+production full-auto result is claimed.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-11",
-  "status": "DP_NATIVE_CHECKER_REPRESENTATION_FAILURE_V2_RERUN_PENDING",
+  "status": "DP_NATIVE_INTERPRETATION_PASS_NEW_GEOMETRY_TRIAL_PENDING",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -161,9 +161,9 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "Rerun combined_dp_native_v2.py with identical inputs/modifications; corrected cctbx torsion canonicalization and fuller receipts",
-      "Complement existing B:4 NASnoOP3 with H3 deletion and O3-prime OC2 typing; verify effective graph/angles/plane/chirality and preserved other/custom proxies",
-      "Clean geometry rerun only after native candidate validation; full numerical qualification remains open",
+      "Fresh combined_dp_geometry_trial.py run from original pre-minimization coordinates with fixed DP-native manager and same 5-cycle/500-iteration bound",
+      "Review new per-term energy/N5/chirality/displacement/pair/backbone/symmetry evidence; preserve original visual PASS separately",
+      "Full numerical qualification, convergence and any diffraction refinement remain open",
       "Ordinary full-auto reproduction after runtime integration"
     ],
     "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval",
@@ -177,7 +177,7 @@
       "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
       "native_adoption": true,
       "geometry_minimization_completed": true,
-      "next": "Checker-only combined_dp_native_v2.py rerun; chemistry and source model unchanged",
+      "next": "combined_dp_geometry_trial.py: fresh same-bound geometry from original coordinates and DP-native manager",
       "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
       "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
       "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
@@ -319,8 +319,7 @@
         3
       ],
       "source_unchanged": true,
-      "adopted_into_run": false,
-      "native_validation": "PENDING",
+      "native_validation": "DP_NATIVE_INTERPRETATION_PASS; see DP_native_v2",
       "numerical_audit": {
         "scope": "Broader numerical regeneration, not single-angle patch; supports native testing only",
         "bond_targets_or_sigmas_changed": 34,
@@ -346,7 +345,9 @@
         "signed_sugar_centres_preserved": 3,
         "generator_coordinate_residuals": "Internal consistency, not independent evidence"
       },
-      "planned_native_modification": "B:4 NASdp3prime deletes H3 and sets O3-prime OC2, alongside existing NASnoOP3; source candidate unchanged"
+      "planned_native_modification": "B:4 NASdp3prime deletes H3 and sets O3-prime OC2, alongside existing NASnoOP3; source candidate unchanged",
+      "adopted_into_production_run": false,
+      "native_diagnostic_adoption": true
     },
     "DP_native_attempt": {
       "root": "LIVE/combined-dp-native-_6jpz1i8",
@@ -360,8 +361,25 @@
       "not_executed": "Later sugar/effective-monomer checks",
       "review": "All19 torsions (13 active/6 constant) match under verified cctbx terminal/central-pair sorting and ideal/alternate sign normalization; checker representation failure",
       "offline_corrected_replay": "19 torsions/3 sugar chirals pass; negative cases reject",
-      "next": "combined_dp_native_v2.py, same inputs/modifications; native full PASS pending",
+      "next": "Closed by new corrected-checker DP_native_v2 receipt; original BLOCKED receipt retained",
       "chemical_change_for_retry": false
+    },
+    "DP_native_v2": {
+      "status": "DP_NATIVE_INTERPRETATION_PASS",
+      "root": "LIVE/combined-dp-native-abp6f409",
+      "native_exit": 0,
+      "dp_checks": "PASS: 24 heavy bonds / 35 angles / 19 torsions, new N5 targets; non-DP/custom/cross-link proxies preserved",
+      "review_zip_sha256": "6e0f33dab2cd179542e68269a7cca2806058d3b47c214af3d4fabddc189d2cf2",
+      "manifest_entries_verified": 33,
+      "manifest_sha256": "5989ede3f755decfec0efbd88805feb58e0f44de51995cba2de66264baae6eae",
+      "native_audit_sha256": "e64d7a633e0ff3f2c42cae30808293a9ea61486ff3ae76a465c34f5f77ed8423",
+      "OP3_H3_removed": true,
+      "O3_energy_type": "OC2",
+      "native_atom_charge_fields": "null; no native charge claim beyond source graph",
+      "originals_unchanged": true,
+      "original_coordinate_atoms": 868,
+      "geometry_qualification": "PENDING",
+      "adopted_into_production_run": false
     }
   },
   "smiles_cif_audit": {

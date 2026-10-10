@@ -41,15 +41,15 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Rerun the DP native diagnostic with the corrected torsion checker.**
-   The first receipt is **BLOCKED** at heavy-torsion coverage, after mapping,
-   unchanged model/other proxies and DP bond/angle/plane checks passed. Review
-   found all 19 torsions correct under cctbx's index/sign convention; the checker
-   was too narrow. `combined_dp_native_v2.py` repeats identical chemistry/inputs
-   with corrected comparison and fuller progress receipts. Native full PASS is
-   pending; preserve the failed attempt and earlier user **visual PASS**. The
-   [native ledger](native-modified-pair-live-validation.md#dp-native-diagnostic--preserved-checker-failure)
-   owns the exact scope and evidence.
+1. **Run a fresh geometry trial with the verified DP-native manager.**
+   The corrected diagnostic returned **DP_NATIVE_INTERPRETATION_PASS**, including
+   DP targets/torsions, preserved other/custom/cross-link proxies, H3/OP3 removal
+   and actual O3' OC2 typing. The [native ledger](native-modified-pair-live-validation.md#dp-native-v2--returned-pass)
+   owns the 33-file evidence bundle. `combined_dp_geometry_trial.py` uses the
+   original pre-minimization coordinates with this fixed manager and the same
+   5×500 bound. New geometry qualification remains pending; preserve the earlier
+   relaxed model's user **visual PASS** and both failed receipts. No convergence,
+   diffraction refinement or ordinary full-auto claim is implied.
 2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
    The current trial used selected numerical CIFs in a frozen resource bundle
    and ad hoc linked derivatives. Acceptance is a new run from declared

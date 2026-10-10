@@ -896,8 +896,9 @@ in the [full-auto checkpoint](full-auto-patch-handoff.md). The current combined
 modified-W test has passed prepared-bundle PostMR, generic-linkage/coverage
 diagnostics and repaired 5CM/DF native interpretation. Bounded geometry
 minimization completed, and the relaxed model has user-reported visual PASS.
-A DP angle/plane conflict remains for source-preserving repair; full numerical
-qualification and fresh ordinary full-auto reproduction remain open. The
+A source-preserving DP replacement now passed native target/linkage checks;
+its fresh geometry trial, full qualification and ordinary full-auto reproduction
+remain open. The
 [native ledger](native-modified-pair-live-validation.md) owns the exact scope.
 Neither this diagnostic nor the four-member campaign closes the independent P2
 source-native conversion or P5 geometry-diverse prepared-nonstandard gates.

@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### DP native interpretation passed
+
+- Record returned DP native v2 PASS, verified 33-file evidence bundle, effective
+  B:4 linkage/type and preserved original coordinates/other restraints. Queue a
+  fresh 5×500 geometry trial with this manager from original pre-minimization
+  coordinates; new geometry qualification remains pending. No native charge,
+  convergence, refinement or production full-auto claim is added.
+
 ### DP native checker correction
 
 - Preserve the blocked torsion-coverage receipt and partial checks. All 19 DP

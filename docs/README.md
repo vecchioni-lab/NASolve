@@ -16,10 +16,10 @@ for actual behavior; history is evidence, not a second task queue.
   geometry minimization completed awaiting review. The target fell 97.45% and
   all chirality signs survived; original inputs and the manager were preserved.
   The user reports Coot visual PASS for all modified pairs. A separate DP
-  angle/plane repair now has an audited v2 candidate after successful installed
-  parser preflight/generation. Next is native interpretation with complete
-  B:4 linkage in a fresh diagnostic. Adoption, full numerical qualification,
-  convergence and fresh ordinary full auto remain open.
+  candidate now passed complete native interpretation, including B:4 H3/OP3
+  removal and O3' OC2 typing. Next is a fresh geometry trial from original
+  pre-minimization coordinates with that manager. Full qualification, convergence
+  and fresh ordinary full auto remain open.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
 - **Queued:** deterministic SMILES/CIF assessment, then separately tested
