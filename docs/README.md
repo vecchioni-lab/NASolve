@@ -12,11 +12,12 @@ for actual behavior; history is evidence, not a second task queue.
   Phaser and PostMR; generic linkage diagnostic and exact custom-restraint
   coverage. [The native ledger](native-modified-pair-live-validation.md)
   owns returned counts, dictionary hashes and evidence paths.
-- **Current recovery:** repaired 5CM/DF native interpretation passed, including
-  42 mappings, effective bonds/chirality and preserved other/custom proxies;
-  originals and all 868 model coordinates are unchanged. Next is disposable
-  geometry minimization with the same interpreted restraints. Geometry and a
-  fresh ordinary full-auto workflow remain unqualified.
+- **Current trial:** repaired 5CM/DF native interpretation passed and bounded
+  geometry minimization completed awaiting review. The target fell 97.45% and
+  all chirality signs survived; original inputs and the manager were preserved.
+  A DP angle/plane inconsistency remains: review the relaxed model in Coot,
+  then audit a source-preserving DP candidate before a clean rerun. Geometry
+  qualification, convergence and fresh ordinary full auto are not established.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
 - **Queued:** deterministic SMILES/CIF assessment, then separately tested
@@ -42,6 +43,7 @@ for actual behavior; history is evidence, not a second task queue.
 | Work area | Read here |
 | --- | --- |
 | Modified residues, CCD aliases and terminal phosphate | [Modified-component preparation](modified-component-preparation.md), [backbone chemistry](backbone-chemistry.md), [sequence-family targets](sequence-family-targets.md) |
+| Proposed automated CIF/restraint checks | [Audit methods and review boundaries](cif-restraint-audit-methods.md) |
 | Pair recipes, successful Z:P run, combined four-family native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |

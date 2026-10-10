@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-10",
-  "status": "REPAIRED_5CM_DF_NATIVE_INTERPRETATION_PASSED_GEOMETRY_PENDING",
+  "status": "GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -161,9 +161,9 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "Disposable geometry minimization with the same interpreted manager and immutable inputs",
-      "Before/after finite coordinates and energies, per-term energies/raw metrics, site displacement/chirality/pairs/backbone/stacking/symmetry",
-      "Retain and review explicit source-specific phosphate state, without invented common protonation",
+      "Visual Coot review of the relaxed model and specified paired-site foci",
+      "Source-preserving DP numerical candidate/audit for demonstrated N5 angle/plane inconsistency before clean rerun",
+      "Retain explicit source-specific phosphate state; geometry qualification remains PENDING",
       "Ordinary full-auto reproduction after runtime integration"
     ],
     "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval",
@@ -176,8 +176,8 @@
       "DF": "Source-audited generated replacement passed separate native linkage, 21 heavy-bond and 3 signed sugar-chirality checks",
       "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
       "native_adoption": true,
-      "geometry_minimization_completed": false,
-      "next": "Disposable geometry-only minimization using same interpreted manager; no MTZ/Free-R refinement",
+      "geometry_minimization_completed": true,
+      "next": "Coot review of relaxed model, then source-preserving DP numerical candidate/audit before clean rerun",
       "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
       "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
       "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
@@ -189,6 +189,32 @@
       "model_atoms": 868,
       "model_coordinates_unchanged": true,
       "production_integration": false
+    },
+    "geometry_trial": {
+      "status": "GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW",
+      "geometry_qualification": "PENDING",
+      "root": "LIVE/combined-geometry-trial-ek59lvp1",
+      "review_zip_sha256": "c08f33b4bdce2916cd29232f63035c77fcc6646637ae6ae8967b56c8ed6d846c",
+      "manifest_hashes_verified": 57,
+      "driver_sha256": "b2f05d7123bb7914eb8f43cff9da95325d1a6374bf392ff2b94a177d8693c675",
+      "restraint_definition_sha256": "c0258325d9fefa0c022762d635006b9768d6e7516b43c6ae18af10c062e4c3cf",
+      "originals_unchanged": true,
+      "atoms": 868,
+      "residues": 42,
+      "target_before": 69970.884082,
+      "target_after": 1786.562999,
+      "displacement_rms_angstrom": 1.29059,
+      "displacement_max_angstrom": 3.687739,
+      "chirality_signs_preserved": 158,
+      "termination": "Cycle 1 capped at 500 iterations; cycles 2-5 retained native-tolerated rounding/line-search notes",
+      "final_gradient_norm": 87.9935,
+      "convergence_claimed": false,
+      "MTZ_Free_R_refinement": false,
+      "production_full_auto": false,
+      "DP_numerical_repair": "OPEN: exact dictionary N5 angle targets sum 339.714 degrees while N5 and its three neighbors share a plane; no invented target or frozen-source overwrite",
+      "backbone_links_preserved": 38,
+      "D1_OP3_preserved": true,
+      "six_pair_max_bond_deviation_configured_sigma": 1.39
     }
   },
   "smiles_cif_audit": {
@@ -216,7 +242,8 @@
       "Finite targets and uncertainties",
       "Conflicting or duplicate terms",
       "Chirality and planes",
-      "Effective sugar/glycosidic torsions"
+      "Effective sugar/glycosidic torsions",
+      "Angle/planarity consistency; demonstrated DP conflict is invisible to SMILES graph comparison alone"
     ],
     "graph_match_certifies_numeric_geometry": false,
     "details_ref": "docs/modified-component-preparation.md#proposed-smiles-and-cif-audit",
@@ -232,7 +259,8 @@
       "reviewed_repairs": "Source version/hash-scoped policy and preserved derivative provenance; no broad atom-name guesses",
       "ambiguous_chemistry": "Protonation, tautomer or target ambiguity requires declared intent/reviewed policy; no invented intent",
       "runtime_implemented": false
-    }
+    },
+    "methods_ref": "docs/cif-restraint-audit-methods.md"
   },
   "other_completed_evidence_refs": {
     "four_member_full_auto_and_doctor": "docs/full-auto-patch-handoff.md",

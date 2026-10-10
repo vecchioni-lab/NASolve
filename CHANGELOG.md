@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### CIF/restraint audit methods
+
+- Capture automatable audit methods, known 5CM/DF/DP cases and proposed evidence
+  schema/review boundaries in one linked design document. This records the
+  implementation plan; no runtime audit or automatic repair is added.
+
+### Combined geometry trial completed
+
+- Record returned bounded minimization, verified 57-file bundle, preserved
+  manager/original inputs and before/after metrics. The geometry target fell
+  97.45% and chirality signs were retained. Record the demonstrated DP angle/plane
+  conflict and Coot review → source-preserving DP candidate/audit → clean rerun
+  order; convergence and geometry qualification remain open. No MTZ/Free-R
+  refinement or production full-auto result is implied. Documentation only.
+
 ### Repaired native interpretation
 
 - Record returned 5CM/DF repaired-native PASS, verified 34-file evidence bundle,

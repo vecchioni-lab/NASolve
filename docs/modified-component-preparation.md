@@ -15,7 +15,9 @@ generic linkage mechanics and custom-restraint coverage. The effective audit
 then exposed an active 5CM wrong-atom torsion and defective ReadySet DF geometry.
 The narrow 5CM correction and source-audited DF candidate subsequently passed
 repaired native interpretation, including DF linkage, effective bonds/chirality
-and preserved other/custom proxies. Geometry minimization remains pending.
+and preserved other/custom proxies. Bounded geometry minimization subsequently
+completed awaiting review and exposed a DP angle/planarity inconsistency.
+DP numerical repair/audit and overall geometry qualification remain pending.
 This is not yet a fresh generic full-auto result. Exact evidence and the
 bounded recovery sequence belong in the [native ledger](native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery).
 
@@ -65,7 +67,7 @@ This audit changes documentation only.
 | **DE** | The current eLBOW file has never changed since its addition at `b8317b0`. September's 1AP integration and handoff explicitly leave DE geometry defective and replacement unapproved. It is byte-identical to the historical repository-root eLBOW `8RO.cif` after changing the component label to DE; that historical file is not proof of official CCD equivalence. | Retain the lab identity/construction exception, but reopen geometry repair. Do not describe the existing file as a validated repaired dictionary or infer an approved `8RO -> DE` conversion. |
 | **DF** | Added at `b8317b0` ("mutation works; patched DF"); retains the laboratory working label, `C2-S1` construction and deposition identity `A1AAZ`. User comparison found only component-label and trailing-whitespace differences. Restoring A1AAZ labels in the Git-verified DF file and trimming line ends reproduces the installed Phenix SHA-256 exactly. This is a graph/coordinate source without numerical bond targets. | Retain the short working label, exact identity bridge and sulfur-placement recipe. No chemical repair relative to the inspected A1AAZ graph source is present. The October 10 effective ReadySet DF was defective; a fresh candidate preserving this source graph passed separate native linkage/bond/chirality interpretation. Geometry remains pending. The user reports creating A1AAZ from lab DF; historical origin and runtime label conversion have opposite directions. |
 | **DZ** | Direct comparison with pinned MonomerLibrary blob `9e6151658d2887ef3902d170c77752ccc90159d4` finds comments and `NON-POLYMER -> DNA` only. Numerical geometry is unchanged. | Retain the parameterized DNA resource and C-glycoside/linked-phosphate treatment; this is a sourced adaptation, not invented geometry. |
-| **DP** | Direct comparison with pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` finds only `NON-POLYMER -> DNA`. Numerical geometry is unchanged. | Retain the parameterized DNA resource and linked-phosphate treatment. True source-native P2 validation remains separate. |
+| **DP** | Pinned MonomerLibrary blob `50218f6ebd8ccaa5582c32286c675f466d8a6d0d` differs only by `NON-POLYMER -> DNA`. The geometry trial revealed incompatible N5-centred angle targets and their shared plane in the exact frozen numerical source. | Preserve the source; numerical repair requires a separate candidate/audit before a clean rerun. Do not infer targets or attribute this dictionary conflict to native fallback. True source-native P2 validation remains separate. |
 | **5CM** | Added at `984f75d` after a missing-source failure; byte-identical to MonomerLibrary blob `a8a590f15f0b50c42ed9ad46d59eec3aab11d583`. The October 10 effective audit nevertheless found `C2e-nyu0` incorrectly referencing base C2 instead of sugar C2'. | Source equality remains true, but the earlier removal of the broken-dictionary classification is superseded for this exact version. The one-reference correction plus existing alternate normalization passed separate native interpretation. Geometry and any version/hash-scoped production repair remain pending. |
 | **S6G** | Added at `eda1df7` for thioguanine construction, before the later incorrect Benner S selection. No subsequent CIF edits; the registry supplies `O6 -> S6` placement. The user-supplied complete diff shows trailing whitespace only. Removing line-end spaces/tabs from the Git-verified bundled source reproduces the installed Phenix SHA-256 exactly; atom names, charges, bond orders, stereochemistry, coordinates and metadata are unchanged. | Candidate for generic source lookup, preserving the sulfur-placement rule. S6G is thioguanine; the lab's S is IMC. That selection error does not establish a dictionary defect. |
 | **C38** | Added at `739e6df` with iodine construction/AutoSol support; no subsequent CIF edits or identified supplier repair. The current coordinate reader gives ring `C5-I` = 2.094074 A. Its bytes match the user's installed Phenix 2.2.1-6174 CCD exactly. | Candidate for generic source lookup, preserving iodine placement/topology and numerical-generation checks. |
@@ -380,6 +382,10 @@ internal bond. A numerical pass is not structural approval.
 
 ## Proposed SMILES and CIF audit
 
+The [audit methods](cif-restraint-audit-methods.md) specify the reusable checks,
+known 5CM/DF/DP cases and proposed report/review boundaries. This section owns
+the preparation policy and staged integration scope.
+
 **Queued after the current combined geometry test and before Topo/Scout;
 not implemented and not a prerequisite for that geometry trial.** Start with a
 read-only assessor. Parse a declared SMILES descriptor and the CIF into molecular
@@ -399,8 +405,9 @@ likewise be compared using the declared linkage changes and retained terminal
 intent rather than required to equal the isolated monomer.
 
 Pair graph comparison with a separate restraint check: valid atom references,
-finite numerical targets/uncertainties, duplicate or conflicting terms, chirality
-and planes, and effective sugar/glycosidic torsions in the native interpreter.
+finite numerical targets/uncertainties, duplicate or conflicting terms, chirality,
+angle/planarity consistency (including the demonstrated DP conflict), and
+effective sugar/glycosidic torsions in the native interpreter.
 SMILES alone cannot expose wrong numerical targets or a valid-but-wrong atom
 quartet such as IMC/5CM C2 in place of C2'. A passing graph comparison therefore
 cannot certify numerical geometry. The assessor should explain findings and
@@ -433,10 +440,10 @@ patch should be required during an ordinary run.
    chemistry cannot be established.
 
 This is planned integration after the geometry test and before Topo/Scout, not
-implemented runtime recovery or a new gate on the current trial. The successful
-DF generation/source audit and repaired native interpretation are evidence for
-one diagnostic, not proof that every
-ligand can already follow this path automatically.
+implemented runtime recovery or a new gate on the current trial. The DF source
+audit, repaired native interpretation and completed minimization are evidence
+for one diagnostic sequence, with geometry qualification still pending; they
+do not prove every ligand can already follow this path automatically.
 
 ## Historical validation evidence
 

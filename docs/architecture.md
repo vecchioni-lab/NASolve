@@ -894,8 +894,10 @@ implementation edge are maintained in `development-handoff.md`.
 Completed four-member native full-auto and campaign-owned Doctor evidence lives
 in the [full-auto checkpoint](full-auto-patch-handoff.md). The current combined
 modified-W test has passed prepared-bundle PostMR, generic-linkage/coverage
-diagnostics and repaired 5CM/DF native interpretation; geometry qualification and fresh
-ordinary full-auto reproduction remain open. The
+diagnostics and repaired 5CM/DF native interpretation. Bounded geometry
+minimization has completed awaiting review, exposing a DP angle/plane conflict
+for source-preserving repair. Geometry qualification and fresh ordinary
+full-auto reproduction remain open. The
 [native ledger](native-modified-pair-live-validation.md) owns the exact scope.
 Neither this diagnostic nor the four-member campaign closes the independent P2
 source-native conversion or P5 geometry-diverse prepared-nonstandard gates.

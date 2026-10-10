@@ -1,11 +1,10 @@
 # Native modified-base pair matrix — live validation ledger
 
 Updated **2026-10-10** from returned native output and the supplied, checksum-verified
-geometry, DF candidate and repaired-native bundles.
+geometry, DF candidate, repaired-native and minimization bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
-coverage recorded; repaired 5CM/DF native interpretation PASS; geometry
-qualification PENDING.** The
-combined geometry minimization trial has not yet been run. This updates the earlier
+coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
+COMPLETED_AWAITING_REVIEW; geometry qualification PENDING.** This updates the earlier
 [exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
 See the [handoff](development-handoff.md) for current priorities.
 
@@ -24,9 +23,12 @@ See the [handoff](development-handoff.md) for current priorities.
 - [x] Fresh DF generated natively; source-graph/numerical-reference audit passed.
 - [x] Repaired native interpretation passed with the narrow 5CM correction and
   linked DF candidate in a separate diagnostic; originals unchanged.
-- [ ] Effective sugar/glycosidic torsion and phosphate-protonation qualification.
-- [ ] New combined geometry/refinement trial, numerical metrics and per-site
-  human Coot/.geo review.
+- [x] Bounded combined geometry minimization completed; metrics and 57-file
+  evidence bundle returned, original inputs preserved.
+- [ ] Source-preserving DP numerical repair/audit and effective geometry
+  qualification; DP angle/plane inconsistency is now demonstrated.
+- [ ] Refinement and per-site human Coot/.geo review; source-specific phosphate
+  states remain explicit.
 - [ ] Fresh ordinary full-auto run without preselected numerical resources
   or ad hoc linkage scripts.
 - [ ] Independent source-native P2 and geometry-diverse real P5 gates.
@@ -277,22 +279,74 @@ DF retains the candidate hash above. `repaired_geometry_details.json`,
 `native_audit.json`, `native_effective.phil`, `combined_W.geo` and `native.log`
 preserve the effective evidence. **Geometry qualification remains PENDING.**
 
-### Next native boundary — disposable geometry minimization
+### Geometry minimization — completed, awaiting review
 
-The prepared single-use `combined_geometry_trial.py` driver uses direct cctbx
-L-BFGS with the same interpreted manager and all native restraint flags. Its
-bound is **at most 5 cycles × 500 iterations**, in a new sibling
-`LIVE/combined-geometry-trial-*` workspace, producing `geometry_trial_review.zip`.
-The script is prepared; **native execution and its outcome remain pending**.
+**GEO** = `LIVE/combined-geometry-trial-ek59lvp1`. Its receipt reports
+**GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW**, native exit **0**,
+`originals_unchanged=true` and **geometry qualification PENDING**. The supplied
+`geometry_trial_review.zip` SHA-256 is
+`c08f33b4bdce2916cd29232f63035c77fcc6646637ae6ae8967b56c8ed6d846c`;
+all **57** manifest entries were verified. The single-use
+`combined_geometry_trial.py` driver SHA-256 is
+`b2f05d7123bb7914eb8f43cff9da95325d1a6374bf392ff2b94a177d8693c675`.
 
-Use the same interpreted geometry manager and frozen repaired inputs in a new
-disposable derivative. Record finite coordinates/energies, unchanged input
-hashes, before/after per-term energies and raw geometry metrics, site-resolved
-displacements, chirality, all six paired sites, backbone/phosphate, stacking
-and symmetry contacts. This is a geometry-only trial: no MTZ/Free-R refinement
-or experimental validation is implied. Preserve failures and remaining strain.
-The CGY starting N1–C2–C1 angle (**1.58°** against **120.86°**) is severe
-starting strain; its discrepancy alone is not a dictionary defect.
+The direct cctbx L-BFGS trial used the same interpreted manager and all native
+restraint flags, bounded to **5 cycles × 500 iterations**. The recorded fixed
+restraint-definition hash stayed
+`c0258325d9fefa0c022762d635006b9768d6e7516b43c6ae18af10c062e4c3cf`.
+All **868 atoms / 42 residues** were retained, and all **158 chirality signs**
+were preserved. Coordinates moved in the disposable output; original inputs
+were unchanged.
+
+| Metric | Before | After |
+| --- | ---: | ---: |
+| Geometry target | 69970.884082 | 1786.562999 |
+| 38 backbone-link bond RMS error (Å) | 0.0107568 | 0.0024323 |
+| 205 modified-residue bond RMS error (Å) | 0.111291 | 0.004177 |
+| 21 custom-bond RMS error (Å) | 0.821005 | 0.162361 |
+
+The target decreased **97.45%**; atom displacement was **1.290590 Å RMS**,
+**3.687739 Å maximum**. These changes are useful numerical evidence, not an
+overall geometry pass. Cycle 1 reached its **500-iteration cap**; cycles 2–5
+retained native-tolerated rounding/line-search notes. The final gradient norm
+was **87.9935**. **Convergence is not claimed.** Per-term energies, raw metrics,
+full-precision coordinates and displacement/chirality evidence remain in the
+bundle. No MTZ/Free-R refinement or production full-auto run occurred.
+
+### Review findings — DP angle/plane inconsistency remains open
+
+The 5CM/DF repairs remained stable through minimization, all **158 chirality
+signs** and **38 backbone links** survived, and D:1 OP3 was preserved. The
+initial terminal symmetry contact moved from **1.331 Å to 4.265 Å**. All six
+paired sites have bond deviations **≤1.39 configured sigma**. Visual-review
+foci include DF:A N3–N1 **3.354 Å** (configured sigma **0.4 Å**), Z:P pair tilt
+**5.61°**, and D:T N6–O4 **2.581 Å**. These are inspection targets, not evidence
+of severe pair-restraint failure.
+
+A concrete remaining problem belongs to the exact **DP dictionary**, not a
+native fallback. `GEO/source_evidence/inputs/08_09_DP.cif`, SHA-256
+`ae10aa3e7066082a9e423cae877dca04928ff4089cbd464bbc3590d6148f0f5a`,
+puts N5 and all three neighbours in one plane while declaring:
+
+| N5-centred angle | Target ± sigma (°) | After minimization (°) |
+| --- | ---: | ---: |
+| C4–N5–C7 | 109.471 ± 3 | 109.006 |
+| C4–N5–C6 | 120.772 ± 1.58 | 123.080 |
+| C7–N5–C6 | 109.471 ± 3 | 127.914 |
+
+The target sum is **339.714°**, versus **360°** in the relaxed plane; the third
+angle retains a **6.15-sigma** discrepancy. This angle/planarity inconsistency
+requires a source-preserving candidate and audit. **DP numerical repair is
+OPEN**: do not invent replacement angles or overwrite the frozen source.
+A SMILES graph comparison alone would miss this conflict between restraints.
+
+### Next review boundary
+
+Review `GEO/geometry_after.pdb` in Coot, using the preserved before model,
+full-precision metrics and `.geo` evidence for comparison. Then prepare and
+audit a source-preserving DP candidate before a clean rerun. Retain the pair,
+backbone, phosphate, chirality and symmetry evidence; the completed minimization
+is not convergence, human structural approval or experimental identity proof.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

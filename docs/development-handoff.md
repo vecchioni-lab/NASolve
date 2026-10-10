@@ -16,10 +16,11 @@ not general production support. Earlier wording remains in Git and the
 | NARestraints | **v1.1.3 released and installed** (`a9264f9`); corrected Z:P/K:X roles, unchanged workbook. Docs-only PR #5 merged to main at `ef1a5a1`. | Combined-model geometry qualification belongs to the NASolve native trial. |
 | W Saenger overlay / viewing | PR #24 merged at `0017081`; prior Z:P `run_003/refine-001` numerically SOLVED and overall user Coot visual PASS. PR #25 merged at `e8613bf`; bare `show` user-live PASS. | New-campaign automatic workspace activation has regression coverage, not a separate returned live verdict. |
 | Cedar source lookup | Installed Phenix CCD lookup for IGU/IMC/CGY/DX and Coot construction verified; symlink duplicates resolved. Nine bundled-source roles audited. | Acquisition, parameter generation and linkage must become a repeatable ordinary workflow; source availability alone does not certify geometry. |
-| Combined 42-residue W trial | **Preflight, Phaser and PostMR passed**; 42/42 identities, 12 retained + 5 replaced Saenger blocks, 8 explicit pairs, stacking enabled. | Effective sugar/glycosidic torsions and phosphate protonation; new geometry/refinement trial and human review. |
+| Combined 42-residue W trial | **Preflight, Phaser and PostMR passed**; 42/42 identities, 12 retained + 5 replaced Saenger blocks, 8 explicit pairs, stacking enabled. | Effective geometry qualification, explicit phosphate-state review, refinement and human review. |
 | Generic linkage diagnostic | **GENERIC_LINKAGE_MECHANICS_PASS** with fresh IMC, no missing heavy atoms, preserved links and D:1 terminal phosphate. | Diagnostic-only derivatives, not integrated general PostMR support or chemistry approval. |
 | Custom restraint coverage | **21/21 bonds, 34/34 angles, 8/8 planes, 23/23 parallelities** matched; no exact duplicate planes/parallelities or overlap candidates. | Custom proxies remained preserved after native 5CM/DF adoption; coverage is not achieved geometry. |
-| Effective 5CM / DF recovery | **REPAIRED_NATIVE_INTERPRETATION_PASS**: corrected 5CM and linked DF adopted in a separate native diagnostic; 42 mappings, DF bonds/chirality, preserved custom/other proxies and unchanged 868-atom model verified. | Geometry minimization and inspection remain pending; original inputs are unchanged. |
+| Effective 5CM / DF recovery | **REPAIRED_NATIVE_INTERPRETATION_PASS**: corrected 5CM and linked DF adopted in a separate native diagnostic; 42 mappings, DF bonds/chirality, preserved custom/other proxies and unchanged 868-atom model verified. | Separate minimization completed; geometry qualification and inspection remain pending. |
+| Combined geometry minimization | **GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW**; target fell 97.45%, all 158 chirality signs retained, same manager and original inputs preserved. | DP angle/plane inconsistency is demonstrated; Coot review and source-preserving DP repair/audit precede a clean rerun. No convergence or overall geometry PASS claimed. |
 | Ordinary/full-auto campaigns | Prior EA/DiU/Q5cm/QiC cohort reached numerical SOLVED with review/provisional distinctions preserved. | This does not prove a fresh arbitrary-component run without a prepared resource bundle. |
 | P2 / prepared nonstandard P5 | P2 preparation and nonstandard campaign paths implemented and fixture-tested. | Source-native `1W5→DZ` / `1WA→DP` provenance/refinement; 3–5 real geometry-diverse P5 models. |
 | Scout / Topo / GUI | Existing registration/shadow primitives and scoped evidence retained. | Operational Scout and topology surgery remain future work. |
@@ -40,15 +41,15 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Run disposable geometry minimization from the repaired native manager.**
-   The [native ledger](native-modified-pair-live-validation.md#repaired-native-interpretation--returned-pass)
-   records the returned 5CM/DF interpretation PASS and verified 34-file bundle.
-   Preserve its frozen inputs and use the same interpreted restraints. Check
-   finite coordinates/energies, before/after per-term energies and raw geometry,
-   site displacement, chirality, paired sites, backbone, stacking and symmetry
-   contacts. This trial does not refine MTZ/Free-R or establish experimental
-   chemistry. **Geometry remains PENDING**; keep remaining strain and failures
-   visible. Severe CGY starting strain is not itself a dictionary defect.
+1. **Inspect the relaxed model in Coot, then audit a source-preserving DP candidate.**
+   The [native ledger](native-modified-pair-live-validation.md#review-findings--dp-angleplane-inconsistency-remains-open)
+   owns the 57-file trial bundle, metrics and exact DP angle/plane conflict.
+   The target fell 97.45%, 5CM/DF repairs stayed stable, and all 158 chirality
+   signs/38 backbone links survived. Six paired sites are within 1.39 configured
+   bond sigma, with specific visual-review foci retained. DP numerical repair
+   remains open; invent no angle or overwrite. Review/audit the candidate before
+   a clean rerun. **Geometry qualification remains PENDING**; no convergence,
+   MTZ/Free-R refinement or production full-auto result is implied.
 2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
    The current trial used selected numerical CIFs in a frozen resource bundle
    and ad hoc linked derivatives. Acceptance is a new run from declared
@@ -89,7 +90,9 @@ additional Cedar/Pine merge gate.
   need version/hash policies; ambiguous chemistry needs declared intent, not
   an AI guess. Ordinary runs should not require AI or user source patches. The
   detailed [assessor and automation contract](modified-component-preparation.md#proposed-smiles-and-cif-audit)
-  owns findings, uncertainty and repair boundaries.
+  owns findings, uncertainty and repair boundaries. The
+  [audit methods](cif-restraint-audit-methods.md) capture the reusable checks,
+  5CM/DF/DP lessons and proposed evidence schema for implementation.
 - **Blind AlphaFold baseline after bounded Pine close-out:** preserve frozen
   predictions, observations and Free-R; avoid solved outcomes during blind
   candidate selection. Before this trial, add **PDB and coordinate mmCIF input**
