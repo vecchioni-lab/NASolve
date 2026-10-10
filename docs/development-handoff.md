@@ -41,18 +41,17 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Retry DP generation with explicit quoting and consumer-parser preflight.**
-   The first disposable attempt was **BLOCKED**: AceDRG read 20 atoms/21 bonds
-   instead of 35/37 from single-quoted primed IDs, then failed on C5'. Sources
-   are unchanged and no candidate exists or was adopted. The corrected v2
-   driver checks double-quoted seed round-trip and the installed reader's
-   atom/bond/chirality interpretation before generation. Limited offline reader
-   replay passed 35/37/4 and mismatch rejection; installed preflight/native retry
-   remain pending. Audit any candidate before adoption or a clean rerun. The
-   [native ledger](native-modified-pair-live-validation.md#dp-candidate-attempt--blocked-by-seed-parser-disagreement)
-   owns the failure evidence. Preserve the user's **visual PASS** for the
-   relaxed model separately from open DP numerical repair, convergence and full
-   qualification; no MTZ/Free-R or production full-auto result is implied.
+1. **Interpret the audited DP candidate in a fresh, site-linked diagnostic.**
+   V2 passed installed reader preflight and generation. Review retained all
+   35 atoms/37 explicit bond orders, H/charge/chirality; four changed aromatic
+   flags are annotations in this case. The new N5 targets sum to 360°; broader
+   regenerated bond/angle/torsion/plane terms were also audited. The
+   [native ledger](native-modified-pair-live-validation.md#dp-v2-candidate--generated-and-audited-for-native-testing)
+   owns exact evidence and the original conservative receipt. Use unchanged
+   repaired pre-minimization coordinates, completing B:4 outgoing linkage by
+   deleting H3 and typing O3' as OC2 alongside its existing OP3 modification.
+   Native validation/adoption are pending. Preserve the earlier user **visual
+   PASS** separately from open full numerical qualification and convergence.
 2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
    The current trial used selected numerical CIFs in a frozen resource bundle
    and ad hoc linked derivatives. Acceptance is a new run from declared

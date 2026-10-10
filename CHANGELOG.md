@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### DP candidate generated and reviewed
+
+- Record successful v2 installed-reader preflight/generation and reviewed graph,
+  H/charge/chirality preservation. Separate four aromatic annotation changes
+  from unchanged explicit bond orders; audit broader numerical regeneration and
+  retain dropped alias provenance.
+  Queue native DP interpretation with complementary B:4 outgoing-link H/type
+  handling; adoption and geometry qualification remain pending. Documentation only.
+
 ### DP seed-parser retry
 
 - Record the blocked first DP generation: AceDRG misread single-quoted primed

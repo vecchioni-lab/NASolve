@@ -82,6 +82,14 @@ chemistry or weaken the inventory check.
 
 For `CHEM-01`, record explicit versus implicit hydrogen policy, aromaticity and
 resonance handling; report ambiguous graph maps instead of choosing one silently.
+Report explicit bond-order changes separately from aromatic annotation changes.
+The DP v2 candidate retained all 37 explicit orders, H/charge and stereo while
+four aromatic flags changed; its combined literal-comparison `false` required
+review, not an automatic chemical-change verdict or blanket flag suppression.
+Keep dropped alias metadata as a separate provenance finding. A retained graph
+does not mean a one-angle correction: inventory every regenerated numerical
+category and compare native target/weight/plane coverage. Generator-coordinate
+self-consistency is not independent validation.
 **Formal charge and partial charge are different fields.** Preserve both when
 present; absence is unknown, not zero. Do not compare a CCD formal-charge total
 with a force-field partial-charge total as if they were identical. Linked-state
@@ -204,6 +212,7 @@ Future tests should use small synthetic reproductions of these failure modes.
 | [DF generated replacement](native-modified-pair-live-validation.md#df--generated-replacement-and-source-audit): effective ReadySet supplement versus `DF-CANDIDATE/DF_source_CCD.cif` and `DF.cif`; incorrect aromatic sugar/bond targets and missing active sugar chirality. | Graph, numerical and native tests detect distinct failures. Source-preserving regenerated graph retains explicit H; linked `NASpDF` removes OP3/HOP3/HO3', retains HOP2, verifies the 21 heavy bonds/three signed sugar centres. Preserve old/new charge evidence; no inferred pH repair. |
 | [DP angle/plane conflict](native-modified-pair-live-validation.md#review-findings--dp-angleplane-inconsistency-remains-open): `inputs/08_09_DP.cif`; N5 with C4/C7/C6 in one plane. Targets 109.471°, 120.772°, 109.471° sum to 339.714°; achieved third angle 127.914° versus 109.471°/3°. | Report incompatible exact planar central targets and uncertainty-aware strain; do not manufacture 120° targets. Gram determinant ≈0.40233 permits a three-dimensional pyramid: the conflict is with planarity. Include valid exterior-branch and finite-width near-compatible counterexamples to prevent a universal sum-rule blocker. |
 | [DP seed-parser failure](native-modified-pair-live-validation.md#dp-candidate-attempt--blocked-by-seed-parser-disagreement): 35/37 source inventory became 20/21 in AceDRG before `KeyError: "'C5'"`. | Exercise primed and double-primed IDs across writer and consumer readers; require exact atoms/bonds/chirality agreement before generation. Preserve both failed and corrected seeds and unchanged sources; no candidate/adoption on failure. |
+| [DP v2 aromatic annotations and linkage](native-modified-pair-live-validation.md#dp-v2-candidate--generated-and-audited-for-native-testing): 37 explicit orders unchanged, four aromatic Y→N flags, source aliases absent from generated output; B:4 retains O3'-bound H3 under `NASnoOP3` alone. | Separate representation, metadata and chemical graph findings. Preserve source aliases; require outgoing-link H/type handling alongside incoming phosphate modification. Neither generation nor graph equivalence proves effective polymer chemistry. |
 | [Linked diagnostic](native-modified-pair-live-validation.md#linked-diagnostic--mechanics-pass-chemistry-still-pending), including fresh IMC and `LINKED/linked_audit.json`; [coverage evidence](native-modified-pair-live-validation.md#custom-restraint-coverage--preserved-baseline). | Renamed linkage H is found by adjacency; terminal OP3 survives; retained OP2 H is reported. Matching counts with wrong atoms fail coverage. Unsupported terminal/symmetry cases remain unassessed. |
 
 Also test quartet reversal versus arbitrary permutation, different periods,

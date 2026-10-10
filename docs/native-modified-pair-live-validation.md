@@ -378,29 +378,60 @@ Offline replay also found zero parsed chirality declarations.
 This is a serialization/consumer-parser mismatch, not a new DP chemistry
 finding. A successful parse by the writer's own library was insufficient.
 
-### Next native boundary — quoted seed and consumer preflight
+### DP v2 candidate — generated and audited for native testing
 
-The corrected disposable `combined_dp_candidate_v2.py` driver uses double
-quotes for primed atom IDs, verifies the exact seed round-trip, and preflights
-the installed AceDRG reader's atom/bond/chirality fields against the intended
-graph before generation. Offline replay of the unchanged source-extracted
-AceDRG `FileTransformer` class parsed the corrected seed as **35/37/4**, with
-coordinates present and OP2/OP3 charges −1. The selected **7 atom / 5 bond /
-7 chirality fields** matched exactly after removing one outer quote; additional
-reader-derived fields were outside that source comparison. Mutated atom,
-charge, coordinate, bond-order, chirality and coordinate-presence cases were
-rejected. Reader source SHA-256:
+**DP-V2** = `LIVE/combined-dp-candidate-yllkyygx`. The double-quoted seed passed
+the **installed AceDRG reader preflight** with **35 atoms / 37 bonds / 4 chirality
+declarations**, exact selected-field agreement and coordinates present.
+Reader source SHA-256 remains
 `ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981`.
-Simulated parser/generator exits **19/17** also recorded BLOCKED, preserved
-source/seed hashes and produced valid manifest-backed review bundles. These
-are limited offline checks, not full AceDRG generation or an installed-runtime
-preflight. **The installed preflight, native retry and
-candidate audit remain pending.**
-Preserve the failed attempt and source; generate only in a new disposable
-workspace, with no automatic adoption. After generation, audit graph/state
-preservation, numerical angle/plane consistency and effective native restraints
-before a clean rerun. The relaxed model retains its user visual PASS; DP repair,
-full numerical qualification and convergence remain open.
+AceDRG then returned **exit 0**; source, frozen copy and seed remained unchanged.
+The supplied `DP_candidate_review(1).zip` SHA-256 is
+`362078a37ca2e293a61d1395ec8b13b88b634573441cde6ca3cf9059daba0e53`;
+all **13** manifest entries were verified. `DP-V2/DP.cif` SHA-256 is
+`6ba5b6a3ce86019c97129dcb5ea08f26a8395f68074c81d4c8ed6f04f7ad6f1f`.
+
+The original receipt conservatively reports
+`GENERATED_WITH_GRAPH_DIFFERENCES_AWAITING_REVIEW`. Subsequent review resolves
+its combined bond-order/aromatic-flag `false`: **all 37 explicit bond orders and
+endpoints are unchanged**. Only four aromatic annotations changed Y→N:
+**C4–N9, C8–N9, C7–C8 and C7–N5**. The audited **35 atoms, 12 H attachments,
+formal charge −2 and four chirality declarations** are retained. These flags
+are a representation difference in this inspected candidate, not a change of
+bond order or chemical state. Alias metadata was dropped by generation and
+remains preserved in the source/seed; do not silently discard its provenance.
+
+New N5 targets for C4–N5–C7 / C4–N5–C6 / C7–N5–C6 are
+**108.817° / 120.468° / 130.715°**, each sigma **3°**, summing to **360°**.
+The N5 Gram eigenvalues are approximately **0 / 1.308599 / 1.691401**; the
+five-/six-member ring angle sums are **540° / 720.003°**. This is broader
+numerical regeneration, not a single-angle patch: **34/37 bond targets or sigmas**,
+all **65 angle terms**, **21 torsions** (15 positive-sigma / 6 zero-sigma), and
+**five plane groups versus two** were audited. Three signed sugar centres retain their
+source signs. Small residuals in generator-produced coordinates are internal
+consistency evidence, not independent validation.
+This candidate is ready for a scoped native diagnostic, **not adopted or
+geometry-qualified**. Its source/audit evidence does not close the earlier
+minimization's convergence question or replace the user-approved visual model.
+
+### Next native boundary — DP interpretation with complete B:4 linkage
+
+`combined_dp_native.py` will use the unchanged repaired **pre-minimization**
+model as the comparison baseline, substituting the new candidate only in a
+fresh diagnostic. Earlier B:4 DP interpretation applied `NASnoOP3` but retained
+free O3'-bound **H3** despite an outgoing `rna3p` link. Add a complementary,
+site-specific **NASdp3prime** modification deleting **H3** and setting
+**O3' to OC2**, alongside the existing OP3 modification; leave the isolated
+candidate source unchanged. The prepared driver checks candidate heavy bonds,
+angles, **19 heavy torsions** (13 active / 6 constant) and three signed sugar
+centres, with exact baseline preservation of non-DP, cross-link and custom
+proxies and all **868 model atoms/coordinates**. These are planned native checks,
+not returned results. Offline staging verified only the copied DP dictionary,
+modification CIF and site-profile PHIL change; all original hashes were preserved.
+A simulated native failure produced a BLOCKED receipt and valid review ZIP.
+No Phenix execution occurred in the container. **Native interpretation and candidate adoption remain
+pending.** The earlier relaxed model retains its
+user visual PASS; full numerical qualification remains open.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
-  "date": "2026-10-10",
-  "status": "GEOMETRY_TRIAL_USER_VISUAL_PASS_DP_NUMERICAL_REPAIR_OPEN",
+  "date": "2026-10-11",
+  "status": "DP_V2_CANDIDATE_AUDITED_NATIVE_PENDING_USER_VISUAL_PASS_PRESERVED",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -161,9 +161,9 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "Retry DP generation with v2 double-quoted primed IDs and exact CIF/installed-AceDRG-reader agreement before generation",
-      "Audit any generated candidate for source preservation, angle/plane consistency and effective native terms before adoption/clean rerun",
-      "Full numerical qualification/convergence remains open, separately from user visual PASS",
+      "Native DP interpretation on unchanged repaired pre-minimization model in fresh diagnostic",
+      "Complement existing B:4 NASnoOP3 with H3 deletion and O3-prime OC2 typing; verify effective graph/angles/plane/chirality and preserved other/custom proxies",
+      "Clean geometry rerun only after native candidate validation; full numerical qualification remains open",
       "Ordinary full-auto reproduction after runtime integration"
     ],
     "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval",
@@ -177,7 +177,7 @@
       "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
       "native_adoption": true,
       "geometry_minimization_completed": true,
-      "next": "Native retry with combined_dp_candidate_v2.py parser preflight, then candidate audit; preserve failed attempt and user visual PASS",
+      "next": "combined_dp_native.py: fresh DP candidate interpretation with complete B:4 incoming/outgoing linkage, unchanged repaired pre-minimization coordinates",
       "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
       "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
       "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
@@ -251,7 +251,7 @@
       "candidate_produced": false,
       "adopted_into_run": false,
       "retry": "combined_dp_candidate_v2.py: double-quoted primed IDs, exact round-trip and installed reader atoms/bonds/chirality preflight",
-      "retry_native_status": "PENDING",
+      "retry_native_status": "Subsequently completed; see DP_candidate_v2",
       "retry_offline_validation": {
         "scope": "Unchanged source-extracted AceDRG FileTransformer reader class only, not full generator/native execution",
         "reader_source_sha256": "ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981",
@@ -280,9 +280,73 @@
           "change chirality sign",
           "hascoords false"
         ],
-        "installed_preflight": "PENDING",
+        "installed_preflight": "Subsequently PASS; see DP_candidate_v2",
         "simulated_failure_receipts": "Parser exit 19 and generator exit 17: BLOCKED, source/seed preserved, valid manifest-backed review ZIP"
       }
+    },
+    "DP_candidate_v2": {
+      "root": "LIVE/combined-dp-candidate-yllkyygx",
+      "receipt_status": "GENERATED_WITH_GRAPH_DIFFERENCES_AWAITING_REVIEW",
+      "review_status": "AUDITED_READY_FOR_SCOPED_NATIVE_DIAGNOSTIC",
+      "installed_reader_preflight": "PASS: 35 atoms/37 bonds/4 chirality declarations; selected fields exact",
+      "generator_exit": 0,
+      "review_zip_sha256": "362078a37ca2e293a61d1395ec8b13b88b634573441cde6ca3cf9059daba0e53",
+      "manifest_hashes_verified": 13,
+      "candidate_sha256": "6ba5b6a3ce86019c97129dcb5ea08f26a8395f68074c81d4c8ed6f04f7ad6f1f",
+      "preserved": {
+        "atoms": 35,
+        "bond_endpoints_and_explicit_orders": 37,
+        "H_attachments": 12,
+        "formal_charge": -2,
+        "chirality_declarations": 4
+      },
+      "aromatic_flags_Y_to_N": [
+        "C4-N9",
+        "C8-N9",
+        "C7-C8",
+        "C7-N5"
+      ],
+      "aromatic_review": "Annotation differences, not explicit bond-order or chemical-state change in this inspected candidate",
+      "alias_metadata": "Dropped in generated output; retained in source/seed",
+      "N5_angles_degrees": [
+        108.817,
+        120.468,
+        130.715
+      ],
+      "N5_angle_sigmas_degrees": [
+        3,
+        3,
+        3
+      ],
+      "source_unchanged": true,
+      "adopted_into_run": false,
+      "native_validation": "PENDING",
+      "numerical_audit": {
+        "scope": "Broader numerical regeneration, not single-angle patch; supports native testing only",
+        "bond_targets_or_sigmas_changed": 34,
+        "total_bonds": 37,
+        "angle_terms_changed": 65,
+        "torsions": {
+          "positive_sigma": 15,
+          "zero_sigma": 6,
+          "heavy_active_expected_native": 13,
+          "heavy_constant_expected_native": 6
+        },
+        "planes_before": 2,
+        "planes_after": 5,
+        "N5_Gram_eigenvalues_approx": [
+          0,
+          1.308599,
+          1.691401
+        ],
+        "ring_angle_sums_degrees": [
+          540,
+          720.003
+        ],
+        "signed_sugar_centres_preserved": 3,
+        "generator_coordinate_residuals": "Internal consistency, not independent evidence"
+      },
+      "planned_native_modification": "B:4 NASdp3prime deletes H3 and sets O3-prime OC2, alongside existing NASnoOP3; source candidate unchanged"
     }
   },
   "smiles_cif_audit": {
