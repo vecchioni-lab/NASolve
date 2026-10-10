@@ -4,7 +4,8 @@ Updated **2026-10-10** from returned native output and the supplied, checksum-ve
 geometry, DF candidate, repaired-native and minimization bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
 coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
-COMPLETED_AWAITING_REVIEW; geometry qualification PENDING.** This updates the earlier
+COMPLETED_AWAITING_REVIEW in its receipt; user visual PASS; DP numerical repair
+and overall geometry qualification PENDING.** This updates the earlier
 [exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
 See the [handoff](development-handoff.md) for current priorities.
 
@@ -27,8 +28,10 @@ See the [handoff](development-handoff.md) for current priorities.
   evidence bundle returned, original inputs preserved.
 - [ ] Source-preserving DP numerical repair/audit and effective geometry
   qualification; DP angle/plane inconsistency is now demonstrated.
-- [ ] Refinement and per-site human Coot/.geo review; source-specific phosphate
-  states remain explicit.
+- [x] User-reported Coot visual PASS for the exact relaxed model; all modified
+  pairs looked satisfactory and WC-like.
+- [ ] DP numerical repair, full numerical qualification and later refinement;
+  source-specific phosphate states remain explicit.
 - [ ] Fresh ordinary full-auto run without preselected numerical resources
   or ad hoc linkage scripts.
 - [ ] Independent source-native P2 and geometry-diverse real P5 gates.
@@ -340,13 +343,35 @@ requires a source-preserving candidate and audit. **DP numerical repair is
 OPEN**: do not invent replacement angles or overwrite the frozen source.
 A SMILES graph comparison alone would miss this conflict between restraints.
 
-### Next review boundary
+### User visual review — PASS for the relaxed model
 
-Review `GEO/geometry_after.pdb` in Coot, using the preserved before model,
-full-precision metrics and `.geo` evidence for comparison. Then prepare and
-audit a source-preserving DP candidate before a clean rerun. Retain the pair,
-backbone, phosphate, chirality and symmetry evidence; the completed minimization
-is not convergence, human structural approval or experimental identity proof.
+On **2026-10-10 at 23:30 Europe/London**, the user reported that all modified
+pairs looked satisfactory and WC-like in Coot. The viewer loaded **9
+dictionaries** and displayed
+`LIVE/combined-geometry-view-z2nrp9n0/geometry_review.pdb`, an exact copy of
+`GEO/geometry_after.pdb`, SHA-256
+`35bc3a48bd953c328744fdba4722785b4403c4d0ed9a23c9494c543138f04b95`.
+This is **user-reported visual PASS** for that model; no screenshots were
+required or independently inspected. Preserve that positive visual verdict
+separately from the open DP numerical-restraint conflict and convergence review.
+
+### Next native boundary — DP candidate and audit
+
+Generate a disposable DP candidate from the reviewed frozen graph, then audit
+source preservation, numerical angle/plane consistency and effective native
+restraints before a clean rerun. Keep the original DP source and successful
+visual model unchanged; generation alone must not adopt the candidate.
+The supplied `combined_dp_candidate.py` stages an untouched source plus a
+graph-only seed in a new `LIVE/combined-dp-candidate-*` directory. The seed
+preserves all **35 atoms / 37 bonds / 4 chirality declarations**, source
+coordinates, explicit charges and H attachments, and alias metadata. It removes
+old numerical targets/energy types and copied descriptors; the explicit graph
+is dianionic (OP2/OP3 each −1), whereas the copied SMILES describes neutral
+phosphate. No new protonation state is selected. AceDRG is called with `-K`
+(no further protonation adjustment) and `-p` (supplied starting coordinates). Source/seed checks
+passed offline; native generation and candidate audit remain pending.
+The visual PASS does not close full numerical qualification, establish
+convergence or imply MTZ/Free-R refinement or experimental chemical identity.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

@@ -19,8 +19,9 @@ entries are reconstructed from repository history.
 - Record returned bounded minimization, verified 57-file bundle, preserved
   manager/original inputs and before/after metrics. The geometry target fell
   97.45% and chirality signs were retained. Record the demonstrated DP angle/plane
-  conflict and Coot review → source-preserving DP candidate/audit → clean rerun
-  order; convergence and geometry qualification remain open. No MTZ/Free-R
+  conflict. Record the user's Coot visual PASS for the exact relaxed model; next
+  is a disposable DP candidate/audit before a clean rerun. Convergence and full
+  numerical qualification remain open. No MTZ/Free-R
   refinement or production full-auto result is implied. Documentation only.
 
 ### Repaired native interpretation

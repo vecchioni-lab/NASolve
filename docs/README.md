@@ -15,9 +15,10 @@ for actual behavior; history is evidence, not a second task queue.
 - **Current trial:** repaired 5CM/DF native interpretation passed and bounded
   geometry minimization completed awaiting review. The target fell 97.45% and
   all chirality signs survived; original inputs and the manager were preserved.
-  A DP angle/plane inconsistency remains: review the relaxed model in Coot,
-  then audit a source-preserving DP candidate before a clean rerun. Geometry
-  qualification, convergence and fresh ordinary full auto are not established.
+  The user reports Coot visual PASS for all modified pairs. A separate DP
+  angle/plane inconsistency remains: generate and audit a disposable candidate
+  before a clean rerun. Full numerical qualification, convergence and fresh
+  ordinary full auto remain open.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
 - **Queued:** deterministic SMILES/CIF assessment, then separately tested

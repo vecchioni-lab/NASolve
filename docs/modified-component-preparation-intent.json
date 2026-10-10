@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-10",
-  "status": "GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW",
+  "status": "GEOMETRY_TRIAL_USER_VISUAL_PASS_DP_NUMERICAL_REPAIR_OPEN",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -161,9 +161,9 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "Visual Coot review of the relaxed model and specified paired-site foci",
-      "Source-preserving DP numerical candidate/audit for demonstrated N5 angle/plane inconsistency before clean rerun",
-      "Retain explicit source-specific phosphate state; geometry qualification remains PENDING",
+      "Disposable DP candidate generation from reviewed frozen graph; no automatic adoption",
+      "Source-preservation, numerical angle/plane and effective-native audits before a clean rerun",
+      "Full numerical qualification/convergence remains open, separately from user visual PASS",
       "Ordinary full-auto reproduction after runtime integration"
     ],
     "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval",
@@ -177,7 +177,7 @@
       "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
       "native_adoption": true,
       "geometry_minimization_completed": true,
-      "next": "Coot review of relaxed model, then source-preserving DP numerical candidate/audit before clean rerun",
+      "next": "Generate and audit a disposable DP candidate before clean rerun; user visual PASS preserved for original relaxed model",
       "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
       "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
       "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
@@ -214,7 +214,19 @@
       "DP_numerical_repair": "OPEN: exact dictionary N5 angle targets sum 339.714 degrees while N5 and its three neighbors share a plane; no invented target or frozen-source overwrite",
       "backbone_links_preserved": 38,
       "D1_OP3_preserved": true,
-      "six_pair_max_bond_deviation_configured_sigma": 1.39
+      "six_pair_max_bond_deviation_configured_sigma": 1.39,
+      "user_visual_review": {
+        "verdict": "PASS",
+        "reported_at": "2026-10-10T23:30:00+01:00",
+        "timezone": "Europe/London",
+        "scope": "All modified pairs in the relaxed model looked satisfactory and WC-like",
+        "model": "LIVE/combined-geometry-view-z2nrp9n0/geometry_review.pdb",
+        "exact_copy_of": "GEO/geometry_after.pdb",
+        "sha256": "35bc3a48bd953c328744fdba4722785b4403c4d0ed9a23c9494c543138f04b95",
+        "dictionaries_loaded": 9,
+        "evidence": "User-reported Coot verdict; no independent screenshot inspection",
+        "numerical_qualification_closed": false
+      }
     }
   },
   "smiles_cif_audit": {

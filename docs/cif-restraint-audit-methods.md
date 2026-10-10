@@ -80,6 +80,12 @@ source/program/version and whether it was copied from the same CIF. Copied
 descriptors test internal consistency, not independent chemical correctness.
 SMILES cannot validate numerical targets, sigmas, atom selections or the native
 proxies actually used. Preserve tautomer/protonation differences explicitly.
+The frozen DP example also has neutral-phosphate descriptors beside an explicit
+atom/bond graph with OP2/OP3 each charged −1. A regeneration seed therefore
+preserves the selected graph, charges, explicit H and chirality while excluding
+those descriptors and old numerical targets/types. Preserve both the untouched
+source and a field-level seed derivation; do not silently use a descriptor to
+choose another protonation state.
 
 For `NUM-01`, distinguish missing values (`.`/`?`) from numeric zero. Check that
 bond and angle references follow their declared graph; classify torsions as

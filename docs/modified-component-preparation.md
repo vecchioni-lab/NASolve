@@ -17,7 +17,8 @@ The narrow 5CM correction and source-audited DF candidate subsequently passed
 repaired native interpretation, including DF linkage, effective bonds/chirality
 and preserved other/custom proxies. Bounded geometry minimization subsequently
 completed awaiting review and exposed a DP angle/planarity inconsistency.
-DP numerical repair/audit and overall geometry qualification remain pending.
+The exact relaxed model has user-reported Coot visual PASS; DP numerical
+repair/audit and full numerical qualification remain pending.
 This is not yet a fresh generic full-auto result. Exact evidence and the
 bounded recovery sequence belong in the [native ledger](native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery).
 
