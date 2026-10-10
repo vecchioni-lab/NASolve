@@ -12,14 +12,18 @@ for actual behavior; history is evidence, not a second task queue.
   Phaser and PostMR; generic linkage diagnostic and exact custom-restraint
   coverage. [The native ledger](native-modified-pair-live-validation.md)
   owns returned counts, dictionary hashes and evidence paths.
-- **Next:** qualify effective sugar/glycosidic torsions and phosphate
-  protonation, then run the combined geometry trial in a new derivative.
-  Current prepared-bundle diagnostics do not prove fresh ordinary full auto.
+- **Current recovery:** effective 5CM and ReadySet DF defects are identified;
+  narrow 5CM correction proof and new DF source audit passed. Next, reinterpret
+  a fresh derivative with both candidates and verified DF linkage, then attempt
+  disposable geometry minimization if effective-restraint checks support it.
+  Native adoption is pending; source-specific phosphate states stay explicit.
+  Prepared-bundle diagnostics do not prove fresh ordinary full auto.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
-- **Queued:** SMILES-assisted CIF audit after the current geometry trial,
-  before Topo/Scout. PDB + coordinate mmCIF and explicit trusted-model /
-  no-sequence input are requested prerequisites for the blind AlphaFold
+- **Queued:** deterministic SMILES/CIF assessment, then separately tested
+  policy-bounded generation/validation and continuation, after the current
+  geometry trial and before Topo/Scout. PDB + coordinate mmCIF and explicit
+  trusted-model / no-sequence input are requested prerequisites for the blind AlphaFold
   baseline, not implemented options. The baseline remains after Pine
   close-out and before operational Scout.
 

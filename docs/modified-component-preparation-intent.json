@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-10",
-  "status": "COMBINED_POSTMR_AND_LINKAGE_DIAGNOSTIC_PASSED_GEOMETRY_AND_FRESH_GENERIC_FULL_AUTO_PENDING",
+  "status": "COMBINED_LINKAGE_COVERAGE_PASSED_5CM_DF_RECOVERY_CANDIDATES_NATIVE_ADOPTION_PENDING",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -138,11 +138,11 @@
     "stop_scope": "Affected stage/dataset; unrelated members continue"
   },
   "combined_native_evidence": {
-    "reported_by": "User-local October 10 terminal transcript",
+    "reported_by": "User-local October 10 native results and supplied checksum-verified geometry/DF bundles",
     "independently_executed": false,
     "last_recorded_regression_commit": "1443979b2308e4a2e507f0859370b44e0e124a86",
     "last_recorded_full_regression": "983 passed, 257 subtests passed in 80.81s",
-    "native_probe_checkout_exact_sha": "NOT_PRINTED_IN_RETURNED_FRAGMENT",
+    "native_probe_checkout_exact_sha": "e7451eedbc03c3accc93bc3138dfa9d1d031a7a9",
     "preparation": "Hand-prepared frozen resource bundle",
     "phaser": "MR_SUCCESS; TFZ 12.9; LLG 210",
     "postmr": "POSTMR_READY; 42/42 identities matched",
@@ -161,15 +161,31 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "Effective sugar/glycosidic torsion audit",
-      "Source-specific OP2 protonation review",
-      "Fresh geometry/refinement trial after audit supports it",
+      "Native adoption and effective validation of the narrow 5CM correction and linked DF candidate",
+      "Recheck 42 mappings, sugar/glycosidic torsions, DF chirality/bonds, links, coverage and D:1",
+      "Disposable geometry minimization if interpretation checks support it; inspect strain/displacement/chirality/pairs/backbone/symmetry",
+      "Retain and review explicit source-specific phosphate state, without invented common protonation",
       "Ordinary full-auto reproduction after runtime integration"
     ],
-    "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval"
+    "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval",
+    "native_checkout_status": "Returned clean and matches frozen manifest; local unpublished head, do not pull or replace for this diagnostic",
+    "effective_recovery": {
+      "details_ref": "docs/native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery",
+      "geometry_bundle_sha256": "9aefce71cfe1d2c73c7f86f4379cb1d76dd24410e3f77cbf259338449beae551",
+      "geometry_manifest_hashes_verified": 23,
+      "5CM": "Confirmed active base-C2/sugar-C2-prime reference error; one-reference correction plus existing alternate normalizer proved only in scratch",
+      "DF": "Effective ReadySet graph/targets and missing sugar chirality defective; new native-generated candidate passed source/numerical-reference audit",
+      "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
+      "native_adoption": false,
+      "geometry_minimization_completed": false,
+      "next": "Fresh copied model and 15 inputs; replace 5CM/DF candidates, apply verified DF internal modification, reinterpret and verify before disposable geometry minimization",
+      "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
+      "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
+      "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect"
+    }
   },
   "smiles_cif_audit": {
-    "status": "PROPOSED_NOT_IMPLEMENTED",
+    "status": "PROPOSED_STAGED_ASSESSOR_THEN_POLICY_BOUNDED_AUTOMATION_NOT_IMPLEMENTED",
     "order": "After current combined geometry test, before Topo/Scout",
     "prerequisite_for_current_geometry_trial": false,
     "initial_mode": "Read-only assessor, no automatic repairs",
@@ -196,7 +212,20 @@
       "Effective sugar/glycosidic torsions"
     ],
     "graph_match_certifies_numeric_geometry": false,
-    "details_ref": "docs/modified-component-preparation.md#proposed-smiles-and-cif-audit"
+    "details_ref": "docs/modified-component-preparation.md#proposed-smiles-and-cif-audit",
+    "subsequent_integration": {
+      "deterministic": true,
+      "ordinary_run_requires_AI": false,
+      "stages": [
+        "Independent source acquisition/cache and reviewed-override registry",
+        "Graph/H/charge/stereo/numerical-reference/coverage/effective-Phenix assessment",
+        "Bounded versioned generation under declared policy, then source and effective-native validation",
+        "Automatic continuation for passing ordinary cases; explicit diagnosis otherwise"
+      ],
+      "reviewed_repairs": "Source version/hash-scoped policy and preserved derivative provenance; no broad atom-name guesses",
+      "ambiguous_chemistry": "Protonation, tautomer or target ambiguity requires declared intent/reviewed policy; no invented intent",
+      "runtime_implemented": false
+    }
   },
   "other_completed_evidence_refs": {
     "four_member_full_auto_and_doctor": "docs/full-auto-patch-handoff.md",

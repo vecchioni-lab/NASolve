@@ -902,8 +902,10 @@ source-native conversion or P5 geometry-diverse prepared-nonstandard gates.
 
 After the combined geometry test, the proposed
 [SMILES/graph audit](modified-component-preparation.md#proposed-smiles-and-cif-audit)
-precedes the Topo/Scout work. It reports chemical graph differences separately
-from numerical geometry and makes no automatic repair decisions. The handoff
+precedes the Topo/Scout work. Its initial assessor reports graph differences
+separately from numerical geometry; subsequent separately tested integration
+may regenerate and continue only under explicit bounded policy, preserving
+source/candidate/native evidence. It must not invent chemical intent. The handoff
 owns the complete ordering, including bounded Pine close-out and the blind
 AlphaFold baseline; future features must not become extra merge gates.
 

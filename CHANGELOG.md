@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Combined geometry recovery plan
+
+- Record the checksum-verified linked geometry bundle, confirmed active 5CM
+  atom-reference defect, defective effective ReadySet DF, and source-audited
+  native-generated DF candidate. Neither candidate is yet adopted in a corrected
+  native interpretation; geometry minimization remains pending. Define the
+  fresh diagnostic, linkage/coverage checks and subsequent geometry trial.
+- Preserve the verified local Cedar head and distinguish mixed source phosphate
+  states from an inferred pH correction. Expand the post-geometry audit plan
+  into staged deterministic assessment and separately validated, policy-bounded
+  generation/continuation; no AI is required for ordinary passing cases.
+- Documentation only: no runtime/schema, source CIF, frozen model, observation,
+  Free-R or workbook change; no raw scientific bundle committed.
+
 ### Planned grouped processing inputs
 
 - Record shared parent-folder models with separate processing subfolders,

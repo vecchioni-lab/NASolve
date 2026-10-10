@@ -1,9 +1,11 @@
 # Native modified-base pair matrix — live validation ledger
 
-Updated **2026-10-10** from returned user-native terminal output.
+Updated **2026-10-10** from returned native output and the supplied, checksum-verified
+geometry and DF candidate bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
-coverage recorded; geometry qualification PENDING.** The combined geometry
-trial has not yet been run. This updates the earlier
+coverage recorded; 5CM/DF defects identified; DF candidate source audit PASS;
+corrected native interpretation and geometry qualification PENDING.** The
+combined geometry minimization trial has not yet been run. This updates the earlier
 [exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
 See the [handoff](development-handoff.md) for current priorities.
 
@@ -17,6 +19,11 @@ See the [handoff](development-handoff.md) for current priorities.
 - [x] Frozen combined 42-target preflight, Phaser and PostMR.
 - [x] Native interpretation, fresh IMC structural audit and linked diagnostic.
 - [x] Exact custom-restraint target/weight coverage and duplicate checks.
+- [x] Supplied geometry bundle verified against all 23 manifest hashes; active
+  5CM and ReadySet DF defects identified.
+- [x] Fresh DF generated natively; separate source-graph/numerical-reference audit
+  passed, without adopting it into the combined run.
+- [ ] Native adoption of the narrow 5CM correction and linked DF candidate.
 - [ ] Effective sugar/glycosidic torsion and phosphate-protonation qualification.
 - [ ] New combined geometry/refinement trial, numerical metrics and per-site
   human Coot/.geo review.
@@ -25,12 +32,12 @@ See the [handoff](development-handoff.md) for current priorities.
 - [ ] Independent source-native P2 and geometry-diverse real P5 gates.
 
 **Evidence boundary:** Phenix **2.2.1-6174**, Coot **1.3.3**, NARestraints
-**1.1.3** were used in the native work. The supplied terminal record contains
-returned results and receipt paths, not the complete audit JSON/model files;
-this documentation pass did not rerun or independently reopen them on the
-laptop. Its scripts verify a frozen local Cedar head without printing its SHA.
-Remote Cedar `a7edddf` and the earlier `1443979` regression receipt must not be
-substituted for that unknown local head.
+**1.1.3** were used in the native work. The later laptop check reports clean
+Cedar **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, matching the frozen
+combined manifest. This local unpublished head must not be replaced by a remote
+head or pulled over merely to continue the diagnostic. Earlier test counts do
+not certify its unidentified changes. The supplied bundles were inspected in a
+separate analysis environment; that analysis is not a new Phenix execution.
 
 Real GZ11 observations carry **hypothetical modified target chemistry**.
 Software success is not experimental identity validation or deposition approval.
@@ -167,7 +174,7 @@ Native proxies: **1015 simple bonds / 0 ASU bonds / 1574 angles /
 53 planarity / 58 parallelity**. These totals establish interpretation,
 not achieved geometry or general handling of ends/nicks/cyclic/symmetry links.
 
-### Custom restraint coverage — latest returned boundary
+### Custom restraint coverage — preserved baseline
 
 `LINKED/geometry-coverage-kczyxyyc/coverage_audit.json` and `coverage.log`
 report **CUSTOM_RESTRAINT_COVERAGE_RECORDED**:
@@ -184,19 +191,98 @@ Plane origins: **45 covalent + 8 edits**. Parallelity origins:
 **0 exact duplicate planes, 0 exact duplicate parallelities, 0 parallelity
 support-overlap candidates.** Geometry qualification remains **PENDING**.
 
-## Next native boundary
+## Effective-geometry findings and bounded recovery
 
-Audit the **effective linked** sugar/glycosidic torsions (atom quartets,
-periodicity, active weights, achieved angles) and source-dependent phosphate
-protonation; resolve demonstrated defects before a new geometry trial.
-Record resulting numerical refinement metrics and all six paired-site,
-backbone, phosphate, sugar, stacking, clash/map and .geo observations.
-Human verdict must name the new model/checkpoint, date and exact effective
-restraints. Earlier Z:P visual approval cannot be transferred to this model.
+The supplied `combined_geometry_evidence.zip` has SHA-256
+`9aefce71cfe1d2c73c7f86f4379cb1d76dd24410e3f77cbf259338449beae551`;
+all **23** manifest entries matched their hashes. It preserves the linked model,
+**15 effective inputs**, native audits and `.geo` evidence. It is separate from
+the earlier PostMR-only replay fixture and is not committed scientific data.
 
+### 5CM — confirmed active torsion defect
+
+The frozen `inputs/06_07_5CM.cif` has SHA-256
+`38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858`.
+Its `C2e-nyu0` term uses **C4' O4' C1' C2**, with base C2 in place of sugar
+C2': target **340.7°**, sigma **6.3°**, period **1**. A separate C3e term uses
+the correct C2' quartet at **2.8°**, sigma **6.1°**. The wrong quartet is active
+in native interpretation with a residual of approximately **481**: this is a
+real restraint blocker, not merely starting-model strain. Source-byte equality
+recorded on October 9 did not establish correct geometry.
+
+A scratch-only proof changed that one atom reference and then used the existing
+CCP4-alternate normalizer. It produced one correct quartet with primary
+**340.7°**, alternate **2.8°**, retaining the first-row sigma **6.3°**. No
+supplier target was guessed. This derivative has **not yet been adopted or
+verified by native Phenix**, and the frozen source remains unchanged.
+
+### DF — generated replacement passed source audit, native adoption pending
+
+The effective ReadySet DF supplement (SHA-256
+`b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20`)
+contains aromatic sugar typing/bonds, single C4–O4 at **1.384 Å**, single C2–S1
+at **1.812 Å**, and no active DF sugar chirality restraints. This is distinct
+from the bundled DF/A1AAZ graph source and its valid short-label bridge.
+
+The user generated a new candidate under **DF-CANDIDATE** =
+`LIVE/combined-df-candidate-rbb1_cpv`, using the prior IMC environment:
+AceDRG **334** (database **12**), RDKit **2026.09.1**, Servalcat **0.4.105**, with `-K -p`.
+Generation returned exit **0**; source and prior receipt hashes were unchanged.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `DF-CANDIDATE/DF_source_CCD.cif` | `27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e` |
+| `DF-CANDIDATE/DF.cif` | `cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293` |
+| Supplied `DF_candidate_review.zip` | `fd5ad43b666de68809da684e0acafb2df9bbb8d0353d946ffa9d23acce8bf443` |
+
+Separate analysis passed the source-preservation audit: **36 atoms / 21 heavy /
+15 H / 37 bonds**, with unchanged graph, formal charges and bond orders;
+**65 angles / 19 torsions** with connected valid references and numerical
+values. Sugar centres **C1': R, C3': S, C4': R** retain their source
+assignments with matching dictionary signs; P is `both`. The candidate targets
+include C1'–C2' **1.522 Å**, C3'–C4' **1.530 Å**, C1'–O4' **1.413 Å**,
+double C4=O4 **1.231 Å** and double C2=S1 **1.672 Å**. The generation log's two
+`non-ring atom 3 marked aromatic` warnings remain preserved; the final audited graph
+has no corresponding defect. Copied descriptors are not independent chemical
+validation. This passes the bounded source/numerical audit, **not native
+linkage, geometry minimization or scientific approval**.
+
+### Next native boundary
+
+The supplied single-use `combined_repaired_native.py` driver stages this
+diagnostic under a new `LIVE/combined-repaired-native-*` directory, preserves
+originals, and writes `repaired_native_review.zip` with hashes and effective
+geometry details. Its staging and check logic were exercised offline; Phenix
+execution and any resulting pass remain pending returned native evidence.
+This driver is a diagnostic artifact, not an installed NASolve command.
+
+1. Create a fresh diagnostic copy of the combined model and its **15 inputs**;
+   preserve all original hashes. Substitute only the narrow corrected/normalized
+   5CM derivative and the new DF candidate for the ReadySet DF supplement.
+2. Apply a site-specific DF internal-link modification deleting **OP3, HOP3 and
+   HO3'**, set O3' type to **OC2**, and retain the source OP2 hydrogen. Record the
+   chemical-state difference: old ReadySet DF assigned OP1 formal charge **−1**,
+   whereas the new source has formal charges **0**. This is not a pH correction
+   or a silently chosen common phosphate state.
+3. Reinterpret natively, then check **42 mappings**, no unexpected identities or
+   missing heavy atoms, one correct native 5CM quartet with its alternate, and
+   the three DF sugar chirality restraints/new bond targets. Recheck the other
+   links, exact custom-restraint coverage and protected D:1 terminal phosphate.
+4. Only if those checks support it, run disposable geometry minimization and
+   inspect strain, coordinate displacement, chirality, all six paired sites,
+   backbone/phosphate, stacking and symmetry contacts. Record failures and
+   remaining strain rather than assuming a passing result. The CGY starting
+   N1–C2–C1 angle (**1.58°** against **120.86°**) demonstrates severe starting
+   strain; that discrepancy alone is not a dictionary defect.
+
+The four earlier generic linked sites retain their mixed source-dependent
+phosphate protonation, with no orphan hydrogens and complete incoming links.
+Do not invent a uniform protonation/tautomer policy to remove that distinction.
+A later refinement and human verdict must name the new model/checkpoint, date
+and exact effective restraints; earlier Z:P approval does not transfer.
 Production integration and a fresh ordinary full-auto acquisition test remain
-separate from these successful diagnostics. The planned SMILES audit follows
-this geometry trial; see the [roadmap](development-handoff.md#roadmap-after-the-combined-geometry-test).
+separate. The staged audit/automation plan follows this geometry test; see the
+[component contract](modified-component-preparation.md#proposed-smiles-and-cif-audit).
 
 ## Historical Z:P attempts — preserved, never rerun in place
 

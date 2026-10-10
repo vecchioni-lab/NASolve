@@ -1,11 +1,13 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-10** from the returned native terminal record. **Active
-candidate: `cedar`; integration target: `pine` (draft PR #26), then `main`
-(draft PR #23).** The October 10 docs reconciliation is published on Cedar at `c730399`; the native terminal
-record checks its run against a saved local commit but does not print that
-commit. Do not assume the later diagnostic scripts are committed production
-behavior. Earlier wording is [backed up exactly](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+Updated **2026-10-10** from native receipts and checksum-verified geometry/DF
+bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
+then `main` (draft PR #23).** The current laptop Cedar checkout is clean at
+**`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, matching the frozen combined
+manifest. Preserve this local unpublished diagnostic head; do not pull or replace
+it with a remote head to continue the run. Diagnostic scripts/derivatives are
+not general production support. Earlier wording remains in Git and the
+[exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
 ## Completed and open work
 
@@ -16,7 +18,8 @@ behavior. Earlier wording is [backed up exactly](history/development-handoff-202
 | Cedar source lookup | Installed Phenix CCD lookup for IGU/IMC/CGY/DX and Coot construction verified; symlink duplicates resolved. Nine bundled-source roles audited. | Acquisition, parameter generation and linkage must become a repeatable ordinary workflow; source availability alone does not certify geometry. |
 | Combined 42-residue W trial | **Preflight, Phaser and PostMR passed**; 42/42 identities, 12 retained + 5 replaced Saenger blocks, 8 explicit pairs, stacking enabled. | Effective sugar/glycosidic torsions and phosphate protonation; new geometry/refinement trial and human review. |
 | Generic linkage diagnostic | **GENERIC_LINKAGE_MECHANICS_PASS** with fresh IMC, no missing heavy atoms, preserved links and D:1 terminal phosphate. | Diagnostic-only derivatives, not integrated general PostMR support or chemistry approval. |
-| Custom restraint coverage | **21/21 bonds, 34/34 angles, 8/8 planes, 23/23 parallelities** matched; no exact duplicate planes/parallelities or overlap candidates. | Coverage is not achieved geometry. |
+| Custom restraint coverage | **21/21 bonds, 34/34 angles, 8/8 planes, 23/23 parallelities** matched; no exact duplicate planes/parallelities or overlap candidates. | Recheck after the 5CM/DF substitutions; coverage is not achieved geometry. |
+| Effective 5CM / DF audit | Confirmed active 5CM wrong-atom torsion and ReadySet DF chemistry/chirality defects; scratch-only 5CM correction proof and native-generated DF source audit passed. | Neither candidate has been adopted in a corrected native interpretation or geometry trial. |
 | Ordinary/full-auto campaigns | Prior EA/DiU/Q5cm/QiC cohort reached numerical SOLVED with review/provisional distinctions preserved. | This does not prove a fresh arbitrary-component run without a prepared resource bundle. |
 | P2 / prepared nonstandard P5 | P2 preparation and nonstandard campaign paths implemented and fixture-tested. | Source-native `1W5→DZ` / `1WA→DP` provenance/refinement; 3–5 real geometry-diverse P5 models. |
 | Scout / Topo / GUI | Existing registration/shadow primitives and scoped evidence retained. | Operational Scout and topology surgery remain future work. |
@@ -25,19 +28,31 @@ behavior. Earlier wording is [backed up exactly](history/development-handoff-202
 **16 focused + 31 subtests (2.45 s)** and **983 full + 257 subtests
 (80.81 s)**, using `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH="$PWD/src"`
 and `../NASolve/.venv/bin/python -m pytest -q` (focused file:
-`tests/test_cedar_ccd_resolver.py`). This receipt does not certify later
-unidentified local changes. NARestraints installed workbook SHA-256 remains
+`tests/test_cedar_ccd_resolver.py`). This receipt does not certify the current
+local head or the later diagnostic derivatives. NARestraints installed workbook
+SHA-256 remains
 `94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2`.
+
+The October 10 documentation snapshot also passed the isolated Linux suite:
+**981 passed, 2 skipped, 257 subtests (29.21 s)** with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`.
+This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Finish the effective-geometry audit, then attempt the combined geometry
-   trial in a new derivative.** Use the saved linked/coverage audits in the
-   [native ledger](native-modified-pair-live-validation.md). Review active
-   sugar/glycosidic torsions, weights/periodicity and phosphate protonation.
-   The old IMC C2-versus-C2' torsion problem was identified; fresh AceDRG IMC
-   passed graph/structural checks, but geometry qualification is still
-   **PENDING**. Preserve the original PostMR run and all failed probes.
+1. **Reinterpret one fresh diagnostic with the bounded 5CM/DF corrections.**
+   The [native ledger](native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery)
+   owns exact hashes, defects and checks. Correct only 5CM's demonstrated
+   base-C2/sugar-C2' reference, apply the existing alternate normalizer, and use
+   the source-audited new DF candidate with a site-specific internal-link
+   modification. Preserve source-dependent OP2 protonation and explicitly record
+   the DF formal-charge difference. Verify 42 identities, effective torsion and
+   chirality/bond terms, links, custom-restraint coverage and D:1. **Then**, if the
+   checks support it, run disposable geometry minimization and assess strain,
+   displacement, chirality, paired sites, backbone and symmetry contacts.
+   Native adoption and the geometry result remain **PENDING**; retain every
+   original input and failed probe. Severe CGY starting strain is not by itself
+   evidence of a bad dictionary.
 2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
    The current trial used selected numerical CIFs in a frozen resource bundle
    and ad hoc linked derivatives. Acceptance is a new run from declared
@@ -72,8 +87,12 @@ additional Cedar/Pine merge gate.
   comparing molecular graphs with atom mapping, charge/H/stereochemistry and
   descriptor provenance. Keep self-consistency separate from independent
   chemistry, and graph checks separate from numerical-restraint validation.
-  Reviewed transformations such as 1W5→DZ remain explicit. The detailed
-  [assessor contract](modified-component-preparation.md#proposed-smiles-and-cif-audit)
+  Reviewed transformations such as 1W5→DZ remain explicit. Follow the initial
+  assessor with separately tested, policy-bounded generation/validation and
+  automatic continuation for ordinary passing cases. Exact reviewed repairs
+  need version/hash policies; ambiguous chemistry needs declared intent, not
+  an AI guess. Ordinary runs should not require AI or user source patches. The
+  detailed [assessor and automation contract](modified-component-preparation.md#proposed-smiles-and-cif-audit)
   owns findings, uncertainty and repair boundaries.
 - **Blind AlphaFold baseline after bounded Pine close-out:** preserve frozen
   predictions, observations and Free-R; avoid solved outcomes during blind
@@ -111,7 +130,8 @@ Preserve the original dirty NASolve checkout, unpublished NARestraints
 `Ligands.xlsx`/lockfiles, scientific runs, maps and Free-R. October 8–9
 completed-worktree cleanup remains recorded in the backup; the private
 lab-notes checkout was intentionally retained. Verify current laptop status
-before integration; this documentation audit did not inspect or clean it.
+before integration; the returned clean Cedar check does not authorize cleaning
+other laptop checkouts or changing the unpublished diagnostic head.
 
 **Status ownership:** this handoff = current priorities; native ledger =
 exact trial evidence; subsystem docs = durable contracts; history/Git =
