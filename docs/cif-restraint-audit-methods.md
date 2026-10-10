@@ -194,8 +194,11 @@ proxy types stay visible, with scope of coverage explicitly limited.
 whether the restraint-definition hash and flags stayed fixed, separately from
 manager API/version provenance. Preserve atom metadata, cell/symmetry and mapped
 input/output identities; audit serialization/round-trip precision separately.
-Include absolute errors and
-configured uncertainties as well as native residuals/weights, per-site maxima
+Objectives from different restraint definitions are not like-for-like model
+rankings: changing DP targets changes the objective itself. Compare each trial
+against its own fixed definitions and report cross-trial raw geometry separately.
+Residual strain alone does not justify dictionary repair. Include absolute
+errors and configured uncertainties as well as native residuals/weights, per-site maxima
 and distributions; overall target reduction can hide a local conflict. Evaluate
 bonded exclusions and symmetry operators when reporting contacts, so symmetry
 clashes are not missed or ordinary covalent contacts counted as clashes. Do not

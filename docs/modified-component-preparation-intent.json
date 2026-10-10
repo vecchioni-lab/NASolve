@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-11",
-  "status": "DP_NATIVE_INTERPRETATION_PASS_NEW_GEOMETRY_TRIAL_PENDING",
+  "status": "DP_GEOMETRY_N5_CONFLICT_RELIEVED_NEW_VISUAL_REVIEW_PENDING",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -161,9 +161,9 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "Fresh combined_dp_geometry_trial.py run from original pre-minimization coordinates with fixed DP-native manager and same 5-cycle/500-iteration bound",
-      "Review new per-term energy/N5/chirality/displacement/pair/backbone/symmetry evidence; preserve original visual PASS separately",
-      "Full numerical qualification, convergence and any diffraction refinement remain open",
+      "View exact new DP geometry model with pinned nine-dictionary workflow; Z:P A12/B4 then all modified sites including DF:A A19/D4",
+      "Full numerical qualification/convergence remain open; earlier visual PASS stays tied to prior model",
+      "General read-only CIF/restraint assessor is not implemented; current bespoke diagnostics supply its blueprint",
       "Ordinary full-auto reproduction after runtime integration"
     ],
     "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval",
@@ -177,7 +177,7 @@
       "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
       "native_adoption": true,
       "geometry_minimization_completed": true,
-      "next": "combined_dp_geometry_trial.py: fresh same-bound geometry from original coordinates and DP-native manager",
+      "next": "view_dp_geometry_trial.py: exact new model visual review; full qualification pending",
       "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
       "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
       "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
@@ -380,6 +380,44 @@
       "original_coordinate_atoms": 868,
       "geometry_qualification": "PENDING",
       "adopted_into_production_run": false
+    },
+    "DP_geometry_trial": {
+      "status": "GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW",
+      "root": "LIVE/combined-dp-geometry-trial-e3awaveh",
+      "review_zip_sha256": "c215258a895b2997d56b1b08aed42e3acc91a1b7619d828ee9fe48affbc50d2e",
+      "manifest_entries_verified": 56,
+      "native_exit": 0,
+      "originals_unchanged": true,
+      "model_basis": "Original 868-atom pre-minimization model",
+      "manager_fixed_within_trial": true,
+      "target_before": 69756.492476,
+      "target_after": 1836.748168,
+      "iterations_per_cycle": [
+        500,
+        256,
+        219,
+        180,
+        128
+      ],
+      "termination": "First cycle capped; later native-tolerated rounding/line-search notes",
+      "convergence_claimed": false,
+      "geometry_qualification": "PENDING",
+      "numerical_review": "Concrete N5 target/plane conflict relieved; modest global residual strain remains, no convergence/full-qualification verdict",
+      "MTZ_Free_R_refinement": false,
+      "production_full_auto": false,
+      "manifest_sha256": "82b8b205b2f5ffd97be5202f1a404dae8d6c1743d544e9a59edec93b0ef21176",
+      "output_model_sha256": "a8345a9e1695adb6cf484c9ee57d644546057e6b738fd91556ff370555981dfb",
+      "N5_achieved_degrees": [
+        108.115293,
+        119.720831,
+        132.163422
+      ],
+      "N5_max_configured_sigma": 0.483,
+      "chirality_signs_preserved": 158,
+      "backbone_links_preserved": 38,
+      "D1_OP3_preserved": true,
+      "visual_review": "PENDING for exact new model; previous model retains user PASS",
+      "comparison_boundary": "Cross-trial total objectives are not comparable rankings when restraint definitions differ"
     }
   },
   "smiles_cif_audit": {

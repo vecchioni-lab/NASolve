@@ -5,7 +5,8 @@ geometry, DF candidate, repaired-native and minimization bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
 coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
 COMPLETED_AWAITING_REVIEW in its receipt; user visual PASS; DP native
-interpretation PASS; new DP geometry trial and full qualification PENDING.** This updates the earlier
+interpretation PASS; DP geometry trial completed awaiting review; full
+qualification PENDING.** This updates the earlier
 [exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
 See the [handoff](development-handoff.md) for current priorities.
 
@@ -28,7 +29,10 @@ See the [handoff](development-handoff.md) for current priorities.
   evidence bundle returned, original inputs preserved.
 - [x] Source-preserving DP candidate and complete B:4 native interpretation
   passed; original source and coordinates preserved.
-- [ ] Geometry trial with the new DP manager and full numerical qualification.
+- [x] Geometry trial with the DP-native manager completed; 56-file evidence
+  bundle returned and original inputs preserved.
+- [x] Verify relief of the DP N5 conflict and preserved chirality/backbone links.
+- [ ] Visual review of the exact new DP geometry model.
 - [x] User-reported Coot visual PASS for the exact relaxed model; all modified
   pairs looked satisfactory and WC-like.
 - [ ] Full numerical qualification and later refinement;
@@ -460,16 +464,61 @@ Effective atom charge fields were null: this receipt adds **no native charge
 claim** beyond the separately preserved source graph. The earlier blocked
 checker receipt remains intact; this pass belongs to the new diagnostic only.
 
-### Next native boundary — geometry trial with the DP-native manager
+### DP geometry trial — N5 conflict relieved, review pending
 
-The prepared `combined_dp_geometry_trial.py` starts from DP-NATIVE's original
-pre-minimization coordinates and uses its fixed interpreted manager in a fresh
-workspace, bounded to the same **5 cycles × 500 iterations**. Preserve inputs
-and compare per-term energy, N5 geometry, chirality, displacement, pairs,
-backbone and symmetry contacts. **Native execution and geometry qualification
-are pending**. The prior relaxed model's user visual PASS is preserved; it is
-not transferred to an unrun new trial. No convergence, MTZ/Free-R refinement or
-production full-auto result is claimed.
+**DP-GEO** = `LIVE/combined-dp-geometry-trial-e3awaveh`. Its receipt reports
+**GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW**, native exit **0**,
+originals unchanged and **geometry qualification PENDING**. The supplied
+`DP_geometry_trial_review.zip` SHA-256 is
+`c215258a895b2997d56b1b08aed42e3acc91a1b7619d828ee9fe48affbc50d2e`;
+all **56** manifest entries were verified. Manifest SHA-256:
+`82b8b205b2f5ffd97be5202f1a404dae8d6c1743d544e9a59edec93b0ef21176`.
+The new `DP-GEO/geometry_after.pdb` SHA-256 is
+`a8345a9e1695adb6cf484c9ee57d644546057e6b738fd91556ff370555981dfb`.
+
+`combined_dp_geometry_trial.py` started from the original **868-atom
+pre-minimization model**, with the verified DP-native restraints. That manager
+remained fixed during this trial. The target changed **69756.492476 →
+1836.748168** over **500 / 256 / 219 / 180 / 128** iterations in five bounded
+cycles. Cycle 1 reached its cap; later cycles retained native-tolerated
+rounding/line-search notes. **Convergence is not claimed.** Targets from the
+earlier differently parameterized trial are not an independent ranking of
+models.
+
+The concrete N5 angle/plane conflict is relieved: achieved angles are
+**108.115293° / 119.720831° / 132.163422°** against **108.817° / 120.468° /
+130.715°**, sigma **3°**, sum **359.99955°**. All three are within **0.483 sigma**;
+the formerly offending third angle improved from **6.15 to 0.483 sigma**.
+DP heavy-bond RMS target error is **0.00264747 Å**; its current 35-angle
+residual sum is **15.10364**. Base-plane RMS deviations are
+**0.001171 / 0.000927 Å**. Remaining sugar angle C2'–C1'–O4' is **102.377105°**
+against **106.567°**, sigma **2.03°** (about −2.06 sigma); residual strain alone
+is not evidence for another dictionary repair.
+
+All **158 chirality signs** survived without zero volumes. All six modified
+pairs remain represented, with **21 custom bonds ≤1.73 sigma**, **34 custom
+angles ≤1.40 sigma**, and **38 backbone links** at **0.002359 Å RMS error**.
+D:1 OP3 is retained (P–OP3 **1.480457 Å**). Modest global residuals remain:
+rounded `.geo` van der Waals overlap entries above 0.4 Å fell **214 → 35**
+(previous trial endpoint: 30), maximum **0.580 Å**; these entries include
+reciprocals and are **not a clashscore**. No symmetry overlap exceeds 0.4 Å;
+the former D:1 OP3–C:14 C2' contact moved **1.331 → 4.370 Å**. No new assembly
+blocker was identified, but neither convergence nor full qualification follows
+from these bounded-run improvements.
+
+### Next review boundary — exact new model in Coot
+
+The prepared `view_dp_geometry_trial.py` pins the new model and restraint
+inputs, using the working **nine-dictionary** Coot workflow in a fresh viewer
+workspace. Inspect **Z:P A:12/B:4** first, then all modified sites including
+**DF:A A:19/D:4**. **New-model visual review and full numerical qualification
+remain pending.** Preserve the earlier model's user visual PASS separately.
+No MTZ/Free-R refinement or production full-auto result is claimed.
+
+These DP-specific scripts implement bespoke diagnostic checks and supply the
+blueprint for the **general read-only CIF/restraint assessor**. That general
+assessor is not implemented; it remains queued after this geometry work and
+before Topo/Scout, not an added prerequisite for the present trial.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.

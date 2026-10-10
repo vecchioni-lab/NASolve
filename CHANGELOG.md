@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### DP geometry trial returned
+
+- Record the completed DP-specific bounded geometry run and verified 56-file
+  bundle, with fixed within-trial manager and original inputs preserved.
+  Record relief of the DP N5 conflict and preserved chirality/links, with modest
+  residual strain. Queue Coot review of the exact new model; preserve the earlier
+  visual PASS separately. The general read-only assessor remains unimplemented;
+  no convergence, refinement or production full-auto claim is added.
+
 ### DP native interpretation passed
 
 - Record returned DP native v2 PASS, verified 33-file evidence bundle, effective

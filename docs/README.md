@@ -17,9 +17,11 @@ for actual behavior; history is evidence, not a second task queue.
   all chirality signs survived; original inputs and the manager were preserved.
   The user reports Coot visual PASS for all modified pairs. A separate DP
   candidate now passed complete native interpretation, including B:4 H3/OP3
-  removal and O3' OC2 typing. Next is a fresh geometry trial from original
-  pre-minimization coordinates with that manager. Full qualification, convergence
-  and fresh ordinary full auto remain open.
+  removal and O3' OC2 typing. Its fresh geometry trial has now completed from
+  original pre-minimization coordinates with the fixed DP-native manager and
+  relieved the N5 conflict. Next is Coot review of the exact new model; modest
+  residual strain remains. Full qualification, convergence and fresh ordinary
+  full auto remain open. The general read-only assessor is not implemented.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
 - **Queued:** deterministic SMILES/CIF assessment, then separately tested
