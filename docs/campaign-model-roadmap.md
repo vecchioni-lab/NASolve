@@ -674,6 +674,56 @@ One sample may legitimately enter NASolve through several processed collections.
 
 Campaign execution must therefore allow multiple collection branches to share one sample/design parent while preserving immutable provenance. It should not assume that the first or nominally highest-resolution collection is scientifically best.
 
+### Planned shared-model folders and processing alternatives
+
+**Requested 2026-10-10; not implemented.** Support a parent folder containing
+shared candidate PDB/coordinate-mmCIF models and one or more processing
+subfolders, each with its own STARANISO MTZ, `Data_1*.cif` and `summary.html`.
+The same layout should work as a campaign root or as a group within a larger
+campaign. Example paths describe input ownership, not finalized config syntax:
+
+| Path | Role |
+| --- | --- |
+| `sample/model_A.cif`, `sample/model_B.pdb` | Shared candidate models |
+| `sample/processing_1/` | First complete processing input set |
+| `sample/processing_2/` | Alternative processing input set, possibly another space group |
+
+Current discovery already inventories direct-child dataset folders. This
+extension adds nested group discovery, explicit parent-model scope and grouped
+MR comparison; it must not be described as already supported by shallow
+campaign discovery.
+
+The parser should inventory each declared group and report total, usable and
+blocked processing candidates before freezing the plan. With no usable dataset,
+report the exact missing/ambiguous inputs for that group. With one, use the
+ordinary dataset path. With several, schedule separate bounded MR trials for
+all selected valid alternatives; incomplete siblings remain visible without
+blocking the valid ones. Multiple shared models need an explicit model selection
+or bounded trial set, not an arbitrary first-file choice.
+
+Bind every candidate to a stable group ID, processing ID, exact relative input
+paths and hashes, validated symmetry and its own outputs/checkpoints. Resolve
+shared models only from the declared parent scope, with explicit per-candidate
+overrides and recorded precedence; never search arbitrary ancestors. Keep each
+MTZ/metadata/summary set together and preserve each dataset's observations and
+Free-R. Do not mix identically named files across siblings, merge observations
+or treat alternate processing results as independent experiments. Record known
+sample/collection relationships explicitly; folder grouping alone does not prove
+a shared physical collection. Existing stage/output/environment directories must
+remain excluded, and new files cannot silently join a frozen campaign.
+
+For alternative space-group processings, compare the MR outcomes for the
+selected common model candidates, retaining TFZ, LLG, symmetry, observation/
+resolution context, model/copy assumptions, completion status and diagnostics.
+Show a preferred candidate only under a declared comparison policy; ambiguous
+outcomes stay shortlisted. The largest TFZ or LLG alone must not silently
+establish the correct space group or final structure. Preserve all trials and
+allow reviewed downstream refinement/geometry evidence to inform selection.
+Model-format/trust-mode support remains the
+[separate planned input extension](#planned-coordinate-mmcif-and-trusted-model-input).
+This discovery/comparison work follows the current geometry priority and does
+not enlarge the bounded Cedar/Pine merge gates.
+
 ## autoPROC automation and Doctor
 
 A future upstream autoPROC runner should read frozen experiment metadata and construct the appropriate processing intent, including reviewed settings such as anomalous handling, expected/candidate space group, global phasing-related options, and other beamline-specific flags.
@@ -726,7 +776,7 @@ Cedar or Pine merge gates.
 9. **Merged backend-only Scout v2:** the design-aware proposal helper binds assessed provider identities and source-model hashes, and passed its scoped renamed-W shadow checks. It remains experimental/non-runtime; live AutoMR/PostMR authority is future work. Exact historical mappings and test counts are preserved in the [registration live checks](construct-registration-live-checks.md) and the archived roadmap above, rather than serving as today's regression receipt.
 10. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates, including opt-in Topo Net framework surgery. Before automation, validate symmetry-spanning phosphate bond/restraint behavior on a disposable ordinary PDB and establish a bounded repeatable Coot single-residue RSR repair primitive. The first blind end-to-end topology fixture is 8D93 -> 3GBI-style representation, with 3GBI coordinates withheld until post-transform validation.
 11. **Partially implemented:** dataset PDB candidate inventory/scouting, provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation/selection remains future work. External model generation (including AlphaFold) is upstream, not a NASolve provider-execution responsibility.
-12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
+12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and [grouped processing alternatives with parent-folder models](#planned-shared-model-folders-and-processing-alternatives).
 
 ### Campaign Doctor stage
 

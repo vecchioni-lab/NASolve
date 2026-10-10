@@ -2,7 +2,7 @@
 
 Updated **2026-10-10** from the returned native terminal record. **Active
 candidate: `cedar`; integration target: `pine` (draft PR #26), then `main`
-(draft PR #23).** Remote Cedar was verified at `a7edddf`; the terminal
+(draft PR #23).** The October 10 docs reconciliation is published on Cedar at `c730399`; the native terminal
 record checks its run against a saved local commit but does not print that
 commit. Do not assume the later diagnostic scripts are committed production
 behavior. Earlier wording is [backed up exactly](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
@@ -11,7 +11,7 @@ behavior. Earlier wording is [backed up exactly](history/development-handoff-202
 
 | Workstream | Verified result | Still open |
 | --- | --- | --- |
-| NARestraints | **v1.1.3 released and installed**, `main a9264f9`; corrected Z:P/K:X roles, unchanged workbook. | Combined-model geometry qualification belongs to the NASolve native trial. |
+| NARestraints | **v1.1.3 released and installed** (`a9264f9`); corrected Z:P/K:X roles, unchanged workbook. Docs-only PR #5 merged to main at `ef1a5a1`. | Combined-model geometry qualification belongs to the NASolve native trial. |
 | W Saenger overlay / viewing | PR #24 merged at `0017081`; prior Z:P `run_003/refine-001` numerically SOLVED and overall user Coot visual PASS. PR #25 merged at `e8613bf`; bare `show` user-live PASS. | New-campaign automatic workspace activation has regression coverage, not a separate returned live verdict. |
 | Cedar source lookup | Installed Phenix CCD lookup for IGU/IMC/CGY/DX and Coot construction verified; symlink duplicates resolved. Nine bundled-source roles audited. | Acquisition, parameter generation and linkage must become a repeatable ordinary workflow; source availability alone does not certify geometry. |
 | Combined 42-residue W trial | **Preflight, Phaser and PostMR passed**; 42/42 identities, 12 retained + 5 replaced Saenger blocks, 8 explicit pairs, stacking enabled. | Effective sugar/glycosidic torsions and phosphate protonation; new geometry/refinement trial and human review. |
@@ -84,6 +84,11 @@ additional Cedar/Pine merge gate.
   unverified, skip sequence-driven mutations, and retain ordinary model/MR
   checks. See [model roadmap](campaign-model-roadmap.md) and
   [architecture](architecture.md) for the proposed contract.
+- **Campaign input follow-up:** support shared parent-folder models and nested
+  processing datasets, including alternative space groups. Inventory/count
+  candidates, run selected MR alternatives separately and compare their evidence.
+  [Grouped-processing design](campaign-model-roadmap.md#planned-shared-model-folders-and-processing-alternatives)
+  records the requested behavior; current flat discovery does not implement it.
 - **Then operational Scout / later Topo surgery**, following the existing
   [registration contract](construct-registration.md) and
   [live checks](construct-registration-live-checks.md). The earlier order

@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Planned grouped processing inputs
+
+- Record shared parent-folder models with separate processing subfolders,
+  including alternative space-group solutions, as a future campaign capability.
+  Distinguish current shallow discovery from grouped inventory, explicit model
+  inheritance and separate MR comparison. Preserve per-candidate inputs and
+  results; no parser, CLI/schema or runtime behavior changes in this update.
+- Record the approved NARestraints documentation PR #5 merge; its released
+  scientific source and workbook are unchanged.
+
 ### October 10 documentation reconciliation
 
 - Record the returned combined W preflight/Phaser/PostMR, fresh IMC structural

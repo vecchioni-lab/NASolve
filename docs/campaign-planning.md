@@ -56,6 +56,12 @@ the existing standard W/5W6W route and a deliberately conservative
 prepared-nonstandard route. Existing schema-1 W plans remain readable and
 executable without migration.
 
+Shared parent-folder models, nested sample/processing folders and grouped
+comparison of alternative space-group processings are a
+[planned extension](campaign-model-roadmap.md#planned-shared-model-folders-and-processing-alternatives).
+Current shallow discovery does not provide shared-model inheritance or select
+the best processing result across those groups.
+
 ### Future reflection-input compatibility profiles
 
 Campaign setup should separate **what crystallographic work the available input
