@@ -335,6 +335,38 @@ metal geometries into one result merely because one has the lowest R factor.
 Doctors are bounded, stage-specific recovery planners. They may create new
 branches but may not weaken hard scientific gates invisibly.
 
+### Shared Doctor entry and geometry/connectivity roadmap
+
+**Requested 2026-10-11; not implemented.** Present the data/flag and
+model/restraint/geometry roles through one planned Doctor entry/orchestration
+layer while retaining each module's evidence, scope and stage authority.
+Existing Refine Doctor already audits frozen Free-R and runs bounded refinement
+branches. The next new slice is the deterministic read-only
+[CIF/effective-restraint assessor](cif-restraint-audit-methods.md), using 5CM/DF/DP
+and the additional 8RO/DE and 1AP challenge cases. A subsequent geometry and
+connectivity module should assess a placed MR model or refined checkpoint,
+then offer guided arm/sticky-end repair when local evidence and declared
+assembly intent support it. This roadmap is not a new gate on GeoTest campaign
+close-out or the current integration work.
+
+The user reports that fractured sticky-end arms account for GeoTest's high
+Rwork and wants Doctor to check and stitch geometry as well as diagnose
+data/refinement flags. Keep that as an attributed diagnosis, not an automatic
+classification from Rwork. Assess model geometry, density, symmetry,
+connectivity and effective restraints before spending refinement-strategy
+trials on an identified model defect. High Rwork by itself proves neither an
+assembly fracture nor anomalous noise; unavailable or ambiguous local evidence
+remains a review finding.
+
+The [guided-arm contract](construct-registration.md#geotest-guided-arm-connection)
+requires user-declared arm/domain mapping, strand routing and symmetry mates,
+plus a preview of the intended operation. Sticky-end pairing is distinct from
+covalent joining; true nicks and declared free 5′-OH termini survive. A bounded
+local repair creates a new immutable checkpoint and is reinterpreted and refined
+with the same observations and frozen Free-R. Preserve failed attempts and the
+parent; apply the existing selection/review policy separately. The data/flag
+role never searches or regenerates test flags to improve R-factor ordering.
+
 ### Data Doctor
 
 Potential responsibilities include label discovery, symmetry consistency,

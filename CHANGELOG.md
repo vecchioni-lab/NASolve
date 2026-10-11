@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### GeoTest campaign wrapped and coordinated Doctor scope
+
+- Verify the corrected native laptop ferry: 462 included files, 138 declared
+  compact omissions, nine completed workers and 14 successful native refinement
+  processes. Six members are numerically ready, two remain Doctor reviews and
+  one has no MR solution. The parser-only installation, original-code backup,
+  free 5′-OH preparation, unchanged inputs and displayed space groups are verified.
+- Close the GeoTest orchestration trial at the user's requested scope; retain
+  provisional scientific status, X11_17's large Rwork/Rfree gap and the two
+  X11_18 reviews. P4₃ selected models and P4₁ input headers remain separate.
+- Plan one coordinated Doctor workflow for data/Free-R diagnostics, effective
+  component/restraint assessment and model geometry/connectivity assessment,
+  including guided sticky-end arm repair. Record the user's fractured-arm
+  diagnosis as motivation; high Rwork alone does not establish its cause.
+  Keep frozen Free-R flags, declared routing and true nicks/5′-OH ends intact.
+  The deterministic restraint assessor remains the first implementation slice;
+  geometry checking and stitching are planned modules, not current capability.
+
 ### GeoTest laptop rerun shuttle and space-group display
 
 - Record the updated standalone shuttle's explicit `--install-parser-fix`:
@@ -22,8 +40,8 @@ entries are reconstructed from repository history.
   declared artifact paths and hashes.
 - Ninety-four adapter tests and 22 subtests pass; assembled installation,
   preparation and repeat staging pass with explicit offline fixtures. The
-  corrected native rerun remains pending. Repo edits here are documentation;
-  the standalone script remains the deliverable.
+  subsequent corrected native rerun is verified above. Repo edits here are
+  documentation; the standalone script remains the deliverable.
 
 ### Selected-model Phaser scores and GeoTest native results
 

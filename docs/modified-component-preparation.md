@@ -459,6 +459,32 @@ audit, repaired native interpretation and completed minimization are evidence
 for one diagnostic sequence, with geometry qualification still pending; they
 do not prove every ligand can already follow this path automatically.
 
+### Shared Doctor workflow and geometry follow-up
+
+The October 11 follow-up places this component assessor inside a planned shared
+Doctor entry/orchestration layer alongside existing data/Free-R and refinement
+diagnostics. The initial deterministic CIF/restraint assessor remains the next
+development slice. A following module should assess assembly geometry and
+connectivity after MR or refinement, and route demonstrated arm/sticky-end
+problems to the [guided stitcher](construct-registration.md#geotest-guided-arm-connection).
+This is a coordinated roadmap, not an implemented command or a new campaign
+integration gate.
+
+The user diagnoses GeoTest's high Rwork as fractured arms at sticky ends.
+Preserve that motivation without claiming Rwork alone proves the cause or
+identifies the intended connection. Assess the exact model's local geometry,
+density, symmetry and effective restraints before choosing refinement strategy
+trials or a repair. Keep component chemistry findings distinct from assembly
+findings: a passing CIF audit does not establish complete triangle connectivity,
+and arm misfit is not permission to change dictionary targets.
+
+Guided repair requires declared arm/domain mapping, strand routing and symmetry
+mates, with a preview distinguishing base pairing from covalent continuation.
+Preserve true nicks and declared 5′-OH ends. An accepted bounded repair becomes
+a new immutable checkpoint with native interpretation, local validation and
+refinement against unchanged observations and frozen Free-R. The existing
+data/flag role audits evidence; it does not regenerate flags to improve R factors.
+
 ## Historical validation evidence
 
 The exact pre-reconciliation document, including the October 7 fixture recovery

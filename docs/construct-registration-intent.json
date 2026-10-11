@@ -411,7 +411,11 @@
         "terminal_policy": "Preserve declared free 5-prime-OH ends; an apparent visual gap does not authorize covalent joining.",
         "execution": "Freeze preview, exact symmetry materialization where needed, separate bounded local repair, native Phenix interpretation, then short refinement as immutable children.",
         "controls": ["real GeoTest arm connection", "ambiguous routing requiring a user decision", "true nick retained unjoined"],
-        "distinct_from": "Generalized CIF/restraint doctor; this realizes declared assembly connectivity and coordinate geometry."
+        "doctor_coordination": "Planned geometry/connectivity module of one coordinated Doctor workflow alongside existing data/Free-R diagnostics and the next generalized CIF/effective-restraint assessor; separate evidence and repair authority, shared entry/orchestration.",
+        "assessment_trigger": "Inspect exact MR/refined model, maps, symmetry, effective restraints and intended assembly before further refinement strategies, including numerically ready models with geometry findings.",
+        "geotest_motivation": "User attributes high Rwork to arms fractured at sticky ends; treat as reported diagnosis, not proof from Rwork alone or automatic authorization to join atoms.",
+        "free_r_policy": "Preserve the same observations and frozen Free-R through bounded immutable repair children and refinement; do not regenerate flags to improve statistics.",
+        "development_order": "Deterministic CIF/restraint assessment first, coordinated geometry checking and guided stitching next; no new gate on closed GeoTest orchestration or current integration."
       },
       "position": "Between Topo Net preview/materialization and expert manual Coot fallback.",
       "purpose": "Repair locally awkward geometry caused by reslicing, mutation, chain reconstruction or imperfect MR coordinates without hiding uncertainty.",

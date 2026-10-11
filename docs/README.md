@@ -28,17 +28,20 @@ for actual behavior; history is evidence, not a second task queue.
 - **Next development priority:** generalized restraint doctor, beginning with
   deterministic SMILES/CIF assessment from 5CM/DF/DP evidence and additional
   8RO/DE and 1AP challenge cases. Then separately tested policy-bounded
-  generation/validation and continuation, before Topo/Scout. Remaining combined
-  geometry qualification stays open without delaying the initial assessor.
-  GeoTest's native full-auto ferry is verified: four ready refinements and one
-  Doctor review after declared 5′-OH preparation. An existing TFZ parser defect
-  explains apparent MR losses; both cohorts' selected outputs actually contain
-  seven ≥8 final scores, one borderline and one no-solution case. Original
-  statuses remain historical evidence. User-guided post-MR/post-refine arm
-  connection is recorded under future Scout/Topo surgery.
-  The updated laptop shuttle installs only the checksum-guarded parser fix and
-  shows space groups in its final summary/CSV/Coot menu; the fresh native rerun
-  is pending.
+  generation/validation and continuation. Bundle model geometry/connectivity
+  checks and guided sticky-end arm repair into the same planned Doctor workflow,
+  using Scout/Topo primitives with declared routing and preserved true nicks.
+  Remaining combined geometry qualification stays open without delaying the
+  initial assessor.
+  GeoTest's corrected native full-auto run is verified and **wrapped for its
+  orchestration scope**: six numerically ready refinements, two Doctor reviews
+  and one MR failure. All nine workers and 14 native refinements completed;
+  the parser-only installation, 5′-OH preparation and model/data space-group
+  provenance passed. The three formerly blocked candidates now proceed.
+  Original statuses remain historical evidence. Scientific approval stays
+  provisional, including X11_17's large Rwork/Rfree gap and both X11_18 reviews.
+  The user's fractured sticky-end arms motivate the Doctor geometry module;
+  no further scientific repair of this test is required to close it.
   PDB + coordinate mmCIF and explicit
   trusted-model / no-sequence input are requested prerequisites for the blind AlphaFold
   baseline, not implemented options. The baseline remains after Pine

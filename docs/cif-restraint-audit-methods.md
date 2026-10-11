@@ -33,6 +33,36 @@ reviewed label bridge. The chemical transformations preserve their declared
 source/target differences; the label bridge expects graph equivalence under
 component-ID renaming.
 
+## Doctor coordination and assembly geometry
+
+**Requested 2026-10-11; roadmap only.** The generalized restraint assessor is
+the first new module in a shared Doctor workflow. The same entry/orchestration
+layer should coordinate existing data/Free-R and refinement diagnostics with
+component/effective-restraint assessment and a subsequent geometry/connectivity
+checker plus guided arm stitcher. These modules retain separate findings and
+evidence; a dictionary finding does not itself establish an assembly defect.
+No unified entry point or geometry stitcher is implemented by this document.
+
+The user attributes GeoTest's elevated Rwork to fractured arms at sticky ends,
+and asks for that repair to be bundled with Doctor rather than treated only as
+an anomalous/data refinement problem. Record this as the user's diagnosis and
+development motivation. High Rwork alone cannot distinguish anomalous noise,
+wrong assembly, coordinate misfit or deficient restraints, or establish which
+connection is intended. The planned geometry module must inspect the exact
+placed/refined model, maps, effective proxies and symmetry, then identify local
+evidence and declared connectivity before proposing an operation. Run these
+assessments before spending strategy trials on a known invalid model.
+
+The [guided-arm contract](construct-registration.md#geotest-guided-arm-connection)
+owns mapping, strand routing, symmetry-aware preview and repair acceptance.
+Preserve true nicks and GeoTest's declared free 5′-OH ends; sticky-end pairing is
+not authorization to form a new covalent bond. An accepted, bounded local repair
+creates a new immutable checkpoint, is reinterpreted with reviewed effective
+restraints and is refined against the same observations and frozen Free-R set.
+Data/flag diagnosis never permits changing or regenerating that set to improve
+statistics. This coordinated roadmap does not add a gate to the successful
+GeoTest campaign or delay the read-only assessor's first development slice.
+
 ## Rules: stable IDs and bounded evidence
 
 IDs below name proposed checks, not implemented APIs. Every result identifies

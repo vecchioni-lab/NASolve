@@ -2,10 +2,12 @@
 
 Updated **2026-10-11** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
-then `main` (draft PR #23).** The current laptop Cedar checkout is clean at
-**`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, matching the frozen combined
-manifest. Preserve this local unpublished diagnostic head; do not pull or replace
-it with a remote head to continue the run. Diagnostic scripts/derivatives are
+then `main` (draft PR #23).** The current laptop Cedar checkout remains at
+**`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
+authorized `src/nasolve/phaser.py` fix modified after the GeoTest rerun.
+Its other 45 frozen source hashes, including the distinct curated source,
+are preserved. Preserve this local unpublished diagnostic head; do not pull or
+replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
@@ -41,16 +43,16 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-**GeoTest full-auto native result returned:** the 5′-OH preparation and
-refinement/Doctor orchestration completed on the laptop: four ready refinements,
-one Doctor review, and four recorded MR failures. Inspection uncovered an
-existing TFZ parser defect: the recorded gates used initial search scores,
-although seven selected models have final TFZ-equivalents at least 8 and one
-is borderline. Selected-model score parsing is now corrected and regression
-tested in the development checkout; the laptop remains on its frozen head.
-Preserve the returned reports and completed refinements. The requested
-[guided arm-connection tool](construct-registration.md#geotest-guided-arm-connection)
-is a later Scout/Topo scope, separate from the generalized restraint doctor.
+**GeoTest orchestration trial wrapped:** the corrected native rerun verifies
+six numerically ready refinements, two bounded Doctor reviews and one MR failure.
+All nine workers and 14 native refinements completed, the one-file parser fix
+was installed with its original backup, and model/data space groups are recorded.
+The three candidates blocked by the previous parser now progress past MR.
+The user explicitly closes this campaign at its orchestration scope without
+further scientific repair; preserve its provisional checkpoints and reviews.
+The [guided arm-connection module](construct-registration.md#geotest-guided-arm-connection)
+is now bundled into the planned Doctor workflow alongside data/Free-R diagnostics
+and the generalized restraint assessor, using Scout/Topo primitives.
 
 1. **Generalized restraint doctor is the next development priority.**
    User decision **2026-10-11**: resume next session with a deterministic,
@@ -64,6 +66,17 @@ is a later Scout/Topo scope, separate from the generalized restraint doctor.
    component-specific exception; include valid controls and retain unsupported
    findings. The [fixture plan](cif-restraint-audit-methods.md#learning-cases-and-future-regression-fixtures)
    distinguishes known defects, source adaptations and unresolved chemistry.
+   **Doctor bundle decision, 2026-10-11:** retain the existing refinement/Free-R
+   diagnostic module and add the restraint assessor plus model geometry and
+   connectivity assessment under one coordinated workflow. The user attributes
+   GeoTest's high Rwork to arms fractured at sticky ends; record that diagnosis
+   as the motivation for examining the actual model/maps and intended assembly,
+   not as a causal proof from Rwork. Check geometry/connectivity before choosing
+   further refinement strategies, including numerically ready models. Guided
+   stitching requires declared arm pairing, strand routing and symmetry mates;
+   preserve true nicks/5′-OH termini and frozen Free-R, create a bounded child
+   checkpoint and validate/refine it. The assessor remains the first slice;
+   geometry integration is future work, not an additional Cedar/Pine merge gate.
 2. **Bound the remaining combined-model numerical review.**
    The [native ledger](native-modified-pair-live-validation.md#dp-geometry-trial--n5-conflict-relieved-review-pending)
    records verified N5 relief and preserved chirality, links and pair coverage;
@@ -234,11 +247,10 @@ suite passes **989 tests, 2 skipped, 269 subtests (32.75 s)** with
 The worker/preflight/full-auto-driver checks also pass **54 tests**. Read-only
 parsing of all 16 actual selected PDBs reproduces the table above. The report
 adds versioned `score_evidence` and selected-output checksums; existing fields
-and TFZ thresholds remain compatible. No native Phaser process was rerun for
-this parser fix, and no old receipt was changed. The laptop is still on the
-recorded diagnostic head: do not overwrite it or pull a different head merely
-to replay these results. Integrate the small fix deliberately before a future
-fresh run or an explicitly audited continuation of the three stopped cases.
+and TFZ thresholds remain compatible. This initial validation did not rerun
+native Phaser or change any old receipt. The subsequent fresh laptop run below
+installed the small fix at the recorded diagnostic head; do not pull a different
+head over that distinct local state merely to replay these results.
 
 **Authorized laptop rerun shuttle:** the user requests a fresh run with the
 corrected parser and space groups in final output. The updated standalone
@@ -268,12 +280,59 @@ also passes parser installation, original-code backup, actual X11_20 terminal
 preparation, source-preserving staging and a second already-fixed launch.
 That integration is offline: reflection metadata are fixtures and only the
 unavailable laptop-specific curated-source manifest entry is substituted with
-the local fixture's hash. No native Phenix process was launched; native
-corrected-score rerun and its new space-group outputs are pending on the laptop.
+the local fixture's hash. That offline check launched no native Phenix process;
+the subsequent returned native rerun is verified below.
 
-**Guided geometry follow-up:** the user requests a Scout-based tool after MR or
-refinement to connect arms and stitch triangles once intended connections are
-declared. The [contract](construct-registration.md#geotest-guided-arm-connection)
+**Corrected native run and close-out, 2026-10-11:** `GeoTest_review(2).zip`
+(SHA-256 `8ef30e37729d74631eae8b91b0ac1d04c52f4879cb5d96c0f9f30addc7c0a9f9`)
+contains **462 hash/byte-verified files** and **138 declared compact omissions**.
+The runtime reports Python **3.12.14**, Phenix **2.2.1-6174** and discovered
+Coot **1.3.3**; the native batch completed in about 13 minutes. All nine workers
+exited zero; 44 stage
+snapshots, nine final native reports and per-case provenance match the aggregate.
+The installer verified 46 source files, preserved the exact old parser backup,
+and changed only `phaser.py` to the fixed hash above. Original inputs and all
+other source hashes remain unchanged. All nine preparations remove exactly 28
+terminal phosphate atom records; every other byte is preserved, including O5′,
+and their native frozen search models match the preceding 5′-OH cohort.
+
+| Member | Displayed space group | Final selected TFZ | Returned result | Rwork / Rfree |
+| --- | --- | --- | --- | --- |
+| X11_12 | P6 (input data only) | — | MR FAILED; no selected model | — |
+| X11_16 | P2₁ | 14.5 | AUTOREFINE READY, refine-001 | 0.2940 / 0.3404 |
+| X11_17 | P2₁ | 12.2 | AUTOREFINE READY, refine-001 | 0.2165 / 0.3325 |
+| X11_18/dataset1 | P2₁ | 7.7 | Doctor REVIEW, inspection refine-002 | 0.4691 / 0.4859 |
+| X11_18/dataset2 | P4₃ | 8.0 | Doctor REVIEW, inspection refine-002 | 0.3230 / 0.3418 |
+| X11_19 | P4₃ | 13.8 | AUTOREFINE READY, refine-001 | 0.2421 / 0.2890 |
+| X11_20 | P1 | 16.9 | AUTOREFINE READY, refine-001 | 0.2262 / 0.2336 |
+| X11_22 | P1 | 15.3 | AUTOREFINE READY, refine-001 | 0.2647 / 0.2770 |
+| X11_25 | P2₁ | 9.8 | AUTOREFINE READY, refine-001 | 0.2781 / 0.3179 |
+
+All eight selected-model final TFZ/LLG annotations and displayed checkpoint
+CRYST1 records match their checksummed provenance. X11_18/dataset2 and X11_19
+have selected/refined **P4₃**, while their input headers remain **P4₁**; retain
+both values. Exactly **14 native refinement processes exited zero**: eight
+ordinary refinements and six Doctor trials. Every command keeps original
+`IMEAN,SIGIMEAN` observations, `FreeR_flag`, test value 0 and `generate=False`;
+each of the eight registries retains its member's original observation hash. Both X11_18
+cases keep current `postmr`, inspection-only `refine-002`, no recommendation
+and no automatic selection. Their audits remain `NOISY` (546/10377 and 223/3937
+free groups) with zero detected inconsistent flags and the explicit unavailable
+Friedel-mate comparison limitation. Omitted reflection arrays were not replayed.
+
+No infrastructure blocker remains. The user reports campaign success and asks
+to wrap without further scientific repair. All members retain provisional,
+inspection-required and unapproved status. In particular, X11_17 passes the
+current numerical gate despite a **0.116 Rfree−Rwork gap** and **66.93 clashscore**;
+the bond/angle RMSD summary limitation and local assembly/geometry issues remain.
+These are fixtures for the planned Doctor geometry module, not approval of the
+structures. Native campaign input/recipe integration remains separate future
+work; this closes the standalone GeoTest orchestration test.
+
+**Guided geometry follow-up:** the user requests geometry assessment and a
+Scout-based guided arm/triangle stitcher bundled with Doctor, available after
+MR or refinement once intended connections are declared. The
+[contract](construct-registration.md#geotest-guided-arm-connection)
 and [live-check queue](construct-registration-live-checks.md) retain this as
 planned scope. The supplied Coot examples are `Screenshot 2026-10-11 at
 13.53.45.png` (SHA-256
@@ -287,10 +346,12 @@ Original screenshots, coordinate models and reflection data remain outside Git.
 ## Restraint doctor and subsequent roadmap
 
 The October 11 priority decision advances the **SMILES-assisted CIF/restraint
-assessor** to the next implementation task using the completed trials as
-evidence. Remaining combined-model qualification stays explicit and may proceed
-alongside it. The doctor precedes Topo slicing / operational Scout and does
-not become an additional Cedar/Pine merge gate.
+assessor** to the first implementation slice of the coordinated Doctor workflow
+using the completed trials as evidence. Remaining combined-model qualification
+stays explicit and may proceed
+alongside it. The Doctor geometry/connectivity module will reuse Scout/Topo
+primitives for guided repair; broader Topo slicing / operational Scout remains
+later work. None becomes an additional Cedar/Pine merge gate.
 
 - **SMILES-assisted CIF audit (planned, not implemented):** assessment first,
   comparing molecular graphs with atom mapping, charge/H/stereochemistry and

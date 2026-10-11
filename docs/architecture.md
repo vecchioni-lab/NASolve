@@ -600,6 +600,18 @@ automation but do not replace visual inspection or user approval.
 
 ## Refine Doctor contract
 
+**Planned coordinated Doctor scope:** the October 11 GeoTest follow-up bundles
+the existing refinement/data/Free-R diagnostics below with the next deterministic
+component/restraint assessor and future model geometry/connectivity assessment,
+including guided sticky-end repair. This broader orchestration is not implemented
+by the current `refine-doctor` command. Geometry findings must be assessed before
+choosing more refinement strategies; high Rwork alone does not identify noise,
+dictionary defects or fractured arms. Declared assembly/routing and bounded
+checkpoint repair follow the [guided connection contract](construct-registration.md#geotest-guided-arm-connection).
+Frozen Free-R flags remain unchanged. The
+[handoff](development-handoff.md#restraint-doctor-and-subsequent-roadmap) owns
+implementation order and returned evidence.
+
 Refine Doctor is a finisher and diagnostic layer, not an unconstrained
 R-factor optimizer. It starts from the current or explicitly named checkpoint,
 records that pointer, and requires every trial to be an immutable sibling of

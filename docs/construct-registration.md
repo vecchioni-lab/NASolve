@@ -1072,14 +1072,24 @@ provenance rather than erasing them.
 ### GeoTest guided arm connection
 
 **Requested 2026-10-11; planned, not implemented.** The returned GeoTest
-full-auto trial produced four numerically ready refinements and one bounded
-Doctor review. The user reports success for that scope, while local arm ends
-and triangle connections still need assembly-aware repair. Two supplied Coot
+corrected full-auto trial produced six numerically ready refinements, two bounded
+Doctor reviews and one MR failure. The user wraps its campaign scope, while
+local arm ends and triangle connections still need assembly-aware repair. Two supplied Coot
 views show local model/density discrepancies; their exact member, checkpoint
 and residue selection were not supplied. They motivate this feature but do not
 establish which atoms should connect or whether a new covalent link is intended.
 The [handoff](development-handoff.md#optional-geotest-side-trial) owns the
 native results and attachment provenance.
+
+The user requests this geometry checker and guided stitcher as a module of the
+coordinated Doctor workflow. They attribute high GeoTest Rwork to fractured
+sticky-end arms rather than anomalous noise. Treat that as the reported model
+diagnosis motivating inspection, not a conclusion inferred from Rwork alone.
+Doctor should examine actual model/maps, local geometry and declared assembly
+connectivity before selecting more refinement strategies; numerical readiness
+does not skip that assessment. Data/Free-R and component/restraint findings
+remain visible alongside assembly findings rather than serving as a default
+explanation for poor fit.
 
 The first guided slice should accept either a placed MR model or an explicit
 refined checkpoint, with its symmetry, observations/Free-R, available maps and
@@ -1110,9 +1120,12 @@ Use a real GeoTest connection, an ambiguous routing case requiring one user
 decision, and a true nick that must remain unjoined. Visual closure and lower
 R factors alone do not certify the intended connectivity.
 
-This assembly/coordinate tool is distinct from the generalized CIF/restraint
-doctor, which assesses and prepares component chemistry/effective restraints.
-Both can reuse provenance and native geometry diagnostics. Existing Scout
+This assembly/coordinate module and the generalized CIF/restraint assessor
+have distinct evidence and repair contracts but belong to the same planned
+Doctor entry point/orchestration. The assessor remains the first implementation
+slice; geometry checking and guided stitching follow without delaying the
+closed GeoTest campaign or existing integration gates. Both reuse provenance
+and native geometry diagnostics. Existing Scout
 remains backend-only and its guided whole-chain selection helper does not yet
 perform splitting, joining, symmetry materialization or this repair.
 
