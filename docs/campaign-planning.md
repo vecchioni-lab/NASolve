@@ -181,6 +181,15 @@ These settings control existing bounded transitions. A general configurable
 stage graph remains future work; recipes cannot request arbitrary recovery
 operations.
 
+Schema 2 also accepts an explicit `[autosol]` table with `policy = "disabled"`
+and a nonempty `reason`, for example a synthetic modified-DNA mechanics test
+against donor diffraction. The resolved table contains only those two fields;
+`on_unaccepted` is incompatible with a disabled stage. Planning freezes the
+reason in the policy hash. This option preserves anomalous-atom classification
+and observation data while preventing AutoSol execution and experimental-phase
+use downstream; see [the phase-stage opt-out](campaign-full-auto.md#explicitly-omit-autosol).
+It does not migrate existing plans or change the default conditional phase path.
+
 The future GUI recipe builder must construct this same backend recipe, not a
 parallel GUI configuration. It may show sensible defaults and only currently
 supported/validated options; unavailable future capabilities stay absent or

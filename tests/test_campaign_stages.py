@@ -528,6 +528,53 @@ class CampaignStageTests(unittest.TestCase):
             execute_stage(self.root, self.dataset, self.policy, "autosol",
                           self.attempt("bad-eligibility"), run)
 
+    def test_explicit_disabled_autosol_preserves_candidates_and_needs_no_runtime(self):
+        run = make_refine_run(self.root, autosol=False)
+        self.set_run(run)
+        self.policy.update(schema_version=2, autosol={"policy": "disabled", "reason": "Synthetic donor test"})
+        before = json.loads((run / "report.json").read_text())["postmr"]["anomalous"]
+        observations = (self.root / "dataset/staraniso.mtz").read_bytes()
+        with patch("nasolve.campaign_stages.discover_phenix", side_effect=AssertionError("No runtime")), \
+                patch("nasolve.campaign_stages.execute_autosol", side_effect=AssertionError("AutoSol is disabled")):
+            result = self.stage("autosol", run)
+        self.assertEqual(result["status"], "SKIPPED")
+        self.assertIn("Synthetic donor test", result["message"])
+        self.assertTrue(result["nucleotide_candidates_present"])
+        report = json.loads((run / "report.json").read_text())
+        self.assertEqual(report["postmr"]["anomalous"], before)
+        self.assertEqual(report["autosol"]["reason"], "Synthetic donor test")
+        self.assertFalse(report["autosol"]["use_for_refinement"])
+        self.assertEqual((self.root / "dataset/staraniso.mtz").read_bytes(), observations)
+        self.assertFalse((run / "AutoSol").exists())
+
+    def test_disabled_campaign_refinement_has_no_phase_inputs_or_checkpoint(self):
+        run = make_refine_run(self.root, autosol=False)
+        self.set_run(run)
+        self.policy.update(schema_version=2, autosol={"policy": "disabled", "reason": "Synthetic donor test"})
+        self.stage("autosol", run)
+        self.phenix.executables.update({"phenix.refine": make_refine(self.tools),
+                                      "phenix.mtz.dump": refine_dump(self.tools)})
+        result = self.stage("autorefine", run)
+        self.assertEqual(result["status"], "AUTOREFINE_READY")
+        refinement = json.loads((run / "AutoRefine/round_001/report.json").read_text())
+        self.assertFalse(refinement["refinement"]["use_experimental_phases"])
+        self.assertIsNone(refinement["inputs"].get("phase_file"))
+        registry = json.loads((run / "AutoRefine/checkpoints.json").read_text())
+        self.assertTrue(all(item.get("phases") is None for item in registry["checkpoints"]))
+
+    def test_disabled_autosol_refuses_existing_accepted_phase_execution(self):
+        run = make_refine_run(self.root)
+        self.set_run(run)
+        self.policy.update(schema_version=2, autosol={"policy": "disabled", "reason": "Synthetic donor test"})
+        before = (run / "report.json").read_bytes()
+        phases = (run / "AutoSol/overall_best_refine_data.mtz").read_bytes()
+        with self.assertRaisesRegex(CampaignStageError, "existing AutoSol"):
+            self.stage("autosol", run)
+        with self.assertRaisesRegex(CampaignStageError, "frozen AutoSol skip"):
+            self.stage("autorefine", run)
+        self.assertEqual((run / "report.json").read_bytes(), before)
+        self.assertEqual((run / "AutoSol/overall_best_refine_data.mtz").read_bytes(), phases)
+
     def test_postmr_keeps_existing_curated_dictionary_and_readyset_outputs_in_receipt(self):
         source = self.base / "source.pdb"
         source.write_text(postmr_model_text())

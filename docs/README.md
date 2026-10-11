@@ -71,6 +71,7 @@ for actual behavior; history is evidence, not a second task queue.
 | CIF Doctor runtime and planned extensions | [Human/manuscript overview and figure](cif-doctor-human-overview.md), [commands and implemented scope](cif-doctor.md), [public CCD controls](cif-doctor-ccd-controls.json), [audit methods and review boundaries](cif-restraint-audit-methods.md), [machine-readable implementation map](cif-restraint-doctor-implementation.json) |
 | Pair recipes, successful Z:P run, combined four-family native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
+| Fresh synthetic DNA challenge | [Human overview, recipe, shuttle and evidence limits](synthetic-dna-mechanics-test.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
 | Future GUI | [GUI contract](gui.md), [GUI live checks](gui-live-checks.md) |

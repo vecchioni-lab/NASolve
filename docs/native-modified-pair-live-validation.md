@@ -110,6 +110,12 @@ D: DC DT DX DA DT DG DT
 
 ### Dictionary availability is a hard prerequisite
 
+A new [fresh DNA mechanics recipe](synthetic-dna-mechanics-test.md) now stages
+the same target sites from canonical coordinates, with four free 5′-OH ends
+and AutoSol explicitly disabled. Unlike the frozen trial below, it supplies no
+preselected numerical dictionary bundle. Offline input/planning checks passed;
+the new native run and ordinary ReadySet/linkage outcome are pending.
+
 Phenix CCD graph sources are available; IGU/IMC/CGY/DX remain unbundled in
 NASolve. The installed sources lack numerical refinement targets. Cedar's
 resolver deduplicates symlink aliases and rejects distinct competing sources.

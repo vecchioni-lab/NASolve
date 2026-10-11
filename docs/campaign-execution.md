@@ -120,6 +120,7 @@ Representation ambiguity still stops that dataset for inspection.
 | `MR_FAILED` | Record `NO_SOLUTION` for this bounded attempt |
 | PostMR fails, or required output validation fails | Preserve the attempt and record its diagnostic |
 | No supported anomalous candidate | Record the AutoSol skip and continue ordinary refinement |
+| Schema-2 AutoSol policy explicitly disabled with a reason | Record the policy skip without calling AutoSol; refine the PostMR model without experimental phases |
 | AutoSol does not return accepted phases | Stop for inspection under the frozen preset's `on_unaccepted = "inspect"` policy |
 | `AUTOREFINE_REVIEW` | Preserve the unselected checkpoint and stop for inspection |
 | Numerical refinement passes | Record `SOLVED`, the checkpoint, `numerical_success = true`, and `inspection_required = true` |
@@ -130,6 +131,15 @@ observation and Free-R checks remain in place. Raw validation scores and
 scientific warnings remain in the stage reports. Under guarded policy, Refine
 Doctor recommendations are not automatically selected. Full-auto provisional
 selection follows only the explicit frozen policy described above.
+
+An explicit AutoSol-disabled skip retains the PostMR anomalous report and
+observation/Free-R inputs. The stage receipt and live run report record its
+frozen reason and whether nucleotide anomalous candidates were present.
+Refinement requires that matching skip and refuses an existing AutoSol
+execution/report; the campaign's first-refinement guard also refuses an existing
+AutoRefine directory. This fresh path creates phase-free checkpoints for
+subsequent Doctor trials. Numerical results against synthetic donor data remain
+mechanics evidence, not scientific validation of the proposed chemistry.
 
 One dataset reaching `BLOCKED`, `NO_SOLUTION` or `AWAITING_INSPECTION` does not
 stop other selected datasets. A subsequent `run` does not bypass these states

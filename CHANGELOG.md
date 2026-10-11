@@ -8,6 +8,31 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Fresh synthetic DNA mechanics recipe and shuttle
+
+- Stage the exact 42-target combined K:X/B:S/Z:P/D:T DNA recipe from canonical
+  W coordinates and copied donor files, including explicit full-chain sequence
+  references, free 5′-OH preparation and exact input/edit receipts. Require all
+  donor metadata before allocation; preserve originals and internal phosphates.
+- Add a one-file source-bundled runner with isolated NASolve/NARestraints imports,
+  configuration and fresh campaign outputs. Freeze AutoSol off, retain honest
+  numerical/linkage blockers, and display space-group evidence in final output.
+  Add opt-in native environment cleanup after campaign worker bootstrap.
+- Document algorithm/tools, methods wording, evidence and limits; regression
+  checks cover relocation and source preservation. Native execution is pending;
+  generic automatic dictionary generation/adoption is not newly certified.
+
+### Explicit campaign AutoSol opt-out
+
+- Permit schema-2 recipes to set `autosol.policy = "disabled"` with a frozen,
+  nonempty reason. Record the skip without invoking AutoSol; retain nucleotide
+  anomalous classification, iodine diagnostics, observation arrays and Free-R.
+- Refine the prepared PostMR model with experimental phases explicitly disabled
+  and phase-free checkpoints for subsequent Doctor trials. Refuse reuse of an
+  existing AutoSol execution/report. Keep schema-1 and conditional defaults
+  unchanged; add relocated offline regressions and a human methods description.
+  Native synthetic-model validation remains a separate live check.
+
 ### Human feature documentation and offline CCD shuttle
 
 - Add a human/manuscript CIF Doctor overview with an adaptable methods

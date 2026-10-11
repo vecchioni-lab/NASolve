@@ -44,6 +44,26 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Fresh combined DNA mechanics inputs (2026-10-11):** user authorized a new
+synthetic K:X/B:S/Z:P/D:T test on copied donor diffraction with AutoSol off.
+The [human descriptor and recipe](synthetic-dna-mechanics-test.md) own the exact
+42 targets, real free-5′OH preparation, isolated one-file shuttle and limits.
+This is an ordinary fresh source-acquisition/ReadySet test; no prior numerical
+bundle or relaxed coordinates are substituted. Input preparation and campaign
+policy are offline-tested; native laptop execution remains pending. The frozen
+Cedar checkout is preserved and no pull is required to use the shuttle.
+Final isolated Linux validation:
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`
+passes **1,124 tests, 2 skipped, 276 subtests (38.50 s)**. The nine shuttle
+regressions include deleted source checkouts, poisoned laptop imports and exact
+module-origin receipts. A separate stage-only check using the real local QiC
+donor also produced a valid frozen DISCOVERED plan; no native programs ran.
+Only code, the recipe and documentation enter Git. Generated donor copies,
+receipts and standalone deliveries stay outside the repository.
+The user has also returned a successful laptop execution of the public CCD
+shuttle: all 18 source PASS / effective REVIEW / numerical UNASSESSED. That
+result confirms the offline audit path, not native dictionary generation.
+
 **Human overview, public ZIP runner and upstream data review (2026-10-11):**
 The [human/manuscript descriptor](cif-doctor-human-overview.md) now explains
 the implemented algorithm, tools, placement and limits, with an adaptable
