@@ -527,8 +527,9 @@ by eye is not required from the user.
 
 These DP-specific scripts implement bespoke diagnostic checks and supply the
 blueprint for the **general read-only CIF/restraint assessor**. That general
-assessor is not implemented; it remains queued after this geometry work and
-before Topo/Scout, not an added prerequisite for the present trial.
+assessor is not implemented; the October 11 user decision makes it the next
+development priority using this evidence, before Topo/Scout. Remaining numerical
+qualification is independent; the assessor is not an added gate on this trial.
 
 The four earlier generic linked sites retain their mixed source-dependent
 phosphate protonation, with no orphan hydrogens and complete incoming links.
@@ -536,7 +537,7 @@ Do not invent a uniform protonation/tautomer policy to remove that distinction.
 A later refinement and human verdict must name the new model/checkpoint, date
 and exact effective restraints; earlier Z:P approval does not transfer.
 Production integration and a fresh ordinary full-auto acquisition test remain
-separate. The staged audit/automation plan follows this geometry test; see the
+separate. The staged audit/automation plan builds on this trial evidence; see the
 [component contract](modified-component-preparation.md#proposed-smiles-and-cif-audit).
 
 ## Historical Z:P attempts — preserved, never rerun in place

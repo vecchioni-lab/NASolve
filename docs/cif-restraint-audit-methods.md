@@ -1,8 +1,9 @@
 # CIF and effective-restraint audit methods
 
-**Status: documentation-only implementation blueprint, 2026-10-10.** The first
-deliverable is a deterministic, read-only assessor after the current combined
-geometry trial and before Topo/Scout. Generator/repair integration follows as a
+**Status: documentation-only implementation blueprint, updated 2026-10-11.** The first
+deliverable is a deterministic, read-only assessor, now the next development
+priority using the returned combined-trial evidence and before Topo/Scout.
+Generator/repair integration follows as a
 separately tested stage. This is neither an installed command nor a new gate on
 the current trial. [The handoff](development-handoff.md) owns scheduling;
 [the component contract](modified-component-preparation.md) owns chemical intent
@@ -224,7 +225,17 @@ Future tests should use small synthetic reproductions of these failure modes.
 | [DP angle/plane conflict](native-modified-pair-live-validation.md#review-findings--dp-angleplane-inconsistency-remains-open): `inputs/08_09_DP.cif`; N5 with C4/C7/C6 in one plane. Targets 109.471°, 120.772°, 109.471° sum to 339.714°; achieved third angle 127.914° versus 109.471°/3°. | Report incompatible exact planar central targets and uncertainty-aware strain; do not manufacture 120° targets. Gram determinant ≈0.40233 permits a three-dimensional pyramid: the conflict is with planarity. Include valid exterior-branch and finite-width near-compatible counterexamples to prevent a universal sum-rule blocker. |
 | [DP seed-parser failure](native-modified-pair-live-validation.md#dp-candidate-attempt--blocked-by-seed-parser-disagreement): 35/37 source inventory became 20/21 in AceDRG before `KeyError: "'C5'"`. | Exercise primed and double-primed IDs across writer and consumer readers; require exact atoms/bonds/chirality agreement before generation. Preserve both failed and corrected seeds and unchanged sources; no candidate/adoption on failure. |
 | [DP v2 aromatic annotations and linkage](native-modified-pair-live-validation.md#dp-v2-candidate--generated-and-audited-for-native-testing): 37 explicit orders unchanged, four aromatic Y→N flags, source aliases absent from generated output; B:4 retains O3'-bound H3 under `NASnoOP3` alone. | Separate representation, metadata and chemical graph findings. Preserve source aliases; require outgoing-link H/type handling alongside incoming phosphate modification. Neither generation nor graph equivalence proves effective polymer chemistry. |
+| [Historical 8RO/DE](modified-component-preparation.md#bundled-ligand-audit-2026-10-09), queued challenge case: official CCD 8RO is not the intended lab DE; the historical eLBOW file labelled 8RO became DE by label substitution. Current DE numerical geometry remains unresolved. | Recover exact failed source/candidate hashes and declared intended chemistry before assessment. Distinguish wrong identity/topology from numerical defects and label-only changes. No general `8RO→DE` equivalence or automatic bond-order/target repair. Retain unresolved findings and a correct-identity control. |
+| [1AP history](history/1ap-phosphate-integration.md#reviewed-dictionary), queued challenge case: the failed eLBOW attempt introduced an O4'–N1 connection; raw CCD lacked required numerical targets. The selected MonomerLibrary adaptation preserves numerical rows while changing polymer group. | Recover the failed artifact or a clearly labelled synthetic reproduction. Test wrong connectivity separately from incomplete parameterization, supported alternate torsions/native compatibility and site-specific OP3 handling. The current curated source is a preservation/control case, not presumed defective. Keep both internal and explicitly phosphorylated terminal sites. |
 | [Linked diagnostic](native-modified-pair-live-validation.md#linked-diagnostic--mechanics-pass-chemistry-still-pending), including fresh IMC and `LINKED/linked_audit.json`; [coverage evidence](native-modified-pair-live-validation.md#custom-restraint-coverage--preserved-baseline). | Renamed linkage H is found by adjacency; terminal OP3 survives; retained OP2 H is reported. Matching counts with wrong atoms fail coverage. Unsupported terminal/symmetry cases remain unassessed. |
+
+The October 11 decision uses 5CM/DF/DP as development cases and 8RO/DE plus 1AP
+as additional generalization challenges. Freeze the expected findings and exact
+source provenance before tuning rules on those cases. Run the same assessor;
+add a rule only for a demonstrated failure mode with a valid counterexample,
+not merely a component-code branch. A missing historical artifact remains an
+evidence gap; a synthetic fixture must not masquerade as a replay of that run.
+No new 8RO/DE or 1AP assessment or repair is claimed by this documentation.
 
 Also test quartet reversal versus arbitrary permutation, different periods,
 unequal alternate sigmas, zero-weight constant torsions, chirality neighbour

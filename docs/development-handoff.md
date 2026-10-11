@@ -41,17 +41,32 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Close out the numerical scope of the DP geometry trial.**
+1. **Generalized restraint doctor is the next development priority.**
+   User decision **2026-10-11**: resume next session with a deterministic,
+   read-only assessor from the [recorded methods](cif-restraint-audit-methods.md),
+   then separately validated, bounded preparation/repair and continuation.
+   The 5CM/DF/DP evidence is sufficient to implement the first assessment slice;
+   it does not yet establish general automatic repair. This proposed restraint
+   doctor is distinct from the existing refinement-strategy `refine-doctor`.
+   Recover and freeze the exact historical **8RO/DE and failed 1AP** inputs as
+   additional challenge cases. Apply the same rules before adding any new
+   component-specific exception; include valid controls and retain unsupported
+   findings. The [fixture plan](cif-restraint-audit-methods.md#learning-cases-and-future-regression-fixtures)
+   distinguishes known defects, source adaptations and unresolved chemistry.
+2. **Bound the remaining combined-model numerical review.**
    The [native ledger](native-modified-pair-live-validation.md#dp-geometry-trial--n5-conflict-relieved-review-pending)
    records verified N5 relief and preserved chirality, links and pair coverage;
    modest residual strain remains. The user reports **base visual PASS** for
    the exact new model, with sugars explicitly unassessed by eye. Review the
    remaining sugar torsions and minimizer termination numerically before a
-   full-qualification or continuation decision; do not request another sugar
+   full-qualification or scientific continuation decision; do not request another sugar
    verdict by eye or infer a dictionary defect from residual strain alone.
-   These are bespoke component diagnostics. The general read-only assessor is
-   still planned later, not implemented or an extra gate on this trial.
-2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
+   These are bespoke component diagnostics. Park further multi-modified-model
+   edits/refinement unless a specific unresolved finding needs fresh evidence.
+   The user's optional multi-letter-edit continuation is not a prerequisite
+   for starting the assessor, and is not being declared complete. Reuse the
+   returned receipts; do not chase zero residual strain or repeat passed trials.
+3. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
    The current trial used selected numerical CIFs in a frozen resource bundle
    and ad hoc linked derivatives. Acceptance is a new run from declared
    model/sequence intent and component codes, without per-run source patches
@@ -59,7 +74,7 @@ This is separate from the laptop receipt and is not native Phenix validation.
    as mutations; distinguish library acquisition/cache, numerical preparation,
    verified polymer context and a small justified override registry. This is
    the product goal, not an achieved result or an unlimited new Cedar gate.
-3. **Close the existing bounded Cedar/Pine gates.** Retain the prior P1/P3/P4
+4. **Close the existing bounded Cedar/Pine gates.** Retain the prior P1/P3/P4
    receipts and fill only missing effective-dictionary, normal-GZ11 and
    user-veto/current-pointer evidence. Source-native P2 and real P5 remain
    separate. Then integrated tests/review P6, Cedar→Pine and Pine→main P7
@@ -76,8 +91,8 @@ supplier copies must not become permanent exceptions merely because used.
 
 ## Optional GeoTest side trial
 
-Requested **2026-10-11** as a separate exploratory run; the DP numerical work
-above remains active. The standalone `run_geotest_campaign.py` adapter reads
+Requested **2026-10-11** as a separate exploratory run; the restraint-doctor
+priority above remains active. The standalone `run_geotest_campaign.py` adapter reads
 `examples/GeoTest`, preserves outer design names, and schedules each coordinate
 CIF/PDB model against each coherent nested processing set. It makes fresh input
 copies, validates CIF-to-PDB atom/identifier preservation, and calls the existing
@@ -94,13 +109,17 @@ creates a new `LIVE/geotest-campaign-*` workspace, a member summary and compact
 actual NASolve nonstandard preflight without sequences. **User-native Phenix
 execution is pending.** This side trial does not close the blind-baseline,
 production input-adapter or geometry-qualification gates.
+The user intends to run it locally and return a ferry next session; no result
+has yet been received. Review that evidence when supplied without treating it
+as an acceptance gate for the read-only assessor.
 
-## Roadmap after the combined geometry test
+## Restraint doctor and subsequent roadmap
 
-The October 10 request inserts the **SMILES-assisted CIF audit after the
-current combined geometry trial and before Topo slicing / operational Scout**.
-This future tool is not a prerequisite for trying that geometry trial or an
-additional Cedar/Pine merge gate.
+The October 11 priority decision advances the **SMILES-assisted CIF/restraint
+assessor** to the next implementation task using the completed trials as
+evidence. Remaining combined-model qualification stays explicit and may proceed
+alongside it. The doctor precedes Topo slicing / operational Scout and does
+not become an additional Cedar/Pine merge gate.
 
 - **SMILES-assisted CIF audit (planned, not implemented):** assessment first,
   comparing molecular graphs with atom mapping, charge/H/stereochemistry and
@@ -114,7 +133,9 @@ additional Cedar/Pine merge gate.
   detailed [assessor and automation contract](modified-component-preparation.md#proposed-smiles-and-cif-audit)
   owns findings, uncertainty and repair boundaries. The
   [audit methods](cif-restraint-audit-methods.md) capture the reusable checks,
-  5CM/DF/DP lessons and proposed evidence schema for implementation.
+  5CM/DF/DP lessons, 8RO/DE and 1AP challenge cases, and proposed evidence schema
+  for implementation. Broader repair requires those checks and negative controls,
+  not merely successful regeneration of the three development cases.
 - **Blind AlphaFold baseline after bounded Pine close-out:** preserve frozen
   predictions, observations and Free-R; avoid solved outcomes during blind
   candidate selection. Before this trial, add **PDB and coordinate mmCIF input**

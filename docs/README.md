@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-10**. Start with the
+Updated **2026-10-11**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -25,9 +25,13 @@ for actual behavior; history is evidence, not a second task queue.
   full auto remain open. The general read-only assessor is not implemented.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
-- **Queued:** deterministic SMILES/CIF assessment, then separately tested
-  policy-bounded generation/validation and continuation, after the current
-  geometry trial and before Topo/Scout. PDB + coordinate mmCIF and explicit
+- **Next development priority:** generalized restraint doctor, beginning with
+  deterministic SMILES/CIF assessment from 5CM/DF/DP evidence and additional
+  8RO/DE and 1AP challenge cases. Then separately tested policy-bounded
+  generation/validation and continuation, before Topo/Scout. Remaining combined
+  geometry qualification stays open without delaying the initial assessor.
+  GeoTest is a separate delivered script awaiting a native result/ferry.
+  PDB + coordinate mmCIF and explicit
   trusted-model / no-sequence input are requested prerequisites for the blind AlphaFold
   baseline, not implemented options. The baseline remains after Pine
   close-out and before operational Scout.

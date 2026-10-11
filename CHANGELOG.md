@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Generalized restraint doctor priority
+
+- Queue the read-only assessor as the next development task using the returned
+  5CM/DF/DP evidence, with historical 8RO/DE and failed 1AP challenge cases and
+  valid controls before general repair claims. Retain the distinction between
+  official 8RO, laboratory DE and the current curated 1AP source.
+- Bound the remaining combined-model review and park optional further edits;
+  keep GeoTest native execution/ferry pending. This documentation-only decision
+  changes no runtime, schema, dictionary, scientific input or approval status.
+
 ### GeoTest exploratory batch adapter
 
 - Record the optional standalone GeoTest script: isolated CIF/PDB intake,

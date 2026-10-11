@@ -394,8 +394,11 @@ The [audit methods](cif-restraint-audit-methods.md) specify the reusable checks,
 known 5CM/DF/DP cases and proposed report/review boundaries. This section owns
 the preparation policy and staged integration scope.
 
-**Queued after the current combined geometry test and before Topo/Scout;
-not implemented and not a prerequisite for that geometry trial.** Start with a
+**Next development priority as of October 11, before Topo/Scout;
+not implemented and not a prerequisite for the existing geometry trial.** Use
+the returned 5CM/DF/DP evidence and challenge the same rules with historical
+8RO/DE and 1AP cases; unresolved combined-model qualification remains separate.
+Start with a
 read-only assessor. Parse a declared SMILES descriptor and the CIF into molecular
 graphs; do not compare raw SMILES text. Match atom identity/connectivity under a
 recorded aromaticity convention and report bond-order, element, formal-charge,
@@ -450,7 +453,7 @@ patch should be required during an ordinary run.
    useful diagnostics and stop only the affected operation when required
    chemistry cannot be established.
 
-This is planned integration after the geometry test and before Topo/Scout, not
+This is planned integration after the initial assessor and before Topo/Scout, not
 implemented runtime recovery or a new gate on the current trial. The DF source
 audit, repaired native interpretation and completed minimization are evidence
 for one diagnostic sequence, with geometry qualification still pending; they
