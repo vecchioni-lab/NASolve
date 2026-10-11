@@ -74,6 +74,27 @@ DE geometry remains unresolved. Q is implemented; DQ/S/DS aliases are not.
 Lab S/DS means N-linked IMC, not S6G or C-linked hachimoji S. Ordinary
 supplier copies must not become permanent exceptions merely because used.
 
+## Optional GeoTest side trial
+
+Requested **2026-10-11** as a separate exploratory run; the DP numerical work
+above remains active. The standalone `run_geotest_campaign.py` adapter reads
+`examples/GeoTest`, preserves outer design names, and schedules each coordinate
+CIF/PDB model against each coherent nested processing set. It makes fresh input
+copies, validates CIF-to-PDB atom/identifier preservation, and calls the existing
+nonstandard standalone stages through one refinement where native gates permit.
+It declares trust in supplied coordinates without inventing sequence evidence
+or sequence-driven mutations. One whole-model copy and 1.0 Å MR RMSD are the
+current search hypothesis; no winning model/processing result is selected.
+
+This is **not native NASolveCampaign CIF/no-sequence support**, which remains
+unimplemented. No checkout or original dataset is modified. Each invocation
+creates a new `LIVE/geotest-campaign-*` workspace, a member summary and compact
+`GeoTest_review.zip`; full observations/results stay local. Offline validation:
+29 focused checks plus integrated staging, unchanged-input/ferry checks and
+actual NASolve nonstandard preflight without sequences. **User-native Phenix
+execution is pending.** This side trial does not close the blind-baseline,
+production input-adapter or geometry-qualification gates.
+
 ## Roadmap after the combined geometry test
 
 The October 10 request inserts the **SMILES-assisted CIF audit after the

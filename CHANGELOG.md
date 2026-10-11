@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### GeoTest exploratory batch adapter
+
+- Record the optional standalone GeoTest script: isolated CIF/PDB intake,
+  nested processing/model trials named from the outer folder, existing native
+  stage gates, trust-model provenance and a compact review ferry. Native
+  campaign CIF/no-sequence integration and live execution remain unvalidated.
+
 ### DP model base visual review
 
 - Record user base visual PASS for the exact DP geometry output, with sugars
