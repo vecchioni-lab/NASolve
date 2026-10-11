@@ -19,8 +19,9 @@ for actual behavior; history is evidence, not a second task queue.
   candidate now passed complete native interpretation, including B:4 H3/OP3
   removal and O3' OC2 typing. Its fresh geometry trial has now completed from
   original pre-minimization coordinates with the fixed DP-native manager and
-  relieved the N5 conflict. Next is Coot review of the exact new model; modest
-  residual strain remains. Full qualification, convergence and fresh ordinary
+  relieved the N5 conflict. The exact new model has user-reported base visual
+  PASS; sugars were not assessed by eye. Numerical sugar/termination review,
+  full qualification, convergence and fresh ordinary
   full auto remain open. The general read-only assessor is not implemented.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.

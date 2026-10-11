@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### DP model base visual review
+
+- Record user base visual PASS for the exact DP geometry output, with sugars
+  explicitly unassessed by eye. Retain numerical sugar/termination review and
+  full qualification as open; distinguish residual sugar torsions from the
+  resolved N5 conflict and earlier checker-only failure.
+
 ### DP geometry trial returned
 
 - Record the completed DP-specific bounded geometry run and verified 56-file

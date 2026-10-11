@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
   "date": "2026-10-11",
-  "status": "DP_GEOMETRY_N5_CONFLICT_RELIEVED_NEW_VISUAL_REVIEW_PENDING",
+  "status": "DP_GEOMETRY_BASE_VISUAL_PASS_SUGAR_NUMERICAL_REVIEW_OPEN",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
@@ -161,7 +161,7 @@
     "combined_refinement_completed": false,
     "production_generic_linkage_integrated": false,
     "pending": [
-      "View exact new DP geometry model with pinned nine-dictionary workflow; Z:P A12/B4 then all modified sites including DF:A A19/D4",
+      "Numerical review of remaining sugar torsions and minimizer termination; user base visual PASS recorded, sugars not assessed by eye",
       "Full numerical qualification/convergence remain open; earlier visual PASS stays tied to prior model",
       "General read-only CIF/restraint assessor is not implemented; current bespoke diagnostics supply its blueprint",
       "Ordinary full-auto reproduction after runtime integration"
@@ -177,7 +177,7 @@
       "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
       "native_adoption": true,
       "geometry_minimization_completed": true,
-      "next": "view_dp_geometry_trial.py: exact new model visual review; full qualification pending",
+      "next": "Numerical sugar/termination review after base visual PASS; full qualification pending",
       "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
       "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
       "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
@@ -416,8 +416,15 @@
       "chirality_signs_preserved": 158,
       "backbone_links_preserved": 38,
       "D1_OP3_preserved": true,
-      "visual_review": "PENDING for exact new model; previous model retains user PASS",
-      "comparison_boundary": "Cross-trial total objectives are not comparable rankings when restraint definitions differ"
+      "visual_review": "User base visual PASS; sugars explicitly unassessed by eye; earlier model retains its separate PASS",
+      "comparison_boundary": "Cross-trial total objectives are not comparable rankings when restraint definitions differ",
+      "user_visual_review": {
+        "reported_at": "2026-10-11T00:59:27+01:00",
+        "model_sha256": "a8345a9e1695adb6cf484c9ee57d644546057e6b738fd91556ff370555981dfb",
+        "bases": "PASS",
+        "sugars": "NOT_ASSESSED_BY_EYE",
+        "full_numerical_qualification_closed": false
+      }
     }
   },
   "smiles_cif_audit": {

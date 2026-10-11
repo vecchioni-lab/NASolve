@@ -1,6 +1,6 @@
 # Native modified-base pair matrix — live validation ledger
 
-Updated **2026-10-10** from returned native output and the supplied, checksum-verified
+Updated **2026-10-11** from user visual review, returned native output and checksum-verified
 geometry, DF candidate, repaired-native and minimization bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
 coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
@@ -32,7 +32,7 @@ See the [handoff](development-handoff.md) for current priorities.
 - [x] Geometry trial with the DP-native manager completed; 56-file evidence
   bundle returned and original inputs preserved.
 - [x] Verify relief of the DP N5 conflict and preserved chirality/backbone links.
-- [ ] Visual review of the exact new DP geometry model.
+- [x] User visual PASS for bases in the exact new DP geometry model; sugars not assessed by eye.
 - [x] User-reported Coot visual PASS for the exact relaxed model; all modified
   pairs looked satisfactory and WC-like.
 - [ ] Full numerical qualification and later refinement;
@@ -506,14 +506,24 @@ the former D:1 OP3–C:14 C2' contact moved **1.331 → 4.370 Å**. No new assem
 blocker was identified, but neither convergence nor full qualification follows
 from these bounded-run improvements.
 
-### Next review boundary — exact new model in Coot
+### New-model visual review — bases PASS, sugars unassessed
 
-The prepared `view_dp_geometry_trial.py` pins the new model and restraint
-inputs, using the working **nine-dictionary** Coot workflow in a fresh viewer
-workspace. Inspect **Z:P A:12/B:4** first, then all modified sites including
-**DF:A A:19/D:4**. **New-model visual review and full numerical qualification
-remain pending.** Preserve the earlier model's user visual PASS separately.
-No MTZ/Free-R refinement or production full-auto result is claimed.
+On **2026-10-11 at 00:59 Europe/London**, after the pinned
+`view_dp_geometry_trial.py` workflow, the user reported that the bases looked
+good throughout and explicitly did not assess sugar geometry. Record **base
+visual PASS** for the exact DP-GEO model hash above, with **sugars unassessed
+by eye**. Preserve the earlier model's separate visual PASS. No new coordinates
+or dictionary changes accompanied this report.
+
+The largest remaining DP torsion residual belongs to candidate `sp3_sp3_7`,
+**C5'–C4'–O4'–C1'** (ideal 60°, sigma 10°, period 3), involving the sugar and
+an exocyclic substituent. Its native canonical ordering is C1'–C4'–O4'–C5'
+with ideal −60° and residual **17.73648**. This periodic residual is not a
+Gaussian sigma score or proof of another dictionary defect. It is separate
+from the resolved N5 base angle/plane conflict and from the earlier corrected
+torsion-coverage checker failure. Numerical sugar/termination review, full
+qualification, and any MTZ/Free-R refinement remain open; another sugar verdict
+by eye is not required from the user.
 
 These DP-specific scripts implement bespoke diagnostic checks and supply the
 blueprint for the **general read-only CIF/restraint assessor**. That general

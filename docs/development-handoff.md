@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-10** from native receipts and checksum-verified geometry/DF
+Updated **2026-10-11** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout is clean at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, matching the frozen combined
@@ -20,7 +20,7 @@ not general production support. Earlier wording remains in Git and the
 | Generic linkage diagnostic | **GENERIC_LINKAGE_MECHANICS_PASS** with fresh IMC, no missing heavy atoms, preserved links and D:1 terminal phosphate. | Diagnostic-only derivatives, not integrated general PostMR support or chemistry approval. |
 | Custom restraint coverage | **21/21 bonds, 34/34 angles, 8/8 planes, 23/23 parallelities** matched; no exact duplicate planes/parallelities or overlap candidates. | Custom proxies remained preserved after native 5CM/DF adoption; coverage is not achieved geometry. |
 | Effective 5CM / DF recovery | **REPAIRED_NATIVE_INTERPRETATION_PASS**: corrected 5CM and linked DF adopted in a separate native diagnostic; 42 mappings, DF bonds/chirality, preserved custom/other proxies and unchanged 868-atom model verified. | Separate minimization and user visual review completed; full numerical qualification remains pending. |
-| Combined geometry trials | First trial received user Coot visual PASS. The completed DP-specific trial relieves the N5 conflict (worst 6.15→0.483 sigma); all 158 chirality signs and 38 backbone links survive. | Visual review of the exact new model and full qualification remain pending; prior visual PASS is preserved separately and convergence is not claimed. |
+| Combined geometry trials | First trial received user Coot visual PASS. The DP-specific trial relieves the N5 conflict (worst 6.15→0.483 sigma); all 158 chirality signs and 38 backbone links survive. User also reports base visual PASS for the exact new model. | Sugars were not assessed by eye; numerical sugar/termination review and full qualification remain open. Convergence is not claimed. |
 | Ordinary/full-auto campaigns | Prior EA/DiU/Q5cm/QiC cohort reached numerical SOLVED with review/provisional distinctions preserved. | This does not prove a fresh arbitrary-component run without a prepared resource bundle. |
 | P2 / prepared nonstandard P5 | P2 preparation and nonstandard campaign paths implemented and fixture-tested. | Source-native `1W5→DZ` / `1WA→DP` provenance/refinement; 3–5 real geometry-diverse P5 models. |
 | Scout / Topo / GUI | Existing registration/shadow primitives and scoped evidence retained. | Operational Scout and topology surgery remain future work. |
@@ -41,13 +41,14 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-1. **Inspect the exact new DP geometry model in Coot.**
+1. **Close out the numerical scope of the DP geometry trial.**
    The [native ledger](native-modified-pair-live-validation.md#dp-geometry-trial--n5-conflict-relieved-review-pending)
    records verified N5 relief and preserved chirality, links and pair coverage;
-   modest residual strain remains. `view_dp_geometry_trial.py` pins this model
-   and its nine dictionaries. Review Z:P A:12/B:4, then all modified sites,
-   including DF:A A:19/D:4. New visual approval/full qualification remain pending;
-   the prior model's **visual PASS** remains valid for that earlier model.
+   modest residual strain remains. The user reports **base visual PASS** for
+   the exact new model, with sugars explicitly unassessed by eye. Review the
+   remaining sugar torsions and minimizer termination numerically before a
+   full-qualification or continuation decision; do not request another sugar
+   verdict by eye or infer a dictionary defect from residual strain alone.
    These are bespoke component diagnostics. The general read-only assessor is
    still planned later, not implemented or an extra gate on this trial.
 2. **Turn demonstrated preparation into ordinary fresh full-auto behavior.**
