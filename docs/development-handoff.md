@@ -41,11 +41,13 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-**Bounded next-session follow-up before the main doctor work:** review the
-GeoTest ferry and extend its runner to one-launch refinement, eligible bounded
-Refine Doctor and convenient result viewing, as requested after the first live
-run. Preserve completed runs and verified checkpoints. This is a small campaign
-continuation task, distinct from the generalized restraint doctor below.
+**Bounded GeoTest follow-up:** the returned ferry is reviewed and the standalone
+runner now prepares the declared free 5′-OH ends before fresh MR, then continues
+eligible members through refinement, bounded Refine Doctor and result viewing.
+Native acceptance of this updated runner is pending. The user's clarified
+chemistry requires fresh prepared inputs; resuming the phosphate-bearing first
+cohort is superseded. This side trial is distinct from the generalized restraint
+doctor below.
 
 1. **Generalized restraint doctor is the next development priority.**
    User decision **2026-10-11**: resume next session with a deterministic,
@@ -98,44 +100,80 @@ supplier copies must not become permanent exceptions merely because used.
 ## Optional GeoTest side trial
 
 Requested **2026-10-11** as a separate exploratory run; the restraint-doctor
-priority above remains active. The standalone `run_geotest_campaign.py` adapter reads
+priority above remains active. The standalone `run_geotest_campaign.py` reads
 `examples/GeoTest`, preserves outer design names, and schedules each coordinate
-CIF/PDB model against each coherent nested processing set. It makes fresh input
-copies, validates CIF-to-PDB atom/identifier preservation, and calls the existing
-nonstandard standalone stages through one refinement where native gates permit.
-It declares trust in supplied coordinates without inventing sequence evidence
-or sequence-driven mutations. One whole-model copy and 1.0 Å MR RMSD are the
-current search hypothesis; no winning model/processing result is selected.
+CIF/PDB model against each coherent nested processing set. It declares trust in
+supplied coordinates without inventing sequence evidence or requesting sequence
+mutations. One whole-model copy and 1.0 Å MR RMSD remain the search hypothesis;
+no winning model/processing combination is selected.
 
-This is **not native NASolveCampaign CIF/no-sequence support**, which remains
-unimplemented. No checkout or original dataset is modified. Each invocation
-creates a new `LIVE/geotest-campaign-*` workspace, a member summary and compact
-`GeoTest_review.zip`; full observations/results stay local. Offline validation:
-29 focused checks plus integrated staging, unchanged-input/ferry checks and
-actual NASolve nonstandard preflight without sequences.
+**First native ferry verified:** all 192 included files match their recorded
+hashes and sizes; 39 large/reflection files were deliberately omitted. The
+user's **8/9 good** describes eight placed models, not eight MR gate passes.
+The receipts show four `MR_SUCCESS`, two `MR_REVIEW` and three `MR_FAILED`:
 
-**First user-native report, 2026-10-11:** the user reports **8/9 good**, visually
-successful tensegrity triangles in **P2₁2₁2, P4₃ and P1**, from what they describe
-as a blind test. The run stopped without full-auto completion; the user reports
-the good candidates can be refined. This is a user-reported outcome, not a
-verified TFZ/R-factor, refinement, Doctor or formal blind-baseline acceptance
-receipt. The ferry, member statuses and exact stopping points remain unreviewed.
-This side trial does not close the production input-adapter or geometry gates.
+| Member | TFZ | Verified stopping point |
+| --- | ---: | --- |
+| X11_12 | — | No MR solution |
+| X11_16 | 7.0 | MR REVIEW |
+| X11_17 | 8.0 | MR SUCCESS; PostMR blocked by undeclared terminal OP3 |
+| X11_18 / dataset1 | 6.0 | MR FAILED, placed model retained |
+| X11_18 / dataset2 | 7.2 | MR REVIEW |
+| X11_19 | 9.2 | MR SUCCESS; PostMR blocked by undeclared terminal OP3 |
+| X11_20 | 15.0 | MR SUCCESS; PostMR blocked by undeclared terminal OP3 |
+| X11_22 | 14.9 | MR SUCCESS; PostMR blocked by undeclared terminal OP3 |
+| X11_25 | 6.8 | MR FAILED, placed model retained |
 
-**Requested follow-up:** a single launch should carry eligible existing members
-through refinement and bounded Refine Doctor where needed, then expose the
-resulting checkpoint/model/maps for easy Coot viewing. The current adapter
-attempts at most one default refinement, stops members at native review statuses,
-sets `refine_doctor=False`, and requires fresh member directories; merely rerunning
-it would not resume the first cohort. Inspect the returned stage receipts before
-diagnosing why each stopped. Implement verified continuation, preserving original
-inputs, observations/Free-R, prior attempts and checkpoint lineage; avoid repeating
-successful MR. Use existing full-auto policies rather than bypassing chemistry
-or data-integrity failures. Record Doctor recommendations/provisional selections
-separately from user approval, retain the ninth outcome and isolate member
-failures. Successful members need no unnecessary Doctor trials. This extension
-and its native acceptance are pending; the generalized restraint doctor remains
-the main development priority after this bounded follow-up.
+The placed-model space groups are **P2₁, P4₃ and P1**; the earlier user shorthand
+P2₁2₁2 is not the P2₁ recorded in these files. This ferry used Phenix
+**2.2.1-6174**, Coot **1.3.3**, Python **3.12.14** and clean Cedar
+`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`. No completed refinement or Doctor
+result is established by it.
+
+**Real input preparation, not a repaired status:** the user explicitly clarified
+that the strands are linear, with **free 5′ hydroxyls and no terminal phosphates**.
+The updated runner copies the originals, validates CIF-to-PDB preservation, then
+removes only complete P/OP1/OP2/OP3 groups at the seven declared chain starts.
+All nine supplied member models lose exactly **28 atoms each**; O5′ and every
+retained atom record remain unchanged. The prepared inputs pass the native
+phosphate audit. Ambiguous/incomplete terminal groups block that member; internal
+phosphates are not stripped. Preparation records exact deletions, hashes and
+before/after audits. No fake sequence, phosphate allowlist or coordinate repair
+is used. This corrected search model is the input to a **fresh** native preflight
+and Phaser run; the original cohort and its failed receipts remain intact.
+
+**One-launch full auto:** default endpoint is `refine-doctor`, using existing
+native stage APIs and bounded policy. Eligible borderline MR continues with its
+review warning; failed MR and chemistry/integrity failures remain blocked.
+PostMR is followed by AutoSol when anomalous data warrant it, five-cycle
+AutoRefine, and Doctor only for eligible `AUTOREFINE_REVIEW` (at most five trials
+of three cycles). Unaccepted AutoSol phases are excluded. Verified successful
+Doctor recommendations may be selected provisionally, without user approval or
+overwriting checkpoint history; ordinary ready refinements need no Doctor trial.
+Each member keeps its observations/Free-R and failures do not stop other members.
+
+Every launch creates a fresh `geotest-fullauto-*` directory under the selected
+output parent, with a frozen `geotest_recipe.json`, schema-2 adapter receipt,
+per-member provenance, summary, compact `GeoTest_review.zip`, and
+`View_results.command`. The final menu and double-click launcher open the exact
+verified refined checkpoints/models/maps in Coot. Full observations/results stay
+local. The single downloadable script is the adapter deliverable; these repo
+changes document it and do not patch NASolve runtime or scientific inputs.
+
+Offline validation: **76 tests, 20 subtests passed**, including all nine real
+inputs, exact terminal deletions, original preservation, preparation before the
+worker, full-auto handoffs, member failure isolation and exact Coot checkpoint
+selection. The assembled script loads all embedded modules. An actual X11_20
+model also passes real NASolve preflight and PostMR code without sequences,
+using explicitly stubbed external MTZ/Phaser/ReadySet programs and fixture
+reflections; this is not native execution. The unchanged core suite passes
+**981 tests, 2 skipped, 257 subtests (29.58 s)** with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`.
+The revised Phenix/Coot full run remains **pending on the laptop**.
+This is **not native NASolveCampaign CIF/no-sequence support**. Integrating
+declared terminal chemistry and preparation into a native single recipe/button
+remains the product follow-up; this side trial does not close the formal blind
+baseline, production input-adapter or geometry-qualification gates.
 
 ## Restraint doctor and subsequent roadmap
 

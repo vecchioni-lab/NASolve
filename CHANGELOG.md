@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### GeoTest declared-end preflight and full-auto adapter
+
+- Verify the first ferry: eight placed models correspond to four MR passes,
+  two borderline reviews and three failures. Four PostMR attempts stopped on
+  undeclared terminal OP3; recorded placed-model groups are P2₁, P4₃ and P1.
+- Record the user's linear 5′-OH chemistry and the updated standalone runner:
+  audited terminal-phosphate removal before fresh native preflight/MR, eligible
+  AutoRefine and bounded Refine Doctor, provisional checkpoint selection and
+  exact Coot result viewing. Original inputs and the first cohort are preserved;
+  no fake sequences or successful-status rewrites are used.
+- Adapter receipt schema 2 and a frozen recipe describe this isolated workflow.
+  Seventy-six offline tests and 20 subtests pass; native revised execution is
+  pending. Native campaign input/recipe integration remains future work. These
+  repo changes are documentation only; the runner is a separate deliverable.
+
 ### GeoTest first live report and continuation request
 
 - Record the user's 8/9-good report across P2₁2₁2, P4₃ and P1, with exact
