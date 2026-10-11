@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### X11_18 alternative symmetry interpretation
+
+- Record the user's analytical preference for X11_18 P4₃: inspection Rfree
+  0.3418 versus 0.4859 in P2₁ (`P 1 21 1`). Preserve the two different
+  processing datasets, frozen Free-R populations and existing Doctor review
+  status; this comparison is not an automatic same-data winner selection.
+
 ### GeoTest campaign wrapped and coordinated Doctor scope
 
 - Verify the corrected native laptop ferry: 462 included files, 138 declared

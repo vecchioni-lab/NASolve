@@ -311,7 +311,13 @@ and their native frozen search models match the preceding 5′-OH cohort.
 All eight selected-model final TFZ/LLG annotations and displayed checkpoint
 CRYST1 records match their checksummed provenance. X11_18/dataset2 and X11_19
 have selected/refined **P4₃**, while their input headers remain **P4₁**; retain
-both values. Exactly **14 native refinement processes exited zero**: eight
+both values. The user notes that X11_18's alternatives are different space
+groups: the P4₃ inspection result has markedly lower Rfree (**0.3418**) than
+the P2₁ / `P 1 21 1` result (**0.4859**) and analytically favors P4₃. Record
+this as the user's structural interpretation and comparative evidence, without
+changing either review/selection status. The two processing datasets have
+distinct observation hashes and Free-R populations; this is not a controlled
+same-data space-group ranking. Exactly **14 native refinement processes exited zero**: eight
 ordinary refinements and six Doctor trials. Every command keeps original
 `IMEAN,SIGIMEAN` observations, `FreeR_flag`, test value 0 and `generate=False`;
 each of the eight registries retains its member's original observation hash. Both X11_18
