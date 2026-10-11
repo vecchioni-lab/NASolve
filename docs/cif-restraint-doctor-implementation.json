@@ -1,0 +1,2403 @@
+{
+  "schema_version": 1,
+  "document_kind": "nasolve-cif-restraint-doctor-implementation-blueprint",
+  "title": "CIF Doctor: deterministic assessment, bounded preparation and geometry-aware continuation",
+  "created_utc": "2026-10-11T14:16:46.555890+00:00",
+  "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
+  "audience": [
+    "NASolve contributors"
+  ],
+  "readme": {
+    "purpose": "Preserve the chemical, restraint-engine, linkage and workflow lessons from 5CM/DF/DP and the GeoTest campaign; specify a lightweight, generalizable implementation rather than a growing list of residue-specific patches.",
+    "read_order": [
+      "executive_decisions",
+      "pipeline_design",
+      "rule_catalog",
+      "chemical_graph_evidence",
+      "torsion_backbone_evidence",
+      "repair_policy",
+      "report_contract",
+      "implementation_slices",
+      "first_session_recipe"
+    ],
+    "progressive_loading": "Read decisions, pipeline and rule IDs first, then the relevant case. Anchored source-document references identify the frozen knowledge snapshot; active Markdown contracts remain authoritative for current behavior.",
+    "authority": "Existing source code and active subsystem contracts define implemented behavior. This file defines proposed work. A reported native PASS is scoped to its exact source, site, manager and runtime; a generated candidate, an exit-zero process, or a user visual PASS alone is not general qualification.",
+    "scope": "A machine-readable implementation blueprint and knowledge snapshot. It does not implement a fixer, adopt a dictionary, authorize new chemistry, approve a structure or alter a completed run.",
+    "documentation_role": "This file is the machine-readable scientific/engineering implementation map. Current methods, chemical/source contracts and validation ledgers retain their existing ownership; captured references are provenance, not duplicate live contracts.",
+    "source_reference_policy": "Bare source_documents/source_refs are repository-relative informational references. Inventory patterns describe inspected scopes and do not authorize wildcard selection; operational artifacts require declared anchors, hashes and sizes. Historical diagnostic paths are provenance only and are not assumed to exist in a new checkout."
+  },
+  "project_context": {
+    "repository": "https://github.com/vecchioni-lab/NASolve",
+    "development_line": "cedar",
+    "integration_order": [
+      "cedar",
+      "pine",
+      "main"
+    ],
+    "laptop_native_runtime": {
+      "python": "3.12.14",
+      "phenix": "2.2.1-6174",
+      "coot": "1.3.3",
+      "NARestraints": "1.1.3"
+    },
+    "laptop_head": "e7451eedbc03c3accc93bc3138dfa9d1d031a7a9",
+    "laptop_fixed_phaser_sha256": "18aedbb3b414d2dd86e8c284219ca078e682e08003a8f82637f2b462d23a3570",
+    "laptop_curated_source_sha256": "68ae65bec26384fb3b2389f57289f17dd0af8108758b0331be13575f1871151d",
+    "scientific_workflow_principles": [
+      "immutable numbered runs and checkpoint lineage",
+      "anchored references with exact hashes; never basename searches",
+      "preserve original coordinates, observations, Free-R and failed attempts",
+      "machine-local convenience is not scientific authority",
+      "do not commit unpublished coordinates, reflections or images without project authorization"
+    ],
+    "documentation_snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8",
+    "native_capture_state": "Corrected GeoTest capture: frozen laptop Cedar head with only the authorized phaser.py source change. All other 45 source hashes, including the distinct curated source, were preserved. This is historical runtime provenance, not a requirement to retain a dirty checkout indefinitely."
+  },
+  "executive_decisions": [
+    {
+      "id": "D01",
+      "decision": "Build the deterministic read-only component/effective-restraint assessor first, using 5CM/DF/DP plus correct controls. Recover exact historical 8RO/DE and failed 1AP challenge artifacts before general repair claims."
+    },
+    {
+      "id": "D02",
+      "decision": "Doctor is one planned entry/orchestration workflow with separate modules for data/Free-R/refinement diagnostics, CIF/effective-restraint assessment, and model geometry/connectivity assessment with guided sticky-end repair. The current refine-doctor command implements only its existing bounded scope."
+    },
+    {
+      "id": "D03",
+      "decision": "Prefer an audited ReadySet wrapper and a mandatory effective-result audit before POSTMR_READY over replacing ReadySet chemistry generation wholesale. Early source screening helps failures before ReadySet; the post-ReadySet native interpretation is authoritative."
+    },
+    {
+      "id": "D04",
+      "decision": "Keep graph identity, numerical parameterization, effective native interpretation, achieved geometry, diffraction fit and intended assembly as separate evidence dimensions. None substitutes for the others."
+    },
+    {
+      "id": "D05",
+      "decision": "A fixer may automate an exact reviewed, hash/version-scoped transformation. Otherwise assess, propose and retain ambiguity; do not invent tautomer, protonation, bond order, pucker, distance, coordination or strand connections."
+    },
+    {
+      "id": "D06",
+      "decision": "Do not reproduce chemistry defects by deriving replacement targets from the distorted model being evaluated. Preserve source descriptors and use independently qualified generator/reference evidence."
+    },
+    {
+      "id": "D07",
+      "decision": "SMILES is optional graph evidence with explicit provenance, not a CIF numerical validator and not automatic chemical truth. Source descriptors can disagree with the selected explicit graph, as DP phosphate charges demonstrate."
+    },
+    {
+      "id": "D08",
+      "decision": "Never regenerate or search alternative Free-R flags to improve statistics. Keep observations and test-set authority fixed across dictionary/coordinate trials."
+    },
+    {
+      "id": "D09",
+      "decision": "After MR/refinement, inspect geometry/connectivity before spending additional strategy trials on an identified structural defect, even if numerical readiness has passed. Route declared arm defects through guided preview and bounded checkpoint repair."
+    },
+    {
+      "id": "D10",
+      "decision": "The GeoTest campaign is wrapped for orchestration. Its provisional structures are future test fixtures, not additional work required to close that scope."
+    }
+  ],
+  "geo_test_context": {
+    "ferry": {
+      "filename": "GeoTest_review(2).zip",
+      "sha256": "8ef30e37729d74631eae8b91b0ac1d04c52f4879cb5d96c0f9f30addc7c0a9f9",
+      "verified_included_files": 462,
+      "declared_omissions": 138
+    },
+    "outcome": {
+      "workers_completed": 9,
+      "numerically_ready": 6,
+      "doctor_review": 2,
+      "mr_failed": 1,
+      "native_refinements_exit_zero": 14,
+      "default_refinements": 8,
+      "doctor_trials": 6,
+      "user_approved": false,
+      "campaign_scope": "WRAPPED_ORCHESTRATION_ONLY"
+    },
+    "input_chemistry": "User explicitly declared linear strands with free 5-prime hydroxyl ends; no terminal phosphates and no fake sequence files. Alpha predictions carried terminal P/OP1/OP2/OP3; each preparation removed exactly 28 terminal atom records at seven starts, preserving O5prime and every retained byte. This authorized preparation precedes native preflight and fresh MR.",
+    "scientific_followup": "User reports fractured arms at sticky ends and attributes high Rwork to that assembly geometry, rather than anomalous noise. Retain the reported diagnosis and inspect exact model/maps plus declared intent; Rwork alone does not prove a cause. Future geometry checker/stitcher should use these cases.",
+    "x11_18_symmetry_comparison": {
+      "dataset1": {
+        "selected_space_group": "P 1 21 1",
+        "short_symbol": "P21",
+        "checkpoint": "refine-002",
+        "role": "inspection only; current postmr",
+        "r_work": 0.4691,
+        "r_free": 0.4859,
+        "observations_sha256": "44bfad24a64250a79e388356c09e44a0f95de7fd4ce827136b00ea0d849eae06",
+        "free_groups": 546,
+        "independent_groups": 10377
+      },
+      "dataset2": {
+        "selected_space_group": "P 43",
+        "input_space_group": "P 41",
+        "checkpoint": "refine-002",
+        "role": "inspection only; current postmr",
+        "r_work": 0.323,
+        "r_free": 0.3418,
+        "observations_sha256": "27e9b56fcf9513eb13eead1963054a11a6250a5e48352c5e319504945730ef3a",
+        "free_groups": 223,
+        "independent_groups": 3937
+      },
+      "user_interpretation": "The much lower P43 Rfree supports the analytical preference for P43 over P1211/P21.",
+      "comparison_boundary": "Different processing datasets, observation hashes and Free-R populations; retain as comparative evidence and user interpretation, not a controlled same-observation symmetry ranking or automatic winner approval."
+    },
+    "other_catches": [
+      "X11_17 Rwork/Rfree 0.2165/0.3325: gap 0.116, clashscore 66.93 despite current numerical readiness.",
+      "X11_19 also has selected/refined P43 versus input P41; display model and data groups separately.",
+      "Native bond/angle RMSD summary fields remain null despite geometry values in raw Phenix output.",
+      "Both X11_18 Doctor audits are NOISY with zero detected inconsistent flags; direct Friedel-mate comparison unavailable, retained warning.",
+      "Compact ferry omits reflection/map arrays; their preservation is supported by native receipts rather than independent replay of absent bytes."
+    ],
+    "views": [
+      "Exact displayed checkpoint model, maps, dictionaries and symmetry must be retained in a geometry fixture.",
+      "The supplied Coot screenshots show local discrepancies but do not identify exact member/checkpoint/residue pairs; recover those declarations before atom-level repair."
+    ]
+  },
+  "pipeline_design": {
+    "shard_id": "cif_doctor_pipeline_design",
+    "schema_version": 1,
+    "recorded_utc_date": "2026-10-11",
+    "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+    "goal": "A deterministic, mostly local read-only component/effective-restraint assessor first; separately qualified, policy-bounded CIF repair and child adoption later, coordinated with the existing Doctor and a future geometry/connectivity module.",
+    "scope_boundaries": {
+      "dictionary_analyzer": "Checks identity, serialized graph, numerical definitions, site-state derivatives, dictionary precedence, actual native proxy coverage and achieved geometry as separate evidence layers.",
+      "dictionary_fixer": "Creates a reviewed derivative or generated candidate with an exact graph/field diff and adoption eligibility receipt; never mutates source CCD, installed Phenix files, bundled curated originals or completed run artifacts.",
+      "geometry_doctor": "Checks actual coordinates, backbone and sticky-end contacts, symmetry, maps and covalent/noncovalent intent. Guided stitching is a distinct future operation, using Scout/Topo rather than changing monomer chemistry to hide a broken assembly.",
+      "data_doctor": "Existing bounded refinement and frozen Free-R audit remain independent. A high Rwork or Rfree alone cannot identify a chemical graph defect, anomalous noise or fractured arms.",
+      "free_r": "Neither the new assessor nor geometry repair regenerates, reassigns or optimizes the frozen Free-R set."
+    },
+    "actual_pipeline": [
+      {
+        "order": 1,
+        "module": "src/nasolve/postmr.py",
+        "function": "prepare_postmr",
+        "behavior": "Read immutable MR report; accept MR_SUCCESS or explicitly authorized MR_REVIEW; resolve exact selected model and frozen sequence/chemical/backbone intent; allocate a new PostMR directory exclusively."
+      },
+      {
+        "order": 2,
+        "module": "src/nasolve/curated_ligands.py",
+        "functions": [
+          "ligand_dictionary",
+          "validate_ligand_dictionary",
+          "validate_curated_dictionary"
+        ],
+        "behavior": "Resolve reviewed bundled dictionaries first; fail if required curated source is missing. Generic installed-Phenix CCD lookup is permitted as source chemistry, not automatically complete refinement restraints. Initial hashes frozen before Coot."
+      },
+      {
+        "order": 3,
+        "module": "src/nasolve/postmr.py",
+        "functions": [
+          "normalize_component_model",
+          "_run_coot",
+          "_restore_shared_parent_coordinates",
+          "_restore_canonical_mutation_backbones"
+        ],
+        "behavior": "Make declared component conversions and supported mutations while restoring trusted shared/backbone coordinates. Present modified residues also enter later dictionary collection; do not inspect only mutated sites."
+      },
+      {
+        "order": 4,
+        "module": "src/nasolve/postmr.py",
+        "functions": [
+          "ensure_five_prime_phosphates",
+          "sanitize_phosphates"
+        ],
+        "behavior": "Ensure only explicitly declared 5-prime phosphates, then sanitize verified leaving oxygens against original reference and frozen allowed/pass-through sites. No terminal phosphate construction when no allowed sites. prepared_model.pdb is separate from original."
+      },
+      {
+        "order": 5,
+        "module": "src/nasolve/postmr.py",
+        "functions": [
+          "_default_narestraints_builder",
+          "_default_modified_pair_restraints_builder"
+        ],
+        "behavior": "Create NARestraints PHIL and scaffold EFF or modified-pair-only terms; preserve pair semantics, force override audit and stacking policy independently of monomer graph."
+      },
+      {
+        "order": 6,
+        "module": "src/nasolve/postmr.py",
+        "behavior": "Collect all relevant residue component codes; freeze exact source_dictionaries/CODE.cif under PostMR/Restraints, recheck against source hash used in Coot, and record source kind/parameterization."
+      },
+      {
+        "order": 7,
+        "module": "src/nasolve/ligand_profiles.py",
+        "functions": [
+          "normalize_ccp4_torsion_alternates",
+          "combine_dictionary_inputs",
+          "write_linked_profile"
+        ],
+        "behavior": "Create runtime torsion derivatives, combine curated_ligands.cif without duplicate data_comp_list, and emit linked_phosphate.cif plus linked_phosphate.phil only for connectivity-selected supported sites."
+      },
+      {
+        "order": 8,
+        "module": "src/nasolve/postmr.py",
+        "function": "_run_readyset",
+        "exact_action_policy": {
+          "ready_set.actions.hydrogens": false,
+          "ready_set.actions.ligands": true,
+          "ready_set.actions.optimise_ligand_geometry": false
+        },
+        "behavior": "Run in PostMR/ReadySet; input combined CIF supplied explicitly. Accept documented successful no-op when log says No unknown residues; otherwise require updated PDB. Reject unexpected H or total/HETATM count change; sanitize phosphate output into phosphate_checked.pdb."
+      },
+      {
+        "order": 9,
+        "module": "src/nasolve/postmr.py",
+        "functions": [
+          "_require_generic_parameterization",
+          "validate_model_phosphate_policy"
+        ],
+        "behavior": "Raw generic CCD graphs must receive usable same-code numerical ReadySet definitions. Copy checked model to PostMR/Model/readyset_model.pdb and recheck component identities, sequence family and frozen phosphate/link-profile policy."
+      },
+      {
+        "order": 10,
+        "module": "src/nasolve/ligand_profiles.py",
+        "function": "effective_restraints",
+        "actual_arguments": {
+          "normalize_effective": true,
+          "prefer_parameterized_inputs": true
+        },
+        "behavior": "Resolve final dictionary authority by content; retain all non-component CIFs/modification PHIL and NARestraints/scaffold terms. Create filtered supplements and only necessary effective_dictionaries runtime derivatives; preserve raw ReadySet output."
+      },
+      {
+        "order": 11,
+        "module": "src/nasolve/postmr.py",
+        "behavior": "Scan anomalous elements/iodine expectations; publish POSTMR_READY report with prepared SHA, frozen refinement_restraints/view_dictionaries, dictionary_compatibility and dictionary_precedence."
+      },
+      {
+        "order": 12,
+        "module": "src/nasolve/checkpoints.py",
+        "functions": [
+          "initialize_registry",
+          "_root_payload",
+          "_initial_restraints"
+        ],
+        "behavior": "Root checkpoint consumes explicit frozen refinement_restraints when present. Legacy fallback chooses generated ReadySet CIF ahead of individual CIFs, which is why a new adoption must publish the explicit full frozen effective bundle."
+      },
+      {
+        "order": 13,
+        "module": "src/nasolve/autorefine.py",
+        "function": "execute_autorefine",
+        "behavior": "Resolve selected reusable checkpoint and inherited model/restraints; verify model/phosphate policy; preserve original observations and frozen flags. For declared terminal phosphates, native interpretation currently extracts validated protection ideals before round creation."
+      },
+      {
+        "order": 14,
+        "module": "src/nasolve/refine_doctor.py",
+        "function": "execute_refine_doctor",
+        "behavior": "Resolve selected reusable checkpoint, validate model, audit original Free-R in phenix.python, then bounded sibling refinement trials. Current Doctor does not automatically select a child."
+      }
+    ],
+    "integration_hooks": [
+      {
+        "id": "HOOK_PRE_READYSET",
+        "location": "prepare_postmr, after exact source freeze/normalized inputs and site-profile preparation, before _run_readyset",
+        "purpose": "Cheap deterministic source graph, field and serialized consumer compatibility assessment; identify unsupported/ambiguous chemistry before expensive tools. Targets used for Coot construction should already have an earlier minimal identity/graph screening before Coot, without replacing the post-freeze check.",
+        "authority": "Authoritative only for the specific frozen source/runtime-input definitions; cannot certify generated ReadySet outputs or actual native proxies.",
+        "inputs": [
+          "source snapshot refs and hashes",
+          "normalized input dictionaries",
+          "prepared_model.pdb identity and graph inventory",
+          "frozen sequence/component/terminal/backbone intent",
+          "NARestraints and scaffold PHIL/EFF",
+          "linked-phosphate modifications"
+        ],
+        "outputs": [
+          "source_assessment.json",
+          "ordered runtime-input manifest",
+          "no modified coordinates"
+        ]
+      },
+      {
+        "id": "HOOK_POST_READYSET_EFFECTIVE",
+        "location": "prepare_postmr, after effective_restraints and readyset_model identity/phosphate checks, before POSTMR_READY and root checkpoint",
+        "purpose": "Assess exact dictionary bundle selected for refinement, compared with frozen sources and each site context; consumer/native interpretation if requested or required for adoption.",
+        "authority": "Authoritative readiness receipt for this exact prepared model plus effective bundle. Source report alone must never be substituted here. Native-proxy and achieved-geometry completeness are explicit independent status fields.",
+        "inputs": [
+          "readyset_model.pdb hash",
+          "ordered effective restraint hashes including PHIL/EFF/mod/link",
+          "raw generated ReadySet CIF/log refs",
+          "precedence receipt",
+          "frozen site context"
+        ],
+        "outputs": [
+          "effective_assessment.json",
+          "native_interpretation_receipt.json when executed",
+          "adoption_eligibility.json",
+          "requested-versus-effective proxy manifest"
+        ]
+      },
+      {
+        "id": "HOOK_EXISTING_CHECKPOINT",
+        "location": "New read-only assessment operation against an existing checkpoint; planned explicit repair/adoption child operation",
+        "purpose": "Allow users to run after PostMR or after refinement without rerunning MR, Coot or ReadySet solely to obtain a report.",
+        "authority": "References exact inherited checkpoint artifacts and hashes. Repair creates a new immutable prepared child with its own complete effective manifest; never overwrites prior PostMR/report/checkpoint."
+      },
+      {
+        "id": "HOOK_PREFLIGHT_REFINE",
+        "location": "execute_autorefine before scientific round allocation and execute_refine_doctor before strategy trial allocation",
+        "purpose": "Verify any inherited/adopted assessment receipt matches current model, restraints and site context; reuse cached native interpretation and existing terminal geometry harvesting where equivalent.",
+        "authority": "A stale receipt is not valid evidence. Initial report-only deployment adds no blanket new stop to ordinary existing campaigns."
+      }
+    ],
+    "readyset_decision": {
+      "recommended": "Wrap and audit ReadySet rather than replace it in the first slices.",
+      "reason": "ReadySet supplies installed-consumer parameter generation and known compatibility behavior; the observed failures include source defects, serialization, precedence and site-specific linkage, which need separate diagnosis rather than wholesale replacement.",
+      "possible_later_optimization": "Skip a redundant external invocation only when a validated version-specific capability and exact prepared model/effective bundle prove no generation or conversion is needed; keep model identity/phosphate audits and explicit successful-noop receipts. Do not implement skip based on residue-name whitelist or filename.",
+      "not_claimed": "The future analyzer is not already a better installed ReadySet command."
+    },
+    "single_authority_manager_proposal": {
+      "status": "PROPOSED_NOT_CURRENT_API",
+      "name": "EffectiveRestraintProfileManager",
+      "responsibilities": [
+        "Classify each CIF by content into component dictionary, graph-only source, numerical dictionary, modification/link and coordinate mmCIF; reject ambiguous mixed role unless explicitly declared.",
+        "Resolve and freeze complete ordered restraint authority before native interpretation.",
+        "Represent monomer source chemistry independently from site-state/link modifications and model coordinates.",
+        "Emit one manifest used by refinement and separate view dictionary refs for Coot.",
+        "Keep deterministic content transformations, reviewed override registry, generator cache and native proxy interpretation in separate modules.",
+        "Record exact conflicts instead of permitting competing same-code definitions to be decided by incidental command order."
+      ],
+      "precedence": [
+        "Reviewed explicit parameterized component input/approved child derivative for a component beats ReadySet duplicate of that same component.",
+        "Generic construction-only graph defers to usable same-code generated numerical definition.",
+        "Preserve other ReadySet-generated components after excluding only overridden component definitions.",
+        "Modification-only CIFs, link definitions and corresponding site-selection PHIL remain alongside their base component and must not be dropped as duplicates.",
+        "NARestraints pair/stacking PHIL and project EFF remain independent sources; match conflicts/overlaps by actual selected atoms and symmetry, not file suffix or coarse counts."
+      ],
+      "current_scope_constants": {
+        "AUTHORITATIVE_CODES": [
+          "1AP"
+        ],
+        "LINKED_PROFILE_CODES": [
+          "1AP",
+          "DZ",
+          "DP",
+          "5CM"
+        ],
+        "default_legacy_profile_scope": [
+          "1AP"
+        ],
+        "linked_modification_id": "NASnoOP3"
+      },
+      "generalization": "Do not widen those current constants as a side effect of a read-only assessor. Later reviewed graph/link policy can describe supported site-state transitions, and must include explicit H adjacency, formal/partial charge differences and reference cleanup. Preserve historical scope in old profiles.",
+      "anti_pattern": "Never correct a whole component by deleting OP3/H atoms for every residue code regardless of actual terminal, nick, internal, cyclic or symmetry-linked site state."
+    },
+    "status_and_gate_model": {
+      "finding_levels": [
+        "PASS",
+        "INFO",
+        "WARNING",
+        "REVIEW_REQUIRED",
+        "BLOCKED_REQUIRED_OPERATION",
+        "UNASSESSED"
+      ],
+      "independent_domains": [
+        "identity",
+        "serialized_graph",
+        "chemistry",
+        "numerical_restraints",
+        "linked_site_state",
+        "native_interpretation",
+        "custom_proxy_coverage",
+        "achieved_geometry",
+        "experimental_support"
+      ],
+      "fatal_for_affected_operation": [
+        "Checksum/source changed during freeze or replay",
+        "Missing required selected dictionary/source",
+        "Ambiguous component identity or dangling required atom reference",
+        "Known parser truncation of required input graph",
+        "No usable required numerical definitions",
+        "Unsupported or inconsistent required site chemistry/adoption",
+        "Missing or conflicting essential native proxies for a candidate being adopted"
+      ],
+      "nonfatal_visible_findings": [
+        "Optional SMILES unavailable",
+        "Unsupported metal valence comparison",
+        "Different aromatic notation not yet chemically resolved",
+        "Unknown proxy type outside declared audit coverage",
+        "Algebraic target incompatibility without calibrated material-strain classification",
+        "High coordinate residual without diagnosis",
+        "Native interpretation not executed during dry-run"
+      ],
+      "deployment": "First slice read-only/reports, not a newly asserted universal scientific gate. Later policy-bounded adoption requires supported graph and native qualification. Failed required operation blocks only that member/operation, with campaign continuing other eligible members.",
+      "dry_run": "Parse and calculate available local checks, produce executable plan and eligibility reasons; explicitly distinguish no external/native execution from actual installed tool success. Do not claim graph parser replay is generator/native validation.",
+      "auto_eligibility": "Autoapply only exact supported representational adaptations or previously approved hash-bound numerical derivative policy; chemistry-changing proposals and unclassified atom remappings require declared review. A report does not grant review consent."
+    },
+    "immutable_artifacts_proposal": {
+      "directory": "A numbered assessment/repair attempt under the run, with exclusive creation; exact naming to align with checkpoint conventions during implementation.",
+      "files": [
+        "request.json",
+        "source_assessment.json",
+        "effective_assessment.json",
+        "findings.json",
+        "field_diff.json",
+        "site_context.json",
+        "effective_restraint_manifest.json",
+        "native_interpretation_receipt.json",
+        "native_proxy_manifest.json",
+        "adoption_eligibility.json",
+        "generator_command.json and complete stdout/stderr when generated"
+      ],
+      "repair_only_files": [
+        "source snapshots",
+        "graph_only_seed.cif",
+        "candidate.cif",
+        "linked derivative and site PHIL when needed",
+        "native .geo/equivalent evidence",
+        "prepared child coordinate copy only if declared coordinate operation occurred"
+      ],
+      "receipt_requirements": [
+        "schema/check versions",
+        "anchored operational refs with SHA256/size",
+        "exact ordered files and precedence",
+        "tool/consumer/generator/energy-library versions",
+        "declared graph mapping and permitted transformations",
+        "complete per-field differences and warnings",
+        "replay key",
+        "parent checkpoint and child lineage",
+        "observations/Free-R provenance unchanged"
+      ],
+      "baseline": "Report-only assessment creates no alternate scientific checkpoint unless an explicitly accepted prepared child needs lineage; source and generated output copies are provenance, not implicit authority."
+    },
+    "light_footprint_and_cache": {
+      "core": "Use existing CIF parsing machinery and Python graph/numerical checks first; no AI dependency, database service, long-lived daemon or unconditional new Phenix invocation.",
+      "optional_dependencies": "SMILES/chemical graph toolkit and AceDRG/eLBOW are optional capabilities with explicit unavailable status. Native Phenix helper is needed to certify actually interpreted proxies, not every local source check.",
+      "avoid_processes": [
+        "Group all components/site contexts for one required native interpretation rather than launching per residue.",
+        "Reuse valid complete interpretation artifact for terminal phosphate protection if inputs/context/tool version exactly match.",
+        "Cache component graph/source assessment independently of coordinate assessment.",
+        "Only invoke generator after exact consumer graph parse and reviewed chemical intent pass.",
+        "Avoid repeating ReadySet/MR/Coot to analyze an already frozen postMR checkpoint."
+      ],
+      "component_key": [
+        "schema and check-policy revision",
+        "source bytes hash",
+        "parsed normalized graph hash with original-name mapping",
+        "declared protonation/tautomer/stereo/charge/explicit-H policy",
+        "numerical dictionary hash",
+        "generator/consumer and energy-library versions",
+        "serialization transformation policy"
+      ],
+      "site_effective_key": [
+        "component keys",
+        "ordered selected restraint bytes hashes including mods/links/PHIL/EFF",
+        "full site identifiers and linkage/symmetry operators",
+        "terminal/nick/backbone policy",
+        "native consumer version/API and relevant settings"
+      ],
+      "geometry_key": [
+        "site_effective_key",
+        "full-precision model bytes or canonical atom/coordinate metadata hash",
+        "cell/space-group and symmetry operators",
+        "alternate occupancy/model selections",
+        "geometry-manager API version",
+        "geometry algorithm/settings"
+      ],
+      "cache_invalidation": "Any changed source, graph mapping, site/link/symmetry context, parameter/weight, tool/energy library, coordinate/cell or policy invalidates the affected layer. Cached unsupported/failed results stay clearly typed; fresh tool availability changes capability identity.",
+      "replay": "No host-absolute path as sole operational reference; hashes and declared run/dataset/repository anchors permit relocated replay. No input lookup by basename. Cache may optimize calculations but must not replace the run-local immutable receipt."
+    },
+    "generation_and_adoption_protocol": [
+      "Acquire exact source and freeze it; reviewed-override registry is separate from acquisition/cache.",
+      "Establish mapped graph, identity and declared site chemistry; inspect consumer parser before generator run.",
+      "If regeneration is justified, create graph-only seed preserving chosen atom IDs/elements, explicit H, formal charge, bond order and chirality; exclude incompatible copied descriptors/old numerical targets/types only through a recorded field-level derivation.",
+      "Generate optional candidate using exact AceDRG/eLBOW command/version and preserve warnings/failed seeds; do not regard generated coordinates or their low own residual as independent validation.",
+      "Compare candidate atoms/bonds/H/charge/stereo and numerical categories, including newly generated angles/torsions/planes/types and uncertainties; report aromaticity representation differences independently.",
+      "Apply supported site link-state derivative under declared context; verify surviving references, adjacency, hydrogens and incoming/outgoing native bonds.",
+      "Build full effective bundle under explicit precedence and native-interpret in one consumer context; verify exact monomer identity/proxies, custom coverage and no unintended other-component changes.",
+      "Qualify bounded geometry minimization using fixed definitions, exact coordinates/atom metadata, chirality, links, contacts and termination criteria separately from a crystallographic refinement.",
+      "Only eligible reviewed/policy-approved candidate becomes an immutable prepared child with explicit frozen refinement_restraints. Refine child against unchanged original observations and Free-R; comparison across changed targets is not a like-for-like geometry objective comparison.",
+      "Expose source, assessment, candidate and adoption statuses separately; never overwrite source because candidate appears visually nicer or Rfree is lower."
+    ],
+    "implementation_slices": [
+      {
+        "slice": 1,
+        "deliverable": "Read-only CLI/API assessor of frozen source/effective dictionaries and declared site context with deterministic machine-readable findings; code/entrypoint names remain to be selected.",
+        "fixtures": [
+          "5CM base C2 versus sugar C2-prime proper-torsion reference defect",
+          "5IU base C5 versus sugar C5-prime coordinate-reader collision; supplier iodine graph unchanged",
+          "DF graph/chirality and linked profile",
+          "DP parser/graph/charge/N5 conflict/alternative torsions",
+          "8RO-versus-DE identity trap",
+          "historically failed 1AP dictionary torsion/profile combination"
+        ],
+        "acceptance": "Exact known evidence replay, clean controls, unsupported chemistry visible, no source/model/flags mutation and no regression to current ordinary workflows."
+      },
+      {
+        "slice": 2,
+        "deliverable": "Version-specific native proxy extraction/coverage plus serializable manager receipt; reconcile exact atom order/sign/kind/period/weight/alternates and custom selections.",
+        "acceptance": "Exact requested-versus-effective coverage and false-positive controls; relocation/checksum replay; no duplicate terminal-protection interpretation when equivalent cached complete evidence exists."
+      },
+      {
+        "slice": 3,
+        "deliverable": "Separately tested reviewed candidate generation, site-state derivative and immutable adoption; existing runtime supported adapters migrated under one profile manager without behavior change.",
+        "acceptance": "Graph/H/charge/stereo/native/custom coverage and geometry qualification before ordinary refinement; interrupted attempts cannot publish ready or mutate parent."
+      },
+      {
+        "slice": 4,
+        "deliverable": "Coordinated Doctor entry runs data/flags, component/effective restraint and geometry/connectivity findings before expensive strategy trials; add guided Scout/Topo stitcher separately.",
+        "acceptance": "No conflation of chemistry and assembly findings; declared sticky-end pairing/routing/symmetry and true nick preservation; bounded child repair/refinement."
+      }
+    ],
+    "regression_priorities": [
+      "Supported torsion C2e/C3e alternate conversion retains primary sigma and all source uncertainty provenance; different periods/competing unclassified terms survive as warnings.",
+      "Explicit parameterized component beats same-code ReadySet without dropping unrelated components/modification-only files.",
+      "Graph-only CCD does not pass as complete numerical refinement source.",
+      "Primed atom serializer exact consumer read, no silent truncation.",
+      "Residue identifiers include insertion/alternate/model as supported; ambiguity not hidden.",
+      "Internal and explicit terminal site policies differ; no code-wide OP3 removal, terminal phosphate invention or nick closure.",
+      "Native coverage matches proxy multisets by full atom and symmetry identity, not just counts.",
+      "Optional unsupported comparison is visible without stopping unrelated members.",
+      "Cache key changes for one weight, site state, link/symmetry, tool version or coordinate change.",
+      "Relocated temp checkout/source hashes and immutable interrupted attempt behavior."
+    ],
+    "source_refs": [
+      "src/nasolve/postmr.py",
+      "src/nasolve/curated_ligands.py",
+      "src/nasolve/dictionary_compatibility.py",
+      "src/nasolve/ligand_profiles.py",
+      "src/nasolve/phosphate.py",
+      "src/nasolve/checkpoints.py",
+      "src/nasolve/autorefine.py",
+      "src/nasolve/refine_doctor.py",
+      "docs/architecture.md",
+      "docs/cif-restraint-audit-methods.md",
+      "docs/modified-component-preparation.md",
+      "docs/development-handoff.md"
+    ],
+    "remaining_design_questions": [
+      "Choose minimal native extraction helper/API and exact supported Phenix families; do not assert generic .geo parsing covers all proxy semantics.",
+      "Calibrate scientific strain/repair thresholds with clean and challenged structures rather than creating universal sigma gates.",
+      "Recover historical 8RO/DE and failing 1AP exact inputs before declaring those challenge fixtures validated.",
+      "Decide stable prepared-child type and explicit manifest migration without rewriting legacy checkpoints.",
+      "Validate generator availability/license/runtime on the user laptop only when generation becomes an implementation task."
+    ]
+  },
+  "rule_catalog": [
+    {
+      "id": "PROV-01",
+      "input": "declared artifact anchors, hashes, precedence, tool/code versions",
+      "output": "immutable provenance, missing/mismatch/ambiguous sources",
+      "repair": "resolve only declared sources; never search by basename"
+    },
+    {
+      "id": "GRAPH-01",
+      "input": "unique atom IDs, elements, bond graph, all referenced categories and independent/consumer CIF parses",
+      "output": "duplicates, dangling references, parser disagreement, mapping ambiguity",
+      "repair": "only qualified serialization or declared mapping; no deletion to make parser counts agree"
+    },
+    {
+      "id": "CHEM-01",
+      "input": "mapped bond orders/aromaticity, explicit H attachments, formal charge, partial charge, stereochemistry, descriptors",
+      "output": "separate chemistry, representation and unknown-state findings",
+      "repair": "no automatic tautomer/protonation/bond-order choice"
+    },
+    {
+      "id": "NUM-01",
+      "input": "required finite targets, units, uncertainties/weights, supported class and term references",
+      "output": "missing, incomplete, unusable or suspicious numerical terms",
+      "repair": "reviewed reference/generation with field-level evidence"
+    },
+    {
+      "id": "TOR-01",
+      "input": "ordered quartets, central bond, period, target/alternates, weight, native kind",
+      "output": "exact redundancy, supported alternate family, conflict or unsupported form",
+      "repair": "reuse existing qualified normalizer; preserve source sigmas and unsupported layouts"
+    },
+    {
+      "id": "STEREO-01",
+      "input": "mapped centre/ordered neighbours, native signed volume, coordinate volume and separately assigned graph stereo",
+      "output": "preserved, inverted, unrestricted, degenerate or unassessed centre",
+      "repair": "never force a chirality sign without parity/identity evidence"
+    },
+    {
+      "id": "PLANE-01",
+      "input": "centre and three neighbours in same plane/symmetry frame plus pair-angle targets/weights",
+      "output": "Gram PSD/rank, interior/exterior branches, finite-width strain",
+      "repair": "flag incompatibility; do not create universal 120-degree or 360-degree targets"
+    },
+    {
+      "id": "LINK-01",
+      "input": "site-specific incoming/outgoing graph, modifications, nick and terminal intent",
+      "output": "allowed leaving-atom/H/type changes, orphan/dangling or unexpected graph changes",
+      "repair": "qualified site-scoped derivative; preserve source-specific OP2 protonation"
+    },
+    {
+      "id": "NATIVE-01",
+      "input": "actually loaded components, mods, links and proxy targets/periods/weights/origins",
+      "output": "requested-versus-effective differences, missing/extra/conflicting proxies",
+      "repair": "do not call source-CIF pass a native-manager pass"
+    },
+    {
+      "id": "COVER-01",
+      "input": "full model/chain/residue/insertion/alternate/atom identity and symmetry, edit selections",
+      "output": "proxy multiset coverage, duplicates and separate overlaps",
+      "repair": "retain all custom pairing/stacking/native terms; counts alone insufficient"
+    },
+    {
+      "id": "GEOM-01",
+      "input": "full-precision before/after coordinates evaluated with fixed effective restraint definitions",
+      "output": "per-term raw deviations/native residuals, links/chirality, displacement, symmetry-aware contacts, convergence evidence",
+      "repair": "bounded local coordinate child only after cause/intent qualification"
+    },
+    {
+      "id": "ASSEMBLY-01",
+      "status": "PROPOSED_NEW_RULE_ID_NOT_IMPLEMENTED",
+      "input": "exact MR/refined model, density/symmetry and declared arm mapping/strand routing",
+      "output": "local arm continuity/pairing evidence and ambiguity, distinct from dictionary defects",
+      "repair": "guided preview; distinguish sticky-end association, covalent seam and true nick"
+    }
+  ],
+  "chemical_graph_evidence": {
+    "schema": "nasolve.cif-doctor.graph-numerics-memory.v1",
+    "created_date": "2026-10-11",
+    "purpose": "Evidence shard for a generalized read-only CIF/effective-restraint assessor followed by scoped generator and repair integration; not installed behavior or automatic scientific approval.",
+    "source_documents": [
+      "docs/cif-restraint-audit-methods.md",
+      "docs/modified-component-preparation.md",
+      "docs/native-modified-pair-live-validation.md",
+      "docs/history/1ap-phosphate-integration.md",
+      "docs/full-auto-patch-handoff.md",
+      "src/nasolve/curated_ligands.py",
+      "src/nasolve/data/ligands/*.cif"
+    ],
+    "evidence_vocabulary": {
+      "confirmed": "Observed in exact source or runtime evidence, with scope and hashes recorded.",
+      "reviewed_candidate": "Inspected/generated derivative with specified audits; not production adoption.",
+      "historical_report": "Documented earlier observation; original failed artifact may need recovery.",
+      "unresolved": "Known issue or missing qualification without an approved correction.",
+      "proposed_rule": "Generalizable implementation design, not implemented behavior.",
+      "source_hash_warning": "Packaged source, frozen effective dictionary, generated candidate and linked derivative are distinct artifacts. Never substitute their hashes or treat filenames as identity."
+    },
+    "essential_corrections_to_shorthand": [
+      {
+        "shorthand": "C5 / C5prime bonds swapped; iodine bonds built badly",
+        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 Å; sugar C5prime-I5 coordinate separation is 8.843030419488558 Å and is not an iodine bond.",
+        "must_not_claim": "A general supplier C5/C5prime bond swap, a chemically incorrect 5IU iodine bond, or an edited source dictionary."
+      },
+      {
+        "shorthand": "5CM atom-name swap",
+        "supported_evidence": "5CM has a demonstrated active proper torsion referencing base C2 instead of sugar C2prime. This is a numerical atom-reference defect, distinct from the 5IU C5prime parser failure.",
+        "must_not_claim": "A demonstrated C5 bond swap in 5CM."
+      },
+      {
+        "shorthand": "360 degrees is always required around a planar atom",
+        "supported_evidence": "For three nondegenerate coplanar neighbour directions the smaller pair angles either sum to 360 degrees or the largest equals the sum of the other two. The branch depends on orientation; finite-width angle and plane restraints may intentionally compromise.",
+        "must_not_claim": "Universal 360-degree rejection rule or automatic replacement of targets with 120 degrees."
+      }
+    ],
+    "case_evidence": [
+      {
+        "case_id": "5IU_PRIME_PARSER",
+        "status": "confirmed_parser_defect_fixed",
+        "component": "5IU",
+        "packaged_path": "src/nasolve/data/ligands/5IU.cif",
+        "packaged_sha256": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "source_history": {
+          "added_commit": "739e6df",
+          "parser_fix_commit": "984f75d",
+          "source_cif_modified": false
+        },
+        "measurements": {
+          "ring_C5_I5_coordinate_distance_A": 2.0951107369301507,
+          "sugar_C5prime_I5_nonbonded_coordinate_distance_A": 8.843030419488558
+        },
+        "lesson": "Preserve exact atom identifiers. Remove only an enclosing matching quote pair; a prime inside or at the end of an atom ID is chemical identity data. Distinguish coordinate-derived distance from numerical bond target and establish adjacency first.",
+        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 Å, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
+        "generalizable_rules": [
+          "GRAPH-01",
+          "NUM-01",
+          "CHEM-01"
+        ]
+      },
+      {
+        "case_id": "5CM_PROPER_TORSION_REFERENCE",
+        "status": "confirmed_native_defect_with_reviewed_derivative",
+        "component": "5CM",
+        "packaged_source": {
+          "path": "src/nasolve/data/ligands/5CM.cif",
+          "sha256": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+          "upstream_git_blob": "a8a590f15f0b50c42ed9ad46d59eec3aab11d583"
+        },
+        "frozen_effective_source": {
+          "path": "inputs/06_07_5CM.cif",
+          "sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858"
+        },
+        "faulty_term": {
+          "id": "C2e-nyu0",
+          "ordered_atoms": [
+            "C4'",
+            "O4'",
+            "C1'",
+            "C2"
+          ],
+          "ideal_degrees": 340.7,
+          "sigma_degrees": 6.3,
+          "period": 1,
+          "native_residual_approx": 481
+        },
+        "correct_source_alternative": {
+          "ordered_atoms": [
+            "C4'",
+            "O4'",
+            "C1'",
+            "C2'"
+          ],
+          "ideal_degrees": 2.8,
+          "sigma_degrees": 6.1
+        },
+        "reviewed_operation": "Change only that demonstrated final atom reference C2 to C2prime, then apply the existing content-based CCP4 alternate normalizer.",
+        "derivative": {
+          "sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+          "primary_degrees": 340.7,
+          "alternate_degrees": [
+            2.8
+          ],
+          "effective_sigma_degrees": 6.3,
+          "native_interpretation": "PASS",
+          "production_adoption": "not established",
+          "geometry_full_qualification": "pending"
+        },
+        "lesson": "Source byte equality and supported-looking atom names do not validate restraint connectivity. For a declared proper torsion check all three graph edges; legitimate impropers need a different check. Never apply a global base-name to sugar-name substitution.",
+        "generalizable_rules": [
+          "GRAPH-01",
+          "NUM-01",
+          "TOR-01",
+          "NATIVE-01"
+        ]
+      },
+      {
+        "case_id": "DF_READYSET_GRAPH_AND_NUMERICS",
+        "status": "confirmed_generated_supplement_defects_with_source_preserving_candidate_and_native_pass",
+        "component": "DF",
+        "identity": {
+          "lab_working_code": "DF",
+          "deposition_code": "A1AAZ",
+          "chemistry": "2-thiothymidine",
+          "construction": "O2 to S1 at base C2",
+          "runtime_label_bridge": "A1AAZ to DF",
+          "origin_report": "User created A1AAZ from laboratory DF; origin and runtime bridge have opposite directions."
+        },
+        "graph_source": {
+          "path": "DF-CANDIDATE/DF_source_CCD.cif",
+          "sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+          "numerical_bond_targets_present": false
+        },
+        "bad_readyset_supplement": {
+          "sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
+          "findings": [
+            "Aromatic sugar typing/bonds",
+            "C4-O4 single bond target 1.384 Å",
+            "C2-S1 single bond target 1.812 Å",
+            "No active DF sugar chirality restraints"
+          ]
+        },
+        "candidate": {
+          "path": "DF-CANDIDATE/DF.cif",
+          "sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
+          "generator": {
+            "AceDRG": "334",
+            "database": "12",
+            "RDKit": "2026.09.1",
+            "Servalcat": "0.4.105",
+            "arguments": [
+              "-K",
+              "-p"
+            ]
+          },
+          "inventory": {
+            "atoms": 36,
+            "heavy_atoms": 21,
+            "hydrogens": 15,
+            "bonds": 37,
+            "angles": 65,
+            "torsions": 19
+          },
+          "preserved": [
+            "Adjacency",
+            "Explicit bond orders",
+            "Formal charges",
+            "Explicit hydrogen attachments",
+            "Three definite sugar stereocentres"
+          ],
+          "stereocentres": {
+            "C1'": "R",
+            "C3'": "S",
+            "C4'": "R",
+            "P": "both"
+          },
+          "selected_targets_A": {
+            "C1prime_C2prime": 1.522,
+            "C3prime_C4prime": 1.53,
+            "C1prime_O4prime": 1.413,
+            "C4_double_O4": 1.231,
+            "C2_double_S1": 1.672
+          },
+          "preserved_warnings": [
+            "Two non-ring atom 3 marked aromatic warnings; final audited graph had no corresponding defect"
+          ]
+        },
+        "linked_native": {
+          "modification": "NASpDF",
+          "deleted_atoms": [
+            "OP3",
+            "HOP3",
+            "HO3'"
+          ],
+          "retained_atoms": [
+            "HOP2"
+          ],
+          "energy_type_changes": {
+            "O3'": "OC2"
+          },
+          "heavy_bonds_verified": 21,
+          "signed_sugar_chiralities_verified": 3,
+          "coordinates_changed_in_interpretation": false,
+          "status": "PASS"
+        },
+        "charge_caution": "Old ReadySet OP1 formal charge -1 versus selected source OP1 charge 0 was preserved as a difference, not explained away as a pH correction. Isolated source and linked effective charges require separate accounting.",
+        "lesson": "Assess source graph, generated numerical targets and actually interpreted polymer chemistry independently. ReadySet success does not validate typing, graph preservation, stereochemical coverage or numerical targets.",
+        "generalizable_rules": [
+          "CHEM-01",
+          "NUM-01",
+          "STEREO-01",
+          "LINK-01",
+          "NATIVE-01"
+        ]
+      },
+      {
+        "case_id": "DP_N5_ANGLE_PLANE_CONFLICT",
+        "status": "confirmed_source_conflict_relieved_by_reviewed_candidate",
+        "status_note": "Conflict relief and base visual PASS do not equal production adoption or full sugar/refinement qualification.",
+        "component": "DP",
+        "packaged_source": {
+          "sha256": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+          "upstream_git_blob": "50218f6ebd8ccaa5582c32286c675f466d8a6d0d",
+          "adaptation": "NON-POLYMER to DNA only"
+        },
+        "frozen_effective_source": {
+          "path": "GEO/source_evidence/inputs/08_09_DP.cif",
+          "sha256": "ae10aa3e7066082a9e423cae877dca04928ff4089cbd464bbc3590d6148f0f5a"
+        },
+        "joint_plane_atoms": [
+          "N5",
+          "C4",
+          "C7",
+          "C6"
+        ],
+        "source_angles": [
+          {
+            "atoms": [
+              "C4",
+              "N5",
+              "C7"
+            ],
+            "ideal_degrees": 109.471,
+            "sigma_degrees": 3,
+            "earlier_achieved_degrees": 109.006
+          },
+          {
+            "atoms": [
+              "C4",
+              "N5",
+              "C6"
+            ],
+            "ideal_degrees": 120.772,
+            "sigma_degrees": 1.58,
+            "earlier_achieved_degrees": 123.08
+          },
+          {
+            "atoms": [
+              "C7",
+              "N5",
+              "C6"
+            ],
+            "ideal_degrees": 109.471,
+            "sigma_degrees": 3,
+            "earlier_achieved_degrees": 127.914
+          }
+        ],
+        "source_analysis": {
+          "angle_sum_degrees": 339.714,
+          "gram_determinant_approx": 0.40233,
+          "interpretation": "Angles allow a three-dimensional pyramidal centre but conflict with exact coplanarity for the observed interior branch. The earlier third angle retained approximately 6.15 configured sigma strain."
+        },
+        "candidate": {
+          "path": "DP-V2/DP.cif",
+          "sha256": "6ba5b6a3ce86019c97129dcb5ea08f26a8395f68074c81d4c8ed6f04f7ad6f1f",
+          "ideal_degrees_same_angle_order": [
+            108.817,
+            120.468,
+            130.715
+          ],
+          "sigmas_degrees": [
+            3,
+            3,
+            3
+          ],
+          "sum_degrees": 360,
+          "gram_eigenvalues_approx": [
+            0,
+            1.308599,
+            1.691401
+          ],
+          "five_ring_angle_sum_degrees": 540,
+          "six_ring_angle_sum_degrees": 720.003,
+          "regeneration_extent": {
+            "bonds_with_target_or_sigma_changes": 34,
+            "total_bonds": 37,
+            "angle_terms": 65,
+            "torsion_terms": 21,
+            "positive_sigma_torsions": 15,
+            "zero_sigma_torsions": 6,
+            "plane_groups_old": 2,
+            "plane_groups_new": 5
+          }
+        },
+        "bounded_geometry_outcome": {
+          "achieved_degrees_same_angle_order": [
+            108.115293,
+            119.720831,
+            132.163422
+          ],
+          "achieved_sum_degrees": 359.99955,
+          "largest_of_three_sigma_displacements": 0.483,
+          "DP_heavy_bond_RMS_target_error_A": 0.00264747,
+          "base_plane_RMS_A": [
+            0.001171,
+            0.000927
+          ],
+          "remaining_sugar_angle": {
+            "atoms": [
+              "C2'",
+              "C1'",
+              "O4'"
+            ],
+            "achieved_degrees": 102.377105,
+            "target_degrees": 106.567,
+            "sigma_degrees": 2.03,
+            "signed_sigma_displacement_approx": -2.06
+          },
+          "convergence": "not claimed",
+          "visual": "Exact new model bases PASS; sugars unassessed by eye"
+        },
+        "lesson": "Graph and SMILES equivalence cannot detect incompatible numerical restraints. Generalize via Gram positive-semidefinite/rank checks plus plane membership and uncertainty-aware interpretation; never manufacture new ideal angles from sums.",
+        "generalizable_rules": [
+          "PLANE-01",
+          "NUM-01",
+          "GEOM-01"
+        ]
+      },
+      {
+        "case_id": "DP_CONSUMER_PARSE_AND_REPRESENTATION",
+        "status": "confirmed_serialization_and_checker_failures_resolved_in_new_attempts",
+        "first_seed_sha256": "93c4ebaee4467b235998dea62d03dee35de4bfa2c32e86c41b7c5d5a154f0312",
+        "source_seed_inventory": {
+          "atoms": 35,
+          "bonds": 37,
+          "chirality_declarations": 4
+        },
+        "bad_consumer_inventory": {
+          "atoms": 20,
+          "bonds": 21,
+          "chirality_declarations": 0
+        },
+        "bad_error": "KeyError: \"'C5'\" from AceDRG aLineToAlist2 for single-quoted primed atom IDs such as 'C5''; Biopython round-trip had passed.",
+        "corrected_serialization": "Double-quoted primed IDs; installed consumer reader preflight agrees exactly on selected atom, bond and chirality fields before generation.",
+        "consumer_reader_sha256": "ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981",
+        "candidate_graph": {
+          "atoms": 35,
+          "bonds": 37,
+          "explicit_H_attachments": 12,
+          "formal_charge_total": -2,
+          "chirality_declarations": 4,
+          "all_explicit_endpoints_and_orders_unchanged": true,
+          "aromatic_annotations_Y_to_N_only": [
+            [
+              "C4",
+              "N9"
+            ],
+            [
+              "C8",
+              "N9"
+            ],
+            [
+              "C7",
+              "C8"
+            ],
+            [
+              "C7",
+              "N5"
+            ]
+          ],
+          "alias_metadata": "Preserved in source/seed but dropped by generated candidate; report separately."
+        },
+        "descriptor_disagreement": "Source copied descriptors describe neutral phosphate, while explicit graph has OP2 and OP3 formal charges -1 each. Seed preserved explicit graph/H/charges/chirality and excluded descriptors plus old numerical fields/types. No protonation state inferred.",
+        "native_checker_issue": "First checker accepted only exact/full-reversal torsion order and missed valid cctbx canonical proxies. cctbx dihedral.h sort_i_seqs swaps terminal pair 0/3 and central pair 1/2 independently; negate ideal and alternate angles per swap, with two swaps preserving sign.",
+        "cctbx_source_blob": "ee41da7a84b3ae1155f39e70021abe943f6bb97e",
+        "native_pass": {
+          "run_anchor": "LIVE/combined-dp-native-abp6f409",
+          "bundle_sha256": "6e0f33dab2cd179542e68269a7cca2806058d3b47c214af3d4fabddc189d2cf2",
+          "native_audit_sha256": "e64d7a633e0ff3f2c42cae30808293a9ea61486ff3ae76a465c34f5f77ed8423",
+          "heavy_bonds": 24,
+          "heavy_angles": 35,
+          "heavy_torsions": 19,
+          "active_heavy_torsions": 13,
+          "constant_heavy_torsions": 6,
+          "effective_atoms": 33,
+          "deleted_atoms": [
+            "OP3",
+            "H3"
+          ],
+          "actual_O3prime_energy_type": "OC2",
+          "link_target_A": 1.607,
+          "link_sigma_A": 0.012,
+          "effective_charge_fields": null,
+          "coordinates_changed": false
+        },
+        "lesson": "Distinguish parser, representation, chemical graph and effective-link failures. Compare proxy kind, target, sign/order, period, alternates and weight, not counts alone. A source canonicalization may not authorize arbitrary permutations of a proper torsion.",
+        "generalizable_rules": [
+          "GRAPH-01",
+          "CHEM-01",
+          "TOR-01",
+          "LINK-01",
+          "NATIVE-01"
+        ]
+      },
+      {
+        "case_id": "8RO_LAB_DE_CHALLENGE",
+        "status": "unresolved_historical_challenge",
+        "lab_component": "DE",
+        "intended_chemistry": "4-thiothymidine; lab E construction O4 to S4 at C4",
+        "current_packaged_sha256": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "historical_facts": [
+          "Current DE eLBOW dictionary has not changed since addition at b8317b0.",
+          "Current file is byte-equivalent to historical repository-root generated 8RO.cif after component-label substitution.",
+          "That generated artifact is not proof that official CCD 8RO equals intended laboratory DE.",
+          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 Å target.",
+          "September replacement candidate remained unapproved; later committed approved replacement not found."
+        ],
+        "required_recovery": [
+          "Recover exact failed/generated and proposed replacement files with hashes.",
+          "Declare intended lab chemistry independently of historical component label.",
+          "Compare official CCD identity/topology separately from the generated lab artifact.",
+          "Audit full numerical categories, bond order, H/charge and native linked chemistry before a new candidate."
+        ],
+        "must_not_do": [
+          "No automatic 8RO to DE equivalence.",
+          "Do not flip C4-S4 to double or invent a shorter target from the DF precedent.",
+          "Do not retarget inter-residue sulfur contacts while repairing intra-residue chemistry."
+        ],
+        "historical_pair_target": {
+          "target_A": 3.04,
+          "sigma_A": 0.2,
+          "initial_observed_distance_A": 2.498,
+          "initial_distance_is_final_refinement": false
+        },
+        "generalizable_rules": [
+          "PROV-01",
+          "GRAPH-01",
+          "CHEM-01",
+          "NUM-01"
+        ]
+      },
+      {
+        "case_id": "1AP_WRONG_CONNECTIVITY_AND_PARAMETERIZATION",
+        "status": "historical_generator_failure_with_current_curated_preservation_control",
+        "chemistry": "2,6-diaminopurine nucleotide",
+        "historical_failure": "Unsuccessful eLBOW attempt introduced O4prime-N1; raw CCD graph lacked necessary parameterized numerical refinement targets.",
+        "reviewed_source": {
+          "upstream_git_blob": "1be06d4bb0848891fd3e7dca22d217dd2ad1b69b",
+          "path": "MonomerLibrary/monomers:1/1AP.cif",
+          "packaged_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+          "adaptations": [
+            "Audit comments",
+            "NON-POLYMER to DNA"
+          ],
+          "numerical_rows_changed": false,
+          "selection_commit": "af08c5a"
+        },
+        "connectivity_control": {
+          "required": [
+            [
+              "C1'",
+              "N9"
+            ],
+            [
+              "C2",
+              "N2"
+            ],
+            [
+              "C6",
+              "N6"
+            ],
+            [
+              "P",
+              "O5'"
+            ]
+          ],
+          "historical_spurious": [
+            [
+              "O4'",
+              "N1"
+            ]
+          ]
+        },
+        "future_fixture": "Recover failed artifact or label a synthetic wrong-connectivity reproduction clearly. Current selected 1AP is a preservation control, not presumed defective.",
+        "site_context_controls": [
+          "Internal incoming O3prime-P link with selected NASnoOP3",
+          "Explicitly phosphorylated unlinked terminal site retains full phosphate",
+          "Unrequested terminal phosphate blocks pending declared chemistry",
+          "Free 5prime-OH terminal state requires its own supported profile"
+        ],
+        "lesson": "Wrong graph and incomplete parameterization are separate findings. Parameterized upstream rows should remain unchanged unless a demonstrated scoped defect and reviewed operation authorize a new derivative.",
+        "generalizable_rules": [
+          "GRAPH-01",
+          "CHEM-01",
+          "NUM-01",
+          "LINK-01"
+        ]
+      }
+    ],
+    "lightweight_general_algorithms": {
+      "dependency_policy": "Keep common assessor path deterministic and standard-library-sized except an already-supported CIF parser. Native cctbx/Phenix introspection runs only in its supported environment. RDKit and AceDRG remain optional generator/descriptor adapters, never unconditional import-time requirements.",
+      "complexity": [
+        "Parse/hash once per content-addressed artifact, O(file bytes).",
+        "Construct atom-ID map and adjacency in O(V+E), with explicit configured file/atom/term limits and refusal on excess rather than silent truncation.",
+        "Validate each bond/angle/proper-torsion reference with constant-time adjacency checks, O(number of terms).",
+        "Find bounded ring membership or local graph motifs rather than enumerate all simple cycles. Report unsupported aromaticity conventions.",
+        "For repeated components cache source-only findings by source hash plus parser/rule/representation-policy versions; linked/effective findings also key site context, model and native manager hashes.",
+        "Compare numerical/proxy multisets with stable canonical keys. Avoid unbounded graph-isomorphism search; explicit IDs/aliases first, then bounded candidate maps, report ambiguity.",
+        "Angle-planarity checks operate on degree-three centres with actual shared plane membership and a constant-size 3x3 Gram matrix; do not examine all arbitrary atom quartets."
+      ],
+      "chemical_graph_checks": [
+        "Unique exact atom IDs; elements and missing/unknown fields preserved.",
+        "Every referenced atom exists; no duplicate/conflicting endpoint orders or self bonds.",
+        "Supported valence calculations include explicit hydrogens, formal charge and aromatic representation policy. Unsupported elements, metal/coordinate bonds and unusual valence remain visible unassessed findings.",
+        "Aromatic atom/bond annotations must be compared separately from explicit orders and actual cycle membership; an aromatic sugar finding must be tied to graph/type evidence, not an atom-name blacklist.",
+        "Check generator mappings for exact endpoints, orders, H attachments, stereochemistry and alias retention. A same-sized graph may be wrong.",
+        "Numerical bond targets must correspond to actual bonded endpoints and a documented source/generator; coordinate separation is a different measurement.",
+        "Apply chemically reviewed context-dependent bond-length/type references when available; do not use one universal C-I or C-S threshold as a scientific repair oracle."
+      ],
+      "planarity_checks": [
+        "Require centre plus all three neighbours in the same effective plane and symmetry-image frame.",
+        "Set Gii=1 and Gij=cos(theta_ij), and report eigenvalues/determinant with recorded numerical tolerances.",
+        "Three pair angles realizable in 3D require positive semidefinite G; exact planar realizability additionally requires rank <=2.",
+        "Report interior sum-to-360 and exterior largest-equals-other-two branches; preserve degenerate/collinear cases.",
+        "Keep algebraic compatibility separate from material strain under finite angle and plane uncertainties; report bounded minimum-adjustment scores with assumptions, not uncalibrated automatic failure thresholds."
+      ],
+      "stereo_and_torsions": [
+        "Compare ordered chirality neighbours using permutation parity; signed CIF volume is not directly a CIP R/S label.",
+        "Record graph-derived CIP assignment separately and mark both/degenerate/missing centres unassessed instead of preserved definite chirality.",
+        "Proper torsion must follow bonded path; legitimate impropers must not be rejected under the proper rule.",
+        "Use actual engine potential/period/alternate semantics; nearest periodic delta is not necessarily delta/sigma energy.",
+        "Zero-weight constant dihedrals are inventory/connectivity annotations; do not count them as energetic defects.",
+        "Existing ccp4-alternates-primary-sigma-v2 supports selected C2e/C3e families; it preserves first-row sigma and alternate targets, not independent alternative weights."
+      ],
+      "smiles_and_protonation": [
+        "Parse descriptors to a mapped graph using recorded parser/program/version; raw string equality is inadequate.",
+        "Descriptors copied from the same CIF are internal consistency evidence, not independent chemistry validation.",
+        "Compare tautomer/protonation/explicit H/charges rather than neutralize or choose a convenient descriptor silently.",
+        "Formal charge and partial charge are distinct fields. Missing is unknown, not zero; native null charge fields cannot confirm source charges.",
+        "No pH-based tautomer or protonation choice without an explicit supported chemical-intent policy. The reviewed 1W5 to DZ and 1WA to DP policies are transformations, not generic synonymous-code detection."
+      ],
+      "repair_boundaries": [
+        "Read-only findings precede any candidate.",
+        "Preserve source bytes, old failures, logs and tool versions; write a field-level derivative receipt.",
+        "A source graph seed can exclude conflicting copied descriptors and old numerical/type fields only through explicit recorded derivation; retain explicit graph, H, charge and stereochemistry.",
+        "Freeze candidate, linked modifications and selected precedence before actual interpreter audit.",
+        "Generator exit zero or low self-residual is not native coverage, independent geometry validation or experimental support.",
+        "Site-specific deletions must remove attached H/dependent references and preserve incoming/outgoing chemistry; never delete OP2-H solely to normalize charge totals."
+      ]
+    },
+    "regression_fixture_matrix": [
+      {
+        "failure": "Prime-normalization collision",
+        "synthetic": "Base C5 and sugar C5prime distinct atoms with iodine bonded only to ring C5",
+        "controls": [
+          "Both exact IDs retained",
+          "Double-prime IDs",
+          "Single/double quote compatible cases",
+          "Alias collision rejected"
+        ]
+      },
+      {
+        "failure": "Wrong proper torsion reference",
+        "synthetic": "Sugar quartet ends at a similarly named but nonadjacent base atom",
+        "controls": [
+          "Connected proper quartet",
+          "Legitimate improper",
+          "Same nomenclature on a different valid graph"
+        ]
+      },
+      {
+        "failure": "Aromatic sugar/type or graph corruption",
+        "synthetic": "Nonaromatic saturated five-member sugar assigned aromatic types versus source",
+        "controls": [
+          "Valid aromatic heterocycle",
+          "Unsupported representation is unassessed",
+          "Explicit order versus aromatic-flag-only differences reported separately"
+        ]
+      },
+      {
+        "failure": "Angle-plane conflict",
+        "synthetic": "DP-like degree-three centre with demonstrated nonplanar Gram determinant plus shared plane",
+        "controls": [
+          "Interior planar 120/120/120",
+          "Exterior planar directions with largest pair angle equal to other two",
+          "Finite-width near-compatible case",
+          "Impossible Gram matrix",
+          "Degenerate collinear case",
+          "No shared plane means no plane-conflict claim"
+        ]
+      },
+      {
+        "failure": "Consumer parser disagrees",
+        "synthetic": "35/37/4 selected-field seed inventory under quoted prime IDs",
+        "controls": [
+          "Counts agree but endpoint differs",
+          "Coordinates present/missing",
+          "Writer own round-trip passes while consumer fails",
+          "Consumer returns added derived fields without changing source"
+        ]
+      },
+      {
+        "failure": "Proxy ordering checker false negative",
+        "synthetic": "Nonzero torsion with terminal or central pair canonical swap",
+        "controls": [
+          "One swap negates ideal and alternates",
+          "Two swaps preserve sign",
+          "Missing/duplicate term",
+          "Wrong central pair",
+          "Changed period/weight/target rejected"
+        ]
+      },
+      {
+        "failure": "Linked polymer H/type left uncorrected",
+        "synthetic": "Incoming phosphate and outgoing O3prime link require different local modifications",
+        "controls": [
+          "Internal, terminal, nick, cyclic and symmetry-linked contexts distinct",
+          "O3prime-H removed only for verified outgoing link",
+          "Authorized terminal OP3 retained",
+          "True free 5prime-OH preserved"
+        ]
+      },
+      {
+        "failure": "Wrong identity hidden by relabel",
+        "synthetic": "8RO label on intended DE graph with declared source mismatch",
+        "controls": [
+          "Correct independently declared identity",
+          "Reviewed label-only DF/A1AAZ bridge",
+          "Reviewed chemistry-changing DZ/DP transformation explicitly represented"
+        ]
+      },
+      {
+        "failure": "Historical 1AP wrong connectivity",
+        "synthetic": "Extra O4prime-N1 edge",
+        "controls": [
+          "Current parameterized 1AP unchanged",
+          "Graph-only CCD lacks numerical targets but is not chemically declared wrong",
+          "Internal and phosphorylated terminal sites coexist"
+        ]
+      },
+      {
+        "failure": "Descriptor masks charge/H differences",
+        "synthetic": "Neutral-phosphate descriptor versus explicit dianionic atom graph",
+        "controls": [
+          "Formal vs partial charges incomparable",
+          "Explicit/implicit H normalization policy documented",
+          "Copied descriptor untrusted as independent support",
+          "Different tautomer kept distinct"
+        ]
+      }
+    ],
+    "remaining_open_questions": [
+      "Which supported chemical-intent record provides independent intended identity/tautomer/protonation for unfamiliar components without an AI guess?",
+      "Which optional descriptor parser is available on the laptop and what stable mapping/aromaticity policy will be supported?",
+      "How to calibrate material-strain thresholds with correct controls rather than use a universal sigma cutoff?",
+      "Can exact historical failed 8RO/DE and 1AP generated artifacts be recovered, or should challenge fixtures be explicitly synthetic?",
+      "DP sugar numerical review, stopping/convergence assessment and diffraction/Free-R refinement qualification remain open despite base visual PASS.",
+      "Source-native 1W5/1WA preparation remains distinct from target-only DP candidate testing.",
+      "Production integration of successful 5CM/DF/DP diagnostic derivatives is not established by these docs.",
+      "Generic context-complete unphosphorylated modified 5prime termini, cyclic and symmetry-linked chemistry need independent native coverage.",
+      "ReadySet may remain as native preparation adapter; replacing it entirely requires a demonstrated capability inventory, including H, typing, mods, links and native dictionaries."
+    ]
+  },
+  "torsion_backbone_evidence": {
+    "schema": "nasolve.cif-doctor.design-shard",
+    "schema_version": 1,
+    "created_date": "2026-10-11",
+    "scope": "Torsions, angle-plane compatibility, sugar/stereochemistry, chemical state and phosphate site context; design and immutable evidence, no new automatic chemical repair",
+    "sources": [
+      {
+        "sha256": "f25c89e4a266bcd67191f32396693d156ea027571bde1637eaecd613720d00f5",
+        "role": "frozen_source_snapshot_current_contract_is_linked_repository_file",
+        "anchor": "repository",
+        "relative_path": "docs/cif-restraint-audit-methods.md",
+        "bytes": 26866,
+        "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+      },
+      {
+        "sha256": "fa750b8d5e46cedfcd65fdc1b1ab21c764a51ce87a9c7fbf399b21ee751dc61c",
+        "role": "frozen_source_snapshot_current_contract_is_linked_repository_file",
+        "anchor": "repository",
+        "relative_path": "docs/native-modified-pair-live-validation.md",
+        "bytes": 34236,
+        "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+      },
+      {
+        "sha256": "b353210399e870f4fc4109e84a32f9b057c571d1f75848393d87ccd8e7fd14ac",
+        "role": "frozen_source_snapshot_current_contract_is_linked_repository_file",
+        "anchor": "repository",
+        "relative_path": "docs/modified-component-preparation.md",
+        "bytes": 35298,
+        "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+      },
+      {
+        "sha256": "d434171825ed7a4c8d9605c283e14f2d62c1355a00d8ce357dca2f3e29b1b699",
+        "role": "frozen_source_snapshot_current_contract_is_linked_repository_file",
+        "anchor": "repository",
+        "relative_path": "docs/backbone-chemistry.md",
+        "bytes": 13289,
+        "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+      },
+      {
+        "sha256": "bfbb108974ce9ab1085ed37c473f58730b5f7018e77a7fd0334b413ae801e85a",
+        "role": "frozen_source_snapshot_current_contract_is_linked_repository_file",
+        "anchor": "repository",
+        "relative_path": "src/nasolve/dictionary_compatibility.py",
+        "bytes": 6910,
+        "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+      },
+      {
+        "sha256": "e26c2e635cc7ee8da418749ebe05500bdab953ab5631a15eae476c55b6588992",
+        "role": "frozen_source_snapshot_current_contract_is_linked_repository_file",
+        "anchor": "repository",
+        "relative_path": "src/nasolve/model_compatibility.py",
+        "bytes": 40042,
+        "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+      },
+      {
+        "sha256": "d588a52224e73d5d4c6c545d9d7d6c1ef99059f80582220344aae3a80daaaf44",
+        "role": "historical_uncommitted_diagnostic_evidence",
+        "historical_capture_path": "analysis/dp_native_extension.py",
+        "operational": false,
+        "availability": "Not part of this repository. Recover exact reviewed diagnostic/archive by declared provenance and hash; do not search by basename or assume the scratch path exists."
+      },
+      {
+        "sha256": "0f42a0ac219b7f9b94f5e0433e06baccf21e042096a21e5e5b261590021ff138",
+        "role": "historical_uncommitted_diagnostic_evidence",
+        "historical_capture_path": "analysis/repaired_native_extension.py",
+        "operational": false,
+        "availability": "Not part of this repository. Recover exact reviewed diagnostic/archive by declared provenance and hash; do not search by basename or assume the scratch path exists."
+      },
+      {
+        "sha256": "83cd7803a4586ed5de7336a972adfc0d3346b48c19a437d3b8b293f4d4c5ac8a",
+        "role": "historical_uncommitted_diagnostic_evidence",
+        "historical_capture_path": "analysis/dp_geometry_trial_review/minimization_status.json",
+        "operational": false,
+        "availability": "Not part of this repository. Recover exact reviewed diagnostic/archive by declared provenance and hash; do not search by basename or assume the scratch path exists."
+      },
+      {
+        "sha256": "f41d6c15734eb0ef4c5dd84ba01f60e086f13f22637e3b85027bc4083235f688",
+        "role": "historical_uncommitted_diagnostic_evidence",
+        "historical_capture_path": "analysis/dp_geometry_outcome_independent.json",
+        "operational": false,
+        "availability": "Not part of this repository. Recover exact reviewed diagnostic/archive by declared provenance and hash; do not search by basename or assume the scratch path exists."
+      }
+    ],
+    "implementation_state": {
+      "general_assessor": "NOT_IMPLEMENTED",
+      "first_slice": "Deterministic read-only assessor with evidence-backed, operation-scoped findings",
+      "existing_production": "Content-based CCP4 alternate adapter; source precedence; supported 1AP/DZ/DP/5CM linked profiles; explicit terminal-phosphate construction/protection/audit",
+      "diagnostic_only": "Generic IGU/IMC/CGY/DX and regenerated DF/DP linked chemistry and geometry minimization",
+      "automatic_general_repair": "NOT_SUPPORTED_BY_CURRENT_EVIDENCE"
+    },
+    "fundamental_separations": [
+      "Source identity, graph chemistry, numerical restraint definitions, effective native proxies, achieved geometry and experimental support are different evidence layers.",
+      "Model coordinates, isolated monomer, internally linked derivative, terminal/nick state and generator seed are separate artifacts with their own hashes.",
+      "Graph consistency and a zero exit code cannot establish correct target values or geometry.",
+      "Source-byte equality cannot establish geometry quality: exact frozen 5CM and DP were defective.",
+      "Formal atom charge, force-field partial charge and native null charge fields must be reported separately; missing charge is unknown, not zero.",
+      "Residue names and atom spelling do not establish protonation, H attachment, absolute D/L state, donor geometry or covalent linkage.",
+      "Geometry-only target reduction is not convergence, refinement, map support, experimental chemical identity or deposition approval."
+    ],
+    "rules": {
+      "TOR-01": {
+        "inputs": [
+          "source ordered atom quartet and central bond",
+          "proper/improper/other class",
+          "period",
+          "primary and alternate angles",
+          "all source uncertainties",
+          "actual native proxy kind, ordering, weight, origin and symmetry"
+        ],
+        "algorithm": [
+          "Reject dangling/repeated references and nonfinite targets before expensive generation; preserve unknown layouts for a scoped native diagnostic.",
+          "For source comparison, equivalent identity is component plus ordered quartet or full reversal. Do not sort all four atom names.",
+          "Classify a torsion before requiring a bonded path: a proper torsion follows three declared bonds; legitimate impropers may not.",
+          "Reconcile the actual consumer representation before comparing numeric targets. Verified cctbx sort_i_seqs swaps terminal indices 0/3 independently of central indices 1/2 and negates ideal and every alternate per single swap; two swaps preserve sign.",
+          "Match complete multiset identities, including kind/period/weight/alternates/origin/symmetry. Atom-set or count equality is insufficient.",
+          "Report nearest periodic angular displacement and native residual/energy separately. Use the actual engine potential; do not turn all periodic residuals into Gaussian delta/sigma.",
+          "Determine energetic activity from actual proxy kind and weight. Native zero-weight const_dihedral rows remain inventory/connectivity evidence.",
+          "Supported C2e/C3e alternative families may use the existing ccp4-alternates-primary-sigma-v2 adapter. Preserve first-row sigma, source rows and every original uncertainty; alternatives do not preserve independently different weights.",
+          "Retain unrelated competing targets, differing periods, unsupported fields/layouts and arbitrary permutations with warnings; do not delete them to obtain exit zero."
+        ],
+        "existing_api": "src/nasolve/dictionary_compatibility.py: normalize_torsion_block; TORSION_POLICY=ccp4-alternates-primary-sigma-v2",
+        "engine_reference": {
+          "path": "cctbx/geometry_restraints/dihedral.h",
+          "git_blob": "ee41da7a84b3ae1155f39e70021abe943f6bb97e",
+          "scope": "Inspected ordering/sign normalization, not unrestricted source-quartet equivalence"
+        },
+        "fixtures": [
+          "full reversal with same signed target",
+          "single terminal swap changes target/alternate sign",
+          "single central swap changes signs",
+          "two swaps preserve sign",
+          "nonzero angle needed to expose sign bug",
+          "missing or duplicate quartet rejected",
+          "wrong central pair rejected",
+          "altered target/weight/period rejected",
+          "unequal alternate uncertainties are retained and reported",
+          "existing alternate fields survive",
+          "period-3 residual cannot be labelled sigma",
+          "zero-weight constant term counted but not energetic",
+          "proper wrong-atom quartet flagged; legitimate improper preserved"
+        ],
+        "forbidden_repair": "No blanket C2->C2-prime substitution or global pucker flattening; a reviewed source-hash-specific reference correction may be proposed independently."
+      },
+      "PLANE-01": {
+        "preconditions": [
+          "centre O and neighbours A/B/C are nonzero vectors in one verified symmetry frame",
+          "one actual plane contains centre and all three neighbours",
+          "three pair angles are valid [0,180] degree targets",
+          "identify finite angle and plane weights; unsupported missing terms are unassessed"
+        ],
+        "algorithm": [
+          "Build 3x3 Gram matrix with diagonal1 and off-diagonal cos(pair_angle_in_radians). Record eigenvalues, determinant and explicit numerical tolerance.",
+          "Positive semidefinite Gram matrix means the central angle targets are realizable by three unit vectors in3D. Exact planar realization additionally requires rank<=2.",
+          "A near-zero determinant without positive semidefiniteness does not prove feasibility. Separate collinear/degenerate cases.",
+          "Nondegenerate planar branches: interior sum(theta)=360 degrees; exterior max(theta)=sum(other_two). Evaluate both if branch unknown.",
+          "Observed coordinates may identify the observed branch; they do not authorize forcing supplier targets to that branch.",
+          "Report distance to each feasible branch and optionally bounded uncertainty-weighted minimum adjustment. Angle-only scores omit finite plane width and correlations.",
+          "Separate exact algebraic incompatibility from finite-width material strain and probable source defect. Calibrate scientific thresholds against reviewed positives/negatives; do not invent a universal cutoff.",
+          "Return measured conflict and candidate options; never manufacture120-degree targets or overwrite a frozen dictionary."
+        ],
+        "counterexamples": [
+          {
+            "angles_degrees": [
+              120,
+              120,
+              120
+            ],
+            "expectation": "planar interior feasible"
+          },
+          {
+            "angles_degrees": [
+              30,
+              50,
+              80
+            ],
+            "expectation": "planar exterior feasible though sum160, so universal360rule is false"
+          },
+          {
+            "angles_degrees": [
+              0,
+              90,
+              90
+            ],
+            "expectation": "degenerate/collinear branch reported separately"
+          },
+          {
+            "angles_degrees": [
+              10,
+              10,
+              179
+            ],
+            "expectation": "negative Gram eigenvalue means not even3D feasible"
+          },
+          {
+            "angles_degrees": [
+              119.9,
+              120,
+              120
+            ],
+            "angle_sigmas_degrees": [
+              3,
+              3,
+              3
+            ],
+            "expectation": "exact target incompatibility does not imply meaningful finite-width restraint defect"
+          },
+          {
+            "angles_degrees": [
+              109.471,
+              120.772,
+              109.471
+            ],
+            "expectation": "old DP is3D-feasible pyramid, incompatible with its exact shared plane; issue is not central valence sum alone"
+          }
+        ]
+      },
+      "STEREO-01": {
+        "algorithm": [
+          "Map centre and ordered neighbour references between source, generated, linked and native representations; compare signed volumes only after permutation-parity reconciliation.",
+          "Compare coordinate volume against native ideal and both_signs; record distance from zero and degeneracy tolerance.",
+          "A CIF volume sign is not an R/S label. Assign CIP from a valid chemical graph with appropriate tool/version before comparing R/S.",
+          "A both declaration is not definite stereo preservation. Near-zero volume is neither unchanged chirality nor a valid inversion.",
+          "Preserve declared mirror transformation separately from absolute D/L assignment. Current model_compatibility schema leaves absolute candidate/recipient chirality null and relation UNKNOWN.",
+          "Cross-check every supported sugar centre and detect missing native signed restraints, not only atom/bond graph agreement.",
+          "Do not infer L/D from helix appearance or assume identical sign for differently ordered neighbours."
+        ],
+        "negative_fixtures": [
+          "odd/even neighbour permutations",
+          "missing signed sugar centre",
+          "both-signs centre unassessed",
+          "zero-volume centre",
+          "mirror declaration with no absolute-stereo evidence",
+          "correct graph but absent effective chirality",
+          "generated R/S inversion",
+          "same CIF sign under odd neighbour reordering"
+        ]
+      },
+      "SUGAR-01": {
+        "status": "PROPOSED read-only extension, no universal pucker repair",
+        "algorithm": [
+          "Identify the sugar ring and base attachment through graph connectivity and a declared supported template; keep ring and exocyclic substituent roles distinct.",
+          "For standard furanose, inventory O4-prime/C1-prime/C2-prime/C3-prime/C4-prime ring and C5-prime substituent; unknown analogues require graph-based mapping or remain unassessed.",
+          "Compute ordered ring torsions from full-precision coordinates using an explicit sign convention; optional pseudorotation method must be specified/versioned and handle degeneracy.",
+          "Report observed conformer, effective alternate family, target and energetic strain separately. A source alternate family is not authorization to force one pucker.",
+          "Audit glycosidic atom references against the mapped base/sugar graph. Canonical template O4-prime-C1-prime-N1-C2 or O4-prime-C1-prime-N9-C4 must be used only when those exact mapped identities are declared and connected.",
+          "Treat unprimed C2/C4/C5 and primed sugar IDs as distinct identities; retain primes through parser/serialization/native reader.",
+          "Local torsion strain can come from starting coordinates, conflicting planes/targets, packing or genuinely deficient parameters. Compare exact definitions and native residuals before proposing a dictionary change.",
+          "Preserve sugar/phosphate coordinates during base construction according to existing PostMR contract; mirror-side mutations obey guarded native routes."
+        ],
+        "do_not": "Do not delete all sugar torsions, rename all unprimed atoms, infer fixed DNA/RNA pucker from component code, or use a periodic native energy as a sigma score."
+      },
+      "CHEMICAL-STATE-01": {
+        "algorithm": [
+          "Inventory mapped elements, explicit H adjacency, formal charges, partial charges, aromatic flags, bond orders and declared stereo from untouched source and selected candidate.",
+          "Parse mapped SMILES graph with descriptor provenance; copied descriptors test internal consistency, not independent correctness.",
+          "Separate explicit bond-order changes from aromatic-flag representation differences under a documented policy. Ambiguous tautomer/resonance maps remain review findings.",
+          "Keep reviewed1W5->DZ and1WA->DP as explicit identity transformations, never blanket tautomer equivalence; A1AAZ->DF is a graph-equivalent label bridge.",
+          "An absent coordinate H does not prove the dictionary is unprotonated. H adjacency in the effective monomer is authoritative evidence for the loaded chemical state.",
+          "Exclude stale/inconsistent descriptors from a graph-only regeneration seed only with a field-level derivation; preserve untouched descriptor evidence.",
+          "No pH, valence shortcut, monomer naming or desired refinement score selects a new protonation state.",
+          "Hydrogen-bond geometry uses donor-H-acceptor definitions when supported; do not blindly impose180 degrees on heavy-atom donor/acceptor lines or over-tighten planarity."
+        ],
+        "review_required": [
+          "protonation or tautomer change",
+          "bond-order or element change",
+          "unsupported charge/coordination conventions",
+          "ambiguous atom map",
+          "unknown donor/acceptor identity",
+          "descriptor/explicit-graph disagreement"
+        ]
+      },
+      "LINK-01": {
+        "ownership": "NASolve model/backbone/component preparation owns inter-residue/terminal chemistry; NARestraints owns reviewed pairing and stacking.",
+        "site_contexts": [
+          "isolated",
+          "incoming-only",
+          "outgoing-only",
+          "internal",
+          "free5-primeOH",
+          "explicit5-primephosphate",
+          "nick",
+          "cyclic",
+          "symmetry-linked",
+          "experimental_passthrough"
+        ],
+        "algorithm": [
+          "Freeze explicit site-level chemistry and verified incoming/outgoing covalent links. Distance/name alone is not authorization to connect.",
+          "For declared standard internal phosphodiester, P neighbours are OP1/OP2/O5-prime/previousO3-prime; no terminalOP3 retained.",
+          "At an outgoing O3-prime->nextP link, remove any source O3-prime-attached H using graph adjacency and review supported energy type change toOC2.",
+          "For a verified leavingOP3 delete OP3 and any attachedH by adjacency. Check every surviving bond/angle/torsion/plane reference and no orphanH.",
+          "Keep OP2-attachedH when source declares it; do not standardize charge or deleteH by name.",
+          "Compare isolated source, linked derivative and actual native mapping/modification inventory independently from coordinate sanitation.",
+          "Preserve explicit terminal and true-nick intent. Sticky-end base pairing does not authorize covalent stitching.",
+          "A declared5-primephosphate needs completeP/OP1/OP2/OP3 with no incomingO3-prime link. A declaredfree5-primeOH has no terminalphosphate.",
+          "Unknown partial phosphate, conflictingexplicitLINK/CONECT or unsupported cyclic/symmetry state requires scoped review rather than guessed oxygen deletion.",
+          "Production supports reviewed1AP/DZ/DP/5CM site-selected profiles; genericlinked work is a diagnostic blueprint until integrated/qualified."
+        ],
+        "terminal_construction": [
+          "Only explicit request authorizes construction",
+          "Preserve complete groups",
+          "Complete only missingOP3 from existingP/OP1/OP2",
+          "Seed a fully absent group fromO5-prime-C5-prime-C4-prime molecular frame",
+          "Otherpartialstates stopforreview",
+          "Coordinates are startinggeometry, notmeasuredgeometry",
+          "Read nativePhenixideals, donothardcodesecondgeometrytable",
+          "Productionlocalaction=changeprotection inheritedthroughcheckpointlineage and auditedaftereachrefine"
+        ],
+        "three_prime_phosphate": "Not implemented; requires real reviewed ownership/naming/link convention and explicitsite-scopedrecipe; do not swap5-primeatomnames.",
+        "free_OH_geotest": "GeoTestdeclareslinearfree5-primeOH/no terminalphosphates;7starts/model were normalized in realpreflight byremoving28P/OP1/OP2/OP3atoms/model beforeMR whilepreservingO5-prime and retainedatomlines. Never reinterpretthis asgenericpermission tostripallterminalphosphates.",
+        "nonstandard": "experimental_passthrough is explicit opt-in, preserves unvalidatedchemistrywarning and doesnotinvent bonds/deletions/atoms.",
+        "prospective_generic_profile_name": "NASpDP is a possible future wrapper name, not an installed general mechanism. The actual verified DP native diagnostic used NASnoOP3 plus NASdp3prime at B:4."
+      }
+    },
+    "verified_cases": {
+      "5CM": {
+        "source_sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858",
+        "wrong_quartet": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2"
+        ],
+        "wrong_primary_degrees": 340.7,
+        "primary_sigma_degrees": 6.3,
+        "period": 1,
+        "correct_alternate_quartet": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2'"
+        ],
+        "alternate_degrees": 2.8,
+        "alternate_original_sigma_degrees": 6.1,
+        "wrong_active_native_residual_approx": 481,
+        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7°, alternate 2.8°, primary sigma 6.3°.",
+        "adopted_diagnostic_derivative_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+        "native_diagnostic": "Native diagnostic PASS; source unchanged; broad production repair is not qualified."
+      },
+      "IMC": {
+        "old_wrong_quartet": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2"
+        ],
+        "old_deviation_degrees": 91.75,
+        "fresh_candidate_sha256": "2a753de61b9f5264645f7a3934e50baa5c117d7178423dcadbb84462274ab7ca",
+        "fresh_candidate_counts": {
+          "atoms": 37,
+          "heavy_atoms": 21,
+          "bonds": 38
+        },
+        "C1prime_N1_target_angstrom": 1.478,
+        "C1prime_N1_sigma_angstrom": 0.0146,
+        "status": "Graph, elements, formal charges, H attachments and stereo passed audit; active torsion geometry is not automatically qualified."
+      },
+      "DF": {
+        "bad_effective_readyset_sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
+        "bad_definition": [
+          "aromatic sugar typing and bonds",
+          "single C4–O4 target 1.384 Å",
+          "single C2–S1 target 1.812 Å",
+          "no active sugar chirality restraints"
+        ],
+        "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
+        "candidate_counts": {
+          "atoms": 36,
+          "heavy_atoms": 21,
+          "hydrogens": 15,
+          "bonds": 37,
+          "angles": 65,
+          "torsions": 19
+        },
+        "targets_angstrom": {
+          "C1prime-C2prime": 1.522,
+          "C3prime-C4prime": 1.53,
+          "C1prime-O4prime": 1.413,
+          "C4=O4": 1.231,
+          "C2=S1": 1.672
+        },
+        "sugar_CIP": {
+          "C1'": "R",
+          "C3'": "S",
+          "C4'": "R"
+        },
+        "P_stereo": "both",
+        "NASpDF": {
+          "deletes": [
+            "OP3",
+            "HOP3",
+            "HO3'"
+          ],
+          "retains": [
+            "HOP2"
+          ],
+          "O3prime_type_energy": "OC2",
+          "native_verified_heavy_bonds": 21,
+          "native_signed_sugar_centres": 3
+        },
+        "charge_caution": "Old effective OP1 formal charge −1 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
+        "generator": {
+          "AceDRG": "334",
+          "database": "12",
+          "RDKit": "2026.09.1",
+          "Servalcat": "0.4.105",
+          "flags": [
+            "-K",
+            "-p"
+          ]
+        },
+        "warning": "Two generator warnings about non-ring atom 3 being marked aromatic are preserved; the final audited graph does not show the corresponding defect."
+      },
+      "DP": {
+        "source_sha256": "ae10aa3e7066082a9e423cae877dca04928ff4089cbd464bbc3590d6148f0f5a",
+        "site": "B:4",
+        "old_angles": {
+          "ordered_triplets": [
+            "C4-N5-C7",
+            "C4-N5-C6",
+            "C7-N5-C6"
+          ],
+          "target_degrees": [
+            109.471,
+            120.772,
+            109.471
+          ],
+          "sigma_degrees": [
+            3,
+            1.58,
+            3
+          ],
+          "target_sum_degrees": 339.714,
+          "old_minimized_degrees": [
+            109.006,
+            123.08,
+            127.914
+          ],
+          "old_third_sigma": 6.15,
+          "Gram_determinant_approx": 0.40233,
+          "interpretation": "Positive-semidefinite three-dimensional angle triple; conflict with the required shared plane/rank."
+        },
+        "seed_parser_failure": {
+          "seed_sha256": "93c4ebaee4467b235998dea62d03dee35de4bfa2c32e86c41b7c5d5a154f0312",
+          "writer_roundtrip": {
+            "atoms": 35,
+            "bonds": 37,
+            "chirality_rows": 4
+          },
+          "AceDRG_single_quoted_prime_parse": {
+            "atoms": 20,
+            "bonds": 21,
+            "chirality_rows_offline": 0
+          },
+          "error": "KeyError on prime-ID parsing; serialize double-quoted primed IDs and validate installed consumer selected atom/bond/chirality fields before generation",
+          "reader_sha256": "ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981"
+        },
+        "candidate_sha256": "6ba5b6a3ce86019c97129dcb5ea08f26a8395f68074c81d4c8ed6f04f7ad6f1f",
+        "candidate_counts": {
+          "atoms": 35,
+          "bonds": 37,
+          "explicit_H_attachments": 12,
+          "formal_charge": -2,
+          "chirality_rows": 4,
+          "angles": 65,
+          "torsions": 21,
+          "positive_sigma_torsions": 15,
+          "zero_sigma_torsions": 6,
+          "plane_groups": 5
+        },
+        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y→N flags changed only for C4–N9, C8–N9, C7–C8 and C7–N5. Twelve H attachments, formal charge −2 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
+        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of −1 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
+        "candidate_angles": {
+          "target_degrees": [
+            108.817,
+            120.468,
+            130.715
+          ],
+          "sigma_degrees": [
+            3,
+            3,
+            3
+          ],
+          "sum_degrees": 360,
+          "Gram_eigenvalues_approx": [
+            0,
+            1.308599,
+            1.691401
+          ],
+          "ring_angle_sums_degrees": [
+            540,
+            720.003
+          ]
+        },
+        "regeneration_scope": "34 of 37 bond targets/sigmas changed; all 65 angle terms, 21 torsions and five planes versus two were audited. This is broad numerical regeneration, not a one-angle patch.",
+        "native_v2": {
+          "receipt": "DP_NATIVE_INTERPRETATION_PASS",
+          "archive_sha256": "6e0f33dab2cd179542e68269a7cca2806058d3b47c214af3d4fabddc189d2cf2",
+          "manifest_sha256": "5989ede3f755decfec0efbd88805feb58e0f44de51995cba2de66264baae6eae",
+          "audit_sha256": "e64d7a633e0ff3f2c42cae30808293a9ea61486ff3ae76a465c34f5f77ed8423",
+          "verified_manifest_entries": 33,
+          "coordinate_atoms_unchanged": 868,
+          "heavy_bonds": 24,
+          "heavy_angles": 35,
+          "heavy_torsions": 19,
+          "active_heavy_torsions": 13,
+          "constant_heavy_torsions": 6,
+          "signed_sugar_centres": 3,
+          "linked_mods": [
+            "NASnoOP3",
+            "NASdp3prime"
+          ],
+          "NASdp3prime_deletes": [
+            "H3"
+          ],
+          "O3prime_type_energy": "OC2",
+          "effective_atoms": 33,
+          "native_atom_charge_fields": null,
+          "incoming_and_outgoing_O3prime_P_target_angstrom": 1.607,
+          "incoming_and_outgoing_sigma_angstrom": 0.012,
+          "proxy_counts": {
+            "bond_simple": 1015,
+            "bond_asu": 0,
+            "angle": 1574,
+            "dihedral": 501,
+            "const_dihedral": 304,
+            "chirality": 158,
+            "planarity": 57,
+            "parallelity": 58
+          },
+          "prior_checker_receipt": "Earlier BLOCKED DP-heavy-torsion-coverage receipt is preserved. All 19 terms were present under verified native canonicalization. Corrected-checker PASS belongs to the new diagnostic; the earlier receipt was not rewritten."
+        },
+        "geometry_trial": {
+          "receipt": "GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW",
+          "archive_sha256": "c215258a895b2997d56b1b08aed42e3acc91a1b7619d828ee9fe48affbc50d2e",
+          "manifest_sha256": "82b8b205b2f5ffd97be5202f1a404dae8d6c1743d544e9a59edec93b0ef21176",
+          "verified_manifest_entries": 56,
+          "model_sha256": "a8345a9e1695adb6cf484c9ee57d644546057e6b738fd91556ff370555981dfb",
+          "fixed_restraint_definition_sha256": "f9348268a2550f4fabef71c81d8aa1f169b89899ae764e36af0965e7e0d137f3",
+          "start_target": 69756.49247601896,
+          "end_target": 1836.7481683793044,
+          "end_gradient_norm": 128.38455813001642,
+          "iterations": [
+            500,
+            256,
+            219,
+            180,
+            128
+          ],
+          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2–5 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
+          "N5_achieved_degrees": [
+            108.115293,
+            119.720831,
+            132.163422
+          ],
+          "N5_achieved_sum_degrees": 359.99955,
+          "N5_max_configured_sigma": 0.483,
+          "DP_heavy_bond_RMS_error_angstrom": 0.00264747,
+          "DP_35angle_residual_sum": 15.10364,
+          "base_plane_RMS_angstrom": [
+            0.001171,
+            0.000927
+          ],
+          "all_chirality_signs_preserved": 158,
+          "zero_chirality_volumes": 0,
+          "backbone_links_preserved": 38,
+          "backbone_link_RMS_error_angstrom": 0.002359327670115229,
+          "custom_bonds_max_sigma": 1.73,
+          "custom_angles_max_sigma": 1.4,
+          "D1_terminal_OP3_preserved": true,
+          "D1_P_OP3_angstrom": 1.480457,
+          "sugar_remaining_angle": {
+            "quartet_or_triplet": [
+              "C2'",
+              "C1'",
+              "O4'"
+            ],
+            "achieved_degrees": 102.377105,
+            "target_degrees": 106.567,
+            "sigma_degrees": 2.03,
+            "approx_configured_sigma": -2.06
+          },
+          "sugar_remaining_torsion": {
+            "id": "sp3_sp3_7",
+            "source_quartet": [
+              "C5'",
+              "C4'",
+              "O4'",
+              "C1'"
+            ],
+            "source_ideal_degrees": 60,
+            "sigma_degrees": 10,
+            "period": 3,
+            "native_quartet": [
+              "C1'",
+              "C4'",
+              "O4'",
+              "C5'"
+            ],
+            "native_ideal_degrees": -60,
+            "native_residual": 17.73648,
+            "interpretation": "Native periodic-potential residual: not a Gaussian sigma score or proof of another dictionary defect."
+          },
+          "user_visual": "2026-10-11 00:59 Europe/London: user reported bases PASS for the exact model; sugars were unassessed by eye.",
+          "diffraction_used": false,
+          "adopted_into_run": false,
+          "geometry_qualification": "PENDING",
+          "convergence_claimed": false
+        }
+      },
+      "generic_linked_H_adjacency": {
+        "incoming_link_target_angstrom": 1.607,
+        "incoming_link_sigma_angstrom": 0.012,
+        "sites": [
+          {
+            "site": "A:6",
+            "code": "IGU",
+            "deletes": [
+              "HO3'",
+              "OP3"
+            ],
+            "retained_OP2_H": null,
+            "component_formal_charge": -1
+          },
+          {
+            "site": "C:10",
+            "code": "IMC",
+            "deletes": [
+              "HO3'",
+              "HOP3",
+              "OP3"
+            ],
+            "retained_OP2_H": "HOP2",
+            "component_formal_charge": 0
+          },
+          {
+            "site": "A:20",
+            "code": "CGY",
+            "deletes": [
+              "H3'2",
+              "HO3'",
+              "OP3"
+            ],
+            "retained_OP2_H": "H1",
+            "component_formal_charge": 0
+          },
+          {
+            "site": "D:3",
+            "code": "DX",
+            "deletes": [
+              "H1",
+              "H6",
+              "OP3"
+            ],
+            "retained_OP2_H": "H14",
+            "component_formal_charge": 0
+          }
+        ],
+        "nonobvious_attachments": [
+          "CGY HO3′ attaches to OP3",
+          "DX H1 attaches to OP3",
+          "DX H6 attaches to O3′"
+        ],
+        "status": "Linkage mechanics PASS; source-specific OP2 H retained; no uniform protonation policy or qualification of all contexts follows."
+      },
+      "terminal_phosphate_protection": {
+        "validated_site": "ED D:1",
+        "automatic_run": "run_010/refine-005",
+        "six_P_centered_angles_sigma_degrees": 1,
+        "geometry_checks": 11,
+        "Rwork": 0.1735,
+        "Rfree": 0.1707,
+        "policy": "Local action=change uses native ideals, normal global X-ray weight and inherited checkpoint restraints. Final audit remains active even under advanced protection opt-out."
+      },
+      "1AP_challenge": {
+        "curated_source_git_blob": "1be06d4bb0848891fd3e7dca22d217dd2ad1b69b",
+        "adaptation": "NON-POLYMER→DNA only; numerical rows, atoms, types, chirality and planes retained.",
+        "failed_generator_connectivity": "Spurious O4′–N1 connection; correct reviewed graph has C1′–N9.",
+        "fixture_policy": "Recover the failed artifact or label a synthetic reproduction. The current curated source is a preservation/control case, not presumed defective."
+      }
+    },
+    "lightweight_integration_recommendations": [
+      "Reuse current input/effective-dictionary manifests, anchored references, atomic immutable outputs, content-based alternate adapter, chemistry and checkpoint inheritance; no parallel monomer database.",
+      "Cheap graph/numerical/reference/stereo/plane algebra and supported chemistry checks run before generators/native processes. Cache stable per-component assessments by sourcehash+policy/schema+consumer/toolversion.",
+      "Site-specific linked assessment is cached separately by component derivativehash+declaredconnection/endstate/symmetry+version; cannotreusecomponentpassasallsitespass.",
+      "ReadySet rawdefinitionsremainprovenance;assessactualeffectivebundleafterprecedenceselection/normalizationbeforecheckpointfreeze/AutoRefine. Pre-ReadySet source assessment catchesbadinput/generationnecessity.",
+      "Native stage shouldpiggyback onexistinginterpretationwhenpossible anduseoneboundedprobeperuniqueeffectivebundle,notonePhenixspawnperresidue.",
+      "Extract effective proxy identity/weights/period/alternates/origin andtargetcoverage at the nativeboundary; unsupportedtypesremainexplicitlimitedcoveragefindings.",
+      "Nofullgeometryminimizationonordinarypassingcases;onlyoptionalbounded diagnosticcandidate work withimmutableparents/frozenrestraintshash.",
+      "Operation-scopedfatal findings: requiredmissingnumericaldefinition,unusableconflictingactiveproxies,changedtargetidentity,missingrequiredatoms/brokenexplicitchemistry,sourceintegrity/FreeRintegrityfailure. Optionalunknowns remainwarnings/unassessed.",
+      "Propose recognized source-hash-scoped repairs only after independent graph/numerical/source and native audits. Deterministic dispatcher/receipts should make commoncases runwithoutAI.",
+      "Assemblyfractures/stickyendroutingbelongseparateDoctorgeometry/connectivitymodule usingdeclared topology/maps/symmetry; highRworkdoesnotbyitselfidentifydictionaryfailure."
+    ],
+    "minimum_receipt_fields": [
+      "schema_version",
+      "rule_id",
+      "status",
+      "scope",
+      "full_component_and_site_identity",
+      "source_seed_generated_linked_effective_model_refs",
+      "ordered_source_precedence",
+      "declared_chemical_terminal_mirror_intent",
+      "versions_and_policy_ids",
+      "atom_map_and_ambiguities",
+      "raw_measurements_and_units",
+      "numeric_parser_tolerances",
+      "scientific_threshold_id_or_unassessed",
+      "proxy_kind_origin_symmetry_target_weight_period_alternates",
+      "allowed_and_observed_field_changes",
+      "failed_attempt_refs",
+      "resource_budget",
+      "termination_reason_gradient_convergence_claim",
+      "coordinate_precision_serialization_effect",
+      "independent_validation_limits",
+      "next_action_and_review_requirement"
+    ],
+    "next_contributor": {
+      "first_job": "Implement a deterministic read-only core and meaningful fixture suite. Use 5CM/DF/DP evidence and 1AP/8RO challenge cases as indexed learning cases; do not implement automatic general chemistry repair.",
+      "before_generators": "Establish independent consumer-reader preflight and source graph/charge/H/stereo mapping.",
+      "later_jobs": [
+        "Bounded source-preserving numerical candidate generation",
+        "Generic site-aware linked adapter",
+        "Achieved geometry, termination and sugar analysis",
+        "Optional new refinement with original observations and frozen Free-R",
+        "Guided Scout/Topo assembly stitching"
+      ],
+      "open_reviews": [
+        "DP sugar native periodic residual and minimizer termination",
+        "Mixed OP2 protonation remains scientifically unqualified",
+        "Real end/nick/cyclic/symmetry-linked generic fixtures",
+        "Independent source-native P2",
+        "Geometry-diverse real P5",
+        "Fresh ordinary full-auto acquisition without preselected candidate bundles"
+      ]
+    }
+  },
+  "repair_policy": {
+    "separate_artifacts": [
+      "untouched original source",
+      "field-level derived seed",
+      "generated candidate",
+      "linked/site derivative",
+      "interpreted effective bundle",
+      "coordinate child",
+      "validation receipt"
+    ],
+    "default_mode": "read-only assessment; no scientific file mutation",
+    "qualified_automatic_operations": [
+      "consumer-compatible quoting with exact atom/bond/charge/chirality agreement",
+      "the existing supported C2e/C3e alternative normalization with recorded primary sigma semantics",
+      "exact reviewed identity/atom-reference/link transformations under a hash/versioned policy",
+      "site-context leaving-group/H/type preparation only after incoming/outgoing connectivity and terminal/nick intent are verified"
+    ],
+    "requires_declared_scientific_intent": [
+      "new target chemistry or label mapping without a reviewed bridge",
+      "tautomer/protonation or unknown phosphate charge",
+      "unfamiliar backbone/metal coordination",
+      "ambiguous atom mapping",
+      "new covalent arm connection or symmetry recut"
+    ],
+    "forbidden_shortcuts": [
+      "make every planar angle sum 360",
+      "rename every C2 to C2prime or C5 to C5prime",
+      "zero/delete all torsions or chirality to suppress conflicts",
+      "force one sugar pucker",
+      "replace bond-order ambiguity using coordinate distance alone",
+      "strip every phosphate hydrogen",
+      "globally reduce X-ray weight for a local chemistry defect",
+      "accept every generator exit zero",
+      "equate READY with scientifically approved",
+      "reinterpret an old completed run in place",
+      "pick changed-restraint models by comparing their raw objective totals"
+    ],
+    "repair_gate_sequence": [
+      "freeze intent and exact sources",
+      "source/consumer graph agreement",
+      "candidate numerical and representation audit",
+      "site-linked chemistry audit",
+      "native interpretation/effective-proxy coverage",
+      "bounded fixed-definition geometry trial where needed",
+      "same-observations/same-FreeR diffraction refinement",
+      "inspect/select under existing checkpoint policy"
+    ],
+    "ordinary_passes": "Continue automatically for supported passing cases; do not make every ligand require an AI or a manual prompt.",
+    "unknowns": "Emit explicit scoped findings. Nonfatal unfamiliar numerical layouts can remain warning/review under existing native policy; do not claim covered chemistry. Fatal identity/parser/corrupt or dangling atom references block the affected preparation. Calibrate additional scientific blockers against controls before deployment."
+  },
+  "report_contract": {
+    "status": "PROPOSED_SCHEMA_NOT_RUNTIME_API",
+    "schema_version": 1,
+    "top_level_fields": [
+      "document_kind",
+      "mode",
+      "policy_id",
+      "policy_version",
+      "started_utc",
+      "finished_utc",
+      "source_manifest",
+      "component_findings",
+      "site_findings",
+      "native_effective_manifest",
+      "coverage",
+      "coordinate_geometry",
+      "repair_proposals",
+      "applied_transformations",
+      "validation",
+      "uncertainty",
+      "status"
+    ],
+    "finding_fields": [
+      "rule_id",
+      "finding_id",
+      "scope",
+      "component_id",
+      "site_id",
+      "atom_ids",
+      "symmetry_operators",
+      "severity",
+      "evidence_state",
+      "raw_measurements",
+      "units",
+      "tolerances",
+      "source_artifact_refs",
+      "field_differences",
+      "native_proxy_refs",
+      "independence",
+      "proposed_action",
+      "automatic_eligibility",
+      "unsupported_reason"
+    ],
+    "evidence_states": [
+      "MEASURED_NATIVE",
+      "MEASURED_OFFLINE",
+      "DOCUMENTED_HISTORICAL",
+      "USER_REPORTED",
+      "INFERRED",
+      "UNKNOWN",
+      "NOT_ASSESSED"
+    ],
+    "severities": [
+      "info",
+      "warning",
+      "review",
+      "fatal"
+    ],
+    "receipt_statuses": [
+      "ASSESSMENT_PASS_WITH_DECLARED_SCOPE",
+      "ASSESSMENT_REVIEW",
+      "ASSESSMENT_BLOCKED",
+      "REPAIR_PROPOSED",
+      "QUALIFIED_PREPARATION_PASS",
+      "NATIVE_INTERPRETATION_PASS",
+      "GEOMETRY_REVIEW",
+      "UNSUPPORTED"
+    ],
+    "scope_separation": "Report component source, generated candidate, effective per-site polymer state and achieved coordinates separately; no single unqualified all-green chemistry flag.",
+    "artifact_ref_example": {
+      "anchor": "run",
+      "relative_path": "PostMR/Restraints/curated_ligands.cif",
+      "sha256": "actual-content-hash",
+      "bytes": "actual-size"
+    },
+    "site_identity": "model ID + chain + residue number + insertion code + altloc + component ID + atom name; symmetry mate/frame retained for links and contacts",
+    "model_context": "full atom inventory and mapping, original and serialization precision, cell/symmetry, terminal/backbone/pair/stacking intent, reflection and Free-R authority",
+    "uncertainty": "Absent formal charge is unknown, not zero. Missing sigma is not a default reviewed sigma. Missing geometry is not zero residual. Missing Friedel comparisons are not demonstrated consistency.",
+    "human_summary": "Small actionable card: what was actually checked, important findings, supported automatic next step, unresolved question, exact artifact/checkpoint to inspect."
+  },
+  "lightweight_execution": {
+    "baseline": "Small deterministic graph/field analyzers using existing CIF readers; reuse installed Phenix/CCTBX for authoritative native interpretation and potential semantics. Do not require an LLM or a large chemistry package at every launch.",
+    "passes": [
+      "cheap parser/reference/graph inventories first",
+      "numerical/torsion/chirality/plane checks second",
+      "one shared native interpretation of the exact final effective bundle where possible",
+      "generation/minimization only for qualified candidate operations"
+    ],
+    "cache_keys": [
+      "original source and derived candidate hashes",
+      "exact atom map and graph representation policy",
+      "per-site incoming/outgoing/terminal/nick/backbone context",
+      "ordered source precedence and CIF/mod/link hashes",
+      "pair/stacking/geometry edits and selections",
+      "native code/tool versions and interpreter flags",
+      "coordinate hash for coordinate-dependent assessments",
+      "observation/FreeR hash for diffraction-dependent results"
+    ],
+    "cache_boundaries": [
+      "component-source checks reusable per content/policy",
+      "site-linked checks keyed by context",
+      "native proxy snapshots invalidated by any effective definition/precedence/model/symmetry change",
+      "geometry results invalidated by coordinates or manager definitions",
+      "do not rerun generation on an unchanged passing component"
+    ],
+    "failure_isolation": "Per-component/site and per-dataset findings; one problematic ligand does not erase other evidence or stop independent campaign members.",
+    "budgets": "Versioned time/atom/component/candidate/minimization limits with an explicit STOP/REVIEW receipt. Set defaults after profiling representative cases; avoid arbitrary universal sigma thresholds.",
+    "dependencies": "No new mandatory dependency in the first slice. A descriptor parser or generator adapter can be optional and versioned; failure/unavailability remains visible.",
+    "computation_limits": "Preserve supported native semantics rather than reproducing the entire Phenix force field in a second implementation."
+  },
+  "implementation_slices": [
+    {
+      "order": 1,
+      "name": "Freeze exact fixtures and evidence adapter",
+      "deliverable": "Recover 5CM/DF/DP plus valid native CCD controls and the actual historical 8RO/DE/1AP artifacts. Capture source hashes and declared intended chemistry. Label synthetic reproductions explicitly. Build portable graph/term/proxy snapshots."
+    },
+    {
+      "order": 2,
+      "name": "Read-only source assessor",
+      "deliverable": "Implement PROV/GRAPH/CHEM/NUM and ordered source TOR/STEREO/PLANE checks with structured findings, unsupported states and exact parser/consumer agreement. CLI first; no mutations or new global gate."
+    },
+    {
+      "order": 3,
+      "name": "Native effective and site-context assessor",
+      "deliverable": "Add LINK/NATIVE/COVER using a shared native interpretation of the exact ReadySet/effective-restraints result; preserve incoming and outgoing state, NARestraints custom coverage and native proxy semantics."
+    },
+    {
+      "order": 4,
+      "name": "ReadySet/PostMR integration",
+      "deliverable": "Hook source screening before ReadySet and effective assessment after final source resolution before readiness. Passing supported cases continue with receipts; preserve existing behavior for clearly unsupported but allowed native paths."
+    },
+    {
+      "order": 5,
+      "name": "Qualified bounded preparation/fixer",
+      "deliverable": "Policy/hash-versioned transformations and optional generator adapters; source-preserving seeds, separate candidates and site derivatives, effective native revalidation. Test representative valid controls and replay/relocation."
+    },
+    {
+      "order": 6,
+      "name": "Doctor geometry/connectivity module",
+      "deliverable": "Add model-side GEOM/ASSEMBLY evidence before extra refinement strategies; integrate Scout mapping and user-declared routing/symmetry preview. Begin with read-only connection diagnosis, then reviewed bounded stitching as immutable children."
+    },
+    {
+      "order": 7,
+      "name": "Campaign recipe and user experience",
+      "deliverable": "One frozen recipe routes eligible passing and repaired cases through normal refinement, Doctor and exact Coot inspection; no hidden selection or weakening of gates. Benchmark overhead and recovery on real held-out chemistry."
+    }
+  ],
+  "acceptance_strategy": {
+    "test_dimensions": [
+      "source versus consumer parse",
+      "graph/order versus aromatic annotation",
+      "missing versus zero charge/targets",
+      "proper versus improper torsion",
+      "source order versus cctbx canonical signs",
+      "active versus zero-weight inventory",
+      "interior versus exterior planar branch",
+      "finite-width compromise versus exact incompatibility",
+      "CIP label versus ordered signed volume",
+      "isolated versus incoming/outgoing linked site",
+      "free5OH versus requested5phosphate versus true nick",
+      "native requested versus actually applied proxy multisets",
+      "dictionary versus coordinate versus assembly defect",
+      "same-definitions versus changed-definitions objective",
+      "runtime PASS versus scientific approval"
+    ],
+    "negative_controls": [
+      "valid canonical DNA/RNA and supported modified CCD dictionaries",
+      "legitimate metal/improper terms marked unsupported instead of deleted",
+      "valid exterior planar arrangement",
+      "periodic angle wrapping and zero-weight annotation",
+      "supported C2e/C3e alternative with unequal source sigmas",
+      "true nick that must remain unjoined",
+      "protonated and anionic phosphate states with explicit intent",
+      "unrelated atom-name primes without a defect"
+    ],
+    "integration_checks": [
+      "preserve original files byte-for-byte",
+      "portable anchored replay after original host paths are absent",
+      "unknown source change fails exact repair policy",
+      "repeat launch is idempotent and does not duplicate children",
+      "native effective manager retains custom pairs/stacking and other components",
+      "same authoritative observations/FreeR after refinement",
+      "maps/models shown belong to exact requested/current/inspection checkpoint"
+    ],
+    "generalization": "Use the same rules on held-out components before adding component-specific exceptions. Do not train success criteria solely on the known three failures.",
+    "calibration": "Separate exact parser/algebraic invariants from tolerance-dependent scientific decisions; choose reviewed thresholds using valid controls and recorded false positives."
+  },
+  "open_questions": [
+    "Recover exact historical failed 8RO/DE and 1AP source/candidate hashes and intended chemical graphs; no blind 8RO-to-DE equivalence.",
+    "Resolve source-specific phosphate protonation/charge with declared chemistry and native linkage evidence; pH alone is not an automatic atom/H decision.",
+    "Complete numerical sugar/termination qualification on existing combined/DP trials; base visual PASS did not assess sugars and target reduction did not establish convergence.",
+    "Specify ReadySet supplement precedence and effective-context API boundaries before wiring readiness gates; do not break frozen legacy input handling.",
+    "Calibrate finite-width plane/angle conflict classification with legitimate near-compatible controls.",
+    "Determine the portable minimum native proxy snapshot needed for supported components without requiring every optional proxy API.",
+    "Recover exact GeoTest checkpoint/arm ranges and symmetry-mate routing for the first guided stitching case.",
+    "Validate reviewed generic incoming/outgoing linked chemistry beyond the diagnostic four-site and DP/DF cases.",
+    "A reviewed 3-prime phosphate or nonstandard backbone needs a real atom-ownership/link example; do not generalize by swapping names.",
+    "Decide stable external CLI/recipe names only after the read-only module boundary is implemented; names in this blueprint are proposals."
+  ],
+  "first_session_recipe": [
+    "Read repository AGENTS.md, current handoff and the pipeline/evidence sections in this packet; inspect Git status before any edit.",
+    "Do not pull over the laptop frozen diagnostic state. Use an isolated development checkout with declared integration target.",
+    "Inventory the actual frozen 5CM/DF/DP dictionaries and native managers; verify hashes and classify source/generator/effective roles.",
+    "Implement one small read-only graph/reference/numerical finding slice with general valid controls, using existing parser/compatibility APIs.",
+    "Run the focused regressions and full suite, then inspect a native structured report on one known failure plus one valid control.",
+    "Update the authoritative methods/handoff/changelog with exact measured scope. No candidate adoption or coordinate repair is implied by assessor completion.",
+    "For native validation, run one declared case at a time and record exact tool versions, outputs and chemical intent; preserve unresolved scientific decisions explicitly."
+  ],
+  "authoritative_document_snapshot_refs": [
+    {
+      "anchor": "repository",
+      "relative_path": "docs/cif-restraint-audit-methods.md",
+      "sha256": "f25c89e4a266bcd67191f32396693d156ea027571bde1637eaecd613720d00f5",
+      "bytes": 26866,
+      "role": "frozen_documentation_provenance_current_contract_is_linked_markdown",
+      "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "docs/modified-component-preparation.md",
+      "sha256": "b353210399e870f4fc4109e84a32f9b057c571d1f75848393d87ccd8e7fd14ac",
+      "bytes": 35298,
+      "role": "frozen_documentation_provenance_current_contract_is_linked_markdown",
+      "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "docs/native-modified-pair-live-validation.md",
+      "sha256": "fa750b8d5e46cedfcd65fdc1b1ab21c764a51ce87a9c7fbf399b21ee751dc61c",
+      "bytes": 34236,
+      "role": "frozen_documentation_provenance_current_contract_is_linked_markdown",
+      "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "docs/backbone-chemistry.md",
+      "sha256": "d434171825ed7a4c8d9605c283e14f2d62c1355a00d8ce357dca2f3e29b1b699",
+      "bytes": 13289,
+      "role": "frozen_documentation_provenance_current_contract_is_linked_markdown",
+      "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "docs/development-handoff.md",
+      "sha256": "0f85e14c2ac7b9aa922855bb24707692f87d0b06fb456b44cea219fd20794b40",
+      "bytes": 30491,
+      "role": "frozen_documentation_provenance_current_contract_is_linked_markdown",
+      "snapshot_commit": "a5c8f3088202be13b8ae256559a571ccf4c43bf8"
+    }
+  ],
+  "source_code_index": [
+    {
+      "anchor": "repository",
+      "relative_path": "src/nasolve/postmr.py",
+      "sha256": "acfa6d126cf85fda921534854408327a66385f27407cc6c209f6883172b946a2",
+      "bytes": 88321
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "src/nasolve/curated_ligands.py",
+      "sha256": "2a23b76f611ce4125b6fce91f0856f6acf868b3def30b25d31443c9c3da5073f",
+      "bytes": 20869
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "src/nasolve/dictionary_compatibility.py",
+      "sha256": "bfbb108974ce9ab1085ed37c473f58730b5f7018e77a7fd0334b413ae801e85a",
+      "bytes": 6910
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "src/nasolve/phosphate.py",
+      "sha256": "c4e5392b6b26a3afe43fc85098ffde411915be0e8270ca64f316698cf562a314",
+      "bytes": 23908
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "src/nasolve/autorefine.py",
+      "sha256": "654d87c521f03a355978f1c0370a967c1cea6b1a0a38f92b82e8e22602ab44e2",
+      "bytes": 80895
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "src/nasolve/checkpoints.py",
+      "sha256": "4a22f8406f71fa19e3adc1eb337ac329123803742d0c5981cc2287f9e5b969d6",
+      "bytes": 26398
+    },
+    {
+      "anchor": "repository",
+      "relative_path": "src/nasolve/refine_doctor.py",
+      "sha256": "490df74d41530e4e2e22dc8e5cac3c274b32a5caac56b8864fd424652b45dc7a",
+      "bytes": 35372
+    }
+  ]
+}

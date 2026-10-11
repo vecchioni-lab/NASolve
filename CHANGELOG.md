@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Machine-readable CIF Doctor implementation map
+
+- Add the scientific/engineering blueprint covering exact chemical cases,
+  deterministic assessment rules, bounded repair policy, ReadySet/PostMR hooks,
+  site-linked chemistry, effective native proxies, geometry/stitching, caching
+  and regression controls. Link it from the methods, documentation map and
+  current handoff. Preserve snapshot hashes without duplicating active contracts.
+- Keep collaboration/personality notes outside this repository document.
+  Distinguish the 5CM C2/C2′ torsion defect from the 5IU C5/C5′ reader collision.
+  This is implementation design, not a new runtime command, schema or repair.
+
 ### X11_18 alternative symmetry interpretation
 
 - Record the user's analytical preference for X11_18 P4₃: inspection Rfree

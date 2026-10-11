@@ -58,6 +58,10 @@ and the generalized restraint assessor, using Scout/Topo primitives.
    User decision **2026-10-11**: resume next session with a deterministic,
    read-only assessor from the [recorded methods](cif-restraint-audit-methods.md),
    then separately validated, bounded preparation/repair and continuation.
+   The [machine-readable implementation map](cif-restraint-doctor-implementation.json)
+   preserves the scientific cases, checks, ReadySet/PostMR placement, repair
+   boundaries, cache keys and regression plan. It is design, not implemented
+   recovery; collaboration/personality notes remain outside the repository.
    The 5CM/DF/DP evidence is sufficient to implement the first assessment slice;
    it does not yet establish general automatic repair. This proposed restraint
    doctor is distinct from the existing refinement-strategy `refine-doctor`.

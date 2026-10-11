@@ -10,6 +10,16 @@ the current trial. [The handoff](development-handoff.md) owns scheduling;
 and source precedence; [the native ledger](native-modified-pair-live-validation.md)
 owns exact trial receipts, versions, hashes and historical outcomes.
 
+The [machine-readable implementation map](cif-restraint-doctor-implementation.json)
+captures scientific evidence, exact pipeline hooks, repair/receipt policies,
+lightweight execution and regression controls for the next contributor. It
+contains no personality handoff. Its snapshot references preserve provenance;
+this document and the linked contracts retain authority over current behavior.
+The first integration should wrap ReadySet: source screening before execution,
+then assessment of the selected effective dictionaries and native interpretation
+after ReadySet, before PostMR readiness. Existing-checkpoint assessment remains
+read-only; any accepted preparation/coordinate repair creates an immutable child.
+
 ## Purpose and boundaries
 
 Turn repeatable scientific debugging into recorded checks: given component
