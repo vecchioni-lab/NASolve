@@ -101,6 +101,17 @@ def _review_zip(session):
     return destination
 
 
+def _candidate_status(candidates):
+    statuses = [candidate["status"] for candidate in candidates.values()]
+    if statuses and all(status == "CANDIDATE_REVIEW" for status in statuses):
+        return "CANDIDATES_AWAITING_REVIEW"
+    if "CANDIDATE_REVIEW" in statuses:
+        return "PARTIAL_CANDIDATES_AWAITING_REVIEW"
+    if statuses and all(status == "REJECTED" for status in statuses):
+        return "CANDIDATES_REJECTED"
+    return "GENERATION_FAILED"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", type=Path, default=Path.home() / (
@@ -186,7 +197,7 @@ def main():
                     environment=phenix.environment, phenix_version=phenix.version,
                     timeout_seconds=args.timeout_seconds)
                 print(code + ": " + str(candidates[code]["status"]), flush=True)
-            receipt.update(status="CANDIDATES_AWAITING_REVIEW", candidates=candidates)
+            receipt.update(status=_candidate_status(candidates), candidates=candidates)
         receipt["preserved_inputs"] = "UNCHANGED"
         for record in snapshots.values():
             if _sha(Path(record["historical_source"]).read_bytes()) != record["sha256"]:

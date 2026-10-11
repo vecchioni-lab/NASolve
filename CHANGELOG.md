@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Installed eLBOW option compatibility
+
+- Probe the selected eLBOW executable's help before numerical generation;
+  select exact supported dashed/underscored aliases while preserving initial
+  geometry, naming, hydrogen, chirality and optimization controls. Record help
+  output, supported definitions, selected aliases and executable identity.
+- Reject unavailable controls, failed help or capability races before chemistry;
+  keep the source/frozen seed unchanged. Correct probe summaries so failed
+  generation does not appear as a candidate awaiting review. Preserve the
+  returned Phenix 2.2.1-6174 CLI failure as separate native evidence.
+
 ### General generated-dictionary quarantine and numerical candidates
 
 - Generalize the returned IGU defect into exact coincident bonded-heavy-atom

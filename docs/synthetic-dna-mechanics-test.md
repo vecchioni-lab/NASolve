@@ -158,6 +158,36 @@ probe, candidate review and linked-site interpretation remain pending. The
 one-click campaign is therefore **not yet fixed or qualified** for this
 general source-generation case.
 
+### Returned candidate probe: installed CLI incompatibility
+
+The independent IGU candidate probe has now returned from
+`NASolve-live-tests/cif-generation-probe-fp4afs_7`, candidate directory
+`candidates/cif-generation-9_t3qtnl`. It preserved the original failed run,
+all selected inputs and the frozen **37-atom, formal-charge-0** IGU source.
+The independent supplier-ideal naming/geometry seed was written, but native
+eLBOW exited **2** after **2.071012 seconds** with
+`no such option: --initial-geometry`. No `candidate.cif` was produced. This
+is a wrapper/installed-command-line compatibility failure; optimization,
+generated numerical quality and new candidate chemistry were **not assessed**.
+
+The returned archive and all **18** manifest entries were verified. The exact
+failure, command, source/seed hashes and unassessed layers are recorded in
+[the CLI compatibility evidence](elbow-cli-compatibility-evidence.json).
+The top-level probe receipt says `CANDIDATES_AWAITING_REVIEW`, but its actual
+IGU generation receipt says `FAILED`; the latter and native log define the
+outcome. That aggregate-summary bug must be corrected without rewriting the
+failed receipt or presenting an absent candidate for review.
+
+The general compatibility correction consults the **installed** eLBOW
+`--help` before assembling the command, accepts only advertised option aliases
+that preserve the required naming, initial-geometry, hydrogen, chirality and
+optimization semantics, and retains the help evidence and exact chosen command.
+Missing required capability must stop before generation; it must not silently
+drop the independent seed or optimization request. Installed help output was
+not included in this returned bundle. The corrected next native attempt,
+candidate inspection, linked-site qualification and full campaign continuation
+remain **pending**; the prior zero-bond ReadySet blocker is unchanged.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

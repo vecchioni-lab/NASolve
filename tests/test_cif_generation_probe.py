@@ -293,3 +293,10 @@ def test_repeated_inspection_keeps_distinct_probe_receipts(delivered):
     assert first_zip.read_bytes() == first_bytes
     assert (first_zip.parent / "probe_receipt.json").read_bytes() == first_receipt
     _preserved(delivered)
+
+
+@pytest.mark.parametrize("statuses", [("FAILED",), ("REJECTED",), ("FAILED", "REJECTED")])
+def test_failed_generation_never_claims_candidates_are_awaiting_review(statuses):
+    module = _module(ROOT / "scripts/cif_generation_probe_template.py", "probe_summary")
+    summary = module._candidate_status({str(i): {"status": status} for i, status in enumerate(statuses)})
+    assert "AWAITING_REVIEW" not in summary

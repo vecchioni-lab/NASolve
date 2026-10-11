@@ -95,13 +95,16 @@ not fetch a newer dictionary over the network.
 
 Explicit `generate-candidate` is a separate native operation. It freezes the
 source, creates an exact-name initial-geometry template from complete supplier
-ideal coordinates, and requests eLBOW optimization with hydrogen addition off
+ideal coordinates, checks the installed generator's advertised options, and
+requests eLBOW optimization with hydrogen addition off
 and source chirality retained. The candidate is assessed and compared with the
 source, including explicit hydrogen, charge and stereochemical differences.
 Missing/unrepresentable seed data, invalid targets or contradictory chemistry
 remain rejected or under review. Experimental MR coordinates and previous
 prepared numerical dictionaries are not used to invent replacement targets.
-Logs, commands, versions and hashes remain in a fresh candidate folder.
+Logs, commands, versions, capability evidence and hashes remain in a fresh
+candidate folder. A CLI incompatibility is recorded separately from a chemistry
+or optimization failure; unsupported required controls stop generation.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -198,6 +201,7 @@ The figure depicts the implemented assessment layer; native proxy validation,
 achieved model geometry and assembly stitching remain future extensions.
 Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
+Explicit generation records installed-tool capability evidence before chemistry.
 
 ## Primary references
 

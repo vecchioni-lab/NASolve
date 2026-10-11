@@ -22,8 +22,17 @@ from typing import Mapping
 from .cif_doctor import assess_dictionaries, compare_dictionaries, _number
 from .ligand_profiles import _blocks
 
-POLICY_ID = "cif-independent-elbow-candidate-v1"
+POLICY_ID = "cif-independent-elbow-candidate-v2"
 ELBOW_DOCUMENTATION = "https://phenix-online.org/documentation/reference/elbow.html"
+_OPTION_ALIASES = {
+    "id": ("--id",), "output": ("--output",), "template": ("--template",),
+    "initial_geometry": ("--initial-geometry", "--initial_geometry"),
+    "add_hydrogens": ("--add-hydrogens", "--add_hydrogens"),
+    "chiral": ("--chiral",), "opt": ("--opt",),
+}
+_HELP_SECTION = re.compile(r"^(?:options|optional arguments|optional-arguments|named arguments):\s*$", re.I)
+_OPTION_START = re.compile(r"^(\s+)(?:-[A-Za-z0-9?](?:[ =][A-Z][A-Z0-9_]*)?\s*,\s*)?--[A-Za-z][A-Za-z0-9_-]*(?=$|[ =,\t])")
+_OPTION_TOKEN = re.compile(r"(?<!\S)(--[A-Za-z][A-Za-z0-9_-]*)(?=$|[ =,\t])")
 _CHEMICAL_FIELDS = {
     "atom_elements", "declared_charge_fields", "atom_stereo_declarations",
     "bond_orders", "bond_aromatic_declarations", "bond_stereo_declarations",
@@ -140,6 +149,10 @@ class _UnsupportedSeed(ValueError):
     pass
 
 
+class _UnsupportedGenerator(ValueError):
+    pass
+
+
 def _ideal_seed(source: Path, code: str) -> tuple[str, dict]:
     """Represent exact CCD ideal atoms in PDB, refusing lossy fallbacks."""
     if not re.fullmatch(r"[A-Za-z0-9]{1,3}", code):
@@ -223,11 +236,105 @@ def _terminate_owned_group(process: subprocess.Popen) -> None:
     process.wait(timeout=5)
 
 
+def _help_option_definitions(help_text: str) -> dict[str, bool | None]:
+    """Read exact definitions, excluding examples and wrapped description text.
+
+    Runtime optparse/argparse help has an explicit options section. Only the
+    least-indented option-definition rows are used; deeper continuations are
+    descriptions. Value placeholders are required for valued semantics.
+    """
+    rows = []
+    section = False
+    for line in help_text.splitlines():
+        if _HELP_SECTION.fullmatch(line.strip()):
+            section = True
+            continue
+        if section and line and not line[0].isspace():
+            section = False
+        if not section:
+            continue
+        match = _OPTION_START.match(line)
+        if match:
+            signature = re.split(r"\s{2,}", line.strip(), maxsplit=1)[0]
+            rows.append((len(match.group(1)), signature))
+    if not rows:
+        return {}
+    indentation = min(row[0] for row in rows)
+    definitions = {}
+    for depth, signature in rows:
+        if depth != indentation:
+            continue
+        for token in _OPTION_TOKEN.finditer(signature):
+            remainder = signature[token.end():]
+            valued = bool(re.match(r"(?:=|[ \t]+)(?:[A-Z][A-Z0-9_]*|<[^>]+>|\{[^}]+\})(?=$|[, \t])", remainder))
+            option = token.group(1)
+            if option in definitions and definitions[option] != valued:
+                # Ambiguous usage is never silently treated as compatible.
+                definitions[option] = None
+            else:
+                definitions[option] = valued
+    return definitions
+
+
+def _generator_capabilities(executable: Path, work: Path,
+                            environment: Mapping[str, str], timeout_seconds: float,
+                            phenix_version: str) -> dict:
+    timeout = min(float(timeout_seconds), 20.0)
+    command = [str(executable), "--help"]
+    clock = time.monotonic()
+    receipt = {"schema_version": 1, "status": "UNSUPPORTED_GENERATOR", "command": command,
+               "phenix_version": phenix_version, "timeout_seconds": timeout,
+               "returncode": None, "selected_aliases": {}, "required_semantics": list(_OPTION_ALIASES),
+               "definition_parser": "exact-installed-help-option-definitions-v1"}
+    try:
+        receipt["executable_sha256"] = _sha(executable.read_bytes())
+        with (work / "elbow_help.log").open("xb") as log:
+            process = subprocess.Popen(command, cwd=work, env=dict(environment),
+                stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+                start_new_session=os.name == "posix")
+            try:
+                receipt["returncode"] = process.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                _terminate_owned_group(process)
+                receipt.update(reason="help-timeout", returncode=process.returncode)
+            except BaseException:
+                _terminate_owned_group(process)
+                raise
+            else:
+                if receipt["returncode"] != 0:
+                    receipt["reason"] = "help-nonzero-exit"
+                else:
+                    definitions = _help_option_definitions((work / "elbow_help.log").read_text(encoding="utf-8", errors="replace"))
+                    receipt["supported_option_definitions"] = definitions
+                    missing = []
+                    for semantic, aliases in _OPTION_ALIASES.items():
+                        expected_value = semantic != "opt"
+                        selected = next((option for option in aliases if definitions.get(option) is expected_value), None)
+                        if selected is None:
+                            missing.append(semantic)
+                        else:
+                            receipt["selected_aliases"][semantic] = selected
+                    receipt["unsupported_semantics"] = missing
+                    if missing:
+                        receipt["reason"] = "required-option-semantics-unavailable"
+                    else:
+                        receipt["status"] = "SUPPORTED"
+        if _sha(executable.read_bytes()) != receipt["executable_sha256"]:
+            receipt.update(status="UNSUPPORTED_GENERATOR", reason="executable-changed-during-help")
+    except OSError as exc:
+        receipt.update(reason="help-execution-error", error=f"{type(exc).__name__}: {exc}")
+    receipt["elapsed_seconds"] = round(time.monotonic() - clock, 6)
+    if (work / "elbow_help.log").is_file():
+        receipt["help_output"] = _artifact(work / "elbow_help.log", work)
+    return receipt
+
+
 def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
                              executable: Path, *, environment: Mapping[str, str],
                              phenix_version: str, timeout_seconds: float = 600) -> dict:
     """Run explicitly requested eLBOW generation in a fresh preserved folder.
 
+    Required option spelling/value support is discovered from installed help.
     The documented AM1 optimization is requested; the exact installed backend
     and its result remain evidence in the raw log. There is no target invention,
     dictionary adoption, linked-site transformation or ReadySet retry here.
@@ -255,6 +362,7 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
               "source": _artifact(snapshot, work), "phenix_version": str(phenix_version),
               "executable_provenance": str(executable), "documentation": ELBOW_DOCUMENTATION,
               "command": None, "seed": None, "execution": {"status": "NOT_RUN", "started_at": start},
+              "generator_capabilities": None,
               "inspection": inspect_component_generation(snapshot, None, code),
               "automatic_adoption": False, "readyset_retry": "NOT_RUN",
               "native_proxy_validation": "NOT_RUN", "linked_site_validation": "NOT_RUN"}
@@ -269,9 +377,15 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
             with seed.open("x", encoding="ascii") as handle:
                 handle.write(seed_text)
             result["seed"] = {**seed_receipt, "artifact": _artifact(seed, work)}
-            command = [str(executable), "source.cif", f"--id={code}", "--output=candidate",
-                       "--template=source_ideal.pdb", "--initial-geometry=source_ideal.pdb",
-                       "--add-hydrogens=False", "--chiral=retain", "--opt"]
+            capabilities = _generator_capabilities(executable, work, environment, timeout_seconds, str(phenix_version))
+            result["generator_capabilities"] = capabilities
+            if capabilities["status"] != "SUPPORTED":
+                raise _UnsupportedGenerator("Installed eLBOW cannot preserve the required generation semantics: "
+                                            + capabilities.get("reason", "unknown"))
+            flags = capabilities["selected_aliases"]
+            command = [str(executable), "source.cif", f"{flags['id']}={code}", f"{flags['output']}=candidate",
+                       f"{flags['template']}=source_ideal.pdb", f"{flags['initial_geometry']}=source_ideal.pdb",
+                       f"{flags['add_hydrogens']}=False", f"{flags['chiral']}=retain", flags['opt']]
             result["command"] = command
             with (work / "elbow.log").open("xb") as log:
                 process = subprocess.Popen(command, cwd=work, env=dict(environment),
@@ -295,6 +409,10 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
                     else:
                         result["inspection"] = inspect_component_generation(snapshot, work / "candidate.cif", code)
                         result["status"] = result["inspection"]["status"]
+        except _UnsupportedGenerator as exc:
+            result["status"] = "REJECTED"
+            result["execution"]["status"] = "UNSUPPORTED_GENERATOR"
+            error = str(exc)
         except _UnsupportedSeed as exc:
             result["status"] = "REJECTED"
             result["execution"]["status"] = "UNSUPPORTED_INPUT"

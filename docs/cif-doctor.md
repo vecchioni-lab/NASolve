@@ -31,8 +31,15 @@ Generation uses the frozen chemical CIF and a naming/initial-geometry PDB
 derived only from complete source ideal coordinates and integer formal charges.
 The explicit template supports component IDs of up to three characters and
 atom names of up to four ASCII characters; missing or unrepresentable data are
-reported, never inferred from the fitted model. eLBOW receives `--opt`,
-`--add-hydrogens=False`, `--chiral=retain` and the independent template.
+reported, never inferred from the fitted model. The generation-v2 adapter first
+records a bounded `phenix.elbow --help` check from that exact executable. It
+selects supported option spellings and verifies that each required option takes
+a value or is a switch as appropriate. Initial geometry and hydrogen controls
+may use dashed or underscored aliases; no required control is silently omitted.
+Unsupported or failed help checks stop before chemistry with
+`UNSUPPORTED_GENERATOR`. Help logs, hashes, selected aliases and executable
+identity remain in the receipt. eLBOW then receives explicit optimization,
+hydrogen addition disabled, retained chirality and the independent template.
 The original CIF, failed ReadySet output and prior numerical resources are
 never overwritten or used as a source of invented numerical targets.
 
@@ -47,7 +54,8 @@ linked-site chemistry remain separate qualification steps.
 
 The source-bundled `probe_cif_generation.py` inspects an existing failed run,
 selects invalid non-curated generic components by findings, and invokes this
-same candidate API. It writes a review ZIP into a fresh external session while
+same candidate API. Its summary distinguishes failed/rejected generation from
+an actual candidate awaiting review. It writes a review ZIP into a fresh external session while
 preserving the original run. `--inspect-only` skips native generation.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or

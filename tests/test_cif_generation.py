@@ -55,10 +55,26 @@ def inputs(tmp_path, code="ZZZ", *, generated=None):
     return source, fixture
 
 
-def program(tmp_path, body=None):
+HELP = """Usage: phenix.elbow [options]
+
+Options:
+  -h, --help            Show help
+  --id=ID              Component identifier
+  --output=OUTPUT      Output prefix
+  --template=TEMPLATE  Exact atom naming
+  --initial-geometry=FILE  Initial geometry
+  --add-hydrogens=BOOL  Control hydrogen addition; default True
+  --chiral=MODE        Chiral treatment
+  --opt                Optimize
+"""
+
+
+def program(tmp_path, body=None, *, help_text=HELP, help_body=None):
     executable = tmp_path / "bin" / "phenix.elbow"
     executable.parent.mkdir(exist_ok=True)
-    executable.write_text("#!" + sys.executable + "\n" + (body or """
+    help_branch = help_body or f"print({help_text!r}); sys.exit(0)"
+    prelude = "import sys\nif sys.argv[1:] == ['--help']:\n" + "\n".join("    " + line for line in help_branch.splitlines()) + "\n"
+    executable.write_text("#!" + sys.executable + "\n" + prelude + (body or """
 import json, os, shutil, sys
 from pathlib import Path
 Path('argv.json').write_text(json.dumps(sys.argv[1:]))
@@ -114,6 +130,12 @@ def test_generation_uses_complete_source_ideal_seed_and_preserves_raw_output(tmp
     assert receipt["seed"]["formal_charges"] == {"C5": 0, "C5'": 0, "O4'": 0, "C1'": 0}
     assert receipt["readyset_retry"] == "NOT_RUN"
     assert receipt["native_proxy_validation"] == "NOT_RUN"
+    assert receipt["generator_capabilities"]["status"] == "SUPPORTED"
+    assert receipt["generator_capabilities"]["command"] == [str(tmp_path / "bin/phenix.elbow"), "--help"]
+    assert receipt["generator_capabilities"]["returncode"] == 0
+    assert receipt["generator_capabilities"]["selected_aliases"]["initial_geometry"] == "--initial-geometry"
+    assert receipt["generator_capabilities"]["executable_sha256"] == hashlib.sha256((tmp_path / "bin/phenix.elbow").read_bytes()).hexdigest()
+    assert receipt["generator_capabilities"]["help_output"]["sha256"] == hashlib.sha256((work / "elbow_help.log").read_bytes()).hexdigest()
     saved = json.loads((work / "generation_receipt.json").read_text())
     assert saved == receipt
     for artifact in receipt["outputs"]:
@@ -286,3 +308,132 @@ def test_relocation_uses_current_explicit_paths_after_originals_disappear(tmp_pa
     assert receipt["status"] == "CANDIDATE_REVIEW"
     assert receipt["source_provenance"]["path"].startswith(str(relocated))
     assert not original.exists()
+
+
+@pytest.mark.parametrize("initial,hydrogen", [
+    ("--initial_geometry", "--add_hydrogens"),
+    ("--initial_geometry", "--add-hydrogens"),
+    ("--initial-geometry", "--add_hydrogens"),
+])
+def test_installed_help_selects_each_supported_option_spelling_independently(tmp_path, initial, hydrogen):
+    source, fixture = inputs(tmp_path)
+    help_text = HELP.replace("--initial-geometry", initial).replace("--add-hydrogens", hydrogen)
+    body = f"""
+import json, os, shutil, sys
+from pathlib import Path
+assert {initial + '=source_ideal.pdb'!r} in sys.argv
+assert {hydrogen + '=False'!r} in sys.argv
+assert '--chiral=retain' in sys.argv and '--opt' in sys.argv
+Path('argv.json').write_text(json.dumps(sys.argv[1:]))
+shutil.copyfile(os.environ['CANDIDATE_FIXTURE'], 'candidate.cif')
+"""
+    receipt = run(source, fixture, program(tmp_path, body, help_text=help_text), tmp_path / "out")
+    assert receipt["status"] == "CANDIDATE_REVIEW"
+    assert receipt["generator_capabilities"]["selected_aliases"]["initial_geometry"] == initial
+    assert receipt["generator_capabilities"]["selected_aliases"]["add_hydrogens"] == hydrogen
+    assert hydrogen + "=False" in receipt["command"]
+    assert receipt["source_preserved"] and receipt["frozen_source_preserved"]
+
+
+@pytest.mark.parametrize("option", [
+    "--id=ID", "--output=OUTPUT", "--template=TEMPLATE", "--initial-geometry=FILE",
+    "--add-hydrogens=BOOL", "--chiral=MODE", "--opt",
+])
+def test_missing_required_semantics_block_chemistry_call(tmp_path, option):
+    source, fixture = inputs(tmp_path)
+    help_text = "\n".join(line for line in HELP.splitlines() if option not in line)
+    receipt = run(source, fixture, program(tmp_path, help_text=help_text), tmp_path / "out")
+    assert receipt["status"] == "REJECTED"
+    assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
+    assert receipt["generator_capabilities"]["unsupported_semantics"]
+    assert receipt["command"] is None
+    work = Path(receipt["candidate_directory"])
+    assert not (work / "candidate.cif").exists()
+    assert not (work / "argv.json").exists()
+    assert receipt["source_preserved"] and receipt["frozen_source_preserved"]
+    assert (work / "generation_receipt.json").exists()
+
+
+@pytest.mark.parametrize("substitute", [
+    "  --initial-geometry-extra=FILE  A similar prefix is not the option",
+    "        --initial-geometry=FILE  Wrapped prose is not a definition",
+    "  Example: use --initial-geometry=FILE",
+    "Examples:\n  --initial-geometry=FILE  An example outside the options section",
+])
+def test_prefixes_and_help_examples_do_not_claim_a_required_option(tmp_path, substitute):
+    source, fixture = inputs(tmp_path)
+    help_text = "\n".join(line for line in HELP.splitlines() if "--initial-geometry" not in line) + "\n" + substitute
+    receipt = run(source, fixture, program(tmp_path, help_text=help_text), tmp_path / "out")
+    assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
+    assert "initial_geometry" in receipt["generator_capabilities"]["unsupported_semantics"]
+    assert receipt["command"] is None
+
+
+@pytest.mark.parametrize("replacement", [
+    "--add-hydrogens", "--no-add-hydrogens", "--add-hydrogens-negative=BOOL",
+])
+def test_hydrogen_false_semantics_cannot_be_replaced_with_a_flag_or_negative_alias(tmp_path, replacement):
+    source, fixture = inputs(tmp_path)
+    help_text = HELP.replace("--add-hydrogens=BOOL", replacement)
+    receipt = run(source, fixture, program(tmp_path, help_text=help_text), tmp_path / "out")
+    assert receipt["status"] == "REJECTED"
+    assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
+    assert "add_hydrogens" in receipt["generator_capabilities"]["unsupported_semantics"]
+    assert receipt["command"] is None
+
+
+def test_help_error_is_preserved_without_attempting_chemistry(tmp_path):
+    source, fixture = inputs(tmp_path)
+    before = source.read_bytes()
+    executable = program(tmp_path, help_body="print('Usage: phenix.elbow [options]'); print('parser help failed'); sys.exit(2)")
+    receipt = run(source, fixture, executable, tmp_path / "out")
+    assert receipt["status"] == "REJECTED"
+    assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
+    assert receipt["generator_capabilities"]["returncode"] == 2
+    assert receipt["generator_capabilities"]["reason"] == "help-nonzero-exit"
+    assert "parser help failed" in (Path(receipt["candidate_directory"]) / "elbow_help.log").read_text()
+    assert source.read_bytes() == before
+    assert receipt["command"] is None
+
+
+@pytest.mark.skipif(os.name != "posix", reason="Owned help-process groups are a POSIX contract")
+def test_help_timeout_kills_descendants_and_blocks_generation(tmp_path):
+    source, fixture = inputs(tmp_path)
+    sentinel = tmp_path / "help-descendant-survived"
+    help_body = """
+import os, subprocess, time
+subprocess.Popen([sys.executable, '-c', 'import os,time; from pathlib import Path; time.sleep(0.4); Path(os.environ["SENTINEL"]).write_text("survived")'])
+print('help started', flush=True)
+time.sleep(5)
+"""
+    receipt = generate_elbow_candidate(source, "ZZZ", tmp_path / "out", program(tmp_path, help_body=help_body),
+        environment={**os.environ, "SENTINEL": str(sentinel)}, phenix_version="test", timeout_seconds=0.15)
+    assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
+    assert receipt["generator_capabilities"]["reason"] == "help-timeout"
+    assert receipt["generator_capabilities"]["timeout_seconds"] == 0.15
+    assert receipt["command"] is None
+    time.sleep(0.4)
+    assert not sentinel.exists()
+    assert receipt["source_preserved"]
+
+
+def test_capability_check_has_a_separate_bounded_help_timeout(tmp_path):
+    source, fixture = inputs(tmp_path)
+    receipt = run(source, fixture, program(tmp_path), tmp_path / "out", timeout_seconds=600)
+    assert receipt["generator_capabilities"]["timeout_seconds"] == 20
+    assert receipt["execution"]["timeout_seconds"] == 600
+
+
+def test_executable_change_during_help_prevents_generation(tmp_path):
+    source, fixture = inputs(tmp_path)
+    help_body = f"""
+from pathlib import Path
+print({HELP!r})
+Path(__file__).write_text('# replacement executable during help')
+sys.exit(0)
+"""
+    receipt = run(source, fixture, program(tmp_path, help_body=help_body), tmp_path / "out")
+    assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
+    assert receipt["generator_capabilities"]["reason"] == "executable-changed-during-help"
+    assert receipt["command"] is None
+    assert receipt["source_preserved"] and receipt["frozen_source_preserved"]

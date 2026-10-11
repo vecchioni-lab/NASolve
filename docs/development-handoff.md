@@ -44,6 +44,25 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Native generator CLI compatibility (2026-10-11):** the returned 18-file
+[capsule](elbow-cli-compatibility-evidence.json) confirms installed Phenix
+2.2.1-6174 rejected `--initial-geometry` before reading chemistry (exit 2,
+2.071012 seconds). No new candidate was generated; original/frozen source
+hashes survived. The wrapper had used a spelling from the documented option
+table; the example uses a different alias. Generation-v2 now probes the exact
+installed executable's help, negotiates advertised spellings/value semantics,
+and refuses missing controls before chemistry. Help and executable hashes are
+retained. Probe summaries now distinguish failed/rejected generation from
+actual candidates awaiting review. The corrected native retry is still pending;
+this failure supplies no numerical-quality or chemical-state verdict.
+Final isolated Linux validation with the established full-suite command passes
+**1,246 tests, 2 skipped, 276 subtests (42.81 s)**. New regressions cover dashed,
+underscored and mixed flags, misleading help examples/prefixes, valued versus
+switch controls, unsupported controls, help timeout/error and executable races.
+The native retry and optimization remain pending; the original failed receipt
+and run stay intact. Generation receipt schema 1 adds installed capability
+evidence under policy `cif-independent-elbow-candidate-v2`.
+
 **Fresh ReadySet defect generalized (2026-10-11):** the user returned a
 checksum-verified 16-file capsule from the new combined DNA run. Preflight and
 Phaser passed: **TFZ 13.10 / LLG 196, H 3**. PostMR correctly blocked IGU,

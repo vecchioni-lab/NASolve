@@ -181,9 +181,52 @@ Recovery now targets **whole-component candidate regeneration from frozen
 graph plus supplier ideal coordinates**, with optimized eLBOW, provenance,
 source-state comparison and quarantine of nonpositive targets or collapsed
 bonded geometry. Candidate generation does not adopt a dictionary or certify
-linked-site chemistry. Fresh source/ReadySet/hook comparison, the new native
-candidate probe, linkage interpretation and later refinement remain **pending**.
+linked-site chemistry. Fresh source/ReadySet/hook comparison, a viable native
+candidate, linkage interpretation and later refinement remain **pending**.
 No old successful candidate or minimized model is transplanted into this run.
+
+### Independent eLBOW candidate probe — CLI failure, no candidate
+
+The candidate probe is `LIVE/cif-generation-probe-fp4afs_7`; its attempted
+IGU directory is `candidates/cif-generation-9_t3qtnl` relative to that root.
+The returned `cif_generation_review.zip` SHA-256 is
+`dc6d798b74cece7518c831200d42e8f6a94813d746362f6f1394fb7b106bb129`;
+all **18** manifest entries were verified. Manifest SHA-256:
+`c573d1a01aa797f6a7da85883e0b6730dcbbd44a9a02c968f8f4143fc5b58909`.
+The [machine-readable CLI compatibility evidence](elbow-cli-compatibility-evidence.json)
+owns all file hashes, command options, the exact native failure and remaining
+layers. The archive's private inputs and generated seed stay outside Git.
+
+The probe inspected generic **CGY/DX/IGU/IMC**, selected only **IGU** for
+regeneration, and preserved all input hashes and the original failed PostMR
+run. The selected graph-only IGU source remains **37 atoms / 39 bonds**,
+formal charge **0**, SHA-256
+`1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f`.
+Its supplier-ideal naming/initial-geometry seed SHA-256 is
+`6c8df07a3dffafc445845f019568813dfe4ccf37dd0f0f0530fe9ad734aae068`.
+Writing this seed is not successful native interpretation or optimization.
+
+Installed Phenix **2.2.1-6174** eLBOW returned **exit 2**, elapsed **2.071012 s**,
+at command-line parsing: `no such option: --initial-geometry`. The native log
+SHA-256 is
+`c2b0d8d9a79fec1985da28617473dd7fdae002a6fa39a59a9bbcf3b4998c305c`;
+the IGU generation receipt SHA-256 is
+`ffdddb643b24b58612d4a1368a05be2c5f90b6dedf59281c9353a034c3b9614a`.
+No `candidate.cif` exists in the returned outputs. New generated chemistry,
+numerical geometry, optimization, native proxies and linkage are **unassessed**.
+The original and frozen source checksums remain unchanged. This is a wrapper
+compatibility failure, separate from the earlier actual ReadySet numerical
+collapse; it adds no chemical verdict about IGU.
+
+The top-level receipt's `CANDIDATES_AWAITING_REVIEW` is a **summary bug**:
+the actual generation receipt is **FAILED**, native exit **2**, with no candidate
+to review or adopt. Preserve that discrepancy as returned evidence; corrected
+summary logic must propagate generation failure rather than erase the old
+receipt. The next wrapper selects only aliases advertised by installed eLBOW
+`--help`, records the capability evidence, and preserves required seed naming,
+initial geometry, hydrogen, chirality and optimized-generation semantics.
+Installed help output has **not** yet been returned. The corrected native
+attempt and subsequent candidate/linkage/refinement checks remain **pending**.
 
 ### Earlier manually selected numerical resources
 
