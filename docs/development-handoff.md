@@ -44,6 +44,51 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Human overview, public ZIP runner and upstream data review (2026-10-11):**
+The [human/manuscript descriptor](cif-doctor-human-overview.md) now explains
+the implemented algorithm, tools, placement and limits, with an adaptable
+methods paragraph and [editable SVG/layout source](figures/README.md).
+`AGENTS.md` and the collaboration contract require descriptors and figures to
+stay current when features change. No geometry/stitching capability is added.
+
+The single-file `run_cif_doctor_ccd_controls.py` embeds the unchanged assessor
+and required reader/normalizer code. SHA-256:
+`e1d54f1dab5c5dde733aa65fcf9dd66a82b720b7ee753a9c589cf9946912680e`.
+The exact previously delivered public ZIP runs offline with **18 source PASS,
+18 effective REVIEW, 36 receipts**, every input unchanged and native tools
+NOT_RUN. Graph-only numerical UNASSESSED is expected in source mode; effective
+screening does not generate numerical dictionaries or run ReadySet.
+The established laptop Python can run this artifact without installing or
+pulling NASolve; it creates a fresh output folder beside the ZIP. The frozen
+laptop source state remains separate from the published Cedar feature.
+
+Validation with the same isolated environment: **12 shuttle tests pass**,
+including exact receipt parity, unsafe/tampered ZIPs, exclusive output and
+relocation with the original checkout removed. The complete NASolve command
+below now passes **1,090 tests, 2 skipped, 276 subtests (36.37 s)** with the
+corrected upstream workbook. Overlay tests explicitly cover both legacy DF
+S2 mappings and corrected S1 mappings; the compatibility adapter is retained.
+
+The separately reviewed NARestraints source workbook corrects 5BU/BRU sugar
+metadata and abbreviations, DF/S6G mappings and all 129 literal C5 trailing
+spaces. Its **138 exact cell changes** are documented in its Markdown/JSON
+audit. Workbook SHA-256 after the patch:
+`afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5`.
+All other cell values/types/styles, sheet order/dimensions, and unrelated
+uncompressed XLSX parts are preserved. NARestraints passes **42 tests**;
+the seven new regressions failed before their corresponding corrections.
+This remains unreleased source data; the pinned v1.1.3/laptop installation
+has not been updated. PSU's coupled attachment/base-plane issue stays open.
+Native interpretation/refinement was not run for these metadata corrections.
+
+Changed files are the overview/figure source and maintenance/index documents,
+the shuttle builder/template and tests, and the legacy/corrected overlay test.
+Shuttle schema 1 adds artifact-build provenance and output-anchored references;
+existing NASolve runtime/checkpoint schemas and frozen runs are unchanged.
+The manuscript PDF export, standalone runner and generated audits remain
+outside Git; neither private coordinate/reflection data nor the public CCD
+payloads are added. The existing native/proxy/geometry follow-up remains open.
+
 **CIF Doctor implementation validation (2026-10-11, isolated Linux):**
 Published implementation: Cedar **`8c181c5d47cd987318c48568f13d93ef6bdfbb87`**,
 tree-equivalent to local **`105f2bb`** at tested tree

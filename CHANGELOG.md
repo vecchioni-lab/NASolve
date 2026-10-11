@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Human feature documentation and offline CCD shuttle
+
+- Add a human/manuscript CIF Doctor overview with an adaptable methods
+  paragraph, implemented-versus-planned scope, tools, references, and an editable
+  SVG pipeline figure with its standard-library layout source.
+- Require human feature descriptors to accompany substantial features and
+  remain current with behavior, dependency and limitation changes; link this
+  convention from the contributor contract and documentation map.
+- Add a builder/template for a single-file, offline public CCD ZIP auditor.
+  Embed the reviewed assessor and unchanged required reader definitions, verify
+  all archive/source hashes, and write 36 audits into a fresh portable output
+  folder without changing the laptop checkout. Graph-only source PASS and
+  effective REVIEW remain distinct from native or scientific approval.
+- Record the small reviewed upstream NARestraints metadata corrections and the
+  subsequently authorized C5 whitespace cleanup. Keep frozen control provenance
+  and downstream compatibility adapters; test both legacy and corrected DF data.
+
 ### CIF Doctor assessment and reviewed preparation
 
 - Add deterministic offline component/restraint assessment and explicit

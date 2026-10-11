@@ -30,6 +30,13 @@ in this repository.
 - Add an `Unreleased` changelog entry for every user-visible, schema,
   compatibility, portability, or reproducibility change.
 - Preserve support for explicit CLI paths when adding workspace shortcuts.
+- Maintain a short human-facing descriptor for each substantive feature: its
+  purpose, behavior, algorithm/tools, evidence, limitations and pipeline role,
+  with a methods paragraph and editable figure when these help explain it.
+  Update that descriptor and any associated figure/caption in the same change
+  whenever the feature's behavior, dependencies or scientific claims change.
+  Keep implemented capability distinct from planned work; see
+  [documentation roles](docs/collaboration.md#documentation-roles).
 
 ## Required validation
 

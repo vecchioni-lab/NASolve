@@ -22,6 +22,21 @@ verify it against the actual checkout and name any remaining uncertainty.
 Update the smallest authoritative document rather than creating another status
 file or appending a session transcript.
 
+Maintain a concise **human-facing feature descriptor** for substantive features
+so a user or manuscript author can understand what the software does without
+reconstructing development conversations. State the purpose, actual behavior,
+pipeline placement, algorithm/tools, evidence and remaining limits. Include a
+methods paragraph and editable vector figure when useful; link exact validation
+receipts rather than duplicating a changing status ledger. The descriptor is an
+explanation of the subsystem contract, not a second operational authority.
+
+When editing a feature, update its human descriptor and associated figure/caption
+in the same change whenever behavior, dependencies or scientific claims change.
+Distinguish deployed capability, diagnostic demonstrations and future designs.
+Use professional, attributable manuscript language and exact software versions;
+private collaboration/personality notes stay outside repository documentation.
+The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
+
 ## Branch and worktree lifecycle
 
 Prefer **one active development branch and one everyday checkout**. Arboreal

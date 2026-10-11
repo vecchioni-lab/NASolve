@@ -29,6 +29,8 @@ receipts before mutations and on both sides of ReadySet. To inspect an existing
 run without changing it, use `./nasolve cif-doctor assess --run RUN --json`.
 [The CIF Doctor guide](docs/cif-doctor.md) describes the implemented checks and
 explicit source-preserving preparation recipes.
+The [human/manuscript overview](docs/cif-doctor-human-overview.md) explains the
+algorithm, tools and pipeline placement and supplies an editable figure.
 
 ## Quick start
 

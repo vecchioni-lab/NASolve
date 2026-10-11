@@ -58,13 +58,17 @@ for actual behavior; history is evidence, not a second task queue.
   workspace, Git safety, artifact handling and one-change review.
 - [Changelog](../CHANGELOG.md): changes by implementation date; it does not
   independently authorize experimental chemistry or validate a live run.
+- [CIF Doctor human/manuscript overview](cif-doctor-human-overview.md): purpose,
+  algorithm/tools, pipeline placement, methods wording and an editable figure.
+  Human feature descriptors and their figures are maintained alongside feature
+  changes under the [documentation convention](collaboration.md#documentation-roles).
 
 ## Active subsystem contracts
 
 | Work area | Read here |
 | --- | --- |
 | Modified residues, CCD aliases and terminal phosphate | [Modified-component preparation](modified-component-preparation.md), [backbone chemistry](backbone-chemistry.md), [sequence-family targets](sequence-family-targets.md) |
-| CIF Doctor runtime and planned extensions | [Commands and implemented scope](cif-doctor.md), [public CCD controls](cif-doctor-ccd-controls.json), [audit methods and review boundaries](cif-restraint-audit-methods.md), [machine-readable implementation map](cif-restraint-doctor-implementation.json) |
+| CIF Doctor runtime and planned extensions | [Human/manuscript overview and figure](cif-doctor-human-overview.md), [commands and implemented scope](cif-doctor.md), [public CCD controls](cif-doctor-ccd-controls.json), [audit methods and review boundaries](cif-restraint-audit-methods.md), [machine-readable implementation map](cif-restraint-doctor-implementation.json) |
 | Pair recipes, successful Z:P run, combined four-family native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |

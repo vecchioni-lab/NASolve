@@ -6,6 +6,8 @@ graph and numerical checks. It does not require an LLM, RDKit, a generator or
 Phenix. The larger scientific design remains in
 [the audit methods](cif-restraint-audit-methods.md) and
 [the implementation map](cif-restraint-doctor-implementation.json).
+For a plain-language explanation, methods paragraph and editable publication
+figure, read [the human/manuscript overview](cif-doctor-human-overview.md).
 
 ## Commands
 
@@ -110,6 +112,41 @@ automatic adoption. Preparation's exit code follows the candidate assessment;
 invalid candidates visibly remain blocked from adoption. The recipes do not edit coordinates, invent protonation or bond
 orders, install the diagnostic DF/DP candidates or rewrite a frozen run.
 
+## Offline runner for the public control ZIP
+
+The downloadable `run_cif_doctor_ccd_controls.py` contains the exact reviewed
+assessor and its required reader/normalizer code. Run it with Python >=3.10
+and Biopython; an existing NASolve virtual environment is sufficient. It
+requires neither a NASolve checkout nor network access. Given both downloads
+in `~/Downloads`, the established laptop environment can run:
+
+```bash
+"$HOME/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python" -B \
+  "$HOME/Downloads/run_cif_doctor_ccd_controls.py" \
+  "$HOME/Downloads/NASolve_CIF_Doctor_public_CCD_controls_2026-10-11.zip"
+```
+
+The runner verifies the frozen ZIP, manifest, all 18 CIFs and embedded runtime,
+then creates a unique output folder beside the ZIP. It refuses reused output
+folders, leaves the ZIP unchanged and writes `audit_summary.txt`,
+`audit_summary.json` and 36 hash-bound receipts. These particular controls
+produce **18 source PASS / numerical UNASSESSED and 18 effective REVIEW**:
+the same source graphs are screened in two contexts. No numerical dictionary
+is generated, and ReadySet/refinement are not run. A completed audit exits zero;
+findings are recorded in its report, unlike the single-assessment CLI exit codes.
+
+Developers can regenerate the single-file artifact without an installed NASolve:
+
+```bash
+python3 scripts/build_cif_doctor_ccd_shuttle.py \
+  --corpus-zip /path/to/public-control.zip --output /path/to/new-runner.py
+```
+
+Build/receipt schema 1 pins the exact source hashes and original module paths;
+the shared reader definitions are copied unchanged with minimal imports.
+The builder refuses existing destinations. The runner's hash belongs to each
+delivery receipt, rather than serving as a rolling software version.
+
 ## Broader evidence and remaining work
 
 NARestraints' ligand workbook selects test cases and records pairing semantics;
@@ -126,8 +163,12 @@ and diphosphates. These exercise general checks without component-specific
 exceptions. Official CCD 8RO remains distinct from the lab's DE identity.
 
 The frozen comparison exposed inconsistent 5BU/BRU sugar-type workbook labels
-and a PSU glycosidic-atom loader assumption. Those observations are recorded
-as target-selection cautions; this change does not edit the workbook or loader.
+and a PSU glycosidic-atom loader assumption. The separately reviewed
+[NARestraints workbook patch](https://github.com/vecchioni-lab/NARestraints/blob/main/docs/workbook-audit-2026-10-11.md)
+corrects the sugar labels/abbreviations, DF/S6G atom mappings and explicitly
+authorized C5 whitespace. It does not change the frozen public-control snapshot
+or fix PSU's coupled glycosidic/base-plane handling. Released v1.1.3 installations
+retain their original workbook until explicitly updated.
 The controls also prevent a fixed DNA R/S pattern: substituent changes can
 change CIP labels without inverting the sugar. Preserve declared stereo and
 perform any future assignment against the actual mapped graph.
