@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### GeoTest first live report and continuation request
+
+- Record the user's 8/9-good report across P2₁2₁2, P4₃ and P1, with exact
+  member results/stopping points awaiting the ferry. Queue one-launch verified
+  continuation through refinement, eligible bounded Refine Doctor and convenient
+  result viewing; preserve completed MR and checkpoint lineage. This is a
+  documentation-only plan, not an implemented extension or verified refinement.
+
 ### Generalized restraint doctor priority
 
 - Queue the read-only assessor as the next development task using the returned

@@ -41,6 +41,12 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Bounded next-session follow-up before the main doctor work:** review the
+GeoTest ferry and extend its runner to one-launch refinement, eligible bounded
+Refine Doctor and convenient result viewing, as requested after the first live
+run. Preserve completed runs and verified checkpoints. This is a small campaign
+continuation task, distinct from the generalized restraint doctor below.
+
 1. **Generalized restraint doctor is the next development priority.**
    User decision **2026-10-11**: resume next session with a deterministic,
    read-only assessor from the [recorded methods](cif-restraint-audit-methods.md),
@@ -106,12 +112,30 @@ unimplemented. No checkout or original dataset is modified. Each invocation
 creates a new `LIVE/geotest-campaign-*` workspace, a member summary and compact
 `GeoTest_review.zip`; full observations/results stay local. Offline validation:
 29 focused checks plus integrated staging, unchanged-input/ferry checks and
-actual NASolve nonstandard preflight without sequences. **User-native Phenix
-execution is pending.** This side trial does not close the blind-baseline,
-production input-adapter or geometry-qualification gates.
-The user intends to run it locally and return a ferry next session; no result
-has yet been received. Review that evidence when supplied without treating it
-as an acceptance gate for the read-only assessor.
+actual NASolve nonstandard preflight without sequences.
+
+**First user-native report, 2026-10-11:** the user reports **8/9 good**, visually
+successful tensegrity triangles in **P2₁2₁2, P4₃ and P1**, from what they describe
+as a blind test. The run stopped without full-auto completion; the user reports
+the good candidates can be refined. This is a user-reported outcome, not a
+verified TFZ/R-factor, refinement, Doctor or formal blind-baseline acceptance
+receipt. The ferry, member statuses and exact stopping points remain unreviewed.
+This side trial does not close the production input-adapter or geometry gates.
+
+**Requested follow-up:** a single launch should carry eligible existing members
+through refinement and bounded Refine Doctor where needed, then expose the
+resulting checkpoint/model/maps for easy Coot viewing. The current adapter
+attempts at most one default refinement, stops members at native review statuses,
+sets `refine_doctor=False`, and requires fresh member directories; merely rerunning
+it would not resume the first cohort. Inspect the returned stage receipts before
+diagnosing why each stopped. Implement verified continuation, preserving original
+inputs, observations/Free-R, prior attempts and checkpoint lineage; avoid repeating
+successful MR. Use existing full-auto policies rather than bypassing chemistry
+or data-integrity failures. Record Doctor recommendations/provisional selections
+separately from user approval, retain the ninth outcome and isolate member
+failures. Successful members need no unnecessary Doctor trials. This extension
+and its native acceptance are pending; the generalized restraint doctor remains
+the main development priority after this bounded follow-up.
 
 ## Restraint doctor and subsequent roadmap
 
