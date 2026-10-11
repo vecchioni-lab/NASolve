@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### CIF Doctor assessment and reviewed preparation
+
+- Add deterministic offline component/restraint assessment and explicit
+  `cif-doctor assess` commands for dictionaries or a frozen run/checkpoint.
+  Inventory exact atom IDs, graphs, numeric terms, torsions, chirality and
+  angle/plane compatibility; retain unassessed native/site/geometry layers.
+  Compare explicitly selected same-code source/candidate declarations without
+  guessing aliases, protonation or source authority. Preserve zero-sigma native
+  constant-term conventions and signed torsion periodicities in the inventory.
+- Record source screening before PostMR mutations, separate frozen source and
+  runtime assessments before ReadySet, and the selected effective bundle after
+  ReadySet. These receipts are report-only and do not add a campaign gate,
+  change dictionary precedence or edit an existing run.
+- Add explicit source-preserving preparation for supported torsion alternatives
+  and the exact hash-scoped reviewed historical 5CM correction. Preserve original
+  files, refuse overwrites and record before/after evidence; candidate creation
+  does not adopt or qualify new chemistry.
+
 ### Machine-readable CIF Doctor implementation map
 
 - Add the scientific/engineering blueprint covering exact chemical cases,

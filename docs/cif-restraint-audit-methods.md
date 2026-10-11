@@ -1,11 +1,12 @@
 # CIF and effective-restraint audit methods
 
-**Status: documentation-only implementation blueprint, updated 2026-10-11.** The first
-deliverable is a deterministic, read-only assessor, now the next development
-priority using the returned combined-trial evidence and before Topo/Scout.
-Generator/repair integration follows as a
-separately tested stage. This is neither an installed command nor a new gate on
-the current trial. [The handoff](development-handoff.md) owns scheduling;
+**Status: scientific method and extension blueprint, updated 2026-10-11.** The
+first offline read-only assessment slice and explicit reviewed preparation are
+implemented; [the runtime contract](cif-doctor.md) names the commands, checks and
+limits. PostMR records report-only receipts before mutations, before ReadySet
+and after effective-dictionary selection. Native proxy validation, mapped SMILES,
+general generation and checkpoint adoption remain separate future stages.
+These audits add no new gate to the current trial. [The handoff](development-handoff.md) owns scheduling;
 [the component contract](modified-component-preparation.md) owns chemical intent
 and source precedence; [the native ledger](native-modified-pair-live-validation.md)
 owns exact trial receipts, versions, hashes and historical outcomes.
@@ -15,10 +16,11 @@ captures scientific evidence, exact pipeline hooks, repair/receipt policies,
 lightweight execution and regression controls for the next contributor. It
 contains no personality handoff. Its snapshot references preserve provenance;
 this document and the linked contracts retain authority over current behavior.
-The first integration should wrap ReadySet: source screening before execution,
-then assessment of the selected effective dictionaries and native interpretation
-after ReadySet, before PostMR readiness. Existing-checkpoint assessment remains
-read-only; any accepted preparation/coordinate repair creates an immutable child.
+The implemented integration wraps ReadySet with source/runtime screening and
+assessment of the selected effective dictionary files before PostMR readiness.
+Native interpretation remains a separate planned check. Existing-checkpoint
+assessment is read-only; future accepted preparation/coordinate adoption creates
+an immutable child.
 
 ## Purpose and boundaries
 
@@ -75,7 +77,8 @@ GeoTest campaign or delay the read-only assessor's first development slice.
 
 ## Rules: stable IDs and bounded evidence
 
-IDs below name proposed checks, not implemented APIs. Every result identifies
+IDs below define the complete planned methods; the runtime contract distinguishes
+the implemented subset from unassessed layers. Every result identifies
 its input hashes, scope and calculation. Return raw measurements alongside the
 finding; distinguish parser/numerical tolerances from calibrated scientific
 decision thresholds. Do not invent a universal sigma cutoff.

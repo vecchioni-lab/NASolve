@@ -238,7 +238,10 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 3. Classify the selected model's final TFZ-equivalent (or unambiguous available
    translation score): `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
 4. `nasolve postmr RUN` applies supported site changes, builds the restraint
-   stack, and runs ReadySet with hydrogens disabled.
+   stack, and runs ReadySet with hydrogens disabled. CIF Doctor records
+   read-only, report-only assessments before dictionary-based mutation, before
+   ReadySet and after effective-dictionary selection. These receipts preserve
+   the existing continuation gates and do not automatically prepare/adopt a repair.
 5. If PostMR finds nucleotide-bound I, Br, or Se, `nasolve autosol RUN` performs
    guarded MR-SAD phasing and validates at least one heavy-atom site against
    the model under crystallographic symmetry.

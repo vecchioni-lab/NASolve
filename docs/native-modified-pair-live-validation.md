@@ -526,9 +526,10 @@ qualification, and any MTZ/Free-R refinement remain open; another sugar verdict
 by eye is not required from the user.
 
 These DP-specific scripts implement bespoke diagnostic checks and supply the
-blueprint for the **general read-only CIF/restraint assessor**. That general
-assessor is not implemented; the October 11 user decision makes it the next
-development priority using this evidence, before Topo/Scout. Remaining numerical
+blueprint for the **general read-only CIF/restraint assessor**. The first
+[offline CIF Doctor slice](cif-doctor.md) is now implemented with report-only
+PostMR hooks and explicit reviewed preparation. It does not replace these exact
+native proxy receipts or certify the diagnostic candidates. Remaining numerical
 qualification is independent; the assessor is not an added gate on this trial.
 
 The four earlier generic linked sites retain their mixed source-dependent

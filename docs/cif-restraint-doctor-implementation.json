@@ -4,6 +4,23 @@
   "title": "CIF Doctor: deterministic assessment, bounded preparation and geometry-aware continuation",
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
+  "runtime_progress": {
+    "updated_date": "2026-10-11",
+    "contract": "docs/cif-doctor.md",
+    "implemented_initial_slice": [
+      "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
+      "Read-only existing-run/checkpoint assessment through frozen references",
+      "Report-only PostMR screening before mutation, before ReadySet and after effective-dictionary selection",
+      "Explicit source-preserving torsion-alternate preparation and exact hash-scoped historical 5CM correction"
+    ],
+    "not_implemented": [
+      "Installed consumer-parser or effective native-proxy certification",
+      "Mapped descriptor validation and independent chemical authority",
+      "General numerical generation or automatic candidate/checkpoint adoption",
+      "Geometry/connectivity repair and guided sticky-end stitching"
+    ],
+    "snapshot_policy": "The design and historical evidence below remain a knowledge snapshot. The runtime contract and current source own implemented behavior."
+  },
   "audience": [
     "NASolve contributors"
   ],

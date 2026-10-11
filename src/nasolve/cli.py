@@ -226,6 +226,30 @@ def build_parser() -> argparse.ArgumentParser:
         "--max-trials", type=int, default=5,
         help="maximum eligible Doctor trials, 1-10 (default: 5)",
     )
+    cif_doctor = subparsers.add_parser(
+        "cif-doctor", help="assess component restraints or prepare a reviewed derivative",
+    )
+    cif_sub = cif_doctor.add_subparsers(dest="cif_action", required=True)
+    cif_assess = cif_sub.add_parser("assess", help="read-only dictionary/effective-bundle assessment")
+    cif_assess.add_argument("dictionaries", nargs="*", type=Path)
+    cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
+    cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
+    cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
+    cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
+    cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
+    cif_assess.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    cif_compare = cif_sub.add_parser("compare", help="compare exact same-code source/candidate chemistry")
+    cif_compare.add_argument("source", type=Path)
+    cif_compare.add_argument("candidate", type=Path)
+    cif_compare.add_argument("--output", type=Path, help="new JSON comparison receipt")
+    cif_compare.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    cif_prepare = cif_sub.add_parser("prepare", help="write an explicit source-preserving derivative")
+    cif_prepare.add_argument("dictionary", type=Path)
+    cif_prepare.add_argument("--recipe", required=True,
+                             choices=("torsion-alternates-v1", "5cm-reviewed-torsion-v1"))
+    cif_prepare.add_argument("--output", required=True, type=Path, help="new candidate CIF path")
+    cif_prepare.add_argument("--report", type=Path, help="new JSON preparation receipt")
+    cif_prepare.add_argument("--json", action="store_true", help="print the full JSON receipt")
     checkpoints = subparsers.add_parser(
         "checkpoints", help="list, bookmark, import, or select refinement checkpoints"
     )
@@ -1372,6 +1396,110 @@ def _show(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cif_doctor(args: argparse.Namespace) -> int:
+    """The offline Doctor never discovers tools or updates a run/checkpoint."""
+    from .cif_doctor import assess_dictionaries
+    from .cif_doctor_repair import prepare_dictionary
+    from .cif_doctor_run import assess_run
+
+    try:
+        outputs = ([args.output, args.report] if args.cif_action == "prepare"
+                   else [args.output])
+        for output in outputs:
+            output = output.expanduser() if output is not None else None
+            if output is not None and (output.exists() or output.is_symlink()):
+                raise ValueError(f"Refusing to overwrite {output}")
+        if args.cif_action == "prepare":
+            if args.report is not None and args.report.expanduser().resolve() == args.output.expanduser().resolve():
+                raise ValueError("Candidate and JSON receipt need different paths")
+            source = args.dictionary.expanduser().resolve()
+            candidate = args.output.expanduser().resolve()
+            payload = prepare_dictionary(source, candidate, recipe=args.recipe)
+            root = Path(os.path.commonpath([str(source.parent), str(candidate.parent)]))
+            for key, path in (("source", source), ("output", candidate)):
+                payload[key].update({"anchor": "inputs", "relative_path": path.relative_to(root).as_posix()})
+            payload["input_context"] = {
+                "anchor": "inputs", "root_provenance": str(root),
+                "replay_requires_explicit_root": True,
+            }
+            receipt = args.report.expanduser() if args.report is not None else None
+        elif args.cif_action == "compare":
+            from .cif_doctor import compare_dictionaries
+
+            source = args.source.expanduser().resolve()
+            candidate = args.candidate.expanduser().resolve()
+            payload = compare_dictionaries([source], [candidate])
+            root = Path(os.path.commonpath([str(source.parent), str(candidate.parent)]))
+            for key, path in (("source_assessment", source), ("effective_assessment", candidate)):
+                payload[key]["inputs"][0].update({
+                    "anchor": "inputs", "relative_path": path.relative_to(root).as_posix(),
+                })
+            payload["input_context"] = {
+                "anchor": "inputs", "root_provenance": str(root),
+                "replay_requires_explicit_root": True,
+            }
+            receipt = args.output.expanduser() if args.output is not None else None
+        else:
+            if args.run is not None:
+                if args.dictionaries or args.model is not None or args.stage != "standalone":
+                    raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
+                payload = assess_run(args.run, checkpoint=args.checkpoint)
+            else:
+                if not args.dictionaries or args.checkpoint is not None:
+                    raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
+                paths = [path.expanduser().resolve() for path in args.dictionaries]
+                model = args.model.expanduser().resolve() if args.model is not None else None
+                payload = assess_dictionaries(paths, stage=args.stage, model=model)
+                root = Path(os.path.commonpath([str(path.parent) for path in paths]))
+                for item, path in zip(payload["inputs"], paths):
+                    item.update({"anchor": "inputs", "relative_path": path.relative_to(root).as_posix()})
+                payload["input_context"] = {
+                    "anchor": "inputs", "root_provenance": str(root),
+                    "replay_requires_explicit_root": True,
+                }
+                if model is not None:
+                    descriptor = payload.get("model") or {}
+                    payload["model_reference"] = {
+                        "anchor": "model-input", "relative_path": model.name,
+                        "sha256": descriptor.get("sha256"), "size": descriptor.get("size"),
+                    }
+            receipt = args.output.expanduser() if args.output is not None else None
+        text = json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n"
+        if receipt is not None:
+            with receipt.open("x", encoding="utf-8") as handle:
+                handle.write(text)
+        if args.json:
+            print(text, end="")
+        else:
+            print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            assessments = [("", payload)]
+            if args.cif_action == "compare":
+                assessments.extend((label, payload[key]) for label, key in
+                                   (("Source", "source_assessment"), ("Candidate", "effective_assessment")))
+            elif args.cif_action == "prepare":
+                assessments.append(("Candidate", payload["after_assessment"]))
+            for label, assessment in assessments:
+                if label:
+                    print(f"{label} assessment: {assessment['status']}")
+                for finding in assessment.get("findings", []):
+                    if finding.get("status") not in {"PASS", "NOT_RUN"}:
+                        component = finding.get("component_id", "")
+                        print(f"  {component} {finding.get('rule_id', finding.get('rule', '?'))}: "
+                              f"{finding.get('status')} — {finding.get('message', finding.get('reason', ''))}")
+            if receipt is not None:
+                print(f"Receipt: {receipt}")
+            if args.cif_action == "prepare":
+                print(f"Candidate: {candidate}")
+                print(f"Assessment: {payload['after_assessment']['status']}; "
+                      f"adoption: {payload['adoption_status']}")
+        status = (payload["after_assessment"]["status"] if args.cif_action == "prepare"
+                  else payload.get("status"))
+        return 3 if status == "INVALID" else 2 if status in {"REVIEW", "UNASSESSED"} else 0
+    except (OSError, ValueError, CheckpointError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "configure" and args.configure_target == "phenix":
@@ -1398,6 +1526,8 @@ def main(argv: list[str] | None = None) -> int:
         return _autorefine(args)
     if args.command in {"refine-doctor", "refine_doctor"}:
         return _refine_doctor(args)
+    if args.command == "cif-doctor":
+        return _cif_doctor(args)
     if args.command == "checkpoints":
         return _checkpoints(args)
     if args.command == "show":

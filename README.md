@@ -24,6 +24,12 @@ an anomalous-strength benchmark, and compares a small number of controlled
 refinement branches without silently selecting one. Final structural
 validation remains a user gate.
 
+CIF Doctor adds offline, read-only dictionary assessment and report-only PostMR
+receipts before mutations and on both sides of ReadySet. To inspect an existing
+run without changing it, use `./nasolve cif-doctor assess --run RUN --json`.
+[The CIF Doctor guide](docs/cif-doctor.md) describes the implemented checks and
+explicit source-preserving preparation recipes.
+
 ## Quick start
 
 ### Install

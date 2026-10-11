@@ -24,6 +24,7 @@ not general production support. Earlier wording remains in Git and the
 | Effective 5CM / DF recovery | **REPAIRED_NATIVE_INTERPRETATION_PASS**: corrected 5CM and linked DF adopted in a separate native diagnostic; 42 mappings, DF bonds/chirality, preserved custom/other proxies and unchanged 868-atom model verified. | Separate minimization and user visual review completed; full numerical qualification remains pending. |
 | Combined geometry trials | First trial received user Coot visual PASS. The DP-specific trial relieves the N5 conflict (worst 6.15→0.483 sigma); all 158 chirality signs and 38 backbone links survive. User also reports base visual PASS for the exact new model. | Sugars were not assessed by eye; numerical sugar/termination review and full qualification remain open. Convergence is not claimed. |
 | Ordinary/full-auto campaigns | Prior EA/DiU/Q5cm/QiC cohort reached numerical SOLVED with review/provisional distinctions preserved. | This does not prove a fresh arbitrary-component run without a prepared resource bundle. |
+| CIF Doctor first slice | Offline dictionary and frozen-checkpoint assessment; report-only pre-mutation/pre-ReadySet/effective PostMR receipts; explicit torsion-alternate and hash-scoped historical 5CM preparation. | Native consumer/proxy verification, mapped descriptors, generation/adoption and geometry/stitching remain separate slices. |
 | P2 / prepared nonstandard P5 | P2 preparation and nonstandard campaign paths implemented and fixture-tested. | Source-native `1W5→DZ` / `1WA→DP` provenance/refinement; 3–5 real geometry-diverse P5 models. |
 | Scout / Topo / GUI | Existing registration/shadow primitives and scoped evidence retained. | Operational Scout and topology surgery remain future work. |
 
@@ -43,6 +44,35 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**CIF Doctor implementation validation (2026-10-11, isolated Linux):**
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`
+passes **1,077 tests, 2 skipped, 276 subtests (35.06 s)**. The five new Doctor
+test files pass **88 tests and 7 subtests (1.05 s)** with the same environment.
+Independent review is clear; source and run-adapter regressions exercise
+relocation with the original paths removed, immutable selection and input-race
+rejection. No native Phenix/Coot execution occurred for this implementation.
+
+The final assessor source SHA-256 is
+`7eb53fb2b8c1782fae9f3785a9ae2295baa664982237c01b5a5edf86ec496798`.
+Fifty-six source/effective assessments cover **18 public CCDs plus 10 packaged
+dictionaries** with every input byte preserved. All public CCDs pass graph
+inventory with numerical parameterization unassessed; all need review when
+presented as effective numerical dictionaries. The six exact historical
+5CM/DF/DP replays preserve their hashes. The standalone comparison additionally
+exposes the DF source/generated bond-order, aromatic, hydrogen, charge and
+numerical-field differences without declaring which chemistry is correct.
+The reviewed historical 5CM preparation reproduces `61bf14a…` exactly.
+
+Changed runtime files are `cif_doctor.py`, `cif_doctor_repair.py`,
+`cif_doctor_run.py`, `cli.py` and `postmr.py`; new schema-1 assessment,
+comparison and preparation receipts are documented in the runtime guide.
+Existing runs and legacy profile scopes need no migration. Public control
+provenance is committed; downloaded CCDs and generated audit receipts remain
+outside Git. A frozen public-only control capsule preserves 18 CCDs and
+36 receipts (SHA-256 `085f4077828d1b5ee6503dfd73dbb9c89a87c7b3fff3779520809e77e67b042b`),
+without private models, maps, reflections or diagnostic CIFs. Runtime native
+proxy verification and dictionary/coordinate adoption remain open.
+
 **GeoTest orchestration trial wrapped:** the corrected native rerun verifies
 six numerically ready refinements, two bounded Doctor reviews and one MR failure.
 All nine workers and 14 native refinements completed, the one-file parser fix
@@ -54,19 +84,27 @@ The [guided arm-connection module](construct-registration.md#geotest-guided-arm-
 is now bundled into the planned Doctor workflow alongside data/Free-R diagnostics
 and the generalized restraint assessor, using Scout/Topo primitives.
 
-1. **Generalized restraint doctor is the next development priority.**
-   User decision **2026-10-11**: resume next session with a deterministic,
-   read-only assessor from the [recorded methods](cif-restraint-audit-methods.md),
-   then separately validated, bounded preparation/repair and continuation.
+1. **CIF Doctor's first implementation slice is complete in this change.**
+   User decision **2026-10-11**: build from the saved blueprint, screen source
+   dictionaries before PostMR mutations and assess effective files after ReadySet.
+   [The runtime guide](cif-doctor.md) owns the new commands and exact scope.
+   Assessments are deterministic and read-only, with report-only pipeline hooks.
+   Explicit preparation wraps existing supported torsion normalization and the
+   exact reviewed historical 5CM correction; it does not adopt a new dictionary.
    The [machine-readable implementation map](cif-restraint-doctor-implementation.json)
    preserves the scientific cases, checks, ReadySet/PostMR placement, repair
-   boundaries, cache keys and regression plan. It is design, not implemented
-   recovery; collaboration/personality notes remain outside the repository.
+   boundaries, cache keys and regression plan. Its runtime-progress section
+   distinguishes this initial implementation from future recovery;
+   collaboration/personality notes remain outside the repository.
    The 5CM/DF/DP evidence is sufficient to implement the first assessment slice;
    it does not yet establish general automatic repair. This proposed restraint
    doctor is distinct from the existing refinement-strategy `refine-doctor`.
-   Recover and freeze the exact historical **8RO/DE and failed 1AP** inputs as
-   additional challenge cases. Apply the same rules before adding any new
+   Public CCD access is verified. Eighteen public source graphs selected
+   from NARestraints cover halogens, C-glycosides, L-DNA, missing O3′ and
+   diphosphates. The workbook is pairing/target-selection evidence rather than
+   a universal chemical authority. Recover and freeze the exact historical
+   **8RO/DE and failed 1AP** inputs as additional challenge cases; synthetic
+   connectivity regressions must remain labelled as reproductions. Apply the same rules before adding any new
    component-specific exception; include valid controls and retain unsupported
    findings. The [fixture plan](cif-restraint-audit-methods.md#learning-cases-and-future-regression-fixtures)
    distinguishes known defects, source adaptations and unresolved chemistry.

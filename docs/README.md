@@ -22,13 +22,14 @@ for actual behavior; history is evidence, not a second task queue.
   relieved the N5 conflict. The exact new model has user-reported base visual
   PASS; sugars were not assessed by eye. Numerical sugar/termination review,
   full qualification, convergence and fresh ordinary
-  full auto remain open. The general read-only assessor is not implemented.
+  full auto remain open. The first offline CIF Doctor assessment slice is now
+  implemented with report-only PostMR hooks and explicit reviewed preparation.
 - **Still separate:** source-native 1W5→DZ/1WA→DP P2 and geometry-diverse
   real P5, followed by bounded integrated review/merges.
-- **Next development priority:** generalized restraint doctor, beginning with
-  deterministic SMILES/CIF assessment from 5CM/DF/DP evidence and additional
-  8RO/DE and 1AP challenge cases. Then separately tested policy-bounded
-  generation/validation and continuation. Bundle model geometry/connectivity
+- **CIF Doctor:** [offline assessment and reviewed preparation](cif-doctor.md)
+  now cover explicit dictionaries, frozen checkpoints and both sides of ReadySet.
+  Native proxy validation, mapped descriptors, generation/adoption and broader
+  automatic recovery remain separate follow-up slices. Bundle model geometry/connectivity
   checks and guided sticky-end arm repair into the same planned Doctor workflow,
   using Scout/Topo primitives with declared routing and preserved true nicks.
   Remaining combined geometry qualification stays open without delaying the
@@ -63,7 +64,7 @@ for actual behavior; history is evidence, not a second task queue.
 | Work area | Read here |
 | --- | --- |
 | Modified residues, CCD aliases and terminal phosphate | [Modified-component preparation](modified-component-preparation.md), [backbone chemistry](backbone-chemistry.md), [sequence-family targets](sequence-family-targets.md) |
-| Proposed automated CIF/restraint checks | [Audit methods and review boundaries](cif-restraint-audit-methods.md), [machine-readable implementation map](cif-restraint-doctor-implementation.json) |
+| CIF Doctor runtime and planned extensions | [Commands and implemented scope](cif-doctor.md), [public CCD controls](cif-doctor-ccd-controls.json), [audit methods and review boundaries](cif-restraint-audit-methods.md), [machine-readable implementation map](cif-restraint-doctor-implementation.json) |
 | Pair recipes, successful Z:P run, combined four-family native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
