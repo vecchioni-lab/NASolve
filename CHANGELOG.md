@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### General generated-dictionary quarantine and numerical candidates
+
+- Generalize the returned IGU defect into exact coincident bonded-heavy-atom
+  detection for numerical dictionaries, including positive-target collisions.
+  Preserve graph-only source and achieved-model assessment boundaries; add atom
+  identifiers to invalid bond findings and advance the assessor policy to v2.
+- Diagnose and quarantine unusable generated generic components in PostMR,
+  preserving trusted numerical inputs and native output. Emit an exclusive
+  failure receipt; never fill in a zero bond with a guessed target.
+- Add explicit whole-component eLBOW candidate generation from frozen chemical
+  input and independently derived source ideal geometry, with bounded native
+  execution and source/candidate graph, hydrogen, charge and numerical evidence.
+  Discover eLBOW as an optional installation-bound capability. Candidates are
+  not automatically adopted or used to retry ReadySet.
+- Add a source-bundled native probe and returned-evidence record; update the
+  human descriptor and editable figure. General source-state/native reader and
+  polymer-link qualification remain pending the laptop candidate run.
+
 ### Fresh synthetic DNA mechanics recipe and shuttle
 
 - Stage the exact 42-target combined K:X/B:S/Z:P/D:T DNA recipe from canonical

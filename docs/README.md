@@ -28,8 +28,10 @@ for actual behavior; history is evidence, not a second task queue.
   real P5, followed by bounded integrated review/merges.
 - **CIF Doctor:** [offline assessment and reviewed preparation](cif-doctor.md)
   now cover explicit dictionaries, frozen checkpoints and both sides of ReadySet.
-  Native proxy validation, mapped descriptors, generation/adoption and broader
-  automatic recovery remain separate follow-up slices. Bundle model geometry/connectivity
+  Explicit independent numerical candidates and generalized generated-component
+  quarantine are implemented; native proxy validation, mapped descriptors,
+  automatic adoption and broader recovery remain separate follow-up slices.
+  Bundle model geometry/connectivity
   checks and guided sticky-end arm repair into the same planned Doctor workflow,
   using Scout/Topo primitives with declared routing and preserved true nicks.
   Remaining combined geometry qualification stays open without delaying the

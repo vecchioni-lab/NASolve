@@ -27,7 +27,8 @@ def _revision(root: Path) -> dict:
             "working_tree_has_changes": bool(git("status", "--porcelain"))}
 
 
-def build(root: Path, narestraints_root: Path, output: Path) -> dict:
+def build(root: Path, narestraints_root: Path, output: Path, *,
+          template_name: str = "synthetic_dna_shuttle_template.py") -> dict:
     if output.exists() or output.is_symlink():
         raise FileExistsError(f"Shuttle already exists: {output}")
     members = {}
@@ -67,7 +68,13 @@ def build(root: Path, narestraints_root: Path, output: Path) -> dict:
         "dependencies": ["Python >=3.10", "Biopython", "numpy", "openpyxl",
                          "tomli on Python 3.10", "Phenix and Coot for native execution"],
     }
-    template = (root / "scripts/synthetic_dna_shuttle_template.py").read_text()
+    if template_name not in {"synthetic_dna_shuttle_template.py", "cif_generation_probe_template.py"}:
+        raise ValueError("Unknown reviewed shuttle template")
+    if template_name == "cif_generation_probe_template.py":
+        metadata["kind"] = "cif-generation-probe-shuttle"
+        metadata["native_generation"] = "explicit-source-preserving-candidate-only"
+        metadata["automatic_adoption"] = False
+    template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",
                                  "RUNTIME_BASE64 = " + repr(base64.b64encode(archive.getvalue()).decode("ascii")))

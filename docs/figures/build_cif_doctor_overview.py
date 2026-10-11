@@ -9,7 +9,7 @@ from pathlib import Path
 import re
 from xml.sax.saxutils import escape
 
-WIDTH, HEIGHT = 1200, 1150
+WIDTH, HEIGHT = 1200, 1190
 DESTINATION = Path(__file__).with_name("cif-doctor-overview.svg")
 FONT = "Arial, Helvetica, sans-serif"
 INK = "#213443"
@@ -82,7 +82,7 @@ def path(identifier, commands, *, audit=False, arrow=True):
 
 
 def build():
-    parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="172.5mm" '
+    parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="178.5mm" '
              f'viewBox="0 0 {WIDTH} {HEIGHT}" role="img" '
              'aria-labelledby="title description">',
              '<title id="title">CIF Doctor around PostMR and ReadySet</title>',
@@ -92,7 +92,7 @@ def build():
              'branches inspect mutation sources, frozen source and runtime inputs, and the selected '
              'effective bundle. JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
-             '<rect width="1200" height="1150" fill="white"/>',
+             '<rect width="1200" height="1190" fill="white"/>',
              text(50, 47, "CIF Doctor: evidence around model preparation", size=33, weight="bold"),
              text(50, 84, "Implemented assessment layer · exact inputs · preserved provenance", size=24),
              text(50, 134, "NASolve preparation", size=27, weight="bold", color=PIPE),
@@ -129,11 +129,12 @@ def build():
 
     parts.extend([
         '<g id="scope-notes">',
-        '<rect x="50" y="980" width="1100" height="133" rx="10" '
+        '<rect x="50" y="980" width="1100" height="173" rx="10" '
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
-        text(70, 1014, "Checks: atom identity, declared graph and numerical restraint consistency", size=25, weight="bold"),
+        text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Native proxies, achieved geometry and assembly stitching remain future layers.", size=24),
+        text(70, 1082, "Explicit generation writes separate candidates; no automatic adoption.", size=24),
+        text(70, 1116, "Native proxies, achieved model geometry and stitching remain future layers.", size=24),
         '</g>',
         '</svg>'])
     return "\n".join(parts) + "\n"

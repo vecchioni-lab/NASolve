@@ -1,5 +1,55 @@
 # CIF Doctor
 
+## Generated numerical defects and explicit candidates
+
+The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident
+bonded heavy atoms in numerical dictionary coordinates. Invalid bond-target
+findings include the atom pair. Raw graph sources, absent coordinates and
+unsupported representations stay separately unassessed; achieved model
+geometry is still NOT_RUN. The new coordinate inventory/verdict is additive
+within assessment receipt schema 1.
+
+PostMR's existing generic numerical gate now writes an exclusive
+`PostMR/ReadySet/cif_doctor_generation_failure.json` when generated targets are
+missing, invalid or have coincident bonded heavy atoms. It reports the actual
+component, atom references and reason rather than treating every failure as a
+missing dictionary. Curated or explicitly numerical inputs retain their
+existing authority over rewritten ReadySet rows. The complete failed component
+is quarantined; no individual distance is filled in.
+
+To generate an explicit, independent whole-component candidate:
+
+```bash
+./nasolve --phenix-root /path/to/phenix cif-doctor generate-candidate source.cif \
+  --code ABC --output-parent /path/to/candidates --timeout-seconds 600 --json
+```
+
+This operation alone requires optional `phenix.elbow`, resolved beside the
+selected installation's Phaser dispatcher. It preserves the user's saved
+configuration/workspace and passes a cleaned native environment copy.
+Generation uses the frozen chemical CIF and a naming/initial-geometry PDB
+derived only from complete source ideal coordinates and integer formal charges.
+The explicit template supports component IDs of up to three characters and
+atom names of up to four ASCII characters; missing or unrepresentable data are
+reported, never inferred from the fitted model. eLBOW receives `--opt`,
+`--add-hydrogens=False`, `--chiral=retain` and the independent template.
+The original CIF, failed ReadySet output and prior numerical resources are
+never overwritten or used as a source of invented numerical targets.
+
+Schema-1 `cif_component_generation_inspection` and
+`cif_numerical_generation_candidate` receipts record source/candidate
+assessments, chemical differences, exact numerical issues, generator command,
+version, timeout, output hashes and preservation checks. Exit 0 means
+`CANDIDATE_REVIEW`, not chemical approval; rejected/failed candidates exit 2.
+The generator does not retry ReadySet, edit a model, adapt polymer links or
+adopt a dictionary. Native reader/geometry/proxy verification and any actual
+linked-site chemistry remain separate qualification steps.
+
+The source-bundled `probe_cif_generation.py` inspects an existing failed run,
+selects invalid non-curated generic components by findings, and invokes this
+same candidate API. It writes a review ZIP into a fresh external session while
+preserving the original run. `--inspect-only` skips native generation.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

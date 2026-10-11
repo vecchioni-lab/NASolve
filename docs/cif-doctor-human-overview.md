@@ -2,7 +2,8 @@
 
 **Implemented scope, 2026-10-11:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
-bounded preparation recipes. The [command guide](cif-doctor.md) owns operational
+bounded preparation recipes, dictionary coordinate-degeneracy checks, and
+explicit whole-component numerical candidate generation. The [command guide](cif-doctor.md) owns operational
 details; the [implementation map](cif-restraint-doctor-implementation.json)
 separates the deployed software from proposed extensions. Update this overview
 and its figure whenever the feature's behavior, dependencies or claims change.
@@ -38,6 +39,10 @@ and `C5'` cannot collapse into one atom. It then applies deterministic checks:
 - **Internal consistency:** whether angle targets at a shared planar center
   can represent planar directions. The test considers both interior and exterior
   angle configurations; adding every angle to 360° is not a universal rule.
+- **Dictionary coordinate degeneracy:** exact coincidence of bonded heavy
+  atoms in supplied numerical components. This checks dictionary coordinates,
+  separately from achieved geometry in the experimental model. It catches a
+  collapsed pair even if its bond target has been manually made positive.
 - **Optional model correspondence:** a PDB atom inventory retains model,
   chain, residue, insertion-code and alternate-conformer identifiers. This
   detects unknown or duplicated atom identities; it does not calculate the
@@ -80,12 +85,23 @@ the native geometry-restraint proxies constructed by Phenix.
 | NASolve dictionary-compatibility adapter | Inventories supported CCP4 alternate-torsion relationships; explicit preparation reuses the established normalizer. |
 | NASolve checkpoint and run-context utilities | Resolve declared frozen inputs, verify hashes and retain portable provenance without changing checkpoint selection. |
 | Phenix ReadySet and Coot | External PostMR preparation/construction programs surrounding the audit hooks; neither is required for a standalone dictionary assessment. |
+| Phenix eLBOW, explicitly requested | Generates a separate numerical candidate from frozen chemical input and independent source ideal coordinates; never adopts it automatically. |
 | wwPDB CCD and NARestraints | CCD supplies separate source definitions; the NARestraints workbook supplies pairing roles and test-case selection. Neither is automatically promoted to authority for every chemical state. |
 
 Standalone assessment runs locally and offline. It uses no language model,
 chemical-restraint generator or new cheminformatics package. Public CCD
 downloads used in testing are separate, frozen inputs; assessment itself does
 not fetch a newer dictionary over the network.
+
+Explicit `generate-candidate` is a separate native operation. It freezes the
+source, creates an exact-name initial-geometry template from complete supplier
+ideal coordinates, and requests eLBOW optimization with hydrogen addition off
+and source chirality retained. The candidate is assessed and compared with the
+source, including explicit hydrogen, charge and stereochemical differences.
+Missing/unrepresentable seed data, invalid targets or contradictory chemistry
+remain rejected or under review. Experimental MR coordinates and previous
+prepared numerical dictionaries are not used to invent replacement targets.
+Logs, commands, versions and hashes remain in a fresh candidate folder.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -118,6 +134,15 @@ the new general assessor. Exact counts and hashes belong in the
 [development handoff](development-handoff.md) and
 [public control manifest](cif-doctor-ccd-controls.json).
 
+The fresh mixed-DNA test supplied a native regression case: IGU's generated
+C2–N3 target was zero and both dictionary atoms had identical coordinates;
+nearby targets were also distorted. The generalized PostMR guard quarantines
+invalid generated generic components and identifies the actual failing atoms.
+An explicit regeneration probe tests the new candidate path. Candidate
+generation, source-state preservation and native linked-site qualification are
+separate gates; their pending status is recorded in the
+[synthetic test descriptor](synthetic-dna-mechanics-test.md).
+
 ## Current limits and planned extensions
 
 CIF Doctor inventories declared chemistry; it does not infer valence,
@@ -130,7 +155,7 @@ and uncertainty-based lower bounds, but a material-strain threshold has not
 been calibrated.
 
 The proposed next layers are native-consumer/proxy verification, mapped chemical
-descriptors, reviewed generation/adoption and model geometry/connectivity
+descriptors, qualified automatic candidate adoption and model geometry/connectivity
 assessment. Guided sticky-end stitching would require declared strand routing,
 symmetry and terminal intent, with a new child checkpoint. These are planned
 capabilities. The existing `refine-doctor` remains the separate data/Free-R and
@@ -170,7 +195,9 @@ inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The figure depicts the implemented assessment layer; native proxy validation,
-achieved geometry and assembly stitching remain future extensions.
+achieved model geometry and assembly stitching remain future extensions.
+Dictionary coordinate-degeneracy checks and the explicit candidate-generation
+scope are included; candidate generation does not add an automatic adoption path.
 
 ## Primary references
 
@@ -180,6 +207,7 @@ links explain each tool's role and are not validation receipts for NASolve.
 
 - [Biopython MMCIF2Dict API](https://biopython.org/docs/latest/api/Bio.PDB.MMCIF2Dict.html).
 - [Phenix ReadySet documentation](https://phenix-online.org/documentation/reference/ready_set.html).
+- [Phenix eLBOW documentation](https://phenix-online.org/documentation/reference/elbow.html).
 - [wwPDB Chemical Component Dictionary](https://www.wwpdb.org/data/ccd);
   Westbrook et al., *The chemical component dictionary: complete descriptions
   of constituent molecules in experimentally determined 3D macromolecules in

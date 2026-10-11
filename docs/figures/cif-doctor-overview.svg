@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="172.5mm" viewBox="0 0 1200 1150" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="178.5mm" viewBox="0 0 1200 1190" role="img" aria-labelledby="title description">
 <title id="title">CIF Doctor around PostMR and ReadySet</title>
 <desc id="description">The existing model-preparation path runs from source dictionaries and an MR model through optional Coot mutation, prepared inputs, ReadySet and effective dictionary selection to existing PostMR gates and refinement. Dashed read-only audit branches inspect mutation sources, frozen source and runtime inputs, and the selected effective bundle. JSON receipts preserve findings; no coordinate repair or stitching is performed by this audit layer.</desc>
-<rect width="1200" height="1150" fill="white"/>
+<rect width="1200" height="1190" fill="white"/>
 <text x="50" y="47" font-family="Arial, Helvetica, sans-serif" font-size="33" font-weight="bold" fill="#213443" text-anchor="start">CIF Doctor: evidence around model preparation</text>
 <text x="50" y="84" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Implemented assessment layer · exact inputs · preserved provenance</text>
 <text x="50" y="134" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="bold" fill="#214f70" text-anchor="start">NASolve preparation</text>
@@ -163,9 +163,10 @@
 <path d="M 1166.0 755.0 L 1175.0 755.0" fill="none" stroke="#237466" stroke-width="2.7"/>
 </g>
 <g id="scope-notes">
-<rect x="50" y="980" width="1100" height="133" rx="10" fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>
-<text x="70" y="1014" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="bold" fill="#213443" text-anchor="start">Checks: atom identity, declared graph and numerical restraint consistency</text>
+<rect x="50" y="980" width="1100" height="173" rx="10" fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>
+<text x="70" y="1014" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#213443" text-anchor="start">Checks: graph, numerical consistency and bonded-atom coordinate degeneracy</text>
 <text x="70" y="1048" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.</text>
-<text x="70" y="1082" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Native proxies, achieved geometry and assembly stitching remain future layers.</text>
+<text x="70" y="1082" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Explicit generation writes separate candidates; no automatic adoption.</text>
+<text x="70" y="1116" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Native proxies, achieved model geometry and stitching remain future layers.</text>
 </g>
 </svg>

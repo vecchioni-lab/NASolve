@@ -227,7 +227,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="maximum eligible Doctor trials, 1-10 (default: 5)",
     )
     cif_doctor = subparsers.add_parser(
-        "cif-doctor", help="assess component restraints or prepare a reviewed derivative",
+        "cif-doctor", help="assess component restraints or create explicit review candidates",
     )
     cif_sub = cif_doctor.add_subparsers(dest="cif_action", required=True)
     cif_assess = cif_sub.add_parser("assess", help="read-only dictionary/effective-bundle assessment")
@@ -250,6 +250,16 @@ def build_parser() -> argparse.ArgumentParser:
     cif_prepare.add_argument("--output", required=True, type=Path, help="new candidate CIF path")
     cif_prepare.add_argument("--report", type=Path, help="new JSON preparation receipt")
     cif_prepare.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    cif_generate = cif_sub.add_parser(
+        "generate-candidate", help="generate an independent eLBOW candidate for review without adoption",
+    )
+    cif_generate.add_argument("source", type=Path, help="explicit source chemistry dictionary")
+    cif_generate.add_argument("--code", required=True, help="exact source component code")
+    cif_generate.add_argument("--output-parent", required=True, type=Path,
+                              help="parent for a fresh candidate directory outside the source directory")
+    cif_generate.add_argument("--timeout-seconds", type=int, default=600,
+                              help="positive native generation timeout (default: 600 seconds)")
+    cif_generate.add_argument("--json", action="store_true", help="print the full generation receipt")
     checkpoints = subparsers.add_parser(
         "checkpoints", help="list, bookmark, import, or select refinement checkpoints"
     )
@@ -1396,8 +1406,59 @@ def _show(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cif_generate_candidate(args: argparse.Namespace) -> int:
+    """Only explicit generation discovers native tools; configuration stays read-only."""
+    from .cif_generation import generate_elbow_candidate
+
+    try:
+        if args.timeout_seconds <= 0:
+            raise ValueError("Candidate timeout must be positive")
+        # Python's imports are already initialized. Strip inherited Python,
+        # virtual-environment and CCP4 overrides only from the native copy.
+        # Keep the caller's os.environ and saved workspace/configuration intact.
+        native_base = dict(os.environ)
+        for name in ("PYTHONPATH", "PYTHONHOME", "VIRTUAL_ENV", "CCP4", "CLIBD_MON", "LIBMOL_ROOT",
+                     "__PYVENV_LAUNCHER__", "PYTHONEXECUTABLE", "PYTHONUSERBASE"):
+            native_base.pop(name, None)
+        phenix = discover_phenix(load_config(), explicit=args.phenix_root, environ=native_base)
+        executable = phenix.executables.get("phenix.elbow")
+        if executable is None:
+            raise PhenixDiscoveryError(
+                "The selected Phenix installation does not provide phenix.elbow; "
+                "explicit numerical candidate generation requires it"
+            )
+        payload = generate_elbow_candidate(
+            args.source.expanduser().resolve(), args.code, args.output_parent.expanduser().resolve(),
+            executable, environment=phenix.environment, phenix_version=phenix.version,
+            timeout_seconds=args.timeout_seconds,
+        )
+    except (OSError, ValueError, ConfigError, PhenixDiscoveryError) as exc:
+        payload = {
+            "schema_version": 1, "audit_kind": "cif_numerical_generation_candidate",
+            "component_id": args.code, "status": "FAILED", "error": str(exc),
+            "execution": {"status": "NOT_RUN"}, "automatic_adoption": False,
+            "readyset_retry": "NOT_RUN", "native_proxy_validation": "NOT_RUN",
+            "linked_site_validation": "NOT_RUN",
+        }
+    if args.json:
+        print(json.dumps(payload, indent=2, sort_keys=True, allow_nan=False))
+    else:
+        print(f"CIF Doctor candidate: {payload['status']}")
+        if payload.get("candidate_directory"):
+            directory = Path(payload["candidate_directory"])
+            print(f"Candidate directory: {directory}")
+            if payload.get("receipt"):
+                print(f"Receipt: {directory / payload['receipt']['path']}")
+        if payload.get("error"):
+            print(f"Reason: {payload['error']}")
+        print("Candidate only: review chemistry and linked-site/native interpretation before adoption.")
+    return 0 if payload.get("status") == "CANDIDATE_REVIEW" else 2
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
-    """The offline Doctor never discovers tools or updates a run/checkpoint."""
+    """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "generate-candidate":
+        return _cif_generate_candidate(args)
     from .cif_doctor import assess_dictionaries
     from .cif_doctor_repair import prepare_dictionary
     from .cif_doctor_run import assess_run

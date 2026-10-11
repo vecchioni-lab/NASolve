@@ -7,6 +7,7 @@ and reports candidate conflicts without inventing replacement chemistry.
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+from decimal import Decimal, InvalidOperation
 from hashlib import sha256
 from itertools import combinations
 import json
@@ -21,7 +22,7 @@ from Bio import __version__ as BIOPYTHON_VERSION
 from .dictionary_compatibility import normalize_torsion_block
 from .ligand_profiles import _blocks
 
-POLICY_ID = "cif-doctor-graph-numerics-v1"
+POLICY_ID = "cif-doctor-graph-numerics-v2"
 _MISSING = {"", ".", "?"}
 _NUMBER = re.compile(r"^([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)(?:\(\d+\))?$")
 _ORDERS = {"SINGLE": "SINGLE", "SING": "SINGLE", "DOUBLE": "DOUBLE",
@@ -174,12 +175,13 @@ def _numeric(row: Mapping[str, str], field: str, findings: list[dict], *,
              bounds: tuple[float, float] | None = None,
              integer: bool = False) -> float | None:
     raw = row.get(field)
+    references = {"atoms": [row.get("atom_id_1", "?"), row.get("atom_id_2", "?")]} if category == "bond" else {}
     try:
         number = _number(raw)
     except (ValueError, TypeError, OverflowError):
         findings.append(_finding("NUM-01", "FAIL", "invalid-numeric-value",
                                  "An explicitly supplied numerical parameter is unusable.",
-                                 category=category, row=row_index, field=field, value=raw))
+                                 category=category, row=row_index, field=field, value=raw, **references))
         return None
     if number is None:
         return None
@@ -187,9 +189,113 @@ def _numeric(row: Mapping[str, str], field: str, findings: list[dict], *,
             or (bounds is not None and not bounds[0] <= number <= bounds[1])):
         findings.append(_finding("NUM-01", "FAIL", "numeric-domain-violation",
                                  "A numerical parameter violates its mathematical domain.",
-                                 category=category, row=row_index, field=field, value=raw))
+                                 category=category, row=row_index, field=field, value=raw, **references))
         return None
     return number
+
+
+def _dictionary_geometry(atom_rows: Sequence[dict[str, str]],
+                         bond_rows: Sequence[dict[str, str]], *, graph_only: bool,
+                         findings: list[dict]) -> dict:
+    """Check exact heavy-atom bond degeneracy in explicit numerical candidates.
+
+    This is a bounded linear scan of dictionary coordinates, never a model
+    geometry/chemical identity assessment. Graph-only supplier coordinates may
+    be placeholders and therefore cannot fail this numerical-candidate check.
+    No distance threshold, inferred axes, or replacement target is introduced.
+    """
+    families = {"atom_xyz": ("x", "y", "z"),
+                "supplier_ideal": tuple("pdbx_model_cartn_" + axis + "_ideal" for axis in "xyz")}
+    limitations = ["Only exact equality on declared heavy-atom bonds is tested.",
+                   "This does not validate other bond lengths, chemical identity or achieved model geometry."]
+    inventory = {"status": "UNASSESSED", "coordinate_sets": [],
+                 "checked_heavy_bonds": 0, "comparison": "exact-coordinate-equality",
+                 "limitations": limitations}
+    if graph_only:
+        inventory["reason"] = "graph-only-source-coordinates"
+        return inventory
+    if not any(row.get(field, "?") not in _MISSING for row in bond_rows
+               for field in ("value_dist", "value_dist_nucleus")):
+        inventory["reason"] = "no-explicit-bond-distance-targets"
+        return inventory
+    if len(atom_rows) > 10000 or len(bond_rows) > 50000:
+        inventory["reason"] = "assessment-size-bound"
+        findings.append(_finding("NUM-01", "UNSUPPORTED", "dictionary-coordinate-assessment-bounded",
+                                 "Dictionary coordinate assessment exceeds its explicit size bound.",
+                                 atom_count=len(atom_rows), bond_count=len(bond_rows),
+                                 maximum_atoms=10000, maximum_bonds=50000))
+        return inventory
+    names = [row.get("atom_id", "?") for row in atom_rows]
+    if len(set(names)) != len(names) or any(name in _MISSING for name in names):
+        inventory["reason"] = "ambiguous-atom-identifiers"
+        return inventory
+    heavy = {row["atom_id"]: row for row in atom_rows
+             if row.get("type_symbol", "?").upper() not in {"H", "D", "?", ".", ""}}
+    if not heavy or any(row.get("type_symbol", "?") in _MISSING for row in atom_rows):
+        inventory["reason"] = "unassessed-heavy-atom-inventory"
+        return inventory
+    supplied = {key for row in atom_rows for key in row}
+    supported = [(name, fields) for name, fields in families.items() if supplied.intersection(fields)]
+    if not supported:
+        coordinate_fields = sorted(key for key in supplied if "cartn" in key or "coordinate" in key)
+        inventory["reason"] = "unsupported-coordinate-fields" if coordinate_fields else "no-coordinate-fields"
+        findings.append(_finding("NUM-01", "UNSUPPORTED" if coordinate_fields else "NOT_RUN",
+                                 "dictionary-coordinates-unassessed",
+                                 "No supported, explicitly supplied dictionary coordinate triplet is available.",
+                                 supplied_coordinate_fields=coordinate_fields,
+                                 supported_coordinate_fields=[list(fields) for fields in families.values()]))
+        return inventory
+    local_findings = []
+    assessed = 0
+    for name, fields in supported:
+        coordinates: dict[str, tuple[Decimal, ...]] = {}
+        missing, invalid = [], []
+        for atom, row in heavy.items():
+            triplet = []
+            for field in fields:
+                raw = row.get(field)
+                if raw is None or raw in _MISSING:
+                    missing.append({"atom_id": atom, "field": field})
+                    continue
+                try:
+                    _number(raw)  # finite, usable numeric representation
+                    match = _NUMBER.fullmatch(raw)
+                    triplet.append(Decimal(match.group(1) if match else raw))
+                except (ValueError, TypeError, OverflowError, InvalidOperation):
+                    invalid.append({"atom_id": atom, "field": field, "value": raw})
+            if len(triplet) == 3:
+                coordinates[atom] = tuple(triplet)
+        record = {"coordinate_set": name, "fields": list(fields),
+                  "status": "UNASSESSED", "checked_heavy_bonds": 0}
+        inventory["coordinate_sets"].append(record)
+        if missing or invalid:
+            record.update({"missing": missing, "invalid": invalid})
+            local_findings.append(_finding("NUM-01", "UNSUPPORTED", "dictionary-coordinates-unassessed",
+                                           "The supplied coordinate set lacks complete finite heavy-atom coordinates.",
+                                           coordinate_set=name, fields=list(fields), missing=missing, invalid=invalid))
+            continue
+        assessed += 1
+        collisions = 0
+        for row_index, row in enumerate(bond_rows):
+            refs = (row.get("atom_id_1"), row.get("atom_id_2"))
+            if refs[0] == refs[1] or any(atom not in coordinates for atom in refs):
+                continue
+            record["checked_heavy_bonds"] += 1
+            inventory["checked_heavy_bonds"] += 1
+            if coordinates[refs[0]] == coordinates[refs[1]]:
+                collisions += 1
+                local_findings.append(_finding("NUM-01", "FAIL", "coincident-bonded-heavy-atoms",
+                                               "Bonded heavy atoms have exactly identical dictionary coordinates; the numerical candidate is degenerate.",
+                                               category="bond", row=row_index, atoms=list(refs),
+                                               coordinate_set=name, fields=list(fields),
+                                               coordinates=[float(value) for value in coordinates[refs[0]]],
+                                               distance=0.0, comparison="exact-coordinate-equality",
+                                               limitations=limitations))
+        record["status"] = "INVALID" if collisions else "PASS"
+    findings.extend(local_findings)
+    if assessed:
+        inventory["status"] = _status(local_findings)
+    return inventory
 
 
 def _references(row: Mapping[str, str], fields: Sequence[str], atoms: set[str],
@@ -489,6 +595,8 @@ def _component(code: str, index: int, block: str, tables: Mapping[str, list[dict
                       "value_angle", "value_angle_esd", "dist_esd", "type_energy", "weight"}
     supplied_numeric = any(numeric_fields.intersection(row) for rows in tables.values() for row in rows)
     graph_only = not supplied_numeric
+    dictionary_geometry = _dictionary_geometry(atom_rows, bond_rows, graph_only=graph_only,
+                                                findings=findings)
     if not graph_only and not angles and any(len(neighbors) > 1 for neighbors in adjacency.values()):
         findings.append(_finding("NUM-01", "REVIEW", "missing-angle-category",
                                  "A multibond numerical component has no bond-angle category; numerical coverage is unassessed.",
@@ -520,6 +628,7 @@ def _component(code: str, index: int, block: str, tables: Mapping[str, list[dict
                  "angle_count": len(angles), "torsions": torsion_inventory,
                  "chirality": chirality, "planes": {plane: sorted(members) for plane, members in sorted(planes.items())},
                  "plane_angle_checks": plane_checks, "graph_only": graph_only,
+                 "dictionary_geometry": dictionary_geometry,
                  "numerical_restraints": {category: [{key: value for key, value in row.items()
                      if key.startswith("atom_id") or key.startswith("value_") and key != "value_order"
                      or key in {"period", "weight", "alt_value_angle", "dist_esd", "plane_id", "type", "kind"}}
@@ -532,6 +641,7 @@ def _component(code: str, index: int, block: str, tables: Mapping[str, list[dict
                          "numerical": "UNASSESSED" if graph_only and "effective" not in stage.lower()
                          else _status(numerical_findings),
                          "chemical_identity": "UNASSESSED", "linked": "NOT_RUN", "native": "NOT_RUN",
+                         "dictionary_geometry": dictionary_geometry["status"],
                          "geometry": "NOT_RUN", "experimental": "NOT_RUN"}}
 
 

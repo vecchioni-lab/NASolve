@@ -10,7 +10,7 @@ import subprocess
 from collections import OrderedDict
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
-from math import dist, sqrt
+from math import dist, isfinite, sqrt
 from pathlib import Path
 from typing import Callable, Mapping
 
@@ -1449,34 +1449,103 @@ def _require_generic_parameterization(
     sources: Mapping[str, Mapping[str, object]],
     generated_cif: Path | None,
     readyset_log: Path,
+    *,
+    failure_report: Path | None = None,
 ) -> None:
-    """Reject generic source-only CCD graphs without final numerical targets.
+    """Quarantine unusable generated numerics for generic source-only graphs.
 
     Curated ligand behavior remains unchanged: only non-curated, unparameterized
-    inputs must be backed by a parameterized ReadySet component of the same ID.
+    inputs must be backed by usable ReadySet numerical rows of the same ID.
+    Dictionary assessment elsewhere remains report-only. This generation gate
+    never edits targets, adopts a candidate or judges supplier chemical identity.
     """
+    required = sorted(code for code, source_info in sources.items()
+                      if code not in CURATED_LIGANDS and not source_info["parameterized"])
+    if not required:
+        return  # Explicit parameterized inputs have established precedence.
+    parse_error = None
     try:
         generated = (
             _parameterized_codes(generated_cif)
             if generated_cif is not None else set()
         )
     except (OSError, ValueError, TypeError) as exc:
-        raise PostMRPreparationError(
-            f"Cannot audit ReadySet numerical ligand targets: {exc}; inspect {readyset_log}"
-        ) from exc
-    missing = sorted(
-        code for code, source_info in sources.items()
-        if code not in CURATED_LIGANDS
-        and not source_info["parameterized"]
-        and code not in generated
+        generated = set()
+        parse_error = type(exc).__name__
+    assessment = assess_dictionaries([generated_cif], stage="postmr-generated") if generated_cif else None
+    findings = assessment["findings"] if assessment else []
+    components = {component["component_id"] for component in assessment["components"]} if assessment else set()
+    affected = []
+    for code in required:
+        selected = [finding for finding in findings if finding.get("component_id") == code
+                    and finding["rule_id"] == "NUM-01"]
+        failures = [finding for finding in selected if finding["status"] in {"FAIL", "ERROR"}]
+        if code in generated and not failures:
+            continue
+        reasons = failures
+        if code not in generated:
+            reasons = [finding for finding in selected
+                       if finding["status"] in {"FAIL", "ERROR", "REVIEW", "NOT_RUN"}]
+            missing = generated_cif is None or not generated_cif.is_file()
+            reason_code = ("missing-generated-dictionary" if missing else
+                           "missing-generated-component" if code not in components else
+                           "unusable-numerical-parameterization")
+            reasons = [{"rule_id": "GEN-01", "status": "FAIL", "code": reason_code,
+                        "message": "The required generated component does not satisfy the numerical parameterization gate.",
+                        "measurements": {"component_id": code, "parse_error_type": parse_error}},
+                       *reasons]
+        affected.append({"component_id": code, "legacy_parameterization_passed": code in generated,
+                         "reasons": reasons})
+    if not affected:
+        return
+    if failure_report is not None:
+        payload = {"schema_version": 1, "audit_kind": "readyset_generic_generation_failure",
+                   "status": "QUARANTINED", "policy": "generic-generated-numerics-v2",
+                   "affected_components": affected, "assessment": assessment,
+                   "action": "regenerate-whole-component-from-frozen-chemical-source",
+                   "input_handling": "Original source and generated CIFs are preserved; no target numbers were patched."}
+        try:
+            with failure_report.open("x", encoding="utf-8") as handle:
+                handle.write(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        except OSError as exc:
+            raise PostMRPreparationError(
+                "ReadySet could not supply usable parameterized ligand restraints for "
+                + ", ".join(item["component_id"] for item in affected)
+                + f"; cannot write exclusive generation-failure receipt {failure_report}: {exc}. "
+                "Original CIFs and any existing receipt are preserved."
+            ) from exc
+    diagnostics = []
+    for item in affected:
+        for finding in item["reasons"]:
+            details = finding["measurements"]
+            atoms = "–".join(details.get("atoms", []))
+            key = finding["code"]
+            if key == "missing-generated-dictionary":
+                description = "numerical output dictionary is absent"
+            elif key == "missing-generated-component":
+                description = "generated dictionary omits the component"
+            elif key == "coincident-bonded-heavy-atoms":
+                description = f"coincident bonded heavy atoms {atoms} in {details['coordinate_set']}"
+            elif key in {"numeric-domain-violation", "invalid-numeric-value"}:
+                raw = details.get("value")
+                try:
+                    value = float(raw)
+                    adjective = "non-finite" if not isfinite(value) else "zero" if value == 0 else "invalid"
+                except (ValueError, TypeError, OverflowError):
+                    adjective = "unusable"
+                description = f"{adjective} numerical parameter {atoms} {details.get('field')}={raw}"
+            else:
+                description = key
+            diagnostics.append(f"{item['component_id']}: {description}")
+    raise PostMRPreparationError(
+        "ReadySet could not supply usable parameterized ligand restraints for "
+        + ", ".join(item["component_id"] for item in affected)
+        + "; " + "; ".join(diagnostics)
+        + ". Regenerate the affected whole component dictionary from its frozen chemical source; "
+        "do not patch individual target numbers. Original CIFs are preserved; "
+        + f"inspect {readyset_log}"
+        + (f" and {failure_report}" if failure_report is not None else "")
     )
-    if missing:
-        raise PostMRPreparationError(
-            "ReadySet did not generate parameterized ligand restraints for "
-            + ", ".join(missing)
-            + f"; inspect {readyset_log}. Raw CCD chemistry cannot substitute for "
-            "numerical bond/angle targets; use validated eLBOW preparation if needed."
-        )
 
 
 def _write_json(path: Path, payload: object) -> None:
@@ -2032,7 +2101,8 @@ def prepare_postmr(
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
     )
     _require_generic_parameterization(
-        dictionary_source_provenance, generated_cif, readyset_log
+        dictionary_source_provenance, generated_cif, readyset_log,
+        failure_report=readyset_dir / "cif_doctor_generation_failure.json",
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)

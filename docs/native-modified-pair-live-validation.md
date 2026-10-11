@@ -10,6 +10,11 @@ qualification PENDING.** This updates the earlier
 [exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
 See the [handoff](development-handoff.md) for current priorities.
 
+The separate **fresh synthetic DNA run** has now returned **MR_SUCCESS**
+(TFZ **13.10**, H 3), then **PostMR BLOCKED** on a generated IGU zero-length
+bond target. This new acquisition failure does not change the historical
+combined diagnostic's passes. See [the returned blocker](#fresh-synthetic-dna-run--returned-readyset-blocker).
+
 ## What is actually green?
 
 - [x] NARestraints v1.1.3 released/installed, corrected Z:P/K:X roles;
@@ -35,6 +40,8 @@ See the [handoff](development-handoff.md) for current priorities.
 - [x] User visual PASS for bases in the exact new DP geometry model; sugars not assessed by eye.
 - [x] User-reported Coot visual PASS for the exact relaxed model; all modified
   pairs looked satisfactory and WC-like.
+- [x] Fresh source-acquisition run reached Phaser MR_SUCCESS; returned ReadySet
+  numerical defect and phosphate-state changes are checksum-verified.
 - [ ] Full numerical qualification and later refinement;
   source-specific phosphate states remain explicit.
 - [ ] Fresh ordinary full-auto run without preselected numerical resources
@@ -114,7 +121,71 @@ A new [fresh DNA mechanics recipe](synthetic-dna-mechanics-test.md) now stages
 the same target sites from canonical coordinates, with four free 5′-OH ends
 and AutoSol explicitly disabled. Unlike the frozen trial below, it supplies no
 preselected numerical dictionary bundle. Offline input/planning checks passed;
-the new native run and ordinary ReadySet/linkage outcome are pending.
+the returned native run reached Phaser and stopped at ReadySet numerical
+qualification, as recorded below. Generic linkage and refinement were not reached.
+
+### Fresh synthetic DNA run — returned ReadySet blocker
+
+Fresh session **SYNTHETIC** is
+`LIVE/synthetic-dna-mechanics-om4jv7qq`; campaign root is
+`SYNTHETIC/synthetic-dna-combined-2n4kszi5`; fresh run is
+`dataset/AutoMR/run_001` relative to that root. These are historical evidence
+anchors, not executable host-specific configuration. The run staged all **42**
+DNA targets on fresh canonical coordinates with **four free 5′-OH ends**,
+AutoSol **disabled**, experimental phases **off**, and no prior numerical
+resource bundle. The source-bundled shuttle records NASolve source commit
+`edcc84a2979a065c15fdaf09347ddaa730800a05` and NARestraints source commit
+`a1fdaa8561f0889834283174d42bdcbbfd2fc5db`; the frozen laptop checkout was not
+updated to perform this test.
+
+The returned `NASolve_IGU_ReadySet_review_c00a25c1.zip` SHA-256 is
+`06896394ef173df67e066a469c34510d90bddb5c247df1163be98cc67888f6dd`.
+All **16** manifest entries were verified; manifest SHA-256 is
+`aaa3b4fa1dec426d6a07503c0c4e8a2fecb82989a494d61758cca63cc3a5a257`.
+The [machine-readable evidence](igu-readyset-generation-evidence.json) retains
+the exact file hashes and observed-field findings without committing the
+private input or generated CIF payloads.
+
+Phaser reports **MR_SUCCESS**, native exit **0**, TFZ **13.10**, LLG **196**,
+and input space group **H 3** (MTZ number **146**, matrix setting **R 3 :H**).
+Its report SHA-256 is
+`24686a54e315235ade0c038488c0220fc6ca9a353b0d4fdc621154971043037a`.
+This is separate from the older combined trial's TFZ **12.9** / LLG **210**.
+The report identifies Phenix **2.2.1** and the executable in installation
+**2.2.1-6174**; a new Coot version receipt was not included.
+
+PostMR is **BLOCKED**, with no selected prepared checkpoint, AutoSol or
+refinement. ReadySet's log records eLBOW execution for IGU and writing an output
+dictionary. In that dictionary IGU has **35 atoms**, complete atom energy types,
+**37 numerical bond terms / 65 angle terms**, but **C2–N3 = 0.000 ± 0.020 Å**.
+Both generated atom coordinates are **(−3.0660, 3.0937, −0.1804) Å**. The source
+has distinct supplier ideal coordinates. The defect is therefore a collapsed
+generated numerical candidate, not an unchanged raw CCD substituted for targets.
+The whole generated bundle SHA-256 is
+`1533ec9cf52fabc212f9ea59163f5a0db289311e38de0ef149762dc07db5da2e`;
+the frozen source IGU hash remains
+`1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f`.
+
+Generation independently altered IGU's chemical state: **37 → 35 atoms**,
+**39 → 37 bonds**, removal of **HOP2/HOP3** and their bonds, OP2/OP3 formal
+charges **0 → −1**, total formal charge **0 → −2**, and phosphate P–OP1/P–OP2/
+P–OP3 bond-order declarations changed to **DELOC**. No other retained bond-order
+difference was found after normalizing SINGLE/DOUBLE spelling. These edits
+are not approved polymer linkage changes or a generic protonation policy.
+They must be reported separately from numerical validity.
+
+The existing production rule preserving explicitly supplied numerical
+dictionaries is retained. A ReadySet rewrite alone is not authority to replace
+an input dictionary; the actual selected effective bundle must be audited.
+Recovery now targets **whole-component candidate regeneration from frozen
+graph plus supplier ideal coordinates**, with optimized eLBOW, provenance,
+source-state comparison and quarantine of nonpositive targets or collapsed
+bonded geometry. Candidate generation does not adopt a dictionary or certify
+linked-site chemistry. Fresh source/ReadySet/hook comparison, the new native
+candidate probe, linkage interpretation and later refinement remain **pending**.
+No old successful candidate or minimized model is transplanted into this run.
+
+### Earlier manually selected numerical resources
 
 Phenix CCD graph sources are available; IGU/IMC/CGY/DX remain unbundled in
 NASolve. The installed sources lack numerical refinement targets. Cedar's
@@ -128,7 +199,7 @@ A successful raw lookup alone cannot qualify numerical geometry.
 | CGY | `14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d` | `3c5be2c4660fc99ca5c013d5461d944c040e2fc178360601e46eb367068f9367` |
 | DX | `6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0` | `4384a13bace6c74a1c73cd6c803aa752b412a2e9ce249dfd2bb932e5d5b28450` |
 
-The trial selected parameterized candidates manually before PostMR. ReadySet
+The earlier combined trial selected parameterized candidates manually before PostMR. ReadySet
 completion therefore does **not** establish automatic generation from those
 four raw CCDs. Nor does it establish an automatic AceDRG fallback.
 

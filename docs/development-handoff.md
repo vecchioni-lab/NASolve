@@ -44,6 +44,39 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Fresh ReadySet defect generalized (2026-10-11):** the user returned a
+checksum-verified 16-file capsule from the new combined DNA run. Preflight and
+Phaser passed: **TFZ 13.10 / LLG 196, H 3**. PostMR correctly blocked IGU,
+whose generated C2–N3 target is **0.000 ± 0.020 Å** and whose dictionary C2/N3
+coordinates coincide. Other local targets are distorted; source HOP2/HOP3
+were omitted and OP2/OP3 formal charges changed. This is actual numerical
+generation, not a raw-graph copy. The
+[evidence record](igu-readyset-generation-evidence.json) and
+[synthetic descriptor](synthetic-dna-mechanics-test.md) preserve exact hashes.
+
+The generalized assessor checks dictionary coordinate degeneracy and PostMR
+records a component quarantine with exact atom/target diagnostics. The new
+explicit `cif-doctor generate-candidate` API/CLI regenerates a whole component
+from frozen chemical input plus complete supplier ideal-coordinate seeds; it
+does not patch one bond or borrow MR coordinates/older prepared candidates.
+A one-file probe selects invalid generic components and collects native
+generation/comparison evidence into a review ZIP without altering the old run.
+Native source-state preservation, candidate quality and generic polymer-link
+qualification remain pending. Automatic adoption and a full-auto retry are
+not claimed complete. Update the human overview/figure with each extension.
+Final isolated Linux validation:
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`
+passes **1,222 tests, 2 skipped, 276 subtests (43.87 s)**. Nine probe delivery
+regressions use invented XRAWR/Q99/Y components, deleted original source
+checkouts and poisoned imports; all runtime/source/review-ZIP hashes validate.
+The source-bundled inspect-only probe also selects IGU from the real returned
+capsule with its original source hashes verified. Native eLBOW optimization and
+candidate acceptance were NOT_RUN here. The updated editable figure was
+regenerated and rendered for visual QA. Changed runtime files are the assessor,
+general candidate module, CLI/optional Phenix discovery and PostMR quarantine;
+receipt schema 1 gains explicit dictionary geometry and generation evidence.
+Private dictionaries and native outputs remain outside Git.
+
 **Fresh combined DNA mechanics inputs (2026-10-11):** user authorized a new
 synthetic K:X/B:S/Z:P/D:T test on copied donor diffraction with AutoSol off.
 The [human descriptor and recipe](synthetic-dna-mechanics-test.md) own the exact

@@ -78,9 +78,10 @@ untouched.
 Offline regression checks verify all 42 compiled DNA targets, exact pair roles,
 free termini, preserved internal coordinates, input hashes, exclusive outputs,
 ordinary campaign planning, relocated source-bundled execution, and explicit
-AutoSol/phase exclusion. These are input/orchestration tests, not a new native
-Phenix/Coot execution. The intended laptop versions are Phenix 2.2.1-6174 and
-Coot 1.3.3; actual native versions belong to the new run report.
+AutoSol/phase exclusion. These input/orchestration tests are separate from the
+returned native run below. The intended laptop versions are Phenix
+2.2.1-6174 and Coot 1.3.3; the returned report identifies Phenix 2.2.1 and its
+2.2.1-6174 installation path, but contains no new Coot version receipt.
 
 Fresh IGU/IMC/CGY/DX sources can be graph-only. Ordinary ReadySet numerical
 generation and generic linked-site preparation remain unqualified together;
@@ -89,6 +90,73 @@ linkage derivatives manually. The new run retains a real blocker and its
 evidence if these steps fail. It does not inject previous repaired resources,
 automatically adopt Doctor suggestions or claim assembly stitching. High Rwork
 or Rfree on deliberately mismatched donor chemistry is not a chemical verdict.
+
+### Returned fresh run: a numerical-generation failure
+
+The first fresh run on **2026-10-11** reached **MR_SUCCESS**, TFZ **13.10** and
+LLG **196**, in input space group **H 3** (MTZ number 146, R 3 :H). Its session
+is `synthetic-dna-mechanics-om4jv7qq`, campaign
+`synthetic-dna-combined-2n4kszi5`, run `dataset/AutoMR/run_001`, anchored to the
+user's `NASolve-live-tests` directory. The frozen staging receipt contains all
+42 DNA targets, free 5′-OH preparation, AutoSol disabled and experimental
+phases off. This is a new acquisition test, separate from the earlier combined
+trial's TFZ 12.9 and prepared numerical resources.
+
+PostMR stopped when the generated IGU dictionary contained a **C2–N3 bond
+target of 0.000 Å with sigma 0.020 Å**. Both atom coordinates in that dictionary
+are `(-3.0660, 3.0937, -0.1804)` Å. The graph-only source has distinct supplier
+ideal coordinates for those atoms. ReadySet/eLBOW therefore produced numerical
+terms with collapsed geometry; this was not merely a raw CCD copied unchanged
+into the output. All 35 generated IGU atoms have energy types, with 37 bond
+and 65 angle terms. Filling the missing numerical columns succeeded; numerical
+validity did not.
+
+Generation also changed the declared phosphate state: source IGU has 37 atoms,
+39 bonds and formal charge 0; the output has 35 atoms, 37 bonds and formal
+charge −2. HOP2/HOP3 and their bonds disappeared, OP2/OP3 changed from charge
+0 to −1, and P–OP1/P–OP2/P–OP3 became delocalized bond-order declarations.
+These changes are independent of the zero target. They are not approved
+linked-site modifications or a reason to silently choose that protonation
+state for every component.
+
+The returned ZIP and all 16 manifest entries were checksum-verified. Exact
+hashes, the narrowly observed field changes and the remaining evidence gaps
+are recorded in [the machine-readable evidence](igu-readyset-generation-evidence.json)
+and [native ledger](native-modified-pair-live-validation.md#fresh-synthetic-dna-run--returned-readyset-blocker).
+No AutoSol, AutoRefine or Doctor refinement was reached, and no replacement
+dictionary was adopted. The existing rule that preserves explicitly supplied
+numerical dictionaries remains correct; ReadySet output is not automatically
+authoritative just because it was regenerated.
+
+### General candidate recovery
+
+`src/nasolve/cif_generation.py` provides explicit whole-component candidate
+generation and inspection through `inspect_component_generation` and
+`generate_elbow_candidate`. The opt-in command is
+`cif-doctor generate-candidate SOURCE --code CODE --output-parent PATH --timeout-seconds 600 --json`.
+It writes a fresh output directory and never retries or edits the failed
+PostMR run.
+
+Chemistry comes from the frozen source graph. Exact source atom names and
+complete supplier **ideal** coordinates form a separate initial-geometry and
+naming seed. eLBOW is requested to retain chirality, disable automatic hydrogen
+addition, and perform optimized generation (`--opt`, documented AM1); the installed
+backend and its actual behavior must be read from the native log. Source atom
+IDs, elements, bond orders, hydrogens, formal charges and stereochemical
+declarations are compared with the candidate. Nonpositive bond targets or
+coincident bonded heavy-atom coordinates reject the candidate. Graph/state
+differences remain visible for review; a successful native generator exit is
+insufficient for adoption. The procedure neither invents a target for the
+failed bond nor uses the distorted model as numerical authority.
+
+This layer must distinguish unparameterized sources, generated numerical
+defects, intentionally supplied numerical dictionaries and verified internal
+versus terminal linkage context. It must preserve original source and failed
+outputs, bind evidence by hash, and keep candidate generation separate from
+effective-dictionary selection. A fresh native source/ReadySet/PostMR-hook
+probe, candidate review and linked-site interpretation remain pending. The
+one-click campaign is therefore **not yet fixed or qualified** for this
+general source-generation case.
 
 ## Adaptable methods wording
 
@@ -100,7 +168,11 @@ groups at declared free-hydroxyl strand starts. Real donor diffraction was
 copied without altering reflection observations or Free-R flags. A frozen
 campaign disabled anomalous phasing because the hypothetical model chemistry
 did not describe the measured donor. Ordinary PostMR construction and
-ReadySet preparation were assessed by CIF Doctor before and after dictionary
-generation; eligible outputs proceeded to phase-free refinement and bounded
-refinement diagnostics. Input hashes, stage receipts and retained failures
-defined the tested scope, separate from experimental identity validation.
+ReadySet preparation are assessed by CIF Doctor before and after dictionary
+generation; eligible outputs can proceed to phase-free refinement and bounded
+refinement diagnostics. The returned first run reached successful molecular
+replacement and stopped at a collapsed IGU numerical bond target. Explicit
+whole-component regeneration uses source graph and ideal-coordinate seeds,
+preserving candidates for numerical, chemical and native review before any
+adoption. Input hashes, stage receipts and retained failures define the tested
+scope, separate from experimental identity validation.
