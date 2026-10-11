@@ -36,6 +36,9 @@ for actual behavior; history is evidence, not a second task queue.
   seven ≥8 final scores, one borderline and one no-solution case. Original
   statuses remain historical evidence. User-guided post-MR/post-refine arm
   connection is recorded under future Scout/Topo surgery.
+  The updated laptop shuttle installs only the checksum-guarded parser fix and
+  shows space groups in its final summary/CSV/Coot menu; the fresh native rerun
+  is pending.
   PDB + coordinate mmCIF and explicit
   trusted-model / no-sequence input are requested prerequisites for the blind AlphaFold
   baseline, not implemented options. The baseline remains after Pine

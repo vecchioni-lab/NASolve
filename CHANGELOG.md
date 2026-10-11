@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### GeoTest laptop rerun shuttle and space-group display
+
+- Record the updated standalone shuttle's explicit `--install-parser-fix`:
+  verify the returned laptop runtime, back up and atomically replace only the
+  known Phaser parser source, then run a fresh batch. Unknown source changes
+  block installation; the exact installed fix is a no-op on later launches.
+  Preserve the laptop-specific curated-ligand source and existing runs.
+- Add space group to the terminal final summary, CSV and Coot result menu.
+  Prefer the displayed checkpoint/selected model's CRYST1, retain the exact
+  input-MTZ space group separately, and label data-only fallback. Optional
+  metadata failures do not change scientific verdicts; provenance carries
+  declared artifact paths and hashes.
+- Ninety-four adapter tests and 22 subtests pass; assembled installation,
+  preparation and repeat staging pass with explicit offline fixtures. The
+  corrected native rerun remains pending. Repo edits here are documentation;
+  the standalone script remains the deliverable.
+
 ### Selected-model Phaser scores and GeoTest native results
 
 - Fix MR gating to use the selected Phaser PDB's final TFZ-equivalent and LLG,

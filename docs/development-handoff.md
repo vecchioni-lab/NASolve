@@ -240,6 +240,37 @@ recorded diagnostic head: do not overwrite it or pull a different head merely
 to replay these results. Integrate the small fix deliberately before a future
 fresh run or an explicitly audited continuation of the three stopped cases.
 
+**Authorized laptop rerun shuttle:** the user requests a fresh run with the
+corrected parser and space groups in final output. The updated standalone
+script accepts `--install-parser-fix`. It verifies the exact 46-source laptop
+manifest (including the laptop's distinct `curated_ligands.py`), compiles and
+checksums the embedded replacement, backs up original `phaser.py` in the fresh
+workspace, preserves permissions and atomically installs only the known parser
+update before loading it. Old parser SHA-256 is
+`d277a10e4a6c7b843c3e5cd1af4b09dd835872054b7b3cd887f9215177788331`;
+replacement SHA-256 is
+`18aedbb3b414d2dd86e8c284219ca078e682e08003a8f82637f2b462d23a3570`.
+Unknown local edits or compatibility drift stop the update; an exact installed
+replacement is an idempotent no-op. This explicitly authorized one-file update
+leaves Git dirty at the existing laptop head. Do not replace the whole checkout
+or pull remote Cedar over the distinct diagnostic state.
+
+The resulting fresh run retains the prior 5′-OH input policy and full-auto
+bounds. Terminal final output, `campaign_summary.csv` and the Coot menu show
+the exact displayed checkpoint's space group, falling back to the selected
+Phaser model. The checksum-verified input MTZ header is retained separately;
+when no model exists its space group is labelled as data-derived. Receipts add
+`space_group`, source/artifact/hash provenance and `input_space_group`; absent
+metadata remains explicit and cannot alter MR/refinement status.
+
+Validation: **94 adapter tests and 22 subtests pass**. The assembled download
+also passes parser installation, original-code backup, actual X11_20 terminal
+preparation, source-preserving staging and a second already-fixed launch.
+That integration is offline: reflection metadata are fixtures and only the
+unavailable laptop-specific curated-source manifest entry is substituted with
+the local fixture's hash. No native Phenix process was launched; native
+corrected-score rerun and its new space-group outputs are pending on the laptop.
+
 **Guided geometry follow-up:** the user requests a Scout-based tool after MR or
 refinement to connect arms and stitch triangles once intended connections are
 declared. The [contract](construct-registration.md#geotest-guided-arm-connection)
