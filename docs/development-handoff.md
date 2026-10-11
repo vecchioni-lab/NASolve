@@ -45,6 +45,11 @@ This is separate from the laptop receipt and is not native Phenix validation.
 ## Immediate next work
 
 **CIF Doctor implementation validation (2026-10-11, isolated Linux):**
+Published implementation: Cedar **`8c181c5d47cd987318c48568f13d93ef6bdfbb87`**,
+tree-equivalent to local **`105f2bb`** at tested tree
+`fbaaab578c4737b35cbfd1fa145f1e153f1b86e0`. Subsequent handoff bookkeeping
+does not change that tested runtime. The frozen laptop checkout remains untouched.
+
 `env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`
 passes **1,077 tests, 2 skipped, 276 subtests (35.06 s)**. The five new Doctor
 test files pass **88 tests and 7 subtests (1.05 s)** with the same environment.
