@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Selected-model Phaser scores and GeoTest native results
+
+- Fix MR gating to use the selected Phaser PDB's final TFZ-equivalent and LLG,
+  rather than the first score in a solution-history line or an unrelated
+  solution's score. Require its matching MTZ, record score-source provenance,
+  and preserve failures when score association is ambiguous. Thresholds remain
+  unchanged; existing reports and completed runs are not rewritten.
+- Verify the returned 361-file full-auto GeoTest ferry: four ready refinements
+  and one Doctor review. Both cohorts' selected outputs have seven final scores
+  meeting the ≥8 gate, one borderline model and one no-solution case; three new
+  candidates were stopped by the old score reader. Native continuation of those
+  candidates remains pending.
+- Record the two user-supplied Coot examples and planned guided arm connection
+  under Scout/Topo Surgeon: declared strand routing, symmetry-aware preview,
+  preserved true nicks/5′-OH termini and separately bounded geometry repair.
+  This is distinct from the generalized CIF/restraint doctor and is not yet
+  implemented. Coordinate, reflection and screenshot files are not committed.
+
 ### GeoTest declared-end preflight and full-auto adapter
 
 - Verify the first ferry: eight placed models correspond to four MR passes,

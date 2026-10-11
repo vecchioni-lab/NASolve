@@ -235,7 +235,8 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 1. Validate and freeze AutoMR input; optionally mirror the search model; assess
    the exact model supplied to Phaser.
 2. Run Phaser in an isolated `Phaser/` directory without stripping heteroatoms.
-3. Classify the best TFZ: `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
+3. Classify the selected model's final TFZ-equivalent (or unambiguous available
+   translation score): `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
 4. `nasolve postmr RUN` applies supported site changes, builds the restraint
    stack, and runs ReadySet with hydrogens disabled.
 5. If PostMR finds nucleotide-bound I, Br, or Se, `nasolve autosol RUN` performs
@@ -251,6 +252,16 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 The default command still stops after step 1. `nasolve automr ... --execute`
 runs step 2 and applies step 3. A passing run exits 0; TFZ 7.0–7.99 is retained
 for review and exits 3; failure or missing output exits 4.
+
+Score authority follows the selected numbered Phaser PDB and its matching MTZ.
+Read the final `TFZ==` and final LLG from that model's solution annotation;
+initial `TFZ=` values and scores from other models are not substitutes. The
+report records the score kind, source and raw annotation. A headerless legacy
+output may use an unambiguous single-solution log fallback; conflicting or
+unassociated scores cannot authorize progression. See the
+[Phenix annotation reference](https://www.phenix-online.org/documentation/reference/phaser.html#annotation).
+This corrects the October 11 GeoTest under-gating without changing thresholds
+or rewriting historical runs.
 
 ## PostMR contract
 

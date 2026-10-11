@@ -30,11 +30,12 @@ for actual behavior; history is evidence, not a second task queue.
   8RO/DE and 1AP challenge cases. Then separately tested policy-bounded
   generation/validation and continuation, before Topo/Scout. Remaining combined
   geometry qualification stays open without delaying the initial assessor.
-  GeoTest's ferry is verified: eight placed models, four MR passes and two
-  borderline reviews, across P2₁, P4₃ and P1. Its updated standalone runner
-  prepares explicitly declared 5′-OH ends before fresh MR, then runs eligible
-  refinement/Doctor and exposes Coot viewing. Offline checks pass; the revised
-  native run and refined/Doctor results remain pending.
+  GeoTest's native full-auto ferry is verified: four ready refinements and one
+  Doctor review after declared 5′-OH preparation. An existing TFZ parser defect
+  explains apparent MR losses; both cohorts' selected outputs actually contain
+  seven ≥8 final scores, one borderline and one no-solution case. Original
+  statuses remain historical evidence. User-guided post-MR/post-refine arm
+  connection is recorded under future Scout/Topo surgery.
   PDB + coordinate mmCIF and explicit
   trusted-model / no-sequence input are requested prerequisites for the blind AlphaFold
   baseline, not implemented options. The baseline remains after Pine

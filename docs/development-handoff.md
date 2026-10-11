@@ -41,13 +41,16 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-**Bounded GeoTest follow-up:** the returned ferry is reviewed and the standalone
-runner now prepares the declared free 5′-OH ends before fresh MR, then continues
-eligible members through refinement, bounded Refine Doctor and result viewing.
-Native acceptance of this updated runner is pending. The user's clarified
-chemistry requires fresh prepared inputs; resuming the phosphate-bearing first
-cohort is superseded. This side trial is distinct from the generalized restraint
-doctor below.
+**GeoTest full-auto native result returned:** the 5′-OH preparation and
+refinement/Doctor orchestration completed on the laptop: four ready refinements,
+one Doctor review, and four recorded MR failures. Inspection uncovered an
+existing TFZ parser defect: the recorded gates used initial search scores,
+although seven selected models have final TFZ-equivalents at least 8 and one
+is borderline. Selected-model score parsing is now corrected and regression
+tested in the development checkout; the laptop remains on its frozen head.
+Preserve the returned reports and completed refinements. The requested
+[guided arm-connection tool](construct-registration.md#geotest-guided-arm-connection)
+is a later Scout/Topo scope, separate from the generalized restraint doctor.
 
 1. **Generalized restraint doctor is the next development priority.**
    User decision **2026-10-11**: resume next session with a deterministic,
@@ -110,7 +113,9 @@ no winning model/processing combination is selected.
 **First native ferry verified:** all 192 included files match their recorded
 hashes and sizes; 39 large/reflection files were deliberately omitted. The
 user's **8/9 good** describes eight placed models, not eight MR gate passes.
-The receipts show four `MR_SUCCESS`, two `MR_REVIEW` and three `MR_FAILED`:
+The receipts show four `MR_SUCCESS`, two `MR_REVIEW` and three `MR_FAILED`.
+These are the original recorded gates; the later selected-model score audit
+below identifies why they undercounted good MR candidates:
 
 | Member | TFZ | Verified stopping point |
 | --- | ---: | --- |
@@ -169,11 +174,84 @@ using explicitly stubbed external MTZ/Phaser/ReadySet programs and fixture
 reflections; this is not native execution. The unchanged core suite passes
 **981 tests, 2 skipped, 257 subtests (29.58 s)** with
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`.
-The revised Phenix/Coot full run remains **pending on the laptop**.
+The revised native run has now returned as described below.
 This is **not native NASolveCampaign CIF/no-sequence support**. Integrating
 declared terminal chemistry and preparation into a native single recipe/button
 remains the product follow-up; this side trial does not close the formal blind
 baseline, production input-adapter or geometry-qualification gates.
+
+**Returned full-auto native run, 2026-10-11:** `GeoTest_review(1).zip`
+(SHA-256 `7fdaeee177c3e3eed63d49fb280bb4314ad05a88f94c3564f78b244291e4b458`)
+contains **361 verified files**, with **98 deliberately omitted** large or
+reflection files. All originals remain unchanged. The laptop again used clean
+Cedar `e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`, Python **3.12.14**,
+Phenix **2.2.1-6174** and Coot **1.3.3**. This was a real native execution,
+not the earlier stubbed integration check. The user reports success for the
+trial's scope, with arm/triangle connectivity requiring further guided work.
+
+| Member | Recorded TFZ: first → 5′-OH run | Selected-model final TFZ-equivalent: first → 5′-OH run | Returned full-auto result |
+| --- | ---: | ---: | --- |
+| X11_12 | — → 2.9 | no selected model | MR FAILED; no solution |
+| X11_16 | 7.0 → 7.4 | 14.0 → 14.5 | AUTOREFINE READY, Rwork/Rfree 0.2940/0.3404 |
+| X11_17 | 8.0 → 5.1 | 12.3 → 12.2 | Recorded MR FAILED; refinement not attempted |
+| X11_18 / dataset1 | 6.0 → 7.8 | 7.8 → 7.7 | REFINE DOCTOR REVIEW, inspection 0.4691/0.4859 |
+| X11_18 / dataset2 | 7.2 → 6.2 | 8.0 → 8.0 | Recorded MR FAILED; refinement not attempted |
+| X11_19 | 9.2 → 9.9 | 13.3 → 13.8 | AUTOREFINE READY, 0.2421/0.2890 |
+| X11_20 | 15.0 → 15.2 | 17.0 → 16.9 | AUTOREFINE READY, 0.2262/0.2336 |
+| X11_22 | 14.9 → 15.2 | 15.2 → 15.3 | AUTOREFINE READY, 0.2647/0.2770 |
+| X11_25 | 6.8 → 6.1 | 9.6 → 9.8 | Recorded MR FAILED; refinement not attempted |
+
+All eight native refinement processes exited zero (five ordinary refinements
+plus three eligible Doctor trials). Four ready results are `refine-001`.
+X11_18/dataset1 remains REVIEW: inspection checkpoint `refine-002`, current
+checkpoint `postmr`, no recommendation or provisional selection. Numerical
+readiness does not certify intended triangle connectivity. Native reports still
+leave bond/angle RMSD summary fields null despite geometry values in the raw
+Phenix output; do not infer a clean geometry verdict from those missing fields.
+The compact ferry omits MTZs, so reflection/Free-R preservation is supported by
+native receipts/audits rather than an independent replay of omitted arrays.
+
+**Apparent MR loss is a score-association defect:** all nine original model,
+reflection and metadata hashes, all 46 NASolve source hashes and normalized
+Phaser settings match between runs. Search models differ only by the declared
+28 terminal-atom removals; every retained atom record is unchanged. The parser
+previously took the first TFZ/LLG from each solution-history line. Phaser writes
+later `TFZ==` values after orientation refinement; these must be associated with
+the selected output model, not maximized across unrelated solutions. See the
+[Phenix annotation reference](https://www.phenix-online.org/documentation/reference/phaser.html#annotation).
+For X11_17 the selected output records `TFZ=5.1` followed by `TFZ==10.8` and
+`TFZ==12.2`; its final LLG is 353, rather than the initially parsed 304.
+Both cohorts therefore contain **seven selected models meeting the ≥8 gate,
+one borderline model and one no-solution case** when audited by final associated
+scores. This is a retrospective evidence assessment, not a rewrite of old
+statuses or a claim that the three newly eligible candidates were refined.
+
+**Parser fix validation:** selected-output annotations, final score/LLG
+association, matching PDB/MTZ stems, ambiguous/invalid headers and legacy
+single-output fallback pass **17 focused tests and 12 subtests**. The complete
+suite passes **989 tests, 2 skipped, 269 subtests (32.75 s)** with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../docs-check-venv/bin/python -m pytest -q`.
+The worker/preflight/full-auto-driver checks also pass **54 tests**. Read-only
+parsing of all 16 actual selected PDBs reproduces the table above. The report
+adds versioned `score_evidence` and selected-output checksums; existing fields
+and TFZ thresholds remain compatible. No native Phaser process was rerun for
+this parser fix, and no old receipt was changed. The laptop is still on the
+recorded diagnostic head: do not overwrite it or pull a different head merely
+to replay these results. Integrate the small fix deliberately before a future
+fresh run or an explicitly audited continuation of the three stopped cases.
+
+**Guided geometry follow-up:** the user requests a Scout-based tool after MR or
+refinement to connect arms and stitch triangles once intended connections are
+declared. The [contract](construct-registration.md#geotest-guided-arm-connection)
+and [live-check queue](construct-registration-live-checks.md) retain this as
+planned scope. The supplied Coot examples are `Screenshot 2026-10-11 at
+13.53.45.png` (SHA-256
+`215ae2967cb6fb5225d141636c766102c641bd87cfe000d7280bd246dd12d25f`) and
+`Screenshot 2026-10-11 at 13.56.53.png` (SHA-256
+`53fbade3270de9c19c9fc107a87d41a2b9cb7ba66836b5dd04a9c1ca3511e59b`).
+They show local model/density discrepancies, without identified checkpoint or
+residue selection; no atom-level connection is inferred from the pictures.
+Original screenshots, coordinate models and reflection data remain outside Git.
 
 ## Restraint doctor and subsequent roadmap
 

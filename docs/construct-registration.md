@@ -1069,6 +1069,53 @@ allow the user to save/import a corrected PDB as a new immutable checkpoint.
 That manual model must retain the failed automated attempts and user-review
 provenance rather than erasing them.
 
+### GeoTest guided arm connection
+
+**Requested 2026-10-11; planned, not implemented.** The returned GeoTest
+full-auto trial produced four numerically ready refinements and one bounded
+Doctor review. The user reports success for that scope, while local arm ends
+and triangle connections still need assembly-aware repair. Two supplied Coot
+views show local model/density discrepancies; their exact member, checkpoint
+and residue selection were not supplied. They motivate this feature but do not
+establish which atoms should connect or whether a new covalent link is intended.
+The [handoff](development-handoff.md#optional-geotest-side-trial) owns the
+native results and attachment provenance.
+
+The first guided slice should accept either a placed MR model or an explicit
+refined checkpoint, with its symmetry, observations/Free-R, available maps and
+effective dictionaries. Reassess registration on that actual model. The user
+supplies which arms/domains should meet and how the strands continue, identified
+by residue/domain ranges and symmetry mates. Preserve alternatives when that
+decision remains ambiguous; the search-model Scout proposal is not downstream
+registration authority.
+
+The preview must distinguish sticky-end/base-pair association, covalent backbone
+continuation across an ASU representation seam, and a true nick or terminus.
+"Stitch triangles" does not itself authorize covalent joining. In particular,
+GeoTest's explicitly declared free 5′-OH termini remain true ends unless the
+user supplies a different, reviewed connectivity assignment.
+
+Freeze the accepted connection/strand-routing proposal before materialization.
+Apply any exact symmetry recut/relabel first; local coordinate relaxation is a
+separately bounded child operation. Reinterpret the child in Phenix, then run
+ordinary short refinement and return to the same user inspection context.
+Preserve the parent, unsuccessful attempts, observations/Free-R and checkpoint
+lineage throughout.
+
+Acceptance requires the intended arm pairing and strand routing, preserved
+residue identities/copies/chirality and true nicks, no silent atom loss or
+duplication, correct interpretation of any intended P–O3′ links and phosphate
+angles, and explicit local clashes/geometry and unrelated displacement checks.
+Use a real GeoTest connection, an ambiguous routing case requiring one user
+decision, and a true nick that must remain unjoined. Visual closure and lower
+R factors alone do not certify the intended connectivity.
+
+This assembly/coordinate tool is distinct from the generalized CIF/restraint
+doctor, which assesses and prepares component chemistry/effective restraints.
+Both can reuse provenance and native geometry diagnostics. Existing Scout
+remains backend-only and its guided whole-chain selection helper does not yet
+perform splitting, joining, symmetry materialization or this repair.
+
 ### Materialization, Coot repair and Phenix enforcement
 
 Topo Net itself should remain preview/intent logic. Applying a reviewed surgery
