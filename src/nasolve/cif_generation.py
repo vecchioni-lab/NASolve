@@ -22,14 +22,16 @@ from typing import Mapping
 from .cif_doctor import assess_dictionaries, compare_dictionaries, _number
 from .ligand_profiles import _blocks
 
-POLICY_ID = "cif-independent-elbow-candidate-v2"
+POLICY_ID = "cif-independent-elbow-candidate-v3"
 ELBOW_DOCUMENTATION = "https://phenix-online.org/documentation/reference/elbow.html"
 _OPTION_ALIASES = {
     "id": ("--id",), "output": ("--output",), "template": ("--template",),
     "initial_geometry": ("--initial-geometry", "--initial_geometry"),
     "add_hydrogens": ("--add-hydrogens", "--add_hydrogens"),
+    "source_state_preservation": ("--pH",),
     "chiral": ("--chiral",), "opt": ("--opt",),
 }
+_INCOMPLETE_NUMERICS = {"incomplete-numerical-parameterization", "missing-angle-category", "graph-only-source"}
 _HELP_SECTION = re.compile(r"^(?:options|optional arguments|optional-arguments|named arguments):\s*$", re.I)
 _OPTION_START = re.compile(r"^(\s+)(?:-[A-Za-z0-9?](?:[ =][A-Z][A-Z0-9_]*)?\s*,\s*)?--[A-Za-z][A-Za-z0-9_-]*(?=$|[ =,\t])")
 _OPTION_TOKEN = re.compile(r"(?<!\S)(--[A-Za-z][A-Za-z0-9_-]*)(?=$|[ =,\t])")
@@ -89,6 +91,27 @@ def _explicit_atom_stereo(component: dict) -> dict[str, set[str]]:
             for atom in component["inventory"]["atoms"]}
 
 
+def _supported_plane_review(finding: dict) -> bool:
+    """Retain finite, realizable Gram reviews, never an impossible angle set."""
+    if finding["code"] != "plane-angle-compatibility" or finding["status"] != "REVIEW":
+        return False
+    measurements = finding["measurements"]
+    if measurements.get("positive_semidefinite") is not True:
+        return False
+    for field in ("angles_degrees", "angle_esds", "eigenvalues"):
+        values = measurements.get(field)
+        if not isinstance(values, list) or len(values) != 3:
+            return False
+        if any(not isinstance(value, (int, float)) or isinstance(value, bool) or not isfinite(value)
+               for value in values):
+            return False
+    determinant = measurements.get("determinant")
+    return (all(0 <= angle <= 180 for angle in measurements["angles_degrees"])
+            and all(sigma > 0 for sigma in measurements["angle_esds"])
+            and isinstance(determinant, (int, float)) and not isinstance(determinant, bool)
+            and isfinite(determinant))
+
+
 def inspect_component_generation(source: Path, generated: Path | None, code: str) -> dict:
     """Inventory general numerical defects and same-ID chemical differences.
 
@@ -111,8 +134,15 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
     if after is not None:
         if len(right) != 1:
             reasons.append("generated-component-missing-or-ambiguous")
-        elif right[0]["status"] == "INVALID" or right[0]["verdicts"]["numerical"] != "PASS":
+        elif right[0]["status"] == "INVALID" or any(
+                finding["code"] in _INCOMPLETE_NUMERICS and finding["status"] != "PASS"
+                for finding in right[0]["findings"]):
             reasons.append("generated-restraints-invalid-or-incomplete")
+        if len(right) == 1 and any(
+                finding["rule_id"] == "PLANE-01" and finding["status"] != "PASS"
+                and not _supported_plane_review(finding)
+                for finding in right[0]["findings"]):
+            reasons.append("generated-plane-angle-geometry-invalid-or-unassessed")
         if after["input_integrity"] != "UNCHANGED" or comparison["input_integrity"] != "UNCHANGED":
             reasons.append("generation-input-integrity-invalid")
         if any(row["field"] in {"atom_elements", "bond_orders", "hydrogen_attachments"} for row in changes):
@@ -142,6 +172,8 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
             "chemical_changes": changes, "automatic_adoption": False,
             "native_validation": "NOT_RUN", "linked_site_validation": "NOT_RUN",
             "limitations": ["Numerical completeness does not certify chemistry, native proxies or achieved geometry.",
+                            "Only complete finite positive-semidefinite Gram findings can remain soft plane reviews.",
+                            "Well-formed unresolved torsion relationships remain review evidence pending native interpretation; no term is removed or adopted.",
                             "Charge representation and newly supplied stereochemistry remain explicit review evidence."]}
 
 
@@ -335,7 +367,7 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
     """Run explicitly requested eLBOW generation in a fresh preserved folder.
 
     Required option spelling/value support is discovered from installed help.
-    The documented AM1 optimization is requested; the exact installed backend
+    The installed generator's best available optimization is requested; its backend
     and its result remain evidence in the raw log. There is no target invention,
     dictionary adoption, linked-site transformation or ReadySet retry here.
     """
@@ -363,6 +395,12 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
               "executable_provenance": str(executable), "documentation": ELBOW_DOCUMENTATION,
               "command": None, "seed": None, "execution": {"status": "NOT_RUN", "started_at": start},
               "generator_capabilities": None,
+              "source_state_preservation": {
+                  "generator_value": "low", "purpose": "retain the exact supplied input chemistry during generation",
+                  "source_state_authority": "explicit supplied source dictionary",
+                  "experimental_ph": "UNASSESSED", "solution_protonation": "UNASSESSED",
+                  "limitations": ["The generator's source-retention selector is not an experimental or crystal pH assignment.",
+                                  "Source hydrogen, charge, bond and stereochemical declarations remain subject to comparison and review."]},
               "inspection": inspect_component_generation(snapshot, None, code),
               "automatic_adoption": False, "readyset_retry": "NOT_RUN",
               "native_proxy_validation": "NOT_RUN", "linked_site_validation": "NOT_RUN"}
@@ -383,9 +421,11 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
                 raise _UnsupportedGenerator("Installed eLBOW cannot preserve the required generation semantics: "
                                             + capabilities.get("reason", "unknown"))
             flags = capabilities["selected_aliases"]
+            result["source_state_preservation"]["generator_option"] = flags["source_state_preservation"]
             command = [str(executable), "source.cif", f"{flags['id']}={code}", f"{flags['output']}=candidate",
                        f"{flags['template']}=source_ideal.pdb", f"{flags['initial_geometry']}=source_ideal.pdb",
-                       f"{flags['add_hydrogens']}=False", f"{flags['chiral']}=retain", flags['opt']]
+                       f"{flags['add_hydrogens']}=False", f"{flags['source_state_preservation']}=low",
+                       f"{flags['chiral']}=retain", flags['opt']]
             result["command"] = command
             with (work / "elbow.log").open("xb") as log:
                 process = subprocess.Popen(command, cwd=work, env=dict(environment),

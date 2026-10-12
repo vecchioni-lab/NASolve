@@ -1,6 +1,6 @@
 # Native modified-base pair matrix — live validation ledger
 
-Updated **2026-10-11** from user visual review, returned native output and checksum-verified
+Updated **2026-10-12** from user visual review, returned native output and checksum-verified
 geometry, DF candidate, repaired-native and minimization bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
 coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
@@ -14,6 +14,8 @@ The separate **fresh synthetic DNA run** has now returned **MR_SUCCESS**
 (TFZ **13.10**, H 3), then **PostMR BLOCKED** on a generated IGU zero-length
 bond target. This new acquisition failure does not change the historical
 combined diagnostic's passes. See [the returned blocker](#fresh-synthetic-dna-run--returned-readyset-blocker).
+Independent optimized eLBOW generation has now removed the numerical collapse,
+but its candidate remains **REJECTED** for hydrogen/charge/state changes.
 
 ## What is actually green?
 
@@ -225,8 +227,74 @@ summary logic must propagate generation failure rather than erase the old
 receipt. The next wrapper selects only aliases advertised by installed eLBOW
 `--help`, records the capability evidence, and preserves required seed naming,
 initial geometry, hydrogen, chirality and optimized-generation semantics.
-Installed help output has **not** yet been returned. The corrected native
-attempt and subsequent candidate/linkage/refinement checks remain **pending**.
+Installed help output was absent from this first bundle. The corrected native
+attempt below returned that help and a generated candidate; it does not change
+this preserved failed attempt. Candidate/linkage/refinement qualification
+remains separate.
+
+### Optimized eLBOW v2 — interface pass, chemical-state rejection
+
+The second probe is `LIVE/cif-generation-probe-le2ki6f4`, with candidate
+directory `candidates/cif-generation-6rk5wkm1`. The returned
+`cif_generation_review(1).zip` SHA-256 is
+`7e2b9a50118773b638b066c649217b5e877706bc2cbd2bd645b478c9e502ba37`;
+all **22** manifest entries were verified. Manifest SHA-256:
+`6053a94fec7d4028487acf7470542a14f7a7dda2462b9e5f13cde5be82e73077`.
+The [optimized-state evidence](elbow-optimized-state-evidence.json) records
+exact returned fields and hashes without adding private input/candidate payloads
+to Git.
+
+Installed-help capability inspection returned **SUPPORTED**, exit **0**,
+with exact aliases **`--initial_geometry`** and **`--add_hydrogens`**.
+Help SHA-256:
+`acb6a8944f43e4a733478586b9d439580e1f4275f6e9919f7956a2d57eebd248`.
+Native eLBOW execution is **COMPLETED**, exit **0**, elapsed **24.107482 s**;
+its actual optimization backend is **Recife Model 1 (RM1)**. Do not label this
+attempt AM1 from general documentation. Native log SHA-256:
+`d8b1d9f3a83d23a5bfc1519eea48a7ea86c991bdb5980742558f01d053877331`.
+
+The new `candidate.cif` SHA-256 is
+`3049dd5b5d79e2b6961d70a87e8b2c16c793a6078f4122d824697ffda43ed27b`.
+All **37** numerical bond targets are positive. **C2–N3 = 1.387 ± 0.029 Å**
+and its atom coordinates are distinct; **C1′–N9 = 1.473 ± 0.035 Å**. The
+earlier zero-target/coincident-bonded-coordinate defect is relieved in this
+candidate. The dictionary-geometry verdict is **PASS**; numerical verdict
+remains **REVIEW**. These are dictionary checks, not achieved model geometry,
+native polymer interpretation or experimental validity.
+
+The generation receipt is **REJECTED**, and the corrected probe summary is
+**CANDIDATES_REJECTED**, despite native exit **0**. IGU source remains **37
+atoms / 39 bonds**, formal charge **0**, while the candidate has **35 atoms /
+37 bonds**, formal charge **−2**: HOP2/HOP3 and their bonds were removed,
+OP2/OP3 changed **0 → −1**, and P–OP1/P–OP2/P–OP3 became **DELOC**. These are
+source-state differences, not approved internal linkage edits. The original
+and frozen source hashes are unchanged. Nothing was adopted or retried in
+the failed PostMR run.
+
+The returned v2 inspector additionally promoted four **PLANE-01 REVIEW** findings
+into its `generated-restraints-invalid-or-incomplete` rejection reason:
+
+| Centre | Interior planar-branch angle deviation | Sigma-adjustment lower bound |
+| --- | --- | --- |
+| C8 | 0.08° | 0.018066 |
+| N1 | 0.06° | 0.014381 |
+| N6 | 0.10° | 0.021285 |
+| N9 | 0.13° | 0.029667 |
+
+These diagnostic lower bounds exclude correlations and finite plane weights;
+they are not calibrated scientific significance or source-defect thresholds.
+Retain them as soft review evidence. Numerical invalidity remains distinct
+from uncalibrated angle/plane tension; forcing 360° or changing dictionary
+angles is not the fix. Correcting that gate does not approve the independent
+hydrogen/charge differences.
+
+Installed help explicitly advertises **`--pH=low` to retain exact input
+chemistry**. The v3 interface requires that advertised source-state-
+preservation mode and records its capability evidence. It does not choose an
+experimental pH or prescribe one protonation state for all nucleotides.
+The new source-preserving attempt remains **pending**; it must regenerate and
+compare a fresh candidate rather than relabel this rejected one. Native proxy,
+site-specific linkage, geometry and campaign continuation remain **NOT_RUN**.
 
 ### Earlier manually selected numerical resources
 

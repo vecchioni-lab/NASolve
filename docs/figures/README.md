@@ -21,3 +21,8 @@ width. Export PDF from a vector editor for submission and retain the SVG as
 the editable master. Raster previews and PDF exports can be regenerated and
 need not be source-controlled. Update the caption and overview whenever the
 feature, figure or interpretation changes.
+
+The accompanying caption now distinguishes explicit generator input-state
+retention from experimental protonation, and numerical REVIEW from chemical
+approval. The existing candidate branch still ends at review; source-state
+retention does not add an adoption arrow or native-link qualification.

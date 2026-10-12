@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, 2026-10-11:** offline component/restraint assessment,
+**Implemented scope, 2026-10-12:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
 explicit whole-component numerical candidate generation. The [command guide](cif-doctor.md) owns operational
@@ -96,8 +96,11 @@ not fetch a newer dictionary over the network.
 Explicit `generate-candidate` is a separate native operation. It freezes the
 source, creates an exact-name initial-geometry template from complete supplier
 ideal coordinates, checks the installed generator's advertised options, and
-requests eLBOW optimization with hydrogen addition off
-and source chirality retained. The candidate is assessed and compared with the
+requests eLBOW optimization with hydrogen addition off,
+source chirality retained and its explicit input-state retention mode selected.
+That mode requests retention instead of default acid-hydrogen removal; it is not an
+experimental pH claim or a determination of the correct crystal protonation.
+The candidate is assessed and compared with the
 source, including explicit hydrogen, charge and stereochemical differences.
 Missing/unrepresentable seed data, invalid targets or contradictory chemistry
 remain rejected or under review. Experimental MR coordinates and previous
@@ -105,6 +108,8 @@ prepared numerical dictionaries are not used to invent replacement targets.
 Logs, commands, versions, capability evidence and hashes remain in a fresh
 candidate folder. A CLI incompatibility is recorded separately from a chemistry
 or optimization failure; unsupported required controls stop generation.
+The requested optimization option and the backend reported by the native log
+are recorded separately, because installed implementations can differ.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -141,9 +146,14 @@ The fresh mixed-DNA test supplied a native regression case: IGU's generated
 C2–N3 target was zero and both dictionary atoms had identical coordinates;
 nearby targets were also distorted. The generalized PostMR guard quarantines
 invalid generated generic components and identifies the actual failing atoms.
-An explicit regeneration probe tests the new candidate path. Candidate
-generation, source-state preservation and native linked-site qualification are
-separate gates; their pending status is recorded in the
+An explicit regeneration probe completed eLBOW optimization and restored the
+C2–N3 target to 1.387 Å. It also exposed a separate default-state change:
+phosphate hydrogens disappeared and formal charges changed, so the candidate
+was rejected. The next probe explicitly requests source-state retention.
+Four small plane-angle discrepancies remain REVIEW findings rather than being
+misreported as missing numerical restraints. Candidate generation,
+source-state preservation and native linked-site qualification are separate
+gates; their pending status is recorded in the
 [synthetic test descriptor](synthetic-dna-mechanics-test.md).
 
 ## Current limits and planned extensions
@@ -202,6 +212,9 @@ achieved model geometry and assembly stitching remain future extensions.
 Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
 Explicit generation records installed-tool capability evidence before chemistry.
+It requests source-state retention and preserves soft numerical reviews without
+granting chemical approval; actual source-state and native-link qualification
+are separate from optimization completing.
 
 ## Primary references
 

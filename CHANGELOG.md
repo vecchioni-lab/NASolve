@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### eLBOW source-state retention and candidate review
+
+- Require the installed valued `--pH` control and explicitly use its `low`
+  input-chemistry retention mode. Record this as source-state preservation,
+  with experimental pH and solution protonation unassessed. Preserve the
+  hydrogen, charge, connectivity and declared-stereo rejection checks.
+- Keep complete candidates with supported soft numerical findings at
+  `CANDIDATE_REVIEW`; reject invalid/incomplete targets and unresolved plane
+  compatibility. Preserve the assessor's findings without inventing strain
+  thresholds or automatically adopting candidates.
+- Record the completed Phenix 2.2.1-6174 RM1/GDIIS optimization separately from
+  its chemical-state rejection: the collapsed IGU bond was restored, but default
+  phosphate deprotonation changed the source. Update the human descriptor and
+  machine-readable evidence; the source-preserving native retry remains pending.
+
 ### Installed eLBOW option compatibility
 
 - Probe the selected eLBOW executable's help before numerical generation;

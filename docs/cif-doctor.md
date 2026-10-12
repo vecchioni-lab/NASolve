@@ -31,7 +31,7 @@ Generation uses the frozen chemical CIF and a naming/initial-geometry PDB
 derived only from complete source ideal coordinates and integer formal charges.
 The explicit template supports component IDs of up to three characters and
 atom names of up to four ASCII characters; missing or unrepresentable data are
-reported, never inferred from the fitted model. The generation-v2 adapter first
+reported, never inferred from the fitted model. The generation-v3 adapter first
 records a bounded `phenix.elbow --help` check from that exact executable. It
 selects supported option spellings and verifies that each required option takes
 a value or is a switch as appropriate. Initial geometry and hydrogen controls
@@ -40,6 +40,14 @@ Unsupported or failed help checks stop before chemistry with
 `UNSUPPORTED_GENERATOR`. Help logs, hashes, selected aliases and executable
 identity remain in the receipt. eLBOW then receives explicit optimization,
 hydrogen addition disabled, retained chirality and the independent template.
+The required valued `--pH` control is set to `low`, the installed generator's
+input-chemistry retention mode. This requests preservation of the source state; it
+does not assert experimental pH or establish the correct crystal protonation.
+Hydrogen addition disabled alone does not prevent eLBOW from removing existing
+acid hydrogens. Atom, bond, hydrogen, charge and declared-stereo comparisons
+still reject changed chemistry even when the generator exits successfully.
+The requested `--opt` option and any backend named in the native log are
+separate evidence; the returned Phenix 2.2.1-6174 run used RM1/GDIIS.
 The original CIF, failed ReadySet output and prior numerical resources are
 never overwritten or used as a source of invented numerical targets.
 
@@ -48,6 +56,9 @@ Schema-1 `cif_component_generation_inspection` and
 assessments, chemical differences, exact numerical issues, generator command,
 version, timeout, output hashes and preservation checks. Exit 0 means
 `CANDIDATE_REVIEW`, not chemical approval; rejected/failed candidates exit 2.
+Complete numerical candidates may retain soft plane/torsion REVIEW findings;
+missing targets, invalid numerics and unresolved plane compatibility remain
+rejected. These findings are preserved rather than relabeled as numerical PASS.
 The generator does not retry ReadySet, edit a model, adapt polymer links or
 adopt a dictionary. Native reader/geometry/proxy verification and any actual
 linked-site chemistry remain separate qualification steps.
@@ -57,6 +68,12 @@ selects invalid non-curated generic components by findings, and invokes this
 same candidate API. Its summary distinguishes failed/rejected generation from
 an actual candidate awaiting review. It writes a review ZIP into a fresh external session while
 preserving the original run. `--inspect-only` skips native generation.
+
+The [optimized native evidence](elbow-optimized-state-evidence.json) records
+the restored IGU C2–N3 target (1.387 Å) and the separate rejection for deleted
+phosphate hydrogens and altered formal charges. A native retry with explicit
+source-state retention remains pending; this evidence does not authorize
+candidate adoption or a full-auto campaign restart.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

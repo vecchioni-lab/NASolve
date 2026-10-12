@@ -44,6 +44,34 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Optimized candidate and source-state retention (2026-10-12):** the returned
+22-file capsule is checksum-verified in
+[the native evidence record](elbow-optimized-state-evidence.json). Installed
+Phenix 2.2.1-6174 selected underscored initial-geometry/hydrogen aliases and
+completed optimization in **24.107482 seconds**, using **RM1/GDIIS**. IGU's
+collapsed C2–N3 target became **1.387 ± 0.029 Å** with distinct coordinates.
+The candidate still fails source-state preservation: HOP2/HOP3 were removed,
+OP2/OP3 formal charges changed from 0 to −1 and phosphate orders became DELOC.
+Four plane-angle reviews have positive-semidefinite Gram matrices and small
+0.06–0.13° sum residuals; numerical REVIEW must not be labeled incomplete.
+
+Generation-v3 requires the installed valued `--pH` option and selects `low`
+as the generator's exact-input-chemistry mode. It explicitly leaves experimental
+pH and intended crystal protonation unassessed. The candidate gate preserves
+supported soft numerical reviews, while rejecting invalid/incomplete numerics,
+unresolved plane compatibility and chemical-state changes. No source or old
+run is overwritten, no individual target is guessed and no candidate is
+adopted. The next laptop probe must demonstrate source-state retention before
+native reader/polymer-link qualification and full-auto recovery can proceed.
+The requested optimization option and the observed native backend are separate
+evidence. Human/manuscript descriptors and the figure caption are current.
+Final isolated Linux validation with the established full-suite command passes
+**1,264 tests, 2 skipped, 276 subtests (43.26 s)**. Regressions cover exact valued
+source-state control negotiation, refusal of missing controls or ignored
+hydrogen preservation, complete soft reviews, impossible/missing/nonfinite
+plane evidence, missing numerical coverage and collapsed coordinates. Native
+source-preserving generation remains pending; no native tool ran in this check.
+
 **Native generator CLI compatibility (2026-10-11):** the returned 18-file
 [capsule](elbow-cli-compatibility-evidence.json) confirms installed Phenix
 2.2.1-6174 rejected `--initial-geometry` before reading chemistry (exit 2,
@@ -53,14 +81,14 @@ table; the example uses a different alias. Generation-v2 now probes the exact
 installed executable's help, negotiates advertised spellings/value semantics,
 and refuses missing controls before chemistry. Help and executable hashes are
 retained. Probe summaries now distinguish failed/rejected generation from
-actual candidates awaiting review. The corrected native retry is still pending;
-this failure supplies no numerical-quality or chemical-state verdict.
+actual candidates awaiting review. The corrected native retry completed as
+recorded above; this first CLI failure supplies no numerical-quality or
+chemical-state verdict.
 Final isolated Linux validation with the established full-suite command passes
 **1,246 tests, 2 skipped, 276 subtests (42.81 s)**. New regressions cover dashed,
 underscored and mixed flags, misleading help examples/prefixes, valued versus
 switch controls, unsupported controls, help timeout/error and executable races.
-The native retry and optimization remain pending; the original failed receipt
-and run stay intact. Generation receipt schema 1 adds installed capability
+The original failed receipt and run stay intact. Generation receipt schema 1 adds installed capability
 evidence under policy `cif-independent-elbow-candidate-v2`.
 
 **Fresh ReadySet defect generalized (2026-10-11):** the user returned a

@@ -140,8 +140,9 @@ PostMR run.
 Chemistry comes from the frozen source graph. Exact source atom names and
 complete supplier **ideal** coordinates form a separate initial-geometry and
 naming seed. eLBOW is requested to retain chirality, disable automatic hydrogen
-addition, and perform optimized generation (`--opt`, documented AM1); the installed
-backend and its actual behavior must be read from the native log. Source atom
+addition, and perform optimized generation (`--opt`); the installed backend and
+its actual behavior must be read from the native log. The returned optimized
+attempt used **Recife Model 1 (RM1)**. Source atom
 IDs, elements, bond orders, hydrogens, formal charges and stereochemical
 declarations are compared with the candidate. Nonpositive bond targets or
 coincident bonded heavy-atom coordinates reject the candidate. Graph/state
@@ -184,9 +185,52 @@ that preserve the required naming, initial-geometry, hydrogen, chirality and
 optimization semantics, and retains the help evidence and exact chosen command.
 Missing required capability must stop before generation; it must not silently
 drop the independent seed or optimization request. Installed help output was
-not included in this returned bundle. The corrected next native attempt,
-candidate inspection, linked-site qualification and full campaign continuation
-remain **pending**; the prior zero-bond ReadySet blocker is unchanged.
+not included in this first failed bundle. The corrected second attempt below
+returned that help and completed native generation; the original failed
+ReadySet run remains unchanged.
+
+### Returned optimized candidate: geometry recovered, state rejected
+
+The second independent probe, `cif-generation-probe-le2ki6f4`, confirmed
+installed aliases **`--initial_geometry`** and **`--add_hydrogens`**, retained
+their help evidence, and ran eLBOW to native **exit 0** in **24.107482 seconds**.
+The log identifies **RM1**, not AM1. A whole-component IGU candidate was
+produced: **C2–N3 = 1.387 ± 0.029 Å** with distinct atom coordinates;
+**C1′–N9 = 1.473 ± 0.035 Å**. All bond targets are positive and the earlier
+zero-target/coincident-bonded-atom defect is absent in this new candidate.
+These are numerical-generation findings, not chemical or linked-site approval.
+
+The candidate was correctly **REJECTED** for source-state changes: **HOP2/HOP3
+were removed**, **37 → 35 atoms**, OP2/OP3 charges **0 → −1**, total formal
+charge **0 → −2**, and the three phosphate bond orders became delocalized.
+The generator completed while its candidate violated the exact source-state
+contract. The old source and failed runs remain preserved; no candidate was
+adopted and ReadySet/refinement was not retried.
+
+The inspector also treated four **PLANE-01 REVIEW** findings as an invalid or
+incomplete numerical dictionary. Their central-angle deviations from an exact
+interior planar branch were only **0.08°, 0.06°, 0.10° and 0.13°**, with
+uncorrelated sigma-adjustment lower bounds **0.018, 0.014, 0.021 and 0.030**.
+These diagnostics exclude finite plane weights and correlations and have no
+calibrated scientific rejection threshold. They must remain review evidence
+rather than becoming hard invalidity or an instruction to force every angle
+sum to 360°. That gate correction does not approve the changed phosphate state.
+
+Installed help advertises **`--pH=low` to retain exact input chemistry**.
+The v3 generator interface requires that source-state-preservation control,
+with its installed capability evidence, instead of silently letting eLBOW
+deprotonate the input. This is an engine preservation mode, not a selected
+experimental pH, a preferred protonation state or a global nucleotide policy.
+The next fresh candidate still must pass explicit graph, hydrogen, charge and
+stereochemical comparison. Its native execution and all linked-site/native
+proxy qualification remain **pending**.
+
+All **22** returned manifest entries were verified. Candidate SHA-256 is
+`3049dd5b5d79e2b6961d70a87e8b2c16c793a6078f4122d824697ffda43ed27b`;
+[the optimized-state evidence](elbow-optimized-state-evidence.json) records
+the exact command, backend, interface result, numeric recovery, chemical
+rejection and soft-review findings. Both earlier failure bundles remain
+historical evidence.
 
 ## Adaptable methods wording
 

@@ -6,10 +6,12 @@ from pathlib import Path
 import shutil
 import sys
 import time
+from unittest.mock import patch
 
 import pytest
 
 from nasolve.cif_generation import generate_elbow_candidate, inspect_component_generation
+from nasolve.cif_doctor import assess_dictionaries
 from nasolve.ligand_profiles import _emit
 
 
@@ -64,6 +66,7 @@ Options:
   --template=TEMPLATE  Exact atom naming
   --initial-geometry=FILE  Initial geometry
   --add-hydrogens=BOOL  Control hydrogen addition; default True
+  --pH=PH              Specify low to retain exact input chemistry
   --chiral=MODE        Chiral treatment
   --opt                Optimize
 """
@@ -122,7 +125,7 @@ def test_generation_uses_complete_source_ideal_seed_and_preserves_raw_output(tmp
     assert (work / "candidate.pdb").read_text() == "raw backend output\n"
     assert json.loads((work / "argv.json").read_text()) == [
         "source.cif", "--id=ZZZ", "--output=candidate", "--template=source_ideal.pdb",
-        "--initial-geometry=source_ideal.pdb", "--add-hydrogens=False", "--chiral=retain", "--opt"]
+        "--initial-geometry=source_ideal.pdb", "--add-hydrogens=False", "--pH=low", "--chiral=retain", "--opt"]
     atoms = [line for line in (work / "actual_seed.pdb").read_text().splitlines() if line.startswith("HETATM")]
     assert [line[12:16].strip() for line in atoms] == ["C5", "C5'", "O4'", "C1'"]
     assert [float(line[30:38]) for line in atoms] == [9.111, 10.222, 11.333, 12.444]
@@ -134,6 +137,11 @@ def test_generation_uses_complete_source_ideal_seed_and_preserves_raw_output(tmp
     assert receipt["generator_capabilities"]["command"] == [str(tmp_path / "bin/phenix.elbow"), "--help"]
     assert receipt["generator_capabilities"]["returncode"] == 0
     assert receipt["generator_capabilities"]["selected_aliases"]["initial_geometry"] == "--initial-geometry"
+    assert receipt["generator_capabilities"]["selected_aliases"]["source_state_preservation"] == "--pH"
+    assert receipt["source_state_preservation"]["generator_option"] == "--pH"
+    assert receipt["source_state_preservation"]["generator_value"] == "low"
+    assert receipt["source_state_preservation"]["experimental_ph"] == "UNASSESSED"
+    assert receipt["source_state_preservation"]["solution_protonation"] == "UNASSESSED"
     assert receipt["generator_capabilities"]["executable_sha256"] == hashlib.sha256((tmp_path / "bin/phenix.elbow").read_bytes()).hexdigest()
     assert receipt["generator_capabilities"]["help_output"]["sha256"] == hashlib.sha256((work / "elbow_help.log").read_bytes()).hexdigest()
     saved = json.loads((work / "generation_receipt.json").read_text())
@@ -323,6 +331,7 @@ import json, os, shutil, sys
 from pathlib import Path
 assert {initial + '=source_ideal.pdb'!r} in sys.argv
 assert {hydrogen + '=False'!r} in sys.argv
+assert '--pH=low' in sys.argv
 assert '--chiral=retain' in sys.argv and '--opt' in sys.argv
 Path('argv.json').write_text(json.dumps(sys.argv[1:]))
 shutil.copyfile(os.environ['CANDIDATE_FIXTURE'], 'candidate.cif')
@@ -338,6 +347,7 @@ shutil.copyfile(os.environ['CANDIDATE_FIXTURE'], 'candidate.cif')
 @pytest.mark.parametrize("option", [
     "--id=ID", "--output=OUTPUT", "--template=TEMPLATE", "--initial-geometry=FILE",
     "--add-hydrogens=BOOL", "--chiral=MODE", "--opt",
+    "--pH=PH",
 ])
 def test_missing_required_semantics_block_chemistry_call(tmp_path, option):
     source, fixture = inputs(tmp_path)
@@ -436,4 +446,167 @@ sys.exit(0)
     assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
     assert receipt["generator_capabilities"]["reason"] == "executable-changed-during-help"
     assert receipt["command"] is None
+    assert receipt["source_preserved"] and receipt["frozen_source_preserved"]
+
+
+def plane_inputs(tmp_path, angles=("119.94", "120.00", "120.00")):
+    source_values = component()
+    source_values["_chem_comp_bond.atom_id_1"] = ["C5"] * 3
+    source_values["_chem_comp_bond.atom_id_2"] = ["C5'", "O4'", "C1'"]
+    candidate = component(numerical=True)
+    candidate["_chem_comp_bond.atom_id_1"] = ["C5"] * 3
+    candidate["_chem_comp_bond.atom_id_2"] = ["C5'", "O4'", "C1'"]
+    candidate.update({
+        "_chem_comp_angle.comp_id": ["ZZZ"] * 3,
+        "_chem_comp_angle.atom_id_1": ["C5'", "C5'", "O4'"],
+        "_chem_comp_angle.atom_id_2": ["C5"] * 3,
+        "_chem_comp_angle.atom_id_3": ["O4'", "C1'", "C1'"],
+        "_chem_comp_angle.value_angle": list(angles),
+        "_chem_comp_angle.value_angle_esd": ["1.5"] * 3,
+        "_chem_comp_plane_atom.comp_id": ["ZZZ"] * 4,
+        "_chem_comp_plane_atom.plane_id": ["base"] * 4,
+        "_chem_comp_plane_atom.atom_id": ["C5", "C5'", "O4'", "C1'"],
+        "_chem_comp_plane_atom.dist_esd": [".02"] * 4,
+    })
+    source = write(tmp_path / "source.cif", source_values)
+    generated = write(tmp_path / "candidate.cif", candidate)
+    return source, generated
+
+
+def test_soft_plane_angle_compatibility_remains_visible_candidate_review(tmp_path):
+    source, generated = plane_inputs(tmp_path)
+    receipt = inspect_component_generation(source, generated, "ZZZ")
+    assert receipt["status"] == "CANDIDATE_REVIEW"
+    assert receipt["rejection_reasons"] == []
+    component_receipt = receipt["generated_assessment"]["components"][0]
+    assert component_receipt["verdicts"]["numerical"] == "REVIEW"
+    checks = [row for row in receipt["numerical_issues"] if row["code"] == "plane-angle-compatibility"]
+    assert len(checks) == 1 and checks[0]["status"] == "REVIEW"
+    assert 0 < checks[0]["measurements"]["sigma_adjustment_lower_bound"] < 0.03
+    assert receipt["automatic_adoption"] is False
+    assert receipt["native_validation"] == "NOT_RUN"
+
+
+def test_non_positive_semidefinite_plane_angles_reject_candidate(tmp_path):
+    source, generated = plane_inputs(tmp_path, ("10", "10", "100"))
+    receipt = inspect_component_generation(source, generated, "ZZZ")
+    assert receipt["status"] == "REJECTED"
+    assert "generated-plane-angle-geometry-invalid-or-unassessed" in receipt["rejection_reasons"]
+    checks = [row for row in receipt["numerical_issues"] if row["code"] == "plane-angle-compatibility"]
+    assert checks[0]["status"] == "REVIEW"
+    assert checks[0]["measurements"]["positive_semidefinite"] is False
+    assert receipt["automatic_adoption"] is False
+
+
+@pytest.mark.parametrize("defect", ["missing-psd", "unsupported-psd", "missing-angle", "nonfinite-eigenvalue"])
+def test_incomplete_or_unsupported_gram_evidence_cannot_become_soft_plane_review(tmp_path, defect):
+    source, generated = plane_inputs(tmp_path)
+
+    def incomplete_assessment(paths, **kwargs):
+        report = assess_dictionaries(paths, **kwargs)
+        if kwargs.get("stage") == "effective":
+            for finding in report["components"][0]["findings"]:
+                if finding["code"] != "plane-angle-compatibility":
+                    continue
+                measurements = finding["measurements"]
+                if defect == "missing-psd":
+                    measurements.pop("positive_semidefinite")
+                elif defect == "unsupported-psd":
+                    measurements["positive_semidefinite"] = "UNASSESSED"
+                elif defect == "missing-angle":
+                    measurements["angles_degrees"].pop()
+                else:
+                    measurements["eigenvalues"][0] = float("nan")
+        return report
+
+    with patch("nasolve.cif_generation.assess_dictionaries", side_effect=incomplete_assessment):
+        receipt = inspect_component_generation(source, generated, "ZZZ")
+    assert receipt["status"] == "REJECTED"
+    assert "generated-plane-angle-geometry-invalid-or-unassessed" in receipt["rejection_reasons"]
+    assert receipt["automatic_adoption"] is False
+
+
+def test_unresolved_torsion_relationship_remains_review_without_adoption(tmp_path):
+    values = component(numerical=True)
+    values.update({
+        "_chem_comp_tor.comp_id": ["ZZZ"] * 2,
+        "_chem_comp_tor.id": ["alpha1", "alpha2"],
+        "_chem_comp_tor.atom_id_1": ["C5"] * 2,
+        "_chem_comp_tor.atom_id_2": ["C5'"] * 2,
+        "_chem_comp_tor.atom_id_3": ["O4'"] * 2,
+        "_chem_comp_tor.atom_id_4": ["C1'"] * 2,
+        "_chem_comp_tor.type": ["proper"] * 2,
+        "_chem_comp_tor.value_angle": ["0", "70"],
+        "_chem_comp_tor.value_angle_esd": ["5"] * 2,
+        "_chem_comp_tor.period": ["1"] * 2,
+    })
+    source, generated = inputs(tmp_path, generated=values)
+    receipt = inspect_component_generation(source, generated, "ZZZ")
+    assert receipt["status"] == "CANDIDATE_REVIEW"
+    assert any(row["code"] == "competing-torsion-terms" and row["status"] == "REVIEW"
+               for row in receipt["numerical_issues"])
+    assert receipt["automatic_adoption"] is False
+    assert receipt["native_validation"] == "NOT_RUN"
+
+
+@pytest.mark.parametrize("missing", ["bond-target", "energy-type", "angle-category", "all-numerics"])
+def test_explicit_incomplete_numeric_coverage_still_rejects_candidate(tmp_path, missing):
+    values = component(numerical=True)
+    if missing == "bond-target":
+        values["_chem_comp_bond.value_dist"][0] = "."
+    elif missing == "energy-type":
+        values["_chem_comp_atom.type_energy"][0] = "?"
+    elif missing == "angle-category":
+        values = {key: value for key, value in values.items() if not key.startswith("_chem_comp_angle.")}
+    else:
+        values = component()
+    source, generated = inputs(tmp_path, generated=values)
+    receipt = inspect_component_generation(source, generated, "ZZZ")
+    assert receipt["status"] == "REJECTED"
+    assert "generated-restraints-invalid-or-incomplete" in receipt["rejection_reasons"]
+    assert receipt["automatic_adoption"] is False
+
+
+def test_collapsed_dictionary_coordinates_still_reject_candidate(tmp_path):
+    values = component(numerical=True)
+    for axis in "xyz":
+        values["_chem_comp_atom." + axis] = ["0.000"] * 4
+    source, generated = inputs(tmp_path, generated=values)
+    receipt = inspect_component_generation(source, generated, "ZZZ")
+    assert receipt["status"] == "REJECTED"
+    assert receipt["generated_assessment"]["status"] == "INVALID"
+    assert receipt["automatic_adoption"] is False
+
+
+@pytest.mark.parametrize("replacement", ["--pH", "--ph=PH", "--pH_guess=PH", "--no-pH"])
+def test_source_state_retention_requires_the_exact_valued_installed_selector(tmp_path, replacement):
+    source, fixture = inputs(tmp_path)
+    help_text = HELP.replace("--pH=PH", replacement)
+    receipt = run(source, fixture, program(tmp_path, help_text=help_text), tmp_path / "out")
+    assert receipt["status"] == "REJECTED"
+    assert receipt["execution"]["status"] == "UNSUPPORTED_GENERATOR"
+    assert "source_state_preservation" in receipt["generator_capabilities"]["unsupported_semantics"]
+    assert receipt["command"] is None
+    assert receipt["source_preserved"] and receipt["frozen_source_preserved"]
+
+
+def test_hydrogen_removal_despite_retention_option_is_still_rejected(tmp_path):
+    source_values = component()
+    source_values["_chem_comp_atom.type_symbol"][0] = "H"
+    source = write(tmp_path / "source/component.cif", source_values)
+    values = component(numerical=True)
+    values["_chem_comp_atom.type_symbol"][0] = "H"
+    for key in list(values):
+        if key.startswith("_chem_comp_atom."):
+            values[key] = values[key][1:]
+        elif key.startswith("_chem_comp_bond."):
+            values[key] = values[key][1:]
+        elif key.startswith("_chem_comp_angle."):
+            values[key] = values[key][1:]
+    fixture = write(tmp_path / "fixtures/removed-H.cif", values)
+    receipt = run(source, fixture, program(tmp_path), tmp_path / "out")
+    assert "--pH=low" in receipt["command"]
+    assert receipt["status"] == "REJECTED"
+    assert "generated-atom-bond-or-hydrogen-identity-changed" in receipt["inspection"]["rejection_reasons"]
+    assert any(row["field"] == "hydrogen_attachments" for row in receipt["inspection"]["chemical_changes"])
     assert receipt["source_preserved"] and receipt["frozen_source_preserved"]
