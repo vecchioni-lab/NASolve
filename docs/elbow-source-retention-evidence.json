@@ -542,5 +542,121 @@
     "docs/synthetic-dna-mechanics-test.md",
     "docs/native-modified-pair-live-validation.md",
     "docs/cif-doctor-human-overview.md"
-  ]
+  ],
+  "delivery_repeats": [
+    {
+      "delivery_prefix": "04_Cedar",
+      "historical_session": {
+        "anchor": "live",
+        "relative_path": "04_Cedar_cif-generation-probe-r2cunjcc"
+      },
+      "candidate_directory": {
+        "anchor": "delivery_session",
+        "relative_path": "candidates/cif-generation-xpj7v6bw"
+      },
+      "evidence": {
+        "archive": {
+          "name": "04_Cedar_r2cunjcc_cif_generation_review.zip",
+          "sha256": "7eba3d65f11e6b32b9120a70d1bf48341ed6686d7ff1e791831271630dd7de1f"
+        },
+        "manifest": {
+          "relative_path": "manifest.json",
+          "sha256": "1f7a7ec9c151d7d1854093c7b8cc558531886fe9bb262f5e375265b14559a454",
+          "entry_count": 22,
+          "all_entries_sha256_verified": true
+        },
+        "selected_file_hashes": {
+          "candidates/cif-generation-xpj7v6bw/candidate.cif": {
+            "sha256": "875826476e9c3adee3b22b87ac6748eb94829e4382a1b40efc6aef8bbcbc9fb6",
+            "bytes": 13757
+          },
+          "candidates/cif-generation-xpj7v6bw/candidate.pdb": {
+            "sha256": "2be3b686dbc72dbc5e7fa25687ac47cf93742475b9770fc6c77dc3ec4c8c22f2",
+            "bytes": 4560
+          },
+          "candidates/cif-generation-xpj7v6bw/elbow.log": {
+            "sha256": "94ed679345b05ad27231317b7404c552522f8dc3f4d48f395150f1e43e6bc499",
+            "bytes": 8378
+          },
+          "candidates/cif-generation-xpj7v6bw/elbow_help.log": {
+            "sha256": "acb6a8944f43e4a733478586b9d439580e1f4275f6e9919f7956a2d57eebd248",
+            "bytes": 8860
+          },
+          "candidates/cif-generation-xpj7v6bw/generation_receipt.json": {
+            "sha256": "3e04d4bc39f01ae640a01352e40c2d8b33a6cd47ccd4bfc0f84dbdaa56cc0917",
+            "bytes": 503512
+          },
+          "probe_receipt.json": {
+            "sha256": "fdff43a85ab84272e7162b96616b03366f17c5a5304e9738dd91128079b7ecb9",
+            "bytes": 588796
+          }
+        },
+        "full_inventory_reference": "Exact returned ZIP and hash-bound manifest; unchanged source inventories and findings are recorded in the earlier v3 evidence above."
+      },
+      "runtime": {
+        "nasolve_source": {
+          "commit": "a967c37411192e6384c703d489f73e52ca47982c",
+          "working_tree_has_changes": true
+        },
+        "runtime_archive_sha256": "dc2f4fcef97886388f9ba054d5edcc499cbe720d72cc99ca9b15fb0fe4c1acf8",
+        "same_runtime_archive_as_prior_v3": true,
+        "policy_id": "cif-independent-elbow-candidate-v3"
+      },
+      "execution": {
+        "status": "COMPLETED",
+        "returncode": 0,
+        "elapsed_seconds": 22.019048,
+        "started_at": "2026-10-12T10:26:46.141920+00:00",
+        "finished_at": "2026-10-12T10:27:08.161307+00:00",
+        "candidate_status": "CANDIDATE_REVIEW",
+        "probe_status": "CANDIDATES_AWAITING_REVIEW"
+      },
+      "visible_prefix_check": {
+        "build_metadata_prefix": "04_Cedar",
+        "top_level_receipt_prefix": "04_Cedar",
+        "user_live_verdict": "PASS",
+        "native_chemical_qualification_implied": false
+      },
+      "independent_repeat_comparison": {
+        "reader": "nasolve.ligand_profiles._blocks",
+        "all_parsed_CIF_block_values_equal_prior_v3": true,
+        "parsed_CIF_digest_algorithm": "SHA256 of JSON array of block.values with sort_keys=True, separators=(comma,colon), ensure_ascii=True",
+        "parsed_CIF_values_sha256": "4384d23dc7f25d55dbcdfd79110db147fe36bc685a7dfb78563f04ae73111cf6",
+        "PDB_ATOM_HETATM_row_count": 37,
+        "all_PDB_atom_rows_exactly_equal_prior_v3": true,
+        "PDB_row_digest_algorithm": "SHA256 of ATOM/HETATM lines joined with newline and one final newline",
+        "PDB_atom_rows_sha256": "dcc1de15a29095c114f6204a7363996201b92e1c047d221098f8dfe80631a436",
+        "different_file_hashes_are_new_chemistry": false,
+        "byte_difference_scope": "Timestamp text; parsed chemical/restraint values and coordinate atom rows unchanged."
+      },
+      "preservation": {
+        "reported_inputs": "UNCHANGED",
+        "source_preserved": true,
+        "frozen_source_preserved": true,
+        "automatic_adoption": false,
+        "readyset_retry": "NOT_RUN",
+        "native_proxy_validation": "NOT_RUN",
+        "linked_site_validation": "NOT_RUN"
+      },
+      "interpretation": "Successful delivery-prefix check and repeat of the same source-state/numerical CANDIDATE_REVIEW result; no new chemistry, native CIF-reader or linked-site result."
+    }
+  ],
+  "next_bounded_consumer_diagnostic": {
+    "delivery_prefix": "05_Cedar",
+    "status": "PENDING",
+    "implementation": "IMPLEMENTED_OFFLINE_TESTED",
+    "native_execution": "PENDING",
+    "scope": [
+      "Installed native CIF parsing",
+      "Model interpretation against an explicitly selected dictionary bundle",
+      "Exact selected inputs and outputs preserved in a fresh diagnostic directory"
+    ],
+    "original_inputs_preserved": true,
+    "coordinate_optimization": false,
+    "metadata_adaptation": false,
+    "ReadySet_retry": false,
+    "dictionary_adoption": false,
+    "result_available": false,
+    "qualification_limits": "No native-reader/proxy/linkage/refinement or scientific result is inferred from 04_Cedar generation."
+  }
 }

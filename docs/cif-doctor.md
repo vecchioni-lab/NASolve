@@ -83,6 +83,50 @@ candidate adoption or a full-auto campaign restart. The subsequent
 successful v3 retention attempt with all 37 atoms and unchanged formal charges.
 That candidate remains REVIEW pending metadata/native-reader/link qualification.
 
+## Explicit native bundle diagnostic
+
+`05_Cedar_probe_cif_native.py` is a separate diagnostic shuttle. Its default
+case uses the returned Cedar 04 generation receipt and the original failed
+synthetic run. It rechecks the current candidate, binds its frozen chemistry
+to the source audit, and verifies the prepared PDB plus every recorded runtime
+CIF/PHIL/EFF. The generation probe also binds the source audit and failed
+ReadySet baseline; caller-selected exact paths are checked against those
+hashes rather than resolved through historical absolute paths.
+
+The shuttle copies inputs into a fresh external directory, replaces only the
+candidate component in that diagnostic input list, and applies the ordinary
+parameterized-input precedence and supported torsion normalizer. All recorded
+ancillary parameters and reviewed site-modification files are retained.
+It does not add generic site modifications or change DNA metadata/protonation.
+`--inspect-only` performs this preparation offline without discovering Phenix.
+Explicit `--run`, `--candidate-directory`, `--generation-probe`, `--phenix-root`
+and `--output-parent` overrides retain their declared checksum boundaries.
+
+Native execution requires optional `phenix.python` beside the selected
+installation's Phaser dispatcher. The standalone worker uses installed
+iotbx/libtbx/mmtbx readers and monomer/energy libraries. It records effective
+monomer metadata, missing-atom mappings where supported, interpreted atom
+identities/coordinates, simple/ASU bond endpoints and geometry proxy counts.
+Original and copied input bytes are rechecked after execution. Native hierarchy
+normalization is recorded separately from preservation of the original model.
+
+The opt-in `refinement-root-to-interpreter-v1` PHIL namespace policy uses the
+native parser to remove only a top-level `refinement` wrapper, retaining all
+child definitions, value tokens and selections. Canonical derivatives and field
+maps are preserved, and unused parameters stop as explicit unsupported evidence.
+Geometry edits/removals and scoped CIF modifications use the corresponding
+native consumers; no parameter is silently discarded to obtain a clean run.
+
+Schema-1 `cif_native_bundle_inspection` receipts use policy
+`cif-native-bundle-inventory-v1`. Successful interpretation returns **REVIEW**,
+with native failures, unavailable APIs/fields and missing coverage visible.
+Inventory does not certify intended links, custom-restraint coverage, achieved
+geometry or scientific validity. The helper runs no optimization, ReadySet,
+refinement, candidate adoption or checkpoint selection. A prefixed review ZIP
+contains exact diagnostic inputs, canonical parameters, raw logs and receipts;
+embedded source runtime and native pickles are excluded. Native execution of
+this new helper remains pending the laptop return.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

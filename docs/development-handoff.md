@@ -44,6 +44,38 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 04 reproduction and Cedar 05 diagnostic (2026-10-12):** the returned
+`04_Cedar_r2cunjcc_cif_generation_review.zip` verifies all 22 manifest entries.
+The [compact repeat evidence](elbow-source-retention-evidence.json) records
+exact parsed CIF/PDB atom-row equality to v3; only generation timestamps differ.
+Native eLBOW completed in **22.019048 s**, with source retention and numerical
+findings unchanged. The prefix is present in console, receipt, output directory
+and review ZIP. This is reproduction and delivery evidence, not native-reader
+or linkage qualification.
+
+The new `05_Cedar_probe_cif_native.py` freezes an external diagnostic bundle
+from the source-audit runtime stack and prepared model, with the accepted
+candidate substituted only in the copied dictionary input list. The prior
+generation probe hash-binds the source audit/raw ReadySet baseline and the exact
+candidate receipt; explicit caller paths remain operational references.
+Parameterized source precedence, torsion normalization and every recorded
+ancillary PHIL/EFF/site-modification input are retained. The installation-bound
+`phenix.python` worker inventories native readers, effective monomer/missing-atom
+mapping and interpreted atom/proxy evidence. Its explicit native-parser PHIL
+namespace adapter retains all definitions and rejects unused parameters.
+Actual native execution remains **NOT_RUN** here. Success is REVIEW, with no
+model replacement, optimization, ReadySet retry, adoption or certification.
+The human descriptor and editable figure/caption reflect this diagnostic scope.
+Final offline validation: **16 native-boundary tests pass (1.62 s)** using
+explicitly fake installed APIs, **22 shuttle tests pass (9.48 s)** with deleted
+source checkouts and poisoned imports, and **19 discovery/CLI tests pass
+(0.48 s)**. The established full-suite command passes **1,308 tests, 2 skipped,
+276 subtests (54.09 s)** after final mapping/provenance changes. Fake APIs verify
+process, hash and reporting boundaries; they are not native Phenix evidence.
+The figure was regenerated and rendered for visual QA. New schemas are
+schema-1 native inspection/probe receipts and selected-bundle evidence; the
+generation policy remains v3. Private crystallographic inputs stay outside Git.
+
 **Native v3 source-state retention and visible ferry IDs (2026-10-12):** the
 user returned the 22-file [source-retention capsule](elbow-source-retention-evidence.json).
 Installed Phenix 2.2.1-6174 completed RM1/GDIIS generation with `--pH=low` in

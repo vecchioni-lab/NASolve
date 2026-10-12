@@ -16,7 +16,7 @@ from .config import AppConfig, PhenixSettings
 
 
 REQUIRED_PROGRAMS = ("phenix.phaser", "phenix.ready_set", "phenix.refine")
-OPTIONAL_PROGRAMS = ("phenix.mtz.dump", "phenix.autosol", "phenix.elbow")
+OPTIONAL_PROGRAMS = ("phenix.mtz.dump", "phenix.autosol", "phenix.elbow", "phenix.python")
 VERSION_PROGRAM = "phenix.version"
 
 
@@ -106,9 +106,9 @@ def _from_environment(
     resolved: dict[str, Path] = {}
     missing: list[str] = []
     for program in (*REQUIRED_PROGRAMS, *OPTIONAL_PROGRAMS, VERSION_PROGRAM):
-        if program == "phenix.elbow":
-            # Candidate generation must use the validated installation's
-            # dispatcher, not an unrelated eLBOW later on a mixed PATH.
+        if program in {"phenix.elbow", "phenix.python"}:
+            # Explicit candidate/native diagnostics use this installation's
+            # dispatchers, rather than a different installation on a mixed PATH.
             phaser = resolved.get("phenix.phaser")
             found = shutil.which(str(phaser.parent / program)) if phaser is not None else None
         else:

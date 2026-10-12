@@ -275,6 +275,28 @@ preparation, followed by a fresh ReadySet/PostMR/native-proxy check. The
 source-generation recovery is now demonstrated for IGU; the one-click mixed
 DNA campaign has **not yet completed** through that recovery path.
 
+### 04_Cedar repeat and the next bounded check
+
+The user-live **`04_Cedar`** delivery passed the visible-prefix check in its
+filename, build metadata and run receipt. The fresh session
+`04_Cedar_cif-generation-probe-r2cunjcc` completed native generation at exit
+**0** in **22.019048 seconds**, with the same embedded runtime archive as the
+earlier v3 probe. All **22** manifest entries verify. Its candidate remains
+**CANDIDATE_REVIEW**: every parsed CIF value and all **37** PDB atom rows match
+the earlier source-retaining candidate exactly; file hashes differ because
+timestamp text changed. This confirms delivery naming and repeats the same
+source-state/numerical result. It adds no new chemical, linked-site or native
+reader qualification. The compact repeat record lives in
+[the existing source-retention evidence](elbow-source-retention-evidence.json).
+
+The next **`05_Cedar`** diagnostic is implemented to exercise the installed native
+CIF reader and model interpretation against an explicitly selected dictionary
+bundle, in a fresh directory with original inputs preserved. It will capture
+consumer behavior before optimizing coordinates, adapting metadata, rerunning
+ReadySet or adopting a dictionary. Offline implementation is validated; native
+execution remains **pending**. No native outcome is inferred from the successful
+`04_Cedar` repeat.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

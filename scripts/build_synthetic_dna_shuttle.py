@@ -33,8 +33,12 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
           delivery_prefix: str | None = None) -> dict:
     if output.exists() or output.is_symlink():
         raise FileExistsError(f"Shuttle already exists: {output}")
-    if template_name == "cif_generation_probe_template.py":
-        delivery_prefix = delivery_prefix or "04_Cedar"
+    probe_templates = {
+        "cif_generation_probe_template.py": "04_Cedar",
+        "cif_native_probe_template.py": "05_Cedar",
+    }
+    if template_name in probe_templates:
+        delivery_prefix = delivery_prefix or probe_templates[template_name]
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,31}", delivery_prefix):
             raise ValueError("Delivery prefix must be 1–32 ASCII letters, numbers, underscores or hyphens")
     elif delivery_prefix is not None:
@@ -76,13 +80,20 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "dependencies": ["Python >=3.10", "Biopython", "numpy", "openpyxl",
                          "tomli on Python 3.10", "Phenix and Coot for native execution"],
     }
-    if template_name not in {"synthetic_dna_shuttle_template.py", "cif_generation_probe_template.py"}:
+    if template_name not in {"synthetic_dna_shuttle_template.py", *probe_templates}:
         raise ValueError("Unknown reviewed shuttle template")
     if template_name == "cif_generation_probe_template.py":
         metadata["kind"] = "cif-generation-probe-shuttle"
         metadata["delivery_prefix"] = delivery_prefix
         metadata["native_generation"] = "explicit-source-preserving-candidate-only"
         metadata["automatic_adoption"] = False
+    if template_name == "cif_native_probe_template.py":
+        metadata["kind"] = "cif-native-probe-shuttle"
+        metadata["delivery_prefix"] = delivery_prefix
+        metadata["native_validation"] = "explicit-diagnostic-bundle-only"
+        metadata["automatic_adoption"] = False
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
+                                    "tomli on Python 3.10", "Phenix for native execution"]
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

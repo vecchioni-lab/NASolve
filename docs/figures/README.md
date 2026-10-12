@@ -26,3 +26,5 @@ The accompanying caption now distinguishes explicit generator input-state
 retention from experimental protonation, and numerical REVIEW from chemical
 approval. The existing candidate branch still ends at review; source-state
 retention does not add an adoption arrow or native-link qualification.
+The native-diagnostic scope note describes explicit proxy inventory in an
+external directory; it does not certify those proxies or add an adoption arrow.

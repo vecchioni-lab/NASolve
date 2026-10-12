@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit native bundle diagnostics
+
+- Add a separate installation-bound `phenix.python` diagnostic for an exact
+  model/CIF/PHIL bundle, with frozen input hashes, bounded execution and raw
+  native-reader, atom-mapping and proxy evidence. Inventory successful native
+  interpretation as REVIEW; unsupported APIs/parameters and failures stay
+  explicit. No optimization, model replacement, ReadySet retry or adoption.
+- Add a prefixed `05_Cedar` shuttle that binds an accepted generation receipt
+  to the failed run's source audit and prepared PDB, preserves frozen runtime
+  numerical precedence and ancillary parameters, and writes an external
+  diagnostic bundle/receipt/review ZIP. Preserve explicit paths and offline
+  inspect-only operation; refuse input/hash mismatches.
+- Record the returned `04_Cedar` repeat: exact CIF values and all 37 PDB atom
+  rows reproduce v3; only generation timestamps differ. Native interpretation
+  and generic polymer-link qualification remain separate pending laptop checks.
+
 ### Visible shuttle identifiers and native source-retention evidence
 
 - Prefix the CIF-generation shuttle, output session and review ZIP with a short

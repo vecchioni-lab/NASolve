@@ -371,6 +371,37 @@ finding. Source, frozen source and old failed runs remain unchanged in v3.
 Nothing has been adopted; ReadySet retry, native proxies, site-specific linkage,
 diffraction refinement and scientific approval remain **NOT_RUN/unassessed**.
 
+### 04_Cedar returned repeat — visible prefix PASS, same candidate values
+
+`LIVE/04_Cedar_cif-generation-probe-r2cunjcc`, candidate directory
+`candidates/cif-generation-xpj7v6bw`, returned
+`04_Cedar_r2cunjcc_cif_generation_review.zip`. Archive SHA-256:
+`7eba3d65f11e6b32b9120a70d1bf48341ed6686d7ff1e791831271630dd7de1f`;
+all **22** manifest entries verified. Manifest SHA-256:
+`1f7a7ec9c151d7d1854093c7b8cc558531886fe9bb262f5e375265b14559a454`.
+Both build metadata and top-level receipt carry **`04_Cedar`**; the requested
+leading number/letter/plant identifier has a **user-live PASS**.
+
+The runtime archive remains
+`dc2f4fcef97886388f9ba054d5edcc499cbe720d72cc99ca9b15fb0fe4c1acf8`.
+Native generation completed at **exit 0**, elapsed **22.019048 s**, and remains
+**CANDIDATE_REVIEW**. New candidate SHA-256:
+`875826476e9c3adee3b22b87ac6748eb94829e4382a1b40efc6aef8bbcbc9fb6`.
+Independent comparison confirms **all parsed CIF values and all 37 PDB atom
+rows equal the earlier v3 candidate**; timestamp text accounts for different
+file bytes. Source-state retention, numerical targets, metadata omissions and
+soft-review boundaries are therefore unchanged. This repeat is not new
+chemistry, native-reader validation or linked-site qualification. The existing
+[source-retention evidence](elbow-source-retention-evidence.json) appends the
+compact hash-bound repeat record.
+
+The next **05_Cedar** bounded diagnostic is intended to use the installed native
+CIF parser and model interpretation on an explicitly selected dictionary
+bundle while preserving originals. It will capture reader/consumer behavior
+without coordinate optimization, metadata adaptation, ReadySet retry or
+dictionary adoption. Its implementation and native execution remain **PENDING**;
+there is no new reader, proxy, linkage or refinement result at this boundary.
+
 ### Earlier manually selected numerical resources
 
 Phenix CCD graph sources are available; IGU/IMC/CGY/DX remain unbundled in

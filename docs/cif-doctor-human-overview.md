@@ -3,7 +3,8 @@
 **Implemented scope, 2026-10-12:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
-explicit whole-component numerical candidate generation. The [command guide](cif-doctor.md) owns operational
+explicit whole-component numerical candidate generation and a separate native
+bundle diagnostic. The [command guide](cif-doctor.md) owns operational
 details; the [implementation map](cif-restraint-doctor-implementation.json)
 separates the deployed software from proposed extensions. Update this overview
 and its figure whenever the feature's behavior, dependencies or claims change.
@@ -86,6 +87,7 @@ the native geometry-restraint proxies constructed by Phenix.
 | NASolve checkpoint and run-context utilities | Resolve declared frozen inputs, verify hashes and retain portable provenance without changing checkpoint selection. |
 | Phenix ReadySet and Coot | External PostMR preparation/construction programs surrounding the audit hooks; neither is required for a standalone dictionary assessment. |
 | Phenix eLBOW, explicitly requested | Generates a separate numerical candidate from frozen chemical input and independent source ideal coordinates; never adopts it automatically. |
+| Installation-bound `phenix.python`, explicitly requested | Uses installed iotbx/libtbx/mmtbx readers and monomer libraries to interpret a copied model/effective dictionary/parameter bundle and inventory the resulting atom/proxy evidence. |
 | wwPDB CCD and NARestraints | CCD supplies separate source definitions; the NARestraints workbook supplies pairing roles and test-case selection. Neither is automatically promoted to authority for every chemical state. |
 
 Standalone assessment runs locally and offline. It uses no language model,
@@ -110,6 +112,19 @@ candidate folder. A CLI incompatibility is recorded separately from a chemistry
 or optimization failure; unsupported required controls stop generation.
 The requested optimization option and the backend reported by the native log
 are recorded separately, because installed implementations can differ.
+
+An explicit native bundle diagnostic is the next separate operation. It freezes
+the prepared model, selected CIFs and parameter files in an external folder,
+then invokes the selected Phenix installation's Python and monomer library.
+An opt-in, recorded namespace adapter can remove only the parsed top-level
+`refinement` wrapper from NASolve parameter files; all child values and
+selections are retained, and unused native parameters are reported. The
+diagnostic records installed parsing, interpreted atom identities and geometry
+proxy inventories without minimizing or writing replacement coordinates.
+Native interpretation may normalize the internal hierarchy; original model
+bytes remain separately preserved and hash-bound. Exit-zero interpretation
+remains REVIEW and does not certify chemistry, expected links, custom-restraint
+coverage or achieved geometry. Unsupported API layers remain visible.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -167,14 +182,15 @@ the front so clipped filenames remain distinguishable.
 
 CIF Doctor inventories declared chemistry; it does not infer valence,
 protonation, tautomer choice, absolute stereochemistry or phosphate termination
-from a residue label. It does not yet interpret site-specific link/modification
-chemistry, verify installed Phenix parsing or effective proxies, calculate
+from a residue label. It does not choose site-specific link/modification
+chemistry, certify installed Phenix parsing or effective proxies, calculate
 achieved coordinate geometry or sugar pucker, assess maps, or repair/stitch
 fractured assembly arms. Plane-angle discrepancies include raw measurements
 and uncertainty-based lower bounds, but a material-strain threshold has not
 been calibrated.
 
-The proposed next layers are native-consumer/proxy verification, mapped chemical
+The proposed next layers are qualification of collected native-consumer/proxy
+evidence, mapped chemical
 descriptors, qualified automatic candidate adoption and model geometry/connectivity
 assessment. Guided sticky-end stitching would require declared strand routing,
 symmetry and terminal intent, with a new child checkpoint. These are planned
@@ -214,7 +230,7 @@ indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
-The figure depicts the implemented assessment layer; native proxy validation,
+The figure depicts the implemented assessment layer; native proxy certification,
 achieved model geometry and assembly stitching remain future extensions.
 Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
@@ -222,6 +238,8 @@ Explicit generation records installed-tool capability evidence before chemistry.
 It requests source-state retention and preserves soft numerical reviews without
 granting chemical approval. The v3 diagnostic demonstrated atom/bond/H/formal-charge
 retention; omitted metadata and native-link qualification remain explicit.
+The separate native diagnostic inventories interpreted atoms/proxies and
+parameter handling; it does not add a repair or adoption path.
 
 ## Primary references
 
