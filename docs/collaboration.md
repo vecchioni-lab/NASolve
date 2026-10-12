@@ -37,6 +37,15 @@ Use professional, attributable manuscript language and exact software versions;
 private collaboration/personality notes stay outside repository documentation.
 The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
 
+For user-facing shuttles and returned review capsules, put a short delivery
+identifier at the **start** of the filename, for example
+`04_Cedar_probe_cif_generation.py`. Leading numbers/letters/plant names remain
+visible when file cards truncate the ending. Returned capsules also include
+their run token near the front, so repeated executions of one delivery remain
+distinguishable. Print and record the same delivery identifier in receipts;
+give one terminal command for the exact new filename. Keep previous deliveries
+and runs intact; do not rely on Downloads suffixes such as `(1)` to select code.
+
 ## Branch and worktree lifecycle
 
 Prefer **one active development branch and one everyday checkout**. Arboreal

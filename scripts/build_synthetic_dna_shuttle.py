@@ -12,6 +12,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import re
 import subprocess
 import zipfile
 
@@ -28,9 +29,16 @@ def _revision(root: Path) -> dict:
 
 
 def build(root: Path, narestraints_root: Path, output: Path, *,
-          template_name: str = "synthetic_dna_shuttle_template.py") -> dict:
+          template_name: str = "synthetic_dna_shuttle_template.py",
+          delivery_prefix: str | None = None) -> dict:
     if output.exists() or output.is_symlink():
         raise FileExistsError(f"Shuttle already exists: {output}")
+    if template_name == "cif_generation_probe_template.py":
+        delivery_prefix = delivery_prefix or "04_Cedar"
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,31}", delivery_prefix):
+            raise ValueError("Delivery prefix must be 1–32 ASCII letters, numbers, underscores or hyphens")
+    elif delivery_prefix is not None:
+        raise ValueError("This shuttle template does not support a delivery prefix")
     members = {}
     for source, prefix in ((root / "src/nasolve", "src/nasolve"),
                            (narestraints_root / "restraints", "restraints"),
@@ -72,6 +80,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         raise ValueError("Unknown reviewed shuttle template")
     if template_name == "cif_generation_probe_template.py":
         metadata["kind"] = "cif-generation-probe-shuttle"
+        metadata["delivery_prefix"] = delivery_prefix
         metadata["native_generation"] = "explicit-source-preserving-candidate-only"
         metadata["automatic_adoption"] = False
     template = (root / "scripts" / template_name).read_text()

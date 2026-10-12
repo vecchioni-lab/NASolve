@@ -63,17 +63,25 @@ The generator does not retry ReadySet, edit a model, adapt polymer links or
 adopt a dictionary. Native reader/geometry/proxy verification and any actual
 linked-site chemistry remain separate qualification steps.
 
-The source-bundled `probe_cif_generation.py` inspects an existing failed run,
+The source-bundled `04_Cedar_probe_cif_generation.py` inspects an existing failed run,
 selects invalid non-curated generic components by findings, and invokes this
 same candidate API. Its summary distinguishes failed/rejected generation from
 an actual candidate awaiting review. It writes a review ZIP into a fresh external session while
 preserving the original run. `--inspect-only` skips native generation.
+Its delivery prefix appears first in the script/session/review-ZIP name and is
+printed with the policy ID. The ZIP additionally includes the session's unique
+token near the beginning. Schema-1 metadata and probe receipts retain the same
+prefix. Developers can set `--delivery-prefix` when building another delivery;
+explicit output paths remain honored. Older runs and shuttles remain readable.
 
 The [optimized native evidence](elbow-optimized-state-evidence.json) records
 the restored IGU C2–N3 target (1.387 Å) and the separate rejection for deleted
 phosphate hydrogens and altered formal charges. A native retry with explicit
-source-state retention remains pending; this evidence does not authorize
-candidate adoption or a full-auto campaign restart.
+source-state retention was pending at that point; that evidence does not authorize
+candidate adoption or a full-auto campaign restart. The subsequent
+[source-retention evidence](elbow-source-retention-evidence.json) records a
+successful v3 retention attempt with all 37 atoms and unchanged formal charges.
+That candidate remains REVIEW pending metadata/native-reader/link qualification.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

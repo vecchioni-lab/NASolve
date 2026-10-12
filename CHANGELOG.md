@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Visible shuttle identifiers and native source-retention evidence
+
+- Prefix the CIF-generation shuttle, output session and review ZIP with a short
+  delivery identifier; include the run token near the ZIP's beginning and print
+  the delivery/policy in the console. Record the identifier additively in
+  schema-1 metadata/receipts and preserve exact explicit builder output paths.
+- Adopt leading identifiers for future user-facing ferries so truncated file
+  cards do not hide the version. Preserve all older deliveries and runs.
+- Record the v3 native IGU candidate: all 37 atoms, hydrogen attachments,
+  normalized bond orders and formal charges retained, C2–N3 1.397 ± 0.030 Å.
+  Numerical/metadata review and native polymer-link qualification remain
+  separate; no dictionary was adopted or refinement rerun.
+
 ### eLBOW source-state retention and candidate review
 
 - Require the installed valued `--pH` control and explicitly use its `low`

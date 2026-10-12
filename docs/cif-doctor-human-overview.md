@@ -149,12 +149,19 @@ invalid generated generic components and identifies the actual failing atoms.
 An explicit regeneration probe completed eLBOW optimization and restored the
 C2–N3 target to 1.387 Å. It also exposed a separate default-state change:
 phosphate hydrogens disappeared and formal charges changed, so the candidate
-was rejected. The next probe explicitly requests source-state retention.
-Four small plane-angle discrepancies remain REVIEW findings rather than being
-misreported as missing numerical restraints. Candidate generation,
+was rejected. The v3 native probe then retained all 37 atoms, hydrogen
+attachments, bond orders and formal charges using explicit source-state
+retention. Its C2–N3 target is 1.397 Å. Five small plane-angle discrepancies
+remain REVIEW findings. Source CIP/aromatic metadata is omitted by the generator,
+which still labels the candidate non-polymer; native linked-site qualification
+remains pending. These limits are recorded without promoting the candidate to
+chemical approval. Candidate generation,
 source-state preservation and native linked-site qualification are separate
 gates; their pending status is recorded in the
 [synthetic test descriptor](synthetic-dna-mechanics-test.md).
+Shuttle filenames now begin with a short delivery identifier, also printed in
+the console and retained in receipts; review ZIPs include the run token near
+the front so clipped filenames remain distinguishable.
 
 ## Current limits and planned extensions
 
@@ -213,8 +220,8 @@ Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
 Explicit generation records installed-tool capability evidence before chemistry.
 It requests source-state retention and preserves soft numerical reviews without
-granting chemical approval; actual source-state and native-link qualification
-are separate from optimization completing.
+granting chemical approval. The v3 diagnostic demonstrated atom/bond/H/formal-charge
+retention; omitted metadata and native-link qualification remain explicit.
 
 ## Primary references
 

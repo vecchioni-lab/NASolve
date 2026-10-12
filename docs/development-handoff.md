@@ -44,6 +44,42 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Native v3 source-state retention and visible ferry IDs (2026-10-12):** the
+user returned the 22-file [source-retention capsule](elbow-source-retention-evidence.json).
+Installed Phenix 2.2.1-6174 completed RM1/GDIIS generation with `--pH=low` in
+**19.958581 seconds**. All 37 atoms, 39 normalized bonds, 14 hydrogen
+attachments and zero formal charges are retained, including HOP2/HOP3.
+**C2–N3 = 1.397 ± 0.030 Å**. The three sugar centers retain source coordinate
+handedness under identical atom order. Five finite PSD plane reviews remain
+visible. Candidate status is **CANDIDATE_REVIEW**, not adoption or chemistry
+approval: source CIP/aromatic metadata is absent, generated signed chirality is
+not equivalent metadata, and the dictionary group remains non-polymer rather
+than DNA LINKING. The actual native log names RM1 even though the CIF header
+says AM1; preserve both as provenance.
+
+The immediately preceding return was a repeat of v2, with no `--pH=low`; it was
+not a failed retention attempt. New ferries use a leading identifier such as
+`04_Cedar_probe_cif_generation.py`; sessions and ZIPs carry the same identifier,
+and ZIPs add their unique run token near the front. Console and additive schema-1
+receipt fields identify the delivery/policy explicitly. The collaboration
+contract records the user's preference for visible prefixes and one exact
+terminal command. Older runs and explicit output paths remain intact.
+
+Next: qualify an external candidate derivative against the original prepared
+model and complete effective bundle, including source-derived DNA metadata,
+site-specific internal leaving atoms, true ends/nicks, native parser/proxy
+coverage and generic IGU/IMC/CGY/DX linkage. Current production linked profiles
+cover only 1AP/DZ/DP/5CM. No old candidate/model is substituted into the fresh
+campaign, no checkpoint is selected, and full-auto recovery remains pending
+these native checks. Geometry/sticky-end stitching is a separate planned layer.
+Validation of the naming/receipt change: **26 focused tests pass (6.36 s)**,
+including relocation after deletion of the source checkout, preserved prior
+runs, leading ZIP/run identifiers and invalid-prefix refusal. The established
+full-suite command passes **1,269 tests, 2 skipped, 276 subtests (42.49 s)**.
+The numerical generator policy remains v3; only delivery metadata/names and
+console identification changed. Private source/candidate/model payloads stay
+outside Git. No native Phenix/Coot invocation ran in this Linux validation.
+
 **Optimized candidate and source-state retention (2026-10-12):** the returned
 22-file capsule is checksum-verified in
 [the native evidence record](elbow-optimized-state-evidence.json). Installed
@@ -61,8 +97,8 @@ pH and intended crystal protonation unassessed. The candidate gate preserves
 supported soft numerical reviews, while rejecting invalid/incomplete numerics,
 unresolved plane compatibility and chemical-state changes. No source or old
 run is overwritten, no individual target is guessed and no candidate is
-adopted. The next laptop probe must demonstrate source-state retention before
-native reader/polymer-link qualification and full-auto recovery can proceed.
+adopted. The next laptop probe demonstrated source-state retention as recorded
+above; native reader/polymer-link qualification and full-auto recovery remain pending.
 The requested optimization option and the observed native backend are separate
 evidence. Human/manuscript descriptors and the figure caption are current.
 Final isolated Linux validation with the established full-suite command passes
@@ -70,7 +106,8 @@ Final isolated Linux validation with the established full-suite command passes
 source-state control negotiation, refusal of missing controls or ignored
 hydrogen preservation, complete soft reviews, impossible/missing/nonfinite
 plane evidence, missing numerical coverage and collapsed coordinates. Native
-source-preserving generation remains pending; no native tool ran in this check.
+source-preserving generation was pending at that validation; no native tool ran
+in the Linux check. The subsequently returned native result is recorded above.
 
 **Native generator CLI compatibility (2026-10-11):** the returned 18-file
 [capsule](elbow-cli-compatibility-evidence.json) confirms installed Phenix

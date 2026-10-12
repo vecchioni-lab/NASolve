@@ -93,7 +93,7 @@ def delivered(tmp_path, request):
                     ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     _initialize_git(origin)
     _initialize_git(narestraints_origin)
-    script = tmp_path / "relocated-downloads/run_cif_generation_probe.py"
+    script = tmp_path / "relocated-downloads/04_Cedar_probe_cif_generation.py"
     builder = _module(ROOT / "scripts/build_synthetic_dna_shuttle.py", "cif_probe_builder")
     metadata = builder.build(origin, narestraints_origin, script,
                              template_name="cif_generation_probe_template.py")
@@ -177,6 +177,10 @@ def test_relocated_inspect_probe_is_general_and_preserves_all_original_inputs(de
     assert receipt["preserved_inputs"] == "UNCHANGED"
     assert receipt["build"] == delivered["metadata"]
     assert receipt["build"]["kind"] == "cif-generation-probe-shuttle"
+    assert receipt["delivery_prefix"] == "04_Cedar"
+    assert session.name.startswith("04_Cedar_cif-generation-probe-")
+    assert review.name == "04_Cedar_" + session.name.rsplit("-", 1)[-1] + "_cif_generation_review.zip"
+    assert "CIF generation probe: 04_Cedar | cif-independent-elbow-candidate-v3" in result.stdout
     assert receipt["build"]["private_diffraction_included"] is False
     assert receipt["build"]["prior_native_results_included"] is False
     assert "candidates" not in receipt and not (session / "candidates").exists()
@@ -300,3 +304,13 @@ def test_failed_generation_never_claims_candidates_are_awaiting_review(statuses)
     module = _module(ROOT / "scripts/cif_generation_probe_template.py", "probe_summary")
     summary = module._candidate_status({str(i): {"status": status} for i, status in enumerate(statuses)})
     assert "AWAITING_REVIEW" not in summary
+
+
+@pytest.mark.parametrize("prefix", ["../escape", "/absolute", "two words", "Cedar/04", "λ"])
+def test_delivery_identifier_cannot_escape_or_create_ambiguous_filename(tmp_path, prefix):
+    builder = _module(ROOT / "scripts/build_synthetic_dna_shuttle.py", "prefix_builder")
+    destination = tmp_path / "new-delivery.py"
+    with pytest.raises(ValueError, match="Delivery prefix"):
+        builder.build(tmp_path / "missing-source", tmp_path / "missing-narestraints", destination,
+                      template_name="cif_generation_probe_template.py", delivery_prefix=prefix)
+    assert not destination.exists()

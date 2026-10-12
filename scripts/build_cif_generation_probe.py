@@ -10,9 +10,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--narestraints-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--delivery-prefix", default="04_Cedar")
     args = parser.parse_args()
     metadata = build(Path(__file__).resolve().parents[1], args.narestraints_root.resolve(),
-                     args.output, template_name="cif_generation_probe_template.py")
+                     args.output, template_name="cif_generation_probe_template.py",
+                     delivery_prefix=args.delivery_prefix)
+    print("Delivery:", metadata["delivery_prefix"])
     print("Output:", args.output)
     print("SHA-256:", _sha(args.output.read_bytes()))
     print("Runtime files:", len(metadata["runtime_files"]))

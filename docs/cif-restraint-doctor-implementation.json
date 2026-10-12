@@ -20,8 +20,8 @@
       "Source-bundled candidate probe with numerical and chemical comparison receipts; no automatic adoption",
       "Exact installed generator capability negotiation, explicit source-state retention mode, and candidate-only preservation of supported soft numerical REVIEW findings"
     ],
-    "native_candidate_validation": "Installed Phenix 2.2.1-6174 completed RM1/GDIIS optimization and restored the collapsed IGU C2-N3 target to 1.387 A, but removed phosphate hydrogens and changed charges; candidate REJECTED. Retry with explicit input-state retention and subsequent native reader/polymer-link qualification remain pending.",
-    "native_candidate_evidence": "docs/elbow-optimized-state-evidence.json",
+    "native_candidate_validation": "Installed Phenix 2.2.1-6174 v3 --pH=low generation completed RM1/GDIIS optimization, retained all 37 atoms/39 bonds/H attachments/formal charges, and gave IGU C2-N3 1.397 A. Candidate remains CANDIDATE_REVIEW for soft plane findings, omitted source stereochemical/aromatic metadata and non-polymer classification. Native reader/polymer-link qualification and adoption remain pending.",
+    "native_candidate_evidence": "docs/elbow-source-retention-evidence.json",
     "source_state_control": "Required valued --pH=low selects the installed generator's exact-input-chemistry mode; it does not assert experimental pH or correct crystal protonation. Chemistry comparison remains mandatory and no automatic adoption is implemented.",
     "not_implemented": [
       "Installed consumer-parser or effective native-proxy certification",

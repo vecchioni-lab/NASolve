@@ -221,9 +221,9 @@ The v3 generator interface requires that source-state-preservation control,
 with its installed capability evidence, instead of silently letting eLBOW
 deprotonate the input. This is an engine preservation mode, not a selected
 experimental pH, a preferred protonation state or a global nucleotide policy.
-The next fresh candidate still must pass explicit graph, hydrogen, charge and
-stereochemical comparison. Its native execution and all linked-site/native
-proxy qualification remain **pending**.
+The fresh v3 candidate below now preserves the source atom/bond/hydrogen/charge
+inventory. Explicit metadata and stereochemical review, linked-site preparation
+and native proxy qualification remain separate.
 
 All **22** returned manifest entries were verified. Candidate SHA-256 is
 `3049dd5b5d79e2b6961d70a87e8b2c16c793a6078f4122d824697ffda43ed27b`;
@@ -231,6 +231,49 @@ All **22** returned manifest entries were verified. Candidate SHA-256 is
 the exact command, backend, interface result, numeric recovery, chemical
 rejection and soft-review findings. Both earlier failure bundles remain
 historical evidence.
+
+### Returned v3 candidate: source inventory retained
+
+The fresh probe `cif-generation-probe-zjzm0gk7`, candidate directory
+`candidates/cif-generation-zxw2zfpz`, used the required **`--pH=low`** control
+with installed-help evidence. Native eLBOW completed at **exit 0** in
+**19.958581 seconds**. The candidate and probe statuses are respectively
+**CANDIDATE_REVIEW** and **CANDIDATES_AWAITING_REVIEW**. The generator's actual
+log reports **RM1/GDIIS**, while its CIF header says **AM1**; preserve that
+provenance discrepancy and use the log for the reported execution backend.
+
+The candidate retains all **37 exact atom IDs (23 heavy / 14 H)**, all **39
+bond endpoints and normalized orders**, every explicit hydrogen attachment
+including **HOP2/HOP3**, and all source formal charges (**total 0**). OP2/OP3
+remain formally neutral. **C2–N3 = 1.397 ± 0.030 Å** and **C1′–N9 =
+1.458 ± 0.034 Å**. Positive heavy-bond targets span **1.221–1.616 Å**.
+No zero target or coincident bonded-heavy-atom defect is reported. This confirms
+source-retaining whole-component generation for this exact input, while the
+original failed ReadySet run remains unchanged.
+
+Review remains visible. The output omits the source CCD atom CIP/aromatic/
+bond-stereo metadata, supplies three signed sugar-chirality restraints and new
+partial charges, and labels the component **`non-polymer`** where the source
+declares **`DNA LINKING`**. Formal charge preservation does not imply all
+metadata survived. The generated coordinate chirality signs match the source
+ideal seed under the same atom ordering, but this is not native stereochemical
+or polymer-link interpretation. Five **PLANE-01 REVIEW** findings remain soft
+diagnostics rather than hard invalidity or instructions to force planar angle
+sums. Chemical identity, native proxies and linked-site chemistry are still
+unassessed.
+
+All **22** returned manifest entries verify. Candidate SHA-256 is
+`23d11d4175fc14d492004ba70a751470c43ca1ce733ca3fcd89d49f82e12cc1c`;
+[the source-retention evidence](elbow-source-retention-evidence.json) owns
+exact field findings and remaining gates. A separate `(2)` ZIP repeated the
+old v2 runtime without `--pH=low`; its rejection is historical evidence, not
+a test of v3 preservation.
+
+Nothing has been adopted, linked, refined or scientifically approved. The next
+pipeline work is explicit metadata/consumer review and site-specific linkage
+preparation, followed by a fresh ReadySet/PostMR/native-proxy check. The
+source-generation recovery is now demonstrated for IGU; the one-click mixed
+DNA campaign has **not yet completed** through that recovery path.
 
 ## Adaptable methods wording
 

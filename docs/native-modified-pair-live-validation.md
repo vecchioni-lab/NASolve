@@ -15,7 +15,9 @@ The separate **fresh synthetic DNA run** has now returned **MR_SUCCESS**
 bond target. This new acquisition failure does not change the historical
 combined diagnostic's passes. See [the returned blocker](#fresh-synthetic-dna-run--returned-readyset-blocker).
 Independent optimized eLBOW generation has now removed the numerical collapse,
-but its candidate remains **REJECTED** for hydrogen/charge/state changes.
+and fresh v3 generation retains the source graph/hydrogens/formal charges as
+**CANDIDATE_REVIEW**. Metadata, native proxy and linked-site qualification
+remain open; the v2 chemical-state rejection remains historical evidence.
 
 ## What is actually green?
 
@@ -292,9 +294,82 @@ Installed help explicitly advertises **`--pH=low` to retain exact input
 chemistry**. The v3 interface requires that advertised source-state-
 preservation mode and records its capability evidence. It does not choose an
 experimental pH or prescribe one protonation state for all nucleotides.
-The new source-preserving attempt remains **pending**; it must regenerate and
-compare a fresh candidate rather than relabel this rejected one. Native proxy,
-site-specific linkage, geometry and campaign continuation remain **NOT_RUN**.
+The fresh source-preserving v3 attempt below has now returned; it did not
+relabel or adopt this rejected v2 candidate. Native proxy, site-specific linkage,
+achieved geometry and campaign continuation remain **NOT_RUN**.
+
+### Source-retaining eLBOW v3 — candidate review, not adoption
+
+The fresh probe is `LIVE/cif-generation-probe-zjzm0gk7`, candidate directory
+`candidates/cif-generation-zxw2zfpz`. Returned `cif_generation_review(3).zip`
+SHA-256 is
+`5bf699bd49a051c09f63f2cdbc2754c4e7d7522a0112de6ce328937a4cad3c4c`;
+all **22** manifest entries were verified. Manifest SHA-256:
+`bf17ab4e9b68651fe9149cde7051a366de2489ad13f1b921d68aa3e71a3a53ef`.
+The [machine-readable source-retention evidence](elbow-source-retention-evidence.json)
+owns exact fields and artifact hashes without private payloads in Git.
+
+The frozen runtime records source commit
+`3b9146fc31ba4d41aa87fa75b31983d723dd88c9`, policy
+**`cif-independent-elbow-candidate-v3`**, and runtime archive SHA-256
+`dc2f4fcef97886388f9ba054d5edcc499cbe720d72cc99ca9b15fb0fe4c1acf8`.
+Its build receipt reports a dirty source tree, so the commit alone is not a
+complete runtime identifier; the bundled runtime/file hashes remain evidence.
+Installed-help selection retains the naming/initial-geometry/hydrogen/chirality/
+optimization controls and adds **`--pH=low`**. Native execution is **COMPLETED**,
+exit **0**, elapsed **19.958581 s**. The actual log reports **RM1/GDIIS**;
+the output CIF header labels its method **AM1**. Preserve both observations;
+the executed backend claim follows the log, not that inconsistent header.
+
+New candidate SHA-256:
+`23d11d4175fc14d492004ba70a751470c43ca1ce733ca3fcd89d49f82e12cc1c`.
+The generation receipt is **CANDIDATE_REVIEW**, with no rejection reasons;
+the probe is **CANDIDATES_AWAITING_REVIEW**. All **37 exact atom IDs**
+(**23 heavy / 14 H**), **39 bond endpoints/normalized orders**, hydrogen
+attachments and explicit formal charges match the source. **HOP2/HOP3 and
+their bonds remain**, OP2/OP3 charges remain **0**, and total formal charge
+remains **0**. No atom, bond or hydrogen inventory was silently removed.
+This closes the observed v2 source-state loss for this exact input.
+
+There are **39 positive bond targets / 67 angles / 57 torsion rows**, comprising
+**32 positive-sigma / 25 zero-sigma** rows under the native convention; actual
+native proxy activity is **NOT_RUN**. There are **3 signed sugar chirality
+restraints** and **16 plane-atom rows**. Positive heavy-bond
+targets span **1.221–1.616 Å**. **C2–N3 = 1.397 ± 0.030 Å** and **C1′–N9 =
+1.458 ± 0.034 Å**; the prior numerical collapse is absent. Dictionary graph
+and geometry verdicts are **PASS**, numerical verdict **REVIEW**.
+
+Metadata and consumer context remain review work. Source CCD atom CIP
+annotations, atom/bond aromatic flags and bond-stereo metadata are omitted
+from the generated dictionary. New partial charges are distinct from the
+preserved formal charges; three signed sugar-chirality restraints are added.
+The coordinate signs match the source ideal seed under the **same ordered
+atom triples**: **C4′ negative / C3′ positive / C1′ negative**. That observation
+does not establish native stereochemical mapping or absolute CIP validation.
+The generated component group is **`non-polymer`**, versus source **`DNA
+LINKING`**. Exact retained graph state is therefore separate from polymer
+classification and linked-site interpretation.
+
+Five positive-semidefinite **PLANE-01 REVIEW** diagnostics remain:
+
+| Centre | Interior planar-branch angle deviation | Sigma-adjustment lower bound |
+| --- | --- | --- |
+| C2 | 0.03° | 0.007498 |
+| C4 | 0.03° | 0.007005 |
+| C5 | 0.04° | 0.008540 |
+| C6 | 0.02° | 0.004933 |
+| N9 | 0.21° | 0.048241 |
+
+These are retained soft review findings with uncalibrated material significance;
+they no longer imply hard numerical invalidity. They neither approve chemistry
+nor prescribe changing angle targets to force exact planarity.
+
+The intervening `cif_generation_review(2).zip` repeated the **old v2 runtime**
+(`586d748e`, archive `db523448…`) without the source-preservation flag. Its
+**REJECTED** output is preserved, but is not a v3 test or a new chemical-state
+finding. Source, frozen source and old failed runs remain unchanged in v3.
+Nothing has been adopted; ReadySet retry, native proxies, site-specific linkage,
+diffraction refinement and scientific approval remain **NOT_RUN/unassessed**.
 
 ### Earlier manually selected numerical resources
 

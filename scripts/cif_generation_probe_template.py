@@ -77,7 +77,8 @@ def _snapshot(path, destination, expected_sha=None):
 
 
 def _review_zip(session):
-    destination = session / "cif_generation_review.zip"
+    run_token = session.name.rsplit("-", 1)[-1]
+    destination = session / (BUNDLE["delivery_prefix"] + "_" + run_token + "_cif_generation_review.zip")
     if destination.exists():
         return destination
     files = {}
@@ -124,6 +125,7 @@ def main():
     args = parser.parse_args()
     session = None
     receipt = {"schema_version": 1, "kind": "cif-generation-native-probe", "build": BUNDLE,
+               "delivery_prefix": BUNDLE["delivery_prefix"],
                "automatic_adoption": False, "native_generation": "NOT_RUN"}
     try:
         if not 1 <= args.timeout_seconds <= 3600:
@@ -138,7 +140,7 @@ def main():
         if parent == run or parent.is_relative_to(run):
             raise ValueError("Probe output must be outside the preserved run")
         parent.mkdir(parents=True, exist_ok=True)
-        session = Path(tempfile.mkdtemp(prefix="cif-generation-probe-", dir=parent))
+        session = Path(tempfile.mkdtemp(prefix=BUNDLE["delivery_prefix"] + "_cif-generation-probe-", dir=parent))
         runtime = session / "runtime"
         for name, data in members.items():
             path = runtime / name
@@ -148,6 +150,8 @@ def main():
         sys.path[:0] = [str(runtime / "src"), str(runtime)]
         sys.dont_write_bytecode = True
         from nasolve.cif_generation import inspect_component_generation, generate_elbow_candidate
+        from nasolve.cif_generation import POLICY_ID
+        print("CIF generation probe:", BUNDLE["delivery_prefix"], "|", POLICY_ID, flush=True)
         from nasolve.cif_doctor import assess_dictionaries
         from nasolve.curated_ligands import CURATED_LIGANDS
         from nasolve.ligand_profiles import dictionary_component_codes, _parameterized_codes
