@@ -79,6 +79,9 @@ def monomer_metadata(monomer):
     result = {"status": "RECORDED", "id": chem.id, "group": chem.group,
               "atom_ids": [atom.atom_id for atom in monomer.atom_list]}
     if spec.get("inventory_detail") == "linked":
+        result["classification"] = {
+            "status": "RECORDED" if hasattr(monomer, "classification") else "UNSUPPORTED",
+            "value": getattr(monomer, "classification", None)}
         result["formal_charge_readback"] = {
             "status": "SUPPORTED" if monomer.atom_list and all(hasattr(atom, "charge")
                 for atom in monomer.atom_list) else "UNSUPPORTED",

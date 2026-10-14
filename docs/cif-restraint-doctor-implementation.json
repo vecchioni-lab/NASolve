@@ -103,7 +103,7 @@
       ]
     },
     "linked_preparation_2026_10_14": {
-      "status": "MODIFIER_REGISTRATION_FIXED_INSTALLED_RETRY_PENDING",
+      "status": "NATIVE_MODIFIERS_RECOVERED_COMPONENT_LIST_METADATA_RETRY_PENDING",
       "policy_id": "cif-source-preserving-linked-sites-v1",
       "delivery_prefix": "06_Cedar",
       "source_preserving_recovery_required": [
@@ -145,7 +145,7 @@
       "refinement": "NOT_RUN",
       "numerical_geometry": "REVIEW_REQUIRED",
       "experimental_protonation": "UNASSESSED",
-      "validation": "Cedar 07 source recovery and baseline interpretation completed; native linked reader failed modification lookup. Corrected serialization and unavailable charge readback are software-validated; Cedar 08 installed interpretation remains pending.",
+      "validation": "Cedar 08 completed linked and shared-code interpretation. Exact site atoms/H/types, 38 backbone links and custom/other proxies agree. Scalar comp_list metadata is ignored, leaving group null; native formal charge attributes are absent. Qualification remains REVIEW. Corrected list-loop serialization awaits Cedar 09.",
       "offline_validation": {
         "full_suite": {
           "passed": 1345,
@@ -162,8 +162,9 @@
         "native_execution": "NOT_RUN",
         "figure": "Regenerated/rendered/visually inspected"
       },
-      "next_delivery_prefix": "08_Cedar",
-      "modification_block_policy": "cif-native-modification-blocks-v1"
+      "next_delivery_prefix": "09_Cedar",
+      "modification_block_policy": "cif-native-modification-blocks-v1",
+      "component_list_policy": "cif-native-component-list-loop-v1"
     },
     "cedar_06_return": {
       "archive_name": "06_Cedar_rkmjesl4_cif_linked_review.zip",
@@ -212,7 +213,57 @@
       "charge_readback": "Unavailable values remain UNSUPPORTED, not a mismatch or presumed zero; retain actual contradictions as REVIEW and never substitute partial charge",
       "new_native_detail_field": "formal_charge_readback",
       "evidence": "docs/cif-linked-native-registration-evidence.json",
-      "native_execution": "PENDING_CEDAR_08"
+      "native_execution": "RECORDED_CEDAR_08"
+    },
+    "cedar_08_return": {
+      "archive_name": "08_Cedar_g4gzbeeb_cif_linked_review.zip",
+      "archive_sha256": "325cca4d6a6e301ceaadd186e07040676be62ec1c31e3416e6ea419550b30a33",
+      "verified_payloads": 207,
+      "reported_status": "REVIEW",
+      "native_baseline_and_linked": "COMPLETED_EXIT_ZERO",
+      "native_shared_code_control": "COMPLETED_EXIT_ZERO_REVIEW",
+      "four_site_atom_inventories": "EXACT_MATCH",
+      "four_OP2_H_adjacencies": "PASS",
+      "exact_backbone_links": 38,
+      "custom_proxy_coverage": {
+        "bond": 21,
+        "angle": 34,
+        "planarity": 8,
+        "parallelity": 23
+      },
+      "remaining_native_gates": [
+        "group null because comp_list metadata was serialized as scalars",
+        "formal charge attributes absent in installed API"
+      ],
+      "evidence": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "component_list_metadata_retry": {
+      "delivery_prefix": "09_Cedar",
+      "policy": "cif-native-component-list-loop-v1",
+      "native_execution": "PENDING",
+      "source_and_site_chemistry_changed": false,
+      "modifier_and_PHIL_bytes_unchanged": true,
+      "detailed_classification_recorded_separately": true,
+      "qualification_atom_and_group_checks_separated": true,
+      "formal_charge_gate_unchanged": true,
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "software_validation": {
+        "focused": {
+          "passed": 70,
+          "seconds": 4.75,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_cif_linked_probe.py tests/test_cif_native_validation.py"
+        },
+        "full_suite": {
+          "passed": 1386,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 89.41,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "regression_before_fix": "Four targeted cases fail before the change: singleton loop, independent atom/group reporting, and two detailed classification cases",
+        "native_test_scope": "Explicit fake native reader controls; scalar metadata loses group and looped metadata retains it. No installed Phenix execution in offline tests.",
+        "figure": "Regenerated, rendered and visually inspected"
+      }
     }
   },
   "audience": [
@@ -881,7 +932,7 @@
     "essential_corrections_to_shorthand": [
       {
         "shorthand": "C5 / C5prime bonds swapped; iodine bonds built badly",
-        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 Å; sugar C5prime-I5 coordinate separation is 8.843030419488558 Å and is not an iodine bond.",
+        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 \u00c5; sugar C5prime-I5 coordinate separation is 8.843030419488558 \u00c5 and is not an iodine bond.",
         "must_not_claim": "A general supplier C5/C5prime bond swap, a chemically incorrect 5IU iodine bond, or an edited source dictionary."
       },
       {
@@ -912,7 +963,7 @@
           "sugar_C5prime_I5_nonbonded_coordinate_distance_A": 8.843030419488558
         },
         "lesson": "Preserve exact atom identifiers. Remove only an enclosing matching quote pair; a prime inside or at the end of an atom ID is chemical identity data. Distinguish coordinate-derived distance from numerical bond target and establish adjacency first.",
-        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 Å, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
+        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 \u00c5, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
         "generalizable_rules": [
           "GRAPH-01",
           "NUM-01",
@@ -996,8 +1047,8 @@
           "sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
           "findings": [
             "Aromatic sugar typing/bonds",
-            "C4-O4 single bond target 1.384 Å",
-            "C2-S1 single bond target 1.812 Å",
+            "C4-O4 single bond target 1.384 \u00c5",
+            "C2-S1 single bond target 1.812 \u00c5",
             "No active DF sugar chirality restraints"
           ]
         },
@@ -1283,7 +1334,7 @@
           "Current DE eLBOW dictionary has not changed since addition at b8317b0.",
           "Current file is byte-equivalent to historical repository-root generated 8RO.cif after component-label substitution.",
           "That generated artifact is not proof that official CCD 8RO equals intended laboratory DE.",
-          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 Å target.",
+          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 \u00c5 target.",
           "September replacement candidate remained unapproved; later committed approved replacement not found."
         ],
         "required_recovery": [
@@ -1866,7 +1917,7 @@
         "alternate_degrees": 2.8,
         "alternate_original_sigma_degrees": 6.1,
         "wrong_active_native_residual_approx": 481,
-        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7°, alternate 2.8°, primary sigma 6.3°.",
+        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7\u00b0, alternate 2.8\u00b0, primary sigma 6.3\u00b0.",
         "adopted_diagnostic_derivative_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
         "native_diagnostic": "Native diagnostic PASS; source unchanged; broad production repair is not qualified."
       },
@@ -1892,8 +1943,8 @@
         "bad_effective_readyset_sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
         "bad_definition": [
           "aromatic sugar typing and bonds",
-          "single C4–O4 target 1.384 Å",
-          "single C2–S1 target 1.812 Å",
+          "single C4\u2013O4 target 1.384 \u00c5",
+          "single C2\u2013S1 target 1.812 \u00c5",
           "no active sugar chirality restraints"
         ],
         "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
@@ -1932,7 +1983,7 @@
           "native_verified_heavy_bonds": 21,
           "native_signed_sugar_centres": 3
         },
-        "charge_caution": "Old effective OP1 formal charge −1 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
+        "charge_caution": "Old effective OP1 formal charge \u22121 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
         "generator": {
           "AceDRG": "334",
           "database": "12",
@@ -2002,8 +2053,8 @@
           "zero_sigma_torsions": 6,
           "plane_groups": 5
         },
-        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y→N flags changed only for C4–N9, C8–N9, C7–C8 and C7–N5. Twelve H attachments, formal charge −2 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
-        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of −1 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
+        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y\u2192N flags changed only for C4\u2013N9, C8\u2013N9, C7\u2013C8 and C7\u2013N5. Twelve H attachments, formal charge \u22122 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
+        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of \u22121 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
         "candidate_angles": {
           "target_degrees": [
             108.817,
@@ -2081,7 +2132,7 @@
             180,
             128
           ],
-          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2–5 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
+          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2\u20135 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
           "N5_achieved_degrees": [
             108.115293,
             119.720831,
@@ -2191,9 +2242,9 @@
           }
         ],
         "nonobvious_attachments": [
-          "CGY HO3′ attaches to OP3",
+          "CGY HO3\u2032 attaches to OP3",
           "DX H1 attaches to OP3",
-          "DX H6 attaches to O3′"
+          "DX H6 attaches to O3\u2032"
         ],
         "status": "Linkage mechanics PASS; source-specific OP2 H retained; no uniform protonation policy or qualification of all contexts follows."
       },
@@ -2208,8 +2259,8 @@
       },
       "1AP_challenge": {
         "curated_source_git_blob": "1be06d4bb0848891fd3e7dca22d217dd2ad1b69b",
-        "adaptation": "NON-POLYMER→DNA only; numerical rows, atoms, types, chirality and planes retained.",
-        "failed_generator_connectivity": "Spurious O4′–N1 connection; correct reviewed graph has C1′–N9.",
+        "adaptation": "NON-POLYMER\u2192DNA only; numerical rows, atoms, types, chirality and planes retained.",
+        "failed_generator_connectivity": "Spurious O4\u2032\u2013N1 connection; correct reviewed graph has C1\u2032\u2013N9.",
         "fixture_policy": "Recover the failed artifact or label a synthetic reproduction. The current curated source is a preservation/control case, not presumed defective."
       }
     },

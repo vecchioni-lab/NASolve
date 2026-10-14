@@ -74,7 +74,12 @@ def site_definition_checks(linked: dict, preparations: list[dict]) -> list[dict]
             metadata=actual.get('metadata',{})
             definition=metadata.get('effective_definition',{})
             atoms={row['atom_id']:row for row in (definition.get('atoms') or [])}
-            check('effective-site-atoms:'+site,set(atoms)==set(expected['expected_atoms']) and metadata.get('group')=='DNA')
+            expected_atoms=set(expected['expected_atoms'])
+            check('effective-site-atoms:'+site,set(atoms)==expected_atoms,
+                  missing=sorted(expected_atoms-set(atoms)),extra=sorted(set(atoms)-expected_atoms))
+            check('effective-site-polymer-group:'+site,metadata.get('group')=='DNA',
+                  expected='DNA',observed=metadata.get('group'),
+                  native_classification=metadata.get('classification',{'status':'NOT_RECORDED'}))
             check('effective-site-energy-types:'+site,all(atoms.get(name,{}).get('type_energy')==energy
                   for name,energy in expected['expected_energy_types'].items()))
             formal_unavailable=[];formal_contradictions=[]

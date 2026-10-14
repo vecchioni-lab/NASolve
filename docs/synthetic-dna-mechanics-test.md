@@ -345,8 +345,24 @@ modifier and preserves every site plan, base dictionary and PHIL request in
 exact offline replay. Detailed baseline atom records provide no native formal
 charges; missing readback remains explicitly unqualified. The
 [registration record](cif-linked-native-registration-evidence.json) owns the
-164 verified payloads and replay. Cedar 08 installed interpretation, the shared-
-code control and full qualification remain pending.
+164 verified payloads and replay. The subsequent Cedar 08 result follows.
+
+### Cedar 08 return and Cedar 09 component-list metadata retry
+
+Cedar 08 completes baseline, linked and shared-code native interpretation on
+Phenix 2.2.1-6174; all 207 returned payloads verify. Requested modifier IDs,
+all four site atom inventories/H adjacency/energy types, 38 backbone links and
+exact custom proxy coverage agree. The synthetic free-OH IGU control preserves
+the original model and demonstrates distinct internal/end definitions under
+one component code. Complete qualification remains REVIEW: scalar component-
+list metadata loses the declared native DNA group and formal-charge attributes
+are unavailable. Native classification logs still identify DNA.
+
+The corrected serializer retains the singleton metadata loop with unchanged
+parsed values, modifier/PHIL bytes and site plans. Detailed native classification
+and separate atom/group checks make the evidence boundary explicit. Cedar 09
+tests installed metadata readback; charges, numerical/stereochemical review and
+any adoption remain unqualified. No model optimization or refinement occurred.
 
 ## Adaptable methods wording
 

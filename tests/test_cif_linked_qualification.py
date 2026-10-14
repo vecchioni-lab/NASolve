@@ -44,6 +44,17 @@ def test_complete_native_evidence_gets_scoped_mechanics_pass():
     assert result['numerical_geometry']=='REVIEW_REQUIRED'
 
 
+def test_polymer_group_failure_does_not_misreport_matching_atoms():
+    baseline,linked,prepared,edges,ends=native_case()
+    linked['monomer_mappings']['rows'][1]['metadata']['group']=None
+    result=qualify_linked_bundle(baseline,linked,prepared,edges,ends)
+    checks={row['check']:row for row in result['checks']}
+    assert checks['effective-site-atoms:A:2']['status']=='PASS'
+    assert checks['effective-site-polymer-group:A:2']['status']=='REVIEW'
+    assert checks['effective-site-polymer-group:A:2']['observed'] is None
+    assert result['status']=='REVIEW'
+
+
 @pytest.mark.parametrize('defect',['wrong_target','wrong_weight','duplicate_plane','op3','lost_op2_h','dangling','changed_model','lost_link','wrong_o3_type','charge','missing_detail','lost_mapping','extra_stacking'])
 def test_native_defects_cannot_pass_with_matching_aggregate_counts(defect):
     baseline,linked,prepared,edges,ends=native_case()

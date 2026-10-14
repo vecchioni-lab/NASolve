@@ -35,11 +35,13 @@ for actual behavior; history is evidence, not a second task queue.
   source-preserving linked candidates and checks detailed native site/custom
   proxies. Cedar 06 completed native candidate generation, then stopped at
   CGY's aromatic bond representation. Generation-v4 checks that bounded
-  source-declared representation; linked installed qualification remains
-  pending the Cedar 08 retry after Cedar 07 exposed a native modifier-block
-  registration error. [The registration record](cif-linked-native-registration-evidence.json)
-  owns the successful source/baseline return, reader failure and corrected
-  offline replay; native formal-charge readback remains unqualified.
+  source-declared representation. Cedar 08 completed linked/shared-code native
+  interpretation with exact site atoms/H/types, links and custom proxies,
+  clearing Cedar 07's modifier registration blocker. Qualification stays REVIEW:
+  singleton scalar list metadata loses the native DNA group, and formal-charge
+  attributes are unavailable. [The registration record](cif-linked-native-registration-evidence.json)
+  owns these returns and exact replay; Cedar 09 tests corrected list-loop
+  serialization while charge readback remains unqualified.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

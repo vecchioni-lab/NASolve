@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "document_kind": "LINKED_NATIVE_MODIFICATION_REGISTRATION_RETURN_AND_REPLAY",
+  "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
   "recorded_date": "2026-10-14",
   "archive": {
     "name": "07_Cedar_okkb2are_cif_linked_review.zip",
@@ -241,17 +241,444 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "08_Cedar",
+  "next_delivery": "09_Cedar",
   "boundaries": {
-    "installed_corrected_registration": "PENDING",
-    "linked_native_qualification": "PENDING",
-    "same_code_control": "NOT_RUN",
+    "installed_corrected_registration": "RECORDED_CEDAR_08",
+    "linked_native_qualification": "REVIEW_MISSING_GROUP_UNSUPPORTED_CHARGE_READBACK",
+    "same_code_control": "INTERPRETED_REVIEW",
     "model_optimization": "NOT_RUN",
     "readyset_retry": "NOT_RUN",
     "refinement": "NOT_RUN",
     "automatic_adoption": false,
     "experimental_protonation": "UNASSESSED",
     "generated_stereochemical_metadata": "REVIEW_REQUIRED",
-    "unpublished_payloads_committed": false
+    "unpublished_payloads_committed": false,
+    "installed_component_list_metadata": "PENDING_CEDAR_09"
+  },
+  "cedar_08_return": {
+    "archive": {
+      "name": "08_Cedar_g4gzbeeb_cif_linked_review.zip",
+      "sha256": "325cca4d6a6e301ceaadd186e07040676be62ec1c31e3416e6ea419550b30a33",
+      "verified_payloads": 207
+    },
+    "reported_status": "REVIEW",
+    "nasolve_source": {
+      "commit": "147c1fbaabb41f73f5680852625189b0e1295ca7",
+      "working_tree_has_changes": false
+    },
+    "narestraints_source": {
+      "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "working_tree_has_changes": false
+    },
+    "runner_sha256": "f5a07d5dbdc76ade0f7e3042a04222e4a6a1521726703745a9afccc8a94f0d3c",
+    "native_installation": "Phenix 2.2.1-6174",
+    "native_api_hashes": [
+      {
+        "module": "iotbx.phil",
+        "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+      },
+      {
+        "module": "mmtbx.command_line.pdb_interpretation",
+        "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+      },
+      {
+        "module": "mmtbx.monomer_library.server",
+        "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+      },
+      {
+        "module": "mmtbx.monomer_library.pdb_interpretation",
+        "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+      }
+    ],
+    "baseline": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 2.522322,
+        "finished_at": "2026-10-14T16:54:50.879197+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-14T16:54:48.356898+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "source_preserved": true,
+      "frozen_inputs_preserved": true,
+      "unsupported_fields": [],
+      "fatal_problems": null
+    },
+    "linked": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 1.381361,
+        "finished_at": "2026-10-14T16:54:52.414707+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-14T16:54:51.033371+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "source_preserved": true,
+      "frozen_inputs_preserved": true,
+      "unsupported_fields": [],
+      "fatal_problems": null
+    },
+    "qualification": {
+      "status": "REVIEW",
+      "check_status_counts": {
+        "PASS": 21,
+        "REVIEW": 4,
+        "UNSUPPORTED": 4
+      },
+      "non_site_checks": [
+        {
+          "check": "native-interpreter",
+          "status": "PASS"
+        },
+        {
+          "check": "unchanged-native-model",
+          "status": "PASS"
+        },
+        {
+          "check": "zero-unrequested-coordinate-OP3",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-backbone-links",
+          "expected": 38,
+          "observed": 38,
+          "status": "PASS"
+        },
+        {
+          "check": "all-monomer-mappings",
+          "status": "PASS"
+        },
+        {
+          "check": "declared-free-five-prime-ends",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-custom-restraint-coverage",
+          "failures": [],
+          "requested": {
+            "angle": 34,
+            "bond": 21,
+            "parallelity": 23,
+            "planarity": 8
+          },
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-pair-and-stacking-parallelities",
+          "extra": 0,
+          "missing": 0,
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-other-component-definitions",
+          "status": "PASS"
+        }
+      ],
+      "atom_check_reporting": "The original effective-site-atoms row also required group DNA. All four atom sets match; group is null. Retry separates these checks without relaxing either."
+    },
+    "sites": {
+      "CGY": {
+        "site": "A:20",
+        "requested_modification_id": "NASL25624f75ba",
+        "native_modification_ids": [
+          "NASL25624f75ba"
+        ],
+        "expected_atoms": 35,
+        "observed_atoms": 35,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 35,
+          "null_value_atoms": 35,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "H1"
+        ],
+        "deleted_atoms": [
+          "H3'2",
+          "HO3'",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      },
+      "DX": {
+        "site": "D:3",
+        "requested_modification_id": "NASLc0f3717fc6",
+        "native_modification_ids": [
+          "NASLc0f3717fc6"
+        ],
+        "expected_atoms": 33,
+        "observed_atoms": 33,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 33,
+          "null_value_atoms": 33,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "H14"
+        ],
+        "deleted_atoms": [
+          "H1",
+          "H6",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      },
+      "IGU": {
+        "site": "A:6",
+        "requested_modification_id": "NASL9809b6bd9c",
+        "native_modification_ids": [
+          "NASL9809b6bd9c"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      },
+      "IMC": {
+        "site": "C:10",
+        "requested_modification_id": "NASL92fefc1b33",
+        "native_modification_ids": [
+          "NASL92fefc1b33"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      }
+    },
+    "shared_code_control": {
+      "status": "REVIEW",
+      "native": {
+        "status": "REVIEW",
+        "execution": {
+          "elapsed_seconds": 1.412638,
+          "finished_at": "2026-10-14T16:54:54.064535+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-14T16:54:52.651923+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "atom_count": 877,
+        "mapped_residues": 43,
+        "proxy_counts": {
+          "angle": 1590,
+          "bond_asu": 0,
+          "bond_simple": 1026,
+          "chirality": 155,
+          "const_dihedral": 387,
+          "dihedral": 572,
+          "parallelity": 58,
+          "planarity": 54
+        },
+        "source_preserved": true,
+        "frozen_inputs_preserved": true,
+        "unsupported_fields": [],
+        "fatal_problems": null
+      },
+      "sites": {
+        "A:6": {
+          "modification_ids": [
+            "NASL9809b6bd9c"
+          ],
+          "expected_atoms": 34,
+          "observed_atoms": 34,
+          "atom_inventory_matches": true,
+          "five_prime_state": "linked",
+          "three_prime_state": "linked",
+          "retained_OP2_hydrogens": [
+            "HOP2"
+          ],
+          "O3prime_type": "OC2",
+          "native_group": null
+        },
+        "E:1": {
+          "modification_ids": [
+            "NASLdb64d7ae60"
+          ],
+          "expected_atoms": 31,
+          "observed_atoms": 31,
+          "atom_inventory_matches": true,
+          "five_prime_state": "free_OH",
+          "three_prime_state": "free_OH",
+          "retained_OP2_hydrogens": [],
+          "O3prime_type": "OH1",
+          "native_group": null
+        }
+      },
+      "original_858_atoms_preserved": true,
+      "original_42_effective_definitions_preserved": true,
+      "all_38_backbone_links_preserved": true,
+      "scope": "Synthetic free-OH E:1 control; not a change to the original experimental model"
+    },
+    "metadata_blocker": {
+      "returned_layout": "Scalar _chem_comp fields in data_comp_list",
+      "declared_group_in_prepared_files": "DNA",
+      "native_loaded_group": null,
+      "native_effective_group": null,
+      "native_classification_log": "DNA for all 42 linked residues; group and classification are distinct fields",
+      "classification_in_worker": "NOT_RECORDED_BY_CEDAR_08",
+      "reader_entry_points": [
+        "convert_list_block",
+        "convert_comp_list"
+      ],
+      "reviewed_git_blob": "af1ac801d43c33b235584e1a6a59d82c137cd8de",
+      "meaning": "Only the _chem_comp loop inside comp_list is iterated; singleton scalars are ignored and fallback chem_comp is built with ID only."
+    },
+    "original_archive_preserved": true,
+    "original_model_sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+    "readyset_retry": "NOT_RUN",
+    "model_optimization": "NOT_RUN",
+    "refinement": "NOT_RUN",
+    "scientific_approval": "NOT_RUN",
+    "automatic_adoption": false
+  },
+  "component_list_retry": {
+    "delivery_prefix": "09_Cedar",
+    "component_list_policy": "cif-native-component-list-loop-v1",
+    "serialization": "Retain one-row comp_list as a loop; reuse existing Biopython CIF quoting",
+    "offline_exact_return_replay": {
+      "installed_execution": "NOT_RUN",
+      "components": {
+        "IGU": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_A_6.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        },
+        "IMC": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_C_10.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        },
+        "CGY": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_A_20.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        },
+        "DX": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_D_3.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        }
+      },
+      "original_model_sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+      "shared_code_control_original_atoms_and_site_definitions_preserved": true,
+      "shared_code_control_backbone_links_preserved": true
+    },
+    "qualification_reporting": "Separate exact atom inventory from required native DNA group; retain every non-PASS gate",
+    "new_schema_1_preparation_field": "component_list_policy",
+    "new_schema_1_detailed_metadata_field": "classification",
+    "native_execution": "PENDING_CEDAR_09",
+    "formal_charge_readback": "UNSUPPORTED in the returned installed version; no partial/source/zero substitution",
+    "software_validation": {
+      "focused": {
+        "passed": 70,
+        "seconds": 4.75,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_cif_linked_probe.py tests/test_cif_native_validation.py"
+      },
+      "full_suite": {
+        "passed": 1386,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 89.41,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "regression_before_fix": "Four targeted cases fail before the change: singleton loop, independent atom/group reporting, and two detailed classification cases",
+      "native_test_scope": "Explicit fake native reader controls; scalar metadata loses group and looped metadata retains it. No installed Phenix execution in offline tests.",
+      "figure": "Regenerated, rendered and visually inspected"
+    }
   }
 }

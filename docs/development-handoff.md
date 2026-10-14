@@ -44,6 +44,69 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 08 returned; Cedar 09 component-list retry (2026-10-14):** all 207
+payloads in `08_Cedar_g4gzbeeb_cif_linked_review.zip` verify. The runner matches
+the expected SHA-256 and clean NASolve `147c1fbaabb41f73f5680852625189b0e1295ca7`,
+with the same clean NARestraints `a7b6a0c93365f7a480b7eee9cc4e860b13f702de`.
+Phenix **2.2.1-6174** completed baseline, linked and synthetic shared-code
+interpretation at exit zero (**2.522322, 1.381361 and 1.412638 s**). Native
+modifier registration now matches every requested ID. All four expected atom
+sets, H adjacency and energy types agree; no dangling references remain.
+All **38 links**, custom **21 bonds / 34 angles / 8 planes / 23 parallelities**,
+all 58 native parallelities, unaffected definitions and the original 858 atoms
+are preserved. Internal IGU A:6 and free-OH IGU E:1 have distinct selected
+definitions in the 877-atom/43-residue control; the original 42 definitions
+and 38 links remain unchanged. The control's added residue is synthetic.
+
+The returned status is still **REVIEW**, with two precise limitations:
+the native formal-charge attributes are absent, and the declared `_chem_comp`
+DNA group was not read. Our singleton `comp_list` writer collapsed its metadata
+to scalar fields; native `convert_list_block` only iterates the category loop.
+Both loaded base and effective group are null. Native logs nevertheless classify
+all 42 residues as DNA: group metadata and interpreted classification are
+distinct, and the old worker did not record the latter per site. The old
+`effective-site-atoms` check combined matching atoms with the missing group;
+there is no observed atom-inventory mismatch.
+
+The writer now retains one-row list metadata as a loop, using the existing CIF
+quoting implementation. It adds `component_list_policy =
+cif-native-component-list-loop-v1`; detailed native metadata records
+classification separately. Qualification reports exact atoms and required DNA
+group independently, preserving both gates. Exact returned-input replay keeps
+every parsed base/projected dictionary, site plan, modifier and PHIL request
+unchanged; only list serialization changes. The
+[registration/list-metadata record](cif-linked-native-registration-evidence.json)
+owns native hashes/counts, the group blocker, source preservation and replay.
+Missing formal charge is still `UNSUPPORTED`; no partial/source/zero substitute
+is introduced, and a subsequent REVIEW can persist after the group is corrected.
+
+**Next action:** deliver the clean published source through a pinned detached
+`09_Cedar_probe_build`, build `09_Cedar_probe_cif_linked.py` using
+`scripts/build_cif_linked_probe.py --delivery-prefix 09_Cedar` and the existing
+`05_Cedar_narestraints_build`, then run it against the original checksum-bound
+05 capsule. Issue one terminal command at a time. Preserve the frozen everyday
+checkout, all 05–08 build trees/runners, native sessions and source models.
+Installed list metadata, complete qualification, numerical/stereochemical
+review and ordinary fresh full-auto recovery remain open. No ReadySet retry,
+model optimization, diffraction refinement or adoption is authorized by this
+diagnostic result. Generated private CIFs/coordinates/native receipts stay
+outside Git; only code/tests/docs and compact evidence are committed.
+
+**Cedar 09 retry software validation:**
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`
+passes **1,386 tests, two skips and 276 subtests (89.41 s)**. The same command
+with `tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py
+tests/test_cif_linked_probe.py tests/test_cif_native_validation.py` passes
+**70 focused tests (4.75 s)**. Four targeted cases fail before the change and
+pass after it. Explicit fake native controls reproduce skipped scalar metadata
+and retained loop metadata; quoting/multiline values round-trip unchanged.
+Exact real-return replay checks every base/projection value and preserved
+modifier/PHIL/input bytes. Classification readback is additive to detailed
+inventories; basic defaults and schema-1 compatibility remain unchanged.
+No new dependencies are added. The editable figure is regenerated/rendered and
+visually inspected. These software/replay checks are not installed Phenix
+execution of the new metadata layout; that remains the Cedar 09 action.
+
 **Cedar 07 returned; Cedar 08 registration retry (2026-10-14):** all 164
 payloads in `07_Cedar_okkb2are_cif_linked_review.zip` verify. Source-retaining
 IMC/CGY/DX generation reached `CANDIDATE_REVIEW`; IGU was reused. Detailed
@@ -98,7 +161,7 @@ schema-1 fields are preparation layout provenance and detailed native charge
 readback metadata; formal-charge check rows retain explicit unavailable and
 contradictory observations. No new dependencies or installed native execution
 were added to this validation. Generated coordinates/CIFs/native payloads stay
-outside Git. The actual installed interpretation remains the Cedar 08 check.
+outside Git. The subsequent installed Cedar 08 result is recorded above.
 
 **Cedar 06 returned; Cedar 07 representation retry (2026-10-14):** all 87
 payloads in `06_Cedar_rkmjesl4_cif_linked_review.zip` verify. Native eLBOW

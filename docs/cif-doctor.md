@@ -209,13 +209,31 @@ The [native-registration evidence](cif-linked-native-registration-evidence.json)
 records the 164 verified payloads, reader contract and exact offline replay.
 
 The baseline's detailed native atom records also expose no formal-charge values.
-The next detailed worker records missing attributes separately from null values.
+The detailed worker records missing attributes separately from null values.
 Qualification labels unavailable formal-charge readback `UNSUPPORTED`, preserves
 actual charge contradictions as `REVIEW`, and never substitutes partial charges
 or a presumed zero. Other site/proxy checks continue; a complete mechanics pass
-still requires all checks. The Cedar 08 retry uses
-`--delivery-prefix 08_Cedar`; installed execution remains pending. Native failures
-now print the relevant baseline/linked error alongside the preserved receipt.
+still requires all checks. Native failures print the relevant baseline/linked
+error alongside the preserved receipt.
+
+Cedar 08 completed baseline, linked and shared-code native interpretation on
+Phenix 2.2.1-6174. All four effective atom sets, H adjacency and energy types
+agree, with 38 preserved backbone links, exact custom proxy coverage and
+unchanged original coordinates/other definitions. Complete qualification stays
+REVIEW: the installed atom API lacks formal-charge attributes, and scalar
+`comp_list` metadata is skipped by the reader, leaving the native group null.
+Native logs classify all 42 residues as DNA; classification and group are
+separate fields. The original atom check also required DNA group and therefore
+reported REVIEW despite matching atom sets.
+
+Preparation now retains the singleton `_chem_comp` row as a loop in base and
+projected dictionaries, with schema-1 `component_list_policy =
+cif-native-component-list-loop-v1`. Parsed metadata and every atom/restraint
+value remain the same, as do modifier/PHIL bytes and site plans. Detailed
+metadata adds native `classification`; qualification separates exact atoms
+from required DNA group without relaxing either check. The Cedar 09 installed
+retry is pending. Missing formal-charge readback remains unqualified and can
+keep the aggregate result REVIEW after the list metadata is corrected.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

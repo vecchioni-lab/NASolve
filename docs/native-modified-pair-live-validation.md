@@ -496,7 +496,43 @@ qualification distinguishes unavailable readback from an actual contradiction.
 Neither partial charge nor a presumed zero can supply missing native evidence.
 No linked manager, shared-code control or complete chemistry qualification
 passed at this boundary. No model optimization, ReadySet retry, refinement or
-adoption ran. Installed Cedar 08 interpretation remains pending.
+adoption ran. The subsequent installed Cedar 08 result follows.
+
+### Cedar 08 return: modifiers recovered, list metadata skipped
+
+`08_Cedar_g4gzbeeb_cif_linked_review.zip` has SHA-256
+`325cca4d6a6e301ceaadd186e07040676be62ec1c31e3416e6ea419550b30a33`;
+all **207 payloads** verify. Clean NASolve source is
+`147c1fbaabb41f73f5680852625189b0e1295ca7`, with the same pinned NARestraints.
+Source-preserving IMC/CGY/DX generation reaches CANDIDATE_REVIEW. Phenix
+2.2.1-6174 completes baseline/linked/control interpretation at exit zero in
+**2.522322 / 1.381361 / 1.412638 s**. All requested modifier IDs register.
+
+The linked manager preserves 858 atoms, 42 mappings, 38 backbone links,
+the exact custom 21 bonds/34 angles/8 planes/23 parallelities, all 58 native
+parallelities and unaffected definitions. Expected effective atom sets are
+IGU 34 / IMC 34 / CGY 35 / DX 33; every atom set, H adjacency and energy
+type matches, with no dangling references. OP2 HOP2/HOP2/H1/H14 survive.
+The synthetic control has 877 atoms/43 mappings: internal IGU A:6 keeps HOP2
+and O3′ OC2, while isolated free-OH E:1 lacks phosphate and keeps O3′ OH1.
+Its 31-atom definition and distinct modifier match the declaration; all original
+atoms, effective definitions and backbone links remain unchanged.
+
+Qualification and control remain **REVIEW**. The old atom-inventory check also
+required native group DNA; atom inventories match, but group is null. Scalar
+`_chem_comp` fields in `comp_list` are ignored by the reader's loop traversal.
+Native logs still classify the 42 linked residues as DNA, a distinct field.
+All formal-charge attributes are absent in the installed atom API and remain
+UNSUPPORTED, with no observed contradictory known charge.
+
+Corrected preparation preserves the one-row metadata loop, with unchanged
+parsed dictionary/projection values, site plans, modifier and PHIL bytes.
+Atom/group checks are separated and detailed native classification is recorded;
+neither required group nor charge gate is relaxed. The
+[registration/list-metadata record](cif-linked-native-registration-evidence.json)
+owns the exact return and offline replay. Installed Cedar 09 metadata readback,
+complete qualification and numerical/stereochemical review remain open.
+No model optimization, ReadySet retry, refinement or adoption ran.
 
 ### Earlier manually selected numerical resources
 

@@ -213,6 +213,42 @@ def test_standalone_native_worker_records_exact_indices_asu_and_effective_monome
         assert hashlib.sha256((work/artifact["path"]).read_bytes()).hexdigest()==artifact["sha256"]
 
 
+@pytest.mark.parametrize('layout',['looped','legacy-scalars'])
+def test_native_reader_contract_requires_a_component_list_loop(tmp_path,layout):
+    """Explicit fake API control for convert_list_block's loop-only metadata."""
+    import runpy
+    from nasolve.cif_linked_preparation import prepare_linked_component
+    from nasolve.ligand_profiles import _blocks,_emit
+    fixture=runpy.run_path(str(Path(__file__).with_name('test_cif_linked_preparation.py')))['fixture']
+    case=tmp_path/'case';case.mkdir()
+    source,numerical,model,contexts=fixture(case)
+    prepare_linked_component(source,numerical,model,contexts,case/'out',code='ZZZ')
+    dictionary=case/'out/base_dictionary.cif'
+    if layout=='legacy-scalars':
+        metadata,definition=_blocks(dictionary)
+        dictionary.write_text(_emit(metadata.values)+'\n'+definition.text)
+    executable,environment=native_runtime(tmp_path)
+    fake=tmp_path/'fake_native/fake_native.py'
+    text=fake.read_text().replace('group="DNA"','group=LOADED_GROUP')
+    text='LOADED_GROUP=None\n'+text
+    text=text.replace('        self.comp_comp_id_dict["ZZZ"]=monomer("ZZZ")',r'''
+        global LOADED_GROUP
+        from Bio.PDB.MMCIF2Dict import MMCIF2Dict
+        import io
+        metadata=cif_object.split('data_comp_ZZZ')[0]
+        if '\nloop_\n_chem_comp.' in metadata:
+            LOADED_GROUP=MMCIF2Dict(io.StringIO(metadata))['_chem_comp.group'][0]
+        self.comp_comp_id_dict["ZZZ"]=monomer("ZZZ")''')
+    fake.write_text(text)
+    result=inspect_native_bundle(model,[dictionary],tmp_path/'outputs',executable,
+        environment=environment,phenix_version='fake-component-list-contract')
+    assert result['status']=='REVIEW'
+    native=result['native_validation']
+    expected='DNA' if layout=='looped' else None
+    assert native['dictionary_loading'][0]['component_metadata'][0]['group']==expected
+    assert native['monomer_mappings']['rows'][0]['metadata']['group']==expected
+
+
 @pytest.mark.parametrize('layout',['per-id','legacy-shared'])
 def test_prepared_site_modifiers_resolve_through_native_reader_contract(tmp_path,layout):
     import runpy
@@ -257,6 +293,7 @@ def test_opt_in_details_record_effective_types_and_explicit_proxy_targets(tmp_pa
     text += r'''
 def monomer(code):
     return NS(chem_comp=NS(id=code,group="DNA"),
+        classification="DNA",
         atom_list=[NS(atom_id=n,type_symbol="C",type_energy="CH1",charge="0",partial_charge=.1) for n in ("C5","C5'","O4'")],
         bond_list=[],angle_list=[],tor_list=[],chir_list=[],plane_atom_list=[])
 class Geometry:
@@ -277,6 +314,7 @@ ChainProxies.selection=lambda self,expression:NS(iselection=lambda:[0 if express
     assert bool(readback['missing_attribute_atoms'])==(charge_readback=='missing-attribute')
     native=result['native_validation']
     assert native['inventory_detail']=='linked'
+    assert native['monomer_mappings']['rows'][0]['metadata']['classification']=={'status':'RECORDED','value':'DNA'}
     assert native['monomer_mappings']['rows'][0]['metadata']['effective_definition']['atoms'][0]['type_energy']=='CH1'
     assert native['geometry']['proxy_details']['angle'][0]['angle_ideal']==110.
     request=native['geometry']['custom_proxy_requests'][0]

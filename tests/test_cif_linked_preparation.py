@@ -65,6 +65,30 @@ def test_site_specific_deletions_preserve_op2_h_and_true_end(tmp_path):
     assert [p.read_bytes() for p in (source,numerical,model)]==before
 
 
+def test_single_component_metadata_remains_a_native_list_loop(tmp_path):
+    """Native convert_list_block reads comp_list metadata through iterrows."""
+    from nasolve.cif_linked_preparation import prepare_linked_component
+    from nasolve.ligand_profiles import _blocks
+    source,numerical,model,contexts=fixture(tmp_path)
+    prepare_linked_component(source,numerical,model,contexts,tmp_path/'out',code='ZZZ')
+    for path in [tmp_path/'out/base_dictionary.cif', *sorted((tmp_path/'out').glob('projected_*.cif'))]:
+        metadata=_blocks(path)[0]
+        assert metadata.values['data_']=='comp_list'
+        assert '\nloop_\n_chem_comp.' in metadata.text
+        assert metadata.values['_chem_comp.id']==['ZZZ']
+        assert metadata.values['_chem_comp.group']==['DNA']
+
+
+@pytest.mark.parametrize('name',["Source O3' with a \"quoted\" label",'First line\nSecond line'])
+def test_native_list_loop_preserves_quoted_and_multiline_metadata(tmp_path,name):
+    from nasolve.cif_linked_preparation import _render,component_values
+    source,_,_,_=fixture(tmp_path)
+    values=component_values(source,'ZZZ')
+    values['_chem_comp.name']=[name]
+    output=tmp_path/'rendered.cif';output.write_text(_render(values,'ZZZ'))
+    assert component_values(output,'ZZZ')==values
+
+
 def test_outgoing_link_removes_graph_selected_hydrogen_and_changes_type(tmp_path):
     from nasolve.cif_linked_preparation import prepare_linked_component
     source,numerical,model,contexts=fixture(tmp_path)

@@ -7,8 +7,10 @@ explicit whole-component numerical candidate generation and a separate native
 bundle diagnostic, explicit per-site linked-state preparation and native
 qualification checks, and bounded source-declared aromatic representation
 comparison. Cedar 06 completed native candidate generation and stopped at its
-CGY representation gate; linked native qualification remains pending the
-Cedar 08 retry after Cedar 07 exposed a modifier registration error. The [command guide](cif-doctor.md) owns operational
+CGY representation gate. Cedar 08 completed linked/shared-code native
+interpretation with matching site and proxy evidence; complete qualification
+remains REVIEW for missing group metadata and unavailable native formal charges.
+Cedar 09 tests the corrected singleton list serialization. The [command guide](cif-doctor.md) owns operational
 details; the [implementation map](cif-restraint-doctor-implementation.json)
 separates the deployed software from proposed extensions. Update this overview
 and its figure whenever the feature's behavior, dependencies or claims change.
@@ -148,8 +150,9 @@ instance of a residue code. An opt-in native inventory records full effective
 site definitions and proxy targets/weights. Checks compare exact backbone and
 custom pair/stacking coverage, preserve unaffected definitions, and include a
 shared-code internal/free-OH control. These are external candidate/diagnostic
-operations, with no automatic adoption or PostMR recovery. Their native linked
-execution remains pending; numerical and stereochemical reviews stay separate.
+operations, with no automatic adoption or PostMR recovery. Cedar 08 completed
+their native linked execution, preserving exact site atoms/H/types, backbone
+links and requested proxies; numerical and stereochemical reviews stay separate.
 
 Each modifier is serialized in its own native `data_mod_<ID>` block. The
 returned Cedar 07 reader registered the previous shared block name rather than
@@ -158,8 +161,15 @@ returned-input replay verifies corrected registration without altering base
 dictionaries, PHIL requests, deletions or site plans. Detailed native inventories
 also report formal-charge readback availability: unknown native values remain
 unqualified, distinct from an observed charge contradiction. Partial charges
-cannot substitute for formal charges. [The registration evidence](cif-linked-native-registration-evidence.json)
-owns this return and the pending Cedar 08 installed check.
+cannot substitute for formal charges. Cedar 08 recovered the requested native
+IDs and exposed a second serialization issue: single-row component-list
+metadata had collapsed to scalar fields and was skipped by the reader. Native
+group is null even though the interpreted classification logs identify DNA.
+The writer now preserves the metadata loop; detailed readback records
+classification separately, and atom/group checks remain independent required
+gates. [The registration evidence](cif-linked-native-registration-evidence.json)
+owns both returns and the pending Cedar 09 installed check. Corrected group
+readback will not certify the unavailable formal charges or approve chemistry.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -277,7 +287,9 @@ granting chemical approval. The v3 diagnostic demonstrated atom/bond/H/formal-ch
 retention; generation-v4 additionally checks bounded source-declared aromatic
 ring representations while preserving raw differences. Omitted metadata and
 native-link qualification remain explicit.
-Modifiers use exact native block IDs; unavailable formal-charge readback is
+Modifiers use exact native block IDs and component-list metadata retains its
+loop layout. Native classification is separate from group metadata;
+unavailable formal-charge readback is
 reported independently and does not become a chemical pass.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.

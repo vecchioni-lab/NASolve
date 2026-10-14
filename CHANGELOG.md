@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Native component-list metadata
+
+- Preserve the singleton `_chem_comp` row as a loop in linked base and
+  projected dictionaries. The native `comp_list` reader ignores scalar fields,
+  leaving the declared DNA group absent. Parsed metadata, atom definitions,
+  numerical targets, modifier bytes and PHIL selections remain unchanged.
+- Add schema-1 `component_list_policy` provenance, detailed native
+  classification readback, and separate atom-inventory/polymer-group checks.
+  Missing or incorrect native DNA group still prevents complete qualification;
+  unavailable formal charges remain explicitly unqualified.
+- Record Cedar 08's completed baseline, linked and shared-code native
+  interpretations. All 207 payloads verify; site atoms/H/types, 38 backbone
+  links, custom proxies and unaffected definitions agree. Group metadata and
+  charge readback keep the result at REVIEW. Cedar 09 tests the list-loop fix
+  on the installed reader; no optimization, refinement or adoption occurred.
+
 ### Native registration of site modifiers
 
 - Fix linked preparation to emit one `data_mod_<requested ID>` block per
@@ -23,7 +39,7 @@ entries are reconstructed from repository history.
 - Record Cedar 07's successful source recovery and baseline interpretation,
   followed by the linked reader's missing-modifier failure. All 164 payloads
   verify. Exact returned-input replay preserves site plans and input bytes;
-  installed Cedar 08 interpretation and chemistry qualification remain pending.
+  the subsequent Cedar 08 native result is recorded above.
 
 ### Source-declared aromatic bond representation
 
