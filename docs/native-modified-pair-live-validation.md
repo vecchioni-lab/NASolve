@@ -429,11 +429,45 @@ and is not evidence that this fresh ReadySet path retained those source states.
 
 The implemented `06_Cedar` diagnostic reuses the source-preserving generator,
 prepares per-site linked candidates, records detailed native monomer/proxy
-evidence and runs an internal/free-OH same-code control. **Its native execution
-remains pending.** Existing 5CM torsion and numerical/geometry reviews remain
+evidence and runs an internal/free-OH same-code control. **Its native linked
+interpretation remains pending after the Cedar 06 source-recovery stop below.**
+Existing 5CM torsion and numerical/geometry reviews remain
 independent. The [command guide](cif-doctor.md#source-preserving-linked-state-diagnostic)
 owns implementation scope; the [handoff](development-handoff.md) owns the next
 native action. No candidate or checkpoint was adopted during this analysis.
+
+### Cedar 06 return: source recovery and aromatic representation
+
+`06_Cedar_rkmjesl4_cif_linked_review.zip` has SHA-256
+`869432b07c45c7de48fc0c6fec95e8e802f2dbe897f9394ebfb3aca739be464e`;
+all 87 payloads verify. Its source bundle is NASolve
+`f433102f5fddca49a323ba27ad099d4ebd094c2c` and NARestraints
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. The returned status is
+`SOURCE_RECOVERY_REVIEW`. All three native eLBOW executions completed at exit
+zero on Phenix 2.2.1-6174, using source-retention controls and RM1/GDIIS.
+
+| Component | Native generation (s) | Returned v3 candidate status | Source-state result |
+| --- | --- | --- | --- |
+| IMC | 13.774458 | CANDIDATE_REVIEW | All 37 atoms, 38 bonds, 16 H attachments and formal charges retained; two soft plane reviews. |
+| CGY | 18.797596 | REJECTED | All 38 atoms, 39 connections, 15 H attachments and formal charges retained; six source-declared aromatic ring bonds change representation; five soft plane reviews. |
+| DX | 12.487223 | CANDIDATE_REVIEW | All 36 atoms, 38 bonds, 13 H attachments and formal charges retained; no generated numerical issues in this inspection. |
+
+The v3 gate classified CGY's six aromatic types as changed bond identity even
+though its source declares each ring bond aromatic. Generation-v4 adds a
+bounded declaration/graph check for a complete isolated alternating neutral
+six-member C/N ring, retaining raw differences and independent chemistry and
+numerical checks. Offline replay of the same four selected candidates now
+prepares all linked derivatives; graph-selected deletion retains CGY H1,
+IMC/IGU HOP2 and DX H14 on OP2. No candidate bytes, source bytes or original
+model coordinates were rewritten during this reanalysis. The compact
+[source-recovery record](cif-linked-source-recovery-evidence.json) owns the
+exact source/candidate and replay evidence.
+
+**New native bundle interpretation, the shared-code end control, model optimization,
+ReadySet retry, refinement and adoption were NOT_RUN.** Source generation is
+native evidence; the subsequent linked preparation is offline evidence.
+Installed linked qualification remains the next Cedar 07 action. Generated
+stereochemical metadata, numerical/plane and existing 5CM reviews remain open.
 
 ### Earlier manually selected numerical resources
 

@@ -5,8 +5,10 @@ report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
 explicit whole-component numerical candidate generation and a separate native
 bundle diagnostic, explicit per-site linked-state preparation and native
-qualification checks. The new linked-state diagnostic is software-tested;
-its installed Phenix execution remains pending. The [command guide](cif-doctor.md) owns operational
+qualification checks, and bounded source-declared aromatic representation
+comparison. Cedar 06 completed native candidate generation and stopped at its
+CGY representation gate; linked native qualification remains pending the
+Cedar 07 retry. The [command guide](cif-doctor.md) owns operational
 details; the [implementation map](cif-restraint-doctor-implementation.json)
 separates the deployed software from proposed extensions. Update this overview
 and its figure whenever the feature's behavior, dependencies or claims change.
@@ -115,6 +117,16 @@ or optimization failure; unsupported required controls stop generation.
 The requested optimization option and the backend reported by the native log
 are recorded separately, because installed implementations can differ.
 
+The generation-v4 comparison recognizes complete, source-declared aromatic
+representations of isolated neutral six-member C/N rings. It requires an
+alternating source order pattern, affirmative flags on every ring bond,
+unchanged single-bond substituents and no contradictory ring stereochemistry.
+This is declaration checking, without aromaticity perception or tautomer
+selection. Raw source/candidate differences remain visible and all independent
+atom, hydrogen, charge and numerical checks still apply. The returned CGY
+candidate supplies the native regression case; [its evidence record](cif-linked-source-recovery-evidence.json)
+separates completed eLBOW generation from the pending linked interpretation.
+
 An explicit native bundle diagnostic is the next separate operation. It freezes
 the prepared model, selected CIFs and parameter files in an external folder,
 then invokes the selected Phenix installation's Python and monomer library.
@@ -136,7 +148,7 @@ instance of a residue code. An opt-in native inventory records full effective
 site definitions and proxy targets/weights. Checks compare exact backbone and
 custom pair/stacking coverage, preserve unaffected definitions, and include a
 shared-code internal/free-OH control. These are external candidate/diagnostic
-operations, with no automatic adoption or PostMR recovery. Their new native
+operations, with no automatic adoption or PostMR recovery. Their native linked
 execution remains pending; numerical and stereochemical reviews stay separate.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -252,7 +264,9 @@ scope are included; candidate generation does not add an automatic adoption path
 Explicit generation records installed-tool capability evidence before chemistry.
 It requests source-state retention and preserves soft numerical reviews without
 granting chemical approval. The v3 diagnostic demonstrated atom/bond/H/formal-charge
-retention; omitted metadata and native-link qualification remain explicit.
+retention; generation-v4 additionally checks bounded source-declared aromatic
+ring representations while preserving raw differences. Omitted metadata and
+native-link qualification remain explicit.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

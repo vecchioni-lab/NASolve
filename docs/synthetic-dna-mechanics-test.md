@@ -310,8 +310,30 @@ metadata. Detailed native checks compare actual monomers, backbone links and
 custom pairing/stacking coverage, with a same-code internal/free-OH control.
 The source-bundled `06_Cedar_probe_cif_linked.py` reads the exact returned 05
 ZIP and writes a new session without changing the original run or laptop
-checkout. Its installed native execution remains **pending**. The fresh
+checkout. Its returned generation stage is recorded below. Linked installed
+interpretation remains **pending**. The fresh
 full-auto acquisition/recovery gate is still open; no dictionary was adopted.
+
+### Cedar 06 return and Cedar 07 representation retry
+
+All 87 payloads in `06_Cedar_rkmjesl4_cif_linked_review.zip` verify against
+their manifest. Phenix 2.2.1-6174 eLBOW completed source-retaining RM1/GDIIS
+generation for IMC, CGY and DX. IMC and DX reached `CANDIDATE_REVIEW`; the v3
+gate rejected CGY solely because six alternating source ring orders became
+aromatic types. Every source ring bond already has an affirmative aromatic
+flag; exact connectivity, hydrogens and formal charges survived. The source
+recovery stop prevented all new native bundle interpretation and the
+internal/free-OH control. [The evidence record](cif-linked-source-recovery-evidence.json)
+owns exact commands, hashes and measured scope.
+
+Generation-v4 recognizes only complete isolated source-declared alternating
+six-member neutral C/N rings, with unchanged single-bond substituents and no
+contradictory ring stereochemistry. Raw differences and all independent
+rejection checks remain intact. Offline reinspection of the returned candidates
+now prepares all four linked derivatives, retaining IGU/IMC HOP2, CGY H1 and
+DX H14 on OP2. The original 858-atom model stays byte-identical. The next
+Git-built delivery is `07_Cedar_probe_cif_linked.py`; installed interpretation,
+scientific qualification and any adoption remain pending.
 
 ## Adaptable methods wording
 

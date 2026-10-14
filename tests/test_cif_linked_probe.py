@@ -99,12 +99,13 @@ def test_source_bundled_delivery_survives_deleted_build_checkout(tmp_path):
     assert 'poisoned checkout import' not in result.stderr
 
 
-def test_orchestration_keeps_native_failures_and_original_capsule(tmp_path,monkeypatch,capsys):
+@pytest.mark.parametrize('failure_layer',['native','source-recovery'])
+def test_orchestration_keeps_native_failures_and_original_capsule(tmp_path,monkeypatch,capsys,failure_layer):
     from types import SimpleNamespace
     import runpy
     fixture=runpy.run_path(str(ROOT/'tests/test_cif_linked_preparation.py'))['fixture']
     native_case=runpy.run_path(str(ROOT/'tests/test_cif_linked_qualification.py'))['native_case']
-    from nasolve import phenix_runtime,cif_native_validation
+    from nasolve import phenix_runtime,cif_native_validation,cif_generation
     inputs=tmp_path/'fixture';inputs.mkdir()
     source,numerical,model,_=fixture(inputs)
     model_text=model.read_text().replace('ZZZ','IGU')
@@ -141,12 +142,24 @@ def test_orchestration_keeps_native_failures_and_original_capsule(tmp_path,monke
         calls.append((model,dictionaries,kwargs))
         return {'status':'FAILED','native_validation':{'status':'FAILED'},'execution':{'returncode':2}}
     monkeypatch.setattr(cif_native_validation,'inspect_native_bundle',fake_native)
+    if failure_layer=='source-recovery':
+        monkeypatch.setattr(cif_generation,'inspect_component_generation',lambda *args,**kwargs:
+                            {'status':'REJECTED','rejection_reasons':['fixture-source-state-changed']})
+        monkeypatch.setattr(cif_generation,'generate_elbow_candidate',lambda *args,**kwargs:
+                            {'status':'REJECTED','inspection':{'rejection_reasons':['fixture-source-state-changed']}})
     monkeypatch.setattr(sys,'argv',['runner','--review-zip',str(archive_path),'--output-parent',str(tmp_path/'output')])
     assert module.main()==2
-    assert len(calls)==2 and calls[1][2]['inventory_detail']=='linked'
+    if failure_layer=='native':
+        assert len(calls)==2 and calls[1][2]['inventory_detail']=='linked'
+    else:
+        assert calls==[]
     outputs=list((tmp_path/'output').glob('06_Cedar_cif-linked-probe-*'))
     receipt=json.loads((outputs[0]/'probe_receipt.json').read_text())
-    assert receipt['status']=='NATIVE_REVIEW' and receipt['original_archive_preserved']
+    assert receipt['status']==('NATIVE_REVIEW' if failure_layer=='native' else 'SOURCE_RECOVERY_REVIEW')
+    assert receipt['original_archive_preserved']
     assert receipt['automatic_adoption'] is False and receipt['refinement']=='NOT_RUN'
     assert archive_path.read_bytes()==before
-    assert 'REVIEW ZIP:' in capsys.readouterr().out
+    stdout=capsys.readouterr().out
+    assert 'REVIEW ZIP:' in stdout
+    if failure_layer=='source-recovery':
+        assert 'Source recovery requires review: IGU | REJECTED | fixture-source-state-changed' in stdout

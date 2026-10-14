@@ -19,10 +19,11 @@ from tempfile import mkdtemp
 import time
 from typing import Mapping
 
-from .cif_doctor import assess_dictionaries, compare_dictionaries, _number
+from .cif_doctor import assess_dictionaries, compare_dictionaries, _bridges, _number, _ORDERS
 from .ligand_profiles import _blocks
 
-POLICY_ID = "cif-independent-elbow-candidate-v3"
+POLICY_ID = "cif-independent-elbow-candidate-v4"
+BOND_REPRESENTATION_POLICY = "cif-source-declared-six-member-aromatic-v1"
 ELBOW_DOCUMENTATION = "https://phenix-online.org/documentation/reference/elbow.html"
 _OPTION_ALIASES = {
     "id": ("--id",), "output": ("--output",), "template": ("--template",),
@@ -91,6 +92,102 @@ def _explicit_atom_stereo(component: dict) -> dict[str, set[str]]:
             for atom in component["inventory"]["atoms"]}
 
 
+def _bond_representation(source: dict, generated: dict) -> dict:
+    """Recognize one bounded declared representation without perceiving aromaticity.
+
+    Only complete, isolated, alternating six-member C/N rings declared aromatic
+    by the source can become aromatic bond types. Exact atom names, side bonds,
+    explicit neutral ring charges and non-stereogenic ring bonds are required.
+    Raw comparisons and all independent chemistry/numerical gates stay intact.
+    """
+    result = {"policy_id": BOND_REPRESENTATION_POLICY, "status": "UNSUPPORTED_DIFFERENCE",
+              "connectivity_unchanged": False, "equivalent_rings": [], "unresolved_bonds": []}
+
+    def inventory(component):
+        rows = {}
+        for row in component["inventory"]["bond_orders"]:
+            edge = tuple(sorted(row["atoms"]))
+            if len(edge) != 2 or edge[0] == edge[1] or edge in rows:
+                return None
+            rows[edge] = row
+        return rows
+
+    def orders(row):
+        return {_ORDERS.get(value.upper(), value.upper()) for value in row["declarations"].values()}
+
+    left, right = inventory(source), inventory(generated)
+    if left is None or right is None:
+        result["reason"] = "incomplete-or-ambiguous-bond-definition"
+        return result
+    result["connectivity_unchanged"] = left.keys() == right.keys()
+    changed = {edge for edge in left.keys() | right.keys()
+               if edge not in left or edge not in right or orders(left[edge]) != orders(right[edge])}
+    result["unresolved_bonds"] = [list(edge) for edge in sorted(changed)]
+    if not result["connectivity_unchanged"]:
+        return result
+    if not changed:
+        result["status"] = "EXACT"
+        return result
+    adjacency = {}
+    for a, b in left:
+        adjacency.setdefault(a, set()).add(b)
+        adjacency.setdefault(b, set()).add(a)
+    bridges = _bridges(adjacency)
+    eligible = {edge for edge in changed
+                if orders(left[edge]) in ({"SINGLE"}, {"DOUBLE"})
+                and orders(right[edge]) == {"AROMATIC"}
+                and set(left[edge]["aromatic_declarations"].values()) == {"Y"}
+                and set(right[edge]["aromatic_declarations"].values()) <= {"Y"}
+                and all(set(row["stereo_declarations"].values()) <= {"N"}
+                        for row in (left[edge], right[edge]))}
+    eligible_by_atom = {}
+    for edge in eligible:
+        for atom in edge:
+            eligible_by_atom.setdefault(atom, set()).add(edge)
+    source_atoms = {atom["atom_id"]: atom["element"] for atom in source["inventory"]["atoms"]}
+    generated_atoms = {atom["atom_id"]: atom["element"] for atom in generated["inventory"]["atoms"]}
+    source_charges, generated_charges = _explicit_formal_charges(source), _explicit_formal_charges(generated)
+    remaining, covered = set(eligible), set()
+    while remaining:
+        start = min(remaining)
+        edges, atoms, pending = set(), set(), set(start)
+        while pending:
+            atom = pending.pop()
+            if atom in atoms:
+                continue
+            atoms.add(atom)
+            for edge in eligible_by_atom.get(atom, ()):
+                edges.add(edge)
+                pending.update(set(edge) - atoms)
+        remaining -= edges
+        if len(atoms) != 6 or len(edges) != 6:
+            continue
+        if any(len([edge for edge in edges if atom in edge]) != 2
+               or {next(iter(orders(left[edge]))) for edge in edges if atom in edge} != {"SINGLE", "DOUBLE"}
+               for atom in atoms):
+            continue
+        if any(source_atoms.get(atom) not in {"C", "N"}
+               or generated_atoms.get(atom) != source_atoms[atom]
+               or source_charges.get(atom) != 0 or generated_charges.get(atom) != 0
+               for atom in atoms):
+            continue
+        # Reject chords, fused/spiro rings and exocyclic multiple bonds. A
+        # simple substituent must connect through an unchanged single bridge.
+        side_edges = {edge for edge in left if set(edge) & atoms} - edges
+        if any(frozenset(edge) not in bridges or orders(left[edge]) != {"SINGLE"}
+               or orders(right[edge]) != {"SINGLE"} for edge in side_edges):
+            continue
+        covered |= edges
+        result["equivalent_rings"].append({"atoms": sorted(atoms), "bonds": [
+            {"atoms": list(edge), "source_order": next(iter(orders(left[edge]))),
+             "generated_order": "AROMATIC", "source_aromatic_declaration": "Y"}
+            for edge in sorted(edges)]})
+    result["unresolved_bonds"] = [list(edge) for edge in sorted(changed - covered)]
+    if not result["unresolved_bonds"]:
+        result["status"] = "SOURCE_DECLARED_EQUIVALENT"
+    return result
+
+
 def _supported_plane_review(finding: dict) -> bool:
     """Retain finite, realizable Gram reviews, never an impossible angle set."""
     if finding["code"] != "plane-angle-compatibility" or finding["status"] != "REVIEW":
@@ -126,6 +223,9 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
     left, right = _selected(before, code), _selected(after, code) if after else []
     changes = [row for row in comparison["differences"]
                if row["component_id"] == code and row["field"] in _CHEMICAL_FIELDS] if comparison else []
+    representation = (_bond_representation(left[0], right[0]) if len(left) == len(right) == 1 else
+                      {"policy_id": BOND_REPRESENTATION_POLICY, "status": "NOT_RUN",
+                       "connectivity_unchanged": None, "equivalent_rings": [], "unresolved_bonds": []})
     reasons = []
     if len(left) != 1:
         reasons.append("source-component-missing-or-ambiguous")
@@ -145,7 +245,9 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
             reasons.append("generated-plane-angle-geometry-invalid-or-unassessed")
         if after["input_integrity"] != "UNCHANGED" or comparison["input_integrity"] != "UNCHANGED":
             reasons.append("generation-input-integrity-invalid")
-        if any(row["field"] in {"atom_elements", "bond_orders", "hydrogen_attachments"} for row in changes):
+        if any(row["field"] in {"atom_elements", "hydrogen_attachments"}
+               or (row["field"] == "bond_orders" and representation["status"] != "SOURCE_DECLARED_EQUIVALENT")
+               for row in changes):
             reasons.append("generated-atom-bond-or-hydrogen-identity-changed")
         if len(left) == len(right) == 1:
             source_charges, generated_charges = _explicit_formal_charges(left[0]), _explicit_formal_charges(right[0])
@@ -169,11 +271,12 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
             "rejection_reasons": reasons,
             "source_assessment": before, "generated_assessment": after,
             "comparison": comparison, "numerical_issues": issues,
-            "chemical_changes": changes, "automatic_adoption": False,
+            "chemical_changes": changes, "bond_representation": representation, "automatic_adoption": False,
             "native_validation": "NOT_RUN", "linked_site_validation": "NOT_RUN",
             "limitations": ["Numerical completeness does not certify chemistry, native proxies or achieved geometry.",
                             "Only complete finite positive-semidefinite Gram findings can remain soft plane reviews.",
                             "Well-formed unresolved torsion relationships remain review evidence pending native interpretation; no term is removed or adopted.",
+                            "Only complete source-declared isolated neutral C/N six-member alternating rings can change to aromatic bond types; other order changes remain rejected.",
                             "Charge representation and newly supplied stereochemistry remain explicit review evidence."]}
 
 

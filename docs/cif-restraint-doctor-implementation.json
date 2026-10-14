@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-12",
+    "updated_date": "2026-10-14",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -19,7 +19,8 @@
       "Explicit source-preserving eLBOW numerical candidates using frozen chemistry and independent supplier ideal-coordinate templates",
       "Source-bundled candidate probe with numerical and chemical comparison receipts; no automatic adoption",
       "Exact installed generator capability negotiation, explicit source-state retention mode, and candidate-only preservation of supported soft numerical REVIEW findings",
-      "Explicit external native-bundle inventory using installation-bound phenix.python, frozen inputs, native PHIL namespace provenance and atom/proxy evidence; success remains REVIEW and native execution awaits laptop validation"
+      "Explicit external native-bundle inventory using installation-bound phenix.python, frozen inputs, native PHIL namespace provenance and atom/proxy evidence; success remains REVIEW; Cedar 05 native inventory completed and source-preserving linked qualification remains pending",
+      "Bounded source-declared isolated neutral C/N six-member aromatic representation comparison, retaining raw differences and all independent atom/H/charge/numerical gates"
     ],
     "native_candidate_validation": "Installed Phenix 2.2.1-6174 v3 --pH=low generation completed RM1/GDIIS optimization, retained all 37 atoms/39 bonds/H attachments/formal charges, and gave IGU C2-N3 1.397 A. Candidate remains CANDIDATE_REVIEW for soft plane findings, omitted source stereochemical/aromatic metadata and non-polymer classification. Native reader/polymer-link qualification and adoption remain pending.",
     "native_candidate_evidence": "docs/elbow-source-retention-evidence.json",
@@ -102,7 +103,7 @@
       ]
     },
     "linked_preparation_2026_10_14": {
-      "status": "IMPLEMENTED_EXTERNAL_DIAGNOSTIC_NATIVE_RETURN_PENDING",
+      "status": "SOURCE_RECOVERY_REANALYZED_LINKED_NATIVE_PENDING",
       "policy_id": "cif-source-preserving-linked-sites-v1",
       "delivery_prefix": "06_Cedar",
       "source_preserving_recovery_required": [
@@ -144,7 +145,7 @@
       "refinement": "NOT_RUN",
       "numerical_geometry": "REVIEW_REQUIRED",
       "experimental_protonation": "UNASSESSED",
-      "validation": "See docs/development-handoff.md for exact offline commands/counts; installed Phenix run pending",
+      "validation": "Cedar 06 generation return verified; all four candidates prepare offline under generation-v4; see docs/cif-linked-source-recovery-evidence.json. Cedar 07 installed linked qualification remains pending.",
       "offline_validation": {
         "full_suite": {
           "passed": 1345,
@@ -160,7 +161,36 @@
         "real_05_capsule_offline_replay": "IGU reusable; CGY/IMC/DX require source-state generation",
         "native_execution": "NOT_RUN",
         "figure": "Regenerated/rendered/visually inspected"
-      }
+      },
+      "next_delivery_prefix": "07_Cedar"
+    },
+    "cedar_06_return": {
+      "archive_name": "06_Cedar_rkmjesl4_cif_linked_review.zip",
+      "archive_sha256": "869432b07c45c7de48fc0c6fec95e8e802f2dbe897f9394ebfb3aca739be464e",
+      "verified_payloads": 87,
+      "reported_status": "SOURCE_RECOVERY_REVIEW",
+      "native_elbow_completed": [
+        "IMC",
+        "CGY",
+        "DX"
+      ],
+      "source_recovery_blocker": "CGY six source-declared aromatic ring bonds changed representation",
+      "native_bundle_interpretation": "NOT_RUN",
+      "evidence": "docs/cif-linked-source-recovery-evidence.json"
+    },
+    "generation_bond_representation": {
+      "generator_policy": "cif-independent-elbow-candidate-v4",
+      "representation_policy": "cif-source-declared-six-member-aromatic-v1",
+      "inspection_schema_version": 1,
+      "additive_field": "bond_representation",
+      "raw_comparison_unchanged": true,
+      "source_files_unchanged": true,
+      "native_receipt_compatibility": [
+        "cif-independent-elbow-candidate-v3",
+        "cif-independent-elbow-candidate-v4"
+      ],
+      "runtime_dependencies_added": [],
+      "scope": "Complete isolated alternating six-member C/N rings with affirmative source bond-aromatic flags, explicit neutral ring charges, non-stereogenic ring bonds and unchanged single bridge substituents; no aromaticity perception."
     }
   },
   "audience": [

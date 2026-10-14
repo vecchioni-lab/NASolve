@@ -31,7 +31,7 @@ Generation uses the frozen chemical CIF and a naming/initial-geometry PDB
 derived only from complete source ideal coordinates and integer formal charges.
 The explicit template supports component IDs of up to three characters and
 atom names of up to four ASCII characters; missing or unrepresentable data are
-reported, never inferred from the fitted model. The generation-v3 adapter first
+reported, never inferred from the fitted model. The generation-v4 adapter first
 records a bounded `phenix.elbow --help` check from that exact executable. It
 selects supported option spellings and verifies that each required option takes
 a value or is a switch as appropriate. Initial geometry and hydrogen controls
@@ -51,6 +51,18 @@ separate evidence; the returned Phenix 2.2.1-6174 run used RM1/GDIIS.
 The original CIF, failed ReadySet output and prior numerical resources are
 never overwritten or used as a source of invented numerical targets.
 
+Generation-v4 also recognizes a bounded bond representation change: an entire
+isolated six-member C/N ring can change from alternating single/double orders
+to aromatic bond types only when every source ring bond is explicitly aromatic.
+Ring atoms must have unchanged elements and explicit zero formal charges;
+ring bonds must have no explicit stereochemical declaration beyond `N`.
+Every substituent edge must remain a single graph bridge, excluding fused/spiro
+rings, chords and exocyclic multiple bonds. Missing/conflicting aromatic flags,
+partial conversions, other ring sizes and all unresolved order changes remain
+rejected. This checks supplied declarations without inferring aromaticity,
+resonance, valence, protonation or tautomer equivalence. Source and candidate
+files and numerical targets remain untouched.
+
 Schema-1 `cif_component_generation_inspection` and
 `cif_numerical_generation_candidate` receipts record source/candidate
 assessments, chemical differences, exact numerical issues, generator command,
@@ -62,6 +74,13 @@ rejected. These findings are preserved rather than relabeled as numerical PASS.
 The generator does not retry ReadySet, edit a model, adapt polymer links or
 adopt a dictionary. Native reader/geometry/proxy verification and any actual
 linked-site chemistry remain separate qualification steps.
+Inspection receipts add `bond_representation` under
+`cif-source-declared-six-member-aromatic-v1`, retaining every raw `bond_orders`
+and aromatic-metadata difference in the existing comparison. Representation
+evidence does not override independent atom, hydrogen, charge, stereo or
+numerical failures. New builds of the native shuttle recognize source-retaining v3/v4
+receipts, verify all source/output hashes and re-inspect current dictionaries;
+unknown generator policies remain unsupported.
 
 The source-bundled `04_Cedar_probe_cif_generation.py` inspects an existing failed run,
 selects invalid non-curated generic components by findings, and invokes this
@@ -164,8 +183,17 @@ free-OH IGU while retaining internal IGU under the same component code.
 angle/plane and generated stereochemical metadata reviews remain visible;
 achieved geometry and experimental protonation remain unqualified. The shuttle
 runs no ReadySet retry, diffraction refinement, checkpoint selection or
-dictionary adoption. Its native execution is **pending laptop return**;
-offline tests and fake native APIs do not establish an installed Phenix pass.
+dictionary adoption. The returned Cedar 06 capsule completed IMC/CGY/DX eLBOW
+generation and stopped at `SOURCE_RECOVERY_REVIEW`: only CGY's ring-bond
+representation blocked the generation gate. Native bundle interpretation and
+the shared-code control did not run. The [source-recovery evidence](cif-linked-source-recovery-evidence.json)
+records its 87 verified payloads, exact source/candidate hashes and offline
+reanalysis. With generation-v4, all four returned candidates prepare linked
+derivatives offline, retaining their OP2 hydrogens. The next delivery uses
+`--delivery-prefix 07_Cedar` with `scripts/build_cif_linked_probe.py`.
+Installed Cedar 07 interpretation remains pending; offline tests and fake
+native APIs do not establish an installed Phenix pass. Failed source recovery
+now prints the component, generation status and recorded rejection reasons.
 The older native API defaults and receipts stay compatible.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or

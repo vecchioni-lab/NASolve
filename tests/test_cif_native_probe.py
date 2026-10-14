@@ -212,7 +212,17 @@ def _preserved(fixture):
     assert all(path.read_bytes() == data for path, data in fixture["preserved"].items())
 
 
-def test_relocated_inspection_preserves_bytes_precedence_and_full_bound_runtime(delivered):
+@pytest.mark.parametrize("generation_policy", ["cif-independent-elbow-candidate-v3",
+                                             "cif-independent-elbow-candidate-v4"])
+def test_relocated_inspection_preserves_bytes_precedence_and_full_bound_runtime(delivered, generation_policy):
+    generation = json.loads(delivered["generation"].read_text())
+    generation["policy_id"] = generation_policy
+    delivered["generation"].write_text(json.dumps(generation) + "\n")
+    probe = json.loads(delivered["generation_probe"].read_text())
+    probe["candidates"]["Q11"] = generation
+    delivered["generation_probe"].write_text(json.dumps(probe) + "\n")
+    for path in (delivered["generation"], delivered["generation_probe"]):
+        delivered["preserved"][path] = path.read_bytes()
     result = _launch(delivered)
     assert result.returncode == 0, result.stderr + result.stdout
     review, receipt = _receipt(result)

@@ -33,8 +33,12 @@ for actual behavior; history is evidence, not a second task queue.
   automatic adoption and broader recovery remain separate follow-up slices.
   The explicit Cedar 06 diagnostic now prepares connectivity-selected,
   source-preserving linked candidates and checks detailed native site/custom
-  proxies; its installed native run remains pending. The returned Cedar 05
-  inventory is recorded in the native ledger.
+  proxies. Cedar 06 completed native candidate generation, then stopped at
+  CGY's aromatic bond representation. Generation-v4 checks that bounded
+  source-declared representation; linked installed qualification remains
+  pending the Cedar 07 retry. [The source-recovery record](cif-linked-source-recovery-evidence.json)
+  owns exact returned hashes and offline replay; Cedar 05's inventory is
+  recorded in the native ledger.
   Bundle model geometry/connectivity
   checks and guided sticky-end arm repair into the same planned Doctor workflow,
   using Scout/Topo primitives with declared routing and preserved true nicks.

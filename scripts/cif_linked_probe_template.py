@@ -162,6 +162,11 @@ def main():
         receipt['source_recovery_required']=recovery_required
         if len(chosen)!=len(TARGETS):
             receipt['status']='INSPECTED_SOURCE_RECOVERY_REQUIRED' if args.inspect_only else 'SOURCE_RECOVERY_REVIEW'
+            for code in sorted(TARGETS.keys()-chosen.keys()):
+                recovery=receipt['source_recovery'][code]
+                reasons=recovery.get('inspection',{}).get('rejection_reasons',recovery.get('reasons',[]))
+                print('Source recovery requires review:',code,'|',recovery['status'],
+                      '|',', '.join(reasons) if reasons else 'See generation receipt.',flush=True)
         else:
             selected_dir=session/'selected_bundle';selected_dir.mkdir()
             cifs=[]

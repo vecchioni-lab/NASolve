@@ -180,7 +180,7 @@ def test_relocated_inspect_probe_is_general_and_preserves_all_original_inputs(de
     assert receipt["delivery_prefix"] == "04_Cedar"
     assert session.name.startswith("04_Cedar_cif-generation-probe-")
     assert review.name == "04_Cedar_" + session.name.rsplit("-", 1)[-1] + "_cif_generation_review.zip"
-    assert "CIF generation probe: 04_Cedar | cif-independent-elbow-candidate-v3" in result.stdout
+    assert "CIF generation probe: 04_Cedar | cif-independent-elbow-candidate-v4" in result.stdout
     assert receipt["build"]["private_diffraction_included"] is False
     assert receipt["build"]["prior_native_results_included"] is False
     assert "candidates" not in receipt and not (session / "candidates").exists()

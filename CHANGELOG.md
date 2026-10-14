@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Source-declared aromatic bond representation
+
+- Correct the independent generation gate's false rejection of CGY's six
+  source-declared aromatic ring bonds after eLBOW writes aromatic bond types.
+  Generation-v4 admits only complete isolated alternating six-member C/N
+  rings with explicit neutral ring charges, affirmative source bond flags,
+  unchanged single-bond substituents and non-stereogenic ring bonds. No
+  aromaticity perception, source rewriting or replacement targets are added.
+- Preserve all raw comparison differences and numerical/stereochemical reviews;
+  add policy-bound `bond_representation` evidence within schema-1 inspection
+  receipts. Retain independent atom, hydrogen, charge and numerical rejection
+  checks. The native diagnostic accepts completed source-retaining v3 and v4
+  receipts and re-inspects their dictionaries under the current policy.
+- Record Cedar 06's three completed source-retaining eLBOW executions and the
+  CGY representation blocker separately from native bundle interpretation,
+  which did not run. Offline replay prepares all four linked derivatives;
+  Cedar 07 installed qualification remains pending. Source-recovery console
+  output now identifies each blocked component and its recorded reasons.
+
 ### Source-preserving linked-state diagnostic
 
 - Add explicit connectivity-selected DNA dictionary preparation, with source-
@@ -21,7 +40,8 @@ entries are reconstructed from repository history.
 - Add the source-bundled `06_Cedar` diagnostic for the exact returned 05 ZIP.
   Reuse existing whole-component generation when ReadySet lost source state,
   preserve all prior inputs, and test shared-code internal/free-OH contexts.
-  Native execution of this new diagnostic remains pending laptop return.
+  Its returned generation-stage blocker and the next native retry are recorded
+  in the source-declared aromatic representation entry above.
 - Record Cedar 05's completed interpretation and the newly identified
   CGY/IMC/DX OP2-hydrogen loss separately from the four linked OP3 expectations.
 

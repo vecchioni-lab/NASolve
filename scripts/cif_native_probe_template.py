@@ -125,7 +125,8 @@ def _capture_candidate(directory, session, snapshots):
     receipt = json.loads((session / snapshots["generation_receipt"]["path"]).read_text())
     if (receipt.get("schema_version") != 1
             or receipt.get("audit_kind") != "cif_numerical_generation_candidate"
-            or receipt.get("policy_id") != "cif-independent-elbow-candidate-v3"
+            or receipt.get("policy_id") not in {"cif-independent-elbow-candidate-v3",
+                                                "cif-independent-elbow-candidate-v4"}
             or receipt.get("status") != "CANDIDATE_REVIEW"
             or receipt.get("automatic_adoption") is not False
             or receipt.get("source_preserved") is not True
@@ -135,7 +136,7 @@ def _capture_candidate(directory, session, snapshots):
             or receipt.get("generator_capabilities", {}).get("status") != "SUPPORTED"
             or receipt.get("source_state_preservation", {}).get("generator_option") != "--pH"
             or receipt.get("source_state_preservation", {}).get("generator_value") != "low"):
-        raise ValueError("Require a completed source-preserving v3 CANDIDATE_REVIEW receipt")
+        raise ValueError("Require a completed source-preserving v3/v4 CANDIDATE_REVIEW receipt")
     code = receipt.get("component_id")
     if not isinstance(code, str) or not code or code in {".", "?"}:
         raise ValueError("Candidate receipt must declare an exact component identity")

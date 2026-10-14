@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-11** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-14** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -44,6 +44,56 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 06 returned; Cedar 07 representation retry (2026-10-14):** all 87
+payloads in `06_Cedar_rkmjesl4_cif_linked_review.zip` verify. Native eLBOW
+completed source-retaining IMC/CGY/DX generation on Phenix 2.2.1-6174
+(RM1/GDIIS); IMC and DX reached `CANDIDATE_REVIEW`. CGY alone was rejected for
+six alternating single/double ring orders becoming aromatic types. Every source
+ring bond already declares aromaticity; connectivity, hydrogen attachments and
+explicit formal charges survived. No new native bundle interpretation ran.
+The [source-recovery record](cif-linked-source-recovery-evidence.json) owns
+exact archive/source/candidate hashes, commands and offline replay.
+
+Generation-v4 now recognizes only complete isolated source-declared aromatic
+six-member alternating neutral C/N rings, with unchanged single bridges and
+non-stereogenic ring bonds. Schema-1 inspection adds `bond_representation`;
+raw comparison differences, numerical reviews and independent atom/H/charge/
+stereo checks remain intact. Native diagnostics retain v3 receipt compatibility
+and re-inspect supported v3/v4 candidates. Source-recovery console output names
+blocked components and reasons. Offline reanalysis prepares all four returned
+candidates with their OP2 H retained and the original model hash unchanged.
+
+**Next:** build `07_Cedar_probe_cif_linked.py` from the new Cedar revision with
+`scripts/build_cif_linked_probe.py --delivery-prefix 07_Cedar`, using the pinned
+NARestraints build source. Use delivery build worktrees and write the runner
+into the everyday NASolve directory: macOS refused Python access to Downloads
+before the Cedar 06 script could run. Preserve the frozen everyday checkout,
+old deliveries and native sessions. These worktrees isolate pinned delivery
+sources on the single Cedar development line; audit and retire them after the
+linked qualification gate closes. Publish code, test/contract changes and
+compact hash/count evidence only; unpublished coordinates, dictionaries and
+native payload bytes stay outside Git. Installed Cedar 07 qualification,
+numerical/achieved geometry review and full-auto recovery remain pending.
+
+**Cedar 07 retry software validation:**
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`
+passes **1,370 tests, two skips and 276 subtests (97.41 s)**. The initial
+generator/native/preparation/qualification/shuttle focus passed **192 tests
+(38.98 s)**; the final aromatic/orchestration focus passed **36 tests (1.84 s)**.
+The two source-declared-ring acceptance regressions fail before the change and
+pass after it. Negative controls retain rejection for partial/missing/conflicting
+declarations, fused or charged rings, exocyclic and outside-ring changes,
+altered H/formal charges/elements and invalid numerical targets. Existing
+relocation tests delete original build checkouts and poison normal imports.
+The same returned four candidates prepare offline, retaining source-specific
+OP2 H. No new Phenix/Coot process ran in this validation environment.
+Changed runtime files are `src/nasolve/cif_generation.py` and the linked/native
+probe templates; source-bundled transport needs no new dependency. Inspection
+schema 1 gains additive representation evidence, generation policy advances to
+v4, and the native probe keeps completed v3 receipts readable. Generated
+coordinate/CIF/native payloads remain excluded from Git. Descriptors,
+machine-readable evidence and the editable figure/caption are updated together.
+
 **Cedar 05 returned; Cedar 06 prepared (2026-10-14):** all 57 payloads in
 `05_Cedar_dy4qx3qg_cif_native_review.zip` verify. Native interpretation completed
 at exit 0 with 42 mappings, 38 intra-strand O3′–P links and zero coordinate
@@ -61,8 +111,8 @@ exact custom target/weight coverage and pair/stacking parallelities, plus a
 shared-code internal/free-OH IGU control. No runtime is installed on the
 laptop, no frozen run is rewritten, and no ReadySet/refinement/adoption starts.
 
-The next action is **one native run of the source-bundled Cedar 06 delivery**.
-Review its prefixed capsule before considering integration or full-auto retry.
+The Cedar 06 native generation return and next retry are recorded above.
+Review the next prefixed capsule before considering integration or full-auto retry.
 Source-state regeneration, linked mechanics and numerical/achieved geometry
 remain separate verdicts. Known 5CM/DP reviews remain visible. Public source,
 tests and contract updates belong on Cedar; unpublished input bytes remain
@@ -70,7 +120,7 @@ outside Git. Baseline Cedar's complete Linux suite passed 1,308 tests, two
 skips and 276 subtests. Final new-suite validation is recorded below after
 completion; offline/fake native tests are not installed Phenix evidence.
 
-**Final offline validation:**
+**Cedar 06 implementation's offline validation:**
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q`
 passed **1,345 tests, two skips and 276 subtests (96.43 s)**. The focused
 native/preparation/qualification/shuttle files passed **75 tests (25.07 s)**.
