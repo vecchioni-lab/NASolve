@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Source-preserving linked-state diagnostic
+
+- Add explicit connectivity-selected DNA dictionary preparation, with source-
+  preserving candidate requirements, graph-selected leaving atoms/hydrogens,
+  source-derived DNA metadata, per-site modifiers and projected CIF Doctor
+  audits. Require declarations for every same-code model site; retain OP2
+  protonation and requested terminal phosphates. No PostMR adoption.
+- Add opt-in detailed native monomer/proxy inventories and exact custom
+  selection/target/weight coverage checks. Preserve the existing basic native
+  inventory interface and schema-1 receipts; missing detail remains explicit.
+- Add the source-bundled `06_Cedar` diagnostic for the exact returned 05 ZIP.
+  Reuse existing whole-component generation when ReadySet lost source state,
+  preserve all prior inputs, and test shared-code internal/free-OH contexts.
+  Native execution of this new diagnostic remains pending laptop return.
+- Record Cedar 05's completed interpretation and the newly identified
+  CGY/IMC/DX OP2-hydrogen loss separately from the four linked OP3 expectations.
+
 ### Explicit native bundle diagnostics
 
 - Add a separate installation-bound `phenix.python` diagnostic for an exact

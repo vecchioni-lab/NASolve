@@ -204,6 +204,40 @@ def test_standalone_native_worker_records_exact_indices_asu_and_effective_monome
         assert hashlib.sha256((work/artifact["path"]).read_bytes()).hexdigest()==artifact["sha256"]
 
 
+def test_opt_in_details_record_effective_types_and_explicit_proxy_targets(tmp_path):
+    model,dictionaries=files(tmp_path)
+    executable,environment=native_runtime(tmp_path)
+    module=tmp_path/'fake_native/fake_native.py'
+    text=module.read_text().replace('edits=NS(marker="explicit edits")',
+        'edits=NS(marker="explicit edits", bond=[NS(atom_selection_1="first",atom_selection_2="second",distance_ideal=1.5,sigma=.02,action="add")])')
+    text += r'''
+def monomer(code):
+    return NS(chem_comp=NS(id=code,group="DNA"),
+        atom_list=[NS(atom_id=n,type_symbol="C",type_energy="CH1",charge="0",partial_charge=.1) for n in ("C5","C5'","O4'")],
+        bond_list=[],angle_list=[],tor_list=[],chir_list=[],plane_atom_list=[])
+class Geometry:
+    def __init__(self):
+        self.angle_proxies=[NS(i_seqs=(0,1,2),angle_ideal=110.,weight=100.,origin_id=0)]
+        self.dihedral_proxies=[];self.const_dihedral_proxies=[];self.chirality_proxies=[]
+        self.planarity_proxies=[NS(i_seqs=(0,1,2),weights=[100.,100.,100.],origin_id=1)]
+        self.parallelity_proxies=[]
+    def pair_proxies(self,sites_cart):return NS(bond_proxies=BondCollection())
+ChainProxies.selection=lambda self,expression:NS(iselection=lambda:[0 if expression=="first" else 1])
+'''
+    module.write_text(text)
+    result=inspect_native_bundle(model,dictionaries,tmp_path/'outputs',executable,
+        environment=environment,phenix_version='fake-detail',inventory_detail='linked')
+    assert result['status']=='REVIEW'
+    native=result['native_validation']
+    assert native['inventory_detail']=='linked'
+    assert native['monomer_mappings']['rows'][0]['metadata']['effective_definition']['atoms'][0]['type_energy']=='CH1'
+    assert native['geometry']['proxy_details']['angle'][0]['angle_ideal']==110.
+    request=native['geometry']['custom_proxy_requests'][0]
+    assert request['atoms']==[row['label'] for row in native['atoms'][:2]]
+    assert request['distance_ideal']==1.5 and request['weight']==2500.
+    assert result['automatic_adoption'] is False
+
+
 def test_direct_phil_namespace_rejects_unconsumed_refinement_wrapper(tmp_path):
     phil=tmp_path/"parameters/user.phil"; phil.parent.mkdir()
     phil.write_text('refinement { geometry_restraints { edits { atom_selection = "chain A and name C5\'" } } }\n')

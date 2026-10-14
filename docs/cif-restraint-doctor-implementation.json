@@ -30,7 +30,138 @@
       "Qualified automatic numerical recovery or candidate/checkpoint adoption",
       "Geometry/connectivity repair and guided sticky-end stitching"
     ],
-    "snapshot_policy": "The design and historical evidence below remain a knowledge snapshot. The runtime contract and current source own implemented behavior."
+    "snapshot_policy": "The design and historical evidence below remain a knowledge snapshot. The runtime contract and current source own implemented behavior.",
+    "cedar_05_return": {
+      "delivery_prefix": "05_Cedar",
+      "archive_name": "05_Cedar_dy4qx3qg_cif_native_review.zip",
+      "archive_sha256": "7ab8f0dee87a5490539017e2af006f23b4c989f6794f1670db8db821da9d3db4",
+      "verified_payloads": 57,
+      "nasolve_build_commit": "b745b79ffbcc4525b81ab2b340975f71574f1def",
+      "narestraints_build_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "native_policy": "cif-native-bundle-inventory-v1",
+      "native_reported_status": "REVIEW",
+      "status_semantics": "The actual worker deliberately sets REVIEW and exits zero after successful inventory. It does not emit a chemistry-qualification PASS. REVIEW is not caused solely by the four OP3 expectations.",
+      "execution_returncode": 0,
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "coordinate_OP3_O3P_count": 0,
+      "free_five_prime_OH_sites": [
+        "A:1",
+        "B:1",
+        "C:8",
+        "D:1"
+      ],
+      "native_O3prime_P_interresidue_simple_bond_proxies": 38,
+      "missing_heavy_atom_expectations": [
+        {
+          "site": "A:6",
+          "component": "IGU",
+          "missing_non_hydrogen_atoms": [
+            "OP3"
+          ],
+          "native_group": "non-polymer",
+          "native_modifications": []
+        },
+        {
+          "site": "A:20",
+          "component": "CGY",
+          "missing_non_hydrogen_atoms": [
+            "OP3"
+          ],
+          "native_group": "non-polymer",
+          "native_modifications": []
+        },
+        {
+          "site": "C:10",
+          "component": "IMC",
+          "missing_non_hydrogen_atoms": [
+            "OP3"
+          ],
+          "native_group": "non-polymer",
+          "native_modifications": []
+        },
+        {
+          "site": "D:3",
+          "component": "DX",
+          "missing_non_hydrogen_atoms": [
+            "OP3"
+          ],
+          "native_group": "non-polymer",
+          "native_modifications": []
+        }
+      ],
+      "not_performed": [
+        "generic linked-site qualification",
+        "full custom proxy multiset qualification",
+        "geometry optimization",
+        "ReadySet retry",
+        "diffraction refinement",
+        "candidate adoption",
+        "checkpoint selection",
+        "scientific approval"
+      ]
+    },
+    "linked_preparation_2026_10_14": {
+      "status": "IMPLEMENTED_EXTERNAL_DIAGNOSTIC_NATIVE_RETURN_PENDING",
+      "policy_id": "cif-source-preserving-linked-sites-v1",
+      "delivery_prefix": "06_Cedar",
+      "source_preserving_recovery_required": [
+        "CGY",
+        "IMC",
+        "DX"
+      ],
+      "source_OP2_hydrogens": {
+        "CGY": "H1",
+        "IMC": "HOP2",
+        "DX": "H14",
+        "IGU": "HOP2"
+      },
+      "source_OP2_hydrogens_lost_by_ReadySet": [
+        "CGY",
+        "IMC",
+        "DX"
+      ],
+      "accepted_IGU_candidate_reusable": true,
+      "modules": [
+        "src/nasolve/cif_linked_preparation.py",
+        "src/nasolve/cif_linked_qualification.py"
+      ],
+      "native_inventory_detail": "linked",
+      "native_api_compatibility": "Additive opt-in; basic default and schema-1 receipts retained",
+      "source_preserving_generator": "Existing cif_generation.generate_elbow_candidate; no replacement targets or hydrogens invented",
+      "site_context_contract": "Explicit incoming/outgoing and terminal states for every model site sharing the component code",
+      "checks": [
+        "effective atoms/types/formal charges/H adjacency",
+        "no dangling references",
+        "exact declared O3prime-P links",
+        "custom proxy identity/target/weight coverage",
+        "preserved pair/stacking parallelities",
+        "retained other-component definitions",
+        "same-code internal/free-OH native control"
+      ],
+      "automatic_adoption": false,
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "numerical_geometry": "REVIEW_REQUIRED",
+      "experimental_protonation": "UNASSESSED",
+      "validation": "See docs/development-handoff.md for exact offline commands/counts; installed Phenix run pending",
+      "offline_validation": {
+        "full_suite": {
+          "passed": 1345,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 96.43,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "focused": {
+          "passed": 75,
+          "seconds": 25.07
+        },
+        "real_05_capsule_offline_replay": "IGU reusable; CGY/IMC/DX require source-state generation",
+        "native_execution": "NOT_RUN",
+        "figure": "Regenerated/rendered/visually inspected"
+      }
+    }
   },
   "audience": [
     "NASolve contributors"
@@ -52,7 +183,8 @@
     "authority": "Existing source code and active subsystem contracts define implemented behavior. This file defines proposed work. A reported native PASS is scoped to its exact source, site, manager and runtime; a generated candidate, an exit-zero process, or a user visual PASS alone is not general qualification.",
     "scope": "A machine-readable implementation blueprint and knowledge snapshot. It does not implement a fixer, adopt a dictionary, authorize new chemistry, approve a structure or alter a completed run.",
     "documentation_role": "This file is the machine-readable scientific/engineering implementation map. Current methods, chemical/source contracts and validation ledgers retain their existing ownership; captured references are provenance, not duplicate live contracts.",
-    "source_reference_policy": "Bare source_documents/source_refs are repository-relative informational references. Inventory patterns describe inspected scopes and do not authorize wildcard selection; operational artifacts require declared anchors, hashes and sizes. Historical diagnostic paths are provenance only and are not assumed to exist in a new checkout."
+    "source_reference_policy": "Bare source_documents/source_refs are repository-relative informational references. Inventory patterns describe inspected scopes and do not authorize wildcard selection; operational artifacts require declared anchors, hashes and sizes. Historical diagnostic paths are provenance only and are not assumed to exist in a new checkout.",
+    "must_read_first": "backbone_policy_checkpoint_2026_10_14"
   },
   "project_context": {
     "repository": "https://github.com/vecchioni-lab/NASolve",
@@ -2427,5 +2559,120 @@
       "sha256": "490df74d41530e4e2e22dc8e5cac3c274b32a5caac56b8864fd424652b45dc7a",
       "bytes": 35372
     }
-  ]
+  ],
+  "backbone_policy_checkpoint_2026_10_14": {
+    "schema_version": 1,
+    "recorded_date": "2026-10-14",
+    "authority_order": [
+      "Current explicit user chemistry and exact frozen run intent",
+      "Current subsystem contracts and actual selected source code",
+      "Hash-verified returned native artifacts",
+      "Historical handoffs and lossless snapshots for evidence"
+    ],
+    "backbone_rules": [
+      "Working coordinate models contain no OP3/O3P unless that exact site has an explicit terminal-phosphate declaration from the user or a selected reviewed recipe.",
+      "Internal standard phosphodiester phosphate keeps P/OP1/OP2/O5prime and bonds to previous O3prime. It must not have terminal OP3.",
+      "An explicitly requested 5prime phosphate is a complete P/OP1/OP2/OP3 group with no incoming O3prime-P link. The current contract supports construction/protection/audit; the older September retain-only instruction is historical.",
+      "A declared free 5prime-OH has no terminal phosphate and retains O5prime. An unrequested or ambiguous terminal phosphate is not silently retained, stripped or completed.",
+      "Source monomer OP3 is allowed as isolated-source evidence; it does not authorize coordinate insertion. Preserve source bytes and use context-selected effective derivatives/modifications.",
+      "Audit coordinate atom state separately from effective monomer atoms, modifications, hydrogen adjacency, energy typing and surviving restraint references.",
+      "Incoming phosphate handling and outgoing O3prime-H/type handling are separate. Find attached H through the selected bond graph, not hydrogen spelling.",
+      "For supported outgoing links, remove only the graph-confirmed O3prime-bound H and qualify the O3prime linked energy type. For a supported leaving OP3, remove its attached H and dependent terms without dangling references.",
+      "Preserve source-specific OP2-attached H and charge declarations. A hydrogen-free coordinate model is not evidence of an unprotonated dictionary; --pH=low is generator source-retention mode, not experimental pH.",
+      "Preserve true ends, nicks, experimental-passthrough boundaries and declared symmetry context. Sticky-end pairing or spatial proximity does not authorize covalent stitching.",
+      "Production NASnoOP3 profiles currently cover 1AP/DZ/DP/5CM. Adding IGU/IMC/CGY/DX to that set alone would not qualify full linked chemistry or all end states.",
+      "Legacy allow_op3_sites remains readable. New user-facing terminal chemistry is a five_prime_phosphate_sites request under the active backbone contract; old frozen plans are never reinterpreted."
+    ],
+    "historical_W_exception": {
+      "site": "D:1",
+      "meaning": "The earlier selected W/5W6W recipe explicitly authorized a terminal phosphate at D:1.",
+      "boundary": "This consent belongs to that frozen trial/recipe. It does not carry into the fresh synthetic four-free-5prime-OH trial."
+    },
+    "chemical_identity_reminders": {
+      "combined_pairs": [
+        {
+          "pair": "D:T",
+          "sites": [
+            "A:5",
+            "C:11"
+          ],
+          "components": [
+            "1AP",
+            "DT"
+          ],
+          "recipe": "D_T"
+        },
+        {
+          "pair": "B:S",
+          "sites": [
+            "A:6",
+            "C:10"
+          ],
+          "components": [
+            "IGU",
+            "IMC"
+          ],
+          "recipe": "GC geometry"
+        },
+        {
+          "pair": "Z:P",
+          "sites": [
+            "A:12",
+            "B:4"
+          ],
+          "components": [
+            "DZ",
+            "DP"
+          ],
+          "recipe": "GC geometry; explicit modified identities"
+        },
+        {
+          "pair": "K:X",
+          "sites": [
+            "A:20",
+            "D:3"
+          ],
+          "components": [
+            "CGY",
+            "DX"
+          ],
+          "recipe": "GC geometry"
+        },
+        {
+          "pair": "5CM:G",
+          "sites": [
+            "A:7",
+            "C:9"
+          ],
+          "components": [
+            "5CM",
+            "DG"
+          ],
+          "recipe": "GC geometry"
+        },
+        {
+          "pair": "DF:A",
+          "sites": [
+            "A:19",
+            "D:4"
+          ],
+          "components": [
+            "DF",
+            "DA"
+          ],
+          "recipe": "AT geometry"
+        }
+      ],
+      "corrections": [
+        "Benner S is IMC. S6G is 6-thioguanine and was an erroneous S choice in an older supplied handoff.",
+        "1W5 to DZ and 1WA to DP are explicit reviewed transformations. A1AAZ to DF is the reviewed working-label bridge; none is generic synonym detection.",
+        "DF is 2-thiothymidine; DE is lab 4-thiothymidine. Official CCD 8RO is not automatically equivalent to lab DE. Existing DE numerical geometry remains unresolved.",
+        "The demonstrated 5CM defect is C2 versus C2prime in the C4prime-O4prime-C1prime-C2 proper torsion. It is not a demonstrated C5 bond swap.",
+        "The 5IU apparent long iodine bond was a quote/prime parser collision. Base C5 and sugar C5prime remain distinct; the source CIF was not repaired.",
+        "Curated source precedence protects identity/provenance and is not blanket numerical or native chemistry approval.",
+        "Do not force all planar angle sums to 360 degrees, all sugar puckers to one state, all torsion residuals into Gaussian sigma scores, or arbitrary heavy-atom H-bond lines to 180 degrees."
+      ]
+    },
+    "purpose": "Mandatory site/end-state checkpoint before linked preparation. External Cedar 06 diagnostic code is implemented; installed native qualification and adoption remain open."
+  }
 }

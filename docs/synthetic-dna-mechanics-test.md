@@ -293,9 +293,25 @@ The next **`05_Cedar`** diagnostic is implemented to exercise the installed nati
 CIF reader and model interpretation against an explicitly selected dictionary
 bundle, in a fresh directory with original inputs preserved. It will capture
 consumer behavior before optimizing coordinates, adapting metadata, rerunning
-ReadySet or adopting a dictionary. Offline implementation is validated; native
-execution remains **pending**. No native outcome is inferred from the successful
-`04_Cedar` repeat.
+ReadySet or adopting a dictionary. The returned 05 inventory now completed:
+42 mappings, 38 recorded intra-strand links and zero coordinate OP3/O3P,
+with four generic monomers still expecting OP3. The [native ledger](native-modified-pair-live-validation.md#cedar-05-return-and-source-state-audit)
+records its exact evidence. This is an inventory pass, separate from linkage
+and numerical qualification.
+
+### Cedar 06 source-preserving linked-state preparation
+
+The selected CGY/IMC/DX ReadySet definitions lost their frozen source OP2
+hydrogens. The new explicit diagnostic first uses existing CIF Doctor
+comparison/generation to recover those complete source states; it reuses the
+accepted IGU candidate. Per-site linkage preparation then removes only
+graph-selected leaving atoms/H, retains OP2 protonation and uses source DNA
+metadata. Detailed native checks compare actual monomers, backbone links and
+custom pairing/stacking coverage, with a same-code internal/free-OH control.
+The source-bundled `06_Cedar_probe_cif_linked.py` reads the exact returned 05
+ZIP and writes a new session without changing the original run or laptop
+checkout. Its installed native execution remains **pending**. The fresh
+full-auto acquisition/recovery gate is still open; no dictionary was adopted.
 
 ## Adaptable methods wording
 

@@ -124,8 +124,49 @@ Inventory does not certify intended links, custom-restraint coverage, achieved
 geometry or scientific validity. The helper runs no optimization, ReadySet,
 refinement, candidate adoption or checkpoint selection. A prefixed review ZIP
 contains exact diagnostic inputs, canonical parameters, raw logs and receipts;
-embedded source runtime and native pickles are excluded. Native execution of
-this new helper remains pending the laptop return.
+embedded source runtime and native pickles are excluded. The returned Cedar 05
+inventory completed on Phenix 2.2.1-6174: 42 mappings, 38 internal O3′–P links,
+zero coordinate OP3/O3P, and four isolated-monomer OP3 expectations. REVIEW
+is the worker's successful inventory status; see the [native ledger](native-modified-pair-live-validation.md#cedar-05-return-and-source-state-audit).
+
+## Source-preserving linked-state diagnostic
+
+`06_Cedar_probe_cif_linked.py` takes the exact checksum-bound returned 05 ZIP,
+verifies its 57 payloads and writes a fresh external session. It reuses CIF
+Doctor's source/candidate comparison and existing eLBOW candidate API before
+link adaptation. The selected CGY/IMC/DX ReadySet definitions lost their
+source OP2-bound hydrogens; source-preserving whole-component regeneration is
+therefore required. The accepted 04 IGU candidate can be reused. Failed or
+chemically changed candidates remain separate review evidence, with no
+hydrogen insertion or invented numerical targets.
+
+The explicit `cif-source-preserving-linked-sites-v1` preparation API requires
+source `DNA LINKING` metadata, a complete source-preserving numerical candidate,
+and declared incoming/outgoing and terminal contexts for every same-code model
+site. It writes a DNA metadata derivative, graph-selected atom-deletion/O3′-OC2
+modifiers, exact site selections, projected dictionaries and assessments.
+Incoming and outgoing treatment are independent. Source-specific OP2 H and
+formal charge declarations survive; free 5′-OH and explicitly requested
+terminal phosphate states remain distinct. Unsupported symmetry, alternate
+conformers, insertion codes and experimental backbones stop for review.
+Raw source dictionaries and coordinate models remain unchanged.
+
+Native `inventory_detail="linked"` is opt-in and additive to the existing
+inventory API. It records effective atom/energy/charge/graph definitions and
+individual proxy targets/weights, and resolves explicit geometry edits through
+the installed native selector. Qualification checks all 38 declared links,
+exact custom proxy coverage, retained pair/stacking parallelities, unchanged
+model coordinates/identities and other-component definitions, plus absent
+leaving atoms and dangling references. A separate 43-residue control adds a
+free-OH IGU while retaining internal IGU under the same component code.
+
+`LINKED_MECHANICS_PASS` describes these checks only. Existing 5CM torsion,
+angle/plane and generated stereochemical metadata reviews remain visible;
+achieved geometry and experimental protonation remain unqualified. The shuttle
+runs no ReadySet retry, diffraction refinement, checkpoint selection or
+dictionary adoption. Its native execution is **pending laptop return**;
+offline tests and fake native APIs do not establish an installed Phenix pass.
+The older native API defaults and receipts stay compatible.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

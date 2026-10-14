@@ -44,6 +44,46 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 05 returned; Cedar 06 prepared (2026-10-14):** all 57 payloads in
+`05_Cedar_dy4qx3qg_cif_native_review.zip` verify. Native interpretation completed
+at exit 0 with 42 mappings, 38 intra-strand O3′–P links and zero coordinate
+OP3/O3P. REVIEW is the worker's deliberate successful inventory status. Four
+generic monomers still expect isolated OP3. The fresh trial has free 5′-OH
+ends A:1/B:1/C:8/D:1; the older W trial's D:1 phosphate consent does not apply.
+
+Source/effective audit also finds lost OP2 H in the CGY/IMC/DX ReadySet
+definitions; only IGU's accepted candidate preserves its complete source state.
+`06_Cedar_probe_cif_linked.py` therefore reuses existing source-preserving eLBOW
+generation for rejected components before per-site preparation. It keeps all
+raw inputs, numerical findings, model coordinates and NARestraints parameters.
+Opt-in detailed native inventory checks actual monomers, all declared links,
+exact custom target/weight coverage and pair/stacking parallelities, plus a
+shared-code internal/free-OH IGU control. No runtime is installed on the
+laptop, no frozen run is rewritten, and no ReadySet/refinement/adoption starts.
+
+The next action is **one native run of the source-bundled Cedar 06 delivery**.
+Review its prefixed capsule before considering integration or full-auto retry.
+Source-state regeneration, linked mechanics and numerical/achieved geometry
+remain separate verdicts. Known 5CM/DP reviews remain visible. Public source,
+tests and contract updates belong on Cedar; unpublished input bytes remain
+outside Git. Baseline Cedar's complete Linux suite passed 1,308 tests, two
+skips and 276 subtests. Final new-suite validation is recorded below after
+completion; offline/fake native tests are not installed Phenix evidence.
+
+**Final offline validation:**
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q`
+passed **1,345 tests, two skips and 276 subtests (96.43 s)**. The focused
+native/preparation/qualification/shuttle files passed **75 tests (25.07 s)**.
+The assembled runner replayed the exact 05 ZIP offline, identifying IGU reuse
+and CGY/IMC/DX source-state regeneration requirements. Actual IGU projection
+removes OP3/HOP3/HO3′ and retains HOP2. Relocation tests delete both source
+checkouts and poison normal imports; input corruption remains a preserved
+failure capsule. The editable SVG was regenerated, rendered and inspected.
+Regression controls reject changed targets/weights, duplicate planes, lost
+links/H, incorrect types/charges, missing mappings and undeclared same-code
+end states. The new native worker/detail interface is tested using explicit
+fake installed APIs. No new Phenix/Coot execution occurred in this environment.
+
 **Cedar 04 reproduction and Cedar 05 diagnostic (2026-10-12):** the returned
 `04_Cedar_r2cunjcc_cif_generation_review.zip` verifies all 22 manifest entries.
 The [compact repeat evidence](elbow-source-retention-evidence.json) records
@@ -63,7 +103,7 @@ ancillary PHIL/EFF/site-modification input are retained. The installation-bound
 `phenix.python` worker inventories native readers, effective monomer/missing-atom
 mapping and interpreted atom/proxy evidence. Its explicit native-parser PHIL
 namespace adapter retains all definitions and rejects unused parameters.
-Actual native execution remains **NOT_RUN** here. Success is REVIEW, with no
+The subsequently returned native inventory is recorded above. Success is REVIEW, with no
 model replacement, optimization, ReadySet retry, adoption or certification.
 The human descriptor and editable figure/caption reflect this diagnostic scope.
 Final offline validation: **16 native-boundary tests pass (1.62 s)** using

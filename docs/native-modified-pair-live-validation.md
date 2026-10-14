@@ -1,6 +1,6 @@
 # Native modified-base pair matrix — live validation ledger
 
-Updated **2026-10-12** from user visual review, returned native output and checksum-verified
+Updated **2026-10-14** from user visual review, returned native output and checksum-verified
 geometry, DF candidate, repaired-native and minimization bundles.
 **Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
 coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
@@ -401,6 +401,39 @@ bundle while preserving originals. It will capture reader/consumer behavior
 without coordinate optimization, metadata adaptation, ReadySet retry or
 dictionary adoption. Its implementation and native execution remain **PENDING**;
 there is no new reader, proxy, linkage or refinement result at this boundary.
+
+### Cedar 05 return and source-state audit
+
+The returned `05_Cedar_dy4qx3qg_cif_native_review.zip` has SHA-256
+`7ab8f0dee87a5490539017e2af006f23b4c989f6794f1670db8db821da9d3db4`.
+All 57 payload hashes and byte sizes match. Its native worker completed at exit
+0 in 5.589398 s on Phenix 2.2.1-6174. NASolve source was
+`b745b79ffbcc4525b81ab2b340975f71574f1def`; NARestraints source was
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. The 858-atom model snapshot is
+byte-identical to the prepared input, with 42 mapped residues and no OP3/O3P.
+All 38 declared intra-strand O3′–P links are recorded. Missing heavy-atom
+expectations are only OP3 at IGU A:6, CGY A:20, IMC C:10 and DX D:3; their
+effective monomers remain non-polymer with no applied modifications. REVIEW
+is the inventory worker's deliberate success status, not chemistry approval.
+Optimization, ReadySet retry, refinement and adoption were not performed.
+
+The frozen-source/effective comparison identifies an additional source-state
+loss in the current fresh bundle: CGY's OP2-bound H1, IMC's HOP2 and DX's H14
+are absent from their ReadySet definitions. Their atom/bond/hydrogen and formal
+charge differences must be reviewed or regenerated before a source-preserving
+linked candidate is prepared. IGU's accepted source-retaining candidate keeps
+HOP2 and qualifies for explicit preparation. Graph-selected linkage removes
+only OP3 and its attached H plus outgoing O3′ H; OP2 protonation is preserved.
+The earlier linked diagnostic below used separately selected numerical sources
+and is not evidence that this fresh ReadySet path retained those source states.
+
+The implemented `06_Cedar` diagnostic reuses the source-preserving generator,
+prepares per-site linked candidates, records detailed native monomer/proxy
+evidence and runs an internal/free-OH same-code control. **Its native execution
+remains pending.** Existing 5CM torsion and numerical/geometry reviews remain
+independent. The [command guide](cif-doctor.md#source-preserving-linked-state-diagnostic)
+owns implementation scope; the [handoff](development-handoff.md) owns the next
+native action. No candidate or checkpoint was adopted during this analysis.
 
 ### Earlier manually selected numerical resources
 

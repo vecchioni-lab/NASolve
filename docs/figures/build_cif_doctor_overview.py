@@ -90,7 +90,7 @@ def build():
              'and an MR model through optional Coot mutation, prepared inputs, ReadySet and effective '
              'dictionary selection to existing PostMR gates and refinement. Dashed read-only audit '
              'branches inspect mutation sources, frozen source and runtime inputs, and the selected '
-             'effective bundle. Explicit external native diagnostics can inventory selected proxies. '
+             'effective bundle. Explicit external linked candidates and native diagnostics check site definitions and selected proxies. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -135,7 +135,7 @@ def build():
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
         text(70, 1082, "Explicit generation writes separate candidates; no automatic adoption.", size=24),
-        text(70, 1116, "Native diagnostics inventory proxies; geometry repair and stitching remain planned.", size=24),
+        text(70, 1116, "Linked candidates and native proxy checks; geometry repair remains planned.", size=24),
         '</g>',
         '</svg>'])
     return "\n".join(parts) + "\n"

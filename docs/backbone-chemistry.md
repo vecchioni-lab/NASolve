@@ -41,6 +41,15 @@ attached hydrogen or terminal O3' typing. Production linked profiles currently
 cover the declared 1AP/DZ/DP/5CM scope; they are not a generic monomer-to-polymer
 adapter.
 
+The explicit `06_Cedar` diagnostic now prepares source-preserving, per-site
+DNA derivatives using declared incoming/outgoing links and terminal states.
+It requires a context for every model site sharing a component code, finds H
+through graph adjacency, retains source OP2 protonation, and audits projected
+and actual native monomers. This remains external diagnostic preparation;
+production profiles and PostMR continuation are unchanged. The fresh 05 trial
+has four declared free 5′-OH ends and zero coordinate OP3 atoms. Its earlier
+D:1-phosphate exception must not be inherited. See [CIF Doctor](cif-doctor.md#source-preserving-linked-state-diagnostic).
+
 The October 10 combined-W diagnostic passed graph-based leaving-atom/hydrogen
 removal and O3' typing for IGU/IMC/CGY/DX, with no missing heavy atoms or dangling
 references and D:1 terminal phosphate preserved. This was a separate diagnostic,

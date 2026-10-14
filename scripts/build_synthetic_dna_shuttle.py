@@ -36,6 +36,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
     probe_templates = {
         "cif_generation_probe_template.py": "04_Cedar",
         "cif_native_probe_template.py": "05_Cedar",
+        "cif_linked_probe_template.py": "06_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -92,6 +93,12 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         metadata["delivery_prefix"] = delivery_prefix
         metadata["native_validation"] = "explicit-diagnostic-bundle-only"
         metadata["automatic_adoption"] = False
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
+                                    "tomli on Python 3.10", "Phenix for native execution"]
+    if template_name == "cif_linked_probe_template.py":
+        metadata.update(kind="cif-linked-probe-shuttle", delivery_prefix=delivery_prefix,
+                        native_validation="explicit-source-preserving-linked-diagnostic",
+                        automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
                                     "tomli on Python 3.10", "Phenix for native execution"]
     template = (root / "scripts" / template_name).read_text()

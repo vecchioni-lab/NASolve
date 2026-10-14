@@ -1,10 +1,12 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, 2026-10-12:** offline component/restraint assessment,
+**Implemented scope, 2026-10-14:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
 explicit whole-component numerical candidate generation and a separate native
-bundle diagnostic. The [command guide](cif-doctor.md) owns operational
+bundle diagnostic, explicit per-site linked-state preparation and native
+qualification checks. The new linked-state diagnostic is software-tested;
+its installed Phenix execution remains pending. The [command guide](cif-doctor.md) owns operational
 details; the [implementation map](cif-restraint-doctor-implementation.json)
 separates the deployed software from proposed extensions. Update this overview
 and its figure whenever the feature's behavior, dependencies or claims change.
@@ -126,6 +128,17 @@ bytes remain separately preserved and hash-bound. Exit-zero interpretation
 remains REVIEW and does not certify chemistry, expected links, custom-restraint
 coverage or achieved geometry. Unsupported API layers remain visible.
 
+The separate linked-state diagnostic reuses source comparison and candidate
+generation before applying declared DNA linkage/end states. It preserves
+source-specific OP2 protonation, removes leaving atoms and attached H through
+bond-graph adjacency, and writes per-site modifiers rather than changing every
+instance of a residue code. An opt-in native inventory records full effective
+site definitions and proxy targets/weights. Checks compare exact backbone and
+custom pair/stacking coverage, preserve unaffected definitions, and include a
+shared-code internal/free-OH control. These are external candidate/diagnostic
+operations, with no automatic adoption or PostMR recovery. Their new native
+execution remains pending; numerical and stereochemical reviews stay separate.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -182,15 +195,16 @@ the front so clipped filenames remain distinguishable.
 
 CIF Doctor inventories declared chemistry; it does not infer valence,
 protonation, tautomer choice, absolute stereochemistry or phosphate termination
-from a residue label. It does not choose site-specific link/modification
-chemistry, certify installed Phenix parsing or effective proxies, calculate
+from a residue label. Explicit diagnostic preparation uses declared linkage
+and end states; current production PostMR does not adopt these derivatives.
+The new native qualification checks still await installed execution. It does not calculate
 achieved coordinate geometry or sugar pucker, assess maps, or repair/stitch
 fractured assembly arms. Plane-angle discrepancies include raw measurements
 and uncertainty-based lower bounds, but a material-strain threshold has not
 been calibrated.
 
-The proposed next layers are qualification of collected native-consumer/proxy
-evidence, mapped chemical
+The proposed next layers are returned-native qualification and integration of
+the explicit linked-state diagnostic, mapped chemical
 descriptors, qualified automatic candidate adoption and model geometry/connectivity
 assessment. Guided sticky-end stitching would require declared strand routing,
 symmetry and terminal intent, with a new child checkpoint. These are planned
@@ -230,8 +244,9 @@ indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
-The figure depicts the implemented assessment layer; native proxy certification,
-achieved model geometry and assembly stitching remain future extensions.
+The figure depicts the implemented assessment layer and notes separate linked
+candidate/native-proxy diagnostics; automatic adoption, achieved model geometry
+and assembly stitching remain future extensions.
 Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
 Explicit generation records installed-tool capability evidence before chemistry.

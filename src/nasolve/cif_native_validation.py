@@ -76,8 +76,27 @@ def monomer_metadata(monomer):
     if monomer is None:
         return {"status": "UNSUPPORTED", "reason": "no-effective-monomer"}
     chem = monomer.chem_comp
-    return {"status": "RECORDED", "id": chem.id, "group": chem.group,
-            "atom_ids": [atom.atom_id for atom in monomer.atom_list]}
+    result = {"status": "RECORDED", "id": chem.id, "group": chem.group,
+              "atom_ids": [atom.atom_id for atom in monomer.atom_list]}
+    if spec.get("inventory_detail") == "linked":
+        categories = {
+            "atoms": ("atom_list", ("atom_id", "type_symbol", "type_energy", "charge", "partial_charge")),
+            "bonds": ("bond_list", ("atom_id_1", "atom_id_2", "type", "value_dist", "value_dist_esd")),
+            "angles": ("angle_list", ("atom_id_1", "atom_id_2", "atom_id_3", "value_angle", "value_angle_esd")),
+            "torsions": ("tor_list", ("id", "atom_id_1", "atom_id_2", "atom_id_3", "atom_id_4", "value_angle", "value_angle_esd", "period")),
+            "chirality": ("chir_list", ("atom_id_centre", "atom_id_1", "atom_id_2", "atom_id_3", "volume_sign")),
+            "plane_atoms": ("plane_atom_list", ("plane_id", "atom_id", "dist_esd")),
+        }
+        result["effective_definition"] = {}
+        for kind, (field, attributes) in categories.items():
+            if not hasattr(monomer, field):
+                report["unsupported_fields"].append("effective_monomer." + field)
+                result["effective_definition"][kind] = None
+            else:
+                result["effective_definition"][kind] = [
+                    {attribute: getattr(row, attribute, None) for attribute in attributes}
+                    for row in getattr(monomer, field)]
+    return result
 
 try:
     from iotbx import phil
@@ -231,6 +250,83 @@ try:
     report["geometry"] = {"status": "RECORDED", "simple_bonds": simple, "asu_bonds": asu,
                           "proxy_counts": counts, "proxy_count_status": statuses,
                           "sites_cart_exact": [[float(value) for value in xyz] for xyz in sites]}
+    if spec.get("inventory_detail") == "linked":
+        fields = {
+            "angle": ("angle_ideal", "weight"),
+            "dihedral": ("angle_ideal", "weight", "periodicity", "alt_angle_ideals"),
+            "const_dihedral": ("angle_ideal", "weight", "periodicity"),
+            "chirality": ("volume_ideal", "both_signs", "weight"),
+            "planarity": ("weights",),
+            "parallelity": ("weight", "target_angle_deg", "slack", "top_out"),
+        }
+        details = {"bond_simple": simple, "bond_asu": asu}
+        for kind, attributes in fields.items():
+            proxies = getattr(geo, kind + "_proxies", None)
+            if statuses.get(kind) != "RECORDED":
+                details[kind] = None
+                continue
+            rows = []
+            for proxy in proxies or []:
+                row = endpoints(proxy.i_seqs)
+                if kind == "parallelity":
+                    other = endpoints(proxy.j_seqs)
+                    row.update(j_seqs=other["i_seqs"], j_atoms=other["atoms"])
+                row["origin_id"] = getattr(proxy, "origin_id", None)
+                for attribute in attributes:
+                    if not hasattr(proxy, attribute):
+                        row[attribute] = None
+                        # Optional native conventions stay visible; required
+                        # target/weight coverage is checked separately.
+                        continue
+                    value = getattr(proxy, attribute)
+                    if value is None or isinstance(value, (str, bool, int, float)):
+                        row[attribute] = value
+                    else:
+                        row[attribute] = list(value)
+                rows.append(row)
+            details[kind] = rows
+        report["geometry"]["proxy_details"] = details
+        custom = []
+        edit_fields = {
+            "bond": ("atom_selection_1", "atom_selection_2"),
+            "angle": ("atom_selection_1", "atom_selection_2", "atom_selection_3"),
+            "dihedral": ("atom_selection_1", "atom_selection_2", "atom_selection_3", "atom_selection_4"),
+            "planarity": ("atom_selection",),
+            "parallelity": ("atom_selection_1", "atom_selection_2"),
+        }
+        for kind, selections in edit_fields.items():
+            for request in getattr(params.geometry_restraints.edits, kind, []):
+                expressions = [getattr(request, field, None) for field in selections]
+                if all(expression is None for expression in expressions):
+                    continue
+                if any(expression is None for expression in expressions):
+                    raise UnsupportedNativeAPI("Incomplete explicit custom " + kind + " selection")
+                selected = [list(acp.selection(expression).iselection()) for expression in expressions]
+                if kind not in ("planarity", "parallelity") and any(len(value) != 1 for value in selected):
+                    raise UnsupportedNativeAPI("Custom atom selection did not select exactly one atom")
+                indices = selected[0] if kind in ("planarity", "parallelity") else [value[0] for value in selected]
+                row = endpoints(indices)
+                row.update(kind=kind, action=getattr(request, "action", "add"),
+                           selections=expressions)
+                sigma = getattr(request, "sigma", None)
+                if sigma is None or sigma <= 0:
+                    raise UnsupportedNativeAPI("Explicit custom restraint has no positive sigma")
+                weight = 1.0 / float(sigma)**2
+                if kind == "planarity":
+                    row["weights"] = [weight] * len(indices)
+                else:
+                    row["weight"] = weight
+                if kind == "bond": row["distance_ideal"] = float(request.distance_ideal)
+                elif kind in ("angle", "dihedral"): row["angle_ideal"] = float(request.angle_ideal)
+                elif kind == "parallelity":
+                    other = endpoints(selected[1])
+                    row.update(j_seqs=other["i_seqs"], j_atoms=other["atoms"],
+                               target_angle_deg=float(request.target_angle_deg))
+                if kind == "dihedral":
+                    row["periodicity"] = int(request.periodicity)
+                custom.append(row)
+        report["geometry"]["custom_proxy_requests"] = custom
+        report["inventory_detail"] = "linked"
     report["status"] = "REVIEW"
 except (ImportError, UnsupportedNativeAPI, AttributeError, TypeError) as exc:
     report.update(status="UNSUPPORTED", error=type(exc).__name__ + ": " + str(exc))
@@ -294,7 +390,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           executable: Path, *, environment: Mapping[str, str],
                           phenix_version: str, timeout_seconds: float = 600,
                           phil_files: Sequence[Path] = (),
-                          phil_namespace_policy: str = "direct") -> dict:
+                          phil_namespace_policy: str = "direct",
+                          inventory_detail: str = "basic") -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -304,6 +401,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
     """
     if phil_namespace_policy not in PHIL_NAMESPACE_POLICIES:
         raise ValueError("Unsupported native PHIL namespace policy")
+    if inventory_detail not in {"basic", "linked"}:
+        raise ValueError("Unsupported native inventory detail")
     if not phenix_version or not str(phenix_version).strip():
         raise ValueError("An explicit Phenix version is required")
     if not isfinite(float(timeout_seconds)) or timeout_seconds <= 0:
@@ -336,6 +435,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
             "dictionaries": [path.relative_to(work).as_posix() for path in frozen[1:1+len(dictionaries)]],
             "phil_files": [path.relative_to(work).as_posix() for path in frozen[1+len(dictionaries):]],
             "phil_namespace_policy": phil_namespace_policy}
+    if inventory_detail != "basic":
+        spec["inventory_detail"] = inventory_detail
     (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
     (work / "native_worker.py").write_text(_NATIVE_WORKER, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]
@@ -371,6 +472,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                 else:
                     native = json.loads(report_path.read_text())
                     _check_native_report(native, len(dictionaries))
+                    if inventory_detail == "linked" and native.get("status") == "REVIEW" and native.get("inventory_detail") != "linked":
+                        raise ValueError("Native worker omitted requested linked inventory details")
                     receipt["native_validation"] = native
                     if native.get("status") == "REVIEW" and code == 0:
                         receipt["status"] = "REVIEW"

@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-11**. Start with the
+Updated **2026-10-14**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -31,6 +31,10 @@ for actual behavior; history is evidence, not a second task queue.
   Explicit independent numerical candidates and generalized generated-component
   quarantine are implemented; native proxy validation, mapped descriptors,
   automatic adoption and broader recovery remain separate follow-up slices.
+  The explicit Cedar 06 diagnostic now prepares connectivity-selected,
+  source-preserving linked candidates and checks detailed native site/custom
+  proxies; its installed native run remains pending. The returned Cedar 05
+  inventory is recorded in the native ledger.
   Bundle model geometry/connectivity
   checks and guided sticky-end arm repair into the same planned Doctor workflow,
   using Scout/Topo primitives with declared routing and preserved true nicks.
