@@ -8,7 +8,7 @@ bundle diagnostic, explicit per-site linked-state preparation and native
 qualification checks, and bounded source-declared aromatic representation
 comparison. Cedar 06 completed native candidate generation and stopped at its
 CGY representation gate; linked native qualification remains pending the
-Cedar 07 retry. The [command guide](cif-doctor.md) owns operational
+Cedar 08 retry after Cedar 07 exposed a modifier registration error. The [command guide](cif-doctor.md) owns operational
 details; the [implementation map](cif-restraint-doctor-implementation.json)
 separates the deployed software from proposed extensions. Update this overview
 and its figure whenever the feature's behavior, dependencies or claims change.
@@ -151,6 +151,16 @@ shared-code internal/free-OH control. These are external candidate/diagnostic
 operations, with no automatic adoption or PostMR recovery. Their native linked
 execution remains pending; numerical and stereochemical reviews stay separate.
 
+Each modifier is serialized in its own native `data_mod_<ID>` block. The
+returned Cedar 07 reader registered the previous shared block name rather than
+the four requested IDs and stopped before linked interpretation. Exact
+returned-input replay verifies corrected registration without altering base
+dictionaries, PHIL requests, deletions or site plans. Detailed native inventories
+also report formal-charge readback availability: unknown native values remain
+unqualified, distinct from an observed charge contradiction. Partial charges
+cannot substitute for formal charges. [The registration evidence](cif-linked-native-registration-evidence.json)
+owns this return and the pending Cedar 08 installed check.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -267,6 +277,8 @@ granting chemical approval. The v3 diagnostic demonstrated atom/bond/H/formal-ch
 retention; generation-v4 additionally checks bounded source-declared aromatic
 ring representations while preserving raw differences. Omitted metadata and
 native-link qualification remain explicit.
+Modifiers use exact native block IDs; unavailable formal-charge readback is
+reported independently and does not become a chemical pass.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

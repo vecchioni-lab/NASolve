@@ -17,6 +17,7 @@ from .cif_generation import inspect_component_generation
 from .ligand_profiles import _blocks, _emit
 
 LINKED_PREPARATION_POLICY = 'cif-source-preserving-linked-sites-v1'
+MODIFICATION_BLOCK_POLICY = 'cif-native-modification-blocks-v1'
 _ATOM = '_chem_comp_atom.'
 _BOND = '_chem_comp_bond.'
 _MISSING = {'', '.', '?'}
@@ -211,11 +212,18 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         raise ValueError('Input changed during preparation')
     output.mkdir(parents=True)
     base=output/'base_dictionary.cif';base.write_text(_render(values,code))
-    mod_values={'data_':'mod_linked_sites'}
-    for i,field in enumerate(['mod_id','function','atom_id','new_atom_id','new_type_symbol','new_type_energy','new_partial_charge']):
-        mod_values['_chem_mod_atom.'+field]=[row[i] for row in mod_rows]
+    # Native convert_mod_list registers each modification by its mod_ block
+    # suffix, not by the mod_id values inside the atom loop. Keep one exact
+    # requested ID per block, including mixed contexts for one residue code.
+    mod_blocks=[]
+    for identifier in sorted({row[0] for row in mod_rows}):
+        rows=[row for row in mod_rows if row[0]==identifier]
+        mod_values={'data_':'mod_'+identifier}
+        for i,field in enumerate(['mod_id','function','atom_id','new_atom_id','new_type_symbol','new_type_energy','new_partial_charge']):
+            mod_values['_chem_mod_atom.'+field]=[row[i] for row in rows]
+        mod_blocks.append(_emit(mod_values))
     modifications=output/'site_modifications.cif'
-    modifications.write_text(_emit(mod_values) if mod_rows else 'data_mod_linked_sites\n# No atom modifications required.\n')
+    modifications.write_text('\n'.join(mod_blocks) if mod_blocks else 'data_mod_linked_sites\n# No atom modifications required.\n')
     parameters=output/'site_modifications.phil';parameters.write_text(''.join(phil))
     assessments=[]
     for site,derivative in projected:
@@ -226,6 +234,7 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         assessments.append({'site':site,'assessment':assessment})
     receipt={'schema_version':1,'audit_kind':'cif_linked_site_preparation',
              'policy_id':LINKED_PREPARATION_POLICY,'status':'PREPARED_REVIEW','component':code,
+             'modification_block_policy':MODIFICATION_BLOCK_POLICY,
              'inputs':[{'name':p.name,'sha256':sha256(data).hexdigest(),'size':len(data)} for p,data in zip(paths,payloads)],
              'source_preserved':all(p.read_bytes()==data for p,data in zip(paths,payloads)),
              'source_type':type_tokens[0],'metadata_change':{'field':'_chem_comp.group','before':original_group,'after':['DNA']},

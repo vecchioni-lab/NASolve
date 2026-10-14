@@ -103,7 +103,7 @@
       ]
     },
     "linked_preparation_2026_10_14": {
-      "status": "SOURCE_RECOVERY_REANALYZED_LINKED_NATIVE_PENDING",
+      "status": "MODIFIER_REGISTRATION_FIXED_INSTALLED_RETRY_PENDING",
       "policy_id": "cif-source-preserving-linked-sites-v1",
       "delivery_prefix": "06_Cedar",
       "source_preserving_recovery_required": [
@@ -145,7 +145,7 @@
       "refinement": "NOT_RUN",
       "numerical_geometry": "REVIEW_REQUIRED",
       "experimental_protonation": "UNASSESSED",
-      "validation": "Cedar 06 generation return verified; all four candidates prepare offline under generation-v4; see docs/cif-linked-source-recovery-evidence.json. Cedar 07 installed linked qualification remains pending.",
+      "validation": "Cedar 07 source recovery and baseline interpretation completed; native linked reader failed modification lookup. Corrected serialization and unavailable charge readback are software-validated; Cedar 08 installed interpretation remains pending.",
       "offline_validation": {
         "full_suite": {
           "passed": 1345,
@@ -162,7 +162,8 @@
         "native_execution": "NOT_RUN",
         "figure": "Regenerated/rendered/visually inspected"
       },
-      "next_delivery_prefix": "07_Cedar"
+      "next_delivery_prefix": "08_Cedar",
+      "modification_block_policy": "cif-native-modification-blocks-v1"
     },
     "cedar_06_return": {
       "archive_name": "06_Cedar_rkmjesl4_cif_linked_review.zip",
@@ -191,6 +192,27 @@
       ],
       "runtime_dependencies_added": [],
       "scope": "Complete isolated alternating six-member C/N rings with affirmative source bond-aromatic flags, explicit neutral ring charges, non-stereogenic ring bonds and unchanged single bridge substituents; no aromaticity perception."
+    },
+    "cedar_07_return": {
+      "archive_name": "07_Cedar_okkb2are_cif_linked_review.zip",
+      "archive_sha256": "66798468a5fb7db40f9468c0f72eb43bafdea4146917f7232f8cd61fb3f9086b",
+      "verified_payloads": 164,
+      "reported_status": "NATIVE_REVIEW",
+      "source_recovery": "CANDIDATE_REVIEW_FOR_ALL_GENERATED_COMPONENTS",
+      "baseline_interpretation": "REVIEW_EXIT_ZERO",
+      "linked_interpretation": "FAILED_MISSING_REQUESTED_MODIFIER",
+      "reader_failure": "Shared mod_linked_sites blocks register a colliding linked_sites key rather than the four requested per-site IDs",
+      "native_charge_readback": "NO_VALUES_RECORDED_IN_BASELINE",
+      "evidence": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "native_registration_retry": {
+      "layout": "One mod_<requested ID> block per site modifier; retain exact IDs and PHIL requests",
+      "site_chemistry_changed": false,
+      "base_dictionary_changed": false,
+      "charge_readback": "Unavailable values remain UNSUPPORTED, not a mismatch or presumed zero; retain actual contradictions as REVIEW and never substitute partial charge",
+      "new_native_detail_field": "formal_charge_readback",
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "native_execution": "PENDING_CEDAR_08"
     }
   },
   "audience": [

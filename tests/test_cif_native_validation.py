@@ -44,7 +44,9 @@ class Scope:
         walk(self)
         return rows
     def extract(self):
-        return NS(pdb_interpretation=NS(marker="explicit interpretation parameters"),
+        requests=[NS(data_mod=row.object.words[0].value) for row in self.all_definitions()
+                  if row.path=="pdb_interpretation.apply_cif_modification.data_mod"]
+        return NS(pdb_interpretation=NS(marker="explicit interpretation parameters",apply_cif_modification=requests),
                   geometry_restraints=NS(edits=NS(marker="explicit edits"), remove=NS(marker="explicit removals")))
 
 def parse(file_name=None, input_string=None, source_info=None):
@@ -84,6 +86,10 @@ class server:
         assert process_tor is True
         self.comp_comp_id_dict["ZZZ"]=monomer("ZZZ")
         if "modification" in cif_object: self.mod_mod_id_dict["USER_MOD"]=object()
+        # Match the reviewed native reader: the mod_ data block suffix is the
+        # registry key; atom-loop mod_id values do not override it.
+        for identifier in re.findall(r'^data_mod_(\S+)',cif_object,re.M):
+            self.mod_mod_id_dict[identifier]=object()
 class ener_lib:
     def process_cif_object(self, cif_object, file_name, process_tor): assert process_tor is False
 def any_file(file_name): return NS(file_name=file_name,file_object=NS(model=lambda:Path(file_name).read_text()))
@@ -126,6 +132,9 @@ class Processed:
 def process(**kwargs):
     assert kwargs["keep_monomer_mappings"] and kwargs["strict_conflict_handling"]
     assert kwargs["params"].marker=="explicit interpretation parameters"
+    for request in kwargs["params"].apply_cif_modification:
+        if request.data_mod not in kwargs["mon_lib_srv"].mod_mod_id_dict:
+            raise RuntimeError("Missing CIF modification: data_mod_"+request.data_mod)
     Path("native_calls.json").write_text(json.dumps({"model":kwargs["file_name"], "keep_monomer_mappings":kwargs["keep_monomer_mappings"]}))
     return Processed()
 '''
@@ -204,7 +213,42 @@ def test_standalone_native_worker_records_exact_indices_asu_and_effective_monome
         assert hashlib.sha256((work/artifact["path"]).read_bytes()).hexdigest()==artifact["sha256"]
 
 
-def test_opt_in_details_record_effective_types_and_explicit_proxy_targets(tmp_path):
+@pytest.mark.parametrize('layout',['per-id','legacy-shared'])
+def test_prepared_site_modifiers_resolve_through_native_reader_contract(tmp_path,layout):
+    import runpy
+    from nasolve.cif_linked_preparation import prepare_linked_component
+    fixture=runpy.run_path(str(Path(__file__).with_name('test_cif_linked_preparation.py')))['fixture']
+    case=tmp_path/'prepared';case.mkdir()
+    source,numerical,prepared_model,contexts=fixture(case)
+    prep=prepare_linked_component(source,numerical,prepared_model,contexts,case/'out',code='ZZZ')
+    expected=sorted(site['modification_id'] for site in prep['sites'] if site['modification_id'])
+    model,dictionaries=files(tmp_path)
+    modifications=case/'out/site_modifications.cif';dictionaries.append(modifications)
+    if layout=='legacy-shared':
+        # Reproduce the returned failure without changing PHIL requests.
+        from nasolve.ligand_profiles import _blocks,_emit
+        blocks=_blocks(modifications);combined={'data_':'mod_linked_sites'}
+        for block in blocks:
+            for key,column in block.values.items():
+                if key!='data_':combined.setdefault(key,[]).extend(column)
+        modifications.write_text(_emit(combined))
+    parameters=tmp_path/'source/requests.phil'
+    parameters.write_text(''.join('refinement {\n pdb_interpretation {\n apply_cif_modification {\n'
+                                ' data_mod = '+identifier+'\n residue_selection = "fixture"\n}\n}\n}\n'
+                                for identifier in expected))
+    executable,environment=native_runtime(tmp_path)
+    result=inspect_native_bundle(model,dictionaries,tmp_path/'native',executable,
+        environment=environment,phenix_version='fake-registration-only',phil_files=[parameters],
+        phil_namespace_policy='refinement-root-to-interpreter-v1')
+    assert result['status']==('REVIEW' if layout=='per-id' else 'FAILED')
+    assert result['native_validation']['dictionary_loading'][-1]['modification_ids']==(expected if layout=='per-id' else ['linked_sites'])
+    if layout=='legacy-shared':assert 'Missing CIF modification: data_mod_' in result['error']
+    assert result['source_preserved'] and result['frozen_inputs_preserved']
+    assert result['scientific_approval']=='NOT_RUN'
+
+
+@pytest.mark.parametrize('charge_readback',['supported','missing-attribute'])
+def test_opt_in_details_record_effective_types_and_explicit_proxy_targets(tmp_path,charge_readback):
     model,dictionaries=files(tmp_path)
     executable,environment=native_runtime(tmp_path)
     module=tmp_path/'fake_native/fake_native.py'
@@ -224,10 +268,13 @@ class Geometry:
     def pair_proxies(self,sites_cart):return NS(bond_proxies=BondCollection())
 ChainProxies.selection=lambda self,expression:NS(iselection=lambda:[0 if expression=="first" else 1])
 '''
-    module.write_text(text)
+    module.write_text(text.replace('charge="0",','') if charge_readback=='missing-attribute' else text)
     result=inspect_native_bundle(model,dictionaries,tmp_path/'outputs',executable,
         environment=environment,phenix_version='fake-detail',inventory_detail='linked')
     assert result['status']=='REVIEW'
+    readback=result['native_validation']['monomer_mappings']['rows'][0]['metadata']['formal_charge_readback']
+    assert readback['status']==('SUPPORTED' if charge_readback=='supported' else 'UNSUPPORTED')
+    assert bool(readback['missing_attribute_atoms'])==(charge_readback=='missing-attribute')
     native=result['native_validation']
     assert native['inventory_detail']=='linked'
     assert native['monomer_mappings']['rows'][0]['metadata']['effective_definition']['atoms'][0]['type_energy']=='CH1'

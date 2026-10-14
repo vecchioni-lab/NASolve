@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Native registration of site modifiers
+
+- Fix linked preparation to emit one `data_mod_<requested ID>` block per
+  site modifier. The native reader registers block suffixes; the previous
+  shared `linked_sites` block ignored the distinct atom-loop IDs and collided
+  across component files. Preserve the exact modifier IDs, PHIL selections,
+  atom operations, base dictionaries and projected site chemistry.
+- Add schema-1 preparation `modification_block_policy` evidence. Detailed
+  native inventories record formal-charge attribute availability and null
+  values; qualification separates unavailable readback from actual charge
+  contradictions and never substitutes partial charges. Missing readback
+  remains unqualified. Native failure summaries now show the recorded error.
+- Record Cedar 07's successful source recovery and baseline interpretation,
+  followed by the linked reader's missing-modifier failure. All 164 payloads
+  verify. Exact returned-input replay preserves site plans and input bytes;
+  installed Cedar 08 interpretation and chemistry qualification remain pending.
+
 ### Source-declared aromatic bond representation
 
 - Correct the independent generation gate's false rejection of CGY's six

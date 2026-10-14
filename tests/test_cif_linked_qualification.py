@@ -61,3 +61,17 @@ def test_native_defects_cannot_pass_with_matching_aggregate_counts(defect):
     elif defect=='lost_mapping':linked['monomer_mappings']['rows'].pop()
     elif defect=='extra_stacking':linked['geometry']['proxy_details']['parallelity'].append(deepcopy(linked['geometry']['proxy_details']['parallelity'][0]))
     assert qualify_linked_bundle(baseline,linked,prepared,edges,ends)['status']=='REVIEW'
+
+
+@pytest.mark.parametrize('charge,status',[(None,'UNSUPPORTED'),('?','UNSUPPORTED'),('.', 'UNSUPPORTED'),('nan','UNSUPPORTED'),('-1','REVIEW')])
+def test_missing_charge_readback_is_distinct_from_a_charge_contradiction(charge,status):
+    baseline,linked,prepared,edges,ends=native_case()
+    atom=linked['monomer_mappings']['rows'][1]['metadata']['effective_definition']['atoms'][2]
+    atom['charge']=charge;atom['partial_charge']=0.
+    result=qualify_linked_bundle(baseline,linked,prepared,edges,ends)
+    check=next(row for row in result['checks'] if row['check']=='effective-site-formal-charges:A:2')
+    assert check['status']==status
+    assert bool(check['unavailable'])==(status=='UNSUPPORTED')
+    assert bool(check['contradictions'])==(status=='REVIEW')
+    assert check['partial_charge_substituted'] is False
+    assert result['status']=='REVIEW'

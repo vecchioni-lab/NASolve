@@ -44,6 +44,62 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 07 returned; Cedar 08 registration retry (2026-10-14):** all 164
+payloads in `07_Cedar_okkb2are_cif_linked_review.zip` verify. Source-retaining
+IMC/CGY/DX generation reached `CANDIDATE_REVIEW`; IGU was reused. Detailed
+baseline interpretation completed at exit zero (2.896598 s), with 858 atoms,
+42 mappings and 38 backbone links. Linked interpretation failed at exit two
+(1.082309 s): `Missing CIF modification: data_mod_NASL9809b6bd9c`.
+The four modifier files registered `linked_sites`, overwriting that key, rather
+than the distinct requested IDs. The
+[registration record](cif-linked-native-registration-evidence.json) owns exact
+archive/build/reader hashes, failure and replay. No linked qualification or
+shared-code control completed; no coordinates or frozen inputs changed.
+
+The writer now emits one native `data_mod_<ID>` block for each requested
+modifier, with identical operations and PHIL IDs. Schema-1 preparation adds
+`modification_block_policy = cif-native-modification-blocks-v1`. Replaying all
+four actual returned candidates preserves each site plan, base dictionary and
+PHIL file byte-for-byte while registering four distinct IDs. Reader-contract
+tests reproduce the old missing-ID failure and cover multiple same-code end
+contexts and cross-component collisions. These tests use explicit fake APIs;
+they are not installed Phenix evidence.
+
+The baseline native atom records also have no formal-charge values. New
+detailed worker metadata distinguishes missing attributes from null readback;
+site qualification records unavailable values as `UNSUPPORTED` separately from
+actual charge contradictions (`REVIEW`). Never substitute partial charges or
+zero. Source charge preservation remains separate evidence. Other mechanics
+checks continue, but missing native charge readback cannot silently qualify.
+The native console now prints the failed layer and its recorded error.
+
+**Next:** Git-build and run
+`08_Cedar_probe_cif_linked.py` with `--delivery-prefix 08_Cedar`, using the same
+pinned NARestraints source. Keep the everyday laptop checkout, Cedar 07 runner,
+all native sessions and original model/source inputs intact. The runner remains
+an external diagnostic with no ReadySet retry, refinement or adoption. Native
+registration, full linked mechanics, the shared-code control, numerical and
+generated stereochemical review, and fresh full-auto recovery remain open.
+Only code/tests/docs and compact hash/count evidence enter Git.
+
+**Cedar 08 retry software validation:**
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`
+passes **1,380 tests, two skips and 276 subtests (98.88 s)**. Focused
+preparation/qualification/shuttle/native-worker checks pass **64 tests (5.38 s)**.
+Two registry regressions fail with the old shared block and pass with distinct
+blocks. The fake-reader boundary also reproduces the missing-ID failure with
+legacy packaging and accepts the exact requested IDs with corrected packaging.
+Native charge controls distinguish missing/nonfinite readback from actual
+contradictions and retain the partial/formal-charge separation. Exact real
+candidate replay checks unchanged base/PHIL/site plans and input preservation.
+Existing shuttle relocation tests retire original build paths and poison imports.
+The editable figure was regenerated, rendered and visually inspected. New
+schema-1 fields are preparation layout provenance and detailed native charge
+readback metadata; formal-charge check rows retain explicit unavailable and
+contradictory observations. No new dependencies or installed native execution
+were added to this validation. Generated coordinates/CIFs/native payloads stay
+outside Git. The actual installed interpretation remains the Cedar 08 check.
+
 **Cedar 06 returned; Cedar 07 representation retry (2026-10-14):** all 87
 payloads in `06_Cedar_rkmjesl4_cif_linked_review.zip` verify. Native eLBOW
 completed source-retaining IMC/CGY/DX generation on Phenix 2.2.1-6174
@@ -63,7 +119,7 @@ and re-inspect supported v3/v4 candidates. Source-recovery console output names
 blocked components and reasons. Offline reanalysis prepares all four returned
 candidates with their OP2 H retained and the original model hash unchanged.
 
-**Next:** build `07_Cedar_probe_cif_linked.py` from the new Cedar revision with
+**Delivery history:** `07_Cedar_probe_cif_linked.py` was built from the checked Cedar revision with
 `scripts/build_cif_linked_probe.py --delivery-prefix 07_Cedar`, using the pinned
 NARestraints build source. Use delivery build worktrees and write the runner
 into the everyday NASolve directory: macOS refused Python access to Downloads

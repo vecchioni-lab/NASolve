@@ -136,7 +136,7 @@ def build():
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
         text(70, 1082, "Explicit generation checks declared rings; candidates stay separate.", size=24),
-        text(70, 1116, "Linked candidates and native proxy checks; geometry repair remains planned.", size=24),
+        text(70, 1116, "Native modifiers use exact site IDs; unavailable charges stay unqualified.", size=24),
         '</g>',
         '</svg>'])
     return "\n".join(parts) + "\n"

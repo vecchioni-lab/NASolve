@@ -335,6 +335,19 @@ DX H14 on OP2. The original 858-atom model stays byte-identical. The next
 Git-built delivery is `07_Cedar_probe_cif_linked.py`; installed interpretation,
 scientific qualification and any adoption remain pending.
 
+### Cedar 07 return and Cedar 08 native registration retry
+
+The subsequently returned Cedar 07 capsule passes source recovery and baseline
+interpretation but stops before the linked manager: the writer's shared
+`data_mod_linked_sites` blocks register a colliding ID, while PHIL requests
+distinct site IDs. The corrected writer uses one native block per requested
+modifier and preserves every site plan, base dictionary and PHIL request in
+exact offline replay. Detailed baseline atom records provide no native formal
+charges; missing readback remains explicitly unqualified. The
+[registration record](cif-linked-native-registration-evidence.json) owns the
+164 verified payloads and replay. Cedar 08 installed interpretation, the shared-
+code control and full qualification remain pending.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

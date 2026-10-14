@@ -36,7 +36,11 @@ for actual behavior; history is evidence, not a second task queue.
   proxies. Cedar 06 completed native candidate generation, then stopped at
   CGY's aromatic bond representation. Generation-v4 checks that bounded
   source-declared representation; linked installed qualification remains
-  pending the Cedar 07 retry. [The source-recovery record](cif-linked-source-recovery-evidence.json)
+  pending the Cedar 08 retry after Cedar 07 exposed a native modifier-block
+  registration error. [The registration record](cif-linked-native-registration-evidence.json)
+  owns the successful source/baseline return, reader failure and corrected
+  offline replay; native formal-charge readback remains unqualified.
+  [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.
   Bundle model geometry/connectivity

@@ -189,12 +189,33 @@ representation blocked the generation gate. Native bundle interpretation and
 the shared-code control did not run. The [source-recovery evidence](cif-linked-source-recovery-evidence.json)
 records its 87 verified payloads, exact source/candidate hashes and offline
 reanalysis. With generation-v4, all four returned candidates prepare linked
-derivatives offline, retaining their OP2 hydrogens. The next delivery uses
+derivatives offline, retaining their OP2 hydrogens. The subsequent delivery used
 `--delivery-prefix 07_Cedar` with `scripts/build_cif_linked_probe.py`.
-Installed Cedar 07 interpretation remains pending; offline tests and fake
+The Cedar 07 return is recorded below; offline tests and fake
 native APIs do not establish an installed Phenix pass. Failed source recovery
 now prints the component, generation status and recorded rejection reasons.
 The older native API defaults and receipts stay compatible.
+
+The returned Cedar 07 capsule passed source recovery and baseline interpretation
+(858 atoms, 42 mappings and 38 backbone links), then failed linked interpretation
+because the modifier writer used a shared `data_mod_linked_sites` block. The
+native reader registered `linked_sites` four times while PHIL requested four
+distinct `NASL...` IDs. Preparation now emits one `data_mod_<ID>` block per
+requested modifier, including mixed contexts for one component code. Atom-loop
+IDs, PHIL requests, base dictionaries, deletions and projected site chemistry
+stay identical. Schema-1 preparation adds
+`modification_block_policy = cif-native-modification-blocks-v1`.
+The [native-registration evidence](cif-linked-native-registration-evidence.json)
+records the 164 verified payloads, reader contract and exact offline replay.
+
+The baseline's detailed native atom records also expose no formal-charge values.
+The next detailed worker records missing attributes separately from null values.
+Qualification labels unavailable formal-charge readback `UNSUPPORTED`, preserves
+actual charge contradictions as `REVIEW`, and never substitutes partial charges
+or a presumed zero. Other site/proxy checks continue; a complete mechanics pass
+still requires all checks. The Cedar 08 retry uses
+`--delivery-prefix 08_Cedar`; installed execution remains pending. Native failures
+now print the relevant baseline/linked error alongside the preserved receipt.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

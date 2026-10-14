@@ -77,11 +77,19 @@ def site_definition_checks(linked: dict, preparations: list[dict]) -> list[dict]
             check('effective-site-atoms:'+site,set(atoms)==set(expected['expected_atoms']) and metadata.get('group')=='DNA')
             check('effective-site-energy-types:'+site,all(atoms.get(name,{}).get('type_energy')==energy
                   for name,energy in expected['expected_energy_types'].items()))
-            formal_checks=[]
+            formal_unavailable=[];formal_contradictions=[]
             for name,charge in expected['expected_formal_charges'].items():
-                try: formal_checks.append(float(atoms.get(name,{}).get('charge'))==float(charge))
-                except (TypeError,ValueError): formal_checks.append(False)
-            check('effective-site-formal-charges:'+site,bool(formal_checks) and all(formal_checks))
+                observed=atoms.get(name,{}).get('charge')
+                evidence={'atom_id':name,'expected':charge,'observed':observed}
+                try:
+                    if _number(observed)!=_number(charge):formal_contradictions.append(evidence)
+                except (TypeError,ValueError):formal_unavailable.append(evidence)
+            checks.append({'check':'effective-site-formal-charges:'+site,
+                'status':'REVIEW' if formal_contradictions else 'UNSUPPORTED' if formal_unavailable
+                         or not expected['expected_formal_charges'] else 'PASS',
+                'unavailable':formal_unavailable,'contradictions':formal_contradictions,
+                'native_readback':metadata.get('formal_charge_readback',{'status':'NOT_RECORDED'}),
+                'partial_charge_substituted':False})
             bonds=definition.get('bonds') or []
             hydrogen_neighbors={name:sorted(row['atom_id_2'] if row['atom_id_1']==name else row['atom_id_1']
                 for row in bonds if name in (row['atom_id_1'],row['atom_id_2']))

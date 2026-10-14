@@ -167,6 +167,6 @@
 <text x="70" y="1014" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#213443" text-anchor="start">Checks: graph, numerical consistency and bonded-atom coordinate degeneracy</text>
 <text x="70" y="1048" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.</text>
 <text x="70" y="1082" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Explicit generation checks declared rings; candidates stay separate.</text>
-<text x="70" y="1116" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Linked candidates and native proxy checks; geometry repair remains planned.</text>
+<text x="70" y="1116" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Native modifiers use exact site IDs; unavailable charges stay unqualified.</text>
 </g>
 </svg>

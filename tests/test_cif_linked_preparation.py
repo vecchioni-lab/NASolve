@@ -113,3 +113,40 @@ def test_existing_output_directory_refused(tmp_path):
     source,numerical,model,contexts=fixture(tmp_path)
     out=tmp_path/'out';out.mkdir()
     with pytest.raises(FileExistsError): prepare_linked_component(source,numerical,model,contexts,out,code='ZZZ')
+
+
+def test_native_registration_matches_each_requested_site_modifier(tmp_path):
+    """The monomer reader derives registry keys from mod_ block names."""
+    from nasolve.cif_linked_preparation import prepare_linked_component
+    from nasolve.ligand_profiles import _blocks
+    source,numerical,model,contexts=fixture(tmp_path)
+    result=prepare_linked_component(source,numerical,model,contexts,tmp_path/'out',code='ZZZ')
+    expected={site['modification_id'] for site in result['sites'] if site['modification_id']}
+    blocks=_blocks(tmp_path/'out/site_modifications.cif')
+    registered={block.values['data_'][len('mod_'):] for block in blocks
+                if block.values['data_'].startswith('mod_')}
+    assert registered==expected
+    assert len(blocks)==len(expected)==3
+    for block in blocks:
+        assert set(block.values['_chem_mod_atom.mod_id'])=={block.values['data_'][len('mod_'):]}
+    parameters=(tmp_path/'out/site_modifications.phil').read_text()
+    assert all('data_mod = '+identifier in parameters for identifier in registered)
+
+
+def test_different_component_files_do_not_overwrite_native_modifier_ids(tmp_path):
+    from nasolve.cif_linked_preparation import prepare_linked_component
+    from nasolve.ligand_profiles import _blocks
+    registered={}
+    expected=set()
+    for code in ['ZZZ','Q99']:
+        case=tmp_path/code;case.mkdir()
+        source,numerical,model,contexts=fixture(case)
+        for path in (source,numerical,model):
+            path.write_text(path.read_text().replace('ZZZ',code))
+        result=prepare_linked_component(source,numerical,model,contexts,case/'out',code=code)
+        expected.update(site['modification_id'] for site in result['sites'] if site['modification_id'])
+        for block in _blocks(case/'out/site_modifications.cif'):
+            identifier=block.values['data_'][len('mod_'):]
+            assert identifier not in registered
+            registered[identifier]=block.values
+    assert set(registered)==expected and len(registered)==6

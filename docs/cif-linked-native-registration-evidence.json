@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "document_kind": "LINKED_NATIVE_MODIFICATION_REGISTRATION_RETURN_AND_REPLAY",
+  "recorded_date": "2026-10-14",
+  "archive": {
+    "name": "07_Cedar_okkb2are_cif_linked_review.zip",
+    "sha256": "66798468a5fb7db40f9468c0f72eb43bafdea4146917f7232f8cd61fb3f9086b",
+    "verified_payloads": 164
+  },
+  "reported_status": "NATIVE_REVIEW",
+  "nasolve_source": {
+    "commit": "6522e23e3125bf21fafca563253f1c646c21b595",
+    "working_tree_has_changes": false
+  },
+  "narestraints_source": {
+    "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+    "working_tree_has_changes": false
+  },
+  "source_recovery_statuses": {
+    "CGY": "CANDIDATE_REVIEW",
+    "DX": "CANDIDATE_REVIEW",
+    "IGU": "EXISTING_SOURCE_PRESERVING_CANDIDATE",
+    "IMC": "CANDIDATE_REVIEW"
+  },
+  "native_installation": "Phenix 2.2.1-6174",
+  "native_dispatcher_version_recorded": "2.2.1",
+  "baseline": {
+    "status": "REVIEW",
+    "execution": {
+      "elapsed_seconds": 2.896598,
+      "finished_at": "2026-10-14T16:03:56.160675+00:00",
+      "returncode": 0,
+      "started_at": "2026-10-14T16:03:53.264107+00:00",
+      "status": "COMPLETED",
+      "timeout_seconds": 600
+    },
+    "atom_count": 858,
+    "mapped_residues": 42,
+    "backbone_links": 38,
+    "proxy_counts": {
+      "angle": 1559,
+      "bond_asu": 0,
+      "bond_simple": 1005,
+      "chirality": 152,
+      "const_dihedral": 366,
+      "dihedral": 554,
+      "parallelity": 58,
+      "planarity": 53
+    },
+    "source_preserved": true,
+    "frozen_inputs_preserved": true
+  },
+  "linked": {
+    "status": "FAILED",
+    "execution": {
+      "elapsed_seconds": 1.082309,
+      "finished_at": "2026-10-14T16:03:57.397125+00:00",
+      "returncode": 2,
+      "started_at": "2026-10-14T16:03:56.314842+00:00",
+      "status": "FAILED",
+      "timeout_seconds": 600
+    },
+    "error": "Sorry: Missing CIF modification: data_mod_NASL9809b6bd9c\n  Please check for spelling errors or specify the file name\n  with the modification as an additional argument.",
+    "source_preserved": true,
+    "frozen_inputs_preserved": true,
+    "registered_modifiers_by_input": [
+      {
+        "input": "inputs/001_dictionary.cif",
+        "modification_ids": [
+          "NASnoOP3"
+        ]
+      },
+      {
+        "input": "inputs/008_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      },
+      {
+        "input": "inputs/010_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      },
+      {
+        "input": "inputs/012_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      },
+      {
+        "input": "inputs/014_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      }
+    ]
+  },
+  "reader_contract": {
+    "module": "mmtbx.monomer_library.server",
+    "reviewed_git_blob": "af1ac801d43c33b235584e1a6a59d82c137cd8de",
+    "url": "https://github.com/cctbx/cctbx_project/blob/master/mmtbx/monomer_library/server.py",
+    "entry_points": [
+      "convert_list_block",
+      "convert_mod_list",
+      "server.convert_mod_list"
+    ],
+    "meaning": "Registry identifiers are derived from mod_ block suffixes. Atom-loop mod_id values do not override the registry key.",
+    "existing_working_control": "data_mod_NASnoOP3",
+    "layout_policy": "cif-native-modification-blocks-v1"
+  },
+  "native_charge_readback": {
+    "A:6": {
+      "native_atom_definitions": 37,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    },
+    "A:20": {
+      "native_atom_definitions": 36,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    },
+    "C:10": {
+      "native_atom_definitions": 35,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    },
+    "D:3": {
+      "native_atom_definitions": 34,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    }
+  },
+  "readback_policy": "Missing/native nonfinite formal-charge values remain UNSUPPORTED; contradictory known values remain REVIEW. Preserve expected/observed data, never substitute partial charges or zero, and record attribute availability separately in the next detailed worker.",
+  "offline_replay": {
+    "installed_execution": "NOT_RUN",
+    "components": {
+      "IGU": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASL9809b6bd9c"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "HOP2"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      },
+      "IMC": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASL92fefc1b33"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "HOP2"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      },
+      "CGY": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASL25624f75ba"
+        ],
+        "deleted_atoms": [
+          "H3'2",
+          "HO3'",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "H1"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      },
+      "DX": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASLc0f3717fc6"
+        ],
+        "deleted_atoms": [
+          "H1",
+          "H6",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "H14"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      }
+    },
+    "original_model_sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+    "original_model_unchanged": true
+  },
+  "software_validation": {
+    "full_suite": {
+      "passed": 1380,
+      "skipped": 2,
+      "subtests_passed": 276,
+      "seconds": 98.88,
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+    },
+    "focused": {
+      "passed": 64,
+      "seconds": 5.38,
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_cif_linked_probe.py tests/test_cif_native_validation.py"
+    },
+    "regression_before_fix": "Both modifier registry tests fail with the shared linked_sites key; corrected packaging resolves all requested IDs without collisions.",
+    "native_test_scope": "Explicit fake APIs and reader-contract controls; no installed Phenix execution in this validation.",
+    "figure": "Regenerated/rendered/visually inspected"
+  },
+  "schemas": {
+    "version": 1,
+    "new_preparation_field": "modification_block_policy",
+    "new_native_detail_field": "formal_charge_readback",
+    "charge_check_fields": [
+      "unavailable",
+      "contradictions",
+      "native_readback",
+      "partial_charge_substituted"
+    ],
+    "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
+    "native_policy_unchanged": "cif-native-bundle-inventory-v1"
+  },
+  "next_delivery": "08_Cedar",
+  "boundaries": {
+    "installed_corrected_registration": "PENDING",
+    "linked_native_qualification": "PENDING",
+    "same_code_control": "NOT_RUN",
+    "model_optimization": "NOT_RUN",
+    "readyset_retry": "NOT_RUN",
+    "refinement": "NOT_RUN",
+    "automatic_adoption": false,
+    "experimental_protonation": "UNASSESSED",
+    "generated_stereochemical_metadata": "REVIEW_REQUIRED",
+    "unpublished_payloads_committed": false
+  }
+}

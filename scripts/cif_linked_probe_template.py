@@ -202,6 +202,10 @@ def main():
                 after=inspect_native_bundle(model,cifs,session/'native_linked',phenix.executables['phenix.python'],
                     phil_files=parameters,**common)
                 receipt['native_validation']=after
+                for label,result in [('baseline',before),('linked',after)]:
+                    if result['status']!='REVIEW':
+                        print('Native '+label+' interpretation requires review:',
+                              result.get('error') or result['status'],flush=True)
                 if before['status']=='REVIEW' and after['status']=='REVIEW':
                     qualification=qualify_linked_bundle(before['native_validation'],after['native_validation'],prepared,
                         expected_links,['A:1','B:1','C:8','D:1'])

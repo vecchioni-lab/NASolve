@@ -163,3 +163,5 @@ def test_orchestration_keeps_native_failures_and_original_capsule(tmp_path,monke
     assert 'REVIEW ZIP:' in stdout
     if failure_layer=='source-recovery':
         assert 'Source recovery requires review: IGU | REJECTED | fixture-source-state-changed' in stdout
+    else:
+        assert 'Native linked interpretation requires review: FAILED' in stdout

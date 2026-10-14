@@ -469,6 +469,35 @@ native evidence; the subsequent linked preparation is offline evidence.
 Installed linked qualification remains the next Cedar 07 action. Generated
 stereochemical metadata, numerical/plane and existing 5CM reviews remain open.
 
+### Cedar 07 return: native modifier registration
+
+`07_Cedar_okkb2are_cif_linked_review.zip` has SHA-256
+`66798468a5fb7db40f9468c0f72eb43bafdea4146917f7232f8cd61fb3f9086b`;
+all 164 payloads verify. It uses NASolve
+`6522e23e3125bf21fafca563253f1c646c21b595` and the pinned NARestraints
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. IMC/CGY/DX source recovery
+reaches `CANDIDATE_REVIEW`; IGU remains reused. Detailed baseline interpretation
+completes at exit zero in 2.896598 s, recording 858 atoms, 42 mappings and
+38 backbone links. Linked interpretation fails at exit two in 1.082309 s:
+`Missing CIF modification: data_mod_NASL9809b6bd9c`.
+
+All four emitted files use `data_mod_linked_sites`; the native converter derives
+registry IDs from block suffixes, registering `linked_sites` four times instead
+of the requested `NASL...` IDs. The corrected serializer writes one block per
+requested ID, including multiple contexts for the same code. Replaying the
+exact returned candidates preserves base dictionaries, PHIL requests and every
+site plan while resolving all four distinct IDs. The
+[registration record](cif-linked-native-registration-evidence.json) owns exact
+failure, reader references, hashes/counts and offline replay.
+
+The returned baseline's detailed atoms also contain no native formal-charge
+values. The retry records missing attributes and null values separately, and
+qualification distinguishes unavailable readback from an actual contradiction.
+Neither partial charge nor a presumed zero can supply missing native evidence.
+No linked manager, shared-code control or complete chemistry qualification
+passed at this boundary. No model optimization, ReadySet retry, refinement or
+adoption ran. Installed Cedar 08 interpretation remains pending.
+
 ### Earlier manually selected numerical resources
 
 Phenix CCD graph sources are available; IGU/IMC/CGY/DX remain unbundled in
