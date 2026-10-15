@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, 2026-10-14:** offline component/restraint assessment,
+**Implemented scope, 2026-10-15:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
 explicit whole-component numerical candidate generation and a separate native
@@ -8,9 +8,10 @@ bundle diagnostic, explicit per-site linked-state preparation and native
 qualification checks, and bounded source-declared aromatic representation
 comparison. Cedar 06 completed native candidate generation and stopped at its
 CGY representation gate. Cedar 08 completed linked/shared-code native
-interpretation with matching site and proxy evidence; complete qualification
-remains REVIEW for missing group metadata and unavailable native formal charges.
-Cedar 09 tests the corrected singleton list serialization. The [command guide](cif-doctor.md) owns operational
+interpretation with matching site and proxy evidence. Cedar 09 recovers native
+DNA metadata at all four linked sites; 29 checks pass and four formal-charge
+checks remain unsupported, preserving the REVIEW verdict. Terminal chemistry
+and numerical/stereochemical review remain open. The [command guide](cif-doctor.md) owns operational
 details; the [implementation map](cif-restraint-doctor-implementation.json)
 separates the deployed software from proposed extensions. Update this overview
 and its figure whenever the feature's behavior, dependencies or claims change.
@@ -168,8 +169,12 @@ group is null even though the interpreted classification logs identify DNA.
 The writer now preserves the metadata loop; detailed readback records
 classification separately, and atom/group checks remain independent required
 gates. [The registration evidence](cif-linked-native-registration-evidence.json)
-owns both returns and the pending Cedar 09 installed check. Corrected group
-readback will not certify the unavailable formal charges or approve chemistry.
+owns the returns, including Cedar 09's successful installed group readback.
+All 29 evaluable checks pass while four unavailable charge readbacks keep the
+aggregate result REVIEW. The synthetic terminal control has distinct selected
+atoms but undetermined native classification and incomplete O5′-OH treatment;
+complete terminal support is not established. Corrected group readback does
+not certify formal charges, numerical geometry or experimental chemistry.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -229,13 +234,15 @@ CIF Doctor inventories declared chemistry; it does not infer valence,
 protonation, tautomer choice, absolute stereochemistry or phosphate termination
 from a residue label. Explicit diagnostic preparation uses declared linkage
 and end states; current production PostMR does not adopt these derivatives.
-The new native qualification checks still await installed execution. It does not calculate
+Installed linked execution is now recorded, with native formal-charge readback
+still unsupported. Complete synthetic free-OH end chemistry is not qualified.
+The assessment layer does not calculate
 achieved coordinate geometry or sugar pucker, assess maps, or repair/stitch
 fractured assembly arms. Plane-angle discrepancies include raw measurements
 and uncertainty-based lower bounds, but a material-strain threshold has not
 been calibrated.
 
-The proposed next layers are returned-native qualification and integration of
+The proposed next layers are completion of qualification and integration of
 the explicit linked-state diagnostic, mapped chemical
 descriptors, qualified automatic candidate adoption and model geometry/connectivity
 assessment. Guided sticky-end stitching would require declared strand routing,
@@ -291,6 +298,10 @@ Modifiers use exact native block IDs and component-list metadata retains its
 loop layout. Native classification is separate from group metadata;
 unavailable formal-charge readback is
 reported independently and does not become a chemical pass.
+Returned Cedar 09 interpretation records 29 evaluable checks passing, with four
+charge readbacks unsupported. Source-coordinate sugar-sign agreement and
+file-level charge retention are separate from independent stereochemistry,
+complete terminal chemistry and achieved model geometry.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

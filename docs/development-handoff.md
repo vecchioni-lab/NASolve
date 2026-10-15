@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-14** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-15** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -43,6 +43,53 @@ The October 10 documentation snapshot also passed the isolated Linux suite:
 This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
+
+**Cedar 09 returned; native metadata recovered (2026-10-15):** all **207**
+payloads in `09_Cedar_nn9cyghr_cif_linked_review.zip` verify. Source is clean
+NASolve `4f1cde11b540c24adc27c97cb5f891f6710bf17e` with the same pinned clean
+NARestraints source. Phenix **2.2.1-6174** completes baseline/linked/control at
+exit zero in **2.924922 / 1.354201 / 1.272176 s**. All four linked sites now
+have native group and classification **DNA**. Qualification records **29 PASS,
+four UNSUPPORTED**: every noncharge check passes, while the installed atom API
+has no formal-charge attribute. There is no known-charge contradiction. Keep
+the aggregate **REVIEW** and raw charge evidence; do not substitute partial
+charges, source values or zero, weaken the gate, or repeat an unchanged native
+inventory to seek an attribute absent from this installation.
+
+The linked manager retains 858 atoms, 42 mappings, all **38** declared links,
+custom **21 bonds / 34 angles / 8 planes / 23 parallelities**, all 58 native
+parallelities and unaffected definitions. The 877-atom/43-residue control has
+**10 PASS / two charge UNSUPPORTED**; original atoms, all 42 definitions and
+38 links are unchanged. Its E:1 group is DNA but classification is
+**undetermined**. The projected E:1 O5′ remains type **O2**, bonded only to C5′
+with no explicit O5′ H. This proves selected atom/context isolation under one
+code, not complete free-OH end parameterization or general terminal support.
+Do not infer that the original four internal sites failed classification.
+
+Read-only arithmetic replay compares **148/148** source/candidate formal charges
+with no difference or unavailable source value. All **12** generated ordered
+sugar-centre signs match source ideal coordinates; native proxy signs and the
+initial model agree under each actual proxy order. The determinant convention
+is checked against the primary cctbx chirality implementation. This is
+source-coordinate/sign consistency, not independent CIP/R-S assignment or
+experimental validation, and it does not satisfy the native charge gate.
+Projected plane-angle reviews remain **IGU five / IMC two / CGY five / DX zero**;
+their material-strain threshold is uncalibrated. The selected 5CM A:7 still
+contains `C4′–O4′–C1′–C2` (`C2e-nyu0`, 340.7 ± 6.3°, period 1). Preserve that
+known C2/C2′ defect until an explicit, hash-scoped preparation is reviewed;
+do not silently substitute the historical repaired derivative.
+
+The [registration/list-metadata record](cif-linked-native-registration-evidence.json)
+owns exact archive/source/API hashes, native counts and these review limits.
+**Next work is dictionary chemistry/geometry review:** complete the declared
+free-OH terminal treatment through a traceable numerical source, use explicit
+reviewed 5CM preparation where its exact source hash permits it, and preserve
+charge/protonation and generated metadata reviews before a new bounded geometry
+trial. No new inventory-only delivery is queued. No ReadySet retry,
+minimization, refinement, adoption or gate change occurred. These updates are
+documentation/evidence only; the runtime's existing 1,386-test receipt below
+and its returned installed execution remain the validation. Original private
+payloads and the frozen everyday checkout remain outside Git and unchanged.
 
 **Cedar 08 returned; Cedar 09 component-list retry (2026-10-14):** all 207
 payloads in `08_Cedar_g4gzbeeb_cif_linked_review.zip` verify. The runner matches

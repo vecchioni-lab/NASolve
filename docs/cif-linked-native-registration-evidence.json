@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
-  "recorded_date": "2026-10-14",
+  "recorded_date": "2026-10-15",
   "archive": {
     "name": "07_Cedar_okkb2are_cif_linked_review.zip",
     "sha256": "66798468a5fb7db40f9468c0f72eb43bafdea4146917f7232f8cd61fb3f9086b",
@@ -241,11 +241,11 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "09_Cedar",
+  "next_delivery": null,
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
-    "linked_native_qualification": "REVIEW_MISSING_GROUP_UNSUPPORTED_CHARGE_READBACK",
-    "same_code_control": "INTERPRETED_REVIEW",
+    "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
+    "same_code_control": "SITE_ISOLATION_RECORDED_COMPLETE_TERMINAL_CHEMISTRY_UNQUALIFIED",
     "model_optimization": "NOT_RUN",
     "readyset_retry": "NOT_RUN",
     "refinement": "NOT_RUN",
@@ -253,7 +253,7 @@
     "experimental_protonation": "UNASSESSED",
     "generated_stereochemical_metadata": "REVIEW_REQUIRED",
     "unpublished_payloads_committed": false,
-    "installed_component_list_metadata": "PENDING_CEDAR_09"
+    "installed_component_list_metadata": "RECORDED_DNA_FOR_ALL_FOUR_INTERNAL_SITES"
   },
   "cedar_08_return": {
     "archive": {
@@ -661,7 +661,7 @@
     "qualification_reporting": "Separate exact atom inventory from required native DNA group; retain every non-PASS gate",
     "new_schema_1_preparation_field": "component_list_policy",
     "new_schema_1_detailed_metadata_field": "classification",
-    "native_execution": "PENDING_CEDAR_09",
+    "native_execution": "RECORDED_CEDAR_09",
     "formal_charge_readback": "UNSUPPORTED in the returned installed version; no partial/source/zero substitution",
     "software_validation": {
       "focused": {
@@ -680,5 +680,416 @@
       "native_test_scope": "Explicit fake native reader controls; scalar metadata loses group and looped metadata retains it. No installed Phenix execution in offline tests.",
       "figure": "Regenerated, rendered and visually inspected"
     }
+  },
+  "cedar_09_return": {
+    "archive": {
+      "name": "09_Cedar_nn9cyghr_cif_linked_review.zip",
+      "sha256": "db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a",
+      "verified_payloads": 207
+    },
+    "recorded_date": "2026-10-15",
+    "reported_status": "REVIEW",
+    "nasolve_source": {
+      "commit": "4f1cde11b540c24adc27c97cb5f891f6710bf17e",
+      "working_tree_has_changes": false
+    },
+    "narestraints_source": {
+      "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "working_tree_has_changes": false
+    },
+    "runner_sha256": "de71e5d64b4b79937e4f77566ab27a7d4991d45e45d060f4bdc04d873745e6cc",
+    "native_installation": "Phenix 2.2.1-6174",
+    "baseline": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 2.924922,
+        "finished_at": "2026-10-15T13:06:52.987227+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-15T13:06:50.062331+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "fatal_problems": null,
+      "unsupported_inventory_fields": [],
+      "source_preserved": true,
+      "frozen_inputs_preserved": true
+    },
+    "linked": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 1.354201,
+        "finished_at": "2026-10-15T13:06:54.496365+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-15T13:06:53.142189+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "fatal_problems": null,
+      "unsupported_inventory_fields": [],
+      "source_preserved": true,
+      "frozen_inputs_preserved": true
+    },
+    "native_api_hashes": [
+      {
+        "module": "iotbx.phil",
+        "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+      },
+      {
+        "module": "mmtbx.command_line.pdb_interpretation",
+        "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+      },
+      {
+        "module": "mmtbx.monomer_library.server",
+        "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+      },
+      {
+        "module": "mmtbx.monomer_library.pdb_interpretation",
+        "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+      }
+    ],
+    "qualification": {
+      "status": "REVIEW",
+      "check_status_counts": {
+        "PASS": 29,
+        "UNSUPPORTED": 4
+      },
+      "all_noncharge_checks_pass": true,
+      "all_nonpass_checks_are_unavailable_formal_charge": true,
+      "exact_backbone_links": 38,
+      "custom_proxy_coverage": {
+        "bond": 21,
+        "angle": 34,
+        "planarity": 8,
+        "parallelity": 23
+      },
+      "scientific_approval": "NOT_RUN"
+    },
+    "sites": {
+      "CGY": {
+        "site": "A:20",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASL25624f75ba"
+        ],
+        "expected_atoms": 35,
+        "observed_atoms": 35,
+        "retained_OP2_hydrogens": [
+          "H1"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 35,
+          "null_value_atoms": 35,
+          "status": "UNSUPPORTED"
+        }
+      },
+      "DX": {
+        "site": "D:3",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASLc0f3717fc6"
+        ],
+        "expected_atoms": 33,
+        "observed_atoms": 33,
+        "retained_OP2_hydrogens": [
+          "H14"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 33,
+          "null_value_atoms": 33,
+          "status": "UNSUPPORTED"
+        }
+      },
+      "IGU": {
+        "site": "A:6",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASL9809b6bd9c"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        }
+      },
+      "IMC": {
+        "site": "C:10",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASL92fefc1b33"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        }
+      }
+    },
+    "shared_code_control": {
+      "status": "REVIEW",
+      "native": {
+        "status": "REVIEW",
+        "execution": {
+          "elapsed_seconds": 1.272176,
+          "finished_at": "2026-10-15T13:06:56.010106+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-15T13:06:54.737952+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "atom_count": 877,
+        "mapped_residues": 43,
+        "proxy_counts": {
+          "angle": 1590,
+          "bond_asu": 0,
+          "bond_simple": 1026,
+          "chirality": 155,
+          "const_dihedral": 387,
+          "dihedral": 572,
+          "parallelity": 58,
+          "planarity": 54
+        },
+        "fatal_problems": null,
+        "unsupported_inventory_fields": [],
+        "source_preserved": true,
+        "frozen_inputs_preserved": true
+      },
+      "check_status_counts": {
+        "PASS": 10,
+        "UNSUPPORTED": 2
+      },
+      "sites": {
+        "A:6": {
+          "native_group": "DNA",
+          "native_classification": {
+            "status": "RECORDED",
+            "value": "DNA"
+          },
+          "modification_ids": [
+            "NASL9809b6bd9c"
+          ],
+          "expected_atoms": 34,
+          "observed_atoms": 34
+        },
+        "E:1": {
+          "native_group": "DNA",
+          "native_classification": {
+            "status": "RECORDED",
+            "value": "undetermined"
+          },
+          "modification_ids": [
+            "NASLdb64d7ae60"
+          ],
+          "expected_atoms": 31,
+          "observed_atoms": 31
+        }
+      },
+      "original_858_atoms_preserved": true,
+      "original_42_definitions_preserved": true,
+      "original_38_links_preserved": true,
+      "terminal_scope_limit": {
+        "site": "E:1",
+        "native_classification": "undetermined",
+        "O5prime_type": "O2",
+        "O5prime_bonded_atoms": [
+          "C5'"
+        ],
+        "explicit_O5prime_hydrogen_present": false,
+        "complete_free_OH_parameterization": "NOT_QUALIFIED",
+        "meaning": "Atom/context isolation agrees with the declared projection; this is not complete generic free-OH terminal support."
+      }
+    },
+    "read_only_scientific_review": {
+      "native_execution": "NOT_RUN",
+      "coordinate_mutation": false,
+      "source_candidate_charge_atoms_compared": 148,
+      "formal_charge_differences": 0,
+      "native_formal_charge_observability": "UNSUPPORTED_NOT_REPLACED_BY_SOURCE_COMPARISON",
+      "ordered_sugar_centres": 12,
+      "source_ideal_generator_and_native_proxy_sign_agreement": 12,
+      "absolute_stereochemistry": "UNASSESSED",
+      "formula": "dot(x1-x0,cross(x2-x0,x3-x0)); ordered quadruple retained exactly",
+      "formula_primary_git_blob": "21d25bb3234f48df42108028af2c0185d71db472",
+      "primary_reference": "https://github.com/cctbx/cctbx_project/blob/master/cctbx/geometry_restraints/chirality.h",
+      "components": {
+        "CGY": {
+          "projected_assessment_status": "REVIEW",
+          "plane_angle_review_count": 5,
+          "plane_angle_centres": [
+            "C1",
+            "C2",
+            "C6",
+            "N1",
+            "N4"
+          ],
+          "interior_delta_degrees": [
+            0.03,
+            0.06,
+            0.23,
+            0.03,
+            0.07
+          ],
+          "sigma_adjustment_lower_bounds": [
+            0.017320508075673022,
+            0.033684011802637887,
+            0.12198529582861911,
+            0.017320508075673022,
+            0.04041451884326987
+          ],
+          "source_candidate_charge_atoms_compared": 38,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        },
+        "DX": {
+          "projected_assessment_status": "PASS",
+          "plane_angle_review_count": 0,
+          "plane_angle_centres": [],
+          "interior_delta_degrees": [],
+          "sigma_adjustment_lower_bounds": [],
+          "source_candidate_charge_atoms_compared": 36,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        },
+        "IGU": {
+          "projected_assessment_status": "REVIEW",
+          "plane_angle_review_count": 5,
+          "plane_angle_centres": [
+            "C2",
+            "C4",
+            "C5",
+            "C6",
+            "N9"
+          ],
+          "interior_delta_degrees": [
+            0.03,
+            0.03,
+            0.04,
+            0.02,
+            0.21
+          ],
+          "sigma_adjustment_lower_bounds": [
+            0.007498467423004648,
+            0.007005063583959798,
+            0.008540137838061797,
+            0.004932680492969346,
+            0.04824093524807858
+          ],
+          "source_candidate_charge_atoms_compared": 37,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        },
+        "IMC": {
+          "projected_assessment_status": "REVIEW",
+          "plane_angle_review_count": 2,
+          "plane_angle_centres": [
+            "N1",
+            "N2"
+          ],
+          "interior_delta_degrees": [
+            0.09,
+            0.07
+          ],
+          "sigma_adjustment_lower_bounds": [
+            0.02067318654886846,
+            0.016013347910690905
+          ],
+          "source_candidate_charge_atoms_compared": 37,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        }
+      },
+      "plane_angle_limit": "Finite plane weights/correlations and material-strain threshold remain uncalibrated; no forced 360-degree targets.",
+      "stereochemistry_limit": "Ordered signed-volume consistency with source ideal coordinates is not independent CIP/R-S assignment or experimental validation.",
+      "known_retained_5CM_review": {
+        "site": "A:7",
+        "id": "C2e-nyu0",
+        "atoms": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2"
+        ],
+        "target_degrees": 340.7,
+        "esd_degrees": 6.3,
+        "period": 1,
+        "status": "REVIEW_REQUIRES_EXPLICIT_PREPARATION",
+        "no_silent_substitution": true
+      }
+    },
+    "original_archive_preserved": true,
+    "model_optimization": "NOT_RUN",
+    "readyset_retry": "NOT_RUN",
+    "refinement": "NOT_RUN",
+    "automatic_adoption": false,
+    "next_step": "Review complete terminal chemistry, explicit hash-scoped 5CM preparation and remaining numerical/stereochemical limits before a new bounded geometry trial; do not repeat an unchanged inventory to chase absent native charge attributes."
   }
 }

@@ -360,9 +360,24 @@ are unavailable. Native classification logs still identify DNA.
 
 The corrected serializer retains the singleton metadata loop with unchanged
 parsed values, modifier/PHIL bytes and site plans. Detailed native classification
-and separate atom/group checks make the evidence boundary explicit. Cedar 09
-tests installed metadata readback; charges, numerical/stereochemical review and
-any adoption remain unqualified. No model optimization or refinement occurred.
+and separate atom/group checks make the evidence boundary explicit. Cedar 09's
+returned execution is recorded below. No model optimization or refinement occurred.
+
+### Cedar 09 return: internal mechanics recorded, science reviews retained
+
+All 207 payloads verify. Phenix 2.2.1-6174 recovers DNA group/classification at
+the four internal sites: 29 checks pass, while four native formal-charge
+readbacks are UNSUPPORTED. All original atoms, 38 links and exact custom
+restraints survive. Overall REVIEW is retained without gate changes.
+
+File-level charges agree for all 148 source/candidate atoms. Ordered source,
+generated and native sugar-centre signs agree at all 12 centres; independent
+absolute stereochemistry remains unassessed. The free-OH E:1 control has
+distinct selected atoms but undetermined native classification and incomplete
+O5′-OH treatment, so it is not full terminal support. The 12 projected
+plane-angle reviews and actual retained 5CM C2/C2′ torsion still require review.
+The next phase is dictionary/end-state and geometry review, rather than another
+unchanged native inventory. No refinement, adoption or input replacement ran.
 
 ## Adaptable methods wording
 

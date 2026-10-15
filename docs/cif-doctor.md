@@ -231,9 +231,25 @@ projected dictionaries, with schema-1 `component_list_policy =
 cif-native-component-list-loop-v1`. Parsed metadata and every atom/restraint
 value remain the same, as do modifier/PHIL bytes and site plans. Detailed
 metadata adds native `classification`; qualification separates exact atoms
-from required DNA group without relaxing either check. The Cedar 09 installed
-retry is pending. Missing formal-charge readback remains unqualified and can
-keep the aggregate result REVIEW after the list metadata is corrected.
+from required DNA group without relaxing either check.
+
+The returned Cedar 09 installed execution recovers DNA group and classification
+at all four internal sites. All **29** evaluable qualification checks pass;
+the four formal-charge checks are **UNSUPPORTED** because the installed native
+atom API lacks that attribute. The aggregate remains REVIEW. Read-only file
+comparison confirms 148 unchanged source/candidate formal charges; ordered
+signed-volume comparison agrees at all 12 sugar centres against source ideal
+coordinates and native proxy order. These are separate evidence, not native
+charge readback or independent absolute stereochemistry.
+
+The shared-code control preserves all original atoms, definitions and links;
+E:1 has group DNA and classification undetermined. Its O5′ retains source O2
+typing with no attached explicit H, so the demonstrated scope is atom/context
+isolation, not complete terminal-OH chemistry. The 12 soft plane-angle findings,
+omitted generator metadata and retained 5CM C2/C2′ torsion remain visible.
+The next phase is explicit dictionary/end-state and geometry review. No runtime
+gate was changed to make the returned result pass, and repeating an unchanged
+inventory will not resolve unavailable native formal-charge readback.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

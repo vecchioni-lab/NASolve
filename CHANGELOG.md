@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 09 returned native evidence
+
+- Verify all 207 returned payloads. Installed Phenix 2.2.1-6174 now reads
+  DNA group/classification for all four linked sites; 29 qualification checks
+  pass and four formal-charge checks remain UNSUPPORTED. Preserve the REVIEW
+  verdict and unchanged model, 38 links and exact custom proxy coverage.
+- Record the separate read-only comparison: all 148 source/candidate formal
+  charges agree, and 12 ordered sugar-centre signs agree with source ideal
+  coordinates and native proxies. This does not replace absent native charge
+  readback or establish independent absolute stereochemistry.
+- Preserve remaining scientific reviews: synthetic E:1 demonstrates site
+  isolation but not complete free-OH terminal chemistry; its classification
+  is undetermined and O5′ retains O2 typing without an attached H. Existing
+  plane/angle findings and the retained 5CM C2/C2′ torsion issue remain visible.
+  This is evidence/documentation only; no runtime, gate or schema change.
+
 ### Native component-list metadata
 
 - Preserve the singleton `_chem_comp` row as a loop in linked base and
@@ -21,8 +37,8 @@ entries are reconstructed from repository history.
 - Record Cedar 08's completed baseline, linked and shared-code native
   interpretations. All 207 payloads verify; site atoms/H/types, 38 backbone
   links, custom proxies and unaffected definitions agree. Group metadata and
-  charge readback keep the result at REVIEW. Cedar 09 tests the list-loop fix
-  on the installed reader; no optimization, refinement or adoption occurred.
+  charge readback keep that result at REVIEW. Cedar 09's returned installed
+  check is recorded above; no optimization, refinement or adoption occurred.
 
 ### Native registration of site modifiers
 

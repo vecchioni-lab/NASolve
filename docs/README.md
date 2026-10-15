@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-14**. Start with the
+Updated **2026-10-15**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -37,11 +37,14 @@ for actual behavior; history is evidence, not a second task queue.
   CGY's aromatic bond representation. Generation-v4 checks that bounded
   source-declared representation. Cedar 08 completed linked/shared-code native
   interpretation with exact site atoms/H/types, links and custom proxies,
-  clearing Cedar 07's modifier registration blocker. Qualification stays REVIEW:
-  singleton scalar list metadata loses the native DNA group, and formal-charge
-  attributes are unavailable. [The registration record](cif-linked-native-registration-evidence.json)
-  owns these returns and exact replay; Cedar 09 tests corrected list-loop
-  serialization while charge readback remains unqualified.
+  clearing Cedar 07's modifier registration blocker. Cedar 09 also recovers DNA
+  group/classification at all four linked sites: 29 checks pass and four charge
+  checks remain UNSUPPORTED in the installed API. Complete qualification stays
+  REVIEW. [The registration record](cif-linked-native-registration-evidence.json)
+  owns the returned native evidence and read-only charge/chirality replay.
+  Synthetic free-OH terminal chemistry, the retained 5CM torsion and broader
+  numerical/stereochemical review remain separate open work; no repeated
+  unchanged inventory is needed for the unavailable charge attribute.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

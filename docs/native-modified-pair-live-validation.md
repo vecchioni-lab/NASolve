@@ -534,6 +534,40 @@ owns the exact return and offline replay. Installed Cedar 09 metadata readback,
 complete qualification and numerical/stereochemical review remain open.
 No model optimization, ReadySet retry, refinement or adoption ran.
 
+### Cedar 09 return: installed metadata recovered, charge readback unsupported
+
+`09_Cedar_nn9cyghr_cif_linked_review.zip` has SHA-256
+`db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a`;
+all **207 payloads** verify. Clean NASolve source is
+`4f1cde11b540c24adc27c97cb5f891f6710bf17e`; NARestraints remains pinned to
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. Phenix 2.2.1-6174 completes
+baseline/linked/control at exit zero in **2.924922 / 1.354201 / 1.272176 s**.
+Each of the four internal modified sites has native DNA group/classification.
+
+Qualification is **29 PASS / four UNSUPPORTED**, with no noncharge failure.
+The native charge attribute is absent; source charge or partial charge does not
+replace it. Preserve overall REVIEW. The 858-atom/42-mapping linked manager,
+38 links, exact custom coverage and 58 parallelities remain unchanged. The
+synthetic control has 877 atoms/43 mappings, 10 PASS/two charge UNSUPPORTED,
+with original coordinates, all 42 definitions and all 38 links preserved.
+E:1 is group DNA/classification undetermined; O5′ has type O2 and no attached H.
+Its atom-isolation result is not complete free-OH terminal qualification.
+
+Separate read-only replay finds **148/148** source/candidate charges unchanged
+and consistent ordered signed volumes at **12/12** sugar centres, including
+actual native proxy order and initial model sign. This is not independent
+absolute stereochemistry or achieved geometry. Projected dictionaries retain
+five IGU, two IMC and five CGY plane-angle reviews; DX passes the implemented
+projection assessment only. No calibrated material-strain threshold is added.
+The actual 5CM A:7 native definition still includes the known
+`C4′–O4′–C1′–C2` torsion; no old repaired resource was substituted.
+
+The [registration/list-metadata record](cif-linked-native-registration-evidence.json)
+owns exact hashes/counts and review boundaries. No runtime/gate/schema change,
+model optimization, ReadySet retry, diffraction refinement or adoption occurred.
+Next review terminal chemistry, explicit 5CM preparation and numerical/stereo
+limits before another geometry trial; no identical charge-readback rerun is due.
+
 ### Earlier manually selected numerical resources
 
 Phenix CCD graph sources are available; IGU/IMC/CGY/DX remain unbundled in

@@ -103,7 +103,7 @@
       ]
     },
     "linked_preparation_2026_10_14": {
-      "status": "NATIVE_MODIFIERS_RECOVERED_COMPONENT_LIST_METADATA_RETRY_PENDING",
+      "status": "NATIVE_AVAILABLE_CHECKS_PASS_FORMAL_CHARGE_UNSUPPORTED",
       "policy_id": "cif-source-preserving-linked-sites-v1",
       "delivery_prefix": "06_Cedar",
       "source_preserving_recovery_required": [
@@ -145,7 +145,7 @@
       "refinement": "NOT_RUN",
       "numerical_geometry": "REVIEW_REQUIRED",
       "experimental_protonation": "UNASSESSED",
-      "validation": "Cedar 08 completed linked and shared-code interpretation. Exact site atoms/H/types, 38 backbone links and custom/other proxies agree. Scalar comp_list metadata is ignored, leaving group null; native formal charge attributes are absent. Qualification remains REVIEW. Corrected list-loop serialization awaits Cedar 09.",
+      "validation": "Cedar 09 completes baseline/linked/shared-code native interpretation. All 29 evaluable qualification checks pass; only four formal-charge readbacks are unsupported. Main linked group and classification are DNA. Synthetic E:1 terminal chemistry remains unqualified.",
       "offline_validation": {
         "full_suite": {
           "passed": 1345,
@@ -162,7 +162,7 @@
         "native_execution": "NOT_RUN",
         "figure": "Regenerated/rendered/visually inspected"
       },
-      "next_delivery_prefix": "09_Cedar",
+      "next_delivery_prefix": null,
       "modification_block_policy": "cif-native-modification-blocks-v1",
       "component_list_policy": "cif-native-component-list-loop-v1"
     },
@@ -240,7 +240,7 @@
     "component_list_metadata_retry": {
       "delivery_prefix": "09_Cedar",
       "policy": "cif-native-component-list-loop-v1",
-      "native_execution": "PENDING",
+      "native_execution": "RECORDED_CEDAR_09",
       "source_and_site_chemistry_changed": false,
       "modifier_and_PHIL_bytes_unchanged": true,
       "detailed_classification_recorded_separately": true,
@@ -264,6 +264,24 @@
         "native_test_scope": "Explicit fake native reader controls; scalar metadata loses group and looped metadata retains it. No installed Phenix execution in offline tests.",
         "figure": "Regenerated, rendered and visually inspected"
       }
+    },
+    "cedar_09_return": {
+      "archive_name": "09_Cedar_nn9cyghr_cif_linked_review.zip",
+      "archive_sha256": "db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a",
+      "verified_payloads": 207,
+      "reported_status": "REVIEW",
+      "native_available_checks_passed": 29,
+      "native_charge_checks_unsupported": 4,
+      "shared_code_control_checks_passed": 10,
+      "shared_code_control_charge_checks_unsupported": 2,
+      "source_candidate_charge_atoms_compared": 148,
+      "source_candidate_charge_differences": 0,
+      "source_coordinate_ordered_chirality_checks": 12,
+      "ordered_chirality_agreement": 12,
+      "independent_absolute_stereochemistry": "UNASSESSED",
+      "terminal_scope": "E:1 group DNA / classification undetermined; O5prime ether type and absent explicit O5prime H are not complete free-OH support",
+      "next_step": "Review complete terminal chemistry, explicit hash-scoped 5CM preparation and remaining numerical/stereochemical limits before a new bounded geometry trial; do not repeat an unchanged inventory to chase absent native charge attributes.",
+      "evidence": "docs/cif-linked-native-registration-evidence.json"
     }
   },
   "audience": [
