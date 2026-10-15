@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 11 terminal-source return
+
+- Verify all nine returned payloads, the exact reviewed 5CM candidate and
+  successful installed Phenix 2.2.1-6174 canonical terminal control. Record
+  native PDB-to-library identity resolution, hydroxyl atom/type/targets and
+  unchanged unrelated restraint rows and source files.
+- Record the canonical free-OH control's `undetermined` classification alongside
+  retained DNA group and unavailable formal-charge readback. Classification
+  alone does not distinguish the earlier modified-end defect. The actual
+  missing modified-end hydroxyl treatment still requires implementation.
+  This is evidence/documentation only; no runtime, schema or gate change.
+
 ### Native canonical residue-name resolution
 
 - Resolve canonical terminal-resource controls through the installed native

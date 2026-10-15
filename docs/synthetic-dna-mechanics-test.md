@@ -389,8 +389,13 @@ the native run reproduced the exact reviewed 5CM output and captured installed
 Phenix 2.2.1-6174 `5*END` rows. Its direct DG lookup failed before the canonical
 control because the native library uses a translated identity. Cedar 11 uses
 the installed residue-name interpreter, records the resolved component ID and
-keeps unavailable APIs/components unsupported. The corrected canonical control
-is still pending native execution. These resources support subsequent complete O5′-OH treatment
+keeps unavailable APIs/components unsupported. All nine returned Cedar 11
+payloads verify; installed resource execution succeeds at exit zero in
+0.837208 s. The canonical control gains the explicit O5′ hydroxyl hydrogen
+and source targets while preserving every unaffected restraint row. Its
+classification also becomes undetermined despite DNA group, so that label
+alone does not diagnose a modified-end defect. The earlier missing modified
+hydroxyl treatment still needs implementation. These resources support subsequent complete O5′-OH treatment
 without inventing numerical targets or silently modifying the frozen run.
 The probe does not implement/adopt that terminal recipe, perform another linked
 inventory or start geometry minimization/refinement.

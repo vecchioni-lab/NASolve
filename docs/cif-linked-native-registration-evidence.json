@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "11_Cedar",
+  "next_delivery": "NOT_QUEUED",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -1231,7 +1231,7 @@
       "before": "Direct library lookup receives PDB DG and returns no component.",
       "after": "Delegate canonical resolution to the installed get_comp_comp_id_and_atom_name_interpretation API with an empty atom-name list.",
       "canonical_control": "DG",
-      "native_execution": "PENDING_ON_USER_MAC",
+      "native_execution": "COMPLETED_REVIEW",
       "native_aliases_from_primary_code": {
         "DA": "AD",
         "DC": "CD",
@@ -1291,12 +1291,200 @@
       },
       "ferry": "One subshell block with fetch, pinned detached worktree, build and run joined by &&; nonzero status stops dependent steps.",
       "remaining": [
-        "Installed canonical-control execution",
-        "Complete terminal adaptation",
-        "New native 5CM/bundle validation",
+        "Explicit source-traceable modified-terminal adaptation",
+        "New native 5CM/revised-bundle validation",
+        "Formal-charge readback and remaining numerical/stereochemical review",
         "Bounded geometry trial",
         "Full refinement and adoption"
       ]
+    },
+    "current_status": "INSTALLED_NUMERICAL_SOURCE_COLLECTION_COMPLETE_MODIFIED_TERMINAL_ADAPTATION_PENDING",
+    "returned_cedar_11": {
+      "archive": {
+        "name": "11_Cedar_ggtpccwv_cif_terminal_review.zip",
+        "sha256": "87b62be8b669a54a8f2e67b5a18a439cb88e6b187354b95847fa29c96bb02cbc",
+        "bytes": 62078,
+        "verified_payloads": 9
+      },
+      "nasolve_source": {
+        "commit": "e6ec5d66e283a138c0ac8e9585146e5c994ac243",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256": "9aa0afa38e916d58e998637c1327ff7ad1b07f5f5e780410a297b6f4d9d1c2b7",
+      "runtime_archive_sha256": "fc83cb764ba5c98a6f751aa0d1f2dd2c4b91d1b68fc3c9dceeaf0278cfb42cfb",
+      "probe_status": "PREPARATION_AND_RESOURCES_REVIEW",
+      "resource_policy": "cif-installed-terminal-resources-v2",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "native_execution": {
+        "elapsed_seconds": 0.837208,
+        "finished_at": "2026-10-15T21:43:06.991235+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-15T21:43:06.154031+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 120
+      },
+      "native_status": "REVIEW",
+      "five_cm_preparation": {
+        "recipe_id": "5cm-reviewed-torsion-v1",
+        "source_sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858",
+        "candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+        "status": "PREPARED",
+        "source_preserved": true,
+        "candidate_assessment": "PASS",
+        "native_validation": {
+          "reason": "No Phenix invocation in preparation",
+          "status": "NOT_RUN"
+        }
+      },
+      "canonical_control": {
+        "resolution": {
+          "input_atom_names": [],
+          "interpreted_residue_name": "DG",
+          "method": "get_comp_comp_id_and_atom_name_interpretation",
+          "resolved_component_id": "Gd"
+        },
+        "base_atom_count": 33,
+        "effective_atom_count": 31,
+        "removed_atoms": [
+          "OP1",
+          "OP2",
+          "P"
+        ],
+        "added_atoms": [
+          "HO5'"
+        ],
+        "changed_retained_atoms": {
+          "O5'": {
+            "base": {
+              "atom_id": "O5'",
+              "partial_charge": -0.267,
+              "type_energy": "OC2",
+              "type_symbol": "O"
+            },
+            "effective": {
+              "atom_id": "O5'",
+              "partial_charge": -0.212,
+              "type_energy": "OH1",
+              "type_symbol": "O"
+            }
+          }
+        },
+        "base_classification": "DNA",
+        "effective_classification": "undetermined",
+        "base_group": "DNA",
+        "effective_group": "DNA",
+        "base_formal_charge_readback": "UNSUPPORTED",
+        "effective_formal_charge_readback": "UNSUPPORTED",
+        "hydroxyl_hydrogen": {
+          "atom_id": "HO5'",
+          "partial_charge": 0.142,
+          "type_energy": "HOH1",
+          "type_symbol": "H"
+        },
+        "hydroxyl_bond": [
+          {
+            "atom_id_1": "O5'",
+            "atom_id_2": "HO5'",
+            "type": "single",
+            "value_dist": 0.84,
+            "value_dist_esd": 0.02,
+            "value_dist_neutron": 1.02
+          }
+        ],
+        "hydroxyl_angle": [
+          {
+            "atom_id_1": "C5'",
+            "atom_id_2": "O5'",
+            "atom_id_3": "HO5'",
+            "value_angle": 120.0,
+            "value_angle_esd": 3.0
+          }
+        ],
+        "category_preservation": {
+          "bonds": {
+            "base": 35,
+            "effective": 33,
+            "unaffected_base_rows": 32,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "angles": {
+            "base": 61,
+            "effective": 58,
+            "unaffected_base_rows": 57,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "torsions": {
+            "base": 16,
+            "effective": 15,
+            "unaffected_base_rows": 15,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "chirality": {
+            "base": 4,
+            "effective": 3,
+            "unaffected_base_rows": 3,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "plane_atoms": {
+            "base": 18,
+            "effective": 18,
+            "unaffected_base_rows": 18,
+            "unaffected_rows_missing_or_changed": 0
+          }
+        },
+        "dangling_reference_count": 0,
+        "source_files": [
+          {
+            "name": "data_GD.cif",
+            "sha256": "c23bd77ec2a8e4515b152633429a139a727dce181d712a08f8d4553e077d0985",
+            "bytes": 7544,
+            "preserved": true
+          },
+          {
+            "name": "mon_lib_list.cif",
+            "sha256": "14b94738532dc7a36f8d8c6518d9fface8b033887c98c8242d71afba17cccd99",
+            "bytes": 309942,
+            "preserved": true
+          }
+        ],
+        "module_hashes": {
+          "mmtbx.monomer_library.server": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa",
+          "mmtbx.monomer_library.cif_types": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd",
+          "iotbx.pdb": "7a1502d4a98f8d164b0c2e86f223245a5d9d6fcc50df14e86523cd46959905a8"
+        },
+        "modification_matches_cedar_10": true
+      },
+      "base_preserved": true,
+      "verification": {
+        "every_manifest_payload": true,
+        "every_anchored_native_output": true,
+        "duplicate_receipt_content_equal": true,
+        "exact_published_worker": true,
+        "exact_bundled_build_metadata": true
+      },
+      "interpretation": {
+        "numerical_source_collection": "COMPLETE",
+        "canonical_hydroxyl_classification": "The canonical installed 5*END control also has undetermined classification despite DNA group. That label alone does not establish a modified-terminal defect.",
+        "modified_end_hydroxyl_treatment": "Still requires implementation; the earlier missing O5-attached H and OH typing remain observed.",
+        "formal_charge_readback": "UNSUPPORTED_IN_BOTH_CANONICAL_STATES_NO_PARTIAL_SUBSTITUTION",
+        "native_metadata_counts": "Retained exactly as reported, including unchanged header atom-count metadata after modification.",
+        "existing_qualification_gates": "UNCHANGED"
+      },
+      "original_09_archive_preserved": true,
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "terminal_recipe_implementation": "NOT_RUN",
+      "native_5cm_bundle_validation": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "runtime_schema_changes": false,
+      "next_step": "Implement an explicit source-traceable modified-terminal derivative, validate the revised bundle including prepared 5CM, and preserve remaining charge/numerical/stereochemical reviews before a separate bounded geometry trial. Do not repeat unchanged source collection."
     }
   }
 }

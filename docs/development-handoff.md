@@ -44,6 +44,39 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 11 returned; terminal numerical sources complete (2026-10-15):** all
+**nine** payloads in `11_Cedar_ggtpccwv_cif_terminal_review.zip` verify, including
+anchored native outputs, repeated receipt content and the exact published
+worker/build. The user's runner hash is `9aa0afa3…`, from clean source
+`e6ec5d66e283a138c0ac8e9585146e5c994ac243` and the same pinned NARestraints.
+The explicit 5CM preparation again reproduces `61bf14a1…` with source/original
+09 ZIP preserved. Phenix **2.2.1-6174** resource execution completes at exit
+zero in **0.837208 s**; status is `PREPARATION_AND_RESOURCES_REVIEW`.
+
+Native resolution records DG → metadata `Gd`. The unchanged canonical base
+has 33 atoms; effective `5*END` has 31: P/OP1/OP2 removed, O5′ changed from
+OC2 to OH1, HO5′ added with HOH1 type and the exact installed bond/angle
+targets. All unaffected bond/angle/torsion/chirality/plane rows remain equal,
+with no dangling references. Both installed sources remain unchanged and
+the modification rows exactly match Cedar 10. The compact registration evidence
+owns all hashes, counts, exact targets and source/module provenance.
+
+**Scientific interpretation:** both canonical states retain DNA group, but
+the effective canonical 5′-OH classification is also `undetermined`. That label
+alone cannot distinguish the earlier synthetic modified end from the canonical
+control. It does not erase the earlier missing O5′ hydrogen/OH typing, and
+no qualification gate changes. Both canonical states lack native formal-charge
+readback; recorded partial charges remain distinct. Native metadata atom
+counts are retained as returned, not rewritten to imply qualification.
+
+**Next work:** implement an explicit source-traceable modified-terminal
+adaptation and validate the revised bundle, including the separate prepared
+5CM candidate, before a new bounded geometry trial. No further unchanged source
+inventory is needed. No new delivery is queued by this evidence-only update;
+no model edits, optimization, ReadySet retry, refinement or adoption ran.
+Runtime/schema and dependency behavior are unchanged; the 1,406-test software
+receipt below still applies, separately from this actual native return.
+
 **Cedar 10 returned; Cedar 11 canonical lookup retry (2026-10-15):** all
 **nine** payloads in `10_Cedar__7ap0ddc_cif_terminal_review.zip` verify. Its
 clean NASolve source is `f681b9bd5355905fbee0797302d5984cc40e5d6a`, with the same

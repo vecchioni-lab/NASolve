@@ -317,7 +317,7 @@
       "evidence": "docs/cif-linked-native-registration-evidence.json"
     },
     "terminal_resource_canonical_resolution_2026_10_15": {
-      "status": "IMPLEMENTED_INSTALLED_RETRY_PENDING",
+      "status": "RETURNED_INSTALLED_NUMERICAL_SOURCE_COLLECTION_COMPLETE",
       "delivery_prefix": "11_Cedar",
       "resource_policy_id": "cif-installed-terminal-resources-v2",
       "source_module": "src/nasolve/cif_terminal_resources.py",
@@ -351,7 +351,29 @@
         },
         "scope": "Explicit fake native APIs and existing relocation/transport controls; corrected installed execution still pending."
       },
-      "evidence": "docs/cif-linked-native-registration-evidence.json"
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "native_execution": {
+        "installation": "Phenix 2.2.1-6174",
+        "status": "REVIEW",
+        "returncode": 0,
+        "elapsed_seconds": 0.837208,
+        "archive_sha256": "87b62be8b669a54a8f2e67b5a18a439cb88e6b187354b95847fa29c96bb02cbc",
+        "verified_payloads": 9,
+        "canonical_resolution": {
+          "input_atom_names": [],
+          "interpreted_residue_name": "DG",
+          "method": "get_comp_comp_id_and_atom_name_interpretation",
+          "resolved_component_id": "Gd"
+        },
+        "base_preserved": true,
+        "unaffected_rows_preserved": true,
+        "dangling_references": 0,
+        "canonical_terminal_classification": "undetermined",
+        "formal_charge_readback": "UNSUPPORTED",
+        "terminal_adaptation": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      },
+      "next_step": "Implement an explicit source-traceable modified-terminal derivative, validate the revised bundle including prepared 5CM, and preserve remaining charge/numerical/stereochemical reviews before a separate bounded geometry trial. Do not repeat unchanged source collection."
     }
   },
   "audience": [

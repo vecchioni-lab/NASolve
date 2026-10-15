@@ -186,8 +186,12 @@ subsequent terminal recipe, with no coordinate model, invented targets or
 automatic adoption. Actual returned-source replay reproduces the reviewed
 5CM candidate. Cedar 10 also captured the installed terminal modification,
 but its direct DG lookup bypassed PDB-to-library name translation and did not
-produce the canonical control. The corrected native lookup remains pending
-installed execution; numerical targets and qualification gates are unchanged.
+produce the canonical control. Cedar 11 completes installed lookup and the
+in-memory control, preserving all unaffected restraint rows. The canonical
+5′-OH end also has undetermined classification despite retained DNA group;
+that label alone does not establish a modified-end defect. The earlier missing
+modified O5′ hydrogen/type treatment and unavailable native formal charges
+remain separate limits. Numerical targets and qualification gates are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -318,6 +322,9 @@ complete terminal chemistry and achieved model geometry.
 An explicit terminal-source review records installed modification parameters,
 native canonical-name resolution and a separate reviewed 5CM derivative before
 any new terminal adaptation or geometry trial.
+The completed installed canonical hydroxyl control preserves unrelated targets;
+its undetermined classification is recorded separately from formal-charge
+availability and incomplete modified-end treatment.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

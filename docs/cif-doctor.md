@@ -254,7 +254,7 @@ inventory will not resolve unavailable native formal-charge readback.
 ## Explicit terminal numerical-source review
 
 `scripts/build_cif_terminal_probe.py` builds a source-bundled terminal review
-with the existing pinned NARestraints source. The current retry uses
+with the existing pinned NARestraints source. The completed Cedar 11 delivery uses
 `--delivery-prefix 11_Cedar --output PATH/11_Cedar_probe_cif_terminal_review.py`;
 the builder retains its original `10_Cedar` default for compatibility.
 The runner reads the exact
@@ -288,11 +288,26 @@ direct DG lookup found no library component. The canonical control and terminal
 recipe did not run. The v2 retry addresses this lookup boundary without
 changing numerical targets or existing qualification checks.
 
+All nine returned Cedar 11 payloads also verify. Phenix 2.2.1-6174 completed
+resource collection at exit zero in 0.837208 s. Requested DG resolves to native
+metadata ID `Gd`; the canonical base remains unchanged. Applying `5*END` removes
+P/OP1/OP2, changes O5′ to OH1 and adds HO5′ with HOH1 typing. The source supplies
+the O5′–HO5′ bond (0.84 ± 0.02 Å; neutron target 1.02 Å) and C5′–O5′–HO5′
+angle (120 ± 3°). No unaffected bond/angle/torsion/chirality/plane row changes
+and no dangling atom reference remains. Source files are unchanged.
+
+The canonical control retains DNA group but its classification changes from
+DNA to `undetermined`. Thus that classification alone does not distinguish the
+earlier synthetic modified end from an installed canonical hydroxyl end; it
+does not erase the earlier observed missing O5′ hydrogen/type treatment.
+Formal-charge readback remains unsupported in both canonical states; partial
+charges are not substituted and the earlier native qualification gates remain.
+
 `PREPARATION_AND_RESOURCES_REVIEW` means that the separate preparation and
 resource collection completed, not that generic terminal chemistry is qualified.
-The exact 09 source reproduces the reviewed 5CM output in both offline replay
-and the returned Cedar 10 preparation; the corrected native canonical control
-remains pending. Complete terminal adaptation,
+The exact 09 source reproduces the reviewed 5CM output in offline replay and
+both returned Cedar 10/11 preparations. Terminal numerical-source collection
+is complete. Complete modified-terminal adaptation,
 new native bundle validation, geometry trials, refinement and adoption remain
 subsequent operations. No existing native qualification check is relaxed.
 

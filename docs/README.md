@@ -47,8 +47,10 @@ for actual behavior; history is evidence, not a second task queue.
   unchanged inventory is needed for the unavailable charge attribute.
   Cedar 10 prepared the exact hash-scoped 5CM candidate and recorded installed
   `5*END` rows, then stopped because direct `DG` lookup bypassed native
-  PDB-to-library name translation. Cedar 11 uses that native interpreter for
-  the canonical control and records its resolved identity. Terminal adaptation,
+  PDB-to-library name translation. Cedar 11 completes the canonical control
+  through that native interpreter, preserving every unaffected restraint row.
+  Its free-OH classification is also undetermined, so that label alone does
+  not establish a modified-end defect. Source collection is complete; terminal adaptation,
   native candidate qualification and geometry/refinement remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
