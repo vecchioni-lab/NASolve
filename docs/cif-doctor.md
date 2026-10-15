@@ -251,6 +251,33 @@ The next phase is explicit dictionary/end-state and geometry review. No runtime
 gate was changed to make the returned result pass, and repeating an unchanged
 inventory will not resolve unavailable native formal-charge readback.
 
+## Explicit terminal numerical-source review
+
+`scripts/build_cif_terminal_probe.py` builds `10_Cedar_probe_cif_terminal_review.py`
+with the existing pinned NARestraints source. The runner reads the exact
+returned Cedar 09 review ZIP, verifies its 207 payloads and snapshots the
+explicitly declared 5CM source. The existing source/output-hash-scoped
+`5cm-reviewed-torsion-v1` recipe produces a new candidate and receipt, without
+replacing any run input. `--inspect-only` stops after that offline preparation;
+explicit `--review-zip`, `--output-parent`, `--phenix-root` and timeout overrides
+remain available. New sessions and review ZIPs retain the leading delivery/run
+identifier.
+
+The separate `cif-installed-terminal-resources-v1` API reads requested native
+modification IDs and applies them only to a canonical library object in memory.
+Default `5*END`/DG records supply installed atom/bond/angle/torsion/chirality/plane
+row fields and numerical values, source/module hashes, charge availability and
+unchanged canonical base evidence. The native row API supplies its own field
+names; missing interfaces/modifications are unsupported, without guessed targets
+or charge substitutions. No coordinate model is supplied or edited.
+
+`PREPARATION_AND_RESOURCES_REVIEW` means that the separate preparation and
+resource collection completed, not that generic terminal chemistry is qualified.
+The exact 09 source reproduces the reviewed 5CM output in offline replay;
+installed terminal collection remains pending. Complete terminal adaptation,
+new native bundle validation, geometry trials, refinement and adoption remain
+subsequent operations. No existing native qualification check is relaxed.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": null,
+  "next_delivery": "10_Cedar",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -1091,5 +1091,67 @@
     "refinement": "NOT_RUN",
     "automatic_adoption": false,
     "next_step": "Review complete terminal chemistry, explicit hash-scoped 5CM preparation and remaining numerical/stereochemical limits before a new bounded geometry trial; do not repeat an unchanged inventory to chase absent native charge attributes."
+  },
+  "terminal_source_probe": {
+    "delivery_prefix": "10_Cedar",
+    "prior_archive": {
+      "name": "09_Cedar_nn9cyghr_cif_linked_review.zip",
+      "sha256": "db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a",
+      "verified_payloads": 207,
+      "declared_5cm_member": "baseline/inputs/runtime_sources/3_5CM.cif"
+    },
+    "preparation": {
+      "recipe": "5cm-reviewed-torsion-v1",
+      "source_sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858",
+      "candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+      "actual_returned_source_offline_replay": "EXACT_REVIEWED_OUTPUT_REPRODUCED",
+      "candidate_assessment": "PASS_FOR_IMPLEMENTED_ASSESSOR",
+      "source_and_original_archive_preserved": true,
+      "native_bundle_validation": "NOT_RUN"
+    },
+    "native_resource_inventory": {
+      "policy_id": "cif-installed-terminal-resources-v1",
+      "modification_ids": [
+        "5*END"
+      ],
+      "canonical_control": "DG",
+      "native_execution": "PENDING_ON_USER_MAC",
+      "fields": "native cif_keywords row fields, with atom/bond/angle/torsion/chirality/plane categories",
+      "provenance": "installed module/source hashes and source preservation after capture",
+      "missing_charge": "UNSUPPORTED_NO_PARTIAL_OR_ZERO_SUBSTITUTION",
+      "in_memory_base_preserved": true
+    },
+    "schemas": {
+      "version": 1,
+      "resource_audit_kind": "cif_native_terminal_resource_inventory",
+      "probe_kind": "cif-terminal-source-review"
+    },
+    "software_validation": {
+      "full_suite": {
+        "passed": 1400,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 63.87,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "focused": {
+        "passed": 49,
+        "seconds": 3.64,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py tests/test_cif_terminal_probe.py tests/test_cif_doctor_repair.py tests/test_cif_linked_probe.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "scope": "Explicit fake native APIs, preservation/unsupported/timeout controls, source-bundle relocation and poisoned-import controls. Real 09 preparation replay is inspect-only; no installed Phenix resource execution here.",
+      "regression_before": "New resource-inventory tests fail with absent implementation, then pass with source/field/timeout contracts."
+    },
+    "boundaries": {
+      "terminal_recipe_implementation": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "prior_qualification_gates_unchanged": true,
+      "native_payloads_committed": false
+    },
+    "purpose": "Collect installed terminal numerical sources and explicitly prepare the reviewed 5CM candidate before a new terminal adaptation or bounded geometry trial."
   }
 }

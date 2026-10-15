@@ -282,6 +282,39 @@
       "terminal_scope": "E:1 group DNA / classification undetermined; O5prime ether type and absent explicit O5prime H are not complete free-OH support",
       "next_step": "Review complete terminal chemistry, explicit hash-scoped 5CM preparation and remaining numerical/stereochemical limits before a new bounded geometry trial; do not repeat an unchanged inventory to chase absent native charge attributes.",
       "evidence": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "terminal_source_review_2026_10_15": {
+      "status": "IMPLEMENTED_INSTALLED_RESOURCE_CAPTURE_PENDING",
+      "modules": [
+        "src/nasolve/cif_terminal_resources.py",
+        "scripts/build_cif_terminal_probe.py",
+        "scripts/cif_terminal_probe_template.py"
+      ],
+      "delivery_prefix": "10_Cedar",
+      "resource_policy_id": "cif-installed-terminal-resources-v1",
+      "explicit_5cm_recipe": "5cm-reviewed-torsion-v1",
+      "new_runtime_dependencies": [],
+      "production_postmr_changes": false,
+      "qualification_gate_changes": false,
+      "terminal_recipe_implemented": false,
+      "real_09_inspect_only_replay": "EXACT_REVIEWED_5CM_HASH_REPRODUCED_INPUTS_PRESERVED",
+      "software_validation": {
+        "full_suite": {
+          "passed": 1400,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 63.87,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "focused": {
+          "passed": 49,
+          "seconds": 3.64,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py tests/test_cif_terminal_probe.py tests/test_cif_doctor_repair.py tests/test_cif_linked_probe.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "scope": "Explicit fake native APIs, preservation/unsupported/timeout controls, source-bundle relocation and poisoned-import controls. Real 09 preparation replay is inspect-only; no installed Phenix resource execution here.",
+        "regression_before": "New resource-inventory tests fail with absent implementation, then pass with source/field/timeout contracts."
+      },
+      "evidence": "docs/cif-linked-native-registration-evidence.json"
     }
   },
   "audience": [

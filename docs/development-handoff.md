@@ -44,6 +44,57 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 10 terminal-source review ready (2026-10-15):** the user requested a
+few executable steps and clarified whether the whole run had completed. Only
+the native linkage diagnostic has completed; no complete refinement run is
+claimed. The next delivery advances the two known dictionary reviews without
+rerunning the same linked inventory for an unavailable charge attribute.
+
+`scripts/build_cif_terminal_probe.py` packages
+`10_Cedar_probe_cif_terminal_review.py` from pinned source and the same
+`05_Cedar_narestraints_build`. It accepts the exact hash-bound returned Cedar
+09 capsule, verifies all **207** payloads and snapshots only its explicitly
+declared frozen 5CM source. The existing `5cm-reviewed-torsion-v1` recipe
+prepares a separate candidate: source `38378c7d…`, output **`61bf14a1…`**.
+No selected bundle or old native input is replaced. The actual returned 09
+source reproduces the complete reviewed candidate hash in inspect-only replay;
+its implemented assessment passes, with native bundle and geometry validation
+still NOT_RUN for this preparation.
+
+The new reusable `cif_terminal_resources.inspect_terminal_resources` API
+reads explicit native modification IDs (default `5*END`) and applies them only
+to an in-memory canonical library control (default DG). It records all native
+row fields in atom/bond/angle/torsion/chirality/plane categories, numerical
+values, source/module hashes, charge readback and base preservation. No target,
+energy type, hydrogen name or formal charge is invented for IGU. This captures
+the installed numerical authority needed to complete the terminal treatment;
+it is **not** implementation or qualification of that new recipe. Native
+source/control errors, unsupported APIs and owned-process timeout remain
+explicit. The selected Phenix environment is isolated as in earlier probes.
+
+**Software validation:**
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`
+passes **1,400 tests, two skips and 276 subtests (63.87 s)**. The same command
+with `tests/test_cif_terminal_resources.py tests/test_cif_terminal_probe.py
+tests/test_cif_doctor_repair.py tests/test_cif_linked_probe.py
+tests/test_synthetic_dna_shuttle.py` passes **49 tests (3.64 s)**. New native
+tests use explicit fake APIs, including exact target retention, unknown charge,
+missing resource and owned timeout. The resource tests fail before the new
+module exists and pass afterward. Transport tests delete original build paths,
+poison imports and preserve both successful/unsupported review capsules.
+Real-09 inspect-only replay verifies exact source/output hashes and preserved
+original ZIP; installed resource execution remains **PENDING**. No new
+dependencies, production PostMR changes or old qualification-gate changes.
+
+**User delivery:** a pinned `10_Cedar_probe_build`, then the source-bundled
+builder/run sequence. The user now explicitly permits a few sequential
+commands together. Preserve the frozen everyday NASolve checkout, existing
+05–09 trees/runners and every native session. Inspect the new review ZIP before
+implementing the terminal recipe or entering a separate bounded geometry trial.
+No model interpretation, model optimization, ReadySet retry, diffraction
+refinement or adoption is part of Cedar 10. Only code/tests/docs and compact
+evidence enter Git; actual source dictionaries/native outputs remain outside it.
+
 **Cedar 09 returned; native metadata recovered (2026-10-15):** all **207**
 payloads in `09_Cedar_nn9cyghr_cif_linked_review.zip` verify. Source is clean
 NASolve `4f1cde11b540c24adc27c97cb5f891f6710bf17e` with the same pinned clean
@@ -85,7 +136,8 @@ owns exact archive/source/API hashes, native counts and these review limits.
 free-OH terminal treatment through a traceable numerical source, use explicit
 reviewed 5CM preparation where its exact source hash permits it, and preserve
 charge/protonation and generated metadata reviews before a new bounded geometry
-trial. No new inventory-only delivery is queued. No ReadySet retry,
+trial. The subsequent Cedar 10 source-resource delivery is described above;
+it does not repeat this linked inventory. No ReadySet retry,
 minimization, refinement, adoption or gate change occurred. These updates are
 documentation/evidence only; the runtime's existing 1,386-test receipt below
 and its returned installed execution remain the validation. Original private

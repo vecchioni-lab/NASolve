@@ -45,6 +45,10 @@ for actual behavior; history is evidence, not a second task queue.
   Synthetic free-OH terminal chemistry, the retained 5CM torsion and broader
   numerical/stereochemical review remain separate open work; no repeated
   unchanged inventory is needed for the unavailable charge attribute.
+  The next `10_Cedar` delivery explicitly prepares the hash-scoped 5CM
+  candidate and records installed terminal modifications plus a canonical DG
+  control as numerical-source evidence. It does not implement/adopt the new
+  terminal recipe or optimize a model.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

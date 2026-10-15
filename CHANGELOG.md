@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit terminal-source review delivery
+
+- Add a reusable installed-resource inventory for exact native modification
+  IDs and a canonical in-memory control. Record native CIF row fields,
+  numerical values, module/source hashes and preservation; missing interfaces
+  or modifications remain explicit. Formal and partial charge stay distinct.
+- Add the source-bundled `10_Cedar` probe for the exact returned Cedar 09 ZIP.
+  Verify all 207 payloads, prepare a separate 5CM candidate through the existing
+  hash-scoped recipe, and collect installed `5*END` plus its DG control.
+  The numerical-source evidence is for subsequent terminal-recipe review;
+  no terminal recipe, model editing, minimization, refinement or adoption runs.
+- Preserve all prior deliveries, explicit path overrides and inspect-only
+  operation. The actual returned 09 source reproduces the reviewed 5CM candidate
+  hash offline; installed terminal-resource capture remains the next live check.
+
 ### Cedar 09 returned native evidence
 
 - Verify all 207 returned payloads. Installed Phenix 2.2.1-6174 now reads

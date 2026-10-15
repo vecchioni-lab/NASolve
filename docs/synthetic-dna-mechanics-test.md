@@ -379,6 +379,18 @@ plane-angle reviews and actual retained 5CM C2/C2′ torsion still require revie
 The next phase is dictionary/end-state and geometry review, rather than another
 unchanged native inventory. No refinement, adoption or input replacement ran.
 
+### Cedar 10 explicit numerical-source review
+
+The next source-bundled probe verifies the exact returned Cedar 09 capsule,
+prepares the existing source-hash-scoped 5CM correction as a separate candidate,
+and records installed `5*END` parameters plus a canonical DG control in memory.
+No coordinate model is supplied. Actual-source inspect-only replay reproduces
+the complete reviewed 5CM output hash; installed terminal-resource collection
+is still pending. These resources support subsequent complete O5′-OH treatment
+without inventing numerical targets or silently modifying the frozen run.
+The probe does not implement/adopt that terminal recipe, perform another linked
+inventory or start geometry minimization/refinement.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

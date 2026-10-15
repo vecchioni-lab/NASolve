@@ -176,6 +176,14 @@ atoms but undetermined native classification and incomplete O5′-OH treatment;
 complete terminal support is not established. Corrected group readback does
 not certify formal charges, numerical geometry or experimental chemistry.
 
+The next source-resource diagnostic explicitly prepares the reviewed 5CM
+derivative and records the installed terminal-modification parameters alongside
+an in-memory canonical DG control. The native reader's own row fields and
+numerical values are preserved with source hashes. These are sources for a
+subsequent terminal recipe, with no coordinate model, invented targets or
+automatic adoption. Actual returned-source replay reproduces the reviewed
+5CM candidate; installed terminal-source collection remains pending.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -302,6 +310,9 @@ Returned Cedar 09 interpretation records 29 evaluable checks passing, with four
 charge readbacks unsupported. Source-coordinate sugar-sign agreement and
 file-level charge retention are separate from independent stereochemistry,
 complete terminal chemistry and achieved model geometry.
+An explicit terminal-source review records installed modification parameters
+and a separate reviewed 5CM derivative before any new terminal adaptation or
+geometry trial.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 
