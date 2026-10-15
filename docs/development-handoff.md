@@ -44,6 +44,50 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
+**Cedar 10 returned; Cedar 11 canonical lookup retry (2026-10-15):** all
+**nine** payloads in `10_Cedar__7ap0ddc_cif_terminal_review.zip` verify. Its
+clean NASolve source is `f681b9bd5355905fbee0797302d5984cc40e5d6a`, with the same
+clean pinned NARestraints. The runner prepared the exact reviewed 5CM
+derivative (`61bf14a1…`) with unchanged source/archive, then used installed
+Phenix **2.2.1-6174** to capture the `5*END` fields and source hashes. The resource
+worker returned UNSUPPORTED at **Missing canonical monomer: DG** after
+**3.726048 s**; the aggregate probe is `NATIVE_RESOURCES_REVIEW`. No canonical
+control, terminal adaptation, native 5CM qualification or refinement ran.
+
+The v1 worker incorrectly used direct library lookup for a PDB residue name.
+Primary cctbx `server.py` delegates name translation to the installed
+`get_comp_comp_id_and_atom_name_interpretation` method; `iotbx.pdb` translates
+explicit DG to library GD (and DA/DC/DT to AD/CD/TD). Policy
+**`cif-installed-terminal-resources-v2`** now uses that native API with an empty
+atom-name list, retaining no coordinate model or local alias table. Additive
+schema-1 control evidence records the method, empty input atom list,
+interpreted residue name and resolved component ID; provenance also hashes
+`iotbx.pdb`. Missing native resolution APIs/components remain unsupported and
+retain the already captured modification evidence. All numeric targets,
+formal-charge boundaries and existing qualification gates are unchanged.
+
+**Validation:** the new fixture reproduces the untranslated-name failure:
+**five failures / seven passes** before the fix. Focused validation is
+**55 passed (4.37 s)** using the five terminal/resource/repair/linked/shuttle
+test files in the Cedar 10 command below. The full command below passes
+**1,406 tests, two skips and 276 subtests (64.49 s)**. These are explicit fake
+native API and transport checks, including all four canonical DNA names,
+unsupported resolution, preservation and relocation. Corrected installed
+canonical-control execution remains pending. The registration evidence owns
+the exact returned hashes, source rows' provenance and primary-code references.
+
+**Next delivery:** build the existing terminal probe with explicit
+`--delivery-prefix 11_Cedar` and output
+`11_Cedar_probe_cif_terminal_review.py`, from pinned `11_Cedar_probe_build` and
+the same `05_Cedar_narestraints_build`. It still reads the exact original
+Cedar 09 ZIP; no replacement ZIP or new dependency is required. The user
+requests one pasteable conditional command block: fetch, add pinned detached
+worktree, build, run, joined by `&&` inside a subshell. Stop after any nonzero
+status. Preserve the everyday checkout, all old build trees and every native
+session. Inspect the returned control before implementing terminal adaptation
+or proceeding to a separate bounded geometry trial. No native outputs are
+committed; this change includes source/tests/docs and compact evidence only.
+
 **Cedar 10 terminal-source review ready (2026-10-15):** the user requested a
 few executable steps and clarified whether the whole run had completed. Only
 the native linkage diagnostic has completed; no complete refinement run is

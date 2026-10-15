@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Native canonical residue-name resolution
+
+- Resolve canonical terminal-resource controls through the installed native
+  residue-name interpreter instead of sending a PDB name to the direct library
+  lookup. Record requested/interpreted/resolved identities and the additional
+  `iotbx.pdb` source hash under terminal-resource policy v2. Schema 1 remains
+  additive; unavailable APIs or components remain unsupported.
+- Record Cedar 10's exact reviewed 5CM preparation and captured installed
+  `5*END` rows separately from its failed direct `DG` lookup. The Cedar 11
+  retry preserves all prior runs and supplies one conditional command block.
+  Terminal-recipe implementation, native candidate qualification and refinement
+  remain separate work.
+
 ### Explicit terminal-source review delivery
 
 - Add a reusable installed-resource inventory for exact native modification

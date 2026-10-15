@@ -379,14 +379,18 @@ plane-angle reviews and actual retained 5CM C2/C2′ torsion still require revie
 The next phase is dictionary/end-state and geometry review, rather than another
 unchanged native inventory. No refinement, adoption or input replacement ran.
 
-### Cedar 10 explicit numerical-source review
+### Cedar 10 return and Cedar 11 canonical-control retry
 
-The next source-bundled probe verifies the exact returned Cedar 09 capsule,
+The source-bundled probe verifies the exact returned Cedar 09 capsule,
 prepares the existing source-hash-scoped 5CM correction as a separate candidate,
 and records installed `5*END` parameters plus a canonical DG control in memory.
-No coordinate model is supplied. Actual-source inspect-only replay reproduces
-the complete reviewed 5CM output hash; installed terminal-resource collection
-is still pending. These resources support subsequent complete O5′-OH treatment
+No coordinate model is supplied. All nine returned Cedar 10 payloads verify;
+the native run reproduced the exact reviewed 5CM output and captured installed
+Phenix 2.2.1-6174 `5*END` rows. Its direct DG lookup failed before the canonical
+control because the native library uses a translated identity. Cedar 11 uses
+the installed residue-name interpreter, records the resolved component ID and
+keeps unavailable APIs/components unsupported. The corrected canonical control
+is still pending native execution. These resources support subsequent complete O5′-OH treatment
 without inventing numerical targets or silently modifying the frozen run.
 The probe does not implement/adopt that terminal recipe, perform another linked
 inventory or start geometry minimization/refinement.

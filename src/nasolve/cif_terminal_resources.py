@@ -18,7 +18,7 @@ from typing import Mapping, Sequence
 
 from .cif_native_validation import _artifact, _sha, _stop
 
-TERMINAL_RESOURCE_POLICY = 'cif-installed-terminal-resources-v1'
+TERMINAL_RESOURCE_POLICY = 'cif-installed-terminal-resources-v2'
 
 _WORKER = r'''import hashlib,json,sys,traceback
 from pathlib import Path
@@ -57,7 +57,8 @@ def component(obj):
     return result
 try:
     from mmtbx.monomer_library import server,cif_types
-    for module in [server,cif_types]:
+    import iotbx.pdb
+    for module in [server,cif_types,iotbx.pdb]:
         path=Path(module.__file__)
         report["api_sources"].append({"module":module.__name__,"historical_path":str(path),"sha256":sha(path.read_bytes())})
     library=server.server()
@@ -66,14 +67,20 @@ try:
         if obj is None:raise UnsupportedNativeAPI("Missing requested terminal modification: "+identifier)
         report["modifications"][identifier]={"metadata":row(obj.chem_mod),
             "source_provenance":source_info(obj),**lists(obj)}
-    base=library.get_comp_comp_id_direct(comp_id=spec["canonical_code"])
-    if base is None:raise UnsupportedNativeAPI("Missing canonical monomer: "+spec["canonical_code"])
+    method="get_comp_comp_id_and_atom_name_interpretation"
+    resolver=getattr(library,method,None)
+    if not callable(resolver):raise UnsupportedNativeAPI("Native canonical residue-name resolution API is unavailable")
+    base,interpretation=resolver(residue_name=spec["canonical_code"],atom_names=[])
+    if base is None:raise UnsupportedNativeAPI("Missing canonical monomer after native residue-name resolution: "+spec["canonical_code"])
     before=component(base)
+    resolution={"method":method,"input_atom_names":[],
+        "interpreted_residue_name":getattr(interpretation,"residue_name",None),
+        "resolved_component_id":before["metadata"].get("id")}
     effective,ids=library.get_comp_comp_id_mod(base,tuple(spec["modification_ids"]))
     after=component(effective)
     if component(base)!=before:raise RuntimeError("Native modification mutated the canonical base object")
     if list(ids)!=spec["modification_ids"]:raise RuntimeError("Native applied modification identifiers differ")
-    report["canonical_control"]={"code":spec["canonical_code"],"base":before,"effective":after,
+    report["canonical_control"]={"code":spec["canonical_code"],"resolution":resolution,"base":before,"effective":after,
         "applied_modification_ids":list(ids),"base_preserved":True,"scope":"in-memory library control; no coordinate model"}
     report["status"]="REVIEW"
 except UnsupportedNativeAPI as exc:

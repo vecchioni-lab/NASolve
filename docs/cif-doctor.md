@@ -253,8 +253,11 @@ inventory will not resolve unavailable native formal-charge readback.
 
 ## Explicit terminal numerical-source review
 
-`scripts/build_cif_terminal_probe.py` builds `10_Cedar_probe_cif_terminal_review.py`
-with the existing pinned NARestraints source. The runner reads the exact
+`scripts/build_cif_terminal_probe.py` builds a source-bundled terminal review
+with the existing pinned NARestraints source. The current retry uses
+`--delivery-prefix 11_Cedar --output PATH/11_Cedar_probe_cif_terminal_review.py`;
+the builder retains its original `10_Cedar` default for compatibility.
+The runner reads the exact
 returned Cedar 09 review ZIP, verifies its 207 payloads and snapshots the
 explicitly declared 5CM source. The existing source/output-hash-scoped
 `5cm-reviewed-torsion-v1` recipe produces a new candidate and receipt, without
@@ -263,18 +266,33 @@ explicit `--review-zip`, `--output-parent`, `--phenix-root` and timeout override
 remain available. New sessions and review ZIPs retain the leading delivery/run
 identifier.
 
-The separate `cif-installed-terminal-resources-v1` API reads requested native
+The separate `cif-installed-terminal-resources-v2` API reads requested native
 modification IDs and applies them only to a canonical library object in memory.
 Default `5*END`/DG records supply installed atom/bond/angle/torsion/chirality/plane
 row fields and numerical values, source/module hashes, charge availability and
 unchanged canonical base evidence. The native row API supplies its own field
 names; missing interfaces/modifications are unsupported, without guessed targets
-or charge substitutions. No coordinate model is supplied or edited.
+or charge substitutions. Canonical lookup uses the installed
+`get_comp_comp_id_and_atom_name_interpretation` API with an empty atom-name
+list: the explicit residue name selects a library identity without supplying
+model atoms. Requested code, interpreted residue name, resolved component ID
+and the `iotbx.pdb` module hash are recorded additively in schema 1. Native
+translation handles PDB names such as DG and library names such as GD; no
+NASolve alias table or guessed alternative component is introduced.
+No coordinate model is supplied or edited.
+
+All nine payloads in the returned Cedar 10 capsule verify. It prepared the
+exact reviewed 5CM candidate and captured installed Phenix 2.2.1-6174 `5*END`
+rows and source hashes, then returned `NATIVE_RESOURCES_REVIEW` because its v1
+direct DG lookup found no library component. The canonical control and terminal
+recipe did not run. The v2 retry addresses this lookup boundary without
+changing numerical targets or existing qualification checks.
 
 `PREPARATION_AND_RESOURCES_REVIEW` means that the separate preparation and
 resource collection completed, not that generic terminal chemistry is qualified.
-The exact 09 source reproduces the reviewed 5CM output in offline replay;
-installed terminal collection remains pending. Complete terminal adaptation,
+The exact 09 source reproduces the reviewed 5CM output in both offline replay
+and the returned Cedar 10 preparation; the corrected native canonical control
+remains pending. Complete terminal adaptation,
 new native bundle validation, geometry trials, refinement and adoption remain
 subsequent operations. No existing native qualification check is relaxed.
 

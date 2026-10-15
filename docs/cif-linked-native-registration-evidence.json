@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "10_Cedar",
+  "next_delivery": "11_Cedar",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -1115,11 +1115,11 @@
         "5*END"
       ],
       "canonical_control": "DG",
-      "native_execution": "PENDING_ON_USER_MAC",
+      "native_execution": "MODIFICATION_CAPTURED_CANONICAL_CONTROL_UNSUPPORTED",
       "fields": "native cif_keywords row fields, with atom/bond/angle/torsion/chirality/plane categories",
       "provenance": "installed module/source hashes and source preservation after capture",
       "missing_charge": "UNSUPPORTED_NO_PARTIAL_OR_ZERO_SUBSTITUTION",
-      "in_memory_base_preserved": true
+      "in_memory_base_preserved": "NOT_RUN"
     },
     "schemas": {
       "version": 1,
@@ -1152,6 +1152,151 @@
       "prior_qualification_gates_unchanged": true,
       "native_payloads_committed": false
     },
-    "purpose": "Collect installed terminal numerical sources and explicitly prepare the reviewed 5CM candidate before a new terminal adaptation or bounded geometry trial."
+    "purpose": "Collect installed terminal numerical sources and explicitly prepare the reviewed 5CM candidate before a new terminal adaptation or bounded geometry trial.",
+    "returned_cedar_10": {
+      "archive": {
+        "name": "10_Cedar__7ap0ddc_cif_terminal_review.zip",
+        "sha256": "4a1e632a116238d366944a8dc5dc18620dd42217893d44404e1a4b4d73b61c04",
+        "bytes": 49765,
+        "verified_payloads": 9
+      },
+      "source": {
+        "commit": "f681b9bd5355905fbee0797302d5984cc40e5d6a",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "probe_status": "NATIVE_RESOURCES_REVIEW",
+      "five_cm_preparation": {
+        "status": "PREPARED",
+        "recipe_id": "5cm-reviewed-torsion-v1",
+        "source_sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858",
+        "candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+        "source_preserved": true,
+        "candidate_assessment": "PASS",
+        "native_validation": {
+          "reason": "No Phenix invocation in preparation",
+          "status": "NOT_RUN"
+        }
+      },
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "native_resources": {
+        "status": "UNSUPPORTED",
+        "returncode": 2,
+        "elapsed_seconds": 3.726048,
+        "error": "Missing canonical monomer: DG",
+        "captured_modifications": [
+          "5*END"
+        ],
+        "canonical_control": "NOT_RUN",
+        "source_files": [
+          {
+            "sha256": "14b94738532dc7a36f8d8c6518d9fface8b033887c98c8242d71afba17cccd99",
+            "bytes": 309942,
+            "preserved_after_capture": true
+          }
+        ],
+        "module_sha256": {
+          "mmtbx.monomer_library.server": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa",
+          "mmtbx.monomer_library.cif_types": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd"
+        }
+      },
+      "installed_5prime_source_values": {
+        "scope": "Recorded installed modification values, not a new terminal recipe or scientific approval.",
+        "hydroxyl_oxygen_energy_type": "OH1",
+        "added_hydrogen_id": "HO5'",
+        "added_hydrogen_energy_type": "HOH1",
+        "bond_target_angstrom": 0.84,
+        "bond_esd_angstrom": 0.02,
+        "neutron_bond_target_angstrom": 1.02,
+        "angle_target_degrees": 120.0,
+        "angle_esd_degrees": 3.0,
+        "oxygen_partial_charge": -0.212,
+        "hydrogen_partial_charge": 0.142,
+        "formal_charge_substitution": false
+      },
+      "original_09_archive_preserved": true,
+      "model_editing": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "terminal_recipe_implementation": "NOT_RUN",
+      "automatic_adoption": false,
+      "interpretation": "Installed modification capture and host-side explicit 5CM preparation completed; direct PDB-name lookup failed before canonical control. The control is not a terminal-chemistry pass."
+    },
+    "canonical_resolution_retry": {
+      "delivery_prefix": "11_Cedar",
+      "policy_id": "cif-installed-terminal-resources-v2",
+      "before": "Direct library lookup receives PDB DG and returns no component.",
+      "after": "Delegate canonical resolution to the installed get_comp_comp_id_and_atom_name_interpretation API with an empty atom-name list.",
+      "canonical_control": "DG",
+      "native_execution": "PENDING_ON_USER_MAC",
+      "native_aliases_from_primary_code": {
+        "DA": "AD",
+        "DC": "CD",
+        "DG": "GD",
+        "DT": "TD"
+      },
+      "nasolve_alias_table_added": false,
+      "schema_version": 1,
+      "additive_control_fields": [
+        "resolution.method",
+        "resolution.input_atom_names",
+        "resolution.interpreted_residue_name",
+        "resolution.resolved_component_id"
+      ],
+      "additional_module_provenance": "iotbx.pdb",
+      "unsupported_api_or_component_remains_unsupported": true,
+      "numerical_targets_changed": false,
+      "qualification_gates_changed": false,
+      "input_archive_changed": false,
+      "new_runtime_dependencies": [],
+      "primary_sources": [
+        {
+          "url": "https://github.com/cctbx/cctbx_project/blob/master/mmtbx/monomer_library/server.py",
+          "git_blob_sha": "af1ac801d43c33b235584e1a6a59d82c137cd8de",
+          "role": "Public canonical lookup delegates residue-name translation to the native interpreter."
+        },
+        {
+          "url": "https://github.com/cctbx/cctbx_project/blob/master/iotbx/pdb/__init__.py",
+          "git_blob_sha": "29d7efe363c1bb4d9aef4d9f612ffcb028728528",
+          "role": "Native PDB-to-monomer-library name translation."
+        },
+        {
+          "url": "https://github.com/cctbx/cctbx_project/blob/master/iotbx/pdb/rna_dna_atom_names_bpl.cpp",
+          "git_blob_sha": "6c0af252c99494f5c42fd89d323f4e31a0953df0",
+          "role": "Empty atom-name list is supported and leaves an explicit DNA residue name unchanged."
+        }
+      ],
+      "software_validation": {
+        "before_fix": {
+          "failed": 5,
+          "passed": 7,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py"
+        },
+        "focused": {
+          "passed": 55,
+          "seconds": 4.37,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py tests/test_cif_terminal_probe.py tests/test_cif_doctor_repair.py tests/test_cif_linked_probe.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1406,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 64.49,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "scope": "Explicit fake native APIs and existing relocation/transport controls; corrected installed execution still pending."
+      },
+      "ferry": "One subshell block with fetch, pinned detached worktree, build and run joined by &&; nonzero status stops dependent steps.",
+      "remaining": [
+        "Installed canonical-control execution",
+        "Complete terminal adaptation",
+        "New native 5CM/bundle validation",
+        "Bounded geometry trial",
+        "Full refinement and adoption"
+      ]
+    }
   }
 }

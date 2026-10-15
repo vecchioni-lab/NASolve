@@ -45,6 +45,9 @@ their run token near the front, so repeated executions of one delivery remain
 distinguishable. Print and record the same delivery identifier in receipts;
 give one terminal command for the exact new filename. Keep previous deliveries
 and runs intact; do not rely on Downloads suffixes such as `(1)` to select code.
+When a user requests one pasteable ferry block, join the exact fetch,
+pinned-worktree, build and run commands with `&&` inside a subshell. A nonzero
+status must stop dependent steps; do not join them with unconditional separators.
 
 ## Branch and worktree lifecycle
 

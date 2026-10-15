@@ -284,7 +284,7 @@
       "evidence": "docs/cif-linked-native-registration-evidence.json"
     },
     "terminal_source_review_2026_10_15": {
-      "status": "IMPLEMENTED_INSTALLED_RESOURCE_CAPTURE_PENDING",
+      "status": "RETURNED_MODIFICATION_CAPTURED_CANONICAL_CONTROL_UNSUPPORTED",
       "modules": [
         "src/nasolve/cif_terminal_resources.py",
         "scripts/build_cif_terminal_probe.py",
@@ -313,6 +313,43 @@
         },
         "scope": "Explicit fake native APIs, preservation/unsupported/timeout controls, source-bundle relocation and poisoned-import controls. Real 09 preparation replay is inspect-only; no installed Phenix resource execution here.",
         "regression_before": "New resource-inventory tests fail with absent implementation, then pass with source/field/timeout contracts."
+      },
+      "evidence": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "terminal_resource_canonical_resolution_2026_10_15": {
+      "status": "IMPLEMENTED_INSTALLED_RETRY_PENDING",
+      "delivery_prefix": "11_Cedar",
+      "resource_policy_id": "cif-installed-terminal-resources-v2",
+      "source_module": "src/nasolve/cif_terminal_resources.py",
+      "additive_schema_1_fields": [
+        "resolution.method",
+        "resolution.input_atom_names",
+        "resolution.interpreted_residue_name",
+        "resolution.resolved_component_id"
+      ],
+      "native_resolution_method": "get_comp_comp_id_and_atom_name_interpretation",
+      "new_runtime_dependencies": [],
+      "qualification_gate_changes": false,
+      "numerical_target_changes": false,
+      "software_validation": {
+        "before_fix": {
+          "failed": 5,
+          "passed": 7,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py"
+        },
+        "focused": {
+          "passed": 55,
+          "seconds": 4.37,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py tests/test_cif_terminal_probe.py tests/test_cif_doctor_repair.py tests/test_cif_linked_probe.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1406,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 64.49,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "scope": "Explicit fake native APIs and existing relocation/transport controls; corrected installed execution still pending."
       },
       "evidence": "docs/cif-linked-native-registration-evidence.json"
     }
