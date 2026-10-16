@@ -476,6 +476,35 @@ dictionary diagnostics; the responsible construction step remains unproven.
 Review frozen construction/parent-restoration and graph correspondence before
 selecting any repair. Full geometry and chemical approval remain separate.
 
+### Original construction-stage provenance
+
+`cif_construction_provenance` snapshots explicit stage artifacts from a declared
+run whose prepared-model hash and size match reviewed evidence. The saved Coot
+script is parsed with Python AST; it is never executed. Literal references
+rebase only through the declared historical run anchor; outside-run paths stay
+uncollected. All recorded source/frozen hashes are rechecked after analysis.
+Missing stages and receipts remain explicit. Unsafe paths, source symlinks,
+changed inputs, duplicate atoms and multiple PDB models are refused.
+
+The audit selects intrasite bond/angle cases at nominal absolute deviation
+at least five from the captured geometry report, independent of component code.
+Single-model PDB stages must match the exact site, altloc, atom name, component
+and element. It records first-observed outliers and adjacent comparable-stage
+threshold crossings; a gap cannot prove a transition. Same-name parent
+coordinates are compared descriptively (within 0.001 Å after a difference over
+0.01 Å), without claiming chemical/graph correspondence. Chronology and observed
+coordinate copies do not by themselves establish the responsible algorithm.
+
+`scripts/build_cif_construction_probe.py` builds the explicit Cedar 16 runner
+for the exact returned Cedar 15 ZIP and original-run binding. The original run
+is read-only; `--run` supports relocation. The runner writes a new frozen
+evidence inventory, construction report and review ZIP. It requires Python's
+standard library and performs no new Coot/Phenix execution, remapping,
+optimization, refinement or adoption. Successful analysis retains REVIEW/exit 2
+and root cause NOT_ESTABLISHED. Synthetic tests and an actual captured-input
+replay with a two-file original-run witness pass; full Mac stage collection
+remains pending. This diagnostic is separate from production PostMR and repair.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

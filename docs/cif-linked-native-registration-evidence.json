@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "NOT_QUEUED",
+  "next_delivery": "16_Cedar",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -2729,20 +2729,18 @@
       "unknown_motifs": "REFUSE_OR_REVIEW_REQUIRES_SEPARATE_AUTHORITY_AND_QUALIFICATION"
     },
     "next_bounded_work": {
-      "status": "CONSTRUCTION_AND_ATOM_CORRESPONDENCE_PROVENANCE_AUDIT_NEXT",
-      "next_delivery_queued": false,
-      "work": "Trace original Coot construction, canonical-parent coordinate restoration and atom correspondence with frozen before/after models and mutation receipts; choose suspect sites from graph/geometry evidence.",
+      "status": "CEDAR_16_IMPLEMENTED_ORIGINAL_MAC_COLLECTION_PENDING",
+      "next_delivery_queued": true,
+      "delivery_prefix": "16_Cedar",
+      "work": "Collect hash-bound original construction stages and saved declarations, then review the first observed intrasite geometry distortion and adjacent-stage crossings before selecting a repair.",
       "root_cause": "NOT_ESTABLISHED",
-      "target_retuning": "NOT_JUSTIFIED_BY_COORDINATE_DISTORTION",
-      "do_not_repeat": "No unchanged formal-charge inventory or captured-geometry rerun resolves the placement provenance.",
+      "coordinate_intervention": "NOT_RUN",
       "remaining_limits": [
-        "Construction step responsible for severe old coordinate distortions",
-        "Nine unsupported effective formal-charge readbacks and added terminal H formal charge unassessed",
-        "Existing 1AP/DP source reviews",
-        "Full native symmetry/slack/top-out and deferred geometry evaluation",
-        "Sugar pucker and independent absolute stereochemistry",
-        "Bounded coordinate intervention, refinement and human review",
-        "Production integration and adoption"
+        "Full original Mac stage evidence pending",
+        "Missing stages and later synthetic control cannot establish an earlier transition",
+        "Same-name parent coordinate equality is not semantic graph correspondence",
+        "Existing source chemistry, formal-charge, absolute-stereochemistry and complete geometry qualification limits",
+        "Coordinate repair, refinement, human review and production integration"
       ]
     }
   },
@@ -3215,20 +3213,174 @@
       "causal_limits": "The construction/parent-restoration/atom-mapping step is a candidate for provenance investigation, not a demonstrated cause. Source-coordinate agreement does not independently qualify source chemistry."
     },
     "next_bounded_work": {
-      "status": "CONSTRUCTION_AND_ATOM_CORRESPONDENCE_PROVENANCE_AUDIT_NEXT",
-      "next_delivery_queued": false,
-      "work": "Trace original Coot construction, canonical-parent coordinate restoration and atom correspondence with frozen before/after models and mutation receipts; choose suspect sites from graph/geometry evidence.",
+      "status": "CEDAR_16_IMPLEMENTED_ORIGINAL_MAC_COLLECTION_PENDING",
+      "next_delivery_queued": true,
+      "delivery_prefix": "16_Cedar",
+      "work": "Collect hash-bound original construction stages and saved declarations, then review the first observed intrasite geometry distortion and adjacent-stage crossings before selecting a repair.",
       "root_cause": "NOT_ESTABLISHED",
-      "target_retuning": "NOT_JUSTIFIED_BY_COORDINATE_DISTORTION",
-      "do_not_repeat": "No unchanged formal-charge inventory or captured-geometry rerun resolves the placement provenance.",
+      "coordinate_intervention": "NOT_RUN",
       "remaining_limits": [
-        "Construction step responsible for severe old coordinate distortions",
-        "Nine unsupported effective formal-charge readbacks and added terminal H formal charge unassessed",
-        "Existing 1AP/DP source reviews",
-        "Full native symmetry/slack/top-out and deferred geometry evaluation",
-        "Sugar pucker and independent absolute stereochemistry",
-        "Bounded coordinate intervention, refinement and human review",
-        "Production integration and adoption"
+        "Full original Mac stage evidence pending",
+        "Missing stages and later synthetic control cannot establish an earlier transition",
+        "Same-name parent coordinate equality is not semantic graph correspondence",
+        "Existing source chemistry, formal-charge, absolute-stereochemistry and complete geometry qualification limits",
+        "Coordinate repair, refinement, human review and production integration"
+      ]
+    }
+  },
+  "construction_provenance_2026_10_16": {
+    "status": "IMPLEMENTED_ORIGINAL_MAC_COLLECTION_PENDING",
+    "delivery_prefix": "16_Cedar",
+    "policy_id": "cif-construction-stage-provenance-v1",
+    "modules": [
+      "src/nasolve/cif_construction_provenance.py",
+      "scripts/cif_construction_probe_template.py",
+      "scripts/build_cif_construction_probe.py"
+    ],
+    "schema_1": {
+      "new_audit_kind": "cif_construction_stage_provenance",
+      "new_probe_kind": "cif-construction-provenance-probe",
+      "existing_inventory_or_qualification_formats_changed": false
+    },
+    "input_archive": {
+      "name": "15_Cedar_01pvz5n5_cif_geometry_review.zip",
+      "bytes": 849112,
+      "sha256": "b545664e11d09b728b045bfe44fbb786520e8e82997f25aa753b06622e3c9be9",
+      "verified_payloads": 51,
+      "payload_bytes": 12578643,
+      "safe_unique_members": true
+    },
+    "run_anchor": {
+      "default_anchor": "user_home",
+      "path": "NASolve-live-tests/synthetic-dna-mechanics-om4jv7qq/synthetic-dna-combined-2n4kszi5/dataset/AutoMR/run_001",
+      "explicit_override": "--run",
+      "historical_prefix": "Recorded original Cedar 05 run; used only to rebase saved literal references through the explicit current run anchor."
+    },
+    "original_bindings": {
+      "prepared_model": {
+        "anchor": "run",
+        "path": "PostMR/Model/prepared_model.pdb",
+        "sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+        "size": 70150,
+        "required": true
+      },
+      "source_audit": {
+        "anchor": "run",
+        "path": "PostMR/Restraints/cif_doctor_source.json",
+        "sha256": "31ff002a4794a011c4470b6dd294a4cfea5f29bdc5f280742eb20cbfa71b6fb1",
+        "size": 1370223,
+        "verify_if_present": true
+      }
+    },
+    "stage_paths": {
+      "mr_input": "PostMR/Model/mr_solution.pdb",
+      "component_normalized": "PostMR/Model/component_normalized.pdb",
+      "coot_raw": "PostMR/Model/after_coot_raw.pdb",
+      "restored": "PostMR/Model/after_coot_geometry.pdb",
+      "after_coot": "PostMR/Model/after_coot.pdb",
+      "terminal": "PostMR/Model/terminal_phosphate_model.pdb",
+      "prepared": "PostMR/Model/prepared_model.pdb"
+    },
+    "saved_declarations": {
+      "script": {
+        "anchor": "run",
+        "path": "PostMR/Coot/mutate.py"
+      },
+      "parser": "Python AST only; the saved script is never executed.",
+      "allowed_reference_scope": "Literal current-generator Coot input, dictionary and write_pdb_file parent declarations within the historical run anchor; next NASOLVE_OVERLAP marker binds a parent declaration to a site.",
+      "external_paths": "RECORDED_UNCOLLECTED",
+      "missing_or_nonliteral_declarations": "EXPLICIT_UNSUPPORTED_OR_NOT_PRESENT"
+    },
+    "methods": {
+      "selection": "Every captured intrasite bond/angle row with nominal absolute deviation >=5; no residue-code or H-name allowlist.",
+      "correspondence": "Exact single-model PDB site, altloc and atom identifier; require expected component and element before comparing coordinates.",
+      "measurement": "Same Cartesian scalar and recorded target/weight conventions as cif-captured-cartesian-geometry-v1; no native residual claim.",
+      "first_observed": "Earliest comparable stage where the selected nominal threshold is observed, not necessarily the originating step.",
+      "threshold_crossings": "Only adjacent comparable measured stages may establish an observed below-to-above threshold crossing; missing or incompatible stages cannot be bridged.",
+      "parent_coordinates": "Record raw/restore distances to same-name and same-element parent atoms; observed copy flag uses before >0.01 angstrom and after <=0.001 angstrom. This does not establish semantic chemical correspondence.",
+      "preservation": "Freeze only declared run artifacts outside the run; recheck original/frozen bytes and the original review ZIP after analysis.",
+      "refusals": [
+        "Wrong original model SHA/size",
+        "Binding changes between reads",
+        "Source symlink/unsafe path or run escape",
+        "Duplicate PDB atoms or multiple models",
+        "Changed source/frozen artifacts"
+      ]
+    },
+    "software_validation": {
+      "before_implementation": {
+        "failed": 8,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_construction_provenance.py"
+      },
+      "focused": {
+        "passed": 47,
+        "seconds": 5.62,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_construction_provenance.py tests/test_cif_construction_probe.py tests/test_cif_captured_geometry.py tests/test_cif_geometry_review_probe.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "full_suite": {
+        "passed": 1518,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 110.97,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "native_tools": "NOT_RUN; explicit synthetic capture/stage fixtures and preserved witness only.",
+      "regressions": [
+        "Synthetic ZZZ stage transition and parent-coordinate evidence without causal approval",
+        "Missing-stage gap cannot prove a transition",
+        "Wrong component/element and duplicate/multiple-model ambiguity",
+        "AST parsing without execution and declared-anchor-only path rebasing",
+        "Model SHA binding and source-change race guard",
+        "Symlink/output-inside-source and capsule tampering/unsafe/duplicate paths",
+        "Source-bundled runner after deletion of both build trees with poisoned imports unused"
+      ],
+      "actual_capture_partial_witness_relocation": {
+        "status": "PASS",
+        "scope": "ACTUAL_CEDAR15_CAPTURE_AND_EXACT_CEDAR05_TWO_FILE_RUN_WITNESS_ONLY",
+        "complete_original_mac_construction_evidence": "PENDING",
+        "original_build_and_narestraints_trees_deleted": true,
+        "poisoned_imports": "NOT_USED",
+        "current_directory_independence": true,
+        "source_payloads_verified": 51,
+        "output_payloads_verified": 57,
+        "witness_files": 2,
+        "original_archive_and_witness_preserved": true,
+        "analysis_completed": true,
+        "selected_site_count": 21,
+        "findings": 93,
+        "first_observed_outlier_counts": {
+          "NOT_LOCATED": 3,
+          "prepared": 90
+        },
+        "threshold_crossings": 0,
+        "root_cause": "NOT_ESTABLISHED",
+        "new_native_execution": "NOT_RUN"
+      }
+    },
+    "actual_original_mac_collection": "PENDING",
+    "root_cause": "NOT_ESTABLISHED",
+    "boundaries": {
+      "native_execution": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "production_postmr_changes": false,
+      "new_runtime_dependencies": [],
+      "private_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "previous_build": "15_Cedar_probe_build",
+      "worktree": "16_Cedar_probe_build",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "builder": "scripts/build_cif_construction_probe.py",
+      "runner": "16_Cedar_probe_cif_construction.py",
+      "expected_status": "REVIEW/exit 2 with analysis_completed true; return terminal output and new review ZIP.",
+      "options": [
+        "--run",
+        "--review-zip",
+        "--output-parent"
       ]
     }
   }

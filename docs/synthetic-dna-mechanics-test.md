@@ -500,6 +500,23 @@ identities shared with Cedar 05 have zero coordinate displacement. The next
 bounded investigation is original construction/parent restoration and atom
 correspondence. The causal step remains unproven; no repair has occurred.
 
+### Cedar 16 original construction provenance
+
+The next runner verifies the returned Cedar 15 archive and snapshots explicit
+stage files from the original run only after its prepared-model hash and size
+match the reviewed Cedar 05 witness. It reads literal run-relative artifact
+references from the saved Coot script using AST without executing it. External
+paths stay uncollected. It compares every selected intrasite bond/angle outlier
+across exact atom/component/element identities, records missing stages and
+compares parent coordinates without inferring chemical correspondence.
+
+Synthetic transition/gap cases and deleted-build/poisoned-import transport pass.
+A partial replay using the actual Cedar 15 capture and two exact original-run
+witness files selects 21 sites/93 findings but has no Coot stages to locate an
+earlier transition. Complete Mac collection remains pending. The runner writes
+a new review capsule, leaves all originals unchanged and retains REVIEW;
+neither root cause nor a coordinate repair is established by this delivery.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

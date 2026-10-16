@@ -85,6 +85,11 @@ for actual behavior; history is evidence, not a second task queue.
   comparison and unchanged Cedar 05 model lineage expose earlier coordinate
   distortions; construction/atom-correspondence provenance is the next bounded
   investigation. No target retuning or coordinate repair has occurred.
+  Cedar 16 now packages that read-only original-run stage collection, with a
+  reviewed model binding, AST-only saved-script parsing and exact atom identity
+  comparisons. Missing stages and same-name correspondence limits remain
+  explicit; no cause or repair is inferred. The 1,518-test suite and relocated
+  synthetic/partial-witness runs pass; complete Mac collection is pending.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

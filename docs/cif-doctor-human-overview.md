@@ -249,6 +249,17 @@ motivate a construction/atom-correspondence provenance audit. They do not
 identify the responsible construction step, justify target retuning or turn
 ordered chirality sign agreement into absolute stereochemical approval.
 
+The explicit construction-provenance layer now freezes original stage models
+under a reviewed model hash. It parses saved Coot artifact declarations without
+executing the script and compares captured intramonomer geometry findings
+across exact atom identities in available single-model PDB stages. Missing
+stages cannot prove a transition. Same-name parent-coordinate matches are
+descriptive evidence rather than a semantic atom map or proof of cause. The
+Cedar 16 runner packages this read-only collection with no new native tool or
+coordinate intervention. Synthetic and partial original-run-witness transport
+checks pass; complete Mac evidence remains pending. Production PostMR and
+scientific repair/qualification remain separate.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -405,6 +416,10 @@ and no coordinate repair, target retuning or qualification pass is implied.
 Returned source-versus-model and coordinate-lineage comparisons motivate an
 earlier construction/atom-correspondence audit; the originating step remains
 unproven.
+An explicit construction-provenance diagnostic can freeze original models and
+saved declarations under a reviewed run binding, then compare available stage
+coordinates. Missing evidence and correspondence limits remain visible; it
+does not execute the saved script or alter the original run.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

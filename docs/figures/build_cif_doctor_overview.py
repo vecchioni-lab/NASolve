@@ -99,6 +99,7 @@ def build():
              'A separate graph-selected outgoing-oxygen candidate layer preserves existing dictionaries and modifiers. Returned Cedar 14 clears all four outgoing-hydrogen findings and passes installed projected-definition, captured-baseline replay and exact modifier-ID checks; source, charge and achieved-geometry limits remain open. '
              'A separate captured Cartesian review measures simple-bond distances, angles and ordered chirality volumes. Nominal deviations are descriptive; native residuals, deferred geometry and absolute stereochemistry remain unassessed. '
              'Returned Cedar 15 source-versus-model and coordinate-lineage comparisons expose earlier model distortions and motivate a construction/atom-correspondence audit; the originating step remains unproven. '
+             'An explicit read-only construction diagnostic now freezes original stages under a reviewed model binding and parses saved Coot declarations without execution. Missing stages and same-name correspondence limits remain visible; complete Mac evidence is pending. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -142,7 +143,7 @@ def build():
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Explicit candidates; native checks and captured Cartesian geometry.", size=24),
+        text(70, 1082, "Explicit candidates; native, geometry and construction evidence.", size=24),
         text(70, 1116, "Native site / terminal controls recorded; formal-charge readback unavailable.", size=24),
         '</g>',
         '</svg>'])

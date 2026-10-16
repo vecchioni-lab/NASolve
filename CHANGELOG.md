@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Original construction provenance and Cedar 16 ferry
+
+- Add an explicit read-only stage audit bound to the reviewed original model.
+  Snapshot exact run artifacts and AST-declared Coot references, with anchored
+  relocation, source/frozen hash checks and visible missing evidence. Never
+  execute the saved script or collect outside-run paths.
+- Compare captured intrasite bond/angle findings across exact PDB atom,
+  component and element identities. Record observed threshold crossings only
+  across adjacent comparable stages; retain the distinction between same-name
+  parent coordinate matches, semantic correspondence and causal proof.
+- Add the source-bundled Cedar 16 runner, regressions and partial-witness
+  relocation validation. Full original Mac stage collection remains pending.
+  No production PostMR, target, coordinate, native-tool, dependency or adoption
+  change; new schema-1 diagnostic formats are separate from existing receipts.
+
 ### Cedar 15 return and coordinate provenance review
 
 - Verify all 51 returned payloads and 47 unchanged frozen native members.
