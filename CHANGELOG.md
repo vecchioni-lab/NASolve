@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit modified-terminal and reviewed-bundle validation
+
+- Add selected 5′-OH preparation from a successful captured native `5*END`
+  control. Retain the shared base/internal contexts, copy exact hydroxyl
+  numerical targets and types, and keep the new hydrogen's formal charge
+  unassessed rather than substituting the native partial charge.
+- Add exact projected native-definition, reviewed torsion/alternate-proxy and
+  unaffected-proxy comparisons. Audit every declared outgoing O3′ endpoint by
+  hydrogen adjacency, exposing pre-existing curated linked-state reviews.
+  Preserve all existing qualification gates and distinguish these findings
+  from the new selected candidate changes.
+- Add the source-bundled Cedar 12 probe using the exact returned Cedar 09/11
+  capsules. Reuse the 43-site shared-code model, apply the explicit reviewed
+  5CM recipe, and compare baseline/candidate native interpretation with
+  installation/source hashes checked before and after. Detailed schema-1
+  inventories add neutron bond targets and torsion alternate readback.
+  No model optimization, ReadySet retry, refinement or production adoption.
+
 ### Cedar 11 terminal-source return
 
 - Verify all nine returned payloads, the exact reviewed 5CM candidate and

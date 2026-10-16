@@ -311,6 +311,46 @@ is complete. Complete modified-terminal adaptation,
 new native bundle validation, geometry trials, refinement and adoption remain
 subsequent operations. No existing native qualification check is relaxed.
 
+## Explicit modified-terminal and revised-bundle validation
+
+`cif_terminal_preparation.prepare_terminal_component` wraps the existing linked
+preparation with a captured native numerical authority. It verifies the exact
+resource receipt and all anchored outputs, completed canonical control and
+source preservation, then adds the native O5′/H atom operations, bond and angle
+only at explicitly declared free 5′-OH sites. The shared base and unselected
+internal/phosphate contexts stay unchanged. Unknown shapes, naming collisions,
+unsupported types and changed authorities are refused. Existing formal charges
+are retained; the new H receives `?` because the native source supplies partial
+charge only. No H coordinate or replacement numerical target is invented.
+
+`scripts/build_cif_terminal_bundle_probe.py` builds
+`12_Cedar_probe_cif_terminal_bundle.py`. It verifies every payload in the exact
+returned Cedar 09/11 ZIPs, materializes only declared inputs, reuses the existing
+43-site shared-code control and prepares the reviewed 5CM derivative explicitly.
+Baseline and candidate use the same model. The selected candidate changes are
+IGU E:1 hydroxyl treatment and 5CM A:7 torsion preparation; IGU A:6 stays internal.
+The selected installation, captured module/source hashes and dispatcher are
+checked before and after native execution through a declared installation
+anchor. `--linked-review-zip`, `--terminal-review-zip`, `--output-parent`,
+`--phenix-root`, `--timeout-seconds` and `--inspect-only` remain explicit options.
+
+`cif_terminal_qualification` preserves the old linkage/custom-proxy/charge gates
+and adds full projected row comparisons, including neutron bond targets and
+torsion alternate readback. It requires the corrected 5CM torsion quartet,
+primary target, weight, period and alternate in the actual native proxy.
+All unselected effective definitions and recorded unaffected proxy rows must
+remain equal. No missing native readback becomes a pass.
+
+The whole-bundle outgoing-endpoint audit uses declared links, exact atom types
+and graph adjacency, not hydrogen spelling or distances. Read-only replay of
+the prior Cedar 09 return identifies retained O3′ H at 1AP A:5, 5CM A:7,
+DZ A:12 and DP B:4. These are pre-existing linked-state REVIEW findings;
+the Cedar 12 candidate preserves them visibly for subsequent explicit review.
+`REVIEW`/exit 2 can therefore remain after successful interpretation, alongside
+unavailable formal charges. The first installed Cedar 12 execution is pending.
+No model coordinates, ReadySet inputs, refinement checkpoint or production
+dictionary are adopted or optimized by this probe.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

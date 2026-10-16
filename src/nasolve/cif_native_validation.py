@@ -90,9 +90,9 @@ def monomer_metadata(monomer):
                                  if getattr(atom, "charge", None) is None]}
         categories = {
             "atoms": ("atom_list", ("atom_id", "type_symbol", "type_energy", "charge", "partial_charge")),
-            "bonds": ("bond_list", ("atom_id_1", "atom_id_2", "type", "value_dist", "value_dist_esd")),
+            "bonds": ("bond_list", ("atom_id_1", "atom_id_2", "type", "value_dist", "value_dist_esd", "value_dist_neutron")),
             "angles": ("angle_list", ("atom_id_1", "atom_id_2", "atom_id_3", "value_angle", "value_angle_esd")),
-            "torsions": ("tor_list", ("id", "atom_id_1", "atom_id_2", "atom_id_3", "atom_id_4", "value_angle", "value_angle_esd", "period")),
+            "torsions": ("tor_list", ("id", "atom_id_1", "atom_id_2", "atom_id_3", "atom_id_4", "value_angle", "alt_value_angle", "value_angle_esd", "period")),
             "chirality": ("chir_list", ("atom_id_centre", "atom_id_1", "atom_id_2", "atom_id_3", "volume_sign")),
             "plane_atoms": ("plane_atom_list", ("plane_id", "atom_id", "dist_esd")),
         }

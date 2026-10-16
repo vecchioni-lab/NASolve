@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-15**. Start with the
+Updated **2026-10-16**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -52,6 +52,12 @@ for actual behavior; history is evidence, not a second task queue.
   Its free-OH classification is also undetermined, so that label alone does
   not establish a modified-end defect. Source collection is complete; terminal adaptation,
   native candidate qualification and geometry/refinement remain separate.
+  The explicit Cedar 12 candidate now applies captured hydroxyl targets only
+  to the selected free end and includes the reviewed 5CM derivative. Its new
+  native trial compares projected definitions, exact torsion/alternate proxies
+  and every recorded unaffected proxy. Installed execution is pending.
+  The added H formal charge stays unassessed. A graph audit of the prior
+  return also exposes four internal curated O3′-H reviews; no gate is relaxed.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

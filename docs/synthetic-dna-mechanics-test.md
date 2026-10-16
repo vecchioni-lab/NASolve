@@ -400,6 +400,30 @@ without inventing numerical targets or silently modifying the frozen run.
 The probe does not implement/adopt that terminal recipe, perform another linked
 inventory or start geometry minimization/refinement.
 
+### Cedar 12 explicit terminal / reviewed 5CM bundle trial
+
+The next source-bundled delivery reads the exact returned Cedar 09/11 capsules,
+verifies all 207/nine payloads and reuses only declared input members. It
+prepares a source-traceable 5′-OH candidate for the existing isolated IGU E:1
+control, leaving internal IGU A:6 and the shared base unchanged. The explicit
+5CM recipe reproduces its reviewed hash. The 877-atom, 43-site model is supplied
+unchanged to baseline and candidate native interpretation; no coordinates or
+H positions are added.
+
+The new preparation uses the installed hydroxyl types and exact 0.84 ± 0.02 Å
+bond, 1.02 Å neutron target and 120 ± 3° angle captured in Cedar 11. Existing
+formal charges remain unchanged; new H formal charge is unknown, distinct from
+native partial charge. Exact projected rows, the corrected 5CM native
+torsion/alternate proxy, all 38 backbone links, custom coverage and all recorded
+unaffected proxies are checked. Source/module/dispatcher hashes must match
+the captured Phenix installation before and after interpretation.
+
+A separate graph audit of declared outgoing links exposes pre-existing O3′ H
+at 1AP A:5, 5CM A:7, DZ A:12 and DP B:4 in the prior return. These reviews and
+unavailable native formal charge keep scientific qualification distinct from
+successful interpreter execution. The next installed bundle result is pending;
+no production adoption, optimization or refinement is part of this trial.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

@@ -38,6 +38,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "cif_native_probe_template.py": "05_Cedar",
         "cif_linked_probe_template.py": "06_Cedar",
         "cif_terminal_probe_template.py": "10_Cedar",
+        "cif_terminal_bundle_probe_template.py": "12_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -106,6 +107,10 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         metadata.update(kind="cif-terminal-probe-shuttle",delivery_prefix=delivery_prefix,
                         native_validation="installed-terminal-resources-only",automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10", "Biopython", "Phenix for native resource inventory"]
+    if template_name == "cif_terminal_bundle_probe_template.py":
+        metadata.update(kind="cif-terminal-bundle-probe-shuttle",delivery_prefix=delivery_prefix,
+                        native_validation="explicit-terminal-and-reviewed-5cm-bundle-only",automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "Phenix for native bundle interpretation"]
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

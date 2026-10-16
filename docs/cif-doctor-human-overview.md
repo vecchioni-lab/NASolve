@@ -193,6 +193,18 @@ that label alone does not establish a modified-end defect. The earlier missing
 modified O5′ hydrogen/type treatment and unavailable native formal charges
 remain separate limits. Numerical targets and qualification gates are unchanged.
 
+The explicit modified-terminal candidate layer now transfers the captured
+native hydroxyl atom types, bond and angle only to a declared free 5′ end.
+It preserves the shared dictionary and other site contexts, retains existing
+formal charges and marks the added H formal charge unassessed. A separate
+bundle trial includes the reviewed 5CM candidate and compares complete projected
+native definitions, corrected torsion/alternate proxies, unchanged model atoms,
+backbone/custom restraints and all recorded unaffected proxies. Installed
+execution of this new trial is pending. A graph audit additionally records
+retained O3′ hydrogens at four pre-existing internal curated sites; their
+review status remains visible. These deterministic checks do not infer pH,
+approve chemistry or minimize/refine a model.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -325,6 +337,11 @@ any new terminal adaptation or geometry trial.
 The completed installed canonical hydroxyl control preserves unrelated targets;
 its undetermined classification is recorded separately from formal-charge
 availability and incomplete modified-end treatment.
+The subsequent explicit candidate layer uses those captured parameters at one
+selected free end; its installed bundle trial remains pending. Exact projected
+definitions, reviewed torsion/alternate targets and unaffected native proxies
+are compared, while an outgoing-endpoint graph audit retains existing curated
+O3′-H findings for review. The new H formal charge stays unassessed.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

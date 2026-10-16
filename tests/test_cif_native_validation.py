@@ -295,7 +295,9 @@ def monomer(code):
     return NS(chem_comp=NS(id=code,group="DNA"),
         classification="DNA",
         atom_list=[NS(atom_id=n,type_symbol="C",type_energy="CH1",charge="0",partial_charge=.1) for n in ("C5","C5'","O4'")],
-        bond_list=[],angle_list=[],tor_list=[],chir_list=[],plane_atom_list=[])
+        bond_list=[NS(atom_id_1="C5",atom_id_2="C5'",type="single",value_dist=1.5,value_dist_esd=.02,value_dist_neutron=1.51)],
+        angle_list=[],tor_list=[NS(id="reviewed",atom_id_1="C5",atom_id_2="C5'",atom_id_3="O4'",atom_id_4="C5",value_angle=340.7,alt_value_angle="2.8",value_angle_esd=6.3,period=1)],
+        chir_list=[],plane_atom_list=[])
 class Geometry:
     def __init__(self):
         self.angle_proxies=[NS(i_seqs=(0,1,2),angle_ideal=110.,weight=100.,origin_id=0)]
@@ -316,6 +318,8 @@ ChainProxies.selection=lambda self,expression:NS(iselection=lambda:[0 if express
     assert native['inventory_detail']=='linked'
     assert native['monomer_mappings']['rows'][0]['metadata']['classification']=={'status':'RECORDED','value':'DNA'}
     assert native['monomer_mappings']['rows'][0]['metadata']['effective_definition']['atoms'][0]['type_energy']=='CH1'
+    assert native['monomer_mappings']['rows'][0]['metadata']['effective_definition']['bonds'][0]['value_dist_neutron']==1.51
+    assert native['monomer_mappings']['rows'][0]['metadata']['effective_definition']['torsions'][0]['alt_value_angle']=='2.8'
     assert native['geometry']['proxy_details']['angle'][0]['angle_ideal']==110.
     request=native['geometry']['custom_proxy_requests'][0]
     assert request['atoms']==[row['label'] for row in native['atoms'][:2]]

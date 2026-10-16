@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-15** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-16** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -43,6 +43,59 @@ The October 10 documentation snapshot also passed the isolated Linux suite:
 This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
+
+**Cedar 12 explicit terminal / reviewed-bundle trial ready (2026-10-16):** the
+user requested the next validation. The new source-bundled probe reuses the
+exact Cedar 09 shared-code control and Cedar 11 installed numerical authority.
+It verifies all 207/nine payloads, materializes only declared members and
+preserves both original ZIPs. `prepare_terminal_component` wraps the existing
+linked preparation; only free-OH contexts receive captured native O5′/H atom
+operations, bond and angle. Actual-input offline replay produces E:1 with
+32 dictionary atoms and leaves the 34-atom A:6 internal plan and shared base
+byte-identical. All retained formal charges stay unchanged; the new H formal
+charge is `?`, never copied from its native partial charge. No H coordinates
+or new numerical targets are invented.
+
+The selected candidate also explicitly reproduces reviewed 5CM output
+`61bf14a1…`. Its native projection removes only the declared OP3. Baseline and
+candidate use the same 877-atom/43-site coordinate control; no optimization.
+New detailed schema-1 fields record neutron bond targets and torsion alternates.
+Qualification retains all existing gates and adds exact projected numerical
+rows, the corrected 5CM `C2e-nyu0` quartet/340.7°/6.3°/period-1/2.8° alternate
+proxy, unchanged unselected definitions and every recorded unaffected native
+proxy. The selected Phenix dispatcher, modules and numerical source hashes
+must match the Cedar 11 authority before and after execution. Relocation uses
+the declared installation anchor, not basename search.
+
+**New read-only review class:** every declared outgoing O3′ endpoint is audited
+by element and adjacency. Replay of the prior Cedar 09 definitions records
+1AP A:5→A:6 `HO31`, 5CM A:7→A:8 `HO3'`, DZ A:12→A:13 `H2` and DP B:4→B:5
+`H3`, all on O3′ with OH1 typing. These pre-existing curated reviews are not
+silently fixed or hidden by the two selected candidate changes. Native charge
+readback and new-H formal charge remain unqualified; `REVIEW`/exit 2 is
+expected while these gates remain unresolved, even if interpretation succeeds.
+
+**Delivery:** `scripts/build_cif_terminal_bundle_probe.py`, pinned
+`12_Cedar_probe_build`, same `05_Cedar_narestraints_build`, output
+`12_Cedar_probe_cif_terminal_bundle.py`. Use one subshell containing fetch,
+pinned detached worktree, build and run joined by `&&`. Explicit archive,
+installation, timeout and inspect-only overrides remain available. Preserve
+the frozen everyday checkout and all old scripts/worktrees/native sessions.
+Corrected installed Cedar 12 validation remains pending; no ReadySet retry,
+model optimization, refinement, adoption or production PostMR change.
+
+**Software validation:**
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`
+passes **1,437 tests, two skips and 276 subtests (92.78 s)**. The same command
+with `tests/test_cif_terminal_preparation.py tests/test_cif_terminal_qualification.py
+tests/test_cif_terminal_bundle_probe.py tests/test_cif_native_validation.py
+tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py
+tests/test_synthetic_dna_shuttle.py` passes **97 tests (6.84 s)**. Nine selected
+regressions fail before the new implementation/readback fields exist. New
+native tests use explicit fake APIs; transport survives deleted build trees
+and poisoned imports. Actual returned-input offline preparation/replay and
+prior-native outgoing-H audit are recorded separately from pending native
+Cedar 12 execution. No new runtime dependencies or relaxed qualification gates.
 
 **Cedar 11 returned; terminal numerical sources complete (2026-10-15):** all
 **nine** payloads in `11_Cedar_ggtpccwv_cif_terminal_review.zip` verify, including

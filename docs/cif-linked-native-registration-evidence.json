@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
-  "recorded_date": "2026-10-15",
+  "recorded_date": "2026-10-16",
   "archive": {
     "name": "07_Cedar_okkb2are_cif_linked_review.zip",
     "sha256": "66798468a5fb7db40f9468c0f72eb43bafdea4146917f7232f8cd61fb3f9086b",
@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "NOT_QUEUED",
+  "next_delivery": "12_Cedar",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -1486,5 +1486,173 @@
       "runtime_schema_changes": false,
       "next_step": "Implement an explicit source-traceable modified-terminal derivative, validate the revised bundle including prepared 5CM, and preserve remaining charge/numerical/stereochemical reviews before a separate bounded geometry trial. Do not repeat unchanged source collection."
     }
+  },
+  "terminal_bundle_validation_2026_10_16": {
+    "delivery_prefix": "12_Cedar",
+    "status": "IMPLEMENTED_INSTALLED_BUNDLE_VALIDATION_PENDING",
+    "policies": {
+      "preparation": "cif-native-five-prime-hydroxyl-v1",
+      "qualification": "cif-native-terminal-bundle-checks-v1",
+      "native_resource": "cif-installed-terminal-resources-v2"
+    },
+    "modules": [
+      "src/nasolve/cif_terminal_preparation.py",
+      "src/nasolve/cif_terminal_qualification.py",
+      "src/nasolve/cif_native_validation.py",
+      "scripts/cif_terminal_bundle_probe_template.py",
+      "scripts/build_cif_terminal_bundle_probe.py"
+    ],
+    "input_archives": {
+      "linked": {
+        "name": "09_Cedar_nn9cyghr_cif_linked_review.zip",
+        "sha256": "db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a",
+        "verified_payloads": 207
+      },
+      "terminal": {
+        "name": "11_Cedar_ggtpccwv_cif_terminal_review.zip",
+        "sha256": "87b62be8b669a54a8f2e67b5a18a439cb88e6b187354b95847fa29c96bb02cbc",
+        "verified_payloads": 9
+      }
+    },
+    "candidate_scope": {
+      "model_atoms": 877,
+      "model_sites": 43,
+      "model_coordinates_changed": false,
+      "backbone_links": 38,
+      "selected_changes": {
+        "E:1": "IGU native-source 5prime hydroxyl fragment",
+        "A:7": "Existing reviewed 5CM torsion preparation"
+      },
+      "unselected_IGU_A6_plan_preserved": true,
+      "shared_IGU_base_bytes_preserved": true,
+      "E1_dictionary_atoms": 32,
+      "A6_dictionary_atoms": 34,
+      "new_hydrogen_id": "HO5'",
+      "new_hydrogen_formal_charge": "UNASSESSED_WRITTEN_AS_UNKNOWN",
+      "partial_charge_substituted_for_formal": false,
+      "native_targets": {
+        "bond_angstrom": 0.84,
+        "bond_esd_angstrom": 0.02,
+        "neutron_bond_angstrom": 1.02,
+        "angle_degrees": 120.0,
+        "angle_esd_degrees": 3.0
+      },
+      "five_cm_candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+      "five_cm_projected_deletions": [
+        "OP3"
+      ]
+    },
+    "schema_1_additions": {
+      "effective_bond": [
+        "value_dist_neutron"
+      ],
+      "effective_torsion": [
+        "alt_value_angle"
+      ],
+      "terminal_preparation": [
+        "terminal_resource",
+        "terminal_hydroxyl"
+      ]
+    },
+    "checks": [
+      "Every frozen capsule payload and explicit native input integrity",
+      "Preserved dispatcher/module/source hashes through declared installation anchor before and after",
+      "Same coordinate model for baseline and candidate",
+      "Existing site/link/custom-restraint/formal-charge gates",
+      "Every projected atom/bond/angle/torsion/chirality/plane row",
+      "Reviewed 5CM corrected quartet, primary target, weight, period and alternate in native proxy",
+      "All unselected native definitions and every recorded unaffected proxy",
+      "All declared outgoing O3 endpoints by graph hydrogen adjacency"
+    ],
+    "native_execution": "PENDING_ON_USER_MAC",
+    "native_installation_expected": "Phenix 2.2.1-6174",
+    "actual_returned_input_offline_replay": {
+      "status": "PREPARED_REVIEW_NATIVE_NOT_RUN",
+      "selected_end_and_internal_isolation_verified": true,
+      "reviewed_5cm_hash_reproduced": true,
+      "new_hydrogen_coordinates": "NOT_CREATED"
+    },
+    "pre_existing_outgoing_hydrogen_audit": {
+      "source": "Read-only replay of returned Cedar 09 native definitions, not a new Cedar 12 native execution.",
+      "declared_outgoing_endpoints": 38,
+      "pass_count": 34,
+      "review_findings": [
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:5",
+          "status": "REVIEW",
+          "outgoing_site": "A:6",
+          "observed_hydrogens": [
+            "HO31"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:7",
+          "status": "REVIEW",
+          "outgoing_site": "A:8",
+          "observed_hydrogens": [
+            "HO3'"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:12",
+          "status": "REVIEW",
+          "outgoing_site": "A:13",
+          "observed_hydrogens": [
+            "H2"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:B:4",
+          "status": "REVIEW",
+          "outgoing_site": "B:5",
+          "observed_hydrogens": [
+            "H3"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        }
+      ],
+      "automatic_repairs": false
+    },
+    "software_validation": {
+      "full_suite": {
+        "passed": 1437,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 92.78,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "focused": {
+        "passed": 97,
+        "seconds": 6.84,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_preparation.py tests/test_cif_terminal_qualification.py tests/test_cif_terminal_bundle_probe.py tests/test_cif_native_validation.py tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "selected_regressions_before_implementation": {
+        "failed": 9,
+        "deselected": 20,
+        "scope": "New terminal API absent and detailed neutron-target readback absent."
+      },
+      "native_tests": "EXPLICIT_FAKE_APIS_NOT_INSTALLED_PHENIX",
+      "relocation_and_poisoned_import": "PASS"
+    },
+    "review_behavior": "REVIEW/exit 2 remains for unresolved or unsupported checks, including native formal charges, added-H unknown formal charge and pre-existing curated outgoing O3-H contexts. Successful interpreter execution is separate.",
+    "boundaries": {
+      "production_postmr_changes": false,
+      "new_runtime_dependencies": [],
+      "qualification_gates_relaxed": false,
+      "numerical_target_guessing": false,
+      "model_optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "native_payloads_committed": false
+    },
+    "ferry": "Pinned detached worktree and source-bundled builder/runner in one subshell joined by &&; preserve all previous scripts and sessions."
   }
 }

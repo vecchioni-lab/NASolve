@@ -94,7 +94,8 @@ def build():
              'Bounded source-declared ring comparisons retain all raw bond differences. '
              'Native site IDs and component-list metadata loops preserve reader contracts. '
              'Returned Cedar 09 native checks preserve formal-charge and terminal-chemistry review limits. '
-             'A completed terminal-source review records installed parameters, a canonical hydroxyl control and explicit 5CM preparation before modified-terminal adaptation. '
+             'A completed terminal-source review records installed parameters and a canonical hydroxyl control. '
+             'Selected modified-terminal candidates and explicit 5CM preparation receive projected-definition and unaffected-proxy checks; installed execution remains pending. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -138,7 +139,7 @@ def build():
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Explicit generation / terminal-source review; native residue-name lookup.", size=24),
+        text(70, 1082, "Explicit terminal candidates; exact native definition / proxy checks.", size=24),
         text(70, 1116, "Native site / terminal controls recorded; formal-charge readback unavailable.", size=24),
         '</g>',
         '</svg>'])
