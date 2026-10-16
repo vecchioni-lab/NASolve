@@ -462,7 +462,7 @@
       }
     },
     "outgoing_bundle_validation_2026_10_16": {
-      "status": "RETURNED_PREPARATION_COMPLETE_INSTALLED_RETRY_PENDING",
+      "status": "INSTALLED_NATIVE_COMPLETED_REVIEW_CHARGE_READBACK_UNSUPPORTED",
       "delivery_prefix": "13_Cedar",
       "policies": {
         "preparation": "cif-native-linked-oxygen-v1",
@@ -481,7 +481,7 @@
         "existing_receipt_formats_changed": false,
         "new_native_readback_fields": []
       },
-      "native_execution": "CEDAR_13_NOT_REACHED_CEDAR_14_PENDING",
+      "native_execution": "CEDAR_14_BASELINE_AND_CANDIDATE_COMPLETED_EXIT_0",
       "software_validation": {
         "selected_regressions_before_implementation": {
           "failed": 6,
@@ -586,7 +586,7 @@
       },
       "phenix_path_retry": {
         "delivery_prefix": "14_Cedar",
-        "status": "IMPLEMENTED_INSTALLED_RETRY_PENDING",
+        "status": "RETURNED_NATIVE_COMPLETED_REVIEW",
         "cause": "Omitted --phenix-root had no default; installation_from_candidate(None) raises TypeError after preparation.",
         "default_installation": {
           "anchor": "user_home",
@@ -638,6 +638,82 @@
           "runner": "14_Cedar_probe_cif_outgoing_bundle.py",
           "preserve_cedar_13": true
         }
+      },
+      "returned_cedar_14": {
+        "delivery_prefix": "14_Cedar",
+        "archive": {
+          "name": "14_Cedar_7qm2tnry_cif_outgoing_bundle_review.zip",
+          "sha256": "d94ac53972a8843b8b2cc3d87b32fdbbc4617dc47179d184850833fb91bf8bb3",
+          "bytes": 2832508,
+          "verified_payloads": 141,
+          "payload_bytes": 45543023,
+          "safe_unique_member_names": true
+        },
+        "nasolve_source": {
+          "commit": "56d4dae912e36dd7cfe8d905a68e1d09412546a2",
+          "working_tree_has_changes": false
+        },
+        "narestraints_source": {
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "working_tree_has_changes": false
+        },
+        "runner_sha256_reported_and_matches_delivery": "487d8aa2e1f698c5e9e9315e7e9ddf19b06db390e6c95ab6b747221e53683511",
+        "selected_phenix_installation": "Phenix 2.2.1-6174",
+        "dispatcher_version_recorded": "2.2.1",
+        "reported_status": "REVIEW",
+        "check_counts": {
+          "PASS": 138,
+          "UNSUPPORTED": 9
+        },
+        "qualification_replay": "MATCH_AFTER_SORTING_ONLY_UNAVAILABLE_CHARGE_ITEMS_BY_ATOM_ID",
+        "qualification_sha256": "bf921bbf84392c6ac8588adf91aa25f1dc30858d0baecb4f0b272913d01c449d",
+        "probe_receipt_sha256": "972d052faa8551cc9f86a8389a776a521d9150c8d6af5a943833f00e976f7443",
+        "original_archive_preserved": true,
+        "frozen_inputs_preserved": true,
+        "frozen_members_verified": 35,
+        "outgoing_hydrogen_checks_pass": 38,
+        "baseline_projection_checks_pass": 24,
+        "exact_native_site_modification_ids": "PASS",
+        "captured_baseline_replay": "PASS",
+        "unaffected_native_proxies": "PASS",
+        "scientific_limits": {
+          "achieved_model_geometry": "NOT_RUN",
+          "experimental_protonation": "UNASSESSED",
+          "generated_stereochemical_metadata": "REVIEW_REQUIRED",
+          "numerical_geometry": "REVIEW_REQUIRED",
+          "scientific_approval": "NOT_RUN"
+        },
+        "native_exit_codes": {
+          "baseline": 0,
+          "candidate": 0
+        }
+      },
+      "generality_scope": {
+        "status": "REUSABLE_WITHIN_DECLARED_SUPPORTED_LINKAGE_MOTIF",
+        "selection": "Explicit complete same-code site contexts and declared native backbone links; H/D element plus O3 bond graph, independent of component code and H name.",
+        "supported_motif": "Curated DNA with standard phosphodiester atom convention, OH1 O3 bonded singly to C3 and exactly one terminal H/D; captured canonical outgoing OC2 type authority and complete source/native row agreement.",
+        "component_or_hydrogen_name_allowlist": false,
+        "regression_file": "tests/test_cif_outgoing_preparation.py",
+        "synthetic_component": "ZZZ",
+        "qualification_regression_file": "tests/test_cif_outgoing_qualification.py",
+        "probe_scope": "Exact hash-verified Cedar 12 experiment; selected sites are derived from captured outgoing-H findings. This is not an arbitrary-input production runner.",
+        "historical_5cm_correction": "Separate source-hash-bound reviewed correction; the outgoing rule does not generalize that source-specific atom-reference correction.",
+        "production_postmr_integration": false,
+        "unknown_motifs": "REFUSE_OR_REVIEW_REQUIRES_SEPARATE_AUTHORITY_AND_QUALIFICATION"
+      },
+      "next_bounded_work": {
+        "status": "EVIDENCE_AND_GEOMETRY_QUALIFICATION_NOT_A_NEW_DELIVERY",
+        "next_delivery_queued": false,
+        "work": "Review remaining source/numerical/stereochemical evidence and define bounded geometry qualification from this validated bundle while preserving original coordinates and manager.",
+        "do_not_repeat": "Unchanged native formal-charge inventory cannot resolve the installed API readback limitation.",
+        "remaining_limits": [
+          "Nine unsupported effective formal-charge readbacks",
+          "Added terminal H formal charge unassessed",
+          "Existing 1AP/DP source assessments REVIEW",
+          "Numerical and independent mapped stereochemical qualification",
+          "Achieved geometry, refinement and human review",
+          "Production integration and adoption"
+        ]
       }
     }
   },

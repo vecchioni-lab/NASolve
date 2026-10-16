@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "14_Cedar",
+  "next_delivery": "NOT_QUEUED",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -1901,7 +1901,7 @@
   },
   "outgoing_bundle_validation_2026_10_16": {
     "delivery_prefix": "13_Cedar",
-    "status": "RETURNED_PREPARATION_COMPLETE_INSTALLED_RETRY_PENDING",
+    "status": "INSTALLED_NATIVE_COMPLETED_REVIEW_CHARGE_READBACK_UNSUPPORTED",
     "policies": {
       "preparation": "cif-native-linked-oxygen-v1",
       "qualification": "cif-native-outgoing-bundle-checks-v1",
@@ -2102,8 +2102,8 @@
       }
     },
     "native_installation_expected": "Phenix 2.2.1-6174",
-    "native_execution": "CEDAR_13_NOT_REACHED_CEDAR_14_PENDING",
-    "review_behavior": "No existing gate is relaxed. Four outgoing-H findings should clear only if actual native readback agrees. Formal-charge readback remains unsupported in the captured API; three newly checked curated sites can increase the charge findings from six to nine. Existing 1AP/DP Doctor source reviews remain REVIEW. Native mechanics does not approve source chemistry or achieved geometry.",
+    "native_execution": "CEDAR_14_BASELINE_AND_CANDIDATE_COMPLETED_EXIT_0",
+    "review_behavior": "All four outgoing-H findings clear and all 38 outgoing endpoint checks pass. Aggregate REVIEW retains nine UNSUPPORTED native formal-charge readbacks, with no contradictory values or partial-charge substitution. Existing 1AP/DP Doctor source assessments remain REVIEW. Native mechanics does not approve source chemistry, experimental protonation or achieved geometry.",
     "boundaries": {
       "production_postmr_changes": false,
       "new_runtime_dependencies": [],
@@ -2188,7 +2188,7 @@
     },
     "phenix_path_retry": {
       "delivery_prefix": "14_Cedar",
-      "status": "IMPLEMENTED_INSTALLED_RETRY_PENDING",
+      "status": "RETURNED_NATIVE_COMPLETED_REVIEW",
       "cause": "Omitted --phenix-root had no default; installation_from_candidate(None) raises TypeError after preparation.",
       "default_installation": {
         "anchor": "user_home",
@@ -2240,6 +2240,507 @@
         "runner": "14_Cedar_probe_cif_outgoing_bundle.py",
         "preserve_cedar_13": true
       }
+    },
+    "returned_cedar_14": {
+      "archive": {
+        "name": "14_Cedar_7qm2tnry_cif_outgoing_bundle_review.zip",
+        "sha256": "d94ac53972a8843b8b2cc3d87b32fdbbc4617dc47179d184850833fb91bf8bb3",
+        "bytes": 2832508,
+        "verified_payloads": 141,
+        "payload_bytes": 45543023,
+        "safe_unique_member_names": true
+      },
+      "nasolve_source": {
+        "commit": "56d4dae912e36dd7cfe8d905a68e1d09412546a2",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runtime_archive_sha256": "2c5eb3927807b1d6e511a3509432aa18aac6ba08425555ab44bea8e6c313681f",
+      "native": {
+        "baseline": {
+          "receipt": "native_baseline/cif-native-v18reljq/native_receipt.json",
+          "receipt_sha256": "ea55753b0fb929a3f52bf934f6a8c6d6923b003026c04c7bbd51fd114c52fcb3",
+          "native_report_sha256": "aa1549851f16722e1d8abd22b03e9eb92728b6d5e2c65f95dfcedd3d65d0c950",
+          "execution": {
+            "elapsed_seconds": 5.90395,
+            "finished_at": "2026-10-16T13:17:35.957715+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T13:17:30.053802+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "phenix_version": "2.2.1",
+          "model_atoms": 877,
+          "model_sites": 43,
+          "input_counts": {
+            "model": 1,
+            "dictionary": 14,
+            "phil": 7
+          },
+          "proxy_counts": {
+            "angle": 1590,
+            "bond_asu": 0,
+            "bond_simple": 1026,
+            "chirality": 155,
+            "const_dihedral": 387,
+            "dihedral": 571,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "frozen_inputs_preserved": true,
+          "source_preserved": true
+        },
+        "candidate": {
+          "receipt": "native_candidate/cif-native-47i0u3af/native_receipt.json",
+          "receipt_sha256": "150e7daf79999c35da516623219cf819f390bdb4a7469542a63317169143ddfc",
+          "native_report_sha256": "d1ce9d58b953477f7d35e455e8fc5ac19fa11430a0e46497dd4a2b91d261c79c",
+          "execution": {
+            "elapsed_seconds": 1.358828,
+            "finished_at": "2026-10-16T13:17:37.491166+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T13:17:36.132359+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "phenix_version": "2.2.1",
+          "model_atoms": 877,
+          "model_sites": 43,
+          "input_counts": {
+            "model": 1,
+            "dictionary": 18,
+            "phil": 11
+          },
+          "proxy_counts": {
+            "angle": 1590,
+            "bond_asu": 0,
+            "bond_simple": 1026,
+            "chirality": 155,
+            "const_dihedral": 387,
+            "dihedral": 571,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "frozen_inputs_preserved": true,
+          "source_preserved": true
+        }
+      },
+      "reported_status": "REVIEW",
+      "check_counts": {
+        "PASS": 138,
+        "UNSUPPORTED": 9
+      },
+      "nonpass_checks": [
+        {
+          "check": "effective-site-formal-charges:A:6",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:E:1",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:20",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:D:3",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:C:10",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:5",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:7",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:B:4",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:12",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        }
+      ],
+      "qualification_replay": "MATCH_AFTER_SORTING_ONLY_UNAVAILABLE_CHARGE_ITEMS_BY_ATOM_ID",
+      "qualification_sha256": "bf921bbf84392c6ac8588adf91aa25f1dc30858d0baecb4f0b272913d01c449d",
+      "probe_receipt_sha256": "972d052faa8551cc9f86a8389a776a521d9150c8d6af5a943833f00e976f7443",
+      "installed_authorities": [
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/chem_data/geostd/g/data_GD.cif",
+          "sha256": "c23bd77ec2a8e4515b152633429a139a727dce181d712a08f8d4553e077d0985"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/chem_data/mon_lib/list/mon_lib_list.cif",
+          "sha256": "14b94738532dc7a36f8d8c6518d9fface8b033887c98c8242d71afba17cccd99"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/iotbx/pdb/__init__.py",
+          "sha256": "7a1502d4a98f8d164b0c2e86f223245a5d9d6fcc50df14e86523cd46959905a8"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/iotbx/phil.py",
+          "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/command_line/pdb_interpretation.py",
+          "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/cif_types.py",
+          "sha256": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/pdb_interpretation.py",
+          "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/server.py",
+          "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+        }
+      ],
+      "original_archive_preserved": true,
+      "frozen_inputs_preserved": true,
+      "frozen_members_verified": 35,
+      "model_sha256": "8c57c2d8e618936cebf2f678e716186c0b1e5cdc30700061773290021dd324a8",
+      "model_bytes": 71693,
+      "selected_definition_changes": [
+        {
+          "site": "A:5",
+          "component": "1AP",
+          "outgoing_site": "A:6",
+          "removed_hydrogens": [
+            "HO31"
+          ],
+          "before_dictionary_atoms": 35,
+          "after_dictionary_atoms": 34,
+          "modification_ids": {
+            "ids": [
+              "NALOed049e99c0",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "A:5",
+              "before": "REVIEW",
+              "after": "REVIEW"
+            }
+          ]
+        },
+        {
+          "site": "A:7",
+          "component": "5CM",
+          "outgoing_site": "A:8",
+          "removed_hydrogens": [
+            "HO3'"
+          ],
+          "before_dictionary_atoms": 34,
+          "after_dictionary_atoms": 33,
+          "modification_ids": {
+            "ids": [
+              "NALO0e71368165",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "A:7",
+              "before": "PASS",
+              "after": "PASS"
+            }
+          ]
+        },
+        {
+          "site": "B:4",
+          "component": "DP",
+          "outgoing_site": "B:5",
+          "removed_hydrogens": [
+            "H3"
+          ],
+          "before_dictionary_atoms": 34,
+          "after_dictionary_atoms": 33,
+          "modification_ids": {
+            "ids": [
+              "NALOb5a425053a",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "B:4",
+              "before": "REVIEW",
+              "after": "REVIEW"
+            }
+          ]
+        },
+        {
+          "site": "A:12",
+          "component": "DZ",
+          "outgoing_site": "A:13",
+          "removed_hydrogens": [
+            "H2"
+          ],
+          "before_dictionary_atoms": 34,
+          "after_dictionary_atoms": 33,
+          "modification_ids": {
+            "ids": [
+              "NALO869d4b2edc",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "A:12",
+              "before": "PASS",
+              "after": "PASS"
+            }
+          ]
+        }
+      ],
+      "outgoing_hydrogen_checks_pass": 38,
+      "baseline_projection_checks_pass": 24,
+      "reviewed_torsion": {
+        "angular_representation": "modulo 360 degrees only; targets and uncertainties unchanged",
+        "atoms": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2'"
+        ],
+        "check": "reviewed-torsion-native-proxy:A:7:C2e-nyu0",
+        "expected": {
+          "alternates": [
+            "2.8"
+          ],
+          "period": 1,
+          "target": "340.7",
+          "weight": "0.0251952632905"
+        },
+        "observed": [
+          {
+            "alternates": [
+              "2.8"
+            ],
+            "period": 1,
+            "target": "340.7",
+            "weight": "0.0251952632905"
+          }
+        ],
+        "status": "PASS"
+      },
+      "scientific_limits": {
+        "achieved_model_geometry": "NOT_RUN",
+        "experimental_protonation": "UNASSESSED",
+        "generated_stereochemical_metadata": "REVIEW_REQUIRED",
+        "numerical_geometry": "REVIEW_REQUIRED",
+        "scientific_approval": "NOT_RUN"
+      },
+      "delivery_prefix": "14_Cedar",
+      "runner_sha256_reported_and_matches_delivery": "487d8aa2e1f698c5e9e9315e7e9ddf19b06db390e6c95ab6b747221e53683511",
+      "selected_phenix_installation": "Phenix 2.2.1-6174",
+      "dispatcher_version_recorded": "2.2.1",
+      "native_receipt_paths_anchor": "returned_capsule",
+      "qualification_file": {
+        "anchor": "returned_capsule",
+        "path": "bundle_qualification.json"
+      },
+      "full_recorded_proxy_rows_compared": true,
+      "all_projected_native_definition_checks_passed": 24,
+      "unselected_site_definitions_preserved": 39,
+      "exact_native_site_modification_ids": "PASS",
+      "captured_baseline_replay": "PASS",
+      "unaffected_native_proxies": "PASS",
+      "backbone_links": 38,
+      "custom_restraint_coverage": {
+        "bond": 21,
+        "angle": 34,
+        "plane": 8,
+        "parallelity": 23
+      },
+      "model_coordinates_changed": false,
+      "readyset_retry": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "native_payloads_committed": false,
+      "verification_method": "Verify manifest and every anchored native input/output SHA-256/size; compare each of 35 frozen members against the original Cedar 12 ZIP; replay qualify_outgoing_bundle using captured baseline, returned baseline/candidate, existing plus outgoing preparations, explicit links, four projected dictionaries and reviewed 5CM torsion. Normalize only unavailable-charge item order by atom_id before exact report comparison.",
+      "installed_dispatcher_and_api_sources_match_captured": true,
+      "evidence_update_validation": {
+        "scope": "DOCUMENTATION_AND_EVIDENCE_ONLY_RUNTIME_UNCHANGED",
+        "json_files_parsed": 16,
+        "local_links_verified": 115,
+        "figure": "Deterministic SVG regeneration, XML parsing and rendered visual review PASS",
+        "native_replay": "All 147 outcomes and evidence match after sorting only unavailable-charge items by atom_id",
+        "runtime_test_receipt": "Existing Cedar 14 suite: 1480 passed, 2 skipped, 276 subtests; no rerun required for this documentation-only update."
+      }
+    },
+    "generality_scope": {
+      "status": "REUSABLE_WITHIN_DECLARED_SUPPORTED_LINKAGE_MOTIF",
+      "selection": "Explicit complete same-code site contexts and declared native backbone links; H/D element plus O3 bond graph, independent of component code and H name.",
+      "supported_motif": "Curated DNA with standard phosphodiester atom convention, OH1 O3 bonded singly to C3 and exactly one terminal H/D; captured canonical outgoing OC2 type authority and complete source/native row agreement.",
+      "component_or_hydrogen_name_allowlist": false,
+      "regression_file": "tests/test_cif_outgoing_preparation.py",
+      "synthetic_component": "ZZZ",
+      "tested_hydrogen_names_and_elements": [
+        [
+          "HO31",
+          "H"
+        ],
+        [
+          "HO3'",
+          "H"
+        ],
+        [
+          "H2",
+          "H"
+        ],
+        [
+          "H3",
+          "H"
+        ],
+        [
+          "looksC",
+          "H"
+        ],
+        [
+          "oddD",
+          "D"
+        ]
+      ],
+      "preservation_regressions": [
+        "Same-code true free 3prime end",
+        "OP2 hydrogen",
+        "Declared terminal phosphate",
+        "Existing modifiers",
+        "Remaining targets and formal/partial charges",
+        "Source and coordinate model"
+      ],
+      "refusal_regressions": [
+        "Changed native report",
+        "Failed native execution",
+        "Changed model",
+        "Wrong canonical authority type or identity",
+        "Changed numerical target",
+        "Missing context",
+        "Wrong link",
+        "Coordinate hydrogen deletion",
+        "Reused output",
+        "Source changed during preparation"
+      ],
+      "qualification_regression_file": "tests/test_cif_outgoing_qualification.py",
+      "qualification_guards": [
+        "Prior/new modifier loss or wrong/unselected site",
+        "Captured baseline/proxy corruption or missing detail",
+        "Unavailable formal-charge readback remains unsupported",
+        "Changed neutron target"
+      ],
+      "software_validation": "Existing Cedar 13 focused/full and Cedar 14 launcher/full receipts in this record; no runtime changes in this evidence update.",
+      "probe_scope": "Exact hash-verified Cedar 12 experiment; selected sites are derived from captured outgoing-H findings. This is not an arbitrary-input production runner.",
+      "historical_5cm_correction": "Separate source-hash-bound reviewed correction; the outgoing rule does not generalize that source-specific atom-reference correction.",
+      "production_postmr_integration": false,
+      "unknown_motifs": "REFUSE_OR_REVIEW_REQUIRES_SEPARATE_AUTHORITY_AND_QUALIFICATION"
+    },
+    "next_bounded_work": {
+      "status": "EVIDENCE_AND_GEOMETRY_QUALIFICATION_NOT_A_NEW_DELIVERY",
+      "next_delivery_queued": false,
+      "work": "Review remaining source/numerical/stereochemical evidence and define bounded geometry qualification from this validated bundle while preserving original coordinates and manager.",
+      "do_not_repeat": "Unchanged native formal-charge inventory cannot resolve the installed API readback limitation.",
+      "remaining_limits": [
+        "Nine unsupported effective formal-charge readbacks",
+        "Added terminal H formal charge unassessed",
+        "Existing 1AP/DP source assessments REVIEW",
+        "Numerical and independent mapped stereochemical qualification",
+        "Achieved geometry, refinement and human review",
+        "Production integration and adoption"
+      ]
     }
   }
 }

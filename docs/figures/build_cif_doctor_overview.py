@@ -95,8 +95,8 @@ def build():
              'Native site IDs and component-list metadata loops preserve reader contracts. '
              'Returned Cedar 09 native checks preserve formal-charge and terminal-chemistry review limits. '
              'A completed terminal-source review records installed parameters and a canonical hydroxyl control. '
-             'Selected modified-terminal candidates and explicit 5CM preparation pass installed projected-definition and unaffected-proxy checks; charge and existing outgoing-hydrogen reviews remain open. '
-             'A separate outgoing-oxygen candidate layer preserves existing dictionaries and modifiers while checking captured-baseline replay and exact modifier IDs; its installed trial remains pending. '
+             'Selected modified-terminal candidates and explicit 5CM preparation pass installed projected-definition and unaffected-proxy checks; formal-charge readback remains unavailable. '
+             'A separate graph-selected outgoing-oxygen candidate layer preserves existing dictionaries and modifiers. Returned Cedar 14 clears all four outgoing-hydrogen findings and passes installed projected-definition, captured-baseline replay and exact modifier-ID checks; source, charge and achieved-geometry limits remain open. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',

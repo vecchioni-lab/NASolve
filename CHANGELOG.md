@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 14 native return and generality scope
+
+- Verify all 141 returned payloads and completed baseline/candidate interpretation
+  under Phenix 2.2.1-6174. Offline replay reproduces 138 PASS and nine unsupported
+  formal-charge readbacks. All four outgoing-H findings clear; projected
+  definitions, exact modifier IDs, captured-baseline replay and retained
+  definitions/proxies pass. Aggregate REVIEW and source/geometry limits remain.
+- Record the graph/context rule's existing synthetic `ZZZ`, misleading H-name,
+  deuterium and true-end regression coverage. Distinguish the supported linkage
+  motif from the hash-bound Cedar probe and source-specific reviewed corrections.
+  Documentation/evidence only; no runtime, schema, gate, coordinate or adoption
+  change. Private native payloads remain outside Git.
+
 ### Outgoing probe Phenix default and Cedar 14 retry
 
 - Restore the versioned user-home Phenix default used by Cedar 12 when

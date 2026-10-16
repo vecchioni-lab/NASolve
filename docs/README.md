@@ -63,11 +63,17 @@ for actual behavior; history is evidence, not a second task queue.
   captured source/native row agreement. It adds site-selected H removal and
   canonical type transfer while retaining original dictionaries and modifiers.
   Its installed trial adds captured-baseline replay and exact modifier-ID checks;
-  formal-charge and existing source reviews remain visible. Native execution
-  is pending; no optimization/refinement or production adoption is implied.
+  formal-charge and existing source reviews remain visible.
   The Cedar 13 return confirms preparation but stops at an empty Phenix default
-  before interpretation. Cedar 14 restores the known versioned default and
-  retains explicit relocation and all source checks; native validation is next.
+  before interpretation. Cedar 14 restores the known versioned default; both
+  installed interpretations now complete. All 141 payloads verify and offline
+  replay reproduces **138 PASS / nine UNSUPPORTED charge readbacks**. All four
+  outgoing-H findings clear; exact modifier IDs, projected definitions and
+  retained definitions/proxies pass. Aggregate REVIEW and source/geometry limits
+  remain. The reusable rule uses explicit links and graph-selected H/D, covered
+  by synthetic `ZZZ`, misleading-name and free-end tests; the probe itself stays
+  hash-bound to this experiment. No optimization/refinement or production
+  adoption is implied.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

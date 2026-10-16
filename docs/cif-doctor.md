@@ -395,9 +395,9 @@ selected modifiers to the same dictionaries, parameters and 877-atom model.
 full captured-baseline replay and exact prior/new modifier IDs at every site.
 It keeps the reviewed 5CM torsion/alternate gate, all 38 outgoing-H audits,
 unselected definitions and every recorded unaffected proxy. Installation/module
-hashes and frozen inputs are checked before and after. The new installed trial
-is pending. Formal-charge limitations, existing source reviews and broader
-geometry/stereochemical review remain separate; REVIEW/exit 2 can remain after
+hashes and frozen inputs are checked before and after. Formal-charge limitations,
+existing source reviews and broader geometry/stereochemical review remain separate;
+REVIEW/exit 2 can remain after
 successful native execution. Explicit input/installation/timeout/inspect-only
 options and all previous runs remain available.
 
@@ -409,6 +409,27 @@ versioned default `$HOME/Applications/phenix-2.2.1-6174`. An explicit
 same version, dispatcher and source-hash checks. The new CLI regression uses
 the real loader and executable discovery with explicit external-program
 fixtures. Candidates and scientific qualification gates are unchanged.
+
+Returned Cedar 14 completes both installed Phenix 2.2.1-6174 interpretations,
+exit 0. All 141 payloads and anchored native files verify; offline qualification
+replay reproduces **138 PASS and nine UNSUPPORTED formal-charge checks** after
+sorting only unavailable-charge items by atom ID. All four outgoing-H findings
+clear, and all 38 endpoint audits pass. Exact modifier IDs, projected definitions,
+captured-baseline replay, unselected definitions, unaffected proxies and the
+reviewed 5CM torsion/alternate all pass. Coordinates remain the same 877 atoms
+at 43 sites. Aggregate REVIEW preserves unavailable charge evidence and does
+not approve existing source reviews, achieved geometry or experimental chemistry.
+
+The correction rule has no component-code or hydrogen-name allowlist. Existing
+regressions exercise a synthetic `ZZZ` component with misleading H names and D,
+an outgoing site alongside a true free end, OP2 H and retained terminal phosphate.
+Unknown motifs, missing contexts, changed authorities and coordinate-H deletion
+are refused. This generality covers the explicitly supported OH1 O3′–C3′/H
+motif with captured canonical authority. The Cedar probe is deliberately pinned
+to reviewed inputs; the hash-scoped historical 5CM correction and future
+production integration retain their separate evidence requirements. Exact
+returned hashes and software checks are in the
+[native evidence record](cif-linked-native-registration-evidence.json).
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

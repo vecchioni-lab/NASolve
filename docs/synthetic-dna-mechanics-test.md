@@ -450,16 +450,28 @@ hashes are checked again after execution. No coordinate edits or new targets
 are part of the trial.
 
 Offline preparation passes all 24 source/native comparisons. Existing 1AP/DP
-Doctor assessments remain REVIEW. Installed qualification remains pending;
-formal-charge readback can keep aggregate REVIEW after successful interpretation.
+Doctor assessments remain REVIEW. Unsupported formal-charge readback keeps
+aggregate REVIEW after successful interpretation.
 This candidate is not production adoption or geometry/refinement qualification.
 
 The returned Cedar 13 capsule verifies all 58 payloads, all 35 frozen input
 copies and completed preparation at the four sites. Native interpretation was
 not reached: the launcher passed `None` when `--phenix-root` was omitted.
 Cedar 14 restores the working versioned user-home default and keeps explicit
-relocation plus all source hashes and gates. Its native retry remains pending;
-the candidate dictionaries and coordinate model are unchanged.
+relocation plus all source hashes and gates. Its returned native trial completes
+both Phenix 2.2.1-6174 interpretations, exit 0. All 141 payloads verify, and
+offline replay reproduces 138 PASS and nine UNSUPPORTED formal-charge checks.
+The four outgoing-H findings clear; all 38 endpoint audits, exact modifier IDs,
+projected definitions, baseline replay, unaffected definitions/proxies and
+reviewed 5CM proxy pass. The source dictionaries and 877-atom coordinate
+model are preserved. Geometry/refinement and scientific approval remain open.
+
+Preparation uses declared site contexts, H/D connectivity and captured canonical
+authority, independent of the four observed component and H names. Existing
+synthetic `ZZZ`, misleading-name, D and free-end tests exercise that reusable
+motif and preservation/refusal gates. The runner remains pinned to this
+reviewed experiment; this result does not establish arbitrary-component
+production adaptation.
 
 ## Adaptable methods wording
 

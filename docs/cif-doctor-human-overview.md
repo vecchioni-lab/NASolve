@@ -214,9 +214,19 @@ all remaining targets and charges, and the coordinate model. Before/after
 assessments retain existing source reviews. Cedar 13 prepares these four
 candidates from the returned Cedar 12 bundle. Its returned preparation succeeds,
 but installation selection stops before native interpretation; Cedar 14 corrects
-that launcher default. The installed comparison remains pending. The trial
-adds captured-baseline replay and exact modifier-ID checks
-without relaxing charge, numerical, stereochemical or geometry limitations.
+that launcher default. Both Cedar 14 installed interpretations now complete;
+all 141 payloads verify and qualification replay reproduces 138 passing checks
+and nine unsupported formal-charge readbacks. All four outgoing-H findings
+clear. Captured-baseline replay, exact modifier IDs, projected definitions and
+retained definitions/proxies pass. The aggregate stays REVIEW, with charge,
+source, numerical, stereochemical and achieved-geometry limits preserved.
+
+The reusable rule selects H/D by element and bond graph at an explicitly
+declared link. Tests use synthetic `ZZZ`, misleading names, deuterium and true
+free ends, and preserve OP2 H and terminal phosphate. Unknown motifs or missing
+authority require review. This supports the declared linkage motif; the
+experiment's hash-bound runner and source-specific 5CM correction do not
+establish arbitrary-component production support.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -358,9 +368,13 @@ retain REVIEW. The new H formal charge stays unassessed.
 For the separate outgoing-oxygen candidates, complete captured source/native
 row comparisons precede graph-selected H/D removal and canonical type transfer.
 Source dictionaries and prior modifiers remain unchanged; exact projected
-definitions, all unselected definitions/proxies and modifier IDs are then
-checked in a separate native trial. Existing source reviews and unavailable
-formal-charge readback are retained, without inferred targets or pH.
+definitions, all unselected definitions, unaffected proxies and modifier IDs are then
+checked in a separate native trial. Returned Cedar 14 passes these checks
+and clears all four outgoing-H findings; its aggregate REVIEW retains nine
+unsupported charge readbacks and separate source/geometry limits. The rule
+uses declared links and H/D connectivity, with synthetic-name/free-end
+regressions; the experiment remains hash-bound. Existing source reviews are
+retained, without inferred targets or pH.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

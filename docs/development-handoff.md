@@ -51,7 +51,59 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 13 returned; Cedar 14 launcher retry ready (2026-10-16):** all 58
+**Cedar 14 returned and verified (2026-10-16):** all **141 payloads** in
+`14_Cedar_7qm2tnry_cif_outgoing_bundle_review.zip` verify, including every
+anchored native input/output and all 35 unchanged Cedar 12 materialized members.
+The runner hash matches `487d8aa2…` from clean NASolve
+`56d4dae912e36dd7cfe8d905a68e1d09412546a2` and pinned NARestraints
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. Both installed Phenix
+**2.2.1-6174** interpretations completed, exit 0 (5.903950 s / 1.358828 s).
+Qualification records **138 PASS and nine UNSUPPORTED formal-charge checks**;
+no individual check remains REVIEW, but the aggregate remains **REVIEW**.
+Offline replay reproduces all 147 outcomes and evidence after sorting only
+unavailable-charge items by atom ID. The
+[native evidence record](cif-linked-native-registration-evidence.json) owns
+the exact archive, receipt and qualification hashes.
+
+All four curated outgoing-O3′-H findings clear, and all **38** outgoing-H
+audits pass. The native modifier IDs are exactly prior `NASnoOP3` plus the
+selected new ID; all six projected-definition categories, including atom types,
+match.
+Captured-baseline replay, all unselected definitions, every recorded unaffected
+proxy, reviewed 5CM torsion/alternate, 38 links and custom 21/34/8/23 coverage
+pass. The same 877 coordinate atoms and 43 sites are preserved. Both managers
+contain 1,026 simple bonds, 1,590 angles, 155 chirality proxies, 387 constant
+dihedrals, 571 dihedrals, 58 parallelities and 54 planes. Equal totals alone
+are not the proof: full recorded rows are compared by the qualification gates.
+The candidate appends four dictionaries and four parameter files to the
+unchanged 14-dictionary/seven-parameter baseline.
+
+**Generality:** the preparation rule uses explicit links, the H/D bond graph
+and captured canonical type authority; it has no four-component or hydrogen-name
+allowlist. Existing regressions use synthetic `ZZZ`, misleading H names and D,
+same-code outgoing/free-end contexts, retained OP2 H and terminal phosphate.
+They also reject missing contexts, changed authorities/inputs and coordinate-H
+deletion; qualification guards exact modifier IDs and retained numerical rows.
+This establishes reusable behavior within the declared OH1 O3′–C3′/H motif.
+The Cedar probe remains hash-bound to its reviewed experiment. Other chemistry,
+the source-specific 5CM correction and production integration keep their own
+authority and qualification requirements; arbitrary-component support is not
+established by this result.
+
+**Next bounded work:** review the remaining source/numerical/stereochemical
+evidence and define geometry qualification from this validated bundle, preserving
+the original coordinates and manager. The nine charge readbacks are unavailable
+in this API, with no contradictory values or partial-charge substitution;
+repeating the unchanged inventory does not resolve them. The added terminal H
+formal charge remains unassessed, and 1AP/DP Doctor source assessments remain
+REVIEW. Achieved geometry, experimental protonation, refinement, human review
+and production adoption remain separate gates. No new delivery is queued by
+this evidence update; no model editing, optimization, ReadySet retry, refinement
+or adoption occurred. Runtime and schemas are unchanged. The existing Cedar 14
+software suite below remains the latest code validation; this documentation-only
+change adds capsule/replay, JSON, link and figure verification.
+
+**Cedar 13 return and Cedar 14 launcher correction (2026-10-16):** all 58
 payloads in `13_Cedar_4o9_vhuk_cif_outgoing_bundle_review.zip` verify, including
 35 unchanged frozen members and 24 passing source/native projection checks.
 The user runner hash matches `68a2b9ae…` from clean NASolve
@@ -70,11 +122,12 @@ discovery, with explicit external-program shell fixtures. It fails before the
 fix for the omitted option while the explicit path already passes (one failed,
 one passed, 12 deselected), then both pass after the fix.
 
-**Current delivery:** use a new `14_Cedar_probe_build` and output
-`14_Cedar_probe_cif_outgoing_bundle.py`; call the existing builder with
-`--delivery-prefix 14_Cedar`. Supply the exact reviewed commit in one conditional
-Git ferry. Input remains the preserved Cedar 12 ZIP; retain the Cedar 13 build,
-runner and failed-launch capsule. The focused command
+**Completed delivery:** `14_Cedar_probe_build` at
+`56d4dae912e36dd7cfe8d905a68e1d09412546a2` built
+`14_Cedar_probe_cif_outgoing_bundle.py` with `--delivery-prefix 14_Cedar`.
+The user ran the one-block conditional Git ferry with explicit `--phenix-root`.
+Input remains the preserved Cedar 12 ZIP; retain all builds, runners and capsules.
+The focused command
 `env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py tests/test_phenix_runtime.py tests/test_synthetic_dna_shuttle.py`
 passes **27 tests (18.67 s)**. The same command without test-file arguments
 passes **1,480 tests, two skips and 276 subtests (118.05 s)**. A Cedar 14
@@ -83,8 +136,8 @@ deleted, with poisoned imports unused; all 58 payloads verify and the original
 Cedar 12 ZIP is preserved. This is preparation/transport evidence, not installed
 Phenix execution. The
 [native evidence record](cif-linked-native-registration-evidence.json) owns
-the full-suite and retry receipts. Phenix 2.2.1-6174 execution of Cedar 14
-remains pending; no optimization/refinement or adoption occurred.
+the full-suite and retry receipts. Installed Cedar 14 execution is verified
+above; no optimization/refinement or adoption occurred.
 
 **Cedar 13 outgoing candidate implementation (2026-10-16):** the user authorized the
 next source review and validation delivery. All 24 complete curated-to-native
@@ -203,8 +256,8 @@ directory. No ReadySet retry, model optimization, refinement, adoption or
 production PostMR change occurred.
 
 **Follow-up from that return:** source review and explicit preparation of the
-four internal O3′-H contexts are now implemented in Cedar 13 above; installed
-validation is next. Native formal-charge readback and the earlier added H formal
+four internal O3′-H contexts were implemented in Cedar 13 and pass installed
+Cedar 14 validation above. Native formal-charge readback and the earlier added H formal
 charge remain open evidence limits; repeating an unchanged inventory does not
 resolve them. Geometry/refinement and human review remain separate later gates.
 
