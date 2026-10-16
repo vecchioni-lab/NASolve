@@ -431,6 +431,38 @@ production integration retain their separate evidence requirements. Exact
 returned hashes and software checks are in the
 [native evidence record](cif-linked-native-registration-evidence.json).
 
+### Captured Cartesian geometry review
+
+`cif_captured_geometry.review_captured_geometry` is a separate read-only
+diagnostic for detailed native inventories. It verifies atom identities,
+indices, coordinate correspondence and proxy counts, then reports Cartesian
+simple-bond distances, central angles and ordered chirality triple products.
+The signed nominal deviation is `(observed - target) * sqrt(weight)`; a recorded
+`both_signs` flag compares absolute ordered volume. All original targets and
+weights are retained. Missing/negative/zero weights, degenerate measurements,
+nonidentity bond symmetry and deferred proxy kinds remain visible.
+
+This is descriptive geometry evidence, **not a native residual calculation or
+scientific acceptance gate**. Existing captures omit some symmetry, slack and
+top-out conventions; angle/chirality values use recorded Cartesian endpoints
+without inferred transforms. Counts at nominal absolute deviations of three
+and five are ranking aids. Dihedrals, constant dihedrals, ASU bonds, planes,
+parallelities, sugar pucker and independent absolute stereochemistry remain
+unassessed. The diagnostic cannot approve source chemistry or replace full
+geometry/refinement qualification.
+
+`scripts/build_cif_geometry_review_probe.py` builds the source-bundled
+`15_Cedar_probe_cif_geometry_review.py` for the exact verified Cedar 14 ZIP.
+It validates all 141 payloads and the captured receipt/report agreement, freezes
+all 47 referenced native members and preserves the original archive. It carries
+forward the earlier 138 PASS/nine UNSUPPORTED outcomes and existing source
+assessments without reevaluating them as new native results. It writes a full
+JSON report, short summary, provenance and 51-payload review ZIP in a fresh
+directory. Successful review remains REVIEW/exit 2. Explicit archive/output
+options remain; no new Phenix/Coot call or package installation is needed.
+Actual-input replay and source-isolated relocation pass. Production PostMR,
+automatic adoption, model coordinates and prior qualification gates are unchanged.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

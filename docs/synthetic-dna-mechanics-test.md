@@ -473,6 +473,24 @@ motif and preservation/refusal gates. The runner remains pinned to this
 reviewed experiment; this result does not establish arbitrary-component
 production adaptation.
 
+### Cedar 15 captured Cartesian geometry review
+
+The next read-only runner consumes the exact returned Cedar 14 ZIP, verifies
+all 141 payloads and freezes its captured candidate receipt and 47 anchored
+native members. It validates atom/index/label/coordinate correspondence and
+reports all 1,026 simple-bond distances, 1,590 angles and 155 ordered chirality
+volumes. It performs no new native interpretation or coordinate changes.
+
+Nominal absolute weighted deviations at least five occur for 50 bonds and 107
+angles; none occurs for chirality, with zero sign conflicts against the recorded
+targets. These are descriptive values for the original unoptimized model, not
+native residuals or acceptance decisions. Unrecorded symmetry/slack/top-out
+conventions and deferred dihedral/plane/parallelity/ASU-bond geometry, pucker
+and independent absolute stereochemistry remain explicit. The successful
+51-payload review ZIP remains REVIEW/exit 2; source chemistry and formal-charge
+limits are carried forward. New geometry intervention/refinement requires its
+own bounded qualification.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

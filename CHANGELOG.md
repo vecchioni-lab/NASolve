@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Captured Cartesian geometry review and Cedar 15 ferry
+
+- Add a read-only diagnostic for Cartesian simple-bond distances, angles and
+  ordered chirality volumes from a verified native inventory. Validate atom
+  identities, indices, coordinate correspondence and detail counts; retain
+  missing/zero-weight, degenerate, symmetry and deferred-category limitations.
+  Nominal weighted deviations are descriptive rankings, not native residuals
+  or scientific acceptance gates.
+- Add the source-bundled Cedar 15 runner for the exact verified Cedar 14 ZIP,
+  preserving all inputs and earlier qualification/source reviews. Write a fresh
+  JSON report, short summary and review capsule. No new native execution,
+  coordinate changes, target retuning, optimization, refinement or adoption;
+  existing production paths and schemas remain unchanged. No new dependencies.
+- Validate synthetic geometry/transport regressions, the full suite and actual
+  captured-input relocation after deletion of both source-build fixtures.
+
 ### Cedar 14 native return and generality scope
 
 - Verify all 141 returned payloads and completed baseline/candidate interpretation

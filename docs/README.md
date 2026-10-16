@@ -74,6 +74,12 @@ for actual behavior; history is evidence, not a second task queue.
   by synthetic `ZZZ`, misleading-name and free-end tests; the probe itself stays
   hash-bound to this experiment. No optimization/refinement or production
   adoption is implied.
+  The separate Cedar 15 captured-geometry diagnostic now measures recorded
+  Cartesian simple bonds, angles and ordered chirality volumes, with no new
+  native execution or coordinate edits. Nominal weighted deviations are
+  descriptive rankings; incomplete native conventions, deferred geometry,
+  pucker, absolute stereochemistry and scientific qualification remain explicit.
+  Actual-input transport and the complete 1,501-test suite pass.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

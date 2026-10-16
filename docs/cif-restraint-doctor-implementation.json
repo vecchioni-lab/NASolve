@@ -702,18 +702,137 @@
         "unknown_motifs": "REFUSE_OR_REVIEW_REQUIRES_SEPARATE_AUTHORITY_AND_QUALIFICATION"
       },
       "next_bounded_work": {
-        "status": "EVIDENCE_AND_GEOMETRY_QUALIFICATION_NOT_A_NEW_DELIVERY",
-        "next_delivery_queued": false,
-        "work": "Review remaining source/numerical/stereochemical evidence and define bounded geometry qualification from this validated bundle while preserving original coordinates and manager.",
-        "do_not_repeat": "Unchanged native formal-charge inventory cannot resolve the installed API readback limitation.",
+        "status": "CAPTURED_CARTESIAN_EVIDENCE_REVIEW_IMPLEMENTED_CEDAR_15_READY",
+        "next_delivery_queued": true,
+        "delivery_prefix": "15_Cedar",
+        "work": "Review captured simple-bond, angle and ordered-volume comparisons first; source/numerical/stereochemical evidence, complete native geometry and any intervention remain separately qualified.",
+        "do_not_repeat": "No unchanged native formal-charge inventory is rerun; the new runner performs captured-evidence analysis only.",
         "remaining_limits": [
           "Nine unsupported effective formal-charge readbacks",
           "Added terminal H formal charge unassessed",
           "Existing 1AP/DP source assessments REVIEW",
-          "Numerical and independent mapped stereochemical qualification",
-          "Achieved geometry, refinement and human review",
+          "Missing full native symmetry/slack/top-out conventions",
+          "Deferred dihedral, plane, parallelity and ASU-bond geometry",
+          "Sugar pucker and independent absolute stereochemistry",
+          "Achieved geometry qualification, refinement and human review",
           "Production integration and adoption"
         ]
+      }
+    },
+    "captured_geometry_review_2026_10_16": {
+      "status": "IMPLEMENTED_CAPTURED_EVIDENCE_REVIEW_READY",
+      "delivery_prefix": "15_Cedar",
+      "policy_id": "cif-captured-cartesian-geometry-v1",
+      "modules": [
+        "src/nasolve/cif_captured_geometry.py",
+        "scripts/cif_geometry_review_probe_template.py",
+        "scripts/build_cif_geometry_review_probe.py"
+      ],
+      "schema_1": {
+        "new_report_kind": "cif_captured_cartesian_geometry_review",
+        "new_probe_receipt_kind": "cif-captured-geometry-review-probe",
+        "existing_native_inventory_and_qualification_formats_changed": false
+      },
+      "generic_mechanism": "Consumes detailed native atom/proxy records; no residue-code or H-name allowlist. Validate atom order, labels, coordinates and counts; retain every measured, unsupported, degenerate and unweighted row.",
+      "native_residuals": "UNASSESSED",
+      "new_native_execution": "NOT_RUN",
+      "actual_input_analysis": {
+        "status": "REVIEW",
+        "analysis_completed": true,
+        "captured_atoms": 877,
+        "frozen_native_members": 47,
+        "verified_output_payloads": 51,
+        "summary": {
+          "angle": {
+            "captured_proxies": 1590,
+            "nominal_abs_ge_5": 107,
+            "sign_conflicts": 0
+          },
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "nominal_abs_ge_5": 50,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 155,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "prior_qualification_carried_forward": {
+          "PASS": 138,
+          "UNSUPPORTED": 9
+        },
+        "source_assessments": {
+          "1AP": "REVIEW",
+          "DP": "REVIEW",
+          "5CM": "PASS",
+          "DZ": "PASS"
+        },
+        "original_archive_preserved": true
+      },
+      "remaining_limits": [
+        "Capture lacks some symmetry/slack/top-out conventions; measurements are not native residuals",
+        "Nonidentity simple-bond symmetry unsupported; angle/chirality use captured Cartesian endpoints without inferred transforms",
+        "ASU bonds, dihedrals, constant dihedrals, planes and parallelities remain unassessed",
+        "Ordered-volume sign agreement is not independent absolute stereochemistry",
+        "Sugar pucker, source chemistry, formal charges, experimental evidence and full geometry qualification remain open"
+      ],
+      "boundaries": {
+        "model_editing": "NOT_RUN",
+        "optimization": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "new_runtime_dependencies": [],
+        "production_postmr_changes": false,
+        "prior_qualification_gates_changed": false,
+        "native_payloads_committed": false
+      },
+      "ferry": {
+        "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+        "previous_build": "14_Cedar_probe_build",
+        "worktree": "15_Cedar_probe_build",
+        "builder": "scripts/build_cif_geometry_review_probe.py",
+        "narestraints_worktree": "05_Cedar_narestraints_build",
+        "runner": "15_Cedar_probe_cif_geometry_review.py",
+        "required_runtime": "Python >=3.10 only; no new installation or Phenix argument.",
+        "expected_status": "REVIEW/exit 2 with analysis_completed true and a new review ZIP."
+      },
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "software_validation": {
+        "before_implementation": {
+          "failed": 13,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_captured_geometry.py"
+        },
+        "focused": {
+          "passed": 30,
+          "seconds": 3.94,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_captured_geometry.py tests/test_cif_geometry_review_probe.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1501,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 111.78,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "fixtures": "Explicit synthetic Cartesian/native-inventory fixtures, including ZZZ; no installed Phenix in these tests.",
+        "actual_input_relocation": {
+          "status": "PASS",
+          "original_build_and_narestraints_trees_deleted": true,
+          "poisoned_imports": "NOT_USED",
+          "current_directory_independence": true,
+          "actual_cedar14_archive_preserved": true,
+          "verified_source_payloads": 141,
+          "frozen_native_members": 47,
+          "verified_return_payloads": 51,
+          "new_native_execution": "NOT_RUN",
+          "analysis_completed": true,
+          "model_editing": "NOT_RUN",
+          "refinement": "NOT_RUN"
+        }
       }
     }
   },

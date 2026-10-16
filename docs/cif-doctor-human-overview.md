@@ -228,6 +228,18 @@ authority require review. This supports the declared linkage motif; the
 experiment's hash-bound runner and source-specific 5CM correction do not
 establish arbitrary-component production support.
 
+A separate captured-geometry diagnostic measures Cartesian simple-bond
+distances, angles and ordered chirality volumes against the recorded native
+targets. It validates identities, indices and coordinate correspondence before
+measuring, retains missing/zero-weight and degenerate cases, and preserves all
+source inputs. Its nominal weighted deviations are descriptive rankings; the
+capture does not retain all symmetry/slack/top-out conventions needed for
+native residuals. Pucker, absolute stereochemistry and other proxy categories
+remain unassessed. The explicit Cedar 15 runner performs this review on the
+verified Cedar 14 bundle without new native execution or coordinate changes;
+successful analysis retains REVIEW. It is separate from production PostMR and
+complete geometry qualification.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -288,11 +300,13 @@ from a residue label. Explicit diagnostic preparation uses declared linkage
 and end states; current production PostMR does not adopt these derivatives.
 Installed linked execution is now recorded, with native formal-charge readback
 still unsupported. Complete synthetic free-OH end chemistry is not qualified.
-The assessment layer does not calculate
+The dictionary assessment layer does not calculate
 achieved coordinate geometry or sugar pucker, assess maps, or repair/stitch
 fractured assembly arms. Plane-angle discrepancies include raw measurements
 and uncertainty-based lower bounds, but a material-strain threshold has not
 been calibrated.
+The separate captured Cartesian diagnostic provides limited coordinate
+measurements; it does not complete the broader geometry qualification above.
 
 The proposed next layers are completion of qualification and integration of
 the explicit linked-state diagnostic, mapped chemical
@@ -375,6 +389,10 @@ unsupported charge readbacks and separate source/geometry limits. The rule
 uses declared links and H/D connectivity, with synthetic-name/free-end
 regressions; the experiment remains hash-bound. Existing source reviews are
 retained, without inferred targets or pH.
+The separate captured Cartesian review measures distances, angles and ordered
+volumes from recorded manager sites. Nominal weighted deviations rank the
+evidence; missing native conventions and deferred geometry remain unassessed,
+and no coordinate repair, target retuning or qualification pass is implied.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

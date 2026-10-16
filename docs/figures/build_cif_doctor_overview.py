@@ -97,6 +97,7 @@ def build():
              'A completed terminal-source review records installed parameters and a canonical hydroxyl control. '
              'Selected modified-terminal candidates and explicit 5CM preparation pass installed projected-definition and unaffected-proxy checks; formal-charge readback remains unavailable. '
              'A separate graph-selected outgoing-oxygen candidate layer preserves existing dictionaries and modifiers. Returned Cedar 14 clears all four outgoing-hydrogen findings and passes installed projected-definition, captured-baseline replay and exact modifier-ID checks; source, charge and achieved-geometry limits remain open. '
+             'A separate captured Cartesian review measures simple-bond distances, angles and ordered chirality volumes. Nominal deviations are descriptive; native residuals, deferred geometry and absolute stereochemistry remain unassessed. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -140,7 +141,7 @@ def build():
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Explicit terminal / outgoing candidates; exact native checks.", size=24),
+        text(70, 1082, "Explicit candidates; native checks and captured Cartesian geometry.", size=24),
         text(70, 1116, "Native site / terminal controls recorded; formal-charge readback unavailable.", size=24),
         '</g>',
         '</svg>'])

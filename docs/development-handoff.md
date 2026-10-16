@@ -51,6 +51,60 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
+**Cedar 15 captured geometry review ready (2026-10-16):** the user requested
+the next script. This bounded diagnostic reads the exact verified Cedar 14 ZIP,
+checks all 141 payloads, and materializes only the captured candidate's 47
+anchored native members. It measures simple-bond distances, angles and ordered
+chirality volumes from recorded Cartesian manager sites. It preserves all
+coordinates, dictionaries and prior qualification outcomes, and runs no new
+Phenix interpretation, ReadySet, optimization or refinement.
+
+The reusable `cif_captured_geometry.review_captured_geometry` API validates
+atom/index/label/coordinate correspondence and proxy detail counts. It retains
+all measured, unsupported, zero-weight and degenerate rows. The signed nominal
+deviation is `(observed - target) * sqrt(recorded weight)`; recorded `both_signs`
+uses absolute ordered volume. This is a descriptive ranking, **not a native
+residual or acceptance gate**: the capture lacks some symmetry/slack/top-out
+conventions. Nonidentity bond symmetry is unsupported. Angle/chirality values
+describe the recorded Cartesian endpoints without inferred symmetry transforms.
+Dihedrals, planes, parallelities, ASU bonds, pucker, absolute stereochemistry
+and complete geometry qualification remain explicitly unassessed. No source
+defect, target change or chemical approval is inferred from a large score.
+
+Actual-input replay measures **1,026 bonds, 1,590 angles and 155 chirality
+proxies**. Nominal absolute deviations at least five occur at 50 bonds and 107
+angles; none occurs among chirality proxies, and no recorded chirality sign
+conflicts are observed. These describe the existing unoptimized model. Existing
+source reviews and nine unavailable formal-charge readbacks stay open.
+
+**Delivery:** build `15_Cedar_probe_cif_geometry_review.py` with
+`scripts/build_cif_geometry_review_probe.py`, the new pinned
+`15_Cedar_probe_build` and existing `05_Cedar_narestraints_build`. Use the
+one-block `fetch && worktree && build && run` ferry from the preserved
+`14_Cedar_probe_build`. The default input is the returned Cedar 14 path;
+`--review-zip` and `--output-parent` remain explicit overrides. The runner uses
+Python's standard library and needs no new installation or Phenix argument.
+It writes `captured_geometry_review.json`, a short `summary.txt`, provenance,
+frozen evidence and a new review ZIP. Successful analysis deliberately returns
+**REVIEW/exit 2**; return that output/capsule for review. Full scientific
+qualification and a later geometry intervention remain separate decisions.
+
+**Validation:** all 13 scalar regressions fail before the module exists, then
+pass. The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_captured_geometry.py tests/test_cif_geometry_review_probe.py tests/test_synthetic_dna_shuttle.py`
+passes **30 tests (3.94 s)**. The same command without file arguments passes
+**1,501 tests, two skips and 276 subtests (111.78 s)**. Synthetic `ZZZ` fixtures
+cover rigid motions, reflected/unsigned chirality, zero/missing/negative
+weights, inconsistent captures, deferred categories, capsule tampering and
+deleted-build/poisoned-import transport. A separate actual-input relocation
+also completes after both source-build fixtures are deleted; all **51** output
+payloads verify and the Cedar 14 ZIP is unchanged. This is captured-evidence
+analysis, not new installed-tool execution. Schema 1 gains only a new diagnostic
+report/receipt; existing inventory, qualification and production formats/gates
+are unchanged. No private scientific payloads enter Git. The
+[native evidence record](cif-linked-native-registration-evidence.json) owns
+the methods, exact input hash and software/transport receipts.
+
 **Cedar 14 returned and verified (2026-10-16):** all **141 payloads** in
 `14_Cedar_7qm2tnry_cif_outgoing_bundle_review.zip` verify, including every
 anchored native input/output and all 35 unchanged Cedar 12 materialized members.
@@ -97,8 +151,8 @@ in this API, with no contradictory values or partial-charge substitution;
 repeating the unchanged inventory does not resolve them. The added terminal H
 formal charge remains unassessed, and 1AP/DP Doctor source assessments remain
 REVIEW. Achieved geometry, experimental protonation, refinement, human review
-and production adoption remain separate gates. No new delivery is queued by
-this evidence update; no model editing, optimization, ReadySet retry, refinement
+and production adoption remain separate gates. Cedar 15 above now implements
+the next descriptive evidence slice; no model editing, optimization, ReadySet retry, refinement
 or adoption occurred. Runtime and schemas are unchanged. The existing Cedar 14
 software suite below remains the latest code validation; this documentation-only
 change adds capsule/replay, JSON, link and figure verification.
