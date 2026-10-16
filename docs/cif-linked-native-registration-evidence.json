@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "NOT_QUEUED",
+  "next_delivery": "13_Cedar",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -1897,6 +1897,234 @@
       "readyset_retry": "NOT_RUN",
       "refinement": "NOT_RUN",
       "automatic_adoption": false
+    }
+  },
+  "outgoing_bundle_validation_2026_10_16": {
+    "delivery_prefix": "13_Cedar",
+    "status": "IMPLEMENTED_INSTALLED_OUTGOING_VALIDATION_PENDING",
+    "policies": {
+      "preparation": "cif-native-linked-oxygen-v1",
+      "qualification": "cif-native-outgoing-bundle-checks-v1",
+      "native_inventory_unchanged": "cif-native-bundle-inventory-v1"
+    },
+    "modules": [
+      "src/nasolve/cif_outgoing_preparation.py",
+      "src/nasolve/cif_outgoing_qualification.py",
+      "scripts/cif_outgoing_bundle_probe_template.py",
+      "scripts/build_cif_outgoing_bundle_probe.py"
+    ],
+    "prior_archive": {
+      "name": "12_Cedar_q46plqwk_cif_terminal_bundle_review.zip",
+      "sha256": "19ed5a59b1196f8d329dc18df98dee94d05a6c090ce2fd0064dc3be79a1ec597",
+      "bytes": 2194668,
+      "verified_payloads": 116,
+      "materialized_payloads": 35
+    },
+    "captured_native_receipt": {
+      "input_anchor": "returned_capsule",
+      "path": "native_candidate/cif-native-rv4coqxe/native_receipt.json",
+      "sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e"
+    },
+    "outgoing_type_authority": {
+      "captured_site": "A:4",
+      "PDB_component": "DC",
+      "native_component": "Cd",
+      "group": "DNA",
+      "atom_id": "O3'",
+      "element": "O",
+      "type_energy": "OC2",
+      "neighbors": [
+        "C3'"
+      ],
+      "partial_charge_copied": false,
+      "numerical_targets_copied": false
+    },
+    "candidate_scope": {
+      "model_atoms": 877,
+      "model_sites": 43,
+      "backbone_links": 38,
+      "model_coordinates_changed": false,
+      "original_dictionaries_changed": false,
+      "existing_parameters_changed": false,
+      "existing_modifications_preserved": true,
+      "selected_site_changes": [
+        {
+          "component": "1AP",
+          "site": "A:5",
+          "outgoing_site": "A:6",
+          "removed_hydrogens": [
+            "HO31"
+          ],
+          "projected_dictionary_atoms": 34,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALOed049e99c0",
+          "curated_source_sha256": "e057badf47ebbd86d2f95bdd4fb6d3bd814405e0d9ece0ecc9e5b409f5c61eef"
+        },
+        {
+          "component": "5CM",
+          "site": "A:7",
+          "outgoing_site": "A:8",
+          "removed_hydrogens": [
+            "HO3'"
+          ],
+          "projected_dictionary_atoms": 33,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALO0e71368165",
+          "curated_source_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562"
+        },
+        {
+          "component": "DZ",
+          "site": "A:12",
+          "outgoing_site": "A:13",
+          "removed_hydrogens": [
+            "H2"
+          ],
+          "projected_dictionary_atoms": 33,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALO869d4b2edc",
+          "curated_source_sha256": "7a97df5a27c66e99c28e11a16c3542e116fd7d9e2abac4f4e5e91097d048c690"
+        },
+        {
+          "component": "DP",
+          "site": "B:4",
+          "outgoing_site": "B:5",
+          "removed_hydrogens": [
+            "H3"
+          ],
+          "projected_dictionary_atoms": 33,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALOb5a425053a",
+          "curated_source_sha256": "ae10aa3e7066082a9e423cae877dca04928ff4089cbd464bbc3590d6148f0f5a"
+        }
+      ],
+      "true_free_three_prime_ends": "UNCHANGED",
+      "retained_op2_hydrogens": "UNCHANGED",
+      "retained_formal_and_partial_charges": "UNCHANGED",
+      "new_numerical_targets": []
+    },
+    "actual_returned_input_offline_preparation": {
+      "status": "PREPARED_REVIEW_NATIVE_NOT_RUN",
+      "source_native_projection_checks": {
+        "PASS": 24
+      },
+      "original_archive_preserved": true,
+      "source_files_preserved": true,
+      "existing_source_assessments": {
+        "1AP": [
+          {
+            "before": "REVIEW",
+            "after": "REVIEW"
+          }
+        ],
+        "5CM": [
+          {
+            "before": "PASS",
+            "after": "PASS"
+          }
+        ],
+        "DZ": [
+          {
+            "before": "PASS",
+            "after": "PASS"
+          }
+        ],
+        "DP": [
+          {
+            "before": "REVIEW",
+            "after": "REVIEW"
+          }
+        ]
+      },
+      "installed_native_execution": "NOT_RUN",
+      "review_capsule_payloads_verified": 58
+    },
+    "qualification_checks": [
+      "Fresh unchanged baseline reproduces captured atoms, all mapping/definition rows, custom requests and every recorded proxy",
+      "Exact prior plus new modifier IDs at every native site",
+      "Existing detailed site atom/type/hydrogen/formal-charge gates",
+      "All projected atom/bond/angle/torsion/chirality/plane rows at four selected sites",
+      "All 38 declared outgoing O3 hydrogen checks",
+      "Exact 38 backbone links and custom 21 bond / 34 angle / 8 plane / 23 parallelity requests",
+      "Reviewed 5CM corrected quartet, target, weight, period and alternate",
+      "All unselected definitions and every recorded unaffected proxy, including prior IGU contexts",
+      "Exact selected dispatcher and captured native/terminal API/source hashes before and after",
+      "Every materialized frozen artifact and original ZIP preserved"
+    ],
+    "schema_1": {
+      "new_receipt_kind": "cif_outgoing_site_preparation",
+      "new_qualification_kind": "cif_outgoing_native_bundle_qualification",
+      "existing_receipt_formats_changed": false,
+      "new_native_readback_fields": []
+    },
+    "software_validation": {
+      "selected_regressions_before_implementation": {
+        "failed": 6,
+        "deselected": 11,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_preparation.py -k graph_selected",
+        "scope": "Graph-selected H/D and true-end preservation API absent."
+      },
+      "focused": {
+        "passed": 138,
+        "seconds": 16.44,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_preparation.py tests/test_cif_outgoing_qualification.py tests/test_cif_outgoing_bundle_probe.py tests/test_cif_terminal_preparation.py tests/test_cif_terminal_qualification.py tests/test_cif_terminal_bundle_probe.py tests/test_cif_native_validation.py tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "full_suite": {
+        "passed": 1478,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 124.12,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "native_tests": "EXPLICIT_FAKE_APIS_NOT_INSTALLED_PHENIX",
+      "relocation": {
+        "status": "PASS",
+        "original_build_and_narestraints_trees_deleted": true,
+        "poisoned_nasolve_import": "NOT_USED",
+        "current_directory_independence": true,
+        "actual_cedar_12_archive_preserved": true,
+        "verified_return_payloads": 58,
+        "candidate_sites": [
+          "A:12",
+          "A:5",
+          "A:7",
+          "B:4"
+        ],
+        "native_execution": "NOT_RUN",
+        "mode": "--inspect-only"
+      }
+    },
+    "native_installation_expected": "Phenix 2.2.1-6174",
+    "native_execution": "PENDING_ON_USER_MAC",
+    "review_behavior": "No existing gate is relaxed. Four outgoing-H findings should clear only if actual native readback agrees. Formal-charge readback remains unsupported in the captured API; three newly checked curated sites can increase the charge findings from six to nine. Existing 1AP/DP Doctor source reviews remain REVIEW. Native mechanics does not approve source chemistry or achieved geometry.",
+    "boundaries": {
+      "production_postmr_changes": false,
+      "new_runtime_dependencies": [],
+      "source_generation_gate_changes": false,
+      "qualification_gates_relaxed": false,
+      "numerical_target_guessing": false,
+      "partial_charge_substituted_for_formal": false,
+      "model_editing": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "native_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "builder": "scripts/build_cif_outgoing_bundle_probe.py",
+      "runner": "13_Cedar_probe_cif_outgoing_bundle.py",
+      "worktree": "13_Cedar_probe_build",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "sequence": "One subshell joining fetch, exact full-SHA detached worktree, explicit-interpreter build and run with &&."
     }
   }
 }

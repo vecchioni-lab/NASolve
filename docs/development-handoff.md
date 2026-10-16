@@ -51,6 +51,68 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
+**Cedar 13 outgoing-oxygen trial ready (2026-10-16):** the user authorized the
+next source review and validation delivery. All 24 complete curated-to-native
+projection checks pass on the exact Cedar 12 inputs. The bounded candidates
+remove only graph-identified O3′ H at 1AP A:5 (`HO31`), 5CM A:7 (`HO3'`),
+DZ A:12 (`H2`) and DP B:4 (`H3`). Their projected dictionary atom counts are
+34, 33, 33 and 33. The O3′ OC2 authority is captured canonical DC A:4, with
+only C3′ adjacency; its partial charge and numerical targets are not copied.
+Existing `NASnoOP3` and all other modifiers remain; four new per-site modifier
+IDs compose with them. Source dictionaries, parameters and coordinates stay
+unchanged. True free 3′ ends and retained OP2 H are protected generically by
+explicit context and graph, including H/D with misleading names.
+
+`prepare_outgoing_component` is a separate diagnostic layer for captured
+curated inputs, not a whole-component generation pass or production repair.
+It verifies every anchored native input/output and exact source projection,
+refuses coordinate-H deletion and changed/unsupported authorities, and records
+before/after Doctor assessments. Existing 1AP and DP assessments remain REVIEW;
+5CM and DZ assessments pass. No replacement targets or charge values are guessed.
+
+The new native probe replays Cedar 12 unchanged, then interprets the selected
+bundle. Qualification retains all existing gates and adds full captured-baseline
+replay plus exact old/new modifier IDs at every site. It checks all 38 declared
+outgoing endpoints, all four projected numerical definitions, the corrected
+5CM torsion/alternate proxy and all unselected definitions and unaffected
+proxies, including the earlier IGU terminal/internal contexts. The dispatcher,
+four captured native API sources and prior terminal authorities must match
+before and after. Every materialized input is rechecked, and the original ZIP
+is preserved. Formal-charge readback remains unsupported in the captured API;
+adding the three newly checked curated sites can increase those findings.
+Successful interpretation may therefore still end at REVIEW/exit 2.
+
+**Delivery:** `scripts/build_cif_outgoing_bundle_probe.py`, new
+`13_Cedar_probe_build`, existing `05_Cedar_narestraints_build`, output
+`13_Cedar_probe_cif_outgoing_bundle.py`. Supply the exact published full-SHA
+Git ferry in one `&&` subshell. The default input is the returned
+`12_Cedar_q46plqwk_cif_terminal_bundle_review.zip`; `--review-zip`,
+`--output-parent`, `--phenix-root`, `--timeout-seconds` and `--inspect-only`
+remain explicit overrides. Preserve the frozen everyday checkout and all
+earlier deliveries. Phenix **2.2.1-6174** execution of Cedar 13 is pending on
+the user Mac; local checks use explicit fake APIs or offline returned inputs.
+No ReadySet retry, optimization, refinement or adoption is part of this trial.
+
+**Validation:** six selected graph/H-D regressions fail before the new module
+exists (11 deselected). The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`
+with `tests/test_cif_outgoing_preparation.py tests/test_cif_outgoing_qualification.py
+tests/test_cif_outgoing_bundle_probe.py tests/test_cif_terminal_preparation.py
+tests/test_cif_terminal_qualification.py tests/test_cif_terminal_bundle_probe.py
+tests/test_cif_native_validation.py tests/test_cif_linked_preparation.py
+tests/test_cif_linked_qualification.py tests/test_synthetic_dna_shuttle.py`
+passes **138 tests (16.44 s)**. The same command without test-file arguments
+passes **1,478 tests, two skips and 276 subtests (124.12 s)**. A successful
+actual-input `--inspect-only` trial also runs from a relocated runner after
+both original build trees are deleted, with poisoned imports unused. All 58
+review payloads verify, and the original Cedar 12 ZIP is unchanged. This is
+preparation/transport evidence, not installed Phenix execution. The
+[native evidence record](cif-linked-native-registration-evidence.json) owns the
+complete software/transport receipts. Schema 1 gains a new diagnostic
+preparation receipt and qualification policy; existing receipt formats,
+generation gates and production behavior are unchanged. No new runtime
+dependencies or private native payloads are added to Git.
+
 **Cedar 12 returned and verified (2026-10-16):** all **116 payloads** in
 `12_Cedar_q46plqwk_cif_terminal_bundle_review.zip` verify. The runner SHA-256
 matches delivery `2144968031c659f69c4d71eb81f1aeb8ef7d79962c45e03daa4bfe2460352845`,
@@ -104,12 +166,11 @@ The returned one-block Git ferry also worked from an unrelated working
 directory. No ReadySet retry, model optimization, refinement, adoption or
 production PostMR change occurred.
 
-**Next bounded scientific work:** review the four source-traceable internal
-O3′-H contexts before preparing any explicit site changes. Native formal-charge
-readback and the added H formal charge remain open evidence limits; repeating
-an unchanged inventory does not resolve them. Geometry/refinement and human
-review remain later gates. No Cedar 13 delivery is queued by this documentation
-update.
+**Follow-up from that return:** source review and explicit preparation of the
+four internal O3′-H contexts are now implemented in Cedar 13 above; installed
+validation is next. Native formal-charge readback and the earlier added H formal
+charge remain open evidence limits; repeating an unchanged inventory does not
+resolve them. Geometry/refinement and human review remain separate later gates.
 
 **Software validation:**
 `env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`

@@ -359,6 +359,48 @@ verdict stays REVIEW. Exact receipts are indexed in the
 No model coordinates, ReadySet inputs, refinement checkpoint or production
 dictionary are adopted or optimized by this probe.
 
+### Explicit curated outgoing-oxygen candidates
+
+`cif_outgoing_preparation.prepare_outgoing_component` accepts a preserved
+curated dictionary, model, explicit same-code site contexts and a successful
+captured detailed native receipt. It verifies every anchored native input and
+output, the exact model and declared backbone links. Before changing a selected
+site, every projected atom, bond, angle, torsion, chirality and plane row must
+match the captured native definition under the existing torsion policy.
+
+At an explicitly declared outgoing link, the bounded supported motif is O3′
+with C3′ and exactly one graph-identified H/D neighbor, single bonds and OH1
+typing. The recorded canonical DNA outgoing control supplies OC2 typing; no
+partial charge or numerical target is borrowed. A new per-site modifier removes
+that H/D and changes only O3′ typing. Existing modifiers stay in place. The
+projection removes H-dependent rows and preserves all remaining values and
+formal/partial charges. True free 3′ ends remain untouched. Coordinate-H
+deletion, unknown authorities, changed inputs, inconsistent contexts and
+unsupported motifs are refused. Sources and the coordinate model are preserved.
+
+This is an explicit diagnostic adaptation of already captured curated inputs,
+separate from whole-component generation/quarantine and production PostMR.
+Before/after Doctor findings are retained; source REVIEW does not become whole
+dictionary approval. No pH, replacement targets or achieved geometry is inferred.
+
+`scripts/build_cif_outgoing_bundle_probe.py` builds
+`13_Cedar_probe_cif_outgoing_bundle.py` for the exact Cedar 12 ZIP. All 116
+payloads verify before declared native members are materialized. Offline
+preparation proves all 24 source/native projection checks and selects 1AP A:5,
+5CM A:7, DZ A:12 and DP B:4, using captured canonical DC A:4 as the type authority.
+The probe replays the unchanged Cedar 12 baseline, then adds only the four
+selected modifiers to the same dictionaries, parameters and 877-atom model.
+
+`cif_outgoing_qualification` retains the terminal qualification checks and adds
+full captured-baseline replay and exact prior/new modifier IDs at every site.
+It keeps the reviewed 5CM torsion/alternate gate, all 38 outgoing-H audits,
+unselected definitions and every recorded unaffected proxy. Installation/module
+hashes and frozen inputs are checked before and after. The new installed trial
+is pending. Formal-charge limitations, existing source reviews and broader
+geometry/stereochemical review remain separate; REVIEW/exit 2 can remain after
+successful native execution. Explicit input/installation/timeout/inspect-only
+options and all previous runs remain available.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit outgoing-oxygen bundle validation
+
+- Add a diagnostic preparation layer for graph-identified O3′ hydroxyl H/D at
+  explicitly declared outgoing DNA links. Require all captured source/native
+  rows to agree first, then use the captured canonical OC2 type. Add separate
+  per-site modifiers while preserving existing modifiers, true free ends,
+  retained formal/partial charges and every remaining numerical target.
+- Add cumulative native qualification for exact projected definitions,
+  modifier IDs, replay of the captured baseline and all existing link, custom
+  proxy, unaffected-definition/proxy, reviewed-torsion and charge gates.
+- Add the source-bundled Cedar 13 probe for the exact Cedar 12 return. Offline
+  preparation validates all 116 payloads and reproduces the four bounded
+  corrections without changing the 877-atom model or original dictionaries.
+  Installed interpretation remains a separate validation. Existing source
+  reviews and unavailable formal-charge readback remain visible; no production
+  PostMR change, target retuning, optimization, refinement or adoption.
+
 ### Default conditional Git delivery and Cedar 12 return
 
 - Make one pasteable subshell with `&&` the default for reviewed live-test

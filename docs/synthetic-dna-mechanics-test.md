@@ -430,6 +430,30 @@ the same four outgoing-H REVIEW checks, retaining aggregate REVIEW. The
 exact hashes and replay evidence. No production adoption, optimization or
 refinement is part of this trial.
 
+### Cedar 13 explicit outgoing-O3 bundle trial
+
+The source-bundled probe takes the exact returned Cedar 12 ZIP, validates all
+116 payloads and materializes only declared native inputs and evidence. Every
+curated source projection must match all captured native rows before a selected
+change. Four explicit outgoing sites lose only their graph-identified O3′ H:
+1AP A:5 `HO31`, 5CM A:7 `HO3'`, DZ A:12 `H2` and DP B:4 `H3`. Projected
+dictionary atom counts become 34, 33, 33 and 33. Canonical DC A:4 supplies the
+recorded OC2 oxygen type; its charge and targets are not copied.
+
+The existing curated dictionaries, `NASnoOP3`/other modifiers, reviewed 5CM
+torsion and IGU terminal/internal treatment are retained. Four additional
+site-selected modifiers are interpreted against the same 877-atom, 43-site
+model. The new trial requires exact captured-baseline replay, old/new modifier
+IDs, projected definitions, 38 links, custom coverage, corrected 5CM proxy and
+unselected definitions/unaffected proxies. Frozen inputs and installed source
+hashes are checked again after execution. No coordinate edits or new targets
+are part of the trial.
+
+Offline preparation passes all 24 source/native comparisons. Existing 1AP/DP
+Doctor assessments remain REVIEW. Installed Cedar 13 execution is pending;
+formal-charge readback can keep aggregate REVIEW after successful interpretation.
+This candidate is not production adoption or geometry/refinement qualification.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

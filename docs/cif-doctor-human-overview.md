@@ -206,6 +206,16 @@ O3′ hydrogens at four pre-existing internal curated sites for review. The
 aggregate verdict remains REVIEW. These deterministic checks do not infer pH,
 approve chemistry or minimize/refine a model.
 
+An explicit curated outgoing-oxygen layer now addresses that bounded linkage
+motif. It first proves complete source/native row agreement, then removes only
+the graph-identified O3′ H/D at a declared outgoing link and uses the captured
+canonical OC2 oxygen type. It preserves true free ends, existing modifiers,
+all remaining targets and charges, and the coordinate model. Before/after
+assessments retain existing source reviews. Cedar 13 prepares these four
+candidates from the returned Cedar 12 bundle; its installed comparison remains
+pending. The trial adds captured-baseline replay and exact modifier-ID checks
+without relaxing charge, numerical, stereochemical or geometry limitations.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -343,6 +353,12 @@ selected free end. Its completed installed bundle trial verifies exact projected
 definitions, reviewed torsion/alternate targets and unaffected native proxies.
 Six unavailable charge readbacks and four existing curated O3′-H findings
 retain REVIEW. The new H formal charge stays unassessed.
+For the separate outgoing-oxygen candidates, complete captured source/native
+row comparisons precede graph-selected H/D removal and canonical type transfer.
+Source dictionaries and prior modifiers remain unchanged; exact projected
+definitions, all unselected definitions/proxies and modifier IDs are then
+checked in a separate native trial. Existing source reviews and unavailable
+formal-charge readback are retained, without inferred targets or pH.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 

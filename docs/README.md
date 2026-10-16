@@ -59,6 +59,12 @@ for actual behavior; history is evidence, not a second task queue.
   all 116 returned payloads verify and 95 checks pass. Six unsupported charge
   checks and four existing internal curated O3′-H reviews retain REVIEW.
   The added H formal charge stays unassessed; no gate is relaxed.
+  Cedar 13 now prepares four explicit outgoing-O3 candidates after full
+  captured source/native row agreement. It adds site-selected H removal and
+  canonical type transfer while retaining original dictionaries and modifiers.
+  Its installed trial adds captured-baseline replay and exact modifier-ID checks;
+  formal-charge and existing source reviews remain visible. Native execution
+  is pending; no optimization/refinement or production adoption is implied.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

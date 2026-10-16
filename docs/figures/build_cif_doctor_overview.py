@@ -96,6 +96,7 @@ def build():
              'Returned Cedar 09 native checks preserve formal-charge and terminal-chemistry review limits. '
              'A completed terminal-source review records installed parameters and a canonical hydroxyl control. '
              'Selected modified-terminal candidates and explicit 5CM preparation pass installed projected-definition and unaffected-proxy checks; charge and existing outgoing-hydrogen reviews remain open. '
+             'A separate outgoing-oxygen candidate layer preserves existing dictionaries and modifiers while checking captured-baseline replay and exact modifier IDs; its installed trial remains pending. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -139,7 +140,7 @@ def build():
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Explicit terminal candidates; exact native definition / proxy checks.", size=24),
+        text(70, 1082, "Explicit terminal / outgoing candidates; exact native checks.", size=24),
         text(70, 1116, "Native site / terminal controls recorded; formal-charge readback unavailable.", size=24),
         '</g>',
         '</svg>'])
