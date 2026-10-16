@@ -79,7 +79,12 @@ for actual behavior; history is evidence, not a second task queue.
   native execution or coordinate edits. Nominal weighted deviations are
   descriptive rankings; incomplete native conventions, deferred geometry,
   pucker, absolute stereochemistry and scientific qualification remain explicit.
-  Actual-input transport and the complete 1,501-test suite pass.
+  Actual-input transport and the complete 1,501-test suite pass. Returned Cedar
+  15 verifies all 51 payloads and confirms 50 bond/107 angle nominal deviations
+  at least five, with no recorded chirality sign conflicts. Source-coordinate
+  comparison and unchanged Cedar 05 model lineage expose earlier coordinate
+  distortions; construction/atom-correspondence provenance is the next bounded
+  investigation. No target retuning or coordinate repair has occurred.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

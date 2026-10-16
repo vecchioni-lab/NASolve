@@ -51,7 +51,53 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 15 captured geometry review ready (2026-10-16):** the user requested
+**Cedar 15 returned and verified (2026-10-16):** all **51 payloads** in
+`15_Cedar_01pvz5n5_cif_geometry_review.zip` verify. All 47 frozen native members
+are byte-identical to Cedar 14. The returned runner SHA-256 matches
+`5ce0ce42372e5d6ee774fcd161fc93d39d065f333ef3ae0b30b0ea1b1558495e`,
+from clean NASolve `5733bb290dada1edde98a52ddb815d7ad13e823f` and pinned
+NARestraints `a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. Analysis completes
+with deliberate REVIEW, preserving the archive/model and running no new native
+interpretation. Offline report replay matches identities, targets, weights,
+statuses, ranks and counts. Only computed scalar values show platform roundoff:
+722 repeated/report fields differ by at most **7.11e-14**, within the explicitly
+checked 1e-10 absolute replay tolerance; no input or gate is normalized.
+
+The returned inventory confirms 1,026 measured bonds (50 nominal absolute
+deviations at least five), 1,590 angles (107) and 155 chirality proxies (zero),
+with no sign conflicts against the recorded chirality targets. These are
+descriptive Cartesian comparisons, not native residuals or full geometry approval.
+
+The largest intrasite deviations expose existing model distortions. Comparison
+uses only dictionaries declared by the captured receipt, selected by component
+content; their coordinate values are evidence, not replacement targets:
+
+| Measurement | Captured model | Dictionary coordinates | Native target |
+| --- | ---: | ---: | ---: |
+| DX D:3 C2–O2 distance (Å) | 5.129713 | 1.215504 | 1.215 |
+| DX D:3 C7–C8 distance (Å) | 2.881660 | 1.368845 | 1.369 |
+| CGY A:20 N1–C2–C1 angle (°) | 4.434092 | 123.779864 | 123.78 |
+
+Identity-matched lineage comparison proves all **858** Cedar 05 model atoms
+survive in the later 877-atom shared-context control with **zero coordinate
+displacement**. Thus these distortions predate the linked/terminal dictionary
+diagnostics. This does not identify the responsible construction step or prove
+the complete source chemistry. The
+[native evidence record](cif-linked-native-registration-evidence.json) owns
+the exact return hashes, replay and source/coordinate comparison details.
+
+**Next bounded work:** trace original Coot construction, canonical-parent
+restoration and atom correspondence using frozen before/after models and
+mutation receipts. Select suspect sites by measured graph/geometry evidence;
+do not build a component-name exception list or retune dictionary targets to
+fit these coordinates. Source-versus-model agreement narrows the investigation
+but does not establish a mutation or restoration bug by itself. Root cause
+remains NOT_ESTABLISHED. No new delivery is queued by this return review;
+coordinate repair, minimization, full native geometry/refinement and adoption
+remain separate gates. This update changes documentation/evidence only; the
+1,501-test runtime receipt below remains current.
+
+**Cedar 15 captured geometry implementation (2026-10-16):** the user requested
 the next script. This bounded diagnostic reads the exact verified Cedar 14 ZIP,
 checks all 141 payloads, and materializes only the captured candidate's 47
 anchored native members. It measures simple-bond distances, angles and ordered
@@ -77,7 +123,7 @@ angles; none occurs among chirality proxies, and no recorded chirality sign
 conflicts are observed. These describe the existing unoptimized model. Existing
 source reviews and nine unavailable formal-charge readbacks stay open.
 
-**Delivery:** build `15_Cedar_probe_cif_geometry_review.py` with
+**Completed delivery:** `15_Cedar_probe_cif_geometry_review.py` was built with
 `scripts/build_cif_geometry_review_probe.py`, the new pinned
 `15_Cedar_probe_build` and existing `05_Cedar_narestraints_build`. Use the
 one-block `fetch && worktree && build && run` ferry from the preserved
@@ -98,7 +144,8 @@ cover rigid motions, reflected/unsigned chirality, zero/missing/negative
 weights, inconsistent captures, deferred categories, capsule tampering and
 deleted-build/poisoned-import transport. A separate actual-input relocation
 also completes after both source-build fixtures are deleted; all **51** output
-payloads verify and the Cedar 14 ZIP is unchanged. This is captured-evidence
+payloads verify and the Cedar 14 ZIP is unchanged. The user return above also
+verifies the same complete captured-evidence analysis. This is captured-evidence
 analysis, not new installed-tool execution. Schema 1 gains only a new diagnostic
 report/receipt; existing inventory, qualification and production formats/gates
 are unchanged. No private scientific payloads enter Git. The

@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 15 return and coordinate provenance review
+
+- Verify all 51 returned payloads and 47 unchanged frozen native members.
+  Replay the captured geometry report, matching identities, targets, weights,
+  statuses and counts with only computed-scalar platform roundoff at most
+  7.11e-14. Confirm 50 bond/107 angle nominal deviations at least five and
+  zero recorded chirality sign conflicts; aggregate REVIEW remains.
+- Compare large intrasite deviations with declared dictionary coordinates and
+  trace all 858 common atom identities unchanged from Cedar 05. Record earlier
+  coordinate distortion and the next bounded construction/atom-correspondence
+  audit. Root cause remains unestablished; no target, runtime, schema, coordinate,
+  qualification-gate, optimization or adoption change. Native payloads stay
+  outside Git.
+
 ### Captured Cartesian geometry review and Cedar 15 ferry
 
 - Add a read-only diagnostic for Cartesian simple-bond distances, angles and

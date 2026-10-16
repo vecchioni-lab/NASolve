@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "15_Cedar",
+  "next_delivery": "NOT_QUEUED",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -2729,25 +2729,25 @@
       "unknown_motifs": "REFUSE_OR_REVIEW_REQUIRES_SEPARATE_AUTHORITY_AND_QUALIFICATION"
     },
     "next_bounded_work": {
-      "status": "CAPTURED_CARTESIAN_EVIDENCE_REVIEW_IMPLEMENTED_CEDAR_15_READY",
-      "next_delivery_queued": true,
-      "delivery_prefix": "15_Cedar",
-      "work": "Review captured simple-bond, angle and ordered-volume comparisons first; source/numerical/stereochemical evidence, complete native geometry and any intervention remain separately qualified.",
-      "do_not_repeat": "No unchanged native formal-charge inventory is rerun; the new runner performs captured-evidence analysis only.",
+      "status": "CONSTRUCTION_AND_ATOM_CORRESPONDENCE_PROVENANCE_AUDIT_NEXT",
+      "next_delivery_queued": false,
+      "work": "Trace original Coot construction, canonical-parent coordinate restoration and atom correspondence with frozen before/after models and mutation receipts; choose suspect sites from graph/geometry evidence.",
+      "root_cause": "NOT_ESTABLISHED",
+      "target_retuning": "NOT_JUSTIFIED_BY_COORDINATE_DISTORTION",
+      "do_not_repeat": "No unchanged formal-charge inventory or captured-geometry rerun resolves the placement provenance.",
       "remaining_limits": [
-        "Nine unsupported effective formal-charge readbacks",
-        "Added terminal H formal charge unassessed",
-        "Existing 1AP/DP source assessments REVIEW",
-        "Missing full native symmetry/slack/top-out conventions",
-        "Deferred dihedral, plane, parallelity and ASU-bond geometry",
+        "Construction step responsible for severe old coordinate distortions",
+        "Nine unsupported effective formal-charge readbacks and added terminal H formal charge unassessed",
+        "Existing 1AP/DP source reviews",
+        "Full native symmetry/slack/top-out and deferred geometry evaluation",
         "Sugar pucker and independent absolute stereochemistry",
-        "Achieved geometry qualification, refinement and human review",
+        "Bounded coordinate intervention, refinement and human review",
         "Production integration and adoption"
       ]
     }
   },
   "captured_geometry_review_2026_10_16": {
-    "status": "IMPLEMENTED_CAPTURED_EVIDENCE_REVIEW_READY",
+    "status": "RETURNED_CAPTURED_GEOMETRY_REVIEW_COORDINATE_PROVENANCE_NEXT",
     "delivery_prefix": "15_Cedar",
     "policy_id": "cif-captured-cartesian-geometry-v1",
     "modules": [
@@ -2908,6 +2908,328 @@
       "runner": "15_Cedar_probe_cif_geometry_review.py",
       "required_runtime": "Python >=3.10 only; no new installation or Phenix argument.",
       "expected_status": "REVIEW/exit 2 with analysis_completed true and a new review ZIP."
+    },
+    "returned_cedar_15": {
+      "archive": {
+        "name": "15_Cedar_01pvz5n5_cif_geometry_review.zip",
+        "bytes": 849112,
+        "sha256": "b545664e11d09b728b045bfe44fbb786520e8e82997f25aa753b06622e3c9be9",
+        "verified_payloads": 51,
+        "payload_bytes": 12578643,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "5733bb290dada1edde98a52ddb815d7ad13e823f",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runtime_archive_sha256": "efbbaf1ceb6093725de0d8175ff6b55baa0b264c8ea037c5a6542923930e46bd",
+      "report_sha256": "09f98d05349c0e12f8a944227ec069c64b0baece60372714ed5e6ecd5207e70e",
+      "receipt_sha256": "ebc036744ba1de8cee879c28347df63619006a25003747b7c1de158c716a67b8",
+      "computed_scalar_roundoff_fields": 722,
+      "max_computed_scalar_roundoff": 7.105427357601002e-14,
+      "analysis_completed": true,
+      "reported_status": "REVIEW",
+      "frozen_native_members_verified": 47,
+      "native_execution": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "original_archive_preserved": true,
+      "frozen_inputs_preserved": true,
+      "prior_qualification": {
+        "counts": {
+          "PASS": 138,
+          "UNSUPPORTED": 9
+        },
+        "new_execution": false,
+        "sha256": "bf921bbf84392c6ac8588adf91aa25f1dc30858d0baecb4f0b272913d01c449d",
+        "status": "REVIEW"
+      },
+      "source_assessments": [
+        {
+          "after": "REVIEW",
+          "before": "REVIEW",
+          "component": "1AP",
+          "site": "A:5"
+        },
+        {
+          "after": "PASS",
+          "before": "PASS",
+          "component": "5CM",
+          "site": "A:7"
+        },
+        {
+          "after": "REVIEW",
+          "before": "REVIEW",
+          "component": "DP",
+          "site": "B:4"
+        },
+        {
+          "after": "PASS",
+          "before": "PASS",
+          "component": "DZ",
+          "site": "A:12"
+        }
+      ],
+      "model_atoms": 877,
+      "geometry_summary": {
+        "angle": {
+          "captured_proxies": 1590,
+          "status_counts": {
+            "MEASURED": 1590
+          },
+          "nominal_abs_ge_3": 200,
+          "nominal_abs_ge_5": 107,
+          "sign_conflicts": 0
+        },
+        "bond_simple": {
+          "captured_proxies": 1026,
+          "status_counts": {
+            "MEASURED": 1026
+          },
+          "nominal_abs_ge_3": 128,
+          "nominal_abs_ge_5": 50,
+          "sign_conflicts": 0
+        },
+        "chirality": {
+          "captured_proxies": 155,
+          "status_counts": {
+            "MEASURED": 155
+          },
+          "nominal_abs_ge_3": 0,
+          "nominal_abs_ge_5": 0,
+          "sign_conflicts": 0
+        }
+      },
+      "deferred_proxy_kinds": {
+        "bond_asu": {
+          "count": 0,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "const_dihedral": {
+          "count": 387,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "dihedral": {
+          "count": 571,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "parallelity": {
+          "count": 58,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "planarity": {
+          "count": 54,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        }
+      },
+      "report_replay": "MATCH_WITH_ONLY_COMPUTED_SCALAR_ROUNDOFF_AT_MOST_1E_MINUS_10",
+      "runner_sha256_reported_and_matches_delivery": "5ce0ce42372e5d6ee774fcd161fc93d39d065f333ef3ae0b30b0ea1b1558495e",
+      "geometry_report": {
+        "anchor": "returned_capsule",
+        "path": "captured_geometry_review.json"
+      },
+      "replay_method": "Verify all 51 payloads and every referenced native input/output; compare all 47 frozen members byte-for-byte with the exact Cedar 14 archive; replay review_captured_geometry. Identities/targets/weights/statuses/ranks/counts must match exactly; only computed observed/difference/nominal_deviation floats use 1e-10 absolute tolerance. Observed maximum platform difference is 7.105427357601002e-14."
+    },
+    "coordinate_provenance_review": {
+      "cedar05_common_atoms": 858,
+      "cedar05_atom_count": 858,
+      "cedar15_atom_count": 877,
+      "maximum_common_atom_displacement_angstrom": 0.0,
+      "largest_intrasite_comparisons": [
+        {
+          "kind": "bond_simple",
+          "component": "DX",
+          "site": "D:3",
+          "atoms": [
+            "C2",
+            "O2"
+          ],
+          "captured_model_value": 5.129713149874954,
+          "source_dictionary_coordinate_value": 1.2155041135265647,
+          "native_target": 1.215,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/011_dictionary.cif",
+            "sha256": "2336b0118c83f5de5557321afefaeff903c3e287d445585b490862b7bbaf5690",
+            "size": 10337
+          }
+        },
+        {
+          "kind": "bond_simple",
+          "component": "DX",
+          "site": "D:3",
+          "atoms": [
+            "C7",
+            "C8"
+          ],
+          "captured_model_value": 2.881660285321638,
+          "source_dictionary_coordinate_value": 1.3688453163159084,
+          "native_target": 1.369,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/011_dictionary.cif",
+            "sha256": "2336b0118c83f5de5557321afefaeff903c3e287d445585b490862b7bbaf5690",
+            "size": 10337
+          }
+        },
+        {
+          "kind": "bond_simple",
+          "component": "CGY",
+          "site": "A:20",
+          "atoms": [
+            "C2",
+            "C1"
+          ],
+          "captured_model_value": 1.0820240293080379,
+          "source_dictionary_coordinate_value": 1.4305334983844313,
+          "native_target": 1.431,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/009_dictionary.cif",
+            "sha256": "9f02d0cfd64472e7748b6188f84ec45eb9843fd2bdacb1192767926f2e5358e8",
+            "size": 11103
+          }
+        },
+        {
+          "kind": "bond_simple",
+          "component": "5CM",
+          "site": "A:7",
+          "atoms": [
+            "C5",
+            "C5A"
+          ],
+          "captured_model_value": 1.7606740186644412,
+          "source_dictionary_coordinate_value": 1.5019374154737606,
+          "native_target": 1.501,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/004_dictionary.cif",
+            "sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+            "size": 11156
+          }
+        },
+        {
+          "kind": "angle",
+          "component": "CGY",
+          "site": "A:20",
+          "atoms": [
+            "N1",
+            "C2",
+            "C1"
+          ],
+          "captured_model_value": 4.43409171072079,
+          "source_dictionary_coordinate_value": 123.77986366846397,
+          "native_target": 123.78,
+          "unit": "degree",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/009_dictionary.cif",
+            "sha256": "9f02d0cfd64472e7748b6188f84ec45eb9843fd2bdacb1192767926f2e5358e8",
+            "size": 11103
+          }
+        },
+        {
+          "kind": "angle",
+          "component": "DX",
+          "site": "D:3",
+          "atoms": [
+            "C8",
+            "C7",
+            "N5"
+          ],
+          "captured_model_value": 39.97064519140884,
+          "source_dictionary_coordinate_value": 105.48530647329815,
+          "native_target": 105.48,
+          "unit": "degree",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/011_dictionary.cif",
+            "sha256": "2336b0118c83f5de5557321afefaeff903c3e287d445585b490862b7bbaf5690",
+            "size": 10337
+          }
+        },
+        {
+          "kind": "angle",
+          "component": "CGY",
+          "site": "A:20",
+          "atoms": [
+            "C1'",
+            "C1",
+            "C6"
+          ],
+          "captured_model_value": 98.94038200140749,
+          "source_dictionary_coordinate_value": 123.00093253811869,
+          "native_target": 123.0,
+          "unit": "degree",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/009_dictionary.cif",
+            "sha256": "9f02d0cfd64472e7748b6188f84ec45eb9843fd2bdacb1192767926f2e5358e8",
+            "size": 11103
+          }
+        }
+      ],
+      "root_cause": "NOT_ESTABLISHED",
+      "interpretation": "Severe coordinate distortions predate the linked dictionary diagnostics; whole-component coordinate placement/mapping needs an explicit provenance audit. Valid source target/coordinate comparison alone does not identify the responsible construction step.",
+      "lineage_archive": {
+        "name": "05_Cedar_dy4qx3qg_cif_native_review.zip",
+        "sha256": "7ab8f0dee87a5490539017e2af006f23b4c989f6794f1670db8db821da9d3db4",
+        "bytes": 678326,
+        "verified_payloads": 57,
+        "native_report": {
+          "anchor": "returned_capsule",
+          "path": "native/cif-native-90b84f1c/native_validation.json"
+        }
+      },
+      "native_directory": {
+        "anchor": "returned_capsule",
+        "archive": "15_Cedar_01pvz5n5_cif_geometry_review.zip",
+        "path": "inputs/review/native_candidate/cif-native-47i0u3af"
+      },
+      "atom_identity_fields": [
+        "model_id",
+        "chain_id",
+        "resseq",
+        "icode",
+        "resname",
+        "altloc",
+        "atom_id"
+      ],
+      "selection_scope": "Largest returned intrasite bond/angle cases with one component and an explicitly declared captured dictionary; select the dictionary by content, not basename. No production exception list is created.",
+      "causal_limits": "The construction/parent-restoration/atom-mapping step is a candidate for provenance investigation, not a demonstrated cause. Source-coordinate agreement does not independently qualify source chemistry."
+    },
+    "next_bounded_work": {
+      "status": "CONSTRUCTION_AND_ATOM_CORRESPONDENCE_PROVENANCE_AUDIT_NEXT",
+      "next_delivery_queued": false,
+      "work": "Trace original Coot construction, canonical-parent coordinate restoration and atom correspondence with frozen before/after models and mutation receipts; choose suspect sites from graph/geometry evidence.",
+      "root_cause": "NOT_ESTABLISHED",
+      "target_retuning": "NOT_JUSTIFIED_BY_COORDINATE_DISTORTION",
+      "do_not_repeat": "No unchanged formal-charge inventory or captured-geometry rerun resolves the placement provenance.",
+      "remaining_limits": [
+        "Construction step responsible for severe old coordinate distortions",
+        "Nine unsupported effective formal-charge readbacks and added terminal H formal charge unassessed",
+        "Existing 1AP/DP source reviews",
+        "Full native symmetry/slack/top-out and deferred geometry evaluation",
+        "Sugar pucker and independent absolute stereochemistry",
+        "Bounded coordinate intervention, refinement and human review",
+        "Production integration and adoption"
+      ]
     }
   }
 }

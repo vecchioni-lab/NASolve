@@ -491,6 +491,15 @@ and independent absolute stereochemistry remain explicit. The successful
 limits are carried forward. New geometry intervention/refinement requires its
 own bounded qualification.
 
+The user return verifies all 51 payloads and all 47 frozen native members;
+report replay agrees apart from computed-scalar roundoff at most 7.11e-14.
+Source dictionary coordinates match the targets for the largest DX/CGY
+intrasite distortions, including DX C2–O2 at 5.129713 Å in the model versus
+1.215504 Å in dictionary coordinates and a 1.215 Å target. All 858 atom
+identities shared with Cedar 05 have zero coordinate displacement. The next
+bounded investigation is original construction/parent restoration and atom
+correspondence. The causal step remains unproven; no repair has occurred.
+
 ## Adaptable methods wording
 
 We tested modified-nucleotide preparation using a synthetic 42-residue DNA

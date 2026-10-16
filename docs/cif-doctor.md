@@ -463,6 +463,19 @@ options remain; no new Phenix/Coot call or package installation is needed.
 Actual-input replay and source-isolated relocation pass. Production PostMR,
 automatic adoption, model coordinates and prior qualification gates are unchanged.
 
+Returned Cedar 15 verifies all 51 payloads and all 47 byte-identical frozen
+native members. Offline replay matches the report except computed-scalar
+platform roundoff of at most 7.11e-14; identities, targets, weights, statuses,
+ranks and threshold counts agree. It records 50 simple-bond and 107 angle
+nominal absolute deviations at least five, with no recorded chirality sign
+conflicts. For example, DX D:3 C2–O2 measures 5.129713 Å while its declared
+dictionary coordinates measure 1.215504 Å and the native target is 1.215 Å.
+The distorted model coordinates are identical at all 858 atomic identities
+shared with Cedar 05. This localizes the problem before the later
+dictionary diagnostics; the responsible construction step remains unproven.
+Review frozen construction/parent-restoration and graph correspondence before
+selecting any repair. Full geometry and chemical approval remain separate.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

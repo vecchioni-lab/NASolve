@@ -240,6 +240,15 @@ verified Cedar 14 bundle without new native execution or coordinate changes;
 successful analysis retains REVIEW. It is separate from production PostMR and
 complete geometry qualification.
 
+The returned Cedar 15 capsule verifies all 51 payloads and the preserved native
+capture. Its large bond/angle deviations include a DX bond at 5.13 Å against a
+1.215 Å target; the declared dictionary coordinates match that target closely.
+All 858 atomic identities shared with Cedar 05 retain exactly the same model
+coordinates. These comparisons expose existing coordinate distortions and
+motivate a construction/atom-correspondence provenance audit. They do not
+identify the responsible construction step, justify target retuning or turn
+ordered chirality sign agreement into absolute stereochemical approval.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -393,6 +402,9 @@ The separate captured Cartesian review measures distances, angles and ordered
 volumes from recorded manager sites. Nominal weighted deviations rank the
 evidence; missing native conventions and deferred geometry remain unassessed,
 and no coordinate repair, target retuning or qualification pass is implied.
+Returned source-versus-model and coordinate-lineage comparisons motivate an
+earlier construction/atom-correspondence audit; the originating step remains
+unproven.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not add a repair or adoption path.
 
