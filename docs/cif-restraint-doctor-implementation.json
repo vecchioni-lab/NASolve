@@ -373,10 +373,10 @@
         "terminal_adaptation": "NOT_RUN",
         "refinement": "NOT_RUN"
       },
-      "next_step": "Implement an explicit source-traceable modified-terminal derivative, validate the revised bundle including prepared 5CM, and preserve remaining charge/numerical/stereochemical reviews before a separate bounded geometry trial. Do not repeat unchanged source collection."
+      "next_step": "Cedar 11 follow-up completed by the source-traceable terminal and reviewed-5CM bundle in Cedar 12; see terminal_bundle_validation_2026_10_16. Review the four existing internal O3-H contexts and remaining charge/numerical/stereochemical limits before a separate bounded geometry trial. Do not repeat unchanged source collection."
     },
     "terminal_bundle_validation_2026_10_16": {
-      "status": "IMPLEMENTED_INSTALLED_BUNDLE_VALIDATION_PENDING",
+      "status": "INSTALLED_BUNDLE_VALIDATION_COMPLETED_REVIEW",
       "modules": [
         "src/nasolve/cif_terminal_preparation.py",
         "src/nasolve/cif_terminal_qualification.py",
@@ -433,8 +433,33 @@
         "native_tests": "EXPLICIT_FAKE_APIS_NOT_INSTALLED_PHENIX",
         "relocation_and_poisoned_import": "PASS"
       },
-      "native_execution": "PENDING_ON_USER_MAC",
-      "evidence": "docs/cif-linked-native-registration-evidence.json"
+      "native_execution": "COMPLETED_BASELINE_AND_CANDIDATE_EXIT_0",
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "returned_cedar_12": {
+        "archive": {
+          "name": "12_Cedar_q46plqwk_cif_terminal_bundle_review.zip",
+          "sha256": "19ed5a59b1196f8d329dc18df98dee94d05a6c090ce2fd0064dc3be79a1ec597",
+          "bytes": 2194668,
+          "verified_payloads": 116,
+          "payload_bytes": 34867067,
+          "safe_unique_member_names": true
+        },
+        "nasolve_source": {
+          "commit": "e5b1be6198eae73fedbc497d003502bfb31c2247",
+          "working_tree_has_changes": false
+        },
+        "reported_status": "REVIEW",
+        "check_counts": {
+          "PASS": 95,
+          "UNSUPPORTED": 6,
+          "REVIEW": 4
+        },
+        "native_baseline_exit": 0,
+        "native_candidate_exit": 0,
+        "offline_qualification_replay": "MATCH_AFTER_SORTING_ONLY_UNAVAILABLE_CHARGE_ITEMS_BY_ATOM_ID",
+        "projected_definitions_reviewed_torsion_and_unaffected_proxies": "PASS",
+        "remaining_reviews": "Six unsupported charge checks and four pre-existing curated outgoing O3-H contexts; no complete scientific approval."
+      }
     }
   },
   "audience": [

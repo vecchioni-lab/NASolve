@@ -95,7 +95,7 @@ def build():
              'Native site IDs and component-list metadata loops preserve reader contracts. '
              'Returned Cedar 09 native checks preserve formal-charge and terminal-chemistry review limits. '
              'A completed terminal-source review records installed parameters and a canonical hydroxyl control. '
-             'Selected modified-terminal candidates and explicit 5CM preparation receive projected-definition and unaffected-proxy checks; installed execution remains pending. '
+             'Selected modified-terminal candidates and explicit 5CM preparation pass installed projected-definition and unaffected-proxy checks; charge and existing outgoing-hydrogen reviews remain open. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',

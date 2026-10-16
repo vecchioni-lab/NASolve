@@ -402,7 +402,7 @@ inventory or start geometry minimization/refinement.
 
 ### Cedar 12 explicit terminal / reviewed 5CM bundle trial
 
-The next source-bundled delivery reads the exact returned Cedar 09/11 capsules,
+The source-bundled Cedar 12 delivery reads the exact returned Cedar 09/11 capsules,
 verifies all 207/nine payloads and reuses only declared input members. It
 prepares a source-traceable 5′-OH candidate for the existing isolated IGU E:1
 control, leaving internal IGU A:6 and the shared base unchanged. The explicit
@@ -421,8 +421,14 @@ the captured Phenix installation before and after interpretation.
 A separate graph audit of declared outgoing links exposes pre-existing O3′ H
 at 1AP A:5, 5CM A:7, DZ A:12 and DP B:4 in the prior return. These reviews and
 unavailable native formal charge keep scientific qualification distinct from
-successful interpreter execution. The next installed bundle result is pending;
-no production adoption, optimization or refinement is part of this trial.
+successful interpreter execution. Returned Cedar 12 verifies all 116 payloads;
+both Phenix 2.2.1-6174 interpretations complete with exit 0. Projected definitions,
+the corrected 5CM torsion/alternate proxy, unselected definitions and unaffected
+proxies pass. Qualification records 95 PASS, six UNSUPPORTED charge checks and
+the same four outgoing-H REVIEW checks, retaining aggregate REVIEW. The
+[native evidence record](cif-linked-native-registration-evidence.json) owns
+exact hashes and replay evidence. No production adoption, optimization or
+refinement is part of this trial.
 
 ## Adaptable methods wording
 

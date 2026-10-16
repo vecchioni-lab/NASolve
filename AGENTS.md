@@ -30,6 +30,11 @@ in this repository.
 - Add an `Unreleased` changelog entry for every user-visible, schema,
   compatibility, portability, or reproducibility change.
 - Preserve support for explicit CLI paths when adding workspace shortcuts.
+- Default reviewed live-test deliveries to one pasteable subshell joining
+  fetch, a full-SHA detached worktree, build and run with `&&`; follow
+  [terminal handoffs](docs/collaboration.md#git-delivery-and-terminal-handoffs).
+  Keep required install commands as separate one-liners and preserve the
+  everyday checkout and all prior deliveries.
 - Maintain a short human-facing descriptor for each substantive feature: its
   purpose, behavior, algorithm/tools, evidence, limitations and pipeline role,
   with a methods paragraph and editable figure when these help explain it.

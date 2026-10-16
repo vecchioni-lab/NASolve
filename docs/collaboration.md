@@ -37,17 +37,56 @@ Use professional, attributable manuscript language and exact software versions;
 private collaboration/personality notes stay outside repository documentation.
 The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
 
+## Git delivery and terminal handoffs
+
+The default user interaction for reviewed live-test deliveries is **one
+pasteable terminal block**: a subshell `( ... )` with every dependent command
+joined by `&&`. Supply the exact commands and paths, ready to paste from any
+working directory. Keep the accompanying explanation short: what the block
+does, the expected result and which output or review capsule to return.
+Deliver repository-backed code through Git and place generated runners in the
+intended project directory.
+
+Use this sequence for source-bundled probes:
+
+1. Fetch the named remote branch from an existing build checkout.
+2. Create a new, uniquely named detached worktree at the full reviewed commit
+   SHA. Resolve and verify that commit before giving the user the block.
+3. Build the runner with the explicit existing virtual-environment interpreter,
+   declared dependency source checkout and exact new output filename.
+4. Run that exact runner with the same interpreter.
+
+This is Git delivery through `fetch` and a pinned worktree, not an instruction
+to pull into the everyday checkout. Quote paths, including those using `$HOME`;
+do not depend on an activated environment or the terminal's current directory.
+Preserve existing everyday-checkout changes, previous scripts, worktrees and
+native runs.
+If a destination already exists, stop and reconcile it rather than deleting,
+resetting or overwriting it to make a repeated block succeed.
+
+`&&` runs the next command only after exit status zero. A nonzero status must
+stop dependent steps; do not use unconditional separators or suppress failures.
+A diagnostic may deliberately return `REVIEW`/exit 2 after successful native
+execution: inspect its receipt and capsule before deciding the next action.
+Use separate steps when a later command depends on interpreting an earlier
+result or on a user decision. Honor requests for a different interaction style.
+
+When installation is actually needed, supply each required install command
+as a separate, pasteable one-liner with a short purpose. Do not add installation
+to routine delivery blocks when the existing environment is sufficient.
+
 For user-facing shuttles and returned review capsules, put a short delivery
 identifier at the **start** of the filename, for example
 `04_Cedar_probe_cif_generation.py`. Leading numbers/letters/plant names remain
 visible when file cards truncate the ending. Returned capsules also include
 their run token near the front, so repeated executions of one delivery remain
 distinguishable. Print and record the same delivery identifier in receipts;
-give one terminal command for the exact new filename. Keep previous deliveries
+use the exact new filename in the terminal block. Keep previous deliveries
 and runs intact; do not rely on Downloads suffixes such as `(1)` to select code.
-When a user requests one pasteable ferry block, join the exact fetch,
-pinned-worktree, build and run commands with `&&` inside a subshell. A nonzero
-status must stop dependent steps; do not join them with unconditional separators.
+
+This command-passage convention is an operational repository contract. Keep it
+here and point agent instructions and the current handoff to this section;
+private personality handoffs remain outside repository documentation.
 
 ## Branch and worktree lifecycle
 

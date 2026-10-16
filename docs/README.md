@@ -55,9 +55,10 @@ for actual behavior; history is evidence, not a second task queue.
   The explicit Cedar 12 candidate now applies captured hydroxyl targets only
   to the selected free end and includes the reviewed 5CM derivative. Its new
   native trial compares projected definitions, exact torsion/alternate proxies
-  and every recorded unaffected proxy. Installed execution is pending.
-  The added H formal charge stays unassessed. A graph audit of the prior
-  return also exposes four internal curated O3′-H reviews; no gate is relaxed.
+  and every recorded unaffected proxy. Both installed interpretations completed;
+  all 116 returned payloads verify and 95 checks pass. Six unsupported charge
+  checks and four existing internal curated O3′-H reviews retain REVIEW.
+  The added H formal charge stays unassessed; no gate is relaxed.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.
@@ -87,7 +88,9 @@ for actual behavior; history is evidence, not a second task queue.
 - [Architecture](architecture.md): stable MR, PostMR, refinement, checkpoint
   and provenance contracts.
 - [Collaboration](collaboration.md) and [agent contract](../AGENTS.md):
-  workspace, Git safety, artifact handling and one-change review.
+  workspace, Git safety, artifact handling and one-change review; default
+  [one-block conditional Git delivery](collaboration.md#git-delivery-and-terminal-handoffs)
+  and separate install one-liners.
 - [Changelog](../CHANGELOG.md): changes by implementation date; it does not
   independently authorize experimental chemistry or validate a live run.
 - [CIF Doctor human/manuscript overview](cif-doctor-human-overview.md): purpose,

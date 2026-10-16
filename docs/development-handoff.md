@@ -44,8 +44,27 @@ This is separate from the laptop receipt and is not native Phenix validation.
 
 ## Immediate next work
 
-**Cedar 12 explicit terminal / reviewed-bundle trial ready (2026-10-16):** the
-user requested the next validation. The new source-bundled probe reuses the
+**Default command passage:** follow the
+[Git delivery and terminal handoff contract](collaboration.md#git-delivery-and-terminal-handoffs).
+Give one pasteable subshell containing the reviewed fetch, full-SHA detached
+worktree, build and run commands joined by `&&`, with explicit quoted paths.
+Keep necessary install commands as separate one-liners. This operating
+convention belongs in the repo; private personality handoffs remain private.
+
+**Cedar 12 returned and verified (2026-10-16):** all **116 payloads** in
+`12_Cedar_q46plqwk_cif_terminal_bundle_review.zip` verify. The runner SHA-256
+matches delivery `2144968031c659f69c4d71eb81f1aeb8ef7d79962c45e03daa4bfe2460352845`,
+from clean NASolve `e5b1be6198eae73fedbc497d003502bfb31c2247` and NARestraints
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. Baseline and candidate native
+interpretations completed under Phenix **2.2.1-6174**, both exit 0
+(5.651856 s / 1.256861 s). Qualification is **95 PASS, six UNSUPPORTED
+formal-charge checks and four REVIEW outgoing-O3′-H checks**; aggregate
+**REVIEW**, not complete scientific approval. Offline qualification replay
+reproduces all 105 outcomes and evidence after sorting only unavailable-charge
+items by atom ID. The [native evidence record](cif-linked-native-registration-evidence.json)
+owns the exact hashes, checks and preservation evidence.
+
+The source-bundled probe reuses the
 exact Cedar 09 shared-code control and Cedar 11 installed numerical authority.
 It verifies all 207/nine payloads, materializes only declared members and
 preserves both original ZIPs. `prepare_terminal_component` wraps the existing
@@ -67,13 +86,13 @@ proxy. The selected Phenix dispatcher, modules and numerical source hashes
 must match the Cedar 11 authority before and after execution. Relocation uses
 the declared installation anchor, not basename search.
 
-**New read-only review class:** every declared outgoing O3′ endpoint is audited
-by element and adjacency. Replay of the prior Cedar 09 definitions records
+**Read-only review class:** every declared outgoing O3′ endpoint is audited
+by element and adjacency. Cedar 12 confirms the prior Cedar 09 findings:
 1AP A:5→A:6 `HO31`, 5CM A:7→A:8 `HO3'`, DZ A:12→A:13 `H2` and DP B:4→B:5
 `H3`, all on O3′ with OH1 typing. These pre-existing curated reviews are not
 silently fixed or hidden by the two selected candidate changes. Native charge
 readback and new-H formal charge remain unqualified; `REVIEW`/exit 2 is
-expected while these gates remain unresolved, even if interpretation succeeds.
+retained while these gates remain unresolved, despite successful interpretation.
 
 **Delivery:** `scripts/build_cif_terminal_bundle_probe.py`, pinned
 `12_Cedar_probe_build`, same `05_Cedar_narestraints_build`, output
@@ -81,8 +100,16 @@ expected while these gates remain unresolved, even if interpretation succeeds.
 pinned detached worktree, build and run joined by `&&`. Explicit archive,
 installation, timeout and inspect-only overrides remain available. Preserve
 the frozen everyday checkout and all old scripts/worktrees/native sessions.
-Corrected installed Cedar 12 validation remains pending; no ReadySet retry,
-model optimization, refinement, adoption or production PostMR change.
+The returned one-block Git ferry also worked from an unrelated working
+directory. No ReadySet retry, model optimization, refinement, adoption or
+production PostMR change occurred.
+
+**Next bounded scientific work:** review the four source-traceable internal
+O3′-H contexts before preparing any explicit site changes. Native formal-charge
+readback and the added H formal charge remain open evidence limits; repeating
+an unchanged inventory does not resolve them. Geometry/refinement and human
+review remain later gates. No Cedar 13 delivery is queued by this documentation
+update.
 
 **Software validation:**
 `env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`
@@ -94,8 +121,15 @@ tests/test_synthetic_dna_shuttle.py` passes **97 tests (6.84 s)**. Nine selected
 regressions fail before the new implementation/readback fields exist. New
 native tests use explicit fake APIs; transport survives deleted build trees
 and poisoned imports. Actual returned-input offline preparation/replay and
-prior-native outgoing-H audit are recorded separately from pending native
-Cedar 12 execution. No new runtime dependencies or relaxed qualification gates.
+prior-native outgoing-H audit are distinct from the completed installed
+Cedar 12 execution above. This follow-up changes documentation/evidence only;
+JSON, link and figure checks apply, with no runtime/schema migration or new
+dependencies. Native payloads stay outside Git; qualification gates are unchanged.
+
+Documentation follow-up verification: all 16 documentation JSON files parse,
+116 local links in changed Markdown resolve, and `git diff --check` is clean.
+`python docs/figures/build_cif_doctor_overview.py` reproduces the SVG;
+its 1200×1190 render is byte-identical to the preceding visual QA image.
 
 **Cedar 11 returned; terminal numerical sources complete (2026-10-15):** all
 **nine** payloads in `11_Cedar_ggtpccwv_cif_terminal_review.zip` verify, including

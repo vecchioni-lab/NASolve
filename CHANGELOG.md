@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Default conditional Git delivery and Cedar 12 return
+
+- Make one pasteable subshell with `&&` the default for reviewed live-test
+  handoffs: fetch, full-SHA detached worktree, build and run with explicit
+  paths. Preserve the everyday checkout and old deliveries; keep required
+  installation commands as separate one-liners. Agent instructions point to
+  the existing collaboration contract; no private personality notes are added.
+- Verify all 116 Cedar 12 payloads and completed baseline/candidate native
+  interpretation under Phenix 2.2.1-6174. Record 95 passing checks, six
+  unsupported formal-charge checks and four existing curated outgoing-O3′-H
+  reviews. Terminal/5CM projected rows, corrected torsion/alternate proxy and
+  unaffected definitions/proxies pass; the overall verdict remains REVIEW.
+  Documentation/evidence only; no runtime, schema or qualification-gate change.
+
 ### Explicit modified-terminal and reviewed-bundle validation
 
 - Add selected 5′-OH preparation from a successful captured native `5*END`

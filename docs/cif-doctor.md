@@ -347,7 +347,15 @@ the prior Cedar 09 return identifies retained O3′ H at 1AP A:5, 5CM A:7,
 DZ A:12 and DP B:4. These are pre-existing linked-state REVIEW findings;
 the Cedar 12 candidate preserves them visibly for subsequent explicit review.
 `REVIEW`/exit 2 can therefore remain after successful interpretation, alongside
-unavailable formal charges. The first installed Cedar 12 execution is pending.
+unavailable formal charges. Returned Cedar 12 verifies all 116 payloads and
+completed baseline/candidate interpretation under Phenix 2.2.1-6174 (both
+exit 0). The 95 passing checks include projected definitions, the corrected
+5CM torsion/alternate proxy, all unselected definitions and unaffected proxies.
+Six formal-charge checks remain UNSUPPORTED and the same four outgoing-H checks
+remain REVIEW. Offline qualification replay reproduces all 105 outcomes and
+evidence after sorting only unavailable-charge items by atom ID; the aggregate
+verdict stays REVIEW. Exact receipts are indexed in the
+[native evidence record](cif-linked-native-registration-evidence.json).
 No model coordinates, ReadySet inputs, refinement checkpoint or production
 dictionary are adopted or optimized by this probe.
 
