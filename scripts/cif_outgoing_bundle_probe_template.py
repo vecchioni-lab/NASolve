@@ -205,7 +205,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--review-zip',type=Path,default=Path.home()/'NASolve-live-tests/12_Cedar_cif-terminal-bundle-q46plqwk/12_Cedar_q46plqwk_cif_terminal_bundle_review.zip')
     parser.add_argument('--output-parent',type=Path,default=Path.home()/'NASolve-live-tests')
-    parser.add_argument('--phenix-root',type=Path)
+    parser.add_argument('--phenix-root',type=Path,default=Path.home()/'Applications/phenix-2.2.1-6174')
     parser.add_argument('--timeout-seconds',type=int,default=600)
     parser.add_argument('--inspect-only',action='store_true')
     args=parser.parse_args();session=None;original=None;review=None

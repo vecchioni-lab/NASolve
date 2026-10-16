@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Outgoing probe Phenix default and Cedar 14 retry
+
+- Restore the versioned user-home Phenix default used by Cedar 12 when
+  `--phenix-root` is omitted. Cedar 13 passed `None` to the explicit-installation
+  loader after successful preparation, stopping before native execution.
+  Explicit relocated installations and all captured-source hash checks remain
+  supported; no scientific candidate, target, schema or gate changes.
+- Add native-CLI regressions through the real installation loader and
+  executable/version discovery, using explicit shell fixtures for external
+  programs. Cover both the omitted option and an explicit path containing spaces.
+- Verify all 58 returned Cedar 13 payloads, 35 unchanged frozen members and
+  24 passing source/native projection checks. Deliver the corrected runner as
+  Cedar 14 while preserving Cedar 13 and its capsule; installed qualification
+  remains pending.
+
 ### Explicit outgoing-oxygen bundle validation
 
 - Add a diagnostic preparation layer for graph-identified O3′ hydroxyl H/D at

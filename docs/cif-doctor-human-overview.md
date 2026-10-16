@@ -212,8 +212,10 @@ the graph-identified O3′ H/D at a declared outgoing link and uses the captured
 canonical OC2 oxygen type. It preserves true free ends, existing modifiers,
 all remaining targets and charges, and the coordinate model. Before/after
 assessments retain existing source reviews. Cedar 13 prepares these four
-candidates from the returned Cedar 12 bundle; its installed comparison remains
-pending. The trial adds captured-baseline replay and exact modifier-ID checks
+candidates from the returned Cedar 12 bundle. Its returned preparation succeeds,
+but installation selection stops before native interpretation; Cedar 14 corrects
+that launcher default. The installed comparison remains pending. The trial
+adds captured-baseline replay and exact modifier-ID checks
 without relaxing charge, numerical, stereochemical or geometry limitations.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)

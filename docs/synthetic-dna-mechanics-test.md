@@ -450,9 +450,16 @@ hashes are checked again after execution. No coordinate edits or new targets
 are part of the trial.
 
 Offline preparation passes all 24 source/native comparisons. Existing 1AP/DP
-Doctor assessments remain REVIEW. Installed Cedar 13 execution is pending;
+Doctor assessments remain REVIEW. Installed qualification remains pending;
 formal-charge readback can keep aggregate REVIEW after successful interpretation.
 This candidate is not production adoption or geometry/refinement qualification.
+
+The returned Cedar 13 capsule verifies all 58 payloads, all 35 frozen input
+copies and completed preparation at the four sites. Native interpretation was
+not reached: the launcher passed `None` when `--phenix-root` was omitted.
+Cedar 14 restores the working versioned user-home default and keeps explicit
+relocation plus all source hashes and gates. Its native retry remains pending;
+the candidate dictionaries and coordinate model are unchanged.
 
 ## Adaptable methods wording
 

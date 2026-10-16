@@ -462,7 +462,7 @@
       }
     },
     "outgoing_bundle_validation_2026_10_16": {
-      "status": "IMPLEMENTED_INSTALLED_OUTGOING_VALIDATION_PENDING",
+      "status": "RETURNED_PREPARATION_COMPLETE_INSTALLED_RETRY_PENDING",
       "delivery_prefix": "13_Cedar",
       "policies": {
         "preparation": "cif-native-linked-oxygen-v1",
@@ -481,7 +481,7 @@
         "existing_receipt_formats_changed": false,
         "new_native_readback_fields": []
       },
-      "native_execution": "PENDING_ON_USER_MAC",
+      "native_execution": "CEDAR_13_NOT_REACHED_CEDAR_14_PENDING",
       "software_validation": {
         "selected_regressions_before_implementation": {
           "failed": 6,
@@ -570,7 +570,75 @@
         "installed_native_execution": "NOT_RUN",
         "review_capsule_payloads_verified": 58
       },
-      "selected_site_count": 4
+      "selected_site_count": 4,
+      "current_delivery_prefix": "14_Cedar",
+      "returned_cedar_13": {
+        "archive": {
+          "name": "13_Cedar_4o9_vhuk_cif_outgoing_bundle_review.zip",
+          "bytes": 890075,
+          "sha256": "4daa42beb45c0d4220068ed25ac6323623b634143135cae6620d175228439bef",
+          "verified_payloads": 58
+        },
+        "source_projection_checks_passed": 24,
+        "frozen_materialized_payloads_verified_unchanged": 35,
+        "native_execution": "NOT_REACHED_BEFORE_INSTALLATION_SELECTION",
+        "diagnosed_failure": "CLI --phenix-root omitted with no default, so installation_from_candidate(None) raises the returned TypeError before native execution."
+      },
+      "phenix_path_retry": {
+        "delivery_prefix": "14_Cedar",
+        "status": "IMPLEMENTED_INSTALLED_RETRY_PENDING",
+        "cause": "Omitted --phenix-root had no default; installation_from_candidate(None) raises TypeError after preparation.",
+        "default_installation": {
+          "anchor": "user_home",
+          "path": "Applications/phenix-2.2.1-6174"
+        },
+        "explicit_override": "--phenix-root",
+        "input_archive": "12_Cedar_q46plqwk_cif_terminal_bundle_review.zip",
+        "candidate_or_numerical_changes": false,
+        "qualification_gates_changed": false,
+        "schema_changes": false,
+        "production_postmr_changes": false,
+        "installation_version_dispatcher_and_source_hash_checks": "UNCHANGED",
+        "software_validation": {
+          "before_fix": {
+            "failed": 1,
+            "passed": 1,
+            "deselected": 12,
+            "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py -k native_cli"
+          },
+          "focused": {
+            "passed": 27,
+            "seconds": 18.67,
+            "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py tests/test_phenix_runtime.py tests/test_synthetic_dna_shuttle.py"
+          },
+          "full_suite": {
+            "passed": 1480,
+            "skipped": 2,
+            "subtests_passed": 276,
+            "seconds": 118.05,
+            "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+          },
+          "loader_boundary": "REAL_INSTALLATION_LOADER_AND_EXECUTABLE_VERSION_DISCOVERY_WITH_EXPLICIT_EXTERNAL_SHELL_FIXTURES",
+          "installed_phenix_execution": "NOT_RUN",
+          "relocation": {
+            "status": "PASS",
+            "delivery_prefix": "14_Cedar",
+            "original_build_and_narestraints_trees_deleted": true,
+            "poisoned_imports": "NOT_USED",
+            "actual_cedar12_archive_preserved": true,
+            "review_payloads_verified": 58,
+            "native_execution": "NOT_RUN",
+            "mode": "--inspect-only"
+          }
+        },
+        "ferry": {
+          "worktree": "14_Cedar_probe_build",
+          "builder": "scripts/build_cif_outgoing_bundle_probe.py",
+          "delivery_prefix_argument": "14_Cedar",
+          "runner": "14_Cedar_probe_cif_outgoing_bundle.py",
+          "preserve_cedar_13": true
+        }
+      }
     }
   },
   "audience": [

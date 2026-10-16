@@ -65,6 +65,9 @@ for actual behavior; history is evidence, not a second task queue.
   Its installed trial adds captured-baseline replay and exact modifier-ID checks;
   formal-charge and existing source reviews remain visible. Native execution
   is pending; no optimization/refinement or production adoption is implied.
+  The Cedar 13 return confirms preparation but stops at an empty Phenix default
+  before interpretation. Cedar 14 restores the known versioned default and
+  retains explicit relocation and all source checks; native validation is next.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

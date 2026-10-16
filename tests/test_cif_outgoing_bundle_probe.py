@@ -78,8 +78,7 @@ def test_installation_sources_rebase_only_through_the_declared_anchor(tmp_path):
     with pytest.raises(ValueError):module._installation_fingerprints(phenix,state,capture)
 
 
-@pytest.mark.parametrize('mode',['inspect','charge_review','native_failed','frozen_input_changed'])
-def test_probe_keeps_preparation_native_execution_and_adoption_separate(tmp_path,monkeypatch,mode):
+def run_probe_case(tmp_path,monkeypatch,mode,phenix_selection='mocked'):
     from nasolve import cif_native_validation,cif_outgoing_qualification,phenix_runtime
     module=template();monkeypatch.setattr(module,'BUNDLE',{'delivery_prefix':'13_Cedar'})
     review=tmp_path/'protected/review.zip';review.parent.mkdir();review.write_bytes(b'original')
@@ -91,12 +90,30 @@ def test_probe_keeps_preparation_native_execution_and_adoption_separate(tmp_path
         return {'model':model,'old_cifs':[old],'old_phils':[],'cifs':[old,new],'phils':[],
             'new_preparations':[],'preparations':[],'projections':{},'capture':{},'captured_baseline':{}}
     monkeypatch.setattr(module,'_prepare_candidate',prepare)
-    monkeypatch.setattr(module,'_installation_fingerprints',lambda *args:[])
+    selected_roots=[]
+    if phenix_selection=='mocked':
+        monkeypatch.setattr(module,'_installation_fingerprints',lambda *args:[])
+        monkeypatch.setattr(phenix_runtime,'installation_from_candidate',lambda *args,**kwargs:SimpleNamespace(
+            version='FAKE',environment={},executables={'phenix.python':Path(sys.executable)}))
+    else:
+        # Exercise the real loader and real executable/version discovery.
+        # Only the external programs themselves are explicit shell fixtures.
+        test_home=tmp_path/'test-home'
+        monkeypatch.setattr(Path,'home',classmethod(lambda cls:test_home))
+        root=(test_home/'Applications/phenix-2.2.1-6174') if phenix_selection=='default' else tmp_path/'explicit relocated phenix'
+        (root/'bin').mkdir(parents=True)
+        for name in [*phenix_runtime.REQUIRED_PROGRAMS,'phenix.python','phenix.version']:
+            executable=root/'bin'/name
+            executable.write_text('#!/bin/sh\nprintf "Phenix 2.2.1\\n"\n');executable.chmod(0o755)
+        def fingerprints(phenix,*args):
+            assert phenix.root==root.resolve() and phenix.version=='2.2.1'
+            assert phenix.executables['phenix.python']==root/'bin/phenix.python'
+            selected_roots.append(phenix.root)
+            return []
+        monkeypatch.setattr(module,'_installation_fingerprints',fingerprints)
     def verify(*args):
         if mode=='frozen_input_changed':raise ValueError('Frozen bundle input changed')
     monkeypatch.setattr(module,'_verify_frozen_inputs',verify)
-    monkeypatch.setattr(phenix_runtime,'installation_from_candidate',lambda *args,**kwargs:SimpleNamespace(
-        version='FAKE',environment={},executables={'phenix.python':Path(sys.executable)}))
     calls=[]
     def native(model,cifs,*args,**kwargs):
         calls.append((model,cifs,kwargs));status='FAILED' if mode=='native_failed' else 'REVIEW'
@@ -106,6 +123,7 @@ def test_probe_keeps_preparation_native_execution_and_adoption_separate(tmp_path
         'status':'OUTGOING_BUNDLE_MECHANICS_PASS' if mode=='frozen_input_changed' else 'REVIEW',
         'checks':[{'check':'formal-charge-readback','status':'UNSUPPORTED'}]})
     argv=['runner','--review-zip',str(review),'--output-parent',str(tmp_path/'out')]
+    if phenix_selection=='explicit':argv.extend(['--phenix-root',str(root)])
     if mode=='inspect':argv.append('--inspect-only')
     monkeypatch.setattr(sys,'argv',argv)
     assert module.main()==(0 if mode=='inspect' else 2)
@@ -120,6 +138,17 @@ def test_probe_keeps_preparation_native_execution_and_adoption_separate(tmp_path
     assert receipt['original_archive_preserved'] is True and review.read_bytes()==b'original'
     assert receipt['automatic_adoption'] is False and receipt['refinement']=='NOT_RUN'
     assert list(session.glob('13_Cedar_*_cif_outgoing_bundle_review.zip'))
+    if phenix_selection!='mocked':assert selected_roots==[root.resolve(),root.resolve()]
+
+
+@pytest.mark.parametrize('mode',['inspect','charge_review','native_failed','frozen_input_changed'])
+def test_probe_keeps_preparation_native_execution_and_adoption_separate(tmp_path,monkeypatch,mode):
+    run_probe_case(tmp_path,monkeypatch,mode)
+
+
+@pytest.mark.parametrize('selection',['default','explicit'])
+def test_native_cli_resolves_a_real_candidate_before_interpretation(tmp_path,monkeypatch,selection):
+    run_probe_case(tmp_path,monkeypatch,'charge_review',phenix_selection=selection)
 
 
 def test_bundled_probe_survives_deleted_builds_and_poisoned_imports(tmp_path):

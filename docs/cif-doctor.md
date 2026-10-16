@@ -401,6 +401,15 @@ geometry/stereochemical review remain separate; REVIEW/exit 2 can remain after
 successful native execution. Explicit input/installation/timeout/inspect-only
 options and all previous runs remain available.
 
+Returned Cedar 13 completes all four preparations and preserves every frozen
+input, but stops before native interpretation because the omitted
+`--phenix-root` became `None`. The corrected Cedar 14 delivery uses the working
+versioned default `$HOME/Applications/phenix-2.2.1-6174`. An explicit
+`--phenix-root` still selects a relocated installation, which must pass the
+same version, dispatcher and source-hash checks. The new CLI regression uses
+the real loader and executable discovery with explicit external-program
+fixtures. Candidates and scientific qualification gates are unchanged.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

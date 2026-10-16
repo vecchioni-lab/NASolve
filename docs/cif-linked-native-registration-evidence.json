@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "13_Cedar",
+  "next_delivery": "14_Cedar",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -1901,7 +1901,7 @@
   },
   "outgoing_bundle_validation_2026_10_16": {
     "delivery_prefix": "13_Cedar",
-    "status": "IMPLEMENTED_INSTALLED_OUTGOING_VALIDATION_PENDING",
+    "status": "RETURNED_PREPARATION_COMPLETE_INSTALLED_RETRY_PENDING",
     "policies": {
       "preparation": "cif-native-linked-oxygen-v1",
       "qualification": "cif-native-outgoing-bundle-checks-v1",
@@ -2102,7 +2102,7 @@
       }
     },
     "native_installation_expected": "Phenix 2.2.1-6174",
-    "native_execution": "PENDING_ON_USER_MAC",
+    "native_execution": "CEDAR_13_NOT_REACHED_CEDAR_14_PENDING",
     "review_behavior": "No existing gate is relaxed. Four outgoing-H findings should clear only if actual native readback agrees. Formal-charge readback remains unsupported in the captured API; three newly checked curated sites can increase the charge findings from six to nine. Existing 1AP/DP Doctor source reviews remain REVIEW. Native mechanics does not approve source chemistry or achieved geometry.",
     "boundaries": {
       "production_postmr_changes": false,
@@ -2125,6 +2125,121 @@
       "worktree": "13_Cedar_probe_build",
       "narestraints_worktree": "05_Cedar_narestraints_build",
       "sequence": "One subshell joining fetch, exact full-SHA detached worktree, explicit-interpreter build and run with &&."
+    },
+    "current_delivery_prefix": "14_Cedar",
+    "returned_cedar_13": {
+      "archive": {
+        "name": "13_Cedar_4o9_vhuk_cif_outgoing_bundle_review.zip",
+        "bytes": 890075,
+        "sha256": "4daa42beb45c0d4220068ed25ac6323623b634143135cae6620d175228439bef",
+        "verified_payloads": 58
+      },
+      "delivery_prefix": "13_Cedar",
+      "reported_status": "REVIEW",
+      "error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'",
+      "original_archive_preserved": true,
+      "nasolve_source": {
+        "commit": "5295992209fc1435b260bc926c89d54208fd7a83",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "prepared_sites": [
+        {
+          "site": "A:5",
+          "component": "1AP",
+          "deleted_atoms": [
+            "HO31"
+          ],
+          "modification_id": "NALOed049e99c0"
+        },
+        {
+          "site": "A:7",
+          "component": "5CM",
+          "deleted_atoms": [
+            "HO3'"
+          ],
+          "modification_id": "NALO0e71368165"
+        },
+        {
+          "site": "B:4",
+          "component": "DP",
+          "deleted_atoms": [
+            "H3"
+          ],
+          "modification_id": "NALOb5a425053a"
+        },
+        {
+          "site": "A:12",
+          "component": "DZ",
+          "deleted_atoms": [
+            "H2"
+          ],
+          "modification_id": "NALO869d4b2edc"
+        }
+      ],
+      "native_execution": "NOT_REACHED_BEFORE_INSTALLATION_SELECTION",
+      "source_projection_checks_passed": 24,
+      "frozen_materialized_payloads_verified_unchanged": 35,
+      "diagnosed_failure": "CLI --phenix-root omitted with no default, so installation_from_candidate(None) raises the returned TypeError before native execution.",
+      "runner_sha256_reported_and_matches_delivery": "68a2b9ae789267a475850d4ea0eaaae3f27bf254ccd585d6f7898b6335b9a04e"
+    },
+    "phenix_path_retry": {
+      "delivery_prefix": "14_Cedar",
+      "status": "IMPLEMENTED_INSTALLED_RETRY_PENDING",
+      "cause": "Omitted --phenix-root had no default; installation_from_candidate(None) raises TypeError after preparation.",
+      "default_installation": {
+        "anchor": "user_home",
+        "path": "Applications/phenix-2.2.1-6174"
+      },
+      "explicit_override": "--phenix-root",
+      "input_archive": "12_Cedar_q46plqwk_cif_terminal_bundle_review.zip",
+      "candidate_or_numerical_changes": false,
+      "qualification_gates_changed": false,
+      "schema_changes": false,
+      "production_postmr_changes": false,
+      "installation_version_dispatcher_and_source_hash_checks": "UNCHANGED",
+      "software_validation": {
+        "before_fix": {
+          "failed": 1,
+          "passed": 1,
+          "deselected": 12,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py -k native_cli"
+        },
+        "focused": {
+          "passed": 27,
+          "seconds": 18.67,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py tests/test_phenix_runtime.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1480,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 118.05,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "loader_boundary": "REAL_INSTALLATION_LOADER_AND_EXECUTABLE_VERSION_DISCOVERY_WITH_EXPLICIT_EXTERNAL_SHELL_FIXTURES",
+        "installed_phenix_execution": "NOT_RUN",
+        "relocation": {
+          "status": "PASS",
+          "delivery_prefix": "14_Cedar",
+          "original_build_and_narestraints_trees_deleted": true,
+          "poisoned_imports": "NOT_USED",
+          "actual_cedar12_archive_preserved": true,
+          "review_payloads_verified": 58,
+          "native_execution": "NOT_RUN",
+          "mode": "--inspect-only"
+        }
+      },
+      "ferry": {
+        "worktree": "14_Cedar_probe_build",
+        "builder": "scripts/build_cif_outgoing_bundle_probe.py",
+        "delivery_prefix_argument": "14_Cedar",
+        "runner": "14_Cedar_probe_cif_outgoing_bundle.py",
+        "preserve_cedar_13": true
+      }
     }
   }
 }

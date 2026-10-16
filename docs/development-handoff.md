@@ -51,7 +51,42 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 13 outgoing-oxygen trial ready (2026-10-16):** the user authorized the
+**Cedar 13 returned; Cedar 14 launcher retry ready (2026-10-16):** all 58
+payloads in `13_Cedar_4o9_vhuk_cif_outgoing_bundle_review.zip` verify, including
+35 unchanged frozen members and 24 passing source/native projection checks.
+The user runner hash matches `68a2b9ae…` from clean NASolve
+`5295992209fc1435b260bc926c89d54208fd7a83` and the same pinned NARestraints.
+All four candidates completed preparation. The runner then passed an empty
+default `--phenix-root` to `installation_from_candidate`, reproducing the
+returned `NoneType` path error. No new native interpretation was reached;
+the REVIEW capsule is not a native chemistry verdict.
+
+The corrected template defaults to
+`$HOME/Applications/phenix-2.2.1-6174`, matching Cedar 12's working selection,
+and retains `--phenix-root` for explicit relocation. Only launcher selection
+changes; the four candidates and all authority/qualification gates are unchanged.
+The new regression keeps the actual installation loader and executable/version
+discovery, with explicit external-program shell fixtures. It fails before the
+fix for the omitted option while the explicit path already passes (one failed,
+one passed, 12 deselected), then both pass after the fix.
+
+**Current delivery:** use a new `14_Cedar_probe_build` and output
+`14_Cedar_probe_cif_outgoing_bundle.py`; call the existing builder with
+`--delivery-prefix 14_Cedar`. Supply the exact reviewed commit in one conditional
+Git ferry. Input remains the preserved Cedar 12 ZIP; retain the Cedar 13 build,
+runner and failed-launch capsule. The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py tests/test_phenix_runtime.py tests/test_synthetic_dna_shuttle.py`
+passes **27 tests (18.67 s)**. The same command without test-file arguments
+passes **1,480 tests, two skips and 276 subtests (118.05 s)**. A Cedar 14
+actual-input inspect-only run succeeds after both original build trees are
+deleted, with poisoned imports unused; all 58 payloads verify and the original
+Cedar 12 ZIP is preserved. This is preparation/transport evidence, not installed
+Phenix execution. The
+[native evidence record](cif-linked-native-registration-evidence.json) owns
+the full-suite and retry receipts. Phenix 2.2.1-6174 execution of Cedar 14
+remains pending; no optimization/refinement or adoption occurred.
+
+**Cedar 13 outgoing candidate implementation (2026-10-16):** the user authorized the
 next source review and validation delivery. All 24 complete curated-to-native
 projection checks pass on the exact Cedar 12 inputs. The bounded candidates
 remove only graph-identified O3′ H at 1AP A:5 (`HO31`), 5CM A:7 (`HO3'`),
@@ -82,15 +117,16 @@ is preserved. Formal-charge readback remains unsupported in the captured API;
 adding the three newly checked curated sites can increase those findings.
 Successful interpretation may therefore still end at REVIEW/exit 2.
 
-**Delivery:** `scripts/build_cif_outgoing_bundle_probe.py`, new
+**Original delivery:** `scripts/build_cif_outgoing_bundle_probe.py`, new
 `13_Cedar_probe_build`, existing `05_Cedar_narestraints_build`, output
 `13_Cedar_probe_cif_outgoing_bundle.py`. Supply the exact published full-SHA
 Git ferry in one `&&` subshell. The default input is the returned
 `12_Cedar_q46plqwk_cif_terminal_bundle_review.zip`; `--review-zip`,
 `--output-parent`, `--phenix-root`, `--timeout-seconds` and `--inspect-only`
 remain explicit overrides. Preserve the frozen everyday checkout and all
-earlier deliveries. Phenix **2.2.1-6174** execution of Cedar 13 is pending on
-the user Mac; local checks use explicit fake APIs or offline returned inputs.
+earlier deliveries. Cedar 13's installed selection stopped as recorded above;
+Cedar 14 carries the launcher correction. Local native checks use explicit
+fake APIs or offline returned inputs.
 No ReadySet retry, optimization, refinement or adoption is part of this trial.
 
 **Validation:** six selected graph/H-D regressions fail before the new module
