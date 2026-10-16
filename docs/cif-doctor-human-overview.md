@@ -267,15 +267,32 @@ using a proper rigid rotation/translation at C1′/O4′/C2′. Connectivity sel
 the base and its single C1′ attachment; parent base names supply no coordinates.
 The rule requires the complete explicit DNA scaffold and preserves all
 backbone/unselected coordinates and metadata. Unsupported graphs and contexts
-are refused. DF's aromatic sugar bonds remain visible and its site unchanged;
+are refused. DF's effective aromatic sugar bonds remain visible and its site unchanged;
 eight supported contexts move 84 base atoms. Captured-proxy prediction changes
 bond/angle outlier counts 50/107→34/72, with zero recorded chirality sign
 conflicts. This preserves raw fragment geometry within PDB rounding; it does
 not optimize or approve it. The runner tests unchanged native definitions,
 targets, detailed proxies and exact candidate coordinates using the selected
 Phenix installation. Generic regressions, the complete suite and actual-input
-relocation pass; installed candidate interpretation is pending. Production
-PostMR, scientific geometry qualification and adoption remain separate.
+relocation pass. Returned Cedar 17 verifies all 129 payloads and 14 native
+mechanics checks. Native/predicted measurements agree within computed roundoff.
+Intrasite improvements do not establish a sound pairing pose: CGY–DX contacts
+include 9.357476 and 6.818964 Å versus 2.8 Å targets, and the latter worsens
+from 2.947120 Å. These outcomes remain visible alongside lower total outliers.
+
+Cedar 18 separates effective/source recovery from further coordinate changes.
+A graph rule requires an unsupported effective scaffold, an exact recorded
+original source hash and a supported source DNA graph. DF's source sugar bonds
+are single; its effective aromatic declarations are not copied into the source.
+Existing whole-component generation retains source atoms/H/bonds/formal charges
+and stereochemistry, then linked/native projection checks run at fixed model
+coordinates. Only passing mechanics and the explicit unavailable charge API
+can continue to a separate fragment restoration/native check. Definition and
+coordinate effects are reported separately; unlike objectives are not ranked
+as like-for-like geometry improvements. Generic and transport tests pass;
+installed generation/interpretation remains pending. Pair pose, model
+minimization, scientific qualification, production integration and adoption
+remain separate.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -445,6 +462,11 @@ graphs stay unchanged under review. Native comparison requires the same atom
 identities, site definitions, custom requests and full proxy targets/weights;
 neither descriptive outlier reductions nor successful interpretation approve
 complete geometry. The candidate is not integrated into production PostMR.
+Returned evidence retains worsened intersite contacts alongside improved
+intrasite geometry. A separate source/effective recovery requires exact source
+hashes, whole-component generation and linked/native projection gates at fixed
+coordinates before a fragment trial; it infers no replacement targets from
+residual strain.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not authorize adoption.
 

@@ -527,7 +527,7 @@ The new candidate transports each whole raw base into the preserved sugar
 frame, without copying canonical-parent base atoms by name. Exact component
 graphs select a connected heavy-atom base attached only at C1′ and require a
 complete explicit DNA scaffold. Unsupported graphs remain explicit and
-unchanged. DF A:19 is excluded because its source has aromatic sugar bonds;
+unchanged. DF A:19 is excluded because its effective definition has aromatic sugar bonds;
 eight supported sites transport 84 base atoms. Existing sugar/phosphate,
 unselected coordinates, metadata, all 877 atoms and dictionaries remain fixed.
 Captured-proxy prediction changes bond/angle deviations at least five from
@@ -540,8 +540,23 @@ Phenix. Native identities, effective definitions and all detailed targets/
 weights/custom proxies must match; coordinates must match the exact candidate.
 Prior source/charge reviews stay visible. Synthetic regressions, 1,543 full
 tests and actual-input deleted-build transport pass. Installed interpretation
-is pending; production PostMR remains unchanged. Successful analysis retains
-REVIEW/exit 2 and returns a new review capsule.
+now passes all 14 checks; all 129 returned payloads verify and preparation
+replays byte for byte. Geometry totals agree with prediction, but pairing pose
+is unresolved: the CGY–DX N3–N1 contact worsens 2.947120→6.818964 Å. Production
+PostMR remains unchanged and REVIEW remains.
+
+### Cedar 18 effective/source recovery
+
+The diagnostic selects unsupported native scaffolds whose recorded original
+source hashes and DNA graphs remain supported, without component exceptions.
+DF A:19 is selected: its source sugar bonds are single, while its effective
+definition is aromatic. Reused whole-component generation and linked/native
+projection gates precede a separate fragment/native phase. Coordinates are
+fixed in the dictionary trial; definition and coordinate effects are reported
+separately. Generic regressions, 1,568 full tests and actual-input planning
+transport pass; installed generation/interpretation remains pending. Pair pose,
+model minimization, scientific qualification and production adoption remain
+separate.
 
 ## Adaptable methods wording
 

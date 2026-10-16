@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 17 return and explicit effective/source recovery
+
+- Verify all 129 returned payloads and 14 native mechanics checks; reproduce
+  the fragment candidate byte for byte. Preserve unchanged definitions,
+  detailed proxies and source/charge reviews. Record remaining/worsened pair
+  contacts separately from improved intrasite geometry; retain REVIEW.
+- Select recovery by unsupported effective graphs and exact recorded original
+  source hashes/content, with shared-context and modifier-composition guards.
+  Reuse source-preserving whole-component generation and linked/native
+  projection checks at fixed coordinates before a separate fragment trial.
+  DF's frozen source has single sugar bonds; the aromatic declarations belong
+  to the effective dictionary. No target is inferred from residual strain.
+- Add the Cedar 18 shuttle, strict continuation/phase-order regressions and
+  source-isolated actual-input planning. The 1,568-test suite passes. Native
+  generation/interpretation is pending. Production PostMR and existing schemas/
+  gates are unchanged; model minimization, ReadySet retry, refinement and
+  adoption do not run, and no private scientific payload enters Git.
+
 ### Cedar 16 return and separate fragment-restoration candidate
 
 - Verify all 74 returned payloads and replay the construction report. Record

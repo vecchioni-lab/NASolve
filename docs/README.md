@@ -96,8 +96,15 @@ for actual behavior; history is evidence, not a second task queue.
   Eight contexts/84 base atoms are supported; DF's aromatic sugar remains
   unchanged and under review. Captured-proxy outliers decrease, while remaining
   raw/sugar/source problems stay visible. The 1,543-test suite and actual-input
-  deleted-build transport pass; installed native candidate interpretation is
-  pending. Production PostMR and scientific adoption remain separate.
+  deleted-build transport pass. Returned Cedar 17 verifies all 129 payloads
+  and 14 native checks; unresolved and worsened pairing contacts remain visible.
+  Cedar 18 selects unsupported effective graphs only when the recorded original
+  source matches exact hashes and supports the scaffold. DF's source has single
+  sugar bonds; its effective aromatic declarations are the mismatch. Reused
+  whole-component generation and linked/native gates precede a separate
+  fragment trial. The 1,568-test suite and actual-input planning transport pass;
+  installed generation and both native phases are pending. Production PostMR,
+  full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

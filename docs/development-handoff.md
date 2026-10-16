@@ -51,7 +51,76 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 17 separate restoration candidate ready (2026-10-16):** the returned
+**Cedar 18 effective/source recovery ready (2026-10-16):** generic source
+selection requires an unsupported effective scaffold, one recorded original
+component/input index, an exact source SHA-256/size match in an explicitly
+supplied resource inventory, and a supported source DNA graph. Matching uses
+content/hashes, not component or filename exceptions. Missing/ambiguous/changed
+sources, unsupported source graphs, incomplete shared-code contexts and prior
+site modifiers without a composition policy are blocked. The actual plan
+selects only DF A:19; eight supported contexts remain unchanged. DF's original
+source `27f83c85…`, 8,941 bytes, has **single** sugar bonds. The aromatic
+declarations belong to the **effective** dictionary, not that frozen source.
+
+The diagnostic reuses source-preserving whole-component eLBOW generation and
+linked preparation. Source atoms/H/bonds/formal charges/stereochemistry and
+explicit internal links are checked before native projected-definition,
+unaffected-proxy, custom-restraint and modifier-ID gates. The first native
+trial holds all Cedar 17 coordinates fixed. Only PASS checks and the separately
+reported unavailable formal-charge API allow a diagnostic continuation;
+contradictions and all other REVIEW/UNSUPPORTED states stop it. A second phase
+restores only the newly supported fragment and validates its identities,
+definitions, full proxies and exact coordinates against the fixed recovered
+manager. Definition and coordinate effects have separate reports; objectives
+with changed targets are not comparable model-quality rankings.
+
+**Delivery:** `scripts/build_cif_effective_source_recovery_probe.py`, fresh
+`18_Cedar_probe_build`, existing `05_Cedar_narestraints_build`, and
+`18_Cedar_probe_cif_source_recovery.py`; use the one-block ferry from
+`17_Cedar_probe_build`. The exact Cedar 17 ZIP supplies prior inputs.
+Existing Python/Biopython and Phenix 2.2.1-6174 with eLBOW suffice; no new
+installation. Explicit options are `--review-zip`, `--output-parent`,
+`--phenix-root`, `--timeout-seconds`, `--source CODE=/explicit/path` and
+`--inspect-only`. Captured dispatcher/four API hashes are checked before/after;
+the selected eLBOW dispatcher/capabilities are recorded. Successful analysis
+remains REVIEW/exit 2. Dictionary generation may optimize its independent
+component; model minimization, pairing-pose changes, ReadySet retry, refinement,
+production integration and adoption do not run. Return console output and ZIP.
+
+**Validation:** eight initial regressions fail before the new module exists.
+The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_effective_source_recovery.py tests/test_cif_effective_source_recovery_probe.py tests/test_cif_generation.py tests/test_cif_linked_preparation.py tests/test_cif_terminal_qualification.py tests/test_cif_fragment_restoration.py tests/test_synthetic_dna_shuttle.py`
+passes **140 tests (19.27 s)**. The same command without file arguments passes
+**1,568 tests, two skips and 276 subtests (112.10 s)**. Generic `ZZZ` covers
+recorded-hash selection, graph/source/modifier guards, strict continuation,
+phase ordering with explicit native fakes and deleted-build transport. Actual
+Cedar 17 planning after deletion of both build fixtures verifies **129 input /
+133 output payloads**, with poisoned imports unused. Generation and both
+installed native phases remain pending. Existing production behavior,
+inventory/gate schemas and originals are unchanged; separate schema-1
+diagnostics add no dependencies or private scientific payloads to Git.
+
+**Cedar 17 returned and verified (2026-10-16):** all **129 payloads** verify,
+including 75 byte-identical frozen Cedar 16 members. Returned runner SHA
+`d611965d…` matches clean NASolve `274f2043…` and NARestraints `a7b6a0c9…`.
+Phenix 2.2.1-6174 completes in **5.215362 s**, exit zero; all **14 mechanics
+checks pass**, preserving 877 identities/43 sites, 18 dictionaries/11 parameter
+files, effective definitions and every detailed proxy/target/weight. Preparation
+replays byte for byte. Native/predicted and offline report comparisons agree
+except computed-scalar roundoff at most **8.89e-13**; no raw input or target is
+normalized. Aggregate REVIEW and prior source/charge limits remain.
+
+Native measurements confirm 34 bond/72 angle nominal deviations at least five,
+with zero recorded chirality sign conflicts. Intrasite counts improve
+41→24 bonds and 52→22 angles; intersite counts are 9→10 and 55→50. Lower totals
+do not establish a pairing-pose repair. Three CGY–DX contacts are 9.357476,
+6.818964 and 4.600879 Å versus 2.8 Å targets; they were 8.963664, 2.947120 and
+2.736735 Å before the fragment candidate. The latter two worsen despite
+restored base integrity. Retain this evidence for a later separate pose/
+geometry intervention. DF source/effective recovery comes before optimization
+against those changed sugar definitions.
+
+**Cedar 17 separate restoration implementation (2026-10-16):** the returned
 stage evidence below reproduces a coordinate-restoration defect. The new
 `cif_fragment_restoration` diagnostic keeps the reviewed sugar/phosphate and
 transports each complete, graph-selected base fragment from raw Coot into the
@@ -102,7 +171,7 @@ command without file arguments passes **1,543 tests, two skips and 276 subtests
 verifies all 74 source and 80 output payloads, with poisoned imports unused.
 The complete receipt is recorded in the
 [evidence record](cif-linked-native-registration-evidence.json).
-Actual installed candidate interpretation remains pending. Production PostMR,
+The installed result is recorded above. Production PostMR,
 existing schemas/gates and all original runs remain unchanged; separate
 schema-1 diagnostic kinds and no new dependencies/private payloads enter Git.
 

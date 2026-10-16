@@ -314,8 +314,9 @@ and an offline replay reproduces the restored model byte for byte. Shared
 atom names do not establish semantic base correspondence or compatible local
 geometry. The explicit Cedar 17 attached-fragment candidate keeps the existing
 scaffold and moves a complete graph-selected base together, with unsupported
-graphs visibly refused. It is separate from production PostMR and still needs
-installed native/scientific qualification. See the
+graphs visibly refused. Its installed native mechanics now pass; effective/
+source recovery and complete scientific qualification remain under review.
+It is separate from production PostMR. See the
 [restoration diagnostic](cif-doctor.md#separate-attached-fragment-restoration-candidate)
 and [current handoff](development-handoff.md).
 

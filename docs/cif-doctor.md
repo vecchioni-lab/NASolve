@@ -552,9 +552,44 @@ is not re-executed. No Coot, ReadySet retry, minimization, refinement or adoptio
 is performed. Successful mechanics retain REVIEW/exit 2.
 
 Generic regressions, the full 1,543-test suite and actual-input deleted-build
-transport pass. Installed candidate interpretation is pending. This is a
+transport pass. Returned Cedar 17 verifies all 129 payloads and 14 native
+mechanics checks. Preparation replays byte for byte and native geometry
+confirms the predicted counts. Intrasite improvements do not prove a sound
+pairing pose: CGY–DX contacts include 9.357476 and 6.818964 Å versus 2.8 Å
+targets; the latter worsens from 2.947120 Å. This is a
 separate diagnostic candidate; ordinary PostMR retains the demonstrated legacy
 restoration issue until a separately qualified integration is adopted.
+
+### Effective/source graph recovery
+
+`cif_effective_source_recovery` selects unsupported effective scaffolds only
+when the recorded source component/input index and exact SHA-256/size match an
+explicit resource inventory, and that source supports the DNA graph. Matching
+uses content/hashes, never residue or filename exceptions. Missing, ambiguous,
+changed or unsupported sources, incomplete shared-code contexts and prior
+modifiers without a composition policy are blocked. Supported effective graphs
+do not trigger regeneration. DF's frozen source has single sugar bonds; the
+aromatic declarations are in its effective definition.
+
+The Cedar 18 runner reuses whole-component source-preserving eLBOW generation
+and explicit linked preparation. A native trial with coordinates held fixed
+checks full projections, unaffected definitions/proxies, backbone links, custom
+restraints and exact modifiers. Only passing mechanics and the already explicit
+unavailable formal-charge readback permit a separate fragment restoration and
+second native trial. Charge contradictions and every other review/unsupported
+mechanics outcome stop it. Dictionary and coordinate effects have separate
+reports; different objectives are not comparable geometry rankings.
+
+`scripts/build_cif_effective_source_recovery_probe.py` builds the exact
+Cedar 17 capsule workflow. `--inspect-only` performs source planning;
+`--source CODE=/explicit/path` retains a hash-bound override. Existing
+Python/Biopython/Phenix with eLBOW suffice. Captured version/dispatcher/four API
+hashes are checked and generation capabilities recorded. Originals and prior
+reviews survive; successful analysis remains REVIEW/exit 2. Dictionary generation
+may optimize its independent component, but model minimization, pairing-pose
+adjustment, Coot, ReadySet retry, refinement, integration and adoption do not
+run. Generic regressions, 1,568 full tests and actual-input deleted-build
+planning pass; generation and both installed native phases remain pending.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

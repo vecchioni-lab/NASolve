@@ -100,7 +100,8 @@ def build():
              'A separate captured Cartesian review measures simple-bond distances, angles and ordered chirality volumes. Nominal deviations are descriptive; native residuals, deferred geometry and absolute stereochemistry remain unassessed. '
              'Returned Cedar 15 source-versus-model and coordinate-lineage comparisons expose earlier model distortions. '
              'Cedar 16 freezes original stages and parses saved Coot declarations without execution; controlled legacy replay reproduces the damaging coordinate-copy operation for captured transitions. Other MR/raw/source problems remain open. '
-             'A separate graph-selected fragment candidate transports the entire raw base through a preserved sugar frame, with unsupported graphs unchanged under review. Native interpretation and complete scientific qualification remain pending; production PostMR is unchanged. '
+             'A separate graph-selected fragment candidate transports the entire raw base through a preserved sugar frame. Returned Cedar 17 passes native mechanics while retaining unresolved and worsened pairing contacts. '
+             'A separate source/effective recovery requires exact original hashes and supported source graphs, then whole-component generation and linked/native gates at fixed coordinates before a fragment trial. Installed generation and scientific qualification remain pending; production PostMR is unchanged. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -144,7 +145,7 @@ def build():
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Explicit fragment candidates; native and geometry evidence.", size=24),
+        text(70, 1082, "Explicit candidates; source recovery and fragment checks.", size=24),
         text(70, 1116, "Native site / terminal controls recorded; formal-charge readback unavailable.", size=24),
         '</g>',
         '</svg>'])

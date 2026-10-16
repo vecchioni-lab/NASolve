@@ -1098,7 +1098,7 @@
       "next_bounded_work": "Cedar 17 separate attached-fragment candidate implemented; installed interpretation and later complete scientific qualification/adoption remain pending."
     },
     "fragment_restoration_2026_10_16": {
-      "status": "IMPLEMENTED_INSTALLED_CANDIDATE_INTERPRETATION_PENDING",
+      "status": "RETURN_VERIFIED_NATIVE_MECHANICS_PASS_GEOMETRY_REVIEW",
       "delivery_prefix": "17_Cedar",
       "policy_id": "cif-dna-attached-fragment-restoration-v1",
       "modules": [
@@ -1132,7 +1132,7 @@
           {
             "site": "A:19",
             "component": "DF",
-            "reason": "Captured sugar C1 prime-C2 prime, C2 prime-C3 prime and C3 prime-C4 prime bonds are aromatic; no source reinterpretation."
+            "reason": "Captured effective sugar C1 prime-C2 prime, C2 prime-C3 prime and C3 prime-C4 prime bonds are aromatic. The exact original DF source has single bonds; do not rewrite it to match the effective derivative."
           }
         ],
         "max_fragment_distance_change_angstrom": 0.001039780102558563,
@@ -1231,7 +1231,7 @@
         "recorded_chirality_sign_conflicts": 0,
         "native_execution": "NOT_RUN"
       },
-      "installed_native_candidate": "PENDING",
+      "installed_native_candidate": "COMPLETED_AND_VERIFIED",
       "boundaries": {
         "production_postmr_changes": false,
         "model_editing": "SEPARATE_CANDIDATE_ONLY",
@@ -1270,7 +1270,336 @@
           "--inspect-only"
         ]
       },
-      "next_bounded_work": "Inspect the installed native return and all geometry outcomes before selecting any later scientific repair, optimization or production integration.",
+      "next_bounded_work": "Cedar 18 source/effective recovery before a separate pairing-pose/geometry intervention; no model optimization or production integration yet.",
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "returned_17_cedar": {
+        "archive": {
+          "name": "17_Cedar_t9rsj7b2_cif_fragment_restoration_review.zip",
+          "bytes": 2596559,
+          "sha256": "42f6021b1cadb2f26f783b39aa6a999af754f7c486da5df959712cdc2c0630c1",
+          "verified_payloads": 129,
+          "payload_bytes": 35708306,
+          "safe_unique_members": true
+        },
+        "nasolve_source": {
+          "commit": "274f2043c4935265980510ea6df7f4b900f7db5a",
+          "working_tree_has_changes": false
+        },
+        "narestraints_source": {
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "working_tree_has_changes": false
+        },
+        "runner_sha256": "d611965d57c6fdcc08e996f5ad94ab92bd06e14bc9585538e9dd7a4da5f2a300",
+        "runtime_archive_sha256": "1eba0db9a9cd2d204a6e2013abc5f7f70f13c3a3f4152281adf61b5dab110a81",
+        "prior_members_byte_identical": 75,
+        "native_prefix": "native_candidate/cif-native-sdthxn7z",
+        "native_execution": {
+          "elapsed_seconds": 5.215362,
+          "finished_at": "2026-10-16T15:22:14.447453+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-16T15:22:09.232208+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "phenix_version": "2.2.1",
+        "installation": "phenix-2.2.1-6174",
+        "native_dispatcher_and_four_api_hashes_match": true,
+        "unchanged_dictionary_count": 18,
+        "unchanged_parameter_count": 11,
+        "mechanics_checks": {
+          "PASS": 14
+        },
+        "preparation_replay": "BYTE_EXACT_CANDIDATE",
+        "report_replay": "COMPUTED_SCALAR_ROUNDOFF_ONLY_AT_MOST_1E_MINUS_10",
+        "computed_scalar_roundoff_fields": 7932,
+        "max_computed_scalar_roundoff": 8.881784197001252e-13,
+        "predicted_and_native_measurements": "ONLY_COMPUTED_SCALAR_ROUNDOFF_AT_MOST_1E_MINUS_10",
+        "prediction_native_roundoff_fields": 6549,
+        "prediction_native_max_roundoff": 8.881784197001252e-13,
+        "model_atom_count": 877,
+        "site_count": 43,
+        "changed_base_atoms": 84,
+        "supported_sites": [
+          "A:12",
+          "A:20",
+          "A:5",
+          "A:6",
+          "A:7",
+          "B:4",
+          "C:10",
+          "D:3"
+        ],
+        "unsupported_sites_preserved": [
+          {
+            "component": "DF",
+            "reason": "Unsupported DNA scaffold bond type",
+            "site": "A:19",
+            "status": "UNSUPPORTED"
+          }
+        ],
+        "candidate_sha256": "459f07739cf1d587d717b22dd1b20bc9f3b9ca56edf1ddf07c980191a4af88a7",
+        "geometry_summary": {
+          "angle": {
+            "captured_proxies": 1590,
+            "status_counts": {
+              "MEASURED": 1590
+            },
+            "nominal_abs_ge_3": 157,
+            "nominal_abs_ge_5": 72,
+            "sign_conflicts": 0
+          },
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "status_counts": {
+              "MEASURED": 1026
+            },
+            "nominal_abs_ge_3": 110,
+            "nominal_abs_ge_5": 34,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 155,
+            "status_counts": {
+              "MEASURED": 155
+            },
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "proxy_counts": {
+          "angle": 1590,
+          "bond_asu": 0,
+          "bond_simple": 1026,
+          "chirality": 155,
+          "const_dihedral": 387,
+          "dihedral": 571,
+          "parallelity": 58,
+          "planarity": 54
+        },
+        "source_and_prior_qualification_preserved": true,
+        "aggregate_status": "REVIEW",
+        "optimization": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "original_archive_and_frozen_inputs_preserved": true,
+        "source_effective_distinction": "DF original source SHA 27f83c85... has single sugar bonds; aromatic declarations are in the captured effective dictionary.",
+        "geometry_scope_breakdown": {
+          "bond_simple_intrasite": {
+            "before_ge5": 41,
+            "after_ge5": 24
+          },
+          "bond_simple_intersite": {
+            "before_ge5": 9,
+            "after_ge5": 10
+          },
+          "angle_intrasite": {
+            "before_ge5": 52,
+            "after_ge5": 22
+          },
+          "angle_intersite": {
+            "before_ge5": 55,
+            "after_ge5": 50
+          }
+        },
+        "remaining_pair_contacts": [
+          {
+            "sites": [
+              "A:20",
+              "D:3"
+            ],
+            "atoms": [
+              "N1",
+              "O2"
+            ],
+            "before": 8.963663592527332,
+            "after": 9.357476048593446,
+            "target": 2.8,
+            "unit": "angstrom"
+          },
+          {
+            "sites": [
+              "A:20",
+              "D:3"
+            ],
+            "atoms": [
+              "N3",
+              "N1"
+            ],
+            "before": 2.947119610738593,
+            "after": 6.818963704258881,
+            "target": 2.8,
+            "unit": "angstrom"
+          },
+          {
+            "sites": [
+              "A:20",
+              "D:3"
+            ],
+            "atoms": [
+              "N4",
+              "O6"
+            ],
+            "before": 2.7367354640154753,
+            "after": 4.600879155118074,
+            "target": 2.8,
+            "unit": "angstrom"
+          }
+        ]
+      }
+    },
+    "effective_source_recovery_2026_10_16": {
+      "status": "IMPLEMENTED_INSTALLED_GENERATION_AND_NATIVE_PHASES_PENDING",
+      "delivery_prefix": "18_Cedar",
+      "policy_id": "cif-effective-source-graph-recovery-v1",
+      "modules": [
+        "src/nasolve/cif_effective_source_recovery.py",
+        "scripts/cif_effective_source_recovery_probe_template.py",
+        "scripts/build_cif_effective_source_recovery_probe.py"
+      ],
+      "schema_1": {
+        "new_audit_kind": "cif_effective_source_recovery_plan",
+        "new_probe_kind": "cif-effective-source-recovery-probe",
+        "existing_inventory_and_qualification_formats_changed": false
+      },
+      "actual_capture_source_plan": {
+        "schema_version": 1,
+        "audit_kind": "cif_effective_source_recovery_plan",
+        "policy_id": "cif-effective-source-graph-recovery-v1",
+        "status": "REVIEW",
+        "recovery_codes": [
+          "DF"
+        ],
+        "selected": [
+          {
+            "component": "DF",
+            "source_resource": "src/nasolve/data/ligands/DF.cif",
+            "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+            "source_size": 8941,
+            "source_input_index": 3,
+            "sites": [
+              "A:19"
+            ],
+            "effective_graph_reviews": [
+              {
+                "site": "A:19",
+                "reason": "Unsupported DNA scaffold bond type"
+              }
+            ]
+          }
+        ],
+        "unchanged_sites": [
+          "A:12",
+          "A:20",
+          "A:5",
+          "A:6",
+          "A:7",
+          "B:4",
+          "C:10",
+          "D:3"
+        ],
+        "blocked": [],
+        "automatic_adoption": false,
+        "limitations": [
+          "Supported source scaffold is an eligibility check, not full chemical approval.",
+          "Independent whole-component generation and source-state/linked/native qualification remain required.",
+          "No dictionary target, charge or atom mapping is inferred from model residuals."
+        ]
+      },
+      "software_validation": {
+        "before_implementation": {
+          "failed": 8,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_effective_source_recovery.py"
+        },
+        "focused": {
+          "passed": 140,
+          "seconds": 19.27,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_effective_source_recovery.py tests/test_cif_effective_source_recovery_probe.py tests/test_cif_generation.py tests/test_cif_linked_preparation.py tests/test_cif_terminal_qualification.py tests/test_cif_fragment_restoration.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1568,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 112.1,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "native_tools": "NOT_RUN locally; generator/native coordinator paths use explicit fakes. Actual source planning uses the verified Cedar 17 capture and exact packaged DF source.",
+        "regressions": [
+          "Synthetic ZZZ unsupported effective graph and supported source selected by recorded component/input index/hash/size, not filenames",
+          "Changed/missing/ambiguous source, unsupported source graph and wrong component metadata blocked",
+          "Case-insensitive declared source type; prior site modifier composition guard",
+          "Supported effective graphs do not regenerate",
+          "Only PASS and explicit unavailable formal charge without contradictions may continue a diagnostic; all other review/unsupported states stop",
+          "Rejected generation or unresolved dictionary mechanics cannot precede a fragment edit",
+          "Coordinates fixed in dictionary phase; native identities/definitions/proxies fixed in subsequent fragment phase",
+          "Capsule unsafe/duplicate/symlink/unselected-member tampering guards",
+          "Deleted-build/poisoned-import synthetic and actual-input planning transport"
+        ]
+      },
+      "actual_capture_deleted_build_relocation": {
+        "status": "PASS",
+        "scope": "ACTUAL_CEDAR17_CAPTURE_SOURCE_PLANNING_ONLY",
+        "build_trees_deleted": true,
+        "poisoned_imports": "NOT_USED",
+        "current_directory_independence": true,
+        "source_payloads_verified": 129,
+        "output_payloads_verified": 133,
+        "runtime_files_verified": 103,
+        "original_archive_preserved": true,
+        "analysis_completed": true,
+        "recovery_codes": [
+          "DF"
+        ],
+        "matched_source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "unchanged_sites": 8,
+        "dictionary_generation": "NOT_RUN",
+        "native_execution": "NOT_RUN"
+      },
+      "installed_dictionary_generation": "PENDING",
+      "installed_native_dictionary_phase": "PENDING",
+      "installed_native_fragment_phase": "PENDING",
+      "boundaries": {
+        "production_postmr_changes": false,
+        "model_editing": "SEPARATE_CANDIDATE_ONLY_AFTER_DICTIONARY_NATIVE_GATES",
+        "dictionary_optimization": "MAY_RUN_IN_WHOLE_COMPONENT_GENERATION; NOT_RUN_LOCALLY",
+        "model_optimization": "NOT_RUN",
+        "pairing_pose_adjustment": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "prior_source_and_charge_reviews_preserved": true,
+        "new_runtime_dependencies": [],
+        "private_payloads_committed": false
+      },
+      "ferry": {
+        "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+        "previous_build": "17_Cedar_probe_build",
+        "worktree": "18_Cedar_probe_build",
+        "narestraints_worktree": "05_Cedar_narestraints_build",
+        "builder": "scripts/build_cif_effective_source_recovery_probe.py",
+        "runner": "18_Cedar_probe_cif_source_recovery.py",
+        "default_input": {
+          "anchor": "user_home",
+          "path": "NASolve-live-tests/17_Cedar_cif-fragment-restoration-t9rsj7b2/17_Cedar_t9rsj7b2_cif_fragment_restoration_review.zip"
+        },
+        "phenix_root_default": {
+          "anchor": "user_home",
+          "path": "Applications/phenix-2.2.1-6174"
+        },
+        "expected_status": "REVIEW/exit 2; return output and new review ZIP. Generation or any unresolved native mechanics stops dependent phases.",
+        "options": [
+          "--review-zip",
+          "--output-parent",
+          "--phenix-root",
+          "--timeout-seconds",
+          "--source CODE=/explicit/path",
+          "--inspect-only"
+        ]
+      },
+      "next_bounded_work": "Verify generation/source and both native-phase returns; then assess pair pose and full geometry with every remaining source/charge/stereochemical limit visible, before any model minimization or adoption.",
       "evidence": "docs/cif-linked-native-registration-evidence.json"
     }
   },
