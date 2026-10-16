@@ -255,10 +255,27 @@ executing the script and compares captured intramonomer geometry findings
 across exact atom identities in available single-model PDB stages. Missing
 stages cannot prove a transition. Same-name parent-coordinate matches are
 descriptive evidence rather than a semantic atom map or proof of cause. The
-Cedar 16 runner packages this read-only collection with no new native tool or
-coordinate intervention. Synthetic and partial original-run-witness transport
-checks pass; complete Mac evidence remains pending. Production PostMR and
-scientific repair/qualification remain separate.
+Cedar 16 return verifies all 74 payloads and locates 55 raw→restored crossings.
+Controlled replay of the legacy restoration reproduces the entire damaged
+restored model byte for byte. This demonstrates that coordinate copying is
+the damaging operation for these transitions, without explaining every
+pre-existing raw/MR defect or proving source chemistry.
+
+The separate Cedar 17 candidate addresses that mechanism by transporting a
+complete connected base fragment from raw Coot into the preserved sugar frame,
+using a proper rigid rotation/translation at C1′/O4′/C2′. Connectivity selects
+the base and its single C1′ attachment; parent base names supply no coordinates.
+The rule requires the complete explicit DNA scaffold and preserves all
+backbone/unselected coordinates and metadata. Unsupported graphs and contexts
+are refused. DF's aromatic sugar bonds remain visible and its site unchanged;
+eight supported contexts move 84 base atoms. Captured-proxy prediction changes
+bond/angle outlier counts 50/107→34/72, with zero recorded chirality sign
+conflicts. This preserves raw fragment geometry within PDB rounding; it does
+not optimize or approve it. The runner tests unchanged native definitions,
+targets, detailed proxies and exact candidate coordinates using the selected
+Phenix installation. Generic regressions, the complete suite and actual-input
+relocation pass; installed candidate interpretation is pending. Production
+PostMR, scientific geometry qualification and adoption remain separate.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -414,14 +431,22 @@ volumes from recorded manager sites. Nominal weighted deviations rank the
 evidence; missing native conventions and deferred geometry remain unassessed,
 and no coordinate repair, target retuning or qualification pass is implied.
 Returned source-versus-model and coordinate-lineage comparisons motivate an
-earlier construction/atom-correspondence audit; the originating step remains
-unproven.
+earlier construction/atom-correspondence audit. The returned stage evidence
+and controlled legacy replay now reproduce the damaging coordinate-copy step
+for the captured transitions; other MR/raw/source defects remain unresolved.
 An explicit construction-provenance diagnostic can freeze original models and
 saved declarations under a reviewed run binding, then compare available stage
 coordinates. Missing evidence and correspondence limits remain visible; it
 does not execute the saved script or alter the original run.
+An explicit attached-fragment candidate retains the reviewed scaffold and uses
+the captured graph to select a connected base with one C1′ attachment. Raw
+base coordinates move together through right-handed sugar frames. Unsupported
+graphs stay unchanged under review. Native comparison requires the same atom
+identities, site definitions, custom requests and full proxy targets/weights;
+neither descriptive outlier reductions nor successful interpretation approve
+complete geometry. The candidate is not integrated into production PostMR.
 The separate native diagnostic inventories interpreted atoms/proxies and
-parameter handling; it does not add a repair or adoption path.
+parameter handling; it does not authorize adoption.
 
 ## Primary references
 

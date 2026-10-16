@@ -501,9 +501,60 @@ is read-only; `--run` supports relocation. The runner writes a new frozen
 evidence inventory, construction report and review ZIP. It requires Python's
 standard library and performs no new Coot/Phenix execution, remapping,
 optimization, refinement or adoption. Successful analysis retains REVIEW/exit 2
-and root cause NOT_ESTABLISHED. Synthetic tests and an actual captured-input
-replay with a two-file original-run witness pass; full Mac stage collection
-remains pending. This diagnostic is separate from production PostMR and repair.
+and root cause NOT_ESTABLISHED. The returned Cedar 16 capsule now verifies all
+74 payloads, including 19 recorded original-run artifacts. Offline report
+replay confirms 55 raw→restored threshold crossings at eight sites. Replaying
+the legacy restoration on frozen inputs reproduces the restored model byte
+for byte. Thus the same-name/element copying operation reproducibly damages
+these captured geometries; not every MR/raw outlier is attributed to it.
+The read-only receipt is preserved without rewriting its causal verdict.
+
+### Separate attached-fragment restoration candidate
+
+`cif_fragment_restoration` constructs an explicit candidate from a reviewed
+baseline model, raw Coot coordinates, saved parent controls and captured
+effective component graphs. The rule requires the complete explicit DNA
+sugar/phosphate graph and a connected heavy-atom base attached only at C1′.
+The base is selected by connectivity, with no component-code, glycosidic atom
+name or N-versus-C linkage allowlist. It forms right-handed orthonormal frames
+at raw and preserved C1′, with O4′ defining the first axis and C2′ the plane,
+then transports the complete raw base by a proper rigid rotation/translation.
+Parent base coordinates are never copied. All sugar/phosphate and unselected
+coordinates, atom identities and noncoordinate PDB fields stay unchanged.
+The baseline scaffold must match the exact frozen parent. A distance guard
+allows at most 0.002 Å change within the fragment plus C1′ after PDB rounding;
+attachment orientation must survive. These are implementation invariants,
+not chemistry or achieved-geometry approval.
+
+Unsupported sugar bond types/graphs, multiple attachments, disconnected
+fragments, hydrogen-bearing grafts, alternate/insertion contexts, degenerate
+frames and ambiguous/mismatched source identities are refused. Every declared
+site is assessed; unsupported sites remain explicitly recorded and unchanged
+in a partial candidate. The actual input excludes DF A:19 because three sugar
+bonds are aromatic. Eight supported contexts transport 84 base atoms. The
+largest fragment-distance change is 0.001040 Å. Captured-proxy prediction changes
+nominal deviations at least five from 50→34 bonds and 107→72 angles, with zero
+recorded chirality sign conflicts. Raw/sugar/source defects remain; no target
+is retuned or model optimized.
+
+`scripts/build_cif_fragment_restoration_probe.py` builds the Cedar 17 shuttle.
+It verifies the exact Cedar 16 ZIP and every payload, freezes its contents,
+and writes eligibility, preparation, predicted geometry and candidate files.
+`--inspect-only` skips new native execution. Otherwise, the selected Phenix
+version/dispatcher and four API source hashes must match the capture before
+and after interpreting the candidate with the unchanged 18 dictionaries and
+11 PHIL inputs. Qualification compares every native atom identity, effective
+site definition, custom request and detailed proxy/target/weight with the
+capture, and checks the exact candidate coordinates. It also records all new
+native Cartesian measurements. Prior qualification and source reviews remain
+visible, including unavailable formal-charge readbacks. The captured baseline
+is not re-executed. No Coot, ReadySet retry, minimization, refinement or adoption
+is performed. Successful mechanics retain REVIEW/exit 2.
+
+Generic regressions, the full 1,543-test suite and actual-input deleted-build
+transport pass. Installed candidate interpretation is pending. This is a
+separate diagnostic candidate; ordinary PostMR retains the demonstrated legacy
+restoration issue until a separately qualified integration is adopted.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

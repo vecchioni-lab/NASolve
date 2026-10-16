@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 16 return and separate fragment-restoration candidate
+
+- Verify all 74 returned payloads and replay the construction report. Record
+  55 raw→restored crossings and a byte-exact legacy restoration replay from
+  frozen inputs, reproducing the damaging coordinate-copy operation for those
+  captured transitions. Preserve the original receipt and all earlier issues.
+- Add an explicit DNA graph rule that transports a complete raw base through
+  the preserved sugar frame. Keep backbone/unselected coordinates, atom
+  identities and metadata; refuse unsupported graphs, attachments and frames.
+  DF's aromatic sugar remains unchanged and under review. Eight supported
+  contexts/84 base atoms form a separate candidate; descriptive bond/angle
+  outliers decrease 50/107→34/72 without target changes or geometry approval.
+- Add the Cedar 17 source-bundled runner and native identity/definition/full
+  proxy comparison against the unchanged captured bundle. Preserve prior
+  source/charge reviews and retain REVIEW. Generic regressions, the complete
+  1,543-test suite and actual-input deleted-build transport pass; installed
+  interpretation remains pending. Existing production PostMR and schemas/gates
+  are unchanged; new schema-1 diagnostics add no dependencies or private data.
+
 ### Original construction provenance and Cedar 16 ferry
 
 - Add an explicit read-only stage audit bound to the reviewed original model.

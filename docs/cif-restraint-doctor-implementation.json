@@ -901,24 +901,10 @@
         "interpretation": "Severe coordinate distortions predate the linked dictionary diagnostics; whole-component coordinate placement/mapping needs an explicit provenance audit. Valid source target/coordinate comparison alone does not identify the responsible construction step.",
         "causal_limits": "The construction/parent-restoration/atom-mapping step is a candidate for provenance investigation, not a demonstrated cause. Source-coordinate agreement does not independently qualify source chemistry."
       },
-      "next_bounded_work": {
-        "status": "CEDAR_16_IMPLEMENTED_ORIGINAL_MAC_COLLECTION_PENDING",
-        "next_delivery_queued": true,
-        "delivery_prefix": "16_Cedar",
-        "work": "Collect hash-bound original construction stages and saved declarations, then review the first observed intrasite geometry distortion and adjacent-stage crossings before selecting a repair.",
-        "root_cause": "NOT_ESTABLISHED",
-        "coordinate_intervention": "NOT_RUN",
-        "remaining_limits": [
-          "Full original Mac stage evidence pending",
-          "Missing stages and later synthetic control cannot establish an earlier transition",
-          "Same-name parent coordinate equality is not semantic graph correspondence",
-          "Existing source chemistry, formal-charge, absolute-stereochemistry and complete geometry qualification limits",
-          "Coordinate repair, refinement, human review and production integration"
-        ]
-      }
+      "next_bounded_work": "Cedar 17 separate attached-fragment candidate implemented; installed interpretation and later complete scientific qualification/adoption remain pending."
     },
     "construction_provenance_2026_10_16": {
-      "status": "IMPLEMENTED_ORIGINAL_MAC_COLLECTION_PENDING",
+      "status": "RETURN_VERIFIED_LEGACY_RESTORATION_REPRODUCED",
       "delivery_prefix": "16_Cedar",
       "policy_id": "cif-construction-stage-provenance-v1",
       "modules": [
@@ -947,8 +933,8 @@
           "verify_if_present": true
         }
       },
-      "actual_original_mac_collection": "PENDING",
-      "root_cause": "NOT_ESTABLISHED",
+      "actual_original_mac_collection": "COMPLETED_AND_VERIFIED",
+      "root_cause": "LEGACY_COORDINATE_RESTORATION_REPRODUCED_FOR_CAPTURED_TRANSITIONS",
       "boundaries": {
         "native_execution": "NOT_RUN",
         "model_editing": "NOT_RUN",
@@ -1014,6 +1000,277 @@
           "new_native_execution": "NOT_RUN"
         }
       },
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "returned_receipt_root_cause": "NOT_ESTABLISHED; the read-only original receipt is preserved unchanged.",
+      "returned_16_cedar": {
+        "archive": {
+          "name": "16_Cedar_2liuorr__cif_construction_review.zip",
+          "bytes": 1248124,
+          "sha256": "e6be273bafd9fd6b4a6c6b2125496f1353592b36d3e6e0709da8fab25ea95c8e",
+          "verified_payloads": 74,
+          "payload_bytes": 15304522,
+          "safe_unique_members": true
+        },
+        "nasolve_source": {
+          "commit": "4e81f5caa3aca2974414c7b2fd2feb8c2e792670",
+          "working_tree_has_changes": false
+        },
+        "narestraints_source": {
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "working_tree_has_changes": false
+        },
+        "runtime_archive_sha256": "7dff65c781dd90ac142145dd5eb739921a8ced32bb7f3ed66a5651266fb6cfaa",
+        "source_artifact_status_counts": {
+          "RECORDED": 19,
+          "NOT_PRESENT": 2
+        },
+        "stage_statuses": {
+          "mr_input": "RECORDED",
+          "component_normalized": "NOT_PRESENT",
+          "coot_raw": "RECORDED",
+          "restored": "RECORDED",
+          "after_coot": "RECORDED",
+          "terminal": "RECORDED",
+          "prepared": "RECORDED"
+        },
+        "frozen_prior_members": 52,
+        "report_replay": "MATCH_WITH_ONLY_COMPUTED_SCALAR_ROUNDOFF_AT_MOST_1E_MINUS_10",
+        "computed_scalar_roundoff_fields": 62,
+        "max_computed_scalar_roundoff": 2.842170943040401e-14,
+        "selected_sites": [
+          "A:11",
+          "A:12",
+          "A:18",
+          "A:19",
+          "A:2",
+          "A:20",
+          "A:3",
+          "A:4",
+          "A:6",
+          "A:7",
+          "B:1",
+          "B:4",
+          "B:7",
+          "C:10",
+          "C:8",
+          "D:2",
+          "D:3",
+          "D:4",
+          "D:6",
+          "D:7",
+          "E:1"
+        ],
+        "findings": 93,
+        "first_observed_outlier_counts": {
+          "NOT_LOCATED": 3,
+          "coot_raw": 10,
+          "mr_input": 25,
+          "restored": 55
+        },
+        "threshold_crossing_count": 55,
+        "crossings_by_site": {
+          "A:6": 3,
+          "A:7": 3,
+          "A:12": 14,
+          "A:19": 3,
+          "A:20": 13,
+          "B:4": 5,
+          "C:10": 3,
+          "D:3": 11
+        },
+        "runner_sha256": "b87ed97f1696efec0f8d5b6e56b871f57d824d9a704cbc7b862cc8c162b23556",
+        "analysis_completed": true,
+        "reported_status": "REVIEW",
+        "original_archive_and_frozen_inputs_preserved": true,
+        "new_native_execution": "NOT_RUN"
+      },
+      "controlled_legacy_replay": {
+        "result": "BYTE_EXACT_ORIGINAL_RESTORED_MODEL",
+        "sha256": "d12d171b45086255bb6d31315300ea535bc63e9298dfe40443cb7fe1bdbb4408",
+        "bytes": 70798,
+        "sites": 9,
+        "operation": "nasolve.postmr._restore_shared_parent_coordinates",
+        "scope": "The frozen raw model and all nine saved parent controls reproduce the complete recorded restored model byte for byte.",
+        "conclusion": "Legacy same-name/element coordinate copying reproducibly damages the captured transitions. This does not attribute every MR/raw outlier or certify source chemistry.",
+        "original_run_changed": false,
+        "new_native_execution": "NOT_RUN"
+      },
+      "next_bounded_work": "Cedar 17 separate attached-fragment candidate implemented; installed interpretation and later complete scientific qualification/adoption remain pending."
+    },
+    "fragment_restoration_2026_10_16": {
+      "status": "IMPLEMENTED_INSTALLED_CANDIDATE_INTERPRETATION_PENDING",
+      "delivery_prefix": "17_Cedar",
+      "policy_id": "cif-dna-attached-fragment-restoration-v1",
+      "modules": [
+        "src/nasolve/cif_fragment_restoration.py",
+        "scripts/cif_fragment_restoration_probe_template.py",
+        "scripts/build_cif_fragment_restoration_probe.py"
+      ],
+      "schema_1": {
+        "new_kinds": [
+          "cif_fragment_restoration_candidate",
+          "cif_fragment_native_mechanics",
+          "cif-fragment-restoration-native-probe"
+        ],
+        "existing_inventory_or_qualification_formats_changed": false
+      },
+      "actual_capture_offline_candidate": {
+        "supported_sites": [
+          "A:12",
+          "A:20",
+          "A:5",
+          "A:6",
+          "A:7",
+          "B:4",
+          "C:10",
+          "D:3"
+        ],
+        "changed_atoms": 84,
+        "model_atom_count": 877,
+        "candidate_sha256": "459f07739cf1d587d717b22dd1b20bc9f3b9ca56edf1ddf07c980191a4af88a7",
+        "unsupported_sites_preserved": [
+          {
+            "site": "A:19",
+            "component": "DF",
+            "reason": "Captured sugar C1 prime-C2 prime, C2 prime-C3 prime and C3 prime-C4 prime bonds are aromatic; no source reinterpretation."
+          }
+        ],
+        "max_fragment_distance_change_angstrom": 0.001039780102558563,
+        "descriptive_ge_5": {
+          "bond_simple": {
+            "before": 50,
+            "after": 34
+          },
+          "angle": {
+            "before": 107,
+            "after": 72
+          },
+          "chirality": {
+            "before": 0,
+            "after": 0
+          }
+        },
+        "recorded_chirality_sign_conflicts": 0,
+        "previously_recorded_55_crossings_now_below_5": 48,
+        "remaining_geometry": "Existing raw/sugar/source problems remain visible; no optimization or qualification pass.",
+        "example_prediction": [
+          {
+            "site": "D:3",
+            "atoms": [
+              "C2",
+              "O2"
+            ],
+            "observed": 1.3401328292374601,
+            "target": 1.215,
+            "unit": "angstrom"
+          },
+          {
+            "site": "A:20",
+            "atoms": [
+              "N1",
+              "C2",
+              "C1"
+            ],
+            "observed": 118.97335680457863,
+            "target": 123.78,
+            "unit": "degree"
+          }
+        ]
+      },
+      "software_validation": {
+        "before_implementation": {
+          "failed": 13,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fragment_restoration.py"
+        },
+        "focused": {
+          "passed": 51,
+          "seconds": 7.28,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fragment_restoration.py tests/test_cif_fragment_restoration_probe.py tests/test_cif_construction_provenance.py tests/test_cif_construction_probe.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1543,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 126.63,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "native_tools": "NOT_RUN locally; native success/failure test paths use explicit fakes. Actual installed candidate interpretation is pending.",
+        "regressions": [
+          "Generic ZZZ N-linked, C-linked and misleading-name bases; never copy same-name parent base coordinates",
+          "Rigid reorientation invariance and shared-code unselected-site isolation",
+          "Multiple attachment/disconnected/unsupported sugar graphs including aromatic bonds",
+          "Element, duplicate/alternate, parent-scaffold and degenerate-frame guards; preserve existing outputs",
+          "Native identity/site-definition/proxy equality and exact candidate-coordinate comparison",
+          "Capsule tampering, unsafe/duplicate/symlink/unselected-member guards",
+          "Native success/failure fakes with honest completion/status",
+          "Source-isolated runner after deletion of both build trees and poisoned imports unused"
+        ]
+      },
+      "actual_capture_deleted_build_relocation": {
+        "status": "PASS",
+        "source": "ACTUAL_VERIFIED_CEDAR16_CAPTURE",
+        "build_trees_deleted": true,
+        "poisoned_imports": "NOT_USED",
+        "current_directory_independence": true,
+        "source_payloads_verified": 74,
+        "output_payloads_verified": 80,
+        "runtime_files_verified": 102,
+        "original_archive_preserved": true,
+        "analysis_completed": true,
+        "changed_base_atoms": 84,
+        "supported_sites": 8,
+        "unsupported_preserved_sites": [
+          "A:19"
+        ],
+        "candidate_sha256": "459f07739cf1d587d717b22dd1b20bc9f3b9ca56edf1ddf07c980191a4af88a7",
+        "geometry_counts_ge_5": {
+          "angle": 72,
+          "bond_simple": 34,
+          "chirality": 0
+        },
+        "recorded_chirality_sign_conflicts": 0,
+        "native_execution": "NOT_RUN"
+      },
+      "installed_native_candidate": "PENDING",
+      "boundaries": {
+        "production_postmr_changes": false,
+        "model_editing": "SEPARATE_CANDIDATE_ONLY",
+        "original_model_and_run_preserved": true,
+        "dictionaries_and_parameters_unchanged": true,
+        "optimization": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "prior_source_and_charge_reviews_preserved": true,
+        "new_runtime_dependencies": [],
+        "private_payloads_committed": false
+      },
+      "ferry": {
+        "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+        "previous_build": "16_Cedar_probe_build",
+        "worktree": "17_Cedar_probe_build",
+        "narestraints_worktree": "05_Cedar_narestraints_build",
+        "builder": "scripts/build_cif_fragment_restoration_probe.py",
+        "runner": "17_Cedar_probe_cif_fragment_restoration.py",
+        "default_input": {
+          "anchor": "user_home",
+          "path": "NASolve-live-tests/16_Cedar_cif-construction-2liuorr_/16_Cedar_2liuorr__cif_construction_review.zip"
+        },
+        "phenix_root_default": {
+          "anchor": "user_home",
+          "path": "Applications/phenix-2.2.1-6174"
+        },
+        "expected_status": "REVIEW/exit 2; return terminal output and new review ZIP.",
+        "options": [
+          "--review-zip",
+          "--output-parent",
+          "--phenix-root",
+          "--timeout-seconds",
+          "--inspect-only"
+        ]
+      },
+      "next_bounded_work": "Inspect the installed native return and all geometry outcomes before selecting any later scientific repair, optimization or production integration.",
       "evidence": "docs/cif-linked-native-registration-evidence.json"
     }
   },
@@ -1683,7 +1940,7 @@
     "essential_corrections_to_shorthand": [
       {
         "shorthand": "C5 / C5prime bonds swapped; iodine bonds built badly",
-        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 \u00c5; sugar C5prime-I5 coordinate separation is 8.843030419488558 \u00c5 and is not an iodine bond.",
+        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 Å; sugar C5prime-I5 coordinate separation is 8.843030419488558 Å and is not an iodine bond.",
         "must_not_claim": "A general supplier C5/C5prime bond swap, a chemically incorrect 5IU iodine bond, or an edited source dictionary."
       },
       {
@@ -1714,7 +1971,7 @@
           "sugar_C5prime_I5_nonbonded_coordinate_distance_A": 8.843030419488558
         },
         "lesson": "Preserve exact atom identifiers. Remove only an enclosing matching quote pair; a prime inside or at the end of an atom ID is chemical identity data. Distinguish coordinate-derived distance from numerical bond target and establish adjacency first.",
-        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 \u00c5, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
+        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 Å, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
         "generalizable_rules": [
           "GRAPH-01",
           "NUM-01",
@@ -1798,8 +2055,8 @@
           "sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
           "findings": [
             "Aromatic sugar typing/bonds",
-            "C4-O4 single bond target 1.384 \u00c5",
-            "C2-S1 single bond target 1.812 \u00c5",
+            "C4-O4 single bond target 1.384 Å",
+            "C2-S1 single bond target 1.812 Å",
             "No active DF sugar chirality restraints"
           ]
         },
@@ -2085,7 +2342,7 @@
           "Current DE eLBOW dictionary has not changed since addition at b8317b0.",
           "Current file is byte-equivalent to historical repository-root generated 8RO.cif after component-label substitution.",
           "That generated artifact is not proof that official CCD 8RO equals intended laboratory DE.",
-          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 \u00c5 target.",
+          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 Å target.",
           "September replacement candidate remained unapproved; later committed approved replacement not found."
         ],
         "required_recovery": [
@@ -2668,7 +2925,7 @@
         "alternate_degrees": 2.8,
         "alternate_original_sigma_degrees": 6.1,
         "wrong_active_native_residual_approx": 481,
-        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7\u00b0, alternate 2.8\u00b0, primary sigma 6.3\u00b0.",
+        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7°, alternate 2.8°, primary sigma 6.3°.",
         "adopted_diagnostic_derivative_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
         "native_diagnostic": "Native diagnostic PASS; source unchanged; broad production repair is not qualified."
       },
@@ -2694,8 +2951,8 @@
         "bad_effective_readyset_sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
         "bad_definition": [
           "aromatic sugar typing and bonds",
-          "single C4\u2013O4 target 1.384 \u00c5",
-          "single C2\u2013S1 target 1.812 \u00c5",
+          "single C4–O4 target 1.384 Å",
+          "single C2–S1 target 1.812 Å",
           "no active sugar chirality restraints"
         ],
         "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
@@ -2734,7 +2991,7 @@
           "native_verified_heavy_bonds": 21,
           "native_signed_sugar_centres": 3
         },
-        "charge_caution": "Old effective OP1 formal charge \u22121 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
+        "charge_caution": "Old effective OP1 formal charge −1 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
         "generator": {
           "AceDRG": "334",
           "database": "12",
@@ -2804,8 +3061,8 @@
           "zero_sigma_torsions": 6,
           "plane_groups": 5
         },
-        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y\u2192N flags changed only for C4\u2013N9, C8\u2013N9, C7\u2013C8 and C7\u2013N5. Twelve H attachments, formal charge \u22122 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
-        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of \u22121 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
+        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y→N flags changed only for C4–N9, C8–N9, C7–C8 and C7–N5. Twelve H attachments, formal charge −2 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
+        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of −1 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
         "candidate_angles": {
           "target_degrees": [
             108.817,
@@ -2883,7 +3140,7 @@
             180,
             128
           ],
-          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2\u20135 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
+          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2–5 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
           "N5_achieved_degrees": [
             108.115293,
             119.720831,
@@ -2993,9 +3250,9 @@
           }
         ],
         "nonobvious_attachments": [
-          "CGY HO3\u2032 attaches to OP3",
+          "CGY HO3′ attaches to OP3",
           "DX H1 attaches to OP3",
-          "DX H6 attaches to O3\u2032"
+          "DX H6 attaches to O3′"
         ],
         "status": "Linkage mechanics PASS; source-specific OP2 H retained; no uniform protonation policy or qualification of all contexts follows."
       },
@@ -3010,8 +3267,8 @@
       },
       "1AP_challenge": {
         "curated_source_git_blob": "1be06d4bb0848891fd3e7dca22d217dd2ad1b69b",
-        "adaptation": "NON-POLYMER\u2192DNA only; numerical rows, atoms, types, chirality and planes retained.",
-        "failed_generator_connectivity": "Spurious O4\u2032\u2013N1 connection; correct reviewed graph has C1\u2032\u2013N9.",
+        "adaptation": "NON-POLYMER→DNA only; numerical rows, atoms, types, chirality and planes retained.",
+        "failed_generator_connectivity": "Spurious O4′–N1 connection; correct reviewed graph has C1′–N9.",
         "fixture_policy": "Recover the failed artifact or label a synthetic reproduction. The current curated source is a preservation/control case, not presumed defective."
       }
     },

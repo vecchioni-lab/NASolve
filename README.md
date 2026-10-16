@@ -32,6 +32,11 @@ explicit source-preserving preparation recipes.
 The [human/manuscript overview](docs/cif-doctor-human-overview.md) explains the
 algorithm, tools and pipeline placement and supplies an editable figure.
 
+The current diagnostic trial has reproduced coordinate damage from legacy
+parent restoration for some modified bases. A separate graph-selected fragment
+candidate is under native validation; it has not changed ordinary PostMR.
+See the [current handoff](docs/development-handoff.md) for the exact scope.
+
 ## Quick start
 
 ### Install

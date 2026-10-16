@@ -88,8 +88,16 @@ for actual behavior; history is evidence, not a second task queue.
   Cedar 16 now packages that read-only original-run stage collection, with a
   reviewed model binding, AST-only saved-script parsing and exact atom identity
   comparisons. Missing stages and same-name correspondence limits remain
-  explicit; no cause or repair is inferred. The 1,518-test suite and relocated
-  synthetic/partial-witness runs pass; complete Mac collection is pending.
+  explicit. The complete returned capsule now verifies all 74 payloads and
+  records 55 raw→restored crossings. Controlled replay reproduces the damaged
+  restored model byte for byte, identifying legacy coordinate copying for
+  these transitions. Cedar 17 prepares a separate graph-selected rigid base
+  candidate, preserving the existing scaffold and refusing unsupported graphs.
+  Eight contexts/84 base atoms are supported; DF's aromatic sugar remains
+  unchanged and under review. Captured-proxy outliers decrease, while remaining
+  raw/sugar/source problems stay visible. The 1,543-test suite and actual-input
+  deleted-build transport pass; installed native candidate interpretation is
+  pending. Production PostMR and scientific adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

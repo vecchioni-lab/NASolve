@@ -51,58 +51,82 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 16 construction provenance ready (2026-10-16):** the user requested
-the next CLI delivery. This is a read-only stage audit, with no coordinate
-repair or change to PostMR. It verifies the exact Cedar 15 ZIP, binds the
-original run to the Cedar 05 prepared-model SHA-256/size, and snapshots explicit
-MR, raw Coot, shared-parent restoration, canonical restoration, terminal and
-prepared stages. Missing stages remain NOT_PRESENT. A saved Coot script is
-parsed with Python AST, never executed, to collect literal input/dictionary
-and parent-control references. Paths rebase only from the recorded historical
-run anchor to `--run`; external paths are recorded without collection. Source
-symlinks, changed bindings and unsafe/ambiguous references are refused.
+**Cedar 17 separate restoration candidate ready (2026-10-16):** the returned
+stage evidence below reproduces a coordinate-restoration defect. The new
+`cif_fragment_restoration` diagnostic keeps the reviewed sugar/phosphate and
+transports each complete, graph-selected base fragment from raw Coot into the
+preserved C1′/O4′/C2′ frame by a proper rigid rotation. It borrows no canonical
+parent base atom by name. The supported graph requires the complete explicit
+DNA scaffold, one connected heavy-atom base attached once at C1′, exact
+component/element correspondence and unambiguous single-model coordinates.
+Unsupported attachments, aromatic sugar bonds, alternate/insertion contexts,
+degenerate frames and changed parent/source correspondence are refused.
 
-The generic audit selects all captured intrasite bond/angle findings with
-nominal absolute deviation at least five, independent of residue code. It
-compares exact atom names, site/altloc, component and element across available
-single-model PDB stages. It records the first observed outlier and only counts
-a threshold crossing across adjacent comparable stages. Same-name parent
-coordinate comparisons expose observed copies, without declaring a semantic
-atom map or cause. Parent equality uses 0.001 Å after a prior difference over
-0.01 Å as descriptive evidence only. Root cause remains NOT_ESTABLISHED.
+All nine original parent-controlled contexts are assessed. Eight qualify;
+DF A:19 retains UNSUPPORTED because its captured C1′–C2′, C2′–C3′ and C3′–C4′
+bonds are aromatic. That entire site stays unchanged. The candidate changes
+84 base-atom coordinates, preserving all scaffold/unselected coordinates,
+identities, metadata and all 877 model atoms. Raw fragment distances including
+the C1′ attachment change by at most **0.001040 Å**, within the explicit
+0.002 Å PDB-rounding guard. This is not a chemical acceptance threshold.
+Captured-proxy prediction reduces bond deviations at least five **50→34**
+and angles **107→72**, with zero recorded chirality sign conflicts. It clears
+48 of the 55 previously recorded crossings; remaining raw/sugar/source problems
+stay visible. DX C2–O2 becomes 1.340133 Å; its 1.215 Å target is unchanged.
+No minimization or full geometry approval is claimed.
 
-**Delivery:** use `scripts/build_cif_construction_probe.py`, a fresh pinned
-`16_Cedar_probe_build`, the existing `05_Cedar_narestraints_build`, and output
-`16_Cedar_probe_cif_construction.py`. The default original run is anchored under
-the user's home at the recorded synthetic challenge; its prepared-model binding
-is `51b6c2ac…`, 70,150 bytes. The original source-audit binding is also checked
-when present. `--run`, `--review-zip` and `--output-parent` remain explicit.
-Give one `fetch && worktree && build && run` block from `15_Cedar_probe_build`.
-The runner needs Python >=3.10 only and calls no new Coot/Phenix process. It
-writes frozen stage evidence, script declarations, construction comparisons
-and a fresh review ZIP. Successful analysis retains REVIEW/exit 2. Preserve
-all originals and return the capsule before selecting a repair.
+**Delivery:** `scripts/build_cif_fragment_restoration_probe.py` builds
+`17_Cedar_probe_cif_fragment_restoration.py` from a fresh `17_Cedar_probe_build`
+and the existing pinned NARestraints source. Use the one-block ferry from
+`16_Cedar_probe_build`. The exact returned Cedar 16 ZIP supplies all frozen
+inputs; no read of the original run is needed. `--review-zip`, `--output-parent`,
+`--phenix-root`, `--timeout-seconds` and `--inspect-only` remain explicit.
+The default native trial uses Phenix 2.2.1-6174, checks the captured dispatcher
+and four native API source hashes before/after, and interprets the candidate
+with the unchanged 18 dictionaries and 11 parameter files. Every native atom
+identity, site definition, custom request and detailed proxy/target/weight
+must match the capture; observed coordinates must match the exact candidate.
+The captured baseline is not re-executed. Source/charge reviews are preserved.
+Successful mechanics still retain REVIEW/exit 2. Return terminal output and
+the new review ZIP before selecting a later intervention or adoption.
 
-**Validation:** eight initial provenance regressions fail before implementation.
-The focused command
-`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_construction_provenance.py tests/test_cif_construction_probe.py tests/test_cif_captured_geometry.py tests/test_cif_geometry_review_probe.py tests/test_synthetic_dna_shuttle.py`
-passes **47 tests (5.62 s)**. The same command without file arguments passes
-**1,518 tests, two skips and 276 subtests (110.97 s)**. Synthetic `ZZZ` fixtures
-cover observed restoration transitions, missing-stage gaps, model/atom ambiguity,
-element mismatch, AST-only parsing, path/symlink/binding/tamper guards and a
-source-isolated runner after both build trees are deleted.
+**Validation:** thirteen initial synthetic regressions fail before the new
+module exists. The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fragment_restoration.py tests/test_cif_fragment_restoration_probe.py tests/test_cif_construction_provenance.py tests/test_cif_construction_probe.py tests/test_synthetic_dna_shuttle.py`
+passes **51 tests (7.28 s)**. Synthetic `ZZZ` includes N- and C-linked and
+misleading-name bases, rigid reorientation, shared-code site isolation,
+aromatic-sugar/multi-attachment/disconnection refusals, source/parent/frame
+guards, native success/failure fakes and deleted-build transport. The same
+command without file arguments passes **1,543 tests, two skips and 276 subtests
+(126.63 s)**. Actual-input relocation after deletion of both build fixtures
+verifies all 74 source and 80 output payloads, with poisoned imports unused.
+The complete receipt is recorded in the
+[evidence record](cif-linked-native-registration-evidence.json).
+Actual installed candidate interpretation remains pending. Production PostMR,
+existing schemas/gates and all original runs remain unchanged; separate
+schema-1 diagnostic kinds and no new dependencies/private payloads enter Git.
 
-A second relocation uses the actual Cedar 15 capture plus only the exact
-Cedar 05 prepared-model/source-audit witness files. It verifies 51 input and
-57 output payloads, keeps those two witness files unchanged and leaves missing
-Coot stages explicit. This partial witness selects 21 sites/93 findings, with
-90 first observed at prepared and three unlocated; it cannot establish an
-earlier transition. Complete original Mac stage collection remains pending.
-Schema 1 gains a separate diagnostic report/receipt; existing native inventories,
-qualification gates and production behavior are unchanged. No new dependencies,
-native execution or private scientific payloads enter Git. The
-[evidence record](cif-linked-native-registration-evidence.json) owns exact
-bindings, methods, software checks and transport scope.
+**Cedar 16 returned and verified (2026-10-16):** all **74 payloads** verify,
+including 52 unchanged Cedar 15 members and 19 recorded original artifacts;
+the optional normalized model and PostMR report remain absent. Returned runner
+SHA-256 `b87ed97f…` matches clean NASolve `4e81f5ca…` and pinned NARestraints
+`a7b6a0c9…`. The report replay matches all identities, statuses and counts,
+with only 62 computed-scalar differences at most **2.85e-14**. It records 93
+findings over 21 sites: first observed at MR input 25, raw Coot 10, restored
+55, and not located three. All **55** adjacent crossings are raw→restored,
+at eight sites. The later synthetic E:1 control is absent from this original
+run and accounts for all three unlocated cases.
+
+Replaying `_restore_shared_parent_coordinates` on the frozen raw model and all
+nine saved parent controls reproduces `after_coot_geometry.pdb` **byte for
+byte** (70,798 bytes, `d12d171b…`). This establishes the legacy same-name/
+same-element coordinate-copy algorithm as the reproducible damaging operation
+for these captured transitions. It does not explain every raw/MR outlier or
+certify source chemistry. DX C2–O2 was already 1.340398 Å in raw Coot, then
+became 5.129713 Å; CGY N1–C2–C1 changed 118.960748°→4.434092°. The original
+read-only receipt correctly retains root cause NOT_ESTABLISHED; this subsequent
+controlled replay supplies the narrower causal evidence. No original file,
+target, native manager, optimization, refinement or production path was changed.
 
 **Cedar 15 returned and verified (2026-10-16):** all **51 payloads** in
 `15_Cedar_01pvz5n5_cif_geometry_review.zip` verify. All 47 frozen native members
@@ -147,8 +171,8 @@ fit these coordinates. Source-versus-model agreement narrows the investigation
 but does not establish a mutation or restoration bug by itself. Root cause
 remains NOT_ESTABLISHED. Cedar 16 above now collects that missing stage evidence;
 coordinate repair, minimization, full native geometry/refinement and adoption
-remain separate gates. This update changes documentation/evidence only; the
-1,501-test runtime receipt below remains current.
+remain separate gates. The Cedar 15 return changed documentation/evidence
+only; later runtime validation is recorded in the current delivery above.
 
 **Cedar 15 captured geometry implementation (2026-10-16):** the user requested
 the next script. This bounded diagnostic reads the exact verified Cedar 14 ZIP,

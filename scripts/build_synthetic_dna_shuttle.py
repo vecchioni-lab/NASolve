@@ -42,6 +42,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "cif_outgoing_bundle_probe_template.py": "13_Cedar",
         "cif_geometry_review_probe_template.py": "15_Cedar",
         "cif_construction_probe_template.py": "16_Cedar",
+        "cif_fragment_restoration_probe_template.py": "17_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -126,6 +127,10 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         metadata.update(kind="cif-construction-provenance-shuttle", delivery_prefix=delivery_prefix,
                         native_validation="NOT_RUN_FROZEN_CONSTRUCTION_EVIDENCE_ONLY", automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10"]
+    if template_name == "cif_fragment_restoration_probe_template.py":
+        metadata.update(kind="cif-fragment-restoration-shuttle", delivery_prefix=delivery_prefix,
+                        native_validation="explicit-separate-fragment-candidate-only", automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Phenix for native bundle interpretation"]
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

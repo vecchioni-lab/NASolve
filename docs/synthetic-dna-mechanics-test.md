@@ -498,7 +498,8 @@ intrasite distortions, including DX C2–O2 at 5.129713 Å in the model versus
 1.215504 Å in dictionary coordinates and a 1.215 Å target. All 858 atom
 identities shared with Cedar 05 have zero coordinate displacement. The next
 bounded investigation is original construction/parent restoration and atom
-correspondence. The causal step remains unproven; no repair has occurred.
+correspondence. At that stage, the causal operation remained unproven; the
+later Cedar 16 return and separate Cedar 17 candidate are recorded below.
 
 ### Cedar 16 original construction provenance
 
@@ -511,11 +512,36 @@ across exact atom/component/element identities, records missing stages and
 compares parent coordinates without inferring chemical correspondence.
 
 Synthetic transition/gap cases and deleted-build/poisoned-import transport pass.
-A partial replay using the actual Cedar 15 capture and two exact original-run
-witness files selects 21 sites/93 findings but has no Coot stages to locate an
-earlier transition. Complete Mac collection remains pending. The runner writes
-a new review capsule, leaves all originals unchanged and retains REVIEW;
-neither root cause nor a coordinate repair is established by this delivery.
+A partial witness preceded the complete Mac return. All 74 returned payloads
+now verify, including 19 original artifacts and all frozen Cedar 15 members.
+The audit selects 21 sites/93 findings: 25 first seen in MR input, ten raw Coot,
+55 restored and three unlocated (the later synthetic E:1 control). All 55
+adjacent crossings are raw→restored at eight modified sites. Controlled offline
+replay of the legacy restoration and saved parent controls reproduces the
+entire restored model byte for byte, establishing the damaging copy operation
+for these transitions. It does not explain all earlier geometry/source issues.
+
+### Cedar 17 separate graph-selected fragment candidate
+
+The new candidate transports each whole raw base into the preserved sugar
+frame, without copying canonical-parent base atoms by name. Exact component
+graphs select a connected heavy-atom base attached only at C1′ and require a
+complete explicit DNA scaffold. Unsupported graphs remain explicit and
+unchanged. DF A:19 is excluded because its source has aromatic sugar bonds;
+eight supported sites transport 84 base atoms. Existing sugar/phosphate,
+unselected coordinates, metadata, all 877 atoms and dictionaries remain fixed.
+Captured-proxy prediction changes bond/angle deviations at least five from
+50/107 to 34/72, with zero recorded chirality sign conflicts. Existing raw/sugar
+issues remain, and no target, minimization or adoption is inferred.
+
+The source-bundled runner verifies the exact Cedar 16 capsule, writes a separate
+candidate and tests it with unchanged captured dictionaries/parameters in
+Phenix. Native identities, effective definitions and all detailed targets/
+weights/custom proxies must match; coordinates must match the exact candidate.
+Prior source/charge reviews stay visible. Synthetic regressions, 1,543 full
+tests and actual-input deleted-build transport pass. Installed interpretation
+is pending; production PostMR remains unchanged. Successful analysis retains
+REVIEW/exit 2 and returns a new review capsule.
 
 ## Adaptable methods wording
 

@@ -308,6 +308,17 @@ atom set to survive. Thus dictionary overlap positions only the new chemistry;
 it cannot rotate or curl the existing phosphate. The restoration inventory is
 recorded in the run report.
 
+The returned Cedar 16 evidence demonstrates a limitation of this legacy
+same-name/element restoration: it introduces 55 captured threshold crossings,
+and an offline replay reproduces the restored model byte for byte. Shared
+atom names do not establish semantic base correspondence or compatible local
+geometry. The explicit Cedar 17 attached-fragment candidate keeps the existing
+scaffold and moves a complete graph-selected base together, with unsupported
+graphs visibly refused. It is separate from production PostMR and still needs
+installed native/scientific qualification. See the
+[restoration diagnostic](cif-doctor.md#separate-attached-fragment-restoration-candidate)
+and [current handoff](development-handoff.md).
+
 Dictionary resolution follows mutation actions. Curated components present in
 the prepared model are also collected even when unchanged, so their CIFs and
 `component_identity` entries survive a no-op mutation plan. This does not imply
