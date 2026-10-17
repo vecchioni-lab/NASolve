@@ -108,7 +108,12 @@ for actual behavior; history is evidence, not a second task queue.
   stopping/gradient and PDB round-trip evidence. The returned trial reaches its
   iteration limit, then exposes native/PDB order differences. Cedar 20 maps
   saved endpoints by exact atom identity and resumes the pending native PDB check
-  without another minimization.
+  without another minimization. The returned reread preserves identities and
+  definitions and adds five distance-filtered hydrogen bonds/ten angles; 11
+  exact checks pass and three retain REVIEW. A read-only audit separates those
+  additions from saved fixed-manager endpoint equivalence. No repeated Mac run
+  is needed for this return; a fixed membership policy precedes further geometry
+  trials.
   Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

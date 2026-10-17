@@ -36,8 +36,9 @@ The current diagnostic trial has reproduced coordinate damage from legacy
 parent restoration for some modified bases. A separate graph-selected fragment
 candidate and source-recovered DF definitions pass native mechanics, with
 formal-charge readback unavailable. A separate fixed-definition geometry trial
-reached its iteration limit; saved-endpoint serialization and native checking
-continue separately. Achieved geometry and scientific approval remain under review.
+reached its iteration limit. Native PDB readback preserves atom/component
+identities and exposes distance-dependent hydrogen-bond additions. Achieved
+geometry and scientific approval remain under review.
 It has not changed ordinary PostMR.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 

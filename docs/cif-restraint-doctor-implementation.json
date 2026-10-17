@@ -1769,7 +1769,7 @@
       }
     },
     "fixed_geometry_trial_2026_10_17": {
-      "status": "RETURNED_NATIVE_LIMIT_STOP_SERIALIZATION_REPAIR_READY",
+      "status": "CEDAR20_NATIVE_REREAD_VERIFIED_CONDITIONAL_PROXY_ADDITIONS_REVIEW",
       "delivery_prefix": "19_Cedar",
       "policy_id": "cif-fixed-native-geometry-trial-v1",
       "modules": [
@@ -1889,7 +1889,7 @@
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#fixed_geometry_trial_2026_10_17"
       },
       "serialization_identity_fix_2026_10_17": {
-        "status": "IMPLEMENTED_OFFLINE_SAVED_ENDPOINT_SERIALIZATION_VERIFIED_NATIVE_POSTCHECK_PENDING",
+        "status": "RETURNED_SERIALIZATION_VERIFIED_FRESH_NATIVE_PROXY_ADDITIONS_REVIEW",
         "delivery_prefix": "20_Cedar",
         "behavior_before": "Serializer zipped original PDB lines with native hierarchy indices and refused native atom reordering after the completed trial.",
         "behavior_after": "Validate a complete one-to-one supported single-model identity map by chain/residue/insertion/altloc/atom name, with component/element/baseline-coordinate guards. Map final native endpoints to original PDB records; preserve their ordering, headers and metadata.",
@@ -1939,7 +1939,7 @@
             "rms": 0.9809800933382721,
             "mean": 0.8164172691277105
           },
-          "native_roundtrip": "PENDING"
+          "native_roundtrip": "COMPLETED_11_PASS_3_REVIEW"
         },
         "deleted_build_actual_transport": {
           "status": "PASS",
@@ -1980,7 +1980,91 @@
           "new_runtime_dependencies": [],
           "private_payloads_committed": false
         }
+      },
+      "cedar20_return_verified_2026_10_17": {
+        "archive": {
+          "name": "20_Cedar_3mgfe_a0_cif_geometry_trial_review.zip",
+          "bytes": 7564343,
+          "sha256": "8d77695925536335963fd351a91961091798ee1a3a680f1bc72368ae9732091e",
+          "verified_payloads": 367,
+          "payload_bytes": 108385223,
+          "safe_unique_members": true
+        },
+        "runner_sha256": "e38625e126d1adf1673d0af5b333e675be995b00e7154999c6923c3638bd9dfb",
+        "native_execution": {
+          "elapsed_seconds": 3.406067,
+          "finished_at": "2026-10-17T21:34:59.651292+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-17T21:34:56.245245+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 1200
+        },
+        "native_mechanics_counts": {
+          "PASS": 11,
+          "REVIEW": 3
+        },
+        "serialization_replay": "BYTE_EXACT",
+        "candidate_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+        "convergence": "NOT_CONVERGED_LIMIT",
+        "interpretation": "Original exact native checks remain 11 PASS / 3 REVIEW. Five added native hydrogen bonds and ten angles match cutoff crossings; saved fixed-manager endpoint equivalence is a separate evidence statement, not fresh-manager equality.",
+        "evidence_record": "docs/cif-linked-native-registration-evidence.json#fixed_geometry_trial_2026_10_17"
       }
+    },
+    "native_reload_attribution_2026_10_17": {
+      "status": "IMPLEMENTED_OFFLINE_ACTUAL_RETURN_REVIEW_COMPLETE",
+      "policy_id": "cif-native-reload-attribution-v1",
+      "module": "src/nasolve/cif_native_reload.py",
+      "new_audit_kinds": [
+        "cif_native_reload_attribution",
+        "cif_saved_fixed_manager_endpoint_readback"
+      ],
+      "schema_1": "Separate additive audit reports; no existing native comparison/gate/receipt changes.",
+      "methods": {
+        "proxy_deltas": "Compare complete multisets without rounding targets/weights or removing duplicates. Preserve every original exact-comparison result.",
+        "conditional_pattern": "Require unchanged atom identities, site definitions and custom requests; no removed/changed proxies; only intersite bond additions from the explicitly supplied origin with unambiguous cutoff crossings; exactly two associated angles through original same-site covalent stems, one per endpoint. Everything else remains unexplained.",
+        "scope": "Caller supplies cutoff and native origin; no component/filename allowlist. Classification is cutoff-consistent attribution, always REVIEW, not causal proof or an adoption gate.",
+        "cutoff": "Read one finite positive cutoff from the exact scoped normalized native PHIL output. The reader does not execute PHIL or supply runtime parameters.",
+        "endpoint_equivalence": "Compare actual native reread points to the saved fixed-manager rounded vector by unchanged native identity/order. Report PDB-precision equality and separate floating readback roundoff, preserving the original fixed-manager serialized evaluation as historical evidence.",
+        "objective_policy": "Fixed-manager rounded evaluation and newly rebuilt-manager proxies have separate meanings. Fresh manager equality remains false and its exact checks stay REVIEW."
+      },
+      "source_basis": "Primary CCTBX source documents strict distance filtering and the origin catalog. The original Mac capsules do not fingerprint this secondary-structure source; the inference is consistency with captured parameters, logs and proxy crossings, not installed-source causal replay.",
+      "software_validation": {
+        "before_implementation": {
+          "failed": 14,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_native_reload.py"
+        },
+        "focused": {
+          "passed": 89,
+          "seconds": 3.18,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_native_reload.py tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_captured_geometry.py tests/test_cif_fragment_restoration.py"
+        },
+        "regressions": [
+          "Arbitrary synthetic origin 37 and ZZZ sites; no native-origin or residue-name exceptions",
+          "Retain original inputs/exact gate while explaining cutoff-consistent additions",
+          "Changed target, removed term, different origin, absent cutoff crossing, orphan angle, altered definition/custom request/category and unavailable weights/targets cannot be explained away",
+          "Scoped cutoff missing/duplicate/wrong-scope/negative refusal; saved-vector equality with explicit float roundoff and historical energy basis"
+        ],
+        "native_tools": "No new native execution; verified actual Phenix 2.2.1-6174 Cedar 20 readback and preserved Cedar 19 manager evaluation. New tests are synthetic.",
+        "full_suite": {
+          "passed": 1628,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 72.3,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        }
+      },
+      "boundaries": {
+        "new_native_execution": "NOT_RUN",
+        "new_optimization": "NOT_RUN",
+        "target_changes": false,
+        "runtime_native_gates_changed": false,
+        "production_postmr_changes": false,
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "new_dependencies": [],
+        "private_payloads_committed": false
+      },
+      "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy for any further geometry trial; retain declared pairing intent, original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
     }
   },
   "audience": [

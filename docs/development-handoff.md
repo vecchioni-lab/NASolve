@@ -51,7 +51,71 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 19 returned; serialization continuation ready (2026-10-17):** all
+**Cedar 20 returned and reviewed (2026-10-17):** all **367 payloads** verify,
+including 311 byte-identical frozen Cedar 19 members. Runner `e38625e1…` matches
+clean NASolve `7acca935…` / NARestraints `a7b6a0c9…`. Saved endpoints were reused;
+no new optimization. Serialization reproduces candidate `27d534e3…` byte for
+byte. Phenix 2.2.1-6174 completes its fresh native reread in **3.406067 s**, exit
+zero; 877 identities/43 sites, component definitions, custom requests and all
+19 CIF/12 PHIL bytes survive. Native dispatcher/four recorded API hashes match.
+
+The original mechanics result correctly remains **11 PASS / three REVIEW**:
+five extra simple bonds, ten extra angles and changed proxy counts. No original
+proxy is lost or changed. All added rows have captured origin 2; each added bond
+crosses the unchanged **3.4 Å** cutoff, and each gains two endpoint angles
+through original covalent stems. Native logs report 25→30 hydrogen bonds and
+50→60 associated angles, with the same 12 declared base pairs and 23 stacking
+pairs. The effective native PHIL is byte-identical. These observations match
+the public CCTBX distance-filter mechanism; the capsules do not fingerprint its
+secondary-structure source, so this is cutoff-consistent attribution, not a new
+installed-source causal experiment or a passed exact-manager comparison.
+
+| Native contact | Before (Å) | After (Å) |
+| --- | ---: | ---: |
+| A:2 N1 – C:14 N3 | 3.458774 | 3.182690 |
+| A:4 N3 – C:12 N1 | 3.484427 | 3.342721 |
+| A:10 O6 – B:6 N4 | 3.983422 | 2.789232 |
+| A:16 N6 – D:7 O4 | 3.626803 | 2.826950 |
+| A:17 N4 – D:6 O6 | 3.420955 | 2.989775 |
+
+Every reread coordinate matches Cedar 19's saved rounded vector at PDB precision;
+maximum floating-component difference is **7.11e-15 Å**. Its recorded fixed-manager
+PDB evaluation remains **3,679.853670**, gradient norm **978.673025**. This is a
+preserved historical evaluation at that rounded vector, not a new energy of
+the freshly rebuilt manager. The 500-iteration **NOT_CONVERGED_LIMIT** result
+remains. Fixed captured proxies at the reread points give four bond/ten angle
+nominal deviations at least five; the fresh manager has five/ten because it
+contains additional terms. All 158 recorded chirality proxies have no sign
+conflicts. None of these counts certifies geometry, pucker or experimental fit.
+
+**Current action:** the Cedar 20 return is fully reviewed from saved evidence;
+no repeated Mac/native inventory is needed. `cif_native_reload` adds reusable
+read-only attribution and endpoint-equivalence reports without changing the
+old checks, targets or production behavior. Origin/cutoff are explicit caller
+evidence; synthetic origin 37/ZZZ tests prevent a hardcoded native-origin or
+residue exception. Missing/changed terms, unpaired angles and other mutations
+stay unexplained. No new native execution or geometry trial is delivered here.
+
+**Next scientific gate:** specify and freeze hydrogen-bond membership before
+another geometry/convergence trial, with the declared pairing intent preserved.
+Rebuilding from new coordinates can change that set even when all input bytes
+are identical. Do not delete these new terms, increase the cutoff or reclassify
+the old failed comparison just to manufacture PASS. A future membership policy
+and its bounded native validation remain to be prepared; full qualification,
+refinement and adoption stay open. The documentation ledger owns the exact
+return, original checks and separate fixed-versus-fresh evidence.
+
+**Validation:** fourteen initial regressions fail before the audit module exists.
+The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_native_reload.py tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_captured_geometry.py tests/test_cif_fragment_restoration.py`
+passes **89 tests (3.18 s)**. The same command without file arguments passes
+**1,628 tests, two skips and 276 subtests (72.30 s)**.
+Actual capsule/serialization/mechanics replay and saved endpoint comparison
+complete locally without a new native execution. New separate schema-1 audit
+reports add no dependencies or private scientific payloads; existing receipt,
+qualification and native gate behavior are unchanged.
+
+**Cedar 19 returned; serialization continuation implementation (2026-10-17):** all
 **310 payloads** verify, including 253 byte-identical frozen Cedar 18 members.
 Runner `899562f5…` matches clean NASolve `5e848eba…` / NARestraints `a7b6a0c9…`.
 Actual Phenix 2.2.1-6174 matches the captured manager and completes one native
@@ -92,8 +156,8 @@ identity and executes the pending native PDB postcheck with unchanged restraints
 Existing exact identity/definition/full-proxy/count/custom checks still apply.
 Both source ZIPs/frozen payloads, all earlier runs and source/charge reviews
 survive; no captured script or pickle is executed. No new installation.
-Always REVIEW/exit 2; return the new console and ZIP. New native postcheck and
-scientific qualification remain pending.
+The returned Cedar 20 native postcheck is recorded above. Scientific
+qualification remains REVIEW; no repeat of this delivery is required.
 
 **Validation:** three initial identity-order regressions fail before the fix.
 The focused command

@@ -642,6 +642,33 @@ full-precision endpoints. It runs no new optimization and preserves the original
 limit/gradient evidence. Offline actual-input replay matches all 877 coordinates;
 new installed native postcheck and scientific qualification remain pending.
 
+
+### Native reload attribution
+
+The returned Cedar 20 serialization is byte-exact. Its fresh native interpretation
+preserves identities/definitions and every original proxy, and adds five hydrogen
+bonds and ten angles. All five contacts cross the same 3.4 Å native cutoff;
+native PHIL input is byte-identical. The exact comparison correctly remains
+11 PASS/three REVIEW. This differs from loss of an original restraint or a
+changed chemical component.
+
+`cif_native_reload.audit_native_reload` records full proxy multisets and can
+attribute only a narrow pattern: explicit caller-supplied origin/cutoff,
+unchanged identities/definitions/custom requests, no removed terms, cutoff
+crossings and two associated endpoint angles through existing covalent stems.
+Other changes stay unexplained. Classification is always REVIEW, not installed-
+source causal proof or a waiver of the original exact comparison.
+`audit_saved_endpoint_readback` separately checks PDB-precision equivalence to
+the saved fixed-manager rounded vector, with explicit native float roundoff and
+a historical energy basis. It does not calculate a new fresh-manager energy.
+
+Cedar 20's 877 readback coordinates agree at PDB precision (at most 7.11e-15 Å
+float difference); the recorded fixed-manager evaluation and iteration-limit
+verdict remain preserved. No additional Mac run is required for that review.
+Before another minimization, an explicit fixed hydrogen-bond membership policy
+must be prepared and tested. Input-file equality alone cannot ensure freshly
+generated manager equality; scientific qualification and adoption remain open.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

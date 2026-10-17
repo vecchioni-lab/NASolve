@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "20_Cedar",
+  "next_delivery": "NOT_PREPARED",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -4244,7 +4244,7 @@
     }
   },
   "fixed_geometry_trial_2026_10_17": {
-    "status": "RETURNED_NATIVE_LIMIT_STOP_SERIALIZATION_REPAIR_READY",
+    "status": "CEDAR20_NATIVE_REREAD_VERIFIED_CONDITIONAL_PROXY_ADDITIONS_REVIEW",
     "delivery_prefix": "19_Cedar",
     "policy_id": "cif-fixed-native-geometry-trial-v1",
     "modules": [
@@ -4842,7 +4842,7 @@
       "readyset_retry": "NOT_RUN"
     },
     "serialization_identity_fix_2026_10_17": {
-      "status": "IMPLEMENTED_OFFLINE_SAVED_ENDPOINT_SERIALIZATION_VERIFIED_NATIVE_POSTCHECK_PENDING",
+      "status": "RETURNED_SERIALIZATION_VERIFIED_FRESH_NATIVE_PROXY_ADDITIONS_REVIEW",
       "delivery_prefix": "20_Cedar",
       "behavior_before": "Serializer zipped original PDB lines with native hierarchy indices and refused native atom reordering after the completed trial.",
       "behavior_after": "Validate a complete one-to-one supported single-model identity map by chain/residue/insertion/altloc/atom name, with component/element/baseline-coordinate guards. Map final native endpoints to original PDB records; preserve their ordering, headers and metadata.",
@@ -4892,7 +4892,7 @@
           "rms": 0.9809800933382721,
           "mean": 0.8164172691277105
         },
-        "native_roundtrip": "PENDING"
+        "native_roundtrip": "COMPLETED_11_PASS_3_REVIEW"
       },
       "deleted_build_actual_transport": {
         "status": "PASS",
@@ -4933,6 +4933,609 @@
         "new_runtime_dependencies": [],
         "private_payloads_committed": false
       }
+    },
+    "cedar20_return_verified_2026_10_17": {
+      "archive": {
+        "name": "20_Cedar_3mgfe_a0_cif_geometry_trial_review.zip",
+        "bytes": 7564343,
+        "sha256": "8d77695925536335963fd351a91961091798ee1a3a680f1bc72368ae9732091e",
+        "verified_payloads": 367,
+        "payload_bytes": 108385223,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "7acca9359d0fbe2011bbe95c65263535cefd59b3",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256": "e38625e126d1adf1673d0af5b333e675be995b00e7154999c6923c3638bd9dfb",
+      "prior_members_byte_identical": 311,
+      "native_prefix": "native_roundtrip/cif-native-wlhcmfyc",
+      "native_execution": {
+        "elapsed_seconds": 3.406067,
+        "finished_at": "2026-10-17T21:34:59.651292+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-17T21:34:56.245245+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 1200
+      },
+      "phenix_version": "2.2.1",
+      "installation": "phenix-2.2.1-6174",
+      "native_dispatcher_and_four_api_sources_match": true,
+      "native_effective_phil_byte_identical": true,
+      "dictionary_and_parameter_bytes_unchanged": {
+        "dictionary": 19,
+        "phil": 12
+      },
+      "native_mechanics_counts": {
+        "PASS": 11,
+        "REVIEW": 3
+      },
+      "native_mechanics_replay": "EXACT",
+      "serialization_replay": "BYTE_EXACT",
+      "candidate_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+      "atom_count": 877,
+      "site_count": 43,
+      "prior_reviews_preserved": true,
+      "original_archive_and_frozen_evidence_preserved": true,
+      "new_optimization": "NOT_RUN_REUSED_CEDAR19",
+      "convergence": "NOT_CONVERGED_LIMIT",
+      "proxy_reload_audit": {
+        "schema_version": 1,
+        "audit_kind": "cif_native_reload_attribution",
+        "policy_id": "cif-native-reload-attribution-v1",
+        "status": "REVIEW",
+        "classification": "CUTOFF_CONSISTENT_HBOND_ACTIVATION",
+        "exact_proxy_preservation": false,
+        "unchanged": {
+          "atom_identities": true,
+          "site_definitions": true,
+          "custom_requests": true
+        },
+        "delta": {
+          "angle": {
+            "missing": [],
+            "extra": [
+              {
+                "angle_ideal": 115.6,
+                "atoms": [
+                  "pdb=\" C6   DA A  16 \"",
+                  "pdb=\" N6   DA A  16 \"",
+                  "pdb=\" O4   DT D   7 \""
+                ],
+                "i_seqs": [
+                  327,
+                  328,
+                  854
+                ],
+                "origin_id": 2,
+                "weight": 0.014376987618538263
+              },
+              {
+                "angle_ideal": 121.2,
+                "atoms": [
+                  "pdb=\" C4   DT D   7 \"",
+                  "pdb=\" O4   DT D   7 \"",
+                  "pdb=\" N6   DA A  16 \""
+                ],
+                "i_seqs": [
+                  853,
+                  854,
+                  328
+                ],
+                "origin_id": 2,
+                "weight": 0.056153275982120804
+              },
+              {
+                "angle_ideal": 117.3,
+                "atoms": [
+                  "pdb=\" C4   DC B   6 \"",
+                  "pdb=\" N4   DC B   6 \"",
+                  "pdb=\" O6   DG A  10 \""
+                ],
+                "i_seqs": [
+                  550,
+                  551,
+                  200
+                ],
+                "origin_id": 2,
+                "weight": 0.12225536701061178
+              },
+              {
+                "angle_ideal": 122.8,
+                "atoms": [
+                  "pdb=\" C6   DG A  10 \"",
+                  "pdb=\" O6   DG A  10 \"",
+                  "pdb=\" N4   DC B   6 \""
+                ],
+                "i_seqs": [
+                  199,
+                  200,
+                  551
+                ],
+                "origin_id": 2,
+                "weight": 0.1111111111111111
+              },
+              {
+                "angle_ideal": 116.2,
+                "atoms": [
+                  "pdb=\" C2   DA A   2 \"",
+                  "pdb=\" N1   DA A   2 \"",
+                  "pdb=\" N3   DT C  14 \""
+                ],
+                "i_seqs": [
+                  37,
+                  36,
+                  711
+                ],
+                "origin_id": 2,
+                "weight": 0.08353102342209896
+              },
+              {
+                "angle_ideal": 115.8,
+                "atoms": [
+                  "pdb=\" C2   DT C  14 \"",
+                  "pdb=\" N3   DT C  14 \"",
+                  "pdb=\" N1   DA A   2 \""
+                ],
+                "i_seqs": [
+                  709,
+                  711,
+                  36
+                ],
+                "origin_id": 2,
+                "weight": 0.12056327160493828
+              },
+              {
+                "angle_ideal": 117.3,
+                "atoms": [
+                  "pdb=\" C4   DC A  17 \"",
+                  "pdb=\" N4   DC A  17 \"",
+                  "pdb=\" O6   DG D   6 \""
+                ],
+                "i_seqs": [
+                  348,
+                  349,
+                  832
+                ],
+                "origin_id": 2,
+                "weight": 0.12225536701061178
+              },
+              {
+                "angle_ideal": 122.8,
+                "atoms": [
+                  "pdb=\" C6   DG D   6 \"",
+                  "pdb=\" O6   DG D   6 \"",
+                  "pdb=\" N4   DC A  17 \""
+                ],
+                "i_seqs": [
+                  831,
+                  832,
+                  349
+                ],
+                "origin_id": 2,
+                "weight": 0.1111111111111111
+              },
+              {
+                "angle_ideal": 116.3,
+                "atoms": [
+                  "pdb=\" C2   DC A   4 \"",
+                  "pdb=\" N3   DC A   4 \"",
+                  "pdb=\" N1   DG C  12 \""
+                ],
+                "i_seqs": [
+                  74,
+                  76,
+                  673
+                ],
+                "origin_id": 2,
+                "weight": 0.14133077053536094
+              },
+              {
+                "angle_ideal": 119.1,
+                "atoms": [
+                  "pdb=\" C2   DG C  12 \"",
+                  "pdb=\" N1   DG C  12 \"",
+                  "pdb=\" N3   DC A   4 \""
+                ],
+                "i_seqs": [
+                  674,
+                  673,
+                  76
+                ],
+                "origin_id": 2,
+                "weight": 0.14907350814686723
+              }
+            ]
+          },
+          "bond_asu": {
+            "missing": [],
+            "extra": []
+          },
+          "bond_simple": {
+            "missing": [],
+            "extra": [
+              {
+                "atoms": [
+                  "pdb=\" N1   DA A   2 \"",
+                  "pdb=\" N3   DT C  14 \""
+                ],
+                "distance_ideal": 2.82,
+                "i_seqs": [
+                  36,
+                  711
+                ],
+                "origin_id": 2,
+                "symmetry_operation": null,
+                "weight": 156.25
+              },
+              {
+                "atoms": [
+                  "pdb=\" N3   DC A   4 \"",
+                  "pdb=\" N1   DG C  12 \""
+                ],
+                "distance_ideal": 2.88,
+                "i_seqs": [
+                  76,
+                  673
+                ],
+                "origin_id": 2,
+                "symmetry_operation": null,
+                "weight": 204.0816326530612
+              },
+              {
+                "atoms": [
+                  "pdb=\" O6   DG A  10 \"",
+                  "pdb=\" N4   DC B   6 \""
+                ],
+                "distance_ideal": 2.93,
+                "i_seqs": [
+                  200,
+                  551
+                ],
+                "origin_id": 2,
+                "symmetry_operation": null,
+                "weight": 99.99999999999999
+              },
+              {
+                "atoms": [
+                  "pdb=\" N6   DA A  16 \"",
+                  "pdb=\" O4   DT D   7 \""
+                ],
+                "distance_ideal": 3.0,
+                "i_seqs": [
+                  328,
+                  854
+                ],
+                "origin_id": 2,
+                "symmetry_operation": null,
+                "weight": 82.64462809917356
+              },
+              {
+                "atoms": [
+                  "pdb=\" N4   DC A  17 \"",
+                  "pdb=\" O6   DG D   6 \""
+                ],
+                "distance_ideal": 2.93,
+                "i_seqs": [
+                  349,
+                  832
+                ],
+                "origin_id": 2,
+                "symmetry_operation": null,
+                "weight": 99.99999999999999
+              }
+            ]
+          },
+          "chirality": {
+            "missing": [],
+            "extra": []
+          },
+          "const_dihedral": {
+            "missing": [],
+            "extra": []
+          },
+          "dihedral": {
+            "missing": [],
+            "extra": []
+          },
+          "parallelity": {
+            "missing": [],
+            "extra": []
+          },
+          "planarity": {
+            "missing": [],
+            "extra": []
+          }
+        },
+        "activations": [
+          {
+            "atoms": [
+              "pdb=\" N1   DA A   2 \"",
+              "pdb=\" N3   DT C  14 \""
+            ],
+            "i_seqs": [
+              36,
+              711
+            ],
+            "before_distance": 3.458774493950125,
+            "after_distance": 3.18269021426843,
+            "cutoff": 3.4,
+            "consistent_with_activation": true,
+            "native_target": 2.82,
+            "native_weight": 156.25
+          },
+          {
+            "atoms": [
+              "pdb=\" N3   DC A   4 \"",
+              "pdb=\" N1   DG C  12 \""
+            ],
+            "i_seqs": [
+              76,
+              673
+            ],
+            "before_distance": 3.484427356108895,
+            "after_distance": 3.3427205985544135,
+            "cutoff": 3.4,
+            "consistent_with_activation": true,
+            "native_target": 2.88,
+            "native_weight": 204.0816326530612
+          },
+          {
+            "atoms": [
+              "pdb=\" O6   DG A  10 \"",
+              "pdb=\" N4   DC B   6 \""
+            ],
+            "i_seqs": [
+              200,
+              551
+            ],
+            "before_distance": 3.9834217702874506,
+            "after_distance": 2.789232331664033,
+            "cutoff": 3.4,
+            "consistent_with_activation": true,
+            "native_target": 2.93,
+            "native_weight": 99.99999999999999
+          },
+          {
+            "atoms": [
+              "pdb=\" N6   DA A  16 \"",
+              "pdb=\" O4   DT D   7 \""
+            ],
+            "i_seqs": [
+              328,
+              854
+            ],
+            "before_distance": 3.6268031377509318,
+            "after_distance": 2.826949769628035,
+            "cutoff": 3.4,
+            "consistent_with_activation": true,
+            "native_target": 3.0,
+            "native_weight": 82.64462809917356
+          },
+          {
+            "atoms": [
+              "pdb=\" N4   DC A  17 \"",
+              "pdb=\" O6   DG D   6 \""
+            ],
+            "i_seqs": [
+              349,
+              832
+            ],
+            "before_distance": 3.420954837468626,
+            "after_distance": 2.9897747406786346,
+            "cutoff": 3.4,
+            "consistent_with_activation": true,
+            "native_target": 2.93,
+            "native_weight": 99.99999999999999
+          }
+        ],
+        "added_hydrogen_bonds": 5,
+        "associated_angles": 10,
+        "unexplained_reasons": [],
+        "explicit_origin_id": 2,
+        "explicit_cutoff": 3.4,
+        "original_exact_qualification": "UNCHANGED",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "limitations": [
+          "Cutoff consistency explains the observed pattern; it is not installed-source causal proof or a passed exact-manager check.",
+          "New native targets remain visible and define a changed objective; no cross-objective ranking or automatic adoption."
+        ]
+      },
+      "saved_fixed_manager_endpoint_readback": {
+        "schema_version": 1,
+        "audit_kind": "cif_saved_fixed_manager_endpoint_readback",
+        "policy_id": "cif-native-reload-attribution-v1",
+        "status": "MATCH_AT_PDB_PRECISION",
+        "atom_count": 877,
+        "identities_preserved": true,
+        "saved_fixed_constraint_signature_preserved": true,
+        "native_float_max_difference": 7.105427357601002e-15,
+        "native_float_comparison_tolerance": 1e-10,
+        "recorded_fixed_manager_pdb_evaluation": {
+          "gradient_norm": 978.6730250772459,
+          "max_atom_gradient": 156.83105580353936,
+          "proxy_counts": {
+            "n_angle_proxies": 1590,
+            "n_bond_proxies": 1026,
+            "n_bond_similarity_proxies": null,
+            "n_chirality_proxies": 158,
+            "n_den_proxies": null,
+            "n_dihedral_proxies": 574,
+            "n_ncs_dihedral_proxies": null,
+            "n_nonbonded_proxies": 7837,
+            "n_parallelity_proxies": 58,
+            "n_planarity_proxies": 54,
+            "n_ramachandran_proxies": null,
+            "n_reference_coordinate_proxies": null,
+            "n_reference_dihedral_proxies": null
+          },
+          "target": 3679.8536696058145,
+          "terms": {
+            "angle_residual_sum": 1479.039479815256,
+            "bond_residual_sum": 557.4984113695687,
+            "bond_similarity_residual_sum": 0.0,
+            "chirality_residual_sum": 21.455501000841462,
+            "den_residual_sum": 0.0,
+            "dihedral_residual_sum": 653.0151462672336,
+            "dihedral_restraints_residual_sum": 0.0,
+            "ncs_dihedral_residual_sum": 0.0,
+            "nonbonded_residual_sum": 390.34638115774817,
+            "parallelity_residual_sum": 512.8292588842323,
+            "planarity_residual_sum": 65.66949111093416,
+            "ramachandran_residual_sum": 0.0,
+            "reference_coordinate_residual_sum": 0.0,
+            "reference_dihedral_residual_sum": 0.0
+          }
+        },
+        "energy_basis": "PRESERVED_ORIGINAL_MANAGER_EVALUATION_AT_SAVED_PDB_ROUNDED_VECTOR",
+        "new_native_execution": "NOT_RUN",
+        "new_optimization": "NOT_RUN",
+        "fresh_manager_equality": "NOT_IMPLIED",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "geometry": {
+        "fresh_native_manager": {
+          "bond_simple": {
+            "captured_proxies": 1031,
+            "nominal_abs_ge_3": 9,
+            "nominal_abs_ge_5": 5,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 1600,
+            "nominal_abs_ge_3": 20,
+            "nominal_abs_ge_5": 10,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 158,
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "captured_fixed_manager_at_native_reread_points": {
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "nominal_abs_ge_3": 7,
+            "nominal_abs_ge_5": 4,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 1590,
+            "nominal_abs_ge_3": 20,
+            "nominal_abs_ge_5": 10,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 158,
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "captured_fixed_manager_at_full_precision_points": {
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "nominal_abs_ge_3": 7,
+            "nominal_abs_ge_5": 4,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 1590,
+            "nominal_abs_ge_3": 19,
+            "nominal_abs_ge_5": 10,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 158,
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        }
+      },
+      "status": "REVIEW",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "interpretation": "Original exact native checks remain 11 PASS / 3 REVIEW. Five added native hydrogen bonds and ten angles match cutoff crossings; saved fixed-manager endpoint equivalence is a separate evidence statement, not fresh-manager equality."
     }
-  }
+  },
+  "native_reload_attribution_2026_10_17": {
+    "status": "IMPLEMENTED_OFFLINE_ACTUAL_RETURN_REVIEW_COMPLETE",
+    "policy_id": "cif-native-reload-attribution-v1",
+    "module": "src/nasolve/cif_native_reload.py",
+    "new_audit_kinds": [
+      "cif_native_reload_attribution",
+      "cif_saved_fixed_manager_endpoint_readback"
+    ],
+    "schema_1": "Separate additive audit reports; no existing native comparison/gate/receipt changes.",
+    "methods": {
+      "proxy_deltas": "Compare complete multisets without rounding targets/weights or removing duplicates. Preserve every original exact-comparison result.",
+      "conditional_pattern": "Require unchanged atom identities, site definitions and custom requests; no removed/changed proxies; only intersite bond additions from the explicitly supplied origin with unambiguous cutoff crossings; exactly two associated angles through original same-site covalent stems, one per endpoint. Everything else remains unexplained.",
+      "scope": "Caller supplies cutoff and native origin; no component/filename allowlist. Classification is cutoff-consistent attribution, always REVIEW, not causal proof or an adoption gate.",
+      "cutoff": "Read one finite positive cutoff from the exact scoped normalized native PHIL output. The reader does not execute PHIL or supply runtime parameters.",
+      "endpoint_equivalence": "Compare actual native reread points to the saved fixed-manager rounded vector by unchanged native identity/order. Report PDB-precision equality and separate floating readback roundoff, preserving the original fixed-manager serialized evaluation as historical evidence.",
+      "objective_policy": "Fixed-manager rounded evaluation and newly rebuilt-manager proxies have separate meanings. Fresh manager equality remains false and its exact checks stay REVIEW."
+    },
+    "primary_api_sources": [
+      {
+        "url": "https://github.com/cctbx/cctbx_project/blob/master/mmtbx/secondary_structure/nucleic_acids.py",
+        "git_blob": "cab20afd9fa434bd102efa967e67b97a7cfc6e5e"
+      },
+      {
+        "url": "https://github.com/cctbx/cctbx_project/blob/master/mmtbx/secondary_structure/__init__.py",
+        "git_blob": "63b16de521a870585228da827b2fadb8f7584c18"
+      },
+      {
+        "url": "https://github.com/cctbx/cctbx_project/blob/master/cctbx/geometry_restraints/auto_linking_types.py",
+        "git_blob": "3d0cd4403ce795c745a424ad806f42535d3141ed"
+      }
+    ],
+    "source_basis": "Primary CCTBX source documents strict distance filtering and the origin catalog. The original Mac capsules do not fingerprint this secondary-structure source; the inference is consistency with captured parameters, logs and proxy crossings, not installed-source causal replay.",
+    "software_validation": {
+      "before_implementation": {
+        "failed": 14,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_native_reload.py"
+      },
+      "focused": {
+        "passed": 89,
+        "seconds": 3.18,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_native_reload.py tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_captured_geometry.py tests/test_cif_fragment_restoration.py"
+      },
+      "regressions": [
+        "Arbitrary synthetic origin 37 and ZZZ sites; no native-origin or residue-name exceptions",
+        "Retain original inputs/exact gate while explaining cutoff-consistent additions",
+        "Changed target, removed term, different origin, absent cutoff crossing, orphan angle, altered definition/custom request/category and unavailable weights/targets cannot be explained away",
+        "Scoped cutoff missing/duplicate/wrong-scope/negative refusal; saved-vector equality with explicit float roundoff and historical energy basis"
+      ],
+      "native_tools": "No new native execution; verified actual Phenix 2.2.1-6174 Cedar 20 readback and preserved Cedar 19 manager evaluation. New tests are synthetic.",
+      "full_suite": {
+        "passed": 1628,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 72.3,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      }
+    },
+    "boundaries": {
+      "new_native_execution": "NOT_RUN",
+      "new_optimization": "NOT_RUN",
+      "target_changes": false,
+      "runtime_native_gates_changed": false,
+      "production_postmr_changes": false,
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "new_dependencies": [],
+      "private_payloads_committed": false
+    },
+    "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy for any further geometry trial; retain declared pairing intent, original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
+  },
+  "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy for any further geometry trial; retain declared pairing intent, original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
 }

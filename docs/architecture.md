@@ -320,7 +320,10 @@ separate bounded fixed-definition geometry trial records numerical stopping
 and round-trip evidence. Its serializer maps exact atom identities across
 native/PDB order changes while preserving original records; verified saved
 endpoints can resume the native postcheck without another optimization. Full
-scientific qualification remains under review.
+scientific qualification remains under review. Cedar 20 shows that fresh native
+managers can add distance-filtered hydrogen bonds despite unchanged input
+bytes. Read-only attribution preserves the old exact comparison and separately
+records fixed-manager endpoint equivalence; it changes no native gate.
 It is separate from production PostMR. See the
 [restoration diagnostic](cif-doctor.md#separate-attached-fragment-restoration-candidate)
 and [current handoff](development-handoff.md).

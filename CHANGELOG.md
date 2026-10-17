@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 20 native reread and conditional-restraint attribution
+
+- Verify all 367 returned payloads and byte-exact serialization. Preserve the
+  original 11 PASS/three REVIEW result: five new native hydrogen bonds and ten
+  angles accompany unchanged input bytes, identities and component definitions.
+- Add explicit-origin/cutoff read-only attribution. Require complete original
+  proxy preservation, unambiguous cutoff crossings and two covalent-stem-linked
+  endpoint angles per added bond; other changes remain unexplained. Explanations
+  never pass or alter the original exact native comparison.
+- Compare actual reread coordinates to the saved fixed-manager rounded vector,
+  reporting PDB precision/float roundoff and preserving historical energy basis.
+  Record the fixed-versus-fresh objective distinction and pending membership/
+  convergence policy. All 1,628 full tests and actual-return replay pass. No new
+  native run, optimization, target/dependency/production change or adoption.
+
 ### Native/PDB identity mapping and saved geometry continuation
 
 - Verify Cedar 19's 310 payloads and completed fixed-manager optimization.

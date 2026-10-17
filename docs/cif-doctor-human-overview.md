@@ -308,8 +308,13 @@ signatures and a lower target, but reaches the cap with its native criterion
 false. Serialization then exposes native/PDB atom-order differences. The
 corrected serializer uses a checked identity bijection and preserves PDB record
 order/metadata. Cedar 20 resumes its saved endpoints without another optimization;
-new native PDB checks, scientific qualification, production integration and
-adoption remain separate.
+its returned native PDB check preserves identities/definitions and adds five
+hydrogen bonds/ten angles as contacts cross an unchanged distance cutoff. The
+old exact comparison retains 11 PASS/three REVIEW. A read-only audit explains
+that pattern separately from the saved fixed-manager PDB endpoint equivalence;
+neither report changes the original checks or claims chemical approval. Explicit
+hydrogen-bond membership, convergence, full qualification, production integration
+and adoption remain separate.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -424,7 +429,9 @@ The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom
-identity and the new native PDB check remain separate. Automatic adoption, full geometry qualification
+identity and fresh native proxy generation are assessed separately. A read-only
+reload audit keeps conditional-restraint differences visible without passing
+the original exact comparison. Automatic adoption, full geometry qualification
 and assembly stitching remain future extensions.
 Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
@@ -492,8 +499,10 @@ and preserves full-precision results separately from PDB round-trip checks.
 It remains a separate candidate; no scientific/adoption pass follows from a
 smaller objective or successful execution. Identity-based serialization
 preserves original PDB ordering even when native hierarchy order differs;
-verified saved endpoints can continue to the pending native PDB check without
-another minimization.
+verified saved endpoints can continue to a native PDB check without another
+minimization. Fresh native managers can activate distance-filtered hydrogen
+bonds at changed coordinates. Attribution retains the changed proxy set and
+original REVIEW alongside a separate fixed-manager endpoint comparison.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not authorize adoption.
 
