@@ -96,12 +96,20 @@ evidence; synthetic origin 37/ZZZ tests prevent a hardcoded native-origin or
 residue exception. Missing/changed terms, unpaired angles and other mutations
 stay unexplained. No new native execution or geometry trial is delivered here.
 
-**Next scientific gate:** specify and freeze hydrogen-bond membership before
-another geometry/convergence trial, with the declared pairing intent preserved.
+**Next scientific gate:** implement explicit NARestraints-owned hydrogen-bond
+membership before another geometry/convergence trial. The accepted project
+policy is that NARestraints pair selections and recipe targets supersede
+Phenix's automatic secondary-structure guesses. The native consumer must apply
+that policy without adding competing inferred contacts or silently dropping
+intended contacts because their starting geometry is poor. Keep native geometry
+measurement and component/covalent restraint validation independent of pairing
+authority. This precedence is decided; its native enforcement is not yet
+implemented or validated.
 Rebuilding from new coordinates can change that set even when all input bytes
-are identical. Do not delete these new terms, increase the cutoff or reclassify
-the old failed comparison just to manufacture PASS. A future membership policy
-and its bounded native validation remain to be prepared; full qualification,
+are identical. Preserve the new terms in Cedar 20's historical evidence; do not
+increase its cutoff or reclassify its failed comparison to manufacture PASS.
+The new authority policy defines a separately documented objective. Its contact
+compiler and bounded native validation remain to be prepared; full qualification,
 refinement and adoption stay open. The documentation ledger owns the exact
 return, original checks and separate fixed-versus-fresh evidence.
 
@@ -114,11 +122,13 @@ NASolve's opt-in `--modified-pairs-only` path already uses this guesser with
 noncanonical recipes enabled, retains pairs touching a modified nucleotide and
 writes explicit recipe restraints without stacking. This source inspection does
 not establish that the frozen Cedar 20 declarations came from that mode.
-Before freezing a future trial, trace guessed versus reviewed/frame-selected
+Before freezing a future trial, trace NARestraints-guessed versus reviewed/frame-selected
 pairs through recipe-mapped contacts to actual native proxies, retaining scores,
 warnings and overlap evidence. Check missing, extra or doubly applied terms and
 unresolved pairing chemistry; a fixed membership alone does not make a guess
-correct. The exact source record is in the existing native-reload ledger.
+correct. Phenix-inferred alternatives may be recorded diagnostically but do not
+override or supplement the NARestraints-owned policy. The exact source record
+and authority decision are in the existing native-reload ledger.
 
 **Validation:** fourteen initial regressions fail before the audit module exists.
 The focused command

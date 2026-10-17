@@ -15,6 +15,10 @@ entries are reconstructed from repository history.
   guessed pairs, reviewed/frame selections and native-generated proxies; retain
   score, warning and overlap evidence before freezing a trial. This is a
   source-verified documentation clarification, with no runtime or gate change.
+- Record the accepted precedence: NARestraints pairing selections and recipe
+  targets supersede automatic Phenix secondary-structure guesses. The pending
+  explicit membership compiler must prevent competing inferred terms and
+  distance-based loss of intended contacts; native enforcement remains planned.
 
 ### Cedar 20 native reread and conditional-restraint attribution
 

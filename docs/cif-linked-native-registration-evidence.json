@@ -5535,9 +5535,9 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy using NARestraints pairing proposals and recipe mapping where applicable. Distinguish guessed, reviewed/frame-selected and native-generated membership; retain scores, warnings, chemistry and overlap evidence before freezing any new trial. Preserve original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open.",
+    "next_action": "Implement and validate explicit NARestraints-owned hydrogen-bond membership: compile selected pairs and recipe targets/weights by atom identity, prevent competing automatic Phenix secondary-structure terms and native distance-based omission, and verify exact native membership before/after serialization. Retain guessed/reviewed/frame provenance, scores, warnings, chemistry and overlap evidence, and preserve the historical Cedar 19/20 objective and REVIEW results. Authority is decided; native enforcement, convergence, full scientific qualification and adoption remain open. No repeated Mac inventory is needed to review the completed Cedar 20 return.",
     "pairing_intent_provenance": {
-      "status": "SOURCE_VERIFIED_MEMBERSHIP_POLICY_NOT_PREPARED",
+      "status": "SOURCE_VERIFIED_AUTHORITY_DECIDED_NATIVE_ENFORCEMENT_NOT_IMPLEMENTED",
       "reviewed_on": "2026-10-17",
       "sources": [
         {
@@ -5599,19 +5599,35 @@
         "cedar20_pair_origin": "NOT_ESTABLISHED_BY_THIS_SOURCE_INSPECTION"
       },
       "next_policy_requirements": [
-        "Reuse the existing guesser and recipe mapping where applicable rather than silently replacing them with a second pairing heuristic.",
-        "Trace guessed versus reviewed/frame-selected pairs through recipe atom contacts to actual native proxies; retain score, warning and selection provenance.",
-        "Review unresolved donor/acceptor or pairing chemistry and check missing, extra or overlapping terms, including explicit/native duplicate restraints, before freezing a new trial.",
-        "Do not equate a frozen proposal with chemically correct membership or alter Cedar 20 exact-comparison REVIEW results."
+        "Reuse NARestraints selected pairs and recipe atom mapping as the authority; retain guessed versus reviewed/frame provenance, scores and warnings.",
+        "Compile an explicit atom-identity contact table with recipe targets and weights, independent of native secondary-structure distance filtering.",
+        "Prevent competing automatically inferred native hydrogen-bond terms in the NARestraints-owned scope; preserve separately intended stacking and other restraint categories.",
+        "Check exact native membership, targets and weights against the policy before and after serialization; report missing, extra or overlapping terms and unsupported mappings without silently filling them from Phenix guesses.",
+        "Record the changed objective separately from historical Cedar 19/20 results; never rewrite their exact-comparison or convergence evidence."
       ],
       "boundaries": {
         "runtime_changed": false,
         "new_native_execution": "NOT_RUN",
         "new_optimization": "NOT_RUN",
         "membership_approved": false,
-        "automatic_adoption": false
+        "automatic_adoption": false,
+        "pairing_authority_decided": true,
+        "membership_approval_scope": "No new atom-contact inventory has been compiled or scientifically qualified; this does not reopen the decided NARestraints precedence."
+      },
+      "authority_decision": {
+        "decided_on": "2026-10-17",
+        "basis": "Explicit project-owner instruction",
+        "policy_authority": "NARestraints",
+        "superseded_authority": "Automatic Phenix secondary-structure pairing inference",
+        "scope": "Pair selections and recipe-defined hydrogen-bond contacts, targets and weights wherever NARestraints supplies the pairing policy.",
+        "native_role": "Compile the explicit policy and report actual native proxies and achieved geometry.",
+        "automatic_native_contacts": "Diagnostic evidence only; must not replace or supplement the NARestraints-owned policy.",
+        "poor_starting_geometry": "Must not silently omit an intended NARestraints contact through native distance filtering.",
+        "independent_checks": "Identity, component definitions, covalent/link geometry, overlap and achieved-geometry checks remain in force.",
+        "implementation_status": "PLANNED_NOT_IMPLEMENTED",
+        "scientific_qualification": "REVIEW"
       }
     }
   },
-  "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy using NARestraints pairing proposals and recipe mapping where applicable. Distinguish guessed, reviewed/frame-selected and native-generated membership; retain scores, warnings, chemistry and overlap evidence before freezing any new trial. Preserve original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
+  "next_action": "Implement and validate explicit NARestraints-owned hydrogen-bond membership: compile selected pairs and recipe targets/weights by atom identity, prevent competing automatic Phenix secondary-structure terms and native distance-based omission, and verify exact native membership before/after serialization. Retain guessed/reviewed/frame provenance, scores, warnings, chemistry and overlap evidence, and preserve the historical Cedar 19/20 objective and REVIEW results. Authority is decided; native enforcement, convergence, full scientific qualification and adoption remain open. No repeated Mac inventory is needed to review the completed Cedar 20 return."
 }

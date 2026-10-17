@@ -669,7 +669,17 @@ Before another minimization, an explicit fixed hydrogen-bond membership policy
 must be prepared and tested. Input-file equality alone cannot ensure freshly
 generated manager equality; scientific qualification and adoption remain open.
 
-The membership design should reuse NARestraints' existing pair guesser and
+**Accepted pairing authority:** NARestraints pair selections and recipe targets
+supersede Phenix's automatic secondary-structure guesses whenever NARestraints
+supplies the pairing policy. Native interpretation must compile the intended
+contacts without competing automatic additions or a distance-based omission of
+an intended contact. Phenix remains the native restraint consumer and geometry
+measurement engine; this authority does not waive identity, component, covalent
+geometry or achieved-geometry checks. Explicit membership compilation and
+suppression of competing inference remain planned implementation, not a claim
+about the current runtime.
+
+The membership design will reuse NARestraints' existing pair guesser and
 recipe builder. Its permissive geometry scoring and antiparallel-run rescue
 provide pairing hypotheses, while the builder maps selected pairs to explicit
 recipe contacts. NASolve already exposes this route through opt-in
@@ -677,7 +687,8 @@ recipe contacts. NASolve already exposes this route through opt-in
 pair selections. Keep guessed, reviewed/frame-selected and native-generated
 membership distinguishable, retain scores/warnings, and compare actual proxies
 for missing, extra or overlapping terms before freezing any new trial. A
-topological guess or fixed contact set does not certify pairing chemistry.
+topological guess or fixed contact set does not certify pairing chemistry;
+diagnostic Phenix guesses do not acquire authority by passing a distance cutoff.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

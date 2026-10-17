@@ -316,11 +316,15 @@ neither report changes the original checks or claims chemical approval. Explicit
 hydrogen-bond membership, convergence, full qualification, production integration
 and adoption remain separate.
 
-That future membership review should reuse NARestraints' topology-assisted pair
-guesser and recipe builder, preserving the distinction between guessed pairs,
-reviewed/frame selections and the proxies Phenix generates. Run continuity can
-rescue weak pairing geometry; freezing such a proposal still requires checking
-its chemistry and avoiding overlapping restraints.
+The accepted project policy makes NARestraints' pair selections and recipe
+targets authoritative over Phenix's automatic secondary-structure guesses.
+The future membership implementation will reuse NARestraints' topology-assisted
+guesser and recipe builder, preserving the provenance of guessed and
+reviewed/frame selections through native compilation. Intended contacts must
+survive poor starting geometry, and Phenix inference must not add competing
+terms. Run continuity can rescue weak pairing geometry; chemistry, overlap and
+achieved-geometry checks remain necessary. Native enforcement is not yet
+implemented or validated.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
