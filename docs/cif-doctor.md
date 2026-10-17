@@ -669,15 +669,27 @@ Before another minimization, an explicit fixed hydrogen-bond membership policy
 must be prepared and tested. Input-file equality alone cannot ensure freshly
 generated manager equality; scientific qualification and adoption remain open.
 
-**Accepted pairing authority:** NARestraints pair selections and recipe targets
+**Accepted pairing and stacking authority:** NARestraints pair selections,
+stacking relationships, mapped base planes and recipe targets
 supersede Phenix's automatic secondary-structure guesses whenever NARestraints
-supplies the pairing policy. Native interpretation must compile the intended
+supplies the pairing or stacking policy. Native interpretation must compile the intended
 contacts without competing automatic additions or a distance-based omission of
 an intended contact. Phenix remains the native restraint consumer and geometry
 measurement engine; this authority does not waive identity, component, covalent
 geometry or achieved-geometry checks. Explicit membership compilation and
 suppression of competing inference remain planned implementation, not a claim
 about the current runtime.
+
+The existing NARestraints stacking builder applies its shared base-class plane
+mapping to chain neighbours. Canonical stacks use explicitly selected native
+`stacking_pair` records; mapped modified stacks use explicit parallelities with
+target 0 degrees and sigma 0.027. These are two compilation forms of the same
+NARestraints-owned policy. Preserve these declarations when suppressing competing
+inference rather than disabling all secondary-structure processing. Unknown
+mappings currently retain a generic declaration with a warning; verify actual
+native coverage rather than assuming that fallback produced a plane. Track
+physical stacks separately from base-pair parallelity/planarity and compare
+expected relationships, mapped planes and targets/weights on readback.
 
 The membership design will reuse NARestraints' existing pair guesser and
 recipe builder. Its permissive geometry scoring and antiparallel-run rescue

@@ -5535,7 +5535,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Implement and validate explicit NARestraints-owned hydrogen-bond membership: compile selected pairs and recipe targets/weights by atom identity, prevent competing automatic Phenix secondary-structure terms and native distance-based omission, and verify exact native membership before/after serialization. Retain guessed/reviewed/frame provenance, scores, warnings, chemistry and overlap evidence, and preserve the historical Cedar 19/20 objective and REVIEW results. Authority is decided; native enforcement, convergence, full scientific qualification and adoption remain open. No repeated Mac inventory is needed to review the completed Cedar 20 return.",
+    "next_action": "Implement and validate explicit NARestraints-owned pairing and stacking membership: compile selected pairs, stack relationships and mapped planes with recipe targets/uncertainties, prevent competing automatic Phenix inference and native distance-based omission, and verify exact native relationships and weights before/after serialization. Preserve NARestraints-selected canonical native stacking declarations and modified-base parallelities; retain fallback warnings and separate physical stacks from pair-plane terms. Keep provenance, chemistry, overlap evidence and historical Cedar 19/20 REVIEW results. Authority is decided; native enforcement, convergence, full qualification and adoption remain open. No repeated Mac inventory is needed to review Cedar 20.",
     "pairing_intent_provenance": {
       "status": "SOURCE_VERIFIED_AUTHORITY_DECIDED_NATIVE_ENFORCEMENT_NOT_IMPLEMENTED",
       "reviewed_on": "2026-10-17",
@@ -5569,6 +5569,24 @@
           "commit": "0d22018bcfd3c2542bd2cc0a79908b58fa02388e",
           "path": "src/nasolve/postmr.py",
           "sha256": "f31ec621f1963f80ee4c18ba1c6c7de70817d16cf0d45ae146582bb59d4fca08"
+        },
+        {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "restraints/stacking.py",
+          "sha256": "c063e7235b0f66dd13ebee415299910193ff6e4c6283b909ac250a4515ea0652"
+        },
+        {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "tests/test_stacking.py",
+          "sha256": "0d5fbefbc301db8818fdd9021e8d3f76682e0b404d49fd70279913336ed23181"
+        },
+        {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "tests/test_modified_pair_roles.py",
+          "sha256": "87eab47abc6f8f1de8913095e4b3fafeb42d7d6bddefbce34e158550a5f5221f"
         }
       ],
       "existing_guesser": {
@@ -5599,10 +5617,11 @@
         "cedar20_pair_origin": "NOT_ESTABLISHED_BY_THIS_SOURCE_INSPECTION"
       },
       "next_policy_requirements": [
-        "Reuse NARestraints selected pairs and recipe atom mapping as the authority; retain guessed versus reviewed/frame provenance, scores and warnings.",
-        "Compile an explicit atom-identity contact table with recipe targets and weights, independent of native secondary-structure distance filtering.",
-        "Prevent competing automatically inferred native hydrogen-bond terms in the NARestraints-owned scope; preserve separately intended stacking and other restraint categories.",
-        "Check exact native membership, targets and weights against the policy before and after serialization; report missing, extra or overlapping terms and unsupported mappings without silently filling them from Phenix guesses.",
+        "Reuse NARestraints selected pairs, stacking relationships and recipe/plane atom mapping as the authority; retain guessed versus reviewed/frame provenance, scores and warnings.",
+        "Compile explicit atom-identity hydrogen-bond and stacking-plane inventories with source targets and uncertainties; prevent native distance filtering from omitting intended hydrogen bonds.",
+        "Prevent competing automatic native pairing/stacking terms in the NARestraints-owned scope while preserving its explicitly selected canonical stacking_pair declarations, modified-base parallelities and unrelated restraint categories.",
+        "Check exact native relationships, atom/plane membership, targets and weights before and after serialization; distinguish physical stacks from pair-plane terms and report missing, extra, duplicate or unsupported coverage.",
+        "Retain unknown-mapping fallback warnings and verify actual native proxies; do not assume a generic declaration successfully produced a plane.",
         "Record the changed objective separately from historical Cedar 19/20 results; never rewrite their exact-comparison or convergence evidence."
       ],
       "boundaries": {
@@ -5612,22 +5631,57 @@
         "membership_approved": false,
         "automatic_adoption": false,
         "pairing_authority_decided": true,
-        "membership_approval_scope": "No new atom-contact inventory has been compiled or scientifically qualified; this does not reopen the decided NARestraints precedence."
+        "membership_approval_scope": "No new atom-contact/stack-plane inventory has been compiled or scientifically qualified; NARestraints pairing and stacking precedence is decided.",
+        "stacking_authority_decided": true
       },
       "authority_decision": {
         "decided_on": "2026-10-17",
         "basis": "Explicit project-owner instruction",
         "policy_authority": "NARestraints",
-        "superseded_authority": "Automatic Phenix secondary-structure pairing inference",
-        "scope": "Pair selections and recipe-defined hydrogen-bond contacts, targets and weights wherever NARestraints supplies the pairing policy.",
-        "native_role": "Compile the explicit policy and report actual native proxies and achieved geometry.",
-        "automatic_native_contacts": "Diagnostic evidence only; must not replace or supplement the NARestraints-owned policy.",
+        "superseded_authority": "Automatic Phenix secondary-structure pairing and stacking inference",
+        "scope": "NARestraints pair and stacking selections, mapped base-plane membership, recipe targets and weights wherever NARestraints supplies the policy.",
+        "native_role": "Compile explicit NARestraints declarations/edits and report actual native proxies and achieved geometry; native stacking_pair syntax can remain a controlled compilation path.",
+        "automatic_native_contacts": "Diagnostic evidence only; must not replace or supplement NARestraints-owned pairing or stacking relationships.",
         "poor_starting_geometry": "Must not silently omit an intended NARestraints contact through native distance filtering.",
         "independent_checks": "Identity, component definitions, covalent/link geometry, overlap and achieved-geometry checks remain in force.",
         "implementation_status": "PLANNED_NOT_IMPLEMENTED",
-        "scientific_qualification": "REVIEW"
+        "scientific_qualification": "REVIEW",
+        "stacking": "Reuse the general NARestraints plane mapping and neighbour builder, preserve both canonical native declarations and explicit modified stacks, and retain warnings/coverage checks for its existing generic fallback.",
+        "secondary_structure_controls": "Suppress competing inference without disabling requested canonical stacking or other intended restraint categories."
+      },
+      "existing_stacking": {
+        "entry_point": "restraints.stacking.generate_chain_stacking_restraints",
+        "base_class_plane_templates": {
+          "A": "AT_PARALLEL_A",
+          "I": "AT_PARALLEL_A",
+          "T": "AT_PARALLEL_T",
+          "G": "GC_PARALLEL_G",
+          "D": "GC_PARALLEL_G",
+          "B": "GC_PARALLEL_G",
+          "P": "GC_PARALLEL_G",
+          "X": "GC_PARALLEL_G",
+          "C": "GC_PARALLEL_C",
+          "S": "GC_PARALLEL_C",
+          "Z": "GC_PARALLEL_C",
+          "K": "GC_PARALLEL_C"
+        },
+        "relationship_selection": "Consecutive residues in each PDB chain; no cross-chain stack added by this builder.",
+        "canonical_representation": "Explicitly selected native stacking_pair declarations",
+        "mapped_modified_representation": "Explicit parallelity geometry edits using workbook-resolved base-plane atoms",
+        "modified_target_angle_degrees": 0,
+        "modified_sigma": 0.027,
+        "unmapped_or_insufficient_plane": "Preserve a generic stacking_pair declaration and report a warning; actual native coverage is not guaranteed by the fallback.",
+        "pairing_plane_distinction": "Physical stacks must be accounted separately from pair coplanarity or parallelity, even when both compile to parallelity proxies.",
+        "authority_interpretation": "Native declarations and explicit geometry edits are compilation forms of NARestraints-selected relationships; they do not authorize unrestricted Phenix stacking inference.",
+        "validation": {
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. ../check-venv/bin/python -m pytest -q --tb=short tests/test_stacking.py tests/test_modified_pair_roles.py",
+          "passed": 8,
+          "seconds": 0.33,
+          "kind": "UNCHANGED_UPSTREAM_SOURCE_TESTS",
+          "new_native_execution": "NOT_RUN"
+        }
       }
     }
   },
-  "next_action": "Implement and validate explicit NARestraints-owned hydrogen-bond membership: compile selected pairs and recipe targets/weights by atom identity, prevent competing automatic Phenix secondary-structure terms and native distance-based omission, and verify exact native membership before/after serialization. Retain guessed/reviewed/frame provenance, scores, warnings, chemistry and overlap evidence, and preserve the historical Cedar 19/20 objective and REVIEW results. Authority is decided; native enforcement, convergence, full scientific qualification and adoption remain open. No repeated Mac inventory is needed to review the completed Cedar 20 return."
+  "next_action": "Implement and validate explicit NARestraints-owned pairing and stacking membership: compile selected pairs, stack relationships and mapped planes with recipe targets/uncertainties, prevent competing automatic Phenix inference and native distance-based omission, and verify exact native relationships and weights before/after serialization. Preserve NARestraints-selected canonical native stacking declarations and modified-base parallelities; retain fallback warnings and separate physical stacks from pair-plane terms. Keep provenance, chemistry, overlap evidence and historical Cedar 19/20 REVIEW results. Authority is decided; native enforcement, convergence, full qualification and adoption remain open. No repeated Mac inventory is needed to review Cedar 20."
 }

@@ -96,9 +96,10 @@ evidence; synthetic origin 37/ZZZ tests prevent a hardcoded native-origin or
 residue exception. Missing/changed terms, unpaired angles and other mutations
 stay unexplained. No new native execution or geometry trial is delivered here.
 
-**Next scientific gate:** implement explicit NARestraints-owned hydrogen-bond
-membership before another geometry/convergence trial. The accepted project
-policy is that NARestraints pair selections and recipe targets supersede
+**Next scientific gate:** implement explicit NARestraints-owned pairing and
+stacking membership before another geometry/convergence trial. The accepted project
+policy is that NARestraints pair selections, stacking relationships, mapped
+planes and recipe targets supersede
 Phenix's automatic secondary-structure guesses. The native consumer must apply
 that policy without adding competing inferred contacts or silently dropping
 intended contacts because their starting geometry is poor. Keep native geometry
@@ -129,6 +130,23 @@ unresolved pairing chemistry; a fixed membership alone does not make a guess
 correct. Phenix-inferred alternatives may be recorded diagnostically but do not
 override or supplement the NARestraints-owned policy. The exact source record
 and authority decision are in the existing native-reload ledger.
+
+**Stacking authority is the same:** reuse NARestraints' general base-class plane
+mapping and chain-neighbour stacking builder. Its twelve mapped classes share
+reviewed A/T/G/C-like plane templates, including the corrected P/X versus Z/K
+roles. Canonical neighbours are explicitly selected with native `stacking_pair`
+records; mapped modified neighbours use explicit parallelities (target 0 degrees,
+sigma 0.027). Both representations express NARestraints policy. A generic native
+declaration is not permission for Phenix to infer different relationships.
+Do not disable the entire secondary-structure machinery and thereby lose the
+requested canonical stacks; preserve or explicitly compile those relationships.
+Unknown mappings currently retain a generic declaration with a warning, so
+actual native coverage still needs checking. Track stacking separately from
+base-pair parallelity/planarity, verify planes/targets/weights and check missing,
+extra or duplicate physical relationships on readback. This extends the decided
+authority, not the current runtime. The unchanged NARestraints stacking/role
+tests pass **8 tests (0.33 s)** with
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. ../check-venv/bin/python -m pytest -q --tb=short tests/test_stacking.py tests/test_modified_pair_roles.py`.
 
 **Validation:** fourteen initial regressions fail before the audit module exists.
 The focused command

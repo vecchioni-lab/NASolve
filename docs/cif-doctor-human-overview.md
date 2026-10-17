@@ -316,8 +316,9 @@ neither report changes the original checks or claims chemical approval. Explicit
 hydrogen-bond membership, convergence, full qualification, production integration
 and adoption remain separate.
 
-The accepted project policy makes NARestraints' pair selections and recipe
-targets authoritative over Phenix's automatic secondary-structure guesses.
+The accepted project policy makes NARestraints' pair selections, stacking
+relationships, mapped base planes and recipe targets authoritative over Phenix's
+automatic secondary-structure guesses.
 The future membership implementation will reuse NARestraints' topology-assisted
 guesser and recipe builder, preserving the provenance of guessed and
 reviewed/frame selections through native compilation. Intended contacts must
@@ -325,6 +326,12 @@ survive poor starting geometry, and Phenix inference must not add competing
 terms. Run continuity can rescue weak pairing geometry; chemistry, overlap and
 achieved-geometry checks remain necessary. Native enforcement is not yet
 implemented or validated.
+
+Stacking will reuse the existing NARestraints base-class plane mapping and
+neighbour builder. Its canonical native declarations and explicit modified-base
+parallelities both carry that policy; suppressing competing inference must
+preserve their requested relationships. Unknown-mapping warnings and actual
+native coverage remain visible, with stacks distinguished from base-pair planes.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.

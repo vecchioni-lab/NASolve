@@ -2064,14 +2064,16 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Implement and validate explicit NARestraints-owned hydrogen-bond membership: compile selected pairs and recipe targets/weights by atom identity, prevent competing automatic Phenix secondary-structure terms and native distance-based omission, and verify exact native membership before/after serialization. Retain guessed/reviewed/frame provenance, scores, warnings, chemistry and overlap evidence, and preserve the historical Cedar 19/20 objective and REVIEW results. Authority is decided; native enforcement, convergence, full scientific qualification and adoption remain open. No repeated Mac inventory is needed to review the completed Cedar 20 return.",
+      "next_action": "Implement and validate explicit NARestraints-owned pairing and stacking membership: compile selected pairs, stack relationships and mapped planes with recipe targets/uncertainties, prevent competing automatic Phenix inference and native distance-based omission, and verify exact native relationships and weights before/after serialization. Preserve NARestraints-selected canonical native stacking declarations and modified-base parallelities; retain fallback warnings and separate physical stacks from pair-plane terms. Keep provenance, chemistry, overlap evidence and historical Cedar 19/20 REVIEW results. Authority is decided; native enforcement, convergence, full qualification and adoption remain open. No repeated Mac inventory is needed to review Cedar 20.",
       "pairing_intent_provenance": {
         "status": "SOURCE_VERIFIED_AUTHORITY_DECIDED_NATIVE_ENFORCEMENT_NOT_IMPLEMENTED",
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
-        "method": "NARestraints topology-assisted selections and recipe targets/weights supersede automatic Phenix secondary-structure guesses. Preserve selection provenance, compile explicit contacts and prevent competing native inference; enforcement is planned, with no runtime change.",
+        "method": "NARestraints pairing and stacking selections, mapped planes and recipe targets supersede automatic Phenix secondary-structure inference. Reuse existing guesser/recipe/stacking builders, preserve canonical native declarations and modified-base parallelities, and verify exact relationships with fallback warnings retained. Enforcement is planned; runtime is unchanged.",
         "runtime_changed": false,
         "pairing_authority_decided": true,
-        "native_enforcement": "PLANNED_NOT_IMPLEMENTED"
+        "native_enforcement": "PLANNED_NOT_IMPLEMENTED",
+        "stacking_authority_decided": true,
+        "existing_stacking_tests_passed": 8
       }
     }
   },

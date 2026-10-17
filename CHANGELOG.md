@@ -8,7 +8,7 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-### Hydrogen-bond pairing provenance for the next diagnostic
+### Pairing and stacking authority for the next diagnostic
 
 - Record NARestraints' existing permissive pair guesser, antiparallel-run rescue
   and recipe builder as inputs to the pending membership policy. Distinguish
@@ -19,6 +19,11 @@ entries are reconstructed from repository history.
   targets supersede automatic Phenix secondary-structure guesses. The pending
   explicit membership compiler must prevent competing inferred terms and
   distance-based loss of intended contacts; native enforcement remains planned.
+- Apply the same authority to NARestraints' general stacking/plane mapping.
+  Preserve its explicitly selected canonical native stacks and modified-base
+  parallelities when suppressing competing inference; retain unknown-mapping
+  warnings and verify actual coverage separately from base-pair plane terms.
+  Eight existing upstream stacking/role tests pass; no runtime change.
 
 ### Cedar 20 native reread and conditional-restraint attribution
 
