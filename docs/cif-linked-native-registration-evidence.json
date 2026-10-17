@@ -1,0 +1,4938 @@
+{
+  "schema_version": 1,
+  "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "recorded_date": "2026-10-17",
+  "archive": {
+    "name": "07_Cedar_okkb2are_cif_linked_review.zip",
+    "sha256": "66798468a5fb7db40f9468c0f72eb43bafdea4146917f7232f8cd61fb3f9086b",
+    "verified_payloads": 164
+  },
+  "reported_status": "NATIVE_REVIEW",
+  "nasolve_source": {
+    "commit": "6522e23e3125bf21fafca563253f1c646c21b595",
+    "working_tree_has_changes": false
+  },
+  "narestraints_source": {
+    "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+    "working_tree_has_changes": false
+  },
+  "source_recovery_statuses": {
+    "CGY": "CANDIDATE_REVIEW",
+    "DX": "CANDIDATE_REVIEW",
+    "IGU": "EXISTING_SOURCE_PRESERVING_CANDIDATE",
+    "IMC": "CANDIDATE_REVIEW"
+  },
+  "native_installation": "Phenix 2.2.1-6174",
+  "native_dispatcher_version_recorded": "2.2.1",
+  "baseline": {
+    "status": "REVIEW",
+    "execution": {
+      "elapsed_seconds": 2.896598,
+      "finished_at": "2026-10-14T16:03:56.160675+00:00",
+      "returncode": 0,
+      "started_at": "2026-10-14T16:03:53.264107+00:00",
+      "status": "COMPLETED",
+      "timeout_seconds": 600
+    },
+    "atom_count": 858,
+    "mapped_residues": 42,
+    "backbone_links": 38,
+    "proxy_counts": {
+      "angle": 1559,
+      "bond_asu": 0,
+      "bond_simple": 1005,
+      "chirality": 152,
+      "const_dihedral": 366,
+      "dihedral": 554,
+      "parallelity": 58,
+      "planarity": 53
+    },
+    "source_preserved": true,
+    "frozen_inputs_preserved": true
+  },
+  "linked": {
+    "status": "FAILED",
+    "execution": {
+      "elapsed_seconds": 1.082309,
+      "finished_at": "2026-10-14T16:03:57.397125+00:00",
+      "returncode": 2,
+      "started_at": "2026-10-14T16:03:56.314842+00:00",
+      "status": "FAILED",
+      "timeout_seconds": 600
+    },
+    "error": "Sorry: Missing CIF modification: data_mod_NASL9809b6bd9c\n  Please check for spelling errors or specify the file name\n  with the modification as an additional argument.",
+    "source_preserved": true,
+    "frozen_inputs_preserved": true,
+    "registered_modifiers_by_input": [
+      {
+        "input": "inputs/001_dictionary.cif",
+        "modification_ids": [
+          "NASnoOP3"
+        ]
+      },
+      {
+        "input": "inputs/008_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      },
+      {
+        "input": "inputs/010_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      },
+      {
+        "input": "inputs/012_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      },
+      {
+        "input": "inputs/014_dictionary.cif",
+        "modification_ids": [
+          "linked_sites"
+        ]
+      }
+    ]
+  },
+  "reader_contract": {
+    "module": "mmtbx.monomer_library.server",
+    "reviewed_git_blob": "af1ac801d43c33b235584e1a6a59d82c137cd8de",
+    "url": "https://github.com/cctbx/cctbx_project/blob/master/mmtbx/monomer_library/server.py",
+    "entry_points": [
+      "convert_list_block",
+      "convert_mod_list",
+      "server.convert_mod_list"
+    ],
+    "meaning": "Registry identifiers are derived from mod_ block suffixes. Atom-loop mod_id values do not override the registry key.",
+    "existing_working_control": "data_mod_NASnoOP3",
+    "layout_policy": "cif-native-modification-blocks-v1"
+  },
+  "native_charge_readback": {
+    "A:6": {
+      "native_atom_definitions": 37,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    },
+    "A:20": {
+      "native_atom_definitions": 36,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    },
+    "C:10": {
+      "native_atom_definitions": 35,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    },
+    "D:3": {
+      "native_atom_definitions": 34,
+      "charge_values_available": 0,
+      "attribute_availability": "NOT_RECORDED_BY_CEDAR_07",
+      "missing_values_do_not_assert_zero": true
+    }
+  },
+  "readback_policy": "Missing/native nonfinite formal-charge values remain UNSUPPORTED; contradictory known values remain REVIEW. Preserve expected/observed data, never substitute partial charges or zero, and record attribute availability separately in the next detailed worker.",
+  "offline_replay": {
+    "installed_execution": "NOT_RUN",
+    "components": {
+      "IGU": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASL9809b6bd9c"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "HOP2"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      },
+      "IMC": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASL92fefc1b33"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "HOP2"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      },
+      "CGY": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASL25624f75ba"
+        ],
+        "deleted_atoms": [
+          "H3'2",
+          "HO3'",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "H1"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      },
+      "DX": {
+        "status": "PREPARED_REVIEW",
+        "registered_modification_ids": [
+          "NASLc0f3717fc6"
+        ],
+        "deleted_atoms": [
+          "H1",
+          "H6",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "H14"
+        ],
+        "site_plan_unchanged": true,
+        "base_dictionary_unchanged": true,
+        "phil_requests_unchanged": true
+      }
+    },
+    "original_model_sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+    "original_model_unchanged": true
+  },
+  "software_validation": {
+    "full_suite": {
+      "passed": 1380,
+      "skipped": 2,
+      "subtests_passed": 276,
+      "seconds": 98.88,
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+    },
+    "focused": {
+      "passed": 64,
+      "seconds": 5.38,
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_cif_linked_probe.py tests/test_cif_native_validation.py"
+    },
+    "regression_before_fix": "Both modifier registry tests fail with the shared linked_sites key; corrected packaging resolves all requested IDs without collisions.",
+    "native_test_scope": "Explicit fake APIs and reader-contract controls; no installed Phenix execution in this validation.",
+    "figure": "Regenerated/rendered/visually inspected"
+  },
+  "schemas": {
+    "version": 1,
+    "new_preparation_field": "modification_block_policy",
+    "new_native_detail_field": "formal_charge_readback",
+    "charge_check_fields": [
+      "unavailable",
+      "contradictions",
+      "native_readback",
+      "partial_charge_substituted"
+    ],
+    "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
+    "native_policy_unchanged": "cif-native-bundle-inventory-v1"
+  },
+  "next_delivery": "20_Cedar",
+  "boundaries": {
+    "installed_corrected_registration": "RECORDED_CEDAR_08",
+    "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
+    "same_code_control": "SITE_ISOLATION_RECORDED_COMPLETE_TERMINAL_CHEMISTRY_UNQUALIFIED",
+    "model_optimization": "NOT_RUN",
+    "readyset_retry": "NOT_RUN",
+    "refinement": "NOT_RUN",
+    "automatic_adoption": false,
+    "experimental_protonation": "UNASSESSED",
+    "generated_stereochemical_metadata": "REVIEW_REQUIRED",
+    "unpublished_payloads_committed": false,
+    "installed_component_list_metadata": "RECORDED_DNA_FOR_ALL_FOUR_INTERNAL_SITES"
+  },
+  "cedar_08_return": {
+    "archive": {
+      "name": "08_Cedar_g4gzbeeb_cif_linked_review.zip",
+      "sha256": "325cca4d6a6e301ceaadd186e07040676be62ec1c31e3416e6ea419550b30a33",
+      "verified_payloads": 207
+    },
+    "reported_status": "REVIEW",
+    "nasolve_source": {
+      "commit": "147c1fbaabb41f73f5680852625189b0e1295ca7",
+      "working_tree_has_changes": false
+    },
+    "narestraints_source": {
+      "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "working_tree_has_changes": false
+    },
+    "runner_sha256": "f5a07d5dbdc76ade0f7e3042a04222e4a6a1521726703745a9afccc8a94f0d3c",
+    "native_installation": "Phenix 2.2.1-6174",
+    "native_api_hashes": [
+      {
+        "module": "iotbx.phil",
+        "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+      },
+      {
+        "module": "mmtbx.command_line.pdb_interpretation",
+        "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+      },
+      {
+        "module": "mmtbx.monomer_library.server",
+        "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+      },
+      {
+        "module": "mmtbx.monomer_library.pdb_interpretation",
+        "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+      }
+    ],
+    "baseline": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 2.522322,
+        "finished_at": "2026-10-14T16:54:50.879197+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-14T16:54:48.356898+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "source_preserved": true,
+      "frozen_inputs_preserved": true,
+      "unsupported_fields": [],
+      "fatal_problems": null
+    },
+    "linked": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 1.381361,
+        "finished_at": "2026-10-14T16:54:52.414707+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-14T16:54:51.033371+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "source_preserved": true,
+      "frozen_inputs_preserved": true,
+      "unsupported_fields": [],
+      "fatal_problems": null
+    },
+    "qualification": {
+      "status": "REVIEW",
+      "check_status_counts": {
+        "PASS": 21,
+        "REVIEW": 4,
+        "UNSUPPORTED": 4
+      },
+      "non_site_checks": [
+        {
+          "check": "native-interpreter",
+          "status": "PASS"
+        },
+        {
+          "check": "unchanged-native-model",
+          "status": "PASS"
+        },
+        {
+          "check": "zero-unrequested-coordinate-OP3",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-backbone-links",
+          "expected": 38,
+          "observed": 38,
+          "status": "PASS"
+        },
+        {
+          "check": "all-monomer-mappings",
+          "status": "PASS"
+        },
+        {
+          "check": "declared-free-five-prime-ends",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-custom-restraint-coverage",
+          "failures": [],
+          "requested": {
+            "angle": 34,
+            "bond": 21,
+            "parallelity": 23,
+            "planarity": 8
+          },
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-pair-and-stacking-parallelities",
+          "extra": 0,
+          "missing": 0,
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-other-component-definitions",
+          "status": "PASS"
+        }
+      ],
+      "atom_check_reporting": "The original effective-site-atoms row also required group DNA. All four atom sets match; group is null. Retry separates these checks without relaxing either."
+    },
+    "sites": {
+      "CGY": {
+        "site": "A:20",
+        "requested_modification_id": "NASL25624f75ba",
+        "native_modification_ids": [
+          "NASL25624f75ba"
+        ],
+        "expected_atoms": 35,
+        "observed_atoms": 35,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 35,
+          "null_value_atoms": 35,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "H1"
+        ],
+        "deleted_atoms": [
+          "H3'2",
+          "HO3'",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      },
+      "DX": {
+        "site": "D:3",
+        "requested_modification_id": "NASLc0f3717fc6",
+        "native_modification_ids": [
+          "NASLc0f3717fc6"
+        ],
+        "expected_atoms": 33,
+        "observed_atoms": 33,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 33,
+          "null_value_atoms": 33,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "H14"
+        ],
+        "deleted_atoms": [
+          "H1",
+          "H6",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      },
+      "IGU": {
+        "site": "A:6",
+        "requested_modification_id": "NASL9809b6bd9c",
+        "native_modification_ids": [
+          "NASL9809b6bd9c"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      },
+      "IMC": {
+        "site": "C:10",
+        "requested_modification_id": "NASL92fefc1b33",
+        "native_modification_ids": [
+          "NASL92fefc1b33"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "atom_inventory_matches": true,
+        "native_group": null,
+        "native_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        },
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "outgoing_O3prime_type": "OC2",
+        "hydrogen_adjacency_check": "PASS",
+        "no_dangling_references_check": "PASS"
+      }
+    },
+    "shared_code_control": {
+      "status": "REVIEW",
+      "native": {
+        "status": "REVIEW",
+        "execution": {
+          "elapsed_seconds": 1.412638,
+          "finished_at": "2026-10-14T16:54:54.064535+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-14T16:54:52.651923+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "atom_count": 877,
+        "mapped_residues": 43,
+        "proxy_counts": {
+          "angle": 1590,
+          "bond_asu": 0,
+          "bond_simple": 1026,
+          "chirality": 155,
+          "const_dihedral": 387,
+          "dihedral": 572,
+          "parallelity": 58,
+          "planarity": 54
+        },
+        "source_preserved": true,
+        "frozen_inputs_preserved": true,
+        "unsupported_fields": [],
+        "fatal_problems": null
+      },
+      "sites": {
+        "A:6": {
+          "modification_ids": [
+            "NASL9809b6bd9c"
+          ],
+          "expected_atoms": 34,
+          "observed_atoms": 34,
+          "atom_inventory_matches": true,
+          "five_prime_state": "linked",
+          "three_prime_state": "linked",
+          "retained_OP2_hydrogens": [
+            "HOP2"
+          ],
+          "O3prime_type": "OC2",
+          "native_group": null
+        },
+        "E:1": {
+          "modification_ids": [
+            "NASLdb64d7ae60"
+          ],
+          "expected_atoms": 31,
+          "observed_atoms": 31,
+          "atom_inventory_matches": true,
+          "five_prime_state": "free_OH",
+          "three_prime_state": "free_OH",
+          "retained_OP2_hydrogens": [],
+          "O3prime_type": "OH1",
+          "native_group": null
+        }
+      },
+      "original_858_atoms_preserved": true,
+      "original_42_effective_definitions_preserved": true,
+      "all_38_backbone_links_preserved": true,
+      "scope": "Synthetic free-OH E:1 control; not a change to the original experimental model"
+    },
+    "metadata_blocker": {
+      "returned_layout": "Scalar _chem_comp fields in data_comp_list",
+      "declared_group_in_prepared_files": "DNA",
+      "native_loaded_group": null,
+      "native_effective_group": null,
+      "native_classification_log": "DNA for all 42 linked residues; group and classification are distinct fields",
+      "classification_in_worker": "NOT_RECORDED_BY_CEDAR_08",
+      "reader_entry_points": [
+        "convert_list_block",
+        "convert_comp_list"
+      ],
+      "reviewed_git_blob": "af1ac801d43c33b235584e1a6a59d82c137cd8de",
+      "meaning": "Only the _chem_comp loop inside comp_list is iterated; singleton scalars are ignored and fallback chem_comp is built with ID only."
+    },
+    "original_archive_preserved": true,
+    "original_model_sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+    "readyset_retry": "NOT_RUN",
+    "model_optimization": "NOT_RUN",
+    "refinement": "NOT_RUN",
+    "scientific_approval": "NOT_RUN",
+    "automatic_adoption": false
+  },
+  "component_list_retry": {
+    "delivery_prefix": "09_Cedar",
+    "component_list_policy": "cif-native-component-list-loop-v1",
+    "serialization": "Retain one-row comp_list as a loop; reuse existing Biopython CIF quoting",
+    "offline_exact_return_replay": {
+      "installed_execution": "NOT_RUN",
+      "components": {
+        "IGU": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_A_6.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        },
+        "IMC": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_C_10.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        },
+        "CGY": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_A_20.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        },
+        "DX": {
+          "site_plan_unchanged": true,
+          "parsed_dictionary_and_projections_unchanged": {
+            "base_dictionary.cif": true,
+            "projected_D_3.cif": true
+          },
+          "modifier_bytes_unchanged": true,
+          "phil_bytes_unchanged": true,
+          "inputs_preserved": true,
+          "component_list_policy": "cif-native-component-list-loop-v1",
+          "native_group": "PENDING_INSTALLED_RETRY"
+        }
+      },
+      "original_model_sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+      "shared_code_control_original_atoms_and_site_definitions_preserved": true,
+      "shared_code_control_backbone_links_preserved": true
+    },
+    "qualification_reporting": "Separate exact atom inventory from required native DNA group; retain every non-PASS gate",
+    "new_schema_1_preparation_field": "component_list_policy",
+    "new_schema_1_detailed_metadata_field": "classification",
+    "native_execution": "RECORDED_CEDAR_09",
+    "formal_charge_readback": "UNSUPPORTED in the returned installed version; no partial/source/zero substitution",
+    "software_validation": {
+      "focused": {
+        "passed": 70,
+        "seconds": 4.75,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_cif_linked_probe.py tests/test_cif_native_validation.py"
+      },
+      "full_suite": {
+        "passed": 1386,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 89.41,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "regression_before_fix": "Four targeted cases fail before the change: singleton loop, independent atom/group reporting, and two detailed classification cases",
+      "native_test_scope": "Explicit fake native reader controls; scalar metadata loses group and looped metadata retains it. No installed Phenix execution in offline tests.",
+      "figure": "Regenerated, rendered and visually inspected"
+    }
+  },
+  "cedar_09_return": {
+    "archive": {
+      "name": "09_Cedar_nn9cyghr_cif_linked_review.zip",
+      "sha256": "db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a",
+      "verified_payloads": 207
+    },
+    "recorded_date": "2026-10-15",
+    "reported_status": "REVIEW",
+    "nasolve_source": {
+      "commit": "4f1cde11b540c24adc27c97cb5f891f6710bf17e",
+      "working_tree_has_changes": false
+    },
+    "narestraints_source": {
+      "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "working_tree_has_changes": false
+    },
+    "runner_sha256": "de71e5d64b4b79937e4f77566ab27a7d4991d45e45d060f4bdc04d873745e6cc",
+    "native_installation": "Phenix 2.2.1-6174",
+    "baseline": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 2.924922,
+        "finished_at": "2026-10-15T13:06:52.987227+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-15T13:06:50.062331+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "fatal_problems": null,
+      "unsupported_inventory_fields": [],
+      "source_preserved": true,
+      "frozen_inputs_preserved": true
+    },
+    "linked": {
+      "status": "REVIEW",
+      "execution": {
+        "elapsed_seconds": 1.354201,
+        "finished_at": "2026-10-15T13:06:54.496365+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-15T13:06:53.142189+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "atom_count": 858,
+      "mapped_residues": 42,
+      "proxy_counts": {
+        "angle": 1559,
+        "bond_asu": 0,
+        "bond_simple": 1005,
+        "chirality": 152,
+        "const_dihedral": 366,
+        "dihedral": 554,
+        "parallelity": 58,
+        "planarity": 53
+      },
+      "fatal_problems": null,
+      "unsupported_inventory_fields": [],
+      "source_preserved": true,
+      "frozen_inputs_preserved": true
+    },
+    "native_api_hashes": [
+      {
+        "module": "iotbx.phil",
+        "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+      },
+      {
+        "module": "mmtbx.command_line.pdb_interpretation",
+        "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+      },
+      {
+        "module": "mmtbx.monomer_library.server",
+        "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+      },
+      {
+        "module": "mmtbx.monomer_library.pdb_interpretation",
+        "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+      }
+    ],
+    "qualification": {
+      "status": "REVIEW",
+      "check_status_counts": {
+        "PASS": 29,
+        "UNSUPPORTED": 4
+      },
+      "all_noncharge_checks_pass": true,
+      "all_nonpass_checks_are_unavailable_formal_charge": true,
+      "exact_backbone_links": 38,
+      "custom_proxy_coverage": {
+        "bond": 21,
+        "angle": 34,
+        "planarity": 8,
+        "parallelity": 23
+      },
+      "scientific_approval": "NOT_RUN"
+    },
+    "sites": {
+      "CGY": {
+        "site": "A:20",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASL25624f75ba"
+        ],
+        "expected_atoms": 35,
+        "observed_atoms": 35,
+        "retained_OP2_hydrogens": [
+          "H1"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 35,
+          "null_value_atoms": 35,
+          "status": "UNSUPPORTED"
+        }
+      },
+      "DX": {
+        "site": "D:3",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASLc0f3717fc6"
+        ],
+        "expected_atoms": 33,
+        "observed_atoms": 33,
+        "retained_OP2_hydrogens": [
+          "H14"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 33,
+          "null_value_atoms": 33,
+          "status": "UNSUPPORTED"
+        }
+      },
+      "IGU": {
+        "site": "A:6",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASL9809b6bd9c"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        }
+      },
+      "IMC": {
+        "site": "C:10",
+        "native_group": "DNA",
+        "native_classification": {
+          "status": "RECORDED",
+          "value": "DNA"
+        },
+        "modification_ids": [
+          "NASL92fefc1b33"
+        ],
+        "expected_atoms": 34,
+        "observed_atoms": 34,
+        "retained_OP2_hydrogens": [
+          "HOP2"
+        ],
+        "formal_charge_readback": {
+          "missing_attribute_atoms": 34,
+          "null_value_atoms": 34,
+          "status": "UNSUPPORTED"
+        }
+      }
+    },
+    "shared_code_control": {
+      "status": "REVIEW",
+      "native": {
+        "status": "REVIEW",
+        "execution": {
+          "elapsed_seconds": 1.272176,
+          "finished_at": "2026-10-15T13:06:56.010106+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-15T13:06:54.737952+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "atom_count": 877,
+        "mapped_residues": 43,
+        "proxy_counts": {
+          "angle": 1590,
+          "bond_asu": 0,
+          "bond_simple": 1026,
+          "chirality": 155,
+          "const_dihedral": 387,
+          "dihedral": 572,
+          "parallelity": 58,
+          "planarity": 54
+        },
+        "fatal_problems": null,
+        "unsupported_inventory_fields": [],
+        "source_preserved": true,
+        "frozen_inputs_preserved": true
+      },
+      "check_status_counts": {
+        "PASS": 10,
+        "UNSUPPORTED": 2
+      },
+      "sites": {
+        "A:6": {
+          "native_group": "DNA",
+          "native_classification": {
+            "status": "RECORDED",
+            "value": "DNA"
+          },
+          "modification_ids": [
+            "NASL9809b6bd9c"
+          ],
+          "expected_atoms": 34,
+          "observed_atoms": 34
+        },
+        "E:1": {
+          "native_group": "DNA",
+          "native_classification": {
+            "status": "RECORDED",
+            "value": "undetermined"
+          },
+          "modification_ids": [
+            "NASLdb64d7ae60"
+          ],
+          "expected_atoms": 31,
+          "observed_atoms": 31
+        }
+      },
+      "original_858_atoms_preserved": true,
+      "original_42_definitions_preserved": true,
+      "original_38_links_preserved": true,
+      "terminal_scope_limit": {
+        "site": "E:1",
+        "native_classification": "undetermined",
+        "O5prime_type": "O2",
+        "O5prime_bonded_atoms": [
+          "C5'"
+        ],
+        "explicit_O5prime_hydrogen_present": false,
+        "complete_free_OH_parameterization": "NOT_QUALIFIED",
+        "meaning": "Atom/context isolation agrees with the declared projection; this is not complete generic free-OH terminal support."
+      }
+    },
+    "read_only_scientific_review": {
+      "native_execution": "NOT_RUN",
+      "coordinate_mutation": false,
+      "source_candidate_charge_atoms_compared": 148,
+      "formal_charge_differences": 0,
+      "native_formal_charge_observability": "UNSUPPORTED_NOT_REPLACED_BY_SOURCE_COMPARISON",
+      "ordered_sugar_centres": 12,
+      "source_ideal_generator_and_native_proxy_sign_agreement": 12,
+      "absolute_stereochemistry": "UNASSESSED",
+      "formula": "dot(x1-x0,cross(x2-x0,x3-x0)); ordered quadruple retained exactly",
+      "formula_primary_git_blob": "21d25bb3234f48df42108028af2c0185d71db472",
+      "primary_reference": "https://github.com/cctbx/cctbx_project/blob/master/cctbx/geometry_restraints/chirality.h",
+      "components": {
+        "CGY": {
+          "projected_assessment_status": "REVIEW",
+          "plane_angle_review_count": 5,
+          "plane_angle_centres": [
+            "C1",
+            "C2",
+            "C6",
+            "N1",
+            "N4"
+          ],
+          "interior_delta_degrees": [
+            0.03,
+            0.06,
+            0.23,
+            0.03,
+            0.07
+          ],
+          "sigma_adjustment_lower_bounds": [
+            0.017320508075673022,
+            0.033684011802637887,
+            0.12198529582861911,
+            0.017320508075673022,
+            0.04041451884326987
+          ],
+          "source_candidate_charge_atoms_compared": 38,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        },
+        "DX": {
+          "projected_assessment_status": "PASS",
+          "plane_angle_review_count": 0,
+          "plane_angle_centres": [],
+          "interior_delta_degrees": [],
+          "sigma_adjustment_lower_bounds": [],
+          "source_candidate_charge_atoms_compared": 36,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        },
+        "IGU": {
+          "projected_assessment_status": "REVIEW",
+          "plane_angle_review_count": 5,
+          "plane_angle_centres": [
+            "C2",
+            "C4",
+            "C5",
+            "C6",
+            "N9"
+          ],
+          "interior_delta_degrees": [
+            0.03,
+            0.03,
+            0.04,
+            0.02,
+            0.21
+          ],
+          "sigma_adjustment_lower_bounds": [
+            0.007498467423004648,
+            0.007005063583959798,
+            0.008540137838061797,
+            0.004932680492969346,
+            0.04824093524807858
+          ],
+          "source_candidate_charge_atoms_compared": 37,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        },
+        "IMC": {
+          "projected_assessment_status": "REVIEW",
+          "plane_angle_review_count": 2,
+          "plane_angle_centres": [
+            "N1",
+            "N2"
+          ],
+          "interior_delta_degrees": [
+            0.09,
+            0.07
+          ],
+          "sigma_adjustment_lower_bounds": [
+            0.02067318654886846,
+            0.016013347910690905
+          ],
+          "source_candidate_charge_atoms_compared": 37,
+          "source_candidate_charge_differences": [],
+          "source_candidate_charge_unavailable": [],
+          "signed_sugar_centres": 3,
+          "source_ideal_and_generator_signs_agree": true,
+          "native_proxy_count": 3,
+          "source_ideal_and_initial_model_signs_agree_with_native": true,
+          "absolute_stereochemistry": "UNASSESSED"
+        }
+      },
+      "plane_angle_limit": "Finite plane weights/correlations and material-strain threshold remain uncalibrated; no forced 360-degree targets.",
+      "stereochemistry_limit": "Ordered signed-volume consistency with source ideal coordinates is not independent CIP/R-S assignment or experimental validation.",
+      "known_retained_5CM_review": {
+        "site": "A:7",
+        "id": "C2e-nyu0",
+        "atoms": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2"
+        ],
+        "target_degrees": 340.7,
+        "esd_degrees": 6.3,
+        "period": 1,
+        "status": "REVIEW_REQUIRES_EXPLICIT_PREPARATION",
+        "no_silent_substitution": true
+      }
+    },
+    "original_archive_preserved": true,
+    "model_optimization": "NOT_RUN",
+    "readyset_retry": "NOT_RUN",
+    "refinement": "NOT_RUN",
+    "automatic_adoption": false,
+    "next_step": "Review complete terminal chemistry, explicit hash-scoped 5CM preparation and remaining numerical/stereochemical limits before a new bounded geometry trial; do not repeat an unchanged inventory to chase absent native charge attributes."
+  },
+  "terminal_source_probe": {
+    "delivery_prefix": "10_Cedar",
+    "prior_archive": {
+      "name": "09_Cedar_nn9cyghr_cif_linked_review.zip",
+      "sha256": "db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a",
+      "verified_payloads": 207,
+      "declared_5cm_member": "baseline/inputs/runtime_sources/3_5CM.cif"
+    },
+    "preparation": {
+      "recipe": "5cm-reviewed-torsion-v1",
+      "source_sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858",
+      "candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+      "actual_returned_source_offline_replay": "EXACT_REVIEWED_OUTPUT_REPRODUCED",
+      "candidate_assessment": "PASS_FOR_IMPLEMENTED_ASSESSOR",
+      "source_and_original_archive_preserved": true,
+      "native_bundle_validation": "NOT_RUN"
+    },
+    "native_resource_inventory": {
+      "policy_id": "cif-installed-terminal-resources-v1",
+      "modification_ids": [
+        "5*END"
+      ],
+      "canonical_control": "DG",
+      "native_execution": "MODIFICATION_CAPTURED_CANONICAL_CONTROL_UNSUPPORTED",
+      "fields": "native cif_keywords row fields, with atom/bond/angle/torsion/chirality/plane categories",
+      "provenance": "installed module/source hashes and source preservation after capture",
+      "missing_charge": "UNSUPPORTED_NO_PARTIAL_OR_ZERO_SUBSTITUTION",
+      "in_memory_base_preserved": "NOT_RUN"
+    },
+    "schemas": {
+      "version": 1,
+      "resource_audit_kind": "cif_native_terminal_resource_inventory",
+      "probe_kind": "cif-terminal-source-review"
+    },
+    "software_validation": {
+      "full_suite": {
+        "passed": 1400,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 63.87,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "focused": {
+        "passed": 49,
+        "seconds": 3.64,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py tests/test_cif_terminal_probe.py tests/test_cif_doctor_repair.py tests/test_cif_linked_probe.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "scope": "Explicit fake native APIs, preservation/unsupported/timeout controls, source-bundle relocation and poisoned-import controls. Real 09 preparation replay is inspect-only; no installed Phenix resource execution here.",
+      "regression_before": "New resource-inventory tests fail with absent implementation, then pass with source/field/timeout contracts."
+    },
+    "boundaries": {
+      "terminal_recipe_implementation": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "prior_qualification_gates_unchanged": true,
+      "native_payloads_committed": false
+    },
+    "purpose": "Collect installed terminal numerical sources and explicitly prepare the reviewed 5CM candidate before a new terminal adaptation or bounded geometry trial.",
+    "returned_cedar_10": {
+      "archive": {
+        "name": "10_Cedar__7ap0ddc_cif_terminal_review.zip",
+        "sha256": "4a1e632a116238d366944a8dc5dc18620dd42217893d44404e1a4b4d73b61c04",
+        "bytes": 49765,
+        "verified_payloads": 9
+      },
+      "source": {
+        "commit": "f681b9bd5355905fbee0797302d5984cc40e5d6a",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "probe_status": "NATIVE_RESOURCES_REVIEW",
+      "five_cm_preparation": {
+        "status": "PREPARED",
+        "recipe_id": "5cm-reviewed-torsion-v1",
+        "source_sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858",
+        "candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+        "source_preserved": true,
+        "candidate_assessment": "PASS",
+        "native_validation": {
+          "reason": "No Phenix invocation in preparation",
+          "status": "NOT_RUN"
+        }
+      },
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "native_resources": {
+        "status": "UNSUPPORTED",
+        "returncode": 2,
+        "elapsed_seconds": 3.726048,
+        "error": "Missing canonical monomer: DG",
+        "captured_modifications": [
+          "5*END"
+        ],
+        "canonical_control": "NOT_RUN",
+        "source_files": [
+          {
+            "sha256": "14b94738532dc7a36f8d8c6518d9fface8b033887c98c8242d71afba17cccd99",
+            "bytes": 309942,
+            "preserved_after_capture": true
+          }
+        ],
+        "module_sha256": {
+          "mmtbx.monomer_library.server": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa",
+          "mmtbx.monomer_library.cif_types": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd"
+        }
+      },
+      "installed_5prime_source_values": {
+        "scope": "Recorded installed modification values, not a new terminal recipe or scientific approval.",
+        "hydroxyl_oxygen_energy_type": "OH1",
+        "added_hydrogen_id": "HO5'",
+        "added_hydrogen_energy_type": "HOH1",
+        "bond_target_angstrom": 0.84,
+        "bond_esd_angstrom": 0.02,
+        "neutron_bond_target_angstrom": 1.02,
+        "angle_target_degrees": 120.0,
+        "angle_esd_degrees": 3.0,
+        "oxygen_partial_charge": -0.212,
+        "hydrogen_partial_charge": 0.142,
+        "formal_charge_substitution": false
+      },
+      "original_09_archive_preserved": true,
+      "model_editing": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "terminal_recipe_implementation": "NOT_RUN",
+      "automatic_adoption": false,
+      "interpretation": "Installed modification capture and host-side explicit 5CM preparation completed; direct PDB-name lookup failed before canonical control. The control is not a terminal-chemistry pass."
+    },
+    "canonical_resolution_retry": {
+      "delivery_prefix": "11_Cedar",
+      "policy_id": "cif-installed-terminal-resources-v2",
+      "before": "Direct library lookup receives PDB DG and returns no component.",
+      "after": "Delegate canonical resolution to the installed get_comp_comp_id_and_atom_name_interpretation API with an empty atom-name list.",
+      "canonical_control": "DG",
+      "native_execution": "COMPLETED_REVIEW",
+      "native_aliases_from_primary_code": {
+        "DA": "AD",
+        "DC": "CD",
+        "DG": "GD",
+        "DT": "TD"
+      },
+      "nasolve_alias_table_added": false,
+      "schema_version": 1,
+      "additive_control_fields": [
+        "resolution.method",
+        "resolution.input_atom_names",
+        "resolution.interpreted_residue_name",
+        "resolution.resolved_component_id"
+      ],
+      "additional_module_provenance": "iotbx.pdb",
+      "unsupported_api_or_component_remains_unsupported": true,
+      "numerical_targets_changed": false,
+      "qualification_gates_changed": false,
+      "input_archive_changed": false,
+      "new_runtime_dependencies": [],
+      "primary_sources": [
+        {
+          "url": "https://github.com/cctbx/cctbx_project/blob/master/mmtbx/monomer_library/server.py",
+          "git_blob_sha": "af1ac801d43c33b235584e1a6a59d82c137cd8de",
+          "role": "Public canonical lookup delegates residue-name translation to the native interpreter."
+        },
+        {
+          "url": "https://github.com/cctbx/cctbx_project/blob/master/iotbx/pdb/__init__.py",
+          "git_blob_sha": "29d7efe363c1bb4d9aef4d9f612ffcb028728528",
+          "role": "Native PDB-to-monomer-library name translation."
+        },
+        {
+          "url": "https://github.com/cctbx/cctbx_project/blob/master/iotbx/pdb/rna_dna_atom_names_bpl.cpp",
+          "git_blob_sha": "6c0af252c99494f5c42fd89d323f4e31a0953df0",
+          "role": "Empty atom-name list is supported and leaves an explicit DNA residue name unchanged."
+        }
+      ],
+      "software_validation": {
+        "before_fix": {
+          "failed": 5,
+          "passed": 7,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py"
+        },
+        "focused": {
+          "passed": 55,
+          "seconds": 4.37,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_resources.py tests/test_cif_terminal_probe.py tests/test_cif_doctor_repair.py tests/test_cif_linked_probe.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1406,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 64.49,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "scope": "Explicit fake native APIs and existing relocation/transport controls; corrected installed execution still pending."
+      },
+      "ferry": "One subshell block with fetch, pinned detached worktree, build and run joined by &&; nonzero status stops dependent steps.",
+      "remaining": [
+        "Explicit source-traceable modified-terminal adaptation",
+        "New native 5CM/revised-bundle validation",
+        "Formal-charge readback and remaining numerical/stereochemical review",
+        "Bounded geometry trial",
+        "Full refinement and adoption"
+      ]
+    },
+    "current_status": "INSTALLED_SOURCE_COLLECTION_AND_TERMINAL_BUNDLE_COMPLETED_REVIEW",
+    "returned_cedar_11": {
+      "archive": {
+        "name": "11_Cedar_ggtpccwv_cif_terminal_review.zip",
+        "sha256": "87b62be8b669a54a8f2e67b5a18a439cb88e6b187354b95847fa29c96bb02cbc",
+        "bytes": 62078,
+        "verified_payloads": 9
+      },
+      "nasolve_source": {
+        "commit": "e6ec5d66e283a138c0ac8e9585146e5c994ac243",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256": "9aa0afa38e916d58e998637c1327ff7ad1b07f5f5e780410a297b6f4d9d1c2b7",
+      "runtime_archive_sha256": "fc83cb764ba5c98a6f751aa0d1f2dd2c4b91d1b68fc3c9dceeaf0278cfb42cfb",
+      "probe_status": "PREPARATION_AND_RESOURCES_REVIEW",
+      "resource_policy": "cif-installed-terminal-resources-v2",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "native_execution": {
+        "elapsed_seconds": 0.837208,
+        "finished_at": "2026-10-15T21:43:06.991235+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-15T21:43:06.154031+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 120
+      },
+      "native_status": "REVIEW",
+      "five_cm_preparation": {
+        "recipe_id": "5cm-reviewed-torsion-v1",
+        "source_sha256": "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858",
+        "candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+        "status": "PREPARED",
+        "source_preserved": true,
+        "candidate_assessment": "PASS",
+        "native_validation": {
+          "reason": "No Phenix invocation in preparation",
+          "status": "NOT_RUN"
+        }
+      },
+      "canonical_control": {
+        "resolution": {
+          "input_atom_names": [],
+          "interpreted_residue_name": "DG",
+          "method": "get_comp_comp_id_and_atom_name_interpretation",
+          "resolved_component_id": "Gd"
+        },
+        "base_atom_count": 33,
+        "effective_atom_count": 31,
+        "removed_atoms": [
+          "OP1",
+          "OP2",
+          "P"
+        ],
+        "added_atoms": [
+          "HO5'"
+        ],
+        "changed_retained_atoms": {
+          "O5'": {
+            "base": {
+              "atom_id": "O5'",
+              "partial_charge": -0.267,
+              "type_energy": "OC2",
+              "type_symbol": "O"
+            },
+            "effective": {
+              "atom_id": "O5'",
+              "partial_charge": -0.212,
+              "type_energy": "OH1",
+              "type_symbol": "O"
+            }
+          }
+        },
+        "base_classification": "DNA",
+        "effective_classification": "undetermined",
+        "base_group": "DNA",
+        "effective_group": "DNA",
+        "base_formal_charge_readback": "UNSUPPORTED",
+        "effective_formal_charge_readback": "UNSUPPORTED",
+        "hydroxyl_hydrogen": {
+          "atom_id": "HO5'",
+          "partial_charge": 0.142,
+          "type_energy": "HOH1",
+          "type_symbol": "H"
+        },
+        "hydroxyl_bond": [
+          {
+            "atom_id_1": "O5'",
+            "atom_id_2": "HO5'",
+            "type": "single",
+            "value_dist": 0.84,
+            "value_dist_esd": 0.02,
+            "value_dist_neutron": 1.02
+          }
+        ],
+        "hydroxyl_angle": [
+          {
+            "atom_id_1": "C5'",
+            "atom_id_2": "O5'",
+            "atom_id_3": "HO5'",
+            "value_angle": 120.0,
+            "value_angle_esd": 3.0
+          }
+        ],
+        "category_preservation": {
+          "bonds": {
+            "base": 35,
+            "effective": 33,
+            "unaffected_base_rows": 32,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "angles": {
+            "base": 61,
+            "effective": 58,
+            "unaffected_base_rows": 57,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "torsions": {
+            "base": 16,
+            "effective": 15,
+            "unaffected_base_rows": 15,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "chirality": {
+            "base": 4,
+            "effective": 3,
+            "unaffected_base_rows": 3,
+            "unaffected_rows_missing_or_changed": 0
+          },
+          "plane_atoms": {
+            "base": 18,
+            "effective": 18,
+            "unaffected_base_rows": 18,
+            "unaffected_rows_missing_or_changed": 0
+          }
+        },
+        "dangling_reference_count": 0,
+        "source_files": [
+          {
+            "name": "data_GD.cif",
+            "sha256": "c23bd77ec2a8e4515b152633429a139a727dce181d712a08f8d4553e077d0985",
+            "bytes": 7544,
+            "preserved": true
+          },
+          {
+            "name": "mon_lib_list.cif",
+            "sha256": "14b94738532dc7a36f8d8c6518d9fface8b033887c98c8242d71afba17cccd99",
+            "bytes": 309942,
+            "preserved": true
+          }
+        ],
+        "module_hashes": {
+          "mmtbx.monomer_library.server": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa",
+          "mmtbx.monomer_library.cif_types": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd",
+          "iotbx.pdb": "7a1502d4a98f8d164b0c2e86f223245a5d9d6fcc50df14e86523cd46959905a8"
+        },
+        "modification_matches_cedar_10": true
+      },
+      "base_preserved": true,
+      "verification": {
+        "every_manifest_payload": true,
+        "every_anchored_native_output": true,
+        "duplicate_receipt_content_equal": true,
+        "exact_published_worker": true,
+        "exact_bundled_build_metadata": true
+      },
+      "interpretation": {
+        "numerical_source_collection": "COMPLETE",
+        "canonical_hydroxyl_classification": "The canonical installed 5*END control also has undetermined classification despite DNA group. That label alone does not establish a modified-terminal defect.",
+        "modified_end_hydroxyl_treatment": "Still requires implementation; the earlier missing O5-attached H and OH typing remain observed.",
+        "formal_charge_readback": "UNSUPPORTED_IN_BOTH_CANONICAL_STATES_NO_PARTIAL_SUBSTITUTION",
+        "native_metadata_counts": "Retained exactly as reported, including unchanged header atom-count metadata after modification.",
+        "existing_qualification_gates": "UNCHANGED"
+      },
+      "original_09_archive_preserved": true,
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "terminal_recipe_implementation": "NOT_RUN",
+      "native_5cm_bundle_validation": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "runtime_schema_changes": false,
+      "next_step": "Cedar 11 follow-up completed by the source-traceable terminal and reviewed-5CM bundle in Cedar 12; see terminal_bundle_validation_2026_10_16. Review the four existing internal O3-H contexts and remaining charge/numerical/stereochemical limits before a separate bounded geometry trial. Do not repeat unchanged source collection."
+    }
+  },
+  "terminal_bundle_validation_2026_10_16": {
+    "delivery_prefix": "12_Cedar",
+    "status": "INSTALLED_BUNDLE_VALIDATION_COMPLETED_REVIEW",
+    "policies": {
+      "preparation": "cif-native-five-prime-hydroxyl-v1",
+      "qualification": "cif-native-terminal-bundle-checks-v1",
+      "native_resource": "cif-installed-terminal-resources-v2"
+    },
+    "modules": [
+      "src/nasolve/cif_terminal_preparation.py",
+      "src/nasolve/cif_terminal_qualification.py",
+      "src/nasolve/cif_native_validation.py",
+      "scripts/cif_terminal_bundle_probe_template.py",
+      "scripts/build_cif_terminal_bundle_probe.py"
+    ],
+    "input_archives": {
+      "linked": {
+        "name": "09_Cedar_nn9cyghr_cif_linked_review.zip",
+        "sha256": "db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a",
+        "verified_payloads": 207
+      },
+      "terminal": {
+        "name": "11_Cedar_ggtpccwv_cif_terminal_review.zip",
+        "sha256": "87b62be8b669a54a8f2e67b5a18a439cb88e6b187354b95847fa29c96bb02cbc",
+        "verified_payloads": 9
+      }
+    },
+    "candidate_scope": {
+      "model_atoms": 877,
+      "model_sites": 43,
+      "model_coordinates_changed": false,
+      "backbone_links": 38,
+      "selected_changes": {
+        "E:1": "IGU native-source 5prime hydroxyl fragment",
+        "A:7": "Existing reviewed 5CM torsion preparation"
+      },
+      "unselected_IGU_A6_plan_preserved": true,
+      "shared_IGU_base_bytes_preserved": true,
+      "E1_dictionary_atoms": 32,
+      "A6_dictionary_atoms": 34,
+      "new_hydrogen_id": "HO5'",
+      "new_hydrogen_formal_charge": "UNASSESSED_WRITTEN_AS_UNKNOWN",
+      "partial_charge_substituted_for_formal": false,
+      "native_targets": {
+        "bond_angstrom": 0.84,
+        "bond_esd_angstrom": 0.02,
+        "neutron_bond_angstrom": 1.02,
+        "angle_degrees": 120.0,
+        "angle_esd_degrees": 3.0
+      },
+      "five_cm_candidate_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+      "five_cm_projected_deletions": [
+        "OP3"
+      ]
+    },
+    "schema_1_additions": {
+      "effective_bond": [
+        "value_dist_neutron"
+      ],
+      "effective_torsion": [
+        "alt_value_angle"
+      ],
+      "terminal_preparation": [
+        "terminal_resource",
+        "terminal_hydroxyl"
+      ]
+    },
+    "checks": [
+      "Every frozen capsule payload and explicit native input integrity",
+      "Preserved dispatcher/module/source hashes through declared installation anchor before and after",
+      "Same coordinate model for baseline and candidate",
+      "Existing site/link/custom-restraint/formal-charge gates",
+      "Every projected atom/bond/angle/torsion/chirality/plane row",
+      "Reviewed 5CM corrected quartet, primary target, weight, period and alternate in native proxy",
+      "All unselected native definitions and every recorded unaffected proxy",
+      "All declared outgoing O3 endpoints by graph hydrogen adjacency"
+    ],
+    "native_execution": "COMPLETED_BASELINE_AND_CANDIDATE_EXIT_0",
+    "native_installation_expected": "Phenix 2.2.1-6174",
+    "actual_returned_input_offline_replay": {
+      "status": "PREPARED_REVIEW_NATIVE_NOT_RUN",
+      "selected_end_and_internal_isolation_verified": true,
+      "reviewed_5cm_hash_reproduced": true,
+      "new_hydrogen_coordinates": "NOT_CREATED"
+    },
+    "pre_existing_outgoing_hydrogen_audit": {
+      "source": "Read-only replay of returned Cedar 09 native definitions, not a new Cedar 12 native execution.",
+      "declared_outgoing_endpoints": 38,
+      "pass_count": 34,
+      "review_findings": [
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:5",
+          "status": "REVIEW",
+          "outgoing_site": "A:6",
+          "observed_hydrogens": [
+            "HO31"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:7",
+          "status": "REVIEW",
+          "outgoing_site": "A:8",
+          "observed_hydrogens": [
+            "HO3'"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:12",
+          "status": "REVIEW",
+          "outgoing_site": "A:13",
+          "observed_hydrogens": [
+            "H2"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:B:4",
+          "status": "REVIEW",
+          "outgoing_site": "B:5",
+          "observed_hydrogens": [
+            "H3"
+          ],
+          "oxygen_energy_type": "OH1",
+          "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+        }
+      ],
+      "automatic_repairs": false
+    },
+    "software_validation": {
+      "full_suite": {
+        "passed": 1437,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 92.78,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "focused": {
+        "passed": 97,
+        "seconds": 6.84,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_terminal_preparation.py tests/test_cif_terminal_qualification.py tests/test_cif_terminal_bundle_probe.py tests/test_cif_native_validation.py tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "selected_regressions_before_implementation": {
+        "failed": 9,
+        "deselected": 20,
+        "scope": "New terminal API absent and detailed neutron-target readback absent."
+      },
+      "native_tests": "EXPLICIT_FAKE_APIS_NOT_INSTALLED_PHENIX",
+      "relocation_and_poisoned_import": "PASS"
+    },
+    "review_behavior": "REVIEW/exit 2 remains for unresolved or unsupported checks, including native formal charges, added-H unknown formal charge and pre-existing curated outgoing O3-H contexts. Successful interpreter execution is separate.",
+    "boundaries": {
+      "production_postmr_changes": false,
+      "new_runtime_dependencies": [],
+      "qualification_gates_relaxed": false,
+      "numerical_target_guessing": false,
+      "model_optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "native_payloads_committed": false
+    },
+    "ferry": "Default reviewed delivery: one pasteable subshell joining fetch, full-SHA detached worktree, explicit-interpreter build and run with &&; authoritative contract: docs/collaboration.md#git-delivery-and-terminal-handoffs. Required install commands stay separate one-liners; preserve the everyday checkout and all prior deliveries.",
+    "returned_cedar_12": {
+      "recorded_date": "2026-10-16",
+      "delivery_prefix": "12_Cedar",
+      "archive": {
+        "name": "12_Cedar_q46plqwk_cif_terminal_bundle_review.zip",
+        "sha256": "19ed5a59b1196f8d329dc18df98dee94d05a6c090ce2fd0064dc3be79a1ec597",
+        "bytes": 2194668,
+        "verified_payloads": 116,
+        "payload_bytes": 34867067,
+        "safe_unique_member_names": true
+      },
+      "reported_status": "REVIEW",
+      "nasolve_source": {
+        "commit": "e5b1be6198eae73fedbc497d003502bfb31c2247",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256_reported_and_matches_built_delivery": "2144968031c659f69c4d71eb81f1aeb8ef7d79962c45e03daa4bfe2460352845",
+      "runtime_archive_sha256": "b4adbe3ecb0c24cb222bf073128ad98a7607d55499becee279b0250a3ca002b3",
+      "native_installation": "Phenix 2.2.1-6174",
+      "native": {
+        "baseline": {
+          "receipt_status": "REVIEW",
+          "execution": {
+            "elapsed_seconds": 5.651856,
+            "finished_at": "2026-10-16T10:47:43.755409+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T10:47:38.103603+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "dispatcher_version": "2.2.1",
+          "model_atoms": 877,
+          "model_sites": 43,
+          "proxy_counts": {
+            "angle": 1590,
+            "bond_asu": 0,
+            "bond_simple": 1026,
+            "chirality": 155,
+            "const_dihedral": 387,
+            "dihedral": 572,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "frozen_inputs_preserved": true,
+          "source_preserved": true
+        },
+        "candidate": {
+          "receipt_status": "REVIEW",
+          "execution": {
+            "elapsed_seconds": 1.256861,
+            "finished_at": "2026-10-16T10:47:45.189276+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T10:47:43.932434+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "dispatcher_version": "2.2.1",
+          "model_atoms": 877,
+          "model_sites": 43,
+          "proxy_counts": {
+            "angle": 1590,
+            "bond_asu": 0,
+            "bond_simple": 1026,
+            "chirality": 155,
+            "const_dihedral": 387,
+            "dihedral": 571,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "frozen_inputs_preserved": true,
+          "source_preserved": true
+        }
+      },
+      "check_counts": {
+        "PASS": 95,
+        "UNSUPPORTED": 6,
+        "REVIEW": 4
+      },
+      "nonpass_checks": [
+        {
+          "check": "effective-site-formal-charges:A:6",
+          "status": "UNSUPPORTED"
+        },
+        {
+          "check": "effective-site-formal-charges:E:1",
+          "status": "UNSUPPORTED"
+        },
+        {
+          "check": "effective-site-formal-charges:A:20",
+          "status": "UNSUPPORTED"
+        },
+        {
+          "check": "effective-site-formal-charges:D:3",
+          "status": "UNSUPPORTED"
+        },
+        {
+          "check": "effective-site-formal-charges:C:10",
+          "status": "UNSUPPORTED"
+        },
+        {
+          "check": "effective-site-formal-charges:A:7",
+          "status": "UNSUPPORTED"
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:5",
+          "status": "REVIEW"
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:7",
+          "status": "REVIEW"
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:A:12",
+          "status": "REVIEW"
+        },
+        {
+          "check": "declared-outgoing-oxygen-hydrogens:B:4",
+          "status": "REVIEW"
+        }
+      ],
+      "native_result_preservation": {
+        "model_atoms": 877,
+        "model_sites": 43,
+        "model_coordinates_unchanged": true,
+        "backbone_links": 38,
+        "custom_proxy_requests": {
+          "bond": 21,
+          "angle": 34,
+          "planarity": 8,
+          "parallelity": 23
+        },
+        "all_projected_atom_bond_angle_torsion_chirality_plane_rows": "PASS",
+        "all_unselected_effective_definitions": "PASS",
+        "every_recorded_unaffected_native_proxy": "PASS",
+        "selected_changes": [
+          "A:7",
+          "E:1"
+        ],
+        "E1_dictionary_atoms": 32,
+        "E1_hydroxyl_hydrogen": "HO5'",
+        "E1_polymer_group": "DNA",
+        "E1_native_classification": "undetermined; also observed in canonical Cedar 11 control",
+        "A6_internal_plan_and_shared_base_preserved": true,
+        "new_H_formal_charge": "UNASSESSED_WRITTEN_AS_UNKNOWN",
+        "partial_charge_substituted_for_formal": false,
+        "dihedral_proxy_count_before": 572,
+        "dihedral_proxy_count_after": 571,
+        "dihedral_count_change": "Reviewed 5CM primary/alternate normalization; all unselected proxies preserved."
+      },
+      "reviewed_5cm_torsion_proxy": {
+        "angular_representation": "modulo 360 degrees only; targets and uncertainties unchanged",
+        "atoms": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2'"
+        ],
+        "check": "reviewed-torsion-native-proxy:A:7:C2e-nyu0",
+        "expected": {
+          "alternates": [
+            "2.8"
+          ],
+          "period": 1,
+          "target": "340.7",
+          "weight": "0.0251952632905"
+        },
+        "observed": [
+          {
+            "alternates": [
+              "2.8"
+            ],
+            "period": 1,
+            "target": "340.7",
+            "weight": "0.0251952632905"
+          }
+        ],
+        "status": "PASS"
+      },
+      "installed_terminal_authorities": [
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/server.py",
+          "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/cif_types.py",
+          "sha256": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/iotbx/pdb/__init__.py",
+          "sha256": "7a1502d4a98f8d164b0c2e86f223245a5d9d6fcc50df14e86523cd46959905a8"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/chem_data/geostd/g/data_GD.cif",
+          "sha256": "c23bd77ec2a8e4515b152633429a139a727dce181d712a08f8d4553e077d0985"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/chem_data/mon_lib/list/mon_lib_list.cif",
+          "sha256": "14b94738532dc7a36f8d8c6518d9fface8b033887c98c8242d71afba17cccd99"
+        }
+      ],
+      "original_archives_preserved": {
+        "09_Cedar": true,
+        "11_Cedar": true
+      },
+      "offline_qualification_replay": {
+        "entry_point": "nasolve.cif_terminal_qualification.qualify_terminal_bundle",
+        "input_anchor": "returned_capsule",
+        "input_members": [
+          "native_baseline/cif-native-o2c3eizv/native_validation.json",
+          "native_candidate/cif-native-rv4coqxe/native_validation.json",
+          "preparation/IGU/preparation_receipt.json",
+          "prior_evidence.json",
+          "preparation/projected_5CM_A_7.cif",
+          "preparation/IGU/projected_E_1.cif"
+        ],
+        "expected_member": "bundle_qualification.json",
+        "result": "MATCH_AFTER_SORTING_ONLY_UNAVAILABLE_CHARGE_ITEMS_BY_ATOM_ID",
+        "scope": "All 105 checks, statuses and evidence agree. Only unavailable-charge item order is normalized by atom_id because serialized preparation dictionaries sort keys; all other lists and fields compare exactly.",
+        "qualification_sha256": "9d9ee6612fbb36af3aedbd6a5a20ab9fb8c3d619419a45aed0ec8af1bd111ec8",
+        "probe_receipt_sha256": "7114f43283920fe5277d7b8c99904d2b109cc1890ca8606de1e7cc81395e8f96"
+      },
+      "interaction_validation": {
+        "one_conditional_git_block_completed": true,
+        "independent_of_current_working_directory": "User executed successfully from an unrelated checkout.",
+        "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs"
+      },
+      "follow_up": "Review four source-traceable internal O3-H contexts before preparing explicit site changes. Native formal-charge readback, added-H formal charge, achieved geometry, refinement and human review remain separate gates. No new delivery is queued by this documentation update.",
+      "runtime_changes_in_this_follow_up": false,
+      "schema_changes_in_this_follow_up": false,
+      "native_payloads_committed": false,
+      "model_optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false
+    }
+  },
+  "outgoing_bundle_validation_2026_10_16": {
+    "delivery_prefix": "13_Cedar",
+    "status": "INSTALLED_NATIVE_COMPLETED_REVIEW_CHARGE_READBACK_UNSUPPORTED",
+    "policies": {
+      "preparation": "cif-native-linked-oxygen-v1",
+      "qualification": "cif-native-outgoing-bundle-checks-v1",
+      "native_inventory_unchanged": "cif-native-bundle-inventory-v1"
+    },
+    "modules": [
+      "src/nasolve/cif_outgoing_preparation.py",
+      "src/nasolve/cif_outgoing_qualification.py",
+      "scripts/cif_outgoing_bundle_probe_template.py",
+      "scripts/build_cif_outgoing_bundle_probe.py"
+    ],
+    "prior_archive": {
+      "name": "12_Cedar_q46plqwk_cif_terminal_bundle_review.zip",
+      "sha256": "19ed5a59b1196f8d329dc18df98dee94d05a6c090ce2fd0064dc3be79a1ec597",
+      "bytes": 2194668,
+      "verified_payloads": 116,
+      "materialized_payloads": 35
+    },
+    "captured_native_receipt": {
+      "input_anchor": "returned_capsule",
+      "path": "native_candidate/cif-native-rv4coqxe/native_receipt.json",
+      "sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e"
+    },
+    "outgoing_type_authority": {
+      "captured_site": "A:4",
+      "PDB_component": "DC",
+      "native_component": "Cd",
+      "group": "DNA",
+      "atom_id": "O3'",
+      "element": "O",
+      "type_energy": "OC2",
+      "neighbors": [
+        "C3'"
+      ],
+      "partial_charge_copied": false,
+      "numerical_targets_copied": false
+    },
+    "candidate_scope": {
+      "model_atoms": 877,
+      "model_sites": 43,
+      "backbone_links": 38,
+      "model_coordinates_changed": false,
+      "original_dictionaries_changed": false,
+      "existing_parameters_changed": false,
+      "existing_modifications_preserved": true,
+      "selected_site_changes": [
+        {
+          "component": "1AP",
+          "site": "A:5",
+          "outgoing_site": "A:6",
+          "removed_hydrogens": [
+            "HO31"
+          ],
+          "projected_dictionary_atoms": 34,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALOed049e99c0",
+          "curated_source_sha256": "e057badf47ebbd86d2f95bdd4fb6d3bd814405e0d9ece0ecc9e5b409f5c61eef"
+        },
+        {
+          "component": "5CM",
+          "site": "A:7",
+          "outgoing_site": "A:8",
+          "removed_hydrogens": [
+            "HO3'"
+          ],
+          "projected_dictionary_atoms": 33,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALO0e71368165",
+          "curated_source_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562"
+        },
+        {
+          "component": "DZ",
+          "site": "A:12",
+          "outgoing_site": "A:13",
+          "removed_hydrogens": [
+            "H2"
+          ],
+          "projected_dictionary_atoms": 33,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALO869d4b2edc",
+          "curated_source_sha256": "7a97df5a27c66e99c28e11a16c3542e116fd7d9e2abac4f4e5e91097d048c690"
+        },
+        {
+          "component": "DP",
+          "site": "B:4",
+          "outgoing_site": "B:5",
+          "removed_hydrogens": [
+            "H3"
+          ],
+          "projected_dictionary_atoms": 33,
+          "prior_modification_ids": [
+            "NASnoOP3"
+          ],
+          "new_modification_id": "NALOb5a425053a",
+          "curated_source_sha256": "ae10aa3e7066082a9e423cae877dca04928ff4089cbd464bbc3590d6148f0f5a"
+        }
+      ],
+      "true_free_three_prime_ends": "UNCHANGED",
+      "retained_op2_hydrogens": "UNCHANGED",
+      "retained_formal_and_partial_charges": "UNCHANGED",
+      "new_numerical_targets": []
+    },
+    "actual_returned_input_offline_preparation": {
+      "status": "PREPARED_REVIEW_NATIVE_NOT_RUN",
+      "source_native_projection_checks": {
+        "PASS": 24
+      },
+      "original_archive_preserved": true,
+      "source_files_preserved": true,
+      "existing_source_assessments": {
+        "1AP": [
+          {
+            "before": "REVIEW",
+            "after": "REVIEW"
+          }
+        ],
+        "5CM": [
+          {
+            "before": "PASS",
+            "after": "PASS"
+          }
+        ],
+        "DZ": [
+          {
+            "before": "PASS",
+            "after": "PASS"
+          }
+        ],
+        "DP": [
+          {
+            "before": "REVIEW",
+            "after": "REVIEW"
+          }
+        ]
+      },
+      "installed_native_execution": "NOT_RUN",
+      "review_capsule_payloads_verified": 58
+    },
+    "qualification_checks": [
+      "Fresh unchanged baseline reproduces captured atoms, all mapping/definition rows, custom requests and every recorded proxy",
+      "Exact prior plus new modifier IDs at every native site",
+      "Existing detailed site atom/type/hydrogen/formal-charge gates",
+      "All projected atom/bond/angle/torsion/chirality/plane rows at four selected sites",
+      "All 38 declared outgoing O3 hydrogen checks",
+      "Exact 38 backbone links and custom 21 bond / 34 angle / 8 plane / 23 parallelity requests",
+      "Reviewed 5CM corrected quartet, target, weight, period and alternate",
+      "All unselected definitions and every recorded unaffected proxy, including prior IGU contexts",
+      "Exact selected dispatcher and captured native/terminal API/source hashes before and after",
+      "Every materialized frozen artifact and original ZIP preserved"
+    ],
+    "schema_1": {
+      "new_receipt_kind": "cif_outgoing_site_preparation",
+      "new_qualification_kind": "cif_outgoing_native_bundle_qualification",
+      "existing_receipt_formats_changed": false,
+      "new_native_readback_fields": []
+    },
+    "software_validation": {
+      "selected_regressions_before_implementation": {
+        "failed": 6,
+        "deselected": 11,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_preparation.py -k graph_selected",
+        "scope": "Graph-selected H/D and true-end preservation API absent."
+      },
+      "focused": {
+        "passed": 138,
+        "seconds": 16.44,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_preparation.py tests/test_cif_outgoing_qualification.py tests/test_cif_outgoing_bundle_probe.py tests/test_cif_terminal_preparation.py tests/test_cif_terminal_qualification.py tests/test_cif_terminal_bundle_probe.py tests/test_cif_native_validation.py tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "full_suite": {
+        "passed": 1478,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 124.12,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "native_tests": "EXPLICIT_FAKE_APIS_NOT_INSTALLED_PHENIX",
+      "relocation": {
+        "status": "PASS",
+        "original_build_and_narestraints_trees_deleted": true,
+        "poisoned_nasolve_import": "NOT_USED",
+        "current_directory_independence": true,
+        "actual_cedar_12_archive_preserved": true,
+        "verified_return_payloads": 58,
+        "candidate_sites": [
+          "A:12",
+          "A:5",
+          "A:7",
+          "B:4"
+        ],
+        "native_execution": "NOT_RUN",
+        "mode": "--inspect-only"
+      }
+    },
+    "native_installation_expected": "Phenix 2.2.1-6174",
+    "native_execution": "CEDAR_14_BASELINE_AND_CANDIDATE_COMPLETED_EXIT_0",
+    "review_behavior": "All four outgoing-H findings clear and all 38 outgoing endpoint checks pass. Aggregate REVIEW retains nine UNSUPPORTED native formal-charge readbacks, with no contradictory values or partial-charge substitution. Existing 1AP/DP Doctor source assessments remain REVIEW. Native mechanics does not approve source chemistry, experimental protonation or achieved geometry.",
+    "boundaries": {
+      "production_postmr_changes": false,
+      "new_runtime_dependencies": [],
+      "source_generation_gate_changes": false,
+      "qualification_gates_relaxed": false,
+      "numerical_target_guessing": false,
+      "partial_charge_substituted_for_formal": false,
+      "model_editing": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "native_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "builder": "scripts/build_cif_outgoing_bundle_probe.py",
+      "runner": "13_Cedar_probe_cif_outgoing_bundle.py",
+      "worktree": "13_Cedar_probe_build",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "sequence": "One subshell joining fetch, exact full-SHA detached worktree, explicit-interpreter build and run with &&."
+    },
+    "current_delivery_prefix": "14_Cedar",
+    "returned_cedar_13": {
+      "archive": {
+        "name": "13_Cedar_4o9_vhuk_cif_outgoing_bundle_review.zip",
+        "bytes": 890075,
+        "sha256": "4daa42beb45c0d4220068ed25ac6323623b634143135cae6620d175228439bef",
+        "verified_payloads": 58
+      },
+      "delivery_prefix": "13_Cedar",
+      "reported_status": "REVIEW",
+      "error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'",
+      "original_archive_preserved": true,
+      "nasolve_source": {
+        "commit": "5295992209fc1435b260bc926c89d54208fd7a83",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "prepared_sites": [
+        {
+          "site": "A:5",
+          "component": "1AP",
+          "deleted_atoms": [
+            "HO31"
+          ],
+          "modification_id": "NALOed049e99c0"
+        },
+        {
+          "site": "A:7",
+          "component": "5CM",
+          "deleted_atoms": [
+            "HO3'"
+          ],
+          "modification_id": "NALO0e71368165"
+        },
+        {
+          "site": "B:4",
+          "component": "DP",
+          "deleted_atoms": [
+            "H3"
+          ],
+          "modification_id": "NALOb5a425053a"
+        },
+        {
+          "site": "A:12",
+          "component": "DZ",
+          "deleted_atoms": [
+            "H2"
+          ],
+          "modification_id": "NALO869d4b2edc"
+        }
+      ],
+      "native_execution": "NOT_REACHED_BEFORE_INSTALLATION_SELECTION",
+      "source_projection_checks_passed": 24,
+      "frozen_materialized_payloads_verified_unchanged": 35,
+      "diagnosed_failure": "CLI --phenix-root omitted with no default, so installation_from_candidate(None) raises the returned TypeError before native execution.",
+      "runner_sha256_reported_and_matches_delivery": "68a2b9ae789267a475850d4ea0eaaae3f27bf254ccd585d6f7898b6335b9a04e"
+    },
+    "phenix_path_retry": {
+      "delivery_prefix": "14_Cedar",
+      "status": "RETURNED_NATIVE_COMPLETED_REVIEW",
+      "cause": "Omitted --phenix-root had no default; installation_from_candidate(None) raises TypeError after preparation.",
+      "default_installation": {
+        "anchor": "user_home",
+        "path": "Applications/phenix-2.2.1-6174"
+      },
+      "explicit_override": "--phenix-root",
+      "input_archive": "12_Cedar_q46plqwk_cif_terminal_bundle_review.zip",
+      "candidate_or_numerical_changes": false,
+      "qualification_gates_changed": false,
+      "schema_changes": false,
+      "production_postmr_changes": false,
+      "installation_version_dispatcher_and_source_hash_checks": "UNCHANGED",
+      "software_validation": {
+        "before_fix": {
+          "failed": 1,
+          "passed": 1,
+          "deselected": 12,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py -k native_cli"
+        },
+        "focused": {
+          "passed": 27,
+          "seconds": 18.67,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_outgoing_bundle_probe.py tests/test_phenix_runtime.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "passed": 1480,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 118.05,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "loader_boundary": "REAL_INSTALLATION_LOADER_AND_EXECUTABLE_VERSION_DISCOVERY_WITH_EXPLICIT_EXTERNAL_SHELL_FIXTURES",
+        "installed_phenix_execution": "NOT_RUN",
+        "relocation": {
+          "status": "PASS",
+          "delivery_prefix": "14_Cedar",
+          "original_build_and_narestraints_trees_deleted": true,
+          "poisoned_imports": "NOT_USED",
+          "actual_cedar12_archive_preserved": true,
+          "review_payloads_verified": 58,
+          "native_execution": "NOT_RUN",
+          "mode": "--inspect-only"
+        }
+      },
+      "ferry": {
+        "worktree": "14_Cedar_probe_build",
+        "builder": "scripts/build_cif_outgoing_bundle_probe.py",
+        "delivery_prefix_argument": "14_Cedar",
+        "runner": "14_Cedar_probe_cif_outgoing_bundle.py",
+        "preserve_cedar_13": true
+      }
+    },
+    "returned_cedar_14": {
+      "archive": {
+        "name": "14_Cedar_7qm2tnry_cif_outgoing_bundle_review.zip",
+        "sha256": "d94ac53972a8843b8b2cc3d87b32fdbbc4617dc47179d184850833fb91bf8bb3",
+        "bytes": 2832508,
+        "verified_payloads": 141,
+        "payload_bytes": 45543023,
+        "safe_unique_member_names": true
+      },
+      "nasolve_source": {
+        "commit": "56d4dae912e36dd7cfe8d905a68e1d09412546a2",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runtime_archive_sha256": "2c5eb3927807b1d6e511a3509432aa18aac6ba08425555ab44bea8e6c313681f",
+      "native": {
+        "baseline": {
+          "receipt": "native_baseline/cif-native-v18reljq/native_receipt.json",
+          "receipt_sha256": "ea55753b0fb929a3f52bf934f6a8c6d6923b003026c04c7bbd51fd114c52fcb3",
+          "native_report_sha256": "aa1549851f16722e1d8abd22b03e9eb92728b6d5e2c65f95dfcedd3d65d0c950",
+          "execution": {
+            "elapsed_seconds": 5.90395,
+            "finished_at": "2026-10-16T13:17:35.957715+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T13:17:30.053802+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "phenix_version": "2.2.1",
+          "model_atoms": 877,
+          "model_sites": 43,
+          "input_counts": {
+            "model": 1,
+            "dictionary": 14,
+            "phil": 7
+          },
+          "proxy_counts": {
+            "angle": 1590,
+            "bond_asu": 0,
+            "bond_simple": 1026,
+            "chirality": 155,
+            "const_dihedral": 387,
+            "dihedral": 571,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "frozen_inputs_preserved": true,
+          "source_preserved": true
+        },
+        "candidate": {
+          "receipt": "native_candidate/cif-native-47i0u3af/native_receipt.json",
+          "receipt_sha256": "150e7daf79999c35da516623219cf819f390bdb4a7469542a63317169143ddfc",
+          "native_report_sha256": "d1ce9d58b953477f7d35e455e8fc5ac19fa11430a0e46497dd4a2b91d261c79c",
+          "execution": {
+            "elapsed_seconds": 1.358828,
+            "finished_at": "2026-10-16T13:17:37.491166+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T13:17:36.132359+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "phenix_version": "2.2.1",
+          "model_atoms": 877,
+          "model_sites": 43,
+          "input_counts": {
+            "model": 1,
+            "dictionary": 18,
+            "phil": 11
+          },
+          "proxy_counts": {
+            "angle": 1590,
+            "bond_asu": 0,
+            "bond_simple": 1026,
+            "chirality": 155,
+            "const_dihedral": 387,
+            "dihedral": 571,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "frozen_inputs_preserved": true,
+          "source_preserved": true
+        }
+      },
+      "reported_status": "REVIEW",
+      "check_counts": {
+        "PASS": 138,
+        "UNSUPPORTED": 9
+      },
+      "nonpass_checks": [
+        {
+          "check": "effective-site-formal-charges:A:6",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:E:1",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:20",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:D:3",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:C:10",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:5",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:7",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:B:4",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        },
+        {
+          "check": "effective-site-formal-charges:A:12",
+          "status": "UNSUPPORTED",
+          "contradictions": [],
+          "partial_charge_substituted": false
+        }
+      ],
+      "qualification_replay": "MATCH_AFTER_SORTING_ONLY_UNAVAILABLE_CHARGE_ITEMS_BY_ATOM_ID",
+      "qualification_sha256": "bf921bbf84392c6ac8588adf91aa25f1dc30858d0baecb4f0b272913d01c449d",
+      "probe_receipt_sha256": "972d052faa8551cc9f86a8389a776a521d9150c8d6af5a943833f00e976f7443",
+      "installed_authorities": [
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/chem_data/geostd/g/data_GD.cif",
+          "sha256": "c23bd77ec2a8e4515b152633429a139a727dce181d712a08f8d4553e077d0985"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/chem_data/mon_lib/list/mon_lib_list.cif",
+          "sha256": "14b94738532dc7a36f8d8c6518d9fface8b033887c98c8242d71afba17cccd99"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/iotbx/pdb/__init__.py",
+          "sha256": "7a1502d4a98f8d164b0c2e86f223245a5d9d6fcc50df14e86523cd46959905a8"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/iotbx/phil.py",
+          "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/command_line/pdb_interpretation.py",
+          "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/cif_types.py",
+          "sha256": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/pdb_interpretation.py",
+          "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/server.py",
+          "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+        }
+      ],
+      "original_archive_preserved": true,
+      "frozen_inputs_preserved": true,
+      "frozen_members_verified": 35,
+      "model_sha256": "8c57c2d8e618936cebf2f678e716186c0b1e5cdc30700061773290021dd324a8",
+      "model_bytes": 71693,
+      "selected_definition_changes": [
+        {
+          "site": "A:5",
+          "component": "1AP",
+          "outgoing_site": "A:6",
+          "removed_hydrogens": [
+            "HO31"
+          ],
+          "before_dictionary_atoms": 35,
+          "after_dictionary_atoms": 34,
+          "modification_ids": {
+            "ids": [
+              "NALOed049e99c0",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "A:5",
+              "before": "REVIEW",
+              "after": "REVIEW"
+            }
+          ]
+        },
+        {
+          "site": "A:7",
+          "component": "5CM",
+          "outgoing_site": "A:8",
+          "removed_hydrogens": [
+            "HO3'"
+          ],
+          "before_dictionary_atoms": 34,
+          "after_dictionary_atoms": 33,
+          "modification_ids": {
+            "ids": [
+              "NALO0e71368165",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "A:7",
+              "before": "PASS",
+              "after": "PASS"
+            }
+          ]
+        },
+        {
+          "site": "B:4",
+          "component": "DP",
+          "outgoing_site": "B:5",
+          "removed_hydrogens": [
+            "H3"
+          ],
+          "before_dictionary_atoms": 34,
+          "after_dictionary_atoms": 33,
+          "modification_ids": {
+            "ids": [
+              "NALOb5a425053a",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "B:4",
+              "before": "REVIEW",
+              "after": "REVIEW"
+            }
+          ]
+        },
+        {
+          "site": "A:12",
+          "component": "DZ",
+          "outgoing_site": "A:13",
+          "removed_hydrogens": [
+            "H2"
+          ],
+          "before_dictionary_atoms": 34,
+          "after_dictionary_atoms": 33,
+          "modification_ids": {
+            "ids": [
+              "NALO869d4b2edc",
+              "NASnoOP3"
+            ],
+            "status": "RECORDED"
+          },
+          "outgoing_correction": {
+            "after_type": "OC2",
+            "before_type": "OH1",
+            "deleted_hydrogen_elements": [
+              "H"
+            ],
+            "native_receipt_sha256": "f4d64eb0bd1e5b5e82c263d5282db001813afb49861ae5fcddde5511f3093d3e",
+            "new_numerical_targets": [],
+            "oxygen": "O3'",
+            "retained_formal_and_partial_charges": "UNCHANGED"
+          },
+          "retained_op2_hydrogens": [],
+          "projected_assessments": [
+            {
+              "site": "A:12",
+              "before": "PASS",
+              "after": "PASS"
+            }
+          ]
+        }
+      ],
+      "outgoing_hydrogen_checks_pass": 38,
+      "baseline_projection_checks_pass": 24,
+      "reviewed_torsion": {
+        "angular_representation": "modulo 360 degrees only; targets and uncertainties unchanged",
+        "atoms": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2'"
+        ],
+        "check": "reviewed-torsion-native-proxy:A:7:C2e-nyu0",
+        "expected": {
+          "alternates": [
+            "2.8"
+          ],
+          "period": 1,
+          "target": "340.7",
+          "weight": "0.0251952632905"
+        },
+        "observed": [
+          {
+            "alternates": [
+              "2.8"
+            ],
+            "period": 1,
+            "target": "340.7",
+            "weight": "0.0251952632905"
+          }
+        ],
+        "status": "PASS"
+      },
+      "scientific_limits": {
+        "achieved_model_geometry": "NOT_RUN",
+        "experimental_protonation": "UNASSESSED",
+        "generated_stereochemical_metadata": "REVIEW_REQUIRED",
+        "numerical_geometry": "REVIEW_REQUIRED",
+        "scientific_approval": "NOT_RUN"
+      },
+      "delivery_prefix": "14_Cedar",
+      "runner_sha256_reported_and_matches_delivery": "487d8aa2e1f698c5e9e9315e7e9ddf19b06db390e6c95ab6b747221e53683511",
+      "selected_phenix_installation": "Phenix 2.2.1-6174",
+      "dispatcher_version_recorded": "2.2.1",
+      "native_receipt_paths_anchor": "returned_capsule",
+      "qualification_file": {
+        "anchor": "returned_capsule",
+        "path": "bundle_qualification.json"
+      },
+      "full_recorded_proxy_rows_compared": true,
+      "all_projected_native_definition_checks_passed": 24,
+      "unselected_site_definitions_preserved": 39,
+      "exact_native_site_modification_ids": "PASS",
+      "captured_baseline_replay": "PASS",
+      "unaffected_native_proxies": "PASS",
+      "backbone_links": 38,
+      "custom_restraint_coverage": {
+        "bond": 21,
+        "angle": 34,
+        "plane": 8,
+        "parallelity": 23
+      },
+      "model_coordinates_changed": false,
+      "readyset_retry": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "native_payloads_committed": false,
+      "verification_method": "Verify manifest and every anchored native input/output SHA-256/size; compare each of 35 frozen members against the original Cedar 12 ZIP; replay qualify_outgoing_bundle using captured baseline, returned baseline/candidate, existing plus outgoing preparations, explicit links, four projected dictionaries and reviewed 5CM torsion. Normalize only unavailable-charge item order by atom_id before exact report comparison.",
+      "installed_dispatcher_and_api_sources_match_captured": true,
+      "evidence_update_validation": {
+        "scope": "DOCUMENTATION_AND_EVIDENCE_ONLY_RUNTIME_UNCHANGED",
+        "json_files_parsed": 16,
+        "local_links_verified": 115,
+        "figure": "Deterministic SVG regeneration, XML parsing and rendered visual review PASS",
+        "native_replay": "All 147 outcomes and evidence match after sorting only unavailable-charge items by atom_id",
+        "runtime_test_receipt": "Existing Cedar 14 suite: 1480 passed, 2 skipped, 276 subtests; no rerun required for this documentation-only update."
+      }
+    },
+    "generality_scope": {
+      "status": "REUSABLE_WITHIN_DECLARED_SUPPORTED_LINKAGE_MOTIF",
+      "selection": "Explicit complete same-code site contexts and declared native backbone links; H/D element plus O3 bond graph, independent of component code and H name.",
+      "supported_motif": "Curated DNA with standard phosphodiester atom convention, OH1 O3 bonded singly to C3 and exactly one terminal H/D; captured canonical outgoing OC2 type authority and complete source/native row agreement.",
+      "component_or_hydrogen_name_allowlist": false,
+      "regression_file": "tests/test_cif_outgoing_preparation.py",
+      "synthetic_component": "ZZZ",
+      "tested_hydrogen_names_and_elements": [
+        [
+          "HO31",
+          "H"
+        ],
+        [
+          "HO3'",
+          "H"
+        ],
+        [
+          "H2",
+          "H"
+        ],
+        [
+          "H3",
+          "H"
+        ],
+        [
+          "looksC",
+          "H"
+        ],
+        [
+          "oddD",
+          "D"
+        ]
+      ],
+      "preservation_regressions": [
+        "Same-code true free 3prime end",
+        "OP2 hydrogen",
+        "Declared terminal phosphate",
+        "Existing modifiers",
+        "Remaining targets and formal/partial charges",
+        "Source and coordinate model"
+      ],
+      "refusal_regressions": [
+        "Changed native report",
+        "Failed native execution",
+        "Changed model",
+        "Wrong canonical authority type or identity",
+        "Changed numerical target",
+        "Missing context",
+        "Wrong link",
+        "Coordinate hydrogen deletion",
+        "Reused output",
+        "Source changed during preparation"
+      ],
+      "qualification_regression_file": "tests/test_cif_outgoing_qualification.py",
+      "qualification_guards": [
+        "Prior/new modifier loss or wrong/unselected site",
+        "Captured baseline/proxy corruption or missing detail",
+        "Unavailable formal-charge readback remains unsupported",
+        "Changed neutron target"
+      ],
+      "software_validation": "Existing Cedar 13 focused/full and Cedar 14 launcher/full receipts in this record; no runtime changes in this evidence update.",
+      "probe_scope": "Exact hash-verified Cedar 12 experiment; selected sites are derived from captured outgoing-H findings. This is not an arbitrary-input production runner.",
+      "historical_5cm_correction": "Separate source-hash-bound reviewed correction; the outgoing rule does not generalize that source-specific atom-reference correction.",
+      "production_postmr_integration": false,
+      "unknown_motifs": "REFUSE_OR_REVIEW_REQUIRES_SEPARATE_AUTHORITY_AND_QUALIFICATION"
+    },
+    "next_bounded_work": {
+      "status": "CEDAR_16_IMPLEMENTED_ORIGINAL_MAC_COLLECTION_PENDING",
+      "next_delivery_queued": true,
+      "delivery_prefix": "16_Cedar",
+      "work": "Collect hash-bound original construction stages and saved declarations, then review the first observed intrasite geometry distortion and adjacent-stage crossings before selecting a repair.",
+      "root_cause": "NOT_ESTABLISHED",
+      "coordinate_intervention": "NOT_RUN",
+      "remaining_limits": [
+        "Full original Mac stage evidence pending",
+        "Missing stages and later synthetic control cannot establish an earlier transition",
+        "Same-name parent coordinate equality is not semantic graph correspondence",
+        "Existing source chemistry, formal-charge, absolute-stereochemistry and complete geometry qualification limits",
+        "Coordinate repair, refinement, human review and production integration"
+      ]
+    }
+  },
+  "captured_geometry_review_2026_10_16": {
+    "status": "RETURNED_CAPTURED_GEOMETRY_REVIEW_COORDINATE_PROVENANCE_NEXT",
+    "delivery_prefix": "15_Cedar",
+    "policy_id": "cif-captured-cartesian-geometry-v1",
+    "modules": [
+      "src/nasolve/cif_captured_geometry.py",
+      "scripts/cif_geometry_review_probe_template.py",
+      "scripts/build_cif_geometry_review_probe.py"
+    ],
+    "schema_1": {
+      "new_report_kind": "cif_captured_cartesian_geometry_review",
+      "new_probe_receipt_kind": "cif-captured-geometry-review-probe",
+      "existing_native_inventory_and_qualification_formats_changed": false
+    },
+    "input_archive": {
+      "name": "14_Cedar_7qm2tnry_cif_outgoing_bundle_review.zip",
+      "sha256": "d94ac53972a8843b8b2cc3d87b32fdbbc4617dc47179d184850833fb91bf8bb3",
+      "bytes": 2832508,
+      "verified_payloads": 141,
+      "payload_bytes": 45543023,
+      "safe_unique_member_names": true
+    },
+    "captured_native_receipt": {
+      "anchor": "returned_capsule",
+      "path": "native_candidate/cif-native-47i0u3af/native_receipt.json",
+      "sha256": "150e7daf79999c35da516623219cf819f390bdb4a7469542a63317169143ddfc"
+    },
+    "behavior": "Hash-verify all 141 payloads; verify embedded/anchored candidate receipt/report and every native input/output; freeze only 47 anchored members; measure recorded Cartesian simple bonds, angles and ordered chirality volumes without changing inputs or rerunning native interpretation.",
+    "generic_mechanism": "Consumes detailed native atom/proxy records; no residue-code or H-name allowlist. Validate atom order, labels, coordinates and counts; retain every measured, unsupported, degenerate and unweighted row.",
+    "methods": {
+      "distance": "Euclidean Cartesian endpoint distance in angstroms",
+      "angle": "Central Cartesian angle in degrees from the clamped normalized dot product",
+      "chirality": "Ordered scalar triple product (p1-p0) dot ((p2-p0) cross (p3-p0)), no tetrahedron /6 scaling; recorded both_signs uses absolute volume for target comparison.",
+      "nominal_deviation": "(observed - target) * sqrt(recorded weight); zero/missing/negative weights never become a zero-deviation pass.",
+      "coordinate_correspondence_tolerance": {
+        "angstrom": 1e-09,
+        "purpose": "Container correspondence only; accounts for native Cartesian roundoff, not scientific geometry approval."
+      },
+      "threshold_counts": [
+        3,
+        5
+      ],
+      "threshold_scope": "Descriptive nominal absolute-deviation ranks only, not native residuals or acceptance gates."
+    },
+    "primary_formula_review": {
+      "repository": "cctbx/cctbx_project",
+      "path": "cctbx/geometry_restraints/chirality.h",
+      "git_blob": "21d25bb3234f48df42108028af2c0185d71db472",
+      "url": "https://github.com/cctbx/cctbx_project/blob/master/cctbx/geometry_restraints/chirality.h",
+      "scope": "Reviewed ordered-volume and both_signs convention; not a claim that the installed runtime uses this current source blob."
+    },
+    "native_residuals": "UNASSESSED",
+    "new_native_execution": "NOT_RUN",
+    "capture_installation_provenance": "Phenix 2.2.1-6174; previously completed Cedar 14 interpretation, not new execution.",
+    "actual_input_analysis": {
+      "status": "REVIEW",
+      "analysis_completed": true,
+      "captured_atoms": 877,
+      "frozen_native_members": 47,
+      "verified_output_payloads": 51,
+      "summary": {
+        "angle": {
+          "captured_proxies": 1590,
+          "nominal_abs_ge_5": 107,
+          "sign_conflicts": 0
+        },
+        "bond_simple": {
+          "captured_proxies": 1026,
+          "nominal_abs_ge_5": 50,
+          "sign_conflicts": 0
+        },
+        "chirality": {
+          "captured_proxies": 155,
+          "nominal_abs_ge_5": 0,
+          "sign_conflicts": 0
+        }
+      },
+      "prior_qualification_carried_forward": {
+        "PASS": 138,
+        "UNSUPPORTED": 9
+      },
+      "source_assessments": {
+        "1AP": "REVIEW",
+        "DP": "REVIEW",
+        "5CM": "PASS",
+        "DZ": "PASS"
+      },
+      "original_archive_preserved": true
+    },
+    "software_validation": {
+      "before_implementation": {
+        "failed": 13,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_captured_geometry.py"
+      },
+      "focused": {
+        "passed": 30,
+        "seconds": 3.94,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_captured_geometry.py tests/test_cif_geometry_review_probe.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "full_suite": {
+        "passed": 1501,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 111.78,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "fixtures": "Explicit synthetic Cartesian/native-inventory fixtures, including ZZZ; no installed Phenix in these tests.",
+      "regressions": [
+        "Known scalar values and target/weight arithmetic",
+        "Rigid translation/rotation invariance",
+        "Reflected ordered volume and both_signs",
+        "Missing, negative and zero weights",
+        "Atom index/label/count/coordinate inconsistency and nonfinite coordinates",
+        "Degenerate measurements and explicit symmetry/deferred categories",
+        "No acceptance gate from nominal thresholds",
+        "Complete capsule integrity including unselected members, unsafe paths, duplicates and symlinks",
+        "No external native execution and unchanged source",
+        "Deleted-build/poisoned-import transport"
+      ],
+      "actual_input_relocation": {
+        "status": "PASS",
+        "original_build_and_narestraints_trees_deleted": true,
+        "poisoned_imports": "NOT_USED",
+        "current_directory_independence": true,
+        "actual_cedar14_archive_preserved": true,
+        "verified_source_payloads": 141,
+        "frozen_native_members": 47,
+        "verified_return_payloads": 51,
+        "new_native_execution": "NOT_RUN",
+        "analysis_completed": true,
+        "model_editing": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      }
+    },
+    "remaining_limits": [
+      "Capture lacks some symmetry/slack/top-out conventions; measurements are not native residuals",
+      "Nonidentity simple-bond symmetry unsupported; angle/chirality use captured Cartesian endpoints without inferred transforms",
+      "ASU bonds, dihedrals, constant dihedrals, planes and parallelities remain unassessed",
+      "Ordered-volume sign agreement is not independent absolute stereochemistry",
+      "Sugar pucker, source chemistry, formal charges, experimental evidence and full geometry qualification remain open"
+    ],
+    "boundaries": {
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "new_runtime_dependencies": [],
+      "production_postmr_changes": false,
+      "prior_qualification_gates_changed": false,
+      "native_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "previous_build": "14_Cedar_probe_build",
+      "worktree": "15_Cedar_probe_build",
+      "builder": "scripts/build_cif_geometry_review_probe.py",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "runner": "15_Cedar_probe_cif_geometry_review.py",
+      "required_runtime": "Python >=3.10 only; no new installation or Phenix argument.",
+      "expected_status": "REVIEW/exit 2 with analysis_completed true and a new review ZIP."
+    },
+    "returned_cedar_15": {
+      "archive": {
+        "name": "15_Cedar_01pvz5n5_cif_geometry_review.zip",
+        "bytes": 849112,
+        "sha256": "b545664e11d09b728b045bfe44fbb786520e8e82997f25aa753b06622e3c9be9",
+        "verified_payloads": 51,
+        "payload_bytes": 12578643,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "5733bb290dada1edde98a52ddb815d7ad13e823f",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runtime_archive_sha256": "efbbaf1ceb6093725de0d8175ff6b55baa0b264c8ea037c5a6542923930e46bd",
+      "report_sha256": "09f98d05349c0e12f8a944227ec069c64b0baece60372714ed5e6ecd5207e70e",
+      "receipt_sha256": "ebc036744ba1de8cee879c28347df63619006a25003747b7c1de158c716a67b8",
+      "computed_scalar_roundoff_fields": 722,
+      "max_computed_scalar_roundoff": 7.105427357601002e-14,
+      "analysis_completed": true,
+      "reported_status": "REVIEW",
+      "frozen_native_members_verified": 47,
+      "native_execution": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "original_archive_preserved": true,
+      "frozen_inputs_preserved": true,
+      "prior_qualification": {
+        "counts": {
+          "PASS": 138,
+          "UNSUPPORTED": 9
+        },
+        "new_execution": false,
+        "sha256": "bf921bbf84392c6ac8588adf91aa25f1dc30858d0baecb4f0b272913d01c449d",
+        "status": "REVIEW"
+      },
+      "source_assessments": [
+        {
+          "after": "REVIEW",
+          "before": "REVIEW",
+          "component": "1AP",
+          "site": "A:5"
+        },
+        {
+          "after": "PASS",
+          "before": "PASS",
+          "component": "5CM",
+          "site": "A:7"
+        },
+        {
+          "after": "REVIEW",
+          "before": "REVIEW",
+          "component": "DP",
+          "site": "B:4"
+        },
+        {
+          "after": "PASS",
+          "before": "PASS",
+          "component": "DZ",
+          "site": "A:12"
+        }
+      ],
+      "model_atoms": 877,
+      "geometry_summary": {
+        "angle": {
+          "captured_proxies": 1590,
+          "status_counts": {
+            "MEASURED": 1590
+          },
+          "nominal_abs_ge_3": 200,
+          "nominal_abs_ge_5": 107,
+          "sign_conflicts": 0
+        },
+        "bond_simple": {
+          "captured_proxies": 1026,
+          "status_counts": {
+            "MEASURED": 1026
+          },
+          "nominal_abs_ge_3": 128,
+          "nominal_abs_ge_5": 50,
+          "sign_conflicts": 0
+        },
+        "chirality": {
+          "captured_proxies": 155,
+          "status_counts": {
+            "MEASURED": 155
+          },
+          "nominal_abs_ge_3": 0,
+          "nominal_abs_ge_5": 0,
+          "sign_conflicts": 0
+        }
+      },
+      "deferred_proxy_kinds": {
+        "bond_asu": {
+          "count": 0,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "const_dihedral": {
+          "count": 387,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "dihedral": {
+          "count": 571,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "parallelity": {
+          "count": 58,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        },
+        "planarity": {
+          "count": 54,
+          "reason": "Requires separate native convention and geometry qualification",
+          "status": "UNASSESSED"
+        }
+      },
+      "report_replay": "MATCH_WITH_ONLY_COMPUTED_SCALAR_ROUNDOFF_AT_MOST_1E_MINUS_10",
+      "runner_sha256_reported_and_matches_delivery": "5ce0ce42372e5d6ee774fcd161fc93d39d065f333ef3ae0b30b0ea1b1558495e",
+      "geometry_report": {
+        "anchor": "returned_capsule",
+        "path": "captured_geometry_review.json"
+      },
+      "replay_method": "Verify all 51 payloads and every referenced native input/output; compare all 47 frozen members byte-for-byte with the exact Cedar 14 archive; replay review_captured_geometry. Identities/targets/weights/statuses/ranks/counts must match exactly; only computed observed/difference/nominal_deviation floats use 1e-10 absolute tolerance. Observed maximum platform difference is 7.105427357601002e-14."
+    },
+    "coordinate_provenance_review": {
+      "cedar05_common_atoms": 858,
+      "cedar05_atom_count": 858,
+      "cedar15_atom_count": 877,
+      "maximum_common_atom_displacement_angstrom": 0.0,
+      "largest_intrasite_comparisons": [
+        {
+          "kind": "bond_simple",
+          "component": "DX",
+          "site": "D:3",
+          "atoms": [
+            "C2",
+            "O2"
+          ],
+          "captured_model_value": 5.129713149874954,
+          "source_dictionary_coordinate_value": 1.2155041135265647,
+          "native_target": 1.215,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/011_dictionary.cif",
+            "sha256": "2336b0118c83f5de5557321afefaeff903c3e287d445585b490862b7bbaf5690",
+            "size": 10337
+          }
+        },
+        {
+          "kind": "bond_simple",
+          "component": "DX",
+          "site": "D:3",
+          "atoms": [
+            "C7",
+            "C8"
+          ],
+          "captured_model_value": 2.881660285321638,
+          "source_dictionary_coordinate_value": 1.3688453163159084,
+          "native_target": 1.369,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/011_dictionary.cif",
+            "sha256": "2336b0118c83f5de5557321afefaeff903c3e287d445585b490862b7bbaf5690",
+            "size": 10337
+          }
+        },
+        {
+          "kind": "bond_simple",
+          "component": "CGY",
+          "site": "A:20",
+          "atoms": [
+            "C2",
+            "C1"
+          ],
+          "captured_model_value": 1.0820240293080379,
+          "source_dictionary_coordinate_value": 1.4305334983844313,
+          "native_target": 1.431,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/009_dictionary.cif",
+            "sha256": "9f02d0cfd64472e7748b6188f84ec45eb9843fd2bdacb1192767926f2e5358e8",
+            "size": 11103
+          }
+        },
+        {
+          "kind": "bond_simple",
+          "component": "5CM",
+          "site": "A:7",
+          "atoms": [
+            "C5",
+            "C5A"
+          ],
+          "captured_model_value": 1.7606740186644412,
+          "source_dictionary_coordinate_value": 1.5019374154737606,
+          "native_target": 1.501,
+          "unit": "angstrom",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/004_dictionary.cif",
+            "sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
+            "size": 11156
+          }
+        },
+        {
+          "kind": "angle",
+          "component": "CGY",
+          "site": "A:20",
+          "atoms": [
+            "N1",
+            "C2",
+            "C1"
+          ],
+          "captured_model_value": 4.43409171072079,
+          "source_dictionary_coordinate_value": 123.77986366846397,
+          "native_target": 123.78,
+          "unit": "degree",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/009_dictionary.cif",
+            "sha256": "9f02d0cfd64472e7748b6188f84ec45eb9843fd2bdacb1192767926f2e5358e8",
+            "size": 11103
+          }
+        },
+        {
+          "kind": "angle",
+          "component": "DX",
+          "site": "D:3",
+          "atoms": [
+            "C8",
+            "C7",
+            "N5"
+          ],
+          "captured_model_value": 39.97064519140884,
+          "source_dictionary_coordinate_value": 105.48530647329815,
+          "native_target": 105.48,
+          "unit": "degree",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/011_dictionary.cif",
+            "sha256": "2336b0118c83f5de5557321afefaeff903c3e287d445585b490862b7bbaf5690",
+            "size": 10337
+          }
+        },
+        {
+          "kind": "angle",
+          "component": "CGY",
+          "site": "A:20",
+          "atoms": [
+            "C1'",
+            "C1",
+            "C6"
+          ],
+          "captured_model_value": 98.94038200140749,
+          "source_dictionary_coordinate_value": 123.00093253811869,
+          "native_target": 123.0,
+          "unit": "degree",
+          "source_dictionary": {
+            "anchor": "native_directory",
+            "path": "inputs/009_dictionary.cif",
+            "sha256": "9f02d0cfd64472e7748b6188f84ec45eb9843fd2bdacb1192767926f2e5358e8",
+            "size": 11103
+          }
+        }
+      ],
+      "root_cause": "NOT_ESTABLISHED",
+      "interpretation": "Severe coordinate distortions predate the linked dictionary diagnostics; whole-component coordinate placement/mapping needs an explicit provenance audit. Valid source target/coordinate comparison alone does not identify the responsible construction step.",
+      "lineage_archive": {
+        "name": "05_Cedar_dy4qx3qg_cif_native_review.zip",
+        "sha256": "7ab8f0dee87a5490539017e2af006f23b4c989f6794f1670db8db821da9d3db4",
+        "bytes": 678326,
+        "verified_payloads": 57,
+        "native_report": {
+          "anchor": "returned_capsule",
+          "path": "native/cif-native-90b84f1c/native_validation.json"
+        }
+      },
+      "native_directory": {
+        "anchor": "returned_capsule",
+        "archive": "15_Cedar_01pvz5n5_cif_geometry_review.zip",
+        "path": "inputs/review/native_candidate/cif-native-47i0u3af"
+      },
+      "atom_identity_fields": [
+        "model_id",
+        "chain_id",
+        "resseq",
+        "icode",
+        "resname",
+        "altloc",
+        "atom_id"
+      ],
+      "selection_scope": "Largest returned intrasite bond/angle cases with one component and an explicitly declared captured dictionary; select the dictionary by content, not basename. No production exception list is created.",
+      "causal_limits": "The construction/parent-restoration/atom-mapping step is a candidate for provenance investigation, not a demonstrated cause. Source-coordinate agreement does not independently qualify source chemistry."
+    },
+    "next_bounded_work": "Cedar 17 separate attached-fragment candidate implemented; installed interpretation and later complete scientific qualification/adoption remain pending."
+  },
+  "construction_provenance_2026_10_16": {
+    "status": "RETURN_VERIFIED_LEGACY_RESTORATION_REPRODUCED",
+    "delivery_prefix": "16_Cedar",
+    "policy_id": "cif-construction-stage-provenance-v1",
+    "modules": [
+      "src/nasolve/cif_construction_provenance.py",
+      "scripts/cif_construction_probe_template.py",
+      "scripts/build_cif_construction_probe.py"
+    ],
+    "schema_1": {
+      "new_audit_kind": "cif_construction_stage_provenance",
+      "new_probe_kind": "cif-construction-provenance-probe",
+      "existing_inventory_or_qualification_formats_changed": false
+    },
+    "input_archive": {
+      "name": "15_Cedar_01pvz5n5_cif_geometry_review.zip",
+      "bytes": 849112,
+      "sha256": "b545664e11d09b728b045bfe44fbb786520e8e82997f25aa753b06622e3c9be9",
+      "verified_payloads": 51,
+      "payload_bytes": 12578643,
+      "safe_unique_members": true
+    },
+    "run_anchor": {
+      "default_anchor": "user_home",
+      "path": "NASolve-live-tests/synthetic-dna-mechanics-om4jv7qq/synthetic-dna-combined-2n4kszi5/dataset/AutoMR/run_001",
+      "explicit_override": "--run",
+      "historical_prefix": "Recorded original Cedar 05 run; used only to rebase saved literal references through the explicit current run anchor."
+    },
+    "original_bindings": {
+      "prepared_model": {
+        "anchor": "run",
+        "path": "PostMR/Model/prepared_model.pdb",
+        "sha256": "51b6c2acf403b1377e73bdbeae4c35ab4fdd9c105bb20a5ca3c52ee03b0ae845",
+        "size": 70150,
+        "required": true
+      },
+      "source_audit": {
+        "anchor": "run",
+        "path": "PostMR/Restraints/cif_doctor_source.json",
+        "sha256": "31ff002a4794a011c4470b6dd294a4cfea5f29bdc5f280742eb20cbfa71b6fb1",
+        "size": 1370223,
+        "verify_if_present": true
+      }
+    },
+    "stage_paths": {
+      "mr_input": "PostMR/Model/mr_solution.pdb",
+      "component_normalized": "PostMR/Model/component_normalized.pdb",
+      "coot_raw": "PostMR/Model/after_coot_raw.pdb",
+      "restored": "PostMR/Model/after_coot_geometry.pdb",
+      "after_coot": "PostMR/Model/after_coot.pdb",
+      "terminal": "PostMR/Model/terminal_phosphate_model.pdb",
+      "prepared": "PostMR/Model/prepared_model.pdb"
+    },
+    "saved_declarations": {
+      "script": {
+        "anchor": "run",
+        "path": "PostMR/Coot/mutate.py"
+      },
+      "parser": "Python AST only; the saved script is never executed.",
+      "allowed_reference_scope": "Literal current-generator Coot input, dictionary and write_pdb_file parent declarations within the historical run anchor; next NASOLVE_OVERLAP marker binds a parent declaration to a site.",
+      "external_paths": "RECORDED_UNCOLLECTED",
+      "missing_or_nonliteral_declarations": "EXPLICIT_UNSUPPORTED_OR_NOT_PRESENT"
+    },
+    "methods": {
+      "selection": "Every captured intrasite bond/angle row with nominal absolute deviation >=5; no residue-code or H-name allowlist.",
+      "correspondence": "Exact single-model PDB site, altloc and atom identifier; require expected component and element before comparing coordinates.",
+      "measurement": "Same Cartesian scalar and recorded target/weight conventions as cif-captured-cartesian-geometry-v1; no native residual claim.",
+      "first_observed": "Earliest comparable stage where the selected nominal threshold is observed, not necessarily the originating step.",
+      "threshold_crossings": "Only adjacent comparable measured stages may establish an observed below-to-above threshold crossing; missing or incompatible stages cannot be bridged.",
+      "parent_coordinates": "Record raw/restore distances to same-name and same-element parent atoms; observed copy flag uses before >0.01 angstrom and after <=0.001 angstrom. This does not establish semantic chemical correspondence.",
+      "preservation": "Freeze only declared run artifacts outside the run; recheck original/frozen bytes and the original review ZIP after analysis.",
+      "refusals": [
+        "Wrong original model SHA/size",
+        "Binding changes between reads",
+        "Source symlink/unsafe path or run escape",
+        "Duplicate PDB atoms or multiple models",
+        "Changed source/frozen artifacts"
+      ]
+    },
+    "software_validation": {
+      "before_implementation": {
+        "failed": 8,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_construction_provenance.py"
+      },
+      "focused": {
+        "passed": 47,
+        "seconds": 5.62,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_construction_provenance.py tests/test_cif_construction_probe.py tests/test_cif_captured_geometry.py tests/test_cif_geometry_review_probe.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "full_suite": {
+        "passed": 1518,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 110.97,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "native_tools": "NOT_RUN; explicit synthetic capture/stage fixtures and preserved witness only.",
+      "regressions": [
+        "Synthetic ZZZ stage transition and parent-coordinate evidence without causal approval",
+        "Missing-stage gap cannot prove a transition",
+        "Wrong component/element and duplicate/multiple-model ambiguity",
+        "AST parsing without execution and declared-anchor-only path rebasing",
+        "Model SHA binding and source-change race guard",
+        "Symlink/output-inside-source and capsule tampering/unsafe/duplicate paths",
+        "Source-bundled runner after deletion of both build trees with poisoned imports unused"
+      ],
+      "actual_capture_partial_witness_relocation": {
+        "status": "PASS",
+        "scope": "ACTUAL_CEDAR15_CAPTURE_AND_EXACT_CEDAR05_TWO_FILE_RUN_WITNESS_ONLY",
+        "complete_original_mac_construction_evidence": "PENDING",
+        "original_build_and_narestraints_trees_deleted": true,
+        "poisoned_imports": "NOT_USED",
+        "current_directory_independence": true,
+        "source_payloads_verified": 51,
+        "output_payloads_verified": 57,
+        "witness_files": 2,
+        "original_archive_and_witness_preserved": true,
+        "analysis_completed": true,
+        "selected_site_count": 21,
+        "findings": 93,
+        "first_observed_outlier_counts": {
+          "NOT_LOCATED": 3,
+          "prepared": 90
+        },
+        "threshold_crossings": 0,
+        "root_cause": "NOT_ESTABLISHED",
+        "new_native_execution": "NOT_RUN"
+      }
+    },
+    "actual_original_mac_collection": "COMPLETED_AND_VERIFIED",
+    "root_cause": "LEGACY_COORDINATE_RESTORATION_REPRODUCED_FOR_CAPTURED_TRANSITIONS",
+    "boundaries": {
+      "native_execution": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "production_postmr_changes": false,
+      "new_runtime_dependencies": [],
+      "private_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "previous_build": "15_Cedar_probe_build",
+      "worktree": "16_Cedar_probe_build",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "builder": "scripts/build_cif_construction_probe.py",
+      "runner": "16_Cedar_probe_cif_construction.py",
+      "expected_status": "REVIEW/exit 2 with analysis_completed true; return terminal output and new review ZIP.",
+      "options": [
+        "--run",
+        "--review-zip",
+        "--output-parent"
+      ]
+    },
+    "returned_16_cedar": {
+      "archive": {
+        "name": "16_Cedar_2liuorr__cif_construction_review.zip",
+        "bytes": 1248124,
+        "sha256": "e6be273bafd9fd6b4a6c6b2125496f1353592b36d3e6e0709da8fab25ea95c8e",
+        "verified_payloads": 74,
+        "payload_bytes": 15304522,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "4e81f5caa3aca2974414c7b2fd2feb8c2e792670",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runtime_archive_sha256": "7dff65c781dd90ac142145dd5eb739921a8ced32bb7f3ed66a5651266fb6cfaa",
+      "source_artifact_status_counts": {
+        "RECORDED": 19,
+        "NOT_PRESENT": 2
+      },
+      "stage_statuses": {
+        "mr_input": "RECORDED",
+        "component_normalized": "NOT_PRESENT",
+        "coot_raw": "RECORDED",
+        "restored": "RECORDED",
+        "after_coot": "RECORDED",
+        "terminal": "RECORDED",
+        "prepared": "RECORDED"
+      },
+      "frozen_prior_members": 52,
+      "report_replay": "MATCH_WITH_ONLY_COMPUTED_SCALAR_ROUNDOFF_AT_MOST_1E_MINUS_10",
+      "computed_scalar_roundoff_fields": 62,
+      "max_computed_scalar_roundoff": 2.842170943040401e-14,
+      "selected_sites": [
+        "A:11",
+        "A:12",
+        "A:18",
+        "A:19",
+        "A:2",
+        "A:20",
+        "A:3",
+        "A:4",
+        "A:6",
+        "A:7",
+        "B:1",
+        "B:4",
+        "B:7",
+        "C:10",
+        "C:8",
+        "D:2",
+        "D:3",
+        "D:4",
+        "D:6",
+        "D:7",
+        "E:1"
+      ],
+      "findings": 93,
+      "first_observed_outlier_counts": {
+        "NOT_LOCATED": 3,
+        "coot_raw": 10,
+        "mr_input": 25,
+        "restored": 55
+      },
+      "threshold_crossing_count": 55,
+      "crossings_by_site": {
+        "A:6": 3,
+        "A:7": 3,
+        "A:12": 14,
+        "A:19": 3,
+        "A:20": 13,
+        "B:4": 5,
+        "C:10": 3,
+        "D:3": 11
+      },
+      "runner_sha256": "b87ed97f1696efec0f8d5b6e56b871f57d824d9a704cbc7b862cc8c162b23556",
+      "analysis_completed": true,
+      "reported_status": "REVIEW",
+      "original_archive_and_frozen_inputs_preserved": true,
+      "new_native_execution": "NOT_RUN"
+    },
+    "controlled_legacy_replay": {
+      "result": "BYTE_EXACT_ORIGINAL_RESTORED_MODEL",
+      "sha256": "d12d171b45086255bb6d31315300ea535bc63e9298dfe40443cb7fe1bdbb4408",
+      "bytes": 70798,
+      "sites": 9,
+      "operation": "nasolve.postmr._restore_shared_parent_coordinates",
+      "scope": "The frozen raw model and all nine saved parent controls reproduce the complete recorded restored model byte for byte.",
+      "conclusion": "Legacy same-name/element coordinate copying reproducibly damages the captured transitions. This does not attribute every MR/raw outlier or certify source chemistry.",
+      "original_run_changed": false,
+      "new_native_execution": "NOT_RUN"
+    },
+    "returned_receipt_root_cause": "NOT_ESTABLISHED; the read-only original receipt is preserved unchanged.",
+    "representative_stage_measurements": [
+      {
+        "site": "D:3",
+        "atoms": [
+          "C2",
+          "O2"
+        ],
+        "kind": "bond_simple",
+        "unit": "angstrom",
+        "raw": 1.3403977021764852,
+        "restored": 5.129713149874953,
+        "target": 1.215
+      },
+      {
+        "site": "A:20",
+        "atoms": [
+          "N1",
+          "C2",
+          "C1"
+        ],
+        "kind": "angle",
+        "unit": "degree",
+        "raw": 118.96074832475938,
+        "restored": 4.434091710720872,
+        "target": 123.78
+      }
+    ],
+    "next_bounded_work": "Cedar 17 separate attached-fragment candidate implemented; installed interpretation and later complete scientific qualification/adoption remain pending."
+  },
+  "fragment_restoration_2026_10_16": {
+    "status": "RETURN_VERIFIED_NATIVE_MECHANICS_PASS_GEOMETRY_REVIEW",
+    "delivery_prefix": "17_Cedar",
+    "policy_id": "cif-dna-attached-fragment-restoration-v1",
+    "modules": [
+      "src/nasolve/cif_fragment_restoration.py",
+      "scripts/cif_fragment_restoration_probe_template.py",
+      "scripts/build_cif_fragment_restoration_probe.py"
+    ],
+    "schema_1": {
+      "new_kinds": [
+        "cif_fragment_restoration_candidate",
+        "cif_fragment_native_mechanics",
+        "cif-fragment-restoration-native-probe"
+      ],
+      "existing_inventory_or_qualification_formats_changed": false
+    },
+    "input_archive": {
+      "name": "16_Cedar_2liuorr__cif_construction_review.zip",
+      "bytes": 1248124,
+      "sha256": "e6be273bafd9fd6b4a6c6b2125496f1353592b36d3e6e0709da8fab25ea95c8e",
+      "verified_payloads": 74,
+      "payload_bytes": 15304522,
+      "safe_unique_members": true
+    },
+    "methods": {
+      "selection": "Assess every explicit saved parent context using the captured effective component graph; no residue-code, base-atom-name or N-versus-C glycosidic allowlist.",
+      "required_graph": "Complete explicit heavy-atom DNA sugar/phosphate scaffold with single non-P scaffold bonds and one connected base fragment attached once at C1 prime.",
+      "coordinate_transport": "Right-handed orthonormal frame at C1 prime; first direction toward O4 prime and plane set by C2 prime. Transport every raw base atom with a proper rigid rotation/translation into the preserved baseline frame.",
+      "parent_role": "Require the complete baseline scaffold to equal the frozen parent coordinates. Never use parent base atom coordinates for transport.",
+      "invariants": [
+        "Every baseline atom identity and noncoordinate PDB field preserved",
+        "All sugar/phosphate and unselected coordinates preserved",
+        "No atom or dictionary/parameter target added, deleted or retuned",
+        "All raw base-fragment distances including C1 prime preserved within 0.002 angstrom PDB-rounding guard",
+        "Nondegenerate glycosidic attachment orientation sign preserved; no absolute CIP approval"
+      ],
+      "unsupported": "Record each refused graph explicitly; leave that entire site unchanged in the partial candidate. Strict direct preparation refuses any unsupported selected site.",
+      "refusals": [
+        "Aromatic/non-single sugar bonds or changed scaffold graph",
+        "Multiple scaffold attachments or disconnected base",
+        "Selected hydrogen-bearing graft, alternate/insertion or ambiguous model/atom context",
+        "Missing/mismatched raw/parent atoms/elements/components or changed parent scaffold",
+        "Degenerate frame/attachment, improper rotation or excessive serialized-distance change",
+        "Existing output or source/frozen/candidate mutation"
+      ],
+      "native": "Interpret only the separate candidate with the unchanged captured 18 CIFs and 11 PHILs. Verify Phenix version/dispatcher/four API source hashes before and after. Compare every native atom identity, site definition, custom request, proxy and target/weight; check exact candidate coordinates. Do not re-execute the captured baseline.",
+      "verdict": "Always REVIEW; mechanics and descriptive outlier reduction are not complete geometry or chemical approval."
+    },
+    "actual_capture_offline_candidate": {
+      "supported_sites": [
+        "A:12",
+        "A:20",
+        "A:5",
+        "A:6",
+        "A:7",
+        "B:4",
+        "C:10",
+        "D:3"
+      ],
+      "changed_atoms": 84,
+      "model_atom_count": 877,
+      "candidate_sha256": "459f07739cf1d587d717b22dd1b20bc9f3b9ca56edf1ddf07c980191a4af88a7",
+      "unsupported_sites_preserved": [
+        {
+          "site": "A:19",
+          "component": "DF",
+          "reason": "Captured effective sugar C1 prime-C2 prime, C2 prime-C3 prime and C3 prime-C4 prime bonds are aromatic. The exact original DF source has single bonds; do not rewrite it to match the effective derivative."
+        }
+      ],
+      "max_fragment_distance_change_angstrom": 0.001039780102558563,
+      "descriptive_ge_5": {
+        "bond_simple": {
+          "before": 50,
+          "after": 34
+        },
+        "angle": {
+          "before": 107,
+          "after": 72
+        },
+        "chirality": {
+          "before": 0,
+          "after": 0
+        }
+      },
+      "recorded_chirality_sign_conflicts": 0,
+      "previously_recorded_55_crossings_now_below_5": 48,
+      "remaining_geometry": "Existing raw/sugar/source problems remain visible; no optimization or qualification pass.",
+      "example_prediction": [
+        {
+          "site": "D:3",
+          "atoms": [
+            "C2",
+            "O2"
+          ],
+          "observed": 1.3401328292374601,
+          "target": 1.215,
+          "unit": "angstrom"
+        },
+        {
+          "site": "A:20",
+          "atoms": [
+            "N1",
+            "C2",
+            "C1"
+          ],
+          "observed": 118.97335680457863,
+          "target": 123.78,
+          "unit": "degree"
+        }
+      ]
+    },
+    "software_validation": {
+      "before_implementation": {
+        "failed": 13,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fragment_restoration.py"
+      },
+      "focused": {
+        "passed": 51,
+        "seconds": 7.28,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fragment_restoration.py tests/test_cif_fragment_restoration_probe.py tests/test_cif_construction_provenance.py tests/test_cif_construction_probe.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "full_suite": {
+        "passed": 1543,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 126.63,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "native_tools": "NOT_RUN locally; native success/failure test paths use explicit fakes. Actual installed candidate interpretation is pending.",
+      "regressions": [
+        "Generic ZZZ N-linked, C-linked and misleading-name bases; never copy same-name parent base coordinates",
+        "Rigid reorientation invariance and shared-code unselected-site isolation",
+        "Multiple attachment/disconnected/unsupported sugar graphs including aromatic bonds",
+        "Element, duplicate/alternate, parent-scaffold and degenerate-frame guards; preserve existing outputs",
+        "Native identity/site-definition/proxy equality and exact candidate-coordinate comparison",
+        "Capsule tampering, unsafe/duplicate/symlink/unselected-member guards",
+        "Native success/failure fakes with honest completion/status",
+        "Source-isolated runner after deletion of both build trees and poisoned imports unused"
+      ]
+    },
+    "actual_capture_deleted_build_relocation": {
+      "status": "PASS",
+      "source": "ACTUAL_VERIFIED_CEDAR16_CAPTURE",
+      "build_trees_deleted": true,
+      "poisoned_imports": "NOT_USED",
+      "current_directory_independence": true,
+      "source_payloads_verified": 74,
+      "output_payloads_verified": 80,
+      "runtime_files_verified": 102,
+      "original_archive_preserved": true,
+      "analysis_completed": true,
+      "changed_base_atoms": 84,
+      "supported_sites": 8,
+      "unsupported_preserved_sites": [
+        "A:19"
+      ],
+      "candidate_sha256": "459f07739cf1d587d717b22dd1b20bc9f3b9ca56edf1ddf07c980191a4af88a7",
+      "geometry_counts_ge_5": {
+        "angle": 72,
+        "bond_simple": 34,
+        "chirality": 0
+      },
+      "recorded_chirality_sign_conflicts": 0,
+      "native_execution": "NOT_RUN"
+    },
+    "installed_native_candidate": "COMPLETED_AND_VERIFIED",
+    "boundaries": {
+      "production_postmr_changes": false,
+      "model_editing": "SEPARATE_CANDIDATE_ONLY",
+      "original_model_and_run_preserved": true,
+      "dictionaries_and_parameters_unchanged": true,
+      "optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "prior_source_and_charge_reviews_preserved": true,
+      "new_runtime_dependencies": [],
+      "private_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "previous_build": "16_Cedar_probe_build",
+      "worktree": "17_Cedar_probe_build",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "builder": "scripts/build_cif_fragment_restoration_probe.py",
+      "runner": "17_Cedar_probe_cif_fragment_restoration.py",
+      "default_input": {
+        "anchor": "user_home",
+        "path": "NASolve-live-tests/16_Cedar_cif-construction-2liuorr_/16_Cedar_2liuorr__cif_construction_review.zip"
+      },
+      "phenix_root_default": {
+        "anchor": "user_home",
+        "path": "Applications/phenix-2.2.1-6174"
+      },
+      "expected_status": "REVIEW/exit 2; return terminal output and new review ZIP.",
+      "options": [
+        "--review-zip",
+        "--output-parent",
+        "--phenix-root",
+        "--timeout-seconds",
+        "--inspect-only"
+      ]
+    },
+    "next_bounded_work": "Cedar 18 source/effective recovery before a separate pairing-pose/geometry intervention; no model optimization or production integration yet.",
+    "returned_17_cedar": {
+      "archive": {
+        "name": "17_Cedar_t9rsj7b2_cif_fragment_restoration_review.zip",
+        "bytes": 2596559,
+        "sha256": "42f6021b1cadb2f26f783b39aa6a999af754f7c486da5df959712cdc2c0630c1",
+        "verified_payloads": 129,
+        "payload_bytes": 35708306,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "274f2043c4935265980510ea6df7f4b900f7db5a",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256": "d611965d57c6fdcc08e996f5ad94ab92bd06e14bc9585538e9dd7a4da5f2a300",
+      "runtime_archive_sha256": "1eba0db9a9cd2d204a6e2013abc5f7f70f13c3a3f4152281adf61b5dab110a81",
+      "prior_members_byte_identical": 75,
+      "native_prefix": "native_candidate/cif-native-sdthxn7z",
+      "native_execution": {
+        "elapsed_seconds": 5.215362,
+        "finished_at": "2026-10-16T15:22:14.447453+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-16T15:22:09.232208+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "phenix_version": "2.2.1",
+      "installation": "phenix-2.2.1-6174",
+      "native_dispatcher_and_four_api_hashes_match": true,
+      "unchanged_dictionary_count": 18,
+      "unchanged_parameter_count": 11,
+      "mechanics_checks": {
+        "PASS": 14
+      },
+      "preparation_replay": "BYTE_EXACT_CANDIDATE",
+      "report_replay": "COMPUTED_SCALAR_ROUNDOFF_ONLY_AT_MOST_1E_MINUS_10",
+      "computed_scalar_roundoff_fields": 7932,
+      "max_computed_scalar_roundoff": 8.881784197001252e-13,
+      "predicted_and_native_measurements": "ONLY_COMPUTED_SCALAR_ROUNDOFF_AT_MOST_1E_MINUS_10",
+      "prediction_native_roundoff_fields": 6549,
+      "prediction_native_max_roundoff": 8.881784197001252e-13,
+      "model_atom_count": 877,
+      "site_count": 43,
+      "changed_base_atoms": 84,
+      "supported_sites": [
+        "A:12",
+        "A:20",
+        "A:5",
+        "A:6",
+        "A:7",
+        "B:4",
+        "C:10",
+        "D:3"
+      ],
+      "unsupported_sites_preserved": [
+        {
+          "component": "DF",
+          "reason": "Unsupported DNA scaffold bond type",
+          "site": "A:19",
+          "status": "UNSUPPORTED"
+        }
+      ],
+      "candidate_sha256": "459f07739cf1d587d717b22dd1b20bc9f3b9ca56edf1ddf07c980191a4af88a7",
+      "geometry_summary": {
+        "angle": {
+          "captured_proxies": 1590,
+          "status_counts": {
+            "MEASURED": 1590
+          },
+          "nominal_abs_ge_3": 157,
+          "nominal_abs_ge_5": 72,
+          "sign_conflicts": 0
+        },
+        "bond_simple": {
+          "captured_proxies": 1026,
+          "status_counts": {
+            "MEASURED": 1026
+          },
+          "nominal_abs_ge_3": 110,
+          "nominal_abs_ge_5": 34,
+          "sign_conflicts": 0
+        },
+        "chirality": {
+          "captured_proxies": 155,
+          "status_counts": {
+            "MEASURED": 155
+          },
+          "nominal_abs_ge_3": 0,
+          "nominal_abs_ge_5": 0,
+          "sign_conflicts": 0
+        }
+      },
+      "proxy_counts": {
+        "angle": 1590,
+        "bond_asu": 0,
+        "bond_simple": 1026,
+        "chirality": 155,
+        "const_dihedral": 387,
+        "dihedral": 571,
+        "parallelity": 58,
+        "planarity": 54
+      },
+      "source_and_prior_qualification_preserved": true,
+      "aggregate_status": "REVIEW",
+      "optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "original_archive_and_frozen_inputs_preserved": true,
+      "source_effective_distinction": "DF original source SHA 27f83c85... has single sugar bonds; aromatic declarations are in the captured effective dictionary.",
+      "geometry_scope_breakdown": {
+        "bond_simple_intrasite": {
+          "before_ge5": 41,
+          "after_ge5": 24
+        },
+        "bond_simple_intersite": {
+          "before_ge5": 9,
+          "after_ge5": 10
+        },
+        "angle_intrasite": {
+          "before_ge5": 52,
+          "after_ge5": 22
+        },
+        "angle_intersite": {
+          "before_ge5": 55,
+          "after_ge5": 50
+        }
+      },
+      "remaining_pair_contacts": [
+        {
+          "sites": [
+            "A:20",
+            "D:3"
+          ],
+          "atoms": [
+            "N1",
+            "O2"
+          ],
+          "before": 8.963663592527332,
+          "after": 9.357476048593446,
+          "target": 2.8,
+          "unit": "angstrom"
+        },
+        {
+          "sites": [
+            "A:20",
+            "D:3"
+          ],
+          "atoms": [
+            "N3",
+            "N1"
+          ],
+          "before": 2.947119610738593,
+          "after": 6.818963704258881,
+          "target": 2.8,
+          "unit": "angstrom"
+        },
+        {
+          "sites": [
+            "A:20",
+            "D:3"
+          ],
+          "atoms": [
+            "N4",
+            "O6"
+          ],
+          "before": 2.7367354640154753,
+          "after": 4.600879155118074,
+          "target": 2.8,
+          "unit": "angstrom"
+        }
+      ]
+    }
+  },
+  "effective_source_recovery_2026_10_16": {
+    "status": "RETURNED_GENERATION_AND_BOTH_NATIVE_PHASES_VERIFIED_REVIEW",
+    "delivery_prefix": "18_Cedar",
+    "policy_id": "cif-effective-source-graph-recovery-v1",
+    "modules": [
+      "src/nasolve/cif_effective_source_recovery.py",
+      "scripts/cif_effective_source_recovery_probe_template.py",
+      "scripts/build_cif_effective_source_recovery_probe.py"
+    ],
+    "schema_1": {
+      "new_audit_kind": "cif_effective_source_recovery_plan",
+      "new_probe_kind": "cif-effective-source-recovery-probe",
+      "existing_inventory_and_qualification_formats_changed": false
+    },
+    "input_archive": {
+      "name": "17_Cedar_t9rsj7b2_cif_fragment_restoration_review.zip",
+      "bytes": 2596559,
+      "sha256": "42f6021b1cadb2f26f783b39aa6a999af754f7c486da5df959712cdc2c0630c1",
+      "verified_payloads": 129,
+      "payload_bytes": 35708306,
+      "safe_unique_members": true
+    },
+    "methods": {
+      "selection": "Assess every saved parent context. Unsupported effective scaffold plus one original source component/input index and exact source hash/size, matched to an explicit resource inventory by bytes/content. No component-code or filename exception list.",
+      "source_graph": "Require supported explicit DNA scaffold/one attached heavy base graph from the original source. This is eligibility, not complete chemical approval.",
+      "scope_guards": [
+        "One original source record/resource match",
+        "All model contexts sharing the component covered",
+        "Prior native modifiers must be explicitly recorded empty for this recovery slice",
+        "Independent one-component numerical dictionary required",
+        "Only explicitly declared internal strand links supported by this probe"
+      ],
+      "whole_component_generation": "Reuse cif_generation.generate_elbow_candidate and its installed capability/source-state/H/bond/formal-charge/stereochemical comparisons; no local numerical target patch.",
+      "dictionary_phase": "prepare_linked_component then installed native interpretation with all Cedar 17 coordinates fixed. Compare full projected definitions, links, custom coverage, unaffected definitions/proxies and exact modifier IDs.",
+      "continuation": "PASS checks or unavailable formal-charge readback with no contradictions only; every other REVIEW/UNSUPPORTED blocks the fragment phase. This is not an adoption or scientific PASS.",
+      "coordinate_phase": "Restore only newly supported fragments via cif-dna-attached-fragment-restoration-v1, with recovered definitions fixed; require complete native identity/definition/proxy equality and exact candidate coordinates.",
+      "objective_policy": "Definition and coordinate effects have separate geometry receipts. Different target definitions must not be ranked as like-for-like model quality.",
+      "preservation": "Verify all source capsule payloads before/after, freeze the exact matched source outside runtime, preserve previous qualification/source reviews and every original model/run."
+    },
+    "actual_capture_source_plan": {
+      "schema_version": 1,
+      "audit_kind": "cif_effective_source_recovery_plan",
+      "policy_id": "cif-effective-source-graph-recovery-v1",
+      "status": "REVIEW",
+      "recovery_codes": [
+        "DF"
+      ],
+      "selected": [
+        {
+          "component": "DF",
+          "source_resource": "src/nasolve/data/ligands/DF.cif",
+          "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+          "source_size": 8941,
+          "source_input_index": 3,
+          "sites": [
+            "A:19"
+          ],
+          "effective_graph_reviews": [
+            {
+              "site": "A:19",
+              "reason": "Unsupported DNA scaffold bond type"
+            }
+          ]
+        }
+      ],
+      "unchanged_sites": [
+        "A:12",
+        "A:20",
+        "A:5",
+        "A:6",
+        "A:7",
+        "B:4",
+        "C:10",
+        "D:3"
+      ],
+      "blocked": [],
+      "automatic_adoption": false,
+      "limitations": [
+        "Supported source scaffold is an eligibility check, not full chemical approval.",
+        "Independent whole-component generation and source-state/linked/native qualification remain required.",
+        "No dictionary target, charge or atom mapping is inferred from model residuals."
+      ]
+    },
+    "software_validation": {
+      "before_implementation": {
+        "failed": 8,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_effective_source_recovery.py"
+      },
+      "focused": {
+        "passed": 140,
+        "seconds": 19.27,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_effective_source_recovery.py tests/test_cif_effective_source_recovery_probe.py tests/test_cif_generation.py tests/test_cif_linked_preparation.py tests/test_cif_terminal_qualification.py tests/test_cif_fragment_restoration.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "full_suite": {
+        "passed": 1568,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 112.1,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      },
+      "native_tools": "NOT_RUN locally; generator/native coordinator paths use explicit fakes. Actual source planning uses the verified Cedar 17 capture and exact packaged DF source.",
+      "regressions": [
+        "Synthetic ZZZ unsupported effective graph and supported source selected by recorded component/input index/hash/size, not filenames",
+        "Changed/missing/ambiguous source, unsupported source graph and wrong component metadata blocked",
+        "Case-insensitive declared source type; prior site modifier composition guard",
+        "Supported effective graphs do not regenerate",
+        "Only PASS and explicit unavailable formal charge without contradictions may continue a diagnostic; all other review/unsupported states stop",
+        "Rejected generation or unresolved dictionary mechanics cannot precede a fragment edit",
+        "Coordinates fixed in dictionary phase; native identities/definitions/proxies fixed in subsequent fragment phase",
+        "Capsule unsafe/duplicate/symlink/unselected-member tampering guards",
+        "Deleted-build/poisoned-import synthetic and actual-input planning transport"
+      ]
+    },
+    "actual_capture_deleted_build_relocation": {
+      "status": "PASS",
+      "scope": "ACTUAL_CEDAR17_CAPTURE_SOURCE_PLANNING_ONLY",
+      "build_trees_deleted": true,
+      "poisoned_imports": "NOT_USED",
+      "current_directory_independence": true,
+      "source_payloads_verified": 129,
+      "output_payloads_verified": 133,
+      "runtime_files_verified": 103,
+      "original_archive_preserved": true,
+      "analysis_completed": true,
+      "recovery_codes": [
+        "DF"
+      ],
+      "matched_source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+      "unchanged_sites": 8,
+      "dictionary_generation": "NOT_RUN",
+      "native_execution": "NOT_RUN"
+    },
+    "installed_dictionary_generation": "COMPLETED_CANDIDATE_REVIEW",
+    "installed_native_dictionary_phase": "COMPLETED_68_PASS_1_UNSUPPORTED_FORMAL_CHARGE",
+    "installed_native_fragment_phase": "COMPLETED_14_PASS",
+    "boundaries": {
+      "production_postmr_changes": false,
+      "model_editing": "SEPARATE_CANDIDATE_ONLY_AFTER_DICTIONARY_NATIVE_GATES",
+      "dictionary_optimization": "COMPLETED_SEPARATE_WHOLE_COMPONENT_GENERATION",
+      "model_optimization": "NOT_RUN",
+      "pairing_pose_adjustment": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "prior_source_and_charge_reviews_preserved": true,
+      "new_runtime_dependencies": [],
+      "private_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "previous_build": "17_Cedar_probe_build",
+      "worktree": "18_Cedar_probe_build",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "builder": "scripts/build_cif_effective_source_recovery_probe.py",
+      "runner": "18_Cedar_probe_cif_source_recovery.py",
+      "default_input": {
+        "anchor": "user_home",
+        "path": "NASolve-live-tests/17_Cedar_cif-fragment-restoration-t9rsj7b2/17_Cedar_t9rsj7b2_cif_fragment_restoration_review.zip"
+      },
+      "phenix_root_default": {
+        "anchor": "user_home",
+        "path": "Applications/phenix-2.2.1-6174"
+      },
+      "expected_status": "REVIEW/exit 2; return output and new review ZIP. Generation or any unresolved native mechanics stops dependent phases.",
+      "options": [
+        "--review-zip",
+        "--output-parent",
+        "--phenix-root",
+        "--timeout-seconds",
+        "--source CODE=/explicit/path",
+        "--inspect-only"
+      ]
+    },
+    "next_bounded_work": "Verify generation/source and both native-phase returns; then assess pair pose and full geometry with every remaining source/charge/stereochemical limit visible, before any model minimization or adoption.",
+    "return_verified_2026_10_17": {
+      "archive": {
+        "name": "18_Cedar_pfcyb5kk_cif_source_recovery_review.zip",
+        "bytes": 5121106,
+        "sha256": "8c049215a46f3f1fe0c628b7e2552e6aa59f4149853285edf5e208d72e813146",
+        "verified_payloads": 252,
+        "payload_bytes": 74662889,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "6b1000bf2928197b1642eff6105f32f468ac0c38",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256": "25004008906a4849a9195cba5286b8a103e033ce6aae1c8a5c3695782b80d660",
+      "prior_members_byte_identical": 130,
+      "generation_status": "CANDIDATE_REVIEW",
+      "generation_execution": {
+        "elapsed_seconds": 28.73829,
+        "finished_at": "2026-10-16T16:14:38.969876+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-16T16:14:10.231042+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 600
+      },
+      "generator_pickle_files_deliberately_excluded": [
+        "candidate.options.pickle",
+        "candidate.pickle"
+      ],
+      "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+      "generated_candidate_sha256": "8daa21379bba32f1abc91fafda59379ca811561dfe9b245644597943fa655a70",
+      "plan_replay": "EXACT",
+      "generation_inspection_replay": "MATCH_AFTER_DECLARED_PATH_REBASE",
+      "linked_preparation_replay": "BYTE_EXACT_OUTPUTS",
+      "fragment_preparation_replay": "BYTE_EXACT_CANDIDATE",
+      "report_replay": "COMPUTED_SCALAR_ROUNDOFF_ONLY_AT_MOST_1E_MINUS_10",
+      "unordered_charge_evidence_replays": [
+        "checks.9.unavailable"
+      ],
+      "computed_scalar_roundoff_fields": 8012,
+      "max_computed_scalar_roundoff": 8.881784197001252e-13,
+      "native_prefixes": {
+        "native_dictionary": "native_dictionary/cif-native-bzf9lg9r",
+        "native_fragment": "native_fragment/cif-native-418b76gi"
+      },
+      "native_executions": {
+        "native_dictionary": {
+          "elapsed_seconds": 3.0553,
+          "finished_at": "2026-10-16T16:14:42.591232+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-16T16:14:39.535954+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "native_fragment": {
+          "elapsed_seconds": 1.573842,
+          "finished_at": "2026-10-16T16:14:44.479888+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-16T16:14:42.906065+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        }
+      },
+      "native_dispatcher_and_four_api_hashes_match": true,
+      "installation": "phenix-2.2.1-6174",
+      "phenix_version": "2.2.1",
+      "dictionary_qualification": {
+        "PASS": 68,
+        "UNSUPPORTED": 1
+      },
+      "fragment_mechanics": {
+        "PASS": 14
+      },
+      "retained_dictionary_count": 17,
+      "retained_parameter_count": 11,
+      "current_dictionary_count": 19,
+      "current_parameter_count": 12,
+      "model_atom_count": 877,
+      "site_count": 43,
+      "changed_base_atoms": 9,
+      "changed_sites": [
+        "A:19"
+      ],
+      "candidate_sha256": "ddbbbdc1c852d47761efe362aa7b0bd180715387d52e71de8c980d61a0dd3ab7",
+      "geometry": {
+        "native_dictionary": {
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "status_counts": {
+              "MEASURED": 1026
+            },
+            "nominal_abs_ge_3": 103,
+            "nominal_abs_ge_5": 31,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 1590,
+            "status_counts": {
+              "MEASURED": 1590
+            },
+            "nominal_abs_ge_3": 158,
+            "nominal_abs_ge_5": 72,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 158,
+            "status_counts": {
+              "MEASURED": 158
+            },
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "native_fragment": {
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "status_counts": {
+              "MEASURED": 1026
+            },
+            "nominal_abs_ge_3": 105,
+            "nominal_abs_ge_5": 32,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 1590,
+            "status_counts": {
+              "MEASURED": 1590
+            },
+            "nominal_abs_ge_3": 159,
+            "nominal_abs_ge_5": 72,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 158,
+            "status_counts": {
+              "MEASURED": 158
+            },
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        }
+      },
+      "proxy_counts": {
+        "angle": 1590,
+        "bond_asu": 0,
+        "bond_simple": 1026,
+        "chirality": 158,
+        "const_dihedral": 380,
+        "dihedral": 574,
+        "parallelity": 58,
+        "planarity": 54
+      },
+      "source_and_prior_qualification_preserved": true,
+      "original_archive_and_frozen_inputs_preserved": true,
+      "aggregate_status": "REVIEW",
+      "model_optimization": "NOT_RUN",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "remaining_geometry": {
+      "same_fixed_recovered_definitions": {
+        "before_fragment": {
+          "bond_abs_ge_5": 31,
+          "angle_abs_ge_5": 72
+        },
+        "after_fragment": {
+          "bond_abs_ge_5": 32,
+          "angle_abs_ge_5": 72
+        }
+      },
+      "df_raw_base_C4_O4_angstrom": 1.4010114203674437,
+      "df_recovered_C4_O4_target_angstrom": 1.218,
+      "cgy_dx_contacts_angstrom": [
+        9.357476048593446,
+        6.818963704258881,
+        4.600879155118074
+      ],
+      "pair_contact_targets_angstrom": [
+        2.8,
+        2.8,
+        2.8
+      ],
+      "interpretation": "Raw fragment defects and unresolved/worsened pairing remain visible. Changing definitions changes the objective; no cross-definition model ranking."
+    }
+  },
+  "fixed_geometry_trial_2026_10_17": {
+    "status": "RETURNED_NATIVE_LIMIT_STOP_SERIALIZATION_REPAIR_READY",
+    "delivery_prefix": "19_Cedar",
+    "policy_id": "cif-fixed-native-geometry-trial-v1",
+    "modules": [
+      "src/nasolve/cif_fixed_geometry.py",
+      "scripts/cif_fixed_geometry_probe_template.py",
+      "scripts/build_cif_fixed_geometry_probe.py"
+    ],
+    "schema_1": {
+      "new_audit_kind": "cif_fixed_native_geometry_trial",
+      "new_probe_kind": "cif-fixed-native-geometry-probe",
+      "existing_inventory_and_qualification_formats_changed": false
+    },
+    "input_archive": {
+      "name": "18_Cedar_pfcyb5kk_cif_source_recovery_review.zip",
+      "bytes": 5121106,
+      "sha256": "8c049215a46f3f1fe0c628b7e2552e6aa59f4149853285edf5e208d72e813146",
+      "verified_payloads": 252,
+      "payload_bytes": 74662889,
+      "safe_unique_members": true
+    },
+    "methods": {
+      "prerequisite": "Require exact verified Cedar 18 capsule, passing fragment mechanics and dictionary checks; unavailable charge readback without contradictions remains separately unsupported.",
+      "manager_match": "Rebuild with our unchanged inventory worker, then require exact captured atoms/coordinates, site definitions, detailed proxies, custom requests and four native API sources before optimization.",
+      "objective": "One all-coordinate geometry-only scitbx L-BFGS trial with the same native manager, all installed geometry flags enabled and normalization false; no target retuning or diffraction input.",
+      "bounds": {
+        "max_iterations_default": 500,
+        "max_iterations_allowed": [
+          1,
+          1000
+        ],
+        "max_calls": "20 * max_iterations",
+        "timeout_seconds_default": 1200,
+        "gradient_epsilon": 1e-05,
+        "cycles": 1
+      },
+      "unsupported_contexts": "Special-position coordinates require a separate constraint policy and are refused before optimizer execution.",
+      "provenance": "Record selected dispatcher and installed Python/compiled optimizer hashes, crystal symmetry, flags, static constraint signatures, native per-term residual sums and nonbonded proxy counts.",
+      "completion": "Record accepted-step history, actual scitbx stopping log, iterations, calls, errors, native final criterion and final gradient norms. A cap or error never reports native criterion met.",
+      "serialization": "Retain full-precision final coordinates/energy separately; preserve every PDB byte except xyz columns and audit rounding, per-site displacement and energy after 8.3 serialization.",
+      "postcheck": "Reinterpret the separate PDB with the same dictionaries/parameters and require exact identities, site definitions, detailed proxies/counts/custom requests and exact serialized coordinates.",
+      "review": "Source/charge, independent stereochemistry, pucker, separate clash/contact inventory, pose and experimental/scientific qualification remain visible; always REVIEW/exit 2."
+    },
+    "software_validation": {
+      "before_implementation": {
+        "failed": 12,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py"
+      },
+      "focused": {
+        "passed": 91,
+        "seconds": 6.49,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py tests/test_cif_native_validation.py tests/test_synthetic_dna_shuttle.py"
+      },
+      "native_tools": "NOT_RUN locally; standalone worker/driver paths use explicit synthetic fakes. Actual Cedar 18 transport is inspection only.",
+      "regressions": [
+        "Synthetic ZZZ with complete atom/frame/metadata correspondence and source preservation",
+        "Finite coordinates, PDB field overflow, changed baseline and reused destination refused",
+        "Limit stops, rounding error, native criterion and unreported stops remain distinct",
+        "Changed captured atom identity or effective definition and special-position contexts stop before minimization",
+        "Owned native timeout and original input mutation retain failure evidence",
+        "Unsafe/duplicate/symlink/unselected payload/failed mechanics/charge contradiction capsule guards",
+        "Deleted-build, relocated cwd and poisoned-import transport with synthetic and actual input"
+      ],
+      "full_suite": {
+        "passed": 1598,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 70.93,
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+      }
+    },
+    "actual_capture_deleted_build_relocation": {
+      "status": "PASS",
+      "scope": "ACTUAL_CEDAR18_CAPSULE_INSPECTION_ONLY",
+      "build_trees_deleted": true,
+      "poisoned_imports": "NOT_USED",
+      "current_directory_independence": true,
+      "source_payloads_verified": 252,
+      "prior_members_byte_identical": 253,
+      "output_payloads_verified": 254,
+      "runtime_files_verified": 104,
+      "original_archive_preserved": true,
+      "analysis_completed": true,
+      "native_execution": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "runner_sha256": "ad860528561522e1526b57f8864fe4e25dec0997ff1eed3fbd7d8a9318a8d608",
+      "output_archive_sha256": "f0e3c24b8eb99c9779962f7967333a10839599217e284e4d0191a10ee08a1e9f"
+    },
+    "boundaries": {
+      "production_postmr_changes": false,
+      "dictionary_generation": "NOT_RUN",
+      "model_editing": "SEPARATE_CANDIDATE_ONLY",
+      "model_optimization": "CEDAR19_COMPLETED_500_ITERATION_LIMIT_NOT_CONVERGED",
+      "diffraction_data": "NOT_READ",
+      "readyset_retry": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false,
+      "new_runtime_dependencies": [],
+      "private_payloads_committed": false
+    },
+    "ferry": {
+      "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+      "previous_build": "18_Cedar_probe_build",
+      "worktree": "19_Cedar_probe_build",
+      "narestraints_worktree": "05_Cedar_narestraints_build",
+      "builder": "scripts/build_cif_fixed_geometry_probe.py",
+      "runner": "19_Cedar_probe_cif_geometry_trial.py",
+      "new_installation_required": false
+    },
+    "return_verified_2026_10_17": {
+      "archive": {
+        "name": "19_Cedar_uu5n9hn0_cif_geometry_trial_review.zip",
+        "bytes": 6133071,
+        "sha256": "efec1713eaa05b51568ff6135cfac1cf649f6907fc4fb49c51b59fa8e1d2cebd",
+        "verified_payloads": 310,
+        "payload_bytes": 87583987,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "5e848ebad5538e33a41f1d4cbd6a3931936889ea",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256": "899562f59985756abf8a8e26e95ebda8c7138e20ee67edebff56a52055f46851",
+      "prior_members_byte_identical": 253,
+      "native_prefix": "geometry_trial/cif-fixed-geometry-d26rllkv",
+      "native_execution": {
+        "elapsed_seconds": 2.805701,
+        "finished_at": "2026-10-17T20:43:16.075049+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-17T20:43:13.269066+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 1200
+      },
+      "installation": "phenix-2.2.1-6174",
+      "phenix_version": "2.2.1",
+      "reconstructed_capture_matches": true,
+      "native_worker_and_geometry_worker_match_delivered_sources": true,
+      "constraint_signature_before": "71f655f193840f1dfd8e96e97f5f976cf9891daa4f0f759ee0dcfe1796d76083",
+      "constraint_signature_after": "71f655f193840f1dfd8e96e97f5f976cf9891daa4f0f759ee0dcfe1796d76083",
+      "optimizer_sources": [
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/scitbx/lbfgs/__init__.py",
+          "module": "scitbx.lbfgs",
+          "sha256": "c7504ffe029b75a064932c7b8201cccd52d4f98b9f1310025e407445e548053e"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/flags.py",
+          "module": "cctbx.geometry_restraints.flags",
+          "sha256": "81038310190507529bef66a3073db6f347a794a7f01a66ac047e8bd613d8603e"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/manager.py",
+          "module": "cctbx.geometry_restraints.manager",
+          "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/energies.py",
+          "module": "cctbx.geometry_restraints.energies",
+          "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/scitbx_lbfgs_ext.so",
+          "module": "scitbx_lbfgs_ext",
+          "sha256": "24bbb8db7137b8cd27bbc25c32a87a4fa04b12e1549f6220eeae849a592b8df0"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/cctbx_geometry_restraints_ext.so",
+          "module": "cctbx_geometry_restraints_ext",
+          "sha256": "496677a82712ef7e8488ef675b98d0bb4f06741c12489f8a3d5fc15058b7612c"
+        }
+      ],
+      "flags": {
+        "angle": true,
+        "bond": true,
+        "bond_similarity": true,
+        "chirality": true,
+        "default": true,
+        "den_restraints": true,
+        "dihedral": true,
+        "ncs_dihedral": true,
+        "nonbonded": true,
+        "parallelity": true,
+        "planarity": true,
+        "ramachandran_restraints": true,
+        "reference_coordinate": true,
+        "reference_dihedral": true
+      },
+      "normalization": false,
+      "symmetry": {
+        "space_group": "R 3 :H",
+        "unit_cell": [
+          103.113,
+          103.113,
+          98.202,
+          90.0,
+          90.0,
+          120.00000000000001
+        ]
+      },
+      "initial": {
+        "gradient_norm": 21593.073381486793,
+        "max_atom_gradient": 4475.989601163833,
+        "proxy_counts": {
+          "n_angle_proxies": 1590,
+          "n_bond_proxies": 1026,
+          "n_bond_similarity_proxies": null,
+          "n_chirality_proxies": 158,
+          "n_den_proxies": null,
+          "n_dihedral_proxies": 574,
+          "n_ncs_dihedral_proxies": null,
+          "n_nonbonded_proxies": 7998,
+          "n_parallelity_proxies": 58,
+          "n_planarity_proxies": 54,
+          "n_ramachandran_proxies": null,
+          "n_reference_coordinate_proxies": null,
+          "n_reference_dihedral_proxies": null
+        },
+        "target": 35629.733600469466,
+        "terms": {
+          "angle_residual_sum": 8970.986396943024,
+          "bond_residual_sum": 5448.37185181387,
+          "bond_similarity_residual_sum": 0.0,
+          "chirality_residual_sum": 32.5058263451103,
+          "den_residual_sum": 0.0,
+          "dihedral_residual_sum": 1330.487544441627,
+          "dihedral_restraints_residual_sum": 0.0,
+          "ncs_dihedral_residual_sum": 0.0,
+          "nonbonded_residual_sum": 10882.843450054077,
+          "parallelity_residual_sum": 5667.883278846505,
+          "planarity_residual_sum": 3296.6552520252485,
+          "ramachandran_residual_sum": 0.0,
+          "reference_coordinate_residual_sum": 0.0,
+          "reference_dihedral_residual_sum": 0.0
+        }
+      },
+      "final": {
+        "gradient_norm": 408.3741115918578,
+        "max_atom_gradient": 59.22498792809165,
+        "proxy_counts": {
+          "n_angle_proxies": 1590,
+          "n_bond_proxies": 1026,
+          "n_bond_similarity_proxies": null,
+          "n_chirality_proxies": 158,
+          "n_den_proxies": null,
+          "n_dihedral_proxies": 574,
+          "n_ncs_dihedral_proxies": null,
+          "n_nonbonded_proxies": 7837,
+          "n_parallelity_proxies": 58,
+          "n_planarity_proxies": 54,
+          "n_ramachandran_proxies": null,
+          "n_reference_coordinate_proxies": null,
+          "n_reference_dihedral_proxies": null
+        },
+        "target": 3676.065435884924,
+        "terms": {
+          "angle_residual_sum": 1477.2254576193677,
+          "bond_residual_sum": 555.674394631227,
+          "bond_similarity_residual_sum": 0.0,
+          "chirality_residual_sum": 21.368479550623935,
+          "den_residual_sum": 0.0,
+          "dihedral_residual_sum": 653.0647964610012,
+          "dihedral_restraints_residual_sum": 0.0,
+          "ncs_dihedral_residual_sum": 0.0,
+          "nonbonded_residual_sum": 390.50797773005667,
+          "parallelity_residual_sum": 512.6854683425016,
+          "planarity_residual_sum": 65.53886155014614,
+          "ramachandran_residual_sum": 0.0,
+          "reference_coordinate_residual_sum": 0.0,
+          "reference_dihedral_residual_sum": 0.0
+        }
+      },
+      "serialized_energy": {
+        "gradient_norm": 978.6730250772459,
+        "max_atom_gradient": 156.83105580353936,
+        "proxy_counts": {
+          "n_angle_proxies": 1590,
+          "n_bond_proxies": 1026,
+          "n_bond_similarity_proxies": null,
+          "n_chirality_proxies": 158,
+          "n_den_proxies": null,
+          "n_dihedral_proxies": 574,
+          "n_ncs_dihedral_proxies": null,
+          "n_nonbonded_proxies": 7837,
+          "n_parallelity_proxies": 58,
+          "n_planarity_proxies": 54,
+          "n_ramachandran_proxies": null,
+          "n_reference_coordinate_proxies": null,
+          "n_reference_dihedral_proxies": null
+        },
+        "target": 3679.8536696058145,
+        "terms": {
+          "angle_residual_sum": 1479.039479815256,
+          "bond_residual_sum": 557.4984113695687,
+          "bond_similarity_residual_sum": 0.0,
+          "chirality_residual_sum": 21.455501000841462,
+          "den_residual_sum": 0.0,
+          "dihedral_residual_sum": 653.0151462672336,
+          "dihedral_restraints_residual_sum": 0.0,
+          "ncs_dihedral_residual_sum": 0.0,
+          "nonbonded_residual_sum": 390.34638115774817,
+          "parallelity_residual_sum": 512.8292588842323,
+          "planarity_residual_sum": 65.66949111093416,
+          "ramachandran_residual_sum": 0.0,
+          "reference_coordinate_residual_sum": 0.0,
+          "reference_dihedral_residual_sum": 0.0
+        }
+      },
+      "stopping": {
+        "calls": 524,
+        "error": null,
+        "iterations": 500,
+        "max_iterations": 500,
+        "native_criterion_met": false,
+        "reason": "max_iterations"
+      },
+      "convergence": "NOT_CONVERGED_LIMIT",
+      "target_reduction_percent": 89.68259073417128,
+      "analysis_completed": false,
+      "stop": "PDB/native atom ordering differs",
+      "model_atom_count": 877,
+      "pdb_native_order_mismatches": 157,
+      "candidate_written_by_original_runner": false,
+      "source_and_frozen_evidence_preserved": true,
+      "source_and_charge_reviews_preserved": true,
+      "new_serialization_replay": {
+        "scope": "OFFLINE_SAVED_ENDPOINTS_ONLY_NO_NEW_OPTIMIZATION_OR_NATIVE_INTERPRETATION",
+        "all_877_coordinates_match_saved_native_identity": true,
+        "report": {
+          "schema_version": 1,
+          "policy_id": "cif-fixed-native-geometry-trial-v1",
+          "status": "REVIEW",
+          "candidate_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+          "source_sha256": "ddbbbdc1c852d47761efe362aa7b0bd180715387d52e71de8c980d61a0dd3ab7",
+          "atom_count": 877,
+          "atom_correspondence": "EXACT_IDENTITY_BIJECTION",
+          "pdb_native_order_mismatches": 157,
+          "metadata_and_headers_preserved": true,
+          "source_preserved": true,
+          "roundtrip_max_distance": 0.0008263369965970016,
+          "roundtrip_precision": "PDB_8_3_SEPARATE_FROM_FULL_PRECISION",
+          "displacement": {
+            "max": 5.137861565425493,
+            "rms": 0.9809800933382721,
+            "mean": 0.8164172691277105
+          },
+          "per_site_displacement": {
+            "A:1": {
+              "max": 1.501586317892358,
+              "rms": 1.1610375682496117,
+              "mean": 1.1496384726934377
+            },
+            "A:2": {
+              "max": 1.3578062077945252,
+              "rms": 0.7726090626260361,
+              "mean": 0.7214978715342742
+            },
+            "A:3": {
+              "max": 1.2795712974855273,
+              "rms": 0.8502491887029747,
+              "mean": 0.8372379661931938
+            },
+            "A:4": {
+              "max": 1.1216084453422497,
+              "rms": 0.7224095386370956,
+              "mean": 0.699271045910866
+            },
+            "A:5": {
+              "max": 1.506525040750689,
+              "rms": 1.1683672365627067,
+              "mean": 1.1522446138609908
+            },
+            "A:6": {
+              "max": 1.1122373335812956,
+              "rms": 0.681369205981642,
+              "mean": 0.6484328248520642
+            },
+            "A:7": {
+              "max": 1.2775950309926547,
+              "rms": 0.9050979163404732,
+              "mean": 0.8755580095088027
+            },
+            "A:8": {
+              "max": 1.3500946563993141,
+              "rms": 0.6741258352450731,
+              "mean": 0.6050791609566085
+            },
+            "A:9": {
+              "max": 1.0898127947271485,
+              "rms": 0.7344804873018598,
+              "mean": 0.6957315615017474
+            },
+            "A:10": {
+              "max": 1.9731438309168394,
+              "rms": 1.1730444163137728,
+              "mean": 1.0907898774304698
+            },
+            "A:11": {
+              "max": 2.261353263493434,
+              "rms": 1.2375920896419839,
+              "mean": 1.1558684555755008
+            },
+            "A:12": {
+              "max": 1.469607532515085,
+              "rms": 0.6538127030091088,
+              "mean": 0.6005144973469024
+            },
+            "A:13": {
+              "max": 1.2035603125026202,
+              "rms": 0.8076100546972703,
+              "mean": 0.7903653393533483
+            },
+            "A:14": {
+              "max": 1.4174375751406159,
+              "rms": 0.57764349456665,
+              "mean": 0.42801746654734907
+            },
+            "A:15": {
+              "max": 0.8340458384030052,
+              "rms": 0.5597701801107205,
+              "mean": 0.5464011606899635
+            },
+            "A:16": {
+              "max": 1.6422093035119967,
+              "rms": 0.8637195581446492,
+              "mean": 0.7420860654363407
+            },
+            "A:17": {
+              "max": 1.4828467802017675,
+              "rms": 0.638565391198229,
+              "mean": 0.5222059792976625
+            },
+            "A:18": {
+              "max": 0.7988773474525043,
+              "rms": 0.46689233483302256,
+              "mean": 0.44782537548292617
+            },
+            "A:19": {
+              "max": 1.335298223550591,
+              "rms": 0.6145266263245952,
+              "mean": 0.5480045722255222
+            },
+            "A:20": {
+              "max": 2.7954464929006493,
+              "rms": 1.9346338828215472,
+              "mean": 1.8024568763186364
+            },
+            "A:21": {
+              "max": 2.043115909135175,
+              "rms": 0.9314562241749327,
+              "mean": 0.8603614110575056
+            },
+            "B:1": {
+              "max": 1.8558959992084791,
+              "rms": 0.8410666932123659,
+              "mean": 0.7652252042053375
+            },
+            "B:2": {
+              "max": 1.6842136225584416,
+              "rms": 0.9168144288173071,
+              "mean": 0.8098950022842493
+            },
+            "B:3": {
+              "max": 1.049454235878158,
+              "rms": 0.40065459314670454,
+              "mean": 0.3351245258150577
+            },
+            "B:4": {
+              "max": 1.4916178120505106,
+              "rms": 0.6365122670586082,
+              "mean": 0.5629175535310433
+            },
+            "B:5": {
+              "max": 0.961565276365161,
+              "rms": 0.5650889296580499,
+              "mean": 0.5310712315850131
+            },
+            "B:6": {
+              "max": 0.7897776698768169,
+              "rms": 0.47007962253537133,
+              "mean": 0.44501577975252193
+            },
+            "B:7": {
+              "max": 1.4931677014000388,
+              "rms": 0.9547000415621176,
+              "mean": 0.9151073447274178
+            },
+            "C:8": {
+              "max": 1.4789094751588956,
+              "rms": 0.8384817401547467,
+              "mean": 0.7999016077700218
+            },
+            "C:9": {
+              "max": 1.902835503514174,
+              "rms": 0.6677396574308163,
+              "mean": 0.5494762636565015
+            },
+            "C:10": {
+              "max": 2.5769603781633945,
+              "rms": 1.2607839654223916,
+              "mean": 1.0374562349967058
+            },
+            "C:11": {
+              "max": 1.0629441242894506,
+              "rms": 0.4998740085866087,
+              "mean": 0.4279358209788966
+            },
+            "C:12": {
+              "max": 1.447204085513306,
+              "rms": 1.1434859453818849,
+              "mean": 1.1264791048755185
+            },
+            "C:13": {
+              "max": 1.2214385094136655,
+              "rms": 0.8524094638931489,
+              "mean": 0.8264476413273468
+            },
+            "C:14": {
+              "max": 2.002353531151288,
+              "rms": 1.1151638181632824,
+              "mean": 1.0514154201800634
+            },
+            "D:1": {
+              "max": 2.035874336113771,
+              "rms": 1.170956690466285,
+              "mean": 1.095880942412162
+            },
+            "D:2": {
+              "max": 1.1828513611298581,
+              "rms": 0.7898377613134412,
+              "mean": 0.7753694462112128
+            },
+            "D:3": {
+              "max": 5.137861565425493,
+              "rms": 2.6131976795514813,
+              "mean": 2.177599193109454
+            },
+            "D:4": {
+              "max": 2.7403429459808026,
+              "rms": 1.596793736850938,
+              "mean": 1.448706837344127
+            },
+            "D:5": {
+              "max": 1.2807988869812594,
+              "rms": 0.7521287145383586,
+              "mean": 0.678761841205159
+            },
+            "D:6": {
+              "max": 1.0047469548066146,
+              "rms": 0.5951844951920392,
+              "mean": 0.5621233704157326
+            },
+            "D:7": {
+              "max": 1.1469442457805954,
+              "rms": 0.7597378391030098,
+              "mean": 0.7419602191159452
+            },
+            "E:1": {
+              "max": 1.190364474706942,
+              "rms": 0.48002920913264385,
+              "mean": 0.3926041218607626
+            }
+          },
+          "scientific_approval": "NOT_RUN",
+          "automatic_adoption": false
+        },
+        "full_precision_captured_proxy_geometry": {
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "nominal_abs_ge_3": 7,
+            "nominal_abs_ge_5": 4,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 1590,
+            "nominal_abs_ge_3": 19,
+            "nominal_abs_ge_5": 10,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 158,
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "native_roundtrip": "PENDING"
+      },
+      "automatic_adoption": false,
+      "scientific_approval": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "readyset_retry": "NOT_RUN"
+    },
+    "serialization_identity_fix_2026_10_17": {
+      "status": "IMPLEMENTED_OFFLINE_SAVED_ENDPOINT_SERIALIZATION_VERIFIED_NATIVE_POSTCHECK_PENDING",
+      "delivery_prefix": "20_Cedar",
+      "behavior_before": "Serializer zipped original PDB lines with native hierarchy indices and refused native atom reordering after the completed trial.",
+      "behavior_after": "Validate a complete one-to-one supported single-model identity map by chain/residue/insertion/altloc/atom name, with component/element/baseline-coordinate guards. Map final native endpoints to original PDB records; preserve their ordering, headers and metadata.",
+      "receipt_additions": [
+        "atom_correspondence=EXACT_IDENTITY_BIJECTION",
+        "pdb_native_order_mismatches",
+        "frozen_review_path",
+        "completed_trial_archive",
+        "geometry_trial_reused"
+      ],
+      "compatibility": "Additive schema-1 receipt fields; existing policy, targets, production PostMR and qualification gates unchanged. Fresh bounded trials still supported.",
+      "saved_trial_continuation": "--completed-trial-zip accepts the exact Cedar 19 capsule. Verify all payloads, prior evidence, input model/CIF/PHIL hashes, completed native execution, matching manager/APIs and fixed constraint signatures; reuse saved full-precision endpoints without new optimization. Reinterpret the serialized PDB with unchanged restraints and retain all existing native checks.",
+      "originals": "Preserve both original ZIPs, all frozen payloads, source model and saved endpoints; no captured script or pickle is executed.",
+      "software_validation": {
+        "before_implementation": {
+          "failed": 3,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py -k serialization_maps"
+        },
+        "focused": {
+          "passed": 105,
+          "seconds": 7.71,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py tests/test_cif_native_validation.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "regressions": [
+          "Reordered generic ZZZ PDB, blank chain and distinct alternate identities map every final coordinate correctly",
+          "Unsafe/duplicate/symlink/tampered completed capsule, different manager/bundle or changed fixed signature refused",
+          "Saved-endpoint continuation cannot call optimizer; changed native postcheck definitions stay blocked",
+          "Fresh and resumed deleted-build/poisoned-import synthetic transport; actual completed-capsule transport"
+        ],
+        "native_tools": "Cedar 19 actual Phenix 2.2.1-6174 optimization completed. New native postcheck NOT_RUN locally; explicit fakes cover coordinator phases.",
+        "full_suite": {
+          "passed": 1612,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 73.75,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        }
+      },
+      "offline_actual_saved_trial": {
+        "evidence_ref": "fixed_geometry_trial_2026_10_17.return_verified_2026_10_17.new_serialization_replay",
+        "scope": "OFFLINE_SAVED_ENDPOINTS_ONLY_NO_NEW_OPTIMIZATION_OR_NATIVE_INTERPRETATION",
+        "all_877_coordinates_match_saved_native_identity": true,
+        "candidate_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+        "max_roundtrip_distance": 0.0008263369965970016,
+        "displacement": {
+          "max": 5.137861565425493,
+          "rms": 0.9809800933382721,
+          "mean": 0.8164172691277105
+        },
+        "native_roundtrip": "PENDING"
+      },
+      "deleted_build_actual_transport": {
+        "status": "PASS",
+        "scope": "ACTUAL_CEDAR19_COMPLETED_TRIAL_INSPECTION_ONLY",
+        "build_trees_deleted": true,
+        "poisoned_imports": "NOT_USED",
+        "current_directory_independence": true,
+        "source_payloads_verified": 310,
+        "prior_members_byte_identical": 311,
+        "output_payloads_verified": 312,
+        "runtime_files_verified": 104,
+        "original_archive_preserved": true,
+        "analysis_completed": true,
+        "native_execution": "NOT_RUN",
+        "model_optimization": "NOT_RUN",
+        "runner_sha256": "a2170e092e6ca2aab7d56d677d6c0a4fe67179bd4b4ea5b3632a2aac994f7a26",
+        "output_archive_sha256": "51e450ac32d188ef5dfdc791cecd850f6d76b9adbcc88996bb2a55e97aaafa3e"
+      },
+      "ferry": {
+        "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+        "previous_build": "19_Cedar_probe_build",
+        "worktree": "20_Cedar_probe_build",
+        "narestraints_worktree": "05_Cedar_narestraints_build",
+        "builder": "scripts/build_cif_fixed_geometry_probe.py",
+        "builder_delivery_prefix": "20_Cedar",
+        "runner": "20_Cedar_probe_cif_geometry_trial.py",
+        "runtime_extra_option": "--completed-trial-zip",
+        "new_installation_required": false
+      },
+      "boundaries": {
+        "new_optimization": "NOT_RUN_REUSE_SAVED_ENDPOINTS",
+        "target_changes": false,
+        "production_changes": false,
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "refinement": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "new_runtime_dependencies": [],
+        "private_payloads_committed": false
+      }
+    }
+  }
+}

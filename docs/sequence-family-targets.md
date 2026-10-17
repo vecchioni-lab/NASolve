@@ -9,6 +9,12 @@ defaults and existing frozen runs remain unchanged. Explicit campaign
 sequence-thread inheritance is supported; thread membership remains target
 metadata and does not imply model compatibility or reuse.
 
+This receipt concerns the earlier sequence-family integration, not the later
+combined D:T/B:S/Z:P/K:X geometry challenge. The combined trial has passed
+identity, linkage-mechanics and restraint-coverage checks; its effective
+geometry qualification remains pending in the
+[native ledger](native-modified-pair-live-validation.md).
+
 ## Reviewed A1AAZ / DF bridge for native PDB targets
 
 The exact parenthetical token `(A1AAZ)` is preserved as requested CCD/deposition
@@ -39,6 +45,12 @@ A sequence-defined construct family is one supported design model, not the
 meaning of a campaign. Other experiments may be related by geometry, topology,
 or declared design parameters without sharing a sequence or an MR scaffold.
 Family membership never establishes search-model interchangeability.
+
+The separately requested PDB/coordinate-mmCIF adapter and explicit trust-model
+mode are [planned input capabilities](architecture.md#proposed-model-input-contract).
+Trust-model mode would record independent sequence agreement as unverified and
+skip sequence-driven mutation; it would not fabricate a sequence-family target
+or silently opt into this reference contract when a sequence file is absent.
 
 The reference `w-metal-scaffold` describes the reviewed W-family **sequence**.
 The name does not request a metal atom, metal occupancy, coordination geometry,

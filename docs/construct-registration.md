@@ -1,8 +1,9 @@
 # Construct registration and the Registration Net
 
-Status: **design contract with core semantics and conservative Scout v1 now
-implemented on the Birch development branch; not yet wired into live
-AutoMR/PostMR execution.** This layer is intended to make NASolve robust to real
+Status, checked **2026-10-10**: **core semantics and conservative Scout are
+implemented; Birch and experimental Oak work are merged. Scout remains
+backend-only, not wired into live AutoMR/PostMR execution.** This layer is
+intended to make NASolve robust to real
 crystallographic coordinate representations without changing the logical
 construct intent supplied by the user.
 
@@ -11,6 +12,13 @@ The current machine-readable development policy is
 Inference-policy changes should update both that record and this document so
 later validation can distinguish a code regression from an intentional policy
 revision.
+
+Current development order belongs to the
+[handoff](development-handoff.md#roadmap-after-the-combined-geometry-test): the
+combined geometry trial precedes the planned SMILES-assisted CIF audit, which
+precedes operational Scout / Topo work. Preserve the post-Pine blind AlphaFold
+baseline before operational Scout. This contract defines registration behavior;
+it does not add a new current chemistry or merge gate.
 
 ### Naming convention
 
@@ -44,6 +52,14 @@ evidence when they make a registration unique, but must not become a hidden
 similarity score that silently decides between competing crystallographic
 interpretations. Scout v1 deliberately does not use sequence similarity to
 break chain-assignment ties.
+
+The proposed format-neutral **trust-model / no-sequence-file mode** is an
+explicit alternative input policy, not implicit sequence confirmation. Imported
+PDB or coordinate mmCIF models would retain their literal observed identities
+with independent sequence agreement marked unverified. Registration that needs
+external construct intent cannot invent that intent from coordinate labels;
+sequence-driven mutation is skipped. The planned adapter boundary is in
+[architecture](architecture.md#proposed-model-input-contract).
 
 ## Core idea
 
@@ -238,7 +254,7 @@ final report.
 
 ### Current Scout v1 implementation boundary
 
-Birch currently implements the pure registration record, checksum-bound
+The merged Birch code implements the pure registration record, checksum-bound
 freeze/load provenance, logical-site propagation across complete registered
 copies, and a conservative non-mutating Scout for:
 
@@ -251,7 +267,7 @@ Scout v1 intentionally refuses to infer split chains, copy multiplicity,
 symmetry-dependent cuts, partial copies or topology. It also does **not** use
 sequence or modified-site similarity as a tie-breaker.
 
-Birch now additionally records a **descriptive design-evidence matrix** for
+It also records a **descriptive design-evidence matrix** for
 every simple chain candidate. It reports target/coordinate residue matches and
 mismatches—including intended modified-site differences—but schema semantics
 fix `used_for_assignment = false` and explicitly state that identity-match
@@ -266,7 +282,8 @@ registration: copy coverage, complete/partial multiplicity, complete-copy
 identity classes and single-copy coordinate realization remain separate
 dimensions with no acceptance or PostMR verdict.
 
-The first focused Birch registration checkpoint reported **23 passing tests**
+The historical September 26 Birch registration checkpoint reported
+**23 passing tests**
 at code head `4452295c3330de6d55bddd75b01be21f39afb222`. The later merged
 Birch registration/model-candidate bundle reached **44 focused tests passing**
 plus a full NASolve regression of **664 tests and 222 subtests**. Oak's
@@ -311,21 +328,6 @@ any policy is promoted. Merge status and runtime-authority status are separate:
 the code is present on main, but ordinary AutoMR/PostMR execution still does not
 treat Scout v2 proposals as authoritative mappings.
 
-The first renamed-real-W v2 shadow attempt remained `AMBIGUOUS`, which was the
-correct fail-closed result for incomplete evidence. Only A:13=DC and B:3=DG had
-been supplied; the intended mapping therefore still contained two unexplained
-differences. Direct inspection of the actual `MR_frames/5W6W/C_G.pdb`
-provider verified the complete relevant identity set:
-`A:12=DC`, `A:13=DC`, `B:3=DG`, `B:4=DG`.
-
-Repeating the same shadow case with all four verified provider identities
-produced exactly one zero-unexplained proposal:
-`A->M, B->N, C->P, D->Q`. It contained 38 exact identities and 4
-`REVIEWED_PROVIDER_BASELINE` differences; every alternative retained at least
-10 `UNEXPLAINED` mismatches. The helper still reported
-`runtime_authority = false`. This validates the experimental categorical rule
-on the real rename nuisance case without promoting it into runtime authority.
-
 The final Oak implementation binds that provenance explicitly. Scout v2 no
 longer accepts an ad hoc site->code dictionary. Optional provider-baseline evidence must
 arrive as the actual assessed provider model plus NASolve's existing
@@ -335,30 +337,14 @@ selector matches the assessed source model, derives every residue code from the
 provider coordinates, and records the source-model SHA-256 in the returned
 baseline evidence.
 
-This provenance-bound implementation remains experimental and non-runtime.
-The focused Construct Registration suite now passes **43 tests locally** at
-checkout/test head `507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying
-source-behavior head remains
-`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added guardrail tests
-explicitly reject incomplete provider target coverage and provider-selector/source
-mismatch.
-
-The renamed real-W shadow case has now also passed through the new
-`provider_assessment + model_provider` interface with exactly one
-zero-unexplained A->M/B->N/C->P/D->Q proposal (38 exact + 4 provider-explained;
-alternatives 12/11/16/17/10 unexplained). Provider evidence was bound, no caller
-residue-code dictionary was supplied, and `runtime_authority` remained false.
-Because historical ED `run_011` predates the structured provider field, the
-shadow script reconstructed only provider facts first verified independently
-from the run's model path, model_source and recorded model SHA-256, then checked
-that SHA against the assessed current `C_G.pdb` before Scout ran.
-
-That historical bridge was then removed from the validation entirely: a fresh
-current-schema ED `run_013` AutoMR preflight was created from the same
-scientific intent and supplied native structured `model_provider` provenance.
-Repeating the renamed-W shadow case directly from `run_013` reproduced the
-same unique zero-unexplained mapping with provider binding true, caller codes
-false and `runtime_authority = false`.
+Historical September 26–27 validation progressed from an ambiguous result with
+incomplete provider evidence to one unique mapping with all four verified
+provider identities. The provenance-bound interface then reproduced that
+mapping from fresh ED `run_013` metadata, without caller-supplied residue codes
+or historical schema reconstruction. The helper remained non-runtime throughout.
+Exact attempts, code heads and test receipts are retained in
+[the live-check evidence](construct-registration-live-checks.md)
+and the [pre-reconciliation record](history/construct-registration-intent-2026-10-10-pre-reconciliation.json).
 
 ### Guided mode
 
@@ -373,8 +359,8 @@ A guided decision is frozen as run-local registration provenance. It does not
 silently change a global NASolve rule. Promotion of a successful run-local
 mapping into a reusable lab recipe is a separate explicit action.
 
-Birch now implements the first UI-independent guided primitive for simple
-ambiguous Scout cases: an explicit logical-chain -> coordinate-chain selection
+The merged Birch code implements the first UI-independent guided primitive for
+simple ambiguous Scout cases: an explicit logical-chain -> coordinate-chain selection
 can be applied only if every chosen pair was already present in Scout's frozen
 candidate set. The selection must cover every logical chain and remain
 one-to-one. This helper does not choose for the user, edit coordinates, infer
@@ -583,8 +569,9 @@ When several PDBs are present, AutoMR may run Registration Scout on a bounded ca
 set. Models that cannot represent required logical sites are excluded with a
 diagnostic. Eligible candidates may be tried under a preset-declared MR budget.
 
-Birch now implements the **read-only precursor** to that future behavior without
-changing current AutoMR selection. A separate candidate-inventory module:
+The merged Birch code implements the **read-only precursor** to that future
+behavior without changing current AutoMR selection. A separate
+candidate-inventory module:
 
 - enumerates every top-level dataset PDB;
 - retains invalid PDBs with diagnostics instead of hiding them;
@@ -1081,6 +1068,66 @@ needed for repair, instruct the user what seam/fragment requires attention, then
 allow the user to save/import a corrected PDB as a new immutable checkpoint.
 That manual model must retain the failed automated attempts and user-review
 provenance rather than erasing them.
+
+### GeoTest guided arm connection
+
+**Requested 2026-10-11; planned, not implemented.** The returned GeoTest
+corrected full-auto trial produced six numerically ready refinements, two bounded
+Doctor reviews and one MR failure. The user wraps its campaign scope, while
+local arm ends and triangle connections still need assembly-aware repair. Two supplied Coot
+views show local model/density discrepancies; their exact member, checkpoint
+and residue selection were not supplied. They motivate this feature but do not
+establish which atoms should connect or whether a new covalent link is intended.
+The [handoff](development-handoff.md#optional-geotest-side-trial) owns the
+native results and attachment provenance.
+
+The user requests this geometry checker and guided stitcher as a module of the
+coordinated Doctor workflow. They attribute high GeoTest Rwork to fractured
+sticky-end arms rather than anomalous noise. Treat that as the reported model
+diagnosis motivating inspection, not a conclusion inferred from Rwork alone.
+Doctor should examine actual model/maps, local geometry and declared assembly
+connectivity before selecting more refinement strategies; numerical readiness
+does not skip that assessment. Data/Free-R and component/restraint findings
+remain visible alongside assembly findings rather than serving as a default
+explanation for poor fit.
+
+The first guided slice should accept either a placed MR model or an explicit
+refined checkpoint, with its symmetry, observations/Free-R, available maps and
+effective dictionaries. Reassess registration on that actual model. The user
+supplies which arms/domains should meet and how the strands continue, identified
+by residue/domain ranges and symmetry mates. Preserve alternatives when that
+decision remains ambiguous; the search-model Scout proposal is not downstream
+registration authority.
+
+The preview must distinguish sticky-end/base-pair association, covalent backbone
+continuation across an ASU representation seam, and a true nick or terminus.
+"Stitch triangles" does not itself authorize covalent joining. In particular,
+GeoTest's explicitly declared free 5′-OH termini remain true ends unless the
+user supplies a different, reviewed connectivity assignment.
+
+Freeze the accepted connection/strand-routing proposal before materialization.
+Apply any exact symmetry recut/relabel first; local coordinate relaxation is a
+separately bounded child operation. Reinterpret the child in Phenix, then run
+ordinary short refinement and return to the same user inspection context.
+Preserve the parent, unsuccessful attempts, observations/Free-R and checkpoint
+lineage throughout.
+
+Acceptance requires the intended arm pairing and strand routing, preserved
+residue identities/copies/chirality and true nicks, no silent atom loss or
+duplication, correct interpretation of any intended P–O3′ links and phosphate
+angles, and explicit local clashes/geometry and unrelated displacement checks.
+Use a real GeoTest connection, an ambiguous routing case requiring one user
+decision, and a true nick that must remain unjoined. Visual closure and lower
+R factors alone do not certify the intended connectivity.
+
+This assembly/coordinate module and the generalized CIF/restraint assessor
+have distinct evidence and repair contracts but belong to the same planned
+Doctor entry point/orchestration. The assessor remains the first implementation
+slice; geometry checking and guided stitching follow without delaying the
+closed GeoTest campaign or existing integration gates. Both reuse provenance
+and native geometry diagnostics. Existing Scout
+remains backend-only and its guided whole-chain selection helper does not yet
+perform splitting, joining, symmetry materialization or this repair.
 
 ### Materialization, Coot repair and Phenix enforcement
 

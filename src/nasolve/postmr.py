@@ -10,7 +10,7 @@ import subprocess
 from collections import OrderedDict
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
-from math import dist, sqrt
+from math import dist, isfinite, sqrt
 from pathlib import Path
 from typing import Callable, Mapping
 
@@ -21,6 +21,7 @@ from .curated_ligands import (
     ligand_dictionary,
     validate_ligand_dictionary,
 )
+from .cif_doctor import assess_dictionaries
 from .component_normalization import (
     POLICY as COMPONENT_POLICY, PREFERRED_COMPONENTS,
     normalize_model as normalize_component_model, preparation_targets,
@@ -1444,8 +1445,148 @@ def _run_readyset(
     return checked, log, generated_cif if generated_cif.is_file() else None, command, phosphate_audit
 
 
+def _require_generic_parameterization(
+    sources: Mapping[str, Mapping[str, object]],
+    generated_cif: Path | None,
+    readyset_log: Path,
+    *,
+    failure_report: Path | None = None,
+) -> None:
+    """Quarantine unusable generated numerics for generic source-only graphs.
+
+    Curated ligand behavior remains unchanged: only non-curated, unparameterized
+    inputs must be backed by usable ReadySet numerical rows of the same ID.
+    Dictionary assessment elsewhere remains report-only. This generation gate
+    never edits targets, adopts a candidate or judges supplier chemical identity.
+    """
+    required = sorted(code for code, source_info in sources.items()
+                      if code not in CURATED_LIGANDS and not source_info["parameterized"])
+    if not required:
+        return  # Explicit parameterized inputs have established precedence.
+    parse_error = None
+    try:
+        generated = (
+            _parameterized_codes(generated_cif)
+            if generated_cif is not None else set()
+        )
+    except (OSError, ValueError, TypeError) as exc:
+        generated = set()
+        parse_error = type(exc).__name__
+    assessment = assess_dictionaries([generated_cif], stage="postmr-generated") if generated_cif else None
+    findings = assessment["findings"] if assessment else []
+    components = {component["component_id"] for component in assessment["components"]} if assessment else set()
+    affected = []
+    for code in required:
+        selected = [finding for finding in findings if finding.get("component_id") == code
+                    and finding["rule_id"] == "NUM-01"]
+        failures = [finding for finding in selected if finding["status"] in {"FAIL", "ERROR"}]
+        if code in generated and not failures:
+            continue
+        reasons = failures
+        if code not in generated:
+            reasons = [finding for finding in selected
+                       if finding["status"] in {"FAIL", "ERROR", "REVIEW", "NOT_RUN"}]
+            missing = generated_cif is None or not generated_cif.is_file()
+            reason_code = ("missing-generated-dictionary" if missing else
+                           "missing-generated-component" if code not in components else
+                           "unusable-numerical-parameterization")
+            reasons = [{"rule_id": "GEN-01", "status": "FAIL", "code": reason_code,
+                        "message": "The required generated component does not satisfy the numerical parameterization gate.",
+                        "measurements": {"component_id": code, "parse_error_type": parse_error}},
+                       *reasons]
+        affected.append({"component_id": code, "legacy_parameterization_passed": code in generated,
+                         "reasons": reasons})
+    if not affected:
+        return
+    if failure_report is not None:
+        payload = {"schema_version": 1, "audit_kind": "readyset_generic_generation_failure",
+                   "status": "QUARANTINED", "policy": "generic-generated-numerics-v2",
+                   "affected_components": affected, "assessment": assessment,
+                   "action": "regenerate-whole-component-from-frozen-chemical-source",
+                   "input_handling": "Original source and generated CIFs are preserved; no target numbers were patched."}
+        try:
+            with failure_report.open("x", encoding="utf-8") as handle:
+                handle.write(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        except OSError as exc:
+            raise PostMRPreparationError(
+                "ReadySet could not supply usable parameterized ligand restraints for "
+                + ", ".join(item["component_id"] for item in affected)
+                + f"; cannot write exclusive generation-failure receipt {failure_report}: {exc}. "
+                "Original CIFs and any existing receipt are preserved."
+            ) from exc
+    diagnostics = []
+    for item in affected:
+        for finding in item["reasons"]:
+            details = finding["measurements"]
+            atoms = "–".join(details.get("atoms", []))
+            key = finding["code"]
+            if key == "missing-generated-dictionary":
+                description = "numerical output dictionary is absent"
+            elif key == "missing-generated-component":
+                description = "generated dictionary omits the component"
+            elif key == "coincident-bonded-heavy-atoms":
+                description = f"coincident bonded heavy atoms {atoms} in {details['coordinate_set']}"
+            elif key in {"numeric-domain-violation", "invalid-numeric-value"}:
+                raw = details.get("value")
+                try:
+                    value = float(raw)
+                    adjective = "non-finite" if not isfinite(value) else "zero" if value == 0 else "invalid"
+                except (ValueError, TypeError, OverflowError):
+                    adjective = "unusable"
+                description = f"{adjective} numerical parameter {atoms} {details.get('field')}={raw}"
+            else:
+                description = key
+            diagnostics.append(f"{item['component_id']}: {description}")
+    raise PostMRPreparationError(
+        "ReadySet could not supply usable parameterized ligand restraints for "
+        + ", ".join(item["component_id"] for item in affected)
+        + "; " + "; ".join(diagnostics)
+        + ". Regenerate the affected whole component dictionary from its frozen chemical source; "
+        "do not patch individual target numbers. Original CIFs are preserved; "
+        + f"inspect {readyset_log}"
+        + (f" and {failure_report}" if failure_report is not None else "")
+    )
+
+
 def _write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _cif_doctor_assessment(
+    paths: list[Path], run: Path, *, stage: str, model: Path | None = None,
+) -> dict[str, object]:
+    """Attach exact portable references to a read-only dictionary assessment."""
+    assessment = assess_dictionaries(paths, stage=stage, model=model)
+    inputs = []
+    for index, path in enumerate(paths):
+        item = assessment["inputs"][index]
+        reference = frozen_reference(path, run)
+        if any(item.get(key) != reference[key] for key in ("sha256", "size")):
+            raise PostMRPreparationError(
+                f"Dictionary input changed while binding CIF Doctor assessment: {path}"
+            )
+        inputs.append({**item, **reference})
+    assessment["inputs"] = inputs
+    if model is not None:
+        item = assessment.get("model") or {}
+        reference = frozen_reference(model, run)
+        if any(item.get(key) != reference[key] for key in ("sha256", "size")):
+            raise PostMRPreparationError(
+                f"Model changed while binding CIF Doctor assessment: {model}"
+            )
+        assessment["model"] = {**item, **reference}
+    return assessment
+
+
+def _cif_doctor_receipt(
+    path: Path, assessment: Mapping[str, object], run: Path,
+) -> dict[str, object]:
+    """Describe the report without turning findings into a readiness gate."""
+    return {
+        "report": frozen_reference(path, run),
+        "status": assessment["status"],
+        "summary": assessment["summary"],
+    }
 
 
 def prepare_postmr(
@@ -1526,13 +1667,45 @@ def prepare_postmr(
     })
     ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
     ligand_sources: dict[str, Path] = {}
+    initial_dictionary_hashes: dict[str, str] = {}
     for code in target_ligand_codes:
         try:
-            dictionary = ligand_dictionary(code, data_root).resolve()
+            dictionary = ligand_dictionary(
+                code, data_root, ready_set_executable=ready_set_executable
+            ).resolve()
             validate_ligand_dictionary(code, dictionary)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
         ligand_sources[code] = dictionary
+        initial_dictionary_hashes[code] = file_sha256(dictionary)
+
+    # These audit-only copies retain the exact target definitions inspected
+    # before mutation. Coot still uses the original verified inputs and the
+    # existing post-Coot source freeze/hash check remains authoritative.
+    mutation_doctor: dict[str, object] | None = None
+    if ligand_sources:
+        mutation_snapshots = coot_dir / "source_dictionaries"
+        mutation_snapshots.mkdir()
+        mutation_inputs = []
+        for code, source in ligand_sources.items():
+            snapshot = mutation_snapshots / f"{code}.cif"
+            shutil.copyfile(source, snapshot)
+            if (file_sha256(snapshot) != initial_dictionary_hashes[code]
+                    or file_sha256(source) != initial_dictionary_hashes[code]):
+                raise PostMRPreparationError(
+                    f"Dictionary changed while screening mutation {code}"
+                )
+            mutation_inputs.append(snapshot)
+        mutation_assessment = _cif_doctor_assessment(
+            mutation_inputs, run, stage="postmr-mutation-source",
+        )
+        mutation_assessment["mutation_targets"] = [
+            asdict(action) for action in actions
+            if action.after in ligand_sources
+        ]
+        mutation_report = restraints_dir / "cif_doctor_mutation.json"
+        _write_json(mutation_report, mutation_assessment)
+        mutation_doctor = _cif_doctor_receipt(mutation_report, mutation_assessment, run)
 
     raw_targets = _target_sites(report, original, run_directory=run)
     requested_changes = component_target_changes(raw_targets)
@@ -1840,9 +2013,12 @@ def prepare_postmr(
     )
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []
+    dictionary_source_provenance: dict[str, dict[str, object]] = {}
     for code in ligand_codes:
         try:
-            source = ligand_sources.get(code) or ligand_dictionary(code, data_root).resolve()
+            source = ligand_sources.get(code) or ligand_dictionary(
+                code, data_root, ready_set_executable=ready_set_executable
+            ).resolve()
             validate_ligand_dictionary(code, source)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
@@ -1853,6 +2029,19 @@ def prepare_postmr(
         source_directory.mkdir(exist_ok=True)
         source_snapshot = source_directory / f"{code}.cif"
         source_sha = file_sha256(source)
+        if code in initial_dictionary_hashes and source_sha != initial_dictionary_hashes[code]:
+            raise PostMRPreparationError(
+                f"Source dictionary for {code} changed since Coot mutation"
+            )
+        dictionary_source_provenance[code] = {
+            "origin": str(source),
+            "sha256": source_sha,
+            "kind": (
+                "installed-phenix-ccd" if code not in CURATED_LIGANDS
+                and source.name == f"data_{code}.cif" else "local-verified"
+            ),
+            "parameterized": code in _parameterized_codes(source),
+        }
         shutil.copyfile(source, source_snapshot)
         if (file_sha256(source_snapshot) != source_sha
                 or file_sha256(source) != source_sha):
@@ -1883,6 +2072,25 @@ def prepare_postmr(
             raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
         restraint_paths.extend(modification_paths)
 
+    source_assessment = _cif_doctor_assessment(
+        [restraints_dir / "source_dictionaries" / f"{code}.cif" for code in ligand_codes],
+        run, stage="postmr-source", model=prepared,
+    )
+    source_assessment["runtime_assessment"] = _cif_doctor_assessment(
+        restraint_paths, run, stage="postmr-runtime-source", model=prepared,
+    )
+    site_context = {
+        "phosphate_policy": "op3-explicit-opt-in-v1",
+        "allow_op3_sites": list(allowed_op3),
+        "experimental_passthrough_sites": list(passthrough_sites),
+    }
+    source_assessment["declared_site_context"] = site_context
+    source_assessment["readyset_dictionary_input"] = (
+        frozen_reference(readyset_cif, run) if readyset_cif is not None else None
+    )
+    source_report = restraints_dir / "cif_doctor_source.json"
+    _write_json(source_report, source_assessment)
+
     updated, readyset_log, generated_cif, readyset_command, phosphate_after = _run_readyset(
         prepared,
         ready_set_executable.expanduser().resolve(),
@@ -1891,6 +2099,10 @@ def prepare_postmr(
         environment,
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
+    )
+    _require_generic_parameterization(
+        dictionary_source_provenance, generated_cif, readyset_log,
+        failure_report=readyset_dir / "cif_doctor_generation_failure.json",
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
@@ -1927,6 +2139,34 @@ def prepare_postmr(
             prefer_parameterized_inputs=True)
     except (PhosphateError, ValueError, OSError) as exc:
         raise PostMRPreparationError(f"Cannot prepare effective dictionary inputs: {exc}") from exc
+    effective_assessment = _cif_doctor_assessment(
+        effective, run, stage="postmr-effective", model=final_model,
+    )
+    effective_assessment["declared_site_context"] = site_context
+    effective_assessment["dictionary_precedence"] = {
+        "policy": "parameterized-inputs-over-readyset-v2",
+        "authoritative_codes": sorted(
+            (set(ligand_codes) & AUTHORITATIVE_CODES)
+            | {code for path in copied_cifs for code in _parameterized_codes(path)}
+        ),
+        "normalized_inputs": [frozen_reference(path, run) for path in copied_cifs],
+        "effective_dictionaries": [frozen_reference(path, run) for path in view_dictionaries],
+        "raw_readyset_dictionary": (
+            frozen_reference(generated_cif, run) if generated_cif is not None else None
+        ),
+    }
+    effective_report = restraints_dir / "cif_doctor_effective.json"
+    _write_json(effective_report, effective_assessment)
+    cif_doctor = {
+        "schema_version": 1,
+        "mode": "report-only",
+        "coordinate_changes": False,
+        "native_interpretation": "UNASSESSED",
+        "source": _cif_doctor_receipt(source_report, source_assessment, run),
+        "effective": _cif_doctor_receipt(effective_report, effective_assessment, run),
+    }
+    if mutation_doctor is not None:
+        cif_doctor["mutation"] = mutation_doctor
     anomalous_candidates = scan_anomalous_candidates(final_model)
     from .anomalous_expectations import audit_iodine_targets
     iodine_expectations = audit_iodine_targets(final_model, anomalous_candidates)
@@ -1977,6 +2217,7 @@ def prepare_postmr(
             for code in ligand_codes
         },
         "restraints": [str(path) for path in restraint_paths],
+        "cif_doctor": cif_doctor,
         "narestraints": narestraints_report,
         "readyset": {
             "command": readyset_command,
@@ -2026,6 +2267,7 @@ def prepare_postmr(
     }
     postmr_payload["dictionary_precedence"] = {
         "policy": "parameterized-inputs-over-readyset-v2",
+        "input_source_provenance": dictionary_source_provenance,
         "authoritative_codes": sorted(
             (set(ligand_codes) & AUTHORITATIVE_CODES)
             | {code for path in copied_cifs for code in _parameterized_codes(path)}),
@@ -2054,6 +2296,9 @@ def prepare_postmr(
             ),
             f"NARestraints mode: {narestraints_report['mode']}",
             "ReadySet hydrogens: False",
+            f"CIF Doctor source assessment: {source_assessment['status']} (report-only)",
+            f"CIF Doctor effective assessment: {effective_assessment['status']} (report-only)",
+            "CIF Doctor native interpretation: UNASSESSED",
             f"Prepared model: {final_model}",
             "",
         ]),

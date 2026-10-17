@@ -148,6 +148,36 @@ the G:C H-bond recipe at the frame's designated pair sites. The override is
 site-scoped, frozen in provenance, and must not affect neighboring template
 pairs or rewrite coordinate residue names.
 
+### Proposed model input contract
+
+**Future scope; no new input mode is implemented by this document.** The
+current search-model reader accepts PDB; prepared-nonstandard campaigns require
+a complete chain-labelled sequence target. A collaborator-supplied AlphaFold
+coordinate CIF without a separate sequence file motivates two independent
+extensions: accept **coordinate mmCIF and PDB**, and allow an explicitly
+declared **trust-model mode** without a separate sequence target. That mode is
+format-neutral; no CLI flag or configuration spelling is committed yet.
+
+Preserve the exact supplied model and its hash. Validate the coordinate format,
+model/assembly selection, chain/residue/atom identifiers, alternate conformers,
+modified component identities and connectivity before execution. A component
+dictionary CIF is not a coordinate mmCIF. When an external tool needs a converted
+format, freeze a separate derivative with an explicit identifier and assembly
+mapping; stop the affected operation if the required representation cannot be
+preserved unambiguously. Never truncate identifiers or select an assembly
+silently.
+
+Trust-model mode declares that the supplied coordinates define the intended
+working model; it does not establish independent sequence agreement or final
+structural correctness. Record `sequence independently unverified` explicitly,
+skip sequence-driven mutation/reconstruction, and gate only operations needing
+an independently supplied sequence. Missing sequence must not select this mode
+implicitly. Keep ordinary model integrity, MR, crystallographic symmetry,
+chemistry, reflection and Free-R validation. Existing explicit sequence inputs
+remain authoritative when provided under the corresponding sequence-driven
+mode. Implementation and blind-test ordering belong in the
+[development handoff](development-handoff.md).
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants
@@ -205,9 +235,13 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 1. Validate and freeze AutoMR input; optionally mirror the search model; assess
    the exact model supplied to Phaser.
 2. Run Phaser in an isolated `Phaser/` directory without stripping heteroatoms.
-3. Classify the best TFZ: `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
+3. Classify the selected model's final TFZ-equivalent (or unambiguous available
+   translation score): `>= 8.0` pass; `7.0–7.99` review; `< 7.0` fail.
 4. `nasolve postmr RUN` applies supported site changes, builds the restraint
-   stack, and runs ReadySet with hydrogens disabled.
+   stack, and runs ReadySet with hydrogens disabled. CIF Doctor records
+   read-only, report-only assessments before dictionary-based mutation, before
+   ReadySet and after effective-dictionary selection. These receipts preserve
+   the existing continuation gates and do not automatically prepare/adopt a repair.
 5. If PostMR finds nucleotide-bound I, Br, or Se, `nasolve autosol RUN` performs
    guarded MR-SAD phasing and validates at least one heavy-atom site against
    the model under crystallographic symmetry.
@@ -221,6 +255,16 @@ sources stop the run. Nonstandard mode does not apply this symmetry rule.
 The default command still stops after step 1. `nasolve automr ... --execute`
 runs step 2 and applies step 3. A passing run exits 0; TFZ 7.0–7.99 is retained
 for review and exits 3; failure or missing output exits 4.
+
+Score authority follows the selected numbered Phaser PDB and its matching MTZ.
+Read the final `TFZ==` and final LLG from that model's solution annotation;
+initial `TFZ=` values and scores from other models are not substitutes. The
+report records the score kind, source and raw annotation. A headerless legacy
+output may use an unambiguous single-solution log fallback; conflicting or
+unassociated scores cannot authorize progression. See the
+[Phenix annotation reference](https://www.phenix-online.org/documentation/reference/phaser.html#annotation).
+This corrects the October 11 GeoTest under-gating without changing thresholds
+or rewriting historical runs.
 
 ## PostMR contract
 
@@ -238,13 +282,18 @@ writing. Full sequences expand over the frozen per-chain residue inventory;
 application precedence is sequence, standard pair, then explicit mutation.
 Every ordinary base change restores the pre-Coot sugar/phosphate coordinates.
 For mutations outside the curated registry, `ligand_definition` requires one
-NARestraints record and derives a compatible Coot construction parent from
-`Sugar Type` and `Base Analog`. `ligand_dictionary` requires a local
-`ligands/CODE.cif`; no network retrieval occurs. The generic dictionary check
-verifies `_chem_comp.id`, while curated entries keep their explicit topology
-checks and take precedence. This permits OHU mutation with the included CIF
-without claiming general topology or atom-mapping inference. The inferred Coot
-parent is not necessarily the component's official CCD parent.
+NARestraints record and derives a Coot construction parent from `Sugar Type`
+and the recognized `Source sheet`, with `Base Analog` as the category fallback.
+`ligand_dictionary` prefers a local `ligands/CODE.cif`; otherwise, for registered
+non-curated components, it uses the CCD library beside the configured Phenix
+ReadySet executable. Symlink aliases count as one resolved source; separate
+files remain ambiguous even if their bytes match. No network retrieval or
+alternate-installation search occurs. The generic dictionary check verifies
+`_chem_comp.id`, while curated entries retain their explicit topology checks,
+local precedence and missing-file guard. Raw CCD graphs still need usable
+numerical restraints from ReadySet before `POSTMR_READY`. The existing local
+OHU route remains available without implying general topology or atom-mapping
+inference. A construction parent is not necessarily the official CCD parent.
 
 For mirrored runs, canonical targets are translated to the NARestraints L-side
 codes (`0DA`, `0DC`, `0DG`, `0DT`, and RNA equivalents). Exact mirrored models
@@ -258,6 +307,23 @@ atom back into the replaced residue and requires the complete sugar/phosphate
 atom set to survive. Thus dictionary overlap positions only the new chemistry;
 it cannot rotate or curl the existing phosphate. The restoration inventory is
 recorded in the run report.
+
+The returned Cedar 16 evidence demonstrates a limitation of this legacy
+same-name/element restoration: it introduces 55 captured threshold crossings,
+and an offline replay reproduces the restored model byte for byte. Shared
+atom names do not establish semantic base correspondence or compatible local
+geometry. The explicit Cedar 17 attached-fragment candidate keeps the existing
+scaffold and moves a complete graph-selected base together, with unsupported
+graphs visibly refused. Its installed native mechanics and the separate
+source-recovered DF definitions now pass their checked mechanics, with charge readback still unsupported. A
+separate bounded fixed-definition geometry trial records numerical stopping
+and round-trip evidence. Its serializer maps exact atom identities across
+native/PDB order changes while preserving original records; verified saved
+endpoints can resume the native postcheck without another optimization. Full
+scientific qualification remains under review.
+It is separate from production PostMR. See the
+[restoration diagnostic](cif-doctor.md#separate-attached-fragment-restoration-candidate)
+and [current handoff](development-handoff.md).
 
 Dictionary resolution follows mutation actions. Curated components present in
 the prepared model are also collected even when unchanged, so their CIFs and
@@ -282,6 +348,12 @@ portable 5W6W secondary-structure template contains 17 non-overlapping
 scaffold base pairs, no stacking pairs, and no historical input paths, cell,
 map, output, or GUI settings.
 
+When prepared W residues make a template Saenger class inappropriate, PostMR
+uses the reviewed NARestraints atom-role mapping to replace only those scaffold
+blocks with explicit pair restraints, retaining unaffected pairs and the usual
+stacking source. Component identity, monomer geometry and pair-recipe roles
+remain distinct; neither a CIF nor a construction parent invents a pair class.
+
 `--modified-pairs-only` generates a model-derived restraint selection in either
 standard or nonstandard mode. After all coordinate edits,
 the NARestraints guesser runs with `allow_noncanonical=True`. NASolve defines
@@ -293,7 +365,10 @@ remaining project overlay is retained. A zero-pair result is a successful
 no-op; warnings, candidate counts, retained pairs, and removed overlaps remain
 in the report.
 
-Problematic Phenix components are explicit curated-library entries. User token
+The bundled registry combines source adaptations, construction recipes and
+identity bridges; it is not a list of proven supplier defects. The
+[component source audit](modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
+records their roles and the unresolved DE numerical-geometry review. User token
 `E` maps to the laboratory PDB-compatible `DE`, not official CCD `8RO`, whose
 topology describes a different sulfur-ring compound. `F` maps to `DF`, with
 official deposition identity `A1AAZ`; `D` maps to official `1AP`; and `Q` maps
@@ -344,8 +419,10 @@ The first parameterized monomer override uses selected-site `NASnoOP3`
 modifications for reviewed 1AP chemistry. The original integration/validation
 diary is preserved under `history/1ap-phosphate-integration.md`; it is no longer
 the active contract.
-New 1AP runs freeze authoritative refinement/view artifact lists with hashes,
-so ReadySet cannot silently supersede the reviewed 1AP CIF or omit the
+The current connectivity-selected profile supports 1AP, DZ, DP and 5CM;
+legacy profiles without an explicit component scope remain 1AP-only.
+New runs freeze authoritative refinement/view artifact lists with hashes,
+so ReadySet cannot silently supersede an explicit parameterized CIF or omit the
 modification at checkpoint creation. Incoming/outgoing profile links and
 explicit OP3 consent are checked after preparation, around refinement, before
 Doctor triage and on manual import. Existing histories are never rewritten.
@@ -357,7 +434,7 @@ geometry. ReadySet is the uniform post-edit normalization and validation gate,
 even where Phenix refinement could technically consume the edited PDB and CIF
 directly.
 
-NARestraints v1.1.1 has a legacy `DF` mapping of canonical `O2` to `S2`; the
+The legacy NARestraints `DF` mapping names canonical `O2` as `S2`; the
 A1AAZ-derived component uses `S1`. The PostMR adapter patches a copied residue
 record in process memory, restores the builder's original loader in a `finally`
 block, and records the correction. The installed workbook is never mutated,
@@ -427,10 +504,15 @@ always retains the original STARANISO observations and original Free-R array.
 Refinement-generated MTZ files are outputs and evidence; they cannot become the
 observation source of a child by accident.
 
-The root checkpoint is the ReadySet model. Its restraint set prefers
-ReadySet's generated combined ligand CIF over the individual curated CIFs that
-were supplied to ReadySet, while retaining the NARestraints PHIL and project
-EFF files. An approved AutoSol file is a separate phase source. Explicit
+The root checkpoint is the prepared ReadySet model. Its restraint set consumes
+the frozen effective PostMR bundle: explicit parameterized component inputs
+take precedence over generated copies, while construction-only CCD graphs
+defer to usable generated numerical definitions. Selection is by component
+content, not filename; other generated components and modification-only CIFs
+remain included. The NARestraints PHIL and project EFF files are retained.
+Raw ReadySet output is preserved as provenance. See
+[effective dictionary preparation](modified-component-preparation.md#effective-dictionary-preparation).
+An approved AutoSol file is a separate phase source. Explicit
 reflection file names and labels prevent duplicate observations in the AutoSol
 file from competing with the authoritative STARANISO array.
 AutoRefine derives one fail-closed reflection-selector policy from the
@@ -538,6 +620,18 @@ automation but do not replace visual inspection or user approval.
 
 ## Refine Doctor contract
 
+**Planned coordinated Doctor scope:** the October 11 GeoTest follow-up bundles
+the existing refinement/data/Free-R diagnostics below with the next deterministic
+component/restraint assessor and future model geometry/connectivity assessment,
+including guided sticky-end repair. This broader orchestration is not implemented
+by the current `refine-doctor` command. Geometry findings must be assessed before
+choosing more refinement strategies; high Rwork alone does not identify noise,
+dictionary defects or fractured arms. Declared assembly/routing and bounded
+checkpoint repair follow the [guided connection contract](construct-registration.md#geotest-guided-arm-connection).
+Frozen Free-R flags remain unchanged. The
+[handoff](development-handoff.md#restraint-doctor-and-subsequent-roadmap) owns
+implementation order and returned evidence.
+
 Refine Doctor is a finisher and diagnostic layer, not an unconstrained
 R-factor optimizer. It starts from the current or explicitly named checkpoint,
 records that pointer, and requires every trial to be an immutable sibling of
@@ -603,9 +697,10 @@ leaves `recommended_checkpoint` empty, and separately identifies a usable
 quantify uncertainty or establish superiority. A small inversion no longer
 endorses the original source as good enough. The additive `triage` and
 `ranking` report fields explain budgets, skipped recipes, the stop and next
-inspection steps. Campaign integration and diagnostic-driven restraint/data alternatives
-remain planned in `campaigns.md`; immediate implementation state is tracked in
-`development-handoff.md`.
+inspection steps. Campaign-owned execution and optional full-auto provisional
+selection are described below; richer diagnostic-driven restraint/data
+alternatives remain future work in `campaigns.md`. Immediate implementation
+state is tracked in `development-handoff.md`.
 
 ## Stage-aware Coot views
 
@@ -666,8 +761,8 @@ never filesystem modification times.
 
 ## Campaign planning contract
 
-`presets.load_preset` validates a schema-1 TOML policy and its declared resource
-bytes. The packaged `5w6w` preset covers the existing standard workflow. Unknown
+`presets.load_preset` validates a schema-1 or schema-2 TOML policy and its declared
+resource bytes. The packaged `5w6w` preset covers the existing standard workflow. Unknown
 settings and unsupported policies stop loading. Paths resolve within the preset
 root, and exact source and resource hashes accompany the canonical configuration
 fingerprint. Python 3.10 uses the conditional `tomli` dependency; newer Python
@@ -734,18 +829,21 @@ The validated default coordinator stage order is:
 preflight -> Phaser -> PostMR -> conditional AutoSol -> AutoRefine
 ```
 
-Pine additionally contains a **regression + live validated explicit continuation**
-from `AUTOREFINE_REVIEW` into a campaign-owned `refine-doctor` stage. This is
-not part of the default endpoint: it remains an explicit continuation unless a
-future frozen workflow recipe opts into Doctor-as-needed behavior. Doctor
-recommendation does not auto-select a checkpoint.
+Pine also contains a regression- and live-validated continuation from
+`AUTOREFINE_REVIEW` into a campaign-owned `refine-doctor` stage. Guarded recipes
+require an explicit endpoint and leave the recommendation unselected.
+[Preset schema 2 full auto](campaign-full-auto.md) can instead freeze bounded
+Doctor escalation and a separate provisional selection of its verified
+passing recommendation. Core Doctor does not select a checkpoint; the campaign
+records that action separately, with `user_approved=false`.
 
 AutoSol is a **conditional stage gate**, not a mandatory scientific operation.
 PostMR records whether a supported anomalous candidate exists. When it does not,
 the campaign records accepted status `SKIPPED` and does not launch
 `phenix.autosol`. When it does, the frozen AutoSol policy applies. A plain
-`campaign run ROOT` currently advances eligible datasets through AutoRefine;
-`--through STAGE` is an explicit validation/debugging stop boundary.
+`campaign run ROOT` uses the frozen recipe endpoint: AutoRefine for guarded
+defaults, or Doctor when the full-auto recipe enables it. `--through STAGE`
+explicitly overrides that endpoint.
 
 Separate schema-1 execution state under `NASolveCampaign/execution/` records
 the plan fingerprint, exact attempt/run ownership, stage progress, checkpoint,
@@ -763,20 +861,21 @@ uncertain prior processes prevent duplicate work. Whole-campaign relocation
 requires all workers to be stopped first and preserves relative artifact
 references; tool configuration is rediscovered on the current computer.
 
-MR review, unaccepted AutoSol phases and refinement review stop the affected
-dataset for inspection while other selected datasets continue. A numerical
-pass records its selected checkpoint as `SOLVED` with both
+Under guarded policy, MR review, unaccepted AutoSol phases and refinement review
+stop the affected dataset while other selected datasets continue. Full auto
+may trial a usable borderline MR result without changing its raw classification,
+continue without rejected phases, and run bounded Doctor under its frozen
+permissions. Required chemistry and input-integrity checks remain in force.
+A numerical pass records its selected checkpoint as `SOLVED` with both
 `numerical_success = true` and `inspection_required = true`. Final structural
-approval, automatic Doctor selection and deposition remain separate future
-layers. The existing observation, Free-R, chemistry and checkpoint selection
+approval and deposition remain separate from numerical or provisional selection.
+The existing observation, Free-R, chemistry and checkpoint selection
 gates are preserved.
 
-The current unattended behavior still relies on the executor's fixed stage
-order and default AutoRefine endpoint. A future preset/campaign workflow schema
-should freeze the intended endpoint and conditional stage graph explicitly so a
-single selected campaign recipe defines how far each dataset should advance and
-which bounded recovery branches are permitted. That future abstraction must not
-weaken the existing fail-closed per-dataset stops or immutable stage provenance.
+The executor still uses a fixed supported stage order. Schema 2 already freezes
+the bounded full-auto permissions and derives the endpoint from that recipe.
+A richer declarative conditional stage graph remains future work; it must
+preserve per-dataset required-input checks and immutable stage provenance.
 
 See [campaign execution](campaign-execution.md) for the command and recovery
 contract.
@@ -790,8 +889,8 @@ W/nonstandard AutoMR defaults, PostMR policy, conditional
 `autosol.policy = when-anomalous`, AutoRefine recipe/cycle count, resources and
 declared chemistry.
 
-A later preset/workflow manifest should also make the **campaign journey**
-explicit rather than leaving its endpoint implicit in the executor. It should
+A richer preset/workflow manifest could extend the current schema-2 bounded
+policies into an explicit **campaign journey**. It should
 be able to declare, in typed data:
 
 - the intended terminal stage or terminal outcome for the campaign recipe;
@@ -799,11 +898,8 @@ be able to declare, in typed data:
   requires it;
 - whether an unaccepted optional branch stops for inspection or may fall back
   to a reviewed ordinary path;
-- bounded Doctor/recovery policies once separately validated. A future recipe
-  may opt into the semantic policy "apply Doctor as needed"; omission leaves the
-  review as an inspection stop. Enabling the policy authorizes only declared,
-  backend-supported bounded Doctors and does not imply automatic checkpoint
-  selection; and
+- bounded Doctor/recovery policies, retaining the existing separation between
+  escalation and provisional-selection permissions; and
 - human-facing recipe identity/version suitable for provenance and GUI display.
 
 Further frame/project policy may also declare:
@@ -838,27 +934,30 @@ Earlier end-to-end local validation is preserved in
 `history/validation-dohu.md`. Current validation state and the immediate
 implementation edge are maintained in `development-handoff.md`.
 
-The campaign planner freezes inputs and project policy; the sequential executor
-adds guarded stage composition and saved progress. Pine's schema-2 prepared
-nonstandard/mixed backend is fixture-green. A real four-member W campaign has
-now completed under the user's actual Phenix/Coot installation: three members
-reached `SOLVED` at `refine-001` with AutoSol correctly skipped, while QiC
-ran AutoSol successfully and then stopped at `AWAITING_INSPECTION` because its
-first refinement failed the numerical gate. The campaign ended
-`COMPLETE_WITH_FLAGS` with frozen integrity `OK`. The separate real
-prepared-nonstandard geometry-diverse campaign remains pending until those input
-datasets are available.
+Completed four-member native full-auto and campaign-owned Doctor evidence lives
+in the [full-auto checkpoint](full-auto-patch-handoff.md). The current combined
+modified-W test has passed prepared-bundle PostMR, generic-linkage/coverage
+diagnostics and repaired 5CM/DF native interpretation. Bounded geometry
+minimization completed, and the relaxed model has user-reported visual PASS.
+A source-preserving DP replacement now passed native target/linkage checks;
+its fresh geometry trial relieved the N5 conflict with preserved chirality/links.
+The new model has user-reported base visual PASS; numerical sugar review,
+full qualification and ordinary full-auto reproduction
+remain open. The
+[native ledger](native-modified-pair-live-validation.md) owns the exact scope.
+Neither this diagnostic nor the four-member campaign closes the independent P2
+source-native conversion or P5 geometry-diverse prepared-nonstandard gates.
 
-The read-only Campaign Doctor provenance/comparison prerequisites are implemented.
-The next campaign-semantic additions are: (1) make the selected campaign workflow
-endpoint/conditional graph first-class frozen recipe data, including a
-campaign-owned Refine Doctor transition; (2) validate a real 3-5 member
-prepared-nonstandard/geometry-diverse campaign; and (3) add explicit stable
-Design identity. Standalone Refine Doctor must not be invoked against a completed
-campaign-owned run until that transition exists, because Doctor updates the run
-report while campaign receipts intentionally checksum completed-stage reports.
+After the combined geometry test, the proposed
+[SMILES/graph audit](modified-component-preparation.md#proposed-smiles-and-cif-audit)
+precedes the Topo/Scout work. Its initial assessor reports graph differences
+separately from numerical geometry; subsequent separately tested integration
+may regenerate and continue only under explicit bounded policy, preserving
+source/candidate/native evidence. It must not invent chemical intent. The handoff
+owns the complete ordering, including bounded Pine close-out and the blind
+AlphaFold baseline; future features must not become extra merge gates.
 
-Construct registration remains the next structural robustness layer: a cheap
+Construct registration remains a later structural robustness layer: a cheap
 non-mutating Registration Scout before Phaser, authoritative ASU Registration
 on the MR solution before PostMR, a guided Registration Net for ambiguous
 cases, and bounded Registration/Recut Rescue candidates only when ordinary MR
@@ -866,9 +965,12 @@ or representation mapping needs them. The merged Scout-v2 helper remains
 experimental/non-runtime; current clean W runs must retain an identity-like fast
 path.
 
-Reviewed Campaign Doctor eligibility/rescue policy and richer inspection
-summaries remain later orchestration steps after these campaign/registration
-foundations.
+The superseded campaign-state discussion is retained in the
+[pre-reconciliation archive](history/architecture-2026-10-10-pre-reconciliation.md.txt).
+
+Additional diagnostic-driven rescue policies and richer inspection summaries
+remain later orchestration work; they do not reopen completed campaign-owned
+Doctor or bounded full-auto validation.
 
 Campaign orchestration should reuse frozen inputs, immutable numbered runs,
 and checkpoint lineage, with resumable per-dataset progress and explicit

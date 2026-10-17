@@ -1,14 +1,5 @@
 # Changelog
 
-## P2 preferred-component preparation (candidate)
-
-- Normalize 1W5 to DZ and 1WA to DP only in new prepared derivatives; keep raw inputs and old checkpoints.
-- Supply pinned parameterized DP, preserve mapped heavy-atom placement, and record target chemistry/provenance.
-- Retain existing category hops, force semantics, dictionary compatibility and legacy phosphate scopes.
-- Record the user-requested post-Pine blind AlphaFold geometry campaign before operational Scout.
-- Full-checkout and native conversion validation remain pending until returned.
-
-
 All notable user-visible, compatibility, schema, and reproducibility changes
 to NASolve are recorded here.
 
@@ -16,6 +7,740 @@ The format follows Keep a Changelog. Until the first tagged release, historical
 entries are reconstructed from repository history.
 
 ## [Unreleased]
+
+### Native/PDB identity mapping and saved geometry continuation
+
+- Verify Cedar 19's 310 payloads and completed fixed-manager optimization.
+  Preserve its 500-iteration limit/false convergence criterion and stored final
+  endpoints; record that serialization stopped before candidate/native postcheck.
+- Replace positional PDB/native pairing with a checked one-to-one supported
+  atom identity map. Preserve record order, headers and metadata; reject
+  ambiguous/missing/changed correspondence. Actual saved-coordinate replay
+  recovers all 877 atoms, including 157 reordered records.
+- Add explicit Cedar 20 continuation from the exact completed capsule, without
+  rerunning optimization. Verify hashes, inputs and manager evidence, then keep
+  the unchanged native postcheck. Add generic order/identity, capsule, reuse and
+  deleted-build regressions; the complete 1,612-test suite passes. Native
+  postcheck/scientific approval stay pending.
+  No new dependencies, target changes, production integration or adoption.
+
+### Cedar 18 return and fixed-definition geometry trial
+
+- Verify all 252 returned payloads, source-preserving DF generation, 68 passing
+  dictionary checks/one unavailable charge readback and 14 fragment checks.
+  Replay linked outputs and the nine-atom candidate byte for byte. Retain
+  unresolved raw geometry and pairing evidence, source/charge reviews and REVIEW.
+- Add an explicit one-pass native geometry-only trial after exact captured-manager
+  matching. Hold definitions/flags fixed; record native terms/gradients, actual
+  stopping/limit/error evidence and optimizer provenance. Preserve full precision
+  separately from a new PDB's rounding, displacement and native proxy postcheck.
+- Add the Cedar 19 pinned Git shuttle and generic synthetic/worker/transport
+  regressions; the initial 1,598-test suite passes. Returned optimization and
+  serialization continuation are recorded above.
+  Production PostMR,
+  qualification gates and existing schemas are unchanged; no target retuning,
+  ReadySet retry, diffraction/refinement or adoption and no new dependencies.
+
+### Cedar 17 return and explicit effective/source recovery
+
+- Verify all 129 returned payloads and 14 native mechanics checks; reproduce
+  the fragment candidate byte for byte. Preserve unchanged definitions,
+  detailed proxies and source/charge reviews. Record remaining/worsened pair
+  contacts separately from improved intrasite geometry; retain REVIEW.
+- Select recovery by unsupported effective graphs and exact recorded original
+  source hashes/content, with shared-context and modifier-composition guards.
+  Reuse source-preserving whole-component generation and linked/native
+  projection checks at fixed coordinates before a separate fragment trial.
+  DF's frozen source has single sugar bonds; the aromatic declarations belong
+  to the effective dictionary. No target is inferred from residual strain.
+- Add the Cedar 18 shuttle, strict continuation/phase-order regressions and
+  source-isolated actual-input planning. The 1,568-test suite passes. Native
+  generation/interpretation is pending. Production PostMR and existing schemas/
+  gates are unchanged; model minimization, ReadySet retry, refinement and
+  adoption do not run, and no private scientific payload enters Git.
+
+### Cedar 16 return and separate fragment-restoration candidate
+
+- Verify all 74 returned payloads and replay the construction report. Record
+  55 raw→restored crossings and a byte-exact legacy restoration replay from
+  frozen inputs, reproducing the damaging coordinate-copy operation for those
+  captured transitions. Preserve the original receipt and all earlier issues.
+- Add an explicit DNA graph rule that transports a complete raw base through
+  the preserved sugar frame. Keep backbone/unselected coordinates, atom
+  identities and metadata; refuse unsupported graphs, attachments and frames.
+  DF's aromatic sugar remains unchanged and under review. Eight supported
+  contexts/84 base atoms form a separate candidate; descriptive bond/angle
+  outliers decrease 50/107→34/72 without target changes or geometry approval.
+- Add the Cedar 17 source-bundled runner and native identity/definition/full
+  proxy comparison against the unchanged captured bundle. Preserve prior
+  source/charge reviews and retain REVIEW. Generic regressions, the complete
+  1,543-test suite and actual-input deleted-build transport pass; installed
+  interpretation remains pending. Existing production PostMR and schemas/gates
+  are unchanged; new schema-1 diagnostics add no dependencies or private data.
+
+### Original construction provenance and Cedar 16 ferry
+
+- Add an explicit read-only stage audit bound to the reviewed original model.
+  Snapshot exact run artifacts and AST-declared Coot references, with anchored
+  relocation, source/frozen hash checks and visible missing evidence. Never
+  execute the saved script or collect outside-run paths.
+- Compare captured intrasite bond/angle findings across exact PDB atom,
+  component and element identities. Record observed threshold crossings only
+  across adjacent comparable stages; retain the distinction between same-name
+  parent coordinate matches, semantic correspondence and causal proof.
+- Add the source-bundled Cedar 16 runner, regressions and partial-witness
+  relocation validation. Full original Mac stage collection remains pending.
+  No production PostMR, target, coordinate, native-tool, dependency or adoption
+  change; new schema-1 diagnostic formats are separate from existing receipts.
+
+### Cedar 15 return and coordinate provenance review
+
+- Verify all 51 returned payloads and 47 unchanged frozen native members.
+  Replay the captured geometry report, matching identities, targets, weights,
+  statuses and counts with only computed-scalar platform roundoff at most
+  7.11e-14. Confirm 50 bond/107 angle nominal deviations at least five and
+  zero recorded chirality sign conflicts; aggregate REVIEW remains.
+- Compare large intrasite deviations with declared dictionary coordinates and
+  trace all 858 common atom identities unchanged from Cedar 05. Record earlier
+  coordinate distortion and the next bounded construction/atom-correspondence
+  audit. Root cause remains unestablished; no target, runtime, schema, coordinate,
+  qualification-gate, optimization or adoption change. Native payloads stay
+  outside Git.
+
+### Captured Cartesian geometry review and Cedar 15 ferry
+
+- Add a read-only diagnostic for Cartesian simple-bond distances, angles and
+  ordered chirality volumes from a verified native inventory. Validate atom
+  identities, indices, coordinate correspondence and detail counts; retain
+  missing/zero-weight, degenerate, symmetry and deferred-category limitations.
+  Nominal weighted deviations are descriptive rankings, not native residuals
+  or scientific acceptance gates.
+- Add the source-bundled Cedar 15 runner for the exact verified Cedar 14 ZIP,
+  preserving all inputs and earlier qualification/source reviews. Write a fresh
+  JSON report, short summary and review capsule. No new native execution,
+  coordinate changes, target retuning, optimization, refinement or adoption;
+  existing production paths and schemas remain unchanged. No new dependencies.
+- Validate synthetic geometry/transport regressions, the full suite and actual
+  captured-input relocation after deletion of both source-build fixtures.
+
+### Cedar 14 native return and generality scope
+
+- Verify all 141 returned payloads and completed baseline/candidate interpretation
+  under Phenix 2.2.1-6174. Offline replay reproduces 138 PASS and nine unsupported
+  formal-charge readbacks. All four outgoing-H findings clear; projected
+  definitions, exact modifier IDs, captured-baseline replay and retained
+  definitions/proxies pass. Aggregate REVIEW and source/geometry limits remain.
+- Record the graph/context rule's existing synthetic `ZZZ`, misleading H-name,
+  deuterium and true-end regression coverage. Distinguish the supported linkage
+  motif from the hash-bound Cedar probe and source-specific reviewed corrections.
+  Documentation/evidence only; no runtime, schema, gate, coordinate or adoption
+  change. Private native payloads remain outside Git.
+
+### Outgoing probe Phenix default and Cedar 14 retry
+
+- Restore the versioned user-home Phenix default used by Cedar 12 when
+  `--phenix-root` is omitted. Cedar 13 passed `None` to the explicit-installation
+  loader after successful preparation, stopping before native execution.
+  Explicit relocated installations and all captured-source hash checks remain
+  supported; no scientific candidate, target, schema or gate changes.
+- Add native-CLI regressions through the real installation loader and
+  executable/version discovery, using explicit shell fixtures for external
+  programs. Cover both the omitted option and an explicit path containing spaces.
+- Verify all 58 returned Cedar 13 payloads, 35 unchanged frozen members and
+  24 passing source/native projection checks. Deliver the corrected runner as
+  Cedar 14 while preserving Cedar 13 and its capsule; installed qualification
+  remains pending.
+
+### Explicit outgoing-oxygen bundle validation
+
+- Add a diagnostic preparation layer for graph-identified O3′ hydroxyl H/D at
+  explicitly declared outgoing DNA links. Require all captured source/native
+  rows to agree first, then use the captured canonical OC2 type. Add separate
+  per-site modifiers while preserving existing modifiers, true free ends,
+  retained formal/partial charges and every remaining numerical target.
+- Add cumulative native qualification for exact projected definitions,
+  modifier IDs, replay of the captured baseline and all existing link, custom
+  proxy, unaffected-definition/proxy, reviewed-torsion and charge gates.
+- Add the source-bundled Cedar 13 probe for the exact Cedar 12 return. Offline
+  preparation validates all 116 payloads and reproduces the four bounded
+  corrections without changing the 877-atom model or original dictionaries.
+  Installed interpretation remains a separate validation. Existing source
+  reviews and unavailable formal-charge readback remain visible; no production
+  PostMR change, target retuning, optimization, refinement or adoption.
+
+### Default conditional Git delivery and Cedar 12 return
+
+- Make one pasteable subshell with `&&` the default for reviewed live-test
+  handoffs: fetch, full-SHA detached worktree, build and run with explicit
+  paths. Preserve the everyday checkout and old deliveries; keep required
+  installation commands as separate one-liners. Agent instructions point to
+  the existing collaboration contract; no private personality notes are added.
+- Verify all 116 Cedar 12 payloads and completed baseline/candidate native
+  interpretation under Phenix 2.2.1-6174. Record 95 passing checks, six
+  unsupported formal-charge checks and four existing curated outgoing-O3′-H
+  reviews. Terminal/5CM projected rows, corrected torsion/alternate proxy and
+  unaffected definitions/proxies pass; the overall verdict remains REVIEW.
+  Documentation/evidence only; no runtime, schema or qualification-gate change.
+
+### Explicit modified-terminal and reviewed-bundle validation
+
+- Add selected 5′-OH preparation from a successful captured native `5*END`
+  control. Retain the shared base/internal contexts, copy exact hydroxyl
+  numerical targets and types, and keep the new hydrogen's formal charge
+  unassessed rather than substituting the native partial charge.
+- Add exact projected native-definition, reviewed torsion/alternate-proxy and
+  unaffected-proxy comparisons. Audit every declared outgoing O3′ endpoint by
+  hydrogen adjacency, exposing pre-existing curated linked-state reviews.
+  Preserve all existing qualification gates and distinguish these findings
+  from the new selected candidate changes.
+- Add the source-bundled Cedar 12 probe using the exact returned Cedar 09/11
+  capsules. Reuse the 43-site shared-code model, apply the explicit reviewed
+  5CM recipe, and compare baseline/candidate native interpretation with
+  installation/source hashes checked before and after. Detailed schema-1
+  inventories add neutron bond targets and torsion alternate readback.
+  No model optimization, ReadySet retry, refinement or production adoption.
+
+### Cedar 11 terminal-source return
+
+- Verify all nine returned payloads, the exact reviewed 5CM candidate and
+  successful installed Phenix 2.2.1-6174 canonical terminal control. Record
+  native PDB-to-library identity resolution, hydroxyl atom/type/targets and
+  unchanged unrelated restraint rows and source files.
+- Record the canonical free-OH control's `undetermined` classification alongside
+  retained DNA group and unavailable formal-charge readback. Classification
+  alone does not distinguish the earlier modified-end defect. The actual
+  missing modified-end hydroxyl treatment still requires implementation.
+  This is evidence/documentation only; no runtime, schema or gate change.
+
+### Native canonical residue-name resolution
+
+- Resolve canonical terminal-resource controls through the installed native
+  residue-name interpreter instead of sending a PDB name to the direct library
+  lookup. Record requested/interpreted/resolved identities and the additional
+  `iotbx.pdb` source hash under terminal-resource policy v2. Schema 1 remains
+  additive; unavailable APIs or components remain unsupported.
+- Record Cedar 10's exact reviewed 5CM preparation and captured installed
+  `5*END` rows separately from its failed direct `DG` lookup. The Cedar 11
+  retry preserves all prior runs and supplies one conditional command block.
+  Terminal-recipe implementation, native candidate qualification and refinement
+  remain separate work.
+
+### Explicit terminal-source review delivery
+
+- Add a reusable installed-resource inventory for exact native modification
+  IDs and a canonical in-memory control. Record native CIF row fields,
+  numerical values, module/source hashes and preservation; missing interfaces
+  or modifications remain explicit. Formal and partial charge stay distinct.
+- Add the source-bundled `10_Cedar` probe for the exact returned Cedar 09 ZIP.
+  Verify all 207 payloads, prepare a separate 5CM candidate through the existing
+  hash-scoped recipe, and collect installed `5*END` plus its DG control.
+  The numerical-source evidence is for subsequent terminal-recipe review;
+  no terminal recipe, model editing, minimization, refinement or adoption runs.
+- Preserve all prior deliveries, explicit path overrides and inspect-only
+  operation. The actual returned 09 source reproduces the reviewed 5CM candidate
+  hash offline; installed terminal-resource capture remains the next live check.
+
+### Cedar 09 returned native evidence
+
+- Verify all 207 returned payloads. Installed Phenix 2.2.1-6174 now reads
+  DNA group/classification for all four linked sites; 29 qualification checks
+  pass and four formal-charge checks remain UNSUPPORTED. Preserve the REVIEW
+  verdict and unchanged model, 38 links and exact custom proxy coverage.
+- Record the separate read-only comparison: all 148 source/candidate formal
+  charges agree, and 12 ordered sugar-centre signs agree with source ideal
+  coordinates and native proxies. This does not replace absent native charge
+  readback or establish independent absolute stereochemistry.
+- Preserve remaining scientific reviews: synthetic E:1 demonstrates site
+  isolation but not complete free-OH terminal chemistry; its classification
+  is undetermined and O5′ retains O2 typing without an attached H. Existing
+  plane/angle findings and the retained 5CM C2/C2′ torsion issue remain visible.
+  This is evidence/documentation only; no runtime, gate or schema change.
+
+### Native component-list metadata
+
+- Preserve the singleton `_chem_comp` row as a loop in linked base and
+  projected dictionaries. The native `comp_list` reader ignores scalar fields,
+  leaving the declared DNA group absent. Parsed metadata, atom definitions,
+  numerical targets, modifier bytes and PHIL selections remain unchanged.
+- Add schema-1 `component_list_policy` provenance, detailed native
+  classification readback, and separate atom-inventory/polymer-group checks.
+  Missing or incorrect native DNA group still prevents complete qualification;
+  unavailable formal charges remain explicitly unqualified.
+- Record Cedar 08's completed baseline, linked and shared-code native
+  interpretations. All 207 payloads verify; site atoms/H/types, 38 backbone
+  links, custom proxies and unaffected definitions agree. Group metadata and
+  charge readback keep that result at REVIEW. Cedar 09's returned installed
+  check is recorded above; no optimization, refinement or adoption occurred.
+
+### Native registration of site modifiers
+
+- Fix linked preparation to emit one `data_mod_<requested ID>` block per
+  site modifier. The native reader registers block suffixes; the previous
+  shared `linked_sites` block ignored the distinct atom-loop IDs and collided
+  across component files. Preserve the exact modifier IDs, PHIL selections,
+  atom operations, base dictionaries and projected site chemistry.
+- Add schema-1 preparation `modification_block_policy` evidence. Detailed
+  native inventories record formal-charge attribute availability and null
+  values; qualification separates unavailable readback from actual charge
+  contradictions and never substitutes partial charges. Missing readback
+  remains unqualified. Native failure summaries now show the recorded error.
+- Record Cedar 07's successful source recovery and baseline interpretation,
+  followed by the linked reader's missing-modifier failure. All 164 payloads
+  verify. Exact returned-input replay preserves site plans and input bytes;
+  the subsequent Cedar 08 native result is recorded above.
+
+### Source-declared aromatic bond representation
+
+- Correct the independent generation gate's false rejection of CGY's six
+  source-declared aromatic ring bonds after eLBOW writes aromatic bond types.
+  Generation-v4 admits only complete isolated alternating six-member C/N
+  rings with explicit neutral ring charges, affirmative source bond flags,
+  unchanged single-bond substituents and non-stereogenic ring bonds. No
+  aromaticity perception, source rewriting or replacement targets are added.
+- Preserve all raw comparison differences and numerical/stereochemical reviews;
+  add policy-bound `bond_representation` evidence within schema-1 inspection
+  receipts. Retain independent atom, hydrogen, charge and numerical rejection
+  checks. The native diagnostic accepts completed source-retaining v3 and v4
+  receipts and re-inspects their dictionaries under the current policy.
+- Record Cedar 06's three completed source-retaining eLBOW executions and the
+  CGY representation blocker separately from native bundle interpretation,
+  which did not run. Offline replay prepares all four linked derivatives;
+  Cedar 07 installed qualification remains pending. Source-recovery console
+  output now identifies each blocked component and its recorded reasons.
+
+### Source-preserving linked-state diagnostic
+
+- Add explicit connectivity-selected DNA dictionary preparation, with source-
+  preserving candidate requirements, graph-selected leaving atoms/hydrogens,
+  source-derived DNA metadata, per-site modifiers and projected CIF Doctor
+  audits. Require declarations for every same-code model site; retain OP2
+  protonation and requested terminal phosphates. No PostMR adoption.
+- Add opt-in detailed native monomer/proxy inventories and exact custom
+  selection/target/weight coverage checks. Preserve the existing basic native
+  inventory interface and schema-1 receipts; missing detail remains explicit.
+- Add the source-bundled `06_Cedar` diagnostic for the exact returned 05 ZIP.
+  Reuse existing whole-component generation when ReadySet lost source state,
+  preserve all prior inputs, and test shared-code internal/free-OH contexts.
+  Its returned generation-stage blocker and the next native retry are recorded
+  in the source-declared aromatic representation entry above.
+- Record Cedar 05's completed interpretation and the newly identified
+  CGY/IMC/DX OP2-hydrogen loss separately from the four linked OP3 expectations.
+
+### Explicit native bundle diagnostics
+
+- Add a separate installation-bound `phenix.python` diagnostic for an exact
+  model/CIF/PHIL bundle, with frozen input hashes, bounded execution and raw
+  native-reader, atom-mapping and proxy evidence. Inventory successful native
+  interpretation as REVIEW; unsupported APIs/parameters and failures stay
+  explicit. No optimization, model replacement, ReadySet retry or adoption.
+- Add a prefixed `05_Cedar` shuttle that binds an accepted generation receipt
+  to the failed run's source audit and prepared PDB, preserves frozen runtime
+  numerical precedence and ancillary parameters, and writes an external
+  diagnostic bundle/receipt/review ZIP. Preserve explicit paths and offline
+  inspect-only operation; refuse input/hash mismatches.
+- Record the returned `04_Cedar` repeat: exact CIF values and all 37 PDB atom
+  rows reproduce v3; only generation timestamps differ. Native interpretation
+  and generic polymer-link qualification remain separate pending laptop checks.
+
+### Visible shuttle identifiers and native source-retention evidence
+
+- Prefix the CIF-generation shuttle, output session and review ZIP with a short
+  delivery identifier; include the run token near the ZIP's beginning and print
+  the delivery/policy in the console. Record the identifier additively in
+  schema-1 metadata/receipts and preserve exact explicit builder output paths.
+- Adopt leading identifiers for future user-facing ferries so truncated file
+  cards do not hide the version. Preserve all older deliveries and runs.
+- Record the v3 native IGU candidate: all 37 atoms, hydrogen attachments,
+  normalized bond orders and formal charges retained, C2–N3 1.397 ± 0.030 Å.
+  Numerical/metadata review and native polymer-link qualification remain
+  separate; no dictionary was adopted or refinement rerun.
+
+### eLBOW source-state retention and candidate review
+
+- Require the installed valued `--pH` control and explicitly use its `low`
+  input-chemistry retention mode. Record this as source-state preservation,
+  with experimental pH and solution protonation unassessed. Preserve the
+  hydrogen, charge, connectivity and declared-stereo rejection checks.
+- Keep complete candidates with supported soft numerical findings at
+  `CANDIDATE_REVIEW`; reject invalid/incomplete targets and unresolved plane
+  compatibility. Preserve the assessor's findings without inventing strain
+  thresholds or automatically adopting candidates.
+- Record the completed Phenix 2.2.1-6174 RM1/GDIIS optimization separately from
+  its chemical-state rejection: the collapsed IGU bond was restored, but default
+  phosphate deprotonation changed the source. Update the human descriptor and
+  machine-readable evidence; the source-preserving native retry remains pending.
+
+### Installed eLBOW option compatibility
+
+- Probe the selected eLBOW executable's help before numerical generation;
+  select exact supported dashed/underscored aliases while preserving initial
+  geometry, naming, hydrogen, chirality and optimization controls. Record help
+  output, supported definitions, selected aliases and executable identity.
+- Reject unavailable controls, failed help or capability races before chemistry;
+  keep the source/frozen seed unchanged. Correct probe summaries so failed
+  generation does not appear as a candidate awaiting review. Preserve the
+  returned Phenix 2.2.1-6174 CLI failure as separate native evidence.
+
+### General generated-dictionary quarantine and numerical candidates
+
+- Generalize the returned IGU defect into exact coincident bonded-heavy-atom
+  detection for numerical dictionaries, including positive-target collisions.
+  Preserve graph-only source and achieved-model assessment boundaries; add atom
+  identifiers to invalid bond findings and advance the assessor policy to v2.
+- Diagnose and quarantine unusable generated generic components in PostMR,
+  preserving trusted numerical inputs and native output. Emit an exclusive
+  failure receipt; never fill in a zero bond with a guessed target.
+- Add explicit whole-component eLBOW candidate generation from frozen chemical
+  input and independently derived source ideal geometry, with bounded native
+  execution and source/candidate graph, hydrogen, charge and numerical evidence.
+  Discover eLBOW as an optional installation-bound capability. Candidates are
+  not automatically adopted or used to retry ReadySet.
+- Add a source-bundled native probe and returned-evidence record; update the
+  human descriptor and editable figure. General source-state/native reader and
+  polymer-link qualification remain pending the laptop candidate run.
+
+### Fresh synthetic DNA mechanics recipe and shuttle
+
+- Stage the exact 42-target combined K:X/B:S/Z:P/D:T DNA recipe from canonical
+  W coordinates and copied donor files, including explicit full-chain sequence
+  references, free 5′-OH preparation and exact input/edit receipts. Require all
+  donor metadata before allocation; preserve originals and internal phosphates.
+- Add a one-file source-bundled runner with isolated NASolve/NARestraints imports,
+  configuration and fresh campaign outputs. Freeze AutoSol off, retain honest
+  numerical/linkage blockers, and display space-group evidence in final output.
+  Add opt-in native environment cleanup after campaign worker bootstrap.
+- Document algorithm/tools, methods wording, evidence and limits; regression
+  checks cover relocation and source preservation. Native execution is pending;
+  generic automatic dictionary generation/adoption is not newly certified.
+
+### Explicit campaign AutoSol opt-out
+
+- Permit schema-2 recipes to set `autosol.policy = "disabled"` with a frozen,
+  nonempty reason. Record the skip without invoking AutoSol; retain nucleotide
+  anomalous classification, iodine diagnostics, observation arrays and Free-R.
+- Refine the prepared PostMR model with experimental phases explicitly disabled
+  and phase-free checkpoints for subsequent Doctor trials. Refuse reuse of an
+  existing AutoSol execution/report. Keep schema-1 and conditional defaults
+  unchanged; add relocated offline regressions and a human methods description.
+  Native synthetic-model validation remains a separate live check.
+
+### Human feature documentation and offline CCD shuttle
+
+- Add a human/manuscript CIF Doctor overview with an adaptable methods
+  paragraph, implemented-versus-planned scope, tools, references, and an editable
+  SVG pipeline figure with its standard-library layout source.
+- Require human feature descriptors to accompany substantial features and
+  remain current with behavior, dependency and limitation changes; link this
+  convention from the contributor contract and documentation map.
+- Add a builder/template for a single-file, offline public CCD ZIP auditor.
+  Embed the reviewed assessor and unchanged required reader definitions, verify
+  all archive/source hashes, and write 36 audits into a fresh portable output
+  folder without changing the laptop checkout. Graph-only source PASS and
+  effective REVIEW remain distinct from native or scientific approval.
+- Record the small reviewed upstream NARestraints metadata corrections and the
+  subsequently authorized C5 whitespace cleanup. Keep frozen control provenance
+  and downstream compatibility adapters; test both legacy and corrected DF data.
+
+### CIF Doctor assessment and reviewed preparation
+
+- Add deterministic offline component/restraint assessment and explicit
+  `cif-doctor assess` commands for dictionaries or a frozen run/checkpoint.
+  Inventory exact atom IDs, graphs, numeric terms, torsions, chirality and
+  angle/plane compatibility; retain unassessed native/site/geometry layers.
+  Compare explicitly selected same-code source/candidate declarations without
+  guessing aliases, protonation or source authority. Preserve zero-sigma native
+  constant-term conventions and signed torsion periodicities in the inventory.
+- Record source screening before PostMR mutations, separate frozen source and
+  runtime assessments before ReadySet, and the selected effective bundle after
+  ReadySet. These receipts are report-only and do not add a campaign gate,
+  change dictionary precedence or edit an existing run.
+- Add explicit source-preserving preparation for supported torsion alternatives
+  and the exact hash-scoped reviewed historical 5CM correction. Preserve original
+  files, refuse overwrites and record before/after evidence; candidate creation
+  does not adopt or qualify new chemistry.
+
+### Machine-readable CIF Doctor implementation map
+
+- Add the scientific/engineering blueprint covering exact chemical cases,
+  deterministic assessment rules, bounded repair policy, ReadySet/PostMR hooks,
+  site-linked chemistry, effective native proxies, geometry/stitching, caching
+  and regression controls. Link it from the methods, documentation map and
+  current handoff. Preserve snapshot hashes without duplicating active contracts.
+- Keep collaboration/personality notes outside this repository document.
+  Distinguish the 5CM C2/C2′ torsion defect from the 5IU C5/C5′ reader collision.
+  This is implementation design, not a new runtime command, schema or repair.
+
+### X11_18 alternative symmetry interpretation
+
+- Record the user's analytical preference for X11_18 P4₃: inspection Rfree
+  0.3418 versus 0.4859 in P2₁ (`P 1 21 1`). Preserve the two different
+  processing datasets, frozen Free-R populations and existing Doctor review
+  status; this comparison is not an automatic same-data winner selection.
+
+### GeoTest campaign wrapped and coordinated Doctor scope
+
+- Verify the corrected native laptop ferry: 462 included files, 138 declared
+  compact omissions, nine completed workers and 14 successful native refinement
+  processes. Six members are numerically ready, two remain Doctor reviews and
+  one has no MR solution. The parser-only installation, original-code backup,
+  free 5′-OH preparation, unchanged inputs and displayed space groups are verified.
+- Close the GeoTest orchestration trial at the user's requested scope; retain
+  provisional scientific status, X11_17's large Rwork/Rfree gap and the two
+  X11_18 reviews. P4₃ selected models and P4₁ input headers remain separate.
+- Plan one coordinated Doctor workflow for data/Free-R diagnostics, effective
+  component/restraint assessment and model geometry/connectivity assessment,
+  including guided sticky-end arm repair. Record the user's fractured-arm
+  diagnosis as motivation; high Rwork alone does not establish its cause.
+  Keep frozen Free-R flags, declared routing and true nicks/5′-OH ends intact.
+  The deterministic restraint assessor remains the first implementation slice;
+  geometry checking and stitching are planned modules, not current capability.
+
+### GeoTest laptop rerun shuttle and space-group display
+
+- Record the updated standalone shuttle's explicit `--install-parser-fix`:
+  verify the returned laptop runtime, back up and atomically replace only the
+  known Phaser parser source, then run a fresh batch. Unknown source changes
+  block installation; the exact installed fix is a no-op on later launches.
+  Preserve the laptop-specific curated-ligand source and existing runs.
+- Add space group to the terminal final summary, CSV and Coot result menu.
+  Prefer the displayed checkpoint/selected model's CRYST1, retain the exact
+  input-MTZ space group separately, and label data-only fallback. Optional
+  metadata failures do not change scientific verdicts; provenance carries
+  declared artifact paths and hashes.
+- Ninety-four adapter tests and 22 subtests pass; assembled installation,
+  preparation and repeat staging pass with explicit offline fixtures. The
+  subsequent corrected native rerun is verified above. Repo edits here are
+  documentation; the standalone script remains the deliverable.
+
+### Selected-model Phaser scores and GeoTest native results
+
+- Fix MR gating to use the selected Phaser PDB's final TFZ-equivalent and LLG,
+  rather than the first score in a solution-history line or an unrelated
+  solution's score. Require its matching MTZ, record score-source provenance,
+  and preserve failures when score association is ambiguous. Thresholds remain
+  unchanged; existing reports and completed runs are not rewritten.
+- Verify the returned 361-file full-auto GeoTest ferry: four ready refinements
+  and one Doctor review. Both cohorts' selected outputs have seven final scores
+  meeting the ≥8 gate, one borderline model and one no-solution case; three new
+  candidates were stopped by the old score reader. Native continuation of those
+  candidates remains pending.
+- Record the two user-supplied Coot examples and planned guided arm connection
+  under Scout/Topo Surgeon: declared strand routing, symmetry-aware preview,
+  preserved true nicks/5′-OH termini and separately bounded geometry repair.
+  This is distinct from the generalized CIF/restraint doctor and is not yet
+  implemented. Coordinate, reflection and screenshot files are not committed.
+
+### GeoTest declared-end preflight and full-auto adapter
+
+- Verify the first ferry: eight placed models correspond to four MR passes,
+  two borderline reviews and three failures. Four PostMR attempts stopped on
+  undeclared terminal OP3; recorded placed-model groups are P2₁, P4₃ and P1.
+- Record the user's linear 5′-OH chemistry and the updated standalone runner:
+  audited terminal-phosphate removal before fresh native preflight/MR, eligible
+  AutoRefine and bounded Refine Doctor, provisional checkpoint selection and
+  exact Coot result viewing. Original inputs and the first cohort are preserved;
+  no fake sequences or successful-status rewrites are used.
+- Adapter receipt schema 2 and a frozen recipe describe this isolated workflow.
+  Seventy-six offline tests and 20 subtests pass; native revised execution is
+  pending. Native campaign input/recipe integration remains future work. These
+  repo changes are documentation only; the runner is a separate deliverable.
+
+### GeoTest first live report and continuation request
+
+- Record the user's 8/9-good report across P2₁2₁2, P4₃ and P1, with exact
+  member results/stopping points awaiting the ferry. Queue one-launch verified
+  continuation through refinement, eligible bounded Refine Doctor and convenient
+  result viewing; preserve completed MR and checkpoint lineage. This is a
+  documentation-only plan, not an implemented extension or verified refinement.
+
+### Generalized restraint doctor priority
+
+- Queue the read-only assessor as the next development task using the returned
+  5CM/DF/DP evidence, with historical 8RO/DE and failed 1AP challenge cases and
+  valid controls before general repair claims. Retain the distinction between
+  official 8RO, laboratory DE and the current curated 1AP source.
+- Bound the remaining combined-model review and park optional further edits;
+  keep GeoTest native execution/ferry pending. This documentation-only decision
+  changes no runtime, schema, dictionary, scientific input or approval status.
+
+### GeoTest exploratory batch adapter
+
+- Record the optional standalone GeoTest script: isolated CIF/PDB intake,
+  nested processing/model trials named from the outer folder, existing native
+  stage gates, trust-model provenance and a compact review ferry. Native
+  campaign CIF/no-sequence integration and live execution remain unvalidated.
+
+### DP model base visual review
+
+- Record user base visual PASS for the exact DP geometry output, with sugars
+  explicitly unassessed by eye. Retain numerical sugar/termination review and
+  full qualification as open; distinguish residual sugar torsions from the
+  resolved N5 conflict and earlier checker-only failure.
+
+### DP geometry trial returned
+
+- Record the completed DP-specific bounded geometry run and verified 56-file
+  bundle, with fixed within-trial manager and original inputs preserved.
+  Record relief of the DP N5 conflict and preserved chirality/links, with modest
+  residual strain. Queue Coot review of the exact new model; preserve the earlier
+  visual PASS separately. The general read-only assessor remains unimplemented;
+  no convergence, refinement or production full-auto claim is added.
+
+### DP native interpretation passed
+
+- Record returned DP native v2 PASS, verified 33-file evidence bundle, effective
+  B:4 linkage/type and preserved original coordinates/other restraints. Queue a
+  fresh 5×500 geometry trial with this manager from original pre-minimization
+  coordinates; new geometry qualification remains pending. No native charge,
+  convergence, refinement or production full-auto claim is added.
+
+### DP native checker correction
+
+- Preserve the blocked torsion-coverage receipt and partial checks. All 19 DP
+  heavy torsions match after verified cctbx index/sign normalization; queue a
+  checker-only v2 rerun with identical inputs/modifications. Record the lesson
+  in `TOR-01`; no chemical change or native full PASS is claimed.
+
+### DP candidate generated and reviewed
+
+- Record successful v2 installed-reader preflight/generation and reviewed graph,
+  H/charge/chirality preservation. Separate four aromatic annotation changes
+  from unchanged explicit bond orders; audit broader numerical regeneration and
+  retain dropped alias provenance.
+  Queue native DP interpretation with complementary B:4 outgoing-link H/type
+  handling; adoption and geometry qualification remain pending. Documentation only.
+
+### DP seed-parser retry
+
+- Record the blocked first DP generation: AceDRG misread single-quoted primed
+  IDs, with source bytes unchanged and no candidate/adoption. Add consumer-parser
+  agreement to `GRAPH-01` and queue a double-quoted seed plus installed-reader
+  preflight before retry. The prior model's user visual PASS is preserved;
+  numerical repair remains open. Documentation only.
+
+### CIF/restraint audit methods
+
+- Capture automatable audit methods, known 5CM/DF/DP cases and proposed evidence
+  schema/review boundaries in one linked design document. This records the
+  implementation plan; no runtime audit or automatic repair is added.
+
+### Combined geometry trial completed
+
+- Record returned bounded minimization, verified 57-file bundle, preserved
+  manager/original inputs and before/after metrics. The geometry target fell
+  97.45% and chirality signs were retained. Record the demonstrated DP angle/plane
+  conflict. Record the user's Coot visual PASS for the exact relaxed model; next
+  is a disposable DP candidate/audit before a clean rerun. Convergence and full
+  numerical qualification remain open. No MTZ/Free-R
+  refinement or production full-auto result is implied. Documentation only.
+
+### Repaired native interpretation
+
+- Record returned 5CM/DF repaired-native PASS, verified 34-file evidence bundle,
+  preserved original inputs/custom restraints and unchanged 868-atom model.
+  Next is disposable minimization with the same interpreted geometry manager;
+  achieved geometry and MTZ/Free-R refinement are not claimed. Documentation only.
+
+### Combined geometry recovery plan
+
+- Record the checksum-verified linked geometry bundle, confirmed active 5CM
+  atom-reference defect, defective effective ReadySet DF, and source-audited
+  native-generated DF candidate. Neither candidate is yet adopted in a corrected
+  native interpretation; geometry minimization remains pending. Define the
+  fresh diagnostic, linkage/coverage checks and subsequent geometry trial.
+- Preserve the verified local Cedar head and distinguish mixed source phosphate
+  states from an inferred pH correction. Expand the post-geometry audit plan
+  into staged deterministic assessment and separately validated, policy-bounded
+  generation/continuation; no AI is required for ordinary passing cases.
+- Documentation only: no runtime/schema, source CIF, frozen model, observation,
+  Free-R or workbook change; no raw scientific bundle committed.
+
+### Planned grouped processing inputs
+
+- Record shared parent-folder models with separate processing subfolders,
+  including alternative space-group solutions, as a future campaign capability.
+  Distinguish current shallow discovery from grouped inventory, explicit model
+  inheritance and separate MR comparison. Preserve per-candidate inputs and
+  results; no parser, CLI/schema or runtime behavior changes in this update.
+- Record the approved NARestraints documentation PR #5 merge; its released
+  scientific source and workbook are unchanged.
+
+### October 10 documentation reconciliation
+
+- Record the returned combined W preflight/Phaser/PostMR, fresh IMC structural
+  audit, generic linkage diagnostic and exact restraint-coverage results.
+  Geometry qualification and a fresh ordinary full-auto run remain pending.
+- Reconcile current source/ReadySet precedence and implemented recipe-controlled
+  full-auto behavior across contracts; replace superseded live queues with
+  authoritative pointers. Preserve shortened documents and development-intent
+  records byte-for-byte in the dated history archive; older changelog entries
+  below describe their original implementation checkpoints.
+- Queue a SMILES-assisted molecular-graph audit after the combined geometry
+  trial and before Topo/Scout. Record requested PDB/coordinate-mmCIF support and
+  an explicit trusted-model/no-sequence mode before the blind AlphaFold trial;
+  these are planned capabilities, with no new runtime option in this change.
+- Documentation checks: active links, intent JSON and exact archive hashes pass.
+  Isolated Linux/Python 3.12 regression returned **981 passed, 2 skipped,
+  257 subtests passed (29.50 s)**; this is not a new Phenix/Coot native receipt.
+- No source, dictionary, workbook, native run, reflection or Free-R changes.
+
+### Cedar native probe scope
+
+- Record successful installed-source lookup for IGU/IMC/CGY/DX and the native
+  IGU construction result. Correct the ad hoc mutation-probe inventory to
+  expect OP3 absence; preserve production phosphate cleanup and explicit
+  terminal intent. Refresh the native ledger with the existing 983-test
+  receipt and verified source hashes. ReadySet/native PostMR qualification
+  remains pending. No runtime, dictionary, coordinate or schema changes.
+
+### Phenix CCD symlink discovery
+
+- Count unique resolved CCD paths in the configured Phenix installation.
+  Phenix 2.2.1-6174 exposes its Python 3.11 library through a `python3.1`
+  symlink; treating both paths as separate dictionaries falsely blocked
+  generic lookup. Separate files still fail as ambiguous, even with identical
+  bytes. Curated precedence, identity checks and numerical-generation gates
+  are unchanged; no CIF, placement recipe or artifact schema changes.
+- Record the user's exact installed-source hashes: bundled C38 and 5IU match
+  Phenix byte-for-byte; S6G differs only in trailing whitespace, verified by
+  reproducing the installed hash from normalized bundled bytes. DF/A1AAZ
+  also matches after component-label and line-end normalization; preserve
+  the short-label bridge and the user-reported DF-to-A1AAZ deposition history.
+  The source audit is complete; DE geometry remains unresolved, and no CIF
+  or placement rule is removed. Add a symlink regression and retain the
+  genuine-ambiguity check. User-local validation at
+  `1443979` passed **16 focused + 31 subtests (2.45 s)** and **983 full +
+  257 subtests (80.81 s)**. Native preparation/geometry validation remains
+  separate and pending.
+
+### Cedar regression diagnostic alignment
+
+- Update the construction-hop regression to expect the specific missing-curated-DZ
+  diagnostic. It still requires `FileNotFoundError`; curated dictionary precedence,
+  the no-fallback guard and runtime behavior are unchanged. The old expectation
+  was the sole failure in the user-local full suite at `d1bf3ea`. The corrected
+  `ccb7608` passed **982 tests + 257 subtests (75.90 s)** locally; native
+  ReadySet and combined-family validation remain separate gates.
+
+### Bundled ligand provenance audit
+
+- Distinguish parameterized adaptations, identity/construction exceptions and
+  unchanged supplier resources in the existing component guide. Confirm the
+  unchanged 5CM source and 5IU parser defect; restore the unresolved DE geometry
+  warning from the archived review. Dictionary bytes, lookup policy and runtime
+  chemistry are unchanged; installed-source comparison remains pending.
+- Clarify lab Q/DQ -> S6G and S/DS -> N-linked IMC intent, distinguishing the
+  currently implemented Q alias from pending DQ/S/DS aliases and the different
+  C-linked hachimoji S chemistry. Separate sulfur/iodine placement from CIF
+  defects; record the duplicate-path diagnosis needed for installed CCD lookup.
+  No alias, coordinate, dictionary or resolver implementation changes here.
+
+### Contributor continuity and branch lifecycle
+
+- Consult the existing documentation and validation history before inferring
+  project intent. Prefer one active development branch and everyday checkout,
+  integrate after scoped scientific gates pass, and promptly retire audited
+  completed branches/worktrees. Runtime behavior and scientific gates are unchanged.
 
 ### Modified-base W Saenger overlays — isolated native integration PASS
 
