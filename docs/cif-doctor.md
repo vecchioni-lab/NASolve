@@ -622,7 +622,25 @@ for the exact verified Cedar 18 capsule. Existing Python and Phenix suffice;
 independent stereochemistry, sugar pucker, pose, diffraction evidence and full
 scientific qualification remain review gates. Native numerical completion alone
 cannot authorize selection/adoption. All outcomes stay REVIEW/exit 2; installed
-execution remains pending. Ordinary PostMR and earlier runs remain unchanged.
+PDB postcheck remains pending. Returned optimization is recorded below. Ordinary
+PostMR and earlier runs remain unchanged.
+
+
+The returned Cedar 19 capsule verifies completed optimization at the explicit
+500-iteration limit, **not converged**. Serialization then stopped because native
+atom ordering differed from PDB record ordering. The serializer now validates a
+one-to-one supported identity map using chain/residue/insertion/alternate/atom
+name, plus component/element and original-coordinate guards. It maps final
+native endpoints back to the original PDB records without changing record order
+or metadata. Missing, duplicate or changed identities remain blocked.
+
+Cedar 20 uses the existing builder with `--delivery-prefix 20_Cedar` and the
+runner's explicit `--completed-trial-zip`. This accepts the exact verified
+Cedar 19 return and its preserved Cedar 18 baseline, checks saved inputs/manager/
+constraint signatures, and resumes serialization/native postcheck from saved
+full-precision endpoints. It runs no new optimization and preserves the original
+limit/gradient evidence. Offline actual-input replay matches all 877 coordinates;
+new installed native postcheck and scientific qualification remain pending.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

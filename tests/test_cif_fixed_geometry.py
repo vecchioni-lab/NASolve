@@ -174,3 +174,33 @@ def test_native_trial_driver_preserves_inputs_and_reports_failures(tmp_path,monk
     work=Path(report['native_directory'])
     assert json.loads((work/'geometry_receipt.json').read_text())==report
     assert (work/'geometry.log').is_file() and (work/'inputs/000_model.pdb').read_bytes()==original
+
+
+@pytest.mark.parametrize('context',['ordinary','blank_chain','alternate_identity'])
+def test_serialization_maps_reordered_pdb_records_by_complete_identity(tmp_path,context):
+    from nasolve.cif_fixed_geometry import write_geometry_candidate
+    _,model,_,native,_=fixture(tmp_path)
+    rows=model.read_text().splitlines(keepends=True)
+    if context=='blank_chain':
+        rows=[line[:21]+' '+line[22:] if line.startswith('HETATM') else line for line in rows]
+        for a in native['atoms']:a['identity']['chain_id']=''
+    if context=='alternate_identity':
+        for i,alt in enumerate('AB'):
+            rows[i]=rows[i][:12]+' DUP'+alt+rows[i][17:]
+            native['atoms'][i]['atom_id']='DUP';native['atoms'][i]['identity']['altloc']=alt
+    expected={}
+    points=deepcopy(native['geometry']['sites_cart_exact'])
+    for i,(atom,point) in enumerate(zip(native['atoms'],points)):
+        point[0]+=(i+1)*.017
+        ident=atom['identity'];key=(ident['chain_id'].strip() or '_',ident['resseq'].strip(),ident['icode'].strip(),ident['altloc'].strip(),atom['atom_id'])
+        expected[key]=[float(f'{v:.3f}') for v in point]
+    model.write_text('REMARK preserve ordering\n'+''.join(reversed(rows[:-1]))+rows[-1])
+    source=model.read_bytes();output=tmp_path/'candidate.pdb'
+    result=write_geometry_candidate(model,output,native,points)
+    assert result['atom_correspondence']=='EXACT_IDENTITY_BIJECTION' and result['pdb_native_order_mismatches']>0
+    for before,after in zip(source.splitlines(),output.read_bytes().splitlines()):
+        if not before.startswith((b'ATOM  ',b'HETATM')):assert before==after;continue
+        assert before[:30]+before[54:]==after[:30]+after[54:]
+        key=(after[21:22].decode().strip() or '_',after[22:26].decode().strip(),after[26:27].decode().strip(),after[16:17].decode().strip(),after[12:16].decode().strip())
+        assert [float(after[i:i+8]) for i in (30,38,46)]==expected[key]
+    assert model.read_bytes()==source

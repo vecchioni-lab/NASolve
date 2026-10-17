@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "19_Cedar",
+  "next_delivery": "20_Cedar",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -4244,7 +4244,7 @@
     }
   },
   "fixed_geometry_trial_2026_10_17": {
-    "status": "IMPLEMENTED_INSTALLED_FIXED_GEOMETRY_TRIAL_PENDING",
+    "status": "RETURNED_NATIVE_LIMIT_STOP_SERIALIZATION_REPAIR_READY",
     "delivery_prefix": "19_Cedar",
     "policy_id": "cif-fixed-native-geometry-trial-v1",
     "modules": [
@@ -4336,7 +4336,7 @@
       "production_postmr_changes": false,
       "dictionary_generation": "NOT_RUN",
       "model_editing": "SEPARATE_CANDIDATE_ONLY",
-      "model_optimization": "ONE_EXPLICIT_BOUNDED_GEOMETRY_TRIAL_PENDING",
+      "model_optimization": "CEDAR19_COMPLETED_500_ITERATION_LIMIT_NOT_CONVERGED",
       "diffraction_data": "NOT_READ",
       "readyset_retry": "NOT_RUN",
       "refinement": "NOT_RUN",
@@ -4353,6 +4353,586 @@
       "builder": "scripts/build_cif_fixed_geometry_probe.py",
       "runner": "19_Cedar_probe_cif_geometry_trial.py",
       "new_installation_required": false
+    },
+    "return_verified_2026_10_17": {
+      "archive": {
+        "name": "19_Cedar_uu5n9hn0_cif_geometry_trial_review.zip",
+        "bytes": 6133071,
+        "sha256": "efec1713eaa05b51568ff6135cfac1cf649f6907fc4fb49c51b59fa8e1d2cebd",
+        "verified_payloads": 310,
+        "payload_bytes": 87583987,
+        "safe_unique_members": true
+      },
+      "nasolve_source": {
+        "commit": "5e848ebad5538e33a41f1d4cbd6a3931936889ea",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": false
+      },
+      "runner_sha256": "899562f59985756abf8a8e26e95ebda8c7138e20ee67edebff56a52055f46851",
+      "prior_members_byte_identical": 253,
+      "native_prefix": "geometry_trial/cif-fixed-geometry-d26rllkv",
+      "native_execution": {
+        "elapsed_seconds": 2.805701,
+        "finished_at": "2026-10-17T20:43:16.075049+00:00",
+        "returncode": 0,
+        "started_at": "2026-10-17T20:43:13.269066+00:00",
+        "status": "COMPLETED",
+        "timeout_seconds": 1200
+      },
+      "installation": "phenix-2.2.1-6174",
+      "phenix_version": "2.2.1",
+      "reconstructed_capture_matches": true,
+      "native_worker_and_geometry_worker_match_delivered_sources": true,
+      "constraint_signature_before": "71f655f193840f1dfd8e96e97f5f976cf9891daa4f0f759ee0dcfe1796d76083",
+      "constraint_signature_after": "71f655f193840f1dfd8e96e97f5f976cf9891daa4f0f759ee0dcfe1796d76083",
+      "optimizer_sources": [
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/scitbx/lbfgs/__init__.py",
+          "module": "scitbx.lbfgs",
+          "sha256": "c7504ffe029b75a064932c7b8201cccd52d4f98b9f1310025e407445e548053e"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/flags.py",
+          "module": "cctbx.geometry_restraints.flags",
+          "sha256": "81038310190507529bef66a3073db6f347a794a7f01a66ac047e8bd613d8603e"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/manager.py",
+          "module": "cctbx.geometry_restraints.manager",
+          "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/energies.py",
+          "module": "cctbx.geometry_restraints.energies",
+          "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/scitbx_lbfgs_ext.so",
+          "module": "scitbx_lbfgs_ext",
+          "sha256": "24bbb8db7137b8cd27bbc25c32a87a4fa04b12e1549f6220eeae849a592b8df0"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/cctbx_geometry_restraints_ext.so",
+          "module": "cctbx_geometry_restraints_ext",
+          "sha256": "496677a82712ef7e8488ef675b98d0bb4f06741c12489f8a3d5fc15058b7612c"
+        }
+      ],
+      "flags": {
+        "angle": true,
+        "bond": true,
+        "bond_similarity": true,
+        "chirality": true,
+        "default": true,
+        "den_restraints": true,
+        "dihedral": true,
+        "ncs_dihedral": true,
+        "nonbonded": true,
+        "parallelity": true,
+        "planarity": true,
+        "ramachandran_restraints": true,
+        "reference_coordinate": true,
+        "reference_dihedral": true
+      },
+      "normalization": false,
+      "symmetry": {
+        "space_group": "R 3 :H",
+        "unit_cell": [
+          103.113,
+          103.113,
+          98.202,
+          90.0,
+          90.0,
+          120.00000000000001
+        ]
+      },
+      "initial": {
+        "gradient_norm": 21593.073381486793,
+        "max_atom_gradient": 4475.989601163833,
+        "proxy_counts": {
+          "n_angle_proxies": 1590,
+          "n_bond_proxies": 1026,
+          "n_bond_similarity_proxies": null,
+          "n_chirality_proxies": 158,
+          "n_den_proxies": null,
+          "n_dihedral_proxies": 574,
+          "n_ncs_dihedral_proxies": null,
+          "n_nonbonded_proxies": 7998,
+          "n_parallelity_proxies": 58,
+          "n_planarity_proxies": 54,
+          "n_ramachandran_proxies": null,
+          "n_reference_coordinate_proxies": null,
+          "n_reference_dihedral_proxies": null
+        },
+        "target": 35629.733600469466,
+        "terms": {
+          "angle_residual_sum": 8970.986396943024,
+          "bond_residual_sum": 5448.37185181387,
+          "bond_similarity_residual_sum": 0.0,
+          "chirality_residual_sum": 32.5058263451103,
+          "den_residual_sum": 0.0,
+          "dihedral_residual_sum": 1330.487544441627,
+          "dihedral_restraints_residual_sum": 0.0,
+          "ncs_dihedral_residual_sum": 0.0,
+          "nonbonded_residual_sum": 10882.843450054077,
+          "parallelity_residual_sum": 5667.883278846505,
+          "planarity_residual_sum": 3296.6552520252485,
+          "ramachandran_residual_sum": 0.0,
+          "reference_coordinate_residual_sum": 0.0,
+          "reference_dihedral_residual_sum": 0.0
+        }
+      },
+      "final": {
+        "gradient_norm": 408.3741115918578,
+        "max_atom_gradient": 59.22498792809165,
+        "proxy_counts": {
+          "n_angle_proxies": 1590,
+          "n_bond_proxies": 1026,
+          "n_bond_similarity_proxies": null,
+          "n_chirality_proxies": 158,
+          "n_den_proxies": null,
+          "n_dihedral_proxies": 574,
+          "n_ncs_dihedral_proxies": null,
+          "n_nonbonded_proxies": 7837,
+          "n_parallelity_proxies": 58,
+          "n_planarity_proxies": 54,
+          "n_ramachandran_proxies": null,
+          "n_reference_coordinate_proxies": null,
+          "n_reference_dihedral_proxies": null
+        },
+        "target": 3676.065435884924,
+        "terms": {
+          "angle_residual_sum": 1477.2254576193677,
+          "bond_residual_sum": 555.674394631227,
+          "bond_similarity_residual_sum": 0.0,
+          "chirality_residual_sum": 21.368479550623935,
+          "den_residual_sum": 0.0,
+          "dihedral_residual_sum": 653.0647964610012,
+          "dihedral_restraints_residual_sum": 0.0,
+          "ncs_dihedral_residual_sum": 0.0,
+          "nonbonded_residual_sum": 390.50797773005667,
+          "parallelity_residual_sum": 512.6854683425016,
+          "planarity_residual_sum": 65.53886155014614,
+          "ramachandran_residual_sum": 0.0,
+          "reference_coordinate_residual_sum": 0.0,
+          "reference_dihedral_residual_sum": 0.0
+        }
+      },
+      "serialized_energy": {
+        "gradient_norm": 978.6730250772459,
+        "max_atom_gradient": 156.83105580353936,
+        "proxy_counts": {
+          "n_angle_proxies": 1590,
+          "n_bond_proxies": 1026,
+          "n_bond_similarity_proxies": null,
+          "n_chirality_proxies": 158,
+          "n_den_proxies": null,
+          "n_dihedral_proxies": 574,
+          "n_ncs_dihedral_proxies": null,
+          "n_nonbonded_proxies": 7837,
+          "n_parallelity_proxies": 58,
+          "n_planarity_proxies": 54,
+          "n_ramachandran_proxies": null,
+          "n_reference_coordinate_proxies": null,
+          "n_reference_dihedral_proxies": null
+        },
+        "target": 3679.8536696058145,
+        "terms": {
+          "angle_residual_sum": 1479.039479815256,
+          "bond_residual_sum": 557.4984113695687,
+          "bond_similarity_residual_sum": 0.0,
+          "chirality_residual_sum": 21.455501000841462,
+          "den_residual_sum": 0.0,
+          "dihedral_residual_sum": 653.0151462672336,
+          "dihedral_restraints_residual_sum": 0.0,
+          "ncs_dihedral_residual_sum": 0.0,
+          "nonbonded_residual_sum": 390.34638115774817,
+          "parallelity_residual_sum": 512.8292588842323,
+          "planarity_residual_sum": 65.66949111093416,
+          "ramachandran_residual_sum": 0.0,
+          "reference_coordinate_residual_sum": 0.0,
+          "reference_dihedral_residual_sum": 0.0
+        }
+      },
+      "stopping": {
+        "calls": 524,
+        "error": null,
+        "iterations": 500,
+        "max_iterations": 500,
+        "native_criterion_met": false,
+        "reason": "max_iterations"
+      },
+      "convergence": "NOT_CONVERGED_LIMIT",
+      "target_reduction_percent": 89.68259073417128,
+      "analysis_completed": false,
+      "stop": "PDB/native atom ordering differs",
+      "model_atom_count": 877,
+      "pdb_native_order_mismatches": 157,
+      "candidate_written_by_original_runner": false,
+      "source_and_frozen_evidence_preserved": true,
+      "source_and_charge_reviews_preserved": true,
+      "new_serialization_replay": {
+        "scope": "OFFLINE_SAVED_ENDPOINTS_ONLY_NO_NEW_OPTIMIZATION_OR_NATIVE_INTERPRETATION",
+        "all_877_coordinates_match_saved_native_identity": true,
+        "report": {
+          "schema_version": 1,
+          "policy_id": "cif-fixed-native-geometry-trial-v1",
+          "status": "REVIEW",
+          "candidate_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+          "source_sha256": "ddbbbdc1c852d47761efe362aa7b0bd180715387d52e71de8c980d61a0dd3ab7",
+          "atom_count": 877,
+          "atom_correspondence": "EXACT_IDENTITY_BIJECTION",
+          "pdb_native_order_mismatches": 157,
+          "metadata_and_headers_preserved": true,
+          "source_preserved": true,
+          "roundtrip_max_distance": 0.0008263369965970016,
+          "roundtrip_precision": "PDB_8_3_SEPARATE_FROM_FULL_PRECISION",
+          "displacement": {
+            "max": 5.137861565425493,
+            "rms": 0.9809800933382721,
+            "mean": 0.8164172691277105
+          },
+          "per_site_displacement": {
+            "A:1": {
+              "max": 1.501586317892358,
+              "rms": 1.1610375682496117,
+              "mean": 1.1496384726934377
+            },
+            "A:2": {
+              "max": 1.3578062077945252,
+              "rms": 0.7726090626260361,
+              "mean": 0.7214978715342742
+            },
+            "A:3": {
+              "max": 1.2795712974855273,
+              "rms": 0.8502491887029747,
+              "mean": 0.8372379661931938
+            },
+            "A:4": {
+              "max": 1.1216084453422497,
+              "rms": 0.7224095386370956,
+              "mean": 0.699271045910866
+            },
+            "A:5": {
+              "max": 1.506525040750689,
+              "rms": 1.1683672365627067,
+              "mean": 1.1522446138609908
+            },
+            "A:6": {
+              "max": 1.1122373335812956,
+              "rms": 0.681369205981642,
+              "mean": 0.6484328248520642
+            },
+            "A:7": {
+              "max": 1.2775950309926547,
+              "rms": 0.9050979163404732,
+              "mean": 0.8755580095088027
+            },
+            "A:8": {
+              "max": 1.3500946563993141,
+              "rms": 0.6741258352450731,
+              "mean": 0.6050791609566085
+            },
+            "A:9": {
+              "max": 1.0898127947271485,
+              "rms": 0.7344804873018598,
+              "mean": 0.6957315615017474
+            },
+            "A:10": {
+              "max": 1.9731438309168394,
+              "rms": 1.1730444163137728,
+              "mean": 1.0907898774304698
+            },
+            "A:11": {
+              "max": 2.261353263493434,
+              "rms": 1.2375920896419839,
+              "mean": 1.1558684555755008
+            },
+            "A:12": {
+              "max": 1.469607532515085,
+              "rms": 0.6538127030091088,
+              "mean": 0.6005144973469024
+            },
+            "A:13": {
+              "max": 1.2035603125026202,
+              "rms": 0.8076100546972703,
+              "mean": 0.7903653393533483
+            },
+            "A:14": {
+              "max": 1.4174375751406159,
+              "rms": 0.57764349456665,
+              "mean": 0.42801746654734907
+            },
+            "A:15": {
+              "max": 0.8340458384030052,
+              "rms": 0.5597701801107205,
+              "mean": 0.5464011606899635
+            },
+            "A:16": {
+              "max": 1.6422093035119967,
+              "rms": 0.8637195581446492,
+              "mean": 0.7420860654363407
+            },
+            "A:17": {
+              "max": 1.4828467802017675,
+              "rms": 0.638565391198229,
+              "mean": 0.5222059792976625
+            },
+            "A:18": {
+              "max": 0.7988773474525043,
+              "rms": 0.46689233483302256,
+              "mean": 0.44782537548292617
+            },
+            "A:19": {
+              "max": 1.335298223550591,
+              "rms": 0.6145266263245952,
+              "mean": 0.5480045722255222
+            },
+            "A:20": {
+              "max": 2.7954464929006493,
+              "rms": 1.9346338828215472,
+              "mean": 1.8024568763186364
+            },
+            "A:21": {
+              "max": 2.043115909135175,
+              "rms": 0.9314562241749327,
+              "mean": 0.8603614110575056
+            },
+            "B:1": {
+              "max": 1.8558959992084791,
+              "rms": 0.8410666932123659,
+              "mean": 0.7652252042053375
+            },
+            "B:2": {
+              "max": 1.6842136225584416,
+              "rms": 0.9168144288173071,
+              "mean": 0.8098950022842493
+            },
+            "B:3": {
+              "max": 1.049454235878158,
+              "rms": 0.40065459314670454,
+              "mean": 0.3351245258150577
+            },
+            "B:4": {
+              "max": 1.4916178120505106,
+              "rms": 0.6365122670586082,
+              "mean": 0.5629175535310433
+            },
+            "B:5": {
+              "max": 0.961565276365161,
+              "rms": 0.5650889296580499,
+              "mean": 0.5310712315850131
+            },
+            "B:6": {
+              "max": 0.7897776698768169,
+              "rms": 0.47007962253537133,
+              "mean": 0.44501577975252193
+            },
+            "B:7": {
+              "max": 1.4931677014000388,
+              "rms": 0.9547000415621176,
+              "mean": 0.9151073447274178
+            },
+            "C:8": {
+              "max": 1.4789094751588956,
+              "rms": 0.8384817401547467,
+              "mean": 0.7999016077700218
+            },
+            "C:9": {
+              "max": 1.902835503514174,
+              "rms": 0.6677396574308163,
+              "mean": 0.5494762636565015
+            },
+            "C:10": {
+              "max": 2.5769603781633945,
+              "rms": 1.2607839654223916,
+              "mean": 1.0374562349967058
+            },
+            "C:11": {
+              "max": 1.0629441242894506,
+              "rms": 0.4998740085866087,
+              "mean": 0.4279358209788966
+            },
+            "C:12": {
+              "max": 1.447204085513306,
+              "rms": 1.1434859453818849,
+              "mean": 1.1264791048755185
+            },
+            "C:13": {
+              "max": 1.2214385094136655,
+              "rms": 0.8524094638931489,
+              "mean": 0.8264476413273468
+            },
+            "C:14": {
+              "max": 2.002353531151288,
+              "rms": 1.1151638181632824,
+              "mean": 1.0514154201800634
+            },
+            "D:1": {
+              "max": 2.035874336113771,
+              "rms": 1.170956690466285,
+              "mean": 1.095880942412162
+            },
+            "D:2": {
+              "max": 1.1828513611298581,
+              "rms": 0.7898377613134412,
+              "mean": 0.7753694462112128
+            },
+            "D:3": {
+              "max": 5.137861565425493,
+              "rms": 2.6131976795514813,
+              "mean": 2.177599193109454
+            },
+            "D:4": {
+              "max": 2.7403429459808026,
+              "rms": 1.596793736850938,
+              "mean": 1.448706837344127
+            },
+            "D:5": {
+              "max": 1.2807988869812594,
+              "rms": 0.7521287145383586,
+              "mean": 0.678761841205159
+            },
+            "D:6": {
+              "max": 1.0047469548066146,
+              "rms": 0.5951844951920392,
+              "mean": 0.5621233704157326
+            },
+            "D:7": {
+              "max": 1.1469442457805954,
+              "rms": 0.7597378391030098,
+              "mean": 0.7419602191159452
+            },
+            "E:1": {
+              "max": 1.190364474706942,
+              "rms": 0.48002920913264385,
+              "mean": 0.3926041218607626
+            }
+          },
+          "scientific_approval": "NOT_RUN",
+          "automatic_adoption": false
+        },
+        "full_precision_captured_proxy_geometry": {
+          "bond_simple": {
+            "captured_proxies": 1026,
+            "nominal_abs_ge_3": 7,
+            "nominal_abs_ge_5": 4,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 1590,
+            "nominal_abs_ge_3": 19,
+            "nominal_abs_ge_5": 10,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 158,
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "native_roundtrip": "PENDING"
+      },
+      "automatic_adoption": false,
+      "scientific_approval": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "readyset_retry": "NOT_RUN"
+    },
+    "serialization_identity_fix_2026_10_17": {
+      "status": "IMPLEMENTED_OFFLINE_SAVED_ENDPOINT_SERIALIZATION_VERIFIED_NATIVE_POSTCHECK_PENDING",
+      "delivery_prefix": "20_Cedar",
+      "behavior_before": "Serializer zipped original PDB lines with native hierarchy indices and refused native atom reordering after the completed trial.",
+      "behavior_after": "Validate a complete one-to-one supported single-model identity map by chain/residue/insertion/altloc/atom name, with component/element/baseline-coordinate guards. Map final native endpoints to original PDB records; preserve their ordering, headers and metadata.",
+      "receipt_additions": [
+        "atom_correspondence=EXACT_IDENTITY_BIJECTION",
+        "pdb_native_order_mismatches",
+        "frozen_review_path",
+        "completed_trial_archive",
+        "geometry_trial_reused"
+      ],
+      "compatibility": "Additive schema-1 receipt fields; existing policy, targets, production PostMR and qualification gates unchanged. Fresh bounded trials still supported.",
+      "saved_trial_continuation": "--completed-trial-zip accepts the exact Cedar 19 capsule. Verify all payloads, prior evidence, input model/CIF/PHIL hashes, completed native execution, matching manager/APIs and fixed constraint signatures; reuse saved full-precision endpoints without new optimization. Reinterpret the serialized PDB with unchanged restraints and retain all existing native checks.",
+      "originals": "Preserve both original ZIPs, all frozen payloads, source model and saved endpoints; no captured script or pickle is executed.",
+      "software_validation": {
+        "before_implementation": {
+          "failed": 3,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py -k serialization_maps"
+        },
+        "focused": {
+          "passed": 105,
+          "seconds": 7.71,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py tests/test_cif_native_validation.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "regressions": [
+          "Reordered generic ZZZ PDB, blank chain and distinct alternate identities map every final coordinate correctly",
+          "Unsafe/duplicate/symlink/tampered completed capsule, different manager/bundle or changed fixed signature refused",
+          "Saved-endpoint continuation cannot call optimizer; changed native postcheck definitions stay blocked",
+          "Fresh and resumed deleted-build/poisoned-import synthetic transport; actual completed-capsule transport"
+        ],
+        "native_tools": "Cedar 19 actual Phenix 2.2.1-6174 optimization completed. New native postcheck NOT_RUN locally; explicit fakes cover coordinator phases.",
+        "full_suite": {
+          "passed": 1612,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 73.75,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        }
+      },
+      "offline_actual_saved_trial": {
+        "evidence_ref": "fixed_geometry_trial_2026_10_17.return_verified_2026_10_17.new_serialization_replay",
+        "scope": "OFFLINE_SAVED_ENDPOINTS_ONLY_NO_NEW_OPTIMIZATION_OR_NATIVE_INTERPRETATION",
+        "all_877_coordinates_match_saved_native_identity": true,
+        "candidate_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+        "max_roundtrip_distance": 0.0008263369965970016,
+        "displacement": {
+          "max": 5.137861565425493,
+          "rms": 0.9809800933382721,
+          "mean": 0.8164172691277105
+        },
+        "native_roundtrip": "PENDING"
+      },
+      "deleted_build_actual_transport": {
+        "status": "PASS",
+        "scope": "ACTUAL_CEDAR19_COMPLETED_TRIAL_INSPECTION_ONLY",
+        "build_trees_deleted": true,
+        "poisoned_imports": "NOT_USED",
+        "current_directory_independence": true,
+        "source_payloads_verified": 310,
+        "prior_members_byte_identical": 311,
+        "output_payloads_verified": 312,
+        "runtime_files_verified": 104,
+        "original_archive_preserved": true,
+        "analysis_completed": true,
+        "native_execution": "NOT_RUN",
+        "model_optimization": "NOT_RUN",
+        "runner_sha256": "a2170e092e6ca2aab7d56d677d6c0a4fe67179bd4b4ea5b3632a2aac994f7a26",
+        "output_archive_sha256": "51e450ac32d188ef5dfdc791cecd850f6d76b9adbcc88996bb2a55e97aaafa3e"
+      },
+      "ferry": {
+        "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+        "previous_build": "19_Cedar_probe_build",
+        "worktree": "20_Cedar_probe_build",
+        "narestraints_worktree": "05_Cedar_narestraints_build",
+        "builder": "scripts/build_cif_fixed_geometry_probe.py",
+        "builder_delivery_prefix": "20_Cedar",
+        "runner": "20_Cedar_probe_cif_geometry_trial.py",
+        "runtime_extra_option": "--completed-trial-zip",
+        "new_installation_required": false
+      },
+      "boundaries": {
+        "new_optimization": "NOT_RUN_REUSE_SAVED_ENDPOINTS",
+        "target_changes": false,
+        "production_changes": false,
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "refinement": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "new_runtime_dependencies": [],
+        "private_payloads_committed": false
+      }
     }
   }
 }

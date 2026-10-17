@@ -303,8 +303,13 @@ postcheck. A target decrease, limit stop or tolerated rounding error cannot
 establish convergence or scientific approval. This local trial uses no diffraction
 input and makes no automatic choice; source/charge, absolute stereochemistry,
 pucker, separate contact/clash inventory, pose and full qualification stay under
-review. Installed trial execution, production integration and adoption remain
-separate.
+review. Returned Cedar 19 completes 500 iterations with fixed constraint
+signatures and a lower target, but reaches the cap with its native criterion
+false. Serialization then exposes native/PDB atom-order differences. The
+corrected serializer uses a checked identity bijection and preserves PDB record
+order/metadata. Cedar 20 resumes its saved endpoints without another optimization;
+new native PDB checks, scientific qualification, production integration and
+adoption remain separate.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -417,8 +422,9 @@ external preparation program. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
-records numerical stopping/gradient and PDB round-trip evidence; installed
-execution remains pending. Automatic adoption, full geometry qualification
+records numerical stopping/gradient and PDB round-trip evidence. Native
+optimization reaches its explicit limit; saved-endpoint serialization by atom
+identity and the new native PDB check remain separate. Automatic adoption, full geometry qualification
 and assembly stitching remain future extensions.
 Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
@@ -484,7 +490,10 @@ residual strain. A further explicit geometry-only trial uses the same native
 manager and flags before/after, records numerical stopping/gradient evidence
 and preserves full-precision results separately from PDB round-trip checks.
 It remains a separate candidate; no scientific/adoption pass follows from a
-smaller objective or successful execution.
+smaller objective or successful execution. Identity-based serialization
+preserves original PDB ordering even when native hierarchy order differs;
+verified saved endpoints can continue to the pending native PDB check without
+another minimization.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not authorize adoption.
 

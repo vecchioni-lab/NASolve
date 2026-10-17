@@ -13,7 +13,7 @@ import tempfile
 import time
 
 from .cif_captured_geometry import review_captured_geometry
-from .cif_fragment_restoration import _model
+from .cif_fragment_restoration import _key, _model
 from .cif_native_validation import _NATIVE_WORKER, _artifact, _stop, NATIVE_POLICY_ID
 
 FIXED_GEOMETRY_POLICY = 'cif-fixed-native-geometry-trial-v1'
@@ -62,12 +62,14 @@ def write_geometry_candidate(source: Path, output: Path, native: dict, points: l
     points=_points(points,native['atom_count']);lines=original.splitlines(keepends=True)
     indices=[i for i,line in enumerate(lines) if line.startswith((b'ATOM  ',b'HETATM'))]
     if len(indices)!=len(points):raise ValueError('PDB/native ordering count mismatch')
-    distances=[];roundtrip=[];by_site={}
-    for i,atom,point in zip(indices,native['atoms'],points):
-        line=lines[i];identity=atom['identity']
-        key=(line[21:22].decode().strip(),line[22:26].decode().strip(),line[12:16].decode().strip())
-        if key!=(identity['chain_id'].strip(),identity['resseq'].strip(),atom['atom_id']):
-            raise ValueError('PDB/native atom ordering differs')
+    by_identity={_key(atom):(atom,point) for atom,point in zip(native['atoms'],points)}
+    distances=[];roundtrip=[];by_site={};order_mismatches=0
+    for index,i in enumerate(indices):
+        line=lines[i]
+        key=(line[21:22].decode().strip() or '_',line[22:26].decode().strip(),
+             line[26:27].decode().strip(),line[16:17].decode().strip(),line[12:16].decode().strip())
+        atom,point=by_identity[key]
+        order_mismatches+=key!=_key(native['atoms'][index])
         fields=''.join(f'{v:8.3f}' for v in point)
         if len(fields)!=24:raise ValueError('Coordinate exceeds PDB field width')
         rounded=[float(fields[j:j+8]) for j in (0,8,16)]
@@ -81,7 +83,8 @@ def write_geometry_candidate(source: Path, output: Path, native: dict, points: l
     with output.open('xb') as handle:handle.write(candidate)
     return {'schema_version':1,'policy_id':FIXED_GEOMETRY_POLICY,'status':'REVIEW',
         'candidate_sha256':hashlib.sha256(candidate).hexdigest(),'source_sha256':hashlib.sha256(original).hexdigest(),
-        'atom_count':len(points),'metadata_and_headers_preserved':True,'source_preserved':True,
+        'atom_count':len(points),'atom_correspondence':'EXACT_IDENTITY_BIJECTION',
+        'pdb_native_order_mismatches':order_mismatches,'metadata_and_headers_preserved':True,'source_preserved':True,
         'roundtrip_max_distance':max(roundtrip,default=0.),'roundtrip_precision':'PDB_8_3_SEPARATE_FROM_FULL_PRECISION',
         'displacement':stats(distances),'per_site_displacement':{s:stats(v) for s,v in by_site.items()},
         'scientific_approval':'NOT_RUN','automatic_adoption':False}

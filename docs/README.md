@@ -105,7 +105,10 @@ for actual behavior; history is evidence, not a second task queue.
   fragment trial. The 1,568-test suite and actual-input planning transport pass;
   the returned 252-payload capsule verifies generation and both native phases.
   Cedar 19 adds one bounded fixed-definition geometry trial with explicit
-  stopping/gradient and PDB round-trip evidence; installed execution is pending.
+  stopping/gradient and PDB round-trip evidence. The returned trial reaches its
+  iteration limit, then exposes native/PDB order differences. Cedar 20 maps
+  saved endpoints by exact atom identity and resumes the pending native PDB check
+  without another minimization.
   Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

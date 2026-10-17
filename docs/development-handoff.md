@@ -51,6 +51,63 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
+**Cedar 19 returned; serialization continuation ready (2026-10-17):** all
+**310 payloads** verify, including 253 byte-identical frozen Cedar 18 members.
+Runner `899562f5…` matches clean NASolve `5e848eba…` / NARestraints `a7b6a0c9…`.
+Actual Phenix 2.2.1-6174 matches the captured manager and completes one native
+trial in **2.805701 s**, exit zero. Fixed constraint signatures agree. It reaches
+**500 iterations / 524 calls**, with no optimizer error, native criterion false
+and final gradient norm **408.374112**: **NOT_CONVERGED_LIMIT**. The fixed-manager
+target changes **35,629.733600→3,676.065436** (89.6826% lower); PDB-rounding energy
+was separately evaluated at **3,679.853670**. This is numerical progress, not
+convergence or scientific approval.
+
+The runner then stops **before writing a candidate/native postcheck** because
+its serializer incorrectly assumes PDB line order equals native hierarchy order.
+All 877 atom identities are present; 157 have different positions in those
+orderings. The general fix uses the supported single-model identity bijection
+(chain, residue, insertion, alternate location, atom name), retaining component,
+element and original-coordinate guards. Output record order/headers/metadata
+remain exact, and each saved native endpoint maps to its own atom.
+
+Offline replay of the actual saved endpoints writes all **877 coordinates**
+correctly, candidate `27d534e3…`; maximum PDB rounding distance **0.000827 Å**.
+RMS displacement is **0.980980 Å**, maximum **5.137862 Å**, so pose and later
+scientific review remain material. Captured-proxy full-precision measurements
+show four bond/ten angle deviations at least five and no recorded sign conflicts
+among 158 chirality proxies. These are projected descriptive measurements, not
+a new installed readback, contact inventory or stereochemical approval.
+
+**Cedar 20 delivery:** use the same
+`scripts/build_cif_fixed_geometry_probe.py` with `--delivery-prefix 20_Cedar`,
+fresh `20_Cedar_probe_build`, existing `05_Cedar_narestraints_build`, and
+`20_Cedar_probe_cif_geometry_trial.py`. The one-block ferry starts from
+`19_Cedar_probe_build`. Run with `--completed-trial-zip` pointing to the exact
+returned Cedar 19 ZIP; the normal Cedar 18 ZIP remains the independently verified
+baseline. Both files already exist on the Mac. This path verifies the completed
+capsule, frozen prior inputs, model/CIF/PHIL hashes, manager/native API equality
+and fixed constraint signatures. It reuses the saved endpoints, preserves their
+stopping evidence and performs **no new minimization**. It then serializes by
+identity and executes the pending native PDB postcheck with unchanged restraints.
+Existing exact identity/definition/full-proxy/count/custom checks still apply.
+Both source ZIPs/frozen payloads, all earlier runs and source/charge reviews
+survive; no captured script or pickle is executed. No new installation.
+Always REVIEW/exit 2; return the new console and ZIP. New native postcheck and
+scientific qualification remain pending.
+
+**Validation:** three initial identity-order regressions fail before the fix.
+The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py tests/test_cif_native_validation.py tests/test_synthetic_dna_shuttle.py`
+passes **105 tests (7.71 s)**. The same command without file arguments passes
+**1,612 tests, two skips and 276 subtests (73.75 s)**. Reordered
+synthetic ZZZ, blank chains and distinct alternate identities pass; reuse never
+calls the optimizer and altered native definitions still block the postcheck.
+Actual completed-capsule inspection after deleting both build fixtures verifies
+**310 source / 312 output payloads**, 104 runtime files and unused poisoned
+imports. No new native execution is claimed by that transport proof. Additive
+schema-1 fields record correspondence/mismatch counts and anchored saved-trial
+reuse; production behavior, existing gates and runtime dependencies stay fixed.
+
 **Cedar 18 returned and verified (2026-10-17):** all **252 payloads** verify,
 including 130 byte-identical frozen Cedar 17 members. Runner `25004008…` matches
 clean NASolve `6b1000bf…` and NARestraints `a7b6a0c9…`. Phenix 2.2.1-6174 eLBOW
@@ -73,7 +130,7 @@ Source/native mechanics are demonstrated; raw geometry, pair placement and
 scientific qualification remain REVIEW. Different restraint objectives must
 not be compared as like-for-like model rankings.
 
-**Cedar 19 fixed-definition geometry trial ready (2026-10-17):** the separate
+**Cedar 19 fixed-definition geometry trial implementation (2026-10-17):** the separate
 trial first reconstructs the captured manager and requires exact identities,
 coordinates, site definitions, full proxies/custom requests and native API
 sources. It then runs one geometry-only scitbx L-BFGS trial with fixed definitions,
@@ -103,7 +160,7 @@ the one-block pinned Git ferry. The exact returned Cedar 18 ZIP is sufficient;
 existing Python and Phenix 2.2.1-6174 suffice with no new installation. Explicit
 options: `--review-zip`, `--output-parent`, `--phenix-root`, `--max-iterations`,
 `--timeout-seconds` and `--inspect-only`. Completed analysis stays REVIEW/exit 2.
-Return the console and ZIP; installed optimization/round-trip remain pending.
+The returned optimization and remaining native round-trip are recorded above.
 
 **Validation:** twelve initial regression failures precede the implementation.
 The focused command

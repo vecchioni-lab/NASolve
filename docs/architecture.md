@@ -317,7 +317,10 @@ scaffold and moves a complete graph-selected base together, with unsupported
 graphs visibly refused. Its installed native mechanics and the separate
 source-recovered DF definitions now pass their checked mechanics, with charge readback still unsupported. A
 separate bounded fixed-definition geometry trial records numerical stopping
-and round-trip evidence; full scientific qualification remains under review.
+and round-trip evidence. Its serializer maps exact atom identities across
+native/PDB order changes while preserving original records; verified saved
+endpoints can resume the native postcheck without another optimization. Full
+scientific qualification remains under review.
 It is separate from production PostMR. See the
 [restoration diagnostic](cif-doctor.md#separate-attached-fragment-restoration-candidate)
 and [current handoff](development-handoff.md).

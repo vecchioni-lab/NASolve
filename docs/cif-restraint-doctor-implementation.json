@@ -1769,7 +1769,7 @@
       }
     },
     "fixed_geometry_trial_2026_10_17": {
-      "status": "IMPLEMENTED_INSTALLED_FIXED_GEOMETRY_TRIAL_PENDING",
+      "status": "RETURNED_NATIVE_LIMIT_STOP_SERIALIZATION_REPAIR_READY",
       "delivery_prefix": "19_Cedar",
       "policy_id": "cif-fixed-native-geometry-trial-v1",
       "modules": [
@@ -1836,7 +1836,7 @@
         "production_postmr_changes": false,
         "dictionary_generation": "NOT_RUN",
         "model_editing": "SEPARATE_CANDIDATE_ONLY",
-        "model_optimization": "ONE_EXPLICIT_BOUNDED_GEOMETRY_TRIAL_PENDING",
+        "model_optimization": "CEDAR19_COMPLETED_500_ITERATION_LIMIT_NOT_CONVERGED",
         "diffraction_data": "NOT_READ",
         "readyset_retry": "NOT_RUN",
         "refinement": "NOT_RUN",
@@ -1854,7 +1854,133 @@
         "runner": "19_Cedar_probe_cif_geometry_trial.py",
         "new_installation_required": false
       },
-      "evidence_record": "docs/cif-linked-native-registration-evidence.json#fixed_geometry_trial_2026_10_17"
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#fixed_geometry_trial_2026_10_17",
+      "return_verified_2026_10_17": {
+        "archive": {
+          "name": "19_Cedar_uu5n9hn0_cif_geometry_trial_review.zip",
+          "bytes": 6133071,
+          "sha256": "efec1713eaa05b51568ff6135cfac1cf649f6907fc4fb49c51b59fa8e1d2cebd",
+          "verified_payloads": 310,
+          "payload_bytes": 87583987,
+          "safe_unique_members": true
+        },
+        "runner_sha256": "899562f59985756abf8a8e26e95ebda8c7138e20ee67edebff56a52055f46851",
+        "native_execution": {
+          "elapsed_seconds": 2.805701,
+          "finished_at": "2026-10-17T20:43:16.075049+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-17T20:43:13.269066+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 1200
+        },
+        "convergence": "NOT_CONVERGED_LIMIT",
+        "stopping": {
+          "calls": 524,
+          "error": null,
+          "iterations": 500,
+          "max_iterations": 500,
+          "native_criterion_met": false,
+          "reason": "max_iterations"
+        },
+        "target_reduction_percent": 89.68259073417128,
+        "pdb_native_order_mismatches": 157,
+        "source_and_frozen_evidence_preserved": true,
+        "automatic_adoption": false,
+        "evidence_record": "docs/cif-linked-native-registration-evidence.json#fixed_geometry_trial_2026_10_17"
+      },
+      "serialization_identity_fix_2026_10_17": {
+        "status": "IMPLEMENTED_OFFLINE_SAVED_ENDPOINT_SERIALIZATION_VERIFIED_NATIVE_POSTCHECK_PENDING",
+        "delivery_prefix": "20_Cedar",
+        "behavior_before": "Serializer zipped original PDB lines with native hierarchy indices and refused native atom reordering after the completed trial.",
+        "behavior_after": "Validate a complete one-to-one supported single-model identity map by chain/residue/insertion/altloc/atom name, with component/element/baseline-coordinate guards. Map final native endpoints to original PDB records; preserve their ordering, headers and metadata.",
+        "receipt_additions": [
+          "atom_correspondence=EXACT_IDENTITY_BIJECTION",
+          "pdb_native_order_mismatches",
+          "frozen_review_path",
+          "completed_trial_archive",
+          "geometry_trial_reused"
+        ],
+        "compatibility": "Additive schema-1 receipt fields; existing policy, targets, production PostMR and qualification gates unchanged. Fresh bounded trials still supported.",
+        "saved_trial_continuation": "--completed-trial-zip accepts the exact Cedar 19 capsule. Verify all payloads, prior evidence, input model/CIF/PHIL hashes, completed native execution, matching manager/APIs and fixed constraint signatures; reuse saved full-precision endpoints without new optimization. Reinterpret the serialized PDB with unchanged restraints and retain all existing native checks.",
+        "originals": "Preserve both original ZIPs, all frozen payloads, source model and saved endpoints; no captured script or pickle is executed.",
+        "software_validation": {
+          "before_implementation": {
+            "failed": 3,
+            "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py -k serialization_maps"
+          },
+          "focused": {
+            "passed": 105,
+            "seconds": 7.71,
+            "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py tests/test_cif_native_validation.py tests/test_synthetic_dna_shuttle.py"
+          },
+          "regressions": [
+            "Reordered generic ZZZ PDB, blank chain and distinct alternate identities map every final coordinate correctly",
+            "Unsafe/duplicate/symlink/tampered completed capsule, different manager/bundle or changed fixed signature refused",
+            "Saved-endpoint continuation cannot call optimizer; changed native postcheck definitions stay blocked",
+            "Fresh and resumed deleted-build/poisoned-import synthetic transport; actual completed-capsule transport"
+          ],
+          "native_tools": "Cedar 19 actual Phenix 2.2.1-6174 optimization completed. New native postcheck NOT_RUN locally; explicit fakes cover coordinator phases.",
+          "full_suite": {
+            "passed": 1612,
+            "skipped": 2,
+            "subtests_passed": 276,
+            "seconds": 73.75,
+            "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+          }
+        },
+        "offline_actual_saved_trial": {
+          "evidence_ref": "fixed_geometry_trial_2026_10_17.return_verified_2026_10_17.new_serialization_replay",
+          "scope": "OFFLINE_SAVED_ENDPOINTS_ONLY_NO_NEW_OPTIMIZATION_OR_NATIVE_INTERPRETATION",
+          "all_877_coordinates_match_saved_native_identity": true,
+          "candidate_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+          "max_roundtrip_distance": 0.0008263369965970016,
+          "displacement": {
+            "max": 5.137861565425493,
+            "rms": 0.9809800933382721,
+            "mean": 0.8164172691277105
+          },
+          "native_roundtrip": "PENDING"
+        },
+        "deleted_build_actual_transport": {
+          "status": "PASS",
+          "scope": "ACTUAL_CEDAR19_COMPLETED_TRIAL_INSPECTION_ONLY",
+          "build_trees_deleted": true,
+          "poisoned_imports": "NOT_USED",
+          "current_directory_independence": true,
+          "source_payloads_verified": 310,
+          "prior_members_byte_identical": 311,
+          "output_payloads_verified": 312,
+          "runtime_files_verified": 104,
+          "original_archive_preserved": true,
+          "analysis_completed": true,
+          "native_execution": "NOT_RUN",
+          "model_optimization": "NOT_RUN",
+          "runner_sha256": "a2170e092e6ca2aab7d56d677d6c0a4fe67179bd4b4ea5b3632a2aac994f7a26",
+          "output_archive_sha256": "51e450ac32d188ef5dfdc791cecd850f6d76b9adbcc88996bb2a55e97aaafa3e"
+        },
+        "ferry": {
+          "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+          "previous_build": "19_Cedar_probe_build",
+          "worktree": "20_Cedar_probe_build",
+          "narestraints_worktree": "05_Cedar_narestraints_build",
+          "builder": "scripts/build_cif_fixed_geometry_probe.py",
+          "builder_delivery_prefix": "20_Cedar",
+          "runner": "20_Cedar_probe_cif_geometry_trial.py",
+          "runtime_extra_option": "--completed-trial-zip",
+          "new_installation_required": false
+        },
+        "boundaries": {
+          "new_optimization": "NOT_RUN_REUSE_SAVED_ENDPOINTS",
+          "target_changes": false,
+          "production_changes": false,
+          "scientific_approval": "NOT_RUN",
+          "automatic_adoption": false,
+          "refinement": "NOT_RUN",
+          "readyset_retry": "NOT_RUN",
+          "new_runtime_dependencies": [],
+          "private_payloads_committed": false
+        }
+      }
     }
   },
   "audience": [

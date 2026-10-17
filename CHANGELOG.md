@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Native/PDB identity mapping and saved geometry continuation
+
+- Verify Cedar 19's 310 payloads and completed fixed-manager optimization.
+  Preserve its 500-iteration limit/false convergence criterion and stored final
+  endpoints; record that serialization stopped before candidate/native postcheck.
+- Replace positional PDB/native pairing with a checked one-to-one supported
+  atom identity map. Preserve record order, headers and metadata; reject
+  ambiguous/missing/changed correspondence. Actual saved-coordinate replay
+  recovers all 877 atoms, including 157 reordered records.
+- Add explicit Cedar 20 continuation from the exact completed capsule, without
+  rerunning optimization. Verify hashes, inputs and manager evidence, then keep
+  the unchanged native postcheck. Add generic order/identity, capsule, reuse and
+  deleted-build regressions; the complete 1,612-test suite passes. Native
+  postcheck/scientific approval stay pending.
+  No new dependencies, target changes, production integration or adoption.
+
 ### Cedar 18 return and fixed-definition geometry trial
 
 - Verify all 252 returned payloads, source-preserving DF generation, 68 passing
@@ -19,7 +35,8 @@ entries are reconstructed from repository history.
   stopping/limit/error evidence and optimizer provenance. Preserve full precision
   separately from a new PDB's rounding, displacement and native proxy postcheck.
 - Add the Cedar 19 pinned Git shuttle and generic synthetic/worker/transport
-  regressions; all 1,598 full tests pass. Installed optimization remains pending.
+  regressions; the initial 1,598-test suite passes. Returned optimization and
+  serialization continuation are recorded above.
   Production PostMR,
   qualification gates and existing schemas are unchanged; no target retuning,
   ReadySet retry, diffraction/refinement or adoption and no new dependencies.
