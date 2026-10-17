@@ -34,8 +34,10 @@ algorithm, tools and pipeline placement and supplies an editable figure.
 
 The current diagnostic trial has reproduced coordinate damage from legacy
 parent restoration for some modified bases. A separate graph-selected fragment
-candidate passes native mechanics; effective/source recovery and achieved
-geometry remain under review. It has not changed ordinary PostMR.
+candidate and source-recovered DF definitions pass native mechanics, with
+formal-charge readback unavailable. A separate fixed-definition geometry trial
+is ready; achieved geometry and scientific approval remain under review.
+It has not changed ordinary PostMR.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

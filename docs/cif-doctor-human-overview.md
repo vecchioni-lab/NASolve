@@ -289,10 +289,22 @@ and stereochemistry, then linked/native projection checks run at fixed model
 coordinates. Only passing mechanics and the explicit unavailable charge API
 can continue to a separate fragment restoration/native check. Definition and
 coordinate effects are reported separately; unlike objectives are not ranked
-as like-for-like geometry improvements. Generic and transport tests pass;
-installed generation/interpretation remains pending. Pair pose, model
-minimization, scientific qualification, production integration and adoption
-remain separate.
+as like-for-like geometry improvements. Returned Cedar 18 verifies independent
+generation, 68 passing dictionary checks/one unavailable charge readback and 14
+fragment checks. The linked files and nine-atom DF candidate replay byte for byte;
+raw base geometry and the unresolved CGY–DX pose remain visible.
+
+A separate Cedar 19 diagnostic reconstructs and exactly matches that captured
+manager before one bounded geometry-only L-BFGS trial with fixed definitions.
+Native per-term energy and gradients, actual stopping/limits/errors, symmetry
+and installed optimizer hashes are recorded. Full-precision endpoints remain
+separate from PDB rounding, per-site displacement and a new exact native proxy
+postcheck. A target decrease, limit stop or tolerated rounding error cannot
+establish convergence or scientific approval. This local trial uses no diffraction
+input and makes no automatic choice; source/charge, absolute stereochemistry,
+pucker, separate contact/clash inventory, pose and full qualification stay under
+review. Installed trial execution, production integration and adoption remain
+separate.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -404,7 +416,9 @@ inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The figure depicts the implemented assessment layer and notes separate linked
-candidate/native-proxy diagnostics; automatic adoption, achieved model geometry
+candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
+records numerical stopping/gradient and PDB round-trip evidence; installed
+execution remains pending. Automatic adoption, full geometry qualification
 and assembly stitching remain future extensions.
 Dictionary coordinate-degeneracy checks and the explicit candidate-generation
 scope are included; candidate generation does not add an automatic adoption path.
@@ -466,7 +480,11 @@ Returned evidence retains worsened intersite contacts alongside improved
 intrasite geometry. A separate source/effective recovery requires exact source
 hashes, whole-component generation and linked/native projection gates at fixed
 coordinates before a fragment trial; it infers no replacement targets from
-residual strain.
+residual strain. A further explicit geometry-only trial uses the same native
+manager and flags before/after, records numerical stopping/gradient evidence
+and preserves full-precision results separately from PDB round-trip checks.
+It remains a separate candidate; no scientific/adoption pass follows from a
+smaller objective or successful execution.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not authorize adoption.
 
@@ -483,6 +501,9 @@ links explain each tool's role and are not validation receipts for NASolve.
   Westbrook et al., *The chemical component dictionary: complete descriptions
   of constituent molecules in experimentally determined 3D macromolecules in
   the Protein Data Bank*, DOI [10.1093/bioinformatics/btu789](https://doi.org/10.1093/bioinformatics/btu789).
+- [CCTBX geometry-manager API](https://cctbx.github.io/cctbx/cctbx.geometry_restraints.manager.html)
+  and [scitbx L-BFGS API](https://cctbx.github.io/scitbx/scitbx.lbfgs.html), checked
+  2026-10-17; exact installed optimizer hashes are recorded separately.
 - [NASolve implementation and provenance](cif-doctor.md),
   [scientific audit design](cif-restraint-audit-methods.md) and
   [NARestraints](https://github.com/vecchioni-lab/NARestraints).

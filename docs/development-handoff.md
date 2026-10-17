@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-16** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-17** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -51,7 +51,73 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 18 effective/source recovery ready (2026-10-16):** generic source
+**Cedar 18 returned and verified (2026-10-17):** all **252 payloads** verify,
+including 130 byte-identical frozen Cedar 17 members. Runner `25004008…` matches
+clean NASolve `6b1000bf…` and NARestraints `a7b6a0c9…`. Phenix 2.2.1-6174 eLBOW
+completes in **28.738290 s**, CANDIDATE_REVIEW; both native phases complete
+(exit zero, **3.055300 / 1.573842 s**). Dictionary checks are **68 PASS / one
+UNSUPPORTED formal-charge readback**, without contradictions; fragment mechanics
+are **14 PASS**. Source selection and generator inspection replay; linked
+outputs and the nine-atom DF A:19 fragment candidate reproduce byte for byte.
+Computed-scalar roundoff is at most **8.89e-13**. One charge-evidence array has
+different dictionary iteration order; its atom-keyed content agrees exactly.
+Generator pickles are deliberately excluded from review capsules and never
+loaded. All 877 atom identities/43 sites and previous reviews remain preserved.
+
+Definition and coordinate effects remain separate. With recovered definitions
+fixed, the fragment phase changes bond deviations at least five **31→32** and
+angles **72→72**; its inherited raw C4–O4 distance is **1.401011 Å** against
+**1.218 Å**. The 158 chirality proxies have no recorded sign conflicts.
+CGY–DX contacts remain **9.357476 / 6.818964 / 4.600879 Å** versus 2.8 Å targets.
+Source/native mechanics are demonstrated; raw geometry, pair placement and
+scientific qualification remain REVIEW. Different restraint objectives must
+not be compared as like-for-like model rankings.
+
+**Cedar 19 fixed-definition geometry trial ready (2026-10-17):** the separate
+trial first reconstructs the captured manager and requires exact identities,
+coordinates, site definitions, full proxies/custom requests and native API
+sources. It then runs one geometry-only scitbx L-BFGS trial with fixed definitions,
+all installed geometry flags enabled and normalization false. Default limits
+are **500 iterations / 10,000 calls / 1,200 seconds**; no repeated/adaptive cycles.
+Special-position coordinates require a separate constraint policy and stop.
+The receipt records symmetry, installed optimizer Python/compiled source hashes,
+constraint signatures, per-term energies, gradients, actual stopping log,
+accepted-step history and errors. Hitting a limit or a tolerated rounding
+error cannot report convergence. Even NATIVE_CRITERION_MET is only the native
+numerical criterion, not scientific approval.
+
+Full-precision coordinates/energy and 8.3 PDB round-trip energy are distinct.
+Only xyz fields change in a fresh candidate, preserving headers/metadata; report
+per-site displacement and rounding. A new native interpretation must preserve
+identities, effective definitions, all detailed proxies/counts and custom
+requests, and match the exact serialized coordinates. Existing source/charge,
+independent stereochemistry, pucker, separate contact/clash inventory, pose and
+experimental approval remain open. Prior outputs and ordinary PostMR survive;
+no target retuning, dictionary generation, ReadySet retry, diffraction input,
+refinement, automatic selection or adoption runs.
+
+**Delivery:** `scripts/build_cif_fixed_geometry_probe.py`, fresh
+`19_Cedar_probe_build`, existing `05_Cedar_narestraints_build`, and
+`19_Cedar_probe_cif_geometry_trial.py`; fetch from `18_Cedar_probe_build` and use
+the one-block pinned Git ferry. The exact returned Cedar 18 ZIP is sufficient;
+existing Python and Phenix 2.2.1-6174 suffice with no new installation. Explicit
+options: `--review-zip`, `--output-parent`, `--phenix-root`, `--max-iterations`,
+`--timeout-seconds` and `--inspect-only`. Completed analysis stays REVIEW/exit 2.
+Return the console and ZIP; installed optimization/round-trip remain pending.
+
+**Validation:** twelve initial regression failures precede the implementation.
+The focused command
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py tests/test_cif_native_validation.py tests/test_synthetic_dna_shuttle.py`
+passes **91 tests (6.49 s)**. The same command without file arguments passes
+**1,598 tests, two skips and 276 subtests (70.93 s)**.
+Standalone worker/driver paths use explicit native fakes. Actual-input inspection
+after both build fixtures are deleted verifies **252 source / 254 output payloads**
+and 104 runtime files, with poisoned imports unused. This proves transport,
+not installed Phenix minimization. Separate schema-1 diagnostics add no new
+runtime dependencies or private scientific payloads to Git; existing production
+behavior and gate schemas are unchanged.
+
+**Cedar 18 effective/source recovery implementation (2026-10-16):** generic source
 selection requires an unsupported effective scaffold, one recorded original
 component/input index, an exact source SHA-256/size match in an explicitly
 supplied resource inventory, and a supported source DNA graph. Matching uses
@@ -95,8 +161,7 @@ passes **140 tests (19.27 s)**. The same command without file arguments passes
 recorded-hash selection, graph/source/modifier guards, strict continuation,
 phase ordering with explicit native fakes and deleted-build transport. Actual
 Cedar 17 planning after deletion of both build fixtures verifies **129 input /
-133 output payloads**, with poisoned imports unused. Generation and both
-installed native phases remain pending. Existing production behavior,
+133 output payloads**, with poisoned imports unused. Generation and both installed native phases are verified in the returned result above. Existing production behavior,
 inventory/gate schemas and originals are unchanged; separate schema-1
 diagnostics add no dependencies or private scientific payloads to Git.
 

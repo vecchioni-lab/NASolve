@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-14",
+    "updated_date": "2026-10-17",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -1451,7 +1451,7 @@
       }
     },
     "effective_source_recovery_2026_10_16": {
-      "status": "IMPLEMENTED_INSTALLED_GENERATION_AND_NATIVE_PHASES_PENDING",
+      "status": "RETURNED_GENERATION_AND_BOTH_NATIVE_PHASES_VERIFIED_REVIEW",
       "delivery_prefix": "18_Cedar",
       "policy_id": "cif-effective-source-graph-recovery-v1",
       "modules": [
@@ -1557,13 +1557,13 @@
         "dictionary_generation": "NOT_RUN",
         "native_execution": "NOT_RUN"
       },
-      "installed_dictionary_generation": "PENDING",
-      "installed_native_dictionary_phase": "PENDING",
-      "installed_native_fragment_phase": "PENDING",
+      "installed_dictionary_generation": "COMPLETED_CANDIDATE_REVIEW",
+      "installed_native_dictionary_phase": "COMPLETED_68_PASS_1_UNSUPPORTED_FORMAL_CHARGE",
+      "installed_native_fragment_phase": "COMPLETED_14_PASS",
       "boundaries": {
         "production_postmr_changes": false,
         "model_editing": "SEPARATE_CANDIDATE_ONLY_AFTER_DICTIONARY_NATIVE_GATES",
-        "dictionary_optimization": "MAY_RUN_IN_WHOLE_COMPONENT_GENERATION; NOT_RUN_LOCALLY",
+        "dictionary_optimization": "COMPLETED_SEPARATE_WHOLE_COMPONENT_GENERATION",
         "model_optimization": "NOT_RUN",
         "pairing_pose_adjustment": "NOT_RUN",
         "readyset_retry": "NOT_RUN",
@@ -1600,7 +1600,261 @@
         ]
       },
       "next_bounded_work": "Verify generation/source and both native-phase returns; then assess pair pose and full geometry with every remaining source/charge/stereochemical limit visible, before any model minimization or adoption.",
-      "evidence": "docs/cif-linked-native-registration-evidence.json"
+      "evidence": "docs/cif-linked-native-registration-evidence.json",
+      "returned_evidence": {
+        "archive": {
+          "name": "18_Cedar_pfcyb5kk_cif_source_recovery_review.zip",
+          "bytes": 5121106,
+          "sha256": "8c049215a46f3f1fe0c628b7e2552e6aa59f4149853285edf5e208d72e813146",
+          "verified_payloads": 252,
+          "payload_bytes": 74662889,
+          "safe_unique_members": true
+        },
+        "nasolve_source": {
+          "commit": "6b1000bf2928197b1642eff6105f32f468ac0c38",
+          "working_tree_has_changes": false
+        },
+        "narestraints_source": {
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "working_tree_has_changes": false
+        },
+        "runner_sha256": "25004008906a4849a9195cba5286b8a103e033ce6aae1c8a5c3695782b80d660",
+        "prior_members_byte_identical": 130,
+        "generation_status": "CANDIDATE_REVIEW",
+        "generation_execution": {
+          "elapsed_seconds": 28.73829,
+          "finished_at": "2026-10-16T16:14:38.969876+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-16T16:14:10.231042+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "generator_pickle_files_deliberately_excluded": [
+          "candidate.options.pickle",
+          "candidate.pickle"
+        ],
+        "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "generated_candidate_sha256": "8daa21379bba32f1abc91fafda59379ca811561dfe9b245644597943fa655a70",
+        "plan_replay": "EXACT",
+        "generation_inspection_replay": "MATCH_AFTER_DECLARED_PATH_REBASE",
+        "linked_preparation_replay": "BYTE_EXACT_OUTPUTS",
+        "fragment_preparation_replay": "BYTE_EXACT_CANDIDATE",
+        "report_replay": "COMPUTED_SCALAR_ROUNDOFF_ONLY_AT_MOST_1E_MINUS_10",
+        "unordered_charge_evidence_replays": [
+          "checks.9.unavailable"
+        ],
+        "computed_scalar_roundoff_fields": 8012,
+        "max_computed_scalar_roundoff": 8.881784197001252e-13,
+        "native_prefixes": {
+          "native_dictionary": "native_dictionary/cif-native-bzf9lg9r",
+          "native_fragment": "native_fragment/cif-native-418b76gi"
+        },
+        "native_executions": {
+          "native_dictionary": {
+            "elapsed_seconds": 3.0553,
+            "finished_at": "2026-10-16T16:14:42.591232+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T16:14:39.535954+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "native_fragment": {
+            "elapsed_seconds": 1.573842,
+            "finished_at": "2026-10-16T16:14:44.479888+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-16T16:14:42.906065+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          }
+        },
+        "native_dispatcher_and_four_api_hashes_match": true,
+        "installation": "phenix-2.2.1-6174",
+        "phenix_version": "2.2.1",
+        "dictionary_qualification": {
+          "PASS": 68,
+          "UNSUPPORTED": 1
+        },
+        "fragment_mechanics": {
+          "PASS": 14
+        },
+        "retained_dictionary_count": 17,
+        "retained_parameter_count": 11,
+        "current_dictionary_count": 19,
+        "current_parameter_count": 12,
+        "model_atom_count": 877,
+        "site_count": 43,
+        "changed_base_atoms": 9,
+        "changed_sites": [
+          "A:19"
+        ],
+        "candidate_sha256": "ddbbbdc1c852d47761efe362aa7b0bd180715387d52e71de8c980d61a0dd3ab7",
+        "geometry": {
+          "native_dictionary": {
+            "bond_simple": {
+              "captured_proxies": 1026,
+              "status_counts": {
+                "MEASURED": 1026
+              },
+              "nominal_abs_ge_3": 103,
+              "nominal_abs_ge_5": 31,
+              "sign_conflicts": 0
+            },
+            "angle": {
+              "captured_proxies": 1590,
+              "status_counts": {
+                "MEASURED": 1590
+              },
+              "nominal_abs_ge_3": 158,
+              "nominal_abs_ge_5": 72,
+              "sign_conflicts": 0
+            },
+            "chirality": {
+              "captured_proxies": 158,
+              "status_counts": {
+                "MEASURED": 158
+              },
+              "nominal_abs_ge_3": 0,
+              "nominal_abs_ge_5": 0,
+              "sign_conflicts": 0
+            }
+          },
+          "native_fragment": {
+            "bond_simple": {
+              "captured_proxies": 1026,
+              "status_counts": {
+                "MEASURED": 1026
+              },
+              "nominal_abs_ge_3": 105,
+              "nominal_abs_ge_5": 32,
+              "sign_conflicts": 0
+            },
+            "angle": {
+              "captured_proxies": 1590,
+              "status_counts": {
+                "MEASURED": 1590
+              },
+              "nominal_abs_ge_3": 159,
+              "nominal_abs_ge_5": 72,
+              "sign_conflicts": 0
+            },
+            "chirality": {
+              "captured_proxies": 158,
+              "status_counts": {
+                "MEASURED": 158
+              },
+              "nominal_abs_ge_3": 0,
+              "nominal_abs_ge_5": 0,
+              "sign_conflicts": 0
+            }
+          }
+        },
+        "proxy_counts": {
+          "angle": 1590,
+          "bond_asu": 0,
+          "bond_simple": 1026,
+          "chirality": 158,
+          "const_dihedral": 380,
+          "dihedral": 574,
+          "parallelity": 58,
+          "planarity": 54
+        },
+        "source_and_prior_qualification_preserved": true,
+        "original_archive_and_frozen_inputs_preserved": true,
+        "aggregate_status": "REVIEW",
+        "model_optimization": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false
+      }
+    },
+    "fixed_geometry_trial_2026_10_17": {
+      "status": "IMPLEMENTED_INSTALLED_FIXED_GEOMETRY_TRIAL_PENDING",
+      "delivery_prefix": "19_Cedar",
+      "policy_id": "cif-fixed-native-geometry-trial-v1",
+      "modules": [
+        "src/nasolve/cif_fixed_geometry.py",
+        "scripts/cif_fixed_geometry_probe_template.py",
+        "scripts/build_cif_fixed_geometry_probe.py"
+      ],
+      "schema_1": {
+        "new_audit_kind": "cif_fixed_native_geometry_trial",
+        "new_probe_kind": "cif-fixed-native-geometry-probe",
+        "existing_inventory_and_qualification_formats_changed": false
+      },
+      "methods": {
+        "prerequisite": "Require exact verified Cedar 18 capsule, passing fragment mechanics and dictionary checks; unavailable charge readback without contradictions remains separately unsupported.",
+        "manager_match": "Rebuild with our unchanged inventory worker, then require exact captured atoms/coordinates, site definitions, detailed proxies, custom requests and four native API sources before optimization.",
+        "objective": "One all-coordinate geometry-only scitbx L-BFGS trial with the same native manager, all installed geometry flags enabled and normalization false; no target retuning or diffraction input.",
+        "bounds": {
+          "max_iterations_default": 500,
+          "max_iterations_allowed": [
+            1,
+            1000
+          ],
+          "max_calls": "20 * max_iterations",
+          "timeout_seconds_default": 1200,
+          "gradient_epsilon": 1e-05,
+          "cycles": 1
+        },
+        "unsupported_contexts": "Special-position coordinates require a separate constraint policy and are refused before optimizer execution.",
+        "provenance": "Record selected dispatcher and installed Python/compiled optimizer hashes, crystal symmetry, flags, static constraint signatures, native per-term residual sums and nonbonded proxy counts.",
+        "completion": "Record accepted-step history, actual scitbx stopping log, iterations, calls, errors, native final criterion and final gradient norms. A cap or error never reports native criterion met.",
+        "serialization": "Retain full-precision final coordinates/energy separately; preserve every PDB byte except xyz columns and audit rounding, per-site displacement and energy after 8.3 serialization.",
+        "postcheck": "Reinterpret the separate PDB with the same dictionaries/parameters and require exact identities, site definitions, detailed proxies/counts/custom requests and exact serialized coordinates.",
+        "review": "Source/charge, independent stereochemistry, pucker, separate clash/contact inventory, pose and experimental/scientific qualification remain visible; always REVIEW/exit 2."
+      },
+      "software_validation": {
+        "before_implementation": {
+          "failed": 12,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py"
+        },
+        "focused": {
+          "passed": 91,
+          "seconds": 6.49,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py tests/test_cif_native_validation.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "native_tools": "NOT_RUN locally; standalone worker/driver paths use explicit synthetic fakes. Actual Cedar 18 transport is inspection only.",
+        "regressions": [
+          "Synthetic ZZZ with complete atom/frame/metadata correspondence and source preservation",
+          "Finite coordinates, PDB field overflow, changed baseline and reused destination refused",
+          "Limit stops, rounding error, native criterion and unreported stops remain distinct",
+          "Changed captured atom identity or effective definition and special-position contexts stop before minimization",
+          "Owned native timeout and original input mutation retain failure evidence",
+          "Unsafe/duplicate/symlink/unselected payload/failed mechanics/charge contradiction capsule guards",
+          "Deleted-build, relocated cwd and poisoned-import transport with synthetic and actual input"
+        ],
+        "full_suite": {
+          "passed": 1598,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 70.93,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        }
+      },
+      "boundaries": {
+        "production_postmr_changes": false,
+        "dictionary_generation": "NOT_RUN",
+        "model_editing": "SEPARATE_CANDIDATE_ONLY",
+        "model_optimization": "ONE_EXPLICIT_BOUNDED_GEOMETRY_TRIAL_PENDING",
+        "diffraction_data": "NOT_READ",
+        "readyset_retry": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "new_runtime_dependencies": [],
+        "private_payloads_committed": false
+      },
+      "ferry": {
+        "contract": "docs/collaboration.md#git-delivery-and-terminal-handoffs",
+        "previous_build": "18_Cedar_probe_build",
+        "worktree": "19_Cedar_probe_build",
+        "narestraints_worktree": "05_Cedar_narestraints_build",
+        "builder": "scripts/build_cif_fixed_geometry_probe.py",
+        "runner": "19_Cedar_probe_cif_geometry_trial.py",
+        "new_installation_required": false
+      },
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#fixed_geometry_trial_2026_10_17"
     }
   },
   "audience": [
@@ -2269,7 +2523,7 @@
     "essential_corrections_to_shorthand": [
       {
         "shorthand": "C5 / C5prime bonds swapped; iodine bonds built badly",
-        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 Å; sugar C5prime-I5 coordinate separation is 8.843030419488558 Å and is not an iodine bond.",
+        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 \u00c5; sugar C5prime-I5 coordinate separation is 8.843030419488558 \u00c5 and is not an iodine bond.",
         "must_not_claim": "A general supplier C5/C5prime bond swap, a chemically incorrect 5IU iodine bond, or an edited source dictionary."
       },
       {
@@ -2300,7 +2554,7 @@
           "sugar_C5prime_I5_nonbonded_coordinate_distance_A": 8.843030419488558
         },
         "lesson": "Preserve exact atom identifiers. Remove only an enclosing matching quote pair; a prime inside or at the end of an atom ID is chemical identity data. Distinguish coordinate-derived distance from numerical bond target and establish adjacency first.",
-        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 Å, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
+        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 \u00c5, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
         "generalizable_rules": [
           "GRAPH-01",
           "NUM-01",
@@ -2384,8 +2638,8 @@
           "sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
           "findings": [
             "Aromatic sugar typing/bonds",
-            "C4-O4 single bond target 1.384 Å",
-            "C2-S1 single bond target 1.812 Å",
+            "C4-O4 single bond target 1.384 \u00c5",
+            "C2-S1 single bond target 1.812 \u00c5",
             "No active DF sugar chirality restraints"
           ]
         },
@@ -2671,7 +2925,7 @@
           "Current DE eLBOW dictionary has not changed since addition at b8317b0.",
           "Current file is byte-equivalent to historical repository-root generated 8RO.cif after component-label substitution.",
           "That generated artifact is not proof that official CCD 8RO equals intended laboratory DE.",
-          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 Å target.",
+          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 \u00c5 target.",
           "September replacement candidate remained unapproved; later committed approved replacement not found."
         ],
         "required_recovery": [
@@ -3254,7 +3508,7 @@
         "alternate_degrees": 2.8,
         "alternate_original_sigma_degrees": 6.1,
         "wrong_active_native_residual_approx": 481,
-        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7°, alternate 2.8°, primary sigma 6.3°.",
+        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7\u00b0, alternate 2.8\u00b0, primary sigma 6.3\u00b0.",
         "adopted_diagnostic_derivative_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
         "native_diagnostic": "Native diagnostic PASS; source unchanged; broad production repair is not qualified."
       },
@@ -3280,8 +3534,8 @@
         "bad_effective_readyset_sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
         "bad_definition": [
           "aromatic sugar typing and bonds",
-          "single C4–O4 target 1.384 Å",
-          "single C2–S1 target 1.812 Å",
+          "single C4\u2013O4 target 1.384 \u00c5",
+          "single C2\u2013S1 target 1.812 \u00c5",
           "no active sugar chirality restraints"
         ],
         "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
@@ -3320,7 +3574,7 @@
           "native_verified_heavy_bonds": 21,
           "native_signed_sugar_centres": 3
         },
-        "charge_caution": "Old effective OP1 formal charge −1 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
+        "charge_caution": "Old effective OP1 formal charge \u22121 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
         "generator": {
           "AceDRG": "334",
           "database": "12",
@@ -3390,8 +3644,8 @@
           "zero_sigma_torsions": 6,
           "plane_groups": 5
         },
-        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y→N flags changed only for C4–N9, C8–N9, C7–C8 and C7–N5. Twelve H attachments, formal charge −2 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
-        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of −1 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
+        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y\u2192N flags changed only for C4\u2013N9, C8\u2013N9, C7\u2013C8 and C7\u2013N5. Twelve H attachments, formal charge \u22122 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
+        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of \u22121 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
         "candidate_angles": {
           "target_degrees": [
             108.817,
@@ -3469,7 +3723,7 @@
             180,
             128
           ],
-          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2–5 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
+          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2\u20135 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
           "N5_achieved_degrees": [
             108.115293,
             119.720831,
@@ -3579,9 +3833,9 @@
           }
         ],
         "nonobvious_attachments": [
-          "CGY HO3′ attaches to OP3",
+          "CGY HO3\u2032 attaches to OP3",
           "DX H1 attaches to OP3",
-          "DX H6 attaches to O3′"
+          "DX H6 attaches to O3\u2032"
         ],
         "status": "Linkage mechanics PASS; source-specific OP2 H retained; no uniform protonation policy or qualification of all contexts follows."
       },
@@ -3596,8 +3850,8 @@
       },
       "1AP_challenge": {
         "curated_source_git_blob": "1be06d4bb0848891fd3e7dca22d217dd2ad1b69b",
-        "adaptation": "NON-POLYMER→DNA only; numerical rows, atoms, types, chirality and planes retained.",
-        "failed_generator_connectivity": "Spurious O4′–N1 connection; correct reviewed graph has C1′–N9.",
+        "adaptation": "NON-POLYMER\u2192DNA only; numerical rows, atoms, types, chirality and planes retained.",
+        "failed_generator_connectivity": "Spurious O4\u2032\u2013N1 connection; correct reviewed graph has C1\u2032\u2013N9.",
         "fixture_policy": "Recover the failed artifact or label a synthetic reproduction. The current curated source is a preservation/control case, not presumed defective."
       }
     },

@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-16**. Start with the
+Updated **2026-10-17**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -103,7 +103,10 @@ for actual behavior; history is evidence, not a second task queue.
   sugar bonds; its effective aromatic declarations are the mismatch. Reused
   whole-component generation and linked/native gates precede a separate
   fragment trial. The 1,568-test suite and actual-input planning transport pass;
-  installed generation and both native phases are pending. Production PostMR,
+  the returned 252-payload capsule verifies generation and both native phases.
+  Cedar 19 adds one bounded fixed-definition geometry trial with explicit
+  stopping/gradient and PDB round-trip evidence; installed execution is pending.
+  Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is

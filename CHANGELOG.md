@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cedar 18 return and fixed-definition geometry trial
+
+- Verify all 252 returned payloads, source-preserving DF generation, 68 passing
+  dictionary checks/one unavailable charge readback and 14 fragment checks.
+  Replay linked outputs and the nine-atom candidate byte for byte. Retain
+  unresolved raw geometry and pairing evidence, source/charge reviews and REVIEW.
+- Add an explicit one-pass native geometry-only trial after exact captured-manager
+  matching. Hold definitions/flags fixed; record native terms/gradients, actual
+  stopping/limit/error evidence and optimizer provenance. Preserve full precision
+  separately from a new PDB's rounding, displacement and native proxy postcheck.
+- Add the Cedar 19 pinned Git shuttle and generic synthetic/worker/transport
+  regressions; all 1,598 full tests pass. Installed optimization remains pending.
+  Production PostMR,
+  qualification gates and existing schemas are unchanged; no target retuning,
+  ReadySet retry, diffraction/refinement or adoption and no new dependencies.
+
 ### Cedar 17 return and explicit effective/source recovery
 
 - Verify all 129 returned payloads and 14 native mechanics checks; reproduce

@@ -589,7 +589,40 @@ reviews survive; successful analysis remains REVIEW/exit 2. Dictionary generatio
 may optimize its independent component, but model minimization, pairing-pose
 adjustment, Coot, ReadySet retry, refinement, integration and adoption do not
 run. Generic regressions, 1,568 full tests and actual-input deleted-build
-planning pass; generation and both installed native phases remain pending.
+planning pass. Returned Cedar 18 verifies all 252 payloads, source-preserving
+generation, 68 PASS/one unavailable charge check and 14 fragment mechanics
+checks. Linked files and the nine-atom candidate replay byte for byte; raw
+geometry and pairing contacts remain under review.
+
+
+### Separate fixed-definition geometry trial
+
+`cif_fixed_geometry` reconstructs an explicitly captured manager with the same
+model, dictionaries and parameter files, and refuses changed atom coordinates,
+identities, site definitions, detailed proxies/custom requests or native APIs
+before optimization. One all-coordinate geometry-only scitbx L-BFGS trial uses
+that fixed manager with installed flags enabled and normalization false. It
+records symmetry, Python/compiled optimizer hashes, static constraint signatures,
+per-term native residuals, gradient norms, accepted steps and the actual stopping
+log. Default bounds are 500 iterations, 10,000 calls and 1,200 seconds. A cap or
+error cannot become a convergence claim; special-position contexts are refused
+until an explicit constraint policy exists.
+
+Full-precision endpoints and energy stay separate from the new PDB's 8.3 rounding.
+Only coordinate columns change; headers/metadata and source inputs survive.
+The runner records per-site displacement and requires the serialized candidate's
+new native interpretation to preserve exact identities, effective definitions,
+all detailed proxies/counts and custom requests. Cartesian bond/angle/chirality
+reviews remain descriptive; native nonbonded energy uses installed symmetry and
+exclusions, while a separate contact/clash inventory remains unassessed.
+
+`scripts/build_cif_fixed_geometry_probe.py` builds `19_Cedar_probe_cif_geometry_trial.py`
+for the exact verified Cedar 18 capsule. Existing Python and Phenix suffice;
+`--inspect-only` tests frozen-input transport without optimization. Source/charge,
+independent stereochemistry, sugar pucker, pose, diffraction evidence and full
+scientific qualification remain review gates. Native numerical completion alone
+cannot authorize selection/adoption. All outcomes stay REVIEW/exit 2; installed
+execution remains pending. Ordinary PostMR and earlier runs remain unchanged.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
