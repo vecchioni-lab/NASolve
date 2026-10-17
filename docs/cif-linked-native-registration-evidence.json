@@ -5535,7 +5535,83 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy for any further geometry trial; retain declared pairing intent, original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
+    "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy using NARestraints pairing proposals and recipe mapping where applicable. Distinguish guessed, reviewed/frame-selected and native-generated membership; retain scores, warnings, chemistry and overlap evidence before freezing any new trial. Preserve original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open.",
+    "pairing_intent_provenance": {
+      "status": "SOURCE_VERIFIED_MEMBERSHIP_POLICY_NOT_PREPARED",
+      "reviewed_on": "2026-10-17",
+      "sources": [
+        {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "restraints/guesser.py",
+          "sha256": "6650b642962d4b457489ece6bd8b3ae11a543c2eeda86f12408f833ece88d4da"
+        },
+        {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "restraints/builder.py",
+          "sha256": "a2463c42626930c0ceb589e9dee39fd8797bbb96a31a4f9cefec444e966bd5ff"
+        },
+        {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "restraints/phenix.py",
+          "sha256": "9187d81042ff65d1231de80e55e8adc64cd973bf7233dab43c1055ef8f730560"
+        },
+        {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "restraints/recipe_library.py",
+          "sha256": "38df5655ca677bd2c2568c9bbb92dc9a1fc9cc68667a787a6f042090b90a17c9"
+        },
+        {
+          "repository": "vecchioni-lab/NASolve",
+          "commit": "0d22018bcfd3c2542bd2cc0a79908b58fa02388e",
+          "path": "src/nasolve/postmr.py",
+          "sha256": "f31ec621f1963f80ee4c18ba1c6c7de70817d16cf0d45ae146582bb59d4fca08"
+        }
+      ],
+      "existing_guesser": {
+        "entry_point": "restraints.guesser.guess_pairs",
+        "method": "Mapped recipe contacts scored by soft distance, angle, plane orientation and center separation; contiguous antiparallel runs strengthen selection, fill eligible gaps and iteratively rescue weak edge pairs.",
+        "seed_search_radius_angstrom": 8.0,
+        "seed_max_plane_angle_degrees": 25.0,
+        "bond_soft_sigma_angstrom": 0.4,
+        "noncanonical_default": false,
+        "interpretation": "Topology-assisted pairing hypotheses, not independent confirmation of pairing chemistry or achieved geometry."
+      },
+      "existing_builder": {
+        "entry_point": "restraints.builder.build_phil_from_pdb",
+        "method": "Read selected pair stretches, resolve workbook atom/recipe roles, and generate explicit pair geometry edits; stacking is controlled separately."
+      },
+      "existing_nasolve_use": {
+        "entry_point": "src/nasolve/postmr.py:_default_modified_pair_restraints_builder",
+        "mode": "Opt-in --modified-pairs-only",
+        "allow_noncanonical": true,
+        "selection": "Keep a guessed pair when either partner is a modified nucleotide.",
+        "include_stacking": false,
+        "recorded_evidence": [
+          "guesser_warnings",
+          "guessed_pair_count",
+          "retained_pair_count",
+          "retained_pairs with recipe, score and noncanonical flag"
+        ],
+        "cedar20_pair_origin": "NOT_ESTABLISHED_BY_THIS_SOURCE_INSPECTION"
+      },
+      "next_policy_requirements": [
+        "Reuse the existing guesser and recipe mapping where applicable rather than silently replacing them with a second pairing heuristic.",
+        "Trace guessed versus reviewed/frame-selected pairs through recipe atom contacts to actual native proxies; retain score, warning and selection provenance.",
+        "Review unresolved donor/acceptor or pairing chemistry and check missing, extra or overlapping terms, including explicit/native duplicate restraints, before freezing a new trial.",
+        "Do not equate a frozen proposal with chemically correct membership or alter Cedar 20 exact-comparison REVIEW results."
+      ],
+      "boundaries": {
+        "runtime_changed": false,
+        "new_native_execution": "NOT_RUN",
+        "new_optimization": "NOT_RUN",
+        "membership_approved": false,
+        "automatic_adoption": false
+      }
+    }
   },
-  "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy for any further geometry trial; retain declared pairing intent, original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
+  "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy using NARestraints pairing proposals and recipe mapping where applicable. Distinguish guessed, reviewed/frame-selected and native-generated membership; retain scores, warnings, chemistry and overlap evidence before freezing any new trial. Preserve original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
 }

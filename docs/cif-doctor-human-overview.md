@@ -316,6 +316,12 @@ neither report changes the original checks or claims chemical approval. Explicit
 hydrogen-bond membership, convergence, full qualification, production integration
 and adoption remain separate.
 
+That future membership review should reuse NARestraints' topology-assisted pair
+guesser and recipe builder, preserving the distinction between guessed pairs,
+reviewed/frame selections and the proxies Phenix generates. Run continuity can
+rescue weak pairing geometry; freezing such a proposal still requires checking
+its chemistry and avoiding overlapping restraints.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an

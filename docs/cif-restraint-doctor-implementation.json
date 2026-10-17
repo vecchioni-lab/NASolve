@@ -2064,7 +2064,13 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy for any further geometry trial; retain declared pairing intent, original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open."
+      "next_action": "No repeated Mac/native inventory is needed to review Cedar 20. Design an explicit fixed hydrogen-bond membership policy using NARestraints pairing proposals and recipe mapping where applicable. Distinguish guessed, reviewed/frame-selected and native-generated membership; retain scores, warnings, chemistry and overlap evidence before freezing any new trial. Preserve original cutoff evidence and changed-objective distinctions. Convergence, full scientific qualification and adoption remain open.",
+      "pairing_intent_provenance": {
+        "status": "SOURCE_VERIFIED_MEMBERSHIP_POLICY_NOT_PREPARED",
+        "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
+        "method": "Existing NARestraints topology-assisted guesser and recipe builder; trace guessed, reviewed/frame-selected and native-generated contacts before fixing membership. Source inspection does not establish the origin of the frozen Cedar 20 pair declarations.",
+        "runtime_changed": false
+      }
     }
   },
   "audience": [

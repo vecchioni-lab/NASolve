@@ -105,6 +105,21 @@ and its bounded native validation remain to be prepared; full qualification,
 refinement and adoption stay open. The documentation ledger owns the exact
 return, original checks and separate fixed-versus-fresh evidence.
 
+**Pairing provenance for that gate:** reuse NARestraints' existing topology-assisted
+pair guesser and recipe builder. At pinned source `a7b6a0c9…`, the guesser scores
+mapped contact distances, angles and planes, then uses antiparallel run continuity
+to rescue weak pairs and extend run ends. These are pairing hypotheses, not
+independent confirmation of donor/acceptor chemistry or achieved geometry.
+NASolve's opt-in `--modified-pairs-only` path already uses this guesser with
+noncanonical recipes enabled, retains pairs touching a modified nucleotide and
+writes explicit recipe restraints without stacking. This source inspection does
+not establish that the frozen Cedar 20 declarations came from that mode.
+Before freezing a future trial, trace guessed versus reviewed/frame-selected
+pairs through recipe-mapped contacts to actual native proxies, retaining scores,
+warnings and overlap evidence. Check missing, extra or doubly applied terms and
+unresolved pairing chemistry; a fixed membership alone does not make a guess
+correct. The exact source record is in the existing native-reload ledger.
+
 **Validation:** fourteen initial regressions fail before the audit module exists.
 The focused command
 `env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_native_reload.py tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_captured_geometry.py tests/test_cif_fragment_restoration.py`

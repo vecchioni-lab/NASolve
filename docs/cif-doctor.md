@@ -669,6 +669,16 @@ Before another minimization, an explicit fixed hydrogen-bond membership policy
 must be prepared and tested. Input-file equality alone cannot ensure freshly
 generated manager equality; scientific qualification and adoption remain open.
 
+The membership design should reuse NARestraints' existing pair guesser and
+recipe builder. Its permissive geometry scoring and antiparallel-run rescue
+provide pairing hypotheses, while the builder maps selected pairs to explicit
+recipe contacts. NASolve already exposes this route through opt-in
+`--modified-pairs-only`; that does not establish the origin of Cedar 20's frozen
+pair selections. Keep guessed, reviewed/frame-selected and native-generated
+membership distinguishable, retain scores/warnings, and compare actual proxies
+for missing, extra or overlapping terms before freezing any new trial. A
+topological guess or fixed contact set does not certify pairing chemistry.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

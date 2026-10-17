@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Hydrogen-bond pairing provenance for the next diagnostic
+
+- Record NARestraints' existing permissive pair guesser, antiparallel-run rescue
+  and recipe builder as inputs to the pending membership policy. Distinguish
+  guessed pairs, reviewed/frame selections and native-generated proxies; retain
+  score, warning and overlap evidence before freezing a trial. This is a
+  source-verified documentation clarification, with no runtime or gate change.
+
 ### Cedar 20 native reread and conditional-restraint attribution
 
 - Verify all 367 returned payloads and byte-exact serialization. Preserve the
