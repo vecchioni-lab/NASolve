@@ -2064,17 +2064,131 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Implement and validate explicit NARestraints-owned pairing and stacking membership: compile selected pairs, stack relationships and mapped planes with recipe targets/uncertainties, prevent competing automatic Phenix inference and native distance-based omission, and verify exact native relationships and weights before/after serialization. Preserve NARestraints-selected canonical native stacking declarations and modified-base parallelities; retain fallback warnings and separate physical stacks from pair-plane terms. Keep provenance, chemistry, overlap evidence and historical Cedar 19/20 REVIEW results. Authority is decided; native enforcement, convergence, full qualification and adoption remain open. No repeated Mac inventory is needed to review Cedar 20.",
+      "next_action": "Run the pinned Cedar 21 Git ferry and return its new review ZIP. Evaluate exact native membership on both preserved coordinate sets before preparing any further geometry/convergence trial.",
       "pairing_intent_provenance": {
-        "status": "SOURCE_VERIFIED_AUTHORITY_DECIDED_NATIVE_ENFORCEMENT_NOT_IMPLEMENTED",
+        "status": "SOURCE_VERIFIED_DIAGNOSTIC_COMPILER_IMPLEMENTED_NATIVE_PENDING",
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
-        "method": "NARestraints pairing and stacking selections, mapped planes and recipe targets supersede automatic Phenix secondary-structure inference. Reuse existing guesser/recipe/stacking builders, preserve canonical native declarations and modified-base parallelities, and verify exact relationships with fallback warnings retained. Enforcement is planned; runtime is unchanged.",
+        "method": "NARestraints pairing and stacking selections, mapped planes and recipe targets supersede automatic Phenix SS inference. The separate diagnostic compiler now prepares explicit relationships while retaining existing edits; installed validation is pending and ordinary PostMR is unchanged.",
         "runtime_changed": false,
         "pairing_authority_decided": true,
-        "native_enforcement": "PLANNED_NOT_IMPLEMENTED",
+        "native_enforcement": "DIAGNOSTIC_COMPILER_PREPARED_INSTALLED_CHECK_PENDING",
         "stacking_authority_decided": true,
         "existing_stacking_tests_passed": 8
       }
+    },
+    "narestraints_membership_probe_2026_10_18": {
+      "status": "IMPLEMENTED_DIAGNOSTIC_SHUTTLE_PREPARED_NATIVE_NOT_RUN",
+      "delivery_prefix": "21_Cedar",
+      "policy_id": "narestraints-explicit-membership-v1",
+      "module": "src/nasolve/cif_na_policy.py",
+      "builder": "scripts/build_cif_na_policy_probe.py",
+      "template": "scripts/cif_na_policy_probe_template.py",
+      "runner_filename": "21_Cedar_probe_cif_na_policy.py",
+      "review_input": {
+        "delivery": "20_Cedar",
+        "sha256": "8d77695925536335963fd351a91961091798ee1a3a680f1bc72368ae9732091e",
+        "payloads": 367
+      },
+      "behavior": {
+        "before": "Identical input bytes can yield a changed native secondary-structure proxy set after coordinates move; Cedar 20 exact comparison remains 11 PASS / 3 REVIEW.",
+        "after": "Separate explicit NARestraints pair/stack compilation preserves prior edits and modifiers, suppresses competing native SS construction only after representing every declared generic relationship, and checks exact native membership on two saved coordinate sets.",
+        "scope": "Diagnostic only; ordinary PostMR, historical qualification gates and scientific approval are unchanged.",
+        "supported": "Unambiguous single-model chain/residue selections; declared Saenger 19/20 pairs matching configured NARestraints recipes; mapped stacking declarations. Existing explicit edited pairs/stacks are retained.",
+        "refusals": [
+          "Unsupported declaration settings or recipe/class disagreement",
+          "Ambiguous alternate/insertion/multiple-model contexts",
+          "Missing atom mappings or duplicate/overlapping generated edits"
+        ],
+        "methods": "Reuse NARestraints pair_residue_from_pdb, generate_pair_restraints and the pinned stacking plane generator; record source scopes and resolve expected requests against captured native atom identities. No pair guessing is rerun on moved sites.",
+        "native_checks": "Record installed origin IDs and the SS enable control; require exact complete requests, targets/weights, retained non-SS proxy rows, component definitions and atom identities. Competing SS origins and absent/extra terms remain REVIEW.",
+        "objective": "New explicit NARestraints objective; no continuation or ranking against Cedar 19/20 energy values."
+      },
+      "actual_offline_compile": {
+        "pairs": 12,
+        "stacks": 23,
+        "new_requests": {
+          "bond": 31,
+          "angle": 52,
+          "parallelity": 35
+        },
+        "preserved_requests": {
+          "bond": 21,
+          "angle": 34,
+          "planarity": 8,
+          "parallelity": 23
+        },
+        "expected_total_requests": {
+          "bond": 52,
+          "angle": 86,
+          "planarity": 8,
+          "parallelity": 58
+        },
+        "physical_stack_relationships": 38,
+        "source_inputs": {
+          "model": 1,
+          "dictionary": 19,
+          "phil": 12
+        },
+        "prior_archive_preserved": true,
+        "native_execution": "NOT_RUN",
+        "model_optimization": "NOT_RUN"
+      },
+      "native_case_design": {
+        "models": [
+          "Preserved pre-minimization PDB input",
+          "Preserved Cedar 20 serialized endpoint PDB"
+        ],
+        "interpretations": 2,
+        "policy_recomputed_between_coordinates": false,
+        "coordinate_writing": "NOT_RUN",
+        "native_optimization": "NOT_RUN",
+        "timeout_seconds_per_case": 180,
+        "execution_status": "NOT_RUN",
+        "expected_installation_label": "2.2.1-6174",
+        "expected_dispatcher_version": "2.2.1"
+      },
+      "schema_impact": {
+        "new_reports": [
+          "cif-na-policy-native-probe schema 1",
+          "narestraints-explicit-membership-v1 compiler/mechanics reports"
+        ],
+        "native_inventory": "Add opt-in policy_inventory boolean; default spec/report behavior unchanged. When requested, record native control/origin IDs and four additional installed source hashes.",
+        "existing_receipts": "Unchanged; original comparisons are not reclassified."
+      },
+      "software_validation": {
+        "before_implementation": {
+          "failed": 10,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_na_policy.py"
+        },
+        "focused": {
+          "passed": 59,
+          "seconds": 5.71,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short tests/test_cif_na_policy.py tests/test_cif_na_policy_probe.py tests/test_cif_native_validation.py tests/test_cif_fixed_geometry_probe.py"
+        },
+        "full_suite": {
+          "passed": 1646,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 71.72,
+          "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+        },
+        "transport": "Synthetic protected capsule compiles after both source build trees are deleted, with poisoned caller imports; all frozen members remain unchanged.",
+        "actual_input": "Hash-bound 367-payload Cedar 20 capsule passes complete inspect-only source-bundled compilation; native execution NOT_RUN."
+      },
+      "boundaries": {
+        "native_execution": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "model_editing": "NOT_RUN",
+        "model_optimization": "NOT_RUN",
+        "readyset_retry": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "production_postmr_changes": false,
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false,
+        "new_dependencies": [],
+        "private_payloads_committed": false
+      },
+      "next_action": "Run the pinned Cedar 21 Git ferry and return its new review ZIP. Evaluate exact native membership on both preserved coordinate sets before preparing any further geometry/convergence trial."
     }
   },
   "audience": [

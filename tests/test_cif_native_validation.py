@@ -504,3 +504,23 @@ def test_unknown_namespace_policy_rejected_before_output_allocation(tmp_path,pol
         inspect_native_bundle(model,dictionaries,tmp_path/"outputs",Path(sys.executable),
             environment=os.environ,phenix_version="fake",phil_namespace_policy=policy)
     assert not (tmp_path/"outputs").exists()
+
+
+def test_optional_policy_inventory_records_installed_origins_without_constant_ids(tmp_path):
+    executable,environment=native_runtime(tmp_path)
+    root=tmp_path/'fake_native'
+    for package in ['cctbx','cctbx/geometry_restraints','mmtbx/secondary_structure']:
+        p=root/package;p.mkdir(parents=True,exist_ok=True);(p/'__init__.py').write_text('')
+    (root/'cctbx/geometry_restraints/linking_class.py').write_text('class linking_class:\n def get_origin_id(self,name):\n  return {"hydrogen bonds":37,"edits":41,"basepair stacking":43,"basepair parallelity":47,"basepair planarity":49}[name]\n')
+    (root/'cctbx/geometry_restraints/auto_linking_types.py').write_text('# explicit synthetic registry\n')
+    (root/'mmtbx/secondary_structure/nucleic_acids.py').write_text('# explicit synthetic source\n')
+    p=root/'fake_native.py';p.write_text(p.read_text().replace('NS(marker="explicit interpretation parameters",apply_cif_modification=requests)','NS(marker="explicit interpretation parameters",apply_cif_modification=requests,secondary_structure=NS(enabled=False))'))
+    model,dictionaries=files(tmp_path)
+    receipt=inspect_native_bundle(model,dictionaries,tmp_path/'outputs',executable,environment=environment,
+        phenix_version='EXPLICIT_SYNTHETIC',policy_inventory=True)
+    assert receipt['status']=='REVIEW',receipt
+    report=receipt['native_validation']
+    assert report['restraint_policy']['secondary_structure_enabled'] is False
+    assert report['restraint_policy']['origin_ids']['hydrogen bonds']==37
+    assert len(report['installed_api_sources'])==8
+    assert json.loads((Path(receipt['native_directory'])/'native_spec.json').read_text())['policy_inventory'] is True

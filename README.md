@@ -39,7 +39,9 @@ formal-charge readback unavailable. A separate fixed-definition geometry trial
 reached its iteration limit. Native PDB readback preserves atom/component
 identities and exposes distance-dependent hydrogen-bond additions. Achieved
 geometry and scientific approval remain under review.
-It has not changed ordinary PostMR.
+A separate explicit NARestraints membership diagnostic now compiles declared
+pairs/stacks and checks a fixed policy at two saved coordinate sets; installed
+validation is pending. It has not changed ordinary PostMR.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

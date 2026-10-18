@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit NARestraints pairing/stacking membership diagnostic
+
+- Compile frozen generic pair/stack declarations with NARestraints recipes and
+  mapped base planes; preserve existing explicit edits, component modifiers and
+  source bytes. Reject ambiguous/unsupported intent or duplicate selections.
+- Represent every requested generic stack explicitly before disabling competing
+  secondary-structure construction in the separate bundle. Add opt-in native
+  control/origin/source readback and exact membership/unaffected-proxy checks.
+- Add a source-bundled Cedar 21 shuttle applying one policy to preserved initial
+  and endpoint coordinates. Actual-input offline compilation and synthetic
+  deleted-build transport pass; installed Phenix validation remains pending.
+  No model edit, minimization, objective ranking, production change or adoption.
+
+
 ### Pairing and stacking authority for the next diagnostic
 
 - Record NARestraints' existing permissive pair guesser, antiparallel-run rescue

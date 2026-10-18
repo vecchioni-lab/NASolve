@@ -676,16 +676,17 @@ supplies the pairing or stacking policy. Native interpretation must compile the 
 contacts without competing automatic additions or a distance-based omission of
 an intended contact. Phenix remains the native restraint consumer and geometry
 measurement engine; this authority does not waive identity, component, covalent
-geometry or achieved-geometry checks. Explicit membership compilation and
-suppression of competing inference remain planned implementation, not a claim
-about the current runtime.
+geometry or achieved-geometry checks. A separate diagnostic compiler now prepares explicit membership and
+suppression of competing inference; installed validation remains pending and
+ordinary PostMR is unchanged.
 
 The existing NARestraints stacking builder applies its shared base-class plane
 mapping to chain neighbours. Canonical stacks use explicitly selected native
 `stacking_pair` records; mapped modified stacks use explicit parallelities with
 target 0 degrees and sigma 0.027. These are two compilation forms of the same
-NARestraints-owned policy. Preserve these declarations when suppressing competing
-inference rather than disabling all secondary-structure processing. Unknown
+NARestraints-owned policy. Preserve their requested relationships when suppressing
+competing inference. Cedar 21 compiles those declarations to explicit mapped
+parallelities before disabling native secondary-structure construction. Unknown
 mappings currently retain a generic declaration with a warning; verify actual
 native coverage rather than assuming that fallback produced a plane. Track
 physical stacks separately from base-pair parallelity/planarity and compare
@@ -701,6 +702,37 @@ membership distinguishable, retain scores/warnings, and compare actual proxies
 for missing, extra or overlapping terms before freezing any new trial. A
 topological guess or fixed contact set does not certify pairing chemistry;
 diagnostic Phenix guesses do not acquire authority by passing a distance cutoff.
+
+### Explicit NARestraints membership diagnostic
+
+`cif_na_policy.compile_na_policy` prepares a separate input bundle from frozen
+pair/stack declarations and the existing explicit edits. It reuses NARestraints'
+workbook atom mappings, pair recipes and stacking-plane generator; it does not
+rescore or discover pairs from the changed coordinates. The bounded first slice
+supports unambiguous single-model chain/residue selections, declared Saenger
+19/20 pairs matching configured recipes, and mapped stack declarations. Unknown
+settings, alternate/insertion contexts, missing atoms or overlapping generated
+edits stop before output. All non-SS input lines and original files survive.
+
+**Methods.** The compiler records declaration provenance, resolves recipe atom
+selections against captured native identities, emits explicit pair contacts and
+mapped parallelities, and rejects duplicate physical requests. Once all declared
+generic relationships have explicit representations, a separate final control
+disables native secondary-structure construction. Existing modified-base edits,
+component modifiers and all dictionary bytes remain. `qualify_na_policy` checks
+exact requests/targets/weights, full retained proxy rows and component/identity
+invariants using the installed origin registry. New native metadata is opt-in;
+the ordinary inventory and pipeline defaults are preserved.
+
+Cedar 21 verifies the exact returned Cedar 20 capsule and applies one policy to
+two preserved coordinate sets: the initial model and saved PDB endpoints. This
+is an interpretation-only test of membership stability, not another optimization.
+Actual-input offline compilation produces 31 new bonds, 52 angles and 35
+parallelities for 12 pair and 23 stack declarations, retaining the prior explicit
+edits. Installed Phenix 2.2.1-6174 execution is **NOT_RUN** until a new receipt is
+returned. The objective is explicitly changed from Cedar 19/20; energies and
+convergence are not transferred. Geometry, source/charge and scientific approval
+remain REVIEW, with no production integration or automatic adoption.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

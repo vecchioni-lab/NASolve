@@ -152,6 +152,19 @@ try:
         raise UnsupportedNativeAPI("Explicit PHIL contains unconsumed interpreter definitions")
     Path("native_effective.phil").write_text(work.as_str())
     params = work.extract()
+    if spec.get("policy_inventory"):
+        from cctbx.geometry_restraints import linking_class, auto_linking_types
+        from mmtbx import secondary_structure
+        from mmtbx.secondary_structure import nucleic_acids
+        registry = linking_class.linking_class()
+        report["restraint_policy"] = {
+            "secondary_structure_enabled": bool(params.pdb_interpretation.secondary_structure.enabled),
+            "origin_ids": {name: registry.get_origin_id(name) for name in
+                ("hydrogen bonds", "edits", "basepair stacking", "basepair parallelity", "basepair planarity")}}
+        for module in (linking_class, auto_linking_types, secondary_structure, nucleic_acids):
+            path = Path(module.__file__)
+            report["installed_api_sources"].append({"module": module.__name__, "historical_path": str(path),
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None})
     report["parameter_consumers"] = {
         "pdb_interpretation": "pdb_interpretation.process(params=...)",
         "geometry_restraints.edits": "processed.geometry_restraints_manager(params_edits=...)",
@@ -400,7 +413,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           phenix_version: str, timeout_seconds: float = 600,
                           phil_files: Sequence[Path] = (),
                           phil_namespace_policy: str = "direct",
-                          inventory_detail: str = "basic") -> dict:
+                          inventory_detail: str = "basic",
+                          policy_inventory: bool = False) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -412,6 +426,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         raise ValueError("Unsupported native PHIL namespace policy")
     if inventory_detail not in {"basic", "linked"}:
         raise ValueError("Unsupported native inventory detail")
+    if type(policy_inventory) is not bool:
+        raise ValueError("Policy inventory must be an explicit boolean")
     if not phenix_version or not str(phenix_version).strip():
         raise ValueError("An explicit Phenix version is required")
     if not isfinite(float(timeout_seconds)) or timeout_seconds <= 0:
@@ -446,6 +462,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
             "phil_namespace_policy": phil_namespace_policy}
     if inventory_detail != "basic":
         spec["inventory_detail"] = inventory_detail
+    if policy_inventory:
+        spec["policy_inventory"] = True
     (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
     (work / "native_worker.py").write_text(_NATIVE_WORKER, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]

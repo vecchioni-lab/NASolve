@@ -345,6 +345,14 @@ Their iodine is placed along the external bisector defined by the mapped
 coordinate set and the parent `C5` occupancy and B factor. The transformed Coot
 monomer is not trusted for the halogen bond length.
 
+
+A separate [explicit membership diagnostic](cif-doctor.md#explicit-narestraints-membership-diagnostic)
+now compiles frozen pair/stack declarations through NARestraints recipes and
+mapped base planes, then suppresses competing native secondary-structure terms.
+It checks exact membership at two saved coordinate sets without optimization.
+Installed validation is pending; this is not integrated into ordinary PostMR.
+
+
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
 (`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The
 portable 5W6W secondary-structure template contains 17 non-overlapping

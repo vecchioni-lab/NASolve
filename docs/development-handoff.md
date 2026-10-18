@@ -51,6 +51,44 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
+**Cedar 21 prepared (2026-10-18): explicit NARestraints membership.** The new
+compiler retains the frozen explicit edits and component modifiers, and compiles
+only the remaining declared Saenger 19/20 pairs and mapped stacks with the
+bundled NARestraints recipes. It does not rerun the pair guesser on moved
+coordinates. Actual-input offline replay resolves **12 pairs / 23 stacks** into
+**31 bonds / 52 angles / 35 parallelities**, without missing selections or
+duplicate edits. Existing **21 bonds / 34 angles / eight planes / 23
+parallelities** remain. Thus the expected explicit inventory is 52 bonds, 86
+angles, eight planes and 58 parallelities; the latter distinguish pair-plane
+terms from the 38 physical stacking relationships.
+
+All generic relationships are explicitly compiled before native secondary-
+structure construction is disabled in this separate diagnostic bundle. The
+NARestraints stacking matrix supplies canonical as well as modified base planes;
+no requested stack is discarded by the control switch. Definitions, dictionaries,
+original PHIL and both coordinate inputs are preserved. This is a **new objective**;
+it does not continue or re-rank the historical Cedar 19 energy calculation.
+
+The one-block ferry starts at `20_Cedar_probe_build`, creates pinned
+`21_Cedar_probe_build`, builds with `scripts/build_cif_na_policy_probe.py` and the
+unchanged `05_Cedar_narestraints_build`, then runs
+`21_Cedar_probe_cif_na_policy.py`. Its default input is the exact returned Cedar
+20 ZIP. Two native interpretations apply the same compiled policy to the saved
+initial and endpoint coordinates. New opt-in native metadata records the actual
+origin registry and secondary-structure control, with hashes for those installed
+source modules. Exact new requests, retained non-SS proxies, identities and
+component definitions must match; competing SS origins and missing/duplicate
+terms retain REVIEW. No coordinates are edited and no minimization, ReadySet,
+dictionary generation, diffraction, refinement or adoption occurs.
+
+Focused validation passes **59 tests (5.71 s)**; the full suite passes
+**1,646 tests, two skips and 276 subtests (71.72 s)** with
+`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`.
+Offline compile and synthetic deleted-build transport pass. **Installed native
+validation remains NOT_RUN** until the user returns Cedar 21. Existing charge,
+source chemistry, achieved geometry, convergence and scientific qualification
+stay open. Ordinary PostMR and all previous native gates/receipts are unchanged.
+
 **Cedar 20 returned and reviewed (2026-10-17):** all **367 payloads** verify,
 including 311 byte-identical frozen Cedar 19 members. Runner `e38625e1…` matches
 clean NASolve `7acca935…` / NARestraints `a7b6a0c9…`. Saved endpoints were reused;
@@ -88,7 +126,7 @@ nominal deviations at least five; the fresh manager has five/ten because it
 contains additional terms. All 158 recorded chirality proxies have no sign
 conflicts. None of these counts certifies geometry, pucker or experimental fit.
 
-**Current action:** the Cedar 20 return is fully reviewed from saved evidence;
+**Cedar 20 review outcome:** the Cedar 20 return is fully reviewed from saved evidence;
 no repeated Mac/native inventory is needed. `cif_native_reload` adds reusable
 read-only attribution and endpoint-equivalence reports without changing the
 old checks, targets or production behavior. Origin/cutoff are explicit caller
@@ -96,21 +134,21 @@ evidence; synthetic origin 37/ZZZ tests prevent a hardcoded native-origin or
 residue exception. Missing/changed terms, unpaired angles and other mutations
 stay unexplained. No new native execution or geometry trial is delivered here.
 
-**Next scientific gate:** implement explicit NARestraints-owned pairing and
-stacking membership before another geometry/convergence trial. The accepted project
+**Next scientific gate:** run Cedar 21's explicit NARestraints-owned pairing and
+stacking mechanics check before another geometry/convergence trial. The accepted project
 policy is that NARestraints pair selections, stacking relationships, mapped
 planes and recipe targets supersede
 Phenix's automatic secondary-structure guesses. The native consumer must apply
 that policy without adding competing inferred contacts or silently dropping
 intended contacts because their starting geometry is poor. Keep native geometry
 measurement and component/covalent restraint validation independent of pairing
-authority. This precedence is decided; its native enforcement is not yet
-implemented or validated.
+authority. This precedence is decided; the separate diagnostic compiler is
+implemented, with its installed native validation pending.
 Rebuilding from new coordinates can change that set even when all input bytes
 are identical. Preserve the new terms in Cedar 20's historical evidence; do not
 increase its cutoff or reclassify its failed comparison to manufacture PASS.
 The new authority policy defines a separately documented objective. Its contact
-compiler and bounded native validation remain to be prepared; full qualification,
+compiler is prepared; its bounded native validation, full qualification,
 refinement and adoption stay open. The documentation ledger owns the exact
 return, original checks and separate fixed-versus-fresh evidence.
 
@@ -144,7 +182,8 @@ Unknown mappings currently retain a generic declaration with a warning, so
 actual native coverage still needs checking. Track stacking separately from
 base-pair parallelity/planarity, verify planes/targets/weights and check missing,
 extra or duplicate physical relationships on readback. This extends the decided
-authority, not the current runtime. The unchanged NARestraints stacking/role
+authority and is now represented by the separate diagnostic compiler; ordinary
+PostMR is unchanged. The unchanged NARestraints stacking/role
 tests pass **8 tests (0.33 s)** with
 `env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=. ../check-venv/bin/python -m pytest -q --tb=short tests/test_stacking.py tests/test_modified_pair_roles.py`.
 

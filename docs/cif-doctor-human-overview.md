@@ -319,19 +319,30 @@ and adoption remain separate.
 The accepted project policy makes NARestraints' pair selections, stacking
 relationships, mapped base planes and recipe targets authoritative over Phenix's
 automatic secondary-structure guesses.
-The future membership implementation will reuse NARestraints' topology-assisted
-guesser and recipe builder, preserving the provenance of guessed and
-reviewed/frame selections through native compilation. Intended contacts must
+The separate membership compiler reuses NARestraints' recipe and stacking
+builders, preserving frozen selection provenance. It compiles declared intent
+without rerunning the guesser on moved coordinates. Intended contacts must
 survive poor starting geometry, and Phenix inference must not add competing
 terms. Run continuity can rescue weak pairing geometry; chemistry, overlap and
-achieved-geometry checks remain necessary. Native enforcement is not yet
-implemented or validated.
+achieved-geometry checks remain necessary. The diagnostic compiler is
+implemented; installed native validation is pending.
 
-Stacking will reuse the existing NARestraints base-class plane mapping and
+Stacking reuses the existing NARestraints base-class plane mapping and
 neighbour builder. Its canonical native declarations and explicit modified-base
 parallelities both carry that policy; suppressing competing inference must
 preserve their requested relationships. Unknown-mapping warnings and actual
 native coverage remain visible, with stacks distinguished from base-pair planes.
+
+A separate **explicit NARestraints membership diagnostic** now compiles the
+remaining generic pair/stack declarations before disabling competing native
+secondary-structure construction. Existing explicit modified-base edits and
+component modifiers remain intact. It resolves workbook-mapped atoms and planes,
+checks duplicate requests, and records the source of each relationship. Cedar
+21 applies that same policy to the preserved initial model and saved endpoints,
+checking exact native requests, targets/weights and unaffected proxies. The
+installed origin registry is recorded rather than assumed. Offline compilation
+and synthetic transport are verified; installed Phenix execution remains pending.
+This is a new explicit objective, with no coordinate editing or minimization.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -522,6 +533,8 @@ bonds at changed coordinates. Attribution retains the changed proxy set and
 original REVIEW alongside a separate fixed-manager endpoint comparison.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not authorize adoption.
+A separate explicit NARestraints pair/stack compiler now precedes a two-coordinate
+native mechanics check; existing edits survive, with installed validation pending.
 
 ## Primary references
 
