@@ -115,7 +115,10 @@ for actual behavior; history is evidence, not a second task queue.
   is needed for this return. Cedar 21's explicit NARestraints-owned pair/stack
   policy now passes 14/14 installed mechanics checks at each of two saved
   coordinate sets, preserving edits, dictionaries and all captured static
-  proxies. The 491-payload return is verified; geometry/convergence remain open.
+  proxies. The 491-payload return is verified. Cedar 22 now supplies a separate
+  bounded geometry trial under that fixed policy, including stopping/gradient
+  evidence and exact native PDB readback; installed execution is pending and
+  geometry/convergence remain open.
   Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

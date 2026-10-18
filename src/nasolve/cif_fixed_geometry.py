@@ -54,6 +54,34 @@ def review_fixed_coordinates(native: dict, points: list) -> dict:
     return result
 
 
+def _fixed_policy(native: dict) -> bool:
+    detail=native.get('restraint_policy',{});ids=detail.get('origin_ids',{})
+    names={'hydrogen bonds','edits','basepair stacking','basepair parallelity','basepair planarity'}
+    valid=(set(ids)==names and all(type(v) is int for v in ids.values())
+           and len(set(ids.values()))==len(names) and detail.get('secondary_structure_enabled') is False)
+    if not valid:return False
+    competing={v for name,v in ids.items() if name!='edits'}
+    return not any(row.get('origin_id') in competing
+        for rows in native['geometry']['proxy_details'].values() for row in rows)
+
+
+def qualify_fixed_policy_geometry(before: dict, after: dict, model: Path, serialization: dict) -> dict:
+    """Retain exact manager checks and require the same explicit NA policy."""
+    from .cif_fragment_restoration import qualify_fragment_restoration
+    result=qualify_fragment_restoration(before,after,model,serialization)
+    checks=result['checks']
+    def check(name,value):checks.append({'check':name,'status':'PASS' if value else 'REVIEW'})
+    check('native-interpreter',after.get('status')=='REVIEW' and after.get('fatal_problems') is None
+          and not after.get('unused_definitions') and not after.get('unsupported_fields'))
+    check('exact-fixed-native-policy',_fixed_policy(before) and _fixed_policy(after)
+          and before['restraint_policy']==after['restraint_policy'])
+    check('exact-installed-native-apis','installed_api_sources' in before
+          and before['installed_api_sources']==after.get('installed_api_sources'))
+    result.update(audit_kind='cif_fixed_na_policy_geometry_mechanics',policy_id=FIXED_GEOMETRY_POLICY,
+        mechanics_checks_pass=all(c['status']=='PASS' for c in checks))
+    return result
+
+
 def write_geometry_candidate(source: Path, output: Path, native: dict, points: list) -> dict:
     """Preserve every PDB byte except the explicit new coordinate columns."""
     source,output=Path(source),Path(output)
@@ -117,6 +145,9 @@ try:
         if exc.code != 0:raise RuntimeError("Native inventory bootstrap did not complete")
     inventory=namespace["report"];expected=json.loads(Path(trial["expected_inventory"]).read_text())
     fields=["atoms","atom_count","monomer_mappings","geometry","installed_api_sources"]
+    if trial.get("policy_inventory") is True:
+        fields.append("restraint_policy")
+        result["policy_inventory"]=True
     if any(inventory.get(k)!=expected.get(k) for k in fields):
         raise RuntimeError("Captured native identities, coordinates, definitions, proxies or APIs changed before minimization")
     result["captured_inventory_matches"]=True
@@ -211,11 +242,13 @@ sys.exit(0 if result["status"]=="REVIEW" else 2)
 
 def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path], expected: dict,
         output_parent: Path, executable: Path, *, environment: dict, phenix_version: str,
-        max_iterations: int=500, timeout_seconds: int=1200) -> dict:
+        max_iterations: int=500, timeout_seconds: int=1200, policy_inventory: bool=False) -> dict:
     """Run one bounded native trial in a fresh directory; retain failure evidence."""
     if isinstance(max_iterations,bool) or not 1<=max_iterations<=1000:raise ValueError('Iterations must be 1-1000')
     if not math.isfinite(float(timeout_seconds)) or not 1<=timeout_seconds<=3600:raise ValueError('Timeout must be 1-3600 seconds')
     if not phenix_version:raise ValueError('Explicit Phenix version required')
+    if type(policy_inventory) is not bool:raise ValueError('Policy inventory must be an explicit boolean')
+    if policy_inventory and not _fixed_policy(expected):raise ValueError('Require a fixed explicit native policy without competing SS proxies')
     review_captured_geometry(expected);_model(expected,model,coordinates_match=True)
     paths=[Path(p).resolve() for p in [model,*dictionaries,*phils]]
     if not dictionaries or len(paths)!=len(set(paths)):raise ValueError('Require distinct explicit native inputs')
@@ -234,6 +267,7 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
         'phil_namespace_policy':'refinement-root-to-interpreter-v1','inventory_detail':'linked'}
     trial={'policy_id':FIXED_GEOMETRY_POLICY,'native_spec':'native_spec.json','expected_inventory':'expected_inventory.json',
         'max_iterations':max_iterations,'max_calls':max_iterations*20,'gradient_epsilon':1e-5}
+    if policy_inventory:spec['policy_inventory']=trial['policy_inventory']=True
     for name,data in [('native_spec.json',spec),('geometry_spec.json',trial),('expected_inventory.json',expected)]:
         (work/name).write_text(json.dumps(data,indent=2,sort_keys=True,allow_nan=False)+'\n')
     (work/'native_worker.py').write_text(_NATIVE_WORKER);(work/'geometry_worker.py').write_text(_GEOMETRY_WORKER)
@@ -244,6 +278,7 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
         'phenix_version':phenix_version,'api_sources':API_SOURCES,'automatic_adoption':False,'scientific_approval':'NOT_RUN',
         'refinement':'NOT_RUN','readyset_retry':'NOT_RUN','diffraction_data':'NOT_READ',
         'execution':{'status':'NOT_RUN','started_at':datetime.now(timezone.utc).isoformat(),'timeout_seconds':timeout_seconds}}
+    if policy_inventory:receipt['policy_inventory']=True
     clock=time.monotonic()
     try:
         with (work/'geometry.log').open('xb') as log:
@@ -261,6 +296,8 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
                 if result.get('status')=='REVIEW' and code==0:
                     if result.get('policy_id')!=FIXED_GEOMETRY_POLICY or not result.get('captured_inventory_matches'):
                         raise ValueError('Worker omitted captured-manager match')
+                    if policy_inventory and result.get('policy_inventory') is not True:
+                        raise ValueError('Worker omitted explicit policy inventory match')
                     if result.get('constraint_signature_before')!=result.get('constraint_signature_after'):
                         raise ValueError('Worker changed fixed constraints')
                     _points(result['final_sites_cart'],expected['atom_count'])

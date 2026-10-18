@@ -41,7 +41,10 @@ identities and exposes distance-dependent hydrogen-bond additions. Achieved
 geometry and scientific approval remain under review.
 A separate explicit NARestraints membership diagnostic now compiles declared
 pairs/stacks and passes both installed native membership checks at two saved
-coordinate sets. Geometry qualification remains open; ordinary PostMR is unchanged.
+coordinate sets. Cedar 22 now provides a separate bounded geometry trial under
+that verified policy, with strict manager matching, stopping/gradient evidence
+and native PDB readback. Its installed run is pending; geometry qualification
+remains open and ordinary PostMR is unchanged.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

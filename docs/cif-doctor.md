@@ -744,7 +744,46 @@ proxies; those descriptive counts do not establish geometry or convergence.
 The objective differs from Cedar 19/20; historical energies and its iteration
 limit are not reclassified. Geometry, source/charge and scientific approval
 remain REVIEW, with no production integration or automatic adoption. The next
-step is a separate fixed-policy geometry trial, not another membership replay.
+step is the separate fixed-policy geometry trial described below.
+
+### Geometry trial under the verified NARestraints policy
+
+`scripts/build_cif_na_geometry_probe.py` builds the source-bundled Cedar 22
+runner, `22_Cedar_probe_cif_na_geometry.py`. It accepts only the exact verified
+491-payload Cedar 21 capsule. Both native membership prerequisites replay
+offline, and all previous evidence remains preserved. `--inspect-only` checks
+that path without native execution. The installed trial starts from the captured
+saved endpoint with its 19 dictionaries and 13 compiled PHIL inputs; it does
+not rerun pair guessing, regenerate definitions or recompile policy.
+
+**Methods.** The existing fixed-definition native engine rebuilds the captured
+manager and requires exact initial coordinates, identities, component mappings,
+geometry, eight installed API sources and native SS/origin metadata before
+calling L-BFGS. The opt-in `policy_inventory=True` leaves the existing default
+contract intact. One trial permits at most 1,000 iterations and 20,000 objective
+calls, with a default 1,200-second native-phase timeout. Native geometry flags,
+symmetry, nonbonded handling and static definitions remain fixed. The receipt
+records actual stopping/limit/error evidence, gradients, objective terms and
+optimizer source hashes. Full-precision endpoints and PDB-rounded fixed-manager
+energies remain separate, alongside coordinate displacements and descriptive
+bond/angle/chirality measurements.
+
+Identity-based serialization writes only coordinate columns in a separate PDB.
+Native reread uses the same input bytes and opt-in policy inventory.
+`qualify_fixed_policy_geometry` retains the 14 existing exact identity,
+definition, coordinate, request and static-proxy checks, then requires successful
+interpretation, the same explicit policy with no competing SS-origin terms,
+and exact installed APIs: 17 checks in this slice. No exact comparison is
+relaxed. Dynamic nonbonded neighbours may change with coordinates; they are
+reported separately from the static proxy contract.
+
+Actual-input offline prerequisite replay and synthetic worker/transport tests
+are distinct from installed native execution, which is pending for Cedar 22.
+A limit/error remains nonconverged, and meeting a native criterion does not
+certify complete geometry, source/charge, pucker, absolute stereochemistry or
+experimental fit. Overall REVIEW/exit 2 and no adoption remain deliberate.
+Only within-trial energies share this new policy; Cedar 19/20 retain their
+historical objective and stopping record. Ordinary PostMR is unchanged.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

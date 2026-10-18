@@ -102,6 +102,7 @@ def build():
              'Cedar 16 freezes original stages and parses saved Coot declarations without execution; controlled legacy replay reproduces the damaging coordinate-copy operation for captured transitions. Other MR/raw/source problems remain open. '
              'A separate graph-selected fragment candidate transports the entire raw base through a preserved sugar frame. Returned Cedar 17 passes native mechanics while retaining unresolved and worsened pairing contacts. '
              'A separate source/effective recovery requires exact original hashes and supported source graphs, then whole-component generation and linked/native gates at fixed coordinates before a fragment trial. Returned Cedar 18 verifies source-preserving generation and both native phases; full scientific qualification stays open. A separate fixed-definition geometry trial records native stopping, gradients and full-precision versus PDB round-trip evidence; returned Cedar 19 optimization reaches its explicit iteration cap. Identity mapping preserves original PDB records across native reordering, and Cedar 20 reuses saved endpoints. Its native reread preserves identities/definitions and activates extra distance-filtered hydrogen bonds. A read-only reload audit retains the changed proxy set and original REVIEW separately from saved fixed-manager endpoint equivalence. A separate explicit NARestraints pair/stack compiler preserves existing edits and tests native membership at two saved coordinate sets; both returned native cases pass exact membership checks while geometry qualification stays open. Production PostMR is unchanged. '
+             'Cedar 22 adds a separate bounded geometry trial under this verified policy, with exact initial manager matching and policy-aware native PDB readback; installed execution is pending. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -145,7 +146,7 @@ def build():
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Native policy verified; geometry qualification open.", size=24),
+        text(70, 1082, "Native policy verified; fixed-policy trial prepared; geometry open.", size=24),
         text(70, 1116, "Native site / terminal controls recorded; formal-charge readback unavailable.", size=24),
         '</g>',
         '</svg>'])

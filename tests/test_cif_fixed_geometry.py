@@ -204,3 +204,56 @@ def test_serialization_maps_reordered_pdb_records_by_complete_identity(tmp_path,
         key=(after[21:22].decode().strip() or '_',after[22:26].decode().strip(),after[26:27].decode().strip(),after[16:17].decode().strip(),after[12:16].decode().strip())
         assert [float(after[i:i+8]) for i in (30,38,46)]==expected[key]
     assert model.read_bytes()==source
+
+
+def policy_inventory(native):
+    native['restraint_policy']={'secondary_structure_enabled':False,'origin_ids':{
+        'hydrogen bonds':37,'edits':41,'basepair stacking':43,'basepair parallelity':47,'basepair planarity':49}}
+    native['installed_api_sources']=[]
+    return native
+
+
+@pytest.mark.parametrize('changed',[False,True])
+def test_policy_trial_propagates_inventory_and_refuses_control_drift_before_optimizer(tmp_path,monkeypatch,changed):
+    import json,os,sys
+    from pathlib import Path
+    import nasolve.cif_fixed_geometry as m
+    protected=tmp_path/'protected';protected.mkdir()
+    _,model,_,native,_=fixture(protected);policy_inventory(native)
+    dictionary=protected/'dictionary.cif';dictionary.write_text('EXPLICIT_FAKE')
+    seed=worker_fixture(tmp_path/'fake',native,'limit')
+    bootstrap=(seed/'native_worker.py').read_text().replace("sites=Vec(report['geometry']['sites_cart_exact'])",
+        "assert json.loads(Path('native_spec.json').read_text())['policy_inventory'] is True\n"+
+        ("report['restraint_policy']['secondary_structure_enabled']=True\n" if changed else '')+
+        "sites=Vec(report['geometry']['sites_cart_exact'])")
+    monkeypatch.setattr(m,'_NATIVE_WORKER',bootstrap)
+    report=m.run_fixed_geometry(model,[dictionary],[],native,tmp_path/'output',Path(sys.executable),
+        environment={**os.environ,'PYTHONPATH':str(seed)},phenix_version='EXPLICIT_FAKE',max_iterations=5,
+        timeout_seconds=30,policy_inventory=True)
+    work=Path(report['native_directory'])
+    if changed:
+        assert report['status']=='FAILED' and 'before minimization' in report['error']
+        assert not (work/'fake_optimizer_called').exists()
+    else:
+        assert report['status']=='REVIEW' and report['result']['policy_inventory'] is True
+        assert report['convergence']=='NOT_CONVERGED_LIMIT' and (work/'fake_optimizer_called').is_file()
+    assert json.loads((work/'geometry_spec.json').read_text())['policy_inventory'] is True
+    assert report['source_preserved'] and report['frozen_inputs_preserved']
+
+
+@pytest.mark.parametrize('defect',['none','control','registry','api','proxy','request','fatal'])
+def test_fixed_policy_readback_catches_competing_inference_or_any_manager_change(tmp_path,defect):
+    from nasolve.cif_fixed_geometry import qualify_fixed_policy_geometry,write_geometry_candidate
+    _,model,_,before,_=fixture(tmp_path);policy_inventory(before)
+    candidate=tmp_path/'candidate.pdb'
+    serialization=write_geometry_candidate(model,candidate,before,before['geometry']['sites_cart_exact'])
+    after=deepcopy(before)
+    if defect=='control':after['restraint_policy']['secondary_structure_enabled']=True
+    if defect=='registry':after['restraint_policy']['origin_ids']['edits']=999
+    if defect=='api':after['installed_api_sources']=[{'module':'CHANGED'}]
+    if defect=='proxy':after['geometry']['proxy_details']['angle'].append({'i_seqs':[0,1,2]})
+    if defect=='request':after['geometry']['custom_proxy_requests']=[{'kind':'CHANGED'}]
+    if defect=='fatal':after['fatal_problems']=['CHANGED']
+    report=qualify_fixed_policy_geometry(before,after,candidate,serialization)
+    assert report['mechanics_checks_pass'] is (defect=='none')
+    assert report['scientific_approval']=='NOT_RUN' and report['automatic_adoption'] is False

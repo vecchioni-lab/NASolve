@@ -46,6 +46,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "cif_effective_source_recovery_probe_template.py": "18_Cedar",
         "cif_fixed_geometry_probe_template.py": "19_Cedar",
         "cif_na_policy_probe_template.py": "21_Cedar",
+        "cif_na_geometry_probe_template.py": "22_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -148,6 +149,10 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
                         automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
                                     "Phenix for native interpretation"]
+    if template_name == "cif_na_geometry_probe_template.py":
+        metadata.update(kind="cif-na-policy-geometry-shuttle", delivery_prefix=delivery_prefix,
+                        native_validation="explicit-bounded-verified-na-policy-geometry",automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Phenix for native geometry trial"]
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

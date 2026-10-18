@@ -90,13 +90,24 @@ all discrete counts and exact native comparisons agree. The historical
 objective cannot be transferred to this NARestraints-owned objective.
 
 **Current action:** no repeat Cedar 21 run is needed. The next scientific step
-is a separately prepared bounded geometry trial under this verified fixed
-policy, with actual stopping/gradient evidence and PDB/native readback checks.
-No next delivery is prepared here. Source/charge, pucker, absolute stereochemistry,
+is now packaged as **Cedar 22**, a separate bounded geometry trial under this
+verified fixed policy, with actual stopping/gradient evidence and PDB/native
+readback checks. Use `scripts/build_cif_na_geometry_probe.py` to build
+`22_Cedar_probe_cif_na_geometry.py` from a pinned fresh worktree. It verifies
+the exact Cedar 21 capsule, replays both membership prerequisites, and starts
+from its saved endpoint with the same 19 CIF/13 PHIL bytes. No pair guesser or
+policy recompilation runs. The maximum is 1,000 iterations / 20,000 objective
+calls, with a 1,200-second timeout for each native phase. Exact initial manager
+matching includes SS controls, the origin registry and eight API fingerprints;
+the separate PDB readback has 17 exact mechanics checks. Native Cedar 22
+execution is pending. Source/charge, pucker, absolute stereochemistry,
 complete geometry, refinement and adoption remain open. Ordinary PostMR and
 historical gates are unchanged; private capsules/models/logs are not committed.
-The prior implementation suite remains **1,646 tests, two skips and 276
-subtests (71.72 s)**; this return-review change is documentation only. Exact
+The prior membership implementation suite passed **1,646 tests, two skips and
+276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and
+**1,669 full tests, two skips and 276 subtests (76.03 s)**, including synthetic
+deleted-build transport and actual-input offline replay. This Linux environment
+has no Phenix; these checks do not claim a new native optimization. Exact
 capsule, replay, native and descriptive evidence lives in the existing ledger.
 
 **Cedar 20 returned and reviewed (2026-10-17):** all **367 payloads** verify,

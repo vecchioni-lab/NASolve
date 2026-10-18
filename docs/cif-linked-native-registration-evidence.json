@@ -241,7 +241,13 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "NOT_PREPARED",
+  "next_delivery": {
+    "delivery_prefix": "22_Cedar",
+    "status": "PREPARED_NATIVE_EXECUTION_PENDING",
+    "builder": "scripts/build_cif_na_geometry_probe.py",
+    "runner_filename": "22_Cedar_probe_cif_na_geometry.py",
+    "transport": "Fetch cedar from the prior build; create a fresh detached worktree at the full tested delivery SHA; build and run with explicit quoted paths joined by &&."
+  },
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -5535,7 +5541,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
+    "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open.",
     "pairing_intent_provenance": {
       "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
       "reviewed_on": "2026-10-17",
@@ -5684,7 +5690,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
+  "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -5808,7 +5814,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
+    "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open.",
     "cedar21_return_verified_2026_10_18": {
       "archive": {
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -6103,5 +6109,104 @@
       "explicit_pair_relationships": 20,
       "physical_stack_relationships": 38
     }
+  },
+  "narestraints_geometry_trial_2026_10_18": {
+    "status": "PREPARED_NATIVE_EXECUTION_PENDING",
+    "delivery_prefix": "22_Cedar",
+    "policy_id": "cif-fixed-native-geometry-trial-v1",
+    "module": "src/nasolve/cif_fixed_geometry.py",
+    "builder": "scripts/build_cif_na_geometry_probe.py",
+    "template": "scripts/cif_na_geometry_probe_template.py",
+    "runner_filename": "22_Cedar_probe_cif_na_geometry.py",
+    "review_input": {
+      "delivery_prefix": "21_Cedar",
+      "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
+      "sha256": "f8162ed4d2ee548131a6b248e85fb59c12916ca52644ae66b15572b78e32700d",
+      "payloads": 491,
+      "selected_case": "saved_endpoint",
+      "input_roles": {
+        "model": 1,
+        "dictionary": 19,
+        "phil": 13
+      }
+    },
+    "behavior": {
+      "before": "Verified membership at two existing coordinate sets without optimization; the historical geometry trial used a different objective and reached its limit.",
+      "after": "One separate bounded trial from the verified endpoint under exactly frozen NARestraints inputs, followed by identity-based serialization and native fixed-policy readback.",
+      "policy_recompilation": "NOT_RUN",
+      "pair_guessing": "NOT_RUN",
+      "production_postmr": "UNCHANGED"
+    },
+    "methods": {
+      "precondition": "Offline exact replay of both prior 14-check membership reports; all 491 payloads and preserved Cedar 20 manifest members verify.",
+      "native_pre_match": [
+        "atoms and full-precision coordinates",
+        "atom_count",
+        "monomer_mappings",
+        "geometry",
+        "installed_api_sources",
+        "restraint_policy"
+      ],
+      "optimizer": "Existing installed native L-BFGS engine, native geometry flags, symmetry and nonbonded handling; fixed static definitions and no target retuning.",
+      "limits": {
+        "max_iterations": 1000,
+        "max_objective_calls": 20000,
+        "native_phase_timeout_seconds": 1200,
+        "gradient_epsilon": 1e-05
+      },
+      "evidence": [
+        "actual stopping reason, errors, calls and iterations",
+        "native objective terms and gradients",
+        "fixed static constraint signatures before and after",
+        "installed native and optimizer fingerprints",
+        "full-precision endpoints",
+        "separate rounded fixed-manager energy and gradient",
+        "identity-mapped PDB displacement and rounding",
+        "17 exact native readback checks"
+      ],
+      "objective_comparison": "Within this trial only; Cedar 19/20 retain their historical objective and NOT_CONVERGED_LIMIT.",
+      "native_readback_checks": 17,
+      "dynamic_nonbonded": "May change with coordinates; recorded separately from the exact static-proxy contract."
+    },
+    "schema_impact": {
+      "new_probe_receipt_kind": "cif-na-policy-geometry-probe",
+      "existing_version": 1,
+      "existing_defaults": "UNCHANGED",
+      "opt_in": "policy_inventory=True adds native control/origin matching to the fixed trial spec/result/receipt.",
+      "migration": "No historical receipt migration or gate relaxation."
+    },
+    "actual_input_offline_checks": {
+      "archive_sha256": "f8162ed4d2ee548131a6b248e85fb59c12916ca52644ae66b15572b78e32700d",
+      "payloads_verified": 491,
+      "membership_prerequisite_replay": "EXACT_BOTH_CASES",
+      "identity_serialization_replay": "BYTE_EXACT_877_ATOMS",
+      "self_readback_mechanics": "17_PASS_OFFLINE_SAME_CAPTURE_NOT_FRESH_NATIVE",
+      "new_native_execution": "NOT_RUN",
+      "new_optimization": "NOT_RUN"
+    },
+    "software_validation": {
+      "fail_before": "Eight new fixed-policy regression cases fail without the optional driver interface/readback qualifier.",
+      "focused": {
+        "passed": 107,
+        "seconds": 10.81,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_na_geometry_probe.py tests/test_cif_fixed_geometry.py tests/test_cif_na_policy.py tests/test_cif_na_policy_probe.py tests/test_cif_native_validation.py tests/test_cif_fixed_geometry_probe.py"
+      },
+      "full": {
+        "passed": 1669,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 76.03,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": "Synthetic source-bundled inspection replays both membership prerequisites after deleting both build checkouts and poisoning ambient NASolve imports.",
+      "native": "NOT_RUN; Phenix unavailable in this Linux environment. Required captured installation: 2.2.1-6174, dispatcher 2.2.1, exact API/dispatcher hashes."
+    },
+    "boundaries": [
+      "No private models, dictionaries, logs or result archives committed; derived counts and hashes only.",
+      "No new dependency, ReadySet retry, diffraction/refinement or automatic adoption.",
+      "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
+      "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
+    ],
+    "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open."
   }
 }

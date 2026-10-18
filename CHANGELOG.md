@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bounded geometry trial under verified NARestraints policy
+
+- Add Cedar 22 from the exact verified Cedar 21 endpoint, retaining all 19
+  dictionaries and 13 compiled PHIL inputs. Replay both membership prerequisites
+  offline; do not guess or compile relationships again on moved coordinates.
+- Extend the existing fixed-definition engine with opt-in policy inventory
+  matching. Require unchanged native controls, origin registry and APIs before
+  optimization and after exact-identity PDB serialization, alongside every
+  existing identity/definition/request/static-proxy check.
+- Record one bounded trial's stopping, native gradients, full-precision and
+  PDB-rounded objectives, displacement and separate readback evidence. Limits
+  and warnings retain their actual classification; scientific approval remains
+  REVIEW. All 1,669 tests and actual-input offline replay pass; installed execution
+  is pending. No new dependencies, diffraction/refinement or production integration.
+
 ### Explicit NARestraints pairing/stacking membership diagnostic
 
 - Compile frozen generic pair/stack declarations with NARestraints recipes and

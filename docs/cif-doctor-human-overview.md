@@ -348,6 +348,14 @@ planes and 58 parallelities with no competing SS-origin terms. All captured
 static proxy rows remain identical across the saved coordinates.
 This is a new explicit objective, with no coordinate editing or minimization.
 
+The separate Cedar 22 diagnostic now tests one bounded geometry trial under
+that verified policy. It starts from the saved endpoint, preserves all source
+dictionaries and compiled restraint inputs, and checks the exact manager before
+optimization. Stopping, gradients, displacement and full-precision versus PDB
+rounding evidence stay separate. A fresh native reread must preserve identities,
+definitions, all static proxies and the NARestraints policy. Installed execution
+is pending; improved targets or native convergence alone do not approve chemistry.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -540,6 +548,10 @@ parameter handling; it does not authorize adoption.
 A separate explicit NARestraints pair/stack compiler now precedes a two-coordinate
 native mechanics check; existing edits survive and both returned cases pass
 exact membership checks. Geometry/convergence qualification remains open.
+Cedar 22 extends the fixed-definition engine with opt-in native policy matching
+for a separate bounded trial and 17-check native PDB readback. It reuses the
+verified compiled inputs rather than selecting contacts again after movement.
+Native optimization results and complete scientific qualification are pending.
 
 ## Primary references
 

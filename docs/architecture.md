@@ -353,6 +353,14 @@ It checks exact membership at two saved coordinate sets without optimization.
 Both returned Phenix interpretations pass exact membership checks; geometry
 qualification remains open and this is not integrated into ordinary PostMR.
 
+Cedar 22 adds a separate bounded trial from that verified endpoint, using the
+same dictionary/compiled-PHIL bytes. An opt-in fixed-policy inventory extends
+pre-minimization matching to native controls and origin IDs; native PDB readback
+also requires the same policy/APIs and every original static proxy. The trial
+records stopping, gradients and full-precision versus rounded coordinates. It
+does not rediscover pairs or transfer Cedar 19/20 energies to the new objective.
+Installed Cedar 22 execution and scientific qualification remain pending.
+
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
 (`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The
