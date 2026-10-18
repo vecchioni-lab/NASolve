@@ -43,8 +43,9 @@ A separate explicit NARestraints membership diagnostic now compiles declared
 pairs/stacks and passes both installed native membership checks at two saved
 coordinate sets. Cedar 22 now provides a separate bounded geometry trial under
 that verified policy, with strict manager matching, stopping/gradient evidence
-and native PDB readback. Its installed run is pending; geometry qualification
-remains open and ordinary PostMR is unchanged.
+and native PDB readback. The returned trial passes all 17 native mechanics
+checks, decreases the objective and stops with a line-search error. Geometry
+qualification remains open and ordinary PostMR is unchanged.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

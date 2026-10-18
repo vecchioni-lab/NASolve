@@ -89,18 +89,35 @@ all discrete counts and exact native comparisons agree. The historical
 **NOT_CONVERGED_LIMIT** remains recorded. Energies from the old native SS
 objective cannot be transferred to this NARestraints-owned objective.
 
-**Current action:** no repeat Cedar 21 run is needed. The next scientific step
-is now packaged as **Cedar 22**, a separate bounded geometry trial under this
-verified fixed policy, with actual stopping/gradient evidence and PDB/native
-readback checks. Use `scripts/build_cif_na_geometry_probe.py` to build
-`22_Cedar_probe_cif_na_geometry.py` from a pinned fresh worktree. It verifies
-the exact Cedar 21 capsule, replays both membership prerequisites, and starts
-from its saved endpoint with the same 19 CIF/13 PHIL bytes. No pair guesser or
-policy recompilation runs. The maximum is 1,000 iterations / 20,000 objective
-calls, with a 1,200-second timeout for each native phase. Exact initial manager
-matching includes SS controls, the origin registry and eight API fingerprints;
-the separate PDB readback has 17 exact mechanics checks. Native Cedar 22
-execution is pending. Source/charge, pucker, absolute stereochemistry,
+**Cedar 22 returned and verified (2026-10-18): native mechanics PASS;
+optimization remains unconverged.** All **609 payloads** verify, including all
+491 unchanged Cedar 21 payloads and their manifest. Runner `e600a2b9…` matches
+clean NASolve `2408c9ee…` / NARestraints `a7b6a0c9…`; all 106 runtime members
+verify. Exact initial manager matching includes SS controls, the origin registry
+and eight API fingerprints. The same 19 CIF/13 PHIL inputs remain fixed, without
+new guessing or policy compilation. Phenix 2.2.1-6174 completes the trial in
+**4.4478 s** and native PDB readback in **1.737436 s**, both exit zero. All
+**17/17 exact readback checks** pass: 877 atoms/43 sites, 38 backbone links,
+definitions, requests, static proxies, native policy and APIs survive. Separate
+candidate serialization replays byte for byte.
+
+The full-precision objective falls **3784.7499 → 2866.5556 (24.26%)** and
+gradient norm **1033.6782 → 91.2772 (91.17%)**. At **905 iterations / 970 calls**
+the line search reports rounding errors preventing progress; the native
+criterion is false. Preserve **NOT_CONVERGED_ERROR**. This happens before PDB
+serialization. The rounded vector has a separate target **2870.0305** and
+gradient norm **907.0440**; retain full precision for future numerical review.
+
+Nominal deviations >=5 change from **four to three distance terms**, **ten to
+ten angles**, with no sign conflicts among 158 recorded chirality proxies. All
+three remaining distance outliers are CGY A:20–DX D:3 hydrogen bonds, still
+**4.34–5.58 Å** versus 2.8 Å targets; the longest worsens slightly. Nine angle
+outliers involve that pair. DP B:4 also retains its C6–N5–C7 discrepancy,
+**127.87° versus 109.471°**. These findings do not authorize target changes.
+
+**Current action:** no repeat run or next delivery is requested/prepared.
+Review the saved pair pose/intent, retained DP angle and installed line-search/
+gradient evidence before choosing another trial. Source/charge, pucker, absolute stereochemistry,
 complete geometry, refinement and adoption remain open. Ordinary PostMR and
 historical gates are unchanged; private capsules/models/logs are not committed.
 The prior membership implementation suite passed **1,646 tests, two skips and

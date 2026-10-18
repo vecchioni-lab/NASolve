@@ -353,8 +353,12 @@ that verified policy. It starts from the saved endpoint, preserves all source
 dictionaries and compiled restraint inputs, and checks the exact manager before
 optimization. Stopping, gradients, displacement and full-precision versus PDB
 rounding evidence stay separate. A fresh native reread must preserve identities,
-definitions, all static proxies and the NARestraints policy. Installed execution
-is pending; improved targets or native convergence alone do not approve chemistry.
+definitions, all static proxies and the NARestraints policy. The returned trial
+passes all 17 native mechanics checks, lowers the objective by 24.26% and stops
+with a line-search error at 905 iterations. Three long CGY–DX hydrogen-bond
+distances and ten angle outliers remain, with no recorded chirality sign
+conflicts. This verifies consumer mechanics through actual coordinate movement;
+convergence and complete chemistry/geometry remain under review.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -551,7 +555,8 @@ exact membership checks. Geometry/convergence qualification remains open.
 Cedar 22 extends the fixed-definition engine with opt-in native policy matching
 for a separate bounded trial and 17-check native PDB readback. It reuses the
 verified compiled inputs rather than selecting contacts again after movement.
-Native optimization results and complete scientific qualification are pending.
+Returned native mechanics pass, while the optimizer's line-search error and
+remaining pairing/local-angle strain preserve scientific REVIEW.
 
 ## Primary references
 

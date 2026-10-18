@@ -241,13 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": {
-    "delivery_prefix": "22_Cedar",
-    "status": "PREPARED_NATIVE_EXECUTION_PENDING",
-    "builder": "scripts/build_cif_na_geometry_probe.py",
-    "runner_filename": "22_Cedar_probe_cif_na_geometry.py",
-    "transport": "Fetch cedar from the prior build; create a fresh detached worktree at the full tested delivery SHA; build and run with explicit quoted paths joined by &&."
-  },
+  "next_delivery": "NOT_PREPARED",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -5541,7 +5535,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open.",
+    "next_action": "Cedar 22 native mechanics and return verification are complete; no repeat run is requested. Review the saved CGY A:20\u2013DX D:3 pair pose/intent and retained DP B:4 N5 angle alongside the installed line-search/gradient evidence before preparing any next trial. Preserve full-precision endpoints, the NOT_CONVERGED_ERROR verdict and all historical objective distinctions. Complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open. No next delivery is prepared.",
     "pairing_intent_provenance": {
       "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
       "reviewed_on": "2026-10-17",
@@ -5690,7 +5684,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open.",
+  "next_action": "Cedar 22 native mechanics and return verification are complete; no repeat run is requested. Review the saved CGY A:20\u2013DX D:3 pair pose/intent and retained DP B:4 N5 angle alongside the installed line-search/gradient evidence before preparing any next trial. Preserve full-precision endpoints, the NOT_CONVERGED_ERROR verdict and all historical objective distinctions. Complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open. No next delivery is prepared.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -5814,7 +5808,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open.",
+    "next_action": "Cedar 22 native mechanics and return verification are complete; no repeat run is requested. Review the saved CGY A:20\u2013DX D:3 pair pose/intent and retained DP B:4 N5 angle alongside the installed line-search/gradient evidence before preparing any next trial. Preserve full-precision endpoints, the NOT_CONVERGED_ERROR verdict and all historical objective distinctions. Complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open. No next delivery is prepared.",
     "cedar21_return_verified_2026_10_18": {
       "archive": {
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -6111,7 +6105,7 @@
     }
   },
   "narestraints_geometry_trial_2026_10_18": {
-    "status": "PREPARED_NATIVE_EXECUTION_PENDING",
+    "status": "RETURNED_NATIVE_MECHANICS_PASS_NOT_CONVERGED_SCIENTIFIC_REVIEW",
     "delivery_prefix": "22_Cedar",
     "policy_id": "cif-fixed-native-geometry-trial-v1",
     "module": "src/nasolve/cif_fixed_geometry.py",
@@ -6207,6 +6201,375 @@
       "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
       "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
     ],
-    "next_action": "Run the prepared Cedar 22 bounded geometry trial under the verified fixed NARestraints policy, then verify its full capsule, actual stopping/gradient evidence and 17-check native PDB readback. Preserve historical Cedar 19/20 objective and iteration-limit records. Installed execution, complete geometry, source/charge, pucker, absolute stereochemistry, refinement and adoption remain open."
+    "next_action": "Cedar 22 native mechanics and return verification are complete; no repeat run is requested. Review the saved CGY A:20\u2013DX D:3 pair pose/intent and retained DP B:4 N5 angle alongside the installed line-search/gradient evidence before preparing any next trial. Preserve full-precision endpoints, the NOT_CONVERGED_ERROR verdict and all historical objective distinctions. Complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open. No next delivery is prepared.",
+    "cedar22_return_verified_2026_10_18": {
+      "review_summary": {
+        "archive": {
+          "filename": "22_Cedar_nnvwx71c_cif_na_geometry_review.zip",
+          "sha256": "81a4b5cdfea373abcf7bcd740f276545b318134d6f3613ccb701e945dd4476f4",
+          "bytes": 12843033,
+          "payloads": 609
+        },
+        "build": {
+          "nasolve_commit": "2408c9ee1c015709757721f0030034cdc71b2812",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runner_sha256": "e600a2b9bbcae2dc903e0039d411407f9bb6f98e69da15df2719a251c8a65b9d",
+          "runtime_sha256": "8e77a899e28370202579a02f88986d7dcb66bcd29e180859cdbc8121c5d99223",
+          "runtime_files": 106,
+          "clean_sources": true
+        },
+        "frozen_prior_payloads": 491,
+        "prior_manifest_preserved": true,
+        "trial_execution": {
+          "elapsed_seconds": 4.4478,
+          "finished_at": "2026-10-18T21:39:16.550303+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-18T21:39:12.100549+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 1200
+        },
+        "readback_execution": {
+          "elapsed_seconds": 1.737436,
+          "finished_at": "2026-10-18T21:39:18.505733+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-18T21:39:16.768323+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 1200
+        },
+        "phenix_version": "2.2.1",
+        "installation_label": "2.2.1-6174",
+        "initial_inventory_exact": true,
+        "policy_inventory": true,
+        "constraint_signature": "0d450251acacbc8b63cb9e268fd24a839cd855e98417fee62ab45bc190d19bf9",
+        "native_mechanics": {
+          "PASS": 17
+        },
+        "native_apis_exact": true,
+        "atom_count": 877,
+        "sites": 43,
+        "backbone_links": 38,
+        "dictionaries": 19,
+        "phils": 13,
+        "custom_request_counts": {
+          "bond": 52,
+          "angle": 86,
+          "planarity": 8,
+          "parallelity": 58
+        },
+        "native_policy": {
+          "origin_ids": {
+            "basepair parallelity": 7,
+            "basepair planarity": 9,
+            "basepair stacking": 6,
+            "edits": 4,
+            "hydrogen bonds": 2
+          },
+          "secondary_structure_enabled": false
+        },
+        "initial": {
+          "gradient_norm": 1033.6781974472904,
+          "max_atom_gradient": 156.83105580363832,
+          "proxy_counts": {
+            "n_angle_proxies": 1592,
+            "n_bond_proxies": 1032,
+            "n_bond_similarity_proxies": null,
+            "n_chirality_proxies": 158,
+            "n_den_proxies": null,
+            "n_dihedral_proxies": 574,
+            "n_ncs_dihedral_proxies": null,
+            "n_nonbonded_proxies": 7772,
+            "n_parallelity_proxies": 58,
+            "n_planarity_proxies": 54,
+            "n_ramachandran_proxies": null,
+            "n_reference_coordinate_proxies": null,
+            "n_reference_dihedral_proxies": null
+          },
+          "target": 3784.7499458394077,
+          "terms": {
+            "angle_residual_sum": 1486.331987775383,
+            "bond_residual_sum": 576.3515389992065,
+            "bond_similarity_residual_sum": 0.0,
+            "chirality_residual_sum": 21.45550100084146,
+            "den_residual_sum": 0.0,
+            "dihedral_residual_sum": 653.0151462672338,
+            "dihedral_restraints_residual_sum": 0.0,
+            "ncs_dihedral_residual_sum": 0.0,
+            "nonbonded_residual_sum": 388.38310745953174,
+            "parallelity_residual_sum": 593.5431732262774,
+            "planarity_residual_sum": 65.66949111093379,
+            "ramachandran_residual_sum": 0.0,
+            "reference_coordinate_residual_sum": 0.0,
+            "reference_dihedral_residual_sum": 0.0
+          }
+        },
+        "final": {
+          "gradient_norm": 91.277152993163,
+          "max_atom_gradient": 27.715990168883387,
+          "proxy_counts": {
+            "n_angle_proxies": 1592,
+            "n_bond_proxies": 1032,
+            "n_bond_similarity_proxies": null,
+            "n_chirality_proxies": 158,
+            "n_den_proxies": null,
+            "n_dihedral_proxies": 574,
+            "n_ncs_dihedral_proxies": null,
+            "n_nonbonded_proxies": 7797,
+            "n_parallelity_proxies": 58,
+            "n_planarity_proxies": 54,
+            "n_ramachandran_proxies": null,
+            "n_reference_coordinate_proxies": null,
+            "n_reference_dihedral_proxies": null
+          },
+          "target": 2866.555566613636,
+          "terms": {
+            "angle_residual_sum": 1263.9242927901876,
+            "bond_residual_sum": 544.8819045106325,
+            "bond_similarity_residual_sum": 0.0,
+            "chirality_residual_sum": 12.809573385656634,
+            "den_residual_sum": 0.0,
+            "dihedral_residual_sum": 588.0006543254937,
+            "dihedral_restraints_residual_sum": 0.0,
+            "ncs_dihedral_residual_sum": 0.0,
+            "nonbonded_residual_sum": 287.4764132456291,
+            "parallelity_residual_sum": 151.27642769281084,
+            "planarity_residual_sum": 18.186300663225772,
+            "ramachandran_residual_sum": 0.0,
+            "reference_coordinate_residual_sum": 0.0,
+            "reference_dihedral_residual_sum": 0.0
+          }
+        },
+        "serialized_fixed_manager": {
+          "gradient_norm": 907.0439516724921,
+          "max_atom_gradient": 124.81378705171696,
+          "proxy_counts": {
+            "n_angle_proxies": 1592,
+            "n_bond_proxies": 1032,
+            "n_bond_similarity_proxies": null,
+            "n_chirality_proxies": 158,
+            "n_den_proxies": null,
+            "n_dihedral_proxies": 574,
+            "n_ncs_dihedral_proxies": null,
+            "n_nonbonded_proxies": 7797,
+            "n_parallelity_proxies": 58,
+            "n_planarity_proxies": 54,
+            "n_ramachandran_proxies": null,
+            "n_reference_coordinate_proxies": null,
+            "n_reference_dihedral_proxies": null
+          },
+          "target": 2870.0304920176613,
+          "terms": {
+            "angle_residual_sum": 1265.2903991478208,
+            "bond_residual_sum": 546.8351384650431,
+            "bond_similarity_residual_sum": 0.0,
+            "chirality_residual_sum": 12.737741817239618,
+            "den_residual_sum": 0.0,
+            "dihedral_residual_sum": 588.0259956878796,
+            "dihedral_restraints_residual_sum": 0.0,
+            "ncs_dihedral_residual_sum": 0.0,
+            "nonbonded_residual_sum": 287.6239599788053,
+            "parallelity_residual_sum": 151.23891811575112,
+            "planarity_residual_sum": 18.27833880512218,
+            "ramachandran_residual_sum": 0.0,
+            "reference_coordinate_residual_sum": 0.0,
+            "reference_dihedral_residual_sum": 0.0
+          }
+        },
+        "stopping": {
+          "calls": 970,
+          "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+          "iterations": 905,
+          "max_iterations": 1000,
+          "native_criterion_met": false,
+          "reason": "unreported"
+        },
+        "convergence": "NOT_CONVERGED_ERROR",
+        "target_drop_percent": 24.260371024911354,
+        "gradient_norm_drop_percent": 91.16967415791727,
+        "serialization_byte_exact": true,
+        "serialization": {
+          "schema_version": 1,
+          "policy_id": "cif-fixed-native-geometry-trial-v1",
+          "status": "REVIEW",
+          "candidate_sha256": "51639a62667bae3e660fe53a249fa75e0a42edae1703fca377521812a294836f",
+          "source_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+          "atom_count": 877,
+          "atom_correspondence": "EXACT_IDENTITY_BIJECTION",
+          "pdb_native_order_mismatches": 157,
+          "metadata_and_headers_preserved": true,
+          "source_preserved": true,
+          "roundtrip_max_distance": 0.0008164169490024955,
+          "roundtrip_precision": "PDB_8_3_SEPARATE_FROM_FULL_PRECISION",
+          "displacement": {
+            "max": 2.695408913059084,
+            "rms": 0.7794889838169844,
+            "mean": 0.6795719144772228
+          },
+          "scientific_approval": "NOT_RUN",
+          "automatic_adoption": false
+        },
+        "descriptive_geometry": {
+          "initial": {
+            "angle": {
+              "captured_proxies": 1592,
+              "nominal_abs_ge_3": 20,
+              "nominal_abs_ge_5": 10,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 1592
+              }
+            },
+            "bond_simple": {
+              "captured_proxies": 1032,
+              "nominal_abs_ge_3": 8,
+              "nominal_abs_ge_5": 4,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 1032
+              }
+            },
+            "chirality": {
+              "captured_proxies": 158,
+              "nominal_abs_ge_3": 0,
+              "nominal_abs_ge_5": 0,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 158
+              }
+            }
+          },
+          "full_precision": {
+            "angle": {
+              "captured_proxies": 1592,
+              "nominal_abs_ge_3": 16,
+              "nominal_abs_ge_5": 10,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 1592
+              }
+            },
+            "bond_simple": {
+              "captured_proxies": 1032,
+              "nominal_abs_ge_3": 6,
+              "nominal_abs_ge_5": 3,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 1032
+              }
+            },
+            "chirality": {
+              "captured_proxies": 158,
+              "nominal_abs_ge_3": 0,
+              "nominal_abs_ge_5": 0,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 158
+              }
+            }
+          },
+          "rounded_native": {
+            "angle": {
+              "captured_proxies": 1592,
+              "nominal_abs_ge_3": 16,
+              "nominal_abs_ge_5": 10,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 1592
+              }
+            },
+            "bond_simple": {
+              "captured_proxies": 1032,
+              "nominal_abs_ge_3": 6,
+              "nominal_abs_ge_5": 3,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 1032
+              }
+            },
+            "chirality": {
+              "captured_proxies": 158,
+              "nominal_abs_ge_3": 0,
+              "nominal_abs_ge_5": 0,
+              "sign_conflicts": 0,
+              "status_counts": {
+                "MEASURED": 158
+              }
+            }
+          }
+        },
+        "descriptive_replay_max_float_difference": 5.684341886080802e-14,
+        "descriptive_float_tolerance": {
+          "absolute": 1e-10,
+          "relative": 1e-12
+        },
+        "native_comparison": "EXACT_NO_GATE_CHANGE",
+        "remaining_pair_distances": [
+          {
+            "atoms": [
+              "pdb=\" N1  CGY A  20 \"",
+              "pdb=\" O2   DX D   3 \""
+            ],
+            "sites": [
+              "A:20",
+              "D:3"
+            ],
+            "target": 2.8,
+            "observed": 5.309650479615613,
+            "nominal_deviation": 12.548252398078068
+          },
+          {
+            "atoms": [
+              "pdb=\" N3  CGY A  20 \"",
+              "pdb=\" N1   DX D   3 \""
+            ],
+            "sites": [
+              "A:20",
+              "D:3"
+            ],
+            "target": 2.8,
+            "observed": 4.337919590773308,
+            "nominal_deviation": 7.68959795386654
+          },
+          {
+            "atoms": [
+              "pdb=\" N4  CGY A  20 \"",
+              "pdb=\" O6   DX D   3 \""
+            ],
+            "sites": [
+              "A:20",
+              "D:3"
+            ],
+            "target": 2.8,
+            "observed": 5.5804120453484085,
+            "nominal_deviation": 13.902060226742044
+          }
+        ],
+        "scientific_qualification": "REVIEW",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "interpretation": {
+        "native_mechanics": "17/17 exact checks PASS; identities, definitions, all static proxies, inputs and fixed NARestraints policy survive actual optimization and native PDB readback.",
+        "optimizer_stop": "905 iterations / 970 calls; line search reports rounding errors preventing progress, before PDB serialization. Native criterion false; retain NOT_CONVERGED_ERROR.",
+        "geometry": "Full-precision nominal deviations >=5: distance terms 4 to 3; angle terms 10 to 10; no recorded chirality sign conflicts among 158 proxies. Remaining distance outliers are all three declared CGY\u2013DX hydrogen bonds, 4.3379\u20135.5804 A versus 2.8 A targets; the longest contact worsens slightly.",
+        "localized_angle_reviews": "Nine of the ten remaining angle outliers involve CGY A:20/DX D:3; DP B:4 C6\u2013N5\u2013C7 remains 127.8714 degrees versus 109.471 target (nominal 6.1335). This is evidence for review, not a new target assignment.",
+        "parallelity": "Combined pair/stack plane residual decreases 593.5432 to 151.2764; this category contains pair-plane and stack terms and is not a stacking-only metric.",
+        "rounding": "The separately PDB-rounded vector changes the fixed-manager target from 2866.5556 to 2870.0305 and gradient norm from 91.2772 to 907.0440. Preserve full precision for future numerical review; the earlier optimizer error is a separate event.",
+        "scientific_gate": "REVIEW; mechanics success and objective decrease do not establish convergence or chemical/crystallographic approval."
+      },
+      "verification": {
+        "archive_and_artifact_hashes": "PASS",
+        "frozen_Cedar21_payloads_and_manifest": "BYTE_EXACT",
+        "runtime_and_runner": "MATCH_CLEAN_PUBLISHED_BUILD",
+        "initial_native_inventory": "EXACT_INCLUDING_POLICY_AND_EIGHT_APIS",
+        "static_constraint_signature": "UNCHANGED",
+        "candidate_serialization": "BYTE_EXACT_OFFLINE_REPLAY",
+        "native_mechanics_replay": "EXACT_17_PASS",
+        "descriptive_geometry_replay": "COUNTS_EXACT_FLOATS_WITHIN_5.69e-14",
+        "native_gates": "NO_TOLERANCE_OR_STATUS_CHANGE",
+        "new_native_execution_here": "NOT_RUN",
+        "new_optimization_here": "NOT_RUN"
+      },
+      "next_action": "Cedar 22 native mechanics and return verification are complete; no repeat run is requested. Review the saved CGY A:20\u2013DX D:3 pair pose/intent and retained DP B:4 N5 angle alongside the installed line-search/gradient evidence before preparing any next trial. Preserve full-precision endpoints, the NOT_CONVERGED_ERROR verdict and all historical objective distinctions. Complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open. No next delivery is prepared."
+    }
   }
 }

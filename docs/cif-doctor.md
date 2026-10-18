@@ -778,7 +778,22 @@ relaxed. Dynamic nonbonded neighbours may change with coordinates; they are
 reported separately from the static proxy contract.
 
 Actual-input offline prerequisite replay and synthetic worker/transport tests
-are distinct from installed native execution, which is pending for Cedar 22.
+are distinct from installed native execution. Returned Cedar 22 verifies all
+609 payloads and 491 unchanged prior payloads plus their manifest. Phenix
+2.2.1-6174 completes the trial in 4.4478 s and reread in 1.737436 s, exit zero;
+all 17 exact mechanics checks pass and serialization replays byte for byte.
+The fixed-policy objective decreases 24.26% and gradient norm 91.17%, but the
+line search reports rounding errors preventing progress at 905 iterations /
+970 calls, with a false native criterion: retain NOT_CONVERGED_ERROR.
+This precedes PDB serialization. PDB rounding separately changes the recorded
+gradient norm from 91.28 to 907.04, so preserve full-precision endpoint evidence.
+Nominal distance deviations >=5 decrease four to three, while ten angle
+deviations remain and no chirality sign conflicts appear. All three remaining
+distance outliers are CGY A:20–DX D:3 hydrogen bonds at 4.34–5.58 Å against
+2.8 Å targets; one worsens slightly. Nine angle outliers involve that pair and
+one involves DP B:4 N5. Pair pose/intent, local definitions and numerical
+line-search/gradient behavior need review before another trial; no target
+change or automatic rerun follows from this descriptive evidence alone.
 A limit/error remains nonconverged, and meeting a native criterion does not
 certify complete geometry, source/charge, pucker, absolute stereochemistry or
 experimental fit. Overall REVIEW/exit 2 and no adoption remain deliberate.

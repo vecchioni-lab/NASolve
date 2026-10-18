@@ -20,8 +20,11 @@ entries are reconstructed from repository history.
 - Record one bounded trial's stopping, native gradients, full-precision and
   PDB-rounded objectives, displacement and separate readback evidence. Limits
   and warnings retain their actual classification; scientific approval remains
-  REVIEW. All 1,669 tests and actual-input offline replay pass; installed execution
-  is pending. No new dependencies, diffraction/refinement or production integration.
+  REVIEW. All 1,669 tests and actual-input offline replay pass. The returned
+  609-payload capsule verifies 17/17 native readback checks and a 24.26% objective
+  decrease, while retaining NOT_CONVERGED_ERROR after a line-search stall.
+  CGY–DX pairing and local angles remain strained. No new dependencies,
+  diffraction/refinement or production integration.
 
 ### Explicit NARestraints pairing/stacking membership diagnostic
 

@@ -359,7 +359,10 @@ pre-minimization matching to native controls and origin IDs; native PDB readback
 also requires the same policy/APIs and every original static proxy. The trial
 records stopping, gradients and full-precision versus rounded coordinates. It
 does not rediscover pairs or transfer Cedar 19/20 energies to the new objective.
-Installed Cedar 22 execution and scientific qualification remain pending.
+Returned Cedar 22 passes all 17 native readback checks and preserves the fixed
+manager through optimization. The objective decreases, but a line-search error
+at 905 iterations retains NOT_CONVERGED_ERROR. Scientific qualification remains
+open, including CGY–DX pairing and local angle discrepancies.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
