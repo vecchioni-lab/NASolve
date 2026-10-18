@@ -18,7 +18,9 @@ entries are reconstructed from repository history.
   control/origin/source readback and exact membership/unaffected-proxy checks.
 - Add a source-bundled Cedar 21 shuttle applying one policy to preserved initial
   and endpoint coordinates. Actual-input offline compilation and synthetic
-  deleted-build transport pass; installed Phenix validation remains pending.
+  deleted-build transport pass. The returned 491-payload capsule verifies both
+  native interpretations, each with 14/14 exact membership checks. All prior
+  inputs and captured static proxies survive; geometry qualification stays open.
   No model edit, minimization, objective ranking, production change or adoption.
 
 

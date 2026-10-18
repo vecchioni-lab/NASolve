@@ -2064,20 +2064,20 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Run the pinned Cedar 21 Git ferry and return its new review ZIP. Evaluate exact native membership on both preserved coordinate sets before preparing any further geometry/convergence trial.",
+      "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
       "pairing_intent_provenance": {
-        "status": "SOURCE_VERIFIED_DIAGNOSTIC_COMPILER_IMPLEMENTED_NATIVE_PENDING",
+        "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
-        "method": "NARestraints pairing and stacking selections, mapped planes and recipe targets supersede automatic Phenix SS inference. The separate diagnostic compiler now prepares explicit relationships while retaining existing edits; installed validation is pending and ordinary PostMR is unchanged.",
+        "method": "NARestraints pairing/stacking selections, mapped planes and recipe targets supersede automatic Phenix SS inference. The diagnostic compiler passes both returned native membership checks; selection provenance and original edits are retained. Geometry qualification remains open; ordinary PostMR is unchanged.",
         "runtime_changed": false,
         "pairing_authority_decided": true,
-        "native_enforcement": "DIAGNOSTIC_COMPILER_PREPARED_INSTALLED_CHECK_PENDING",
+        "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED",
         "stacking_authority_decided": true,
         "existing_stacking_tests_passed": 8
       }
     },
     "narestraints_membership_probe_2026_10_18": {
-      "status": "IMPLEMENTED_DIAGNOSTIC_SHUTTLE_PREPARED_NATIVE_NOT_RUN",
+      "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
       "delivery_prefix": "21_Cedar",
       "policy_id": "narestraints-explicit-membership-v1",
       "module": "src/nasolve/cif_na_policy.py",
@@ -2143,7 +2143,7 @@
         "coordinate_writing": "NOT_RUN",
         "native_optimization": "NOT_RUN",
         "timeout_seconds_per_case": 180,
-        "execution_status": "NOT_RUN",
+        "execution_status": "COMPLETED_RETURN_VERIFIED",
         "expected_installation_label": "2.2.1-6174",
         "expected_dispatcher_version": "2.2.1"
       },
@@ -2173,10 +2173,11 @@
           "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
         },
         "transport": "Synthetic protected capsule compiles after both source build trees are deleted, with poisoned caller imports; all frozen members remain unchanged.",
-        "actual_input": "Hash-bound 367-payload Cedar 20 capsule passes complete inspect-only source-bundled compilation; native execution NOT_RUN."
+        "actual_input": "Hash-bound 367-payload Cedar 20 capsule passes complete inspect-only source-bundled compilation; native execution NOT_RUN.",
+        "actual_return_review": "All 491 payloads, 367 frozen prior payloads/manifest, compiler PHIL bytes and both exact 14-check native verdicts replay locally. Descriptive geometry floats differ at most 7.11e-14, with discrete summaries exact. No source/runtime changes or new native run."
       },
       "boundaries": {
-        "native_execution": "NOT_RUN",
+        "native_execution": "COMPLETED_TWO_INTERPRETATIONS_RETURN_VERIFIED",
         "dictionary_generation": "NOT_RUN",
         "model_editing": "NOT_RUN",
         "model_optimization": "NOT_RUN",
@@ -2188,7 +2189,202 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Run the pinned Cedar 21 Git ferry and return its new review ZIP. Evaluate exact native membership on both preserved coordinate sets before preparing any further geometry/convergence trial."
+      "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
+      "cedar21_return_verified_2026_10_18": {
+        "archive": {
+          "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
+          "bytes": 10371214,
+          "sha256": "f8162ed4d2ee548131a6b248e85fb59c12916ca52644ae66b15572b78e32700d",
+          "payloads": 491
+        },
+        "build": {
+          "nasolve_commit": "edafbf52adc65d0a0515173046376ed304c3852d",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runner_sha256": "6f7813d56aded1aebae47dcd0331268658457733f5b3b03c27d75c02a184f2cb",
+          "runtime_archive_sha256": "a5464a5b495b583b380f7cc28c66565c8204b2b3303fb612751409e303aec5cf",
+          "runtime_files": 106,
+          "clean_sources": true
+        },
+        "frozen_prior_payloads": 367,
+        "frozen_prior_manifest_preserved": true,
+        "prior_verdict_preserved": {
+          "PASS": 11,
+          "REVIEW": 3
+        },
+        "compiler_replay": "BYTE_EXACT",
+        "native_worker_matches_source": true,
+        "exact_proxy_rows_identical_across_coordinates": true,
+        "effective_native_phil_identical": true,
+        "native_api_sources_identical": true,
+        "descriptive_geometry_replay_max_float_difference": 7.105427357601002e-14,
+        "descriptive_geometry_replay_tolerance": {
+          "absolute": 1e-10,
+          "relative": 1e-12
+        },
+        "native_proxy_comparison": "EXACT_NO_TOLERANCE_CHANGE",
+        "dictionary_count": 19,
+        "derived_phil_count": 13,
+        "membership_invariant": true,
+        "model_editing": "NOT_RUN",
+        "model_optimization": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false,
+        "convergence": "PRESERVED_HISTORICAL_NOT_CONVERGED_LIMIT_NO_NEW_OPTIMIZATION",
+        "scientific_qualification": "REVIEW",
+        "explicit_pair_relationships": 20,
+        "physical_stack_relationships": 38,
+        "cases": {
+          "initial": {
+            "native_prefix": "native_initial/cif-native-eoq5ilbf",
+            "execution": {
+              "elapsed_seconds": 6.298652,
+              "finished_at": "2026-10-18T21:03:41.118343+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-18T21:03:34.819750+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 180
+            },
+            "phenix_version": "2.2.1",
+            "atom_count": 877,
+            "site_count": 43,
+            "backbone_links": 38,
+            "mechanics_checks": {
+              "PASS": 14
+            },
+            "proxy_counts": {
+              "angle": 1592,
+              "bond_asu": 0,
+              "bond_simple": 1032,
+              "chirality": 158,
+              "const_dihedral": 380,
+              "dihedral": 574,
+              "parallelity": 58,
+              "planarity": 54
+            },
+            "custom_request_counts": {
+              "bond": 52,
+              "angle": 86,
+              "planarity": 8,
+              "parallelity": 58
+            },
+            "native_policy": {
+              "origin_ids": {
+                "basepair parallelity": 7,
+                "basepair planarity": 9,
+                "basepair stacking": 6,
+                "edits": 4,
+                "hydrogen bonds": 2
+              },
+              "secondary_structure_enabled": false
+            },
+            "model_sha256": "ddbbbdc1c852d47761efe362aa7b0bd180715387d52e71de8c980d61a0dd3ab7",
+            "descriptive_geometry": {
+              "bond_simple": {
+                "captured_proxies": 1032,
+                "status_counts": {
+                  "MEASURED": 1032
+                },
+                "nominal_abs_ge_3": 102,
+                "nominal_abs_ge_5": 30,
+                "sign_conflicts": 0
+              },
+              "angle": {
+                "captured_proxies": 1592,
+                "status_counts": {
+                  "MEASURED": 1592
+                },
+                "nominal_abs_ge_3": 154,
+                "nominal_abs_ge_5": 68,
+                "sign_conflicts": 0
+              },
+              "chirality": {
+                "captured_proxies": 158,
+                "status_counts": {
+                  "MEASURED": 158
+                },
+                "nominal_abs_ge_3": 0,
+                "nominal_abs_ge_5": 0,
+                "sign_conflicts": 0
+              }
+            }
+          },
+          "saved_endpoint": {
+            "native_prefix": "native_saved_endpoint/cif-native-nd_9eaqz",
+            "execution": {
+              "elapsed_seconds": 1.450339,
+              "finished_at": "2026-10-18T21:03:42.833465+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-18T21:03:41.383160+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 180
+            },
+            "phenix_version": "2.2.1",
+            "atom_count": 877,
+            "site_count": 43,
+            "backbone_links": 38,
+            "mechanics_checks": {
+              "PASS": 14
+            },
+            "proxy_counts": {
+              "angle": 1592,
+              "bond_asu": 0,
+              "bond_simple": 1032,
+              "chirality": 158,
+              "const_dihedral": 380,
+              "dihedral": 574,
+              "parallelity": 58,
+              "planarity": 54
+            },
+            "custom_request_counts": {
+              "bond": 52,
+              "angle": 86,
+              "planarity": 8,
+              "parallelity": 58
+            },
+            "native_policy": {
+              "origin_ids": {
+                "basepair parallelity": 7,
+                "basepair planarity": 9,
+                "basepair stacking": 6,
+                "edits": 4,
+                "hydrogen bonds": 2
+              },
+              "secondary_structure_enabled": false
+            },
+            "model_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+            "descriptive_geometry": {
+              "bond_simple": {
+                "captured_proxies": 1032,
+                "status_counts": {
+                  "MEASURED": 1032
+                },
+                "nominal_abs_ge_3": 8,
+                "nominal_abs_ge_5": 4,
+                "sign_conflicts": 0
+              },
+              "angle": {
+                "captured_proxies": 1592,
+                "status_counts": {
+                  "MEASURED": 1592
+                },
+                "nominal_abs_ge_3": 20,
+                "nominal_abs_ge_5": 10,
+                "sign_conflicts": 0
+              },
+              "chirality": {
+                "captured_proxies": 158,
+                "status_counts": {
+                  "MEASURED": 158
+                },
+                "nominal_abs_ge_3": 0,
+                "nominal_abs_ge_5": 0,
+                "sign_conflicts": 0
+              }
+            }
+          }
+        },
+        "evidence_record": "docs/cif-linked-native-registration-evidence.json#narestraints_membership_probe_2026_10_18.cedar21_return_verified_2026_10_18"
+      }
     }
   },
   "audience": [

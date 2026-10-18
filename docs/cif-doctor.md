@@ -665,8 +665,8 @@ a historical energy basis. It does not calculate a new fresh-manager energy.
 Cedar 20's 877 readback coordinates agree at PDB precision (at most 7.11e-15 Å
 float difference); the recorded fixed-manager evaluation and iteration-limit
 verdict remain preserved. No additional Mac run is required for that review.
-Before another minimization, an explicit fixed hydrogen-bond membership policy
-must be prepared and tested. Input-file equality alone cannot ensure freshly
+Cedar 21 now verifies explicit fixed hydrogen-bond membership. Input-file
+equality alone cannot ensure freshly
 generated manager equality; scientific qualification and adoption remain open.
 
 **Accepted pairing and stacking authority:** NARestraints pair selections,
@@ -677,7 +677,7 @@ contacts without competing automatic additions or a distance-based omission of
 an intended contact. Phenix remains the native restraint consumer and geometry
 measurement engine; this authority does not waive identity, component, covalent
 geometry or achieved-geometry checks. A separate diagnostic compiler now prepares explicit membership and
-suppression of competing inference; installed validation remains pending and
+suppression of competing inference; both Cedar 21 native checks pass and
 ordinary PostMR is unchanged.
 
 The existing NARestraints stacking builder applies its shared base-class plane
@@ -729,10 +729,22 @@ two preserved coordinate sets: the initial model and saved PDB endpoints. This
 is an interpretation-only test of membership stability, not another optimization.
 Actual-input offline compilation produces 31 new bonds, 52 angles and 35
 parallelities for 12 pair and 23 stack declarations, retaining the prior explicit
-edits. Installed Phenix 2.2.1-6174 execution is **NOT_RUN** until a new receipt is
-returned. The objective is explicitly changed from Cedar 19/20; energies and
-convergence are not transferred. Geometry, source/charge and scientific approval
-remain REVIEW, with no production integration or automatic adoption.
+edits. The returned Phenix 2.2.1-6174 interpretations each pass **14/14 exact
+mechanics checks** (6.298652 s and 1.450339 s, exit zero). All 491 payloads and
+367 frozen prior payloads verify; the 19 dictionaries, component definitions,
+modifiers, 38 backbone links and all captured static proxy rows survive. Both
+managers contain 52 explicit bonds, 86 angles, eight planes and 58 parallelities,
+with no competing SS-origin terms. The native effective PHIL and eight API
+fingerprints match across cases. Compiler replay is byte-exact.
+
+This verifies declared membership at two saved coordinate sets. No new
+optimization occurs. The saved endpoint has four bond/ten angle nominal
+deviations at least five and no sign conflicts among 158 recorded chirality
+proxies; those descriptive counts do not establish geometry or convergence.
+The objective differs from Cedar 19/20; historical energies and its iteration
+limit are not reclassified. Geometry, source/charge and scientific approval
+remain REVIEW, with no production integration or automatic adoption. The next
+step is a separate fixed-policy geometry trial, not another membership replay.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-17** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-18** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -51,43 +51,53 @@ worktree, build and run commands joined by `&&`, with explicit quoted paths.
 Keep necessary install commands as separate one-liners. This operating
 convention belongs in the repo; private personality handoffs remain private.
 
-**Cedar 21 prepared (2026-10-18): explicit NARestraints membership.** The new
-compiler retains the frozen explicit edits and component modifiers, and compiles
-only the remaining declared Saenger 19/20 pairs and mapped stacks with the
-bundled NARestraints recipes. It does not rerun the pair guesser on moved
-coordinates. Actual-input offline replay resolves **12 pairs / 23 stacks** into
-**31 bonds / 52 angles / 35 parallelities**, without missing selections or
-duplicate edits. Existing **21 bonds / 34 angles / eight planes / 23
-parallelities** remain. Thus the expected explicit inventory is 52 bonds, 86
-angles, eight planes and 58 parallelities; the latter distinguish pair-plane
-terms from the 38 physical stacking relationships.
+**Cedar 21 returned and verified (2026-10-18): native membership PASS.** All
+**491 payloads** verify, including the 367 unchanged Cedar 20 payloads and their
+byte-identical manifest. Runner `6f7813d5…` matches clean NASolve `edafbf52…` /
+NARestraints `a7b6a0c9…`; all 106 embedded runtime members verify. Independent
+replay reproduces the compiler report and every derived PHIL byte for byte.
 
-All generic relationships are explicitly compiled before native secondary-
-structure construction is disabled in this separate diagnostic bundle. The
-NARestraints stacking matrix supplies canonical as well as modified base planes;
-no requested stack is discarded by the control switch. Definitions, dictionaries,
-original PHIL and both coordinate inputs are preserved. This is a **new objective**;
-it does not continue or re-rank the historical Cedar 19 energy calculation.
+Phenix **2.2.1-6174** (dispatcher `2.2.1`) completes both interpretation-only
+cases: **6.298652 s** at the initial coordinates and **1.450339 s** at the saved
+endpoints, exit zero. Each passes **14/14 exact mechanics checks**. The 877 atom
+identities/43 sites, all component definitions, 19 dictionary files, modifiers
+and 38 backbone links survive. All captured static proxy rows and the effective
+native PHIL are identical across the two coordinate sets. Eight installed API
+fingerprints agree, including the origin registry and secondary-structure source.
+Native SS construction is disabled and no competing SS-origin proxies remain.
 
-The one-block ferry starts at `20_Cedar_probe_build`, creates pinned
-`21_Cedar_probe_build`, builds with `scripts/build_cif_na_policy_probe.py` and the
-unchanged `05_Cedar_narestraints_build`, then runs
-`21_Cedar_probe_cif_na_policy.py`. Its default input is the exact returned Cedar
-20 ZIP. Two native interpretations apply the same compiled policy to the saved
-initial and endpoint coordinates. New opt-in native metadata records the actual
-origin registry and secondary-structure control, with hashes for those installed
-source modules. Exact new requests, retained non-SS proxies, identities and
-component definitions must match; competing SS origins and missing/duplicate
-terms retain REVIEW. No coordinates are edited and no minimization, ReadySet,
-dictionary generation, diffraction, refinement or adoption occurs.
+NARestraints compiles the 12 generic pair/23 generic stack declarations into
+31 bonds, 52 angles and 35 parallelities. The retained 21 bonds, 34 angles,
+eight planes and 23 parallelities survive exactly. Both managers therefore
+contain **52 explicit bonds / 86 angles / eight planes / 58 parallelities**,
+accounting separately for 20 paired relationships and 38 physical stacks.
+This closes the **declared membership/consumer mechanics** gate for this
+bounded first slice, not chemistry, achieved geometry or production integration.
+The original Cedar 20 11 PASS/three REVIEW receipt remains unchanged.
 
-Focused validation passes **59 tests (5.71 s)**; the full suite passes
-**1,646 tests, two skips and 276 subtests (71.72 s)** with
-`env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short`.
-Offline compile and synthetic deleted-build transport pass. **Installed native
-validation remains NOT_RUN** until the user returns Cedar 21. Existing charge,
-source chemistry, achieved geometry, convergence and scientific qualification
-stay open. Ordinary PostMR and all previous native gates/receipts are unchanged.
+Descriptive measurements under the same new policy are:
+
+| Saved coordinates | Bond nominal deviations >=5 | Angle nominal deviations >=5 | Recorded chirality sign conflicts |
+| --- | ---: | ---: | ---: |
+| Initial | 30 | 68 | 0/158 |
+| Cedar 19/20 endpoint | 4 | 10 | 0/158 |
+
+Cedar 21 changes no coordinates and runs no optimization; these are two existing
+models, not an improvement produced by this probe or evidence of convergence.
+Local descriptive replay differs only by floating roundoff (maximum 7.11e-14);
+all discrete counts and exact native comparisons agree. The historical
+**NOT_CONVERGED_LIMIT** remains recorded. Energies from the old native SS
+objective cannot be transferred to this NARestraints-owned objective.
+
+**Current action:** no repeat Cedar 21 run is needed. The next scientific step
+is a separately prepared bounded geometry trial under this verified fixed
+policy, with actual stopping/gradient evidence and PDB/native readback checks.
+No next delivery is prepared here. Source/charge, pucker, absolute stereochemistry,
+complete geometry, refinement and adoption remain open. Ordinary PostMR and
+historical gates are unchanged; private capsules/models/logs are not committed.
+The prior implementation suite remains **1,646 tests, two skips and 276
+subtests (71.72 s)**; this return-review change is documentation only. Exact
+capsule, replay, native and descriptive evidence lives in the existing ledger.
 
 **Cedar 20 returned and reviewed (2026-10-17):** all **367 payloads** verify,
 including 311 byte-identical frozen Cedar 19 members. Runner `e38625e1…` matches
@@ -134,21 +144,21 @@ evidence; synthetic origin 37/ZZZ tests prevent a hardcoded native-origin or
 residue exception. Missing/changed terms, unpaired angles and other mutations
 stay unexplained. No new native execution or geometry trial is delivered here.
 
-**Next scientific gate:** run Cedar 21's explicit NARestraints-owned pairing and
-stacking mechanics check before another geometry/convergence trial. The accepted project
+**Next scientific gate:** prepare a geometry/convergence trial under Cedar 21's
+verified explicit NARestraints-owned pairing and stacking policy. The accepted project
 policy is that NARestraints pair selections, stacking relationships, mapped
 planes and recipe targets supersede
 Phenix's automatic secondary-structure guesses. The native consumer must apply
 that policy without adding competing inferred contacts or silently dropping
 intended contacts because their starting geometry is poor. Keep native geometry
 measurement and component/covalent restraint validation independent of pairing
-authority. This precedence is decided; the separate diagnostic compiler is
-implemented, with its installed native validation pending.
+authority. This precedence is decided; the separate diagnostic compiler now
+passes both returned native membership checks. Ordinary PostMR is unchanged.
 Rebuilding from new coordinates can change that set even when all input bytes
 are identical. Preserve the new terms in Cedar 20's historical evidence; do not
 increase its cutoff or reclassify its failed comparison to manufacture PASS.
 The new authority policy defines a separately documented objective. Its contact
-compiler is prepared; its bounded native validation, full qualification,
+compiler and bounded native membership checks pass; full qualification,
 refinement and adoption stay open. The documentation ledger owns the exact
 return, original checks and separate fixed-versus-fresh evidence.
 

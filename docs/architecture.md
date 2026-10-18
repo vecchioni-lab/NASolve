@@ -350,7 +350,8 @@ A separate [explicit membership diagnostic](cif-doctor.md#explicit-narestraints-
 now compiles frozen pair/stack declarations through NARestraints recipes and
 mapped base planes, then suppresses competing native secondary-structure terms.
 It checks exact membership at two saved coordinate sets without optimization.
-Installed validation is pending; this is not integrated into ordinary PostMR.
+Both returned Phenix interpretations pass exact membership checks; geometry
+qualification remains open and this is not integrated into ordinary PostMR.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

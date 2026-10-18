@@ -112,10 +112,10 @@ for actual behavior; history is evidence, not a second task queue.
   definitions and adds five distance-filtered hydrogen bonds/ten angles; 11
   exact checks pass and three retain REVIEW. A read-only audit separates those
   additions from saved fixed-manager endpoint equivalence. No repeated Mac run
-  is needed for this return. Cedar 21 now prepares an explicit NARestraints-owned
-  pair/stack policy and two-coordinate native mechanics check, preserving prior
-  edits and dictionaries. Offline compilation/transport pass; installed native
-  validation precedes further geometry trials.
+  is needed for this return. Cedar 21's explicit NARestraints-owned pair/stack
+  policy now passes 14/14 installed mechanics checks at each of two saved
+  coordinate sets, preserving edits, dictionaries and all captured static
+  proxies. The 491-payload return is verified; geometry/convergence remain open.
   Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

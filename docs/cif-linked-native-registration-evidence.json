@@ -241,7 +241,7 @@
     "generator_policy_unchanged": "cif-independent-elbow-candidate-v4",
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
-  "next_delivery": "21_Cedar",
+  "next_delivery": "NOT_PREPARED",
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
     "linked_native_qualification": "REVIEW_ONLY_FORMAL_CHARGE_CHECKS_UNSUPPORTED",
@@ -5535,9 +5535,9 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the pinned Cedar 21 Git ferry and return its new review ZIP. Evaluate exact native membership on both preserved coordinate sets before preparing any further geometry/convergence trial.",
+    "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
     "pairing_intent_provenance": {
-      "status": "SOURCE_VERIFIED_DIAGNOSTIC_COMPILER_IMPLEMENTED_NATIVE_PENDING",
+      "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
       "reviewed_on": "2026-10-17",
       "sources": [
         {
@@ -5644,7 +5644,7 @@
         "automatic_native_contacts": "Diagnostic evidence only; must not replace or supplement NARestraints-owned pairing or stacking relationships.",
         "poor_starting_geometry": "Must not silently omit an intended NARestraints contact through native distance filtering.",
         "independent_checks": "Identity, component definitions, covalent/link geometry, overlap and achieved-geometry checks remain in force.",
-        "implementation_status": "DIAGNOSTIC_COMPILER_IMPLEMENTED_NATIVE_PENDING",
+        "implementation_status": "DIAGNOSTIC_NATIVE_VERIFIED_NOT_PRODUCTION_INTEGRATED",
         "scientific_qualification": "REVIEW",
         "stacking": "Reuse the general NARestraints plane mapping and neighbour builder, preserve both canonical native declarations and explicit modified stacks, and retain warnings/coverage checks for its existing generic fallback.",
         "secondary_structure_controls": "Suppress competing inference without disabling requested canonical stacking or other intended restraint categories."
@@ -5681,12 +5681,12 @@
           "new_native_execution": "NOT_RUN"
         }
       },
-      "native_enforcement": "DIAGNOSTIC_COMPILER_PREPARED_INSTALLED_CHECK_PENDING"
+      "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Run the pinned Cedar 21 Git ferry and return its new review ZIP. Evaluate exact native membership on both preserved coordinate sets before preparing any further geometry/convergence trial.",
+  "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
   "narestraints_membership_probe_2026_10_18": {
-    "status": "IMPLEMENTED_DIAGNOSTIC_SHUTTLE_PREPARED_NATIVE_NOT_RUN",
+    "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
     "policy_id": "narestraints-explicit-membership-v1",
     "module": "src/nasolve/cif_na_policy.py",
@@ -5752,7 +5752,7 @@
       "coordinate_writing": "NOT_RUN",
       "native_optimization": "NOT_RUN",
       "timeout_seconds_per_case": 180,
-      "execution_status": "NOT_RUN",
+      "execution_status": "COMPLETED_RETURN_VERIFIED",
       "expected_installation_label": "2.2.1-6174",
       "expected_dispatcher_version": "2.2.1"
     },
@@ -5782,7 +5782,8 @@
         "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
       },
       "transport": "Synthetic protected capsule compiles after both source build trees are deleted, with poisoned caller imports; all frozen members remain unchanged.",
-      "actual_input": "Hash-bound 367-payload Cedar 20 capsule passes complete inspect-only source-bundled compilation; native execution NOT_RUN."
+      "actual_input": "Hash-bound 367-payload Cedar 20 capsule passes complete inspect-only source-bundled compilation; native execution NOT_RUN.",
+      "actual_return_review": "All 491 payloads, 367 frozen prior payloads/manifest, compiler PHIL bytes and both exact 14-check native verdicts replay locally. Descriptive geometry floats differ at most 7.11e-14, with discrete summaries exact. No source/runtime changes or new native run."
     },
     "primary_native_api_sources": [
       {
@@ -5795,7 +5796,7 @@
       }
     ],
     "boundaries": {
-      "native_execution": "NOT_RUN",
+      "native_execution": "COMPLETED_TWO_INTERPRETATIONS_RETURN_VERIFIED",
       "dictionary_generation": "NOT_RUN",
       "model_editing": "NOT_RUN",
       "model_optimization": "NOT_RUN",
@@ -5807,6 +5808,300 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the pinned Cedar 21 Git ferry and return its new review ZIP. Evaluate exact native membership on both preserved coordinate sets before preparing any further geometry/convergence trial."
+    "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
+    "cedar21_return_verified_2026_10_18": {
+      "archive": {
+        "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
+        "bytes": 10371214,
+        "sha256": "f8162ed4d2ee548131a6b248e85fb59c12916ca52644ae66b15572b78e32700d",
+        "payloads": 491
+      },
+      "build": {
+        "nasolve_commit": "edafbf52adc65d0a0515173046376ed304c3852d",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "6f7813d56aded1aebae47dcd0331268658457733f5b3b03c27d75c02a184f2cb",
+        "runtime_archive_sha256": "a5464a5b495b583b380f7cc28c66565c8204b2b3303fb612751409e303aec5cf",
+        "runtime_files": 106,
+        "clean_sources": true
+      },
+      "frozen_prior_payloads": 367,
+      "frozen_prior_manifest_preserved": true,
+      "prior_verdict_preserved": {
+        "PASS": 11,
+        "REVIEW": 3
+      },
+      "compiler_replay": "BYTE_EXACT",
+      "native_worker_matches_source": true,
+      "cases": {
+        "initial": {
+          "native_prefix": "native_initial/cif-native-eoq5ilbf",
+          "execution": {
+            "elapsed_seconds": 6.298652,
+            "finished_at": "2026-10-18T21:03:41.118343+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-18T21:03:34.819750+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 180
+          },
+          "phenix_version": "2.2.1",
+          "atom_count": 877,
+          "site_count": 43,
+          "backbone_links": 38,
+          "mechanics_checks": {
+            "PASS": 14
+          },
+          "proxy_counts": {
+            "angle": 1592,
+            "bond_asu": 0,
+            "bond_simple": 1032,
+            "chirality": 158,
+            "const_dihedral": 380,
+            "dihedral": 574,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "custom_request_counts": {
+            "bond": 52,
+            "angle": 86,
+            "planarity": 8,
+            "parallelity": 58
+          },
+          "native_policy": {
+            "origin_ids": {
+              "basepair parallelity": 7,
+              "basepair planarity": 9,
+              "basepair stacking": 6,
+              "edits": 4,
+              "hydrogen bonds": 2
+            },
+            "secondary_structure_enabled": false
+          },
+          "installed_api_sources": [
+            {
+              "module": "iotbx.phil",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/iotbx/phil.py",
+              "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+            },
+            {
+              "module": "mmtbx.command_line.pdb_interpretation",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/command_line/pdb_interpretation.py",
+              "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+            },
+            {
+              "module": "mmtbx.monomer_library.server",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/monomer_library/server.py",
+              "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+            },
+            {
+              "module": "mmtbx.monomer_library.pdb_interpretation",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/monomer_library/pdb_interpretation.py",
+              "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+            },
+            {
+              "module": "cctbx.geometry_restraints.linking_class",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/linking_class.py",
+              "sha256": "f34ff6db5f0399cac717cb86a9dd8196d9eb96c7061f3aed5bbe601ebea31c87"
+            },
+            {
+              "module": "cctbx.geometry_restraints.auto_linking_types",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/auto_linking_types.py",
+              "sha256": "528e0bfed5121d467e0ba2b0f0a2923b296bfe51f85212b3536590316c307c78"
+            },
+            {
+              "module": "mmtbx.secondary_structure",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/secondary_structure/__init__.py",
+              "sha256": "6af48032e86deacbc3783057942511adcfdbbb09ca729e32ee5c117a42909411"
+            },
+            {
+              "module": "mmtbx.secondary_structure.nucleic_acids",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/secondary_structure/nucleic_acids.py",
+              "sha256": "5ef8f133db67a8f2bea446cd046e1341e31a0a912aa9f39746c4aad7db027bdd"
+            }
+          ],
+          "model_sha256": "ddbbbdc1c852d47761efe362aa7b0bd180715387d52e71de8c980d61a0dd3ab7",
+          "descriptive_geometry": {
+            "bond_simple": {
+              "captured_proxies": 1032,
+              "status_counts": {
+                "MEASURED": 1032
+              },
+              "nominal_abs_ge_3": 102,
+              "nominal_abs_ge_5": 30,
+              "sign_conflicts": 0
+            },
+            "angle": {
+              "captured_proxies": 1592,
+              "status_counts": {
+                "MEASURED": 1592
+              },
+              "nominal_abs_ge_3": 154,
+              "nominal_abs_ge_5": 68,
+              "sign_conflicts": 0
+            },
+            "chirality": {
+              "captured_proxies": 158,
+              "status_counts": {
+                "MEASURED": 158
+              },
+              "nominal_abs_ge_3": 0,
+              "nominal_abs_ge_5": 0,
+              "sign_conflicts": 0
+            }
+          }
+        },
+        "saved_endpoint": {
+          "native_prefix": "native_saved_endpoint/cif-native-nd_9eaqz",
+          "execution": {
+            "elapsed_seconds": 1.450339,
+            "finished_at": "2026-10-18T21:03:42.833465+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-18T21:03:41.383160+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 180
+          },
+          "phenix_version": "2.2.1",
+          "atom_count": 877,
+          "site_count": 43,
+          "backbone_links": 38,
+          "mechanics_checks": {
+            "PASS": 14
+          },
+          "proxy_counts": {
+            "angle": 1592,
+            "bond_asu": 0,
+            "bond_simple": 1032,
+            "chirality": 158,
+            "const_dihedral": 380,
+            "dihedral": 574,
+            "parallelity": 58,
+            "planarity": 54
+          },
+          "custom_request_counts": {
+            "bond": 52,
+            "angle": 86,
+            "planarity": 8,
+            "parallelity": 58
+          },
+          "native_policy": {
+            "origin_ids": {
+              "basepair parallelity": 7,
+              "basepair planarity": 9,
+              "basepair stacking": 6,
+              "edits": 4,
+              "hydrogen bonds": 2
+            },
+            "secondary_structure_enabled": false
+          },
+          "installed_api_sources": [
+            {
+              "module": "iotbx.phil",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/iotbx/phil.py",
+              "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+            },
+            {
+              "module": "mmtbx.command_line.pdb_interpretation",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/command_line/pdb_interpretation.py",
+              "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+            },
+            {
+              "module": "mmtbx.monomer_library.server",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/monomer_library/server.py",
+              "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+            },
+            {
+              "module": "mmtbx.monomer_library.pdb_interpretation",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/monomer_library/pdb_interpretation.py",
+              "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+            },
+            {
+              "module": "cctbx.geometry_restraints.linking_class",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/linking_class.py",
+              "sha256": "f34ff6db5f0399cac717cb86a9dd8196d9eb96c7061f3aed5bbe601ebea31c87"
+            },
+            {
+              "module": "cctbx.geometry_restraints.auto_linking_types",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/auto_linking_types.py",
+              "sha256": "528e0bfed5121d467e0ba2b0f0a2923b296bfe51f85212b3536590316c307c78"
+            },
+            {
+              "module": "mmtbx.secondary_structure",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/secondary_structure/__init__.py",
+              "sha256": "6af48032e86deacbc3783057942511adcfdbbb09ca729e32ee5c117a42909411"
+            },
+            {
+              "module": "mmtbx.secondary_structure.nucleic_acids",
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/secondary_structure/nucleic_acids.py",
+              "sha256": "5ef8f133db67a8f2bea446cd046e1341e31a0a912aa9f39746c4aad7db027bdd"
+            }
+          ],
+          "model_sha256": "27d534e3fd6c77b5ca4eca49c14cfd8c0b677c13751adf0afcf230d201e8457d",
+          "descriptive_geometry": {
+            "bond_simple": {
+              "captured_proxies": 1032,
+              "status_counts": {
+                "MEASURED": 1032
+              },
+              "nominal_abs_ge_3": 8,
+              "nominal_abs_ge_5": 4,
+              "sign_conflicts": 0
+            },
+            "angle": {
+              "captured_proxies": 1592,
+              "status_counts": {
+                "MEASURED": 1592
+              },
+              "nominal_abs_ge_3": 20,
+              "nominal_abs_ge_5": 10,
+              "sign_conflicts": 0
+            },
+            "chirality": {
+              "captured_proxies": 158,
+              "status_counts": {
+                "MEASURED": 158
+              },
+              "nominal_abs_ge_3": 0,
+              "nominal_abs_ge_5": 0,
+              "sign_conflicts": 0
+            }
+          }
+        }
+      },
+      "exact_proxy_rows_identical_across_coordinates": true,
+      "effective_native_phil_identical": true,
+      "native_api_sources_identical": true,
+      "descriptive_geometry_replay_max_float_difference": 7.105427357601002e-14,
+      "descriptive_geometry_replay_tolerance": {
+        "absolute": 1e-10,
+        "relative": 1e-12
+      },
+      "native_proxy_comparison": "EXACT_NO_TOLERANCE_CHANGE",
+      "dictionary_count": 19,
+      "derived_phil_count": 13,
+      "membership_invariant": true,
+      "model_editing": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "convergence": "PRESERVED_HISTORICAL_NOT_CONVERGED_LIMIT_NO_NEW_OPTIMIZATION",
+      "scientific_qualification": "REVIEW",
+      "explicit_pair_relationships": 20,
+      "physical_stack_relationships": 38
+    }
   }
 }

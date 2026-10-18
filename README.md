@@ -40,8 +40,8 @@ reached its iteration limit. Native PDB readback preserves atom/component
 identities and exposes distance-dependent hydrogen-bond additions. Achieved
 geometry and scientific approval remain under review.
 A separate explicit NARestraints membership diagnostic now compiles declared
-pairs/stacks and checks a fixed policy at two saved coordinate sets; installed
-validation is pending. It has not changed ordinary PostMR.
+pairs/stacks and passes both installed native membership checks at two saved
+coordinate sets. Geometry qualification remains open; ordinary PostMR is unchanged.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

@@ -325,7 +325,8 @@ without rerunning the guesser on moved coordinates. Intended contacts must
 survive poor starting geometry, and Phenix inference must not add competing
 terms. Run continuity can rescue weak pairing geometry; chemistry, overlap and
 achieved-geometry checks remain necessary. The diagnostic compiler is
-implemented; installed native validation is pending.
+implemented and passes both returned native membership checks; geometry
+qualification remains open.
 
 Stacking reuses the existing NARestraints base-class plane mapping and
 neighbour builder. Its canonical native declarations and explicit modified-base
@@ -341,7 +342,10 @@ checks duplicate requests, and records the source of each relationship. Cedar
 21 applies that same policy to the preserved initial model and saved endpoints,
 checking exact native requests, targets/weights and unaffected proxies. The
 installed origin registry is recorded rather than assumed. Offline compilation
-and synthetic transport are verified; installed Phenix execution remains pending.
+and synthetic transport are verified. Both returned Phenix 2.2.1-6174 cases pass
+14/14 exact membership checks, retaining all 52 explicit bonds, 86 angles, eight
+planes and 58 parallelities with no competing SS-origin terms. All captured
+static proxy rows remain identical across the saved coordinates.
 This is a new explicit objective, with no coordinate editing or minimization.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -534,7 +538,8 @@ original REVIEW alongside a separate fixed-manager endpoint comparison.
 The separate native diagnostic inventories interpreted atoms/proxies and
 parameter handling; it does not authorize adoption.
 A separate explicit NARestraints pair/stack compiler now precedes a two-coordinate
-native mechanics check; existing edits survive, with installed validation pending.
+native mechanics check; existing edits survive and both returned cases pass
+exact membership checks. Geometry/convergence qualification remains open.
 
 ## Primary references
 
