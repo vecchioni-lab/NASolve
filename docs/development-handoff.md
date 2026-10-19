@@ -364,7 +364,7 @@ nine angle outliers involve that pair. DP B:4 N5 remains **127.6378 degrees**
 versus 109.471 degrees. Preserve these findings, pairing intent and recipe
 targets; numerical descent does not resolve their scientific interpretation.
 
-**Cedar 28 prepared: saved-full-precision continuation; native result pending.**
+**Cedar 28 returned and verified: mechanics/derivatives PASS; iteration limit.**
 `scripts/build_cif_geometry_continuation_probe.py` builds
 `28_Cedar_probe_cif_geometry_continuation.py` from the verified 980-payload Cedar
 27 ZIP. The reusable `continuation` opt-in recomputes the qualified endpoint
@@ -393,15 +393,46 @@ mechanics replay pass. The full suite passes **1,862 tests, two skips and
 276 subtests (122.57 s)**. Exact commands are recorded in the evidence ledger. These native-worker controls use explicit fakes; no installed
 Phenix/Coot runs here.
 
-**Current action:** run Cedar 28 via the pinned Git/worktree/build/run terminal
-block and return its output and review ZIP. The actual installed continuation
-is pending. Preserve Cedar 22 **NOT_CONVERGED_ERROR**, Cedar 27
-**NOT_CONVERGED_LIMIT**, the strained CGY-DX/DP findings and every exact gate.
-NARestraints selections, targets, stacking matrix and native definitions remain
-fixed. Production integration, geometry/scientific qualification, refinement
-and adoption stay open. No new installs or migration. Private inputs/capsules
-remain excluded from Git; the source/evidence record and implementation map
-own exact schemas, hashes, test commands and next action.
+All **1,104 returned payloads** verify, including the 980 unchanged Cedar 27
+payloads and their manifest. Runner `61f64e79...` matches clean NASolve
+`56101b09...` / NARestraints `a7b6a0c9...`; all 110 runtime members verify.
+Phenix **2.2.1-6174** (dispatcher `2.2.1`) completes the continuation/audit in
+**76.066902 s** and native readback in **1.692405 s**, both exit zero. Original
+manager and saved full-precision start/target/entire gradient match; installed
+source identities, definitions, compiled NARestraints policy and static proxies
+survive. All **17 mechanics checks** and **336 sampled endpoint directions**
+pass. Independent review recomputes all 1,344 four-step samples/bounds and
+candidate serialization byte for byte, without executing captured code.
+
+The new target changes **2697.762263611603 -> 2599.5275576416398 (3.64%)** and
+corrected norm **372.53738052839816 -> 144.16496914598542 (61.30%)**.
+Stopping remains **NOT_CONVERGED_LIMIT**: **1,000 new iterations / 1,036 calls**,
+cumulative **2,000 / 2,064**, no recorded error and native criterion false.
+All accepted targets decrease; the last 100 iterations lower the target by
+**8.7054**, with fluctuating corrected norms. Overall corrected-stage target
+and norm drops are **31.32% / 87.02%**. PDB-rounded target/norm remain separate:
+**2602.971189992592 / 950.90556704461**.
+
+Both precisions retain **three distance / ten angle nominal deviations >=5**
+and zero sign conflicts among 158 chirality proxies. CGY A:20-DX D:3 contacts
+are **5.3540 / 4.3596 / 5.5828 A** versus 2.8 A, for N1-O2 / N3-N1 / N4-O6;
+nine angle outliers involve that pair. DP B:4 C6-N5-C7 remains **127.7493
+degrees** versus 109.471. Native target contributions are **1193.6456 angles**,
+**553.0823 bonds**, **552.5565 dihedrals**, **225.9220 nonbonded**, **51.9768
+parallelity**, **11.6966 planarity** and **10.6477 chirality**. Category gradient
+norms can cancel; they do not add. The cause of slow convergence is not proven.
+
+**Current action:** review the numerical tail and exact remaining contacts /
+source parameter conflicts before selecting another bounded trial or a
+separately declared chemical candidate. Preserve NARestraints pairing recipes,
+stacking matrix, exact native targets/weights/definitions and all independent
+gates; residuals alone do not authorize tuning. **No next native delivery is
+prepared and no repeat Cedar 28 is requested.** Numerical continuation must
+use saved full precision, not the PDB. Keep Cedar 22 NOT_CONVERGED_ERROR and
+Cedar 27/28 NOT_CONVERGED_LIMIT. Production integration, full chemistry/geometry
+qualification, experimental refinement and adoption remain open. No new
+installs or migration; private inputs/capsules stay outside Git. The exact
+returned source/evidence record is mirrored in the implementation map.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

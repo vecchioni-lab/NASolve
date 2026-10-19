@@ -442,8 +442,14 @@ iterations and 20,000 calls. It records prior stopping, new stopping and
 cumulative optimizer counts separately; full/rounded endpoint audits and all
 17 native PDB mechanics checks run again. Seed changes, PDB rounding, atom-order
 changes or unqualified prior derivatives refuse optimization. Existing
-initial-coordinate/default policies remain fixed. Installed continuation
-execution is pending.
+initial-coordinate/default policies remain fixed. Returned Cedar 28 verifies
+all 1,104 payloads, all 17 mechanics checks and all 336 sampled endpoint
+directions. The new stage reaches its 1,000-iteration limit, cumulative
+2,000 iterations / 2,064 calls, with the native criterion false and no recorded
+optimizer error. Target reduction is 3.64% for this stage, 31.32% from the
+original initial model. The same three distance and ten angle outliers persist.
+Review the tail, category contributions and exact remaining source/term conflicts
+before choosing another trial; no new delivery or adoption is prepared.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

@@ -1111,9 +1111,35 @@ checks. New-stage displacement is measured from the saved endpoint separately
 from serialization displacement relative to the original initial model.
 
 The actual-input offline inspector and synthetic deleted-build transport pass.
-Installed continuation execution is pending. Existing corrected/uncorrected
-trial defaults are unchanged; no new package, target tuning, policy guessing,
-refinement, scientific approval or adoption is introduced.
+Returned Cedar 28 verifies all **1,104 payloads**, including all 980 unchanged
+Cedar 27 payloads and their byte-identical manifest. The published runner and
+110-member runtime, trusted worker/correction bytes and installed API/numerical/
+adapter/C++ identities match. Phenix 2.2.1-6174 (dispatcher 2.2.1) completes the
+continuation/audit in **76.066902 s** and PDB readback in **1.692405 s**, both
+exit zero. All **17 native mechanics checks** and **336 sampled endpoint
+directions** pass. Independent replay recomputes all 1,344 four-step samples
+and exact candidate serialization; it executes no captured code.
+
+The fixed target changes **2697.762263611603 -> 2599.5275576416398 (3.64%)**
+and corrected gradient norm **372.53738052839816 -> 144.16496914598542
+(61.30%)**. The new stage reaches **1,000 iterations / 1,036 calls**, cumulative
+**2,000 / 2,064**, with no recorded optimizer error and the native criterion
+false. Preserve **NOT_CONVERGED_LIMIT**. All accepted targets decrease; the last
+100 iterations reduce it by **8.7054**, while corrected norms fluctuate. Across
+both corrected stages, target/norm decreases are **31.32% / 87.02%**. The
+PDB-rounded target/norm **2602.971189992592 / 950.90556704461** are separate.
+
+Both precisions retain **three distance / ten angle nominal deviations >=5**
+and zero sign conflicts among 158 chirality proxies. The three CGY A:20-DX D:3
+contacts remain **4.360-5.583 A** versus 2.8 A; nine angle outliers involve that
+pair. DP B:4 C6-N5-C7 remains **127.749 degrees** versus 109.471 degrees.
+Angles contribute 1193.6456 and bonds 553.0823 to the unchanged native target;
+individual category gradients can cancel and their norms do not add. These
+findings require term/source review before selecting another bounded trial or
+a separately declared chemical candidate. No next native delivery is prepared.
+Existing corrected/uncorrected trial defaults are unchanged; no new package,
+target tuning, policy guessing, refinement, scientific approval or adoption is
+introduced.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

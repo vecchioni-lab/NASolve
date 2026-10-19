@@ -144,8 +144,12 @@ for actual behavior; history is evidence, not a second task queue.
   NOT_CONVERGED_LIMIT at 1,000 iterations. The target still decreases; the next
   bounded continuation is supplied by Cedar 28, starting from saved full
   precision after an exact source/target/gradient match, with fresh optimizer
-  history and repeated endpoint/native mechanics checks. Native energy
-  definitions and production defaults stay fixed. Production PostMR,
+  history and repeated endpoint/native mechanics checks. Its returned 1,104
+  payloads verify; all 17 mechanics and 336 sampled endpoint directions pass.
+  The target falls another 3.64%, while the 2,000 cumulative iterations retain
+  NOT_CONVERGED_LIMIT and the same local geometry reviews. Inspect remaining
+  terms/sources before selecting another test; no new delivery is prepared.
+  Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is

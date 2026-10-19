@@ -413,7 +413,10 @@ directions. Its target falls 28.72% but reaches the 1,000-iteration limit with
 the native criterion false. Accepted steps still lower the target at the end;
 Cedar 28 supplies a bounded continuation from saved full precision, after a
 fresh match of the entire starting corrected gradient and target.
-The same strained pair/DP angle remains, and chemical qualification is open.
+Returned Cedar 28 passes the same mechanics/derivative checks and decreases
+the target another 3.64%. The 2,000 cumulative iterations still end at the
+limit; the same strained pair/DP angle remains, and chemical qualification is
+open. Remaining terms and sources require review before another trial.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -699,8 +702,18 @@ with a fresh L-BFGS history and at most 1,000 further iterations / 20,000 calls.
 Its worker verifies the original manager before loading the saved native
 atom-order coordinates, then matches the complete corrected start vector and
 target. Prior/new stopping and cumulative optimizer counts remain separate.
-Installed continuation execution is pending. No target tuning, diffraction
-refinement or adoption occurs.
+The returned 1,104-payload capsule verifies all 980 prior payloads and their
+manifest, all 17 mechanics checks and all 336 sampled endpoint directions.
+The new target/norm are 2599.5276 / 144.1650, reductions of 3.64% / 61.30%
+from the prior full-precision endpoint. The additional 1,000 iterations / 1,036
+calls retain NOT_CONVERGED_LIMIT, with the native criterion false; cumulative
+counts are 2,000 / 2,064. All accepted targets decrease, including 8.7054 in
+the final 100 iterations. The PDB-rounded target/norm are separately
+2602.9712 / 950.9056. Three distance and ten angle outliers persist, with no
+recorded chirality sign conflicts. Review the remaining exact terms/source
+definitions and numerical tail before choosing another bounded test; no next
+delivery is prepared. No target tuning, diffraction refinement or adoption
+occurs.
 
 ## Primary references
 

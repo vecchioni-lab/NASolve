@@ -21,7 +21,11 @@ entries are reconstructed from repository history.
 - Repeat fresh endpoint derivative and all 17 native PDB mechanics checks;
   preserve NARestraints pairing/stacking policy, original energy/targets and
   exact source identities. Source-bundled offline and deleted-build inspection
-  pass. Installed continuation execution is pending.
+  pass. The returned continuation verifies all 1,104 payloads, all 17 native
+  mechanics checks and 336 sampled endpoint directions. Its target falls
+  another 3.64%; stopping remains NOT_CONVERGED_LIMIT after 2,000 cumulative
+  iterations. The same three distance/ten angle outliers persist; review
+  exact remaining terms/sources before selecting another trial.
 - Add 36 generic proof/seed/worker/capsule/transport regressions; 241 focused
   tests and all 1,862 full tests pass, with two skips and 276 subtests.
   Existing corrected/uncorrected defaults, production behavior and
