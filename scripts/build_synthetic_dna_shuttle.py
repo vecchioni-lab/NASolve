@@ -70,7 +70,8 @@ def prepare_branch_runner_destination(checkout: Path, output: Path) -> None:
 
 def build(root: Path, narestraints_root: Path, output: Path, *,
           template_name: str = "synthetic_dna_shuttle_template.py",
-          delivery_prefix: str | None = None) -> dict:
+          delivery_prefix: str | None = None,
+          component_controls: tuple[str, ...] = ()) -> dict:
     if output.exists() or output.is_symlink():
         raise FileExistsError(f"Shuttle already exists: {output}")
     probe_templates = {
@@ -117,6 +118,26 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
             members[prefix + "/" + relative.as_posix()] = path.read_bytes()
     recipe = "docs/recipes/synthetic-dna-combined.toml"
     members[recipe] = (root / recipe).read_bytes()
+    controls = []
+    if component_controls:
+        if (template_name != 'cif_numerical_recovery_probe_template.py'
+                or len(component_controls) > 2 or len(set(component_controls)) != len(component_controls)):
+            raise ValueError('Require one or two unique explicit numerical component controls')
+        catalog = json.loads((root/'docs/cif-doctor-ccd-controls.json').read_text())
+        for code in component_controls:
+            rows = [r for r in catalog['components'] if r['code'] == code]
+            if len(rows) != 1 or not rows[0].get('test_fixture'):
+                raise ValueError('No pinned public fixture for component control: '+code)
+            record = rows[0];relative = record['test_fixture'];fixture = root/relative
+            if (Path(relative).is_absolute() or '..' in Path(relative).parts or fixture.is_symlink()
+                    or not fixture.resolve().is_relative_to(root.resolve())):
+                raise ValueError('Unsafe component control fixture')
+            payload = fixture.read_bytes();pinned = record['source']
+            if len(payload) != pinned['bytes'] or _sha(payload) != pinned['sha256']:
+                raise ValueError('Public component control differs from pinned source')
+            name = 'controls/'+code+'.cif';members[name] = payload
+            controls.append({'component': code, 'path': name, 'size': len(payload),
+                             'sha256': _sha(payload), 'source_url': pinned['requested_url']})
     required = {recipe, "src/nasolve/synthetic_dna.py", "MR_frames/5W6W/5W6W_noPO4.pdb",
                 "restraints/data/Ligands.xlsx"}
     if not required <= members.keys():
@@ -233,6 +254,9 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         metadata.update(kind="cif-source-graph-numerical-recovery-shuttle",delivery_prefix=delivery_prefix,
                         native_validation="NOT_RUN_DICTIONARY_CANDIDATE_ONLY",automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10", "Biopython", "Phenix eLBOW for independent numerical generation"]
+        if controls:
+            metadata['component_controls'] = controls
+            metadata['dependencies'].append('openpyxl for bundled NARestraints role controls')
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

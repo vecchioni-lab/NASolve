@@ -82,8 +82,12 @@ explicit internal-angle context accompany the scan. Returned Cedar 29 passes
 all 96 sampled rotation directions; every coarse-grid minimum is the starting
 angle. This does not establish a local/global minimum. Cedar 30 prepares a
 separate source-graph numerical dictionary candidate for the retained DP
-angle/plane conflict, with exact chemical comparisons. Installed generation
-is pending; no candidate is applied to a model or native manager.
+angle/plane conflict, with exact chemical comparisons. Its return stops in
+the installed eLBOW input parser before producing a candidate: external
+coordinate-tag case was lost during export. Cedar 31 restores canonical tag
+spelling and adds an explicit PDU public control. PDU source graph and existing
+NARestraints pairing/stacking compiler checks pass offline; installed generation
+is pending. No candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

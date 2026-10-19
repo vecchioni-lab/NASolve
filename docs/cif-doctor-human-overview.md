@@ -422,8 +422,10 @@ rotations. Source/endpoint matching, fresh rotational derivatives, periodic
 controls and exact angle/plane context accompany the scan. Returned native
 execution passes all 96 sampled rotation directions; no independent coarse
 sample improves the objective. Cedar 30 separately prepares a source-graph
-numerical candidate for the retained DP conflict. Installed generation is
-pending; no candidate is applied to a model or native manager.
+numerical candidate for the retained DP conflict. Cedar 30 stops before
+generation on external coordinate-tag spelling; Cedar 31 fixes serialization
+and adds PDU as a separate public chemistry/policy control. Installed generation
+is pending; no candidate is applied to a model or native manager.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -768,10 +770,29 @@ Chemical and numerical comparisons against both the graph input and original
 source retain every discrepancy; complete formal-charge declarations must
 survive. A candidate is not installed or combined with existing modifiers in
 this slice. Native proxy qualification, achieved geometry, convergence and
-scientific approval remain separate. Installed generation is pending. This
-methods step is reusable for explicitly selected graph-valid source conflicts;
+scientific approval remain separate. The Cedar 30 return identifies an input
+parser incompatibility before any candidate exists: eLBOW accesses mixed-case
+CCD coordinate attributes. Canonical external tag spelling now preserves the
+same parsed coordinates/chemistry and is covered at that consumer boundary.
+This methods step is reusable for explicitly selected graph-valid source conflicts;
 the DP-specific delivery and prior positive bespoke trial are evidence, not a
 universal correction rule.
+
+### Additional T-derivative control: PDU
+
+PDU is 5-propynyl-deoxyuridine. The pinned public CCD source preserves its full
+C5 substituent, including a carbon-carbon triple bond, and the declared sugar,
+H and phosphate state. It is a graph description rather than a complete
+numerical refinement dictionary. The existing NARestraints T-role mapping
+resolves its AT contact atoms and stacking plane; the C7 role selects C5A.
+Source-atom and bidirectional stacking compiler checks pass. The apparent H2
+name on the O3-prime hydrogen is handled by connectivity, not a naming guess.
+
+Cedar 31 tests that source independently alongside the DP retry. The public
+fixture is a test input, not an installed curated dictionary or a new scaffold
+site. Synthetic canonical partner roles test compiler selections only, with
+no experimental pairing inference. Installed generation, native interpretation
+and achieved geometry remain separate evidence gates.
 
 ## Primary references
 

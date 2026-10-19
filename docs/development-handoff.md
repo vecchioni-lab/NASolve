@@ -463,7 +463,7 @@ degrees on the coarse grid. Nonzero validated slopes remain; this is no proof
 of a minimum, complete pose search or scientific qualification. DP's retained
 N5 targets still sum to **339.714 degrees** against a shared planar constraint.
 
-**Cedar 30 prepared: separate source-graph numerical recovery candidate.**
+**Cedar 30 returned: preserved input-parser failure, no candidate produced.**
 `scripts/build_cif_numerical_recovery_probe.py` builds the next runner from the
 exact Cedar 29 ZIP. The generic planner selects declared source plane/angle
 reviews independently of residue name or model residual. This bounded probe
@@ -488,7 +488,41 @@ all prior evidence and the unchanged DP graph seed. Installed generation is
 pending; exact validation commands and boundaries are recorded in the ledger. Existing geometry/convergence, charge, pucker, stereochemistry
 and experimental gates remain independent.
 
-**Current action:** run Cedar 30 through the pinned one-block terminal handoff
+All **1,185 returned payloads** verify, including the 1,173 unchanged Cedar 29
+payloads and manifest. Runner `8aedfb0e…`, clean source pins and all 112 runtime
+members match. The 17 mechanics/96 rotation prerequisites replay. Installed
+eLBOW **2.2.1-6174** stops in **2.358774 s**, exit one, before producing any
+candidate: its reader accesses `pdbx_model_Cartn_x_ideal`, while graph export
+emitted the lower-case `cartn` spelling. Chemical rejection and generated
+plane/angle assessment are **NOT_ASSESSED**, despite the wrapper's REJECTED and
+zero-review console lines. No model was optimized or changed.
+
+**Cedar 31 prepared: general tag-case correction plus the requested PDU control.**
+The same builder accepts `--delivery-prefix 31_Cedar --component-control PDU`.
+Canonical external CCD coordinate tags are emitted for both source ideal and
+curated coordinate families. Old/corrected DP exports have exactly equal parsed
+fields/values after tag-case normalization. The reader preserves the complete
+Cedar 30 failure capsule and rechecks its predecessor proof before retrying.
+Absent generated dictionaries now print numerical assessment NOT_RUN.
+
+PDU is a separate **public component control**: its unmodified CCD fixture is
+hash pinned under tests and is not added to the production curated library.
+The source has **38 atoms / 23 heavy atoms / 39 bonds**, a C5A-C5B triple bond,
+three specified D-sugar centres, and declared neutral phosphate state. Its O3-prime
+hydrogen is named H2; the graph-based rule identifies the bond correctly.
+The existing NARestraints row maps it to T, with the C7 plane role mapped to
+C5A. Actual source-atom/compiler checks pass for the existing AT recipe
+(two bonds/two angles/one pair parallelity) and both stacking orders. These
+are compiler controls with a synthetic partner role template, not proposed
+experimental/native pair geometry. DP and PDU generation remain independently
+reviewed, with all chemistry/state rejection gates retained. No PDU site is
+inserted into the frozen model. **23 new regressions, 146 focused tests
+(16.16 s) and 1,972 full tests, two skips and 276 subtests (140.70 s)** pass.
+The actual-input relocated runner passes after both clean source copies are
+removed and ambient imports poisoned: 114 runtime files, all prior proof and
+both graph sources verify. Installed generation is pending.
+
+**Current action:** run Cedar 31 through the pinned one-block terminal handoff
 and return its console output and review ZIP. Its runner destination is the
 ignored `branch-artifacts/cedar/runners/` in the everyday checkout. The optional
 builder `--local-artifact-checkout` argument verifies that exclusion and adds

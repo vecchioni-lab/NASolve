@@ -191,7 +191,11 @@ def prepare_graph_generation_source(source, code, output):
             graph[key] = column
         elif key in {'_chem_comp.type', '_chem_comp.group', '_chem_comp.name', '_chem_comp.three_letter_code'}:
             graph[key] = column
-    for k, target in zip(keys, ideal):
+    # mmCIF is case insensitive, but installed eLBOW accesses CCD atom-row
+    # attributes using the canonical mixed-case Cartn spelling. Keep internal
+    # lookup normalized while emitting the external consumer's exact contract.
+    emitted_ideal = [atom+'pdbx_model_Cartn_'+axis+'_ideal' for axis in 'xyz']
+    for k, target in zip(keys, emitted_ideal):
         graph[target] = values[k]
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open('x') as handle:
@@ -208,8 +212,10 @@ def prepare_graph_generation_source(source, code, output):
             'source_sha256': sha256(original).hexdigest(), 'source_size': len(original),
             'graph_source_sha256': sha256(payload).hexdigest(), 'graph_source_size': len(payload),
             'source_preserved': True, 'coordinate_origin': origin, 'experimental_model_used': False,
+            'coordinate_tag_serialization': 'CCD_CANONICAL_CARTN_CASE',
+            'coordinate_input_fields': keys, 'coordinate_output_fields': emitted_ideal,
             'numerical_parameters': 'REMOVED_FOR_INDEPENDENT_GENERATION',
-            'removed_fields': sorted(set(values)-set(graph)),
+            'removed_fields': sorted(set(values)-{k.lower() for k in graph}),
             'chemical_comparison': {'status': 'EXACT_DECLARATIONS', 'fields': sorted(_CHEMICAL_FIELDS), 'comparison': comparison},
             'limitations': ['Seed coordinates supply naming/initial geometry only; they are not independent validation or final restraint targets.',
                            'Original aliases/descriptors/numerical targets remain in the frozen source, never a chemical authority inferred from a model.']}

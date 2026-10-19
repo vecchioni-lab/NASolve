@@ -1223,11 +1223,47 @@ The probe verifies the 1,173-payload capsule, exact trusted worker/core/source
 identities and full qualified lineage, recomputes all 96 saved rotation
 directions and replays all 17 native mechanics prerequisites. Default bounds
 are at most three explicitly selected components and 600 seconds each. Actual
-input planning and graph preparation pass; installed generation is pending.
+input planning and graph preparation pass. Returned Cedar 30 verifies all
+1,185 payloads and preserved predecessors, but installed eLBOW stops before
+generation on the lower-case coordinate-tag attribute. No dictionary exists
+to assess; its zero-review console count is not a numerical pass.
 The original 19 CIF/13 PHIL inputs and NARestraints pairing/stacking policy stay
 frozen. No new dictionary is applied, no modifier composition is attempted,
 and no ReadySet retry, refinement or adoption occurs. Existing production
 defaults and dependencies need no migration.
+
+### Canonical coordinate tags and explicit PDU control
+
+Cedar 31 uses the same numerical-recovery builder with
+`--delivery-prefix 31_Cedar --component-control PDU`. It accepts the exact
+Cedar 30 failure capsule, validates all 1,185 payloads, both generation receipts,
+original/graph inputs and the input-parser/no-candidate outcome, then replays
+the preserved C29/C28 derivative/mechanics lineage. The corrected graph export
+retains normalized internal lookup but emits canonical
+`pdbx_model_Cartn_x/y/z_ideal` tags for the installed reader. Coordinate values
+and chemical declarations remain unchanged. Receipts state both source and
+output coordinate fields. No output dictionary means numerical assessment
+NOT_RUN, not a zero-count result.
+
+`--component-control CODE` is an explicit builder option (up to two controls,
+three total candidates). It admits only test fixtures listed with exact hashes
+and sizes in [the public control catalog](cif-doctor-ccd-controls.json). PDU's
+unmodified 9,033-byte public CCD is the requested exception to the original
+local-only control collection. It is bundled under `controls/PDU.cif`, never
+installed into `nasolve/data/ligands`. The original 18-control ZIP is unchanged.
+The runner freezes the source and records graph/stereo/H/charge, mapped roles
+and compiler output, then applies the same independent generation/comparison
+gates as DP. No experimental model supplies generation targets.
+
+The generic control API uses the actual NARestraints mapping, pair compiler
+and stacking matrix on exact source atom identities. PDU has the T role; AT
+compiler controls resolve N3-N1 and O4-N6 contacts and two angles, with a pair
+parallelity. Both stacking orders resolve its C7 role to C5A. The propynyl
+C5A-C5B triple bond and complete 38-atom/39-bond source survive graph export.
+The H named H2 is attached to O3-prime, demonstrating why context rules follow
+bonds. A synthetic canonical partner exercises the compiler only. These are
+not native proxies or achieved pair geometry, and no PDU is inserted into the
+frozen scaffold. Installed generation/scientific qualification remain pending.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

@@ -469,8 +469,16 @@ source-declared coordinates may seed naming/initial geometry when ideal
 coordinates are absent; the receipt labels their origin explicitly. Original
 chemical declarations are compared at both seed and candidate boundaries,
 including complete formal-charge preservation. All original numerical
-parameters and metadata remain frozen. Installed generation is pending. No
-new dictionary is composed with modifiers or applied to a native model.
+parameters and metadata remain frozen. Returned Cedar 30 stops before
+generation because installed eLBOW accesses the exact mixed-case CCD Cartn
+attribute, while graph export normalized its tag. Cedar 31 preserves canonical
+external tag spelling with unchanged parsed values, retains the failed attempt,
+and adds an explicit public PDU source/control to the same generation workflow.
+Its actual NARestraints mappings, A:T pair recipe and both stacking orders are
+checked as compiler controls on source atom identities. The canonical partner
+is a role template, not an observed pair. The PDU fixture stays under tests;
+no production dictionary is installed. Native generation is pending. No new
+dictionary is composed with modifiers or applied to a native model.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

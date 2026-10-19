@@ -412,16 +412,10 @@ def _read_cedar28(members):
 ROTATION_PREFIX = "native_rotation/cif-base-rotation-qin0vytg"
 ROTATION_SOURCE_SHA256 = {'rotation_core.py': '48a0502f9c75562ade176b64b8859d44c4e29e660a08cb59121a55e62bdc7cbb', 'correction_core.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'gradient_core.py': 'a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc', 'scalar_geometry_core.py': 'f0daab5796a2e22102e5cb66ca59fcf0c0397a4b270f0c561645109cbcda1116', 'corrected_geometry_core.py': 'c2152eaf87e1fd8f15f14afb593a8c6fa014f382c3f438645f6ea43f667b2be1', 'rotation_worker_py': '9d1cecc41fd176ba822d77f96fe5de3afc2390d2be602b81a4d42059efd77a71', 'native_worker_py': '9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78'}
 
-def _read_capsule(path, expected_sha=None):
+def _read_cedar29_members(members):
     from nasolve.cif_numerical_recovery import validate_rotation_evidence, _same
     from nasolve.cif_base_rotation_audit import plan_base_rotations
     from nasolve.cif_corrected_geometry import validate_continuation
-    original=path.read_bytes()
-    if _sha(original)!=(expected_sha or REVIEW_SHA256):raise ValueError('Require the exact verified Cedar 29 review ZIP')
-    with zipfile.ZipFile(io.BytesIO(original)) as z:
-        entries=z.infolist();names=[e.filename for e in entries]
-        if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
-        members={e.filename:z.read(e) for e in entries}
     _verify_manifest(members,1173)
     nested={n.removeprefix('inputs/review/'):data for n,data in members.items() if n.startswith('inputs/review/')}
     _,qualified,prior=_read_cedar28(nested)
@@ -459,12 +453,81 @@ def _read_capsule(path, expected_sha=None):
         if len(data)!=row['bytes'] or _sha(data)!=row['sha256']:raise ValueError('Rotation installed source payload differs')
     validate_continuation(saved,proof,expected['atom_count'])
     validate_rotation_evidence(result,current['rotation_plan'],saved,proof['constraint_signature_before'])
-    return members,qualified,prior,current,original
+    return qualified,prior,current
+
+
+CEDAR30_SHA256 = '0469d2b1da39771f910b6721b73484a956d3485e95379df657aac32fc9f56e43'
+CEDAR30_BUILD_SHA256 = '11b0ff696b1e21ab50363a60e8e40eab74f60edfcaa589d59b3d8b72dc086ed8'
+CEDAR30_GRAPH_SHA256 = 'c278ce02a62be9170a19daaf8fd189e742e8ebfa9d650bb809de01bf065e2057'
+CEDAR30_RECOVERY_PREFIX = 'generation/cif-numerical-recovery-w7lb3ylz'
+CEDAR30_GENERATION_PREFIX = CEDAR30_RECOVERY_PREFIX+'/generation/cif-generation-0qssnat0'
+
+
+def _source_view(members):
+    header=json.loads(members['probe_receipt.json'])
+    if header.get('delivery_prefix')=='30_Cedar' and header.get('kind')=='cif-source-graph-numerical-recovery-probe':
+        return {n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')},'inputs/review/'
+    return members,''
+
+
+def _read_cedar30_members(members):
+    _verify_manifest(members,1185)
+    current=json.loads(members['probe_receipt.json'])
+    if (_sha(json.dumps(current['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR30_BUILD_SHA256
+            or current.get('kind')!='cif-source-graph-numerical-recovery-probe' or current.get('delivery_prefix')!='30_Cedar'
+            or current.get('status')!='REVIEW' or current.get('analysis_completed') is not True
+            or current.get('automatic_adoption') is not False or current.get('policy_authority')!='NARestraints'
+            or any(current.get(k) is not True for k in ['original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(current.get(k)!='NOT_RUN' for k in ['model_editing','model_optimization','native_execution','native_proxy_validation','linked_site_validation','policy_recompilation','refinement','installed_phenix_edits','readyset_retry'])
+            or current.get('dictionary_generation')!='REVIEW_REQUIRED'
+            or current['prior_archive']['sha256']!=REVIEW_SHA256 or current['prior_archive']['verified_payloads']!=1173):
+        raise ValueError('Require the intact reviewed Cedar 30 generation failure')
+    source,_=_source_view(members);qualified,prior,rotation=_read_cedar29_members(source)
+    candidates=current['candidates']
+    if set(candidates)!={'DP'}:raise ValueError('Prior candidate scope changed')
+    candidate=candidates['DP'];generation=candidate['generation']
+    if (candidate!=json.loads(members[CEDAR30_RECOVERY_PREFIX+'/numerical_recovery_receipt.json'])
+            or generation!=json.loads(members[CEDAR30_GENERATION_PREFIX+'/generation_receipt.json'])):
+        raise ValueError('Prior generation receipt/result differ')
+    for prefix,receipt in [(CEDAR30_RECOVERY_PREFIX,candidate),(CEDAR30_GENERATION_PREFIX,generation)]:
+        for row in receipt['outputs']:
+            if row.get('anchor')!='candidate_directory' or not _safe(row.get('path')):raise ValueError('Unsafe prior generation anchor')
+            data=members[prefix+'/'+row['path']]
+            if len(data)!=row['size'] or _sha(data)!=row['sha256']:raise ValueError('Prior generation artifact changed')
+    if (candidate.get('status')!='REJECTED' or not candidate.get('source_preserved')
+            or generation.get('status')!='FAILED' or generation['execution'].get('status')!='FAILED'
+            or generation['execution'].get('returncode')!=1 or not generation.get('source_preserved') or not generation.get('frozen_source_preserved')
+            or any(n.startswith('generation/') and n.endswith('/candidate.cif') for n in members)):
+        raise ValueError('Prior failure phase or source preservation changed')
+    original=members[CEDAR30_RECOVERY_PREFIX+'/original/source.cif']
+    if original!=source[ROTATION_PREFIX+'/inputs/004_dictionary.cif']:raise ValueError('Prior DP source differs from frozen manager')
+    graph=members[CEDAR30_RECOVERY_PREFIX+'/graph/source.cif']
+    if (_sha(graph)!=CEDAR30_GRAPH_SHA256
+            or graph!=members[CEDAR30_GENERATION_PREFIX+'/source.cif']):raise ValueError('Prior source graph export changed')
+    log=members[CEDAR30_GENERATION_PREFIX+'/elbow.log'].decode()
+    if "AttributeError: 'empty' object has no attribute 'pdbx_model_Cartn_x_ideal'" not in log:
+        raise ValueError('Prior installed input-parser evidence differs')
+    return qualified,prior,rotation
+
+
+def _read_capsule(path, expected_sha=None):
+    original=path.read_bytes();digest=_sha(original)
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256}):
+        raise ValueError('Require the exact verified Cedar 29 or Cedar 30 review ZIP')
+    with zipfile.ZipFile(io.BytesIO(original)) as z:
+        entries=z.infolist();names=[e.filename for e in entries]
+        if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
+        members={e.filename:z.read(e) for e in entries}
+    header=json.loads(members['probe_receipt.json'])
+    if header.get('delivery_prefix')=='30_Cedar':qualified,prior,rotation=_read_cedar30_members(members)
+    else:qualified,prior,rotation=_read_cedar29_members(members)
+    return members,qualified,prior,rotation,original
 
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--review-zip',type=Path,default=Path.home()/'NASolve-live-tests/29_Cedar_cif-base-rotation-94wuz090/29_Cedar_94wuz090_cif_base_rotation_review.zip')
+    default_review='NASolve-live-tests/30_Cedar_cif-numerical-recovery-_ixms4r3/30_Cedar__ixms4r3_cif_numerical_recovery_review.zip' if BUNDLE['delivery_prefix']=='31_Cedar' else 'NASolve-live-tests/29_Cedar_cif-base-rotation-94wuz090/29_Cedar_94wuz090_cif_base_rotation_review.zip'
+    parser.add_argument('--review-zip',type=Path,default=Path.home()/default_review)
     parser.add_argument('--output-parent',type=Path,default=Path.home()/'NASolve-live-tests')
     parser.add_argument('--phenix-root',type=Path,default=Path.home()/'Applications/phenix-2.2.1-6174')
     parser.add_argument('--component',action='append',help='Explicit component candidate selection; this reviewed slice defaults to DP')
@@ -493,19 +556,24 @@ def main():
         parent.mkdir(parents=True,exist_ok=True);session=Path(tempfile.mkdtemp(prefix=BUNDLE['delivery_prefix']+'_cif-numerical-recovery-',dir=parent))
         _materialize(runtime,session/'runtime');sys.path[:0]=[str(session/'runtime/src'),str(session/'runtime')];sys.dont_write_bytecode=True
         members,qualified,prior,rotation,original=_read_capsule(review);_materialize(members,session/'inputs/review');frozen=session/'inputs/review'
+        source_members,source_prefix=_source_view(members);source_root=frozen/PurePosixPath(source_prefix) if source_prefix else frozen
+        if source_prefix:
+            previous_generation=json.loads(members['probe_receipt.json'])
+            receipt['previous_generation']={'delivery_prefix':'30_Cedar','status':'FAILED_NO_CANDIDATE','phase':'INPUT_PARSER','native_returncode':1,
+                'chemical_rejection':'NOT_ASSESSED','numerical_reviews':'NOT_ASSESSED','evidence':{'anchor':'probe_directory','path':'inputs/review/'+CEDAR30_GENERATION_PREFIX+'/elbow.log'}}
         from nasolve.cif_numerical_recovery import plan_numerical_recovery,prepare_graph_generation_source,generate_numerical_recovery,validate_rotation_evidence
         from nasolve.cif_fixed_geometry import qualify_fixed_policy_geometry
-        expected=json.loads(members[ROTATION_PREFIX+'/expected_inventory.json']);saved=prior['geometry_trial']['result']
+        expected=json.loads(source_members[ROTATION_PREFIX+'/expected_inventory.json']);saved=prior['geometry_trial']['result']
         proof=qualified['native_correction_audit']['result']
         validation=validate_rotation_evidence(rotation['native_rotation_audit']['result'],rotation['rotation_plan'],saved,proof['constraint_signature_before'])
-        candidate=frozen/'inputs/review/candidate/continued_geometry_model.pdb'
+        candidate=source_root/'inputs/review/candidate/continued_geometry_model.pdb'
         replay=qualify_fixed_policy_geometry(expected,prior['native_roundtrip']['native_validation'],candidate,prior['serialization'])
         if replay!=prior['native_mechanics'] or not replay['mechanics_checks_pass']:raise ValueError('Native mechanics prerequisite does not replay')
-        capture=rotation['native_rotation_audit'];directory=frozen/ROTATION_PREFIX
+        capture=rotation['native_rotation_audit'];directory=source_root/ROTATION_PREFIX
         cifs=[directory/PurePosixPath(r['path']) for r in capture['inputs'] if r['role']=='dictionary']
         plan=plan_numerical_recovery(expected,cifs,components=components);_json(session/'numerical_recovery_plan.json',plan)
         if plan['blocked'] or not plan['selected']:raise ValueError('Explicit numerical recovery plan is blocked or empty')
-        receipt.update(prior_archive={'sha256':_sha(original),'bytes':len(original),'verified_payloads':1173},
+        receipt.update(prior_archive={'sha256':_sha(original),'bytes':len(original),'verified_payloads':len(json.loads(members['manifest.json']))},
             prior_convergence=rotation['prior_convergence'],prior_stopping=rotation['prior_stopping'],prior_continuation=rotation['prior_continuation'],
             prerequisite_mechanics_replayed=True,prior_rotation_evidence_recomputed=validation,source_plan=plan)
         print('Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
@@ -517,6 +585,21 @@ def main():
             if _sha(source.read_bytes())!=item['source_sha256']:raise ValueError('Selected source changed')
             preparation=prepare_graph_generation_source(source,code,session/'graph_preview'/code/'source.cif')
             receipt['graph_preparations'][code]=preparation
+        controls=BUNDLE.get('component_controls',[])
+        if len(components)+len(controls)>3 or set(components)&{r['component'] for r in controls}:raise ValueError('Candidate and public-control scope exceeds bounds or overlaps')
+        receipt['component_controls']={};sources={item['component']:cifs[item['input_index']] for item in plan['selected']}
+        for control in controls:
+            from nasolve.cif_component_controls import assess_component_control
+            code=control['component'];data=runtime[control['path']]
+            if len(data)!=control['size'] or _sha(data)!=control['sha256']:raise ValueError('Pinned public control changed')
+            target=session/'component_controls/sources'/(code+'.cif');target.parent.mkdir(parents=True,exist_ok=True)
+            with target.open('xb') as handle:handle.write(data)
+            report=assess_component_control(target,code);receipt['component_controls'][code]=report
+            _json(session/'component_controls'/(code+'_control.json'),report)
+            if report['policy_status']!='PASS':raise ValueError('Component control policy requires review: '+code)
+            receipt['graph_preparations'][code]=prepare_graph_generation_source(target,code,session/'graph_preview'/code/'source.cif')
+            sources[code]=target
+            print('Public control:',code,'; graph',report['graph_status'],'; NARestraints class',report['mapped_base_class'],'; pairing/stacking compiler',report['policy_status'],flush=True)
         if not args.inspect_only:
             from nasolve.phenix_runtime import installation_from_candidate
             phenix=installation_from_candidate(args.phenix_root,base_environment={k:v for k,v in os.environ.items() if k not in NATIVE_OVERRIDES})
@@ -525,18 +608,21 @@ def main():
             if not elbow or not Path(elbow).resolve().is_relative_to(Path(phenix.root).resolve()):raise ValueError('Require an installation-bound eLBOW')
             receipt['elbow_executable_sha256']=_sha(Path(elbow).read_bytes());receipt['phenix_version']=phenix.version
             receipt['dictionary_generation']='ATTEMPTED';receipt['candidates']={}
-            for item in plan['selected']:
-                code=item['component'];print('Generating independent numerical candidate:',code,flush=True)
-                result=generate_numerical_recovery(cifs[item['input_index']],code,session/'generation',elbow,
+            for code,source in sources.items():
+                print('Generating independent numerical candidate:',code,flush=True)
+                result=generate_numerical_recovery(source,code,session/'generation',elbow,
                     environment=phenix.environment,phenix_version=phenix.version,timeout_seconds=args.timeout_seconds)
                 receipt['candidates'][code]=result
                 print(code,'candidate:',result['status'],flush=True)
                 inspection=result.get('original_source_inspection',{});assessment=inspection.get('generated_assessment') or {}
                 findings=[f for c in assessment.get('components',[]) for f in c['findings'] if f['rule_id']=='PLANE-01' and f['status']!='PASS']
-                print(code,'retained plane/angle reviews:',len(findings),flush=True)
+                if assessment:print(code,'retained plane/angle reviews:',len(findings),flush=True)
+                else:print(code,'numerical assessment: NOT_RUN (no generated dictionary)',flush=True)
+                print(code,'generator execution:',result.get('generation',{}).get('execution',{}).get('status','NOT_RUN'),flush=True)
             receipt['dictionary_generation']='COMPLETED' if all(r['status']=='CANDIDATE_REVIEW' for r in receipt['candidates'].values()) else 'REVIEW_REQUIRED'
             if _sha(Path(elbow).read_bytes())!=receipt['elbow_executable_sha256'] or _fingerprints(phenix,{**capture,'native_validation':expected})!=fingerprints:raise ValueError('Selected generator or installed source changed')
         if any((frozen/PurePosixPath(n)).read_bytes()!=d for n,d in members.items()):raise ValueError('Frozen evidence changed')
+        if any((session/'component_controls/sources'/(c['component']+'.cif')).read_bytes()!=runtime[c['path']] for c in controls):raise ValueError('Frozen public control changed')
         if review.read_bytes()!=original:raise ValueError('Original review ZIP changed')
         receipt.update(analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True)
         _json(session/'probe_receipt.json',receipt)

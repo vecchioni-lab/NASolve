@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Canonical graph-source tags and explicit PDU control
+
+- Verify Cedar 30's 1,185 payloads: installed eLBOW fails in the input parser
+  before producing a dictionary. Preserve its complete failed attempt and
+  distinguish absent numerical assessment from a zero-review count.
+- Emit canonical mixed-case CCD Cartn coordinate tags for both source-coordinate
+  families. The corrected DP export has exactly equal parsed fields/values;
+  no chemical state or target is changed.
+- Add explicit hash-pinned public PDU control bundling and source/NARestraints
+  recipe-compiler tests, including full propynyl triple-bond preservation,
+  source H/charge/stereo, mapped AT contacts and both stacking orders.
+  The fixture is separate from the production curated library and old local
+  18-component ZIP. No residue is inserted into the frozen scaffold.
+- All 23 new regressions, 146 focused and 1,972 full tests pass, with two skips
+  and 276 subtests. Actual-input deleted-source/poisoned-import transport passes.
+- Cedar 31 retries DP and separately generates PDU using existing isolated
+  generation/state/numerical gates. Installed generation remains pending;
+  no native dictionary replacement, policy guessing, refinement or adoption.
+
 ### Source-graph numerical candidates and branch artifact storage
 
 - Verify Cedar 29: all 1,173 payloads, 17 mechanics prerequisites and 96 sampled

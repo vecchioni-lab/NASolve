@@ -156,7 +156,11 @@ for actual behavior; history is evidence, not a second task queue.
   directions; no independent coarse sample improves the fixed objective.
   Cedar 30 prepares a separate graph-only source and independent numerical
   dictionary candidate for explicitly selected DP, with full source chemistry
-  comparisons. Installed generation is pending; no candidate is applied.
+  comparisons. Its returned eLBOW input-parser failure produces no candidate.
+  Cedar 31 fixes coordinate-tag serialization and adds the requested PDU
+  control: pinned full propynyl graph plus existing NARestraints T-role
+  pairing/stacking compiler checks. Installed generation remains pending; no
+  residue is inserted into the frozen scaffold or candidate applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

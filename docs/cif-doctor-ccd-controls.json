@@ -377,6 +377,33 @@
           "sheet": "guanine"
         }
       ]
+    },
+    {
+      "atom_count": 38,
+      "bond_count": 39,
+      "code": "PDU",
+      "control_intent": "T-like 5-propynyl-dU: preserve C5-C5A-C5B-C5M with a C5A-C5B triple bond, all source H/formal charges and D-sugar declarations. Exercise existing NARestraints A:T and bidirectional stacking role controls separately from the frozen model.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 9033,
+        "ccd_modified_date": "2021-07-21",
+        "requested_url": "https://files.rcsb.org/ligands/download/PDU.cif",
+        "retrieved_utc": "2026-10-19T20:05:22.337109+00:00",
+        "sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292"
+      },
+      "workbook_rows": [
+        {
+          "row": 114,
+          "sheet": "thymine"
+        }
+      ],
+      "current_workbook": {
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+      },
+      "test_fixture": "tests/fixtures/public_ccd/PDU.cif",
+      "scope": "EXPLICIT_PUBLIC_COMPONENT_CONTROL_NOT_A_PRODUCTION_CURATED_DICTIONARY"
     }
   ],
   "document_kind": "cif-doctor-public-ccd-control-provenance",
@@ -388,7 +415,7 @@
     "8RO is an official challenge identity only, not an alias for lab DE.",
     "Workbook cell values are frozen as evidence, not repaired.",
     "No native Phenix interpretation or achieved-geometry qualification performed here.",
-    "Only provenance and control intent are committed; public CIF downloads remain local.",
+    "The original 18 downloaded controls remain local. The explicitly requested PDU control is an unmodified, hash-pinned public test fixture; it is not installed into the production curated library.",
     "CCDs change: explicit future acquisition must verify the pinned hash or record a new revision."
   ],
   "recorded_date": "2026-10-11",
@@ -402,5 +429,7 @@
     "authority": "curated base roles and atom mapping; not numerical geometry, bond-order, protonation, or universal glycosidic-bond truth",
     "repository_path": "restraints/data/Ligands.xlsx",
     "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
-  }
+  },
+  "source_collection_updated_date": "2026-10-19",
+  "historical_control_zip_component_count": 18
 }
