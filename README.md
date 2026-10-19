@@ -46,6 +46,9 @@ that verified policy, with strict manager matching, stopping/gradient evidence
 and native PDB readback. The returned trial passes all 17 native mechanics
 checks, decreases the objective and stops with a line-search error. Geometry
 qualification remains open and ordinary PostMR is unchanged.
+A separate Cedar 23 diagnostic now checks native gradients against finite
+energy differences at the saved endpoints and repeats dictionary assessment.
+It performs no optimization; installed numerical evidence is pending.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

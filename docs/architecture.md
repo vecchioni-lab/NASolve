@@ -364,6 +364,15 @@ manager through optimization. The objective decreases, but a line-search error
 at 905 iterations retains NOT_CONVERGED_ERROR. Scientific qualification remains
 open, including CGY–DX pairing and local angle discrepancies.
 
+The separate Cedar 23 gradient audit reuses Cedar 22's exact initial manager
+and numerical-source fingerprints. It evaluates saved endpoints under the full
+fixed policy plus isolated category controls, comparing analytical directional
+derivatives with central differences at four steps. Repeat/additivity and
+neighbour-count evidence distinguish sampled numerical inconsistencies without
+altering definitions or native equality checks. Existing CIF Doctor checks and
+generic outlier-selected distance groups accompany the audit. No optimization,
+model change or scientific approval occurs; installed execution is pending.
+
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
 (`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The

@@ -800,6 +800,50 @@ experimental fit. Overall REVIEW/exit 2 and no adoption remain deliberate.
 Only within-trial energies share this new policy; Cedar 19/20 retain their
 historical objective and stopping record. Ordinary PostMR is unchanged.
 
+### Saved native gradient audit
+
+`scripts/build_cif_gradient_audit_probe.py` builds the separate Cedar 23 runner,
+`23_Cedar_probe_cif_gradient_audit.py`. It accepts only the verified 609-payload
+Cedar 22 capsule, replays its 17-check mechanics and stopping evidence, preserves
+all earlier payloads and assesses the same 19 dictionary files with CIF Doctor.
+The existing planar-angle rule detects the retained DP N5 conflict; this probe
+adds no replacement target. All explicit intersite distance groups are reported
+at the saved full-precision coordinates. Six coordinate-probe atoms are selected
+from the largest bond/angle nominal deviations, using native indices and labels
+with no residue-code or site allowlist.
+
+**Methods.** `cif_gradient_audit.run_native_gradient_audit` rebuilds and exactly
+matches the captured initial identities, coordinates, definitions, geometry,
+policy/origin metadata and eight installed API sources. The six installed
+numerical-source hashes and full static constraint signature must also match
+Cedar 22. Saved full-precision and PDB-rounded vectors are evaluated without
+optimization. Each case records the full objective plus isolated bond, angle,
+dihedral, chirality, planarity, parallelity and nonbonded controls. The controls
+change evaluation flags only, with no definition/input edits or adopted model.
+
+Analytical directional derivatives are compared to central energy differences
+at steps 1e-3, 1e-4, 1e-5 and 1e-6 Å. Directions include the full gradient,
+an alternating global direction, the selected atom axes and each category's
+gradient. Every sampled value remains visible; consistency requires agreement
+at two consecutive steps within absolute 1e-4 plus relative 1e-4. Separate
+repeat/snapshot and additivity checks use absolute 1e-8 / relative 1e-10.
+These numerical tolerances do not change native proxy comparisons. The audit
+also retains full per-family gradients, local descent profiles, neighbour
+counts and captured-versus-rebuilt energy/gradient-norm comparisons. Static
+constraints and installed source hashes must remain unchanged afterward.
+The cap is 4,000 native energy calls and a default 1,200-second timeout.
+
+This is a bounded diagnostic of sampled numerical consistency. A discrepancy
+requires interpretation of step dependence, controls and neighbour behaviour;
+it does not by itself identify a Phenix defect. Agreement cannot prove every
+gradient component, global convergence, intended pairing chemistry or
+experimental fit. No minimization, target retuning, candidate model, diffraction
+refinement or adoption occurs. Installed Cedar 23 execution is pending.
+`--inspect-only` performs capsule, distance-group and dictionary checks offline.
+The finite-difference method follows the same checking principle used in the
+[CCTBX gradient tutorial](https://cci.lbl.gov/docs/cctbx/tuto_rigid_body/);
+actual installed source identities remain pinned by the captured hashes.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

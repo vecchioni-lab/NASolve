@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-17",
+    "updated_date": "2026-10-19",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -2064,7 +2064,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Cedar 21 native membership review is complete; no repeat interpretation is required. Prepare a separate bounded geometry trial under the verified fixed NARestraints pairing/stacking policy, with actual stopping/gradient and PDB/native readback evidence. Preserve the changed-objective distinction and historical Cedar 19/20 REVIEW/iteration-limit records. Source/charge, pucker, absolute stereochemistry, complete geometry, refinement and adoption remain open. No next delivery is prepared here.",
+      "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
       "pairing_intent_provenance": {
         "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
@@ -2189,7 +2189,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Cedar 22 native mechanics and return verification are complete; no repeat run is requested. Review the saved CGY A:20\u2013DX D:3 pair pose/intent and retained DP B:4 N5 angle alongside the installed line-search/gradient evidence before preparing any next trial. Preserve full-precision endpoints, the NOT_CONVERGED_ERROR verdict and all historical objective distinctions. Complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open. No next delivery is prepared.",
+      "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
       "cedar21_return_verified_2026_10_18": {
         "archive": {
           "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2471,7 +2471,7 @@
         "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
         "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
       ],
-      "next_action": "Cedar 22 native mechanics and return verification are complete; no repeat run is requested. Review the saved CGY A:20\u2013DX D:3 pair pose/intent and retained DP B:4 N5 angle alongside the installed line-search/gradient evidence before preparing any next trial. Preserve full-precision endpoints, the NOT_CONVERGED_ERROR verdict and all historical objective distinctions. Complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open. No next delivery is prepared.",
+      "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
       "review_input": {
         "delivery_prefix": "21_Cedar",
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2660,6 +2660,139 @@
         },
         "evidence_record": "cif-linked-native-registration-evidence.json#narestraints_geometry_trial_2026_10_18.cedar22_return_verified_2026_10_18"
       }
+    },
+    "native_gradient_audit_2026_10_19": {
+      "status": "PREPARED_NATIVE_EVIDENCE_PENDING",
+      "delivery_prefix": "23_Cedar",
+      "policy_id": "cif-fixed-native-gradient-audit-v1",
+      "module": "src/nasolve/cif_gradient_audit.py",
+      "builder": "scripts/build_cif_gradient_audit_probe.py",
+      "template": "scripts/cif_gradient_audit_probe_template.py",
+      "runner_filename": "23_Cedar_probe_cif_gradient_audit.py",
+      "review_input": {
+        "filename": "22_Cedar_nnvwx71c_cif_na_geometry_review.zip",
+        "sha256": "81a4b5cdfea373abcf7bcd740f276545b318134d6f3613ccb701e945dd4476f4",
+        "payloads": 609,
+        "frozen_prior_payloads": 491
+      },
+      "behavior": {
+        "before": "Exact fixed-policy optimization/readback passed, but the native optimizer stopped with a line-search error and a false convergence criterion.",
+        "after": "Separate bounded evaluations compare native gradients with finite differences at saved full-precision and rounded vectors; no optimizer, model editing or target changes.",
+        "production_postmr": "UNCHANGED",
+        "narestraints_policy": "UNCHANGED",
+        "scientific_qualification": "REVIEW"
+      },
+      "methods": {
+        "prerequisites": "Exact archive/artifact checks and replay of all 17 Cedar 22 mechanics checks plus its stopping classification; preserve every earlier payload.",
+        "native_precondition": "Exact initial identities, coordinates, definitions, geometry, native policy/origin metadata, eight API sources, six numerical module hashes and the prior full static constraint signature.",
+        "coordinate_cases": [
+          "saved_full_precision",
+          "PDB_rounded_same_endpoint"
+        ],
+        "families": [
+          "full_objective",
+          "bond",
+          "angle",
+          "dihedral",
+          "chirality",
+          "planarity",
+          "parallelity",
+          "nonbonded"
+        ],
+        "directions": "Full-gradient and alternating global directions, three axes for each of six ranked outlier endpoints, and each category gradient.",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "consistency": "At least two consecutive central-difference step comparisons within abs 1e-4 plus rel 1e-4 times the larger derivative magnitude.",
+        "repeat_snapshot_tolerance": {
+          "absolute": 1e-08,
+          "relative": 1e-10
+        },
+        "energy_evaluation_cap": 4000,
+        "native_timeout_seconds": 1200,
+        "evidence": [
+          "Full per-family Cartesian gradient arrays",
+          "All finite-difference samples and bounds",
+          "Per-case captured/rebuilt target and gradient norms",
+          "Repeated baseline values and gradient/target additivity",
+          "Negative-gradient local energy profiles",
+          "Coordinate-dependent proxy counts",
+          "Unchanged static constraints and installed sources"
+        ],
+        "category_controls": "Fresh evaluation flags isolate terms; no alternative objective or model is optimized or adopted.",
+        "native_gate_tolerance": "EXACT_NATIVE_COMPARISONS_UNCHANGED"
+      },
+      "offline_actual_input": {
+        "capsule_check": "PASS_609_PAYLOADS",
+        "mechanics_replay": "EXACT_17_PASS",
+        "stopping": "PRESERVED_NOT_CONVERGED_ERROR",
+        "distance_groups": 20,
+        "probe_atoms": 6,
+        "selection": "Six unique endpoints from ranked absolute captured bond/angle nominal deviations; no site/component-code allowlist.",
+        "dictionary_assessor": "Existing cif_doctor.assess_dictionaries, frozen 19 inputs; report independently read input blocks, not projected modifier application.",
+        "DP_finding": {
+          "rule": "PLANE-01",
+          "code": "plane-angle-compatibility",
+          "center": "N5",
+          "neighbors": [
+            "C4",
+            "C6",
+            "C7"
+          ],
+          "targets_degrees": [
+            120.772,
+            109.471,
+            109.471
+          ],
+          "interior_planar_delta_degrees": 20.286,
+          "sigma_adjustment_lower_bound": 4.480821331153618,
+          "status": "REVIEW",
+          "replacement_targets": "NOT_INFERRED"
+        },
+        "native_execution": "NOT_RUN"
+      },
+      "schema_impact": {
+        "new_receipt_kind": "cif-native-gradient-audit-probe",
+        "native_receipt_kind": "cif_fixed_native_gradient_audit",
+        "schema_version": 1,
+        "existing_defaults_and_schemas": "UNCHANGED",
+        "migration": "None; historical receipts and convergence classifications are preserved."
+      },
+      "software_validation": {
+        "fail_before": "All eight initial numerical-core regressions fail before adding the module.",
+        "focused": {
+          "passed": 70,
+          "seconds": 7.14,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_gradient_audit.py tests/test_cif_gradient_audit_probe.py tests/test_cif_fixed_geometry.py tests/test_cif_na_geometry_probe.py"
+        },
+        "full": {
+          "passed": 1691,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 83.63,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "native_worker": "Synthetic native API control-flow checks pass for correct gradients, manager/source changes and timeout; optimizer never called. These are not installed Phenix results.",
+        "portability": "Source-bundled synthetic inspection passes after deleting both build checkouts and poisoning ambient NASolve imports.",
+        "native": "PENDING on Phenix 2.2.1-6174 / dispatcher 2.2.1 with captured source hashes; no Phenix installation in this Linux environment."
+      },
+      "primary_method_source": {
+        "url": "https://cci.lbl.gov/docs/cctbx/tuto_rigid_body/",
+        "role": "CCTBX primary tutorial demonstrates checking analytical gradients with finite differences; installed APIs remain pinned by recorded hashes.",
+        "checked_date": "2026-10-19"
+      },
+      "boundaries": [
+        "No optimizer, target/weight edits, dictionary generation, new coordinate model, diffraction/refinement or adoption.",
+        "No new dependencies or production pipeline change.",
+        "Step-dependent mismatch does not by itself establish a native software defect.",
+        "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
+        "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
+      ],
+      "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+      "evidence_record": "cif-linked-native-registration-evidence.json#native_gradient_audit_2026_10_19"
     }
   },
   "audience": [

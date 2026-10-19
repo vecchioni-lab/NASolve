@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-18** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-19** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -115,11 +115,31 @@ three remaining distance outliers are CGY A:20–DX D:3 hydrogen bonds, still
 outliers involve that pair. DP B:4 also retains its C6–N5–C7 discrepancy,
 **127.87° versus 109.471°**. These findings do not authorize target changes.
 
-**Current action:** no repeat run or next delivery is requested/prepared.
-Review the saved pair pose/intent, retained DP angle and installed line-search/
-gradient evidence before choosing another trial. Source/charge, pucker, absolute stereochemistry,
+**Current action: Cedar 23 is prepared; native execution pending.**
+`scripts/build_cif_gradient_audit_probe.py` builds
+`23_Cedar_probe_cif_gradient_audit.py` from the verified Cedar 22 capsule.
+It repeats dictionary assessment, records all 20 explicit intersite distance
+groups and selects six probe atoms from the largest captured bond/angle
+deviations. The K:X pair's existing GC-like intent is preserved. CIF Doctor
+already detects the retained DP N5 planar-angle conflict; no new target is
+inferred from the residuals.
+
+The native phase exactly matches the initial manager, eight native APIs and
+six numerical-source hashes, then evaluates full-precision and PDB-rounded
+endpoints under the full objective and seven isolated category controls.
+Four central-difference steps, per-family gradients, repeat/additivity checks,
+descent profiles and neighbour counts are retained. The cap is 4,000 energy
+evaluations / 1,200 seconds; no minimizer runs or new coordinate model is
+written. These numerical controls do not change the NARestraints policy or
+relax any exact native gate. Sampled agreement cannot establish full gradient
+correctness, convergence or chemistry. Source/charge, pucker, absolute stereochemistry,
 complete geometry, refinement and adoption remain open. Ordinary PostMR and
 historical gates are unchanged; private capsules/models/logs are not committed.
+Cedar 23 passes **70 focused checks (7.14 s)** and **1,691 full tests, two
+skips and 276 subtests (83.63 s)**, with actual-input offline inspection and
+synthetic deleted-build transport. Installed native gradient results remain
+pending.
+
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and
 **1,669 full tests, two skips and 276 subtests (76.03 s)**, including synthetic

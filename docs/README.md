@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-18**. Start with the
+Updated **2026-10-19**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -121,6 +121,10 @@ for actual behavior; history is evidence, not a second task queue.
   all 17 native mechanics checks, reduces the objective by 24.26% and retains
   NOT_CONVERGED_ERROR after a line-search stall. CGY–DX pairing distances and
   local angle discrepancies remain unresolved; geometry/convergence stay open.
+  Cedar 23 now supplies a bounded native gradient audit at saved full-precision
+  and rounded coordinates, with isolated category controls, repeat/additivity
+  evidence and existing dictionary checks. Its native execution is pending;
+  it changes no model, target or NARestraints pairing/stacking policy.
   Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Saved native gradient audit
+
+- Add a separate Cedar 23 diagnostic from the verified Cedar 22 capsule.
+  Rebuild and exactly match its initial manager, policy and numerical sources,
+  then evaluate saved full-precision and rounded endpoints without optimization.
+- Compare native directional gradients to four central-difference step sizes
+  under the full objective and seven isolated category controls. Record repeat
+  evaluations, target/gradient additivity, descent profiles and neighbour counts;
+  retain every discrepancy without changing native mechanics gates.
+- Reuse CIF Doctor's dictionary assessment and report all declared intersite
+  distance groups. Select coordinate probes from ranked outlier endpoints,
+  with no residue-code/site allowlist. Add source-bundled Git delivery and
+  generic biased-gradient, drift, provenance, budget and deleted-build checks.
+  All 1,691 tests pass. Native execution remains pending; no target edits, model
+  writes or adoption.
+
 ### Bounded geometry trial under verified NARestraints policy
 
 - Add Cedar 22 from the exact verified Cedar 21 endpoint, retaining all 19

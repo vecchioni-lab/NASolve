@@ -360,6 +360,14 @@ distances and ten angle outliers remain, with no recorded chirality sign
 conflicts. This verifies consumer mechanics through actual coordinate movement;
 convergence and complete chemistry/geometry remain under review.
 
+Cedar 23 now prepares a separate numerical check of those saved coordinates.
+It compares native gradients with small central energy differences at several
+step sizes, alongside category controls, repeated evaluations and the existing
+dictionary checks. Exact manager/policy/source matching remains mandatory.
+No minimizer runs, coordinates or targets are edited, or model is adopted.
+The check can localize sampled numerical inconsistencies; it cannot establish
+convergence or chemical correctness. Installed execution is pending.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -557,6 +565,10 @@ for a separate bounded trial and 17-check native PDB readback. It reuses the
 verified compiled inputs rather than selecting contacts again after movement.
 Returned native mechanics pass, while the optimizer's line-search error and
 remaining pairing/local-angle strain preserve scientific REVIEW.
+Cedar 23 adds bounded directional finite differences at saved full-precision
+and rounded coordinates, with isolated category, repeat and additivity controls.
+It reuses CIF Doctor's planar-angle rule and generic distance-group reporting;
+the fixed policy and all exact native gates remain unchanged.
 
 ## Primary references
 
