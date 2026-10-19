@@ -411,7 +411,8 @@ stopping evidence and native PDB mechanics are reported independently. The
 returned trial passes all 17 mechanics checks and all 336 sampled endpoint
 directions. Its target falls 28.72% but reaches the 1,000-iteration limit with
 the native criterion false. Accepted steps still lower the target at the end;
-a bounded continuation from saved full precision is the next proposed test.
+Cedar 28 supplies a bounded continuation from saved full precision, after a
+fresh match of the entire starting corrected gradient and target.
 The same strained pair/DP angle remains, and chemical qualification is open.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
@@ -693,8 +694,13 @@ and ten angle outliers remain at nominal deviation at least five, with no
 sign conflicts among 158 captured chirality proxies. A future continuation
 must start from saved full precision, freshly match the entire corrected
 start vector and fixed source/proxy identities, and repeat endpoint derivative
-and PDB mechanics checks. No continuation runner is yet prepared. No target
-tuning, diffraction refinement or adoption occurs.
+and PDB mechanics checks. Cedar 28 now supplies that opt-in continuation,
+with a fresh L-BFGS history and at most 1,000 further iterations / 20,000 calls.
+Its worker verifies the original manager before loading the saved native
+atom-order coordinates, then matches the complete corrected start vector and
+target. Prior/new stopping and cumulative optimizer counts remain separate.
+Installed continuation execution is pending. No target tuning, diffraction
+refinement or adoption occurs.
 
 ## Primary references
 

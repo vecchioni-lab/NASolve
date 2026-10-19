@@ -3,6 +3,7 @@ from __future__ import annotations
 import math
 
 POLICY_ID='cif-fixed-na-corrected-geometry-trial-v1'
+CONTINUATION_POLICY_ID='cif-fixed-na-corrected-geometry-continuation-v1'
 CORRECTION_ID='native-parallelity-both-first-planes-v1'
 AUDIT_ID='cif-fixed-native-plane-order-gradient-audit-v1'
 FAMILIES=('all','bond','angle','dihedral','chirality','planarity','parallelity','nonbonded')
@@ -38,6 +39,29 @@ def _directions(rows,vectors,baselines,kind=None):
         _need(row['status']=='CONSISTENT' if kind is None else row[kind+'_consistent'] is True)
 
 
+def _sampled_cases(q,atom_count,cases):
+    _need(set(q['cases'])==cases and q['step_sizes']==STEPS and q['directional_tolerance']=={'absolute':1e-4,'relative':1e-4})
+    selected=q['selected_indices'];_need(1<=len(selected)<=6 and len(set(selected))==len(selected)
+        and all(type(i) is int and 0<=i<atom_count for i in selected))
+    for case in q['cases'].values():
+        _need(case['sampled_gradients_consistent'] and case['baseline_repeats_consistent'] and case['captured_snapshot_match']['consistent'])
+        _need(case['target_additivity']['consistent'] and case['gradient_additivity']['consistent'] and set(case['families'])==set(FAMILIES))
+        full=case['families']['all']['baseline'];_finite(full['gradient'],3*atom_count);common={}
+        length=_norm(full['gradient'])
+        if length:common['full_gradient']=[g/length for g in full['gradient']]
+        v=[1. if i%2 else -1. for i in range(3*atom_count)];length=_norm(v);common['alternating_global']=[g/length for g in v]
+        for index in selected:
+            for axis in range(3):
+                v=[0.]*(3*atom_count);v[3*index+axis]=1.;common[f'atom_{index}_axis_{axis}']=v
+        for family in case['families'].values():
+            baseline=family['baseline'];g=baseline['gradient'];_finite(g,3*atom_count)
+            _need(family['sampled_directions_consistent'] and family['repeat_consistent'] and _close(_norm(g),baseline['gradient_norm']))
+            vectors=dict(common)
+            length=_norm(g)
+            if length:vectors['family_gradient']=[v/length for v in g]
+            _directions(family['directions'],vectors,g)
+
+
 def validate_gradient_qualification(result,atom_count):
     """Recompute sampled proof before allowing any optimizer invocation."""
     try:
@@ -47,26 +71,7 @@ def validate_gradient_qualification(result,atom_count):
               and q['captured_inventory_matches'] is True and q['normalization'] is False
               and q['model_optimization']=='NOT_RUN' and q['automatic_adoption'] is False)
         _need(q['constraint_signature_before']==q['constraint_signature_after'] and len(q['constraint_signature_before'])==64)
-        _need(set(q['cases'])==CASES and q['step_sizes']==STEPS and q['directional_tolerance']=={'absolute':1e-4,'relative':1e-4})
-        selected=q['selected_indices'];_need(1<=len(selected)<=6 and len(set(selected))==len(selected)
-            and all(type(i) is int and 0<=i<atom_count for i in selected))
-        for case in q['cases'].values():
-            _need(case['sampled_gradients_consistent'] and case['baseline_repeats_consistent'] and case['captured_snapshot_match']['consistent'])
-            _need(case['target_additivity']['consistent'] and case['gradient_additivity']['consistent'] and set(case['families'])==set(FAMILIES))
-            full=case['families']['all']['baseline'];_finite(full['gradient'],3*atom_count);common={}
-            length=_norm(full['gradient'])
-            if length:common['full_gradient']=[g/length for g in full['gradient']]
-            v=[1. if i%2 else -1. for i in range(3*atom_count)];length=_norm(v);common['alternating_global']=[g/length for g in v]
-            for index in selected:
-                for axis in range(3):
-                    v=[0.]*(3*atom_count);v[3*index+axis]=1.;common[f'atom_{index}_axis_{axis}']=v
-            for family in case['families'].values():
-                baseline=family['baseline'];g=baseline['gradient'];_finite(g,3*atom_count)
-                _need(family['sampled_directions_consistent'] and family['repeat_consistent'] and _close(_norm(g),baseline['gradient_norm']))
-                vectors=dict(common)
-                length=_norm(g)
-                if length:vectors['family_gradient']=[v/length for v in g]
-                _directions(family['directions'],vectors,g)
+        _sampled_cases(q,atom_count,CASES)
         plane=q['plane_order_audit'];_need(plane['analysis_completed'] and plane['order_safe_qualified'] and set(plane['cases'])==CASES)
         _need(plane['step_sizes']==STEPS and len(plane['toy_cases'])==6 and len(plane['rotation_controls'])==3)
         for case in [*plane['cases'].values(),{'proxies':plane['toy_cases'],'summary':plane['toy_summary']}]:
@@ -89,3 +94,37 @@ def validate_gradient_qualification(result,atom_count):
         return True
     except (KeyError,TypeError,OverflowError,ZeroDivisionError) as exc:
         raise ValueError('Require complete qualified native gradient evidence') from exc
+
+
+def validate_continuation(result,qualified,atom_count):
+    """Require a qualified, bounded prior endpoint before coordinate continuation."""
+    try:
+        validate_gradient_qualification(qualified,atom_count)
+        q=result
+        _need(q['policy_id'] in {POLICY_ID,CONTINUATION_POLICY_ID} and q['status']=='REVIEW')
+        _need(q['starting_coordinates'] in {'CAPTURED_INITIAL','SAVED_FULL_PRECISION_ENDPOINT'})
+        _need(q['captured_inventory_matches'] is True and q['qualified_initial_snapshot_matches'] is True
+            and q['policy_inventory'] is True and q['normalization'] is False and q['automatic_adoption'] is False)
+        _need(q['correction_policy_id']==CORRECTION_ID and q['endpoint_derivative_qualification']=='SAMPLED_NATIVE_DERIVATIVES_PASS')
+        _need(q['constraint_signature_before']==q['constraint_signature_after']==qualified['constraint_signature_before'])
+        for field,old in [('installed_optimizer_sources','installed_numeric_sources'),('installed_adapter_sources','installed_adapter_sources'),('installed_parallelity_sources','installed_parallelity_sources')]:
+            _need(q[field]==qualified[old])
+        stopping=q['stopping']
+        _need(stopping['error'] is None and stopping['native_criterion_met'] is False)
+        _need(all(type(stopping[k]) is int and stopping[k]>0 for k in ['iterations','calls','max_iterations']))
+        _need((stopping['reason']=='max_iterations' and stopping['iterations']>=stopping['max_iterations'])
+            or (stopping['reason']=='max_calls' and stopping['calls']>=q['termination_parameters']['max_calls']))
+        points=q['final_sites_cart'];_need(len(points)==atom_count)
+        for point in points:_finite(point,3)
+        audit=q['endpoint_gradient_audit']
+        _need(audit['policy_id']=='cif-fixed-native-gradient-audit-v1' and type(audit['evaluation_calls']) is int
+            and 0<audit['evaluation_calls']<=audit['max_evaluation_calls']<=4000)
+        _need(audit['analysis_completed'] is True and audit['automatic_adoption'] is False and audit['model_optimization']=='NOT_RUN')
+        _need(audit['selected_indices']==qualified['selected_indices'])
+        _sampled_cases(audit,atom_count,{'full_precision','pdb_rounded'})
+        for name,field in [('full_precision','final'),('pdb_rounded','serialized')]:
+            baseline=audit['cases'][name]['families']['all']['baseline']
+            _need(all(_close(q[field][key],baseline[key]) for key in ['target','gradient_norm']))
+        return True
+    except (KeyError,TypeError,OverflowError,ZeroDivisionError) as exc:
+        raise ValueError('Require complete qualified continuation evidence') from exc

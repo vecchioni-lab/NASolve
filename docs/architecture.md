@@ -431,10 +431,19 @@ approval are separate verdicts. Returned Cedar 27 verifies all 980 payloads,
 NOT_CONVERGED_LIMIT after 1,000 iterations / 1,028 calls, with no recorded
 optimizer error and the native criterion false. Every accepted target decreases,
 including the last 100 transitions. A separately bounded full-precision
-continuation is the next proposed trial; it must freshly match the entire
+continuation is now prepared; it must freshly match the entire
 starting corrected vector/target and unchanged sources/static constraints,
-then repeat endpoint derivatives and native PDB mechanics. That continuation
-is not implemented by rerunning Cedar 27, which restarts the original model.
+then repeat endpoint derivatives and native PDB mechanics. Cedar 28 implements
+that opt-in coordinate continuation. Its host/native worker recompute the prior
+endpoint proof, match the original manager, then require an exact saved
+full-precision start vector/target under unchanged native sources and proxies.
+The new optimizer uses fresh L-BFGS history, with at most 1,000 further
+iterations and 20,000 calls. It records prior stopping, new stopping and
+cumulative optimizer counts separately; full/rounded endpoint audits and all
+17 native PDB mechanics checks run again. Seed changes, PDB rounding, atom-order
+changes or unqualified prior derivatives refuse optimization. Existing
+initial-coordinate/default policies remain fixed. Installed continuation
+execution is pending.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

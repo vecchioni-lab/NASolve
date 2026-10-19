@@ -141,8 +141,10 @@ for actual behavior; history is evidence, not a second task queue.
   from the original initial coordinates with fresh endpoint derivatives and
   native mechanics readback. Its returned 980-payload capsule passes all 17
   mechanics checks and all 336 sampled endpoint directions, while retaining
-  NOT_CONVERGED_LIMIT at 1,000 iterations. The target still decreases; a future
-  bounded continuation must start from saved full precision. Native energy
+  NOT_CONVERGED_LIMIT at 1,000 iterations. The target still decreases; the next
+  bounded continuation is supplied by Cedar 28, starting from saved full
+  precision after an exact source/target/gradient match, with fresh optimizer
+  history and repeated endpoint/native mechanics checks. Native energy
   definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

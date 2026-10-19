@@ -364,21 +364,44 @@ nine angle outliers involve that pair. DP B:4 N5 remains **127.6378 degrees**
 versus 109.471 degrees. Preserve these findings, pairing intent and recipe
 targets; numerical descent does not resolve their scientific interpretation.
 
-**Current action:** prepare and validate a separately bounded continuation
-from Cedar 27's **saved full-precision endpoint**, supported by its continued
-accepted-step descent. It must match exact atom correspondence, the whole
-starting corrected gradient/target, native sources, definitions, compiled
-NARestraints policy and static constraints before optimization; retain actual
-stopping and repeat endpoint derivative/native PDB mechanics gates afterward.
-**No next delivery is prepared. Do not rerun Cedar 27:** its runner restarts
-the original initial coordinates. Do not seed a numerical continuation from
-the rounded PDB. Cedar 22 remains **NOT_CONVERGED_ERROR**; Cedar 27 remains
-**NOT_CONVERGED_LIMIT**. Production defaults, geometry/scientific qualification,
-refinement and adoption remain open. No new installs or migration. Private
-capsules, coordinates, dictionaries and logs remain outside Git. Exact source
-identities and verification counts live in
-`cif-linked-native-registration-evidence.json`, mirrored in the implementation
-map.
+**Cedar 28 prepared: saved-full-precision continuation; native result pending.**
+`scripts/build_cif_geometry_continuation_probe.py` builds
+`28_Cedar_probe_cif_geometry_continuation.py` from the verified 980-payload Cedar
+27 ZIP. The reusable `continuation` opt-in recomputes the qualified endpoint
+proof and preserves original source/policy/static identities. The native worker
+first matches the original initial manager and corrected snapshot, then loads
+Cedar 27's full-precision native atom-order coordinates and requires a fresh
+match of the entire starting corrected gradient and target:
+**2697.762263611603 / 372.53738052839816**. No rounded PDB is used as optimizer
+state. The new L-BFGS history starts fresh; only coordinates are continued.
+
+The stage permits **1,000 additional iterations / 20,000 calls**, epsilon
+**1e-5** and a **1,200 s** timeout. It preserves prior stopping, actual new
+stopping and cumulative optimizer iteration/call counts separately. Fresh
+full/rounded endpoint derivative audits retain the **4,000-evaluation** cap;
+all **17 native PDB mechanics checks** must pass again. Separate candidate:
+`candidate/continued_geometry_model.pdb`. New-stage displacement from the prior
+endpoint is recorded separately from original-model serialization displacement.
+
+All **12 fail-before precondition regressions** now pass. The 36 new regressions
+cover raw proof/policy/source defects, changed/rounded/reordered seeds refused
+before the optimizer, all three native stopping outcomes, cumulative counts,
+coherent captured-worker forgery, unsafe/duplicate/symlink capsules and deleted
+builds with poisoned ambient/captured code. **241 focused tests pass (45.09 s)**.
+The actual 980-payload source-bundled offline inspector and exact 17-check
+mechanics replay pass. The full suite passes **1,862 tests, two skips and
+276 subtests (122.57 s)**. Exact commands are recorded in the evidence ledger. These native-worker controls use explicit fakes; no installed
+Phenix/Coot runs here.
+
+**Current action:** run Cedar 28 via the pinned Git/worktree/build/run terminal
+block and return its output and review ZIP. The actual installed continuation
+is pending. Preserve Cedar 22 **NOT_CONVERGED_ERROR**, Cedar 27
+**NOT_CONVERGED_LIMIT**, the strained CGY-DX/DP findings and every exact gate.
+NARestraints selections, targets, stacking matrix and native definitions remain
+fixed. Production integration, geometry/scientific qualification, refinement
+and adoption stay open. No new installs or migration. Private inputs/capsules
+remain excluded from Git; the source/evidence record and implementation map
+own exact schemas, hashes, test commands and next action.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

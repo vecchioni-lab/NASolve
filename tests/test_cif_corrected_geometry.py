@@ -48,7 +48,7 @@ def test_trial_qualification_rechecks_samples_and_refuses_incomplete_proof(defec
         with pytest.raises(ValueError):validate_gradient_qualification(q,count)
 
 
-def native_fixture(tmp_path,monkeypatch,mode):
+def native_fixture(tmp_path,monkeypatch,mode,*,optimizer_control=None):
     import nasolve.cif_native_validation as native_module
     import nasolve.cif_fixed_geometry as fixed_module
     from nasolve.cif_gradient_audit import fixed_signature
@@ -62,6 +62,11 @@ def native_fixture(tmp_path,monkeypatch,mode):
     native['geometry']['proxy_details']['parallelity']=[proxy]
     native['geometry']['proxy_counts']['parallelity']=1
     seed=worker_fixture(tmp_path/'fake',native,mode if mode in {'limit','rounding'} else 'converged')
+    if optimizer_control is not None:
+        control=Path(optimizer_control);control.write_text('limit')
+        source=seed/'scitbx/lbfgs.py';text=source.read_text().replace("'limit'",'MODE').replace('v*.99','v*.99137').replace('MODE==MODE',"MODE=='limit'")
+        text=text.replace('class termination_parameters:',"MODE=Path("+repr(str(control))+").read_text().strip()\nclass termination_parameters:")
+        source.write_text(text)
     kinds=['bond','angle','dihedral','chirality','planarity','nonbonded']
     (seed/'cctbx/array_family/flex.py').write_text('from fake_arrays import Vec\ndef vec3_double(values,fill=None):return Vec([fill]*values if isinstance(values,int) else values)\ndef size_t(v):return list(v)\n')
     (seed/'cctbx/geometry_restraints/flags.py').write_text('class flags:\n def __init__(self,default=False):\n'+''.join(f'  self.{k}=default\n' for k in kinds+['parallelity']))

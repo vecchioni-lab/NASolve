@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Saved full-precision geometry continuation
+
+- Add an explicit opt-in continuation for a completed corrected trial whose
+  stopping remains limited and whose endpoint derivatives/native mechanics
+  are qualified. Recompute prior raw derivative evidence and match native
+  sources/static definitions, the saved target and the entire corrected
+  gradient before optimization. Changed, rounded or reordered seeds refuse.
+- Add Cedar 28 from the verified 980-payload Cedar 27 return. Continue saved
+  coordinates with fresh L-BFGS history for at most 1,000 further iterations;
+  retain prior/new stopping and cumulative optimizer counts independently.
+- Repeat fresh endpoint derivative and all 17 native PDB mechanics checks;
+  preserve NARestraints pairing/stacking policy, original energy/targets and
+  exact source identities. Source-bundled offline and deleted-build inspection
+  pass. Installed continuation execution is pending.
+- Add 36 generic proof/seed/worker/capsule/transport regressions; 241 focused
+  tests and all 1,862 full tests pass, with two skips and 276 subtests.
+  Existing corrected/uncorrected defaults, production behavior and
+  dependencies are unchanged. No target tuning, refinement or adoption.
+
 ### Bounded geometry trial with qualified native gradients
 
 - Verify the 857-payload Cedar 26 return: all 504 sampled full/category and

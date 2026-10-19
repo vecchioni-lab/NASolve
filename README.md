@@ -70,7 +70,8 @@ gates, fresh endpoint derivatives and native PDB readback accompany the trial.
 Returned Cedar 27 passes all 17 native mechanics checks and all 336 sampled
 endpoint derivative directions. The fixed objective falls 28.72%, but the
 trial reaches its 1,000-iteration limit with the native criterion false. A
-future bounded continuation must use the saved full-precision endpoint.
+bounded continuation is supplied by Cedar 28, using the saved full-precision
+endpoint and a fresh optimizer with the same policy and endpoint checks.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

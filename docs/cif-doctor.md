@@ -1078,8 +1078,42 @@ angle is **127.638 degrees** against 109.471 degrees. No target changes follow
 from those residuals alone. A separately bounded continuation from saved full
 precision is justified for the next numerical test, after fresh exact
 source/start-vector matching and with new endpoint derivative/mechanics gates.
-No next delivery is prepared; rerunning Cedar 27 restarts the original model.
-Geometry, convergence, chemistry and adoption remain open.
+Cedar 28 supplies that continuation below. Rerunning Cedar 27 restarts the
+original model. Geometry, convergence, chemistry and adoption remain open.
+
+### Bounded continuation from saved full precision
+
+`scripts/build_cif_geometry_continuation_probe.py` builds Cedar 28,
+`28_Cedar_probe_cif_geometry_continuation.py`, from the exact 980-payload Cedar 27
+return. Its reusable engine opt-in `continuation` requires the same qualified
+correction, complete endpoint derivative proof, prior limit stopping and exact
+native source/static identities. The source-bundled inspector preserves all
+prior payloads, pins the captured trial worker/verifier bytes, replays the
+17 mechanics checks and recomputes the raw prior derivative evidence. Captured
+code is retained as evidence and never executed.
+
+The native worker first rebuilds and matches the original manager and qualified
+initial snapshot. It then loads the saved full-precision native atom-order
+coordinates and requires the same static signature plus a fresh match of the
+**entire corrected gradient and target** to Cedar 27. The expected start is
+**2697.762263611603 / 372.53738052839816** (target / corrected norm). Rounded,
+reordered or altered points cannot pass that gate. The continuation starts
+fresh L-BFGS history; it restores coordinates rather than optimizer memory.
+
+One stage permits at most **1,000 further iterations / 20,000 calls**, gradient
+epsilon **1e-5** and **1,200 s** native timeout. It retains prior stopping and
+reports new stopping and cumulative optimizer counts separately. Native energy
+definitions, all 19 CIF/13 PHIL inputs, explicit NARestraints pair/stack policy
+and native sources/static proxies stay fixed. Fresh full/rounded endpoint
+derivative audits retain the **4,000-evaluation** cap, and candidate
+`candidate/continued_geometry_model.pdb` must pass all 17 native PDB mechanics
+checks. New-stage displacement is measured from the saved endpoint separately
+from serialization displacement relative to the original initial model.
+
+The actual-input offline inspector and synthetic deleted-build transport pass.
+Installed continuation execution is pending. Existing corrected/uncorrected
+trial defaults are unchanged; no new package, target tuning, policy guessing,
+refinement, scientific approval or adoption is introduced.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

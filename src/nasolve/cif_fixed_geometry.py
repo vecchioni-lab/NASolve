@@ -238,6 +238,21 @@ try:
         if not _close(float(initial.target),baseline["target"]) or not _vector_agrees(list(initial.gradients.as_double()),baseline["gradient"]):
             raise RuntimeError("Qualified initial corrected snapshot differs")
         result["qualified_initial_snapshot_matches"]=True
+    if trial.get("continuation"):
+        from corrected_geometry_core import validate_continuation
+        prior=json.loads(Path("continuation_validation.json").read_text())
+        validate_continuation(prior,derivative_proof,inventory["atom_count"])
+        result["captured_initial"]=snapshot(initial)
+        sites=flex.vec3_double(prior["final_sites_cart"])
+        if signature(sites)!=fixed:raise RuntimeError("Continuation changed native static constraints")
+        initial=energy(sites);baseline=prior["endpoint_gradient_audit"]["cases"]["full_precision"]["families"]["all"]["baseline"]
+        if not _close(float(initial.target),baseline["target"]) or not _vector_agrees(list(initial.gradients.as_double()),baseline["gradient"]):
+            raise RuntimeError("Saved full-precision corrected snapshot differs")
+        parent=prior.get("continuation",{})
+        result.update(starting_coordinates="SAVED_FULL_PRECISION_ENDPOINT",qualified_continuation_snapshot_matches=True,
+            continuation={"archive_sha256":trial["continuation"]["archive_sha256"],"optimizer_history":"FRESH_LBFGS_FROM_SAVED_COORDINATES",
+                "prior_stopping":prior["stopping"],"prior_total_iterations":parent.get("total_iterations",prior["stopping"]["iterations"]),
+                "prior_total_calls":parent.get("total_calls",prior["stopping"]["calls"])})
     result["initial"]=snapshot(initial);save()
     class Evaluator:
         def __init__(self):self.x=sites.as_double().deep_copy();self.history=[]
@@ -268,6 +283,9 @@ try:
     result["stopping"]={"reason":stops[-1] if stops else "unreported","error":minimizer.error,
         "iterations":int(minimizer.iter()),"calls":int(minimizer.nfun()),"max_iterations":trial["max_iterations"],
         "native_criterion_met":bool(scitbx.lbfgs.traditional_convergence_test(evaluator.x.size(),trial["gradient_epsilon"])(evaluator.x,e.gradients.as_double()))}
+    if trial.get("continuation"):
+        result["continuation"].update(total_iterations=result["continuation"]["prior_total_iterations"]+result["stopping"]["iterations"],
+            total_calls=result["continuation"]["prior_total_calls"]+result["stopping"]["calls"])
     if correction:
         def evaluate(points,family):
             flags_value=flags.flags(default=family=="all")
@@ -298,7 +316,7 @@ sys.exit(0 if result["status"]=="REVIEW" else 2)
 def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path], expected: dict,
         output_parent: Path, executable: Path, *, environment: dict, phenix_version: str,
         max_iterations: int=500, timeout_seconds: int=1200, policy_inventory: bool=False,
-        validated_correction: dict | None=None) -> dict:
+        validated_correction: dict | None=None, continuation: dict | None=None) -> dict:
     """Run one bounded native trial in a fresh directory; retain failure evidence."""
     if isinstance(max_iterations,bool) or not 1<=max_iterations<=1000:raise ValueError('Iterations must be 1-1000')
     if not math.isfinite(float(timeout_seconds)) or not 1<=timeout_seconds<=3600:raise ValueError('Timeout must be 1-3600 seconds')
@@ -317,6 +335,13 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
         if len(proof['installed_numeric_sources'])!=6 or len(proof['installed_adapter_sources'])!=2 or len(proof['installed_parallelity_sources'])!=2:
             raise ValueError('Require complete qualified native source identities')
         policy_id=POLICY_ID
+    if continuation is not None:
+        from .cif_corrected_geometry import validate_continuation,CONTINUATION_POLICY_ID
+        if validated_correction is None or not isinstance(continuation,dict):raise ValueError('Continuation requires qualified corrected geometry')
+        validate_continuation(continuation['result'],validated_correction['result'],expected['atom_count'])
+        digest=continuation.get('archive_sha256','')
+        if len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest):raise ValueError('Require continuation archive provenance')
+        policy_id=CONTINUATION_POLICY_ID
     review_captured_geometry(expected);_model(expected,model,coordinates_match=True)
     paths=[Path(p).resolve() for p in [model,*dictionaries,*phils]]
     if not dictionaries or len(paths)!=len(set(paths)):raise ValueError('Require distinct explicit native inputs')
@@ -345,8 +370,12 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
         (work/'gradient_validation.json').write_text(json.dumps(validated_correction['result'],indent=2,sort_keys=True,allow_nan=False)+'\n')
         for name,source in [('correction_core.py','cif_parallelity_correction.py'),('gradient_core.py','cif_gradient_audit.py'),('corrected_geometry_core.py','cif_corrected_geometry.py')]:
             (work/name).write_bytes(Path(__file__).with_name(source).read_bytes())
+    if continuation is not None:
+        trial['continuation']={'archive_sha256':continuation['archive_sha256']}
+        (work/'geometry_spec.json').write_text(json.dumps(trial,indent=2,sort_keys=True,allow_nan=False)+'\n')
+        (work/'continuation_validation.json').write_text(json.dumps(continuation['result'],indent=2,sort_keys=True,allow_nan=False)+'\n')
     executable=Path(executable).resolve();command=[str(executable),'-B','geometry_worker.py','geometry_spec.json']
-    receipt={'schema_version':1,'audit_kind':'cif_fixed_native_corrected_geometry_trial' if validated_correction is not None else 'cif_fixed_native_geometry_trial','policy_id':policy_id,
+    receipt={'schema_version':1,'audit_kind':'cif_fixed_native_corrected_geometry_continuation' if continuation is not None else 'cif_fixed_native_corrected_geometry_trial' if validated_correction is not None else 'cif_fixed_native_geometry_trial','policy_id':policy_id,
         'status':'FAILED','native_directory':str(work),'inputs':inputs,'command':command,
         'executable_provenance':str(executable),'executable_sha256':hashlib.sha256(executable.read_bytes()).hexdigest(),
         'phenix_version':phenix_version,'api_sources':API_SOURCES,'automatic_adoption':False,'scientific_approval':'NOT_RUN',
@@ -376,7 +405,9 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
                         raise ValueError('Worker changed fixed constraints')
                     if validated_correction is not None:
                         if (result.get('correction_policy_id')!='native-parallelity-both-first-planes-v1'
-                                or not result.get('qualified_initial_snapshot_matches') or result.get('starting_coordinates')!='CAPTURED_INITIAL'
+                                or not result.get('qualified_initial_snapshot_matches')
+                                or result.get('starting_coordinates')!=('SAVED_FULL_PRECISION_ENDPOINT' if continuation is not None else 'CAPTURED_INITIAL')
+                                or (continuation is not None and not result.get('qualified_continuation_snapshot_matches'))
                                 or not result.get('endpoint_gradient_audit',{}).get('analysis_completed')
                                 or result['constraint_signature_before']!=validated_correction['result']['constraint_signature_before']):
                             raise ValueError('Worker omitted qualified correction or endpoint gradient evidence')
