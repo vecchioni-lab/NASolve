@@ -1012,8 +1012,46 @@ evaluation pairs under a separate 10,000-pair cap, plus the 4,101 global audit
 evaluations and six preflight calls. All numerical tolerances are unchanged.
 The per-plane audit currently supports zero-target, zero-slack, non-top-out,
 symmetry-free proxies, which cover this capsule. Unsupported cases fail
-visibly. Installed validation is pending; a sampled pass still leaves geometry,
-convergence, chemistry and adoption open. Production defaults are unchanged.
+visibly. Returned Cedar 26 verifies all 857 payloads and preserves all 794 prior
+payloads plus their manifest. Installed execution completes in 53.402075 s:
+all 504 global/category directions and all 1,080 corrected per-plane directions
+pass. Native complete gradients fail eight initial orders and six rotated toy
+orders, reproducing the predicted sign cases. All corrected order/rotation,
+repeat/additivity and energy checks pass; native energy change is zero.
+Qualification is SAMPLED_NATIVE_DERIVATIVES_PASS. This remains sampled evidence;
+geometry, convergence, chemistry and adoption stay open.
+
+### Bounded geometry trial with qualified corrected gradients
+
+`scripts/build_cif_corrected_geometry_probe.py` builds Cedar 27,
+`27_Cedar_probe_cif_corrected_geometry.py`, from the exact verified Cedar 26
+return. It replays the 17 native mechanics prerequisites and recomputes all
+stored corrected derivative comparisons before native work. The correction
+module must match Cedar 26 byte for byte. The native worker pins the same
+numerical modules, adapters, C++ sources, definitions, explicit NARestraints
+policy and static constraints. Its full corrected initial gradient and energy
+must match the qualified snapshot before L-BFGS can start.
+
+The trial restarts from the same original initial coordinates as Cedar 22.
+Default limits remain 1,000 iterations, 20,000 objective calls, gradient epsilon
+1e-5 and a 1,200 s native timeout. The original unnormalized native energy is
+evaluated with the qualified both-first-plane gradient correction; targets,
+weights, definitions, proxy membership, symmetry/exclusions and compiled
+pairing/stacking intent stay fixed. Native step history, stopping reason,
+errors, criterion result and full-precision endpoints are preserved. Raw native
+gradient norms are recorded separately from the corrected norms used by the
+optimizer. An improvement or native exit zero does not establish convergence.
+
+After the bounded trial, fresh full-objective and seven category controls
+check both full-precision and PDB-rounded endpoints using the same four-step
+criteria and frozen coordinate probes, with a separate 4,000-evaluation cap.
+The existing exact-identity serializer writes a separate candidate while
+preserving all other PDB columns. Fresh native interpretation must pass all
+17 fixed-policy mechanics checks. Endpoint derivative qualification, stopping
+classification and mechanics remain independent, including when any requires
+review. No new guessing, policy recompilation, dictionary generation, ReadySet,
+diffraction/refinement or adoption occurs. Installed execution is pending;
+ordinary PostMR/refinement defaults and previous runs remain unchanged.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

@@ -23,7 +23,7 @@ def capsule(directory):
     baseline={'target':1.,'gradient':[0.]*(3*expected['atom_count'])}
     result={'policy_id':'cif-fixed-native-gradient-audit-v1','status':'REVIEW','analysis_completed':True,'captured_inventory_matches':True,
             'model_optimization':'NOT_RUN','automatic_adoption':False,'evaluation_calls':2734,
-            'constraint_signature_before':'synthetic_fixed','constraint_signature_after':'synthetic_fixed',
+            'constraint_signature_before':'1'*64,'constraint_signature_after':'1'*64,
             'installed_numeric_sources':[],
             'cases':{label:{'families':{'parallelity':{'baseline':baseline}},'baseline_repeats_consistent':True,'captured_snapshot_match':{'consistent':True}} for label in cases}}
     entries={'inputs/review/'+name:payload for name,payload in prior.items()};inputs=[];outputs=[]

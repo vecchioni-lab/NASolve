@@ -255,7 +255,7 @@ samples and tolerances. This is source/model inference, not fresh native proof
 of the second defect or the cause of the optimizer stall. The affected indices
 in the evidence ledger are observations, never correction selectors.
 
-**Cedar 26 prepared: installed validation pending.**
+**Cedar 26 returned and verified (2026-10-19): sampled native derivatives PASS.**
 `scripts/build_cif_plane_order_probe.py` builds `26_Cedar_probe_cif_plane_order.py`
 from the exact verified Cedar 25 ZIP. The evaluator adds an explicit
 `plane_order_safe=True` policy: use i's first-plane block, copy the native proxy
@@ -280,19 +280,69 @@ and **9,360 two-kernel plane-order pairs / 10,000**, with a 1,200 s timeout.
 Local validation passes **30 new regressions**, **167 focused tests (18.98 s)**
 and **1,788 full tests, two skips and 276 subtests (96.44 s)**. A deliberately
 bad first-plane derivative remains visible; deleted-build/poisoned-import
-transport and actual-input 794-payload offline replay pass. This Linux
-environment has no Phenix; installed validation remains pending.
+transport and actual-input 794-payload offline replay pass. These software
+checks are separate from the installed result below.
 
-**Current action:** run Cedar 26 through the pinned Git/worktree/build/run
-terminal block and review its returned capsule. Require fresh corrected global
-and per-plane derivative agreement before a separate bounded geometry trial.
-No repeat Cedar 25 run is requested. NARestraints policy and production
-defaults stay fixed; scientific qualification and adoption remain open. No
-new installs or migration. Private capsules, coordinates, dictionaries and
-logs remain outside Git. Exact commands/schemas and the source/model evidence
-are in `cif-linked-native-registration-evidence.json`, mirrored in the
-implementation map.
+All **857 returned payloads** verify, including 794 unchanged Cedar 25 payloads
+and their manifest. Runner `fd952513…` matches clean NASolve `628c2594…` /
+NARestraints `a7b6a0c9…`; all 109 runtime members verify. Phenix
+**2.2.1-6174** (dispatcher `2.2.1`) completes in **53.402075 s**, exit zero,
+using the expected global/preflight/per-plane budgets. Independent saved-data
+replay recomputes **504/504 passing global/category directions** and
+**1,080/1,080 passing corrected per-plane directions**. All **360 plane
+orders**, including 12 tilted/rotated controls, retain repeated arrays,
+unchanged energies, order invariance and all three rotation controls.
+The original native-complete kernel still fails 28 of 1,080 directions across
+eight initial and six tilted/rotated orders; those failures remain recorded.
+No optimizer or new crystal model was used in Cedar 26.
 
+The corrected initial norm is **1,110.5207**, at the same **3,784.7499** target.
+The corrected full-precision endpoint norm is **222.7981**, with rounded norm
+**929.4534**. These differ from Cedar 22's incomplete native norms and cannot
+be compared as a change in coordinates or convergence. Native energies change
+by exactly zero. Eight API/six numerical/two adapter/two C++ fingerprints,
+the full static signature and all 17 prior mechanics checks agree. This
+qualifies the sampled correction for the captured supported installed profile;
+it does not prove every gradient, native version, chemistry or convergence.
+
+**Cedar 27 prepared: bounded corrected geometry trial; native result pending.**
+`scripts/build_cif_corrected_geometry_probe.py` builds
+`27_Cedar_probe_cif_corrected_geometry.py` from the exact Cedar 26 ZIP.
+The trial starts at the **same original initial coordinates as Cedar 22**,
+using the unchanged native objective and the exact qualified both-first-plane
+correction source. It does not continue from the prior unconverged endpoint.
+Before any optimizer call, the host/native worker recompute the raw qualified
+proof and require the exact native manager, source fingerprints, static
+constraints, full corrected initial gradient vector and target. NARestraints
+pairing recipes, plane mappings, stacking matrix and compiled selections stay
+fixed; no relationships are guessed or compiled again.
+
+The opt-in trial uses at most **1,000 iterations / 20,000 calls**, gradient
+epsilon **1e-5** and a **1,200 s** native timeout. Preserve actual stopping
+criteria/errors/limits. Fresh full-precision and PDB-rounded endpoint audits
+use the same four steps, tolerances and frozen six probe atoms, with a separate
+**4,000-evaluation** cap. Serialize a separate candidate by exact atom identity
+and require all **17 native PDB mechanics checks** again. Stopping, derivative
+qualification and native mechanics are independent; a lower target cannot
+upgrade any failure or imply scientific approval.
+
+Local validation passes **38 new regressions**, **205 focused tests (31.01 s)**
+and **1,826 full tests, two skips and 276 subtests (107.25 s)**. The tests
+exercise proof/source/manager drift before optimization, retained limit/error
+stopping, and a deliberately bad endpoint gradient that remains REVIEW even
+with a synthetic native criterion pass. Actual 857-payload offline inspection
+and deleted-build/poisoned-import source transport pass. These worker checks
+use explicit fakes; this Linux environment has no installed Phenix/Coot.
+
+**Current action:** run Cedar 27 through the pinned Git/worktree/build/run
+terminal block and return its output and review capsule. Review stopping,
+endpoint derivative qualification and exact mechanics separately. Cedar 22
+remains **NOT_CONVERGED_ERROR**. Production defaults, scientific qualification
+and adoption remain open. No new installs or migration. Private capsules,
+coordinates, dictionaries and logs remain outside Git. Exact commands,
+schemas, source identities and counts live in
+`cif-linked-native-registration-evidence.json`, mirrored in the implementation
+map.
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and
 **1,669 full tests, two skips and 276 subtests (76.03 s)**, including synthetic

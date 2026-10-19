@@ -62,8 +62,13 @@ audit passes both endpoints but retains six failed directions at the initial
 coordinates. An independent normal-orientation sign model reproduces the
 remaining gradient. Cedar 26 therefore uses each plane's first-plane derivative
 in both native orders, with fresh per-plane, rotated-control and full-objective
-checks. Installed validation is pending; native energies, NARestraints policy
-and production defaults stay fixed. Geometry, convergence and adoption stay open.
+checks. Returned Cedar 26 passes all 504 global/category and 1,080 corrected
+per-plane directions, including rotated controls, with unchanged native energy.
+Cedar 27 now supplies a separate bounded geometry trial from the original
+initial coordinates, using that qualified correction. Exact source/snapshot
+gates, fresh endpoint derivatives and native PDB readback accompany the trial.
+Installed trial execution is pending. NARestraints policy and production
+defaults stay fixed; geometry, convergence and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

@@ -24,8 +24,8 @@ def capsule(directory):
     mechanics=qualify_fixed_policy_geometry(native,native,output,serialization);assert mechanics['mechanics_checks_pass']
     entries={f'inputs/review/padding/{i:03d}':b'SYNTHETIC_PRIOR' for i in range(491)}
     entries['inputs/review/manifest.json']=json.dumps({n.removeprefix('inputs/review/'):{'bytes':len(d),'sha256':hashlib.sha256(d).hexdigest()} for n,d in entries.items()}).encode()
-    result={'status':'REVIEW','captured_inventory_matches':True,'policy_inventory':True,'constraint_signature_before':'synthetic_fixed',
-        'constraint_signature_after':'synthetic_fixed','final_sites_cart':native['geometry']['sites_cart_exact'],
+    result={'status':'REVIEW','captured_inventory_matches':True,'policy_inventory':True,'constraint_signature_before':'1'*64,
+        'constraint_signature_after':'1'*64,'final_sites_cart':native['geometry']['sites_cart_exact'],
         'initial':{'target':1.,'gradient_norm':2.},'final':{'target':1.,'gradient_norm':2.},'serialized':{'target':1.,'gradient_norm':2.},'installed_optimizer_sources':[],
         'stopping':{'reason':'unreported','error':'EXPLICIT_FAKE_LINE_SEARCH','native_criterion_met':False,'iterations':905,'max_iterations':1000}}
     receipts=[]

@@ -187,18 +187,58 @@ try:
                         for p in (getattr(geo,kind+"_proxies") or [])]
         return canonical(data)
     fixed=signature(sites);result["constraint_signature_before"]=fixed
+    correction=trial.get("validated_correction")
+    derivative_proof=None;extra_sources=[]
+    if correction:
+        from types import SimpleNamespace
+        from cctbx import geometry_restraints as gr
+        from corrected_geometry_core import validate_gradient_qualification
+        from correction_core import evaluate_fixed_native,ORDER_CORRECTION_ID,_close,_vector_agrees
+        from gradient_core import audit_gradients
+        derivative_proof=json.loads(Path("gradient_validation.json").read_text())
+        validate_gradient_qualification(derivative_proof,inventory["atom_count"])
+        if hashlib.sha256(Path("correction_core.py").read_bytes()).hexdigest()!=correction["correction_core_sha256"]:
+            raise RuntimeError("Qualified correction source changed")
+        sig=lambda rows:[(r["module"],r["sha256"]) for r in rows]
+        if sig(result["installed_optimizer_sources"])!=sig(derivative_proof["installed_numeric_sources"]) or fixed!=derivative_proof["constraint_signature_before"]:
+            raise RuntimeError("Qualified native numerical sources or static constraints differ")
+        for module in [gr,flex]:
+            path=Path(module.__file__).resolve();extra_sources.append({"module":module.__name__,"historical_path":str(path),"sha256":hashlib.sha256(path.read_bytes()).hexdigest()})
+        if sig(extra_sources)!=sig(derivative_proof["installed_adapter_sources"]):raise RuntimeError("Qualified native adapters differ")
+        source_dir=Path(modules[2].__file__).resolve().parent;cpp=[]
+        for row in derivative_proof["installed_parallelity_sources"]:
+            if row.get("status")!="RECORDED" or row.get("path") not in {"parallelity.h","parallelity_bpl.cpp"}:raise RuntimeError("Unpinned native plane source")
+            data=(source_dir/row["path"]).read_bytes()
+            if hashlib.sha256(data).hexdigest()!=row["sha256"]:raise RuntimeError("Qualified native plane source differs")
+            target=Path("installed_source")/row["path"];target.parent.mkdir(exist_ok=True);target.write_bytes(data);cpp.append(row)
+        result.update(correction_policy_id=ORDER_CORRECTION_ID,derivative_precondition="SAMPLED_NATIVE_DERIVATIVES_PASS",
+            installed_adapter_sources=extra_sources,installed_parallelity_sources=cpp,starting_coordinates="CAPTURED_INITIAL",
+            derivative_validation_archive=correction["archive_sha256"])
     def energy(points):
-        e=geo.energies_sites(sites_cart=points,flags=active,compute_gradients=True,normalization=False)
+        if correction:
+            value=evaluate_fixed_native(geo,[list(p) for p in points],active,gr,flex,plane_order_safe=True)
+            e=SimpleNamespace(target=value["target"],gradients=flex.vec3_double([value["gradient"][i:i+3] for i in range(0,len(value["gradient"]),3)]),
+                native_gradient_norm=value["native_gradient_norm"],parallelity_correction=value["parallelity_correction"],**value["terms"],**value["proxy_counts"])
+        else:e=geo.energies_sites(sites_cart=points,flags=active,compute_gradients=True,normalization=False)
         g=e.gradients.as_double()
         if not math.isfinite(float(e.target)) or not all(math.isfinite(float(v)) for v in g):
             raise RuntimeError("Non-finite native objective or gradient")
         return e
     def snapshot(e):
-        return {"target":float(e.target),"gradient_norm":float(e.gradients.as_double().norm()),
+        value={"target":float(e.target),"gradient_norm":float(e.gradients.as_double().norm()),
             "max_atom_gradient":max(float(v) for v in e.gradients.norms()),
             "terms":{k:float(v) for k,v in vars(e).items() if k.endswith("_residual_sum") and isinstance(v,(int,float))},
             "proxy_counts":{k:v for k,v in vars(e).items() if k.startswith("n_") and k.endswith("_proxies") and (v is None or isinstance(v,int))}}
-    result["initial"]=snapshot(energy(sites));save()
+        if correction:value.update(native_gradient_norm=e.native_gradient_norm,correction_norm=e.parallelity_correction["correction_norm"],
+            plane_order_difference_norm=e.parallelity_correction["plane_order_difference_norm"])
+        return value
+    initial=energy(sites)
+    if correction:
+        baseline=derivative_proof["cases"]["initial"]["families"]["all"]["baseline"]
+        if not _close(float(initial.target),baseline["target"]) or not _vector_agrees(list(initial.gradients.as_double()),baseline["gradient"]):
+            raise RuntimeError("Qualified initial corrected snapshot differs")
+        result["qualified_initial_snapshot_matches"]=True
+    result["initial"]=snapshot(initial);save()
     class Evaluator:
         def __init__(self):self.x=sites.as_double().deep_copy();self.history=[]
         def compute_functional_and_gradients(self):
@@ -228,6 +268,21 @@ try:
     result["stopping"]={"reason":stops[-1] if stops else "unreported","error":minimizer.error,
         "iterations":int(minimizer.iter()),"calls":int(minimizer.nfun()),"max_iterations":trial["max_iterations"],
         "native_criterion_met":bool(scitbx.lbfgs.traditional_convergence_test(evaluator.x.size(),trial["gradient_epsilon"])(evaluator.x,e.gradients.as_double()))}
+    if correction:
+        def evaluate(points,family):
+            flags_value=flags.flags(default=family=="all")
+            if family!="all":setattr(flags_value,family,True)
+            return evaluate_fixed_native(geo,points,flags_value,gr,flex,plane_order_safe=True)
+        cases={"full_precision":[list(p) for p in final],"pdb_rounded":[list(p) for p in rounded]}
+        references={name:{key:result[field][key] for key in ["target","gradient_norm"]} for name,field in [("full_precision","final"),("pdb_rounded","serialized")]}
+        audit=audit_gradients(evaluate,cases,derivative_proof["selected_indices"],references=references,max_calls=4000)
+        result["endpoint_gradient_audit"]=audit
+        result["endpoint_derivative_qualification"]="SAMPLED_NATIVE_DERIVATIVES_PASS" if all(case["sampled_gradients_consistent"] for case in audit["cases"].values()) else "DERIVATIVE_REVIEW"
+        if signature(final)!=fixed:raise RuntimeError("Native constraints changed during endpoint audit")
+        for row in extra_sources:
+            if hashlib.sha256(Path(row["historical_path"]).read_bytes()).hexdigest()!=row["sha256"]:raise RuntimeError("Native adapter source changed during trial")
+        for row in cpp:
+            if hashlib.sha256((source_dir/row["path"]).read_bytes()).hexdigest()!=row["sha256"]:raise RuntimeError("Native plane source changed during trial")
     for row in result["installed_optimizer_sources"]:
         if hashlib.sha256(Path(row["historical_path"]).read_bytes()).hexdigest()!=row["sha256"]:
             raise RuntimeError("Installed optimizer source changed during trial")
@@ -242,13 +297,26 @@ sys.exit(0 if result["status"]=="REVIEW" else 2)
 
 def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path], expected: dict,
         output_parent: Path, executable: Path, *, environment: dict, phenix_version: str,
-        max_iterations: int=500, timeout_seconds: int=1200, policy_inventory: bool=False) -> dict:
+        max_iterations: int=500, timeout_seconds: int=1200, policy_inventory: bool=False,
+        validated_correction: dict | None=None) -> dict:
     """Run one bounded native trial in a fresh directory; retain failure evidence."""
     if isinstance(max_iterations,bool) or not 1<=max_iterations<=1000:raise ValueError('Iterations must be 1-1000')
     if not math.isfinite(float(timeout_seconds)) or not 1<=timeout_seconds<=3600:raise ValueError('Timeout must be 1-3600 seconds')
     if not phenix_version:raise ValueError('Explicit Phenix version required')
     if type(policy_inventory) is not bool:raise ValueError('Policy inventory must be an explicit boolean')
     if policy_inventory and not _fixed_policy(expected):raise ValueError('Require a fixed explicit native policy without competing SS proxies')
+    policy_id=FIXED_GEOMETRY_POLICY
+    if validated_correction is not None:
+        from .cif_corrected_geometry import validate_gradient_qualification,POLICY_ID
+        if not policy_inventory or not isinstance(validated_correction,dict):raise ValueError('Corrected trial requires the fixed explicit NA policy')
+        validate_gradient_qualification(validated_correction['result'],expected['atom_count'])
+        if hashlib.sha256(Path(__file__).with_name('cif_parallelity_correction.py').read_bytes()).hexdigest()!=validated_correction['correction_core_sha256']:
+            raise ValueError('Qualified correction source changed')
+        if len(validated_correction.get('archive_sha256',''))!=64:raise ValueError('Require derivative archive provenance')
+        proof=validated_correction['result']
+        if len(proof['installed_numeric_sources'])!=6 or len(proof['installed_adapter_sources'])!=2 or len(proof['installed_parallelity_sources'])!=2:
+            raise ValueError('Require complete qualified native source identities')
+        policy_id=POLICY_ID
     review_captured_geometry(expected);_model(expected,model,coordinates_match=True)
     paths=[Path(p).resolve() for p in [model,*dictionaries,*phils]]
     if not dictionaries or len(paths)!=len(set(paths)):raise ValueError('Require distinct explicit native inputs')
@@ -265,14 +333,20 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
         'dictionaries':[p.relative_to(work).as_posix() for p in frozen[1:1+len(dictionaries)]],
         'phil_files':[p.relative_to(work).as_posix() for p in frozen[1+len(dictionaries):]],
         'phil_namespace_policy':'refinement-root-to-interpreter-v1','inventory_detail':'linked'}
-    trial={'policy_id':FIXED_GEOMETRY_POLICY,'native_spec':'native_spec.json','expected_inventory':'expected_inventory.json',
+    trial={'policy_id':policy_id,'native_spec':'native_spec.json','expected_inventory':'expected_inventory.json',
         'max_iterations':max_iterations,'max_calls':max_iterations*20,'gradient_epsilon':1e-5}
     if policy_inventory:spec['policy_inventory']=trial['policy_inventory']=True
     for name,data in [('native_spec.json',spec),('geometry_spec.json',trial),('expected_inventory.json',expected)]:
         (work/name).write_text(json.dumps(data,indent=2,sort_keys=True,allow_nan=False)+'\n')
     (work/'native_worker.py').write_text(_NATIVE_WORKER);(work/'geometry_worker.py').write_text(_GEOMETRY_WORKER)
-    executable=Path(executable).resolve();command=[str(executable),'geometry_worker.py','geometry_spec.json']
-    receipt={'schema_version':1,'audit_kind':'cif_fixed_native_geometry_trial','policy_id':FIXED_GEOMETRY_POLICY,
+    if validated_correction is not None:
+        trial['validated_correction']={k:validated_correction[k] for k in ['archive_sha256','correction_core_sha256']}
+        (work/'geometry_spec.json').write_text(json.dumps(trial,indent=2,sort_keys=True,allow_nan=False)+'\n')
+        (work/'gradient_validation.json').write_text(json.dumps(validated_correction['result'],indent=2,sort_keys=True,allow_nan=False)+'\n')
+        for name,source in [('correction_core.py','cif_parallelity_correction.py'),('gradient_core.py','cif_gradient_audit.py'),('corrected_geometry_core.py','cif_corrected_geometry.py')]:
+            (work/name).write_bytes(Path(__file__).with_name(source).read_bytes())
+    executable=Path(executable).resolve();command=[str(executable),'-B','geometry_worker.py','geometry_spec.json']
+    receipt={'schema_version':1,'audit_kind':'cif_fixed_native_corrected_geometry_trial' if validated_correction is not None else 'cif_fixed_native_geometry_trial','policy_id':policy_id,
         'status':'FAILED','native_directory':str(work),'inputs':inputs,'command':command,
         'executable_provenance':str(executable),'executable_sha256':hashlib.sha256(executable.read_bytes()).hexdigest(),
         'phenix_version':phenix_version,'api_sources':API_SOURCES,'automatic_adoption':False,'scientific_approval':'NOT_RUN',
@@ -294,12 +368,18 @@ def run_fixed_geometry(model: Path, dictionaries: list[Path], phils: list[Path],
                 if not path.is_file() or path.is_symlink():raise ValueError('Worker omitted regular geometry_result.json')
                 result=json.loads(path.read_text());receipt['result']=result
                 if result.get('status')=='REVIEW' and code==0:
-                    if result.get('policy_id')!=FIXED_GEOMETRY_POLICY or not result.get('captured_inventory_matches'):
+                    if result.get('policy_id')!=policy_id or not result.get('captured_inventory_matches'):
                         raise ValueError('Worker omitted captured-manager match')
                     if policy_inventory and result.get('policy_inventory') is not True:
                         raise ValueError('Worker omitted explicit policy inventory match')
                     if result.get('constraint_signature_before')!=result.get('constraint_signature_after'):
                         raise ValueError('Worker changed fixed constraints')
+                    if validated_correction is not None:
+                        if (result.get('correction_policy_id')!='native-parallelity-both-first-planes-v1'
+                                or not result.get('qualified_initial_snapshot_matches') or result.get('starting_coordinates')!='CAPTURED_INITIAL'
+                                or not result.get('endpoint_gradient_audit',{}).get('analysis_completed')
+                                or result['constraint_signature_before']!=validated_correction['result']['constraint_signature_before']):
+                            raise ValueError('Worker omitted qualified correction or endpoint gradient evidence')
                     _points(result['final_sites_cart'],expected['atom_count'])
                     receipt['convergence']=classify_stopping(result['stopping']);receipt['status']='REVIEW'
                 else:receipt['error']=result.get('error','Geometry worker did not complete')

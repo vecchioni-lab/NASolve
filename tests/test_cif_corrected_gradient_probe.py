@@ -23,7 +23,7 @@ def capsule(directory):
     coordinates=json.loads(prior[previous_prefix+'/gradient_spec.json'])['coordinate_cases'];count=expected['atom_count']
     result={'policy_id':'cif-native-parallelity-accumulation-audit-v1','status':'REVIEW','analysis_completed':True,
         'captured_inventory_matches':True,'model_optimization':'NOT_RUN','automatic_adoption':False,'evaluation_pairs':6188,
-        'constraint_signature_before':'synthetic_fixed','constraint_signature_after':'synthetic_fixed','installed_numeric_sources':[],
+        'constraint_signature_before':'1'*64,'constraint_signature_after':'1'*64,'installed_numeric_sources':[],
         'installed_adapter_sources':[],'installed_parallelity_sources':[],
         'cases':{label:{'summary':{'single_derivatives_consistent':True,'baseline_repeats_consistent':True}} for label in coordinates},
         'toy_summary':{'single_derivatives_consistent':True,'baseline_repeats_consistent':True},

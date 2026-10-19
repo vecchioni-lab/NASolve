@@ -23,8 +23,8 @@ def capsule(directory):
     result={'status':'REVIEW','policy_id':'cif-fixed-native-corrected-gradient-audit-v1',
         'correction_policy_id':'native-parallelity-complete-accumulation-v1','correction_qualification':'DERIVATIVE_REVIEW',
         'analysis_completed':True,'captured_inventory_matches':True,'model_optimization':'NOT_RUN','automatic_adoption':False,
-        'evaluation_calls':4101,'correction_statistics':{'max_energy_change':0.},'constraint_signature_before':'synthetic_fixed',
-        'constraint_signature_after':'synthetic_fixed','cases':{},'raw_baseline_checks':{},
+        'evaluation_calls':4101,'correction_statistics':{'max_energy_change':0.},'constraint_signature_before':'1'*64,
+        'constraint_signature_after':'1'*64,'cases':{},'raw_baseline_checks':{},
         **{k:old_result[k] for k in ['installed_numeric_sources','installed_adapter_sources','installed_parallelity_sources']}}
     for label in coordinates:
         result['raw_baseline_checks'][label]={'target':1.,'native_gradient_norm':2.,'captured_raw_baseline_match':True}

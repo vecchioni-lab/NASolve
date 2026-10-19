@@ -135,8 +135,12 @@ for actual behavior; history is evidence, not a second task queue.
   the initial coordinates and both saved endpoints. Its return passes both
   endpoints and retains initial-coordinate sign discrepancies. A source/model
   comparison identifies a normal-orientation chain-rule issue. Cedar 26 uses
-  both native first-plane roles and adds all-plane and rotated controls;
-  installed validation is pending. Native energies and production defaults stay fixed. Production PostMR,
+  both native first-plane roles and adds all-plane and rotated controls. Its
+  returned 857-payload audit passes all sampled corrected derivatives at all
+  three cases and every plane order. Cedar 27 now supplies one bounded trial
+  from the original initial coordinates with fresh endpoint derivatives and
+  native mechanics readback; installed trial execution is pending. Native
+  energies and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is

@@ -411,8 +411,22 @@ container gradient and leaves the full native energy untouched. The manager's
 proxies are never replaced. The existing accumulation-only policy remains the
 default. All three raw/captured plane arrays are matched before fresh global
 and per-plane derivatives. Both orders, 4/4–4/6–6/4 controls and 30-degree rigid
-rotations test the general policy without residue allowlists. Native validation
-is pending before any new bounded optimization.
+rotations test the general policy without residue allowlists. Returned Cedar 26
+passes all 504 global/category and 1,080 corrected per-plane directions. Native
+complete gradients reproduce the four initial sign cases and rotated controls;
+the corrected gradients retain order/rotation invariance and unchanged energy.
+
+Cedar 27 explicitly supplies that qualified evidence to the existing bounded
+fixed-geometry engine. A small verifier recomputes the stored derivative samples
+before optimization. Exact correction-source identity, native sources, static
+constraints and the complete corrected initial gradient must match Cedar 26.
+The trial starts from the original initial coordinates with the same native
+energy, definitions and compiled policy as Cedar 22. Only the explicit trial's
+gradient evaluator changes; existing defaults remain fixed. Native L-BFGS
+stopping evidence is retained, followed by fresh full/rounded endpoint category
+derivatives and the existing identity-preserving PDB serializer and 17 native
+mechanics checks. Convergence, endpoint derivatives, mechanics and scientific
+approval are separate verdicts. Installed trial execution remains pending.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

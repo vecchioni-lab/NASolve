@@ -400,8 +400,16 @@ initial-coordinate failures. An independent normal-orientation sign model
 reproduces the remaining gradient; four ordinary stacks exercise that branch.
 Cedar 26 therefore uses each plane's first-plane derivative by evaluating both
 orders. Fresh checks cover every plane, all three coordinate sets and rigidly
-rotated controls. Native validation is pending. Both policies are opt-in;
-production PostMR/refinement defaults are unchanged.
+rotated controls. Returned Cedar 26 passes all 504 global/category and 1,080
+corrected per-plane directions with zero native energy change. This clears the
+sampled derivative prerequisite for a separate bounded geometry trial.
+
+Cedar 27 now supplies that trial, restarting from the same original initial
+coordinates as the earlier stalled run. The exact qualified correction and
+initial gradient must match before optimization. Fresh endpoint derivatives,
+stopping evidence and native PDB mechanics are reported independently. Installed
+trial execution is pending; convergence and chemical qualification remain open.
+All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -653,8 +661,25 @@ checks compare original complete and corrected gradients for every plane at
 all three coordinate sets in both orders. Equal/unequal tilted controls also
 receive a 30-degree rigid rotation, testing energy invariance and covariant
 gradient rotation across the native normal-sign branch. The same four-step
-criteria and exact source/mechanics gates apply. Installed validation remains
-pending. No minimization, target tuning or automatic adoption occurs.
+criteria and exact source/mechanics gates apply. The returned 857-payload audit
+passes every corrected sampled direction while preserving all native complete
+gradient failures: eight initial orders and six rotated control orders require
+review. The corrected gradient is invariant under order and covariant under
+rotation, with zero native energy change. This qualifies sampled derivatives
+for the captured supported profile and does not establish chemical correctness.
+
+Cedar 27 passes that evidence explicitly to the bounded geometry engine. It
+recomputes the stored derivative comparisons, requires the identical correction
+source, and matches the full corrected initial gradient, native sources and
+static constraints before native L-BFGS starts. The same initial coordinates,
+energy, compiled NARestraints policy and default bounds as Cedar 22 support a
+controlled comparison. Accepted-step/stopping evidence and corrected versus raw
+gradient norms are preserved. Fresh four-step endpoint checks cover the full
+objective and seven category controls at full and PDB-rounded precision. Exact
+atom identity mapping preserves noncoordinate PDB records, followed by fresh
+17-check fixed-policy native readback. Stopping, derivatives, mechanics and
+scientific qualification remain separate outcomes. Installed trial execution
+is pending; no target tuning, diffraction refinement or adoption occurs.
 
 ## Primary references
 

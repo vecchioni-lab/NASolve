@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bounded geometry trial with qualified native gradients
+
+- Verify the 857-payload Cedar 26 return: all 504 sampled full/category and
+  1,080 corrected per-plane directions pass, with unchanged native energies,
+  both plane orders and three rigid-rotation controls. Retain all original
+  native-kernel failures and historical Cedar 22 stopping evidence.
+- Add Cedar 27 as an explicit bounded trial from the original initial
+  coordinates under the exact qualified correction and fixed NARestraints
+  policy. Recompute raw derivative evidence and match native source identities,
+  static constraints and the entire corrected initial vector before optimization.
+- Keep actual stopping, fresh endpoint derivative audits and 17-check native
+  PDB mechanics as independent outcomes. Limits, errors and bad derivatives
+  remain visible regardless of energy reduction. No native installation edits,
+  target changes, policy guessing, refinement or adoption.
+- All 1,826 tests pass, with two skips and 276 passing subtests, including 38
+  new proof/source/worker/capsule regressions. Actual-input offline inspection
+  and deleted-build source transport pass. The installed geometry trial is
+  pending; no new dependencies, migration or production-default change.
+
 ### Both native first-plane roles for fixed gradients
 
 - Verify the 794-payload Cedar 25 return and all 732 preserved prior payloads.
@@ -21,9 +40,10 @@ entries are reconstructed from repository history.
   coordinate cases. Exercise both orders and rigidly rotated equal/unequal
   tilted controls, preserving original kernel failures and numerical tolerances.
   All 1,788 tests pass, with two skips and 276 passing subtests, including 30
-  new regressions and actual-input offline/deleted-build inspection. Native
-  validation is pending; no optimization, production-default change, installed
-  native edit, new dependency or adoption.
+  new regressions and actual-input offline/deleted-build inspection. The
+  returned installed audit passes every corrected sampled derivative while
+  retaining original kernel failures. No optimization, production-default
+  change, installed native edit, new dependency or adoption in Cedar 26.
 
 ### Explicit native plane-gradient accumulation correction
 
