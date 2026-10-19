@@ -366,7 +366,16 @@ step sizes, alongside category controls, repeated evaluations and the existing
 dictionary checks. Exact manager/policy/source matching remains mandatory.
 No minimizer runs, coordinates or targets are edited, or model is adopted.
 The check can localize sampled numerical inconsistencies; it cannot establish
-convergence or chemical correctness. Installed execution is pending.
+convergence or chemical correctness. Returned Cedar 23 verifies all inputs
+and localizes stable sampled derivative disagreement to native parallelity,
+the plane-orientation term used by declared pairing/stacking restraints.
+The other six category controls pass every sampled direction at both
+precisions. Independent plane-energy/derivative calculations reproduce the
+finite differences, while the public CCTBX accumulation-loop bounds reproduce
+the saved native gradient to numerical precision. This strongly indicates
+omitted second-plane gradient contributions. Installed per-proxy/source
+confirmation remains open; this does not reject the NARestraints policy or
+prove the cause of the optimizer stall.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -568,7 +577,17 @@ remaining pairing/local-angle strain preserve scientific REVIEW.
 Cedar 23 adds bounded directional finite differences at saved full-precision
 and rounded coordinates, with isolated category, repeat and additivity controls.
 It reuses CIF Doctor's planar-angle rule and generic distance-group reporting;
-the fixed policy and all exact native gates remain unchanged.
+the fixed policy and all exact native gates remain unchanged. Its returned
+parallelity mismatch is independently checked using centered scatter matrices,
+smallest-eigenvector plane normals and spectral derivatives of
+`sum(weight * (1 - abs(dot(n_i, n_j))))` for the captured zero-target,
+zero-slack, non-top-out proxies. Both energies agree within 6e-12; selected
+central derivatives agree within 1.2e-6. A model of the public CCTBX second-plane
+accumulation-loop bounds matches all 2,631 stored gradient components per case
+to approximately 1.5e-12 in norm. Installed C++ source identity and isolated
+native reproduction remain open. Exact source/blob identities, scope and
+limits are in the native ledger; this is numerical evidence, not a new
+optimization or chemistry approval.
 
 ## Primary references
 

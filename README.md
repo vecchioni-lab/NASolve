@@ -48,7 +48,10 @@ checks, decreases the objective and stops with a line-search error. Geometry
 qualification remains open and ordinary PostMR is unchanged.
 A separate Cedar 23 diagnostic now checks native gradients against finite
 energy differences at the saved endpoints and repeats dictionary assessment.
-It performs no optimization; installed numerical evidence is pending.
+The returned audit localizes a stable sampled gradient mismatch to native
+parallelity terms in both coordinate cases. An independent plane calculation
+strongly points to gradient accumulation; installed per-proxy confirmation
+remains open. It performs no optimization or policy change.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

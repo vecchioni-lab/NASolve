@@ -115,7 +115,7 @@ three remaining distance outliers are CGY A:20–DX D:3 hydrogen bonds, still
 outliers involve that pair. DP B:4 also retains its C6–N5–C7 discrepancy,
 **127.87° versus 109.471°**. These findings do not authorize target changes.
 
-**Current action: Cedar 23 is prepared; native execution pending.**
+**Cedar 23 returned and verified (2026-10-19): sampled numerical REVIEW.**
 `scripts/build_cif_gradient_audit_probe.py` builds
 `23_Cedar_probe_cif_gradient_audit.py` from the verified Cedar 22 capsule.
 It repeats dictionary assessment, records all 20 explicit intersite distance
@@ -137,8 +137,34 @@ complete geometry, refinement and adoption remain open. Ordinary PostMR and
 historical gates are unchanged; private capsules/models/logs are not committed.
 Cedar 23 passes **70 focused checks (7.14 s)** and **1,691 full tests, two
 skips and 276 subtests (83.63 s)**, with actual-input offline inspection and
-synthetic deleted-build transport. Installed native gradient results remain
-pending.
+synthetic deleted-build transport. Its returned **670 payloads** and all 609
+prior payloads plus their manifest verify byte for byte. Native execution
+completes in **7.8046 s**, exit zero, with **2,734/4,000** energy evaluations.
+Initial manager, eight API sources, six numerical sources and the static
+constraint signature match. All 17 prerequisite mechanics checks replay.
+
+Both coordinate cases fail **18/21 sampled directions** for parallelity and
+the full objective; bond, angle, dihedral, chirality, planarity and nonbonded
+controls each pass **21/21**. Repeats, captured snapshots and target/gradient
+additivity agree. At CGY A:20 N4 x, the native parallelity derivative is
+**−2.9313** while the four central differences stabilize near **+7.4647**.
+The disagreement survives PDB rounding and step reduction.
+
+An independent centered-scatter eigensolver reproduces both parallelity
+energies within 6e-12 and selected finite differences within 1.2e-6. Modeling
+the second-plane accumulation-loop bounds in the public CCTBX header reproduces
+all **2,631 saved gradient components per case** to about 1.5e-12 in norm.
+The public loop omits/truncates second-plane contributions. This strongly
+indicates a native accumulation defect; the installed C++ header was not
+captured, and the audit does not prove it caused the earlier line-search stall.
+
+**Current action:** prepare an installed per-proxy/toy plane-gradient audit
+with swapped order and equal/unequal plane sizes, recording source/binary
+identities and comparing per-restraint, accumulated and numerical gradients.
+No repeat Cedar 23 run or new optimization is requested; no next delivery is
+prepared. NARestraints selections, targets, weights and exact native gates stay
+authoritative. This return updates documentation only; the unchanged runtime
+suite is not rerun. Private capsules, models and logs remain outside Git.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

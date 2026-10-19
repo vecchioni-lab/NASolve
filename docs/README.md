@@ -123,8 +123,11 @@ for actual behavior; history is evidence, not a second task queue.
   local angle discrepancies remain unresolved; geometry/convergence stay open.
   Cedar 23 now supplies a bounded native gradient audit at saved full-precision
   and rounded coordinates, with isolated category controls, repeat/additivity
-  evidence and existing dictionary checks. Its native execution is pending;
-  it changes no model, target or NARestraints pairing/stacking policy.
+  evidence and existing dictionary checks. Its verified 670-payload return
+  localizes the mismatch to native parallelity gradients in both cases. An
+  independent spectral calculation and public accumulation-loop model reproduce
+  the saved evidence; installed per-proxy confirmation remains open. It changes
+  no model, target or NARestraints pairing/stacking policy.
   Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

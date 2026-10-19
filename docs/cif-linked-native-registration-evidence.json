@@ -242,11 +242,11 @@
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
   "next_delivery": {
-    "delivery_prefix": "23_Cedar",
-    "status": "PREPARED_NATIVE_EVIDENCE_PENDING",
-    "builder": "scripts/build_cif_gradient_audit_probe.py",
-    "runner_filename": "23_Cedar_probe_cif_gradient_audit.py",
-    "transport": "One quoted-path subshell: fetch cedar from the prior build, fresh full-SHA detached worktree, source-bundled build, run; join dependent steps with &&."
+    "delivery_prefix": null,
+    "status": "NOT_PREPARED",
+    "last_completed_delivery": "23_Cedar",
+    "next_scope": "Installed parallelity per-proxy/accumulation diagnostic; no optimization.",
+    "transport": "Use the existing pinned Git worktree / single && terminal-block contract when a new delivery is prepared."
   },
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
@@ -5541,7 +5541,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+    "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
     "pairing_intent_provenance": {
       "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
       "reviewed_on": "2026-10-17",
@@ -5690,7 +5690,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+  "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -5814,7 +5814,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+    "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
     "cedar21_return_verified_2026_10_18": {
       "archive": {
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -6207,7 +6207,7 @@
       "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
       "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
     ],
-    "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+    "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
     "cedar22_return_verified_2026_10_18": {
       "review_summary": {
         "archive": {
@@ -6579,7 +6579,7 @@
     }
   },
   "native_gradient_audit_2026_10_19": {
-    "status": "PREPARED_NATIVE_EVIDENCE_PENDING",
+    "status": "RETURNED_NUMERICAL_REVIEW",
     "delivery_prefix": "23_Cedar",
     "policy_id": "cif-fixed-native-gradient-audit-v1",
     "module": "src/nasolve/cif_gradient_audit.py",
@@ -6694,7 +6694,8 @@
       },
       "native_worker": "Synthetic native API control-flow checks pass for correct gradients, manager/source changes and timeout; optimizer never called. These are not installed Phenix results.",
       "portability": "Source-bundled synthetic inspection passes after deleting both build checkouts and poisoning ambient NASolve imports.",
-      "native": "PENDING on Phenix 2.2.1-6174 / dispatcher 2.2.1 with captured source hashes; no Phenix installation in this Linux environment."
+      "native": "Returned Phenix 2.2.1-6174 / dispatcher 2.2.1 audit completed in 7.8046 s, native exit zero; 2,734/4,000 evaluations. Parallelity and full-objective sampled derivatives require review at both coordinate cases. No local Phenix installation or new optimization is claimed.",
+      "returned_evidence_review": "Docs-only return update: checksum/artifact/source verification, 17-check prerequisite replay and independent scalar/spectral analysis; unchanged runtime suite not rerun."
     },
     "primary_method_source": {
       "url": "https://cci.lbl.gov/docs/cctbx/tuto_rigid_body/",
@@ -6704,10 +6705,264 @@
     "boundaries": [
       "No optimizer, target/weight edits, dictionary generation, new coordinate model, diffraction/refinement or adoption.",
       "No new dependencies or production pipeline change.",
-      "Step-dependent mismatch does not by itself establish a native software defect.",
+      "The sampled mismatch is independently reproduced and localized to parallelity; an accumulation-loop model matches the saved gradient, while installed C++ source identity and the cause of the optimizer stall remain unestablished.",
       "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
       "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
     ],
-    "next_action": "Run the prepared Cedar 23 saved-gradient diagnostic from the pinned Git delivery, then review step-size dependence, per-category gradients, repeat/additivity evidence and the preserved dictionary/pair findings. No new minimization or target changes are part of this diagnostic. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open."
+    "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+    "returned_evidence": {
+      "recorded_date": "2026-10-19",
+      "archive": {
+        "filename": "23_Cedar_ip09ein6_cif_gradient_audit_review.zip",
+        "sha256": "8acd86fcac72db6380f40f6f1b3851eabe12b9a6267be750bf97e482a11509bc",
+        "bytes": 14976171,
+        "payloads": 670
+      },
+      "build": {
+        "nasolve_commit": "fa8f449a45cce7add49fc266baf822b8b44a32ab",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "ae09ee71a1a3d478232f725730b48d851e0255898478494a8ff8e6b65e7b02d1",
+        "runtime_sha256": "e123bce98b9514ba2a5916b598777b18b7f5ed31403aefde9b602a47f73a576a",
+        "runtime_files": 107
+      },
+      "frozen_prior_payloads": 609,
+      "prior_manifest_preserved": true,
+      "native_execution": {
+        "elapsed_seconds": 7.8046,
+        "returncode": 0,
+        "status": "COMPLETED",
+        "timeout_seconds": 1200
+      },
+      "phenix_installation": "2.2.1-6174",
+      "phenix_dispatcher_version": "2.2.1",
+      "dispatcher_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+      "initial_manager_exact": true,
+      "native_api_sources_exact": 8,
+      "numerical_sources_exact": 6,
+      "constraint_signature_before_and_after": "0d450251acacbc8b63cb9e268fd24a839cd855e98417fee62ab45bc190d19bf9",
+      "prerequisite_mechanics": {
+        "PASS": 17
+      },
+      "native_input_roles": {
+        "model": 1,
+        "dictionary": 19,
+        "phil": 13
+      },
+      "retained_native_artifact_checks": "PASS",
+      "receipt_output_excluded_by_archive_policy": {
+        "path": "__pycache__/gradient_core.cpython-311.pyc",
+        "reason": "Review ZIP intentionally excludes bytecode; this receipt-listed bytecode file is not independently hash-verified. Source worker/core bytes and all retained artifacts verify."
+      },
+      "distance_groups": 20,
+      "probe_atoms": 6,
+      "selected_indices": [
+        407,
+        408,
+        771,
+        404,
+        767,
+        754
+      ],
+      "evaluation_calls": 2734,
+      "evaluation_cap": 4000,
+      "central_difference_samples_recomputed": 1344,
+      "scalar_replay_max_roundoff": 4.547473508864641e-13,
+      "cases": {
+        "full_precision": {
+          "family_direction_counts": {
+            "all": {
+              "passed": 3,
+              "review": 18
+            },
+            "angle": {
+              "passed": 21,
+              "review": 0
+            },
+            "bond": {
+              "passed": 21,
+              "review": 0
+            },
+            "chirality": {
+              "passed": 21,
+              "review": 0
+            },
+            "dihedral": {
+              "passed": 21,
+              "review": 0
+            },
+            "nonbonded": {
+              "passed": 21,
+              "review": 0
+            },
+            "parallelity": {
+              "passed": 3,
+              "review": 18
+            },
+            "planarity": {
+              "passed": 21,
+              "review": 0
+            }
+          },
+          "full_objective": {
+            "target": 2866.555566613636,
+            "gradient_norm": 91.27715299316296
+          },
+          "parallelity": {
+            "target": 151.27642769281084,
+            "gradient_norm": 113.4807259358128
+          },
+          "baseline_repeats_consistent": true,
+          "captured_snapshot_match": true,
+          "target_additivity": true,
+          "gradient_additivity": true,
+          "parallelity_proxy_count": 58,
+          "parallelity_sample_count_preserved": true,
+          "passing_selected_atom_axes": [
+            754
+          ]
+        },
+        "pdb_rounded": {
+          "family_direction_counts": {
+            "all": {
+              "passed": 3,
+              "review": 18
+            },
+            "angle": {
+              "passed": 21,
+              "review": 0
+            },
+            "bond": {
+              "passed": 21,
+              "review": 0
+            },
+            "chirality": {
+              "passed": 21,
+              "review": 0
+            },
+            "dihedral": {
+              "passed": 21,
+              "review": 0
+            },
+            "nonbonded": {
+              "passed": 21,
+              "review": 0
+            },
+            "parallelity": {
+              "passed": 3,
+              "review": 18
+            },
+            "planarity": {
+              "passed": 21,
+              "review": 0
+            }
+          },
+          "full_objective": {
+            "target": 2870.0304920176613,
+            "gradient_norm": 907.0439516724924
+          },
+          "parallelity": {
+            "target": 151.23891811575112,
+            "gradient_norm": 113.41967862204606
+          },
+          "baseline_repeats_consistent": true,
+          "captured_snapshot_match": true,
+          "target_additivity": true,
+          "gradient_additivity": true,
+          "parallelity_proxy_count": 58,
+          "parallelity_sample_count_preserved": true,
+          "passing_selected_atom_axes": [
+            754
+          ]
+        }
+      },
+      "repeat_replay_scope": "Worker compares component arrays; repeated arrays are not serialized, so offline verification independently checks recorded repeat scalars only.",
+      "representative_direction": {
+        "case": "full_precision",
+        "native_index": 408,
+        "component": "CGY",
+        "site": "A:20",
+        "atom": "N4",
+        "axis": "x",
+        "analytical": -2.931262692997384,
+        "numerical_by_step": [
+          {
+            "step": 0.001,
+            "derivative": 7.464745327354194
+          },
+          {
+            "step": 0.0001,
+            "derivative": 7.464747239112057
+          },
+          {
+            "step": 1e-05,
+            "derivative": 7.46474727009172
+          },
+          {
+            "step": 1e-06,
+            "derivative": 7.4647470711397546
+          }
+        ],
+        "interpretation": "Opposite signs and stable mismatch across all four steps, reproduced after PDB rounding."
+      },
+      "descent_profile_interpretation": "Small negative-native-gradient steps still reduce energy. The audit does not prove the derivative discrepancy caused the line-search failure.",
+      "neighbour_counts": "Dynamic nonbonded neighbour counts can vary with evaluations; exact static constraints, energies, gradient snapshots and isolated parallelity count agree. No claim of exact dynamic neighbour membership.",
+      "model_optimization": "NOT_RUN",
+      "policy_recompilation": "NOT_RUN",
+      "dictionary_generation": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "prior_convergence": "NOT_CONVERGED_ERROR",
+      "scientific_qualification": "REVIEW",
+      "automatic_adoption": false
+    },
+    "independent_parallelity_review": {
+      "status": "ACCUMULATION_DEFECT_STRONGLY_INDICATED_INSTALLED_SOURCE_CHECK_PENDING",
+      "method": "Unweighted centered scatter matrices; symmetric eigensolver; smallest-eigenvector plane normals; weight*(1-abs(dot)); spectral analytical derivatives.",
+      "scope": "All 58 captured zero-target, zero-slack, non-top-out parallelity proxies at both saved coordinate cases. Offline mathematical comparison only.",
+      "formula": "For these 58 proxies only: E = sum weight * (1 - abs(n_i dot n_j)); normal is the smallest-eigenvalue eigenvector of each centered scatter matrix.",
+      "case_metrics": {
+        "full_precision": {
+          "reference_energy": 151.27642769281144,
+          "native_energy": 151.27642769281084,
+          "energy_difference": 5.968558980384842e-13,
+          "reference_gradient_norm": 241.21462988381114,
+          "native_gradient_norm": 113.4807259358128,
+          "native_vs_reference_gradient_difference_norm": 204.04815549378648,
+          "native_vs_first_plane_only_difference_norm": 37.50887255390745,
+          "native_vs_public_loop_bounds_model_difference_norm": 1.423559294516606e-12,
+          "max_reference_vs_native_fd_difference": 9.947598300641403e-07,
+          "max_reference_derivative_vs_own_fd_smallest_two_steps": 9.027554811469329e-07,
+          "minimum_eigenvalue_gap": 8.473574932935172
+        },
+        "pdb_rounded": {
+          "reference_energy": 151.23891811575666,
+          "native_energy": 151.23891811575112,
+          "energy_difference": 5.5422333389287814e-12,
+          "reference_gradient_norm": 241.1953831793369,
+          "native_gradient_norm": 113.41967862204606,
+          "native_vs_reference_gradient_difference_norm": 204.08805311407414,
+          "native_vs_first_plane_only_difference_norm": 37.50667060506549,
+          "native_vs_public_loop_bounds_model_difference_norm": 1.142064185144135e-12,
+          "max_reference_vs_native_fd_difference": 1.1510792319313623e-06,
+          "max_reference_derivative_vs_own_fd_smallest_two_steps": 9.83127148579399e-07,
+          "minimum_eigenvalue_gap": 8.476970758935519
+        }
+      },
+      "saved_cartesian_components_per_case": 2631,
+      "public_primary_source": {
+        "repository": "cctbx/cctbx_project",
+        "path": "cctbx/geometry_restraints/parallelity.h",
+        "git_blob_sha": "25d3a75f20d3611dcb32d919a893bc0beb18e6a0",
+        "sha256": "a245965c884e37dc6c3f74957d5fce2b07cd8b61338f1de91d71c1bb9b2d0c18",
+        "url": "https://api.github.com/repos/cctbx/cctbx_project/git/blobs/25d3a75f20d3611dcb32d919a893bc0beb18e6a0",
+        "checked_date": "2026-10-19",
+        "immutable_blob_retrieved_and_verified": true,
+        "relevant_function": "parallelity::add_gradients (without unit_cell)",
+        "observed_loop": "Second loop starts j at i_size but stops at j_seqs.size(), rather than i_size + j_seqs.size(); consequently only max(0, j_size - i_size) second-plane contributions are accumulated.",
+        "installed_cpp_source_match": "NOT_ESTABLISHED; installed extension binary hash is pinned, but this header was not captured."
+      },
+      "inference": "A spectral reference reproduces native energies and selected finite differences. Retaining only first-plane contributions plus the public loop's truncated second-plane prefix reproduces all saved native parallelity gradient components to approximately 1e-12 in both cases. This strongly supports an accumulation defect; it is not yet an installed per-proxy reproduction or proof of the optimizer failure cause.",
+      "scientific_scope": "No NARestraints pair/stack selection, base-plane mapping, chemical target or weight is rejected or changed by this numerical result.",
+      "next_validation": "Installed isolated tilted-plane controls with equal/unequal atom counts and swapped order; compare single-restraint gradients, accumulated gradients and finite differences; record installed source/binary identities. No optimization or adoption."
+    }
   }
 }

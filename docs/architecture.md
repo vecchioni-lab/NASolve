@@ -371,7 +371,13 @@ derivatives with central differences at four steps. Repeat/additivity and
 neighbour-count evidence distinguish sampled numerical inconsistencies without
 altering definitions or native equality checks. Existing CIF Doctor checks and
 generic outlier-selected distance groups accompany the audit. No optimization,
-model change or scientific approval occurs; installed execution is pending.
+model change or scientific approval occurs. Returned Cedar 23 matches all
+prerequisites and records stable sampled parallelity-gradient disagreement at
+both precisions; the other six families pass sampled checks. Independent plane
+energy/derivative calculations and a public CCTBX accumulation-loop model
+strongly indicate missing second-plane gradient contributions. Installed C++
+source/per-proxy confirmation and any causal role in the prior line-search
+failure remain open; NARestraints policy and exact native gates are preserved.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

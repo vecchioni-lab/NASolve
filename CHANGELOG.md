@@ -21,8 +21,13 @@ entries are reconstructed from repository history.
   distance groups. Select coordinate probes from ranked outlier endpoints,
   with no residue-code/site allowlist. Add source-bundled Git delivery and
   generic biased-gradient, drift, provenance, budget and deleted-build checks.
-  All 1,691 tests pass. Native execution remains pending; no target edits, model
-  writes or adoption.
+  All 1,691 tests pass. The returned 670-payload audit verifies 2,734 native
+  evaluations and stable parallelity-gradient disagreement at both precisions;
+  the other six families pass all sampled directions. Independent plane
+  calculations and the public CCTBX accumulation-loop bounds reproduce the
+  saved evidence, strongly indicating omitted second-plane gradient terms.
+  Installed per-proxy/source confirmation remains open. No target edits,
+  optimization, model writes or adoption.
 
 ### Bounded geometry trial under verified NARestraints policy
 

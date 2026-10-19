@@ -838,7 +838,31 @@ requires interpretation of step dependence, controls and neighbour behaviour;
 it does not by itself identify a Phenix defect. Agreement cannot prove every
 gradient component, global convergence, intended pairing chemistry or
 experimental fit. No minimization, target retuning, candidate model, diffraction
-refinement or adoption occurs. Installed Cedar 23 execution is pending.
+refinement or adoption occurs.
+
+**Returned Cedar 23 evidence (2026-10-19).** All 670 payloads verify; the
+609-payload prior capsule and its manifest remain byte-identical. Phenix
+2.2.1-6174 completes 2,734 energy evaluations in 7.8046 s, native exit zero.
+Exact manager, API/numerical sources and static constraint signatures match.
+In both coordinate cases, parallelity and the full objective fail 18/21
+sampled directions; each other category passes 21/21. Baseline repeats,
+captured snapshots and additivity agree. The parallelity count remains 58
+through its isolated samples. Dynamic nonbonded neighbour counts can vary;
+this evidence does not claim exact dynamic neighbour membership.
+
+An independent spectral plane calculation reproduces native energies and
+selected central differences. Applying the public CCTBX accumulation-loop
+bounds to those analytical plane gradients reproduces every saved parallelity
+gradient component to about 1e-12. The public loop accumulates only
+`max(0, j_size - i_size)` second-plane contributions. The immutable primary
+[source blob](https://api.github.com/repos/cctbx/cctbx_project/git/blobs/25d3a75f20d3611dcb32d919a893bc0beb18e6a0)
+and exact derived metrics are recorded in the
+[native evidence ledger](cif-linked-native-registration-evidence.json).
+This strongly indicates an accumulation defect, while the installed C++ header
+identity and isolated native per-proxy reproduction remain unverified. Small
+negative-gradient steps still reduce energy; a causal explanation of the
+prior line-search failure remains open. The next check isolates that installed
+calculation without changing NARestraints selections, planes, targets or weights.
 `--inspect-only` performs capsule, distance-group and dictionary checks offline.
 The finite-difference method follows the same checking principle used in the
 [CCTBX gradient tutorial](https://cci.lbl.gov/docs/cctbx/tuto_rigid_body/);
