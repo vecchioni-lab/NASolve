@@ -24,8 +24,12 @@ entries are reconstructed from repository history.
   target changes, policy guessing, refinement or adoption.
 - All 1,826 tests pass, with two skips and 276 passing subtests, including 38
   new proof/source/worker/capsule regressions. Actual-input offline inspection
-  and deleted-build source transport pass. The installed geometry trial is
-  pending; no new dependencies, migration or production-default change.
+  and deleted-build source transport pass. The returned installed trial
+  verifies all 980 payloads, 17 native mechanics checks and 336 sampled
+  endpoint directions. Its target falls 28.72% with all accepted steps
+  descending; stopping remains NOT_CONVERGED_LIMIT after 1,000 iterations.
+  A bounded full-precision continuation is the next proposed test. No new
+  dependencies, migration or production-default change.
 
 ### Both native first-plane roles for fixed gradients
 

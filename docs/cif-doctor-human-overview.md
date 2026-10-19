@@ -407,8 +407,12 @@ sampled derivative prerequisite for a separate bounded geometry trial.
 Cedar 27 now supplies that trial, restarting from the same original initial
 coordinates as the earlier stalled run. The exact qualified correction and
 initial gradient must match before optimization. Fresh endpoint derivatives,
-stopping evidence and native PDB mechanics are reported independently. Installed
-trial execution is pending; convergence and chemical qualification remain open.
+stopping evidence and native PDB mechanics are reported independently. The
+returned trial passes all 17 mechanics checks and all 336 sampled endpoint
+directions. Its target falls 28.72% but reaches the 1,000-iteration limit with
+the native criterion false. Accepted steps still lower the target at the end;
+a bounded continuation from saved full precision is the next proposed test.
+The same strained pair/DP angle remains, and chemical qualification is open.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -678,8 +682,19 @@ gradient norms are preserved. Fresh four-step endpoint checks cover the full
 objective and seven category controls at full and PDB-rounded precision. Exact
 atom identity mapping preserves noncoordinate PDB records, followed by fresh
 17-check fixed-policy native readback. Stopping, derivatives, mechanics and
-scientific qualification remain separate outcomes. Installed trial execution
-is pending; no target tuning, diffraction refinement or adoption occurs.
+scientific qualification remain separate outcomes. The returned 980-payload
+capsule verifies all 17 native mechanics checks and all 336 sampled endpoint
+directions. The target decreases from 3784.7499 to 2697.7623 and the corrected
+norm from 1110.5207 to 372.5374, but the native criterion is false after 1,000
+iterations / 1,028 calls. The stop remains NOT_CONVERGED_LIMIT. Every accepted
+target decreases; the last 100 transitions lower it by 31.2321. The rounded
+fixed-manager target/norm are separately 2700.8561 / 905.6215. Three distance
+and ten angle outliers remain at nominal deviation at least five, with no
+sign conflicts among 158 captured chirality proxies. A future continuation
+must start from saved full precision, freshly match the entire corrected
+start vector and fixed source/proxy identities, and repeat endpoint derivative
+and PDB mechanics checks. No continuation runner is yet prepared. No target
+tuning, diffraction refinement or adoption occurs.
 
 ## Primary references
 

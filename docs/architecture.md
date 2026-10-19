@@ -426,7 +426,15 @@ gradient evaluator changes; existing defaults remain fixed. Native L-BFGS
 stopping evidence is retained, followed by fresh full/rounded endpoint category
 derivatives and the existing identity-preserving PDB serializer and 17 native
 mechanics checks. Convergence, endpoint derivatives, mechanics and scientific
-approval are separate verdicts. Installed trial execution remains pending.
+approval are separate verdicts. Returned Cedar 27 verifies all 980 payloads,
+17 exact mechanics checks and 336 sampled endpoint directions. It preserves
+NOT_CONVERGED_LIMIT after 1,000 iterations / 1,028 calls, with no recorded
+optimizer error and the native criterion false. Every accepted target decreases,
+including the last 100 transitions. A separately bounded full-precision
+continuation is the next proposed trial; it must freshly match the entire
+starting corrected vector/target and unchanged sources/static constraints,
+then repeat endpoint derivatives and native PDB mechanics. That continuation
+is not implemented by rerunning Cedar 27, which restarts the original model.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

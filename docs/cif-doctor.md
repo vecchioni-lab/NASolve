@@ -1050,8 +1050,36 @@ preserving all other PDB columns. Fresh native interpretation must pass all
 17 fixed-policy mechanics checks. Endpoint derivative qualification, stopping
 classification and mechanics remain independent, including when any requires
 review. No new guessing, policy recompilation, dictionary generation, ReadySet,
-diffraction/refinement or adoption occurs. Installed execution is pending;
-ordinary PostMR/refinement defaults and previous runs remain unchanged.
+diffraction/refinement or adoption occurs. Ordinary PostMR/refinement defaults
+and previous runs remain unchanged.
+
+Returned Cedar 27 verifies all **980 payloads**, including 857 unchanged prior
+payloads and their manifest. Phenix 2.2.1-6174 (dispatcher 2.2.1) completes the
+trial/audit in **75.822869 s** and PDB readback in **1.565038 s**, both exit zero.
+All **17 native mechanics checks** and **336 sampled endpoint directions** pass;
+independent replay recomputes all 1,344 four-step samples and analytical dot
+products. Candidate serialization reproduces byte for byte, including the
+157 native/PDB ordering differences resolved by exact identity.
+
+The fixed objective changes **3784.7499458394077 -> 2697.762263611603**, a
+**28.72%** decrease, and corrected norm **1110.520668509296 ->
+372.53738052839816**. At **1,000 iterations / 1,028 calls** the stop is
+**NOT_CONVERGED_LIMIT**, with no recorded optimizer error and the native
+criterion false. All accepted targets decrease; iteration 900 to 1000 still
+reduces the target by **31.2321**. Corrected norms fluctuate, so a lower target
+does not certify proximity to convergence. The PDB-rounded fixed-manager
+target **2700.856094619088** and norm **905.6214940891548** remain separate.
+
+Both precisions retain three nominal distance and ten angle deviations at least
+five, and zero sign conflicts among 158 captured chirality proxies. All three
+distance outliers remain CGY A:20-DX D:3 contacts at **4.42–5.62 Å** against
+2.8 A targets; nine angle outliers involve that pair. The retained DP B:4 N5
+angle is **127.638 degrees** against 109.471 degrees. No target changes follow
+from those residuals alone. A separately bounded continuation from saved full
+precision is justified for the next numerical test, after fresh exact
+source/start-vector matching and with new endpoint derivative/mechanics gates.
+No next delivery is prepared; rerunning Cedar 27 restarts the original model.
+Geometry, convergence, chemistry and adoption remain open.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

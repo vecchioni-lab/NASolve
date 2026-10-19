@@ -305,7 +305,7 @@ the full static signature and all 17 prior mechanics checks agree. This
 qualifies the sampled correction for the captured supported installed profile;
 it does not prove every gradient, native version, chemistry or convergence.
 
-**Cedar 27 prepared: bounded corrected geometry trial; native result pending.**
+**Cedar 27 returned and verified (2026-10-19): mechanics/derivatives PASS; iteration limit.**
 `scripts/build_cif_corrected_geometry_probe.py` builds
 `27_Cedar_probe_cif_corrected_geometry.py` from the exact Cedar 26 ZIP.
 The trial starts at the **same original initial coordinates as Cedar 22**,
@@ -334,15 +334,52 @@ with a synthetic native criterion pass. Actual 857-payload offline inspection
 and deleted-build/poisoned-import source transport pass. These worker checks
 use explicit fakes; this Linux environment has no installed Phenix/Coot.
 
-**Current action:** run Cedar 27 through the pinned Git/worktree/build/run
-terminal block and return its output and review capsule. Review stopping,
-endpoint derivative qualification and exact mechanics separately. Cedar 22
-remains **NOT_CONVERGED_ERROR**. Production defaults, scientific qualification
-and adoption remain open. No new installs or migration. Private capsules,
-coordinates, dictionaries and logs remain outside Git. Exact commands,
-schemas, source identities and counts live in
+All **980 returned payloads** verify, including all 857 unchanged Cedar 26
+payloads and their manifest. Runner `5cf0f2d2…` matches clean NASolve
+`12d7fcc4…` / NARestraints `a7b6a0c9…`; all 110 runtime members verify.
+Phenix **2.2.1-6174** (dispatcher `2.2.1`) completes the corrected trial/audit in
+**75.822869 s** and native PDB readback in **1.565038 s**, both exit zero.
+All **17 exact mechanics checks** pass, preserving 877 atoms/43 sites, 38
+backbone links, all definitions/proxies/compiled policy and native sources.
+Candidate serialization reproduces byte for byte using exact atom identities.
+Independent replay verifies all **336 passing endpoint directions** and
+recomputes their **1,344 four-step samples**; 2,734 native audit evaluations
+remain below the 4,000 cap. No captured source is executed in local replay.
+
+The target changes **3784.7499458394077 -> 2697.762263611603 (28.72%)** and the
+corrected norm **1110.520668509296 -> 372.53738052839816 (66.45%)**. The outcome
+is **NOT_CONVERGED_LIMIT** at **1,000 iterations / 1,028 calls**: no recorded
+optimizer error, native criterion false. All accepted targets decrease,
+including **31.2321** from iteration 900 to 1000. Norms fluctuate, and the last
+100 accepted steps span **109.81-456.05**; do not claim a nearby minimum or a
+cause for slow convergence. The final target is 5.89% below Cedar 22's endpoint
+under the same energy definition, without transferring its incomplete gradient
+norms into this comparison. The rounded fixed-manager target/norm are
+**2700.856094619088 / 905.6214940891548** and remain separate from full precision.
+
+Both precisions retain **three nominal distance / ten angle deviations >=5**,
+with **zero sign conflicts among 158 chirality proxies**. The three CGY A:20-DX
+D:3 contact distances remain **4.4235 / 5.4261 / 5.6204 Å** versus 2.8 A targets;
+nine angle outliers involve that pair. DP B:4 N5 remains **127.6378 degrees**
+versus 109.471 degrees. Preserve these findings, pairing intent and recipe
+targets; numerical descent does not resolve their scientific interpretation.
+
+**Current action:** prepare and validate a separately bounded continuation
+from Cedar 27's **saved full-precision endpoint**, supported by its continued
+accepted-step descent. It must match exact atom correspondence, the whole
+starting corrected gradient/target, native sources, definitions, compiled
+NARestraints policy and static constraints before optimization; retain actual
+stopping and repeat endpoint derivative/native PDB mechanics gates afterward.
+**No next delivery is prepared. Do not rerun Cedar 27:** its runner restarts
+the original initial coordinates. Do not seed a numerical continuation from
+the rounded PDB. Cedar 22 remains **NOT_CONVERGED_ERROR**; Cedar 27 remains
+**NOT_CONVERGED_LIMIT**. Production defaults, geometry/scientific qualification,
+refinement and adoption remain open. No new installs or migration. Private
+capsules, coordinates, dictionaries and logs remain outside Git. Exact source
+identities and verification counts live in
 `cif-linked-native-registration-evidence.json`, mirrored in the implementation
 map.
+
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and
 **1,669 full tests, two skips and 276 subtests (76.03 s)**, including synthetic

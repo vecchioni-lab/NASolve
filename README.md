@@ -67,8 +67,12 @@ per-plane directions, including rotated controls, with unchanged native energy.
 Cedar 27 now supplies a separate bounded geometry trial from the original
 initial coordinates, using that qualified correction. Exact source/snapshot
 gates, fresh endpoint derivatives and native PDB readback accompany the trial.
-Installed trial execution is pending. NARestraints policy and production
-defaults stay fixed; geometry, convergence and adoption remain open.
+Returned Cedar 27 passes all 17 native mechanics checks and all 336 sampled
+endpoint derivative directions. The fixed objective falls 28.72%, but the
+trial reaches its 1,000-iteration limit with the native criterion false. A
+future bounded continuation must use the saved full-precision endpoint.
+NARestraints policy and production defaults stay fixed; geometry, convergence
+and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

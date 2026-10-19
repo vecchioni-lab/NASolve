@@ -242,12 +242,10 @@
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
   "next_delivery": {
-    "delivery_prefix": "27_Cedar",
-    "status": "PREPARED_NATIVE_EVIDENCE_PENDING",
-    "last_completed_delivery": "26_Cedar",
-    "builder": "scripts/build_cif_corrected_geometry_probe.py",
-    "runner_filename": "27_Cedar_probe_cif_corrected_geometry.py",
-    "transport": "One quoted-path subshell: fetch cedar from build 26, fresh full-SHA detached worktree 27, source-bundled build, run; dependent commands joined with &&."
+    "status": "NO_NEW_DELIVERY_PREPARED",
+    "last_completed_delivery": "27_Cedar",
+    "repeat_requested": false,
+    "next_required_scope": "A separately bounded saved-full-precision continuation with exact start-vector/source/proxy matching and independent endpoint derivative/stopping/native mechanics verdicts."
   },
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
@@ -5542,7 +5540,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
     "pairing_intent_provenance": {
       "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
       "reviewed_on": "2026-10-17",
@@ -5691,7 +5689,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+  "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -5815,7 +5813,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
     "cedar21_return_verified_2026_10_18": {
       "archive": {
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -6208,7 +6206,7 @@
       "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
       "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
     ],
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
     "cedar22_return_verified_2026_10_18": {
       "review_summary": {
         "archive": {
@@ -6710,7 +6708,7 @@
       "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
       "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
     ],
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
     "returned_evidence": {
       "recorded_date": "2026-10-19",
       "archive": {
@@ -7108,7 +7106,7 @@
       "Missing optional installed C++ source remains explicit; binary/API fingerprints are still mandatory.",
       "Only source code and derived counts/hashes/metrics enter Git; all private capsules, dictionaries, coordinates and logs remain excluded."
     ],
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
     "returned_evidence": {
       "recorded_date": "2026-10-19",
       "archive": {
@@ -7427,7 +7425,7 @@
       "Cedar 22 stopping evidence remains NOT_CONVERGED_ERROR; its cause is not established by correction implementation.",
       "Only code and derived counts/hashes enter Git. Private capsules, coordinates, dictionaries and logs remain excluded."
     ],
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
     "returned_evidence": {
       "archive": {
         "filename": "25_Cedar_jslorfge_cif_corrected_gradient_review.zip",
@@ -7784,7 +7782,7 @@
       "Cedar 22 stopping evidence remains NOT_CONVERGED_ERROR; its cause is not established by correction implementation.",
       "Only code and derived counts/hashes enter Git. Private capsules, coordinates, dictionaries and logs remain excluded."
     ],
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
     "returned_evidence": {
       "archive": {
         "filename": "26_Cedar_wn30xwws_cif_plane_order_review.zip",
@@ -7906,7 +7904,7 @@
     }
   },
   "corrected_narestraints_geometry_trial_2026_10_19": {
-    "status": "IMPLEMENTED_OPT_IN_NATIVE_TRIAL_PENDING",
+    "status": "RETURNED_MECHANICS_AND_SAMPLED_DERIVATIVES_PASS_NOT_CONVERGED_LIMIT",
     "delivery_prefix": "27_Cedar",
     "policy_id": "cif-fixed-na-corrected-geometry-trial-v1",
     "correction_policy_id": "native-parallelity-both-first-planes-v1",
@@ -8012,7 +8010,7 @@
       },
       "native_worker": "Explicit CCTBX/scitbx API and optimizer fakes; no installed Phenix/Coot in this Linux environment. Tests preserve a deliberate bad endpoint derivative even when the synthetic native stopping criterion passes.",
       "portability": "Actual 857-payload capsule passes source-bundled offline inspection. Synthetic transport passes after both build trees are deleted with ambient NASolve import poisoned.",
-      "native": "PENDING_INSTALLED_PHENIX_2.2.1-6174_DISPATCHER_2.2.1"
+      "native": "Returned installed Phenix 2.2.1-6174 / dispatcher 2.2.1; 75.822869 s trial/audit and 1.565038 s native PDB readback, both exit zero. All 17 mechanics and 336 sampled endpoint directions pass; preserve NOT_CONVERGED_LIMIT after 1000 iterations / 1028 calls."
     },
     "schemas": {
       "new_probe_receipt": "cif-corrected-na-geometry-probe",
@@ -8032,6 +8030,172 @@
       "A sampled derivative pass is not a proof of all gradients, convergence, chemistry, pucker, absolute stereochemistry, formal-charge readback or experimental fit.",
       "Only code and derived counts/hashes/metrics enter Git. Private capsule/model/CIF/PHIL/log bytes remain excluded."
     ],
-    "next_action": "Run the prepared Cedar 27 bounded geometry trial from the original Cedar 22 initial coordinates with the native-qualified both-first-plane gradient correction. Recompute the Cedar 26 raw sampled proof and match the full corrected initial vector, exact native sources/static constraints and fixed NARestraints policy before optimization. Retain actual stopping evidence, fresh full-precision/PDB-rounded endpoint derivative audits and separate 17-check native PDB mechanics. Target reduction alone passes none of these gates. Cedar 22 remains NOT_CONVERGED_ERROR; scientific qualification and adoption remain open."
+    "next_action": "Cedar 27 returned and is fully verified: exact native mechanics and sampled endpoint derivatives pass; optimizer stopping remains NOT_CONVERGED_LIMIT at 1000 iterations. Prepare and validate a separately bounded continuation from its saved full-precision endpoint, justified by continued accepted-step target decrease. Require exact atom correspondence, unchanged qualified correction/native sources/definitions/NARestraints policy/static constraints, a fresh match of the starting energy and complete corrected gradient, and new endpoint derivative/native PDB mechanics checks. Do not rerun Cedar 27, which restarts the original initial coordinates, or seed from its rounded PDB. Retain all prior stopping outcomes and remaining CGY-DX/DP geometry findings. No next delivery is prepared; scientific qualification, refinement and adoption remain open.",
+    "returned_evidence": {
+      "archive": {
+        "filename": "27_Cedar_7i4_5a4b_cif_corrected_geometry_review.zip",
+        "bytes": 30540215,
+        "sha256": "c43ede693180dd8b5ba7cbcfa33cf89c8167d185e50f81ca6f12299a529feec1",
+        "payloads": 980
+      },
+      "preserved_prior_payloads": 857,
+      "preserved_prior_manifest": "BYTE_IDENTICAL",
+      "runtime_files": 110,
+      "build_commit": "12d7fcc464fc759cb2aab92494780d221c49c763",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "runner_sha256": "5cf0f2d2c2c03be752bd859ab1952a9a93aac536c9f0270cfa823da2c2b40eae",
+      "runtime_sha256": "f0fd11d3c333bbc55966247b137bbca97b54aba2f89e3c5002847b8a23ece4e9",
+      "native_trial_seconds": 75.822869,
+      "native_readback_seconds": 1.565038,
+      "native_returncodes": [
+        0,
+        0
+      ],
+      "mechanics_checks_passed": 17,
+      "atoms": 877,
+      "sites": 43,
+      "backbone_links": 38,
+      "source_identity": "Exact trusted worker/core bytes and 8 API / 6 numerical / 2 adapter / 2 installed C++ source identities preserved.",
+      "constraint_signature": "0d450251acacbc8b63cb9e268fd24a839cd855e98417fee62ab45bc190d19bf9",
+      "stopping": {
+        "calls": 1028,
+        "error": null,
+        "iterations": 1000,
+        "max_iterations": 1000,
+        "native_criterion_met": false,
+        "reason": "max_iterations"
+      },
+      "convergence": "NOT_CONVERGED_LIMIT",
+      "endpoint_derivative_qualification": "SAMPLED_NATIVE_DERIVATIVES_PASS",
+      "directions_passed": 336,
+      "four_step_samples_recomputed": 1344,
+      "endpoint_energy_evaluations": 2734,
+      "initial": {
+        "correction_norm": 400.6569658659527,
+        "gradient_norm": 1110.520668509296,
+        "max_atom_gradient": 156.89884223191862,
+        "native_gradient_norm": 1033.6781974472904,
+        "plane_order_difference_norm": 215.91889063473525,
+        "proxy_counts": {
+          "n_angle_proxies": 1592,
+          "n_bond_proxies": 1032,
+          "n_bond_similarity_proxies": null,
+          "n_chirality_proxies": 158,
+          "n_den_proxies": null,
+          "n_dihedral_proxies": 574,
+          "n_ncs_dihedral_proxies": null,
+          "n_nonbonded_proxies": 7772,
+          "n_parallelity_proxies": 58,
+          "n_planarity_proxies": 54,
+          "n_ramachandran_proxies": null,
+          "n_reference_coordinate_proxies": null,
+          "n_reference_dihedral_proxies": null
+        },
+        "target": 3784.7499458394077,
+        "terms": {
+          "angle_residual_sum": 1486.331987775383,
+          "bond_residual_sum": 576.3515389992065,
+          "bond_similarity_residual_sum": 0.0,
+          "chirality_residual_sum": 21.45550100084146,
+          "den_residual_sum": 0.0,
+          "dihedral_residual_sum": 653.0151462672338,
+          "dihedral_restraints_residual_sum": 0.0,
+          "ncs_dihedral_residual_sum": 0.0,
+          "nonbonded_residual_sum": 388.38310745953174,
+          "parallelity_residual_sum": 593.5431732262774,
+          "planarity_residual_sum": 65.66949111093379,
+          "ramachandran_residual_sum": 0.0,
+          "reference_coordinate_residual_sum": 0.0,
+          "reference_dihedral_residual_sum": 0.0
+        }
+      },
+      "cases": {
+        "full_precision": {
+          "target": 2697.762263611603,
+          "corrected_gradient_norm": 372.53738052839816,
+          "all_168_directions_pass": true
+        },
+        "pdb_rounded": {
+          "target": 2700.856094619088,
+          "corrected_gradient_norm": 905.6214940891548,
+          "all_168_directions_pass": true
+        }
+      },
+      "energy_decrease_percent": 28.720198105101638,
+      "corrected_norm_decrease_percent": 66.45380936237119,
+      "energy_below_cedar22_endpoint_percent": 5.888366685367785,
+      "history": {
+        "accepted_steps": 1000,
+        "target_increases": 0,
+        "target_at_900": 2728.9943451266518,
+        "target_at_1000": 2697.762263611603,
+        "target_decrease_iterations_900_to_1000": 31.232081515048776,
+        "last_100_gradient_norm_range": [
+          109.81453450933839,
+          456.05096224324615
+        ]
+      },
+      "nominal_outliers_ge5": {
+        "full_precision": {
+          "angle": 10,
+          "bond_simple": 3,
+          "chirality": 0
+        },
+        "serialized_native": {
+          "angle": 10,
+          "bond_simple": 3,
+          "chirality": 0
+        }
+      },
+      "chirality_sign_conflicts": 0,
+      "chirality_proxies": 158,
+      "candidate_sha256": "5ffd1d50e3fe2de1fc195c8c239a317a92309049638c29bfd9a1c3cdb517c355",
+      "serialization_replay": "BYTE_IDENTICAL_EXACT_ATOM_IDENTITIES",
+      "pdb_native_order_mismatches_handled": 157,
+      "next_step": "A separately bounded continuation from the saved full-precision endpoint is justified by continued descent; exact original definitions/policy/sources and fresh start-vector/endpoints/mechanics gates must remain. Rerunning Cedar 27 restarts the original initial coordinates.",
+      "limit": "Derivative and mechanics passes do not establish convergence, achieved geometry, pucker, stereochemistry, charge or experimental fit. No refinement or adoption.",
+      "recorded_date": "2026-10-19",
+      "native_installation": "Phenix 2.2.1-6174",
+      "native_dispatcher_version": "2.2.1",
+      "both_build_sources_clean": true,
+      "fixed_inputs": {
+        "models": 1,
+        "dictionaries": 19,
+        "phil_files": 13
+      },
+      "native_source_preconditions": "The entire original initial manager, corrected initial vector/target, exact qualified correction source and native numerical/adapter/C++ identities match before optimization.",
+      "proof_replay": "All 980 SHA-256 payloads, 857 prior payloads and manifest, all native input/output descriptors and trusted worker/core source bytes verify. Recompute all 336 directional analytical projections and 1344 raw four-step finite-difference samples/bounds. Native PDB mechanics replay exactly and candidate serialization reproduces byte for byte. Execute no captured source.",
+      "remaining_geometry": {
+        "cgydx_nominal_distance_outliers_ge5": 3,
+        "cgydx_contact_distances_angstrom": [
+          4.423450138649423,
+          5.42613656342635,
+          5.620358783940968
+        ],
+        "cgydx_contact_target_angstrom": 2.8,
+        "cgydx_nominal_angle_outliers_ge5": 9,
+        "dp_b4_n5_angle_degrees": 127.6377955039132,
+        "dp_b4_n5_target_degrees": 109.471,
+        "interpretation": "Persisting strained geometry is retained for review; target reduction does not establish chemical intent or justify changing recipe targets."
+      },
+      "gradient_history_interpretation": "Accepted targets decrease throughout the recorded 1000 steps, including 31.232081515048776 from iteration 900 to 1000. Corrected norms fluctuate and the native criterion is false. Continued descent supports testing a bounded continuation; it does not demonstrate an imminent minimum or prove a cause for slow convergence.",
+      "pdb_rounding": "Full-precision target/norm 2697.762263611603 / 372.53738052839816 and PDB-rounded fixed-manager target/norm 2700.856094619088 / 905.6214940891548 remain separate. A future numerical continuation must use saved full precision.",
+      "new_native_execution_here": "NOT_RUN",
+      "new_optimization_here": "NOT_RUN",
+      "production_defaults": "UNCHANGED",
+      "automatic_adoption": false,
+      "return_record_validation": {
+        "full_suite": {
+          "passed": 1826,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 105.53,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "documentation": "Mirrored JSON return entry, 147 relative links, editable figure/output equality and rendered visual inspection pass.",
+        "runtime_and_tests_changed": false,
+        "new_native_execution_here": "NOT_RUN"
+      }
+    }
   }
 }
