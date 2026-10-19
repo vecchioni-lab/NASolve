@@ -422,7 +422,7 @@ degrees** versus 109.471. Native target contributions are **1193.6456 angles**,
 parallelity**, **11.6966 planarity** and **10.6477 chirality**. Category gradient
 norms can cancel; they do not add. The cause of slow convergence is not proven.
 
-**Cedar 29 prepared: fixed-policy base-orientation audit; native result pending.**
+**Cedar 29 returned and verified: sampled rotation derivatives PASS.**
 `scripts/build_cif_base_rotation_probe.py` builds
 `29_Cedar_probe_cif_base_rotation.py` from the verified Cedar 28 capsule. The
 reusable planner ranks nominal bond/angle outliers, then selects supported
@@ -452,15 +452,53 @@ builds with poisoned ambient/captured code. **88 focused pass (30.38 s)** and
 source-bundled offline inspector and exact prior mechanics replay pass. There
 is no installed Phenix/Coot here; native worker tests use explicit fakes.
 
-**Current action:** run Cedar 29 through the pinned fetch/worktree/build/run
-terminal block and return its console output and review ZIP. Installed Phenix
-**2.2.1-6174 / dispatcher 2.2.1** execution is pending. Original chemical
-definitions, NARestraints selections/recipes/stacking matrix and all targets /
-weights remain fixed. No optimization, coordinate candidate, policy rebuild,
-installed native patch, diffraction/refinement or adoption occurs. Preserve
-Cedar 22 NOT_CONVERGED_ERROR and Cedar 27/28 NOT_CONVERGED_LIMIT. Private inputs,
-capsules and logs stay outside Git; source/evidence and implementation records
-own schemas, hashes and exact validation commands.
+All **1,173 returned payloads** verify, with all 1,104 Cedar 28 payloads and
+manifest preserved byte for byte. Clean build/runner hashes, 111 runtime files,
+source/static identities and all 17 prerequisite mechanics checks replay.
+Phenix **2.2.1-6174 / dispatcher 2.2.1** completes in **31.56962 s**, exit zero,
+using **1,201/3,000** energy calls. All **96 rotational derivative directions /
+384 four-step samples** recompute as consistent. Both precision cases retain
+repeat/additivity/periodic/rigid controls. Each of A:20, D:3 and B:4 favors zero
+degrees on the coarse grid. Nonzero validated slopes remain; this is no proof
+of a minimum, complete pose search or scientific qualification. DP's retained
+N5 targets still sum to **339.714 degrees** against a shared planar constraint.
+
+**Cedar 30 prepared: separate source-graph numerical recovery candidate.**
+`scripts/build_cif_numerical_recovery_probe.py` builds the next runner from the
+exact Cedar 29 ZIP. The generic planner selects declared source plane/angle
+reviews independently of residue name or model residual. This bounded probe
+explicitly selects DP; five other eligible source contexts stay deferred.
+The original 35 atoms, 37 bond declarations, explicit charges/H and four
+chirality declarations survive a graph-only export. Old numerical targets and
+energy types are excluded from the generator input, with all original fields
+preserved in the frozen source. Complete declared source x/y/z seed naming and
+initial geometry, explicitly labelled as non-independent ideal coordinates.
+
+Existing isolated eLBOW generation/capability and chemistry/numerical gates are
+reused. The candidate is compared against both the graph-only input and original
+numerical source; complete formal-charge declarations must match. New raw
+reviews/refusals remain visible. Up to three explicitly selected components and
+a default **600 s per component** bound the candidate phase. No dictionary is
+applied to a manager, no existing modifier is recomposed, and no crystal-model
+optimization, policy recompilation, ReadySet retry, refinement or adoption runs.
+All **47 new regressions** pass; **123 focused tests (13.63 s)**
+and **1,949 full tests, two skips and 276 subtests (140.81 s)** pass.
+Actual-input deleted-build/poisoned-import transport verifies 112 runtime files,
+all prior evidence and the unchanged DP graph seed. Installed generation is
+pending; exact validation commands and boundaries are recorded in the ledger. Existing geometry/convergence, charge, pucker, stereochemistry
+and experimental gates remain independent.
+
+**Current action:** run Cedar 30 through the pinned one-block terminal handoff
+and return its console output and review ZIP. Its runner destination is the
+ignored `branch-artifacts/cedar/runners/` in the everyday checkout. The optional
+builder `--local-artifact-checkout` argument verifies that exclusion and adds
+only the local Git exclude rule if the frozen checkout lacks it. It never pulls,
+resets or edits tracked files there. **At Cedar integration, inventory and
+hash-archive earlier root-level runners before removing redundant copies**;
+follow the [archive/cleanup policy](collaboration.md#branch-artifact-archive-and-merge-cleanup).
+Archive migration has not been executed on the laptop. Preserve Cedar 22's error,
+Cedar 27/28's limits and all original review data. Private inputs/capsules/native
+logs and generated candidates/runners remain outside Git.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

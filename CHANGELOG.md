@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Source-graph numerical candidates and branch artifact storage
+
+- Verify Cedar 29: all 1,173 payloads, 17 mechanics prerequisites and 96 sampled
+  rotation directions pass. Each independent coarse grid favors the starting
+  angle; nonzero slopes and the DP angle/plane conflict retain REVIEW.
+- Add explicit Cedar 30 graph-only numerical recovery. Preserve exact declared
+  chemistry, distinguish source-coordinate seed origin, remove old numerical
+  targets/types from generator inputs and reuse isolated eLBOW guards. Compare
+  candidates against the original source too; require complete formal-charge
+  preservation. No model optimization or native dictionary replacement occurs.
+- Put generated live-test runners in ignored `branch-artifacts/<branch>/runners/`.
+  The optional builder checkout argument establishes the local ignore rule in
+  older frozen checkouts without tracked edits. Record Cedar merge-time
+  inventory/hash/archive cleanup; no laptop files have been moved or deleted.
+- All 47 new regressions, 123 focused and 1,949 full tests pass, with two skips
+  and 276 subtests. Actual-input transport passes after deleting both clean
+  source copies, with poisoned ambient imports.
+- Existing production defaults, dependencies and NARestraints intent remain
+  fixed. Installed candidate generation/native qualification are pending;
+  no modifier composition, ReadySet retry, refinement or adoption.
+
 ### Fixed-policy base-orientation diagnostic
 
 - Add Cedar 29 from the verified Cedar 28 return. Select connected base groups

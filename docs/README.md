@@ -152,7 +152,11 @@ for actual behavior; history is evidence, not a second task queue.
   a bounded, graph-selected base-orientation audit with temporary independent
   rotations, category contributions and fresh rotational derivatives. Exact
   source/endpoint gates, periodic controls and source-angle context accompany
-  the scan; native execution is pending. No coordinate candidate is written.
+  the scan. Its return verifies all 1,173 payloads and all 96 sampled rotational
+  directions; no independent coarse sample improves the fixed objective.
+  Cedar 30 prepares a separate graph-only source and independent numerical
+  dictionary candidate for explicitly selected DP, with full source chemistry
+  comparisons. Installed generation is pending; no candidate is applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

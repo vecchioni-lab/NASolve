@@ -78,8 +78,12 @@ limit after 2,000 cumulative iterations. Three distance and ten angle outliers
 persist. Cedar 29 supplies a separate graph-selected base-orientation audit:
 temporary rotations measure category responses and numerical slopes under
 the same fixed objective. Source/endpoint preflight, periodic controls and
-explicit internal-angle context accompany the scan; native execution is
-pending. It produces no optimized/adoptable model.
+explicit internal-angle context accompany the scan. Returned Cedar 29 passes
+all 96 sampled rotation directions; every coarse-grid minimum is the starting
+angle. This does not establish a local/global minimum. Cedar 30 prepares a
+separate source-graph numerical dictionary candidate for the retained DP
+angle/plane conflict, with exact chemical comparisons. Installed generation
+is pending; no candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

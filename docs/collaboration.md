@@ -88,6 +88,42 @@ This command-passage convention is an operational repository contract. Keep it
 here and point agent instructions and the current handoff to this section;
 private personality handoffs remain outside repository documentation.
 
+## Branch artifact archive and merge cleanup
+
+Generated source-bundled live-test runners belong in the everyday checkout's
+`branch-artifacts/<branch>/runners/` directory, for example
+`branch-artifacts/cedar/runners/30_Cedar_probe_cif_numerical_recovery.py`.
+The root `.gitignore` excludes the whole `branch-artifacts/` tree. Keep the
+maintained builders, templates, runtime code, tests and technical evidence
+records tracked in their existing locations. Do not commit generated runners,
+review ZIPs, native logs, models or a copy of an entire branch into Git.
+
+Delivery commands must create the destination parent as needed, retain unique
+numbered filenames and refuse an existing output. Continue using a pinned
+detached build worktree; the everyday checkout supplies the interpreter and
+ignored runner destination, and is not pulled, reset or switched for delivery.
+For an older everyday checkout that has not acquired this ignore rule, the
+handoff must first install the same `/branch-artifacts/` rule in that clone's
+local Git exclude file, without changing tracked files. Verify the rule with
+`git check-ignore` before writing a runner. Never use `git add -f` for this tree.
+
+**Cedar merge cleanup is an explicit outstanding task.** Before retiring Cedar,
+inventory the earlier root-level numbered runners and the ignored branch
+directory, including each file's original relative path, byte count, SHA-256,
+delivery prefix and available build commit/runner receipt. Preserve the
+manifest locally with the archive. Copy verified historical runners into
+`branch-artifacts/cedar/archive/` without overwriting collisions; compare bytes
+and hashes before removing a redundant root-level copy. Keep the original
+review ZIPs, run directories and checkpoint lineage accessible at their
+recorded locations. Do not relocate an artifact still referenced by an active
+job or an operational receipt without updating and checking that reference.
+
+Archive completion does not itself authorize pruning scientific evidence or
+local work. Apply the lifecycle audit below before removing disposable build
+worktrees or retiring branch refs. Ignored local files survive branch switches
+but still need a normal backup; Git does not archive their contents. Never
+perform broad directory deletion or a blanket `git clean` as merge cleanup.
+
 ## Branch and worktree lifecycle
 
 Prefer **one active development branch and one everyday checkout**. Arboreal

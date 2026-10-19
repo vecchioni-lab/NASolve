@@ -35,6 +35,10 @@ in this repository.
   [terminal handoffs](docs/collaboration.md#git-delivery-and-terminal-handoffs).
   Keep required install commands as separate one-liners and preserve the
   everyday checkout and all prior deliveries.
+- Write generated live-test runners under the everyday checkout's ignored
+  `branch-artifacts/<branch>/runners/` directory. Follow the
+  [branch artifact archive and merge cleanup](docs/collaboration.md#branch-artifact-archive-and-merge-cleanup)
+  policy; inventory and preserve earlier root-level runners before retirement.
 - Maintain a short human-facing descriptor for each substantive feature: its
   purpose, behavior, algorithm/tools, evidence, limitations and pipeline role,
   with a methods paragraph and editable figure when these help explain it.

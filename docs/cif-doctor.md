@@ -1181,11 +1181,53 @@ The default bounds are **six supported groups / 3,000 total energy evaluations /
 replay selects A:20, D:3 and B:4 by the same generic rule, each with 11 base
 atoms; it does not hard-code those identities. The actual-input inspector and
 synthetic deleted-build source transport pass. **88 focused and 1,902 full tests
-pass**, with two full-suite skips and 276 passing subtests. Installed Phenix
-**2.2.1-6174 / dispatcher 2.2.1** execution remains pending. NARestraints intent,
+pass**, with two full-suite skips and 276 passing subtests. Returned installed
+Phenix **2.2.1-6174 / dispatcher 2.2.1** execution verifies all 1,173 payloads
+and passes all 96 sampled rotational directions (384 four-step samples), in
+31.56962 s and 1,201 total calls. All three independent coarse grids favor
+zero degrees at both precisions; nonzero analytic slopes remain. This result
+excludes no unsampled/coupled configuration and establishes no minimum. NARestraints intent,
 all targets/weights, original runs and production defaults remain fixed. No
 optimization, policy recompilation, dictionary generation, installed native
 patch, refinement or adoption occurs.
+
+### Source-graph numerical recovery candidates
+
+`scripts/build_cif_numerical_recovery_probe.py` builds Cedar 30 from the verified
+Cedar 29 capsule. The reusable planner inspects declared source angle/plane
+contradictions on one independent graph-valid component definition, records all
+model sites/modifiers, and supports explicit component selection without a
+residue allowlist. The reviewed probe selects DP's retained N5 conflict; other
+source reviews remain deferred. This is a candidate-only numerical operation.
+
+A separate graph source preserves exact atom identifiers/elements, H/charge,
+bond order/aromatic/stereo declarations and signed chirality. It excludes old
+numerical targets, energy types, planes and torsions; the complete original and
+removed-field inventory remain frozen. Complete source ideal coordinates may
+seed naming/initial geometry. If absent, complete declared source atom x/y/z
+are accepted only with explicit `SOURCE_DECLARED_COORDINATES_NOT_INDEPENDENT_IDEAL`
+provenance. Partial/nonfinite families, missing/ambiguous formal charges, lossy
+naming and graph changes refuse. No experimental model supplies target values.
+
+The existing eLBOW-v4 adapter discovers installed help capabilities and retains
+its source-state, explicit-H and chirality controls, isolated output, timeout
+and raw evidence. It requests generator-internal geometry optimization; it
+runs no crystal-model optimization. The output is compared to both graph source
+and original numerical dictionary. Existing graph/state/stereo and numerical
+rejection gates remain; complete source formal charges must survive exactly,
+without partial-charge substitution. `CANDIDATE_REVIEW` still requires native
+site/proxy, source/chemical and scientific qualification. Generation failures
+and unresolved findings are retained; no angle is retuned to match the model.
+
+The probe verifies the 1,173-payload capsule, exact trusted worker/core/source
+identities and full qualified lineage, recomputes all 96 saved rotation
+directions and replays all 17 native mechanics prerequisites. Default bounds
+are at most three explicitly selected components and 600 seconds each. Actual
+input planning and graph preparation pass; installed generation is pending.
+The original 19 CIF/13 PHIL inputs and NARestraints pairing/stacking policy stay
+frozen. No new dictionary is applied, no modifier composition is attempted,
+and no ReadySet retry, refinement or adoption occurs. Existing production
+defaults and dependencies need no migration.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

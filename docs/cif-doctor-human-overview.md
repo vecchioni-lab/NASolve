@@ -419,8 +419,11 @@ limit; the same strained pair/DP angle remains, and chemical qualification is
 open. Cedar 29 supplies a separate graph-selected base-orientation audit to
 measure the response of the same fixed objective to temporary rigid-base
 rotations. Source/endpoint matching, fresh rotational derivatives, periodic
-controls and exact angle/plane context accompany the scan. Native results are
-pending; it does not optimize or write a coordinate candidate.
+controls and exact angle/plane context accompany the scan. Returned native
+execution passes all 96 sampled rotation directions; no independent coarse
+sample improves the objective. Cedar 30 separately prepares a source-graph
+numerical candidate for the retained DP conflict. Installed generation is
+pending; no candidate is applied to a model or native manager.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -744,7 +747,31 @@ energy evaluations, with a 1,200-second default timeout. A low grid value is
 neither an optimum nor a chemically validated candidate. Coupled backbone/base
 motions, complete geometry, pucker, charge, absolute stereochemistry and
 experimental fit remain separate. The implemented source transport and tests
-pass; installed native execution is pending. Ordinary PostMR is unchanged.
+pass. The returned installed audit verifies all 1,173 payloads and all 96
+sampled rotational directions. Every independent coarse grid favors the
+starting angle; validated nonzero slopes remain, so no minimum is claimed.
+Ordinary PostMR is unchanged.
+
+### Separate numerical recovery from a source contradiction
+
+Cedar 30 addresses the retained DP angle/plane disagreement through independent
+whole-component generation. The general selector uses a declared restraint
+conflict, with explicit component selection for this reviewed experiment. It
+does not derive replacement targets from the distorted model. The exact source
+atoms, bond state, explicit H/charges and signed chirality are exported into a
+graph-only input; old energy types and numerical targets remain in the frozen
+original. Source coordinates supply only naming/starting geometry, with their
+origin stated explicitly rather than treated as independent ideal validation.
+
+The existing guarded eLBOW adapter generates a separate numerical dictionary.
+Chemical and numerical comparisons against both the graph input and original
+source retain every discrepancy; complete formal-charge declarations must
+survive. A candidate is not installed or combined with existing modifiers in
+this slice. Native proxy qualification, achieved geometry, convergence and
+scientific approval remain separate. Installed generation is pending. This
+methods step is reusable for explicitly selected graph-valid source conflicts;
+the DP-specific delivery and prior positive bespoke trial are evidence, not a
+universal correction rule.
 
 ## Primary references
 

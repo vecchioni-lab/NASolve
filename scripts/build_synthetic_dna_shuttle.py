@@ -28,6 +28,46 @@ def _revision(root: Path) -> dict:
             "working_tree_has_changes": bool(git("status", "--porcelain"))}
 
 
+def prepare_branch_runner_destination(checkout: Path, output: Path) -> None:
+    """Protect an explicitly selected local branch-artifact destination from Git.
+
+    Older frozen everyday checkouts may lack the tracked ignore rule. Install
+    only that rule in this clone's local exclude; never alter tracked files.
+    """
+    checkout = checkout.expanduser().resolve(strict=True)
+    output = output.expanduser().absolute()
+    relative = output.relative_to(checkout)
+    if (len(relative.parts) < 4 or relative.parts[0] != 'branch-artifacts'
+            or relative.parts[2] != 'runners' or output.suffix != '.py'
+            or any(p.is_symlink() for p in output.parents)):
+        raise ValueError('Require a separate branch-artifacts/BRANCH/runners Python output')
+    if output.exists() or output.is_symlink():
+        raise FileExistsError('Runner destination already exists')
+    def git(*args):
+        return subprocess.run(['git', '-C', str(checkout), *args], capture_output=True, text=True)
+    top = git('rev-parse', '--show-toplevel')
+    if top.returncode or Path(top.stdout.strip()).resolve() != checkout:
+        raise ValueError('Artifact checkout must be the explicit Git worktree root')
+    ignored = git('check-ignore', '-q', '--', str(output))
+    if ignored.returncode not in {0, 1}:
+        raise ValueError('Could not check local runner exclusion')
+    if ignored.returncode:
+        excluded = git('rev-parse', '--git-path', 'info/exclude')
+        if excluded.returncode:
+            raise ValueError('Could not locate this clone local Git exclude')
+        path = Path(excluded.stdout.strip())
+        if not path.is_absolute():
+            path = checkout/path
+        if path.is_symlink() or any(p.is_symlink() for p in path.parents):
+            raise ValueError('Local exclude path cannot traverse a symlink')
+        previous = path.read_bytes() if path.exists() else b''
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open('ab') as handle:
+            handle.write((b'\n' if previous and not previous.endswith(b'\n') else b'') + b'/branch-artifacts/\n')
+        if git('check-ignore', '-q', '--', str(output)).returncode:
+            raise ValueError('Local branch artifacts exclusion did not take effect')
+
+
 def build(root: Path, narestraints_root: Path, output: Path, *,
           template_name: str = "synthetic_dna_shuttle_template.py",
           delivery_prefix: str | None = None) -> dict:
@@ -54,6 +94,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "cif_corrected_geometry_probe_template.py": "27_Cedar",
         "cif_geometry_continuation_probe_template.py": "28_Cedar",
         "cif_base_rotation_probe_template.py": "29_Cedar",
+        "cif_numerical_recovery_probe_template.py": "30_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -188,6 +229,10 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         metadata.update(kind="cif-fixed-na-base-rotation-shuttle",delivery_prefix=delivery_prefix,
                         native_validation="temporary-graph-selected-base-rotations-fixed-native-objective",automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10", "Biopython", "Phenix for native orientation evaluations"]
+    if template_name == "cif_numerical_recovery_probe_template.py":
+        metadata.update(kind="cif-source-graph-numerical-recovery-shuttle",delivery_prefix=delivery_prefix,
+                        native_validation="NOT_RUN_DICTIONARY_CANDIDATE_ONLY",automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "Phenix eLBOW for independent numerical generation"]
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

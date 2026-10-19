@@ -242,12 +242,12 @@
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
   "next_delivery": {
-    "status": "PREPARED_NATIVE_EVIDENCE_PENDING",
-    "delivery_prefix": "29_Cedar",
-    "last_completed_delivery": "28_Cedar",
-    "builder": "scripts/build_cif_base_rotation_probe.py",
-    "runner_filename": "29_Cedar_probe_cif_base_rotation.py",
-    "transport": "One quoted-path subshell: fetch cedar from build 28, new full-SHA detached worktree 29, source-bundled build, run; dependent commands joined by &&."
+    "status": "PREPARED_NATIVE_GENERATION_PENDING",
+    "delivery_prefix": "30_Cedar",
+    "last_completed_delivery": "29_Cedar",
+    "builder": "scripts/build_cif_numerical_recovery_probe.py",
+    "runner_filename": "30_Cedar_probe_cif_numerical_recovery.py",
+    "transport": "One quoted-path && subshell: fetch from build 29, full-SHA detached build 30, build into ignored everyday branch-artifacts/cedar/runners, run with exact Cedar 29 ZIP. Builder establishes local exclusion in older frozen checkout without tracked edits."
   },
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
@@ -5542,7 +5542,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "pairing_intent_provenance": {
       "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
       "reviewed_on": "2026-10-17",
@@ -5691,7 +5691,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+  "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -5815,7 +5815,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "cedar21_return_verified_2026_10_18": {
       "archive": {
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -6208,7 +6208,7 @@
       "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
       "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "cedar22_return_verified_2026_10_18": {
       "review_summary": {
         "archive": {
@@ -6710,7 +6710,7 @@
       "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
       "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "returned_evidence": {
       "recorded_date": "2026-10-19",
       "archive": {
@@ -7108,7 +7108,7 @@
       "Missing optional installed C++ source remains explicit; binary/API fingerprints are still mandatory.",
       "Only source code and derived counts/hashes/metrics enter Git; all private capsules, dictionaries, coordinates and logs remain excluded."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "returned_evidence": {
       "recorded_date": "2026-10-19",
       "archive": {
@@ -7427,7 +7427,7 @@
       "Cedar 22 stopping evidence remains NOT_CONVERGED_ERROR; its cause is not established by correction implementation.",
       "Only code and derived counts/hashes enter Git. Private capsules, coordinates, dictionaries and logs remain excluded."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "returned_evidence": {
       "archive": {
         "filename": "25_Cedar_jslorfge_cif_corrected_gradient_review.zip",
@@ -7784,7 +7784,7 @@
       "Cedar 22 stopping evidence remains NOT_CONVERGED_ERROR; its cause is not established by correction implementation.",
       "Only code and derived counts/hashes enter Git. Private capsules, coordinates, dictionaries and logs remain excluded."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "returned_evidence": {
       "archive": {
         "filename": "26_Cedar_wn30xwws_cif_plane_order_review.zip",
@@ -8032,7 +8032,7 @@
       "A sampled derivative pass is not a proof of all gradients, convergence, chemistry, pucker, absolute stereochemistry, formal-charge readback or experimental fit.",
       "Only code and derived counts/hashes/metrics enter Git. Private capsule/model/CIF/PHIL/log bytes remain excluded."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "returned_evidence": {
       "archive": {
         "filename": "27_Cedar_7i4_5a4b_cif_corrected_geometry_review.zip",
@@ -8324,7 +8324,7 @@
       "Sampled derivatives, native mechanics, optimizer stopping and chemical/experimental qualification are independent outcomes.",
       "Only code and derived counts/hashes/metrics enter Git; private archives/models/dictionaries/PHIL/logs remain excluded."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes.",
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
     "returned_evidence": {
       "archive": {
         "filename": "28_Cedar_r6y0ddit_cif_geometry_continuation_review.zip",
@@ -8564,7 +8564,7 @@
     }
   },
   "base_rotation_audit_2026_10_19": {
-    "status": "IMPLEMENTED_OPT_IN_NATIVE_ORIENTATION_AUDIT_PENDING",
+    "status": "RETURNED_SAMPLED_ROTATION_DERIVATIVES_PASS_GEOMETRY_REVIEW",
     "delivery_prefix": "29_Cedar",
     "policy_id": "cif-fixed-na-base-rotation-audit-v1",
     "correction_policy_id": "native-parallelity-both-first-planes-v1",
@@ -8724,7 +8724,7 @@
       },
       "native_worker": "Explicit CCTBX/scitbx fakes only in Linux; no installed Phenix/Coot execution here.",
       "portability": "Synthetic runner executes after both source checkouts are removed, despite poisoned ambient NASolve and captured code that raises if executed.",
-      "native": "PENDING_INSTALLED_PHENIX_2.2.1-6174_DISPATCHER_2.2.1"
+      "native": "RETURNED_PHENIX_2.2.1-6174_DISPATCHER_2.2.1_31.56962_SECONDS_EXIT_0"
     },
     "schemas": {
       "schema_version": 1,
@@ -8751,6 +8751,553 @@
       "NARestraints pairing recipes/selections and stacking matrix remain authoritative and fixed; competing native automatic SS stays disabled.",
       "Only code and derived counts/hashes/metrics enter Git; private capsules, coordinates, dictionaries, PHIL and logs remain excluded."
     ],
-    "next_action": "Run prepared Cedar 29 from the pinned Git source delivery and verified Cedar 28 capsule. Recheck all preserved payloads, raw qualified derivative evidence, native mechanics and exact correction sources before the bounded temporary base-orientation audit. Rebuild the unchanged original manager, match the entire corrected initial vector and both endpoint family target/gradient snapshots, then evaluate graph-selected independent base rotations with fixed NARestraints policy and all original targets/weights. Retain numerical slopes, family cancellation, scalar/source context, both precisions, repeat/additivity/periodic controls and actual derivative REVIEW findings. No optimization, coordinate candidate, policy recompilation, target retuning, diffraction/refinement or adoption. Return output and review ZIP; Cedar 22 error and Cedar 27/28 limits remain historical outcomes."
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result.",
+    "returned_native_validation": {
+      "archive": {
+        "name": "29_Cedar_94wuz090_cif_base_rotation_review.zip",
+        "sha256": "49981767cfd424532e14ac637ca01f5923de967d8cc7a6c8c0f94531b8ca1306",
+        "bytes": 41396735,
+        "verified_payloads": 1173,
+        "prior_payloads": 1104
+      },
+      "build": {
+        "nasolve_source": {
+          "commit": "9aca97ce681d07f9e00d43416578e3f5e600ef79",
+          "working_tree_has_changes": false
+        },
+        "narestraints_source": {
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "working_tree_has_changes": false
+        },
+        "runtime_archive_sha256": "f739b870a15f455d2a23b464b9258f5a458b9ae735eab4199ba5cdb8e2ceaca1"
+      },
+      "native_execution": {
+        "elapsed_seconds": 31.56962,
+        "returncode": 0,
+        "status": "COMPLETED",
+        "timeout_seconds": 1200
+      },
+      "phenix_version": "2.2.1",
+      "mechanics_passed": 17,
+      "sampled_directions_passed": 96,
+      "finite_difference_samples_recomputed": 384,
+      "energy_evaluations": 1201,
+      "constraint_signature": "0d450251acacbc8b63cb9e268fd24a839cd855e98417fee62ab45bc190d19bf9",
+      "qualification": "SAMPLED_ROTATION_DERIVATIVES_PASS",
+      "selected_sites": [
+        "A:20",
+        "D:3",
+        "B:4"
+      ],
+      "profiles": {
+        "full_precision:A:20": {
+          "lowest": {
+            "angle_degrees": 0,
+            "change_from_baseline": 0.0,
+            "interpretation": "DIAGNOSTIC_SAMPLE_NOT_A_CANDIDATE_OR_OPTIMUM",
+            "target": 2599.5275576416398
+          },
+          "targets": {
+            "-180": 7934.186631801737,
+            "-90": 21281.389395884526,
+            "-30": 4569.455043368934,
+            "-10": 2702.6837543551346,
+            "0": 2599.5275576416398,
+            "10": 2690.220298476007,
+            "30": 3425.7997202631523,
+            "90": 13284.465491590934,
+            "180": 7934.186631801737
+          },
+          "zero_slopes_per_radian": {
+            "all": -1.619721400931487,
+            "angle": -11.428340192240372,
+            "bond": -4.243370392683403,
+            "chirality": 7.724622070987912e-19,
+            "dihedral": -8.500411869200908,
+            "nonbonded": -14.500320810742169,
+            "parallelity": 40.821844779404536,
+            "planarity": -3.769122915469204
+          },
+          "rigid_distance_max_change": 6.661338147750939e-15
+        },
+        "full_precision:D:3": {
+          "lowest": {
+            "angle_degrees": 0,
+            "change_from_baseline": 0.0,
+            "interpretation": "DIAGNOSTIC_SAMPLE_NOT_A_CANDIDATE_OR_OPTIMUM",
+            "target": 2599.5275576416398
+          },
+          "targets": {
+            "-180": 5543.762934985398,
+            "-90": 14290.738978152342,
+            "-30": 6574.501599471966,
+            "-10": 2834.233515902141,
+            "0": 2599.5275576416398,
+            "10": 2703.103132569624,
+            "30": 5591.41489276163,
+            "90": 23083.810698763074,
+            "180": 5543.762934985398
+          },
+          "zero_slopes_per_radian": {
+            "all": -6.488888674029812,
+            "angle": -2.5526029184680197,
+            "bond": 14.54901497971121,
+            "chirality": 0.0,
+            "dihedral": -13.991441483962578,
+            "nonbonded": -36.21073667801953,
+            "parallelity": 11.116415325961746,
+            "planarity": 20.600462100747436
+          },
+          "rigid_distance_max_change": 5.329070518200751e-15
+        },
+        "full_precision:B:4": {
+          "lowest": {
+            "angle_degrees": 0,
+            "change_from_baseline": 0.0,
+            "interpretation": "DIAGNOSTIC_SAMPLE_NOT_A_CANDIDATE_OR_OPTIMUM",
+            "target": 2599.5275576416398
+          },
+          "targets": {
+            "-180": 8214.7982198655,
+            "-90": 33025.5778797799,
+            "-30": 6507.307619150983,
+            "-10": 2705.0528490051897,
+            "0": 2599.5275576416398,
+            "10": 2692.8872084781774,
+            "30": 3866.3258785885746,
+            "90": 25478.312118384263,
+            "180": 8214.7982198655
+          },
+          "zero_slopes_per_radian": {
+            "all": 3.6078210185174964,
+            "angle": -1.8935353992781956,
+            "bond": -1.4194401197863336,
+            "chirality": 0.0,
+            "dihedral": -5.114037233350223,
+            "nonbonded": -19.226268676757325,
+            "parallelity": 2.9254720961903606,
+            "planarity": 28.33563035149925
+          },
+          "rigid_distance_max_change": 5.329070518200751e-15
+        },
+        "pdb_rounded:A:20": {
+          "lowest": {
+            "angle_degrees": 0,
+            "change_from_baseline": 0.0,
+            "interpretation": "DIAGNOSTIC_SAMPLE_NOT_A_CANDIDATE_OR_OPTIMUM",
+            "target": 2602.971189992592
+          },
+          "targets": {
+            "-180": 7935.587009231911,
+            "-90": 21258.69104935458,
+            "-30": 4576.166978798758,
+            "-10": 2706.151228842346,
+            "0": 2602.971189992592,
+            "10": 2693.673660191745,
+            "30": 3429.2428073051356,
+            "90": 13277.899503935703,
+            "180": 7935.587009231911
+          },
+          "zero_slopes_per_radian": {
+            "all": -1.6063481061862925,
+            "angle": -11.878435540184489,
+            "bond": -3.9347619765498334,
+            "chirality": -7.991357922683045e-19,
+            "dihedral": -8.511434061492006,
+            "nonbonded": -14.530533956212137,
+            "parallelity": 40.98618427786478,
+            "planarity": -3.737366849612847
+          },
+          "rigid_distance_max_change": 3.1086244689504383e-15
+        },
+        "pdb_rounded:D:3": {
+          "lowest": {
+            "angle_degrees": 0,
+            "change_from_baseline": 0.0,
+            "interpretation": "DIAGNOSTIC_SAMPLE_NOT_A_CANDIDATE_OR_OPTIMUM",
+            "target": 2602.971189992592
+          },
+          "targets": {
+            "-180": 5543.275112938309,
+            "-90": 14298.139616716726,
+            "-30": 6573.066049354161,
+            "-10": 2837.885650187482,
+            "0": 2602.971189992592,
+            "10": 2706.394171804969,
+            "30": 5588.751780247158,
+            "90": 23095.756787441012,
+            "180": 5543.275112938309
+          },
+          "zero_slopes_per_radian": {
+            "all": -7.188662717994941,
+            "angle": -2.6188727633900823,
+            "bond": 14.464523372414911,
+            "chirality": 2.3670088449838023e-16,
+            "dihedral": -13.994196929832572,
+            "nonbonded": -36.24495108291483,
+            "parallelity": 10.729261403323225,
+            "planarity": 20.475573282404365
+          },
+          "rigid_distance_max_change": 4.884981308350689e-15
+        },
+        "pdb_rounded:B:4": {
+          "lowest": {
+            "angle_degrees": 0,
+            "change_from_baseline": 0.0,
+            "interpretation": "DIAGNOSTIC_SAMPLE_NOT_A_CANDIDATE_OR_OPTIMUM",
+            "target": 2602.971189992592
+          },
+          "targets": {
+            "-180": 8213.48517001416,
+            "-90": 33040.36086205299,
+            "-30": 6508.953707030864,
+            "-10": 2708.5060063182978,
+            "0": 2602.971189992592,
+            "10": 2696.4185640212736,
+            "30": 3870.063959570896,
+            "90": 25487.979561092274,
+            "180": 8213.48517001416
+          },
+          "zero_slopes_per_radian": {
+            "all": 3.761979514830518,
+            "angle": -1.9283972767692001,
+            "bond": -1.4303860768123935,
+            "chirality": 5.253314370487419e-17,
+            "dihedral": -5.199433065671115,
+            "nonbonded": -19.227371177609598,
+            "parallelity": 3.03241660031313,
+            "planarity": 28.51515051137971
+          },
+          "rigid_distance_max_change": 5.329070518200751e-15
+        }
+      },
+      "intrasite_source_contexts": {
+        "A:20": [
+          {
+            "atom_ids": [
+              "N4",
+              "C4",
+              "C5"
+            ],
+            "target": 124.06,
+            "observed": 129.43952434548015,
+            "weight": 1.0,
+            "common_declared_planes": [
+              "plan-1"
+            ],
+            "center_atom_rows": [
+              {
+                "atom_id": "C4",
+                "charge": null,
+                "partial_charge": 0.42,
+                "type_energy": "CR6",
+                "type_symbol": "C"
+              }
+            ],
+            "definition_rows": [
+              {
+                "atom_id_1": "N4",
+                "atom_id_2": "C4",
+                "atom_id_3": "C5",
+                "value_angle": 124.06,
+                "value_angle_esd": 1.0
+              }
+            ]
+          }
+        ],
+        "D:3": [
+          {
+            "atom_ids": [
+              "N1",
+              "C2",
+              "O2"
+            ],
+            "target": 117.26,
+            "observed": 100.4692223010246,
+            "weight": 0.1821610088368127,
+            "common_declared_planes": [
+              "plan-1"
+            ],
+            "center_atom_rows": [
+              {
+                "atom_id": "C2",
+                "charge": null,
+                "partial_charge": 0.477,
+                "type_energy": "CR6",
+                "type_symbol": "C"
+              }
+            ],
+            "definition_rows": [
+              {
+                "atom_id_1": "N1",
+                "atom_id_2": "C2",
+                "atom_id_3": "O2",
+                "value_angle": 117.26,
+                "value_angle_esd": 2.343
+              }
+            ]
+          },
+          {
+            "atom_ids": [
+              "N3",
+              "C2",
+              "O2"
+            ],
+            "target": 122.16,
+            "observed": 136.87987199000196,
+            "weight": 0.1535460539892493,
+            "common_declared_planes": [
+              "plan-1"
+            ],
+            "center_atom_rows": [
+              {
+                "atom_id": "C2",
+                "charge": null,
+                "partial_charge": 0.477,
+                "type_energy": "CR6",
+                "type_symbol": "C"
+              }
+            ],
+            "definition_rows": [
+              {
+                "atom_id_1": "O2",
+                "atom_id_2": "C2",
+                "atom_id_3": "N3",
+                "value_angle": 122.16,
+                "value_angle_esd": 2.552
+              }
+            ]
+          },
+          {
+            "atom_ids": [
+              "N1",
+              "C6",
+              "O6"
+            ],
+            "target": 126.53,
+            "observed": 113.3311640879166,
+            "weight": 0.1938946078103463,
+            "common_declared_planes": [
+              "plan-1"
+            ],
+            "center_atom_rows": [
+              {
+                "atom_id": "C6",
+                "charge": null,
+                "partial_charge": 0.514,
+                "type_energy": "CR6",
+                "type_symbol": "C"
+              }
+            ],
+            "definition_rows": [
+              {
+                "atom_id_1": "O6",
+                "atom_id_2": "C6",
+                "atom_id_3": "N1",
+                "value_angle": 126.53,
+                "value_angle_esd": 2.271
+              }
+            ]
+          },
+          {
+            "atom_ids": [
+              "N5",
+              "C6",
+              "O6"
+            ],
+            "target": 121.21,
+            "observed": 135.06224093170007,
+            "weight": 0.13636492563202415,
+            "common_declared_planes": [
+              "plan-1"
+            ],
+            "center_atom_rows": [
+              {
+                "atom_id": "C6",
+                "charge": null,
+                "partial_charge": 0.514,
+                "type_energy": "CR6",
+                "type_symbol": "C"
+              }
+            ],
+            "definition_rows": [
+              {
+                "atom_id_1": "O6",
+                "atom_id_2": "C6",
+                "atom_id_3": "N5",
+                "value_angle": 121.21,
+                "value_angle_esd": 2.708
+              }
+            ]
+          }
+        ],
+        "B:4": [
+          {
+            "atom_ids": [
+              "C6",
+              "N5",
+              "C7"
+            ],
+            "target": 109.471,
+            "observed": 127.74928925769427,
+            "weight": 0.1111111111111111,
+            "common_declared_planes": [
+              "plan-1"
+            ],
+            "center_atom_rows": [
+              {
+                "atom_id": "N5",
+                "charge": null,
+                "partial_charge": null,
+                "type_energy": "NT",
+                "type_symbol": "N"
+              }
+            ],
+            "definition_rows": [
+              {
+                "atom_id_1": "C7",
+                "atom_id_2": "N5",
+                "atom_id_3": "C6",
+                "value_angle": 109.471,
+                "value_angle_esd": 3.0
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": "No lower independently rotated coarse-grid sample; nonzero validated slopes remain. DP planar-angle conflict cannot be repaired by rigid rotation. No optimization/adoption.",
+      "runner_sha256": "29c6361d9674d0fce763e8cca46b7accb5ec3db30d5ef779440c1e3755fa7e9b",
+      "runtime_members": 111
+    }
+  },
+  "source_graph_numerical_recovery_2026_10_19": {
+    "status": "IMPLEMENTED_OPT_IN_GENERATION_PENDING",
+    "delivery_prefix": "30_Cedar",
+    "policy_id": "cif-source-graph-numerical-recovery-v1",
+    "module": "src/nasolve/cif_numerical_recovery.py",
+    "builder": "scripts/build_cif_numerical_recovery_probe.py",
+    "template": "scripts/cif_numerical_recovery_probe_template.py",
+    "runner_filename": "30_Cedar_probe_cif_numerical_recovery.py",
+    "review_input": {
+      "name": "29_Cedar_94wuz090_cif_base_rotation_review.zip",
+      "sha256": "49981767cfd424532e14ac637ca01f5923de967d8cc7a6c8c0f94531b8ca1306",
+      "bytes": 41396735,
+      "verified_payloads": 1173,
+      "prior_payloads": 1104
+    },
+    "purpose": "Generate an isolated numerical candidate for a source-declared angle/plane conflict, without inferring chemical state or targets from model residuals.",
+    "methods": {
+      "selection": "Generic Doctor PLANE-01 plane-angle-compatibility REVIEW on a single independent graph-valid source component; record all code contexts/modifiers and deferred components. No component allowlist in runtime API.",
+      "explicit_probe_selection": [
+        "DP"
+      ],
+      "probe_selection_reason": "Retained source N5 plane/angle conflict persists in unchanged Cedar 28/29 definitions; the historical DP regeneration is precedent, not a candidate adopted here.",
+      "source_targets_degrees": [
+        109.471,
+        120.772,
+        109.471
+      ],
+      "target_sum_degrees": 339.714,
+      "source_type_energy": "NT",
+      "graph_source": "Keep exact declared atom identifiers/elements, explicit H, formal/partial charge declarations, bond orders/aromatic/stereo declarations and signed chirality. Remove numerical targets/types/planes/torsions; preserve the complete original and removed-field inventory.",
+      "coordinate_seed": "Use complete source ideal coordinates, or explicitly label complete source atom x/y/z as SOURCE_DECLARED_COORDINATES_NOT_INDEPENDENT_IDEAL. Refuse partial/nonfinite families, ambiguous charges and lossy naming. No experimental model is used for generator targets.",
+      "generation": "Reuse isolated eLBOW-v4 capability/help discovery, exact-name source PDB seed, add_hydrogens=False, source-retention pH=low, chiral=retain and independent internal optimization. Compare generated output both to graph-only source and original numerical source.",
+      "chemical_gate": "Existing atom/bond/H/state/stereo and numerical rejection gates remain. Explicit source formal-charge declarations must remain complete and equal; partial charges cannot replace them. All raw comparisons/reviews persist.",
+      "proof": "Read 1173 payloads plus manifest; recheck complete preserved C28 lineage, trusted worker/core hashes, native sources and raw qualified derivatives. Recompute all 96 C29 directions / 384 differences and replay exact 17 mechanics prerequisites before generation.",
+      "bounds": {
+        "maximum_explicit_components": 3,
+        "timeout_seconds_per_component": 600,
+        "allowed_timeout_seconds": [
+          1,
+          3600
+        ]
+      },
+      "native_proxy_validation": "NOT_RUN",
+      "linked_site_validation": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "offline_actual_input": {
+      "status": "PASS_1173_PAYLOADS_AND_MANIFEST",
+      "mechanics_replay": "EXACT_17_PASS",
+      "prior_rotation_directions": 96,
+      "selected_codes": [
+        "DP"
+      ],
+      "deferred_codes": [
+        "1AP",
+        "IMC",
+        "CGY",
+        "IGU",
+        "DF"
+      ],
+      "DP_source_sha256": "ae10aa3e7066082a9e423cae877dca04928ff4089cbd464bbc3590d6148f0f5a",
+      "DP_graph_source_sha256": "c278ce02a62be9170a19daaf8fd189e742e8ebfa9d650bb809de01bf065e2057",
+      "DP_seed_atoms": 35,
+      "DP_source_bonds": 37,
+      "DP_chirality_declarations": 4,
+      "coordinate_origin": "SOURCE_DECLARED_COORDINATES_NOT_INDEPENDENT_IDEAL",
+      "graph_comparison": "EXACT_DECLARATIONS",
+      "native_generation": "NOT_RUN"
+    },
+    "software_validation": {
+      "fail_before": "All 28 initial generic source/seed/generation/rotation-verifier tests fail before the new module exists, then pass.",
+      "focused": {
+        "passed": 123,
+        "seconds": 13.63,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_numerical_recovery.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_generation.py tests/test_cif_base_rotation_probe.py --tb=short"
+      },
+      "full": {
+        "passed": 1949,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 140.81,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_checkouts_removed_before_inspection": true,
+        "poisoned_ambient_imports": "PASS",
+        "runtime_members": 112,
+        "runtime_archive_sha256": "24a606f3bba923249bcca1d0448922c3edd477359463368c51fe2d7277295d54",
+        "source_bundle_actual_payloads": 1173,
+        "mechanics_checks_replayed": 17,
+        "saved_rotation_directions_recomputed": 96,
+        "DP_seed_atoms": 35,
+        "DP_graph_source_sha256": "c278ce02a62be9170a19daaf8fd189e742e8ebfa9d650bb809de01bf065e2057",
+        "native_generation": "NOT_RUN",
+        "qualification": "Clean source copies removed before real-capsule relocated inspection; ambient nasolve/restraints imports poisoned. Installed generation NOT_RUN."
+      },
+      "native": "PENDING_INSTALLED_GENERATION",
+      "new_tests": 47
+    },
+    "schemas": {
+      "schema_version": 1,
+      "probe_kind": "cif-source-graph-numerical-recovery-probe",
+      "bundle_kind": "cif-source-graph-numerical-recovery-shuttle",
+      "api": [
+        "validate_rotation_evidence",
+        "plan_numerical_recovery",
+        "prepare_graph_generation_source",
+        "generate_numerical_recovery"
+      ],
+      "existing_runtime_and_schemas": "UNCHANGED",
+      "new_dependencies": [],
+      "migration": "None; explicit diagnostic only. Prior generated runners remain preserved."
+    },
+    "delivery_storage": {
+      "path": "branch-artifacts/cedar/runners/",
+      "tracked": false,
+      "older_frozen_checkout": "Builder --local-artifact-checkout verifies exclusion, installing only /branch-artifacts/ in the clone local info/exclude if needed. No tracked checkout edits.",
+      "merge_cleanup": "Inventory old root runners; hash-verified archive without overwrite before removing redundant root copies. Scientific evidence/workspace audit remains independent."
+    },
+    "boundaries": [
+      "Candidate-only numerical regeneration is not chemical, native-proxy, achieved-geometry or scientific qualification.",
+      "Current model, all 19 dictionary/13 PHIL inputs, qualified correction and NARestraints pairing/stacking policy remain frozen and unapplied.",
+      "No installed Phenix patch, modifier composition, ReadySet retry, crystal-model optimization, experimental refinement or adoption.",
+      "Only source/tests/docs and derived counts/hashes enter Git; generated runners/candidates/review capsules/native data stay local."
+    ],
+    "next_action": "Run prepared Cedar 30 from its pinned Git delivery and verified Cedar 29 capsule. Recompute prior raw derivative evidence and replay all 17 native mechanics prerequisites. Prepare a separate graph-only source and independent numerical dictionary candidate for explicitly selected DP, preserving exact declared atoms/bonds/H/charges/chirality and all original evidence. Record source-coordinate seed provenance, installed generator capabilities, raw comparisons and unresolved findings. No native dictionary replacement, modifier composition, model optimization, policy recompilation, refinement or adoption; return console output and review ZIP. Preserve Cedar 22 error, Cedar 27/28 limits and the scoped Cedar 29 rotation result."
   }
 }

@@ -460,8 +460,17 @@ the scan. Full-objective rotational derivatives at every sample and isolated
 family derivatives at zero angle use four central-difference steps. Repeat,
 additivity, periodic-energy and rigid-distance controls accompany exact source
 and selected scalar/angle/plane context. Bounds are six supported groups, 3,000
-total energy evaluations and 1,200 s by default. Native execution is pending;
-no optimizer or candidate writer is invoked.
+total energy evaluations and 1,200 s by default. Returned Cedar 29 verifies
+1,173 payloads and all 96 sampled rotational derivatives. The three independent
+coarse scans favor zero degrees, while nonzero validated slopes remain.
+Cedar 30 separately selects declared source plane/angle contradictions, exports
+a graph-only generation input and reuses the guarded eLBOW adapter. Complete
+source-declared coordinates may seed naming/initial geometry when ideal
+coordinates are absent; the receipt labels their origin explicitly. Original
+chemical declarations are compared at both seed and candidate boundaries,
+including complete formal-charge preservation. All original numerical
+parameters and metadata remain frozen. Installed generation is pending. No
+new dictionary is composed with modifiers or applied to a native model.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
