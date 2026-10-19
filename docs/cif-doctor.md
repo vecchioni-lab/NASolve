@@ -931,10 +931,44 @@ Saved-data recombination replaces only the incomplete parallelity gradient
 with complete individual-restraint sums. All 84 Cedar 23 full/parallelity
 directional checks then agree, explaining the 72 earlier failures at unchanged
 energies, coordinates, directions and tolerances. This is algebraic replay,
-not a newly implemented corrected manager or optimizer run. Next work is an
-explicit NASolve-local correction and fresh complete-objective derivative
-audit before a separate bounded trial. The NARestraints policy remains fixed;
+not a corrected native manager or optimizer run. Cedar 25 implements the
+separate correction audit below. The NARestraints policy remains fixed;
 convergence and chemistry remain under review. No repeat Cedar 24 is needed.
+
+### Complete native plane accumulation correction
+
+`scripts/build_cif_corrected_gradient_probe.py` builds Cedar 25,
+`25_Cedar_probe_cif_corrected_gradient.py`, from the verified 732-payload Cedar 24
+return. The explicit NASolve evaluator retains the native unnormalized energy
+and full gradient, subtracts the native accumulated parallelity contribution,
+and adds every original single-restraint i/j gradient by atom index. Shared
+atoms receive all contributions. No proxy reconstruction, target edit, native
+file patch or global monkeypatch is involved. Native accumulation that is
+already correct is unchanged; symmetry-bearing planes and special positions
+are refused. The implementation consumes the original target/slack/top-out
+parameters through the native single-restraint kernel; the actual installed
+validation remains limited to this capsule's supported planes.
+
+The probe replays the 17 prior mechanics checks and exactly matches the initial
+manager, static constraints and pinned native/API/adapter/C++ source identities.
+At initial, saved full-precision and PDB-rounded coordinates, it first matches
+the old raw full-objective energy and gradient norm. It also matches both saved
+complete and incomplete plane arrays. These raw baselines are not requirements
+on the corrected gradient norm.
+
+Fresh full-objective and seven category controls use four central-difference
+steps, repeated baselines, target/gradient additivity, outlier-selected atom
+directions and the existing numerical tolerances. The audit budget is 5,500
+evaluations, plus five recorded preflight evaluations. Complete individual and
+container plane residuals must agree on every correction-bearing evaluation;
+the returned native energy is unchanged. The probe records
+`SAMPLED_NATIVE_DERIVATIVES_PASS` or `DERIVATIVE_REVIEW`, while overall status
+remains REVIEW/exit 2. Source-bundled offline inspection and synthetic worker
+tests do not replace the pending installed Phenix 2.2.1-6174 execution.
+
+This is an opt-in diagnostic, with no automatic production integration or
+optimization. A native derivative pass is required before a separate bounded
+geometry trial; it cannot establish convergence, chemistry or adoption.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

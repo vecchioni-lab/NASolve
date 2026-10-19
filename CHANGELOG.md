@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit native plane-gradient accumulation correction
+
+- Add an opt-in NASolve evaluator that retains native energies and replaces
+  only the accumulated parallelity gradient with complete original i/j
+  contributions. Preserve targets, weights, origin IDs and NARestraints policy;
+  support shared atoms and already-correct native accumulation. Refuse
+  symmetry-bearing planes and audit special positions explicitly.
+- Add Cedar 25 from the verified 732-payload Cedar 24 return. Freshly check
+  four-step derivatives at initial and both saved coordinate cases under the
+  full objective and seven category controls, after exact raw-snapshot,
+  source/static-constraint and 17-check mechanics prerequisites.
+- All 1,758 tests pass, with two skips and 276 passing subtests. The 36 new
+  regressions include independent analytic oracles, deliberately bad individual
+  derivatives, source drift and deleted-build transport. Actual-input offline
+  inspection passes. Installed Phenix validation remains pending before any
+  new geometry trial. No production-default change, optimization, installed
+  native file edit, new dependency, migration or automatic adoption.
+
 ### Installed plane-gradient accumulation diagnostic
 
 - Add Cedar 24 from the exact verified 670-payload Cedar 23 return. Preserve
@@ -23,8 +41,9 @@ entries are reconstructed from repository history.
   native execution and reproduces omitted second-plane gradients in every
   captured/toy order. All 714 sampled individual-restraint directions agree.
   The installed loop-bound model exactly reproduces accumulation, and saved-data
-  recombination explains every prior sampled discrepancy. Correction and fresh
-  derivative validation remain future work; no new dependencies or migration.
+  recombination explains every prior sampled discrepancy. The subsequent
+  correction and fresh derivative audit are supplied by Cedar 25; no new
+  dependencies or migration.
 
 ### Saved native gradient audit
 

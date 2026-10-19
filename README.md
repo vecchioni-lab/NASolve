@@ -54,8 +54,12 @@ points to gradient accumulation. Returned Cedar 24 confirms that defect in
 the installed native path: individual plane gradients pass the sampled checks,
 while accumulation omits second-plane contributions in both saved cases and
 tilted controls. Restoring those contributions in the saved numerical data
-explains all earlier sampled mismatches. No correction, optimization or policy
-change is implemented by this return review; geometry remains open.
+explains all earlier sampled mismatches. Cedar 25 adds an explicit NASolve-local
+correction that replaces only the accumulated plane gradient with complete
+individual-restraint sums. Its separate audit freshly checks the fixed native
+objective at the initial coordinates and both saved endpoints. Native validation
+is pending; energies, NARestraints policy and production defaults stay fixed.
+Geometry, convergence and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

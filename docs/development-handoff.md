@@ -214,13 +214,42 @@ is a saved-data replay, not a newly corrected manager or optimization. The
 recombined full-precision full-gradient norm is 222.798, not the old incomplete
 91.277; this is a different derivative calculation at the same endpoint.
 
-**Current action:** prepare an explicit NASolve-local accumulation correction
-and fresh complete-objective derivative audit, before any separate bounded
-geometry trial. NARestraints selections/planes, targets, weights and exact gates
-stay fixed. No correction or next delivery is prepared by this docs-only review;
-no repeat Cedar 24 run is requested. Cedar 22 remains NOT_CONVERGED_ERROR, and
-scientific qualification/adoption remain open. Unchanged runtime tests are not
-rerun; private capsules, coordinates, definitions and logs remain outside Git.
+**Cedar 25 prepared (2026-10-19): native validation pending.**
+`scripts/build_cif_corrected_gradient_probe.py` builds
+`25_Cedar_probe_cif_corrected_gradient.py` from the verified 732-payload Cedar 24
+return. `src/nasolve/cif_parallelity_correction.py` implements an explicit
+NASolve-local evaluator: subtract only the native accumulated plane gradient
+and add the complete original per-restraint i/j gradients by atom index.
+The native energy and energy object, targets, weights, proxies, NARestraints
+policy and installed Phenix files stay fixed. Already-correct native
+accumulation is a no-op; symmetry-bearing planes and special positions fail
+visibly. Production PostMR/refinement defaults are unchanged.
+
+The new probe replays all 17 mechanics checks, pins the same eight native APIs,
+six numerical modules, two adapters and two installed C++ sources, and matches
+all three raw native snapshots before correction. It freshly evaluates four
+central-difference steps at the initial coordinates, saved full precision and
+PDB-rounded endpoint under the full objective and seven category controls.
+Corrected gradient norms are recorded separately from the old incomplete
+baselines. The 5,500-evaluation budget excludes five recorded preflight calls;
+no minimizer runs. Sampled agreement is a derivative check, not scientific
+approval. A deliberately bad single-restraint derivative remains visible in
+regression tests.
+
+**Current action:** run Cedar 25 through the pinned Git/worktree/build/run
+terminal block and inspect its returned capsule. A fresh installed derivative
+pass must precede a separate bounded geometry trial. No repeat Cedar 24 run is
+requested. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical
+qualification and adoption stay open. This Linux environment has no Phenix.
+Private capsules, coordinates, dictionaries and logs remain outside Git.
+
+Validation: **36 new regressions**, **137 focused tests (16.85 s)** and
+**1,758 full tests, two skips and 276 subtests (94.68 s)** pass. The actual
+732-payload input passes source-bundled offline inspection; synthetic transport
+survives deleted source builds and poisoned ambient imports. No new packages
+or migration are required. Exact commands and receipt schemas are recorded in
+`cif-linked-native-registration-evidence.json#native_parallelity_correction_2026_10_19`
+and mirrored in the implementation map.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

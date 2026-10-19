@@ -2064,7 +2064,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
+      "next_action": "Run the prepared Cedar 25 explicit NASolve-local complete-plane accumulation correction audit from its full-SHA Git delivery. Review fresh numerical derivatives at initial, full-precision and PDB-rounded coordinates under the complete fixed objective and seven category controls. Require unchanged native energies, raw baseline snapshots, sources, static constraints and NARestraints policy. No optimizer runs or installed Phenix file is edited. A fresh installed derivative pass must precede a separate bounded geometry trial. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical qualification and adoption remain open.",
       "pairing_intent_provenance": {
         "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
@@ -2189,7 +2189,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
+      "next_action": "Run the prepared Cedar 25 explicit NASolve-local complete-plane accumulation correction audit from its full-SHA Git delivery. Review fresh numerical derivatives at initial, full-precision and PDB-rounded coordinates under the complete fixed objective and seven category controls. Require unchanged native energies, raw baseline snapshots, sources, static constraints and NARestraints policy. No optimizer runs or installed Phenix file is edited. A fresh installed derivative pass must precede a separate bounded geometry trial. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical qualification and adoption remain open.",
       "cedar21_return_verified_2026_10_18": {
         "archive": {
           "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2471,7 +2471,7 @@
         "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
         "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
       ],
-      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
+      "next_action": "Run the prepared Cedar 25 explicit NASolve-local complete-plane accumulation correction audit from its full-SHA Git delivery. Review fresh numerical derivatives at initial, full-precision and PDB-rounded coordinates under the complete fixed objective and seven category controls. Require unchanged native energies, raw baseline snapshots, sources, static constraints and NARestraints policy. No optimizer runs or installed Phenix file is edited. A fresh installed derivative pass must precede a separate bounded geometry trial. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical qualification and adoption remain open.",
       "review_input": {
         "delivery_prefix": "21_Cedar",
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2792,7 +2792,7 @@
         "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
         "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
       ],
-      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
+      "next_action": "Run the prepared Cedar 25 explicit NASolve-local complete-plane accumulation correction audit from its full-SHA Git delivery. Review fresh numerical derivatives at initial, full-precision and PDB-rounded coordinates under the complete fixed objective and seven category controls. Require unchanged native energies, raw baseline snapshots, sources, static constraints and NARestraints policy. No optimizer runs or installed Phenix file is edited. A fresh installed derivative pass must precede a separate bounded geometry trial. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical qualification and adoption remain open.",
       "returned_evidence": {
         "recorded_date": "2026-10-19",
         "archive": {
@@ -3191,7 +3191,7 @@
         "Missing optional installed C++ source remains explicit; binary/API fingerprints are still mandatory.",
         "Only source code and derived counts/hashes/metrics enter Git; all private capsules, dictionaries, coordinates and logs remain excluded."
       ],
-      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
+      "next_action": "Run the prepared Cedar 25 explicit NASolve-local complete-plane accumulation correction audit from its full-SHA Git delivery. Review fresh numerical derivatives at initial, full-precision and PDB-rounded coordinates under the complete fixed objective and seven category controls. Require unchanged native energies, raw baseline snapshots, sources, static constraints and NARestraints policy. No optimizer runs or installed Phenix file is edited. A fresh installed derivative pass must precede a separate bounded geometry trial. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical qualification and adoption remain open.",
       "returned_evidence": {
         "recorded_date": "2026-10-19",
         "archive": {
@@ -3390,6 +3390,129 @@
         "limitation": "Algebraic reuse of existing samples explains the discrepancy; it is not execution or validation of an implemented corrected manager, new directions or a convergence trial."
       },
       "evidence_record": "cif-linked-native-registration-evidence.json#native_parallelity_audit_2026_10_19"
+    },
+    "native_parallelity_correction_2026_10_19": {
+      "status": "IMPLEMENTED_OPT_IN_NATIVE_VALIDATION_PENDING",
+      "delivery_prefix": "25_Cedar",
+      "policy_id": "cif-fixed-native-corrected-gradient-audit-v1",
+      "correction_policy_id": "native-parallelity-complete-accumulation-v1",
+      "module": "src/nasolve/cif_parallelity_correction.py",
+      "builder": "scripts/build_cif_corrected_gradient_probe.py",
+      "template": "scripts/cif_corrected_gradient_probe_template.py",
+      "runner_filename": "25_Cedar_probe_cif_corrected_gradient.py",
+      "review_input": {
+        "filename": "24_Cedar_5a5xbuih_cif_parallelity_audit_review.zip",
+        "sha256": "a2f91570c103ce11900d48d89395af8de2d335e8610e85996e5bd73bd410e6fe",
+        "bytes": 16851832,
+        "payloads": 732,
+        "frozen_prior_payloads": 670
+      },
+      "behavior": {
+        "before": "Installed native plane accumulation omits second-plane gradient contributions; complete individual-restraint derivatives pass the Cedar 24 sampled checks.",
+        "after": "An explicit NASolve-local evaluator replaces only the accumulated plane-gradient contribution with the complete original single-restraint sum, then freshly audits the fixed native objective without optimization.",
+        "native_energy": "UNCHANGED",
+        "native_proxy_parameters": "UNCHANGED",
+        "installed_phenix_files": "UNCHANGED",
+        "production_postmr_and_refinement": "UNCHANGED",
+        "narestraints_policy": "UNCHANGED",
+        "scientific_qualification": "REVIEW"
+      },
+      "methods": {
+        "prerequisites": "Verify all 732 Cedar 24 payloads and nested Cedar 23/22 manifests/native artifacts. Require qualified individual derivatives/repeats and replay all 17 Cedar 22 mechanics checks plus NOT_CONVERGED_ERROR. Execute no captured code.",
+        "native_precondition": "Exactly match initial atoms, coordinates, definitions, geometry, explicit policy/origins and static constraints. Pin eight native API sources, six numerical modules, two adapters and both recorded installed C++ sources.",
+        "correction": "Use the original native unnormalized full-objective gradient. Subtract parallelity_residual_sum gradient_array and add every parallelity(...).gradients() contribution in i_seqs+j_seqs order by original atom index; retain all other components and native energy.",
+        "individual_kernel": "Original native proxy objects retain targets, slack, limits, top-out, weights and origin IDs. No reconstruction or mathematical surrogate is used.",
+        "accumulation_coverage": "All active plane proxies, arbitrary valid atom indices, shared atoms and overlapping proxies. No residue-code/site/residual allowlist. Already-correct native accumulation is an identity operation.",
+        "unsupported": "Symmetry-bearing planes are refused by the reusable correction; the audit also refuses special positions. Native installed coverage is limited to the captured supported planes.",
+        "energy_gate": "On every correction-bearing evaluation, individual residual sum, native plane-container residual and manager plane residual must agree within absolute 1e-8 / relative 1e-10. Returned full native energy is unchanged.",
+        "coordinate_cases": [
+          "initial",
+          "full_precision",
+          "pdb_rounded"
+        ],
+        "raw_preflight": "Match all three old native full-objective energies and incomplete gradient norms. At both saved endpoints, also match the captured complete and accumulated plane arrays. Corrected gradient norms are recorded separately.",
+        "categories": [
+          "all",
+          "bond",
+          "angle",
+          "dihedral",
+          "chirality",
+          "planarity",
+          "parallelity",
+          "nonbonded"
+        ],
+        "directions": "Full corrected gradient, alternating global direction, Cartesian axes of six generic outlier-selected atoms and each category gradient when nonzero.",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "directional_consistency": "Two consecutive steps within absolute 1e-4 plus relative 1e-4 times the larger derivative magnitude; existing rules are unchanged.",
+        "controls": "Repeated full arrays/energies, target and corrected-gradient additivity, original raw snapshots, six descriptive descent probes and unchanged final static/source fingerprints.",
+        "audit_evaluation_cap": 5500,
+        "expected_audit_evaluations_for_six_atoms": 4101,
+        "separate_preflight_evaluations": 5,
+        "native_timeout_seconds": 1200,
+        "optimization": "NOT_RUN",
+        "global_monkeypatch": "NOT_USED"
+      },
+      "offline_actual_input": {
+        "capsule": "PASS_732_PAYLOADS",
+        "preserved_prior": "PASS_NESTED_670_AND_609_PAYLOADS_AND_MANIFESTS",
+        "mechanics_replay": "EXACT_17_PASS",
+        "parallelity_proxies": 58,
+        "coordinate_cases": [
+          "initial",
+          "full_precision",
+          "pdb_rounded"
+        ],
+        "source_bundled_inspection": "PASS_ACTUAL_INPUT",
+        "native_execution": "NOT_RUN"
+      },
+      "software_validation": {
+        "fail_before": "All 14 initial correction regressions fail before adding the new module; all pass afterward.",
+        "new_tests": {
+          "passed": 36,
+          "scope": "Independent analytic full-objective derivatives; incomplete/already-fixed native accumulation; plane order, arbitrary indices, shared atoms, multiple/empty proxies, untouched native objects, invalid/nonfinite inputs; synthetic worker derivative/source/manager/baseline/timeout controls; archive/provenance defects and deleted-build poisoned-import transport."
+        },
+        "focused": {
+          "passed": 137,
+          "seconds": 16.85,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_parallelity_correction.py tests/test_cif_corrected_gradient_probe.py tests/test_cif_parallelity_audit.py tests/test_cif_parallelity_audit_probe.py tests/test_cif_gradient_audit.py tests/test_cif_gradient_audit_probe.py tests/test_cif_fixed_geometry.py tests/test_cif_na_geometry_probe.py"
+        },
+        "full": {
+          "passed": 1758,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 94.68,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "biased_single_kernel": "A deliberately incorrect individual derivative remains DERIVATIVE_REVIEW after accumulation correction; the audit does not mask it.",
+        "native_worker": "Explicit API fakes only; optimizer marker remains absent. No installed Phenix/Coot in this Linux environment.",
+        "portability": "Source-bundled inspection passes after deleting both source builds and poisoning ambient NASolve imports.",
+        "native": "PENDING_INSTALLED_PHENIX_2.2.1-6174_DISPATCHER_2.2.1"
+      },
+      "schemas": {
+        "new_probe_receipt": "cif-native-corrected-gradient-probe",
+        "new_native_receipt": "cif_native_parallelity_corrected_gradient_audit",
+        "schema_version": 1,
+        "existing_defaults_and_schemas": "UNCHANGED",
+        "correction_qualification": [
+          "SAMPLED_NATIVE_DERIVATIVES_PASS",
+          "DERIVATIVE_REVIEW"
+        ],
+        "overall_verdict": "REVIEW; completed diagnostic returns exit 2, native worker exit 0.",
+        "migration": "None; add-only opt-in evaluator/diagnostic, with no new package dependencies."
+      },
+      "boundaries": [
+        "No optimizer, native installation edit, global monkeypatch, policy recompilation, target/weight edit, dictionary generation, new crystal model, diffraction/refinement or adoption.",
+        "Sampled derivative agreement is not full-gradient proof, optimizer convergence, chemical intent or scientific approval.",
+        "Cedar 22 stopping evidence remains NOT_CONVERGED_ERROR; its cause is not established by correction implementation.",
+        "Only code and derived counts/hashes enter Git. Private capsules, coordinates, dictionaries and logs remain excluded."
+      ],
+      "next_action": "Run the prepared Cedar 25 explicit NASolve-local complete-plane accumulation correction audit from its full-SHA Git delivery. Review fresh numerical derivatives at initial, full-precision and PDB-rounded coordinates under the complete fixed objective and seven category controls. Require unchanged native energies, raw baseline snapshots, sources, static constraints and NARestraints policy. No optimizer runs or installed Phenix file is edited. A fresh installed derivative pass must precede a separate bounded geometry trial. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical qualification and adoption remain open.",
+      "evidence_record": "cif-linked-native-registration-evidence.json#native_parallelity_correction_2026_10_19"
     }
   },
   "audience": [

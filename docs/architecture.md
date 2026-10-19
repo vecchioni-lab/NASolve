@@ -387,8 +387,18 @@ verifies all 732 payloads and all sampled single-restraint derivatives, while
 accumulation fails every tested order. The installed loop-bound model exactly
 reproduces the saved accumulation vectors. Recombining complete plane
 contributions explains all earlier sampled discrepancies without new energy
-evaluations or coordinate changes. A NASolve-local correction audit must precede
-a separate bounded optimization; no correction is implemented by this return.
+evaluations or coordinate changes.
+
+Cedar 25 adds an explicit NASolve-local evaluation adapter: retain the native
+unnormalized energy and full gradient, subtract the native accumulated plane
+gradient, and add every original single-restraint i/j contribution by atom
+index. It changes no native proxy, parameter or installed file and works as
+an identity operation when native accumulation already agrees. Symmetry-bearing
+planes and special positions are refused. This opt-in audit is separate from
+production PostMR/refinement. Fresh four-step directional checks cover the
+initial coordinates and both saved endpoints under the full objective and seven
+category controls, with exact source/static-constraint gates and preserved raw
+baselines. Installed validation is pending before any new bounded optimization.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, 2026-10-15:** offline component/restraint assessment,
+**Implemented scope, updated 2026-10-19:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
 explicit whole-component numerical candidate generation and a separate native
@@ -387,8 +387,16 @@ while every accumulated order loses second-plane contributions. The same
 pattern occurs for tilted controls, independently of residue chemistry.
 The installed loop-bound model reproduces the returned accumulation arrays
 exactly. Restoring complete contributions in saved data explains all earlier
-sampled discrepancies; a local correction and fresh derivative validation
-remain future work.
+sampled discrepancies.
+
+Cedar 25 now implements an explicit NASolve-local correction. It keeps the
+native energy, replaces only the incomplete plane-gradient contribution with
+the complete sum, and leaves all NARestraints selections and chemical targets
+fixed. A separate audit freshly compares derivatives with energy differences
+at the initial coordinates and both saved endpoints. It checks the same native
+sources and mechanics before evaluating; no optimizer runs or installed Phenix
+file is edited. Native validation is pending. The correction is opt-in and
+does not change production PostMR/refinement defaults.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -613,8 +621,19 @@ second-plane and alternating controls. The installed loop-bound model matches
 the accumulation vectors exactly. Algebraically replacing only parallelity
 contributions makes all 84 prior full/parallelity directional checks agree
 at unchanged energies and coordinates. This explains the sampled mismatch
-without yet validating an implemented correction, optimizer convergence or
-chemical definitions.
+without validating optimizer convergence or chemical definitions. Cedar 25
+implements a local evaluation adapter that subtracts only the native accumulated
+parallelity gradient and scatters all original single-restraint contributions
+by atom index, including shared atoms. It preserves the unnormalized native
+energy and works unchanged when native accumulation already agrees. The new
+source-pinned diagnostic repeats the four-step finite differences under the
+full objective and seven category controls at initial and both saved coordinate
+sets, preserving raw snapshots separately from corrected gradients. Repeat and
+additivity checks, exact static constraints and complete plane residual
+agreement remain mandatory. Symmetry-bearing planes and special positions are
+unsupported. Local tests use independent analytic oracles and explicit native
+API fakes; actual installed derivative validation remains pending. No
+minimization, target tuning or automatic adoption occurs.
 
 ## Primary references
 

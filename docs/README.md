@@ -130,8 +130,10 @@ for actual behavior; history is evidence, not a second task queue.
   defect in every tested plane order at both saved precisions and in tilted
   controls; all sampled single-restraint derivatives pass. A saved-data
   recombination explains all 72 previously failed directional checks. It changes
-  no model, target or NARestraints pairing/stacking policy. A local correction
-  and fresh derivative validation remain the next work. Production PostMR,
+  no model, target or NARestraints pairing/stacking policy. Cedar 25 implements
+  an explicit local accumulation correction and freshly audits derivatives at
+  the initial coordinates and both saved endpoints; installed validation is
+  pending. Native energies and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
