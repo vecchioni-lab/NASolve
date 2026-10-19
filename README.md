@@ -51,7 +51,9 @@ energy differences at the saved endpoints and repeats dictionary assessment.
 The returned audit localizes a stable sampled gradient mismatch to native
 parallelity terms in both coordinate cases. An independent plane calculation
 strongly points to gradient accumulation; installed per-proxy confirmation
-remains open. It performs no optimization or policy change.
+remains open. It performs no optimization or policy change. Cedar 24 now
+provides that separate installed per-plane/accumulation check, with both plane
+orders and tilted toy controls; its native result is pending.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

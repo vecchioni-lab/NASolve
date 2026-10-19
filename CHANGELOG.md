@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Installed plane-gradient accumulation diagnostic
+
+- Add Cedar 24 from the exact verified 670-payload Cedar 23 return. Preserve
+  earlier evidence and replay all 17 mechanics checks before native work.
+- Compare complete single-restraint gradients with singleton/full-container
+  accumulation and the fixed manager at both saved coordinate precisions.
+  Repeat every plane in both orders and add tilted equal/unequal size controls;
+  retain four numerical steps, repeated arrays and all disagreement.
+- Record available installed C++ source bytes and pinned binary/API identities.
+  No optimization, native patch, policy/target change or candidate adoption.
+  All 1,722 tests pass; actual-input offline inspection and synthetic
+  deleted-build transport pass. Native execution remains pending; no new
+  dependencies or migration.
+
 ### Saved native gradient audit
 
 - Add a separate Cedar 23 diagnostic from the verified Cedar 22 capsule.

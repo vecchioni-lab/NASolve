@@ -868,6 +868,47 @@ The finite-difference method follows the same checking principle used in the
 [CCTBX gradient tutorial](https://cci.lbl.gov/docs/cctbx/tuto_rigid_body/);
 actual installed source identities remain pinned by the captured hashes.
 
+### Installed per-plane accumulation diagnostic
+
+`scripts/build_cif_parallelity_audit_probe.py` builds Cedar 24,
+`24_Cedar_probe_cif_parallelity_audit.py`, from the verified 670-payload
+Cedar 23 ZIP. It verifies the nested prior/native evidence, replays Cedar 22's
+17 mechanics checks and preserves its stopping classification. It executes no
+captured code. `--inspect-only` checks the source-bundled capsule and mechanics
+offline. Installed Phenix execution is still pending.
+
+**Methods.** The installed worker rebuilds and exactly matches the initial
+manager and source/constraint fingerprints. The two newly consumed Python
+adapter modules are also fingerprinted before/after evaluation, without claiming
+a retrospective Cedar 23 source match. For all 58 captured plane restraints
+at both saved precisions, it obtains `parallelity(...).gradients()` and scatters
+every first/second-plane contribution by atom identity. Independently, it
+calls `parallelity_residual_sum` on a singleton container. Both kernels retain
+full gradients, residuals and repeated baselines. Three directions and four
+central-difference steps test each original and swapped plane order. Swapping
+retains the same identity order and target/weight metadata; it is an isolated
+diagnostic control, not a changed NARestraints policy.
+
+Three asymmetric tilted controls use 4/4, 4/6 and 6/4 atoms, also both orders.
+At each saved crystal coordinate set, the worker additionally compares manually
+scattered gradients, the actual full proxy container, manager evaluation and
+every captured Cedar 23 parallelity gradient component. The supported slice is
+zero-target, zero-slack, non-top-out, symmetry-free planes; unsupported inputs
+fail visibly. Limits are 7,000 single/container evaluation pairs (two residual
+kernels per pair), plus two whole-batch comparisons, and 1,200 seconds. The
+58-proxy input requires 6,188 pairs. Numerical tolerances match Cedar 23 and
+do not change exact native inventory gates.
+
+Available `parallelity.h` and `parallelity_bpl.cpp` bytes are frozen from the
+imported geometry-manager package directory, with checksums and explicit missing
+status. Header identity alone does not establish the source used to compile
+the pinned binary. These controls can isolate an accumulation failure; they
+cannot prove why the earlier optimizer stalled or approve chemistry or
+convergence. No optimization, native patch, target/weight edits, new crystal
+model, diffraction/refinement or adoption occurs. Existing pairing/stacking
+authority remains with NARestraints. Exact software checks and source blob IDs
+are in the [native ledger](cif-linked-native-registration-evidence.json).
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

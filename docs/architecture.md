@@ -378,6 +378,12 @@ energy/derivative calculations and a public CCTBX accumulation-loop model
 strongly indicate missing second-plane gradient contributions. Installed C++
 source/per-proxy confirmation and any causal role in the prior line-search
 failure remain open; NARestraints policy and exact native gates are preserved.
+Cedar 24 adds that isolated installed check: complete per-restraint gradients
+are scattered by atom identity and compared with singleton/full-container and
+manager gradients, both saved cases and both plane orders. Tilted equal/unequal
+controls test the same APIs without residue definitions. Source availability
+and binary identity are recorded separately. It performs no optimization;
+installed execution remains pending.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

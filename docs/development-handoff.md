@@ -158,13 +158,32 @@ The public loop omits/truncates second-plane contributions. This strongly
 indicates a native accumulation defect; the installed C++ header was not
 captured, and the audit does not prove it caused the earlier line-search stall.
 
-**Current action:** prepare an installed per-proxy/toy plane-gradient audit
-with swapped order and equal/unequal plane sizes, recording source/binary
-identities and comparing per-restraint, accumulated and numerical gradients.
-No repeat Cedar 23 run or new optimization is requested; no next delivery is
-prepared. NARestraints selections, targets, weights and exact native gates stay
-authoritative. This return updates documentation only; the unchanged runtime
-suite is not rerun. Private capsules, models and logs remain outside Git.
+**Current action: Cedar 24 is prepared; installed execution pending.**
+`scripts/build_cif_parallelity_audit_probe.py` builds
+`24_Cedar_probe_cif_parallelity_audit.py` from the exact verified Cedar 23 ZIP.
+The new diagnostic replays all 17 mechanics checks and matches the initial
+manager, eight API sources, six numerical sources and static constraints.
+It compares complete individual-restraint gradients, identity-scattered sums,
+singleton/full native containers and the unchanged manager. Every one of the
+58 plane restraints is checked at both saved coordinate sets and both plane
+orders. Three tilted controls exercise 4/4, 4/6 and 6/4 atoms, also both orders.
+
+Each order retains three directions, four central-difference steps and complete
+repeated arrays. The expected budget is 6,188 single/container evaluation pairs
+under a 7,000-pair cap, plus two full-batch comparisons, with a 1,200 s timeout.
+Native C++ header/binding sources are copied only if present beside the imported
+geometry module; missing source is recorded and does not imply binary origin.
+No optimizer, native patch, new crystal model, target edits or adoption occurs.
+NARestraints selections/planes/weights and exact native gates remain fixed.
+
+The 31 new regressions are covered by **101 focused tests (10.92 s)**; the
+full suite passes **1,722 tests, two skips and 276 subtests (84.32 s)**.
+The real 670-payload input passes the new source-bundled offline inspection,
+including the exact 17-check prerequisite replay; deleted-build/poisoned-import
+transport and explicit synthetic native-worker guards pass. Full-suite results
+are recorded in the native evidence ledger. These are local software/offline
+checks, not an installed Phenix result. Return the printed review ZIP after
+the pinned single-block Git delivery; no extra installs are required.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

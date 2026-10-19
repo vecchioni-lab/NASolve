@@ -2064,7 +2064,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
       "pairing_intent_provenance": {
         "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
@@ -2189,7 +2189,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
       "cedar21_return_verified_2026_10_18": {
         "archive": {
           "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2471,7 +2471,7 @@
         "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
         "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
       ],
-      "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
       "review_input": {
         "delivery_prefix": "21_Cedar",
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2792,7 +2792,7 @@
         "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
         "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
       ],
-      "next_action": "Prepare an installed, no-optimization per-proxy/toy audit of plane residuals, per-restraint gradients and accumulated gradients, including swapped plane order, equal/unequal plane sizes and the installed C++ source hash if available. The public accumulation-loop bounds reproduce the saved native gradient, but installed C++ source identity and the causal role in the line-search stall remain unestablished. Preserve all NARestraints selections, targets, weights and exact native gates. Do not repeat Cedar 23 unchanged. No next delivery is prepared. Cedar 22 remains NOT_CONVERGED_ERROR; complete geometry, source/charge, pucker, absolute stereochemistry, experimental fit, refinement and adoption remain open.",
+      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
       "returned_evidence": {
         "recorded_date": "2026-10-19",
         "archive": {
@@ -3048,6 +3048,150 @@
         "next_validation": "Installed isolated tilted-plane controls with equal/unequal atom counts and swapped order; compare single-restraint gradients, accumulated gradients and finite differences; record installed source/binary identities. No optimization or adoption."
       },
       "evidence_record": "cif-linked-native-registration-evidence.json#native_gradient_audit_2026_10_19"
+    },
+    "native_parallelity_audit_2026_10_19": {
+      "status": "PREPARED_NATIVE_EVIDENCE_PENDING",
+      "delivery_prefix": "24_Cedar",
+      "policy_id": "cif-native-parallelity-accumulation-audit-v1",
+      "module": "src/nasolve/cif_parallelity_audit.py",
+      "builder": "scripts/build_cif_parallelity_audit_probe.py",
+      "template": "scripts/cif_parallelity_audit_probe_template.py",
+      "runner_filename": "24_Cedar_probe_cif_parallelity_audit.py",
+      "review_input": {
+        "filename": "23_Cedar_ip09ein6_cif_gradient_audit_review.zip",
+        "sha256": "8acd86fcac72db6380f40f6f1b3851eabe12b9a6267be750bf97e482a11509bc",
+        "bytes": 14976171,
+        "payloads": 670,
+        "frozen_prior_payloads": 609
+      },
+      "behavior": {
+        "before": "Cedar 23 localizes sampled native parallelity derivative mismatch; an offline model of public loop bounds reproduces the saved gradients.",
+        "after": "A separate installed diagnostic compares individual-restraint gradients, identity-scattered sums, singleton-container gradients and full-manager/batch readback without optimization.",
+        "production_postmr": "UNCHANGED",
+        "narestraints_policy": "UNCHANGED",
+        "scientific_qualification": "REVIEW"
+      },
+      "methods": {
+        "prerequisites": "Verify all 670 Cedar 23 payloads, frozen 609-payload Cedar 22 evidence and native artifacts; replay all 17 Cedar 22 mechanics checks and its NOT_CONVERGED_ERROR classification. Execute no captured script.",
+        "native_precondition": "Exact initial atoms, coordinates, definitions, geometry, eight API sources, explicit policy/origin metadata, six numerical-source hashes and static constraint signature.",
+        "saved_coordinate_cases": [
+          "full_precision",
+          "pdb_rounded"
+        ],
+        "coverage": "Every one of the 58 actual plane proxies at both coordinates and both plane orders; no component-code, site or residual allowlist.",
+        "supported_profile": "Zero-target, zero-slack, non-top-out, symmetry-free planes only; unsupported cases fail visibly. Include actual native limit and origin ID in copied diagnostic proxies.",
+        "single_kernel": "cctbx.geometry_restraints.parallelity(...).residual()/gradients(); scatter every returned i/j gradient by atom identity, including shared indices.",
+        "container_kernel": "cctbx.geometry_restraints.parallelity_residual_sum on a singleton shared_parallelity_proxy, independently supplying a zero gradient array.",
+        "full_batch": "At each saved coordinate set, compare manually scattered single-restraint sums, the unchanged full native proxy container, manager parallelity-only evaluation and all captured Cedar 23 parallelity gradient components.",
+        "plane_order": "Repeat each isolated evaluation with i/j membership swapped; retain original and swapped gradients in the same atom-identity order. These are controls, not adopted restraints.",
+        "toy_controls": {
+          "sizes": [
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "shape": "Deterministic asymmetric near-planar groups tilted by 31 degrees; repeat both orders.",
+          "scope": "Tests accumulation independently of crystallographic residue definitions; toy coordinates are not a new crystal model."
+        },
+        "directions": [
+          "single-restraint gradient restricted to first plane",
+          "single-restraint gradient restricted to second plane",
+          "alternating local direction"
+        ],
+        "zero_gradient_direction": "Use a nonzero alternating direction on that plane and record the fallback.",
+        "steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "directional_consistency": "At least two consecutive samples within absolute 1e-4 plus relative 1e-4 times the larger derivative magnitude, separately for single/container kernels.",
+        "comparison_tolerance": {
+          "absolute": 1e-08,
+          "relative": 1e-10
+        },
+        "baseline_repeats": "Retain complete repeated energies and both gradient arrays; compare every component.",
+        "evaluation_pair_cap": 7000,
+        "residual_kernels_per_pair": 2,
+        "expected_evaluation_pairs_for_58_proxies": 6188,
+        "whole_batch_controls": "Two additional saved-case comparisons, each evaluating 58 single restraints plus full-batch and manager residuals.",
+        "proxy_cap": 64,
+        "coordinate_case_cap": 2,
+        "native_timeout_seconds": 1200,
+        "installed_source_capture": "Read parallelity.h and parallelity_bpl.cpp only from the imported geometry-manager package directory; preserve available bytes/checksums and record UNAVAILABLE explicitly.",
+        "source_vs_binary_limit": "Header availability/hash does not establish the source from which the pinned installed extension binary was built.",
+        "native_gates": "Exact inventory/static-constraint/source gates are unchanged; numerical controls do not relax them.",
+        "new_adapter_source_fingerprints": "Record cctbx.geometry_restraints and cctbx.array_family.flex Python module hashes before evaluations and require unchanged bytes afterward. These newly consumed adapter sources have no retrospective Cedar 23 fingerprint."
+      },
+      "offline_actual_input": {
+        "capsule": "PASS_670_PAYLOADS",
+        "preserved_prior": "PASS_609_PAYLOADS_AND_MANIFEST",
+        "mechanics_replay": "EXACT_17_PASS",
+        "parallelity_proxies": 58,
+        "prior_convergence": "PRESERVED_NOT_CONVERGED_ERROR",
+        "source_bundled_inspection": "PASS_ACTUAL_INPUT",
+        "native_execution": "NOT_RUN"
+      },
+      "software_validation": {
+        "fail_before": "All 12 initial numerical-core regressions fail before adding the new module.",
+        "new_tests": {
+          "passed": 31,
+          "scope": "Analytic quadratic oracles, deliberately missing accumulation, independently wrong single gradients, nonfinite/drift/budget/input/overlap controls, native API fakes, timeout/source/manager/snapshot guards, archive defects and deleted-build inspection."
+        },
+        "focused": {
+          "passed": 101,
+          "seconds": 10.92,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_parallelity_audit.py tests/test_cif_parallelity_audit_probe.py tests/test_cif_gradient_audit.py tests/test_cif_gradient_audit_probe.py tests/test_cif_fixed_geometry.py tests/test_cif_na_geometry_probe.py"
+        },
+        "full": {
+          "passed": 1722,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 84.32,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "native_worker": "Synthetic control-flow/API tests only; no installed Phenix execution in this Linux environment, and optimizer never called.",
+        "portability": "Source-bundled inspection succeeds after deleting both source builds and poisoning ambient NASolve imports.",
+        "native": "PENDING Phenix 2.2.1-6174 / dispatcher 2.2.1 with the captured source/binary hashes."
+      },
+      "schemas": {
+        "new_probe_receipt": "cif-native-parallelity-audit-probe",
+        "new_native_receipt": "cif_native_parallelity_accumulation_audit",
+        "schema_version": 1,
+        "existing_defaults_and_schemas": "UNCHANGED",
+        "migration": "None; add-only diagnostic and source-bundle template."
+      },
+      "primary_api_sources": [
+        {
+          "repository": "cctbx/cctbx_project",
+          "path": "cctbx/geometry_restraints/parallelity.h",
+          "git_blob": "25d3a75f20d3611dcb32d919a893bc0beb18e6a0",
+          "url": "https://api.github.com/repos/cctbx/cctbx_project/git/blobs/25d3a75f20d3611dcb32d919a893bc0beb18e6a0"
+        },
+        {
+          "repository": "cctbx/cctbx_project",
+          "path": "cctbx/geometry_restraints/parallelity_bpl.cpp",
+          "git_blob": "5f20d8702964f261cb378f65cfb3f1aa89bbd7cc",
+          "url": "https://api.github.com/repos/cctbx/cctbx_project/git/blobs/5f20d8702964f261cb378f65cfb3f1aa89bbd7cc"
+        }
+      ],
+      "boundaries": [
+        "No optimizer, native patch, policy recompilation, target/weight edit, dictionary generation, diffraction/refinement, new crystal model or adoption.",
+        "Numerical localization does not prove the cause of the earlier line-search stall, full gradient correctness, chemical intent or convergence.",
+        "Missing optional installed C++ source remains explicit; binary/API fingerprints are still mandatory.",
+        "Only source code and derived counts/hashes/metrics enter Git; all private capsules, dictionaries, coordinates and logs remain excluded."
+      ],
+      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+      "evidence_record": "cif-linked-native-registration-evidence.json#native_parallelity_audit_2026_10_19"
     }
   },
   "audience": [

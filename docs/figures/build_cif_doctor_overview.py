@@ -103,7 +103,7 @@ def build():
              'A separate graph-selected fragment candidate transports the entire raw base through a preserved sugar frame. Returned Cedar 17 passes native mechanics while retaining unresolved and worsened pairing contacts. '
              'A separate source/effective recovery requires exact original hashes and supported source graphs, then whole-component generation and linked/native gates at fixed coordinates before a fragment trial. Returned Cedar 18 verifies source-preserving generation and both native phases; full scientific qualification stays open. A separate fixed-definition geometry trial records native stopping, gradients and full-precision versus PDB round-trip evidence; returned Cedar 19 optimization reaches its explicit iteration cap. Identity mapping preserves original PDB records across native reordering, and Cedar 20 reuses saved endpoints. Its native reread preserves identities/definitions and activates extra distance-filtered hydrogen bonds. A read-only reload audit retains the changed proxy set and original REVIEW separately from saved fixed-manager endpoint equivalence. A separate explicit NARestraints pair/stack compiler preserves existing edits and tests native membership at two saved coordinate sets; both returned native cases pass exact membership checks while geometry qualification stays open. Production PostMR is unchanged. '
              'Returned Cedar 22 verifies a separate bounded geometry trial under this policy: exact initial manager matching and all 17 native PDB readback checks pass. The objective decreases, while a line-search error and remaining pairing/local-angle strain retain scientific review. '
-             'Returned Cedar 23 matches the fixed manager and sources, and localizes stable sampled gradient disagreement to native parallelity at both precisions. Independent plane calculations and public accumulation-loop bounds reproduce the saved evidence; installed per-proxy confirmation remains open. No optimization or target edit occurs. '
+             'Returned Cedar 23 matches the fixed manager and sources, and localizes stable sampled gradient disagreement to native parallelity at both precisions. Independent plane calculations and public accumulation-loop bounds reproduce the saved evidence; installed per-proxy confirmation remains open. No optimization or target edit occurs. Cedar 24 prepares an installed comparison of single-restraint and accumulated plane gradients, both plane orders and tilted equal/unequal controls; native execution is pending. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -147,7 +147,7 @@ def build():
         'fill="#fafafa" stroke="#b7c2ca" stroke-width="1.5"/>',
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
-        text(70, 1082, "Parallelity gradient mismatch; geometry remains under review.", size=24),
+        text(70, 1082, "Plane-gradient isolation prepared; geometry remains under review.", size=24),
         text(70, 1116, "Native site / terminal controls recorded; formal-charge readback unavailable.", size=24),
         '</g>',
         '</svg>'])

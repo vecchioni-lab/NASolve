@@ -377,6 +377,12 @@ omitted second-plane gradient contributions. Installed per-proxy/source
 confirmation remains open; this does not reject the NARestraints policy or
 prove the cause of the optimizer stall.
 
+Cedar 24 now supplies a separate installed diagnostic to distinguish an
+individual plane derivative from failure to add all atom contributions. It
+checks every captured plane at both saved precisions and both plane orders,
+with tilted equal/unequal-size controls. It preserves the NARestraints policy
+and performs no optimization; its installed result is pending.
+
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
 It verifies the frozen public-control ZIP and writes new audits without an
@@ -587,7 +593,13 @@ accumulation-loop bounds matches all 2,631 stored gradient components per case
 to approximately 1.5e-12 in norm. Installed C++ source identity and isolated
 native reproduction remain open. Exact source/blob identities, scope and
 limits are in the native ledger; this is numerical evidence, not a new
-optimization or chemistry approval.
+optimization or chemistry approval. Cedar 24 compares the installed
+per-restraint Cartesian derivatives with identity-scattered sums, native
+singleton/full containers and the saved manager. Complete repeated arrays,
+plane-order invariance, four-step numerical derivatives and tilted equal/unequal
+controls retain the distinction between derivative and accumulation errors.
+Available installed header/binding sources are captured with checksums while
+remaining distinct from binary build provenance. Native execution is pending.
 
 ## Primary references
 
