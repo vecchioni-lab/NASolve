@@ -2064,7 +2064,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
       "pairing_intent_provenance": {
         "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
         "evidence_record": "docs/cif-linked-native-registration-evidence.json#native_reload_attribution_2026_10_17.pairing_intent_provenance",
@@ -2189,7 +2189,7 @@
         "new_dependencies": [],
         "private_payloads_committed": false
       },
-      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
       "cedar21_return_verified_2026_10_18": {
         "archive": {
           "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2471,7 +2471,7 @@
         "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
         "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
       ],
-      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
       "review_input": {
         "delivery_prefix": "21_Cedar",
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -2792,7 +2792,7 @@
         "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
         "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
       ],
-      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
       "returned_evidence": {
         "recorded_date": "2026-10-19",
         "archive": {
@@ -3050,7 +3050,7 @@
       "evidence_record": "cif-linked-native-registration-evidence.json#native_gradient_audit_2026_10_19"
     },
     "native_parallelity_audit_2026_10_19": {
-      "status": "PREPARED_NATIVE_EVIDENCE_PENDING",
+      "status": "RETURNED_NATIVE_ACCUMULATION_DEFECT_REPRODUCED",
       "delivery_prefix": "24_Cedar",
       "policy_id": "cif-native-parallelity-accumulation-audit-v1",
       "module": "src/nasolve/cif_parallelity_audit.py",
@@ -3161,7 +3161,8 @@
         },
         "native_worker": "Synthetic control-flow/API tests only; no installed Phenix execution in this Linux environment, and optimizer never called.",
         "portability": "Source-bundled inspection succeeds after deleting both source builds and poisoning ambient NASolve imports.",
-        "native": "PENDING Phenix 2.2.1-6174 / dispatcher 2.2.1 with the captured source/binary hashes."
+        "native": "Returned Phenix 2.2.1-6174 / dispatcher 2.2.1 completed the installed audit in 3.483823 s, native exit zero, with 6,188/7,000 evaluation pairs. All sampled single-restraint directions agree; accumulation fails for every original/swapped order in both crystal cases and all tilted controls.",
+        "returned_evidence_review": "Docs-only return review: all payload/native-artifact/worker-source checks, exact 17-check prerequisite replay, 2,856 raw finite-difference sample records and all summaries independently recomputed. Unchanged 1,722-test runtime suite not rerun."
       },
       "schemas": {
         "new_probe_receipt": "cif-native-parallelity-audit-probe",
@@ -3190,7 +3191,204 @@
         "Missing optional installed C++ source remains explicit; binary/API fingerprints are still mandatory.",
         "Only source code and derived counts/hashes/metrics enter Git; all private capsules, dictionaries, coordinates and logs remain excluded."
       ],
-      "next_action": "Run the prepared Cedar 24 installed plane-gradient accumulation diagnostic from its full-SHA Git delivery. Review per-restraint versus singleton/full-batch gradients, both plane orders, all four numerical step sizes, tilted equal/unequal controls and installed C++ source records. This performs no optimization or target/policy changes. Preserve NARestraints authority and Cedar 22 NOT_CONVERGED_ERROR; scientific qualification and adoption remain open.",
+      "next_action": "Prepare an explicit NASolve-local accumulation-correction audit using complete per-restraint plane gradients with unchanged native residuals, targets, weights and proxy membership. Validate fresh numerical derivatives of the complete fixed objective before a separate bounded geometry trial. Do not repeat Cedar 24 unchanged. No correction or next delivery is implemented/prepared by this docs-only return review. Preserve NARestraints authority, native fingerprints and exact gates; Cedar 22 remains NOT_CONVERGED_ERROR and full scientific qualification/adoption remain open.",
+      "returned_evidence": {
+        "recorded_date": "2026-10-19",
+        "archive": {
+          "filename": "24_Cedar_5a5xbuih_cif_parallelity_audit_review.zip",
+          "sha256": "a2f91570c103ce11900d48d89395af8de2d335e8610e85996e5bd73bd410e6fe",
+          "bytes": 16851832,
+          "payloads": 732
+        },
+        "build": {
+          "nasolve_commit": "5eb9d7524eca5582a35bb5a4f3e191aa73ff0382",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runner_sha256": "5e958b8d4c283b723650c8238f0b01be482f717c7e2eef62022c21807d1a970a",
+          "runtime_sha256": "8d8e95c9c6881c7a47154eb2a2b816e1e95e8191a3d901ace651834eb9930aee",
+          "runtime_files": 108
+        },
+        "frozen_prior_payloads": 670,
+        "prior_manifest_preserved": true,
+        "native_execution": {
+          "elapsed_seconds": 3.483823,
+          "returncode": 0,
+          "status": "COMPLETED",
+          "timeout_seconds": 1200
+        },
+        "phenix_installation": "2.2.1-6174",
+        "phenix_dispatcher_version": "2.2.1",
+        "native_api_sources_exact": 8,
+        "numerical_sources_exact": 6,
+        "initial_manager_exact": true,
+        "new_adapter_sources_reported_stable": [
+          {
+            "module": "cctbx.geometry_restraints",
+            "sha256": "49b1a2f97978b74e416f763417d6a76f2ce6e00c1496afb7b24fe51072120950"
+          },
+          {
+            "module": "cctbx.array_family.flex",
+            "sha256": "2344b006d5e9cc096b45e2e38da82d3c1fc6fbfc8626f59349887d46652da2fb"
+          }
+        ],
+        "adapter_verification_scope": "Before/after hashes are reported by the verified native worker; adapter source bytes are not included in this capsule. No retrospective Cedar 23 adapter match is claimed.",
+        "constraint_signature_before_and_after": "0d450251acacbc8b63cb9e268fd24a839cd855e98417fee62ab45bc190d19bf9",
+        "prerequisite_mechanics": {
+          "PASS": 17
+        },
+        "retained_native_output_artifacts_verified": 59,
+        "native_input_roles": {
+          "model": 1,
+          "dictionary": 19,
+          "phil": 13
+        },
+        "all_worker_and_core_source_bytes_match_pinned_delivery": true,
+        "evaluation_pairs": 6188,
+        "evaluation_pair_cap": 7000,
+        "orders": 238,
+        "directions": 714,
+        "finite_difference_sample_records_recomputed": 2856,
+        "scalar_replay_max_roundoff": 0.0,
+        "saved_case_results": {
+          "full_precision": {
+            "orders": 116,
+            "single_direction_pass": 348,
+            "accumulated_direction_pass": 116,
+            "accumulated_review_by_direction": {
+              "j_plane": 116,
+              "alternating_local": 116
+            }
+          },
+          "pdb_rounded": {
+            "orders": 116,
+            "single_direction_pass": 348,
+            "accumulated_direction_pass": 116,
+            "accumulated_review_by_direction": {
+              "j_plane": 116,
+              "alternating_local": 116
+            }
+          }
+        },
+        "toy_results": {
+          "orders": 6,
+          "single_direction_pass": 18,
+          "accumulated_direction_pass": 6,
+          "accumulated_review_by_direction": {
+            "j_plane": 6,
+            "alternating_local": 6
+          },
+          "summary": {
+            "accumulated_derivative_review_orders": 6,
+            "accumulated_derivatives_consistent": false,
+            "baseline_repeats_consistent": true,
+            "orders": 6,
+            "proxy_count": 3,
+            "single_and_accumulated_gradients_agree": false,
+            "single_derivative_review_orders": 0,
+            "single_derivatives_consistent": true,
+            "swapped_energies_consistent": true,
+            "swapped_gradients_consistent": false
+          },
+          "equal_size_control": {
+            "label": "tilted_4_4",
+            "second_plane_single_gradient_norm": 2.213750580384799,
+            "second_plane_accumulated_gradient_norm": 0.0
+          }
+        },
+        "single_derivatives_consistent_all_sampled_directions": true,
+        "single_plane_order_gradients_consistent": true,
+        "all_accumulated_orders_require_review": true,
+        "all_energy_and_repeat_checks_consistent": true,
+        "installed_cpp_sources": [
+          {
+            "anchor": "native_geometry_module",
+            "bytes": 33629,
+            "path": "parallelity.h",
+            "sha256": "a245965c884e37dc6c3f74957d5fce2b07cd8b61338f1de91d71c1bb9b2d0c18",
+            "status": "RECORDED",
+            "git_blob_sha": "25d3a75f20d3611dcb32d919a893bc0beb18e6a0"
+          },
+          {
+            "anchor": "native_geometry_module",
+            "bytes": 8030,
+            "path": "parallelity_bpl.cpp",
+            "sha256": "3b80e303b6b1da740b8719dc32546fd1cf488ee9df9c5361655066c7dc726d5c",
+            "status": "RECORDED",
+            "git_blob_sha": "5f20d8702964f261cb378f65cfb3f1aa89bbd7cc"
+          }
+        ],
+        "installed_cpp_matches_recorded_public_source_blobs": true,
+        "compiled_source_provenance": "Header/binding bytes match recorded public blobs; the source used to build the pinned binary remains a separate provenance question. Actual installed numerical behavior is independently reproduced.",
+        "loop_model_max_per_order_gradient_difference_norm": 0.0,
+        "full_batch": {
+          "full_precision": {
+            "accumulated_residual": 151.27642769281084,
+            "captured_snapshot_match": true,
+            "energy_agreement": true,
+            "gradient_agreement": false,
+            "gradient_difference_norm": 204.04815549378688,
+            "manager_matches_batch": true,
+            "single_residual_sum": 151.27642769281084
+          },
+          "pdb_rounded": {
+            "accumulated_residual": 151.23891811575112,
+            "captured_snapshot_match": true,
+            "energy_agreement": true,
+            "gradient_agreement": false,
+            "gradient_difference_norm": 204.0880531140741,
+            "manager_matches_batch": true,
+            "single_residual_sum": 151.23891811575112
+          }
+        },
+        "confirmed_scope": "Installed non-unit-cell parallelity accumulation path for the captured zero-target, zero-slack, non-top-out, symmetry-free proxies and tilted controls; not every version or overload.",
+        "mechanism": "The second accumulation loop begins at i_size but stops at j_size instead of i_size+j_size. It adds only max(0,j_size-i_size) second-plane contributions; equal-size planes lose the entire second plane.",
+        "scientific_scope": "This isolates native gradient accumulation. It does not reject NARestraints pairing/stacking selections, establish chemical correctness or prove the cause of the earlier line-search failure.",
+        "model_optimization": "NOT_RUN",
+        "model_editing": "NOT_RUN",
+        "policy_recompilation": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "prior_convergence": "NOT_CONVERGED_ERROR",
+        "scientific_qualification": "REVIEW",
+        "automatic_adoption": false
+      },
+      "saved_data_recombination": {
+        "method": "Use complete single-restraint plane-gradient sums from Cedar 24. For the complete Cedar 23 objective, replace only its accumulated parallelity gradient with that sum; preserve all other gradient terms, energy samples, directions and tolerance rules.",
+        "cases": {
+          "full_precision": {
+            "all": {
+              "passed": 21,
+              "previously_failed": 18,
+              "gradient_norm": 222.79807101103202,
+              "scope": "Algebraic replay at unchanged saved coordinates and energy samples; no new native evaluation or optimizer."
+            },
+            "parallelity": {
+              "passed": 21,
+              "previously_failed": 18,
+              "gradient_norm": 241.21462988381148,
+              "scope": "Algebraic replay at unchanged saved coordinates and energy samples; no new native evaluation or optimizer."
+            }
+          },
+          "pdb_rounded": {
+            "all": {
+              "passed": 21,
+              "previously_failed": 18,
+              "gradient_norm": 929.453362274322,
+              "scope": "Algebraic replay at unchanged saved coordinates and energy samples; no new native evaluation or optimizer."
+            },
+            "parallelity": {
+              "passed": 21,
+              "previously_failed": 18,
+              "gradient_norm": 241.1953831793367,
+              "scope": "Algebraic replay at unchanged saved coordinates and energy samples; no new native evaluation or optimizer."
+            }
+          }
+        },
+        "directional_checks_passed": 84,
+        "previously_failed_directions_explained": 72,
+        "energy_or_coordinate_changes": false,
+        "new_native_evaluation": false,
+        "optimizer_execution": false,
+        "limitation": "Algebraic reuse of existing samples explains the discrepancy; it is not execution or validation of an implemented corrected manager, new directions or a convergence trial."
+      },
       "evidence_record": "cif-linked-native-registration-evidence.json#native_parallelity_audit_2026_10_19"
     }
   },

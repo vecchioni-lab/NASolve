@@ -19,8 +19,12 @@ entries are reconstructed from repository history.
 - Record available installed C++ source bytes and pinned binary/API identities.
   No optimization, native patch, policy/target change or candidate adoption.
   All 1,722 tests pass; actual-input offline inspection and synthetic
-  deleted-build transport pass. Native execution remains pending; no new
-  dependencies or migration.
+  deleted-build transport pass. The returned 732-payload capsule completes
+  native execution and reproduces omitted second-plane gradients in every
+  captured/toy order. All 714 sampled individual-restraint directions agree.
+  The installed loop-bound model exactly reproduces accumulation, and saved-data
+  recombination explains every prior sampled discrepancy. Correction and fresh
+  derivative validation remain future work; no new dependencies or migration.
 
 ### Saved native gradient audit
 

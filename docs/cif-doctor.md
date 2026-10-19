@@ -875,7 +875,7 @@ actual installed source identities remain pinned by the captured hashes.
 Cedar 23 ZIP. It verifies the nested prior/native evidence, replays Cedar 22's
 17 mechanics checks and preserves its stopping classification. It executes no
 captured code. `--inspect-only` checks the source-bundled capsule and mechanics
-offline. Installed Phenix execution is still pending.
+offline. Returned installed execution is recorded below.
 
 **Methods.** The installed worker rebuilds and exactly matches the initial
 manager and source/constraint fingerprints. The two newly consumed Python
@@ -908,6 +908,33 @@ convergence. No optimization, native patch, target/weight edits, new crystal
 model, diffraction/refinement or adoption occurs. Existing pairing/stacking
 authority remains with NARestraints. Exact software checks and source blob IDs
 are in the [native ledger](cif-linked-native-registration-evidence.json).
+
+**Returned evidence (2026-10-19).** All 732 payloads and the frozen 670-payload
+prior plus manifest verify. Phenix 2.2.1-6174 completes 6,188 evaluation pairs
+in 3.483823 s, native exit zero, with unchanged initial manager, native/numerical
+source hashes and static constraints. All 17 prerequisite mechanics checks replay.
+All 714 sampled single-restraint directions pass; every one of 238 accumulated
+orders fails the second-plane and alternating directions. Energies, repeated
+arrays and individual-gradient plane-order invariance agree. Accumulated
+gradients depend on plane order. For the 4/4 tilted control, the second-plane
+gradient norm is 2.21375 individually and zero after accumulation.
+
+Installed header/binding files match the recorded public source blobs. The
+second loop adds only `max(0, j_size - i_size)` second-plane contributions.
+That model reproduces every per-order accumulation array exactly; the full
+manager and full native container reproduce the same incomplete gradient.
+The confirmed scope is the installed non-unit-cell path for these supported
+proxies and controls. Compiled-source provenance and other versions/overloads
+remain separate questions.
+
+Saved-data recombination replaces only the incomplete parallelity gradient
+with complete individual-restraint sums. All 84 Cedar 23 full/parallelity
+directional checks then agree, explaining the 72 earlier failures at unchanged
+energies, coordinates, directions and tolerances. This is algebraic replay,
+not a newly implemented corrected manager or optimizer run. Next work is an
+explicit NASolve-local correction and fresh complete-objective derivative
+audit before a separate bounded trial. The NARestraints policy remains fixed;
+convergence and chemistry remain under review. No repeat Cedar 24 is needed.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

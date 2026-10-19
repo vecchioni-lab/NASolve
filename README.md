@@ -50,10 +50,12 @@ A separate Cedar 23 diagnostic now checks native gradients against finite
 energy differences at the saved endpoints and repeats dictionary assessment.
 The returned audit localizes a stable sampled gradient mismatch to native
 parallelity terms in both coordinate cases. An independent plane calculation
-strongly points to gradient accumulation; installed per-proxy confirmation
-remains open. It performs no optimization or policy change. Cedar 24 now
-provides that separate installed per-plane/accumulation check, with both plane
-orders and tilted toy controls; its native result is pending.
+points to gradient accumulation. Returned Cedar 24 confirms that defect in
+the installed native path: individual plane gradients pass the sampled checks,
+while accumulation omits second-plane contributions in both saved cases and
+tilted controls. Restoring those contributions in the saved numerical data
+explains all earlier sampled mismatches. No correction, optimization or policy
+change is implemented by this return review; geometry remains open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

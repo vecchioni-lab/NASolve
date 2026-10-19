@@ -373,15 +373,22 @@ The other six category controls pass every sampled direction at both
 precisions. Independent plane-energy/derivative calculations reproduce the
 finite differences, while the public CCTBX accumulation-loop bounds reproduce
 the saved native gradient to numerical precision. This strongly indicates
-omitted second-plane gradient contributions. Installed per-proxy/source
-confirmation remains open; this does not reject the NARestraints policy or
-prove the cause of the optimizer stall.
+omitted second-plane gradient contributions, subsequently reproduced in
+the installed Cedar 24 check below. This does not reject the NARestraints
+policy or prove the cause of the optimizer stall.
 
 Cedar 24 now supplies a separate installed diagnostic to distinguish an
 individual plane derivative from failure to add all atom contributions. It
 checks every captured plane at both saved precisions and both plane orders,
 with tilted equal/unequal-size controls. It preserves the NARestraints policy
-and performs no optimization; its installed result is pending.
+and performs no optimization. The returned audit confirms an installed
+accumulation defect: every sampled individual-restraint direction agrees,
+while every accumulated order loses second-plane contributions. The same
+pattern occurs for tilted controls, independently of residue chemistry.
+The installed loop-bound model reproduces the returned accumulation arrays
+exactly. Restoring complete contributions in saved data explains all earlier
+sampled discrepancies; a local correction and fresh derivative validation
+remain future work.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -590,8 +597,8 @@ smallest-eigenvector plane normals and spectral derivatives of
 zero-slack, non-top-out proxies. Both energies agree within 6e-12; selected
 central derivatives agree within 1.2e-6. A model of the public CCTBX second-plane
 accumulation-loop bounds matches all 2,631 stored gradient components per case
-to approximately 1.5e-12 in norm. Installed C++ source identity and isolated
-native reproduction remain open. Exact source/blob identities, scope and
+to approximately 1.5e-12 in norm. Installed C++ source identity and native
+reproduction are subsequently recorded by Cedar 24. Exact source/blob identities, scope and
 limits are in the native ledger; this is numerical evidence, not a new
 optimization or chemistry approval. Cedar 24 compares the installed
 per-restraint Cartesian derivatives with identity-scattered sums, native
@@ -599,7 +606,15 @@ singleton/full containers and the saved manager. Complete repeated arrays,
 plane-order invariance, four-step numerical derivatives and tilted equal/unequal
 controls retain the distinction between derivative and accumulation errors.
 Available installed header/binding sources are captured with checksums while
-remaining distinct from binary build provenance. Native execution is pending.
+remaining distinct from binary build provenance. The returned audit verifies
+732 payloads and 2,856 finite-difference sample records: all 714 sampled
+single-restraint directions pass, and all 238 accumulation orders fail their
+second-plane and alternating controls. The installed loop-bound model matches
+the accumulation vectors exactly. Algebraically replacing only parallelity
+contributions makes all 84 prior full/parallelity directional checks agree
+at unchanged energies and coordinates. This explains the sampled mismatch
+without yet validating an implemented correction, optimizer convergence or
+chemical definitions.
 
 ## Primary references
 

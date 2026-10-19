@@ -158,7 +158,7 @@ The public loop omits/truncates second-plane contributions. This strongly
 indicates a native accumulation defect; the installed C++ header was not
 captured, and the audit does not prove it caused the earlier line-search stall.
 
-**Current action: Cedar 24 is prepared; installed execution pending.**
+**Cedar 24 returned and verified (2026-10-19): installed accumulation defect reproduced.**
 `scripts/build_cif_parallelity_audit_probe.py` builds
 `24_Cedar_probe_cif_parallelity_audit.py` from the exact verified Cedar 23 ZIP.
 The new diagnostic replays all 17 mechanics checks and matches the initial
@@ -181,9 +181,46 @@ full suite passes **1,722 tests, two skips and 276 subtests (84.32 s)**.
 The real 670-payload input passes the new source-bundled offline inspection,
 including the exact 17-check prerequisite replay; deleted-build/poisoned-import
 transport and explicit synthetic native-worker guards pass. Full-suite results
-are recorded in the native evidence ledger. These are local software/offline
-checks, not an installed Phenix result. Return the printed review ZIP after
-the pinned single-block Git delivery; no extra installs are required.
+are recorded in the native evidence ledger. Those software checks remain
+distinct from the returned installed result below.
+
+All **732 returned payloads** verify, including 670 unchanged Cedar 23 payloads
+and their manifest. The runner matches clean NASolve `5eb9d752…` /
+NARestraints `a7b6a0c9…`; all 108 runtime members verify. Installed Phenix
+**2.2.1-6174** (dispatcher `2.2.1`) completes in **3.483823 s**, exit zero,
+with **6,188 evaluation pairs**. The exact initial manager, eight native APIs,
+six numerical sources and static constraints match; all 17 prerequisites replay.
+
+All **714 sampled individual-restraint directions pass**. Accumulation fails
+at least one direction in **all 238 tested orders**: 116 at each saved
+precision and six tilted controls. In every order, the first-plane direction
+passes while the second-plane and alternating directions fail. Individual
+gradients are invariant under plane-order swaps; accumulated gradients are not.
+For the equal-size 4/4 control, the second-plane gradient norm is **2.21375**
+individually and **exactly zero** after accumulation. Energies and repeats agree.
+
+Both installed C++ source files match the recorded public blobs. The loop
+starts the second-plane index at `i_size` but stops at `j_size`, retaining only
+`max(0, j_size - i_size)` second-plane contributions. That model reproduces all
+returned per-order accumulation arrays **exactly**. The full manager matches
+the same incomplete batch gradient; it is not an isolated test-wrapper effect.
+This confirms the defect in the tested installed path, without claiming every
+version/overload or proving why the previous optimizer stalled.
+
+Algebraically replacing only Cedar 23's parallelity gradient with complete
+individual-restraint sums yields **84/84 passing sampled directional checks**,
+explaining all 72 previous failures at the same energies and coordinates. This
+is a saved-data replay, not a newly corrected manager or optimization. The
+recombined full-precision full-gradient norm is 222.798, not the old incomplete
+91.277; this is a different derivative calculation at the same endpoint.
+
+**Current action:** prepare an explicit NASolve-local accumulation correction
+and fresh complete-objective derivative audit, before any separate bounded
+geometry trial. NARestraints selections/planes, targets, weights and exact gates
+stay fixed. No correction or next delivery is prepared by this docs-only review;
+no repeat Cedar 24 run is requested. Cedar 22 remains NOT_CONVERGED_ERROR, and
+scientific qualification/adoption remain open. Unchanged runtime tests are not
+rerun; private capsules, coordinates, definitions and logs remain outside Git.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

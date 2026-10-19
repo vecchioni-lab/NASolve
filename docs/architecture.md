@@ -375,15 +375,20 @@ model change or scientific approval occurs. Returned Cedar 23 matches all
 prerequisites and records stable sampled parallelity-gradient disagreement at
 both precisions; the other six families pass sampled checks. Independent plane
 energy/derivative calculations and a public CCTBX accumulation-loop model
-strongly indicate missing second-plane gradient contributions. Installed C++
-source/per-proxy confirmation and any causal role in the prior line-search
-failure remain open; NARestraints policy and exact native gates are preserved.
+indicate missing second-plane gradient contributions. Cedar 24 reproduces
+that defect in the installed path; any causal role in the prior line-search
+failure remains open. NARestraints policy and exact native gates are preserved.
 Cedar 24 adds that isolated installed check: complete per-restraint gradients
 are scattered by atom identity and compared with singleton/full-container and
 manager gradients, both saved cases and both plane orders. Tilted equal/unequal
 controls test the same APIs without residue definitions. Source availability
-and binary identity are recorded separately. It performs no optimization;
-installed execution remains pending.
+and binary identity are recorded separately. Returned native execution
+verifies all 732 payloads and all sampled single-restraint derivatives, while
+accumulation fails every tested order. The installed loop-bound model exactly
+reproduces the saved accumulation vectors. Recombining complete plane
+contributions explains all earlier sampled discrepancies without new energy
+evaluations or coordinate changes. A NASolve-local correction audit must precede
+a separate bounded optimization; no correction is implemented by this return.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

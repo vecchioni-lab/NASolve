@@ -126,11 +126,12 @@ for actual behavior; history is evidence, not a second task queue.
   evidence and existing dictionary checks. Its verified 670-payload return
   localizes the mismatch to native parallelity gradients in both cases. An
   independent spectral calculation and public accumulation-loop model reproduce
-  the saved evidence; installed per-proxy confirmation remains open. It changes
-  no model, target or NARestraints pairing/stacking policy. Cedar 24 now
-  isolates individual and accumulated native plane gradients at both saved
-  coordinates, testing both plane orders and equal/unequal tilted controls.
-  Installed execution remains pending. Production PostMR,
+  the saved evidence. Returned Cedar 24 confirms the installed accumulation
+  defect in every tested plane order at both saved precisions and in tilted
+  controls; all sampled single-restraint derivatives pass. A saved-data
+  recombination explains all 72 previously failed directional checks. It changes
+  no model, target or NARestraints pairing/stacking policy. A local correction
+  and fresh derivative validation remain the next work. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
