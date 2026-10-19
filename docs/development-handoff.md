@@ -422,17 +422,45 @@ degrees** versus 109.471. Native target contributions are **1193.6456 angles**,
 parallelity**, **11.6966 planarity** and **10.6477 chirality**. Category gradient
 norms can cancel; they do not add. The cause of slow convergence is not proven.
 
-**Current action:** review the numerical tail and exact remaining contacts /
-source parameter conflicts before selecting another bounded trial or a
-separately declared chemical candidate. Preserve NARestraints pairing recipes,
-stacking matrix, exact native targets/weights/definitions and all independent
-gates; residuals alone do not authorize tuning. **No next native delivery is
-prepared and no repeat Cedar 28 is requested.** Numerical continuation must
-use saved full precision, not the PDB. Keep Cedar 22 NOT_CONVERGED_ERROR and
-Cedar 27/28 NOT_CONVERGED_LIMIT. Production integration, full chemistry/geometry
-qualification, experimental refinement and adoption remain open. No new
-installs or migration; private inputs/capsules stay outside Git. The exact
-returned source/evidence record is mirrored in the implementation map.
+**Cedar 29 prepared: fixed-policy base-orientation audit; native result pending.**
+`scripts/build_cif_base_rotation_probe.py` builds
+`29_Cedar_probe_cif_base_rotation.py` from the verified Cedar 28 capsule. The
+reusable planner ranks nominal bond/angle outliers, then selects supported
+connected base graphs without code/attachment-name allowlists. Offline actual
+replay selects A:20, D:3 and B:4, each with 11 base atoms; N/C attachments and
+unsupported cases have generic regression controls.
+
+The diagnostic rebuilds the exact original native inventory and matches its
+whole corrected initial vector, then both saved endpoint family targets and
+entire gradients before any scan. Proper independent rotations about each
+C1-prime/attachment axis preserve the scaffold, attachment and internal base
+geometry. Nine fixed angular samples at full/rounded precision report the
+unchanged full objective, isolated category contributions, selected scalar
+measurements and source angle/type/plane context. Fresh four-step rotational
+derivatives, baseline repeats, additivity, +/-180 periodic energy and rigid
+distance controls remain independent outcomes. Limits are **six supported
+groups / 3,000 total energy calls / 1,200 s**. All **17 preflight evaluations**
+count toward the cap. A lower sampled target is not an adoptable model or a
+minimum; internal base parameter conflicts remain visible.
+
+All **17 initial fail-before regressions** now pass. **40 new tests** cover
+generic graph/axis controls, an independent right-handed rotation oracle,
+biased derivatives, incomplete/changed endpoint and source evidence, native
+manager drift, budgets/timeouts, coherent captured-source forgery and deleted
+builds with poisoned ambient/captured code. **88 focused pass (30.38 s)** and
+**1,902 full pass, two skips, 276 subtests (136.61 s)**. The actual 1,104-payload
+source-bundled offline inspector and exact prior mechanics replay pass. There
+is no installed Phenix/Coot here; native worker tests use explicit fakes.
+
+**Current action:** run Cedar 29 through the pinned fetch/worktree/build/run
+terminal block and return its console output and review ZIP. Installed Phenix
+**2.2.1-6174 / dispatcher 2.2.1** execution is pending. Original chemical
+definitions, NARestraints selections/recipes/stacking matrix and all targets /
+weights remain fixed. No optimization, coordinate candidate, policy rebuild,
+installed native patch, diffraction/refinement or adoption occurs. Preserve
+Cedar 22 NOT_CONVERGED_ERROR and Cedar 27/28 NOT_CONVERGED_LIMIT. Private inputs,
+capsules and logs stay outside Git; source/evidence and implementation records
+own schemas, hashes and exact validation commands.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

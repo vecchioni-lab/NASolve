@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Fixed-policy base-orientation diagnostic
+
+- Add Cedar 29 from the verified Cedar 28 return. Select connected base groups
+  from nominal geometry outliers through graph/context rules and retain all
+  unsupported or unprobed sites. Temporary proper rotations preserve the
+  scaffold and internal base geometry; no coordinate model is written.
+- Require unchanged native inventory, qualified correction/source identities,
+  complete corrected initial and endpoint-family snapshots before scanning.
+  Nine angular samples at both precisions retain category contributions,
+  four-step rotational derivatives, repeat/additivity/periodic controls and
+  exact selected scalar/angle/plane source context. Cap total energy calls at
+  3,000 and supported groups at six; keep all review outcomes.
+- All 40 new regressions, 88 focused tests and 1,902 full tests pass, with two
+  skips and 276 passing subtests. Actual-input offline inspection and synthetic
+  deleted-build transport pass. Installed native orientation execution is
+  pending. Existing defaults, dependencies and NARestraints policy remain
+  fixed; no optimization, target tuning, refinement or adoption.
+
 ### Saved full-precision geometry continuation
 
 - Add an explicit opt-in continuation for a completed corrected trial whose

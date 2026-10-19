@@ -148,7 +148,11 @@ for actual behavior; history is evidence, not a second task queue.
   payloads verify; all 17 mechanics and 336 sampled endpoint directions pass.
   The target falls another 3.64%, while the 2,000 cumulative iterations retain
   NOT_CONVERGED_LIMIT and the same local geometry reviews. Inspect remaining
-  terms/sources before selecting another test; no new delivery is prepared.
+  terms/sources before selecting another optimization. Cedar 29 now supplies
+  a bounded, graph-selected base-orientation audit with temporary independent
+  rotations, category contributions and fresh rotational derivatives. Exact
+  source/endpoint gates, periodic controls and source-angle context accompany
+  the scan; native execution is pending. No coordinate candidate is written.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

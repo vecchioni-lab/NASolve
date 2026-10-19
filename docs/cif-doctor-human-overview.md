@@ -416,7 +416,11 @@ fresh match of the entire starting corrected gradient and target.
 Returned Cedar 28 passes the same mechanics/derivative checks and decreases
 the target another 3.64%. The 2,000 cumulative iterations still end at the
 limit; the same strained pair/DP angle remains, and chemical qualification is
-open. Remaining terms and sources require review before another trial.
+open. Cedar 29 supplies a separate graph-selected base-orientation audit to
+measure the response of the same fixed objective to temporary rigid-base
+rotations. Source/endpoint matching, fresh rotational derivatives, periodic
+controls and exact angle/plane context accompany the scan. Native results are
+pending; it does not optimize or write a coordinate candidate.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -714,6 +718,33 @@ recorded chirality sign conflicts. Review the remaining exact terms/source
 definitions and numerical tail before choosing another bounded test; no next
 delivery is prepared. No target tuning, diffraction refinement or adoption
 occurs.
+
+## Temporary base-orientation diagnostic
+
+Cedar 29 asks which fixed restraint families resist or favor a base rotation.
+The generic rule selects sites from measured nominal bond/angle outliers and
+follows each supported component graph to its single attached base. Proper
+rotations around the C1-prime/attachment axis keep the sugar/backbone and all
+internal base geometry fixed. Each of nine predefined angles is a separate
+temporary energy evaluation; no preferred model is selected or written.
+
+The exact qualified original manager and complete initial/endpoint family
+gradients must match before the scan. Full and PDB-rounded endpoints remain
+separate. The full native objective and isolated category controls expose
+opposing rotational slopes; the slope is the sum of each atom's Cartesian
+gradient dotted with its angular displacement tangent. Four fresh numerical
+steps test every full-objective angular sample and each family at zero angle.
+Repeated baselines, category additivity, 180-degree periodic agreement, rigid
+distance preservation and native source/static identity checks retain their
+own outcomes. Selected angle rows/types and common planes give the source
+context for internal discrepancies that a rigid-base scan cannot repair.
+
+This is a bounded diagnostic: at most six supported groups and 3,000 native
+energy evaluations, with a 1,200-second default timeout. A low grid value is
+neither an optimum nor a chemically validated candidate. Coupled backbone/base
+motions, complete geometry, pucker, charge, absolute stereochemistry and
+experimental fit remain separate. The implemented source transport and tests
+pass; installed native execution is pending. Ordinary PostMR is unchanged.
 
 ## Primary references
 

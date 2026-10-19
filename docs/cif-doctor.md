@@ -1141,6 +1141,52 @@ Existing corrected/uncorrected trial defaults are unchanged; no new package,
 target tuning, policy guessing, refinement, scientific approval or adoption is
 introduced.
 
+### Fixed-policy base-orientation audit
+
+`scripts/build_cif_base_rotation_probe.py` builds Cedar 29,
+`29_Cedar_probe_cif_base_rotation.py`, from the verified 1,104-payload Cedar 28
+return. It replays the entire qualified lineage and all 17 prior mechanics
+checks before any native work. Exact correction and installed source identities,
+the original inventory/static constraints and complete corrected initial vector
+must match. Both saved endpoint family targets and entire gradients must then
+match before angular evaluations begin.
+
+The reusable planner selects sites from ranked nominal bond/angle outliers
+(default absolute threshold five), reusing the supported connected-base graph
+and explicit DNA scaffold rule. The base attachment is graph-selected, including
+N- and C-linked cases. Unsupported context and any group-limit omissions remain
+explicit. For each selected group, proper Rodrigues rotations about the
+C1-prime-to-attachment axis preserve the entire scaffold, attachment atom and
+all internal base distances. No original or candidate coordinate file changes.
+
+The fixed grid is **-180, -90, -30, -10, 0, 10, 30, 90, 180 degrees**, sampled
+independently for each base at full and rounded precision. The full objective
+and seven isolated family controls retain native energies and the qualified
+plane-gradient evaluator. The analytic rotational slope is
+`sum(g_i dot (axis cross (r_i - origin)))`, in target units per radian. Four
+central-difference steps **1e-3, 1e-4, 1e-5, 1e-6 radians** check the full slope
+at every angle and each family slope at zero angle. The existing absolute-plus-
+relative **1e-4** criterion requires two consecutive passing steps.
+
+Receipts retain baseline repeats, target/gradient additivity, +/-180 energy
+agreement, fragment-distance invariance and actual neighbour counts. Selected
+outlier distances/angles are measured descriptively at every sample. Intrasite
+angle contexts retain exact effective target rows, center-atom types and shared
+declared planes. Internal base geometry is fixed during rotation; a parameter
+conflict therefore cannot be cleared by this scan. Each lowest grid value is
+explicitly a diagnostic sample, not a candidate or a minimum.
+
+The default bounds are **six supported groups / 3,000 total energy evaluations /
+1,200 s**. All 17 preflight evaluations count toward the energy cap. Offline
+replay selects A:20, D:3 and B:4 by the same generic rule, each with 11 base
+atoms; it does not hard-code those identities. The actual-input inspector and
+synthetic deleted-build source transport pass. **88 focused and 1,902 full tests
+pass**, with two full-suite skips and 276 passing subtests. Installed Phenix
+**2.2.1-6174 / dispatcher 2.2.1** execution remains pending. NARestraints intent,
+all targets/weights, original runs and production defaults remain fixed. No
+optimization, policy recompilation, dictionary generation, installed native
+patch, refinement or adoption occurs.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

@@ -75,7 +75,11 @@ endpoint and a fresh optimizer with the same policy and endpoint checks.
 Returned Cedar 28 passes the same 17 mechanics and 336 sampled derivative
 checks. Its target falls another 3.64%, with stopping still at the iteration
 limit after 2,000 cumulative iterations. Three distance and ten angle outliers
-persist; review remaining terms/sources before selecting another trial.
+persist. Cedar 29 supplies a separate graph-selected base-orientation audit:
+temporary rotations measure category responses and numerical slopes under
+the same fixed objective. Source/endpoint preflight, periodic controls and
+explicit internal-angle context accompany the scan; native execution is
+pending. It produces no optimized/adoptable model.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

@@ -449,7 +449,19 @@ directions. The new stage reaches its 1,000-iteration limit, cumulative
 optimizer error. Target reduction is 3.64% for this stage, 31.32% from the
 original initial model. The same three distance and ten angle outliers persist.
 Review the tail, category contributions and exact remaining source/term conflicts
-before choosing another trial; no new delivery or adoption is prepared.
+before choosing another optimization. Cedar 29 supplies a separate temporary
+base-orientation audit. Ranked nominal bond/angle outliers select supported
+graph-defined connected bases, with no component-code or attachment-name
+allowlist. Proper rotations about each C1-prime/attachment axis preserve the
+scaffold and internal base geometry. Nine fixed angles are evaluated separately
+at full and PDB-rounded precision, with unchanged native targets and NA policy.
+Fresh original-manager/initial-vector and endpoint-family-vector matches precede
+the scan. Full-objective rotational derivatives at every sample and isolated
+family derivatives at zero angle use four central-difference steps. Repeat,
+additivity, periodic-energy and rigid-distance controls accompany exact source
+and selected scalar/angle/plane context. Bounds are six supported groups, 3,000
+total energy evaluations and 1,200 s by default. Native execution is pending;
+no optimizer or candidate writer is invoked.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
