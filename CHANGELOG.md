@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Both native first-plane roles for fixed gradients
+
+- Verify the 794-payload Cedar 25 return and all 732 preserved prior payloads.
+  Both endpoints pass every sampled derivative; initial coordinates retain six
+  failures. An independent normal-orientation sign model reproduces the stored
+  initial gradient and explains the remaining discrepancies without target edits.
+- Add an explicit evaluator policy using each native first-plane derivative
+  in original/swapped orders. Preserve manager membership, all copied parameters
+  and native energies; retain the accumulation-only policy as the default.
+- Add Cedar 26 with fresh per-plane and full-objective checks at all three
+  coordinate cases. Exercise both orders and rigidly rotated equal/unequal
+  tilted controls, preserving original kernel failures and numerical tolerances.
+  All 1,788 tests pass, with two skips and 276 passing subtests, including 30
+  new regressions and actual-input offline/deleted-build inspection. Native
+  validation is pending; no optimization, production-default change, installed
+  native edit, new dependency or adoption.
+
 ### Explicit native plane-gradient accumulation correction
 
 - Add an opt-in NASolve evaluator that retains native energies and replaces
@@ -22,9 +39,11 @@ entries are reconstructed from repository history.
 - All 1,758 tests pass, with two skips and 276 passing subtests. The 36 new
   regressions include independent analytic oracles, deliberately bad individual
   derivatives, source drift and deleted-build transport. Actual-input offline
-  inspection passes. Installed Phenix validation remains pending before any
-  new geometry trial. No production-default change, optimization, installed
-  native file edit, new dependency, migration or automatic adoption.
+  inspection passes. Returned installed execution passes both endpoints and
+  retains six initial-coordinate directions; the next orientation correction
+  audit is supplied by Cedar 26 before any new geometry trial. No
+  production-default change, optimization, installed native file edit, new
+  dependency, migration or automatic adoption.
 
 ### Installed plane-gradient accumulation diagnostic
 

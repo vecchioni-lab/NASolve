@@ -963,12 +963,57 @@ evaluations, plus five recorded preflight evaluations. Complete individual and
 container plane residuals must agree on every correction-bearing evaluation;
 the returned native energy is unchanged. The probe records
 `SAMPLED_NATIVE_DERIVATIVES_PASS` or `DERIVATIVE_REVIEW`, while overall status
-remains REVIEW/exit 2. Source-bundled offline inspection and synthetic worker
-tests do not replace the pending installed Phenix 2.2.1-6174 execution.
+remains REVIEW/exit 2. Returned Phenix 2.2.1-6174 execution verifies 4,101 audit
+evaluations plus five preflight calls with zero energy change. Both endpoints
+pass all 168 sampled directions each. The initial case passes 162/168, retaining
+three failures each in the full and parallelity categories. Repeats and
+additivity pass in every case; the overall correction stays DERIVATIVE_REVIEW.
 
 This is an opt-in diagnostic, with no automatic production integration or
 optimization. A native derivative pass is required before a separate bounded
 geometry trial; it cannot establish convergence, chemistry or adoption.
+
+### Plane-order correction and rotated controls
+
+The remaining Cedar 25 initial discrepancy is reproduced by an independent
+centered-scatter eigensystem calculation and a model of the installed header's
+normal-sign handling. The header negates the second raw normal when aligning
+the two normals, but continues differentiating through the original second
+plane's row vectors. Four captured initial stacks exercise that branch; the
+same model reproduces the complete stored gradient within 3e-12 in norm. Both
+endpoints have no such normal-sign flips. This is source/model evidence for
+the sign error, separately from the installed accumulation defect already
+reproduced by Cedar 24. It does not establish the optimizer failure's cause.
+
+`scripts/build_cif_plane_order_probe.py` builds Cedar 26,
+`26_Cedar_probe_cif_plane_order.py`, from the verified 794-payload Cedar 25
+return. Its explicit evaluator uses the original restraint's first-plane
+gradient for i and the swapped native copy's first-plane gradient for j.
+The native copy constructor preserves targets, slack, limits, top-out, weight
+and origin ID; every field and swapped residual is checked. Copies are used
+only for evaluation. All manager membership and native energies stay fixed,
+including shared-atom contributions. This avoids second-plane sign handling
+without fitting a replacement objective or choosing exceptional sites.
+
+Before fresh numerical checks, the worker matches the same sources/static
+constraints, three raw full-objective snapshots and all three captured complete
+and incomplete plane arrays. The full-objective/category audit retains its
+5,500-call cap, with six recorded preflight evaluations. A separate all-plane
+audit checks every one of the 58 proxies at all three coordinate sets, both
+orders, three local directions and four numerical step sizes. It retains both
+the original complete kernel gradient and the new two-first-plane gradient,
+including their repeated arrays and order invariance evidence.
+
+Equal/unequal tilted 4/4, 4/6 and 6/4 controls are repeated after a 30-degree
+rigid rotation about x. This changes the raw-normal orientation branch while
+preserving physical plane angles. The audit checks energy invariance and
+gradient rotation as well as derivatives. Expected work is 9,360 two-kernel
+evaluation pairs under a separate 10,000-pair cap, plus the 4,101 global audit
+evaluations and six preflight calls. All numerical tolerances are unchanged.
+The per-plane audit currently supports zero-target, zero-slack, non-top-out,
+symmetry-free proxies, which cover this capsule. Unsupported cases fail
+visibly. Installed validation is pending; a sampled pass still leaves geometry,
+convergence, chemistry and adoption open. Production defaults are unchanged.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

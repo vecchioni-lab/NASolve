@@ -57,9 +57,13 @@ tilted controls. Restoring those contributions in the saved numerical data
 explains all earlier sampled mismatches. Cedar 25 adds an explicit NASolve-local
 correction that replaces only the accumulated plane gradient with complete
 individual-restraint sums. Its separate audit freshly checks the fixed native
-objective at the initial coordinates and both saved endpoints. Native validation
-is pending; energies, NARestraints policy and production defaults stay fixed.
-Geometry, convergence and adoption remain open.
+objective at the initial coordinates and both saved endpoints. The returned
+audit passes both endpoints but retains six failed directions at the initial
+coordinates. An independent normal-orientation sign model reproduces the
+remaining gradient. Cedar 26 therefore uses each plane's first-plane derivative
+in both native orders, with fresh per-plane, rotated-control and full-objective
+checks. Installed validation is pending; native energies, NARestraints policy
+and production defaults stay fixed. Geometry, convergence and adoption stay open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

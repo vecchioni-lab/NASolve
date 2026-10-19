@@ -105,7 +105,7 @@ def test_owned_native_evaluation_keeps_native_energy_and_objects_unchanged():
     assert r['gradient']==raw and r['parallelity_correction']['applied'] is False
 
 
-@pytest.mark.parametrize('mode',['corrected','already_fixed','biased_single','changed_manager','changed_api','changed_adapter','changed_cpp','changed_baseline','timeout'])
+@pytest.mark.parametrize('mode',['corrected','already_fixed','biased_single','changed_manager','changed_api','changed_adapter','changed_cpp','changed_baseline','timeout','order_safe','order_biased_first'])
 def test_source_pinned_worker_validates_fresh_corrected_derivatives(tmp_path,monkeypatch,mode):
     import hashlib,json,os,sys
     from pathlib import Path
@@ -122,6 +122,13 @@ def test_source_pinned_worker_validates_fresh_corrected_derivatives(tmp_path,mon
     (seed/'cctbx/geometry_restraints/flags.py').write_text('class flags:\n def __init__(self,default=False):\n'+''.join(f'  self.{k}=default\n' for k in kinds+['parallelity']))
     api=_FAKE_PLANE_API.replace('BROKEN = False',f'BROKEN = {mode!="already_fixed"!r}')
     if mode=='biased_single':api=api.replace('2*self.proxy.weight*v','2*self.proxy.weight*v+3.')
+    order_safe=mode.startswith('order_')
+    if order_safe:
+        api=api.replace('def parallelity_proxy(**kw):return NS(**kw,sym_ops=None)',
+            "def parallelity_proxy(**kw):\n p=kw.pop('proxy',None);values={k:v for k,v in vars(p).items() if k!='sym_ops'} if p else {};values.update(kw);return NS(**values,sym_ops=None)")
+        api=api.replace('def gradients(self):return flex.vec3_double([[2*self.proxy.weight*v for v in self.points[i]] for i in self.proxy.i_seqs+self.proxy.j_seqs])',
+            'def gradients(self):\n        rows=[[2*self.proxy.weight*v for v in self.points[i]] for i in self.proxy.i_seqs+self.proxy.j_seqs]\n        for i in range(len(self.proxy.i_seqs),len(rows)):rows[i]=[-v for v in rows[i]]\n'+
+            ('        rows[0][0]+=3.\n' if mode=='order_biased_first' else '')+'        return flex.vec3_double(rows)')
     (seed/'cctbx/geometry_restraints/__init__.py').write_text(api)
     cpp=[]
     for name in ['parallelity.h','parallelity_bpl.cpp']:
@@ -165,6 +172,14 @@ raise SystemExit(0)
     if mode=='changed_adapter':adapters[0]['sha256']='0'*64
     points=native['geometry']['sites_cart_exact'];p=plane_evaluate(points,proxy,broken=mode!='already_fixed')
     manual=plane_evaluate(points,proxy)['single_gradient']
+    if order_safe:
+        manual=[0.]*(3*len(points));p['accumulated_gradient']=manual.copy()
+        for offset,index in enumerate(proxy['i_seqs']+proxy['j_seqs']):
+            values=[2*proxy['weight']*v*(1 if offset<len(proxy['i_seqs']) else -1) for v in points[index]]
+            if mode=='order_biased_first' and offset==0:values[0]+=3.
+            for axis,value in enumerate(values):
+                manual[3*index+axis]+=value
+                if offset<len(proxy['i_seqs'])+max(0,len(proxy['j_seqs'])-len(proxy['i_seqs'])):p['accumulated_gradient'][3*index+axis]+=value
     if mode=='biased_single':
         for side,key in enumerate(['i_seqs','j_seqs']):
             for offset,index in enumerate(proxy[key]):
@@ -174,13 +189,13 @@ raise SystemExit(0)
     full=[2*21*v+g for point,gvalues in zip(points,[p['accumulated_gradient'][i:i+3] for i in range(0,len(p['accumulated_gradient']),3)]) for v,g in zip(point,gvalues)]
     refs={label:{'target':21*sum(v*v for p in points for v in p)+p['accumulated_target'],'gradient_norm':math.sqrt(math.fsum(v*v for v in full))} for label in ['initial','full_precision','pdb_rounded']}
     if mode=='changed_baseline':refs['initial']['target']+=1.
-    captured={label:{'accumulated_residual':p['accumulated_target'],'accumulated_gradient':p['accumulated_gradient'],'manual_gradient':manual} for label in ['full_precision','pdb_rounded']}
+    captured={label:{'accumulated_residual':p['accumulated_target'],'accumulated_gradient':p['accumulated_gradient'],'manual_gradient':manual} for label in (refs if order_safe else ['full_precision','pdb_rounded'])}
     fake=NS(pair_proxies=lambda **kw:NS(bond_proxies=NS(simple=[],asu=[])),parallelity_proxies=[NS(**proxy)],
             **{kind+'_proxies':[] for kind in ['angle','dihedral','const_dihedral','chirality','planarity']})
     signature=fixed_signature(fake,[])
     r=correction.run_native_correction_audit(model,[dictionary],[],native,{label:points for label in refs},refs,captured,[0],sources,adapters,cpp,signature,
-        tmp_path/'out',sys.executable,environment={**os.environ,'PYTHONPATH':str(seed)},phenix_version='EXPLICIT_FAKE',timeout_seconds=1 if mode=='timeout' else 30)
-    good=mode in {'corrected','already_fixed','biased_single'}
+        tmp_path/'out',sys.executable,environment={**os.environ,'PYTHONPATH':str(seed)},phenix_version='EXPLICIT_FAKE',timeout_seconds=1 if mode=='timeout' else 30,plane_order_safe=order_safe)
+    good=mode in {'corrected','already_fixed','biased_single','order_safe','order_biased_first'}
     assert r['status']==('REVIEW' if good else 'FAILED'),r
     assert r['source_preserved'] and r['frozen_inputs_preserved']
     work=Path(r['native_directory']);assert not (work/'fake_optimizer_called').exists()
@@ -188,8 +203,11 @@ raise SystemExit(0)
     if good:
         q=r['result'];assert q['analysis_completed'] and q['captured_inventory_matches'] and q['evaluation_calls']<=5500
         assert q['correction_statistics']['max_energy_change']==0.
-        assert q['correction_qualification']==('DERIVATIVE_REVIEW' if mode=='biased_single' else 'SAMPLED_NATIVE_DERIVATIVES_PASS')
+        assert q['correction_qualification']==('DERIVATIVE_REVIEW' if mode in {'biased_single','order_biased_first'} else 'SAMPLED_NATIVE_DERIVATIVES_PASS')
         assert q['constraint_signature_before']==q['constraint_signature_after']==signature
+        if order_safe:
+            assert q['correction_policy_id']=='native-parallelity-both-first-planes-v1' and q['policy_id']=='cif-fixed-native-plane-order-gradient-audit-v1'
+            assert q['plane_order_audit']['analysis_completed'] and q['preflight_native_evaluations']==6
     elif mode=='timeout':assert r['execution']['status']=='TIMED_OUT'
     else:
         messages={'changed_manager':'Native manager changed','changed_api':'Native numerical sources changed',

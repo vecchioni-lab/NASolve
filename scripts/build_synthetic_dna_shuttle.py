@@ -50,6 +50,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "cif_gradient_audit_probe_template.py": "23_Cedar",
         "cif_parallelity_audit_probe_template.py": "24_Cedar",
         "cif_corrected_gradient_probe_template.py": "25_Cedar",
+        "cif_plane_order_probe_template.py": "26_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -168,6 +169,10 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         metadata.update(kind="cif-native-corrected-gradient-shuttle",delivery_prefix=delivery_prefix,
                         native_validation="explicit-complete-plane-accumulation-fixed-objective-audit",automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10", "Biopython", "Phenix for native corrected-gradient validation"]
+    if template_name == "cif_plane_order_probe_template.py":
+        metadata.update(kind="cif-native-plane-order-gradient-shuttle",delivery_prefix=delivery_prefix,
+                        native_validation="explicit-both-first-planes-fixed-objective-audit",automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "Phenix for native plane-order derivative validation"]
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

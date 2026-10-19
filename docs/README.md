@@ -132,8 +132,11 @@ for actual behavior; history is evidence, not a second task queue.
   recombination explains all 72 previously failed directional checks. It changes
   no model, target or NARestraints pairing/stacking policy. Cedar 25 implements
   an explicit local accumulation correction and freshly audits derivatives at
-  the initial coordinates and both saved endpoints; installed validation is
-  pending. Native energies and production defaults stay fixed. Production PostMR,
+  the initial coordinates and both saved endpoints. Its return passes both
+  endpoints and retains initial-coordinate sign discrepancies. A source/model
+  comparison identifies a normal-orientation chain-rule issue. Cedar 26 uses
+  both native first-plane roles and adds all-plane and rotated controls;
+  installed validation is pending. Native energies and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is

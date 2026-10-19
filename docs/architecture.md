@@ -398,7 +398,21 @@ planes and special positions are refused. This opt-in audit is separate from
 production PostMR/refinement. Fresh four-step directional checks cover the
 initial coordinates and both saved endpoints under the full objective and seven
 category controls, with exact source/static-constraint gates and preserved raw
-baselines. Installed validation is pending before any new bounded optimization.
+baselines. Returned Cedar 25 verifies 4,101 evaluations: both saved endpoints
+pass all 168 sampled directions; the initial case retains six failures in
+the full/parallelity terms. A spectral reference plus the installed header's
+normal-orientation sign handling reproduces the remaining initial gradient.
+
+Cedar 26 adds an opt-in plane-order policy to the same evaluator. It consumes
+the original first-plane derivative and a native swapped proxy copy's
+first-plane derivative for the other side. It checks every copied parameter
+and both residuals, scatters all contributions, subtracts the old native
+container gradient and leaves the full native energy untouched. The manager's
+proxies are never replaced. The existing accumulation-only policy remains the
+default. All three raw/captured plane arrays are matched before fresh global
+and per-plane derivatives. Both orders, 4/4–4/6–6/4 controls and 30-degree rigid
+rotations test the general policy without residue allowlists. Native validation
+is pending before any new bounded optimization.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

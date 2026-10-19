@@ -395,8 +395,13 @@ the complete sum, and leaves all NARestraints selections and chemical targets
 fixed. A separate audit freshly compares derivatives with energy differences
 at the initial coordinates and both saved endpoints. It checks the same native
 sources and mechanics before evaluating; no optimizer runs or installed Phenix
-file is edited. Native validation is pending. The correction is opt-in and
-does not change production PostMR/refinement defaults.
+file is edited. Returned Cedar 25 passes both endpoints and retains six
+initial-coordinate failures. An independent normal-orientation sign model
+reproduces the remaining gradient; four ordinary stacks exercise that branch.
+Cedar 26 therefore uses each plane's first-plane derivative by evaluating both
+orders. Fresh checks cover every plane, all three coordinate sets and rigidly
+rotated controls. Native validation is pending. Both policies are opt-in;
+production PostMR/refinement defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
 packages the exact assessor and required reader code into one Python script.
@@ -632,8 +637,24 @@ sets, preserving raw snapshots separately from corrected gradients. Repeat and
 additivity checks, exact static constraints and complete plane residual
 agreement remain mandatory. Symmetry-bearing planes and special positions are
 unsupported. Local tests use independent analytic oracles and explicit native
-API fakes; actual installed derivative validation remains pending. No
-minimization, target tuning or automatic adoption occurs.
+API fakes. The returned 794-payload audit matches all source/mechanics gates
+and completes 4,101 evaluations with zero energy change: 498/504 sampled
+directions agree, with six initial-coordinate failures in the full and plane
+categories. A model of the header's omitted chain-rule sign after normal
+alignment reproduces the stored initial gradient within 3e-12 in norm.
+Spectral recombination explains all six failures at unchanged energy samples;
+this is offline inference rather than a newly corrected native evaluation.
+
+Cedar 26 takes the native first-plane gradient in the original order and for a
+parameter-preserving swapped copy, then scatters both by original atom index.
+Every original/copied target and residual is checked; the manager's proxies,
+other gradient contributions and full energy remain fixed. Fresh derivative
+checks compare original complete and corrected gradients for every plane at
+all three coordinate sets in both orders. Equal/unequal tilted controls also
+receive a 30-degree rigid rotation, testing energy invariance and covariant
+gradient rotation across the native normal-sign branch. The same four-step
+criteria and exact source/mechanics gates apply. Installed validation remains
+pending. No minimization, target tuning or automatic adoption occurs.
 
 ## Primary references
 

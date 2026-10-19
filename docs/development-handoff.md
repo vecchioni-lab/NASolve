@@ -214,7 +214,7 @@ is a saved-data replay, not a newly corrected manager or optimization. The
 recombined full-precision full-gradient norm is 222.798, not the old incomplete
 91.277; this is a different derivative calculation at the same endpoint.
 
-**Cedar 25 prepared (2026-10-19): native validation pending.**
+**Cedar 25 returned and verified (2026-10-19): endpoints pass, initial sign review.**
 `scripts/build_cif_corrected_gradient_probe.py` builds
 `25_Cedar_probe_cif_corrected_gradient.py` from the verified 732-payload Cedar 24
 return. `src/nasolve/cif_parallelity_correction.py` implements an explicit
@@ -236,20 +236,62 @@ no minimizer runs. Sampled agreement is a derivative check, not scientific
 approval. A deliberately bad single-restraint derivative remains visible in
 regression tests.
 
-**Current action:** run Cedar 25 through the pinned Git/worktree/build/run
-terminal block and inspect its returned capsule. A fresh installed derivative
-pass must precede a separate bounded geometry trial. No repeat Cedar 24 run is
-requested. Cedar 22 remains NOT_CONVERGED_ERROR; convergence, chemical
-qualification and adoption stay open. This Linux environment has no Phenix.
-Private capsules, coordinates, dictionaries and logs remain outside Git.
+The returned **794-payload** capsule verifies all 732 prior payloads and their
+manifest, exact native input/output/worker sources and all 17 mechanics checks.
+Installed Phenix 2.2.1-6174 / dispatcher 2.2.1 completes **4,101 evaluations
+plus five preflight calls in 30.804996 s**, native exit zero. Native energy
+change is **0.0**. Both endpoints pass **168/168** sampled directions; initial
+coordinates pass **162/168**, retaining three failures each for full and
+parallelity. Repeats/additivity pass throughout. The overall correction remains
+**DERIVATIVE_REVIEW**; Cedar 22 remains **NOT_CONVERGED_ERROR**.
 
-Validation: **36 new regressions**, **137 focused tests (16.85 s)** and
-**1,758 full tests, two skips and 276 subtests (94.68 s)** pass. The actual
-732-payload input passes source-bundled offline inspection; synthetic transport
-survives deleted source builds and poisoned ambient imports. No new packages
-or migration are required. Exact commands and receipt schemas are recorded in
-`cif-linked-native-registration-evidence.json#native_parallelity_correction_2026_10_19`
-and mirrored in the implementation map.
+An independent centered-scatter spectral derivative and the installed header's
+normal-sign branch reproduce the initial stored plane gradient within **3e-12**
+in norm. Four ordinary stacks enter that branch: the header negates the second
+normal but differentiates through its original row vectors without the matching
+chain-rule sign. Both saved endpoints avoid the branch. Recombining spectral
+plane derivatives makes **504/504 saved directions** agree at identical energy
+samples and tolerances. This is source/model inference, not fresh native proof
+of the second defect or the cause of the optimizer stall. The affected indices
+in the evidence ledger are observations, never correction selectors.
+
+**Cedar 26 prepared: installed validation pending.**
+`scripts/build_cif_plane_order_probe.py` builds `26_Cedar_probe_cif_plane_order.py`
+from the exact verified Cedar 25 ZIP. The evaluator adds an explicit
+`plane_order_safe=True` policy: use i's first-plane block, copy the native proxy
+with i/j reversed and use its first-plane block for j. Verify all copied
+parameters, origin IDs and residuals; scatter shared atoms completely. The
+manager's proxies, native full energy and other gradient terms stay fixed.
+The existing accumulation-only policy remains the default. Symmetry-bearing
+planes and special positions stay unsupported. No Phenix file is edited.
+
+The worker pins the same native sources and static constraints, matches all
+three raw snapshots and all three old complete/container plane arrays, then
+runs fresh full-objective/category finite differences at all three cases.
+A separate per-proxy audit checks all **58** planes in both orders, three local
+directions and four steps. Six tilted controls cover 4/4, 4/6 and 6/4 atoms,
+unrotated and after a 30-degree rigid rotation about x; energy and gradient
+rotation invariance are checked. The rotation enters the normal-sign branch
+without changing the physical plane angle. Original kernel failures remain
+recorded alongside corrected derivatives.
+
+Expected work is **4,101 global evaluations / 5,500**, **six preflight calls**
+and **9,360 two-kernel plane-order pairs / 10,000**, with a 1,200 s timeout.
+Local validation passes **30 new regressions**, **167 focused tests (18.98 s)**
+and **1,788 full tests, two skips and 276 subtests (96.44 s)**. A deliberately
+bad first-plane derivative remains visible; deleted-build/poisoned-import
+transport and actual-input 794-payload offline replay pass. This Linux
+environment has no Phenix; installed validation remains pending.
+
+**Current action:** run Cedar 26 through the pinned Git/worktree/build/run
+terminal block and review its returned capsule. Require fresh corrected global
+and per-plane derivative agreement before a separate bounded geometry trial.
+No repeat Cedar 25 run is requested. NARestraints policy and production
+defaults stay fixed; scientific qualification and adoption remain open. No
+new installs or migration. Private capsules, coordinates, dictionaries and
+logs remain outside Git. Exact commands/schemas and the source/model evidence
+are in `cif-linked-native-registration-evidence.json`, mirrored in the
+implementation map.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and
