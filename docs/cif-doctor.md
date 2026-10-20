@@ -1263,7 +1263,57 @@ C5A-C5B triple bond and complete 38-atom/39-bond source survive graph export.
 The H named H2 is attached to O3-prime, demonstrating why context rules follow
 bonds. A synthetic canonical partner exercises the compiler only. These are
 not native proxies or achieved pair geometry, and no PDU is inserted into the
-frozen scaffold. Installed generation/scientific qualification remain pending.
+frozen scaffold. Returned Cedar 31 preserves all 1,209 payloads and both
+failed attempts: DP stops on missing alt_atom_id; PDU reads 38 atoms, 39 bonds
+and three R/S/R centres, then fails in the installed optimizer restart path
+after nonconvergence, with an empty XYZ intermediate. Neither produces a
+dictionary; chemical and numerical generation assessment remain NOT_RUN.
+
+### Installed eLBOW input contract and source evidence
+
+Cedar 32 uses the same builder with --delivery-prefix 32_Cedar and
+--component-control PDU, then runs with --native-contract-only against the
+exact Cedar 31 ZIP. The new reader verifies its 1,209 payloads, trusted build,
+both receipt/artifact sets, exact original/graph copies and distinct failure
+evidence. Prior excluded pickle descriptors remain visible without loading
+serialized objects. The 17 native mechanics and 96 rotational direction
+prerequisites replay; captured Python is never an executable authority.
+
+The graph exporter supplies alt_atom_id from exact primary IDs only when the
+whole column is absent. Existing aliases, including unknown tokens, survive.
+The additive atom_alias_metadata receipt records the compatibility metadata
+separately from unchanged chemical declarations. DP
+graph SHA-256 becomes 3cfff153966194861451113747ba8f1ebbd7b47d58c8aa9acfd50ddfcc4783dd;
+PDU graph bytes are unchanged. This fallback is independent of component code.
+
+The explicit input-contract mode derives the installed Python-library directory
+from the already verified iotbx/phil.py anchor and copies four exact eLBOW
+modules: Utilities.py, optimisation_manager.py, command_line/builder.py and
+chemistry/any_chemical_format_reader.py. Each must resolve under the selected
+installation and be at most 1 MiB. Copies retain original bytes/hashes and
+relative installed/snapshot anchors. AST item-attribute accesses are an
+inventory, not an inferred universal required schema. Installed and copied
+bytes must match before and after the two input checks. No installed code is
+modified, and no captured code or pickle is executed. Native source snapshots
+stay in the private review capsule and outside Git.
+
+Each input check requires exact installed help support for a read-only flag
+and existing state-retention options, then uses source.cif with read-only,
+exact ID, a separate output prefix, add_hydrogens=False, pH=low and
+chiral=retain. The owned process group is bounded to at most 60 seconds.
+Source and frozen source/dispatcher bytes are checked; unexpected optimizer
+markers or nonzero execution retain REVIEW. PARSER_READ_ONLY_PASS means only
+exit zero under that recognized input path. No numerical generation or
+optimizer setting change occurs. Receipts add requested_action,
+installed_elbow_contract and native_input_checks; each input-check directory
+has a probe_directory relative anchor. native_execution can now record
+READ_ONLY_INPUT_CHECKS without claiming native proxy or geometry qualification.
+
+Existing explicit generation remains the default without this new flag.
+Production PostMR, curated dictionaries, NARestraints pairing/stacking policy,
+scientific gates and dependencies are unchanged. Native read-only execution
+and source capture await the user Mac; a further PDU generation is deferred
+until its actual installed restart path has been inspected.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-19** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-20** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -520,19 +520,53 @@ inserted into the frozen model. **23 new regressions, 146 focused tests
 (16.16 s) and 1,972 full tests, two skips and 276 subtests (140.70 s)** pass.
 The actual-input relocated runner passes after both clean source copies are
 removed and ambient imports poisoned: 114 runtime files, all prior proof and
-both graph sources verify. Installed generation is pending.
+both graph sources verify. These were the pre-delivery checks; installed
+results are recorded below.
 
-**Current action:** run Cedar 31 through the pinned one-block terminal handoff
-and return its console output and review ZIP. Its runner destination is the
-ignored `branch-artifacts/cedar/runners/` in the everyday checkout. The optional
-builder `--local-artifact-checkout` argument verifies that exclusion and adds
-only the local Git exclude rule if the frozen checkout lacks it. It never pulls,
-resets or edits tracked files there. **At Cedar integration, inventory and
-hash-archive earlier root-level runners before removing redundant copies**;
-follow the [archive/cleanup policy](collaboration.md#branch-artifact-archive-and-merge-cleanup).
-Archive migration has not been executed on the laptop. Preserve Cedar 22's error,
-Cedar 27/28's limits and all original review data. Private inputs/capsules/native
-logs and generated candidates/runners remain outside Git.
+**Cedar 31 returned and verified (2026-10-20): two execution failures; no dictionaries.**
+All **1,209 payloads** verify, including every preserved Cedar 30 payload and
+manifest. Rebuilding the trusted C31 runner at clean NASolve 36c75495 / pinned
+NARestraints reproduces SHA-256 308c53d1; all 114 runtime members match. The
+17 mechanics and 96 sampled rotational prerequisites replay.
+
+Installed eLBOW **2.2.1-6174** (dispatcher 2.2.1) stops DP in **2.600242 s**
+on absent alt_atom_id metadata. PDU runs **58.275747 s**: it reads 38 atoms /
+39 bonds and three R/S/R sugar centres, performs RM1/GDIIS, reports geometry
+not converged at the first 60-step limit (61 logged evaluations), then fails
+loading a zero-byte candidate.elbow_opt.xyz with an UnboundLocalError for smc.
+Both exit one without candidate.cif. The wrapper REJECTED values are execution
+outcomes, not chemical rejection. PDU source/NARestraints compiler controls
+still pass; generated chemical/numerical assessment remains NOT_RUN. Two
+pickle outputs were excluded by the prior shuttle and are never loaded.
+
+**Cedar 32 prepared: general alias compatibility and read-only native evidence.**
+The exporter copies exact primary IDs into alt_atom_id only when the entire
+alias column is absent; existing aliases and all chemistry remain unchanged.
+The receipt records that added naming metadata. DP graph SHA-256 is
+3cfff153966194861451113747ba8f1ebbd7b47d58c8aa9acfd50ddfcc4783dd;
+PDU graph bytes remain unchanged. The same builder uses --delivery-prefix
+32_Cedar --component-control PDU; the runner uses --native-contract-only.
+
+Before another generation, capture four declared eLBOW modules under the
+already verified installed library anchor, with exact bytes/hashes and a static
+reader-attribute inventory. Run bounded installed read-only checks for both
+prepared sources, with state-retention options and no optimizer request.
+Source/dispatcher/snapshot checks surround these calls. This is an input-contract
+diagnostic, not a Phenix patch, numerical candidate, chemical qualification or
+policy change. Installed capture/checks are pending. All **29 new regressions, 175 focused
+tests (19.02 s) and 2,001 full tests, two skips and 276 subtests (142.51 s)**
+pass. Deleted-source/poisoned-import replay verifies all 115 runtime files,
+1,209 prior payloads, mechanics/rotation proof and both graph sources. See
+the native ledger for exact commands, hashes and scope.
+
+**Current action:** run Cedar 32 through the pinned one-block Git handoff and
+return the console and review ZIP. Use the ignored branch-artifacts/cedar/runners/
+destination and preserve the everyday checkout. At Cedar integration, inventory
+and hash-archive older root runners before removing redundant copies; follow
+the [archive/cleanup policy](collaboration.md#branch-artifact-archive-and-merge-cleanup).
+No laptop archive migration has run. Preserve Cedar 22's error, Cedar 27/28's
+limits and all original data. Private capsules, native logs/captured sources and
+generated runners/candidates stay outside Git.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

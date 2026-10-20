@@ -477,8 +477,14 @@ and adds an explicit public PDU source/control to the same generation workflow.
 Its actual NARestraints mappings, A:T pair recipe and both stacking orders are
 checked as compiler controls on source atom identities. The canonical partner
 is a role template, not an observed pair. The PDU fixture stays under tests;
-no production dictionary is installed. Native generation is pending. No new
-dictionary is composed with modifiers or applied to a native model.
+no production dictionary is installed. Returned Cedar 31 stops DP on absent
+alt_atom_id metadata and PDU in an optimizer restart after nonconvergence,
+without output dictionaries. A missing alias column now copies exact primary
+IDs with an explicit receipt; existing alias/chemical declarations are preserved.
+Cedar 32 captures four anchored installed eLBOW modules and performs bounded
+read-only input checks. It does not retry optimization, alter installed code or
+relax chemical/numerical gates. Source/dispatcher bytes are checked throughout.
+No new dictionary is composed with modifiers or applied to a native model.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

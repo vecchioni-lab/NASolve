@@ -86,8 +86,11 @@ angle/plane conflict, with exact chemical comparisons. Its return stops in
 the installed eLBOW input parser before producing a candidate: external
 coordinate-tag case was lost during export. Cedar 31 restores canonical tag
 spelling and adds an explicit PDU public control. PDU source graph and existing
-NARestraints pairing/stacking compiler checks pass offline; installed generation
-is pending. No candidate is applied to a model or native manager.
+NARestraints pairing/stacking compiler checks pass offline. Returned Cedar 31
+separates DP missing-alias metadata from a PDU optimizer/restart crash; neither
+produces a dictionary. Cedar 32 adds a general missing-alias export and an
+explicit installed-source/read-only input diagnostic before another generation.
+No candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

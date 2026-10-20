@@ -424,8 +424,11 @@ execution passes all 96 sampled rotation directions; no independent coarse
 sample improves the objective. Cedar 30 separately prepares a source-graph
 numerical candidate for the retained DP conflict. Cedar 30 stops before
 generation on external coordinate-tag spelling; Cedar 31 fixes serialization
-and adds PDU as a separate public chemistry/policy control. Installed generation
-is pending; no candidate is applied to a model or native manager.
+and adds PDU as a separate public chemistry/policy control. Returned Cedar 31
+finds missing DP alias metadata and a distinct PDU optimizer/restart crash,
+with no output dictionaries. Cedar 32 adds a general alias-column fallback and
+installed-source/read-only input checks before another generation. Numerical
+and scientific qualification remain open; no candidate is applied to a model.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -791,8 +794,18 @@ name on the O3-prime hydrogen is handled by connectivity, not a naming guess.
 Cedar 31 tests that source independently alongside the DP retry. The public
 fixture is a test input, not an installed curated dictionary or a new scaffold
 site. Synthetic canonical partner roles test compiler selections only, with
-no experimental pairing inference. Installed generation, native interpretation
-and achieved geometry remain separate evidence gates.
+no experimental pairing inference. The installed return reads all 38 PDU
+atoms, 39 bonds and the R/S/R sugar centres, then runs RM1/GDIIS. It reports
+nonconvergence before failing on an empty XYZ restart file; no numerical
+dictionary is produced. This is an execution failure, not a chemical rejection.
+
+Cedar 32 separates the two boundaries. Missing optional alias columns use exact
+primary atom IDs as naming metadata, without overwriting declared aliases or
+changing chemistry. A separate installed-source capture and read-only input
+check records the reader/optimizer contract before another optimization.
+Captured code is inspected as text and never executed or patched. A successful
+read-only check proves only that CLI input path, not generated geometry, native
+interpretation or scientific qualification.
 
 ## Primary references
 

@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Installed eLBOW input contract and alias metadata
+
+- Verify all 1,209 Cedar 31 payloads and distinguish DP's missing alias-field
+  parser failure from PDU's optimizer/restart crash after nonconvergence.
+  Neither attempt produces a dictionary or chemical rejection verdict.
+- Supply exact primary atom IDs for an absent graph-source alt_atom_id column,
+  preserving existing aliases and all chemical declarations. Record the added
+  naming metadata; the rule has no component-code allowlist.
+- Add an explicit --native-contract-only action: capture four anchored installed
+  eLBOW source files and run bounded, help-verified read-only input checks.
+  Preserve all prior evidence, reject changed/escaped source files and retain
+  both failure phases. Captured code and serialized molecule objects are not
+  executed; no optimizer setting, installed source or scientific gate is changed.
+- All 29 new regressions, 175 focused and 2,001 full tests pass, with two skips
+  and 276 subtests. Actual-input deleted-source/poisoned-import transport passes.
+  Installed source capture/read-only checks await
+  the user Mac. Numerical generation and native/scientific qualification remain
+  open; production defaults, dependencies and NARestraints policy are unchanged.
+
 ### Canonical graph-source tags and explicit PDU control
 
 - Verify Cedar 30's 1,185 payloads: installed eLBOW fails in the input parser

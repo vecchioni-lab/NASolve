@@ -159,8 +159,11 @@ for actual behavior; history is evidence, not a second task queue.
   comparisons. Its returned eLBOW input-parser failure produces no candidate.
   Cedar 31 fixes coordinate-tag serialization and adds the requested PDU
   control: pinned full propynyl graph plus existing NARestraints T-role
-  pairing/stacking compiler checks. Installed generation remains pending; no
-  residue is inserted into the frozen scaffold or candidate applied.
+  pairing/stacking compiler checks. Its return identifies a DP reader metadata
+  omission and a distinct PDU optimizer/restart failure, with no dictionaries.
+  Cedar 32 adds missing-alias metadata and a read-only installed-source/input
+  diagnostic; numerical/native qualification remains open. No residue is
+  inserted into the frozen scaffold or candidate applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

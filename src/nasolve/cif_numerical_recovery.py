@@ -197,6 +197,13 @@ def prepare_graph_generation_source(source, code, output):
     emitted_ideal = [atom+'pdbx_model_Cartn_'+axis+'_ideal' for axis in 'xyz']
     for k, target in zip(keys, emitted_ideal):
         graph[target] = values[k]
+    # Curated dictionaries may omit the optional CCD alias column. Installed
+    # eLBOW still accesses item.alt_atom_id unconditionally. A missing column
+    # can use the exact primary IDs as naming metadata; existing aliases,
+    # including explicit unknown values, remain declarations of the source.
+    alias_added = atom+'alt_atom_id' not in graph
+    if alias_added:
+        graph[atom+'alt_atom_id'] = list(values[atom+'atom_id'])
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open('x') as handle:
         handle.write(_emit(graph))
@@ -214,6 +221,10 @@ def prepare_graph_generation_source(source, code, output):
             'source_preserved': True, 'coordinate_origin': origin, 'experimental_model_used': False,
             'coordinate_tag_serialization': 'CCD_CANONICAL_CARTN_CASE',
             'coordinate_input_fields': keys, 'coordinate_output_fields': emitted_ideal,
+            'atom_alias_metadata': {'policy': 'MISSING_COLUMN_USES_EXACT_PRIMARY_ATOM_IDS',
+                'field': atom+'alt_atom_id', 'synthesized': alias_added,
+                'source_aliases_preserved': not alias_added,
+                'primary_atom_ids_changed': False},
             'numerical_parameters': 'REMOVED_FOR_INDEPENDENT_GENERATION',
             'removed_fields': sorted(set(values)-{k.lower() for k in graph}),
             'chemical_comparison': {'status': 'EXACT_DECLARATIONS', 'fields': sorted(_CHEMICAL_FIELDS), 'comparison': comparison},
