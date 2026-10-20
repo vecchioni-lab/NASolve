@@ -6368,7 +6368,7 @@
       "evidence_record": "cif-linked-native-registration-evidence.json#stereochemistry_boundary_audit_2026_10_20"
     },
     "source_reader_dialect_audit_2026_10_20": {
-      "status": "IMPLEMENTED_SOURCE_DIALECT_ADAPTER_NATIVE_READER_PENDING",
+      "status": "RETURN_VERIFIED_PRE_NATIVE_TEMPORARY_PATH_FAILURE",
       "delivery_prefix": "35_Cedar",
       "recorded_date": "2026-10-20",
       "policy_ids": [
@@ -6422,7 +6422,7 @@
         "whole_molecule_optimization": "NOT_REQUESTED",
         "parser_internal_operations": "NOT_INSTRUMENTED",
         "dictionary_generation": "NOT_RUN",
-        "native_execution": "PENDING_USER_MAC",
+        "native_execution": "NOT_RUN_IN_RETURNED_CEDAR35",
         "automatic_adoption": false
       },
       "software_validation": {
@@ -6459,7 +6459,7 @@
           "DP_consumer_sha256": "4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa",
           "PDU_consumer_unchanged": true
         },
-        "native": "PENDING_USER_MAC; Linux installed-reader controls use explicit fakes, not a Phenix qualification.",
+        "native": "The returned Phenix-targeted C35 delivery stops in Python graph preflight before any installed parser/constructor/generation request. Linux source-reader controls remain explicit fakes; native acceptance is pending.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 148,
@@ -6488,8 +6488,133 @@
         "new_dependencies": []
       },
       "artifact_boundary": "Only maintained source/tests/docs and derived metadata enter Git. Private native source snapshots/logs, review capsules, generated candidates/runners and coordinates remain outside Git.",
-      "next_action": "Run Cedar 35 through the pinned Git fetch/worktree/build/run block against the exact Cedar 34 ZIP with --component DP --source-dialect-audit-only, bundling PDU. Preserve source comp_list routing and signed declarations in the target-free consumer, keep CCD control bytes unchanged, then record selected installed parser dispatch and raw atom/bond/charge/coordinate inventory with two source snapshots and before/after integrity checks. No constructor or whole-molecule optimization is requested; parser internals are uninstrumented. Inspect charge semantics and signed stereo separately before any generation. Preserve prior evidence, NARestraints policy and adoption gates; return console and review ZIP.",
+      "next_action": "Run Cedar 36 through the pinned Git fetch/worktree/build/run block against the exact failed Cedar 35 ZIP with --component DP --source-dialect-audit-only, bundling PDU. Resolve only the tool-owned temporary graph-check directory, retain caller-output symlink protections, preserve the entire failed preflight and replay its nested Cedar 34 source/stereo and prior mechanics/rotation evidence. Retry the unchanged bounded parser inventory controls under Phenix 2.2.1-6174; no chiral constructor or numerical generation is requested. Return console and review ZIP before claiming installed parser acceptance. Preserve NARestraints authority, frozen chemistry, geometry and adoption gates.",
+      "return_verification": {
+        "archive": {
+          "name": "35_Cedar_7c32qo4g_cif_numerical_recovery_review.zip",
+          "sha256": "631cecd47157444e82af23b69e76d581cbfdf5db8276c757b5701379daaea8dc",
+          "bytes": 42906465,
+          "verified_payloads": 1327,
+          "preserved_predecessor_payloads": 1320
+        },
+        "runner_sha256": "5576d75269c5f78ee710f41472814ef37de36299adccb2424ae9d6b61db8dad8",
+        "trusted_clean_build_runner": "BYTE_IDENTICAL",
+        "canonical_build_sha256": "e76d8369c3141d724cb1105b2f6170324f77ffc6285d2b9931c19be9b7d9135d",
+        "nasolve_commit": "8416394cb28d3e8b9f86192c39a74fb38a414634",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "both_source_trees_clean": true,
+        "runtime_members": 119,
+        "runtime_archive_sha256": "28c2dca67260efb0d36f23f0b19028645e4d82c0b631a1abe3e382a32fd71106",
+        "manifest_and_preserved_lineage": "PASS",
+        "mechanics_prerequisites": 17,
+        "rotation_directions_recomputed": 96,
+        "source_graphs_and_public_control": "BYTE_IDENTICAL_TO_CEDAR34",
+        "analysis_completed": false,
+        "consumer_preparations": {},
+        "native_execution": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "error": "Output parent cannot traverse a symlink",
+        "failure_phase": "INTERNAL_SOURCE_GRAPH_PREFLIGHT",
+        "actual_temporary_path": "NOT_CAPTURED",
+        "reproduction": "Both monomer and CCD adapters reproduce the exact error when the system temp root is a symlink. Canonicalizing only the freshly created temporary directory fixes both, with unchanged consumer bytes."
+      },
       "evidence_record": "cif-linked-native-registration-evidence.json#source_reader_dialect_audit_2026_10_20"
+    },
+    "source_reader_temp_portability_2026_10_20": {
+      "status": "IMPLEMENTED_PORTABLE_PREFLIGHT_RETRY_NATIVE_READER_PENDING",
+      "delivery_prefix": "36_Cedar",
+      "recorded_date": "2026-10-20",
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "36_Cedar_probe_cif_source_dialect.py",
+      "modules": [
+        "src/nasolve/cif_elbow_input.py"
+      ],
+      "review_input": {
+        "name": "35_Cedar_7c32qo4g_cif_numerical_recovery_review.zip",
+        "sha256": "631cecd47157444e82af23b69e76d581cbfdf5db8276c757b5701379daaea8dc",
+        "bytes": 42906465,
+        "verified_payloads": 1327,
+        "preserved_predecessor_payloads": 1320
+      },
+      "behavior": {
+        "before": "The internal TemporaryDirectory path can traverse an OS alias, so the strict graph-output writer refuses it before consumer preparation or native parsing.",
+        "after": "Resolve only the freshly created, tool-owned graph-check directory before constructing its output. Keep user-selected output symlink and overwrite refusals, exact target-free graph checks and all chemical/source integrity checks.",
+        "chemical_and_consumer_bytes": "UNCHANGED_FOR_BOTH_DIALECTS",
+        "generic_scope": "All source-reader dialect preparations; no component-name or OS-specific bypass.",
+        "native_repaired_input_acceptance": "PENDING_USER_MAC",
+        "production_defaults": "UNCHANGED"
+      },
+      "methods": {
+        "failed_return_gate": "Verify the exact C35 archive and canonical build, 1327 payloads, pre-native failure phase, empty consumers, NOT_RUN operations and exact added-file inventory. Verify nested C34 return and byte/metadata equality of graph/public-control/plan/rotation evidence. Preserve both the failure and all preceding capsules.",
+        "temporary_root": "Resolve(strict=True) only the directory returned by a new owned TemporaryDirectory. Pass the resulting regular path into the unchanged strict graph writer. Clean up the temporary directory normally.",
+        "native_action_reference": "source_reader_dialect_audit_2026_10_20.methods",
+        "phenix_target": "2.2.1-6174",
+        "timeout_seconds_per_component": 30,
+        "chiral_constructor": "NOT_REQUESTED",
+        "whole_molecule_optimization": "NOT_REQUESTED",
+        "parser_internal_operations": "NOT_INSTRUMENTED",
+        "dictionary_generation": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "software_validation": {
+        "fail_before": {
+          "temporary_alias": "Both monomer and CCD new alias-root regressions fail on the exact returned error before the one-line path fix; both pass afterward.",
+          "returned_capsule": "The accepted failed-C35 return regression fails before its gate/lineage support. Explicit fake fixtures exercise phase, completion, error, adoption, predecessor, unexpected output, graph/control/plan/rotation integrity."
+        },
+        "new_tests": 16,
+        "focused": {
+          "passed": 132,
+          "seconds": 13.55,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_source_dialect.py tests/test_cedar36_delivery.py tests/test_cif_source_reader.py tests/test_cedar35_delivery.py tests/test_cif_elbow_input.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_numerical_recovery.py --tb=short"
+        },
+        "full": {
+          "passed": 2152,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 173.76,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_source_copies_removed_before_replay": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp_root": "PASS",
+          "runner_relocated_before_replay": true,
+          "older_everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "actual_capsule_payloads": 1327,
+          "runtime_members": 119,
+          "runtime_archive_sha256": "f28362e279d61c47511cc6e017a91bd432a9795f0aed63af370f65d1a4fdd0ad",
+          "mechanics_prerequisites": 17,
+          "rotation_directions_recomputed": 96,
+          "DP_unknown_stereo_tokens": 35,
+          "PDU_source_relative_stereo": "REVIEW_THREE_PRESERVED_SIGNED_HANDS_OMITTED_LABELS",
+          "PDU_stopping": "NOT_CONVERGED_REPORTED",
+          "dictionary_generation": "NOT_RUN",
+          "native_source_reader_execution": "PENDING_USER_MAC",
+          "DP_consumer_sha256": "4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa",
+          "PDU_consumer_unchanged": true
+        },
+        "native": "No installed Phenix execution on this Linux host. Existing source-reader subprocess regressions use explicit fakes; actual parser acceptance remains pending the Mac return.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 149,
+          "deterministic_svg_and_xml": "PASS",
+          "qualified_parallelity_core_sha256": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "public_PDU_fixture_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "both_files_unchanged": true
+        }
+      },
+      "schemas": {
+        "schema_version": 1,
+        "receipt_change": "Add failed C35 portable-graph preflight to previous_execution; retain full inputs/review wrapper and its nested C34 evidence.",
+        "compatibility": "Same opt-in --source-dialect-audit-only action. The exact failed C35 capsule becomes a supported input; prior runners, C34 support, production defaults and existing saved evidence remain intact. No migration.",
+        "new_dependencies": []
+      },
+      "artifact_boundary": "Maintained code/tests/docs and derived evidence metadata only. Review ZIPs, private native snapshots/logs, generated runners/candidates and models stay outside Git.",
+      "next_action": "Run Cedar 36 through the pinned Git fetch/worktree/build/run block against the exact failed Cedar 35 ZIP with --component DP --source-dialect-audit-only, bundling PDU. Resolve only the tool-owned temporary graph-check directory, retain caller-output symlink protections, preserve the entire failed preflight and replay its nested Cedar 34 source/stereo and prior mechanics/rotation evidence. Retry the unchanged bounded parser inventory controls under Phenix 2.2.1-6174; no chiral constructor or numerical generation is requested. Return console and review ZIP before claiming installed parser acceptance. Preserve NARestraints authority, frozen chemistry, geometry and adoption gates.",
+      "evidence_record": "cif-linked-native-registration-evidence.json#source_reader_temp_portability_2026_10_20"
     }
   },
   "audience": [

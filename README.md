@@ -102,7 +102,10 @@ Returned Cedar 34 reproduces DP's unknown-marker constructor failure and passes
 PDU's known-marker control. Its captured code also shows local chiral-template
 minimization inside the constructor; no full dictionary trial ran. Cedar 35
 preserves the source dictionary's reader dialect and checks native parsed
-inventory before another generation. Native acceptance remains pending.
+inventory before another generation. Its return stops in the temporary graph
+preflight before native parsing. Cedar 36 resolves the tool-owned temporary
+directory and retries the same audit while preserving that failure. Native
+acceptance remains pending.
 No candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.

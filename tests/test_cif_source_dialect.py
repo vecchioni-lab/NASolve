@@ -43,6 +43,28 @@ def test_public_ccd_control_keeps_its_existing_reader_and_consumer_bytes(tmp_pat
     assert out.read_bytes()==graph.read_bytes() and r['consumer_reader_dialect']=='CHEMICAL_COMPONENTS_CIF'
 
 
+@pytest.mark.parametrize('dialect',['monomer','ccd'])
+def test_source_dialect_graph_check_accepts_an_aliased_system_temp_root(tmp_path,monkeypatch,dialect):
+    import tempfile
+    from nasolve.cif_elbow_input import prepare_elbow_source_dialect_input
+    if dialect=='monomer':
+        code='Q17';source=tmp_path/'original.cif';source.write_text(_render(legacy_values(code),code))
+    else:
+        code='PDU';source=Path(__file__).parent/'fixtures/public_ccd/PDU.cif'
+    graph=tmp_path/'graph/source.cif';prepare_graph_generation_source(source,code,graph)
+    baseline=tmp_path/'baseline/source.cif'
+    expected=prepare_elbow_source_dialect_input(source,graph,code,baseline)
+    frozen=source.read_bytes(),graph.read_bytes()
+    real_temp=tmp_path/'private/temp';real_temp.mkdir(parents=True)
+    alias=tmp_path/'system-temp';alias.symlink_to(real_temp,target_is_directory=True)
+    monkeypatch.setattr(tempfile,'tempdir',str(alias))
+    out=tmp_path/'consumer/source.cif'
+    actual=prepare_elbow_source_dialect_input(source,graph,code,out)
+    assert actual==expected and out.read_bytes()==baseline.read_bytes()
+    assert (source.read_bytes(),graph.read_bytes())==frozen
+    assert list(real_temp.iterdir())==[]
+
+
 @pytest.mark.parametrize('defect',['changed_charge','changed_order','changed_chirality','changed_stereo','coordinate_conflict','numerical_target','old_energy_type','overwrite','escape'])
 def test_source_dialect_adapter_refuses_chemical_change_or_unsafe_output(tmp_path,defect):
     from nasolve.cif_elbow_input import prepare_elbow_source_dialect_input

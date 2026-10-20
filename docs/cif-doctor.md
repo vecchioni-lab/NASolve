@@ -1431,10 +1431,11 @@ independent CIP validation from native constructor operations.
 
 ### Preserved source reader dialect
 
-Cedar 35 uses --delivery-prefix 35_Cedar --component-control PDU, then the exact
-Cedar 34 ZIP with --component DP --source-dialect-audit-only. It verifies the
-returned source/worker/input hashes, native marker/constructor outcomes and
-all previous evidence, and replays saved PDU comparisons and printed trajectories.
+Cedar 36 uses --delivery-prefix 36_Cedar --component-control PDU, then the exact
+Cedar 35 ZIP with --component DP --source-dialect-audit-only. It preserves the
+failed Cedar 35 preflight and verifies its nested Cedar 34 source/worker/input
+hashes, native marker/constructor outcomes and all previous evidence. It also
+replays saved PDU comparisons and printed trajectories.
 
 The installed dispatcher classifies any _chem_comp.id file without the literal
 data_comp_list marker as chemical components. DP's original monomer dictionary
@@ -1450,6 +1451,12 @@ PDU continues through the existing CCD projection with unchanged consumer bytes.
 DP's new consumer SHA-256 is
 4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa.
 This opt-in diagnostic does not change the default generator's input policy.
+The returned Cedar 35 audit stopped before native parsing because its internal
+graph-check temporary path traversed an OS alias. Cedar 36 resolves only the
+fresh tool-owned temporary directory before the strict graph writer, so system
+temp aliases work without permitting symlinked caller outputs. Regression checks
+cover both source dialects and byte-identical consumers. The actual returned
+temporary path was not recorded; synthetic alias tests reproduce the error.
 
 The native worker captures selected any_chemical_format_reader.py and
 monomer_library_cif_parser.py as .py.txt, removes its evidence directory from

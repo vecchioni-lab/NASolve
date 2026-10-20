@@ -170,7 +170,9 @@ for actual behavior; history is evidence, not a second task queue.
   its return confirms DP's constructor assertion and PDU's known-marker pass.
   Constructor internals include local template minimization. Cedar 35 preserves
   the declared source reader dialect and tests parsed inventory before generation;
-  numerical/native qualification remains open. No residue is
+  its return stops at a temporary-path preflight. Cedar 36 canonicalizes
+  the owned temporary directory and preserves the failure for a parser retry.
+  Numerical/native qualification remains open. No residue is
   inserted into the frozen scaffold or candidate applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.

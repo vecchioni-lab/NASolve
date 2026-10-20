@@ -676,8 +676,33 @@ mirrors, 148 relative links and the rendered editable figure pass. Exact command
 and bounds are recorded in the native ledger. Installed
 source-reader acceptance remains pending; default generation is unchanged.
 
-**Current action:** run Cedar 35 through the pinned one-block Git handoff and
-return its console and review ZIP. Preserve the everyday checkout and all
+**Cedar 35 returned: pre-native temporary-path failure.** All **1,327 payloads**
+and the preserved Cedar 34 capsule verify. The clean pinned runner matches;
+the prior 17 mechanics checks and 96 rotation directions replay. Both graph
+previews and the public PDU control match their predecessor. The receipt records
+an empty consumer preparation and no native parsing or generation. The adapter's
+internal TemporaryDirectory path hits the strict symlink-parent guard. A
+synthetic aliased system temp root reproduces the exact error for both monomer
+and CCD sources; the returned capsule does not capture the actual temp path.
+
+**Cedar 36 prepared:** resolve only that newly created, tool-owned temporary
+directory before the exact graph check. Preserve caller-output symlink and
+overwrite refusals, exact source/consumer bytes and every chemistry gate. The
+retry accepts the exact failed Cedar 35 capsule, preserves it whole and reads
+its verified nested Cedar 34 source/constructor evidence. No chemistry-specific
+exception, dependency or production-default change is introduced. All **16 new
+regressions**, **132 focused tests (13.55 s)** and **2,152 full tests, two skips
+and 276 subtests (173.76 s)** pass. The relocated runner replays all 1,327
+actual payloads through an aliased system temp root after both clean build copies
+are removed, with poisoned ambient imports and the everyday tracked edit intact.
+Both consumer hashes are unchanged. Exact commands and bounds are recorded in
+the native ledger.
+
+**Current action:** run Cedar 36 through the pinned one-block Git handoff with
+--delivery-prefix 36_Cedar --component-control PDU, then the exact Cedar 35 ZIP
+with --component DP --source-dialect-audit-only. Return its console and review
+ZIP. Installed parser acceptance under Phenix **2.2.1-6174** remains pending.
+Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model
 result, policy guess or refinement is adopted. Private source snapshots, logs,

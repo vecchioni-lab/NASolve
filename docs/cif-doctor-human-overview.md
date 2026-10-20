@@ -873,6 +873,10 @@ parser read records the actual format and atom/bond/charge/coordinate inventory,
 plus the exact dispatcher and monomer-parser sources. It requests no chiral
 constructor or numerical generation. Parser internals are not instrumented;
 signed stereo, formal-charge semantics and full generation still need review.
+The first audit stops before native parsing at an internal temporary-path guard.
+Cedar 36 resolves that owned temporary directory, a portability fix exercised
+for both dictionary formats, and retries the same parser checks while retaining
+the failed attempt. The chemical definitions and qualification limits are unchanged.
 
 ## Primary references
 

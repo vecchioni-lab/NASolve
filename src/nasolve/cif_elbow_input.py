@@ -143,7 +143,10 @@ def prepare_elbow_source_dialect_input(original, graph, code, output):
     # Require this policy's exact source-derived graph, including the absence
     # of old numerical targets/types. Chemical equality alone cannot prove that.
     with TemporaryDirectory(prefix='cif-reader-graph-check-') as temporary:
-        expected=Path(temporary)/'graph.cif'
+        # OS temp roots can be aliases (for example /var -> /private/var on
+        # macOS). Canonicalize this newly created, tool-owned directory only;
+        # caller-selected outputs must still pass the strict symlink checks.
+        expected=Path(temporary).resolve(strict=True)/'graph.cif'
         prepare_graph_generation_source(original,code,expected)
         if expected.read_bytes()!=frozen[graph]:raise ValueError('Reader input is not the exact target-free source graph')
     for path in [original,graph]:

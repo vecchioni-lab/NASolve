@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Portable temporary graph checks and preserved failed preflight
+
+- Verify all 1,327 Cedar 35 payloads. The audit stops before native parsing;
+  source graphs, the PDU control and prior mechanics/rotation evidence survive.
+- Resolve only the freshly created graph-check temporary directory, supporting
+  aliased system temp roots while retaining strict caller-output symlink and
+  overwrite checks. Both source dialects keep identical consumer bytes.
+- Add Cedar 36's exact failed-capsule gate and parser retry. Preserve the full
+  failed attempt and replay nested source/stereo evidence; no new chemistry,
+  generation request, dependency or production-default change is introduced.
+  All 16 new regressions, 132 focused and 2,152 full tests pass, with two skips
+  and 276 subtests. Deleted-build, relocated-runner transport also passes with
+  an aliased temp root and poisoned ambient imports. Native acceptance remains
+  pending the Mac return.
+
 ### Preserved source reader dialect and accurate constructor scope
 
 - Verify all 1,320 Cedar 34 payloads: DP's 35 unknown native markers reproduce

@@ -509,6 +509,11 @@ routing stays unchanged. Selected-installation parsing records dispatch and raw
 atom/bond/charge/coordinate values, with two exact parser snapshots; no chiral
 constructor or numerical generation is requested. Parsed value equality alone
 does not qualify charge semantics, signed stereo or another generation.
+Cedar 35 stops before that parser request: its internal graph check passes an
+aliased system temporary path to the strict output guard. Cedar 36 resolves only
+the freshly created, tool-owned temporary directory. Caller-selected output
+symlink checks remain strict; the retry retains the complete failed capsule
+and replays its nested source, stereo and mechanics evidence.
 No new dictionary is composed with modifiers or applied to a native model.
 
 
