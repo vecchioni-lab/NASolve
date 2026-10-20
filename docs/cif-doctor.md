@@ -1365,6 +1365,60 @@ No result is composed with modifiers or adopted; native proxy, achieved geometry
 and scientific qualification remain open. There are no new dependencies or
 production-default changes.
 
+### Read-only candidate and native-reader stereochemistry
+
+Returned Cedar 33 verifies all 1,288 payloads and the complete 1,229-payload
+predecessor. Both read-only inputs pass under Phenix 2.2.1-6174. DP exits one
+in preparatory Chiralise/ChiralClass, before any numerical optimization or output
+dictionary. The CCD reader assigns every atom token other than N, including ?,
+to its native chiral marker. DP has 35 unknown atom tokens and four preserved
+signed-volume declarations. No false nonchiral or invented R/S export is used
+to bypass this boundary.
+
+PDU generation exits zero after one explicit block, but reports geometry not
+converged. Its candidate retains exact graph/order/H and all 38 explicit zero
+formal charges, with zero retained plane/angle findings. All three original
+R/S labels are omitted. Generated signed volumes agree with source ideal and
+generated Cartesian hands; this is a source-relative comparison, not independent
+absolute CIP assignment. Its printed 181-row energy table reaches -517.4105 at
+row 146, rises to -477.2222 at row 147 and ends at -480.5612. No intermediate
+coordinate trajectory is available to explain that rise.
+
+Use the same builder with --delivery-prefix 34_Cedar --component-control PDU,
+then run the generated script against the exact Cedar 33 ZIP with
+--component DP --stereochemistry-audit-only. This action is mutually exclusive
+with generation/read-only-contract actions. It verifies trusted build metadata,
+both reader and installed-option proofs, source/consumer/candidate hashes,
+generation receipts, explicit stopping and all preserved lineage. Serialized
+molecule outputs stay excluded. The saved PDU chemical/numerical assessment is
+recomputed from the original source before its stereo audit.
+
+The generic stereo audit compares exact elements/orders/formal charges first.
+For each declared R/S centre, it records missing/conflicting labels and every
+generated ordered three-neighbor signed term. The centre must have four
+declared covalent neighbors. Compute det(a-centre,b-centre,c-centre) in each
+complete coordinate family; never mix families or fill missing coordinates.
+The 1e-6 cubic-angstrom threshold marks degenerate volumes, not chemical accuracy.
+Inversions, flattened or contradictory signed terms reject; absent/unsigned
+terms, missing coordinates or omitted labels retain review. Extra generated
+centres also retain review. No CIP label is inferred and no term is rewritten.
+
+The installed phase captures Utilities.py, MoleculeClass.py, TopologyMixins.py
+and ChiralClass.py under the verified library anchor (1 MiB maximum each).
+Snapshots use .py.txt suffixes and the worker removes its evidence directory
+from module search paths. Only selected installed module paths execute. A
+maximum 30-second worker per
+component reads exact source IDs/markers with chirals=False, then separately
+exercises the reader's chirals=True entry point. It records constructor exceptions
+without promoting them to chemical rejection. This control does not reproduce
+the full builder preparation sequence. Installation, snapshot, dispatcher and
+input hashes must survive; escaped/changed modules or inventory mismatches refuse.
+No optimizer or dictionary writer is requested. --inspect-only performs just
+the offline comparisons. New additive JSON records are source_stereo_inventories,
+saved_candidate_stereochemistry, saved_optimizer_trajectories and
+installed_chirality_controls. Existing production APIs, dependencies and
+NARestraints policy remain unchanged; native stereo execution is pending.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

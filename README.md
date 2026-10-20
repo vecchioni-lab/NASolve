@@ -93,6 +93,11 @@ explicit installed-source/read-only input diagnostic. Its return passes the
 PDU reader and exposes DP's broader dictionary-dialect mismatch. Cedar 33
 adds a checked consumer projection and an opt-in bounded single-block trial,
 with installed option/source proof and explicit nonconvergence evidence.
+Returned Cedar 33 passes both input readers. DP stops in preparatory chirality
+handling before optimization; PDU writes a nonconverged dictionary. PDU's three
+signed sugar volumes preserve source-coordinate handedness, but its R/S labels
+are omitted. Cedar 34 separately audits these stereo boundaries through saved
+candidate comparisons and bounded installed-reader controls, without generation.
 No candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.

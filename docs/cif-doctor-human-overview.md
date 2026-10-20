@@ -430,7 +430,10 @@ with no output dictionaries. Cedar 32 adds a general alias-column fallback and
 installed-source/read-only input checks. Returned Cedar 32 passes PDU and
 identifies DP's broader reader-dialect mismatch. Cedar 33 supplies a checked
 format projection and a bounded candidate trial after installed option/source
-proof, retaining nonconvergence evidence. Numerical and scientific qualification
+proof, retaining nonconvergence evidence. Its return separates preparatory DP
+chirality failure from a nonconverged PDU dictionary. Cedar 34 audits saved stereo
+and printed energy evidence plus isolated native reader controls, without new
+generation. Numerical and scientific qualification
 remain open; no candidate is applied to a model.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
@@ -824,6 +827,33 @@ A generated file or zero exit status never establishes convergence. Explicit
 nonconvergence is recorded, other unreported stopping stays unreported, and
 candidates retain every original-source chemistry/numerical review. No native
 dictionary, policy change or scaffold result is adopted by this experiment.
+
+The Cedar 33 return passes both readers, then stops DP in preparatory chirality
+handling before optimization. The captured reader assigns every stereo token
+other than N to a native chirality marker, including ?. All 35 DP atom tokens
+are unknown; the original four signed-volume declarations remain separate.
+This is evidence of a transport-semantics problem, not permission to relabel
+unknown atoms as nonchiral or infer R/S values from an experimental model.
+
+PDU writes a dictionary after 181 logged evaluations, explicitly without
+convergence. Its exact graph, propynyl triple bond and complete formal charges
+survive. R/S atom labels disappear, but all three generated signed sugar terms
+agree with both the source ideal coordinates and generated coordinates. These
+determinants compare handedness in the same ordered atom neighborhoods; they
+do not independently assign absolute CIP configurations. The printed energy
+trace rises by 40.1883 between rows 146 and 147; endpoint files do not locate a
+cause or establish an optimum.
+
+Cedar 34 is a separate read-only stereo diagnostic. It verifies the full return,
+replays source/candidate chemical checks and measures signed coordinate volumes
+without changing either file. A bounded installed-reader control records actual
+atom markers and exercises that reader's own chirals=True constructor, capturing
+the three additional molecule/topology/chirality modules as non-importable text. This isolated entry
+point is not a replay of the full builder. Native sources, snapshots, dispatcher
+and frozen inputs are checked before and after. Constructor exceptions remain
+evidence. No optimizer, dictionary writer, pickle, model change or adoption is
+requested. Missing metadata, absolute stereo, convergence and native dictionary
+qualification remain distinct open gates.
 
 ## Primary references
 

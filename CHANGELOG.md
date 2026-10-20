@@ -8,6 +8,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read-only source and native-reader stereochemistry evidence
+
+- Verify all 1,288 Cedar 33 payloads and replay prior mechanics/rotation evidence.
+  Both readers pass; DP stops before optimization in chirality handling. PDU
+  writes a nonconverged candidate with omitted R/S labels and preserved graph,
+  formal charges and source-relative signed sugar hands. Preserve both phases.
+- Add an explicit Cedar 34 stereo action: replay saved chemical/numerical
+  comparisons, compare labels and signed coordinate volumes, and retain the
+  printed energy trajectory without inferring an optimum or convergence.
+- Add bounded installation-bound reader/chiral-constructor controls and exact
+  molecule/topology/chirality source snapshots. Preserve unknown declarations;
+  no false nonchiral labels, absolute CIP assignment, optimizer, dictionary
+  generation, captured-code execution, pickle loading or adoption is requested.
+  This isolated reader constructor is not a full builder replay.
+- Add 55 generic stereo, chemical-integrity, capsule and fake-native isolation
+  regressions. All 269 focused and 2,095 full tests pass, with two skips and
+  276 subtests; deleted-source/poisoned-import transport and documentation
+  checks pass. Exact commands are recorded in the existing native ledger. No new dependency or production-default change;
+  actual installed stereo execution awaits the Mac diagnostic.
+
 ### Reader-dialect projection and explicit bounded eLBOW trial
 
 - Verify all 1,229 Cedar 32 payloads and four installed source snapshots: PDU

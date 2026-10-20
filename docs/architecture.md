@@ -490,6 +490,14 @@ unknown atom flags and signed source chirality. It verifies the installed option
 parser's effective block/step/tolerance values before an explicit bounded trial
 that avoids the captured default restart condition. Source and consumer inputs
 are distinct; all original comparisons and nonconvergence evidence survive.
+Returned Cedar 33 passes both readers, stops DP before optimization in chirality
+handling, and writes a nonconverged PDU dictionary. Cedar 34 adds an explicit
+read-only stereo action: replay saved chemical/numerical comparisons, compare
+signed volumes in source/generated coordinates and retain omitted R/S labels.
+Bounded selected-installation reader controls record native markers and the
+reader's isolated chiral constructor, with four exact module snapshots and
+before/after integrity checks. This is not a full builder replay, absolute CIP
+assignment or dictionary qualification; exceptions and nonconvergence stay open.
 No new dictionary is composed with modifiers or applied to a native model.
 
 

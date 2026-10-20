@@ -164,7 +164,10 @@ for actual behavior; history is evidence, not a second task queue.
   Cedar 32 adds missing-alias metadata and a read-only installed-source/input
   diagnostic. Its return passes PDU and identifies DP's reader-dialect mismatch.
   Cedar 33 adds a checked consumer projection and bounded, runtime-verified
-  single-block candidate trial; numerical/native qualification remains open. No residue is
+  single-block candidate trial. Its return separates DP's preparatory chirality
+  failure from PDU's nonconverged output. Cedar 34 checks saved stereo/trajectory
+  evidence and installed reader markers without another generation;
+  numerical/native qualification remains open. No residue is
   inserted into the frozen scaffold or candidate applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.

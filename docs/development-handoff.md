@@ -594,7 +594,51 @@ poisoned-import transport verify all 116 runtime files and the complete
 1,229-payload C32 capsule. Installed execution is pending; exact commands
 and scope are recorded in the existing native ledger.
 
-**Current action:** run Cedar 33 through the pinned one-block Git handoff and
+**Cedar 33 returned and verified: reader PASS; DP chirality failure / PDU candidate REVIEW.**
+All **1,288 payloads** and preserved predecessor manifests verify. Rebuilding
+clean NASolve d939d2e0 / pinned NARestraints reproduces runner 63cfbc19 and all
+116 runtime members. Both installed read-only inputs pass, and both options
+proofs select one 180-step block with unchanged default tolerance. Phenix
+**2.2.1-6174** stops DP in **1.923945 s**, exit one, at preparatory
+Chiralise/ChiralClass before optimization. The captured CCD reader stores every
+stereo token except N as an atom chiral marker; all 35 DP tokens are ?. Its
+four source signed-volume declarations are still preserved. Do not replace
+unknown tokens with false nonchiral or invented R/S declarations to bypass it.
+
+PDU generation completes in **155.347732 s**, exit zero, and writes candidate
+10798e33 while explicitly reporting **NOT_CONVERGED_REPORTED**. Fresh original
+chemical/numerical comparisons reproduce its review: exact graph, triple bond,
+H and complete formal charges survive, with zero retained plane/angle findings.
+All three R/S labels disappear, but three generated signed sugar terms agree
+with both source ideal and generated coordinate handedness. This is not an
+independent absolute CIP assignment. Its 181 printed energy rows reach
+-517.4105 at row 146, rise to -477.2222 at 147 and end at -480.5612; no captured
+intermediate coordinate trajectory establishes the cause. No dictionary is adopted.
+
+**Cedar 34 prepared: read-only source/candidate and native reader stereo audit.**
+Use the same builder with --delivery-prefix 34_Cedar --component-control PDU,
+then the exact Cedar 33 ZIP with --component DP --stereochemistry-audit-only.
+The gate preserves both returned phases, installed source/options proofs and
+all prior native mechanics/rotation evidence. Offline checks compare missing
+labels, exact chemistry, ordered signed targets and both coordinate hands;
+absent/unsigned/unknown evidence stays review and inversions/conflicts reject.
+Printed energy trajectories are descriptive, never convergence criteria.
+
+The native diagnostic captures Utilities.py plus MoleculeClass.py,
+TopologyMixins.py and ChiralClass.py under the verified installation anchor.
+A maximum 30-second worker per component records actual reader markers and
+separately exercises the reader's chirals=True constructor. It is not a full
+builder replay. Constructor exceptions stay evidence; selected module identity,
+snapshots, input and dispatcher hashes are checked throughout. No optimizer,
+dictionary writer, captured source or serialized molecule is requested. Linux
+subprocess controls are explicit fakes; the installed stereo result is pending.
+The **55 new regressions**, **269 focused tests (31.11 s)** and **2,095 full
+tests, two skips and 276 subtests (160.49 s)** pass. Actual-input replay verifies
+all 118 runtime members after deleting both clean build copies and poisoning
+ambient imports. The older-checkout tracked edit and local runner ignore survive.
+Exact commands and bounds are recorded in the native ledger.
+
+**Current action:** run Cedar 34 through the pinned one-block Git handoff and
 return its console and review ZIP. Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

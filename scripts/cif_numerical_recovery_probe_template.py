@@ -472,6 +472,16 @@ CEDAR31_CASES = {
 PDU_SOURCE_SHA256 = 'cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292'
 CEDAR32_SHA256 = '285d74e1927791c11eadddf81c8ee93f54a5a4feb9dd410511e0ccf97cd46342'
 CEDAR32_BUILD_SHA256 = '9781e61cd6d84567998dde9957eee776ac2559796bc7d2049f3eee7ae9ec6db9'
+CEDAR33_SHA256 = '1ebb70ca3d47696208b050ecf19f0e62c9e86a9174e9c67a10a13d28fb9971dd'
+CEDAR33_BUILD_SHA256 = '50a102ea4785867fb3164861f9794cfcbbdc33d51c785e2e243f1fc7adaddc5e'
+CEDAR33_CASES = {
+    'DP':('generation/cif-numerical-recovery-d9_k11qs','cif-generation-4er4oy9t',
+          '6b914d7fed9a98e30ed68b2381507e6d5bb0dc9b351fee48d42ced085c9501fa'),
+    'PDU':('generation/cif-numerical-recovery-wgp6l12j','cif-generation-afxengms',
+           'ac4d8854e0154d6a694d59473a8b47859b370df0c068f3929b6f2b1e5cba26b4'),
+}
+CEDAR33_OPTIONS_SHA256 = 'e7bdf4ac2b9dea237f6c29b8015fa665834c435173c1d0662ed4d51b384e6dbd'
+CEDAR33_PDU_CANDIDATE_SHA256 = '10798e337cfa4804601595244581a03745b7893514ce1cb02cde9be426fcf88a'
 ELBOW_SOURCE_SHA256 = {
     'elbow/utilities/Utilities.py':'74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108',
     'elbow/utilities/optimisation_manager.py':'92c11aa41be2823726448e7c541dc8a2145c195593da98f4b50742b367adcadf',
@@ -484,7 +494,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -634,16 +644,110 @@ def _read_cedar32_members(members):
     return qualified,prior,rotation
 
 
+def _returned_outputs(members,prefix,rows,anchor,*,excluded_pickles=False):
+    for row in rows:
+        if row.get('anchor')!=anchor or not _safe(row.get('path')):raise ValueError('Unsafe returned artifact reference')
+        name=prefix+'/'+row['path']
+        if Path(name).suffix in {'.pickle','.pkl'}:
+            if not excluded_pickles or name in members:raise ValueError('Serialized molecule output must stay excluded')
+            continue
+        if len(members[name])!=row['size'] or _sha(members[name])!=row['sha256']:
+            raise ValueError('Returned artifact integrity differs')
+
+
+def _read_cedar33_members(members):
+    _verify_manifest(members,1288);r=json.loads(members['probe_receipt.json'])
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR33_BUILD_SHA256
+            or r.get('delivery_prefix')!='33_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('status')!='REVIEW' or r.get('analysis_completed') is not True
+            or r.get('requested_action')!='SINGLE_BLOCK_NUMERICAL_GENERATION'
+            or r.get('native_execution')!='READ_ONLY_INPUT_CHECKS_AND_NUMERICAL_GENERATION'
+            or r.get('dictionary_generation')!='REVIEW_REQUIRED' or r.get('automatic_adoption') is not False
+            or r.get('policy_authority')!='NARestraints'
+            or any(r.get(k) is not True for k in ['original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='NOT_RUN' for k in ['model_editing','model_optimization','native_proxy_validation','linked_site_validation','policy_recompilation','refinement','installed_phenix_edits','readyset_retry'])
+            or r['prior_archive']['sha256']!=CEDAR32_SHA256 or r['prior_archive']['verified_payloads']!=1229
+            or set(r['candidates'])!=set(CEDAR33_CASES) or set(r['native_input_checks'])!=set(CEDAR33_CASES)
+            or set(r['single_block_options'])!=set(CEDAR33_CASES)):
+        raise ValueError('Require the exact returned Cedar 33 bounded trial')
+    nested={n.removeprefix('inputs/review/'):v for n,v in members.items() if n.startswith('inputs/review/')}
+    qualified,prior,rotation=_read_cedar32_members(nested)
+    parent=json.loads(nested['probe_receipt.json'])
+    if r['installed_elbow_contract']!=parent['installed_elbow_contract']:
+        raise ValueError('Returned installed source contract differs')
+    prefix=r['installed_elbow_contract']['source_directory']['path']
+    for name in [*ELBOW_SOURCE_SHA256,'source_capture.json']:
+        if members[prefix+'/'+name]!=nested[prefix+'/'+name]:raise ValueError('Returned source capture bytes differ')
+    if (r['single_block_control'].get('steps')!=180 or r['single_block_control'].get('source_contract_archive')!=CEDAR32_SHA256
+            or r['single_block_control'].get('tolerance')!='UNCHANGED'):
+        raise ValueError('Returned explicit block control differs')
+    original_view,_=_source_view(members)
+    for code,(pre,generatedir,consumer_sha) in CEDAR33_CASES.items():
+        check=r['native_input_checks'][code];directory=check['directory']
+        if directory.get('anchor')!='probe_directory' or not _safe(directory.get('path')):raise ValueError('Unsafe input-check directory')
+        cp=directory['path']
+        if (check.get('status')!='PARSER_READ_ONLY_PASS' or check['execution'].get('returncode')!=0
+                or check.get('dictionary_generation')!='NOT_RUN' or check.get('model_optimization')!='NOT_RUN'
+                or check.get('automatic_adoption') is not False
+                or any(check.get(k) is not True for k in ['source_preserved','frozen_source_preserved','executable_preserved'])
+                or json.loads(members[cp+'/input_receipt.json'])!={k:v for k,v in check.items() if k!='directory'}):
+            raise ValueError('Returned read-only input evidence differs')
+        _returned_outputs(members,cp,check['outputs'],'contract_directory')
+        consumer=members['consumer_preview/'+code+'/source.cif']
+        if (_sha(consumer)!=consumer_sha or consumer!=members[cp+'/source.cif'] or consumer!=members[pre+'/consumer/source.cif']):
+            raise ValueError('Returned consumer input differs')
+        options=r['single_block_options'][code];op=options['directory']
+        if op.get('anchor')!='probe_directory' or not _safe(op.get('path')):raise ValueError('Unsafe options directory')
+        od=op['path'];row=options['source']
+        if (options.get('status')!='SINGLE_BLOCK_OPTIONS_PASS' or options.get('steps')!=180 or options.get('effective_blocks')!=1
+                or options.get('tolerance') is not False or options.get('optimization_execution')!='NOT_RUN'
+                or options.get('captured_code_execution')!='NOT_RUN' or options.get('convergence_claimed') is not False
+                or row.get('anchor')!='phenix_installation' or row.get('path')!='lib/python3.11/site-packages/elbow/utilities/options_parser.py'
+                or row['sha256']!=CEDAR33_OPTIONS_SHA256 or _sha(members[od+'/options_parser.py.txt'])!=row['sha256']
+                or len(members[od+'/options_parser.py.txt'])!=row['size']
+                or json.loads(members[od+'/options_receipt.json'])!={k:v for k,v in options.items() if k!='directory'}):
+            raise ValueError('Returned single-block option proof differs')
+        parsed=json.loads(members[od+'/options_result.json'])
+        if parsed['steps']!=180 or parsed['macro_override']!=options['macro_override'] or parsed['tolerance'] is not False or parsed['module_sha256']!=row['sha256']:
+            raise ValueError('Actual installed option-parser evidence differs')
+        c=r['candidates'][code];g=c['generation'];gp=pre+'/generation/'+generatedir
+        if (c!=json.loads(members[pre+'/numerical_recovery_receipt.json'])
+                or g!=json.loads(members[gp+'/generation_receipt.json'])
+                or c.get('source_preserved') is not True or g.get('source_preserved') is not True
+                or g.get('frozen_source_preserved') is not True or c.get('automatic_adoption') is not False
+                or g.get('optimization_control',{}).get('single_block_steps')!=180):
+            raise ValueError('Returned numerical candidate receipt differs')
+        for prefix,rows in [(pre,c['outputs']),(gp,g['outputs'])]:
+            _returned_outputs(members,prefix,rows,'candidate_directory',excluded_pickles=True)
+        original=(original_view[ROTATION_PREFIX+'/inputs/004_dictionary.cif'] if code=='DP' else members['component_controls/sources/PDU.cif'])
+        if (members[pre+'/original/source.cif']!=original or _sha(original)!=c['source_sha256']
+                or len(original)!=c['source_size'] or members[pre+'/graph/source.cif']!=members['graph_preview/'+code+'/source.cif']
+                or members[gp+'/source.cif']!=consumer):raise ValueError('Returned source/graph/consumer lineage differs')
+        log=members[gp+'/elbow.log'].decode()
+        if code=='DP':
+            if (c.get('status')!='REJECTED' or g['execution'].get('status')!='FAILED' or g['execution'].get('returncode')!=1
+                    or any(t not in log for t in ['Chiralise','ChiralClass.py','assert len(atoms) in [4,5]','AssertionError'])
+                    or c.get('candidate') is not None or gp+'/candidate.cif' in members):
+                raise ValueError('DP preparatory chirality failure evidence differs')
+        else:
+            if (c.get('status')!='CANDIDATE_REVIEW' or g['execution'].get('status')!='COMPLETED' or g['execution'].get('returncode')!=0
+                    or g.get('optimization_stopping',{}).get('status')!='NOT_CONVERGED_REPORTED'
+                    or 'geometry not converged' not in log or _sha(members[gp+'/candidate.cif'])!=CEDAR33_PDU_CANDIDATE_SHA256):
+                raise ValueError('PDU nonconverged candidate evidence differs')
+    return qualified,prior,rotation
+
+
 def _read_capsule(path, expected_sha=None):
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256}):
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256}):
         raise ValueError('Require an exact verified Cedar 29--32 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='32_Cedar':qualified,prior,rotation=_read_cedar32_members(members)
+    if header.get('delivery_prefix')=='33_Cedar':qualified,prior,rotation=_read_cedar33_members(members)
+    elif header.get('delivery_prefix')=='32_Cedar':qualified,prior,rotation=_read_cedar32_members(members)
     elif header.get('delivery_prefix')=='31_Cedar':qualified,prior,rotation=_read_cedar31_members(members)
     elif header.get('delivery_prefix')=='30_Cedar':qualified,prior,rotation=_read_cedar30_members(members)
     else:qualified,prior,rotation=_read_cedar29_members(members)
@@ -653,6 +757,7 @@ def _read_capsule(path, expected_sha=None):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '34_Cedar':'NASolve-live-tests/33_Cedar_cif-numerical-recovery-sw8kmgch/33_Cedar_sw8kmgch_cif_numerical_recovery_review.zip',
         '33_Cedar':'NASolve-live-tests/32_Cedar_cif-numerical-recovery-h_lbxjqc/32_Cedar_h_lbxjqc_cif_numerical_recovery_review.zip',
         '32_Cedar':'NASolve-live-tests/31_Cedar_cif-numerical-recovery-95asqu3e/31_Cedar_95asqu3e_cif_numerical_recovery_review.zip',
         '31_Cedar':'NASolve-live-tests/30_Cedar_cif-numerical-recovery-_ixms4r3/30_Cedar__ixms4r3_cif_numerical_recovery_review.zip',
@@ -668,13 +773,15 @@ def main():
                         help='Capture installed eLBOW sources and run read-only input checks; do not generate dictionaries')
     mode.add_argument('--single-block-steps',type=int,
                       help='Use verified Cedar 32 source semantics for one explicit bounded eLBOW block (1--600 steps)')
+    mode.add_argument('--stereochemistry-audit-only',action='store_true',
+                      help='Audit the saved Cedar 33 candidate and installed reader chirality; no numerical generation')
     args=parser.parse_args();session=None;review=None;original=None;members=None
     receipt={'schema_version':1,'kind':'cif-source-graph-numerical-recovery-probe','delivery_prefix':BUNDLE['delivery_prefix'],'build':BUNDLE,
         'status':'REVIEW','native_execution':'NOT_RUN','native_proxy_validation':'NOT_RUN','linked_site_validation':'NOT_RUN',
         'model_editing':'NOT_RUN','model_optimization':'NOT_RUN','dictionary_generation':'NOT_RUN','policy_recompilation':'NOT_RUN',
         'readyset_retry':'NOT_RUN','refinement':'NOT_RUN','scientific_approval':'NOT_RUN','automatic_adoption':False,
         'diffraction_data':'NOT_READ','policy_authority':'NARestraints','installed_phenix_edits':'NOT_RUN',
-        'requested_action':'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
+        'requested_action':'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
         'limits':{'max_components':3,'generation_timeout_per_component':args.timeout_seconds,'read_only_timeout_per_component':min(args.timeout_seconds,60),
                   'single_block_steps':args.single_block_steps},
         'limitations':['Separate dictionary candidates only; none is applied to a native manager or model.',
@@ -706,12 +813,19 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='33_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'33_Cedar','DP':'PREPARATORY_CHIRALITY_FAILURE_NO_CANDIDATE',
+                'PDU':'CANDIDATE_REVIEW_NOT_CONVERGED_REPORTED',
+                'evidence':{'anchor':'probe_directory','path':'inputs/review/probe_receipt.json'},
+                'pickle_evidence':'EXCLUDED_NOT_LOADED'}
         elif source_prefix:
             receipt['previous_execution']={'delivery_prefix':'32_Cedar','native_execution':'READ_ONLY_INPUT_CHECKS',
                 'evidence':{'anchor':'probe_directory','path':'inputs/review/probe_receipt.json'},
                 'DP':'READER_DIALECT_REVIEW','PDU':'PARSER_READ_ONLY_PASS'}
         if args.single_block_steps is not None and json.loads(members['probe_receipt.json'])['delivery_prefix']!='32_Cedar':
             raise ValueError('Single-block delivery requires the reviewed installed Cedar 32 source contract')
+        if args.stereochemistry_audit_only != (json.loads(members['probe_receipt.json'])['delivery_prefix']=='33_Cedar'):
+            raise ValueError('Cedar 33 is only supported by the explicit read-only stereochemistry action')
         from nasolve.cif_numerical_recovery import plan_numerical_recovery,prepare_graph_generation_source,generate_numerical_recovery,validate_rotation_evidence
         from nasolve.cif_fixed_geometry import qualify_fixed_policy_geometry
         expected=json.loads(source_members[ROTATION_PREFIX+'/expected_inventory.json']);saved=prior['geometry_trial']['result']
@@ -755,6 +869,29 @@ def main():
         receipt['consumer_preparations']={}
         for code in sources:
             receipt['consumer_preparations'][code]=prepare_elbow_ccd_input(session/'graph_preview'/code/'source.cif',code,session/'consumer_preview'/code/'source.cif')
+        if args.stereochemistry_audit_only:
+            from nasolve.cif_stereochemistry_audit import reader_stereo_inventory,audit_candidate_stereochemistry,audit_optimizer_log
+            from nasolve.cif_generation import inspect_component_generation
+            receipt['source_stereo_inventories']={code:reader_stereo_inventory(session/'consumer_preview'/code/'source.cif',code) for code in sources}
+            receipt['saved_candidate_stereochemistry']={};receipt['saved_optimizer_trajectories']={}
+            for code,(pre,generatedir,_) in CEDAR33_CASES.items():
+                if code not in sources:raise ValueError('Read-only stereo scope must preserve both reviewed cases')
+                gp=pre+'/generation/'+generatedir
+                if (session/'consumer_preview'/code/'source.cif').read_bytes()!=members['consumer_preview/'+code+'/source.cif']:
+                    raise ValueError('Fresh stereo consumer differs from the reviewed trial')
+                output=frozen/gp/'candidate.cif'
+                if output.is_file():
+                    inspection=inspect_component_generation(frozen/pre/'original/source.cif',output,code)
+                    previous=json.loads(members['probe_receipt.json'])['candidates'][code]['original_source_inspection']
+                    if any(inspection[k]!=previous[k] for k in ['status','rejection_reasons','chemical_changes','bond_representation','numerical_issues']):
+                        raise ValueError('Saved candidate numerical/chemical assessment does not replay')
+                    result=audit_candidate_stereochemistry(frozen/pre/'original/source.cif',output,code)
+                    receipt['saved_candidate_stereochemistry'][code]=result
+                    _json(session/'stereochemistry'/(code+'_candidate.json'),result)
+                    print(code,'saved candidate stereo:',result['status'],'; absolute CIP assignment NOT_RUN',flush=True)
+                trajectory=audit_optimizer_log(members[gp+'/elbow.log'].decode())
+                receipt['saved_optimizer_trajectories'][code]=trajectory
+                _json(session/'stereochemistry'/(code+'_trajectory.json'),trajectory)
         if not args.inspect_only:
             from nasolve.phenix_runtime import installation_from_candidate
             phenix=installation_from_candidate(args.phenix_root,base_environment={k:v for k,v in os.environ.items() if k not in NATIVE_OVERRIDES})
@@ -762,6 +899,23 @@ def main():
             elbow=phenix.executables.get('phenix.elbow')
             if not elbow or not Path(elbow).resolve().is_relative_to(Path(phenix.root).resolve()):raise ValueError('Require an installation-bound eLBOW')
             receipt['elbow_executable_sha256']=_sha(Path(elbow).read_bytes());receipt['phenix_version']=phenix.version
+            if args.stereochemistry_audit_only:
+                from nasolve.cif_elbow_contract import verify_elbow_source_capture
+                from nasolve.cif_elbow_chirality import audit_installed_chirality,verify_chirality_sources
+                prior_contract=json.loads(members['probe_receipt.json'])['installed_elbow_contract']
+                verify_elbow_source_capture(phenix.root,prior_contract,frozen/prior_contract['source_directory']['path'])
+                receipt['installed_chirality_controls']={}
+                for code in sources:
+                    output=session/'native_stereochemistry'/code
+                    result=audit_installed_chirality(phenix.root,phenix.executables['phenix.python'],fingerprints,
+                        session/'consumer_preview'/code/'source.cif',code,output,environment=phenix.environment,
+                        timeout_seconds=min(args.timeout_seconds,30))
+                    receipt['installed_chirality_controls'][code]={'directory':{'anchor':'probe_directory','path':output.relative_to(session).as_posix()},**result}
+                    print(code,'native reader stereo:',result['status'],'; constructor',result['result']['constructor_probe']['status'],flush=True)
+                for code,result in receipt['installed_chirality_controls'].items():
+                    verify_chirality_sources(phenix.root,result,session/'native_stereochemistry'/code)
+                verify_elbow_source_capture(phenix.root,prior_contract,frozen/prior_contract['source_directory']['path'])
+                receipt['native_execution']='INSTALLED_READER_CHIRALITY_CONTROLS'
             if args.single_block_steps is not None:
                 from nasolve.cif_elbow_contract import verify_elbow_source_capture
                 prior_contract=json.loads(members['probe_receipt.json'])['installed_elbow_contract']
@@ -782,7 +936,7 @@ def main():
                     print(code,'read-only input:',result['status'],'; dictionary generation NOT_RUN',flush=True)
                 verify_elbow_source_capture(phenix.root,contract,source_directory)
                 receipt['native_execution']='READ_ONLY_INPUT_CHECKS'
-            if not args.native_contract_only:
+            if not args.native_contract_only and not args.stereochemistry_audit_only:
                 receipt['dictionary_generation']='ATTEMPTED';receipt['candidates']={}
                 receipt['single_block_options']={}
                 for code,source in sources.items():
@@ -822,7 +976,7 @@ def main():
         if review.read_bytes()!=original:raise ValueError('Original review ZIP changed')
         receipt.update(analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True)
         _json(session/'probe_receipt.json',receipt)
-        print('Diagnostic: REVIEW ('+('installed source/read-only input evidence' if args.native_contract_only else 'dictionary candidates only')+'; native/scientific qualification remains open)',flush=True)
+        print('Diagnostic: REVIEW ('+('read-only source/candidate stereochemistry' if args.stereochemistry_audit_only else 'installed source/read-only input evidence' if args.native_contract_only else 'dictionary candidates only')+'; native/scientific qualification remains open)',flush=True)
         print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
     except Exception as exc:
         receipt.update(analysis_completed=False,error=str(exc))
