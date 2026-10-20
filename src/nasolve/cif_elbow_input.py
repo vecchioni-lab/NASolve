@@ -121,3 +121,71 @@ def prepare_elbow_ccd_input(source, code, output):
         'signed_chirality':'ORIGINAL_DECLARATIONS_PRESERVED', 'stereochemistry_inferred':False,
         'aromaticity_perceived':False, 'numerical_targets_inferred':False,
         'chemical_qualification':'NOT_RUN', 'automatic_adoption':False}
+
+
+def prepare_elbow_source_dialect_input(original, graph, code, output):
+    """Retain a source's explicit comp_list reader route in a separate input.
+
+    Legacy monomer sources keep signed-volume declarations and coordinate
+    aliases. CCD sources retain the existing projection. This opt-in adapter
+    does not select a new chemical state or certify the installed parser.
+    """
+    from .cif_linked_preparation import _render
+    from .cif_generation import _CHEMICAL_FIELDS
+    from .cif_numerical_recovery import prepare_graph_generation_source
+    from tempfile import TemporaryDirectory
+    original,graph=Path(original).resolve(strict=True),Path(graph).resolve(strict=True)
+    output=Path(output).absolute()
+    if output.exists() or output.is_symlink():raise FileExistsError('Reader-dialect output exists')
+    if output.resolve() in {original,graph} or any(p.is_symlink() for p in output.parents):
+        raise ValueError('Require a separate regular reader-dialect output')
+    frozen={p:p.read_bytes() for p in [original,graph]}
+    # Require this policy's exact source-derived graph, including the absence
+    # of old numerical targets/types. Chemical equality alone cannot prove that.
+    with TemporaryDirectory(prefix='cif-reader-graph-check-') as temporary:
+        expected=Path(temporary)/'graph.cif'
+        prepare_graph_generation_source(original,code,expected)
+        if expected.read_bytes()!=frozen[graph]:raise ValueError('Reader input is not the exact target-free source graph')
+    for path in [original,graph]:
+        assessment=assess_dictionaries([path],stage='source-reader-dialect')
+        if len(assessment['components'])!=1 or assessment['components'][0]['component_id']!=code or assessment['components'][0]['verdicts']['graph']!='PASS':
+            raise ValueError('Require one graph-valid source/graph component')
+    comparison=compare_dictionaries([original],[graph])
+    if any(r['field'] in _CHEMICAL_FIELDS for r in comparison['differences']):
+        raise ValueError('Graph export changed source chemical declarations')
+    legacy=any(b.values['data_'].lower()=='comp_list' and code in b.values.get('_chem_comp.id',[])
+               for b in _blocks(original))
+    aliases=[];projection=None
+    if legacy:
+        values=component_values(graph,code);source=component_values(original,code)
+        a,b='_chem_comp_atom.','_chem_comp_bond.'
+        if b+'type' not in values or a+'charge' not in values:
+            raise ValueError('Source monomer dialect needs its declared type/charge fields')
+        # Source metadata stays metadata; no old numerical restraint or energy
+        # type is reintroduced into the target-free graph.
+        values.update({k:v for k,v in source.items() if k.startswith('_chem_comp.')})
+        for axis in 'xyz':
+            target=a+axis;seed=a+'pdbx_model_Cartn_'+axis+'_ideal'
+            if seed not in values:raise ValueError('Missing complete graph coordinate family')
+            if target in values and values[target]!=values[seed]:raise ValueError('Conflicting reader coordinate aliases')
+            values[target]=list(values[seed]);aliases.append(target)
+        payload=_render(values,code).encode()
+        output.parent.mkdir(parents=True,exist_ok=True)
+        with output.open('xb') as handle:handle.write(payload)
+        restored=component_values(output,code)
+        if restored!=values:raise ValueError('Reader-dialect serialization changed declarations')
+        after=compare_dictionaries([graph],[output])
+        if any(r['field'] in _CHEMICAL_FIELDS for r in after['differences']):
+            raise ValueError('Monomer reader input changed graph chemistry')
+        dialect='MONOMER_LIBRARY_CIF'
+    else:
+        projection=prepare_elbow_ccd_input(graph,code,output)
+        dialect='CHEMICAL_COMPONENTS_CIF'
+    if any(p.read_bytes()!=d for p,d in frozen.items()):raise ValueError('Reader-dialect source changed')
+    return {'schema_version':1,'policy_id':'cif-source-reader-dialect-preservation-v1','component':code,
+        'source_reader_dialect':dialect,'consumer_reader_dialect':dialect,
+        'original_source_sha256':sha256(frozen[original]).hexdigest(),'graph_sha256':sha256(frozen[graph]).hexdigest(),
+        'consumer_sha256':sha256(output.read_bytes()).hexdigest(),'coordinate_aliases':aliases,
+        'chemical_declarations':'PRESERVED','stereochemistry_inferred':False,'ccd_projection':projection,
+        'source_preserved':True,'graph_preserved':True,'raw_comparison':compare_dictionaries([graph],[output]),
+        'native_reader_qualification':'NOT_RUN','automatic_adoption':False}

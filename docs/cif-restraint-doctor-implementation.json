@@ -6170,7 +6170,7 @@
       "evidence_record": "cif-linked-native-registration-evidence.json#reader_dialect_and_single_block_trial_2026_10_20"
     },
     "stereochemistry_boundary_audit_2026_10_20": {
-      "status": "IMPLEMENTED_OPT_IN_NATIVE_STEREOCHEMISTRY_AUDIT_PENDING",
+      "status": "RETURN_VERIFIED_DP_UNKNOWN_MARKER_ASSERTION_PDU_KNOWN_MARKER_PASS",
       "delivery_prefix": "34_Cedar",
       "recorded_date": "2026-10-20",
       "policy_ids": [
@@ -6211,11 +6211,13 @@
         "installed_control": "Under the verified selected library anchor, snapshot/hash four exact modules as .py.txt evidence (maximum 1 MiB each), remove the worker directory from search paths, select the verified installed library, require selected imported paths/hashes, read exact atom markers with chirals=False, then separately exercise the installed reader chirals=True constructor. Exceptions are recorded, not promoted to chemical rejection. Recheck installed/captured sources, original/frozen input and dispatcher. Captured source is never imported.",
         "constructor_scope": "READER_CHIRALS_TRUE_NOT_FULL_BUILDER_REPLAY",
         "native_timeout_seconds_per_component": 30,
-        "absolute_cip_assignment": "NOT_RUN",
+        "absolute_cip_assignment": "NATIVE_CONSTRUCTOR_INTERNALS_NOT_INSTRUMENTED",
         "dictionary_generation": "NOT_RUN",
         "model_optimization": "NOT_RUN",
-        "native_execution": "PENDING_USER_MAC",
-        "automatic_adoption": false
+        "native_execution": "RETURNED_PHENIX_2.2.1-6174_DP_ASSERTION_PDU_CONSTRUCTOR_COMPLETED",
+        "automatic_adoption": false,
+        "constructor_internal_operations": "Captured Chiralise calls ChiralClass.Optimise, including local template minimization/native RS notation. Legacy optimization_execution/absolute_cip_assignment NOT_RUN flags did not instrument those transitive operations and are not no-optimization/no-native-CIP proof. No whole-molecule trial or saved-file/model change ran.",
+        "independent_absolute_cip_validation": "NOT_RUN"
       },
       "software_validation": {
         "fail_before": "All 27 initial generic stereo/trajectory tests fail before implementation. Additional native-isolation and exact C33 capsule tests use explicit fakes and do not qualify installed chemistry.",
@@ -6249,7 +6251,7 @@
           "dictionary_generation": "NOT_RUN",
           "native_stereo_execution": "PENDING_USER_MAC"
         },
-        "native": "PENDING_USER_MAC; subprocess controls are explicit fake installations, not a Phenix execution.",
+        "native": "Returned installed reader/chiral-constructor controls verified. Local template operations occur inside native Chiralise; pre-delivery fake controls did not instrument them. See native_return and scope correction.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 148,
@@ -6274,8 +6276,220 @@
         "new_dependencies": []
       },
       "artifact_boundary": "Commit maintained source/tests/docs and derived metadata only. All private ZIPs, native source snapshots/logs, generated candidates/runners and coordinates remain outside Git.",
-      "next_action": "Run Cedar 34 through the pinned Git fetch/worktree/build/run block against the exact Cedar 33 ZIP, bundling PDU and requesting --component DP --stereochemistry-audit-only. Recompute saved source/candidate stereo and trajectory evidence, then capture selected installed chirality sources and run bounded reader-marker and isolated chirals=True constructor controls. Preserve unknown declarations, all source/dispatcher/snapshot checks and prior evidence. No new optimizer, dictionary generation, full-builder replay, absolute CIP assignment, policy change, refinement or adoption. Return console and review ZIP.",
+      "next_action": "Run Cedar 35 through the pinned Git fetch/worktree/build/run block against the exact Cedar 34 ZIP with --component DP --source-dialect-audit-only, bundling PDU. Preserve source comp_list routing and signed declarations in the target-free consumer, keep CCD control bytes unchanged, then record selected installed parser dispatch and raw atom/bond/charge/coordinate inventory with two source snapshots and before/after integrity checks. No constructor or whole-molecule optimization is requested; parser internals are uninstrumented. Inspect charge semantics and signed stereo separately before any generation. Preserve prior evidence, NARestraints policy and adoption gates; return console and review ZIP.",
+      "return_verification": {
+        "archive": {
+          "name": "34_Cedar_6j6_ppxr_cif_numerical_recovery_review.zip",
+          "sha256": "a4a50a84eb2cebe17230230c50f533eb9acc899084b5e989d95b366cc3f783b5",
+          "bytes": 42784733,
+          "verified_payloads": 1320,
+          "preserved_predecessor_payloads": 1288
+        },
+        "runner_sha256": "ffc4d69a933c985154f2ad66fd0bf5478df06694b786de86d0047bd62856acd8",
+        "nasolve_commit": "efd63bd35ac248b03e01bfb65653cd3d9d18f8cd",
+        "nasolve_tree": "7434915e11f985fd44dd2fc2a2994e6b5a1b6b38",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "both_source_trees_clean": true,
+        "trusted_clean_build_runner": "BYTE_IDENTICAL",
+        "runtime_members": 118,
+        "runtime_archive_sha256": "ae949fcf870af64187086a8b73a29b0611f63856a40d2b597dd309e45ee6b652",
+        "canonical_build_sha256": "6b96148da00d4eb15021600a772e6f0cfd7a107aa4fda709b6266f27d281542c",
+        "manifest_and_preserved_lineage": "PASS",
+        "mechanics_prerequisites": 17,
+        "rotation_directions_recomputed": 96,
+        "saved_candidate_and_trajectory_replay": "PASS",
+        "constructor_worker_sha256": "610d649a34ac7cca15222083eea8984e50a22c9fc19713c3329ed2c76800567b"
+      },
+      "native_return": {
+        "phenix_version": "2.2.1-6174",
+        "native_sources": [
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/utilities/Utilities.py",
+            "sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108",
+            "size": 24907,
+            "snapshot": {
+              "anchor": "chirality_directory",
+              "path": "elbow/utilities/Utilities.py.txt"
+            }
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/chemistry/MoleculeClass.py",
+            "sha256": "fdc6ec851449c2cd1d947977209a92e9f691ebfe2aee5823cada361bc7e69e48",
+            "size": 28915,
+            "snapshot": {
+              "anchor": "chirality_directory",
+              "path": "elbow/chemistry/MoleculeClass.py.txt"
+            }
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/chemistry/TopologyMixins.py",
+            "sha256": "701214ece8611674b766c4359041f7b3c32b4f55ea02e66207d496b0df5a21bc",
+            "size": 103763,
+            "snapshot": {
+              "anchor": "chirality_directory",
+              "path": "elbow/chemistry/TopologyMixins.py.txt"
+            }
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/chemistry/ChiralClass.py",
+            "sha256": "6276fb3d92d71c4b2156b50d7e844f40c0747b8ede19d566214cfe8774ad49de",
+            "size": 27920,
+            "snapshot": {
+              "anchor": "chirality_directory",
+              "path": "elbow/chemistry/ChiralClass.py.txt"
+            }
+          }
+        ],
+        "both_cases_same_source_hashes": true,
+        "DP": {
+          "status": "REVIEW",
+          "unknown_tokens_marked_chiral": 35,
+          "declared_marker_conflicts": 0,
+          "constructor": "AssertionError: len(atoms) in [4,5]",
+          "source_signed_volume_declarations": 4
+        },
+        "PDU": {
+          "status": "READER_MARKERS_PASS",
+          "unknown_tokens_marked_chiral": 0,
+          "known_RS_markers_preserved": 3,
+          "constructor": "COMPLETED",
+          "atoms": 38
+        },
+        "constructor_scope_correction": "Captured Chiralise calls ChiralClass.Optimise, including local template minimization/native RS notation. Legacy optimization_execution/absolute_cip_assignment NOT_RUN flags did not instrument those transitive operations and are not no-optimization/no-native-CIP proof. No whole-molecule trial or saved-file/model change ran.",
+        "whole_molecule_dictionary_generation": "NOT_RUN",
+        "saved_source_candidate_model_changes": "NONE",
+        "independent_absolute_cip_validation": "NOT_RUN",
+        "automatic_adoption": false
+      },
       "evidence_record": "cif-linked-native-registration-evidence.json#stereochemistry_boundary_audit_2026_10_20"
+    },
+    "source_reader_dialect_audit_2026_10_20": {
+      "status": "IMPLEMENTED_SOURCE_DIALECT_ADAPTER_NATIVE_READER_PENDING",
+      "delivery_prefix": "35_Cedar",
+      "recorded_date": "2026-10-20",
+      "policy_ids": [
+        "cif-source-reader-dialect-preservation-v1",
+        "cif-installed-source-reader-inventory-v1"
+      ],
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "35_Cedar_probe_cif_source_dialect.py",
+      "modules": [
+        "src/nasolve/cif_elbow_input.py",
+        "src/nasolve/cif_source_reader.py",
+        "src/nasolve/cif_elbow_chirality.py"
+      ],
+      "review_input": {
+        "name": "34_Cedar_6j6_ppxr_cif_numerical_recovery_review.zip",
+        "sha256": "a4a50a84eb2cebe17230230c50f533eb9acc899084b5e989d95b366cc3f783b5",
+        "bytes": 42784733,
+        "verified_payloads": 1320,
+        "preserved_predecessor_payloads": 1288
+      },
+      "behavior": {
+        "before": "A graph export removes the original data_comp_list layout. Installed format detection selects the CCD reader and assigns literal unknown CIP tokens to all DP atom chirality markers, reproducing a constructor assertion.",
+        "after": "An explicit source-format adapter retains original monomer-list routing and signed declarations without inventing N/R/S tokens. CCD sources retain the existing projection. A bounded parser-only native audit records the selected format and raw graph/charge/coordinate values before any new generation.",
+        "DP_consumer_sha256": "4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa",
+        "DP_consumer_bytes": 4392,
+        "PDU_consumer_sha256": "ac4d8854e0154d6a694d59473a8b47859b370df0c068f3929b6f2b1e5cba26b4",
+        "PDU_consumer_unchanged": true,
+        "native_repaired_input_acceptance": "PENDING",
+        "default_generation_policy": "UNCHANGED"
+      },
+      "methods": {
+        "capsule": "Verify 1320 payloads, pinned clean build/runtime, exact parent, four source snapshots in both native cases, owned worker hash, exact input/marker inventories, DP assertion and PDU completed constructor; replay all prior mechanics/rotation and saved candidate/trajectory evidence. Do not execute captured code or load serialized molecules.",
+        "dialect_selection": "Recompute the exact canonical target-free graph from the original source in a disposable directory, then require byte equality with the supplied graph before projecting it. This also refuses reintroduced old numerical targets/types. Use parsed original comp_list blocks, not component names or chemistry inference. Retain one explicit metadata loop, signed declarations and equal source-coordinate aliases; reject chemical/alias/integrity disagreements. Keep original source and graph bytes unchanged.",
+        "stereo_and_targets": "Preserve signed chiral volumes and every original graph chemical declaration. Add no unknown-to-N or coordinate-inferred R/S labels. Reintroduce no old numerical restraint or atom energy type. Source coordinates remain naming/initial seeds, not independent validation or generated targets.",
+        "native_read": "Capture selected any_chemical_format_reader.py and monomer_library_cif_parser.py as .py.txt, maximum 1 MiB each. Remove evidence-directory import paths and require selected installed imports. Call the installed dispatcher with simple=True, return_all_restraints=True, do_not_check_for_smiles=True. Do not request a chiral constructor or optimizer; record parser internals as uninstrumented. Accept a single molecule or unwrap exactly one returned molecule; multiple/empty native component lists remain review evidence.",
+        "native_checks": [
+          "reader_route",
+          "atom_identities",
+          "atom_elements",
+          "atom_charge_values",
+          "source_coordinates",
+          "declared_bond_orders"
+        ],
+        "qualification": "Raw exact readback mismatches retain review, including aromatic representation differences. Atom charge values do not independently establish formal-charge semantics; signed-stereo interpretation and generator/scientific qualification await separate review of the captured parser. Do not call a parser-only match a chemistry/convergence pass.",
+        "timeout_seconds_per_component": 30,
+        "independent_absolute_cip_validation": "NOT_RUN",
+        "native_signed_stereo_qualification": "NOT_RUN",
+        "native_formal_charge_semantics": "REQUIRES_CAPTURED_PARSER_REVIEW",
+        "chiral_constructor": "NOT_REQUESTED",
+        "whole_molecule_optimization": "NOT_REQUESTED",
+        "parser_internal_operations": "NOT_INSTRUMENTED",
+        "dictionary_generation": "NOT_RUN",
+        "native_execution": "PENDING_USER_MAC",
+        "automatic_adoption": false
+      },
+      "software_validation": {
+        "fail_before": "Initial adapter regressions fail before implementation. Two additional regressions demonstrate that chemical equality alone wrongly accepts reintroduced numerical targets/energy types; exact source-derived graph replay now refuses both. Additional native-reader and returned-capsule tests use explicit fakes.",
+        "new_tests": 41,
+        "focused": {
+          "passed": 310,
+          "seconds": 36.04,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_source_dialect.py tests/test_cif_source_reader.py tests/test_cedar35_delivery.py tests/test_cif_stereochemistry_audit.py tests/test_cif_elbow_chirality.py tests/test_cedar34_delivery.py tests/test_cif_elbow_input.py tests/test_cedar33_delivery.py tests/test_cif_elbow_contract.py tests/test_cedar32_delivery.py tests/test_cedar31_delivery.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_numerical_recovery.py tests/test_cif_component_controls.py tests/test_cif_generation.py tests/test_cif_base_rotation_probe.py --tb=short"
+        },
+        "full": {
+          "passed": 2136,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 164.6,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_source_copies_removed_before_replay": true,
+          "poisoned_ambient_imports": "PASS",
+          "older_everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "actual_capsule_payloads": 1320,
+          "runtime_members": 119,
+          "runtime_archive_sha256": "28c2dca67260efb0d36f23f0b19028645e4d82c0b631a1abe3e382a32fd71106",
+          "mechanics_prerequisites": 17,
+          "rotation_directions_recomputed": 96,
+          "DP_unknown_stereo_tokens": 35,
+          "PDU_source_relative_stereo": "REVIEW_THREE_PRESERVED_SIGNED_HANDS_OMITTED_LABELS",
+          "PDU_stopping": "NOT_CONVERGED_REPORTED",
+          "dictionary_generation": "NOT_RUN",
+          "native_source_reader_execution": "PENDING_USER_MAC",
+          "DP_consumer_sha256": "4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa",
+          "PDU_consumer_unchanged": true
+        },
+        "native": "PENDING_USER_MAC; Linux installed-reader controls use explicit fakes, not a Phenix qualification.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 148,
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS",
+          "qualified_parallelity_core_sha256": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "public_PDU_fixture_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "both_files_unchanged": true
+        }
+      },
+      "schemas": {
+        "schema_version": 1,
+        "new_execution_flag": "--source-dialect-audit-only",
+        "new_native_execution_value": "SOURCE_READER_DIALECT_CONTROLS",
+        "receipt_additions": [
+          "source_reader_audits",
+          "consumer_reader_dialect",
+          "source_reader_dialect",
+          "coordinate_aliases",
+          "parser_internal_operations",
+          "source_reader_audits.result.component_container"
+        ],
+        "constructor_report_policy": "cif-installed-elbow-chirality-control-v2",
+        "constructor_scope_migration": "Keep v1 receipts immutable; never use optimization_execution/absolute_cip_assignment NOT_RUN as evidence about constructor internals. V2 reports those internals uninstrumented and separates independent CIP validation and whole-molecule trials.",
+        "compatibility": "Opt-in source-reader diagnostic only. Default CCD/generation paths, earlier runners and all saved scientific inputs remain intact; no production migration.",
+        "new_dependencies": []
+      },
+      "artifact_boundary": "Only maintained source/tests/docs and derived metadata enter Git. Private native source snapshots/logs, review capsules, generated candidates/runners and coordinates remain outside Git.",
+      "next_action": "Run Cedar 35 through the pinned Git fetch/worktree/build/run block against the exact Cedar 34 ZIP with --component DP --source-dialect-audit-only, bundling PDU. Preserve source comp_list routing and signed declarations in the target-free consumer, keep CCD control bytes unchanged, then record selected installed parser dispatch and raw atom/bond/charge/coordinate inventory with two source snapshots and before/after integrity checks. No constructor or whole-molecule optimization is requested; parser internals are uninstrumented. Inspect charge semantics and signed stereo separately before any generation. Preserve prior evidence, NARestraints policy and adoption gates; return console and review ZIP.",
+      "evidence_record": "cif-linked-native-registration-evidence.json#source_reader_dialect_audit_2026_10_20"
     }
   },
   "audience": [

@@ -42,7 +42,9 @@ def get_elbow_molecule_from_chemical_components(code,filename=None,chirals=False
         with pytest.raises(ValueError):audit_installed_chirality(root,python,api,source,'Q17',out,environment=env)
     else:
         r=audit_installed_chirality(root,python,api,source,'Q17',out,environment=env)
-        assert r['optimization_execution']=='NOT_RUN' and r['dictionary_generation']=='NOT_RUN'
+        assert r['optimization_execution']=='CONSTRUCTOR_INTERNALS_NOT_INSTRUMENTED'
+        assert r['whole_molecule_optimization']=='NOT_RUN' and r['dictionary_generation']=='NOT_RUN'
+        assert r['result']['optimization_execution']=='CONSTRUCTOR_INTERNALS_NOT_INSTRUMENTED'
         assert r['captured_code_execution']=='NOT_RUN' and r['pickle_loading']=='NOT_RUN'
         assert r['status']==('READER_MARKERS_PASS' if mode=='known' else 'REVIEW')
         if mode=='unknown':assert len(r['unknown_inputs_marked_chiral'])==5

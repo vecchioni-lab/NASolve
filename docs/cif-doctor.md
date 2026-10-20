@@ -1413,11 +1413,61 @@ exercises the reader's chirals=True entry point. It records constructor exceptio
 without promoting them to chemical rejection. This control does not reproduce
 the full builder preparation sequence. Installation, snapshot, dispatcher and
 input hashes must survive; escaped/changed modules or inventory mismatches refuse.
-No optimizer or dictionary writer is requested. --inspect-only performs just
+No whole-molecule trial or dictionary writer is requested. --inspect-only performs just
 the offline comparisons. New additive JSON records are source_stereo_inventories,
 saved_candidate_stereochemistry, saved_optimizer_trajectories and
 installed_chirality_controls. Existing production APIs, dependencies and
 NARestraints policy remain unchanged; native stereo execution is pending.
+
+The Cedar 34 return verifies all 1,320 payloads and both captured source sets.
+DP retains 35 literal ? native markers and reproduces the same assertion;
+PDU's three known markers and constructor pass. Captured TopologyMixins.Chiralise
+calls ChiralClass.Optimise, which performs local template minimization and native
+RS notation. The old optimization_execution=NOT_RUN and absolute_cip_assignment
+flags did not instrument those internals. Preserve those immutable receipts and
+apply this narrower interpretation; no whole-molecule dictionary trial ran.
+Future constructor receipts label internals uninstrumented and distinguish
+independent CIP validation from native constructor operations.
+
+### Preserved source reader dialect
+
+Cedar 35 uses --delivery-prefix 35_Cedar --component-control PDU, then the exact
+Cedar 34 ZIP with --component DP --source-dialect-audit-only. It verifies the
+returned source/worker/input hashes, native marker/constructor outcomes and
+all previous evidence, and replays saved PDU comparisons and printed trajectories.
+
+The installed dispatcher classifies any _chem_comp.id file without the literal
+data_comp_list marker as chemical components. DP's original monomer dictionary
+has that block; its graph export did not. The explicit adapter first recomputes the exact source-derived, target-free
+graph and requires byte equality, refusing old targets/types reintroduced by
+a caller. It uses parsed source blocks to preserve that reader dialect. It writes one real comp_list loop and
+one component definition, restores only source metadata and equal x/y/z aliases
+from the complete graph seed, and retains exact chemistry/signed chirality.
+No old numerical target or energy type is reintroduced. Reject changed chemical
+fields, conflicting aliases, ambiguous components and unsafe outputs. No atom
+stereo/aromatic label is inferred. Original source and graph bytes stay frozen.
+PDU continues through the existing CCD projection with unchanged consumer bytes.
+DP's new consumer SHA-256 is
+4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa.
+This opt-in diagnostic does not change the default generator's input policy.
+
+The native worker captures selected any_chemical_format_reader.py and
+monomer_library_cif_parser.py as .py.txt, removes its evidence directory from
+module search paths and checks selected imports/hashes before and after parsing.
+It calls the installed dispatcher with simple=True, return_all_restraints=True
+and do_not_check_for_smiles=True. Unwrap exactly one molecule when the dispatcher
+returns a list; empty/multiple-component returns stay review. The input contains graph and signed declarations,
+without numerical targets. A maximum 30-second read per component records actual
+dispatch, format, identities, elements, raw atom charge, coordinates and bond
+orders. Exceptions remain review evidence. Literal readback disagreement remains
+visible, including aromatic representations; no equivalence is guessed here.
+The native charge attribute's semantics and signed-stereo interpretation require
+the returned parser source, independently of equality checks. No chiral
+constructor or whole-molecule optimizer is requested; parser internals remain
+uninstrumented. Snapshot/input/dispatcher/source checks surround both controls.
+The new source_reader_audits receipt and SOURCE_READER_DIALECT_CONTROLS status
+are additive; installed parser acceptance is pending. No new dependency, policy
+guess, model change, refinement or adoption is introduced.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

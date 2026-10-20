@@ -167,6 +167,9 @@ for actual behavior; history is evidence, not a second task queue.
   single-block candidate trial. Its return separates DP's preparatory chirality
   failure from PDU's nonconverged output. Cedar 34 checks saved stereo/trajectory
   evidence and installed reader markers without another generation;
+  its return confirms DP's constructor assertion and PDU's known-marker pass.
+  Constructor internals include local template minimization. Cedar 35 preserves
+  the declared source reader dialect and tests parsed inventory before generation;
   numerical/native qualification remains open. No residue is
   inserted into the frozen scaffold or candidate applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,

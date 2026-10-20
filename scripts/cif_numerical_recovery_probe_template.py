@@ -482,6 +482,15 @@ CEDAR33_CASES = {
 }
 CEDAR33_OPTIONS_SHA256 = 'e7bdf4ac2b9dea237f6c29b8015fa665834c435173c1d0662ed4d51b384e6dbd'
 CEDAR33_PDU_CANDIDATE_SHA256 = '10798e337cfa4804601595244581a03745b7893514ce1cb02cde9be426fcf88a'
+CEDAR34_SHA256 = 'a4a50a84eb2cebe17230230c50f533eb9acc899084b5e989d95b366cc3f783b5'
+CEDAR34_BUILD_SHA256 = '6b96148da00d4eb15021600a772e6f0cfd7a107aa4fda709b6266f27d281542c'
+CEDAR34_WORKER_SHA256 = '610d649a34ac7cca15222083eea8984e50a22c9fc19713c3329ed2c76800567b'
+CEDAR34_CHIRAL_SOURCES = {
+    'elbow/utilities/Utilities.py':'74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108',
+    'elbow/chemistry/MoleculeClass.py':'fdc6ec851449c2cd1d947977209a92e9f691ebfe2aee5823cada361bc7e69e48',
+    'elbow/chemistry/TopologyMixins.py':'701214ece8611674b766c4359041f7b3c32b4f55ea02e66207d496b0df5a21bc',
+    'elbow/chemistry/ChiralClass.py':'6276fb3d92d71c4b2156b50d7e844f40c0747b8ede19d566214cfe8774ad49de',
+}
 ELBOW_SOURCE_SHA256 = {
     'elbow/utilities/Utilities.py':'74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108',
     'elbow/utilities/optimisation_manager.py':'92c11aa41be2823726448e7c541dc8a2145c195593da98f4b50742b367adcadf',
@@ -494,7 +503,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -737,16 +746,81 @@ def _read_cedar33_members(members):
     return qualified,prior,rotation
 
 
+def _read_cedar34_members(members):
+    _verify_manifest(members,1320);r=json.loads(members['probe_receipt.json'])
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR34_BUILD_SHA256
+            or r.get('delivery_prefix')!='34_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('status')!='REVIEW' or r.get('analysis_completed') is not True
+            or r.get('requested_action')!='READ_ONLY_STEREOCHEMISTRY_AUDIT'
+            or r.get('native_execution')!='INSTALLED_READER_CHIRALITY_CONTROLS' or r.get('automatic_adoption') is not False
+            or r.get('policy_authority')!='NARestraints'
+            or any(r.get(k) is not True for k in ['original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='NOT_RUN' for k in ['dictionary_generation','model_editing','model_optimization','native_proxy_validation','linked_site_validation','policy_recompilation','refinement','installed_phenix_edits','readyset_retry'])
+            or r['prior_archive']['sha256']!=CEDAR33_SHA256 or r['prior_archive']['verified_payloads']!=1288
+            or set(r['installed_chirality_controls'])!={'DP','PDU'}):
+        raise ValueError('Require the exact returned Cedar 34 stereo controls')
+    nested={n.removeprefix('inputs/review/'):v for n,v in members.items() if n.startswith('inputs/review/')}
+    qualified,prior,rotation=_read_cedar33_members(nested)
+    for code,control in r['installed_chirality_controls'].items():
+        directory=control['directory']
+        if directory.get('anchor')!='probe_directory' or not _safe(directory.get('path')):raise ValueError('Unsafe returned stereo directory')
+        pre=directory['path'];result=control['result']
+        if (json.loads(members[pre+'/chirality_receipt.json'])!={k:v for k,v in control.items() if k!='directory'}
+                or result!=json.loads(members[pre+'/chirality_result.json'])
+                or control.get('constructor_scope')!='READER_CHIRALS_TRUE_NOT_FULL_BUILDER_REPLAY'
+                or control.get('source_preserved') is not True or control.get('installed_sources_preserved') is not True
+                or any(control.get(k)!='NOT_RUN' for k in ['dictionary_generation','installed_phenix_edits','captured_code_execution','pickle_loading'])
+                or control.get('automatic_adoption') is not False or control['declared_marker_conflicts']):
+            raise ValueError('Returned stereo receipt or scope differs')
+        if (len(control['sources'])!=4 or {row['snapshot']['path'] for row in control['sources']}!={n+'.txt' for n in CEDAR34_CHIRAL_SOURCES}):
+            raise ValueError('Returned chirality source scope differs')
+        for row in control['sources']:
+            name=row['snapshot']['path'].removesuffix('.txt')
+            if (row.get('anchor')!='phenix_installation' or row['snapshot'].get('anchor')!='chirality_directory'
+                    or row['path']!='lib/python3.11/site-packages/'+name or row['sha256']!=CEDAR34_CHIRAL_SOURCES[name]
+                    or _sha(members[pre+'/'+name+'.txt'])!=row['sha256'] or len(members[pre+'/'+name+'.txt'])!=row['size']):
+                raise ValueError('Returned installed chirality source differs')
+        if _sha(members[pre+'/chirality_worker.py'])!=CEDAR34_WORKER_SHA256:raise ValueError('Returned constructor worker differs')
+        consumer=members['consumer_preview/'+code+'/source.cif']
+        if consumer!=nested['consumer_preview/'+code+'/source.cif'] or consumer!=members[pre+'/source.cif']:
+            raise ValueError('Returned stereo consumer input differs')
+        inventory=r['source_stereo_inventories'][code]
+        if control['source_inventory']!=inventory or inventory['source_sha256']!=_sha(consumer):raise ValueError('Returned stereo source inventory differs')
+        observed={row['atom']:row['native_chiral_marker'] for row in result['reader_atoms']}
+        if len(observed)!=len(result['reader_atoms']) or set(observed)!=set(inventory['atoms']):raise ValueError('Returned stereo atom inventory differs')
+        if code=='DP':
+            if (control['status']!='REVIEW' or len(observed)!=35 or set(control['unknown_inputs_marked_chiral'])!=set(observed)
+                    or any(v!='?' for v in observed.values()) or result['constructor_probe']['status']!='EXCEPTION'
+                    or result['constructor_probe']['exception_type']!='AssertionError'
+                    or 'assert len(atoms) in [4,5]' not in result['constructor_probe']['traceback']):
+                raise ValueError('Returned DP unknown-marker constructor evidence differs')
+        else:
+            if (control['status']!='READER_MARKERS_PASS' or control['unknown_inputs_marked_chiral'] or len(observed)!=38
+                    or result['constructor_probe']!={'status':'COMPLETED','atom_count':38}
+                    or any((observed[n]!=a['declared_stereo'] if a['declared_stereo'] in {'R','S'} else bool(observed[n]))
+                           for n,a in inventory['atoms'].items())):
+                raise ValueError('Returned PDU source marker/control evidence differs')
+    for code in ['DP','PDU']:
+        if r['saved_optimizer_trajectories'][code]!=json.loads(members['stereochemistry/'+code+'_trajectory.json']):
+            raise ValueError('Returned saved trajectory summary differs')
+    if r['saved_candidate_stereochemistry']['PDU']!=json.loads(members['stereochemistry/PDU_candidate.json']):
+        raise ValueError('Returned saved candidate stereo summary differs')
+    # Legacy optimization_execution=NOT_RUN did not instrument the constructor's
+    # internal ChiralClass.Optimise calls. Never use it as no-optimization proof.
+    return qualified,prior,rotation
+
+
 def _read_capsule(path, expected_sha=None):
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256}):
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256}):
         raise ValueError('Require an exact verified Cedar 29--32 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='33_Cedar':qualified,prior,rotation=_read_cedar33_members(members)
+    if header.get('delivery_prefix')=='34_Cedar':qualified,prior,rotation=_read_cedar34_members(members)
+    elif header.get('delivery_prefix')=='33_Cedar':qualified,prior,rotation=_read_cedar33_members(members)
     elif header.get('delivery_prefix')=='32_Cedar':qualified,prior,rotation=_read_cedar32_members(members)
     elif header.get('delivery_prefix')=='31_Cedar':qualified,prior,rotation=_read_cedar31_members(members)
     elif header.get('delivery_prefix')=='30_Cedar':qualified,prior,rotation=_read_cedar30_members(members)
@@ -757,6 +831,7 @@ def _read_capsule(path, expected_sha=None):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '35_Cedar':'NASolve-live-tests/34_Cedar_cif-numerical-recovery-6j6_ppxr/34_Cedar_6j6_ppxr_cif_numerical_recovery_review.zip',
         '34_Cedar':'NASolve-live-tests/33_Cedar_cif-numerical-recovery-sw8kmgch/33_Cedar_sw8kmgch_cif_numerical_recovery_review.zip',
         '33_Cedar':'NASolve-live-tests/32_Cedar_cif-numerical-recovery-h_lbxjqc/32_Cedar_h_lbxjqc_cif_numerical_recovery_review.zip',
         '32_Cedar':'NASolve-live-tests/31_Cedar_cif-numerical-recovery-95asqu3e/31_Cedar_95asqu3e_cif_numerical_recovery_review.zip',
@@ -775,13 +850,15 @@ def main():
                       help='Use verified Cedar 32 source semantics for one explicit bounded eLBOW block (1--600 steps)')
     mode.add_argument('--stereochemistry-audit-only',action='store_true',
                       help='Audit the saved Cedar 33 candidate and installed reader chirality; no numerical generation')
+    mode.add_argument('--source-dialect-audit-only',action='store_true',
+                      help='Preserve the original reader dialect and inspect native parsed inventory; no constructor or generation')
     args=parser.parse_args();session=None;review=None;original=None;members=None
     receipt={'schema_version':1,'kind':'cif-source-graph-numerical-recovery-probe','delivery_prefix':BUNDLE['delivery_prefix'],'build':BUNDLE,
         'status':'REVIEW','native_execution':'NOT_RUN','native_proxy_validation':'NOT_RUN','linked_site_validation':'NOT_RUN',
         'model_editing':'NOT_RUN','model_optimization':'NOT_RUN','dictionary_generation':'NOT_RUN','policy_recompilation':'NOT_RUN',
         'readyset_retry':'NOT_RUN','refinement':'NOT_RUN','scientific_approval':'NOT_RUN','automatic_adoption':False,
         'diffraction_data':'NOT_READ','policy_authority':'NARestraints','installed_phenix_edits':'NOT_RUN',
-        'requested_action':'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
+        'requested_action':'SOURCE_DIALECT_READER_AUDIT' if args.source_dialect_audit_only else 'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
         'limits':{'max_components':3,'generation_timeout_per_component':args.timeout_seconds,'read_only_timeout_per_component':min(args.timeout_seconds,60),
                   'single_block_steps':args.single_block_steps},
         'limitations':['Separate dictionary candidates only; none is applied to a native manager or model.',
@@ -813,6 +890,11 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='34_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'34_Cedar','DP':'UNKNOWN_MARKERS_AND_CONSTRUCTOR_ASSERTION',
+                'PDU':'KNOWN_MARKERS_AND_CONSTRUCTOR_COMPLETED',
+                'constructor_internal_optimization':'LOCAL_CHIRAL_TEMPLATE_OPTIMIZATION_IN_NATIVE_SOURCE; LEGACY_NOT_RUN_FLAG_NOT_A_PROOF',
+                'evidence':{'anchor':'probe_directory','path':'inputs/review/probe_receipt.json'}}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='33_Cedar':
             receipt['previous_execution']={'delivery_prefix':'33_Cedar','DP':'PREPARATORY_CHIRALITY_FAILURE_NO_CANDIDATE',
                 'PDU':'CANDIDATE_REVIEW_NOT_CONVERGED_REPORTED',
@@ -826,6 +908,8 @@ def main():
             raise ValueError('Single-block delivery requires the reviewed installed Cedar 32 source contract')
         if args.stereochemistry_audit_only != (json.loads(members['probe_receipt.json'])['delivery_prefix']=='33_Cedar'):
             raise ValueError('Cedar 33 is only supported by the explicit read-only stereochemistry action')
+        if args.source_dialect_audit_only != (json.loads(members['probe_receipt.json'])['delivery_prefix']=='34_Cedar'):
+            raise ValueError('Cedar 34 is only supported by the explicit source-dialect reader action')
         from nasolve.cif_numerical_recovery import plan_numerical_recovery,prepare_graph_generation_source,generate_numerical_recovery,validate_rotation_evidence
         from nasolve.cif_fixed_geometry import qualify_fixed_policy_geometry
         expected=json.loads(source_members[ROTATION_PREFIX+'/expected_inventory.json']);saved=prior['geometry_trial']['result']
@@ -841,7 +925,7 @@ def main():
         receipt.update(prior_archive={'sha256':_sha(original),'bytes':len(original),'verified_payloads':len(json.loads(members['manifest.json']))},
             prior_convergence=rotation['prior_convergence'],prior_stopping=rotation['prior_stopping'],prior_continuation=rotation['prior_continuation'],
             prerequisite_mechanics_replayed=True,prior_rotation_evidence_recomputed=validation,source_plan=plan)
-        print('Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
+        print('Source-dialect reader audit:' if args.source_dialect_audit_only else 'Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
         print('Explicit candidates:',', '.join(plan['recovery_codes']),flush=True)
         print('Verified prior mechanics and rotational derivatives; no model optimization.',flush=True)
         receipt['graph_preparations']={}
@@ -868,28 +952,39 @@ def main():
         from nasolve.cif_elbow_input import prepare_elbow_ccd_input
         receipt['consumer_preparations']={}
         for code in sources:
-            receipt['consumer_preparations'][code]=prepare_elbow_ccd_input(session/'graph_preview'/code/'source.cif',code,session/'consumer_preview'/code/'source.cif')
-        if args.stereochemistry_audit_only:
+            if args.source_dialect_audit_only:
+                from nasolve.cif_elbow_input import prepare_elbow_source_dialect_input
+                receipt['consumer_preparations'][code]=prepare_elbow_source_dialect_input(sources[code],session/'graph_preview'/code/'source.cif',code,session/'consumer_preview'/code/'source.cif')
+                print(code,'source reader:',receipt['consumer_preparations'][code]['consumer_reader_dialect'],flush=True)
+            else:
+                receipt['consumer_preparations'][code]=prepare_elbow_ccd_input(session/'graph_preview'/code/'source.cif',code,session/'consumer_preview'/code/'source.cif')
+        if args.stereochemistry_audit_only or args.source_dialect_audit_only:
             from nasolve.cif_stereochemistry_audit import reader_stereo_inventory,audit_candidate_stereochemistry,audit_optimizer_log
             from nasolve.cif_generation import inspect_component_generation
             receipt['source_stereo_inventories']={code:reader_stereo_inventory(session/'consumer_preview'/code/'source.cif',code) for code in sources}
             receipt['saved_candidate_stereochemistry']={};receipt['saved_optimizer_trajectories']={}
+            trial_members=({n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')} if args.source_dialect_audit_only else members)
+            trial_root=frozen/'inputs/review' if args.source_dialect_audit_only else frozen
             for code,(pre,generatedir,_) in CEDAR33_CASES.items():
                 if code not in sources:raise ValueError('Read-only stereo scope must preserve both reviewed cases')
                 gp=pre+'/generation/'+generatedir
-                if (session/'consumer_preview'/code/'source.cif').read_bytes()!=members['consumer_preview/'+code+'/source.cif']:
+                if args.stereochemistry_audit_only and (session/'consumer_preview'/code/'source.cif').read_bytes()!=members['consumer_preview/'+code+'/source.cif']:
                     raise ValueError('Fresh stereo consumer differs from the reviewed trial')
-                output=frozen/gp/'candidate.cif'
+                output=trial_root/gp/'candidate.cif'
                 if output.is_file():
-                    inspection=inspect_component_generation(frozen/pre/'original/source.cif',output,code)
-                    previous=json.loads(members['probe_receipt.json'])['candidates'][code]['original_source_inspection']
+                    inspection=inspect_component_generation(trial_root/pre/'original/source.cif',output,code)
+                    previous=json.loads(trial_members['probe_receipt.json'])['candidates'][code]['original_source_inspection']
                     if any(inspection[k]!=previous[k] for k in ['status','rejection_reasons','chemical_changes','bond_representation','numerical_issues']):
                         raise ValueError('Saved candidate numerical/chemical assessment does not replay')
-                    result=audit_candidate_stereochemistry(frozen/pre/'original/source.cif',output,code)
+                    result=audit_candidate_stereochemistry(trial_root/pre/'original/source.cif',output,code)
+                    if args.source_dialect_audit_only and result!=json.loads(members['probe_receipt.json'])['saved_candidate_stereochemistry'][code]:
+                        raise ValueError('Returned saved candidate stereo evidence does not replay')
                     receipt['saved_candidate_stereochemistry'][code]=result
                     _json(session/'stereochemistry'/(code+'_candidate.json'),result)
                     print(code,'saved candidate stereo:',result['status'],'; absolute CIP assignment NOT_RUN',flush=True)
-                trajectory=audit_optimizer_log(members[gp+'/elbow.log'].decode())
+                trajectory=audit_optimizer_log(trial_members[gp+'/elbow.log'].decode())
+                if args.source_dialect_audit_only and trajectory!=json.loads(members['probe_receipt.json'])['saved_optimizer_trajectories'][code]:
+                    raise ValueError('Returned saved trajectory evidence does not replay')
                 receipt['saved_optimizer_trajectories'][code]=trajectory
                 _json(session/'stereochemistry'/(code+'_trajectory.json'),trajectory)
         if not args.inspect_only:
@@ -899,6 +994,27 @@ def main():
             elbow=phenix.executables.get('phenix.elbow')
             if not elbow or not Path(elbow).resolve().is_relative_to(Path(phenix.root).resolve()):raise ValueError('Require an installation-bound eLBOW')
             receipt['elbow_executable_sha256']=_sha(Path(elbow).read_bytes());receipt['phenix_version']=phenix.version
+            if args.source_dialect_audit_only:
+                from nasolve.cif_elbow_chirality import verify_chirality_sources
+                from nasolve.cif_elbow_contract import verify_elbow_source_capture
+                from nasolve.cif_source_reader import audit_source_reader,verify_source_reader_capture
+                previous=json.loads(members['probe_receipt.json'])
+                prior_contract=json.loads(trial_members['probe_receipt.json'])['installed_elbow_contract']
+                verify_elbow_source_capture(phenix.root,prior_contract,trial_root/prior_contract['source_directory']['path'])
+                for code,row in previous['installed_chirality_controls'].items():
+                    verify_chirality_sources(phenix.root,row,frozen/row['directory']['path'])
+                receipt['source_reader_audits']={}
+                for code in sources:
+                    output=session/'native_source_reader'/code
+                    result=audit_source_reader(phenix.root,phenix.executables['phenix.python'],fingerprints,
+                        session/'consumer_preview'/code/'source.cif',code,output,environment=phenix.environment,
+                        expected_dialect=receipt['consumer_preparations'][code]['consumer_reader_dialect'],timeout_seconds=min(args.timeout_seconds,30))
+                    receipt['source_reader_audits'][code]={'directory':{'anchor':'probe_directory','path':output.relative_to(session).as_posix()},**result}
+                    print(code,'native source reader:',result['status'],'; execution',result['result']['execution'],flush=True)
+                for code,row in receipt['source_reader_audits'].items():verify_source_reader_capture(phenix.root,row,session/'native_source_reader'/code)
+                for code,row in previous['installed_chirality_controls'].items():verify_chirality_sources(phenix.root,row,frozen/row['directory']['path'])
+                verify_elbow_source_capture(phenix.root,prior_contract,trial_root/prior_contract['source_directory']['path'])
+                receipt['native_execution']='SOURCE_READER_DIALECT_CONTROLS'
             if args.stereochemistry_audit_only:
                 from nasolve.cif_elbow_contract import verify_elbow_source_capture
                 from nasolve.cif_elbow_chirality import audit_installed_chirality,verify_chirality_sources
@@ -936,7 +1052,7 @@ def main():
                     print(code,'read-only input:',result['status'],'; dictionary generation NOT_RUN',flush=True)
                 verify_elbow_source_capture(phenix.root,contract,source_directory)
                 receipt['native_execution']='READ_ONLY_INPUT_CHECKS'
-            if not args.native_contract_only and not args.stereochemistry_audit_only:
+            if not args.native_contract_only and not args.stereochemistry_audit_only and not args.source_dialect_audit_only:
                 receipt['dictionary_generation']='ATTEMPTED';receipt['candidates']={}
                 receipt['single_block_options']={}
                 for code,source in sources.items():
@@ -976,7 +1092,7 @@ def main():
         if review.read_bytes()!=original:raise ValueError('Original review ZIP changed')
         receipt.update(analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True)
         _json(session/'probe_receipt.json',receipt)
-        print('Diagnostic: REVIEW ('+('read-only source/candidate stereochemistry' if args.stereochemistry_audit_only else 'installed source/read-only input evidence' if args.native_contract_only else 'dictionary candidates only')+'; native/scientific qualification remains open)',flush=True)
+        print('Diagnostic: REVIEW ('+('source-dialect reader evidence' if args.source_dialect_audit_only else 'read-only source/candidate stereochemistry' if args.stereochemistry_audit_only else 'installed source/read-only input evidence' if args.native_contract_only else 'dictionary candidates only')+'; native/scientific qualification remains open)',flush=True)
         print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
     except Exception as exc:
         receipt.update(analysis_completed=False,error=str(exc))

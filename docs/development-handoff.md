@@ -629,7 +629,7 @@ TopologyMixins.py and ChiralClass.py under the verified installation anchor.
 A maximum 30-second worker per component records actual reader markers and
 separately exercises the reader's chirals=True constructor. It is not a full
 builder replay. Constructor exceptions stay evidence; selected module identity,
-snapshots, input and dispatcher hashes are checked throughout. No optimizer,
+snapshots, input and dispatcher hashes are checked throughout. No whole-molecule trial,
 dictionary writer, captured source or serialized molecule is requested. Linux
 subprocess controls are explicit fakes; the installed stereo result is pending.
 The **55 new regressions**, **269 focused tests (31.11 s)** and **2,095 full
@@ -638,7 +638,45 @@ all 118 runtime members after deleting both clean build copies and poisoning
 ambient imports. The older-checkout tracked edit and local runner ignore survive.
 Exact commands and bounds are recorded in the native ledger.
 
-**Current action:** run Cedar 34 through the pinned one-block Git handoff and
+**Cedar 34 returned and verified: DP constructor assertion; PDU known-marker PASS.**
+All **1,320 payloads**, the preserved 1,288-payload predecessor and all source,
+worker and input hashes verify. Trusted runner ffc4d69a matches clean NASolve
+efd63bd3 / pinned NARestraints and all 118 runtime members. The original 17
+mechanics and 96 rotation checks replay; saved PDU stereo/trajectory summaries
+also reproduce. DP marks every unknown token as chiral and fails the same
+ChiralClass assertion; PDU's three known markers and constructor pass.
+
+The captured code corrects the earlier constructor-scope description:
+Chiralise invokes ChiralClass.Optimise on local templates, with native RS
+notation. Legacy optimization/CIP NOT_RUN flags did not instrument these
+operations. Preserve the historical receipts and this explicit interpretation;
+no whole-molecule dictionary trial or saved source/candidate/model edit ran.
+Future constructor reports use policy v2 and uninstrumented-internals fields.
+
+The original DP has data_comp_list, but the graph export removed it. The
+installed dispatcher therefore selects CCD instead of the monomer reader.
+**Cedar 35 prepared:** an explicit source-dialect adapter preserves original
+comp_list routing, source metadata, signed declarations and equal x/y/z aliases
+in a separate target-free input. It invents no atom chirality, adds no old
+numerical target/energy type and leaves PDU's CCD consumer byte-identical.
+DP consumer SHA-256 is
+4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa.
+
+Use --delivery-prefix 35_Cedar --component-control PDU, then the exact Cedar 34
+ZIP with --component DP --source-dialect-audit-only. A maximum 30-second selected
+native parser read per component records dispatch and atom/bond/charge/coordinate
+inventory, with exact dispatcher and monomer-parser snapshots. It requests no
+chiral constructor or numerical generation; parser internals remain uninstrumented.
+Raw mismatches retain review, and charge semantics/signed stereo remain separately
+unqualified pending the returned parser source. All **41 new regressions**, **310 focused tests (36.04 s)** and **2,136 full
+tests, two skips and 276 subtests (164.60 s)** pass. Actual-input transport
+verifies 119 runtime members after removing both clean build copies and poisoning
+ambient imports; tracked local edits and runner ignores survive. Documentation
+mirrors, 148 relative links and the rendered editable figure pass. Exact commands
+and bounds are recorded in the native ledger. Installed
+source-reader acceptance remains pending; default generation is unchanged.
+
+**Current action:** run Cedar 35 through the pinned one-block Git handoff and
 return its console and review ZIP. Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

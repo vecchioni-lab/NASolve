@@ -851,9 +851,28 @@ atom markers and exercises that reader's own chirals=True constructor, capturing
 the three additional molecule/topology/chirality modules as non-importable text. This isolated entry
 point is not a replay of the full builder. Native sources, snapshots, dispatcher
 and frozen inputs are checked before and after. Constructor exceptions remain
-evidence. No optimizer, dictionary writer, pickle, model change or adoption is
-requested. Missing metadata, absolute stereo, convergence and native dictionary
+evidence. No whole-molecule trial, dictionary writer, pickle, model change or adoption is
+requested. Constructor-local template operations are described below. Missing metadata, absolute stereo, convergence and native dictionary
 qualification remain distinct open gates.
+
+Returned Cedar 34 reproduces the DP assertion with all 35 unknown tokens marked
+as native chirality; PDU retains its three known markers and completes the
+constructor. There is a scope correction: native Chiralise internally calls
+ChiralClass.Optimise on local templates. The earlier NOT_RUN flag meant no
+explicit whole-molecule trial and did not instrument those internal operations.
+No saved source, candidate or crystal model changed.
+
+The original DP source is a monomer restraint dictionary with a comp_list block.
+The graph-only export removed that block, which directs the installed dispatcher
+into the CCD path. Preserving the source's reader dialect avoids inventing
+nonchiral or R/S atom declarations to satisfy that different input contract.
+Cedar 35 restores the explicit list layout and exact coordinate aliases in a
+separate target-free input; signed volumes and chemical declarations survive.
+PDU keeps its original CCD route and byte-identical input. A bounded installed
+parser read records the actual format and atom/bond/charge/coordinate inventory,
+plus the exact dispatcher and monomer-parser sources. It requests no chiral
+constructor or numerical generation. Parser internals are not instrumented;
+signed stereo, formal-charge semantics and full generation still need review.
 
 ## Primary references
 

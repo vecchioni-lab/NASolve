@@ -12,7 +12,7 @@ from .cif_elbow_contract import _inside, _safe, MAX_SOURCE_BYTES
 from .cif_generation import _terminate_owned_group
 from .cif_stereochemistry_audit import reader_stereo_inventory
 
-POLICY_ID='cif-installed-elbow-chirality-control-v1'
+POLICY_ID='cif-installed-elbow-chirality-control-v2'
 SOURCE_PATHS=('elbow/utilities/Utilities.py','elbow/chemistry/MoleculeClass.py',
               'elbow/chemistry/TopologyMixins.py','elbow/chemistry/ChiralClass.py')
 
@@ -41,7 +41,8 @@ if not {'code','filename','chirals'}<=set(inspect.signature(reader).parameters):
     raise ValueError('Unsupported installed reader signature')
 source=Path('source.cif');original=digest(source)
 result={'reader_atoms':[], 'constructor_probe':{'status':'NOT_RUN'},
-        'dictionary_generation':'NOT_RUN','optimization_execution':'NOT_RUN',
+        'dictionary_generation':'NOT_RUN','optimization_execution':'CONSTRUCTOR_INTERNALS_NOT_INSTRUMENTED',
+        'whole_molecule_optimization':'NOT_RUN',
         'captured_code_execution':'NOT_RUN','pickle_loading':'NOT_RUN'}
 molecule=reader(spec['component'],filename=str(source.resolve()),chirals=False)
 if molecule is None:raise ValueError('Installed reader returned no molecule')
@@ -53,7 +54,8 @@ if (len(result['reader_atoms'])!=len(spec['atoms']) or
     {r['atom'] for r in result['reader_atoms']}!=set(spec['atoms']) or
     len(molecule.bonds)!=spec['bond_count']):raise ValueError('Native reader changed atom/bond inventory')
 # This is the reader's own explicit chirals=True entry point. It is not the
-# complete builder pipeline, and invokes no optimizer or dictionary writer.
+# complete builder pipeline. Native Chiralise can optimize local templates;
+# those transitive operations are not instrumented by this control.
 try:
     control=reader(spec['component'],filename=str(source.resolve()),chirals=True)
     result['constructor_probe']={'status':'COMPLETED','atom_count':len(control)}
@@ -119,7 +121,10 @@ def audit_installed_chirality(installation_root, python_executable, api_sources,
     report={'schema_version':1,'policy_id':POLICY_ID,'component':code,'sources':rows,'source_inventory':inventory,
             'status':'REVIEW','installed_module_execution':'READER_AND_ITS_CHIRAL_CONSTRUCTOR_ONLY',
             'constructor_scope':'READER_CHIRALS_TRUE_NOT_FULL_BUILDER_REPLAY',
-            'absolute_cip_assignment':'NOT_RUN','optimization_execution':'NOT_RUN','dictionary_generation':'NOT_RUN',
+            'absolute_cip_assignment':'NATIVE_CONSTRUCTOR_INTERNALS_NOT_INSTRUMENTED',
+            'independent_absolute_cip_validation':'NOT_RUN',
+            'optimization_execution':'CONSTRUCTOR_INTERNALS_NOT_INSTRUMENTED',
+            'whole_molecule_optimization':'NOT_RUN','dictionary_generation':'NOT_RUN',
             'installed_phenix_edits':'NOT_RUN','captured_code_execution':'NOT_RUN','pickle_loading':'NOT_RUN','automatic_adoption':False}
     verify_chirality_sources(root,report,output)
     with (output/'chirality_worker.log').open('xb') as log:

@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserved source reader dialect and accurate constructor scope
+
+- Verify all 1,320 Cedar 34 payloads: DP's 35 unknown native markers reproduce
+  the chirality assertion; PDU's known-marker constructor passes. Correct the
+  scope record: that constructor internally minimizes local chiral templates.
+  Historical NOT_RUN flags did not measure those operations; no whole-molecule
+  dictionary trial or saved-model change occurred.
+- Add an explicit source-dialect adapter preserving original comp_list monomer
+  routing, signed declarations and exact coordinate aliases in a separate
+  target-free input. Keep CCD controls unchanged; infer no N/R/S atom labels.
+- Add Cedar 35 bounded installed parser/dispatch/readback controls and two exact
+  parser snapshots, without a chiral-constructor or generation request. Keep
+  raw disagreements, unqualified charge semantics and signed stereo visible.
+  All 41 new regressions, 310 focused and 2,136 full tests pass, with two skips
+  and 276 subtests. Deleted-source/poisoned-import transport and documentation
+  checks pass; exact commands are recorded in the existing native ledger. Production defaults and dependencies stay unchanged;
+  installed acceptance awaits the returned Mac evidence.
+
 ### Read-only source and native-reader stereochemistry evidence
 
 - Verify all 1,288 Cedar 33 payloads and replay prior mechanics/rotation evidence.
@@ -19,14 +37,14 @@ entries are reconstructed from repository history.
   printed energy trajectory without inferring an optimum or convergence.
 - Add bounded installation-bound reader/chiral-constructor controls and exact
   molecule/topology/chirality source snapshots. Preserve unknown declarations;
-  no false nonchiral labels, absolute CIP assignment, optimizer, dictionary
+  no false nonchiral labels, independent CIP validation, whole-molecule trial, dictionary
   generation, captured-code execution, pickle loading or adoption is requested.
   This isolated reader constructor is not a full builder replay.
 - Add 55 generic stereo, chemical-integrity, capsule and fake-native isolation
   regressions. All 269 focused and 2,095 full tests pass, with two skips and
   276 subtests; deleted-source/poisoned-import transport and documentation
   checks pass. Exact commands are recorded in the existing native ledger. No new dependency or production-default change;
-  actual installed stereo execution awaits the Mac diagnostic.
+  returned installed controls are recorded above with their corrected scope.
 
 ### Reader-dialect projection and explicit bounded eLBOW trial
 
@@ -43,8 +61,8 @@ entries are reconstructed from repository history.
 - Preserve nonconvergence evidence independently of exit status/file creation,
   and retain original source/candidate/charge/numerical gates. All 39 new
   regressions, 214 focused and 2,040 full tests pass, with two skips and 276
-  subtests; actual-input deleted-source transport passes. Native execution is
-  pending. Production
+  subtests; actual-input deleted-source transport passes. Returned native attempts
+  retain DP preparation and PDU nonconvergence review. Production
   defaults, NARestraints policy, dependencies and adoption gates are unchanged.
 
 ### Installed eLBOW input contract and alias metadata

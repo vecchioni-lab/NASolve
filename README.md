@@ -98,6 +98,11 @@ handling before optimization; PDU writes a nonconverged dictionary. PDU's three
 signed sugar volumes preserve source-coordinate handedness, but its R/S labels
 are omitted. Cedar 34 separately audits these stereo boundaries through saved
 candidate comparisons and bounded installed-reader controls, without generation.
+Returned Cedar 34 reproduces DP's unknown-marker constructor failure and passes
+PDU's known-marker control. Its captured code also shows local chiral-template
+minimization inside the constructor; no full dictionary trial ran. Cedar 35
+preserves the source dictionary's reader dialect and checks native parsed
+inventory before another generation. Native acceptance remains pending.
 No candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.

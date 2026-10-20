@@ -498,6 +498,17 @@ Bounded selected-installation reader controls record native markers and the
 reader's isolated chiral constructor, with four exact module snapshots and
 before/after integrity checks. This is not a full builder replay, absolute CIP
 assignment or dictionary qualification; exceptions and nonconvergence stay open.
+Returned Cedar 34 verifies all 1,320 payloads. DP marks all 35 unknown tokens as
+native chirality and reproduces the constructor assertion; PDU's known markers
+and constructor pass. The constructor invokes local ChiralClass.Optimise, so its
+legacy NOT_RUN optimization flag is not evidence of no internal optimization.
+The frozen files and whole-molecule generation remain untouched. Cedar 35
+preserves an original comp_list monomer-reader route in a target-free consumer,
+retaining signed volumes and adding equal source-coordinate aliases. CCD source
+routing stays unchanged. Selected-installation parsing records dispatch and raw
+atom/bond/charge/coordinate values, with two exact parser snapshots; no chiral
+constructor or numerical generation is requested. Parsed value equality alone
+does not qualify charge semantics, signed stereo or another generation.
 No new dictionary is composed with modifiers or applied to a native model.
 
 
