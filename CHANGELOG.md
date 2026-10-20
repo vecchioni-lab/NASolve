@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Declared monomer order tokens and isolated formal-charge control
+
+- Verify all 1,355 Cedar 36 payloads. Both installed readers complete; PDU
+  passes raw inventory checks. DP retains route/atoms/coordinates/signed markers
+  while five double orders become single and two declared -1 charges become zero.
+- Translate declared bond-order aliases to the monomer reader's case-sensitive
+  lowercase vocabulary in a separate consumer input. Preserve original source,
+  graph, signed declarations and chemical order; leave CCD control bytes fixed.
+- Add Cedar 37's explicit source-charge population control on a temporary native
+  component. Require exact graph/coordinate preconditions and pinned charge-API
+  source proofs; retain raw reader results, block conflicts and independently
+  check post-population charges/total and unchanged recorded graph/stereo fields.
+  No production default, dependency, generator, optimizer or adoption changes.
+  All 48 new regressions, 180 focused and 2,200 full tests pass, with two skips
+  and 276 subtests. Actual-capsule replay also passes after deleted/relocated
+  builds, through an aliased temp root with poisoned ambient imports. Installed
+  token/charge-control acceptance awaits the Mac return.
+
 ### Portable temporary graph checks and preserved failed preflight
 
 - Verify all 1,327 Cedar 35 payloads. The audit stops before native parsing;

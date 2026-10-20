@@ -172,6 +172,10 @@ for actual behavior; history is evidence, not a second task queue.
   the declared source reader dialect and tests parsed inventory before generation;
   its return stops at a temporary-path preflight. Cedar 36 canonicalizes
   the owned temporary directory and preserves the failure for a parser retry.
+  Its return passes PDU and identifies DP's case-sensitive bond-token fallback
+  and omitted formal charges. Cedar 37 translates only declared bond tokens and
+  tests explicit source-charge population on the temporary native component,
+  with raw findings and source-bound API proofs preserved.
   Numerical/native qualification remains open. No residue is
   inserted into the frozen scaffold or candidate applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,

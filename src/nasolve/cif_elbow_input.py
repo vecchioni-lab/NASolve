@@ -158,12 +158,21 @@ def prepare_elbow_source_dialect_input(original, graph, code, output):
         raise ValueError('Graph export changed source chemical declarations')
     legacy=any(b.values['data_'].lower()=='comp_list' and code in b.values.get('_chem_comp.id',[])
                for b in _blocks(original))
-    aliases=[];projection=None
+    aliases=[];projection=None;bond_tokens=None
     if legacy:
         values=component_values(graph,code);source=component_values(original,code)
         a,b='_chem_comp_atom.','_chem_comp_bond.'
         if b+'type' not in values or a+'charge' not in values:
             raise ValueError('Source monomer dialect needs its declared type/charge fields')
+        # The selected monomer reader's lookup is case sensitive and silently
+        # defaults unknown tokens to single. Translate declared orders only.
+        native={'SINGLE':'single','DOUBLE':'double','TRIPLE':'triple',
+                'AROMATIC':'aromatic','DELOCALIZED':'deloc'}
+        before=list(values[b+'type'])
+        try:values[b+'type']=[native[_ORDERS[token.upper()]] for token in before]
+        except KeyError:raise ValueError('Unsupported declared monomer bond order') from None
+        bond_tokens={'source':before,'consumer':list(values[b+'type']),
+                     'policy':'DECLARED_ORDER_TO_CASE_SENSITIVE_MONOMER_TOKEN'}
         # Source metadata stays metadata; no old numerical restraint or energy
         # type is reintroduced into the target-free graph.
         values.update({k:v for k,v in source.items() if k.startswith('_chem_comp.')})
@@ -185,10 +194,11 @@ def prepare_elbow_source_dialect_input(original, graph, code, output):
         projection=prepare_elbow_ccd_input(graph,code,output)
         dialect='CHEMICAL_COMPONENTS_CIF'
     if any(p.read_bytes()!=d for p,d in frozen.items()):raise ValueError('Reader-dialect source changed')
-    return {'schema_version':1,'policy_id':'cif-source-reader-dialect-preservation-v1','component':code,
+    return {'schema_version':1,'policy_id':'cif-source-reader-dialect-preservation-v2','component':code,
         'source_reader_dialect':dialect,'consumer_reader_dialect':dialect,
         'original_source_sha256':sha256(frozen[original]).hexdigest(),'graph_sha256':sha256(frozen[graph]).hexdigest(),
         'consumer_sha256':sha256(output.read_bytes()).hexdigest(),'coordinate_aliases':aliases,
+        'monomer_bond_tokens':bond_tokens,
         'chemical_declarations':'PRESERVED','stereochemistry_inferred':False,'ccd_projection':projection,
         'source_preserved':True,'graph_preserved':True,'raw_comparison':compare_dictionaries([graph],[output]),
         'native_reader_qualification':'NOT_RUN','automatic_adoption':False}

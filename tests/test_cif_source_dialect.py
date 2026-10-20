@@ -28,11 +28,35 @@ def test_source_monomer_dispatch_survives_target_free_export(tmp_path,code):
     assert 'data_comp_list\n#\nloop_' in out.read_text()
     assert '_chem_comp_atom.pdbx_stereo_config' not in parsed
     assert '_chem_comp_atom.type_energy' not in parsed
-    assert parsed['_chem_comp_bond.type']==v['_chem_comp_bond.type']
+    assert parsed['_chem_comp_bond.type']==[s.lower() for s in v['_chem_comp_bond.type']]
     assert parsed['_chem_comp_chir.volume_sign']==v['_chem_comp_chir.volume_sign']
     assert parsed['_chem_comp_atom.x']==v['_chem_comp_atom.x']
     assert (src.read_bytes(),graph.read_bytes())==before
     assert r['chemical_declarations']=='PRESERVED' and r['stereochemistry_inferred'] is False
+
+
+@pytest.mark.parametrize('code',['Q17','R29'])
+@pytest.mark.parametrize('tokens,consumer,orders',[
+    (['SINGLE','DOUBLE','TRIPLE'],['single','double','triple'],[1,2,3]),
+    (['SING','DOUB','TRIP'],['single','double','triple'],[1,2,3]),
+    (['single','double','triple'],['single','double','triple'],[1,2,3]),
+    (['AROM','AROMATIC','DELOC'],['aromatic','aromatic','deloc'],[1.5,1.5,1.5])])
+def test_monomer_tokens_keep_declared_orders_in_a_case_sensitive_native_reader(tmp_path,code,tokens,consumer,orders):
+    from nasolve.cif_elbow_input import prepare_elbow_source_dialect_input
+    from nasolve.cif_doctor import compare_dictionaries
+    v=legacy_values(code);v['_chem_comp_bond.type']=tokens
+    src=tmp_path/'original.cif';src.write_text(_render(v,code));before=src.read_bytes()
+    graph=tmp_path/'graph/source.cif';prepare_graph_generation_source(src,code,graph)
+    out=tmp_path/'consumer/source.cif';r=prepare_elbow_source_dialect_input(src,graph,code,out)
+    parsed=component_values(out,code)
+    # Captured monomer reader uses this exact case-sensitive lookup and defaults
+    # unrecognized tokens to single. The adapter must preserve all three orders.
+    native={'single':1,'double':2,'triple':3,'aromatic':1.5,'deloc':1.5}
+    assert [native.get(s,1) for s in parsed['_chem_comp_bond.type']]==orders
+    assert r['monomer_bond_tokens']['source']==tokens
+    assert r['monomer_bond_tokens']['consumer']==consumer
+    assert not [d for d in compare_dictionaries([graph],[out])['differences'] if d['field']=='bond_orders']
+    assert src.read_bytes()==before
 
 
 def test_public_ccd_control_keeps_its_existing_reader_and_consumer_bytes(tmp_path):

@@ -698,10 +698,41 @@ are removed, with poisoned ambient imports and the everyday tracked edit intact.
 Both consumer hashes are unchanged. Exact commands and bounds are recorded in
 the native ledger.
 
-**Current action:** run Cedar 36 through the pinned one-block Git handoff with
---delivery-prefix 36_Cedar --component-control PDU, then the exact Cedar 35 ZIP
-with --component DP --source-dialect-audit-only. Return its console and review
-ZIP. Installed parser acceptance under Phenix **2.2.1-6174** remains pending.
+**Cedar 36 returned: native reads complete; DP order/charge boundary exposed.**
+All **1,355 payloads**, all byte-identical predecessor members, pinned clean
+runner/build and 119 runtime members verify. The 17 mechanics and 96 rotation
+checks replay. Both parser snapshots match in both native cases. PDU passes all
+six raw route/inventory checks. DP preserves route, 35 atoms/elements, 37 bond
+memberships, source coordinates and four signed markers, but every bond is
+single and both source -1 charges are zero. The captured parser's lookup accepts
+lowercase order words and defaults unknown spelling to single; its atom loop
+reads no charge field. No new optimizer, generation or saved model change ran.
+
+**Cedar 37 prepared:** translate explicit monomer order aliases to the exact
+lowercase vocabulary, preserving order semantics and original source/graph
+bytes. Separately test source-declared charge population on the temporary parsed
+component using --declared-charge-control. Exact route/identities/elements/bond
+orders/coordinates and complete integer charges bounded by the reviewed native
+Chargise constraint are preconditions. Conflicts block assignment; only an
+otherwise zero monomer object is populated by identity and source total.
+Already-correct CCD charges are checked without assignment. Raw reader findings
+stay separate; before/after recorded graph/stereo fields and a fresh host-side
+inventory/total check accompany the control. Two additional Utilities/MoleculeClass
+snapshots must match the verified Cedar 34 source proofs. No constructor,
+Chargise, optimizer, generator or production-default change is requested.
+All **48 new regressions**, **180 focused tests (22.36 s)** and **2,200 full
+tests, two skips and 276 subtests (172.19 s)** pass. The relocated runner
+replays all 1,355 actual payloads after both clean build copies are removed, with
+an aliased temp root and poisoned ambient imports. It replays raw reader
+findings, retains the tracked local edit and keeps PDU bytes unchanged. The
+120-member runtime is verified; exact commands and bounds are in the native ledger.
+
+**Current action:** run Cedar 37 through the pinned one-block Git handoff with
+--delivery-prefix 37_Cedar --component-control PDU, then the exact Cedar 36 ZIP
+with --component DP --source-dialect-audit-only --declared-charge-control.
+Return its console and review ZIP. Selected installation is Phenix
+**2.2.1-6174** (dispatcher reports **2.2.1**); native population acceptance and
+complete signed-stereo/generator qualification remain pending.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

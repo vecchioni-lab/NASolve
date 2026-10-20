@@ -514,6 +514,19 @@ aliased system temporary path to the strict output guard. Cedar 36 resolves only
 the freshly created, tool-owned temporary directory. Caller-selected output
 symlink checks remain strict; the retry retains the complete failed capsule
 and replays its nested source, stereo and mechanics evidence.
+Returned Cedar 36 completes both readers. DP keeps atom identities/elements,
+source coordinates and signed markers, but all native bonds are single and its
+two declared -1 charges become zero. The captured monomer parser's bond lookup
+is case sensitive and its atom-construction loop reads no charge field. PDU
+passes raw route/inventory checks. Cedar 37 maps only explicit order aliases to
+the parser's lowercase vocabulary, leaving chemical order unchanged. A separate
+opt-in declared-charge control checks exact identities/elements/orders/coordinates
+and a complete integer source charge map before populating an otherwise zero
+native monomer object. Conflicts block population; already-preserved CCD charges
+are verified without assignment. Pinned Utilities/MoleculeClass sources bind
+the integer charge API. Raw parser findings, before/after recorded graph and
+stereo fields and a separately recomputed control result remain distinct.
+This is an isolated component-object control, not a generator or model repair.
 No new dictionary is composed with modifiers or applied to a native model.
 
 

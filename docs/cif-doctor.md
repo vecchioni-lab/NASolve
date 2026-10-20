@@ -1431,9 +1431,10 @@ independent CIP validation from native constructor operations.
 
 ### Preserved source reader dialect
 
-Cedar 36 uses --delivery-prefix 36_Cedar --component-control PDU, then the exact
-Cedar 35 ZIP with --component DP --source-dialect-audit-only. It preserves the
-failed Cedar 35 preflight and verifies its nested Cedar 34 source/worker/input
+Cedar 37 uses --delivery-prefix 37_Cedar --component-control PDU, then the exact
+Cedar 36 ZIP with --component DP --source-dialect-audit-only
+--declared-charge-control. It preserves the completed raw reader audit and
+failed Cedar 35 preflight, and verifies nested Cedar 34 source/worker/input
 hashes, native marker/constructor outcomes and all previous evidence. It also
 replays saved PDU comparisons and printed trajectories.
 
@@ -1472,8 +1473,37 @@ The native charge attribute's semantics and signed-stereo interpretation require
 the returned parser source, independently of equality checks. No chiral
 constructor or whole-molecule optimizer is requested; parser internals remain
 uninstrumented. Snapshot/input/dispatcher/source checks surround both controls.
-The new source_reader_audits receipt and SOURCE_READER_DIALECT_CONTROLS status
-are additive; installed parser acceptance is pending. No new dependency, policy
+The source_reader_audits receipt and SOURCE_READER_DIALECT_CONTROLS status
+are additive. Returned Cedar 36 completes both native reads: PDU passes every
+raw check, while DP preserves route, identities, elements and coordinates but
+loses five double orders and two declared -1 charges. Its four signed markers
+survive; that alone is not a complete native stereo qualification.
+
+The captured monomer parser matches only lowercase order tokens and defaults
+other spellings to single. Its atom loop reads no charge field, including
+partial_charge. Cedar 37 maps explicit single/double/triple/aromatic/delocalized
+orders to that exact vocabulary in the separate consumer input. Original source
+and graph bytes stay fixed; chemical comparisons use declared order semantics.
+No partial-charge alias is fabricated and no atom stereo label is inferred.
+
+The additional --declared-charge-control action separately exercises explicit
+formal charges on the temporary parsed component. The worker snapshots the raw
+reader result first. Source-bound Utilities/MoleculeClass captures support the
+native integer charge API; input, dispatcher, parser and API hashes are checked
+before/after. Exact route, atom identities/elements, bond membership/orders,
+coordinates and complete integer charges (absolute per-atom value <=4, matching
+the captured Chargise boundary) are preconditions. A conflicting or partially
+loaded native charge state blocks assignment. An otherwise zero monomer object
+receives the exact source charge map by atom identity plus its sum; an already
+correct CCD object is checked without assignment. Recorded coordinates, bonds,
+chiral markers and signed markers must stay unchanged. The host independently
+rechecks the resulting inventory/total and retains the original raw reader flags.
+No chiral constructor, Chargise, perception, optimizer or dictionary writer is
+called by the population control; parser internals remain uninstrumented.
+SOURCE_READER_AND_DECLARED_CHARGE_CONTROLS describes this explicit request.
+Installed population acceptance is pending; it is not native stereo, full
+generator, achieved-geometry, convergence or scientific qualification.
+No new dependency, policy
 guess, model change, refinement or adoption is introduced.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or

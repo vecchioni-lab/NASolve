@@ -6521,7 +6521,7 @@
       "evidence_record": "cif-linked-native-registration-evidence.json#source_reader_dialect_audit_2026_10_20"
     },
     "source_reader_temp_portability_2026_10_20": {
-      "status": "IMPLEMENTED_PORTABLE_PREFLIGHT_RETRY_NATIVE_READER_PENDING",
+      "status": "RETURN_VERIFIED_DP_ORDER_AND_CHARGE_REVIEW_PDU_RAW_READER_PASS",
       "delivery_prefix": "36_Cedar",
       "recorded_date": "2026-10-20",
       "builder": "scripts/build_cif_numerical_recovery_probe.py",
@@ -6596,7 +6596,7 @@
           "DP_consumer_sha256": "4648c37ce867cce5a285d5f31a394a334b2cb9e347936511525a947927798bfa",
           "PDU_consumer_unchanged": true
         },
-        "native": "No installed Phenix execution on this Linux host. Existing source-reader subprocess regressions use explicit fakes; actual parser acceptance remains pending the Mac return.",
+        "native": "Returned installed source-reader controls completed under selected Phenix 2.2.1-6174 (dispatcher 2.2.1). PDU passes all six raw checks; DP loses five double orders and two explicit -1 charges. Raw findings and source snapshots remain immutable.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -6613,8 +6613,245 @@
         "new_dependencies": []
       },
       "artifact_boundary": "Maintained code/tests/docs and derived evidence metadata only. Review ZIPs, private native snapshots/logs, generated runners/candidates and models stay outside Git.",
-      "next_action": "Run Cedar 36 through the pinned Git fetch/worktree/build/run block against the exact failed Cedar 35 ZIP with --component DP --source-dialect-audit-only, bundling PDU. Resolve only the tool-owned temporary graph-check directory, retain caller-output symlink protections, preserve the entire failed preflight and replay its nested Cedar 34 source/stereo and prior mechanics/rotation evidence. Retry the unchanged bounded parser inventory controls under Phenix 2.2.1-6174; no chiral constructor or numerical generation is requested. Return console and review ZIP before claiming installed parser acceptance. Preserve NARestraints authority, frozen chemistry, geometry and adoption gates.",
+      "next_action": "Run Cedar 37 through the pinned Git fetch/worktree/build/run block with --delivery-prefix 37_Cedar --component-control PDU, then the exact Cedar 36 ZIP with --component DP --source-dialect-audit-only --declared-charge-control. Preserve raw C36 findings and recheck source/dispatcher/API hashes before/after. Test declared monomer bond-token translation and explicit source-integer charge population only on the temporary native component after exact graph/coordinate preconditions; block conflicts and keep already-preserved CCD charges unchanged. Return console/review ZIP. No constructor, Chargise, optimizer, generation, production integration, NARestraints-policy change, refinement or adoption is requested. Native complete stereo/generator/scientific qualification remains open.",
+      "return_verification": {
+        "archive": {
+          "name": "36_Cedar_0_8wztk9_cif_numerical_recovery_review.zip",
+          "sha256": "23790f7fc3b7a507e7d7f88f861451ce1897dd92097b4e38b52efc9361f1bf94",
+          "bytes": 43104303,
+          "verified_payloads": 1355,
+          "preserved_predecessor_payloads": 1327
+        },
+        "runner_sha256": "779dadf1cf0463c2303845b2a5e6283be7a531041365f093a15e608009b762b1",
+        "trusted_clean_build_runner": "BYTE_IDENTICAL",
+        "canonical_build_sha256": "c20f2849675a551535eb9df971bf746e39210ff7b2f642a2d8994bb0910a5768",
+        "nasolve_commit": "fb7a018548557d44a6c0e5e15eb83d96aa6c8eb8",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "both_source_trees_clean": true,
+        "runtime_members": 119,
+        "runtime_archive_sha256": "f28362e279d61c47511cc6e017a91bd432a9795f0aed63af370f65d1a4fdd0ad",
+        "manifest_and_preserved_lineage": "PASS",
+        "all_predecessor_members": "BYTE_IDENTICAL",
+        "mechanics_prerequisites": 17,
+        "rotation_directions_recomputed": 96,
+        "selected_installation": "Phenix 2.2.1-6174",
+        "dispatcher_reported_version": "2.2.1",
+        "native_reader_worker_sha256": "c889ec29a61bc3111991986bf25b92342b766c09e25bed2c202fcc6c7488290f"
+      },
+      "native_return": {
+        "source_snapshots": [
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/chemistry/any_chemical_format_reader.py",
+            "sha256": "17c4cc38484f8f5ddea90ae3d9a04e07c73ee18ccb722ad574c753bdb9b1cbd4",
+            "size": 17945,
+            "snapshot": {
+              "anchor": "reader_directory",
+              "path": "elbow/chemistry/any_chemical_format_reader.py.txt"
+            }
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/formats/monomer_library_cif_parser.py",
+            "sha256": "f689ede2d465084abd0dc5313bf5e2dbc84dc9621d2f48969e3aef31bf161259",
+            "size": 26684,
+            "snapshot": {
+              "anchor": "reader_directory",
+              "path": "elbow/formats/monomer_library_cif_parser.py.txt"
+            }
+          }
+        ],
+        "both_cases_same_source_hashes": true,
+        "DP": {
+          "execution": "COMPLETED",
+          "status": "REVIEW",
+          "format": "CIF",
+          "checks": {
+            "atom_charge_values": false,
+            "atom_elements": true,
+            "atom_identities": true,
+            "declared_bond_orders": false,
+            "reader_route": true,
+            "source_coordinates": true
+          },
+          "atom_count": 35,
+          "bond_count": 37,
+          "native_charge_values": [
+            0
+          ],
+          "source_minus_one_atoms": [
+            "OP2",
+            "OP3"
+          ],
+          "all_native_bonds_single": true,
+          "source_double_bonds": 5,
+          "source_signed_markers": 4,
+          "native_chiral_markers_empty": true,
+          "full_signed_stereo_qualification": "NOT_RUN"
+        },
+        "PDU": {
+          "execution": "COMPLETED",
+          "status": "READER_ROUTE_AND_INVENTORY_PASS",
+          "format": "CHEMICAL COMPONENTS",
+          "checks": {
+            "atom_charge_values": true,
+            "atom_elements": true,
+            "atom_identities": true,
+            "declared_bond_orders": true,
+            "reader_route": true,
+            "source_coordinates": true
+          },
+          "atom_count": 38,
+          "bond_count": 39
+        },
+        "parser_source_explanation": {
+          "bond_orders": "cif_to_molecule uses a lowercase bond_types mapping and setdefault(token,1); uppercase declared tokens silently become single.",
+          "charges": "cif_to_molecule builds AtomClass from element/xyz and names/type_energy, but never reads formal or partial charge into the atom object.",
+          "signed_markers": "include_chirals retains four per-atom volume_sign markers; this does not independently validate the complete ordered native chiral objects."
+        },
+        "charge_API_source_review": {
+          "Utilities_py_sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108",
+          "MoleculeClass_py_sha256": "fdc6ec851449c2cd1d947977209a92e9f691ebfe2aee5823cada361bc7e69e48",
+          "evidence": "The captured CCD reader copies int(item.charge) to atom.charge and molecule.charge. Captured Chargise sums integer atom charges and neutralizes magnitudes above four; Multiplicitise subtracts total charge from the electron count. These support a source-bound integer-charge control, not a partial-charge alias."
+        },
+        "dictionary_generation": "NOT_RUN",
+        "saved_model_changes": "NONE",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false
+      },
       "evidence_record": "cif-linked-native-registration-evidence.json#source_reader_temp_portability_2026_10_20"
+    },
+    "declared_graph_charge_control_2026_10_20": {
+      "status": "IMPLEMENTED_SOURCE_TOKEN_FIX_AND_EXPLICIT_CHARGE_CONTROL_NATIVE_PENDING",
+      "delivery_prefix": "37_Cedar",
+      "recorded_date": "2026-10-20",
+      "policy_ids": [
+        "cif-source-reader-dialect-preservation-v2",
+        "cif-explicit-source-formal-charge-control-v1"
+      ],
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "37_Cedar_probe_cif_declared_graph.py",
+      "modules": [
+        "src/nasolve/cif_elbow_input.py",
+        "src/nasolve/cif_source_reader.py",
+        "src/nasolve/cif_declared_charge_control.py"
+      ],
+      "review_input": {
+        "name": "36_Cedar_0_8wztk9_cif_numerical_recovery_review.zip",
+        "sha256": "23790f7fc3b7a507e7d7f88f861451ce1897dd92097b4e38b52efc9361f1bf94",
+        "bytes": 43104303,
+        "verified_payloads": 1355,
+        "preserved_predecessor_payloads": 1327
+      },
+      "behavior": {
+        "before": "The correct monomer reader still converts uppercase/abbreviated declared order tokens to single and never loads the source charge fields.",
+        "after": "Translate only explicit source order aliases to the native monomer vocabulary. Retain raw reader output and separately exercise source-integer charge population on the temporary parsed object after exact graph/coordinate checks and source-bound native API proofs.",
+        "generic_scope": "Declared source graphs and reader dialects, without component-name chemistry exceptions or inferred charges/stereo.",
+        "raw_reader_findings": "PRESERVED_SEPARATELY_FROM_POPULATION_CONTROL",
+        "production_defaults": "UNCHANGED",
+        "native_acceptance": "PENDING_USER_MAC"
+      },
+      "methods": {
+        "return_gate": "Verify exact C36 archive/build, 1355 payloads and recursively preserved C35/C34 lineage. Verify two native parser snapshots in both cases, exact owned worker and consumer hashes, receipt/result equality, raw DP order/charge findings and PDU pass; freshly replay raw source-reader checks plus all prior mechanics/rotation/stereo evidence. Never execute captured code or load serialized molecules.",
+        "token_projection": "Normalize only explicitly declared SINGLE/DOUBLE/TRIPLE/AROMATIC/DELOCALIZED aliases to single/double/triple/aromatic/deloc. Compare semantic chemical declarations after serialization and preserve full original source/graph bytes, signed declarations and raw token provenance. Invent no localization or atom metadata.",
+        "charge_preconditions": [
+          "source-bound selected Utilities/MoleculeClass proof hashes and exact imports",
+          "correct reader route",
+          "exact unique atom identities/elements",
+          "exact unique bond membership and declared orders",
+          "source coordinates equal at 1e-9 absolute tolerance",
+          "complete explicit integer formal charges with absolute per-atom value <=4"
+        ],
+        "charge_action": "Keep a raw inventory snapshot. Already-correct native charges and total require no assignment. Populate only an otherwise zero monomer object, by exact atom identity and sum of source integers. A partially populated/conflicting state blocks. Do not create a partial-charge alias, infer charges from valence, call Chargise or rebuild chemistry.",
+        "verification": "Retain before/after recorded coordinates, bonds, chiral markers and volume_sign fields. Require equality except explicit charge population; independently recompute host inventory and molecule total. Raw reader status remains separate and is not retroactively promoted.",
+        "native_sources": [
+          "elbow/chemistry/any_chemical_format_reader.py",
+          "elbow/formats/monomer_library_cif_parser.py",
+          "elbow/utilities/Utilities.py",
+          "elbow/chemistry/MoleculeClass.py"
+        ],
+        "worker_code": "Embed the maintained pure native_inventory/control_declared_charges functions verbatim in the owned selected-installation worker. Captured .py.txt files are integrity evidence, never executable authority.",
+        "timeout_seconds_per_component": 30,
+        "selected_installation": "Phenix 2.2.1-6174",
+        "chiral_constructor": "NOT_REQUESTED",
+        "Chargise": "NOT_CALLED",
+        "whole_molecule_optimization": "NOT_REQUESTED",
+        "parser_internal_operations": "NOT_INSTRUMENTED",
+        "dictionary_generation": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "software_validation": {
+        "fail_before": "New order-vocabulary regressions reproduce native single-bond fallback before the adapter fix. New source-charge control regressions fail before the control exists; pure/fake-installed controls test exact population, no-op preservation, graph/charge conflicts, unsafe proofs and unexpected recorded-field side effects. C36 gate tests preserve raw failures rather than promoting them.",
+        "new_tests": 48,
+        "focused": {
+          "passed": 180,
+          "seconds": 22.36,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_source_dialect.py tests/test_cif_source_reader.py tests/test_cif_declared_charge_control.py tests/test_cedar37_delivery.py tests/test_cedar36_delivery.py tests/test_cedar35_delivery.py tests/test_cif_elbow_input.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_numerical_recovery.py --tb=short"
+        },
+        "full": {
+          "passed": 2200,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 172.19,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_source_copies_removed_before_replay": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp_root": "PASS",
+          "runner_relocated_before_replay": true,
+          "older_everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "actual_capsule_payloads": 1355,
+          "runtime_members": 120,
+          "runtime_archive_sha256": "27bafca89f9a86a4adef1cfa98ad5f1753ecb0caf955874ff0c94c401c8f4941",
+          "mechanics_prerequisites": 17,
+          "rotation_directions_recomputed": 96,
+          "DP_unknown_stereo_tokens": 35,
+          "PDU_source_relative_stereo": "REVIEW_THREE_PRESERVED_SIGNED_HANDS_OMITTED_LABELS",
+          "PDU_stopping": "NOT_CONVERGED_REPORTED",
+          "dictionary_generation": "NOT_RUN",
+          "native_source_reader_execution": "PENDING_USER_MAC",
+          "DP_consumer_sha256": "071486fd8113788b4d1125126fa8167804a7c953dd27ccfb68e273058d94aed7",
+          "prior_raw_reader_checks_replayed": true,
+          "native_declared_charge_control": "PENDING_USER_MAC",
+          "PDU_consumer_unchanged": true
+        },
+        "native": "Source-charge population and new native token acceptance are pending the Mac return. Linux subprocess/API checks are explicit fakes; no native optimizer or chemical qualification is claimed.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 149,
+          "deterministic_svg_and_xml": "PASS",
+          "qualified_parallelity_core_sha256": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "public_PDU_fixture_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "raster_visual_review": "PASS"
+        }
+      },
+      "schemas": {
+        "schema_version": 1,
+        "new_flag": "--declared-charge-control (requires the explicit source-dialect action and exact C36 input)",
+        "new_native_execution_value": "SOURCE_READER_AND_DECLARED_CHARGE_CONTROLS",
+        "additive_receipt_fields": [
+          "monomer_bond_tokens",
+          "prior_source_reader_replay",
+          "declared_charge_control_requested",
+          "declared_charge_control",
+          "declared_charge_qualification"
+        ],
+        "compatibility": "The source-dialect adapter is diagnostic/opt-in and now uses policy v2. Default CCD/generation and production policies are unchanged. C36 is a supported exact capsule input; all older receipts/runners/source/candidate/model files remain intact. No production migration.",
+        "new_dependencies": []
+      },
+      "limitations": [
+        "A raw reader match or isolated population control is not complete signed native stereo, absolute CIP, full generator, achieved-geometry, convergence or scientific qualification.",
+        "Source coordinates remain naming/initial seeds rather than independently validated geometry.",
+        "The controlled native component is discarded; no generated dictionary or model adopts it.",
+        "NARestraints remains the pairing/stacking authority; no policy recompilation or Phenix guessing is introduced."
+      ],
+      "artifact_boundary": "Maintained code/tests/docs and derived metadata only. Private installed source snapshots/logs, ZIPs, generated runners/candidates and models remain outside Git.",
+      "next_action": "Run Cedar 37 through the pinned Git fetch/worktree/build/run block with --delivery-prefix 37_Cedar --component-control PDU, then the exact Cedar 36 ZIP with --component DP --source-dialect-audit-only --declared-charge-control. Preserve raw C36 findings and recheck source/dispatcher/API hashes before/after. Test declared monomer bond-token translation and explicit source-integer charge population only on the temporary native component after exact graph/coordinate preconditions; block conflicts and keep already-preserved CCD charges unchanged. Return console/review ZIP. No constructor, Chargise, optimizer, generation, production integration, NARestraints-policy change, refinement or adoption is requested. Native complete stereo/generator/scientific qualification remains open.",
+      "evidence_record": "cif-linked-native-registration-evidence.json#declared_graph_charge_control_2026_10_20"
     }
   },
   "audience": [

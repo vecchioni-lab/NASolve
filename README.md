@@ -105,7 +105,12 @@ preserves the source dictionary's reader dialect and checks native parsed
 inventory before another generation. Its return stops in the temporary graph
 preflight before native parsing. Cedar 36 resolves the tool-owned temporary
 directory and retries the same audit while preserving that failure. Native
-acceptance remains pending.
+parsing now completes for both sources. PDU passes raw route/inventory checks;
+DP preserves names, elements, coordinates and signed markers but loses double
+orders and declared charges. Cedar 37 translates monomer order tokens and
+separately tests explicit source-charge population on a temporary parsed
+component, retaining the raw reader evidence. Installed qualification remains
+pending; no new generation is requested.
 No candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.

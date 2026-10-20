@@ -877,6 +877,16 @@ The first audit stops before native parsing at an internal temporary-path guard.
 Cedar 36 resolves that owned temporary directory, a portability fix exercised
 for both dictionary formats, and retries the same parser checks while retaining
 the failed attempt. The chemical definitions and qualification limits are unchanged.
+Returned Cedar 36 passes the PDU control. DP reaches the correct reader and
+keeps its atoms, coordinates and signed markers, but the monomer parser silently
+treats uppercase order tokens as single and does not load its formal charges.
+Cedar 37 translates only the declared order vocabulary. It then separately tests
+copying the explicit integer charges into the temporary parsed object, after
+exact graph/coordinate checks and under pinned native API source proofs. The raw
+reader failure stays recorded. Before/after recorded graph and stereo fields
+must match, and the existing CCD control requires no charge assignment.
+This component-object control requests no optimizer or generation; full native
+stereo, generator and scientific qualification remain open.
 
 ## Primary references
 
