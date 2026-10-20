@@ -914,9 +914,25 @@ candidate has a 1.174 Å triple target and two 180° targets, but its coordinate
 bend and six torsions contain the linear axis. It remains nonconverged and
 stereochemically unqualified. Those torsions merit review; they are not yet an
 established cause of nonconvergence. Two matching 5PC workbook records remain
-unresolved, so this control chooses no pairing/stacking policy for 5PC. Installed
-native results await the Mac return. Production defaults and NARestraints
-pairing/stacking authority stay unchanged.
+unresolved, so this control chooses no pairing/stacking policy for 5PC. Returned Cedar 38 finds no component through the default monomer lookup for
+either code. The supplied PDU dictionary does install the triple/linear terms;
+six torsions remain flagged. The native geometry uses fixed source seeds, so
+its straight bonds do not establish a repaired candidate or convergence.
+Production defaults and NARestraints pairing/stacking authority stay unchanged.
+
+### Numerical libraries and CCD chemistry are different sources
+
+Cedar 39 separates missing numerical monomer resources from available CCD
+chemistry. It reads only exact CCD paths under the already selected Phenix
+Python-library anchor. It compares their full declared graph/charge/stereo state
+and SMILES descriptor text with the public references; textual equality is not
+an independent mapped-SMILES validation. Fresh direct and residue-name monomer
+lookups, DG/DC canonical controls and native root paths calibrate the resource
+context. Captured Utilities/GeoStd/monomer/CCD helper code and the ReadySet
+dispatcher describe available routes without executing those helpers or ReadySet.
+Simple installed CCD reads record bond-order/charge/coordinate inventories.
+No chemistry, numerical target or experimental model is changed. This source
+catalogue informs a later controlled ReadySet test; it does not reproduce one.
 
 ## Primary references
 

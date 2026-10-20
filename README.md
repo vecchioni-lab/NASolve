@@ -116,8 +116,13 @@ controls: installed monomer lookup, explicit installed-CIF replay and the saved
 PDU candidate are compared at fixed isolated source-seed coordinates. Active
 length/linearity targets, ESDs, membership and linear-axis torsions are recorded.
 5PC's two NARestraints records remain ambiguous; no role record is selected.
-Installed triple-bond acceptance remains pending. No experimental model is
-changed and no new generation or optimization is requested.
+Returned Cedar 38 finds no component through either default monomer lookup;
+those models stop on unknown energy types. The supplied PDU candidate loads
+with active 1.174 Å / 180° terms and six linear-axis torsion reviews at fixed
+source-seed coordinates. Cedar 39 separately inventories installed CCD chemistry
+and direct/canonical monomer lookups, comparing declarations and SMILES text
+with the public controls. It records route-helper source without running
+ReadySet. No experimental model, target, generation or optimization is changed.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

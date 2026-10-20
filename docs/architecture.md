@@ -542,7 +542,27 @@ installed-library-only opt-in; existing callers still require dictionaries.
 PDU and 5PC public fixtures are pinned; 5PC's ambiguous NARestraints records do
 not prevent graph/native component checks and never cause a role selection.
 No new dictionary, optimizer, ReadySet run or production integration is invoked.
-Full ReadySet provenance, native stereo and scientific qualification remain open.
+Returned Cedar 38 verifies 1,446 payloads. Both default monomer resolvers return
+no component and both isolated interpretations stop on unknown energy types.
+The explicitly supplied PDU dictionary loads: active triple distance 1.174 Å
+with ESD 0.020 Å and two 180° angles with ESD 3° pass target/membership screening;
+six linear-axis torsions remain. Its native coordinates are the fixed public
+source seeds, not the nonconverged generated candidate coordinates.
+
+Cedar 39 reads the installed CCD at the existing configured Python-library
+anchor and exact chem_data/chemical_components/<initial>/data_<CODE>.cif
+contract. It compares chemical declarations, source geometry/stereo and all
+SMILES descriptor text with pinned public controls. A bounded worker records
+fresh direct/wrapped monomer lookups plus DG/DC canonical controls and declared
+library roots. Proven server/cif_types sources bind imports; Utilities and its
+GeoStd/monomer/CCD helpers are captured as text, along with the ReadySet
+dispatcher. Those helpers and dispatcher are not executed. Installed CCD files
+receive separate simple native reader checks, without a constructor, numerical
+generation or optimization. Float replay tolerance accommodates cross-platform
+math rounding; identities, state, counts, hashes and input bytes remain exact.
+Full ReadySet selection, mapped-SMILES graphs, native stereo and scientific
+qualification remain open. All production/default resource and curated-ligand
+precedence rules remain fixed.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

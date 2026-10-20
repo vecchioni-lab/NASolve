@@ -752,13 +752,38 @@ builds and relocation, with poisoned imports, an aliased temporary root and the
 protected everyday edit intact. JSON mirrors, 149 links and the rendered editable
 figure verify. Exact methods, commands and hashes are in the native ledger.
 
+**Cedar 38 returned:** all **1,446 payloads**, clean published build/runner,
+124 runtime files and exact nested lineage verify. Both default monomer
+lookups return no component; native interpretations stop with 38/39 unknown
+energy types. The supplied PDU candidate loads with active 1.174 Å / ESD 0.020 Å
+and two 180° / ESD 3° terms, plus six linear-axis torsion reviews. Those native
+coordinates are fixed public source seeds, not a repaired generated candidate.
+No optimization, new generation, ReadySet retry or adoption ran.
+
+**Cedar 39 prepared:** separate installed CCD chemistry from numerical monomer
+resources. Preserve/replay the C38 failures and supplied-dictionary native
+membership. Read exact installed CCD paths at the verified library anchor;
+compare full chemical declarations and descriptor text against public PDU/5PC.
+Record fresh direct/wrapped monomer and DG/DC canonical controls, native roots,
+route-helper source and ReadySet dispatcher bytes. The route helpers/dispatcher
+are captured, not executed. Read valid installed CCDs through the existing simple
+native parser. Equal SMILES text is not mapped-graph proof. No experimental model,
+parameter, generator, optimizer, production default or NARestraints policy changes.
+5PC's two workbook matches remain unresolved. Installed source results await Mac.
+All **34 new regressions**, **68 focused tests (9.47 s)** and **2,329 full tests,
+two skips and 276 subtests (182.05 s)** pass. The 125-member runtime replays the
+actual 1,446-payload C38 capsule and its fixed-seed/native evidence after deleted
+builds and relocation, with poisoned imports, an aliased temp root and the
+protected everyday edit intact. JSON mirrors, 149 links and the rendered figure
+verify. Exact commands, provenance and limits are in the native ledger.
+
 **Current action:** use the pinned one-block Git handoff: build with
---delivery-prefix 38_Cedar --component-control PDU --component-control 5PC,
-then run the exact Cedar 37 ZIP with --component DP --triple-bond-audit-only.
+--delivery-prefix 39_Cedar --component-control PDU --component-control 5PC,
+then run the exact Cedar 38 ZIP with --component DP --installed-source-audit-only.
 Return console/review ZIP. Selected installation remains Phenix **2.2.1-6174**
-(dispatcher reports **2.2.1**). No new optimizer, generator, ReadySet retry,
-scaffold change or adoption is requested. Complete ReadySet provenance, stereo,
-convergence and scientific qualification remain open.
+(dispatcher reports **2.2.1**). This tests installed CCD/source and lookup evidence;
+full ReadySet selection, SMILES graph mapping, stereo, convergence and scientific
+qualification remain open.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

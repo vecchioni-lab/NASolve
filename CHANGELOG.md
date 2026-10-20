@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Separate installed CCD chemistry from monomer geometry resources
+
+- Verify all 1,446 Cedar 38 payloads. Both default monomer lookups are missing;
+  their native cases stop on unknown energy types. The supplied PDU candidate
+  loads with active triple/linear terms and six torsion reviews at fixed source
+  seeds. No generated-coordinate repair or ReadySet behavior is established.
+- Add Cedar 39's exact return gate and independent replay of source-seed models,
+  offline screens and active native terms, preserving failed lookups. Float-only
+  replay tolerance handles platform math rounding; state/identities/counts/hash
+  and byte checks remain strict.
+- Add exact anchored installed CCD snapshots, chemical/SMILES-text comparisons,
+  fresh direct/wrapped and canonical monomer controls, static route-helper and
+  dispatcher capture, and simple CCD reader checks. Descriptor equality is not
+  mapped-graph proof. No constructor, generator, optimizer, ReadySet execution,
+  new dependency, production/default policy change, model edit or adoption.
+  All 34 new regressions, 68 focused and 2,329 full tests pass, with two skips
+  and 276 subtests. Actual C38 replay passes after deleted/relocated builds,
+  poisoned imports and aliased temp roots. Installed source results await Mac.
+
 ### Declared triple-bond screening and isolated installed-library controls
 
 - Verify all 1,387 Cedar 37 payloads. DP now preserves declared bond orders;

@@ -181,7 +181,13 @@ for actual behavior; history is evidence, not a second task queue.
   generic triple-bond target/weight/membership and linear-axis torsion checks.
   Public 5PC is an independent atom-naming control; its two NARestraints records
   remain unresolved. These are fixed isolated source-seed models; no residue is
-  inserted into the frozen scaffold. Native/scientific qualification remains open.
+  inserted into the frozen scaffold. Its return finds both default monomer
+  lookups unavailable; the supplied PDU dictionary has active triple/linear terms
+  and six torsion reviews at fixed source-seed coordinates. Cedar 39 separates
+  installed CCD chemistry from geometry libraries, records direct/canonical
+  lookups and route-helper source, and checks raw CCD readers without generation.
+  SMILES text comparison is not mapped-graph proof. Scientific qualification
+  remains open.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

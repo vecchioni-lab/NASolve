@@ -32,3 +32,7 @@ external directory; it does not certify those proxies or add an adoption arrow.
 The triple-bond scope note covers graph-selected targets, active native terms
 and linear-axis torsions in isolated fixed source-seed controls. It does not
 claim complete ReadySet replay, optimization or scientific qualification.
+
+The installed-source note distinguishes numerical monomer libraries from CCD
+chemistry and captures route-helper context. Direct/canonical lookups and source
+comparisons do not establish the full ReadySet path or a mapped SMILES graph.

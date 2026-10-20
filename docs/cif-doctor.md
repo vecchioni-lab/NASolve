@@ -1563,6 +1563,61 @@ Existing controls still require unambiguous records by default. PDU's existing
 pair/stack compiler checks remain fixed. No dependency or production default
 changes. All results end at REVIEW; no dictionary or model is adopted.
 
+
+### Installed CCD/source catalogue
+
+Returned Cedar 38 verifies all 1,446 payloads. PDU and 5PC default monomer
+lookups return no component; native interpretation stops with 38/39 unknown
+energy types. The supplied PDU candidate loads with active 1.174 Å (ESD 0.020 Å)
+and two 180° (ESD 3°) terms, plus six linear-axis torsion reviews. These native
+controls use source-ideal seeds; the saved generated coordinates remain bent
+and nonconverged. This does not identify the full ReadySet resource path.
+
+Build Cedar 39 with --delivery-prefix 39_Cedar --component-control PDU
+--component-control 5PC. Run the exact C38 ZIP with --component DP
+--installed-source-audit-only. The mutually exclusive action preserves every
+predecessor, verifies API/owned-worker/native input/output bytes and retains
+failed lookups separately from the supplied dictionary. Independently replay
+all prior mechanics, rotations, raw/controlled charge checks, source-seed models,
+offline triple screens and captured active native screens. Numeric float replay
+uses abs_tol=1e-8 and rel_tol=1e-10 for cross-platform libm rounding; other types,
+identities, counts, state, targets beyond tolerance, hashes and bytes are exact.
+--inspect-only performs those replays without native execution.
+
+Use the verified library anchor, not a filesystem search or ambient Phenix, to
+freeze the exact installed CCD paths
+chem_data/chemical_components/<lowercase-initial>/data_<CODE>.cif. This is the
+existing NASolve configured-CCD contract. Missing sources remain MISSING;
+wrong/ambiguous chemistry remains REVIEW. Compare chemical declarations,
+explicit triple edges, source coordinates/stereo and every SMILES descriptor
+(type/program/version/text). Text equality/difference is descriptive. No SMILES
+parser, graph assignment, target generation or chemical normalization is added.
+Numerical parameterization remains a separate assessment.
+
+Bind monomer server/cif_types imports to the selected installation and their
+C38 source proofs. On fresh server objects, compare direct component-ID and
+residue-name lookups; record root_path/geostd_path, full available component rows
+and exact anchored source bytes. DG/DC are separate canonical resolution
+controls recording resolved metadata/provenance, without parameter comparison.
+Utilities must match its prior verified source. Capture its exact
+GeoStd/monomer helper modules, one unambiguous Python layout of
+mmtbx.chemical_components, and the selected ReadySet dispatcher as text. No
+captured source, route helper or ReadySet dispatcher is executed. Missing
+optional helper source layouts are recorded. All paths must remain beneath the
+selected installation; source/API/snapshot/dispatcher/reference hashes are
+checked before/after. No pickle or network source is consulted.
+
+Installed CCDs with a valid declared graph also pass through the existing simple
+native source reader, retaining raw format, atom/bond/charge/coordinate readback
+and exact parser snapshots. These are independent of the absent numerical
+monomer resources. The catalogue worker and each reader have <=30 s deadlines;
+owned process groups terminate on timeout. INSTALLED_MONOMER_CCD_SOURCE_CONTROLS
+records the request. No constructor, optimizer, generation, native geometry
+trial, experimental model edit, refinement or adoption occurs. Curated
+precedence and NARestraints pairing/stacking authority are unchanged, including
+5PC's unresolved duplicate records. Complete ReadySet selection, mapped-SMILES,
+stereo, numerical and scientific qualification remain open.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or
