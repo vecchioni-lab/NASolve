@@ -786,14 +786,28 @@ synthetic controls, so 5PC checks G:C and both stacking orders. The existing
 NARestraints workbook/recipes are correct for this scope; no edit/release is
 needed under the user's conditional missing-entry authorization.
 
-**Cedar 41 prepared:** original ReadySet API generation on separate fixed
-heavy-atom source-seed PDU/5PC models. Observe unchanged builder/template calls,
-retaining exceptions, fallback results and partial files. Each generation has a
-180 s deadline; eligible output gets <=60 s native interpretation with SS off.
-Raw source chemistry, dictionary targets and active triple terms stay separate.
-Native internal template operations may optimize geometry; AM1/final-H options
-are disabled. No linked scaffold, refinement or adoption is changed. Software
-checks and exact provenance are in the native ledger.
+**Cedar 41 returned and verified:** all **1,624 payloads** and the trusted
+published build match. Phenix 2.2.1-6174 reaches the early file-input eLBOW call
+for both controls, then exits ReadySet with SystemExit 2: the diagnostic wrapper
+leaked ReadySet PHIL options into eLBOW's separate process-argument parser.
+The receipt workers exit zero after saving those exceptions (PDU 8.487559 s;
+5PC 1.713853 s). Neither ReadySet invocation completes. Both surviving CIFs are
+byte-identical public-source copies, with no numerical length/angle targets;
+native interpretation stays NOT_RUN. No historical floppy-chain cause is
+established. PDU T and 5PC C pairing/stacking compiler controls both PASS.
+
+**Cedar 42 prepared:** use the same explicit generation action on the exact
+C41 ZIP. Keep ReadySet's API arguments separate from empty process options,
+as its captured command-line entrypoint does. Preserve all actual builder
+kwargs, chemistry and native defaults. Record argv at observed calls and print
+worker/native/output states separately. Retain unchanged-source/partial files
+without calling them completed generation. Exact C41 failure/source snapshots,
+fixed complete/heavy models and dictionary triple screens replay before retry.
+Each generation remains capped at 180 s; eligible output gets <=60 s native
+interpretation with SS off. Native internal template operations remain
+uninstrumented; AM1/final-H options stay disabled. No scaffold, refinement or
+adoption change is authorized by a surviving file. Exact software/native
+provenance and limits remain in the native ledger.
 
 **Current action:** build with --delivery-prefix 41_Cedar --component-control PDU
 --component-control 5PC, then run the exact Cedar 40 ZIP with --component DP

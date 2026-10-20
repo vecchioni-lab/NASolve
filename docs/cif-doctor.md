@@ -1656,16 +1656,27 @@ Returned Cedar 40 verifies 1,529 payloads and the trusted clean build. Both
 native CCD accessors select CACTVS SMILES_CANONICAL text, and 24 static sources
 fit the literal-import budget. This is not executed ReadySet provenance. One
 captured branch deletes its temporary SMILES and requests chemical_component;
-Cedar 41 records whether the actual controls do so.
+Cedar 41 records the preparatory file-input call, then fails before reaching
+that later branch: leaked wrapper PHIL options cause eLBOW's options parser to
+raise SystemExit 2. All 1,624 returned payloads verify. Each receipt worker exits
+zero after recording the native exception; ReadySet itself does not complete.
+Both surviving CIFs exactly match the public CCD sources, without numerical
+targets, and native interpretation remains NOT_RUN. Missing terms in these
+preparatory copies do not establish a generation defect or historical cause.
 
-Build Cedar 41 with --delivery-prefix 41_Cedar --component-control PDU
---component-control 5PC. Run the exact C40 ZIP with --component DP
+Build Cedar 42 with --delivery-prefix 42_Cedar --component-control PDU
+--component-control 5PC. Run the exact C41 ZIP with --component DP
 --readyset-generation-audit-only. DP remains a preserved prerequisite; the new
 generation cases are PDU/5PC only. --inspect-only replays saved evidence and
 writes complete/heavy source-seed controls without native execution.
 
 The selected Phenix interpreter calls the original ReadySet run API under
-prior source/hash proofs. Heavy-atom inputs use hydrogens=False, ligands=True,
+prior source/hash proofs. The v2 invocation keeps explicit ReadySet API arguments
+out of process argv, matching the captured native entrypoint's separation.
+Nested builder calls retain their original kwargs and reparse empty process
+options. Each observer records argv; the installed options parser is also hash
+checked and captured. The exact C41 failure is preserved and its source-copy
+triple screens and complete/heavy seed models replay without executing old code. Heavy-atom inputs use hydrogens=False, ligands=True,
 optimise_ligand_geometry=False, optimise_final_geometry_of_hydrogens=False,
 trust_residue_code_is_chemical_components_code=False, metals=False,
 link_to_edits=False and remove_waters=False. The shell dispatcher is not run.
@@ -1679,8 +1690,14 @@ return objects and exceptions. Atomic logs survive a 180 s owned-process-group
 timeout. Trace truncation at 64 events remains explicit; nonfinite native values
 become trace markers without changing native objects. Preserve process failure,
 ReadySet failure, caught builder errors and fallback dictionaries separately.
-Select only the exact owned <CODE>.cif. Serialized outputs are never loaded and
-remain excluded from review capsules. Malformed, missing and partial candidates
+Select only the exact owned <CODE>.cif. Compare its bytes to the explicit
+source and record UNCHANGED_SOURCE_COPY, PARTIAL_OR_UNQUALIFIED_OUTPUT or
+COMPLETED_READYSET_OUTPUT. RECORDED means only file presence. Process success
+alone or an unchanged source never establishes numerical generation. Native
+success plus a changed output still requires independent qualification.
+The console prints worker outcome, native outcome/error and file classification
+separately. Serialized outputs are never loaded and remain excluded from review
+capsules. Malformed, missing and partial candidates
 stay review evidence; only completed policy-matched output proceeds to native
 interpretation, capped at 60 s per control with SS inference disabled.
 

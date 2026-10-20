@@ -7977,8 +7977,7 @@
       }
     },
     "isolated_readyset_generation_audit_2026_10_20": {
-      "evidence_record": "cif-linked-native-registration-evidence.json#isolated_readyset_generation_audit_2026_10_20",
-      "status": "IMPLEMENTED_ISOLATED_READYSET_GENERATION_AND_TRIPLE_AUDIT_NATIVE_PENDING",
+      "status": "RETURNED_READYSET_INVOCATION_FAILED_BEFORE_NUMERICAL_GENERATION",
       "recorded_date": "2026-10-20",
       "delivery_prefix": "41_Cedar",
       "policy_ids": [
@@ -8002,7 +8001,7 @@
       "behavior": {
         "before": "Installed source graphs and selected SMILES agree, but the actual ReadySet-to-eLBOW dispatch and resulting numerical triple restraints were unobserved. The control auditor also rejected equivalent 5PC mapping aliases.",
         "after": "Observe original ReadySet builder/template calls during bounded isolated generation, retain failures/fallback provenance, and independently compare raw generated dictionaries and active native triple terms. Reconcile only equivalent operational mapping records and distinguish descriptive columns.",
-        "native_acceptance": "PENDING_USER_MAC",
+        "native_acceptance": "BOTH_READYSET_SYSTEMEXIT_2; NATIVE_TRIPLE_CHECKS_NOT_RUN",
         "production_defaults": "UNCHANGED",
         "policy_authority": "NARestraints"
       },
@@ -8139,7 +8138,7 @@
           "seconds": 183.01,
           "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
         },
-        "native": "PENDING_USER_MAC. Linux tests use explicit fake APIs and saved-capsule offline replay.",
+        "native": "RETURNED: both selected ReadySet calls fail at nested options parsing; receipt worker rc0 is not native success.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -8154,14 +8153,225 @@
         }
       },
       "limitations": [
-        "Static source rewriting of SMILES does not identify the executed branch; the new native call trace remains pending.",
+        "Only the early preparatory file-input builder call executes before the parser failure; later component/fallback selection remains unobserved.",
         "Isolated fixed heavy-atom components do not reproduce a linked scaffold, historical installation or a refinement.",
         "A generated/loaded triple target is separate from all-source chemistry, native stereo, achieved geometry and convergence.",
         "Native internal operations are not exhaustively instrumented; timeouts/fallbacks/partial files remain review evidence.",
         "5PC role-equivalence acceptance is a diagnostic resolution, not a workbook change or scientific approval."
       ],
       "artifact_boundary": "Maintained code/tests/docs and metadata only. Installed/private source snapshots, logs, generated CIF/model candidates, runners and review ZIPs stay outside Git.",
-      "next_action": "Build Cedar 41 with --delivery-prefix 41_Cedar --component-control PDU --component-control 5PC. Run exact C40 ZIP with --component DP --readyset-generation-audit-only under Phenix 2.2.1-6174. Return console/ZIP. At most 180 s ReadySet plus 60 s native interpretation per control."
+      "next_action": "Build Cedar 42 with --delivery-prefix 42_Cedar --component-control PDU --component-control 5PC. Run the exact returned C41 ZIP with --component DP --readyset-generation-audit-only under Phenix 2.2.1-6174. Return console/ZIP; <=180 s generation plus <=60 s eligible native interpretation per control.",
+      "returned_evidence": {
+        "name": "41_Cedar_ofvcwzhl_cif_numerical_recovery_review.zip",
+        "sha256": "7d24e6db59fa814ccd93099d9676f569047147fcb8ab154e05c4980d16a94bd3",
+        "bytes": 44824515,
+        "verified_payloads": 1624,
+        "build_sha256": "0b94d54d60f0153cc46a518507c36af947479da0275b6546a5f8ed50ea42d0aa",
+        "nasolve_commit": "a961cd2d914ceafbdc8d53f5adb33f47be633c0c",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "e75b0ab6db8c6719c2899dfe27a72f05db4cac22e1b0875d80164832596ece15",
+        "runtime_members": 127,
+        "runtime_archive_sha256": "f404b44938b9d2b7d1db7d1bda3b8d83c13555cee48a4d94a8dc98f3a35d84af",
+        "native_version": "Phenix 2.2.1-6174; dispatcher reports 2.2.1",
+        "worker_processes": {
+          "PDU": {
+            "status": "COMPLETED",
+            "returncode": 0,
+            "seconds": 8.487559
+          },
+          "5PC": {
+            "status": "COMPLETED",
+            "returncode": 0,
+            "seconds": 1.713853
+          }
+        },
+        "native_readyset": "BOTH_EXCEPTION_SYSTEMEXIT_2",
+        "phase": "EARLY_PREPARATORY_FILE_INPUT_ELBOW_CALL",
+        "caller": "elbow/scripts/elbow_on_pdb_file.py:779",
+        "builder_kwargs_template": {
+          "file": "<CODE>.cif",
+          "id": "<CODE>",
+          "output": "<CODE>",
+          "silent": true
+        },
+        "error": "optparse.BadOptionError: no such option: --ready_set.input.output_file_name",
+        "cause": "Diagnostic wrapper placed explicit ReadySet PHIL arguments into process sys.argv; installed eLBOW options_parser independently reparses that list. Captured native ReadySet __main__ copies args and clears sys.argv[1:] before run(args).",
+        "surviving_CIFs": "BOTH_BYTE_IDENTICAL_PUBLIC_SOURCE_COPIES; NO_NUMERICAL_LENGTH_OR_ANGLE_TARGETS",
+        "native_interpretation": "NOT_RUN",
+        "component_policy": {
+          "PDU": "T; PASS",
+          "5PC": "C; PASS"
+        },
+        "historical_floppy_geometry_cause": "NOT_ESTABLISHED",
+        "experimental_model_changes": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#isolated_readyset_generation_audit_2026_10_20"
+    },
+    "readyset_invocation_isolation_2026_10_20": {
+      "status": "IMPLEMENTED_INVOCATION_AND_OUTPUT_PROVENANCE_CORRECTION_NATIVE_PENDING",
+      "recorded_date": "2026-10-20",
+      "delivery_prefix": "42_Cedar",
+      "policy_id": "cif-isolated-readyset-call-and-triple-restraint-audit-v2",
+      "module": "src/nasolve/cif_readyset_generation_audit.py",
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "42_Cedar_probe_cif_readyset_generation.py",
+      "review_input": {
+        "name": "41_Cedar_ofvcwzhl_cif_numerical_recovery_review.zip",
+        "sha256": "7d24e6db59fa814ccd93099d9676f569047147fcb8ab154e05c4980d16a94bd3",
+        "bytes": 44824515,
+        "verified_payloads": 1624,
+        "build_sha256": "0b94d54d60f0153cc46a518507c36af947479da0275b6546a5f8ed50ea42d0aa",
+        "nasolve_commit": "a961cd2d914ceafbdc8d53f5adb33f47be633c0c",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "e75b0ab6db8c6719c2899dfe27a72f05db4cac22e1b0875d80164832596ece15",
+        "runtime_members": 127,
+        "runtime_archive_sha256": "f404b44938b9d2b7d1db7d1bda3b8d83c13555cee48a4d94a8dc98f3a35d84af",
+        "native_version": "Phenix 2.2.1-6174; dispatcher reports 2.2.1",
+        "worker_processes": {
+          "PDU": {
+            "status": "COMPLETED",
+            "returncode": 0,
+            "seconds": 8.487559
+          },
+          "5PC": {
+            "status": "COMPLETED",
+            "returncode": 0,
+            "seconds": 1.713853
+          }
+        },
+        "native_readyset": "BOTH_EXCEPTION_SYSTEMEXIT_2",
+        "phase": "EARLY_PREPARATORY_FILE_INPUT_ELBOW_CALL",
+        "caller": "elbow/scripts/elbow_on_pdb_file.py:779",
+        "builder_kwargs_template": {
+          "file": "<CODE>.cif",
+          "id": "<CODE>",
+          "output": "<CODE>",
+          "silent": true
+        },
+        "error": "optparse.BadOptionError: no such option: --ready_set.input.output_file_name",
+        "cause": "Diagnostic wrapper placed explicit ReadySet PHIL arguments into process sys.argv; installed eLBOW options_parser independently reparses that list. Captured native ReadySet __main__ copies args and clears sys.argv[1:] before run(args).",
+        "surviving_CIFs": "BOTH_BYTE_IDENTICAL_PUBLIC_SOURCE_COPIES; NO_NUMERICAL_LENGTH_OR_ANGLE_TARGETS",
+        "native_interpretation": "NOT_RUN",
+        "component_policy": {
+          "PDU": "T; PASS",
+          "5PC": "C; PASS"
+        },
+        "historical_floppy_geometry_cause": "NOT_ESTABLISHED",
+        "experimental_model_changes": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "behavior": {
+        "before": "ReadySet PHIL API arguments were also put into process argv, causing nested eLBOW parser failure. Worker completion/file presence could be misread as successful generation.",
+        "after": "Clear process options before selected-module import and pass the original explicit arguments only to ReadySet.run. Preserve builder kwargs, record argv per observed call, classify source-identical/partial/completed outputs and print worker/native/file states separately.",
+        "production_defaults": "UNCHANGED",
+        "policy_authority": "NARestraints",
+        "native_acceptance": "PENDING_USER_MAC"
+      },
+      "methods": {
+        "source_basis": "Captured ready_set.py __main__ lines 1112-1118 copies args then clears process argv. builder.run line2039 calls options_parser; options_parser lines1361-1390 independently reads/mutates/parses sys.argv.",
+        "argument_policy": "EXPLICIT_API_ARGUMENTS_NO_PROCESS_OPTIONS",
+        "builder_argument_overrides": "NONE",
+        "options_parser_sha256": "e7bdf4ac2b9dea237f6c29b8015fa665834c435173c1d0662ed4d51b384e6dbd",
+        "prior_gate": "Exact C41 archive/build, 1624 manifest payloads, original worker/results/trace/source proofs; preserve both SystemExit2 failures, unchanged source CIFs and NOT_RUN native interpretation. Recursively verify C40 and prior lineage.",
+        "prior_replay": "Rebuild exact complete/heavy source seed/policy bytes and recompute dictionary triple screens; classify surviving unchanged source copies. Preserve earlier mechanics, rotation, raw/controlled reader, installed CCD and descriptor evidence. Never execute captured code.",
+        "candidate_classification": [
+          "UNCHANGED_SOURCE_COPY",
+          "PARTIAL_OR_UNQUALIFIED_OUTPUT",
+          "COMPLETED_READYSET_OUTPUT"
+        ],
+        "generation_claim": "NOT_ESTABLISHED for unchanged-source or failed native/worker outcomes; completed changed output still needs scientific/native qualification.",
+        "generation_timeout_seconds": 180,
+        "eligible_native_timeout_seconds": 60,
+        "native_internal_operations": "NOT_INSTRUMENTED",
+        "experimental_model_changes": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "schemas": {
+        "schema_version": 1,
+        "additive_fields": [
+          "generation.result.process_argv",
+          "generation.result.process_argv_policy",
+          "generation.trace.events[].process_argv",
+          "generation.candidate.source_bytes_match",
+          "generation.candidate.classification",
+          "generation.candidate.generation_claim",
+          "prior_readyset_generation_replay"
+        ],
+        "compatibility": "Opt-in v2 diagnostic. Original C41 evidence remains readable under exact hash gate; no migration or new dependency. No NARestraints workbook/code/recipe/release change."
+      },
+      "software_validation": {
+        "fail_before": "Four invocation/output regressions fail before correction, including an actual nested optparse subprocess failure. Fourteen new returned-evidence gate cases initially fail without the implementation.",
+        "new_tests": 18,
+        "focused": {
+          "passed": 92,
+          "seconds": 6.51,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_readyset_generation_audit.py tests/test_cedar42_delivery.py tests/test_cedar41_delivery.py tests/test_cedar40_delivery.py tests/test_cif_component_controls.py tests/test_cif_numerical_recovery_probe.py --tb=short"
+        },
+        "full": {
+          "passed": 2411,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 184.76,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_source_copies_removed_before_replay": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp_root": "PASS",
+          "runner_relocated_before_replay": true,
+          "older_everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "actual_capsule_payloads": 1624,
+          "runtime_members": 127,
+          "runtime_archive_sha256": "13bf2a0669cf99f64a639dcb769cc96f32dcc02ee6b82fbe80d69f4cd29c0974",
+          "mechanics_prerequisites": 17,
+          "rotation_directions_recomputed": 96,
+          "prior_raw_reader_checks_replayed": true,
+          "prior_declared_charge_checks_replayed": true,
+          "PDU_saved_candidate_target_screen": "PASS",
+          "PDU_active_fixed_seed_coordinate_screen": "PASS",
+          "PDU_saved_candidate_coordinate_screen": "REVIEW",
+          "PDU_linear_axis_torsions": 6,
+          "5PC_triple": [
+            "C7",
+            "C8"
+          ],
+          "5PC_policy_record_count": 2,
+          "5PC_policy_resolution": "EQUIVALENT_ROLE_RECORDS",
+          "dictionary_generation": "NOT_RUN",
+          "readyset_generation": "PENDING_USER_MAC",
+          "prior_descriptor_selection_replayed": true,
+          "prior_installed_ccd_replayed": true,
+          "prior_active_native_screen_replayed": true,
+          "prior_failed_readyset_source_copies_replayed": true
+        },
+        "native": "PENDING_USER_MAC; Linux selected API regressions are explicitly fake.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 147,
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+          },
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        }
+      },
+      "limitations": [
+        "This corrects the diagnostic invocation, not triple-bond chemistry or installed Phenix code.",
+        "Only isolated heavy-atom source-seed controls are retried; linked scaffold, refinement and historical floppy-chain causation remain unassessed.",
+        "Native internal operations may optimize templates and remain uninstrumented.",
+        "Generated/loaded terms, chemical graph/stereo, achieved geometry, convergence and adoption remain separate gates."
+      ],
+      "artifact_boundary": "Maintained code/tests/docs and metadata only. Private/installed source snapshots, generated models/CIFs, runners and ZIPs remain outside Git.",
+      "next_action": "Build Cedar 42 with --delivery-prefix 42_Cedar --component-control PDU --component-control 5PC. Run the exact returned C41 ZIP with --component DP --readyset-generation-audit-only under Phenix 2.2.1-6174. Return console/ZIP; <=180 s generation plus <=60 s eligible native interpretation per control.",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#readyset_invocation_isolation_2026_10_20"
     }
   },
   "audience": [

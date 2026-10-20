@@ -22,7 +22,7 @@ from .cif_native_validation import inspect_native_bundle
 from .cif_doctor import assess_dictionaries, compare_dictionaries
 from .cif_triple_bond_audit import audit_triple_bonds, write_component_control_model
 
-POLICY_ID='cif-isolated-readyset-call-and-triple-restraint-audit-v1'
+POLICY_ID='cif-isolated-readyset-call-and-triple-restraint-audit-v2'
 MODULES={'readyset':'elbow.command_line.ready_set','builder':'elbow.command_line.builder',
          'route':'elbow.scripts.elbow_on_pdb_file'}
 ACTIONS={'hydrogens':False,'ligands':True,'optimise_ligand_geometry':False,
@@ -40,11 +40,29 @@ def _artifact(path,directory):
         'size':len(data),'sha256':sha256(data).hexdigest()}
 
 
+def classify_readyset_candidate(generation,source,candidate):
+    """Separate a surviving source/partial file from a completed API output.
+
+    Process success alone says only that the observer saved its receipt. Even
+    completed ReadySet output still needs independent chemistry/native checks.
+    """
+    same=candidate==source
+    completed=(generation['execution']['status']=='COMPLETED'
+        and generation.get('result',{}).get('execution')=='COMPLETED')
+    return {'source_bytes_match':same,
+        'classification':'UNCHANGED_SOURCE_COPY' if same else 'COMPLETED_READYSET_OUTPUT' if completed else 'PARTIAL_OR_UNQUALIFIED_OUTPUT',
+        'generation_claim':'COMPLETED_READYSET_OUTPUT' if completed and not same else 'NOT_ESTABLISHED'}
+
+
 WORKER=getsource(native_inventory)+'\n'+r'''from pathlib import Path
 from hashlib import sha256
 import importlib,importlib.util,inspect,json,math,sys,traceback
 sys.dont_write_bytecode=True
 spec=json.loads(Path(sys.argv[1]).read_text());directory=Path.cwd().resolve();root=Path(spec['installation']).resolve(strict=True)
+# ReadySet consumes explicit API arguments. Nested eLBOW calls reparse and
+# mutate sys.argv independently; neither PHIL options nor this worker's spec
+# path belongs in that parser. Preserve every actual builder kwarg unchanged.
+sys.argv=[spec['modules']['readyset']['installed']]
 sys.path[:]=[p for p in sys.path if Path(p or '.').resolve()!=directory];sys.path.insert(0,spec['library'])
 def verify():
     for row in spec['sources']:
@@ -70,7 +88,7 @@ def observe(api,original):
         event=None
         if len(trace['events'])<trace['event_budget']:
             frame=inspect.currentframe().f_back;caller=Path(frame.f_code.co_filename).resolve()
-            event={'api':api,'args':value(args),'kwargs':value(kwargs),'status':'STARTED',
+            event={'api':api,'args':value(args),'kwargs':value(kwargs),'status':'STARTED','process_argv':list(sys.argv),
                 'caller':{'anchor':'phenix_installation' if caller.is_relative_to(root) else 'external',
                     'path':caller.relative_to(root).as_posix() if caller.is_relative_to(root) else str(caller),'line':frame.f_lineno}}
             del frame;trace['events'].append(event)
@@ -93,10 +111,10 @@ original_template=modules['route'].get_elbow_molecule_from_chemical_components
 modules['builder'].run=observe('ELBOW_BUILDER',original_builder)
 modules['route'].get_elbow_molecule_from_chemical_components=observe('CCD_TEMPLATE',original_template)
 result={'execution':'STARTED','argument_overrides':'NONE','native_internal_operations':'NOT_INSTRUMENTED',
+    'process_argv':list(sys.argv),'process_argv_policy':'EXPLICIT_API_ARGUMENTS_NO_PROCESS_OPTIONS',
     'automatic_adoption':False,'refinement':'NOT_RUN','experimental_model_changes':'NOT_RUN'}
 save()
 try:
-    sys.argv=[str(modules['readyset'].__file__),*spec['arguments']]
     output=modules['readyset'].run(spec['arguments'])
     result['effective_actions']={k:getattr(output[1].ready_set.actions,k) for k in spec['actions']}
     result['reported_outputs']=value(output[0]);result['execution']='COMPLETED'
@@ -132,7 +150,7 @@ def verify_readyset_generation_sources(root,rows,directory):
         if len(a)!=row['size'] or sha256(a).hexdigest()!=row['sha256'] or a!=b:raise ValueError('ReadySet API or evidence snapshot changed')
 
 
-def _generate(phenix,api_sources,proofs,code,model,directory,timeout):
+def _generate(phenix,api_sources,proofs,code,model,directory,timeout,*,source_dictionary):
     directory.mkdir(parents=True);root=Path(phenix.root).resolve(strict=True);site=_library_anchor(api_sources)
     executable=Path(phenix.executables['phenix.python']).resolve(strict=True)
     if not executable.is_relative_to(root):raise ValueError('Require selected Phenix Python')
@@ -174,7 +192,8 @@ def _generate(phenix,api_sources,proofs,code,model,directory,timeout):
     if result.get('execution')=='COMPLETED' and result.get('effective_actions')!=ACTIONS:raise ValueError('ReadySet effective actions differ from requested isolated policy')
     candidate=directory/(code+'.cif')
     if candidate.is_symlink():raise ValueError('Unexpected ReadySet candidate symlink')
-    if candidate.is_file():report['candidate']={'status':'RECORDED',**_artifact(candidate,directory)}
+    if candidate.is_file():report['candidate']={'status':'RECORDED',**_artifact(candidate,directory),
+        **classify_readyset_candidate(report,source_dictionary.read_bytes(),candidate.read_bytes())}
     report['outputs']=[];report['excluded_serialized_outputs']=[]
     for p in sorted(directory.rglob('*')):
         if p.is_symlink():raise ValueError('Unexpected ReadySet output symlink')
@@ -220,7 +239,7 @@ def audit_readyset_controls(sources,output,*,phenix=None,api_sources=(),source_p
         seeds=full.read_bytes(),model.read_bytes(),policy.read_bytes()
         if phenix is None:continue
         directory=output/'generation'/code
-        generation=_generate(phenix,api_sources,source_proofs,code,model,directory,timeout_seconds)
+        generation=_generate(phenix,api_sources,source_proofs,code,model,directory,timeout_seconds,source_dictionary=source)
         case['generation']={'directory':{'anchor':'readyset_control_directory','path':directory.relative_to(output).as_posix()},**generation}
         if generation['candidate']['status']=='RECORDED':
             candidate=directory/generation['candidate']['path']

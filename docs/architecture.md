@@ -577,6 +577,14 @@ results separately. Fixed source-ideal heavy-atom seeds support independent
 candidate/native triple-target checks; all raw source chemistry and hydrogen
 inventory differences remain visible. No linked scaffold or experimental
 coordinates change. Internal template geometry operations are not instrumented.
+Returned C41 stops in the preparatory file-input builder call: nested eLBOW
+reparses process argv and rejects leaked ReadySet PHIL options. Its worker exits
+zero to save the native exception; that is not ReadySet success. Both owned CIFs
+are unchanged public-source copies, without numerical targets. C42 follows the
+captured ReadySet entrypoint's separation of explicit API args from process
+options. Builder kwargs and chemistry stay unchanged. Record process argv per
+observed call, classify unchanged/partial/completed output separately, and retain
+the old failed calls without executing captured code.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

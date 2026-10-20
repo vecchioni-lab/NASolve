@@ -38,7 +38,11 @@ chemistry and captures route-helper context. Direct/canonical lookups and source
 comparisons do not establish the full ReadySet path or a mapped SMILES graph.
 
 The selection note also separates the installed CCD, selected SMILES text and
-numerical restraints. Cedar 40 captures the literal ReadySet implementation and
+numerical restraints. Returned Cedar 41 separates a receipt worker's successful
+exit from failed native ReadySet calls and unchanged preparatory source copies.
+Cedar 42 isolates API/process arguments, preserving chemistry and original builder
+calls; completed output remains subject to independent native qualification.
+Cedar 40 captures the literal ReadySet implementation and
 bounded imports as text; its native accessor result does not claim ReadySet
 execution or a mapped-SMILES graph. Explicit scope and budget limits remain in
 the accompanying human descriptor and native evidence ledger.

@@ -510,6 +510,10 @@ CEDAR39_BUILD_SHA256 = 'eea1125f940eb6cd45b6558dad462be3fd3420184e52d8bdf6ca0841
 CEDAR39_CATALOGUE_WORKER_SHA256 = 'ddb761ddc5cc405a40d06ab15f98eebfe224fd2114435d2d9f08de757ee60ee0'
 CEDAR39_CCD_SHA256 = {'PDU':'98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258',
                       '5PC':'b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025'}
+CEDAR41_SHA256 = '7d24e6db59fa814ccd93099d9676f569047147fcb8ab154e05c4980d16a94bd3'
+CEDAR41_BUILD_SHA256 = '0b94d54d60f0153cc46a518507c36af947479da0275b6546a5f8ed50ea42d0aa'
+CEDAR41_WORKER_SHA256 = '9af880ed950dfb66388fa7af40dadc7a4530b88b4553e0b88c0f95b284b430e8'
+READYSET_OPTIONS_PARSER_SHA256 = 'e7bdf4ac2b9dea237f6c29b8015fa665834c435173c1d0662ed4d51b384e6dbd'
 CEDAR40_SHA256 = '976fd33904b8e00d6953e85648ed855cf9106aa56f64ae8dbc9ef97cc32b3f87'
 CEDAR40_BUILD_SHA256 = '1802b0da1a6b1e979ea8c55f0f500b7efe258adfd3ea7de75d38572d7a9ab465'
 CEDAR40_WORKER_SHA256 = '207cb1e9f141a49fc070c15fb96a6f35ef6f5bc181f2b4e01bd44e3101d80b9a'
@@ -535,7 +539,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -1173,10 +1177,97 @@ def _read_cedar40_members(members):
     return qualified,prior,rotation
 
 
+def _check_readyset_generation_return(members,r):
+    """C41's successful receipt process contains two failed native API calls."""
+    from nasolve.cif_readyset_generation_audit import ACTIONS
+    audit=r['readyset_generation_audit'];pre='readyset_controls'
+    if (audit!=json.loads(members[pre+'/readyset_control_receipt.json'])
+            or audit.get('policy_id')!='cif-isolated-readyset-call-and-triple-restraint-audit-v1'
+            or audit.get('status')!='REVIEW' or audit.get('automatic_adoption') is not False
+            or audit.get('native_execution')!='ISOLATED_READYSET_GENERATION_AND_TRIPLE_PROXY_CONTROLS'
+            or any(audit.get(k)!='NOT_RUN' for k in ['experimental_model_changes','refinement','scientific_approval'])
+            or set(audit['cases'])!={'PDU','5PC'}):raise ValueError('Returned isolated ReadySet scope differs')
+    for code,case in audit['cases'].items():
+        g=case['generation'];directory=pre+'/generation/'+code
+        if (g.get('directory')!={'anchor':'readyset_control_directory','path':'generation/'+code}
+                or {k:v for k,v in g.items() if k!='directory'}!=json.loads(members[directory+'/readyset_generation_receipt.json'])
+                or g['result']!=json.loads(members[directory+'/readyset_result.json'])
+                or g['trace']!=json.loads(members[directory+'/call_trace.json'])
+                or _sha(members[directory+'/readyset_worker.py'])!=CEDAR41_WORKER_SHA256
+                or g.get('actions')!=ACTIONS or g['execution'].get('status')!='COMPLETED' or g['execution'].get('returncode')!=0
+                or g['result'].get('execution')!='EXCEPTION' or g['result'].get('exception_type')!='SystemExit'
+                or g['result'].get('message')!='2' or '--ready_set.input.output_file_name' not in g['result'].get('traceback','')
+                or g['trace'].get('argument_overrides')!='NONE' or g['trace'].get('truncated') is not False
+                or case.get('native_triple_screen')!={'status':'NOT_RUN'} or 'native_interpretation' in case):
+            raise ValueError('Returned worker success must retain native ReadySet failure')
+        _check_source_snapshots(members,directory,g['sources'],'readyset_directory')
+        _returned_outputs(members,directory,g['outputs'],'readyset_directory')
+        _returned_outputs(members,directory,g['excluded_serialized_outputs'],'readyset_directory',excluded_pickles=True)
+        candidate=g['candidate'];source=members['component_controls/sources/'+code+'.cif']
+        if (candidate.get('status')!='RECORDED' or candidate.get('path')!=code+'.cif'
+                or 'classification' in candidate or case.get('source_sha256')!=_sha(source)):
+            raise ValueError('Returned source copy is not a completed numerical candidate')
+        _returned_outputs(members,directory,[candidate],'readyset_directory')
+        if members[directory+'/'+candidate['path']]!=source:raise ValueError('Returned preparatory CIF differs from its public source')
+        calls=g['trace']['events']
+        if (len(calls)!=1 or calls[0].get('api')!='ELBOW_BUILDER' or calls[0].get('args')!=[]
+                or calls[0].get('kwargs')!={'file':code+'.cif','id':code,'output':code,'silent':True}
+                or calls[0].get('status')!='EXCEPTION' or calls[0].get('exception_type')!='SystemExit'
+                or calls[0].get('message')!='2' or calls[0].get('caller')!={'anchor':'phenix_installation',
+                    'path':'lib/python3.11/site-packages/elbow/scripts/elbow_on_pdb_file.py','line':779}):
+            raise ValueError('Returned preparatory builder call differs')
+
+
+def _read_cedar41_members(members):
+    _verify_manifest(members,1624);r=json.loads(members['probe_receipt.json'])
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR41_BUILD_SHA256
+            or r.get('delivery_prefix')!='41_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('status')!='REVIEW' or r.get('analysis_completed') is not True or r.get('automatic_adoption') is not False
+            or r.get('requested_action')!='ISOLATED_READYSET_GENERATION_AUDIT'
+            or r.get('native_execution')!='ISOLATED_READYSET_GENERATION_AND_TRIPLE_PROXY_CONTROLS'
+            or r.get('dictionary_generation')!='ISOLATED_READYSET_REQUESTED' or r.get('policy_authority')!='NARestraints'
+            or any(r.get(k) is not True for k in ['original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='NOT_RUN' for k in ['model_editing','model_optimization','native_proxy_validation',
+                'linked_site_validation','policy_recompilation','refinement','installed_phenix_edits','readyset_retry','scientific_approval'])
+            or r['prior_archive']['sha256']!=CEDAR40_SHA256 or r['prior_archive']['verified_payloads']!=1529):
+        raise ValueError('Require exact returned Cedar 41 failed ReadySet controls')
+    nested={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    qualified,prior,rotation=_read_cedar40_members(nested)
+    _check_readyset_generation_return(members,r)
+    return qualified,prior,rotation
+
+
+def _replay_readyset_generation_return(members,frozen,sources):
+    from nasolve.cif_readyset_generation_audit import audit_readyset_controls,classify_readyset_candidate
+    from nasolve.cif_triple_bond_audit import audit_triple_bonds
+    r=json.loads(members['probe_receipt.json']);result={}
+    with tempfile.TemporaryDirectory(prefix='cif-readyset-return-') as owned:
+        plan=Path(owned).resolve(strict=True)/'replay'
+        report=audit_readyset_controls(sources,plan)
+        for code,case in r['readyset_generation_audit']['cases'].items():
+            g=case['generation'];pre='readyset_controls/generation/'+code
+            candidate=frozen/pre/(code+'.cif');source=sources[code]
+            screen=audit_triple_bonds(source,code,dictionary=candidate)
+            if not _evidence_equal(screen,case['dictionary_triple_screen']):raise ValueError('Returned source-copy triple screen does not replay')
+            prepared=report['cases'][code]['model_preparation']
+            if prepared!=case['model_preparation']:raise ValueError('Returned ReadySet source models do not replay')
+            for name in ['complete_source_seed.pdb','source_seed.pdb','isolated_component.phil']:
+                if (plan/'models'/code/name).read_bytes()!=members['readyset_controls/models/'+code+'/'+name]:
+                    raise ValueError('Returned ReadySet fixed seed/policy bytes do not replay')
+            if candidate.read_bytes()!=source.read_bytes() or members[pre+'/source_seed.pdb']!=members['readyset_controls/models/'+code+'/source_seed.pdb']:
+                raise ValueError('Returned preparatory source copy changed')
+            result[code]={'worker_process':g['execution']['status'],'readyset_execution':g['result']['execution'],
+                'exception_type':g['result']['exception_type'],'exception_message':g['result']['message'],
+                'builder_call':g['trace']['events'][0],**classify_readyset_candidate(g,source.read_bytes(),candidate.read_bytes()),
+                'source_seed_models_replayed':True,'dictionary_triple_screen':screen,'native_triple_screen':{'status':'NOT_RUN'},
+                'historical_floppy_geometry_cause':'NOT_ESTABLISHED','captured_code_execution':'NOT_RUN'}
+    return result
+
+
 def _source_reader_evidence(members):
     """Reach the verified C34 constructor evidence without dropping wrappers."""
     prefix=''
-    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar'}:
+    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar'}:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
     return members,prefix
@@ -1184,14 +1275,15 @@ def _source_reader_evidence(members):
 
 def _read_capsule(path, expected_sha=None):
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256}):
-        raise ValueError('Require an exact verified Cedar 29--40 review ZIP')
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256}):
+        raise ValueError('Require an exact verified Cedar 29--41 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='40_Cedar':qualified,prior,rotation=_read_cedar40_members(members)
+    if header.get('delivery_prefix')=='41_Cedar':qualified,prior,rotation=_read_cedar41_members(members)
+    elif header.get('delivery_prefix')=='40_Cedar':qualified,prior,rotation=_read_cedar40_members(members)
     elif header.get('delivery_prefix')=='39_Cedar':qualified,prior,rotation=_read_cedar39_members(members)
     elif header.get('delivery_prefix')=='38_Cedar':qualified,prior,rotation=_read_cedar38_members(members)
     elif header.get('delivery_prefix')=='37_Cedar':qualified,prior,rotation=_read_cedar37_members(members)
@@ -1431,6 +1523,11 @@ def _run_readyset_generation_action(args,receipt,session,review,original,members
     from nasolve.cif_installed_source_catalogue import verify_installed_sources
     selected={r['component']:sources[r['component']] for r in controls}
     if set(selected)!={'PDU','5PC'}:raise ValueError('This reviewed isolated ReadySet slice requires PDU and 5PC controls')
+    all_members,all_frozen=members,frozen
+    if json.loads(members['probe_receipt.json'])['delivery_prefix']=='41_Cedar':
+        receipt['prior_readyset_generation_replay']=_replay_readyset_generation_return(members,frozen,selected)
+        members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+        frozen=frozen/'inputs/review'
     old=json.loads(members['probe_receipt.json'])
     parent_members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
     parent=json.loads(parent_members['probe_receipt.json'])
@@ -1454,7 +1551,7 @@ def _run_readyset_generation_action(args,receipt,session,review,original,members
         verify_readyset_sources(phenix.root,old['readyset_source_audit'],frozen/'readyset_sources')
         verify_installed_sources(phenix.root,parent['installed_source_catalogue'],frozen/'inputs/review/installed_source_catalogue')
         proofmap={r['path']:r for r in old['readyset_source_audit']['sources']};site=_library_anchor(fingerprints)
-        for name,digest in ELBOW_SOURCE_SHA256.items():
+        for name,digest in {**ELBOW_SOURCE_SHA256,'elbow/utilities/options_parser.py':READYSET_OPTIONS_PARSER_SHA256}.items():
             path=(site/name).as_posix()
             if path in proofmap and proofmap[path]['sha256']!=digest:raise ValueError('Captured ReadySet generator source differs')
             proofmap.setdefault(path,{'anchor':'phenix_installation','path':path,'sha256':digest})
@@ -1464,12 +1561,14 @@ def _run_readyset_generation_action(args,receipt,session,review,original,members
         source_proofs=proofs,timeout_seconds=min(args.timeout_seconds,180))
     receipt['readyset_generation_audit']=report;receipt['native_execution']=report['native_execution']
     for code,case in report['cases'].items():
-        generation=case['generation'];print(code,'ReadySet:',generation['execution']['status'],
-            '; candidate:',generation.get('candidate',{}).get('status','NOT_RUN'),flush=True)
+        generation=case['generation'];candidate=generation.get('candidate',{});native=generation.get('result',{})
+        print(code,'worker:',generation['execution']['status'],'; ReadySet:',native.get('execution','NOT_RUN'),
+            '; output:',candidate.get('classification',candidate.get('status','NOT_RUN')),flush=True)
+        if native.get('execution')=='EXCEPTION':print(code,'ReadySet error:',native['exception_type'],native['message'],flush=True)
         for call in generation.get('trace',{}).get('events',[]):
             if call['api']=='ELBOW_BUILDER':
                 kw=call['kwargs'];print(code,'builder:',call['status'],'; chemical_component:',kw.get('chemical_component','ABSENT'),
-                    '; smiles supplied:','smiles' in kw,'; opt:',kw.get('opt','ABSENT'),flush=True)
+                    '; file:',kw.get('file','ABSENT'),'; smiles supplied:','smiles' in kw,'; opt:',kw.get('opt','ABSENT'),flush=True)
         for label in ['dictionary_triple_screen','native_triple_screen']:
             row=case.get(label,{});print(code,label+':',row.get('target_screen',row.get('status','NOT_RUN')),
                 '; linear-axis torsions:',len(row.get('linear_axis_torsions',[])),flush=True)
@@ -1477,7 +1576,7 @@ def _run_readyset_generation_action(args,receipt,session,review,original,members
         verify_readyset_sources(phenix.root,old['readyset_source_audit'],frozen/'readyset_sources')
         verify_installed_sources(phenix.root,parent['installed_source_catalogue'],frozen/'inputs/review/installed_source_catalogue')
         if _fingerprints(phenix,{**capture,'native_validation':expected})!=fingerprints:raise ValueError('Selected native APIs changed')
-    if any((frozen/PurePosixPath(n)).read_bytes()!=d for n,d in members.items()):raise ValueError('Frozen evidence changed')
+    if any((all_frozen/PurePosixPath(n)).read_bytes()!=d for n,d in all_members.items()):raise ValueError('Frozen evidence changed')
     if any((session/'component_controls/sources'/(c['component']+'.cif')).read_bytes()!=runtime[c['path']] for c in controls):raise ValueError('Frozen public control changed')
     if review.read_bytes()!=original:raise ValueError('Original review ZIP changed')
     receipt.update(analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True)
@@ -1489,6 +1588,7 @@ def _run_readyset_generation_action(args,receipt,session,review,original,members
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '42_Cedar':'NASolve-live-tests/41_Cedar_cif-numerical-recovery-ofvcwzhl/41_Cedar_ofvcwzhl_cif_numerical_recovery_review.zip',
         '41_Cedar':'NASolve-live-tests/40_Cedar_cif-numerical-recovery-qnxdgivs/40_Cedar_qnxdgivs_cif_numerical_recovery_review.zip',
         '40_Cedar':'NASolve-live-tests/39_Cedar_cif-numerical-recovery-eum3w071/39_Cedar_eum3w071_cif_numerical_recovery_review.zip',
         '39_Cedar':'NASolve-live-tests/38_Cedar_cif-numerical-recovery-cg3nw4as/38_Cedar_cg3nw4as_cif_numerical_recovery_review.zip',
@@ -1565,6 +1665,11 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='41_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'41_Cedar','worker_processes':'COMPLETED',
+                'readyset_execution':'BOTH_SYSTEMEXIT_2_NESTED_OPTIONS_PARSER','surviving_cifs':'UNCHANGED_PUBLIC_SOURCE_COPIES',
+                'native_triple_screens':'NOT_RUN','historical_floppy_geometry_cause':'NOT_ESTABLISHED',
+                'evidence':{'anchor':'probe_directory','path':'inputs/review/probe_receipt.json'}}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='40_Cedar':
             receipt['previous_execution']={'delivery_prefix':'40_Cedar','native_execution':'INSTALLED_CCD_DESCRIPTOR_SELECTION_ONLY',
                 'selected_descriptors':'BOTH_CACTVS_SMILES_CANONICAL','readyset_execution':'NOT_RUN',
@@ -1612,8 +1717,8 @@ def main():
         if args.stereochemistry_audit_only != (json.loads(members['probe_receipt.json'])['delivery_prefix']=='33_Cedar'):
             raise ValueError('Cedar 33 is only supported by the explicit read-only stereochemistry action')
         input_delivery=json.loads(members['probe_receipt.json'])['delivery_prefix']
-        if args.readyset_generation_audit_only != (input_delivery=='40_Cedar'):
-            raise ValueError('Cedar 40 is only supported by the explicit isolated ReadySet generation audit')
+        if args.readyset_generation_audit_only != (input_delivery in {'40_Cedar','41_Cedar'}):
+            raise ValueError('Cedar 40--41 are only supported by the explicit isolated ReadySet generation audit')
         if args.readyset_source_audit_only != (input_delivery=='39_Cedar'):
             raise ValueError('Cedar 39 is only supported by the explicit ReadySet source/descriptor audit')
         if args.installed_source_audit_only != (input_delivery=='38_Cedar'):
@@ -1646,7 +1751,7 @@ def main():
             from nasolve.cif_source_reader import source_reader_checks
             receipt['prior_source_reader_replay']={}
             charge_members=members;charge_root=frozen
-            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar'}:
+            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar'}:
                 charge_members={n.removeprefix('inputs/review/'):d for n,d in charge_members.items() if n.startswith('inputs/review/')}
                 charge_root=charge_root/'inputs/review'
             for code,row in json.loads(charge_members['probe_receipt.json'])['source_reader_audits'].items():

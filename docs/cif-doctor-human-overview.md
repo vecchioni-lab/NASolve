@@ -950,8 +950,15 @@ both CACTVS canonical selections and 24 source files. One inspected generation
 branch deletes the SMILES and requests the CCD component directly; its executed
 selection must be observed separately.
 
-Cedar 41 runs the original selected ReadySet Python API on isolated source-seed
-heavy-atom PDU/5PC models. Process-local observers forward the original eLBOW
+The isolated ReadySet diagnostic runs the original selected Python API on
+source-seed heavy-atom PDU/5PC models. Returned Cedar 41 identifies a wrapper
+invocation error: leaked ReadySet options stop both nested eLBOW parsers before
+numerical generation. Its surviving dictionaries are unchanged source copies,
+not evidence of missing generated triple restraints. Cedar 42 passes ReadySet
+arguments only through its API and leaves process options empty, matching the
+captured native entrypoint. Original builder calls and chemistry stay fixed.
+Worker completion, native success and output provenance are reported separately;
+failed evidence and exact seed-model/triple-screen replay remain preserved. Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,
 returned graphs or caught failures. A 180 s deadline bounds generation, followed
 by at most 60 s native interpretation per control. Ligand AM1 and final hydrogen

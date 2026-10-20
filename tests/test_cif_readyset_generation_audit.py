@@ -12,7 +12,12 @@ def installed(tmp_path,mode):
     root=tmp_path/'phenix';site=root/'lib/python3.11/site-packages'
     for name in ['elbow','elbow/command_line','elbow/scripts']:
         p=site/name;p.mkdir(parents=True,exist_ok=True);(p/'__init__.py').write_text('')
-    (site/'elbow/command_line/builder.py').write_text('''def run(**kwargs):
+    (site/'elbow/command_line/builder.py').write_text('''import optparse,sys
+def run(**kwargs):
+    if MODE=='nested_parser':
+        parser=optparse.OptionParser()
+        args=[('--'+x) if '=' in x and not x.startswith('--') else x for x in sys.argv[1:]]
+        parser.parse_args(args)
     assert kwargs=={'chemical_component':'Q17','residue':'Q17','opt':False}
     if MODE=='builder_exception':raise RuntimeError('EXPLICIT FAKE BUILDER FAILURE')
     if MODE=='nonfinite':
@@ -39,6 +44,9 @@ def run(args):
     except RuntimeError:route.get_elbow_molecule_from_chemical_components('Q17')
     if MODE=='changed_input':Path('source_seed.pdb').write_text('ALTERED')
     if MODE=='changed_source':Path(__file__).write_text('# ALTERED')
+    if MODE in {'source_copy_exception','partial_exception'}:
+        Path('Q17.cif').write_bytes(Path(SOURCE).read_bytes()+(b'\\n# partial output\\n' if MODE=='partial_exception' else b''))
+        raise RuntimeError('EXPLICIT FAKE READYSET FAILURE')
     if MODE=='exception':raise RuntimeError('EXPLICIT FAKE READYSET FAILURE')
     if MODE!='no_candidate':
         Path('Q17.cif').write_bytes(b'INVALID NATIVE CANDIDATE' if MODE=='malformed' else Path(SOURCE).read_bytes())
@@ -120,3 +128,32 @@ def test_completed_candidate_has_independent_dictionary_and_active_native_triple
     assert c['dictionary_triple_screen']['target_screen']=='PASS' and c['native_triple_screen']['target_screen']=='PASS'
     assert c['native_triple_screen']['triple_bonds'][0]['distance']['membership_count']==1
     assert r['status']=='REVIEW' and r['scientific_approval']=='NOT_RUN' and r['automatic_adoption'] is False
+
+
+def test_explicit_readyset_api_arguments_do_not_leak_into_nested_elbow_parser(tmp_path,monkeypatch):
+    import nasolve.cif_readyset_generation_audit as m
+    source,phenix,api,proofs=installed(tmp_path,'nested_parser')
+    monkeypatch.setattr(m,'inspect_native_bundle',lambda *a,**k:{'status':'FAILED','native_validation':{'status':'FAILED'}})
+    case=m.audit_readyset_controls({'Q17':source},tmp_path/'audit',phenix=phenix,api_sources=api,source_proofs=proofs)['cases']['Q17']
+    g=case['generation']
+    assert g['execution']['status']=='COMPLETED'
+    assert g['result']['execution']=='COMPLETED',g['result']
+    assert g['trace']['events'][0]['kwargs']=={'chemical_component':'Q17','residue':'Q17','opt':False}
+    assert all(len(event['process_argv'])==1 for event in g['trace']['events'])
+    assert 'ready_set.input.output_file_name=readyset_candidate' in g['arguments']
+
+
+@pytest.mark.parametrize('mode,classification',[('pass','UNCHANGED_SOURCE_COPY'),('source_copy_exception','UNCHANGED_SOURCE_COPY'),('partial_exception','PARTIAL_OR_UNQUALIFIED_OUTPUT')])
+def test_source_copy_and_partial_files_do_not_become_completed_generation_claims(tmp_path,monkeypatch,mode,classification):
+    import nasolve.cif_readyset_generation_audit as m
+    source,phenix,api,proofs=installed(tmp_path,mode);native=[]
+    def inspect(*a,**kw):
+        native.append(True);return {'status':'FAILED','native_validation':{'status':'FAILED'}}
+    monkeypatch.setattr(m,'inspect_native_bundle',inspect)
+    case=m.audit_readyset_controls({'Q17':source},tmp_path/'audit',phenix=phenix,api_sources=api,source_proofs=proofs)['cases']['Q17']
+    g=case['generation'];assert g['candidate']['status']=='RECORDED'
+    assert g['candidate']['classification']==classification
+    assert g['candidate']['generation_claim']=='NOT_ESTABLISHED'
+    assert g['candidate']['source_bytes_match']==(mode!='partial_exception')
+    assert bool(native)==(mode=='pass')
+    if mode!='pass':assert g['result']['execution']=='EXCEPTION' and case['native_triple_screen']['status']=='NOT_RUN'

@@ -127,9 +127,12 @@ all four direct/wrapped numerical monomer lookups remain missing. Cedar 40
 captures the dispatcher-selected ReadySet implementation as text and records
 the installed CCD SMILES accessor selection. This does not execute ReadySet
 or independently validate a mapped SMILES graph. Its return records both CACTVS
-canonical selections and 24 static source files. Cedar 41 observes actual
-ReadySet/eLBOW calls during separate bounded PDU/5PC generation, then screens
-any resulting CIF and active triple terms. Source-seed heavy-atom coordinates
+canonical selections and 24 static source files. Returned Cedar 41 exposes
+an invocation bug: ReadySet PHIL arguments reached the nested eLBOW options
+parser, stopping both controls before numerical generation. Its two surviving
+CIFs are byte-identical source copies; native triple checks did not run.
+Cedar 42 isolates process arguments while retaining the original explicit API
+arguments and builder calls, and prints worker/native/file outcomes separately. Source-seed heavy-atom coordinates
 are fixed for interpretation; native generation may perform internal geometry
 operations. Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;

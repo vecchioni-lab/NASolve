@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Isolate ReadySet API arguments from nested eLBOW parsing
+
+- Verify all 1,624 Cedar 41 payloads. Both receipt workers finish, but native
+  ReadySet raises SystemExit 2 before numerical generation because the wrapper
+  leaked PHIL options into eLBOW's process parser. Both surviving CIFs are
+  unchanged public-source copies; native triple checks did not run.
+- Cedar 42 passes ReadySet arguments only through its API, matching the captured
+  native entrypoint. Original builder kwargs and chemistry remain unchanged.
+  Record process argv and distinguish worker/native outcomes, source copies,
+  partial files and completed output. Add exact failed-return and source-model/
+  triple-screen replay, retaining all earlier review evidence.
+- No dependency, NARestraints table/release, production default, scaffold,
+  refinement or adoption change. Native retry under Phenix 2.2.1-6174 awaits Mac;
+  Linux validation uses explicit fake APIs and saved-capsule replay. All 18 new
+  regressions, 92 focused and 2,411 full tests pass (two skips, 276 subtests).
+  Actual C41 replay passes after build deletion/relocation with poisoned imports
+  and aliased temp paths; native retry remains pending.
+
 ### Observe isolated ReadySet generation and reconcile equivalent policy records
 
 - Verify all 1,529 Cedar 40 payloads and the clean published runner. Both

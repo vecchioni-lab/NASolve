@@ -191,8 +191,11 @@ for actual behavior; history is evidence, not a second task queue.
   captures the literal ReadySet entrypoint/import text and native CCD SMILES
   accessor selection; it does not execute ReadySet. SMILES text comparison is
   not mapped-graph proof. Returned C40 records both CACTVS selections and 24
-  static sources. Cedar 41 observes actual isolated ReadySet generation and
-  screens resulting triple terms, preserving failures/fallbacks. Equivalent
+  static sources. Returned Cedar 41 stops both isolated controls in the nested
+  eLBOW options parser because the wrapper leaked ReadySet PHIL arguments.
+  Surviving CIFs are unchanged source copies; native triple checks did not run.
+  Cedar 42 isolates process arguments, replays the failed evidence and separates
+  worker success, native outcome and output provenance. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification
