@@ -745,8 +745,8 @@ no role record or 5PC pairing/stacking policy is selected. General screening
 thresholds are review policy, not chemical approval. The saved PDU candidate
 still has six linear-axis torsions, bent coordinates and reported nonconvergence.
 Native isolated triple-bond results await the selected Mac installation.
-All **79 new regressions**, **143 focused tests (17.42 s)** and **2,279 full
-tests, two skips and 276 subtests (180.24 s)** pass. The 124-member runtime
+All **95 new regressions**, **159 focused tests (17.89 s)** and **2,295 full
+tests, two skips and 276 subtests (185.91 s)** pass. The 124-member runtime
 replays the actual C37 archive with raw/controlled charge checks after deleted
 builds and relocation, with poisoned imports, an aliased temporary root and the
 protected everyday edit intact. JSON mirrors, 149 links and the rendered editable

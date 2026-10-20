@@ -65,7 +65,7 @@ def audit_triple_bonds(reference,code,*,dictionary=None,native=None):
         report['dictionary_sha256']=sha256(before).hexdigest();report['scope']='DICTIONARY_TERMS_AND_COORDINATES'
     else:
         report['scope']='ACTIVE_NATIVE_PROXIES_AND_COORDINATES';before=None
-        atoms=native.get('atoms',[]);selected=[a for a in atoms if a.get('identity',{}).get('resname')==code]
+        atoms=native.get('atoms',[]);selected=[a for a in atoms if a.get('identity',{}).get('resname','').strip()==code]
         identities={tuple(a['identity'].get(k) for k in ['model_id','chain_id','resseq','icode','altloc']) for a in selected}
         if len(identities)!=1 or len({a['atom_id'] for a in selected})!=len(selected):issue('ambiguous-native-site',[])
         index={a['i_seq']:a['atom_id'] for a in selected};xyz={a['atom_id']:a['xyz'] for a in selected}

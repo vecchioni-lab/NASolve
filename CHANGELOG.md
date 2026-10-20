@@ -20,11 +20,13 @@ entries are reconstructed from repository history.
   with explicit installed-CIF replay and the saved PDU candidate, at identical
   fixed isolated seed coordinates. Empty explicit dictionaries require a new
   explicit installed-library-only opt-in; existing callers retain their guard.
+- Match padded native PDB residue names during component selection, preserving
+  literal labels. The same triple/proxy regressions exercise two-character IDs.
 - Add the unchanged public 5PC CCD as an independent C7/C8 control. Preserve
   duplicate NARestraints records without selecting roles. Native SS inference
   is disabled; production defaults, dependencies and NARestraints policy stay
   fixed. No ReadySet, minimization, refinement or adoption is requested.
-  All 79 new regressions, 143 focused and 2,279 full tests pass, with two skips
+  All 95 new regressions, 159 focused and 2,295 full tests pass, with two skips
   and 276 subtests. Actual C37 replay passes after removed/relocated clean builds,
   with aliased temp paths, poisoned imports and the everyday edit preserved.
   Installed triple-bond qualification awaits the Mac return.

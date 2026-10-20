@@ -47,10 +47,11 @@ def test_explicit_triple_geometry_is_checked_independently_of_component_name(tmp
 
 @pytest.mark.parametrize('defect',['none','missing_bond','missing_angle','duplicate','long','weak','bent','unknown_order','extra_site',
     'nonfinite_weight','negative_weight','nonfinite_target','nonfinite_coordinate','missing_atom','wrong_element','asu'])
-def test_native_active_proxies_require_exact_membership_targets_and_positive_weights(tmp_path,defect):
+@pytest.mark.parametrize('code',['Q17','Q1'])
+def test_native_active_proxies_require_exact_membership_targets_and_positive_weights(tmp_path,defect,code):
     from nasolve.cif_triple_bond_audit import audit_triple_bonds
-    src,v=fixture(tmp_path);atoms=[{'i_seq':i,'atom_id':name,'element':'C','xyz':[float(v['_chem_comp_atom.pdbx_model_Cartn_'+x+'_ideal'][i]) for x in 'xyz'],
-          'identity':{'chain_id':'A','resseq':'1','icode':'','altloc':'','resname':'Q17'}} for i,name in enumerate(v['_chem_comp_atom.atom_id'])]
+    src,v=fixture(tmp_path,code);atoms=[{'i_seq':i,'atom_id':name,'element':'C','xyz':[float(v['_chem_comp_atom.pdbx_model_Cartn_'+x+'_ideal'][i]) for x in 'xyz'],
+          'identity':{'chain_id':'A','resseq':'1','icode':'','altloc':'','resname':f'{code:>3}'}} for i,name in enumerate(v['_chem_comp_atom.atom_id'])]
     native={'status':'REVIEW','atoms':atoms,'geometry':{'status':'RECORDED','proxy_details':{
        'bond_simple':[{'i_seqs':[1,2],'distance_ideal':1.2,'weight':2500.}],
        'bond_asu':[],'angle':[{'i_seqs':[0,1,2],'angle_ideal':180.,'weight':1/9},
@@ -73,7 +74,7 @@ def test_native_active_proxies_require_exact_membership_targets_and_positive_wei
     if defect=='missing_atom':atoms.pop()
     if defect=='wrong_element':atoms[2]['element']='N'
     if defect=='asu':geo['bond_asu']=[{'i_seqs':[1,2]}]
-    r=audit_triple_bonds(src,'Q17',native=native)
+    r=audit_triple_bonds(src,code,native=native)
     assert r['status']==('TRIPLE_SCREEN_PASS' if defect=='none' else 'REVIEW')
 
 

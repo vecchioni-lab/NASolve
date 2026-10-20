@@ -1547,6 +1547,9 @@ explicit captured-CIF replay (when available), and the saved C33 PDU candidate.
 The native wrapper allows an empty dictionary list only with the explicit
 installed_library_only=True option, rejecting simultaneous explicit overrides.
 Full linked inventories retain effective definitions and active proxy details.
+Component selection trims native PDB residue-name padding while preserving
+literal labels in the captured inventory; two-character codes use the same
+graph/proxy checks as three-character controls. No atom or component is renamed.
 The report records lookup/snapshot term equality; it does not assume provenance
 from equality. Per-resource timeout is <=30 s and per native case <=60 s; owned
 process groups terminate on timeout. No generator, optimizer, ReadySet or
