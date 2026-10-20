@@ -190,7 +190,12 @@ for actual behavior; history is evidence, not a second task queue.
   with all four direct/wrapped numerical monomer lookups missing. Cedar 40
   captures the literal ReadySet entrypoint/import text and native CCD SMILES
   accessor selection; it does not execute ReadySet. SMILES text comparison is
-  not mapped-graph proof. Scientific qualification
+  not mapped-graph proof. Returned C40 records both CACTVS selections and 24
+  static sources. Cedar 41 observes actual isolated ReadySet generation and
+  screens resulting triple terms, preserving failures/fallbacks. Equivalent
+  role aliases and descriptive columns are reconciled in the auditor; 5PC
+  already has matching C-sheet roles, so no NAR table/release change is needed.
+  Scientific qualification
   remains open.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.

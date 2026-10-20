@@ -7633,7 +7633,7 @@
     },
     "readyset_source_descriptor_audit_2026_10_20": {
       "evidence_record": "cif-linked-native-registration-evidence.json#readyset_source_descriptor_audit_2026_10_20",
-      "status": "IMPLEMENTED_READYSET_STATIC_SOURCE_AND_DESCRIPTOR_SELECTION_NATIVE_PENDING",
+      "status": "RETURNED_STATIC_READYSET_SOURCES_AND_NATIVE_CCD_DESCRIPTOR_SELECTION_VERIFIED",
       "recorded_date": "2026-10-20",
       "delivery_prefix": "40_Cedar",
       "policy_ids": [
@@ -7657,7 +7657,7 @@
         "after": "Resolve the selected dispatcher literal target, freeze bounded first-party source imports as text and call only the pinned installed CCD filename/SMILES accessors. Replay all prior evidence independently.",
         "production_defaults": "UNCHANGED",
         "policy_authority": "NARestraints",
-        "native_acceptance": "PENDING_USER_MAC"
+        "native_acceptance": "RETURNED_DESCRIPTOR_SELECTION_ONLY"
       },
       "methods": {
         "return_gate": "Exact C39 archive/build and 1486 payloads. Recursively verify C38 and all predecessors. Check catalogue/raw-reader receipts, worker hashes, source snapshots, missing direct/wrapped and successful canonical context; preserve UNASSESSED numerical and NOT_RUN mapped-graph/ReadySet scope.",
@@ -7731,7 +7731,7 @@
           "seconds": 183.26,
           "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
         },
-        "native": "PENDING_USER_MAC. Linux uses explicit fake selected APIs and actual-capsule offline replay only.",
+        "native": "RETURNED_MAC_DESCRIPTOR_SELECTION_ONLY; see native_return. ReadySet itself was not executed.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -7751,7 +7751,417 @@
         "5PC has two ambiguous NAR records; no pairing/stacking role is chosen. Stereo, convergence, scientific qualification and production integration remain open."
       ],
       "artifact_boundary": "Only maintained code/tests/docs and metadata enter Git. Installed source/CCD snapshots, private evidence, logs, models, generated runners and ZIPs remain external.",
-      "next_action": "Build Cedar 40 with --delivery-prefix 40_Cedar --component-control PDU --component-control 5PC. Run exact C39 ZIP with --component DP --readyset-source-audit-only under Phenix 2.2.1-6174. Return console/review ZIP."
+      "next_action": "Cedar 41 observes unchanged actual ReadySet builder/template calls in separate heavy-atom PDU/5PC controls and assesses any generated dictionaries/native triple terms.",
+      "native_return": {
+        "archive": {
+          "name": "40_Cedar_qnxdgivs_cif_numerical_recovery_review.zip",
+          "sha256": "976fd33904b8e00d6953e85648ed855cf9106aa56f64ae8dbc9ef97cc32b3f87",
+          "bytes": 44252637,
+          "verified_payloads": 1529,
+          "preserved_predecessor_payloads": 1486
+        },
+        "source_commit": "fcf7e37e475217ceb63f7e4f319b0e696651160c",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "trusted_clean_build_metadata_match": true,
+        "runner_sha256": "6836ddc9be6d936afdaaa1df4f8502d6f5c2588f2b8a9840cad764aab173dc90",
+        "canonical_build_sha256": "1802b0da1a6b1e979ea8c55f0f500b7efe258adfd3ea7de75d38572d7a9ab465",
+        "runtime_members": 126,
+        "runtime_archive_sha256": "79e141ea390431cc46992f6135d961fc2b698a9e2afdd8a0e055b4acd55a8217",
+        "native_installation": "Phenix 2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "native_execution": "INSTALLED_CCD_DESCRIPTOR_SELECTION_ONLY",
+        "source_files": 24,
+        "literal_import_budget_complete": true,
+        "coverage_limit": "Literal first-party imports of the entrypoint and ReadySet-named modules only; no dynamic or complete transitive coverage.",
+        "entrypoint": {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/command_line/ready_set.py"
+        },
+        "source_proofs": [
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/command_line/ready_set.py",
+            "sha256": "c15aa444f34e20954443900b1fc119ba4af024243d6671e7986d9249ef6dbaea",
+            "size": 40223
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/chemistry/Chemistry.py",
+            "sha256": "45b151177f7a91d5727903058c59594eb107d5b563f5949ea7aa750742cc9507",
+            "size": 17951
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/chemistry/any_chemical_format_reader.py",
+            "sha256": "17c4cc38484f8f5ddea90ae3d9a04e07c73ee18ccb722ad574c753bdb9b1cbd4",
+            "size": 17945
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/chemistry/xyzClass.py",
+            "sha256": "7a75d78d76aa51173b2a4d0a3c7f8631ddd6a777b226de49035ebd5b061d5bd2",
+            "size": 16843
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/command_line/__init__.py",
+            "sha256": "8a671e9f33689c445f355f2058df50876f469a7f31a89240a45d1fed33158028",
+            "size": 12
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/command_line/add_hydrogens.py",
+            "sha256": "2914be52cef81635388b1c4cedaf38e1d117795d90f42378f8e620162f138860",
+            "size": 33622
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/formats/__init__.py",
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "size": 1
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/formats/utilities.py",
+            "sha256": "94307cd27cd5909c570176a254bb8502efda8bf93d9b760cadb53d9831ce0d30",
+            "size": 1663
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/programs/ready_set_params.py",
+            "sha256": "8f40a691cb42e71b7431ef4c68139eb033eee013ac44b71a59aff5c39f84c86f",
+            "size": 4235
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/scripts/__init__.py",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "size": 0
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/scripts/elbow_on_pdb_file.py",
+            "sha256": "d58fbd952e1e3b0b3bb1d82c31af8306664f41b6d09070c9ebf071616156658e",
+            "size": 90971
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/utilities/Utilities.py",
+            "sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108",
+            "size": 24907
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/utilities/ready_set_utils.py",
+            "sha256": "66029d06ff28149d7c0621523dfe872831141890eda7524abfb2e1c8e4cf0be2",
+            "size": 16617
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/hydrogens/neutron_utils.py",
+            "sha256": "44a15a69e383f535ef825df31591e158c468f246c57cc6f48f0cae58d1b75844",
+            "size": 7428
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/ligands/ready_set_utils.py",
+            "sha256": "5e17597cb3cb6fdcc339794f728c21151859a3ae856e408265365586e3261e0f",
+            "size": 30979
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/model/__init__.py",
+            "sha256": "797cfbbc5a83e5389b6c88a96fe7dacb4479e8a901006d12b4fdc1b9d66f6efa",
+            "size": 98
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/utils/__init__.py",
+            "sha256": "7e7890bfb37807ef67a5e65aada46d28836b5a0f1554f788eac27ca828ba3542",
+            "size": 86703
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/programs/__init__.py",
+            "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "size": 1
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/programs/metal_coordination_params.py",
+            "sha256": "f4989ddff837163fe2872fd54a54e9ddc340db4a85dc2efe5ad16436ea7f5764",
+            "size": 1015
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/conformation_dependent_library/__init__.py",
+            "sha256": "73f057ef08d7030fe760c668f1fb13058138180c16ed7b37372e1b8913d0f183",
+            "size": 17435
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/conformation_dependent_library/multi_residue_class.py",
+            "sha256": "6d862cb93d96a667000f35eaa9f532546361e9661d1f8c8ac2fb0d904eefee2b",
+            "size": 13760
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/hydrogens/specialised_hydrogen_atoms.py",
+            "sha256": "273692f056e2755dc7b13c7f21a109ac9490deaaecd266050cbab69961b92ff1",
+            "size": 10361
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/ligands/hierarchy_utils.py",
+            "sha256": "a4f57387275e20bea94402a3b4d56c305200ca1c4ad13f9950f30ab9b59cd21b",
+            "size": 7641
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/ligands/ready_set_basics.py",
+            "sha256": "7babf980cb812e64dc4ff192b12ef76a3aa7a30adbed2d91e83abb3152a59f44",
+            "size": 3905
+          }
+        ],
+        "descriptor_worker_sha256": "207cb1e9f141a49fc070c15fb96a6f35ef6f5bc181f2b4e01bd44e3101d80b9a",
+        "components": {
+          "5PC": {
+            "ccd_path": "lib/python3.11/site-packages/chem_data/chemical_components/5/data_5PC.cif",
+            "mapped_smiles_graph_comparison": "NOT_RUN",
+            "matching_descriptors": [
+              {
+                "comp_id": "5PC",
+                "descriptor": "CC#CC1=CN([C@H]2C[C@H](O)[C@@H](CO[P](O)(O)=O)O2)C(=O)N=C1N",
+                "program": "CACTVS",
+                "program_version": "3.341",
+                "type": "SMILES_CANONICAL"
+              }
+            ],
+            "numerical_restraints": "UNASSESSED",
+            "selected_smiles": "CC#CC1=CN([C@H]2C[C@H](O)[C@@H](CO[P](O)(O)=O)O2)C(=O)N=C1N",
+            "status": "SELECTED_DESCRIPTOR_MATCH"
+          },
+          "PDU": {
+            "ccd_path": "lib/python3.11/site-packages/chem_data/chemical_components/p/data_PDU.cif",
+            "mapped_smiles_graph_comparison": "NOT_RUN",
+            "matching_descriptors": [
+              {
+                "comp_id": "PDU",
+                "descriptor": "CC#CC1=CN([C@H]2C[C@H](O)[C@@H](CO[P](O)(O)=O)O2)C(=O)NC1=O",
+                "program": "CACTVS",
+                "program_version": "3.385",
+                "type": "SMILES_CANONICAL"
+              }
+            ],
+            "numerical_restraints": "UNASSESSED",
+            "selected_smiles": "CC#CC1=CN([C@H]2C[C@H](O)[C@@H](CO[P](O)(O)=O)O2)C(=O)NC1=O",
+            "status": "SELECTED_DESCRIPTOR_MATCH"
+          }
+        },
+        "readyset_execution": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "optimization": "NOT_RUN",
+        "automatic_adoption": false,
+        "static_branch_observation": {
+          "source": "elbow/scripts/elbow_on_pdb_file.py",
+          "sha256": "d58fbd952e1e3b0b3bb1d82c31af8306664f41b6d09070c9ebf071616156658e",
+          "lines": [
+            1083,
+            1195,
+            1196,
+            1198,
+            1210
+          ],
+          "finding": "One component-generation branch initially reads the CCD SMILES, then deletes it and dispatches chemical_component instead. This is source inspection, not evidence that either isolated control executed that branch."
+        }
+      }
+    },
+    "isolated_readyset_generation_audit_2026_10_20": {
+      "evidence_record": "cif-linked-native-registration-evidence.json#isolated_readyset_generation_audit_2026_10_20",
+      "status": "IMPLEMENTED_ISOLATED_READYSET_GENERATION_AND_TRIPLE_AUDIT_NATIVE_PENDING",
+      "recorded_date": "2026-10-20",
+      "delivery_prefix": "41_Cedar",
+      "policy_ids": [
+        "cif-isolated-readyset-call-and-triple-restraint-audit-v1",
+        "cif-explicit-component-policy-control-v1"
+      ],
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "41_Cedar_probe_cif_readyset_generation.py",
+      "modules": [
+        "src/nasolve/cif_readyset_generation_audit.py",
+        "src/nasolve/cif_component_controls.py"
+      ],
+      "review_input": {
+        "name": "40_Cedar_qnxdgivs_cif_numerical_recovery_review.zip",
+        "sha256": "976fd33904b8e00d6953e85648ed855cf9106aa56f64ae8dbc9ef97cc32b3f87",
+        "bytes": 44252637,
+        "verified_payloads": 1529,
+        "preserved_predecessor_payloads": 1486
+      },
+      "behavior": {
+        "before": "Installed source graphs and selected SMILES agree, but the actual ReadySet-to-eLBOW dispatch and resulting numerical triple restraints were unobserved. The control auditor also rejected equivalent 5PC mapping aliases.",
+        "after": "Observe original ReadySet builder/template calls during bounded isolated generation, retain failures/fallback provenance, and independently compare raw generated dictionaries and active native triple terms. Reconcile only equivalent operational mapping records and distinguish descriptive columns.",
+        "native_acceptance": "PENDING_USER_MAC",
+        "production_defaults": "UNCHANGED",
+        "policy_authority": "NARestraints"
+      },
+      "5PC_policy_resolution": {
+        "reported_problem": "CONSERVATIVE_AUDITOR_REVIEW; NOT_MISSING_NARESTSTRAINTS_ENTRY",
+        "workbook": {
+          "repository": "vecchioni-lab/NARestraints",
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "path": "restraints/data/Ligands.xlsx",
+          "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "rows": [
+          "cytosine!28",
+          "cytosine!29"
+        ],
+        "source_sheet": "cytosine",
+        "record_count": 2,
+        "base_class": "C",
+        "sugar_type": "DNA",
+        "glycosidic_atom": "N1",
+        "canonical_roles": {
+          "N1": "N1",
+          "C2": "C2",
+          "O2": "O2",
+          "N3": "N3",
+          "C4": "C4",
+          "N4": "N4",
+          "C5": "C5",
+          "C6": "C6"
+        },
+        "descriptive_differences": [
+          "Name",
+          "Abbreviation",
+          "Entries",
+          "C5-mod"
+        ],
+        "general_fix": "Compare all operational atom roles plus base/sugar/phosphate/Saenger/function/sheet/attachment context. Identical role records may compile once while retaining every raw alias. Conflicting or absent roles still review/fail. Exclude explicit C5-mod/C7-mod annotation columns as the upstream mirror loader already does.",
+        "synthetic_partner_selection": "Prefer an available canonical partner among configured non-noncanonical recipes before modified-family controls; C therefore exercises configured G:C rather than choosing I:C by dictionary iteration order. NARestraints recipe definitions stay unchanged.",
+        "compiler_result": "PASS; C-like GC contacts and both stacking orders",
+        "workbook_changes": "NONE",
+        "NARestraints_changes": "NONE",
+        "new_NARestraints_release": "NOT_NEEDED; CONDITIONAL_MISSING_ENTRY_CASE_NOT_PRESENT"
+      },
+      "methods": {
+        "return_gate": "Exact C40 archive/build and 1529 payloads; recursively verify C39 and predecessors. Check owned descriptor worker, native result text/CCD paths, exact descriptor membership and static source scope. Mapped-graph/numerical/ReadySet-execution status stays NOT_RUN/UNASSESSED.",
+        "prior_replay": "17 mechanics checks, 96 rotation directions, raw/controlled charge checks, source-seed PDBs, saved/native triple screens, installed/public CCD comparisons and raw reader inventories, and native descriptor selection membership.",
+        "models": "Create complete source-ideal PDB seeds and a separate explicit heavy-atom derivative, retaining both hashes and fixed coordinates. No experimental scaffold, linkage or reflections are used.",
+        "invocation": "Selected Phenix Python imports the hash-proven elbow.command_line.ready_set module and calls its original run API. The shell dispatcher is not executed. Arguments use the captured PHIL API and an owned output prefix.",
+        "actions": {
+          "hydrogens": false,
+          "ligands": true,
+          "optimise_ligand_geometry": false,
+          "optimise_final_geometry_of_hydrogens": false,
+          "trust_residue_code_is_chemical_components_code": false,
+          "metals": false,
+          "link_to_edits": false,
+          "remove_waters": false
+        },
+        "call_observers": "Process-local observers on builder.run and the route-local CCD template getter record original arguments, caller source/line, returned atom/bond snapshots or exceptions. They forward original arguments, return objects and exceptions without override. Each trace update is saved atomically; 64-event cap marks truncation. Nonfinite values become explicit trace markers without altering native objects.",
+        "native_internal_operations": "NOT_INSTRUMENTED. Native generation can optimize internal templates; disabled AM1/final-hydrogen actions are not a claim of zero internal optimization.",
+        "source_proofs": "All C40 source/CCD/dispatcher proofs plus previously pinned eLBOW builder/optimizer/reader sources. Import origins, known source/snapshot hashes and frozen models/policy checked before/after.",
+        "cache_and_pickles": "Fresh owned work directory, no supplied dictionaries/cache, READY_SET_LIGAND_CACHE_DIRECTORY removed, bytecode writes disabled. Serialized outputs recorded by path/size only and excluded from capsules; never loaded by the diagnostic.",
+        "candidate": "Only exact owned <CODE>.cif output is selected. Retain process, ReadySet and builder outcomes separately; malformed/partial/missing candidates remain explicit. Assess raw source chemistry and dictionary triple targets without invented replacements.",
+        "native": "Only completed policy-matched generation proceeds to existing native interpretation at the fixed heavy-atom seeds. Explicit secondary_structure.enabled=False; assess active lengths/angles/weights/membership/torsions. Full-reference hydrogen-inventory differences remain visible; no full-mechanics or chemistry approval is inferred.",
+        "readyset_timeout_seconds_per_component": 180,
+        "native_timeout_seconds_per_component": 60,
+        "owned_timeout_groups": "TERMINATED",
+        "experimental_model_changes": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "schemas": {
+        "schema_version": 1,
+        "new_flag": "--readyset-generation-audit-only; mutually exclusive, exact C40 input and PDU/5PC controls",
+        "requested_action": "ISOLATED_READYSET_GENERATION_AUDIT",
+        "native_execution": "ISOLATED_READYSET_GENERATION_AND_TRIPLE_PROXY_CONTROLS",
+        "additive_receipt_fields": [
+          "prior_readyset_source_replay",
+          "readyset_generation_audit"
+        ],
+        "component_control_fields": [
+          "matching_policy_records",
+          "policy_record_resolution",
+          "operational_role_signature",
+          "source_policy_records",
+          "ignored_annotation_columns"
+        ],
+        "compatibility": "Opt-in diagnostic; production ReadySet, NARestraints code/workbook/recipes, curated precedence, frozen scientific data and earlier reports unchanged. No new dependency or migration.",
+        "new_dependencies": []
+      },
+      "software_validation": {
+        "fail_before": "Initial ten generation regressions fail without the new module; three component-control regressions fail on the former duplicate guard. Additional fake selected-API and captured-return semantic checks cover the completed implementation.",
+        "new_tests": 31,
+        "focused": {
+          "passed": 74,
+          "seconds": 6.4,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_component_controls.py tests/test_cif_readyset_generation_audit.py tests/test_cedar41_delivery.py tests/test_cedar40_delivery.py tests/test_cif_numerical_recovery_probe.py --tb=short"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_source_copies_removed_before_replay": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp_root": "PASS",
+          "runner_relocated_before_replay": true,
+          "older_everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "actual_capsule_payloads": 1529,
+          "runtime_members": 127,
+          "runtime_archive_sha256": "f404b44938b9d2b7d1db7d1bda3b8d83c13555cee48a4d94a8dc98f3a35d84af",
+          "mechanics_prerequisites": 17,
+          "rotation_directions_recomputed": 96,
+          "prior_raw_reader_checks_replayed": true,
+          "prior_declared_charge_checks_replayed": true,
+          "PDU_saved_candidate_target_screen": "PASS",
+          "PDU_active_fixed_seed_coordinate_screen": "PASS",
+          "PDU_saved_candidate_coordinate_screen": "REVIEW",
+          "PDU_linear_axis_torsions": 6,
+          "5PC_triple": [
+            "C7",
+            "C8"
+          ],
+          "5PC_policy_record_count": 2,
+          "5PC_policy_resolution": "EQUIVALENT_ROLE_RECORDS",
+          "dictionary_generation": "NOT_RUN",
+          "readyset_generation": "PENDING_USER_MAC",
+          "prior_descriptor_selection_replayed": true,
+          "prior_installed_ccd_replayed": true,
+          "prior_active_native_screen_replayed": true
+        },
+        "full": {
+          "passed": 2393,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 183.01,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "native": "PENDING_USER_MAC. Linux tests use explicit fake APIs and saved-capsule offline replay.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 149,
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+          },
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        }
+      },
+      "limitations": [
+        "Static source rewriting of SMILES does not identify the executed branch; the new native call trace remains pending.",
+        "Isolated fixed heavy-atom components do not reproduce a linked scaffold, historical installation or a refinement.",
+        "A generated/loaded triple target is separate from all-source chemistry, native stereo, achieved geometry and convergence.",
+        "Native internal operations are not exhaustively instrumented; timeouts/fallbacks/partial files remain review evidence.",
+        "5PC role-equivalence acceptance is a diagnostic resolution, not a workbook change or scientific approval."
+      ],
+      "artifact_boundary": "Maintained code/tests/docs and metadata only. Installed/private source snapshots, logs, generated CIF/model candidates, runners and review ZIPs stay outside Git.",
+      "next_action": "Build Cedar 41 with --delivery-prefix 41_Cedar --component-control PDU --component-control 5PC. Run exact C40 ZIP with --component DP --readyset-generation-audit-only under Phenix 2.2.1-6174. Return console/ZIP. At most 180 s ReadySet plus 60 s native interpretation per control."
     }
   },
   "audience": [

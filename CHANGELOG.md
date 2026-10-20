@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Observe isolated ReadySet generation and reconcile equivalent policy records
+
+- Verify all 1,529 Cedar 40 payloads and the clean published runner. Both
+  native accessors select CACTVS canonical SMILES; 24 static sources are
+  captured. One source branch discards SMILES before CCD-component generation;
+  the executed path remains unverified until the new native controls return.
+- Add Cedar 41's exact gate and isolated heavy-atom ReadySet API generation,
+  with original builder/template call observers, 180 s deadlines, explicit
+  failures/fallbacks and independent candidate/native triple-term checks.
+  Native internal geometry operations remain uninstrumented. No scaffold,
+  refinement, production default, dependency or adoption changes.
+- Fix the component auditor's false 5PC review: accept duplicate records only
+  when all operational roles/context agree, retain raw aliases, exclude explicit
+  modification-description columns, and prefer available canonical partners
+  among registered recipes for synthetic compiler checks. Conflicting/missing
+  mappings remain blocked. 5PC was already in the C sheet; NARestraints code,
+  workbook and recipes remain unchanged, with no new release required.
+- All 31 new tests, 74 focused and 2,393 full tests pass, with two skips and
+  276 subtests. Actual C40 replay passes after build removal/relocation,
+  poisoned imports and aliased temp paths; native generation awaits Mac.
+
 ### Bound ReadySet source and installed descriptor-selection evidence
 
 - Verify all 1,486 Cedar 39 payloads and the clean published runner. Installed

@@ -42,3 +42,9 @@ numerical restraints. Cedar 40 captures the literal ReadySet implementation and
 bounded imports as text; its native accessor result does not claim ReadySet
 execution or a mapped-SMILES graph. Explicit scope and budget limits remain in
 the accompanying human descriptor and native evidence ledger.
+
+The isolated ReadySet note distinguishes observed original builder/template
+calls from independently assessed candidate/native triple terms. Native internal
+geometry operations may run; no scaffold/adoption arrow is added. Equivalent
+operational mapping aliases are diagnostic evidence, without an upstream
+workbook/recipe/release change. Conflicts remain blocked.

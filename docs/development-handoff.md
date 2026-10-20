@@ -770,22 +770,36 @@ qualification. No ReadySet, constructor, generation or optimization ran. Full
 ReadySet selection, mapped SMILES, native stereo and geometry remain open.
 Exact hashes, paths and scope are in the native ledger.
 
-**Cedar 40 prepared:** capture the literal ReadySet dispatcher target and bounded
-first-party import text without executing those sources. A <=30 s worker calls
-only the C39-proven CCD filename/SMILES accessors and records the selected
-string with matching descriptor metadata. This is source/selection evidence,
-not executed ReadySet provenance or mapped-graph/numerical qualification.
-All prior evidence, including six saved PDU torsion reviews and ambiguous 5PC
-policy records, remains intact. Independent replays pass after build deletion,
-runner relocation, poisoned imports and an aliased temporary root. Software
-validation and exact commands are recorded in the native ledger.
+**Cedar 40 returned and verified:** all **1,529 payloads**, the clean published
+runner/build and 126 runtime members match. Both accessors select CACTVS
+canonical SMILES and 24 static source files fit the captured import budget.
+ReadySet itself did not run. A static branch reads then deletes SMILES before
+requesting chemical_component; observe the actual call before assigning cause.
 
-**Current action:** use the pinned one-block Git handoff: build with
---delivery-prefix 40_Cedar --component-control PDU --component-control 5PC,
-then run the exact Cedar 39 ZIP with --component DP --readyset-source-audit-only.
-Return console/review ZIP. Selected installation remains Phenix **2.2.1-6174**
-(dispatcher reports **2.2.1**). Review the captured ReadySet implementation before
-choosing a bounded generation reproduction; preserve scientific REVIEW.
+**5PC policy review resolved in the auditor:** two existing cytosine-sheet rows
+share all operational C-like roles and context. Descriptive aliases/entry counts
+and modification-description columns do not make different atom mappings.
+Equivalent role records now compile once with both raw rows retained; conflicts
+and missing roles still review/fail. Explicit C5-mod/C7-mod annotations stay out
+of atom inventories. A registered canonical partner precedes modified-family
+synthetic controls, so 5PC checks G:C and both stacking orders. The existing
+NARestraints workbook/recipes are correct for this scope; no edit/release is
+needed under the user's conditional missing-entry authorization.
+
+**Cedar 41 prepared:** original ReadySet API generation on separate fixed
+heavy-atom source-seed PDU/5PC models. Observe unchanged builder/template calls,
+retaining exceptions, fallback results and partial files. Each generation has a
+180 s deadline; eligible output gets <=60 s native interpretation with SS off.
+Raw source chemistry, dictionary targets and active triple terms stay separate.
+Native internal template operations may optimize geometry; AM1/final-H options
+are disabled. No linked scaffold, refinement or adoption is changed. Software
+checks and exact provenance are in the native ledger.
+
+**Current action:** build with --delivery-prefix 41_Cedar --component-control PDU
+--component-control 5PC, then run the exact Cedar 40 ZIP with --component DP
+--readyset-generation-audit-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
+Return console/review ZIP. DP is only the preserved prerequisite; the new
+ReadySet controls are PDU and 5PC. Expect scientific REVIEW, not adoption.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

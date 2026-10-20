@@ -568,8 +568,25 @@ bounded import-text capture, and a <=30 s pinned native CCD filename/SMILES
 accessor worker. ReadySet modules remain text evidence and never run. Static
 coverage limits are explicit; returned descriptor text stays separate from
 mapped graph and numerical restraint qualification.
-Full ReadySet execution, mapped-SMILES graphs, native stereo and scientific
-qualification remain open. All production/default resource and curated-ligand
+Returned Cedar 40 verifies both selected CACTVS canonical descriptors and 24
+static source snapshots. In one inspected branch ReadySet deletes SMILES and
+requests chemical_component; this does not establish an executed route.
+Cedar 41 observes original builder/template calls during bounded isolated
+ReadySet API generation (180 s/control), retaining exceptions and fallback
+results separately. Fixed source-ideal heavy-atom seeds support independent
+candidate/native triple-target checks; all raw source chemistry and hydrogen
+inventory differences remain visible. No linked scaffold or experimental
+coordinates change. Internal template geometry operations are not instrumented.
+
+The component-control auditor compares duplicate records by all atom roles and
+operational category/sugar/phosphate/attachment context. Descriptive aliases and
+explicit C5-mod/C7-mod annotations do not select atoms. Equal operational records
+compile once with raw aliases retained; conflicts stay blocked. Canonical
+partners among registered recipes precede modified-family synthetic controls.
+5PC's two C-sheet records therefore compile the existing G:C and stacking
+controls. NARestraints code, workbook and recipe policy remain unchanged.
+Full linked ReadySet reproduction, mapped-SMILES graphs, native stereo and
+scientific qualification remain open. All production/default resource and curated-ligand
 precedence rules remain fixed.
 
 

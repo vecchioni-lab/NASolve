@@ -945,7 +945,30 @@ source evidence does not establish an executed ReadySet path, and descriptor
 selection does not establish a mapped chemical graph or numerical restraint.
 The worker has a 30 s deadline; ReadySet, generation and optimization remain
 unrequested. This boundary identifies which implementation must be reviewed
-before a controlled reproduction of the reported PDU behavior.
+before a controlled reproduction of the reported PDU behavior. The return records
+both CACTVS canonical selections and 24 source files. One inspected generation
+branch deletes the SMILES and requests the CCD component directly; its executed
+selection must be observed separately.
+
+Cedar 41 runs the original selected ReadySet Python API on isolated source-seed
+heavy-atom PDU/5PC models. Process-local observers forward the original eLBOW
+builder/template calls unchanged and record their arguments, call sites,
+returned graphs or caught failures. A 180 s deadline bounds generation, followed
+by at most 60 s native interpretation per control. Ligand AM1 and final hydrogen
+optimization are disabled; native internal template operations may still run.
+Any generated dictionary is assessed against the full source, then triple
+length/linearity targets, positive weights, membership and torsions are checked
+at fixed heavy-atom source seeds. Hydrogen/stereo/charge differences remain
+explicit review evidence. No linked model, refinement or adoption is involved.
+
+5PC is already recorded twice in the NARestraints cytosine sheet, with identical
+C-like roles. The former review came from the auditor's duplicate guard,
+descriptive modification columns and arbitrary synthetic-partner order. The
+auditor now accepts equal operational mappings while retaining raw aliases,
+excludes explicit annotation columns and prefers a registered canonical partner
+for the compiler check. Conflicting or absent atom roles still require review.
+This changes the diagnostic, with no NARestraints workbook, recipe or release
+change. It does not certify protonation or experimental pairing geometry.
 
 ## Primary references
 

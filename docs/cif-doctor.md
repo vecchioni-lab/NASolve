@@ -1652,6 +1652,56 @@ execution, constructors, generation, optimization and model edits remain
 unrequested; no numerical target, NAR policy, production default or adoption
 changes. Saved PDU torsion reviews and the two ambiguous 5PC records survive.
 
+Returned Cedar 40 verifies 1,529 payloads and the trusted clean build. Both
+native CCD accessors select CACTVS SMILES_CANONICAL text, and 24 static sources
+fit the literal-import budget. This is not executed ReadySet provenance. One
+captured branch deletes its temporary SMILES and requests chemical_component;
+Cedar 41 records whether the actual controls do so.
+
+Build Cedar 41 with --delivery-prefix 41_Cedar --component-control PDU
+--component-control 5PC. Run the exact C40 ZIP with --component DP
+--readyset-generation-audit-only. DP remains a preserved prerequisite; the new
+generation cases are PDU/5PC only. --inspect-only replays saved evidence and
+writes complete/heavy source-seed controls without native execution.
+
+The selected Phenix interpreter calls the original ReadySet run API under
+prior source/hash proofs. Heavy-atom inputs use hydrogens=False, ligands=True,
+optimise_ligand_geometry=False, optimise_final_geometry_of_hydrogens=False,
+trust_residue_code_is_chemical_components_code=False, metals=False,
+link_to_edits=False and remove_waters=False. The shell dispatcher is not run.
+No user CIF/cache is supplied; the ReadySet cache environment variable is
+removed and bytecode writes disabled. Internal native template operations can
+still optimize geometry and are recorded as NOT_INSTRUMENTED.
+
+Process-local observers record builder/template arguments, caller source/line,
+returned graph snapshots or exceptions while forwarding original arguments,
+return objects and exceptions. Atomic logs survive a 180 s owned-process-group
+timeout. Trace truncation at 64 events remains explicit; nonfinite native values
+become trace markers without changing native objects. Preserve process failure,
+ReadySet failure, caught builder errors and fallback dictionaries separately.
+Select only the exact owned <CODE>.cif. Serialized outputs are never loaded and
+remain excluded from review capsules. Malformed, missing and partial candidates
+stay review evidence; only completed policy-matched output proceeds to native
+interpretation, capped at 60 s per control with SS inference disabled.
+
+Retain raw source/dictionary graph, charge, hydrogen and stereo differences,
+plus dictionary and native triple-target/linearity/ESD/membership/torsion screens.
+The native model uses fixed source-ideal heavy-atom seeds. Full-reference
+hydrogen-inventory differences remain visible even when the selected triple
+terms pass. No convergence, all-chemistry, linked-scaffold or adoption approval
+is inferred. Production defaults and NARestraints authority stay fixed.
+
+5PC already has two cytosine-sheet records with equal C-like atom roles. The
+component-control auditor now compares every operational atom mapping and
+base/sugar/phosphate/Saenger/function/sheet/glycosidic context before allowing
+equivalent aliases to compile once. All raw records remain in the report;
+conflicting records and missing atoms remain blocked/reviewed. Explicit C5-mod
+and C7-mod annotation columns are excluded, consistent with upstream mirror
+metadata handling. Prefer an available canonical partner from registered
+recipes before modified-family synthetic controls: 5PC exercises existing G:C
+and both stack orders. No NARestraints table edit, package release or recipe
+change is required; the conditional missing-entry case was not present.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

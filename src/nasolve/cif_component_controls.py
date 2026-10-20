@@ -12,6 +12,22 @@ from .cif_doctor import assess_dictionaries, _ORDERS
 from .cif_linked_preparation import component_values, atom_rows, hydrogen_neighbors
 
 POLICY_ID = 'cif-explicit-component-policy-control-v1'
+_ANNOTATION_COLUMNS = {'C5-mod','C7-mod'}  # Also metadata in NARestraints' mirror loader.
+_RECORD_METADATA = {'Ligand code','Name','Abbreviation','Base Analog','Phosphate','Sugar Type','SugarType',
+    'Saenger','Notes','Ref','Entries','Function','Source sheet','Glycosidic atom'}
+_OPERATIONAL_METADATA = ('Base Analog','Phosphate','Sugar Type','SugarType','Saenger','Function','Source sheet','Glycosidic atom')
+
+
+def _role_signature(record):
+    """Compare every declared atom role and chemical/category context exactly.
+
+    Names, bibliography, entry counts and explicit modification-description
+    columns do not select a recipe or an atom. Unknown columns remain roles,
+    so a misspelt/missing role cannot disappear during duplicate reconciliation.
+    """
+    return {'context':{k:record.get(k) for k in _OPERATIONAL_METADATA},
+        'atom_roles':{k:str(v).strip() for k,v in record.items()
+            if k not in _RECORD_METADATA|_ANNOTATION_COLUMNS and v not in (None,'')}}
 
 
 def assess_component_control(source, code, *, records=None, graph_only_if_ambiguous=False):
@@ -28,7 +44,9 @@ def assess_component_control(source, code, *, records=None, graph_only_if_ambigu
         raise ValueError('Require one exact graph-valid component control')
     records = load_residue_records() if records is None else records
     matches = [r for r in records if r['Ligand code'] == code]
-    if len(matches) != 1:
+    signatures=[_role_signature(r) for r in matches]
+    equivalent=bool(matches) and all(s==signatures[0] for s in signatures)
+    if not equivalent:
         if graph_only_if_ambiguous is True:
             return {'schema_version':1,'policy_id':POLICY_ID,'component':code,'status':'REVIEW',
                 'source_sha256':sha256(original).hexdigest(),'source_size':len(original),
@@ -38,7 +56,10 @@ def assess_component_control(source, code, *, records=None, graph_only_if_ambigu
                 'scope':'PUBLIC_GRAPH_CONTROL_ONLY','native_proxy_validation':'NOT_RUN',
                 'model_editing':'NOT_RUN','model_optimization':'NOT_RUN','automatic_adoption':False}
         raise ValueError('Component control requires one unambiguous NARestraints record')
-    record = matches[0];values = component_values(source, code);atoms = atom_rows(values)
+    # The compilation sees the same operational roles for every equivalent
+    # record. Keep raw aliases as evidence rather than changing the workbook.
+    record = {k:v for k,v in matches[0].items() if k not in _ANNOTATION_COLUMNS}
+    values = component_values(source, code);atoms = atom_rows(values)
     inventory = selected[0]['inventory'];known = heterocycle_atom_names(record)
     missing = sorted({str(v).strip() for v in known if str(v).strip() not in atoms})
     # Exercise the library's actual mapping function with identities only.
@@ -70,10 +91,18 @@ def assess_component_control(source, code, *, records=None, graph_only_if_ambigu
         'limitations': ['Role-template partner controls are compiler checks, not observed pairs, native proxies or achieved geometry.',
             'Source graph/ideal-coordinate consistency is not a complete numerical dictionary or chemical qualification.',
             'This control does not insert a residue into the frozen scaffold or choose a protonation/tautomer state.']}
+    if len(matches)>1:
+        report.update(matching_policy_records=len(matches),policy_record_resolution='EQUIVALENT_ROLE_RECORDS',
+            operational_role_signature=signatures[0],source_policy_records=matches,
+            ignored_annotation_columns=sorted(_ANNOTATION_COLUMNS & set(matches[0])))
     if missing:
         return report
     candidates = [(base, recipe_for(mapped.base_class, base)) for base in _PLANE_ATOMS_BY_BASE_CLASS]
     partners = [(base, recipe) for base, recipe in candidates if recipe is not None and not recipe.noncanonical]
+    # Exercise an available canonical partner before a modified-family control.
+    # In particular, C has both configured G:C and I:C recipes; table iteration
+    # order must not select I:C's different AT-role requirements for this check.
+    partners.sort(key=lambda item:item[0] not in {'A','T','G','C'})
     if not partners:
         report['policy_status'] = 'UNSUPPORTED';return report
     base, recipe = partners[0]

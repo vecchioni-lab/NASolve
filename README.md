@@ -126,8 +126,14 @@ ReadySet. Its return confirms both installed CCD graphs and raw reader inventori
 all four direct/wrapped numerical monomer lookups remain missing. Cedar 40
 captures the dispatcher-selected ReadySet implementation as text and records
 the installed CCD SMILES accessor selection. This does not execute ReadySet
-or independently validate a mapped SMILES graph. No experimental model, target,
-generation or optimization is changed.
+or independently validate a mapped SMILES graph. Its return records both CACTVS
+canonical selections and 24 static source files. Cedar 41 observes actual
+ReadySet/eLBOW calls during separate bounded PDU/5PC generation, then screens
+any resulting CIF and active triple terms. Source-seed heavy-atom coordinates
+are fixed for interpretation; native generation may perform internal geometry
+operations. Equivalent operational mapping aliases now compile once while
+conflicting roles remain blocked. 5PC was already present twice on the C sheet;
+NARestraints needs no table edit or release for this audit correction.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
