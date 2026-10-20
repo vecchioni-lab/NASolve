@@ -559,14 +559,47 @@ pass. Deleted-source/poisoned-import replay verifies all 115 runtime files,
 1,209 prior payloads, mechanics/rotation proof and both graph sources. See
 the native ledger for exact commands, hashes and scope.
 
-**Current action:** run Cedar 32 through the pinned one-block Git handoff and
-return the console and review ZIP. Use the ignored branch-artifacts/cedar/runners/
-destination and preserve the everyday checkout. At Cedar integration, inventory
-and hash-archive older root runners before removing redundant copies; follow
-the [archive/cleanup policy](collaboration.md#branch-artifact-archive-and-merge-cleanup).
-No laptop archive migration has run. Preserve Cedar 22's error, Cedar 27/28's
-limits and all original data. Private capsules, native logs/captured sources and
-generated runners/candidates stay outside Git.
+**Cedar 32 returned and verified: PDU input PASS; DP dialect REVIEW.**
+All **1,229 payloads**, the 1,209-payload predecessor and four exact installed
+eLBOW source snapshots verify. Trusted runner 11d3946b matches clean NASolve
+88bca3c1 / pinned NARestraints and all 115 runtime members. Prior mechanics and
+rotation proof replay. Phenix 2.2.1-6174 read-only PDU exits zero in 1.371951 s;
+DP exits one in 3.551229 s on missing atom pdbx_aromatic_flag. The source shows
+the complete legacy/CCD dialect gap, including atom stereo and bond order.
+The optimizer source confirms the empty-XYZ unbound-local path and a positive
+opt_steps control that bypasses its default restart condition. Captured code
+was inspected as text, never executed or patched.
+
+**Cedar 33 prepared: checked reader projection and bounded candidate trial.**
+Use the same builder with --delivery-prefix 33_Cedar --component-control PDU;
+run against the exact Cedar 32 ZIP with --single-block-steps 180. A separate
+consumer adapter translates only declared charge/order/flag aliases, refuses
+conflicts and unsupported orders, and leaves unknown atom aromatic/CIP metadata
+as ?. Original fields and signed chiral volumes survive. PDU input is unchanged;
+DP consumer SHA-256 is
+6b914d7fed9a98e30ed68b2381507e6d5bb0dc9b351fee48d42ced085c9501fa.
+
+Fresh read-only checks gate each generator. Before any trial, the four installed
+source identities must match, and the selected installed options parser must
+prove exactly one block with 180 steps. Its module path/hash and default
+tolerance are recorded and checked again after generation. Captured source is
+not executed; only the installed parser is interrogated. Candidate generation
+retains the 600-second per-component bound. No XYZ/pickle is reused, no native
+code is patched and no tolerance is relaxed. Nonconvergence is reported as such;
+exit zero/file creation never establishes a native criterion. All existing
+source/consumer/numerical/formal-charge gates and raw reviews remain in force.
+All **39 new regressions, 214 focused tests (24.58 s), and 2,040 full tests,
+two skips and 276 subtests (155.92 s)** pass. Actual-input deleted-build and
+poisoned-import transport verify all 116 runtime files and the complete
+1,229-payload C32 capsule. Installed execution is pending; exact commands
+and scope are recorded in the existing native ledger.
+
+**Current action:** run Cedar 33 through the pinned one-block Git handoff and
+return its console and review ZIP. Preserve the everyday checkout and all
+earlier evidence. The ignored branch-artifact destination and merge-time
+inventory/hash/archive policy remain in force. No new dictionary, native-model
+result, policy guess or refinement is adopted. Private source snapshots, logs,
+capsules, generated candidates and runners stay outside Git.
 
 The prior membership implementation suite passed **1,646 tests, two skips and
 276 subtests (71.72 s)**. Cedar 22 passes **107 focused (10.81 s)** and

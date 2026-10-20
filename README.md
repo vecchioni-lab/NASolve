@@ -89,7 +89,10 @@ spelling and adds an explicit PDU public control. PDU source graph and existing
 NARestraints pairing/stacking compiler checks pass offline. Returned Cedar 31
 separates DP missing-alias metadata from a PDU optimizer/restart crash; neither
 produces a dictionary. Cedar 32 adds a general missing-alias export and an
-explicit installed-source/read-only input diagnostic before another generation.
+explicit installed-source/read-only input diagnostic. Its return passes the
+PDU reader and exposes DP's broader dictionary-dialect mismatch. Cedar 33
+adds a checked consumer projection and an opt-in bounded single-block trial,
+with installed option/source proof and explicit nonconvergence evidence.
 No candidate is applied to a model or native manager.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.

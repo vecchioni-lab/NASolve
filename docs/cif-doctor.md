@@ -1311,9 +1311,59 @@ READ_ONLY_INPUT_CHECKS without claiming native proxy or geometry qualification.
 
 Existing explicit generation remains the default without this new flag.
 Production PostMR, curated dictionaries, NARestraints pairing/stacking policy,
-scientific gates and dependencies are unchanged. Native read-only execution
-and source capture await the user Mac; a further PDU generation is deferred
-until its actual installed restart path has been inspected.
+scientific gates and dependencies are unchanged. At that delivery, native read-only checks and source capture were pending.
+The returned
+Cedar 32 capsule verifies all 1,229 payloads and the four exact source snapshots.
+PDU completes read-only parsing (exit zero, 1.371951 s); DP stops in 3.551229 s
+on absent atom pdbx_aromatic_flag. The captured reader also requires CCD atom
+stereo and bond value_order fields, while the preserved DP dictionary declares
+legacy bond type/aromatic flags and signed chiral volumes.
+
+### Reader projection and explicit bounded generation
+
+Cedar 33 uses the same builder with --delivery-prefix 33_Cedar and
+--component-control PDU. Run against the exact Cedar 32 capsule with
+--single-block-steps 180. It verifies the complete installed contract and prior
+qualified lineage, retaining the original DP/PDU outcomes and every source.
+
+prepare_elbow_ccd_input writes a separate consumer file. Formal-charge and
+aromatic/stereo aliases must agree after normalization. Only declared single,
+double and triple orders translate to SING/DOUB/TRIP; unsupported localization
+is refused. Atom aromatic/CIP metadata without declarations is ?, never an
+inferred N/R/S assignment. All original non-consumer fields, coordinates, H,
+bond stereo and signed chiral volumes survive unchanged, and a semantic
+round-trip plus raw Doctor comparison is retained. PDU consumer bytes are
+unchanged. DP consumer SHA-256 is
+6b914d7fed9a98e30ed68b2381507e6d5bb0dc9b351fee48d42ced085c9501fa.
+
+Fresh installed read-only checks gate each component independently. An explicit
+step request requires valued option support from exact installed help and the
+four unchanged captured reader/optimizer source identities. The installed
+manager uses a positive opt_steps value to skip its default later-block XYZ
+reload. Before generation, an installation-bound Phenix Python worker calls
+only the installed options parser with the intended source/seed/state/step
+arguments. It verifies the imported module path/hash, records the module
+snapshot, and requires the requested steps and exactly one effective block.
+It records the default tolerance without changing it. Installed/captured option
+source bytes are checked after the trial too; captured source is never executed.
+
+The reusable single_block_steps argument defaults to None, preserving installed
+defaults; explicit integers are bounded to 1--600. This delivery requests one
+180-step block and the existing 600-second per-component timeout. Options
+interrogation is bounded to 30 seconds and read-only checks to 60 seconds.
+Failure of input checks defers that component from generation; failure to prove
+the shared block contract stops the unsupported trial. No installed code is
+patched, no prior pickle/partial XYZ is reused, and no tolerance is relaxed.
+
+Candidate interpretation remains separate. Record NOT_CONVERGED_REPORTED
+when the native log states geometry not converged; otherwise stopping is
+NOT_REPORTED. Exit zero, a CIF file or exhaustion of attempt control does not
+prove convergence. Candidates pass through the existing complete source, H,
+formal-charge, stereo and numerical gates against both consumer and original
+definitions. New raw unknown/alias fields remain explicit comparison evidence.
+No result is composed with modifiers or adopted; native proxy, achieved geometry
+and scientific qualification remain open. There are no new dependencies or
+production-default changes.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

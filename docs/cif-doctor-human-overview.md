@@ -427,8 +427,11 @@ generation on external coordinate-tag spelling; Cedar 31 fixes serialization
 and adds PDU as a separate public chemistry/policy control. Returned Cedar 31
 finds missing DP alias metadata and a distinct PDU optimizer/restart crash,
 with no output dictionaries. Cedar 32 adds a general alias-column fallback and
-installed-source/read-only input checks before another generation. Numerical
-and scientific qualification remain open; no candidate is applied to a model.
+installed-source/read-only input checks. Returned Cedar 32 passes PDU and
+identifies DP's broader reader-dialect mismatch. Cedar 33 supplies a checked
+format projection and a bounded candidate trial after installed option/source
+proof, retaining nonconvergence evidence. Numerical and scientific qualification
+remain open; no candidate is applied to a model.
 All diagnostic policies are opt-in; production defaults are unchanged.
 
 An [offline ZIP shuttle](cif-doctor.md#offline-runner-for-the-public-control-zip)
@@ -805,7 +808,22 @@ changing chemistry. A separate installed-source capture and read-only input
 check records the reader/optimizer contract before another optimization.
 Captured code is inspected as text and never executed or patched. A successful
 read-only check proves only that CLI input path, not generated geometry, native
-interpretation or scientific qualification.
+interpretation or scientific qualification. The returned check passes PDU; DP
+requires legacy restraint-field names to be expressed in the CCD reader dialect.
+
+Cedar 33 adds a separate consumer projection. It translates declared bond
+orders/flags and charge aliases, keeps missing atom aromatic/CIP values unknown,
+and preserves the signed chiral volumes. PDU's already complete input is byte
+identical. A fresh read-only check gates each numerical generation. The captured
+optimizer source exposes a failing default macro restart on an empty XYZ file.
+An explicit step count bypasses that restart condition; the installed options
+parser must confirm one effective 180-step block, with its default tolerance
+unchanged. Source/options hashes are checked before and after the trial.
+
+A generated file or zero exit status never establishes convergence. Explicit
+nonconvergence is recorded, other unreported stopping stays unreported, and
+candidates retain every original-source chemistry/numerical review. No native
+dictionary, policy change or scaffold result is adopted by this experiment.
 
 ## Primary references
 

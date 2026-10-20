@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-19**. Start with the
+Updated **2026-10-20**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -162,7 +162,9 @@ for actual behavior; history is evidence, not a second task queue.
   pairing/stacking compiler checks. Its return identifies a DP reader metadata
   omission and a distinct PDU optimizer/restart failure, with no dictionaries.
   Cedar 32 adds missing-alias metadata and a read-only installed-source/input
-  diagnostic; numerical/native qualification remains open. No residue is
+  diagnostic. Its return passes PDU and identifies DP's reader-dialect mismatch.
+  Cedar 33 adds a checked consumer projection and bounded, runtime-verified
+  single-block candidate trial; numerical/native qualification remains open. No residue is
   inserted into the frozen scaffold or candidate applied.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.

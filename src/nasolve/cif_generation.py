@@ -466,7 +466,8 @@ def _generator_capabilities(executable: Path, work: Path,
 
 def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
                              executable: Path, *, environment: Mapping[str, str],
-                             phenix_version: str, timeout_seconds: float = 600) -> dict:
+                             phenix_version: str, timeout_seconds: float = 600,
+                             single_block_steps: int | None = None) -> dict:
     """Run explicitly requested eLBOW generation in a fresh preserved folder.
 
     Required option spelling/value support is discovered from installed help.
@@ -475,6 +476,8 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
     dictionary adoption, linked-site transformation or ReadySet retry here.
     """
     source, output_parent, executable = Path(source).resolve(), Path(output_parent).resolve(), Path(executable).resolve()
+    if single_block_steps is not None and (type(single_block_steps) is not int or not 1 <= single_block_steps <= 600):
+        raise ValueError('Single-block optimization steps must be an integer in [1, 600]')
     if output_parent == source.parent or source.parent in output_parent.parents:
         raise ValueError("Candidate output parent must be outside the source dictionary directory")
     if not phenix_version or not str(phenix_version).strip():
@@ -498,6 +501,10 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
               "executable_provenance": str(executable), "documentation": ELBOW_DOCUMENTATION,
               "command": None, "seed": None, "execution": {"status": "NOT_RUN", "started_at": start},
               "generator_capabilities": None,
+              "optimization_control": {"single_block_steps": single_block_steps,
+                  "mode": "EXPLICIT_STEP_COUNT" if single_block_steps is not None else "INSTALLED_DEFAULTS",
+                  "tolerance": "INSTALLED_DEFAULT_UNCHANGED"},
+              "optimization_stopping": {"status": "NOT_RUN", "convergence_claimed": False},
               "source_state_preservation": {
                   "generator_value": "low", "purpose": "retain the exact supplied input chemistry during generation",
                   "source_state_authority": "explicit supplied source dictionary",
@@ -524,11 +531,20 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
                 raise _UnsupportedGenerator("Installed eLBOW cannot preserve the required generation semantics: "
                                             + capabilities.get("reason", "unknown"))
             flags = capabilities["selected_aliases"]
+            step_flag = None
+            if single_block_steps is not None:
+                definitions = capabilities.get('supported_option_definitions', {})
+                step_flag = next((k for k in ['--opt-steps','--opt_steps'] if definitions.get(k) is True), None)
+                if step_flag is None:
+                    raise _UnsupportedGenerator('Installed eLBOW lacks a valued optimization-step option')
+                result['optimization_control']['generator_option'] = step_flag
             result["source_state_preservation"]["generator_option"] = flags["source_state_preservation"]
             command = [str(executable), "source.cif", f"{flags['id']}={code}", f"{flags['output']}=candidate",
                        f"{flags['template']}=source_ideal.pdb", f"{flags['initial_geometry']}=source_ideal.pdb",
                        f"{flags['add_hydrogens']}=False", f"{flags['source_state_preservation']}=low",
                        f"{flags['chiral']}=retain", flags['opt']]
+            if step_flag is not None:
+                command.append(f'{step_flag}={single_block_steps}')
             result["command"] = command
             with (work / "elbow.log").open("xb") as log:
                 process = subprocess.Popen(command, cwd=work, env=dict(environment),
@@ -577,6 +593,12 @@ def generate_elbow_candidate(source: Path, code: str, output_parent: Path,
         result["status"] = "REJECTED"
         error = "Source or frozen source changed during numerical generation"
     result["error"] = error
+    if (work/'elbow.log').is_file():
+        text = (work/'elbow.log').read_text(errors='replace')
+        result['optimization_stopping'] = {
+            'status': 'NOT_CONVERGED_REPORTED' if 'geometry not converged' in text else 'NOT_REPORTED',
+            'convergence_claimed': False, 'evidence': {'anchor':'candidate_directory','path':'elbow.log'},
+            'exit_zero_is_convergence': False}
     result["execution"].update(finished_at=datetime.now(timezone.utc).isoformat(),
                                elapsed_seconds=round(time.monotonic() - clock, 6),
                                timeout_seconds=timeout_seconds)

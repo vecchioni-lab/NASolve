@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reader-dialect projection and explicit bounded eLBOW trial
+
+- Verify all 1,229 Cedar 32 payloads and four installed source snapshots: PDU
+  passes read-only input; DP needs a legacy-restraint/CCD format projection.
+- Add a separate checked consumer adapter for declared charge, bond-order and
+  aromatic/stereo aliases. Preserve unknown atom metadata, original fields and
+  signed chiral volumes. Refuse conflicts and unsupported order localization.
+  PDU consumer bytes remain unchanged; no chemistry or targets are inferred.
+- Add opt-in, help-checked single-block step control, with actual installed
+  options-parser proof of one block/requested steps before generation. Recheck
+  installed/captured sources and unchanged default tolerance; avoid the captured
+  failing macro-restart condition without patching Phenix or loading pickles.
+- Preserve nonconvergence evidence independently of exit status/file creation,
+  and retain original source/candidate/charge/numerical gates. All 39 new
+  regressions, 214 focused and 2,040 full tests pass, with two skips and 276
+  subtests; actual-input deleted-source transport passes. Native execution is
+  pending. Production
+  defaults, NARestraints policy, dependencies and adoption gates are unchanged.
+
 ### Installed eLBOW input contract and alias metadata
 
 - Verify all 1,209 Cedar 31 payloads and distinguish DP's missing alias-field

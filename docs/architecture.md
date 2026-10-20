@@ -484,6 +484,12 @@ IDs with an explicit receipt; existing alias/chemical declarations are preserved
 Cedar 32 captures four anchored installed eLBOW modules and performs bounded
 read-only input checks. It does not retry optimization, alter installed code or
 relax chemical/numerical gates. Source/dispatcher bytes are checked throughout.
+Returned Cedar 32 passes PDU and identifies DP's full legacy/CCD dialect mismatch.
+Cedar 33 projects declared aliases into a separate CCD consumer input, retaining
+unknown atom flags and signed source chirality. It verifies the installed option
+parser's effective block/step/tolerance values before an explicit bounded trial
+that avoids the captured default restart condition. Source and consumer inputs
+are distinct; all original comparisons and nonconvergence evidence survive.
 No new dictionary is composed with modifiers or applied to a native model.
 
 

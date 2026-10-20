@@ -232,7 +232,8 @@ def prepare_graph_generation_source(source, code, output):
                            'Original aliases/descriptors/numerical targets remain in the frozen source, never a chemical authority inferred from a model.']}
 
 
-def generate_numerical_recovery(source, code, output_parent, executable, *, environment, phenix_version, timeout_seconds=600):
+def generate_numerical_recovery(source, code, output_parent, executable, *, environment, phenix_version, timeout_seconds=600,
+                                single_block_steps=None):
     """Run existing eLBOW isolation/chemistry guards against a graph-only seed."""
     source = Path(source).resolve(strict=True);parent = Path(output_parent).resolve()
     _need(parent != source.parent and source.parent not in parent.parents, 'Output must be outside original source directory')
@@ -246,8 +247,12 @@ def generate_numerical_recovery(source, code, output_parent, executable, *, envi
     try:
         graph = work/'graph/source.cif'
         result['graph_preparation'] = prepare_graph_generation_source(frozen, code, graph)
-        generation = generate_elbow_candidate(graph, code, work/'generation', executable,
-            environment=environment, phenix_version=phenix_version, timeout_seconds=timeout_seconds)
+        from .cif_elbow_input import prepare_elbow_ccd_input
+        consumer = work/'consumer/source.cif'
+        result['consumer_preparation'] = prepare_elbow_ccd_input(graph, code, consumer)
+        generation = generate_elbow_candidate(consumer, code, work/'generation', executable,
+            environment=environment, phenix_version=phenix_version, timeout_seconds=timeout_seconds,
+            single_block_steps=single_block_steps)
         result['generation'] = generation
         if generation['status'] == 'CANDIDATE_REVIEW':
             candidate = Path(generation['candidate_directory'])/'candidate.cif'

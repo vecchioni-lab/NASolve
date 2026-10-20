@@ -242,12 +242,12 @@
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
   "next_delivery": {
-    "status": "PREPARED_NATIVE_READ_ONLY_CONTRACT_PENDING",
-    "delivery_prefix": "32_Cedar",
-    "last_completed_delivery": "31_Cedar",
+    "status": "PREPARED_READER_PROJECTED_SINGLE_BLOCK_GENERATION_PENDING",
+    "delivery_prefix": "33_Cedar",
+    "last_completed_delivery": "32_Cedar",
     "builder": "scripts/build_cif_numerical_recovery_probe.py",
-    "runner_filename": "32_Cedar_probe_cif_elbow_contract.py",
-    "transport": "One quoted-path && subshell: fetch from build 31, pinned detached build 32, build with --delivery-prefix 32_Cedar --component-control PDU into ignored branch-artifacts/cedar/runners, run against verified Cedar 31 ZIP with --native-contract-only."
+    "runner_filename": "33_Cedar_probe_cif_single_block.py",
+    "transport": "One quoted-path && subshell: fetch from build 32, pinned detached build 33, build with --delivery-prefix 33_Cedar --component-control PDU into ignored branch-artifacts/cedar/runners, run against exact Cedar 32 ZIP with --single-block-steps 180."
   },
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
@@ -5542,7 +5542,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "pairing_intent_provenance": {
       "status": "DIAGNOSTIC_NATIVE_AUTHORITY_VERIFIED_TWO_COORDINATES_SCIENTIFIC_REVIEW",
       "reviewed_on": "2026-10-17",
@@ -5691,7 +5691,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+  "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -5815,7 +5815,7 @@
       "new_dependencies": [],
       "private_payloads_committed": false
     },
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "cedar21_return_verified_2026_10_18": {
       "archive": {
         "filename": "21_Cedar_jh154g91_cif_na_policy_review.zip",
@@ -6208,7 +6208,7 @@
       "Native criterion, objective decrease and mechanics PASS do not establish full scientific qualification.",
       "Source/charge, complete geometry, pucker, absolute stereochemistry and experimental fit remain open."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "cedar22_return_verified_2026_10_18": {
       "review_summary": {
         "archive": {
@@ -6710,7 +6710,7 @@
       "Sampled agreement cannot certify every component, convergence, pairing chemistry or experimental fit.",
       "Only derived counts/hashes/metrics enter Git; private models, definitions, archives and logs are excluded."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "recorded_date": "2026-10-19",
       "archive": {
@@ -7108,7 +7108,7 @@
       "Missing optional installed C++ source remains explicit; binary/API fingerprints are still mandatory.",
       "Only source code and derived counts/hashes/metrics enter Git; all private capsules, dictionaries, coordinates and logs remain excluded."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "recorded_date": "2026-10-19",
       "archive": {
@@ -7427,7 +7427,7 @@
       "Cedar 22 stopping evidence remains NOT_CONVERGED_ERROR; its cause is not established by correction implementation.",
       "Only code and derived counts/hashes enter Git. Private capsules, coordinates, dictionaries and logs remain excluded."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "archive": {
         "filename": "25_Cedar_jslorfge_cif_corrected_gradient_review.zip",
@@ -7784,7 +7784,7 @@
       "Cedar 22 stopping evidence remains NOT_CONVERGED_ERROR; its cause is not established by correction implementation.",
       "Only code and derived counts/hashes enter Git. Private capsules, coordinates, dictionaries and logs remain excluded."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "archive": {
         "filename": "26_Cedar_wn30xwws_cif_plane_order_review.zip",
@@ -8032,7 +8032,7 @@
       "A sampled derivative pass is not a proof of all gradients, convergence, chemistry, pucker, absolute stereochemistry, formal-charge readback or experimental fit.",
       "Only code and derived counts/hashes/metrics enter Git. Private capsule/model/CIF/PHIL/log bytes remain excluded."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "archive": {
         "filename": "27_Cedar_7i4_5a4b_cif_corrected_geometry_review.zip",
@@ -8324,7 +8324,7 @@
       "Sampled derivatives, native mechanics, optimizer stopping and chemical/experimental qualification are independent outcomes.",
       "Only code and derived counts/hashes/metrics enter Git; private archives/models/dictionaries/PHIL/logs remain excluded."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "archive": {
         "filename": "28_Cedar_r6y0ddit_cif_geometry_continuation_review.zip",
@@ -8751,7 +8751,7 @@
       "NARestraints pairing recipes/selections and stacking matrix remain authoritative and fixed; competing native automatic SS stays disabled.",
       "Only code and derived counts/hashes/metrics enter Git; private capsules, coordinates, dictionaries, PHIL and logs remain excluded."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_native_validation": {
       "archive": {
         "name": "29_Cedar_94wuz090_cif_base_rotation_review.zip",
@@ -9298,7 +9298,7 @@
       "No installed Phenix patch, modifier composition, ReadySet retry, crystal-model optimization, experimental refinement or adoption.",
       "Only source/tests/docs and derived counts/hashes enter Git; generated runners/candidates/review capsules/native data stay local."
     ],
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "archive": {
         "name": "30_Cedar__ixms4r3_cif_numerical_recovery_review.zip",
@@ -9498,7 +9498,7 @@
       "migration": "None; ordinary PostMR and the original 18-control local ZIP remain unchanged."
     },
     "artifact_boundary": "Commit maintained code/tests/docs and one explicitly requested unmodified public CCD test fixture. Do not commit private review ZIPs, generated dictionaries, model coordinates, PHIL/native logs or generated runners.",
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
     "returned_evidence": {
       "status": "VERIFIED",
       "delivery": "31_Cedar",
@@ -9562,7 +9562,7 @@
     }
   },
   "elbow_input_contract_audit_2026_10_20": {
-    "status": "IMPLEMENTED_OPT_IN_NATIVE_READ_ONLY_CONTRACT_PENDING",
+    "status": "RETURNED_PDU_READER_PASS_DP_DIALECT_REVIEW",
     "recorded_date": "2026-10-20",
     "delivery_prefix": "32_Cedar",
     "policy_id": "cif-installed-elbow-read-only-contract-v1",
@@ -9645,7 +9645,7 @@
         "native_source_capture_and_input_checks": "PENDING_USER_MAC",
         "generation": "NOT_RUN"
       },
-      "native": "PENDING_USER_MAC; subprocess/source-capture controls use explicit fakes, not installed Phenix."
+      "native": "RETURNED_PHENIX_2.2.1-6174_READ_ONLY_PDU_EXIT_ZERO_DP_AROMATIC_FIELD_FAILURE"
     },
     "schemas": {
       "schema_version": 1,
@@ -9669,6 +9669,223 @@
       "migration": "None; no production integration, curated fixture replacement or new installation."
     },
     "artifact_boundary": "Commit source/tests/docs and derived hashes/counts only. The user-local review capsule retains private inputs, native logs and captured installed source; no generated runner, private/native source, pickle, model or candidate is committed.",
-    "next_action": "Run Cedar 32 from its pinned Git delivery against the exact Cedar 31 return with --component-control PDU at build time and --native-contract-only at execution. Verify all 1209 payloads, preserve both failed generator attempts and prior mechanics/derivative proof, add exact primary IDs only when the graph-source alt_atom_id column is absent, capture four declared installed eLBOW source files and run bounded installed read-only input checks for DP and PDU. Inspect the source/restart path before another PDU generation; no optimizer knobs, chemical state, numerical targets, installed code, model, pairing/stacking policy or adoption changes. Return console output and review ZIP."
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP.",
+    "returned_evidence": {
+      "status": "VERIFIED",
+      "archive": {
+        "name": "32_Cedar_h_lbxjqc_cif_numerical_recovery_review.zip",
+        "sha256": "285d74e1927791c11eadddf81c8ee93f54a5a4feb9dd410511e0ccf97cd46342",
+        "bytes": 41999591,
+        "verified_payloads": 1229,
+        "preserved_prior_payloads": 1209
+      },
+      "nasolve_commit": "88bca3c14b21d7f37aa169bbdd6a7c62b9f6f698",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "runner_sha256": "11d3946b02ddb9500e7c79fe08fc891a8217095cb5dff71bf81f0902aa9886e8",
+      "build_sha256": "9781e61cd6d84567998dde9957eee776ac2559796bc7d2049f3eee7ae9ec6db9",
+      "runtime_members": 115,
+      "runtime_archive_sha256": "59b0ca1721a458ab75c979b35fd66b0fe26e77c55b02159b6673dcd284b9d7a1",
+      "phenix_version": "2.2.1",
+      "elbow_build": "2.2.1-6174",
+      "installed_sources": [
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/utilities/Utilities.py",
+          "sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108",
+          "size": 24907,
+          "snapshot": {
+            "anchor": "contract_directory",
+            "path": "elbow/utilities/Utilities.py"
+          }
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/utilities/optimisation_manager.py",
+          "sha256": "92c11aa41be2823726448e7c541dc8a2145c195593da98f4b50742b367adcadf",
+          "size": 29570,
+          "snapshot": {
+            "anchor": "contract_directory",
+            "path": "elbow/utilities/optimisation_manager.py"
+          }
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/command_line/builder.py",
+          "sha256": "7b2c0caf2f061d7fff65633da3add4e1b5176710ac2f7fee6c81a14c99789afd",
+          "size": 93791,
+          "snapshot": {
+            "anchor": "contract_directory",
+            "path": "elbow/command_line/builder.py"
+          }
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/chemistry/any_chemical_format_reader.py",
+          "sha256": "17c4cc38484f8f5ddea90ae3d9a04e07c73ee18ccb722ad574c753bdb9b1cbd4",
+          "size": 17945,
+          "snapshot": {
+            "anchor": "contract_directory",
+            "path": "elbow/chemistry/any_chemical_format_reader.py"
+          }
+        }
+      ],
+      "native_input_checks": {
+        "DP": {
+          "status": "REVIEW",
+          "execution": {
+            "elapsed_seconds": 3.551229,
+            "finished_at": "2026-10-20T09:56:26.166563+00:00",
+            "returncode": 1,
+            "started_at": "2026-10-20T09:56:22.615357+00:00",
+            "status": "FAILED",
+            "timeout_seconds": 60
+          },
+          "source_sha256": "3cfff153966194861451113747ba8f1ebbd7b47d58c8aa9acfd50ddfcc4783dd",
+          "log_sha256": "5a7d2effc2c734c89136b53c1289f79b7b7fcdef54e3c3a68e8cff7a3600050b"
+        },
+        "PDU": {
+          "status": "PARSER_READ_ONLY_PASS",
+          "execution": {
+            "elapsed_seconds": 1.371951,
+            "finished_at": "2026-10-20T09:56:27.540844+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-20T09:56:26.168908+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "source_sha256": "ac4d8854e0154d6a694d59473a8b47859b370df0c068f3929b6f2b1e5cba26b4",
+          "log_sha256": "2e2c57203318e3001c6d889ee3d50d3b55a1ff44bfe6aa9ab1541e28713a44a7"
+        }
+      },
+      "mechanics_replay": 17,
+      "rotation_directions_recomputed": 96,
+      "optimizer_source_findings": {
+        "default_steps": 60,
+        "default_macro_blocks": 3,
+        "explicit_steps_disable_default_macro_restarts": true,
+        "empty_existing_xyz_returns_unbound_local": "CONFIRMED_SOURCE_AND_TRACEBACK",
+        "captured_code_execution": "NOT_RUN"
+      },
+      "dictionary_generation": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "automatic_adoption": false
+    }
+  },
+  "reader_dialect_and_single_block_trial_2026_10_20": {
+    "status": "IMPLEMENTED_OPT_IN_NATIVE_TRIAL_PENDING",
+    "delivery_prefix": "33_Cedar",
+    "recorded_date": "2026-10-20",
+    "policy_ids": [
+      "cif-declared-chemistry-ccd-reader-projection-v1",
+      "cif-installed-single-block-option-proof-v1"
+    ],
+    "builder": "scripts/build_cif_numerical_recovery_probe.py",
+    "template": "scripts/cif_numerical_recovery_probe_template.py",
+    "runner_filename": "33_Cedar_probe_cif_single_block.py",
+    "modules": [
+      "src/nasolve/cif_elbow_input.py",
+      "src/nasolve/cif_elbow_contract.py",
+      "src/nasolve/cif_generation.py",
+      "src/nasolve/cif_numerical_recovery.py"
+    ],
+    "review_input": {
+      "name": "32_Cedar_h_lbxjqc_cif_numerical_recovery_review.zip",
+      "sha256": "285d74e1927791c11eadddf81c8ee93f54a5a4feb9dd410511e0ccf97cd46342",
+      "bytes": 41999591,
+      "verified_payloads": 1229,
+      "preserved_prior_payloads": 1209
+    },
+    "behavior": {
+      "before": "Installed CCD reader rejects DP after alias repair because the restraint-dictionary dialect lacks CCD aromatic/stereo/order fields. PDU passes its read-only input. The installed optimizer rereads a zero-byte XYZ on the default later macro block and returns an unbound local.",
+      "after": "A separate consumer projection translates known source aliases and retains unknown atom metadata, all original fields, source signed chirality and exact graph source. Explicit help-checked steps avoid the default restart condition; the actual installed options parser must prove one effective block before the bounded candidate trial.",
+      "DP_graph_sha256": "3cfff153966194861451113747ba8f1ebbd7b47d58c8aa9acfd50ddfcc4783dd",
+      "DP_consumer_sha256": "6b914d7fed9a98e30ed68b2381507e6d5bb0dc9b351fee48d42ced085c9501fa",
+      "PDU_graph_and_consumer_sha256": "ac4d8854e0154d6a694d59473a8b47859b370df0c068f3929b6f2b1e5cba26b4",
+      "PDU_input_change": "NONE; byte-identical complete CCD graph",
+      "no_chemical_perception": true,
+      "no_convergence_claim_from_exit_zero": true
+    },
+    "methods": {
+      "capsule": "Verify all 1229 payloads, trusted build, anchored installed source snapshots and both read-only receipts/artifacts/outcomes. Preserve the exact 1209-payload C31 predecessor and earlier failures/qualified native mechanics/rotation proof. Execute no captured code or serialized molecule.",
+      "projection": "Resolve formal-charge, aromatic and stereo aliases with normalized agreement. Translate only declared SINGLE/DOUBLE/TRIPLE to CCD SING/DOUB/TRIP and known Y/N flags; retain unknown atom aromatic/CIP metadata as ?. Keep existing fields, H, coordinates, bond stereo and signed chiral-volume declarations. Refuse disagreements, unsupported orders and any unrelated-field change. Raw dictionary differences remain evidence, not relaxed scientific gates.",
+      "unknowns": "DP has no atom aromatic/CIP column. Added ? values are explicit unknown metadata, never inferred non-aromatic N or achiral N. Bond aromatic flags come from existing source declarations. No atom CIP assignment is inferred from the source coordinates or an experimental model.",
+      "native_preflight": "Require the exact selected installation and captured four-module source identities. Fresh installed read-only checks operate on the consumer projections; any component needing review is independently deferred from generation.",
+      "option_proof": "Before each generator run, execute only the selected installed elbow.utilities.options_parser.run under the installation-bound Phenix Python, with the intended source/seed/ID/state/step arguments. Copy/hash its exact installed source and require selected import identity, requested steps and one effective block under the captured manager rules. Capture default tolerance without changing it. Verify installed and captured options bytes again after the trial; do not execute the captured source copy.",
+      "step_control": "Backward-compatible single_block_steps=None leaves the installed defaults. An explicit integer 1--600 requires exact valued --opt_steps/--opt-steps help support. The C33 shuttle requires the verified C32 source contract; delivery requests 180 steps, one block, with the existing per-component 600-second timeout.",
+      "stopping": "Record NOT_CONVERGED_REPORTED when the log states geometry not converged; otherwise record NOT_REPORTED. Never infer native convergence from file creation, exit zero or exhausted attempt control. A returned dictionary remains CANDIDATE_REVIEW or REJECTED under existing chemistry/numerical/formal-charge gates.",
+      "original_comparison": "Compare any candidate both against the consumer input and the full original dictionary, keeping every raw discrepancy. The trial never adopts a dictionary or alters the frozen scaffold, modifiers, paired/stacked intent, qualified native energy, production defaults or refinement.",
+      "bounds": {
+        "single_block_steps": 180,
+        "allowed_steps": [
+          1,
+          600
+        ],
+        "native_read_only_timeout_seconds": 60,
+        "installed_option_audit_timeout_seconds": 30,
+        "generation_timeout_seconds_per_component": 600
+      },
+      "native_execution": "PENDING_USER_MAC",
+      "model_optimization": "NOT_RUN",
+      "installed_phenix_edits": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "software_validation": {
+      "fail_before": "All 20 initial projection/step-control tests fail before implementation. Additional tests cover the C32 boundary and installed option-parser identity, macro count, step count and before/after source/copy integrity using explicit fakes.",
+      "new_tests": 39,
+      "focused": {
+        "passed": 214,
+        "seconds": 24.58,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_elbow_input.py tests/test_cedar33_delivery.py tests/test_cif_elbow_contract.py tests/test_cedar32_delivery.py tests/test_cedar31_delivery.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_numerical_recovery.py tests/test_cif_component_controls.py tests/test_cif_generation.py tests/test_cif_base_rotation_probe.py --tb=short"
+      },
+      "full": {
+        "passed": 2040,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 155.92,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "clean_source_copies_removed_before_inspection": true,
+        "poisoned_ambient_imports": "PASS",
+        "runtime_members": 116,
+        "runtime_archive_sha256": "b0aff009ec1324f5f72b6559dc80c72bcf0c2c2f8e72840ce3d3d87dabe2e68e",
+        "actual_capsule_payloads": 1229,
+        "mechanics_prerequisites": 17,
+        "rotation_directions_recomputed": 96,
+        "preserved_read_only_outcomes": {
+          "DP": "REVIEW",
+          "PDU": "PARSER_READ_ONLY_PASS"
+        },
+        "DP_graph_sha256": "3cfff153966194861451113747ba8f1ebbd7b47d58c8aa9acfd50ddfcc4783dd",
+        "DP_alias_metadata": "EXACT_PRIMARY_IDS_ADDED_FOR_MISSING_COLUMN",
+        "PDU_graph_sha256": "ac4d8854e0154d6a694d59473a8b47859b370df0c068f3929b6f2b1e5cba26b4",
+        "PDU_graph_and_policy": "PASS",
+        "native_step_control_and_generation": "PENDING_USER_MAC",
+        "DP_consumer_sha256": "6b914d7fed9a98e30ed68b2381507e6d5bb0dc9b351fee48d42ced085c9501fa",
+        "PDU_consumer_unchanged": true,
+        "generation": "NOT_RUN"
+      },
+      "native": "PENDING_USER_MAC; local subprocess and options-parser checks use explicit fakes, not an installed Phenix."
+    },
+    "schemas": {
+      "schema_version": 1,
+      "new_execution_flag": "--single-block-steps N",
+      "new_generation_argument": "single_block_steps=None (backward-compatible default)",
+      "receipt_additions": [
+        "consumer_preparation",
+        "consumer_preparations",
+        "optimization_control",
+        "optimization_stopping",
+        "single_block_control",
+        "single_block_options",
+        "previous_execution"
+      ],
+      "native_execution_additional_value": "READ_ONLY_INPUT_CHECKS_AND_NUMERICAL_GENERATION",
+      "new_dependencies": [],
+      "compatibility": "Old numbered runners/capsules remain intact. Existing default generation does not select the new step option. Consumer projection is a separate recorded format adapter; original graph/source bytes and scientific gates are preserved. No production migration."
+    },
+    "artifact_boundary": "Commit maintained source/tests/docs and derived metadata only. Private native source, logs, input capsules, generated dictionaries/runners, coordinates and option snapshots remain outside Git.",
+    "next_action": "Run Cedar 33 through the pinned Git fetch/worktree/build/run handoff against the exact Cedar 32 capsule, bundling PDU and requesting --single-block-steps 180. Preserve all prior evidence; project only declared chemistry into the CCD reader dialect, retain unknown atom metadata and signed chirality, and require fresh read-only input checks. Recheck the four exact installed source snapshots, then require the installed options parser to prove one effective block with 180 steps and unchanged default tolerance before generation. Keep original source, candidate comparisons, formal-charge gates and nonconvergence evidence. No installed patch, captured-code execution, model optimization, policy change, refinement or adoption. Return console output and review ZIP."
   }
 }
