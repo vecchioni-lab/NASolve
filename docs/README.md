@@ -186,7 +186,11 @@ for actual behavior; history is evidence, not a second task queue.
   and six torsion reviews at fixed source-seed coordinates. Cedar 39 separates
   installed CCD chemistry from geometry libraries, records direct/canonical
   lookups and route-helper source, and checks raw CCD readers without generation.
-  SMILES text comparison is not mapped-graph proof. Scientific qualification
+  Its return confirms CCD declarations/descriptor text and both raw readers,
+  with all four direct/wrapped numerical monomer lookups missing. Cedar 40
+  captures the literal ReadySet entrypoint/import text and native CCD SMILES
+  accessor selection; it does not execute ReadySet. SMILES text comparison is
+  not mapped-graph proof. Scientific qualification
   remains open.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.

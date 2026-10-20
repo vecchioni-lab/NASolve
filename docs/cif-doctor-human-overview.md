@@ -933,6 +933,19 @@ dispatcher describe available routes without executing those helpers or ReadySet
 Simple installed CCD reads record bond-order/charge/coordinate inventories.
 No chemistry, numerical target or experimental model is changed. This source
 catalogue informs a later controlled ReadySet test; it does not reproduce one.
+Its return verifies both installed CCD declaration/text comparisons and all raw
+reader inventories, with four missing direct/wrapped numerical monomer lookups.
+DG/DC canonical controls resolve normally.
+
+Cedar 40 follows the hash-matched dispatcher to its literal ReadySet Python
+entrypoint and captures bounded first-party import text. A separate fresh native
+worker calls only the previously captured CCD filename and SMILES accessors,
+recording the actual selected string and matching descriptor metadata. Static
+source evidence does not establish an executed ReadySet path, and descriptor
+selection does not establish a mapped chemical graph or numerical restraint.
+The worker has a 30 s deadline; ReadySet, generation and optimization remain
+unrequested. This boundary identifies which implementation must be reviewed
+before a controlled reproduction of the reported PDU behavior.
 
 ## Primary references
 

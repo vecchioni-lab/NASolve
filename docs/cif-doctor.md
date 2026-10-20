@@ -1618,6 +1618,40 @@ precedence and NARestraints pairing/stacking authority are unchanged, including
 5PC's unresolved duplicate records. Complete ReadySet selection, mapped-SMILES,
 stereo, numerical and scientific qualification remain open.
 
+Returned Cedar 39 verifies all 1,486 payloads and the trusted clean published
+runner. Both installed CCDs preserve public declarations and all SMILES text;
+all six raw reader checks pass per component. Both direct/wrapped monomer
+lookups are missing, while DG/DC canonical resolution succeeds. CCD numerical
+parameters remain UNASSESSED; descriptor graph mapping and ReadySet remain
+NOT_RUN. No historical SMILES or floppy-chain cause is established.
+
+Build Cedar 40 with --delivery-prefix 40_Cedar --component-control PDU
+--component-control 5PC. Run the exact C39 ZIP with --component DP
+--readyset-source-audit-only. The new mutually exclusive action replays all prior
+mechanics, rotational, raw/controlled source-reader and triple-proxy evidence,
+plus both installed/public CCD comparisons and raw CCD inventories. --inspect-only
+performs those checks without native execution.
+
+Resolve exactly one literal $LIBTBX_PREFIX/...py target from the captured,
+hash-matched ReadySet dispatcher. The target must stay beneath the selected
+Python library. Copy it and bounded literal elbow/mmtbx imports of ReadySet-named
+modules as text: at most three levels, 32 files, 1 MiB/file and 8 MiB total.
+Direct helper sources are captured without recursive execution. Record missing
+literal targets and budget limits; dynamic and complete transitive source
+coverage is not claimed. No ReadySet module or captured code is imported.
+
+A separate worker uses selected Phenix Python and the C39-proven
+mmtbx.chemical_components module. Verify get_cif_filename against each exact
+captured CCD resource before calling get_smiles. Retain the exact selected text
+and matching descriptor type/program/version records. SELECTED_DESCRIPTOR_MATCH
+means only text membership; graph mapping and numerical targets remain separate.
+The worker has a <=30 s deadline and an owned timeout group. All selected API,
+dispatcher, resource, reference and snapshot bytes remain checked before/after.
+INSTALLED_CCD_DESCRIPTOR_SELECTION_ONLY records this native scope. ReadySet
+execution, constructors, generation, optimization and model edits remain
+unrequested; no numerical target, NAR policy, production default or adoption
+changes. Saved PDU torsion reviews and the two ambiguous 5PC records survive.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

@@ -760,30 +760,32 @@ and two 180° / ESD 3° terms, plus six linear-axis torsion reviews. Those nativ
 coordinates are fixed public source seeds, not a repaired generated candidate.
 No optimization, new generation, ReadySet retry or adoption ran.
 
-**Cedar 39 prepared:** separate installed CCD chemistry from numerical monomer
-resources. Preserve/replay the C38 failures and supplied-dictionary native
-membership. Read exact installed CCD paths at the verified library anchor;
-compare full chemical declarations and descriptor text against public PDU/5PC.
-Record fresh direct/wrapped monomer and DG/DC canonical controls, native roots,
-route-helper source and ReadySet dispatcher bytes. The route helpers/dispatcher
-are captured, not executed. Read valid installed CCDs through the existing simple
-native parser. Equal SMILES text is not mapped-graph proof. No experimental model,
-parameter, generator, optimizer, production default or NARestraints policy changes.
-5PC's two workbook matches remain unresolved. Installed source results await Mac.
-All **34 new regressions**, **68 focused tests (9.47 s)** and **2,329 full tests,
-two skips and 276 subtests (182.05 s)** pass. The 125-member runtime replays the
-actual 1,446-payload C38 capsule and its fixed-seed/native evidence after deleted
-builds and relocation, with poisoned imports, an aliased temp root and the
-protected everyday edit intact. JSON mirrors, 149 links and the rendered figure
-verify. Exact commands, provenance and limits are in the native ledger.
+**Cedar 39 returned and verified:** all **1,486 payloads**, the clean published
+runner/build and 125 runtime members match. Both exact installed CCDs preserve
+public chemical declarations and SMILES descriptor text. Both simple native
+readers pass all six inventory checks. All four direct/wrapped numerical monomer
+lookups are missing; DG/DC canonical controls resolve through GeoStd. Source
+comparison and raw reader replay are independent of numerical restraint
+qualification. No ReadySet, constructor, generation or optimization ran. Full
+ReadySet selection, mapped SMILES, native stereo and geometry remain open.
+Exact hashes, paths and scope are in the native ledger.
+
+**Cedar 40 prepared:** capture the literal ReadySet dispatcher target and bounded
+first-party import text without executing those sources. A <=30 s worker calls
+only the C39-proven CCD filename/SMILES accessors and records the selected
+string with matching descriptor metadata. This is source/selection evidence,
+not executed ReadySet provenance or mapped-graph/numerical qualification.
+All prior evidence, including six saved PDU torsion reviews and ambiguous 5PC
+policy records, remains intact. Independent replays pass after build deletion,
+runner relocation, poisoned imports and an aliased temporary root. Software
+validation and exact commands are recorded in the native ledger.
 
 **Current action:** use the pinned one-block Git handoff: build with
---delivery-prefix 39_Cedar --component-control PDU --component-control 5PC,
-then run the exact Cedar 38 ZIP with --component DP --installed-source-audit-only.
+--delivery-prefix 40_Cedar --component-control PDU --component-control 5PC,
+then run the exact Cedar 39 ZIP with --component DP --readyset-source-audit-only.
 Return console/review ZIP. Selected installation remains Phenix **2.2.1-6174**
-(dispatcher reports **2.2.1**). This tests installed CCD/source and lookup evidence;
-full ReadySet selection, SMILES graph mapping, stereo, convergence and scientific
-qualification remain open.
+(dispatcher reports **2.2.1**). Review the captured ReadySet implementation before
+choosing a bounded generation reproduction; preserve scientific REVIEW.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

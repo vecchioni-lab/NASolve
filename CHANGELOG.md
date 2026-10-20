@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bound ReadySet source and installed descriptor-selection evidence
+
+- Verify all 1,486 Cedar 39 payloads and the clean published runner. Installed
+  PDU/5PC CCD declarations, descriptor text and raw reader inventories pass;
+  all four direct/wrapped numerical monomer lookups remain missing. DG/DC
+  canonical controls resolve. No executed ReadySet route is established.
+- Add the exact C39 gate and independent installed/public source and raw-reader
+  replay, preserving every earlier missing-resource and torsion review.
+- Add Cedar 40's literal dispatcher-target/import text capture and <=30 s pinned
+  native CCD filename/SMILES selection worker. Dynamic/budget coverage limits
+  are explicit; descriptor membership is separate from mapped graphs and
+  numerical restraints. ReadySet modules and captured code never execute.
+- Keep dependencies, chemistry, targets, coordinates, NARestraints policy and
+  production defaults fixed. No ReadySet execution, generation, optimization,
+  refinement or adoption is requested. All 33 new regressions, 85 focused and
+  2,362 full tests pass, with two skips and 276 subtests. Actual C39 replay
+  passes after build deletion/relocation, poisoned imports and aliased temp paths.
+  Native selection results await Mac.
+
 ### Separate installed CCD chemistry from monomer geometry resources
 
 - Verify all 1,446 Cedar 38 payloads. Both default monomer lookups are missing;

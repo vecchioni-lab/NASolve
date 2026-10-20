@@ -122,7 +122,12 @@ with active 1.174 Å / 180° terms and six linear-axis torsion reviews at fixed
 source-seed coordinates. Cedar 39 separately inventories installed CCD chemistry
 and direct/canonical monomer lookups, comparing declarations and SMILES text
 with the public controls. It records route-helper source without running
-ReadySet. No experimental model, target, generation or optimization is changed.
+ReadySet. Its return confirms both installed CCD graphs and raw reader inventories;
+all four direct/wrapped numerical monomer lookups remain missing. Cedar 40
+captures the dispatcher-selected ReadySet implementation as text and records
+the installed CCD SMILES accessor selection. This does not execute ReadySet
+or independently validate a mapped SMILES graph. No experimental model, target,
+generation or optimization is changed.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

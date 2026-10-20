@@ -560,7 +560,15 @@ dispatcher. Those helpers and dispatcher are not executed. Installed CCD files
 receive separate simple native reader checks, without a constructor, numerical
 generation or optimization. Float replay tolerance accommodates cross-platform
 math rounding; identities, state, counts, hashes and input bytes remain exact.
-Full ReadySet selection, mapped-SMILES graphs, native stereo and scientific
+Returned Cedar 39 confirms both installed CCD declaration/text comparisons
+and six raw reader checks per component; direct/wrapped monomer lookups are
+missing while DG/DC canonical resolution succeeds. Cedar 40 adds an exact C39
+return gate, independent source/inventory replay, literal dispatcher-target and
+bounded import-text capture, and a <=30 s pinned native CCD filename/SMILES
+accessor worker. ReadySet modules remain text evidence and never run. Static
+coverage limits are explicit; returned descriptor text stays separate from
+mapped graph and numerical restraint qualification.
+Full ReadySet execution, mapped-SMILES graphs, native stereo and scientific
 qualification remain open. All production/default resource and curated-ligand
 precedence rules remain fixed.
 

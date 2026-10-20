@@ -7226,7 +7226,8 @@
       "evidence_record": "cif-linked-native-registration-evidence.json#triple_bond_native_proxy_audit_2026_10_20"
     },
     "installed_monomer_ccd_source_audit_2026_10_20": {
-      "status": "IMPLEMENTED_INSTALLED_SOURCE_CATALOGUE_NATIVE_PENDING",
+      "evidence_record": "cif-linked-native-registration-evidence.json#installed_monomer_ccd_source_audit_2026_10_20",
+      "status": "RETURNED_INSTALLED_CCD_DECLARATIONS_AND_RAW_READERS_PASS_NUMERICAL_MONOMERS_MISSING",
       "delivery_prefix": "39_Cedar",
       "recorded_date": "2026-10-20",
       "policy_ids": [
@@ -7324,7 +7325,7 @@
         "after": "Inventory exact anchored installed CCD chemistry separately from fresh wrapped/direct monomer and DG/DC canonical resolution. Compare declarations and descriptor text, capture route context and record raw installed CCD parsing.",
         "production_defaults": "UNCHANGED",
         "policy_authority": "NARestraints",
-        "native_acceptance": "PENDING_USER_MAC"
+        "native_acceptance": "RETURNED_SOURCE_AND_RAW_READER_EVIDENCE_ONLY"
       },
       "methods": {
         "return_gate": "Exact C38 archive/build and 1446 payloads; recursively preserved C37 and older source/state. Verify monomer API/owned-worker proofs, resource/native receipt equality, failed lookup error/count/scope, active saved PDU REVIEW, exact frozen model/CIF/PHIL inputs and output checksums. Never execute captured code or load pickles.",
@@ -7406,7 +7407,7 @@
           "installed_source_catalogue": "PENDING_USER_MAC",
           "prior_active_native_screen_replayed": true
         },
-        "native": "PENDING_USER_MAC. Linux selected-installation tests use explicit fake APIs; actual C38 replay verifies preserved native evidence and requests no new native source catalogue/reader.",
+        "native": "RETURNED_MAC_SOURCE_AND_RAW_READER_EVIDENCE; see native_return. Original Linux tests used explicit fake APIs and offline replay.",
         "full": {
           "passed": 2329,
           "skipped": 2,
@@ -7432,8 +7433,325 @@
         "5PC duplicate NAR records remain unresolved; no pair/stack policy selection or compiler change."
       ],
       "artifact_boundary": "Maintained code/tests/docs and metadata only; unchanged public PDU/5PC fixtures remain pinned. Installed/private snapshots, logs, capsules, models and generated runners remain outside Git.",
-      "next_action": "Build Cedar 39 with --delivery-prefix 39_Cedar --component-control PDU --component-control 5PC. Run exact C38 ZIP with --component DP --installed-source-audit-only under selected Phenix 2.2.1-6174. Return console/review ZIP. Preserve full prior evidence and everyday checkout; no generator, ReadySet execution, optimization, parameter/model change or adoption.",
-      "evidence_record": "cif-linked-native-registration-evidence.json#installed_monomer_ccd_source_audit_2026_10_20"
+      "next_action": "Cedar 40 captures the literal ReadySet entrypoint/import source text and records the exact installed CCD SMILES accessor selection. No ReadySet execution, generation, optimization, parameter/model edit or adoption.",
+      "native_return": {
+        "archive": {
+          "name": "39_Cedar_eum3w071_cif_numerical_recovery_review.zip",
+          "sha256": "1661c270c083be1a78f21f9d8e870da9042ba8f3ceff3e050aa430cceb7462f1",
+          "bytes": 43963198,
+          "verified_payloads": 1486,
+          "preserved_predecessor_payloads": 1446
+        },
+        "source_commit": "17af429f23b5a27e0fd046ee1edf8b3808c8c327",
+        "trusted_clean_build_metadata_match": true,
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "918114a48b486492fe5c4f15ab10df4744fe23620a0da058bcc061b83eb4341e",
+        "canonical_build_sha256": "eea1125f940eb6cd45b6558dad462be3fd3420184e52d8bdf6ca084142288b59",
+        "runtime_members": 125,
+        "runtime_archive_sha256": "581d1179d2d2860ad6ffa4d0fd6f43335a563fcf927f24a553d939b711d39ec9",
+        "native_installation": "Phenix 2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "native_execution": "INSTALLED_MONOMER_CCD_SOURCE_CONTROLS",
+        "direct_and_wrapped_lookups": {
+          "5PC": {
+            "direct": {
+              "status": "MISSING"
+            },
+            "wrapped": {
+              "status": "MISSING"
+            }
+          },
+          "PDU": {
+            "direct": {
+              "status": "MISSING"
+            },
+            "wrapped": {
+              "status": "MISSING"
+            }
+          }
+        },
+        "library_roots": [
+          {
+            "anchor": "phenix_installation",
+            "exists": true,
+            "field": "root_path",
+            "path": "lib/python3.11/site-packages/chem_data/mon_lib"
+          },
+          {
+            "anchor": "phenix_installation",
+            "exists": true,
+            "field": "geostd_path",
+            "path": "lib/python3.11/site-packages/chem_data/geostd"
+          }
+        ],
+        "canonical_controls": {
+          "DC": {
+            "status": "RECORDED",
+            "metadata": {
+              "desc_level": "",
+              "group": "DNA",
+              "id": "Cd",
+              "name": "Cytidine                            ",
+              "number_atoms_all": 30,
+              "number_atoms_nh": 19,
+              "three_letter_code": "C"
+            },
+            "source": {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/chem_data/geostd/c/data_CD.cif"
+            },
+            "numerical_parameter_comparison": "NOT_RUN"
+          },
+          "DG": {
+            "status": "RECORDED",
+            "metadata": {
+              "desc_level": "",
+              "group": "DNA",
+              "id": "Gd",
+              "name": "Guanosine                           ",
+              "number_atoms_all": 33,
+              "number_atoms_nh": 22,
+              "three_letter_code": "G"
+            },
+            "source": {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/chem_data/geostd/g/data_GD.cif"
+            },
+            "numerical_parameter_comparison": "NOT_RUN"
+          }
+        },
+        "components": {
+          "5PC": {
+            "resource": {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/chem_data/chemical_components/5/data_5PC.cif",
+              "sha256": "b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025",
+              "size": 8274
+            },
+            "chemical_declarations": "EXACT_DECLARATIONS",
+            "triple_bonds": [
+              [
+                "C7",
+                "C8"
+              ]
+            ],
+            "descriptor_text_comparison": "TEXT_IDENTICAL",
+            "descriptor_records": 5,
+            "numerical_parameterization": "UNASSESSED",
+            "mapped_smiles_graph_comparison": "NOT_RUN",
+            "reader_status": "READER_ROUTE_AND_INVENTORY_PASS",
+            "reader_checks": {
+              "atom_charge_values": true,
+              "atom_elements": true,
+              "atom_identities": true,
+              "declared_bond_orders": true,
+              "reader_route": true,
+              "source_coordinates": true
+            }
+          },
+          "PDU": {
+            "resource": {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/chem_data/chemical_components/p/data_PDU.cif",
+              "sha256": "98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258",
+              "size": 8860
+            },
+            "chemical_declarations": "EXACT_DECLARATIONS",
+            "triple_bonds": [
+              [
+                "C5A",
+                "C5B"
+              ]
+            ],
+            "descriptor_text_comparison": "TEXT_IDENTICAL",
+            "descriptor_records": 4,
+            "numerical_parameterization": "UNASSESSED",
+            "mapped_smiles_graph_comparison": "NOT_RUN",
+            "reader_status": "READER_ROUTE_AND_INVENTORY_PASS",
+            "reader_checks": {
+              "atom_charge_values": true,
+              "atom_elements": true,
+              "atom_identities": true,
+              "declared_bond_orders": true,
+              "reader_route": true,
+              "source_coordinates": true
+            }
+          }
+        },
+        "source_proofs": [
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/monomer_library/server.py",
+            "size": 29116,
+            "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/monomer_library/cif_types.py",
+            "size": 44354,
+            "sha256": "4b2dbeae99a931510a2f96023b772f04d69c083a8719925c33c45d942f0da4fd"
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/utilities/Utilities.py",
+            "size": 24907,
+            "sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108"
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/utilities/geostd_utils.py",
+            "size": 4397,
+            "sha256": "a8e7e93b6ad1f010becd16f1828034f93b2733cf791501366f707de868a4ccd6"
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/elbow/utilities/mmtbx_utils.py",
+            "size": 3541,
+            "sha256": "4a84dd75294b1bdfb29bb97490e852f9af474cd6ef37bf9b37502962a2770268"
+          },
+          {
+            "anchor": "phenix_installation",
+            "path": "lib/python3.11/site-packages/mmtbx/chemical_components/__init__.py",
+            "size": 14421,
+            "sha256": "34cac88c23e5f221e20aeb1c1b74eebf054a59725cc5203e6ba36e19074610bc"
+          }
+        ],
+        "readyset_dispatcher": {
+          "anchor": "phenix_installation",
+          "path": "bin/phenix.ready_set",
+          "size": 4014,
+          "sha256": "1325aaf97ff5d89e10c95fb2a080bde5245da4cab9187c8772c2d1a9f591d2a7"
+        },
+        "catalogue_worker_sha256": "ddb761ddc5cc405a40d06ab15f98eebfe224fd2114435d2d9f08de757ee60ee0",
+        "raw_reader_worker_sha256": "72e02c470d52df6eeb13d72d2c10e09293dcb50544653b66204553277a72d8f2",
+        "readyset_execution": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "optimization": "NOT_RUN",
+        "automatic_adoption": false,
+        "interpretation": "Both installed CCDs preserve declared chemistry and raw reader inventories. Missing monomer resources do not identify ReadySet fallback selection. Source/SMILES text is not mapped-graph, numerical, historical or scientific qualification."
+      }
+    },
+    "readyset_source_descriptor_audit_2026_10_20": {
+      "evidence_record": "cif-linked-native-registration-evidence.json#readyset_source_descriptor_audit_2026_10_20",
+      "status": "IMPLEMENTED_READYSET_STATIC_SOURCE_AND_DESCRIPTOR_SELECTION_NATIVE_PENDING",
+      "recorded_date": "2026-10-20",
+      "delivery_prefix": "40_Cedar",
+      "policy_ids": [
+        "cif-readyset-source-and-descriptor-selection-v1"
+      ],
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "40_Cedar_probe_cif_readyset_sources.py",
+      "modules": [
+        "src/nasolve/cif_readyset_source_audit.py"
+      ],
+      "review_input": {
+        "name": "39_Cedar_eum3w071_cif_numerical_recovery_review.zip",
+        "sha256": "1661c270c083be1a78f21f9d8e870da9042ba8f3ceff3e050aa430cceb7462f1",
+        "bytes": 43963198,
+        "verified_payloads": 1486,
+        "preserved_predecessor_payloads": 1446
+      },
+      "behavior": {
+        "before": "Installed CCDs preserve graph/text and simple reader values, but the ReadySet implementation and actual CCD descriptor accessor selection were not captured.",
+        "after": "Resolve the selected dispatcher literal target, freeze bounded first-party source imports as text and call only the pinned installed CCD filename/SMILES accessors. Replay all prior evidence independently.",
+        "production_defaults": "UNCHANGED",
+        "policy_authority": "NARestraints",
+        "native_acceptance": "PENDING_USER_MAC"
+      },
+      "methods": {
+        "return_gate": "Exact C39 archive/build and 1486 payloads. Recursively verify C38 and all predecessors. Check catalogue/raw-reader receipts, worker hashes, source snapshots, missing direct/wrapped and successful canonical context; preserve UNASSESSED numerical and NOT_RUN mapped-graph/ReadySet scope.",
+        "replay": "17 mechanics checks, 96 rotation directions, source-reader and declared-charge checks, fixed source-seed serialization, offline/native triple screens, installed/public CCD chemical/descriptor comparisons and both raw installed CCD inventories.",
+        "static_entrypoint": "One exact literal $LIBTBX_PREFIX/...py target in the hash-matched dispatcher, beneath the selected Python library. Capture as text only; no shell evaluation, module import or execution.",
+        "static_import_scope": "Entry plus literal elbow/mmtbx imports of ReadySet-named modules through three levels, 32-file budget, <=1 MiB/file and <=8 MiB total. Capture direct helpers without importing them. Record missing literal targets and explicit depth/file budget limits. Dynamic/complete transitive coverage is not claimed.",
+        "descriptor_selection": "Fresh selected-installation worker verifies the C39 chemical_components source, exact anchored CCD resource and get_cif_filename result before calling get_smiles. Retain exact returned text and matching descriptor type/program/version records; do not infer mapped graph or numerical targets.",
+        "integrity": "Reject ambiguous/escaped/changed sources, refuse existing/symlinked output, check selected source/dispatcher/CCD/snapshot bytes before and after. Captured evidence code and pickles never execute.",
+        "native_timeout_seconds": 30,
+        "owned_timeout_groups": "TERMINATED",
+        "readyset_execution": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "optimization": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "schemas": {
+        "schema_version": 1,
+        "new_flag": "--readyset-source-audit-only (mutually exclusive; exact C39 input and PDU/5PC controls)",
+        "requested_action": "READYSET_SOURCE_AND_DESCRIPTOR_AUDIT",
+        "native_execution": "INSTALLED_CCD_DESCRIPTOR_SELECTION_ONLY",
+        "additive_receipt_fields": [
+          "prior_installed_source_replay",
+          "readyset_source_audit"
+        ],
+        "compatibility": "Opt-in diagnostic only; prior actions keep exact predecessor gates. No dependency, production/default policy, source chemistry, restraint target, coordinate or NAR policy change; no migration.",
+        "new_dependencies": []
+      },
+      "software_validation": {
+        "fail_before": "All 18 new source/descriptor regressions fail before the module exists; selected fake APIs exercise PDU and a different Q77 code, and unexecuted ReadySet/helper modules raise if called.",
+        "new_tests": 33,
+        "focused": {
+          "passed": 85,
+          "seconds": 5.25,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_readyset_source_audit.py tests/test_cedar40_delivery.py tests/test_cif_installed_source_catalogue.py tests/test_cedar39_delivery.py tests/test_cif_numerical_recovery_probe.py --tb=short"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_source_copies_removed_before_replay": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp_root": "PASS",
+          "runner_relocated_before_replay": true,
+          "older_everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "actual_capsule_payloads": 1486,
+          "runtime_members": 126,
+          "runtime_archive_sha256": "79e141ea390431cc46992f6135d961fc2b698a9e2afdd8a0e055b4acd55a8217",
+          "mechanics_prerequisites": 17,
+          "rotation_directions_recomputed": 96,
+          "prior_raw_reader_checks_replayed": true,
+          "prior_declared_charge_checks_replayed": true,
+          "PDU_saved_candidate_target_screen": "PASS",
+          "PDU_active_fixed_seed_coordinate_screen": "PASS",
+          "PDU_saved_candidate_coordinate_screen": "REVIEW",
+          "PDU_linear_axis_torsions": 6,
+          "5PC_triple": [
+            "C7",
+            "C8"
+          ],
+          "5PC_policy_record_count": 2,
+          "5PC_policy_ambiguity": "PRESERVED",
+          "dictionary_generation": "NOT_RUN",
+          "readyset_source_selection": "PENDING_USER_MAC",
+          "prior_installed_ccd_replayed": true,
+          "prior_active_native_screen_replayed": true
+        },
+        "full": {
+          "passed": 2362,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 183.26,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "native": "PENDING_USER_MAC. Linux uses explicit fake selected APIs and actual-capsule offline replay only.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 149,
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS",
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650"
+          }
+        }
+      },
+      "limitations": [
+        "Static imports and descriptor accessor selection do not establish the executed ReadySet route.",
+        "SMILES text is not an independently mapped graph, numerical restraint or proof of historical correctness.",
+        "Saved nonconverged PDU candidate retains six linear-axis torsion reviews; no causal or repaired-geometry claim.",
+        "5PC has two ambiguous NAR records; no pairing/stacking role is chosen. Stereo, convergence, scientific qualification and production integration remain open."
+      ],
+      "artifact_boundary": "Only maintained code/tests/docs and metadata enter Git. Installed source/CCD snapshots, private evidence, logs, models, generated runners and ZIPs remain external.",
+      "next_action": "Build Cedar 40 with --delivery-prefix 40_Cedar --component-control PDU --component-control 5PC. Run exact C39 ZIP with --component DP --readyset-source-audit-only under Phenix 2.2.1-6174. Return console/review ZIP."
     }
   },
   "audience": [

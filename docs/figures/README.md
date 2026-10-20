@@ -36,3 +36,9 @@ claim complete ReadySet replay, optimization or scientific qualification.
 The installed-source note distinguishes numerical monomer libraries from CCD
 chemistry and captures route-helper context. Direct/canonical lookups and source
 comparisons do not establish the full ReadySet path or a mapped SMILES graph.
+
+The selection note also separates the installed CCD, selected SMILES text and
+numerical restraints. Cedar 40 captures the literal ReadySet implementation and
+bounded imports as text; its native accessor result does not claim ReadySet
+execution or a mapped-SMILES graph. Explicit scope and budget limits remain in
+the accompanying human descriptor and native evidence ledger.
