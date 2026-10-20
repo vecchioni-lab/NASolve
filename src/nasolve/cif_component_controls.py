@@ -14,7 +14,7 @@ from .cif_linked_preparation import component_values, atom_rows, hydrogen_neighb
 POLICY_ID = 'cif-explicit-component-policy-control-v1'
 
 
-def assess_component_control(source, code, *, records=None):
+def assess_component_control(source, code, *, records=None, graph_only_if_ambiguous=False):
     from restraints.residue_library import load_residue_records, heterocycle_atom_names
     from restraints.builder import pair_residue_from_pdb
     from restraints.phenix import PairResidue, generate_pair_restraints
@@ -29,6 +29,14 @@ def assess_component_control(source, code, *, records=None):
     records = load_residue_records() if records is None else records
     matches = [r for r in records if r['Ligand code'] == code]
     if len(matches) != 1:
+        if graph_only_if_ambiguous is True:
+            return {'schema_version':1,'policy_id':POLICY_ID,'component':code,'status':'REVIEW',
+                'source_sha256':sha256(original).hexdigest(),'source_size':len(original),
+                'graph_status':'PASS','source_assessment':assessment,'policy_status':'REVIEW',
+                'mapped_base_class':None,'policy_authority':'NARestraints','matching_policy_records':len(matches),
+                'policy_error':'Require one unambiguous NARestraints record',
+                'scope':'PUBLIC_GRAPH_CONTROL_ONLY','native_proxy_validation':'NOT_RUN',
+                'model_editing':'NOT_RUN','model_optimization':'NOT_RUN','automatic_adoption':False}
         raise ValueError('Component control requires one unambiguous NARestraints record')
     record = matches[0];values = component_values(source, code);atoms = atom_rows(values)
     inventory = selected[0]['inventory'];known = heterocycle_atom_names(record)

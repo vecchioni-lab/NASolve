@@ -404,6 +404,28 @@
       },
       "test_fixture": "tests/fixtures/public_ccd/PDU.cif",
       "scope": "EXPLICIT_PUBLIC_COMPONENT_CONTROL_NOT_A_PRODUCTION_CURATED_DICTIONARY"
+    },
+    {
+      "atom_count": 39,
+      "bond_count": 40,
+      "code": "5PC",
+      "control_intent": "Independent cytosine propynyl triple-bond control C7-C8. Two NARestraints records remain ambiguous; graph/native component checks do not choose a role record.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "test_fixture": "tests/fixtures/public_ccd/5PC.cif",
+      "source": {
+        "bytes": 9080,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/5PC.cif",
+        "retrieved_utc": "2026-10-20T14:04:29.960227+00:00",
+        "sha256": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650"
+      },
+      "workbook_rows": [
+        {
+          "sheet": "cytosine",
+          "ambiguity": "two matching records; neither selected"
+        }
+      ]
     }
   ],
   "document_kind": "cif-doctor-public-ccd-control-provenance",
@@ -415,7 +437,7 @@
     "8RO is an official challenge identity only, not an alias for lab DE.",
     "Workbook cell values are frozen as evidence, not repaired.",
     "No native Phenix interpretation or achieved-geometry qualification performed here.",
-    "The original 18 downloaded controls remain local. The explicitly requested PDU control is an unmodified, hash-pinned public test fixture; it is not installed into the production curated library.",
+    "The original 18 downloaded controls remain local. The explicitly requested PDU and 5PC controls are unmodified, hash-pinned public test fixtures; they are not installed into the production curated library.",
     "CCDs change: explicit future acquisition must verify the pinned hash or record a new revision."
   ],
   "recorded_date": "2026-10-11",
@@ -430,6 +452,6 @@
     "repository_path": "restraints/data/Ligands.xlsx",
     "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
   },
-  "source_collection_updated_date": "2026-10-19",
+  "source_collection_updated_date": "2026-10-20",
   "historical_control_zip_component_count": 18
 }

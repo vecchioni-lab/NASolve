@@ -13,6 +13,16 @@ ROOT=Path(__file__).resolve().parents[1]
 PUBLIC=ROOT/'tests/fixtures/public_ccd/PDU.cif'
 PDU_SHA='cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292'
 
+
+def test_5pc_is_independent_graph_control_without_choosing_between_workbook_records():
+    from nasolve.cif_component_controls import assess_component_control
+    p=ROOT/'tests/fixtures/public_ccd/5PC.cif'
+    assert len(p.read_bytes())==9080 and sha256(p.read_bytes()).hexdigest()=='cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650'
+    with pytest.raises(ValueError,match='unambiguous'):assess_component_control(p,'5PC')
+    r=assess_component_control(p,'5PC',graph_only_if_ambiguous=True)
+    assert r['graph_status']=='PASS' and r['matching_policy_records']==2
+    assert r['policy_status']=='REVIEW' and r['mapped_base_class'] is None
+
 @pytest.mark.parametrize('coordinates',['ideal','declared'])
 def test_graph_export_matches_installed_elbow_object_attribute_case(tmp_path,coordinates):
     from nasolve.cif_numerical_recovery import prepare_graph_generation_source

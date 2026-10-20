@@ -6722,7 +6722,7 @@
       "evidence_record": "cif-linked-native-registration-evidence.json#source_reader_temp_portability_2026_10_20"
     },
     "declared_graph_charge_control_2026_10_20": {
-      "status": "IMPLEMENTED_SOURCE_TOKEN_FIX_AND_EXPLICIT_CHARGE_CONTROL_NATIVE_PENDING",
+      "status": "RETURN_VERIFIED_DECLARED_ORDERS_AND_ISOLATED_SOURCE_CHARGE_CONTROLS_PASS",
       "delivery_prefix": "37_Cedar",
       "recorded_date": "2026-10-20",
       "policy_ids": [
@@ -6750,7 +6750,7 @@
         "generic_scope": "Declared source graphs and reader dialects, without component-name chemistry exceptions or inferred charges/stereo.",
         "raw_reader_findings": "PRESERVED_SEPARATELY_FROM_POPULATION_CONTROL",
         "production_defaults": "UNCHANGED",
-        "native_acceptance": "PENDING_USER_MAC"
+        "native_acceptance": "RETURN_VERIFIED_ISOLATED_CONTROL_ONLY"
       },
       "methods": {
         "return_gate": "Verify exact C36 archive/build, 1355 payloads and recursively preserved C35/C34 lineage. Verify two native parser snapshots in both cases, exact owned worker and consumer hashes, receipt/result equality, raw DP order/charge findings and PDU pass; freshly replay raw source-reader checks plus all prior mechanics/rotation/stereo evidence. Never execute captured code or load serialized molecules.",
@@ -6819,7 +6819,7 @@
           "native_declared_charge_control": "PENDING_USER_MAC",
           "PDU_consumer_unchanged": true
         },
-        "native": "Source-charge population and new native token acceptance are pending the Mac return. Linux subprocess/API checks are explicit fakes; no native optimizer or chemical qualification is claimed.",
+        "native": "Returned Mac Phenix 2.2.1-6174 (dispatcher 2.2.1) verifies declared-order translation and both isolated charge controls. DP raw omitted charges remain recorded; no new constructor, generation, optimization or model edit ran.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -6850,8 +6850,298 @@
         "NARestraints remains the pairing/stacking authority; no policy recompilation or Phenix guessing is introduced."
       ],
       "artifact_boundary": "Maintained code/tests/docs and derived metadata only. Private installed source snapshots/logs, ZIPs, generated runners/candidates and models remain outside Git.",
-      "next_action": "Run Cedar 37 through the pinned Git fetch/worktree/build/run block with --delivery-prefix 37_Cedar --component-control PDU, then the exact Cedar 36 ZIP with --component DP --source-dialect-audit-only --declared-charge-control. Preserve raw C36 findings and recheck source/dispatcher/API hashes before/after. Test declared monomer bond-token translation and explicit source-integer charge population only on the temporary native component after exact graph/coordinate preconditions; block conflicts and keep already-preserved CCD charges unchanged. Return console/review ZIP. No constructor, Chargise, optimizer, generation, production integration, NARestraints-policy change, refinement or adoption is requested. Native complete stereo/generator/scientific qualification remains open.",
+      "next_action": "Run Cedar 38 isolated installed-library/triple-proxy controls on PDU and 5PC. Retain raw parser findings, source charge/stereo limits and all saved evidence; no generation, optimization, scaffold edit or adoption.",
+      "returned_review": {
+        "name": "37_Cedar_p7r95lko_cif_numerical_recovery_review.zip",
+        "sha256": "99a47b583d5fbc3fd0a32da492b1bfa07d5e3148a52306e5c68501049ea53106",
+        "bytes": 43354886,
+        "verified_payloads": 1387,
+        "preserved_predecessor_payloads": 1355,
+        "source_commit": "347bcbbfa1a22fe6f4673159dfccec283af1fab6",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "trusted_clean_build_metadata_match": true,
+        "runner_sha256": "89a5a30fc22d09084799ebf54930db3a7be8e3d5498f227d65fd923940e38a99",
+        "canonical_build_sha256": "61b0309dcf3f6f512a3a0193accdb125766de9e569af4d1fc44091d31201e368",
+        "runtime_members": 120,
+        "runtime_archive_sha256": "27bafca89f9a86a4adef1cfa98ad5f1753ecb0caf955874ff0c94c401c8f4941",
+        "owned_reader_worker_sha256": "72e02c470d52df6eeb13d72d2c10e09293dcb50544653b66204553277a72d8f2",
+        "native_execution": "SOURCE_READER_AND_DECLARED_CHARGE_CONTROLS",
+        "DP": {
+          "raw_checks": {
+            "reader_route": true,
+            "atom_identities": true,
+            "atom_elements": true,
+            "atom_charge_values": false,
+            "source_coordinates": true,
+            "declared_bond_orders": true
+          },
+          "charge_control": "DECLARED_CHARGE_CONTROL_PASS",
+          "action": "POPULATED_FROM_EXPLICIT_SOURCE",
+          "changed_atoms": [
+            "OP2",
+            "OP3"
+          ],
+          "source_total_charge": -2,
+          "other_recorded_fields_preserved": true
+        },
+        "PDU": {
+          "raw_checks": "ALL_SIX_PASS",
+          "charge_control": "DECLARED_CHARGE_CONTROL_PASS",
+          "action": "ALREADY_PRESERVED",
+          "changed_atoms": []
+        },
+        "new_generation": "NOT_RUN",
+        "new_optimization": "NOT_RUN",
+        "automatic_adoption": false
+      },
       "evidence_record": "cif-linked-native-registration-evidence.json#declared_graph_charge_control_2026_10_20"
+    },
+    "triple_bond_native_proxy_audit_2026_10_20": {
+      "status": "IMPLEMENTED_GENERIC_TRIPLE_SCREEN_AND_ISOLATED_NATIVE_CONTROLS_MAC_PENDING",
+      "delivery_prefix": "38_Cedar",
+      "recorded_date": "2026-10-20",
+      "policy_ids": [
+        "cif-declared-triple-bond-screen-v1",
+        "cif-installed-component-resource-v1"
+      ],
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "38_Cedar_probe_cif_triple_bonds.py",
+      "modules": [
+        "src/nasolve/cif_triple_bond_audit.py",
+        "src/nasolve/cif_installed_component.py",
+        "src/nasolve/cif_triple_probe.py",
+        "src/nasolve/cif_native_validation.py",
+        "src/nasolve/cif_component_controls.py"
+      ],
+      "review_input": {
+        "name": "37_Cedar_p7r95lko_cif_numerical_recovery_review.zip",
+        "sha256": "99a47b583d5fbc3fd0a32da492b1bfa07d5e3148a52306e5c68501049ea53106",
+        "bytes": 43354886,
+        "verified_payloads": 1387,
+        "preserved_predecessor_payloads": 1355,
+        "source_commit": "347bcbbfa1a22fe6f4673159dfccec283af1fab6",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "trusted_clean_build_metadata_match": true,
+        "runner_sha256": "89a5a30fc22d09084799ebf54930db3a7be8e3d5498f227d65fd923940e38a99",
+        "canonical_build_sha256": "61b0309dcf3f6f512a3a0193accdb125766de9e569af4d1fc44091d31201e368",
+        "runtime_members": 120,
+        "runtime_archive_sha256": "27bafca89f9a86a4adef1cfa98ad5f1753ecb0caf955874ff0c94c401c8f4941",
+        "owned_reader_worker_sha256": "72e02c470d52df6eeb13d72d2c10e09293dcb50544653b66204553277a72d8f2",
+        "native_execution": "SOURCE_READER_AND_DECLARED_CHARGE_CONTROLS",
+        "DP": {
+          "raw_checks": {
+            "reader_route": true,
+            "atom_identities": true,
+            "atom_elements": true,
+            "atom_charge_values": false,
+            "source_coordinates": true,
+            "declared_bond_orders": true
+          },
+          "charge_control": "DECLARED_CHARGE_CONTROL_PASS",
+          "action": "POPULATED_FROM_EXPLICIT_SOURCE",
+          "changed_atoms": [
+            "OP2",
+            "OP3"
+          ],
+          "source_total_charge": -2,
+          "other_recorded_fields_preserved": true
+        },
+        "PDU": {
+          "raw_checks": "ALL_SIX_PASS",
+          "charge_control": "DECLARED_CHARGE_CONTROL_PASS",
+          "action": "ALREADY_PRESERVED",
+          "changed_atoms": []
+        },
+        "new_generation": "NOT_RUN",
+        "new_optimization": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "behavior": {
+        "before": "Reader order and generated dictionary metadata did not establish active installed monomer triple-bond restraint membership. A complete ReadySet lookup was not tested.",
+        "after": "Select every explicit source triple and linear neighbor; compare installed default monomer lookup, exact installed-CIF replay and the saved PDU candidate at identical fixed isolated source-seed coordinates.",
+        "production_defaults": "UNCHANGED",
+        "policy_authority": "NARestraints",
+        "native_acceptance": "PENDING_USER_MAC"
+      },
+      "methods": {
+        "return_gate": "Exact C37 ZIP/build and 1387 payloads; recursive full lineage, four source captures in both cases, owned worker, consumer hashes, raw findings and explicit charge-control scope. Independently replay raw and after-control source/graph/charge/total/recorded-field checks, all 17 mechanics checks and 96 rotation directions. Never execute captured code or load captured serialized molecules.",
+        "graph_selection": "All explicit TRIPLE edges, independent of component names. Every nonpartner neighbor on each endpoint selects an expected-linear triplet. Unusual connectivity and unsupported triple-element pairs remain review.",
+        "screen_thresholds": {
+          "CC_target_angstrom": [
+            1.1,
+            1.3
+          ],
+          "CN_target_angstrom": [
+            1.05,
+            1.25
+          ],
+          "bond_esd_angstrom": {
+            "greater_than": 0,
+            "at_most": 0.05
+          },
+          "adjacent_angle_target_degrees": [
+            175,
+            180
+          ],
+          "angle_esd_degrees": {
+            "greater_than": 0,
+            "at_most": 5
+          },
+          "max_observed_bend_degrees": 5,
+          "authority": "Versioned diagnostic review policy; never generated targets, universal bounds or automatic scientific approval.",
+          "primary_examples": [
+            "https://cccbdb.nist.gov/exp2x.asp?casno=74862&charge=0",
+            "https://cccbdb.nist.gov/expgeom2x.asp?casno=74908"
+          ]
+        },
+        "installed_capture": "Bind server/cif_types imports to selected library; record metadata and all six native row categories. Require exact resolved ID and source_info file beneath selected Phenix root; capture exact CIF and API .py.txt bytes with anchor/hash/size, verify before/after. Missing/substituted/unsupported lookup stays explicit.",
+        "native_controls": "Same isolated source-seed PDB and SS-disabled PHIL for installed lookup with no CIF override, exact captured installed CIF and saved PDU candidate. Record full linked effective definitions and active bond/angle/dihedral proxies. Compare lookup/snapshot terms without assuming provenance from equality.",
+        "resource_timeout_seconds": 30,
+        "native_timeout_seconds_per_case": 60,
+        "owned_timeout_groups": "TERMINATED",
+        "new_optimization": "NOT_RUN",
+        "new_dictionary_generation": "NOT_RUN",
+        "readyset": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "public_controls": {
+        "PDU": {
+          "source_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "triple": [
+            "C5A",
+            "C5B"
+          ],
+          "NARestraints_class": "T",
+          "existing_pair_stack_compiler": "PASS_UNCHANGED"
+        },
+        "5PC": {
+          "requested_url": "https://files.rcsb.org/ligands/download/5PC.cif",
+          "source_sha256": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "bytes": 9080,
+          "triple": [
+            "C7",
+            "C8"
+          ],
+          "graph": "PASS",
+          "matching_NARestraints_records": 2,
+          "policy_ambiguity": "PRESERVED_NO_ROLE_SELECTION",
+          "pair_stack_compiler": "NOT_RUN"
+        }
+      },
+      "saved_PDU_candidate": {
+        "source": "Verified preserved C33 lineage; no new generation",
+        "sha256": "10798e337cfa4804601595244581a03745b7893514ce1cb02cde9be426fcf88a",
+        "triple_distance_target_angstrom": 1.174,
+        "triple_distance_esd_angstrom": 0.02,
+        "linear_angle_targets_degrees": [
+          180,
+          180
+        ],
+        "linear_angle_esds_degrees": [
+          3,
+          3
+        ],
+        "coordinate_distance_angstrom": 1.1740472307364818,
+        "coordinate_angles_degrees": [
+          174.8275523158106,
+          170.9494652999555
+        ],
+        "linear_axis_torsions": [
+          "Var27",
+          "Var29",
+          "Var34",
+          "Var40",
+          "Var41",
+          "Var42"
+        ],
+        "target_screen": "PASS",
+        "coordinate_screen": "REVIEW",
+        "overall": "REVIEW",
+        "stopping": "NOT_CONVERGED_REPORTED",
+        "stereo": "UNQUALIFIED_OMITTED_R_S_LABELS",
+        "causal_optimizer_claim": "NOT_ESTABLISHED",
+        "automatic_adoption": false
+      },
+      "schemas": {
+        "schema_version": 1,
+        "new_flag": "--triple-bond-audit-only (mutually exclusive; exact C37 input; explicit PDU and 5PC bundled controls)",
+        "native_opt_in": "inspect_native_bundle(..., installed_library_only=True) requires zero explicit CIFs. Existing default requires at least one explicit dictionary.",
+        "new_native_execution_value": "INSTALLED_COMPONENT_AND_TRIPLE_PROXY_CONTROLS",
+        "additive_receipt_fields": [
+          "prior_declared_charge_replay",
+          "triple_candidate_lineage",
+          "triple_bond_audit",
+          "dictionary_source_policy"
+        ],
+        "component_policy_opt_in": "graph_only_if_ambiguous=True reports graph control and record count without selecting roles; existing behavior still refuses ambiguity.",
+        "compatibility": "Opt-in diagnostic only. No production migration, dependency, chemical target, native installation or NARestraints mapping changes. Preserve all old receipts/runners and immutable evidence.",
+        "new_dependencies": []
+      },
+      "software_validation": {
+        "fail_before": "New generic dictionary/native triple screen regressions fail before the module exists. Synthetic controls exercise renaming, nitrile terminal connectivity, missing/duplicate terms, alkane-like length/angle targets, weak/nonfinite/negative weights, nonfinite coordinates, wrong/missing atoms, ASU membership, linear torsions and source-preserving seed writing. Fake installed APIs test selected sources, substitutions, source escapes/changes and timeout; fake manager controls verify no override and identical model/policy. Exact C37 gate regressions retain raw charge failure and controlled scope.",
+        "new_tests": 79,
+        "focused": {
+          "passed": 143,
+          "seconds": 17.42,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_triple_bond_audit.py tests/test_cif_installed_component.py tests/test_cif_triple_probe.py tests/test_cif_native_validation.py tests/test_cif_component_controls.py tests/test_cedar38_delivery.py tests/test_cedar37_delivery.py tests/test_cif_numerical_recovery_probe.py --tb=short"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_source_copies_removed_before_replay": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp_root": "PASS",
+          "runner_relocated_before_replay": true,
+          "older_everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "actual_capsule_payloads": 1387,
+          "runtime_members": 124,
+          "runtime_archive_sha256": "9dfc6fa80d9e4209795aecf147fb2647790acdfa09ebb75e0fbca8bcf1ffeddd",
+          "mechanics_prerequisites": 17,
+          "rotation_directions_recomputed": 96,
+          "prior_raw_reader_checks_replayed": true,
+          "prior_declared_charge_checks_replayed": true,
+          "PDU_saved_candidate_target_screen": "PASS",
+          "PDU_saved_candidate_coordinate_screen": "REVIEW",
+          "PDU_linear_axis_torsions": 6,
+          "5PC_triple": [
+            "C7",
+            "C8"
+          ],
+          "5PC_policy_record_count": 2,
+          "5PC_policy_ambiguity": "PRESERVED",
+          "dictionary_generation": "NOT_RUN",
+          "installed_component_native_execution": "PENDING_USER_MAC"
+        },
+        "native": "PENDING_USER_MAC. Linux selected-installation/manager tests are explicit fakes. Offline actual-capsule replay does not claim installed native triple-bond qualification.",
+        "full": {
+          "passed": 2279,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 180.24,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 149,
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS",
+          "qualified_parallelity_core_sha256": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "public_PDU_fixture_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "public_5PC_fixture_sha256": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650"
+        }
+      },
+      "limitations": [
+        "Broad length/angle/ESD thresholds are review prompts; source seeds and coordinate agreement are not independent chemical validation.",
+        "Isolated component lookup and explicit-CIF replay do not establish complete or historical ReadySet dictionary precedence.",
+        "No experimental model, links or diffraction are used. Native stereo, achieved scaffold geometry, full generator, convergence and scientific qualification remain open.",
+        "Torsions through an expected-linear axis require review; no optimizer causation is established.",
+        "5PC policy ambiguity is retained; no inferred pairing/stacking targets or source-state normalization."
+      ],
+      "artifact_boundary": "Maintained code/tests/docs and two unchanged pinned public CCD fixtures only. Private model/source snapshots/logs/capsules/generated candidates/runners remain outside Git.",
+      "next_action": "Build Cedar 38 with --delivery-prefix 38_Cedar --component-control PDU --component-control 5PC. Run the exact C37 ZIP with --component DP --triple-bond-audit-only and selected Phenix 2.2.1-6174. Return console/review ZIP. Preserve existing source/state, NARestraints policy, ordinary checkout and all older deliveries; no optimization, generator, ReadySet retry, scaffold change, refinement or adoption.",
+      "evidence_record": "cif-linked-native-registration-evidence.json#triple_bond_native_proxy_audit_2026_10_20"
     }
   },
   "audience": [

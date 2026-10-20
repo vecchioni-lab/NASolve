@@ -175,9 +175,13 @@ for actual behavior; history is evidence, not a second task queue.
   Its return passes PDU and identifies DP's case-sensitive bond-token fallback
   and omitted formal charges. Cedar 37 translates only declared bond tokens and
   tests explicit source-charge population on the temporary native component,
-  with raw findings and source-bound API proofs preserved.
-  Numerical/native qualification remains open. No residue is
-  inserted into the frozen scaffold or candidate applied.
+  with raw findings and source-bound API proofs preserved. Its return verifies
+  declared orders and both isolated charge controls. Cedar 38 compares installed
+  monomer lookup, exact installed-CIF replay and the saved PDU candidate through
+  generic triple-bond target/weight/membership and linear-axis torsion checks.
+  Public 5PC is an independent atom-naming control; its two NARestraints records
+  remain unresolved. These are fixed isolated source-seed models; no residue is
+  inserted into the frozen scaffold. Native/scientific qualification remains open.
   Native energy definitions and production defaults stay fixed. Production PostMR,
   full scientific qualification and adoption remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)

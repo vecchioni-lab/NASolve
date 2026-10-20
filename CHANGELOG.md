@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Declared triple-bond screening and isolated installed-library controls
+
+- Verify all 1,387 Cedar 37 payloads. DP now preserves declared bond orders;
+  its separate explicit charge control passes while raw omitted charges remain
+  recorded. PDU requires no assignment. No generation or optimization ran.
+- Add a generic declared-triple-edge audit of target lengths, linear angles,
+  positive ESDs/weights, exact native membership, measured bending and torsions
+  through linear axes. Review thresholds never generate replacement targets.
+- Add Cedar 38's exact installed monomer lookup/source capture and comparison
+  with explicit installed-CIF replay and the saved PDU candidate, at identical
+  fixed isolated seed coordinates. Empty explicit dictionaries require a new
+  explicit installed-library-only opt-in; existing callers retain their guard.
+- Add the unchanged public 5PC CCD as an independent C7/C8 control. Preserve
+  duplicate NARestraints records without selecting roles. Native SS inference
+  is disabled; production defaults, dependencies and NARestraints policy stay
+  fixed. No ReadySet, minimization, refinement or adoption is requested.
+  All 79 new regressions, 143 focused and 2,279 full tests pass, with two skips
+  and 276 subtests. Actual C37 replay passes after removed/relocated clean builds,
+  with aliased temp paths, poisoned imports and the everyday edit preserved.
+  Installed triple-bond qualification awaits the Mac return.
+
 ### Declared monomer order tokens and isolated formal-charge control
 
 - Verify all 1,355 Cedar 36 payloads. Both installed readers complete; PDU

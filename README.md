@@ -109,9 +109,15 @@ parsing now completes for both sources. PDU passes raw route/inventory checks;
 DP preserves names, elements, coordinates and signed markers but loses double
 orders and declared charges. Cedar 37 translates monomer order tokens and
 separately tests explicit source-charge population on a temporary parsed
-component, retaining the raw reader evidence. Installed qualification remains
-pending; no new generation is requested.
-No candidate is applied to a model or native manager.
+component, retaining the raw reader evidence. Returned Cedar 37 preserves all
+declared orders; its isolated charge control passes for DP and leaves PDU
+unchanged. Cedar 38 audits graph-selected triple bonds in public PDU and 5PC
+controls: installed monomer lookup, explicit installed-CIF replay and the saved
+PDU candidate are compared at fixed isolated source-seed coordinates. Active
+length/linearity targets, ESDs, membership and linear-axis torsions are recorded.
+5PC's two NARestraints records remain ambiguous; no role record is selected.
+Installed triple-bond acceptance remains pending. No experimental model is
+changed and no new generation or optimization is requested.
 NARestraints policy and production defaults stay fixed; geometry, convergence
 and adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.

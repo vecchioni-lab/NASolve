@@ -414,7 +414,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           phil_files: Sequence[Path] = (),
                           phil_namespace_policy: str = "direct",
                           inventory_detail: str = "basic",
-                          policy_inventory: bool = False) -> dict:
+                          policy_inventory: bool = False,
+                          installed_library_only: bool = False) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -428,14 +429,18 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         raise ValueError("Unsupported native inventory detail")
     if type(policy_inventory) is not bool:
         raise ValueError("Policy inventory must be an explicit boolean")
+    if type(installed_library_only) is not bool:
+        raise ValueError("Installed-library selection must be an explicit boolean")
     if not phenix_version or not str(phenix_version).strip():
         raise ValueError("An explicit Phenix version is required")
     if not isfinite(float(timeout_seconds)) or timeout_seconds <= 0:
         raise ValueError("Native interpretation timeout must be finite and positive")
     model, executable = Path(model).resolve(), Path(executable).resolve()
     dictionaries, phil_files = [Path(path).resolve() for path in dictionaries], [Path(path).resolve() for path in phil_files]
-    if not dictionaries:
+    if not dictionaries and not installed_library_only:
         raise ValueError("At least one explicit dictionary is required")
+    if dictionaries and installed_library_only:
+        raise ValueError("Installed-library-only inspection cannot load an explicit dictionary")
     paths = [model, *dictionaries, *phil_files]
     if len(set(paths)) != len(paths):
         raise ValueError("Native inputs must be distinct explicit files")
@@ -464,6 +469,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         spec["inventory_detail"] = inventory_detail
     if policy_inventory:
         spec["policy_inventory"] = True
+    if installed_library_only:
+        spec["installed_library_only"] = True
     (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
     (work / "native_worker.py").write_text(_NATIVE_WORKER, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]
@@ -475,6 +482,7 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         "automatic_adoption": False, "scientific_approval": "NOT_RUN",
         "readyset_retry": "NOT_RUN", "optimization": "NOT_RUN", "model_editing": "NOT_RUN",
         "native_validation": None,
+        "dictionary_source_policy": "INSTALLED_LIBRARY_ONLY" if installed_library_only else "EXPLICIT_DICTIONARIES",
         "execution": {"status": "NOT_RUN", "started_at": datetime.now(timezone.utc).isoformat(),
                       "timeout_seconds": timeout_seconds}}
     try:

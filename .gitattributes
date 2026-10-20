@@ -5,3 +5,4 @@
 
 # Keep the public PDU fixture byte-identical to its checksum-pinned download.
 /tests/fixtures/public_ccd/PDU.cif -text whitespace=-blank-at-eol
+/tests/fixtures/public_ccd/5PC.cif -text whitespace=-blank-at-eol

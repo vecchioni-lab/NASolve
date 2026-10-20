@@ -1501,10 +1501,64 @@ rechecks the resulting inventory/total and retains the original raw reader flags
 No chiral constructor, Chargise, perception, optimizer or dictionary writer is
 called by the population control; parser internals remain uninstrumented.
 SOURCE_READER_AND_DECLARED_CHARGE_CONTROLS describes this explicit request.
-Installed population acceptance is pending; it is not native stereo, full
-generator, achieved-geometry, convergence or scientific qualification.
+Returned Cedar 37 passes the isolated source-charge control for both components.
+DP preserves all declared orders, and explicit population changes only OP2/OP3
+from zero to source -1 on the temporary object (total -2); PDU already preserves
+charges and requires no assignment. Raw DP charge failure stays visible. This
+is not native stereo, full generator, achieved-geometry, convergence or
+scientific qualification.
 No new dependency, policy
 guess, model change, refinement or adoption is introduced.
+
+
+### Installed triple-bond controls
+
+Build Cedar 38 with --delivery-prefix 38_Cedar --component-control PDU
+--component-control 5PC; run against the exact Cedar 37 ZIP with --component DP
+--triple-bond-audit-only. The mutually exclusive action verifies every C37
+payload, source/worker/consumer hash and predecessor gate. It independently
+replays both raw and controlled charge inventories. --inspect-only performs
+this replay and offline dictionary screening without importing native Phenix.
+
+The public source graph selects every explicit triple edge and all its linear
+neighbors. Screening reports unique active distance/angle membership, target,
+positive ESD/weight, observed geometry, preserved order and any dihedral whose
+consecutive triplet contains an expected-linear angle. Carbon-carbon target
+screening uses 1.10–1.30 Å; carbon-nitrogen uses 1.05–1.25 Å. Bond ESD must be
+positive and <=0.05 Å. Adjacent angle targets must be 175–180°, with positive
+ESD <=5°; measured bending over 5° requires review. These broad, versioned
+review thresholds are not generated targets or universal chemical limits.
+NIST's [acetylene experimental geometry](https://cccbdb.nist.gov/exp2x.asp?casno=74862&charge=0)
+and [HCN geometry](https://cccbdb.nist.gov/expgeom2x.asp?casno=74908) provide
+reference examples rather than bounds for every chemical environment. Other
+triple-element pairs and unusual connectivity remain unsupported/review.
+
+The installed resource worker binds server/cif_types imports to the selected
+Phenix library, captures both APIs as .py.txt and asks only the monomer lookup
+for the explicit component. A different resolved ID is unsupported. The exact
+source_info file must reside inside the selected installation; freeze its bytes
+and record anchored path/hash/size, with checks before/after native controls.
+No basename discovery, source download, installed edit or captured-code import
+is used. Absent/unsupported resources remain explicit review evidence.
+
+Every native case uses the same separate source-ideal-seed PDB and explicit
+secondary_structure.enabled=False. Compare installed lookup without overrides,
+explicit captured-CIF replay (when available), and the saved C33 PDU candidate.
+The native wrapper allows an empty dictionary list only with the explicit
+installed_library_only=True option, rejecting simultaneous explicit overrides.
+Full linked inventories retain effective definitions and active proxy details.
+The report records lookup/snapshot term equality; it does not assume provenance
+from equality. Per-resource timeout is <=30 s and per native case <=60 s; owned
+process groups terminate on timeout. No generator, optimizer, ReadySet or
+refinement runs. This is an isolated component control, not a complete replay
+of ReadySet's dictionary precedence or an experimental scaffold qualification.
+
+5PC is a second hash-pinned public graph control with C7/C8 triple names. Its
+pinned workbook has two matching records; graph_only_if_ambiguous=True records
+that ambiguity without choosing a role record or compiling its NA policy.
+Existing controls still require unambiguous records by default. PDU's existing
+pair/stack compiler checks remain fixed. No dependency or production default
+changes. All results end at REVIEW; no dictionary or model is adopted.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

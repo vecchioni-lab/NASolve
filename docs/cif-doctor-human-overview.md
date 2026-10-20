@@ -888,6 +888,36 @@ must match, and the existing CCD control requires no charge assignment.
 This component-object control requests no optimizer or generation; full native
 stereo, generator and scientific qualification remain open.
 
+## Declared triple bonds and installed restraint membership
+
+Returned Cedar 37 confirms the declared-order translation and isolated
+source-charge controls. The separate Cedar 38 diagnostic asks whether the
+selected installation actually restrains a declared triple bond with an
+appropriate length and linear neighbors. Public PDU and 5PC exercise different
+atom names (C5A/C5B and C7/C8). The same graph walk selects every triple edge
+and its adjacent angles; it contains no PDU-specific chemistry repair.
+
+**Methods.** Freeze the exact predecessor and replay its mechanics and raw/
+controlled reader inventories. Capture the selected monomer server's lookup,
+resolved component ID, full parameter rows and exact installed CIF bytes. Build
+one separate fixed-coordinate control per public source from declared ideal
+seeds. Compare native interpretation without an explicit CIF, with the captured
+installed CIF, and with the saved PDU candidate. Record active bond/angle
+membership, targets, ESDs derived from positive weights, coordinate geometry and
+torsions that contain an expected-linear angle. Native secondary-structure
+inference is explicitly disabled. Report screening thresholds and all failures;
+change no targets, coordinates or production selection.
+
+This checks isolated component mechanics, not the complete ReadySet path.
+Source-seed agreement is not independent chemical validation. The saved PDU
+candidate has a 1.174 Å triple target and two 180° targets, but its coordinates
+bend and six torsions contain the linear axis. It remains nonconverged and
+stereochemically unqualified. Those torsions merit review; they are not yet an
+established cause of nonconvergence. Two matching 5PC workbook records remain
+unresolved, so this control chooses no pairing/stacking policy for 5PC. Installed
+native results await the Mac return. Production defaults and NARestraints
+pairing/stacking authority stay unchanged.
+
 ## Primary references
 
 The following documentation was checked on 2026-10-11. Cite the corresponding

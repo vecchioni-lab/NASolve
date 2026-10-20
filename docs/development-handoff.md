@@ -727,12 +727,38 @@ an aliased temp root and poisoned ambient imports. It replays raw reader
 findings, retains the tracked local edit and keeps PDU bytes unchanged. The
 120-member runtime is verified; exact commands and bounds are in the native ledger.
 
-**Current action:** run Cedar 37 through the pinned one-block Git handoff with
---delivery-prefix 37_Cedar --component-control PDU, then the exact Cedar 36 ZIP
-with --component DP --source-dialect-audit-only --declared-charge-control.
-Return its console and review ZIP. Selected installation is Phenix
-**2.2.1-6174** (dispatcher reports **2.2.1**); native population acceptance and
-complete signed-stereo/generator qualification remain pending.
+**Cedar 37 returned:** all **1,387 payloads**, the clean pinned runner/build,
+120 runtime files and byte-identical predecessors verify. All declared DP orders
+now survive native reading. Its raw charges remain zero; the explicit control
+passes, changing only OP2/OP3 to source -1 with total -2. Recorded graph,
+coordinates and stereo fields stay fixed. PDU passes raw inventory and its
+already-preserved charge control. No new generation or optimization ran.
+
+**Cedar 38 prepared:** generic declared-triple-edge and neighbor selection,
+exact installed resource/API capture, and fixed isolated component/native
+comparisons. Read default monomer lookup, replay the captured installed CIF and
+check the saved PDU candidate with the same seed/SS-disabled policy. Record active
+distance/angle membership, targets, ESDs/weights, geometry and linear-axis
+torsions; infer no replacement targets. Add hash-pinned public 5PC as an
+independent C7/C8 naming control. Two 5PC workbook records remain ambiguous;
+no role record or 5PC pairing/stacking policy is selected. General screening
+thresholds are review policy, not chemical approval. The saved PDU candidate
+still has six linear-axis torsions, bent coordinates and reported nonconvergence.
+Native isolated triple-bond results await the selected Mac installation.
+All **79 new regressions**, **143 focused tests (17.42 s)** and **2,279 full
+tests, two skips and 276 subtests (180.24 s)** pass. The 124-member runtime
+replays the actual C37 archive with raw/controlled charge checks after deleted
+builds and relocation, with poisoned imports, an aliased temporary root and the
+protected everyday edit intact. JSON mirrors, 149 links and the rendered editable
+figure verify. Exact methods, commands and hashes are in the native ledger.
+
+**Current action:** use the pinned one-block Git handoff: build with
+--delivery-prefix 38_Cedar --component-control PDU --component-control 5PC,
+then run the exact Cedar 37 ZIP with --component DP --triple-bond-audit-only.
+Return console/review ZIP. Selected installation remains Phenix **2.2.1-6174**
+(dispatcher reports **2.2.1**). No new optimizer, generator, ReadySet retry,
+scaffold change or adoption is requested. Complete ReadySet provenance, stereo,
+convergence and scientific qualification remain open.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

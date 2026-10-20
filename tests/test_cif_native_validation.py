@@ -213,6 +213,21 @@ def test_standalone_native_worker_records_exact_indices_asu_and_effective_monome
         assert hashlib.sha256((work/artifact["path"]).read_bytes()).hexdigest()==artifact["sha256"]
 
 
+@pytest.mark.parametrize('mode',['default','explicit','conflict','bad_flag'])
+def test_installed_lookup_requires_explicit_opt_in_and_no_dictionary_override(tmp_path,mode):
+    model,dictionaries=files(tmp_path);executable,environment=native_runtime(tmp_path)
+    paths=dictionaries if mode=='conflict' else []
+    flag='yes' if mode=='bad_flag' else mode!='default'
+    if mode!='explicit':
+        with pytest.raises(ValueError):inspect_native_bundle(model,paths,tmp_path/'out',executable,
+            environment=environment,phenix_version='FAKE',installed_library_only=flag)
+    else:
+        r=inspect_native_bundle(model,paths,tmp_path/'out',executable,
+            environment=environment,phenix_version='FAKE',installed_library_only=True)
+        assert r['status']=='REVIEW' and r['native_validation']['dictionary_loading']==[]
+        assert r['dictionary_source_policy']=='INSTALLED_LIBRARY_ONLY' and len(r['inputs'])==1
+
+
 @pytest.mark.parametrize('layout',['looped','legacy-scalars'])
 def test_native_reader_contract_requires_a_component_list_loop(tmp_path,layout):
     """Explicit fake API control for convert_list_block's loop-only metadata."""

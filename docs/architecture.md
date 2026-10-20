@@ -526,8 +526,23 @@ native monomer object. Conflicts block population; already-preserved CCD charges
 are verified without assignment. Pinned Utilities/MoleculeClass sources bind
 the integer charge API. Raw parser findings, before/after recorded graph and
 stereo fields and a separately recomputed control result remain distinct.
-This is an isolated component-object control, not a generator or model repair.
-No new dictionary is composed with modifiers or applied to a native model.
+Returned Cedar 37 verifies all 1,387 payloads and preserves all declared orders.
+DP raw charges remain zero; explicit population restores the two source -1
+charges on the temporary object while retaining every other recorded field.
+PDU requires no assignment. No generator or scaffold repair ran.
+
+Cedar 38 adds a graph-selected triple-bond screen and selected-installation
+resource capture. Every declared triple edge selects its own linear neighbors;
+component names do not encode chemistry. Isolated fixed source-seed models
+compare default monomer lookup against exact captured installed CIFs and, for
+PDU, its saved nonconverged candidate. Active native targets, positive weights,
+unique membership, observed geometry and torsions containing a linear axis are
+recorded separately. Empty explicit dictionary lists require a new explicit
+installed-library-only opt-in; existing callers still require dictionaries.
+PDU and 5PC public fixtures are pinned; 5PC's ambiguous NARestraints records do
+not prevent graph/native component checks and never cause a role selection.
+No new dictionary, optimizer, ReadySet run or production integration is invoked.
+Full ReadySet provenance, native stereo and scientific qualification remain open.
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
