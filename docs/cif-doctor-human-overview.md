@@ -1092,8 +1092,29 @@ final restraint tightening and native R/S inspection and reports local hand
 before/after. These are observations before a repair: source warnings, marker
 gates, native arguments/targets and NARestraints authority remain fixed.
 The same six 30 s workers/256-call bounds apply, with 64-row vector/proxy caps.
-Native mapping evidence is pending. Optimizer kernels, full generation,
-absolute CIP and scientific approval remain separate.
+Returned C50 passes all vector read/write checks, exact repeats and nine
+observed sorted-index transfers. Its local-order interpretation still reviews
+one proxy origin per component. Sorting saved names by native index explains
+all PDU/5PC source target signs, while DP C1-prime still disagrees. That
+reinterpretation is a hypothesis; a proxy offset belongs to a particular
+array, not permanently to a name or a local-list position.
+
+C51 therefore records native restraint dictionary atom keys and stored
+coordinates alongside the original returned array. Exact alignment with
+named keys ordered by native index must prove the restraint basis; duplicate
+stored vectors keep the result under review. The actual
+local getter order remains separately visible, with the same proxies/targets
+mapped in both views. Selected native producer/factory source and methods are
+captured; no extra GetRestraints call, kernel edit or coordinate rewrite occurs.
+Keep the original hand/metadata findings and fresh controls. Native proof is
+pending; optimizer kernels, full generation, absolute CIP and science remain open.
+
+ATL is now a separate public control: its bridged sugar and four declared
+stereocentres survive graph assessment and the existing NARestraints T-class
+pairing/bidirectional stacking compiler. Its source fixture is hash-pinned;
+the workbook already contains alpha-LNA-T. These are source/compiler checks,
+without native construction, a forced standard-DNA sugar, or scaffold approval.
+The three native baseline components and planned eight-pair live run stay fixed.
 
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,

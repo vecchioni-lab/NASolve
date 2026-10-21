@@ -121,8 +121,8 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
     controls = []
     if component_controls:
         if (template_name != 'cif_numerical_recovery_probe_template.py'
-                or len(component_controls) > 2 or len(set(component_controls)) != len(component_controls)):
-            raise ValueError('Require one or two unique explicit numerical component controls')
+                or len(component_controls) > 3 or len(set(component_controls)) != len(component_controls)):
+            raise ValueError('Require one to three unique explicit numerical component controls')
         catalog = json.loads((root/'docs/cif-doctor-ccd-controls.json').read_text())
         for code in component_controls:
             rows = [r for r in catalog['components'] if r['code'] == code]

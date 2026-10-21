@@ -729,8 +729,29 @@ sorted-index coordinate transfer and local before/after hands. Shared parent
 atoms may occupy different temporary frames; no completed-molecule stereo or
 causal-bug inference follows. Keep original hand/metadata gates, targets and
 NARestraints authority. Bounds remain six 30 s workers/256 calls each, with
-64-row vector/proxy caps. Native mapping evidence is pending; no correction,
-full builder/generation, installed edit, chemical-state choice or adoption.
+64-row vector/proxy caps. Returned C50 passes 18 getters, nine setters and all
+fresh/previous comparisons; all nine observed sorted-index transfers match.
+The original local-order proxy view has one invalid origin basis per component.
+A separate offline sorted-index hypothesis matches all nine source graphs and
+all PDU/5PC target signs, with DP C1-prime still opposed. This is a hypothesis
+about native restraint order, not proof or authority to reindex computation.
+
+C51 requires exact C50 and preserves every original predicate/report. Existing
+hooks additionally record native restraint dictionary atom keys, indices,
+live sharing/stored coordinates and original returned arrays/parameters.
+Capture selected RestraintClass.py and geometry_manager.py and fingerprint
+the original bound GetRestraints and module factory methods without additional
+GetRestraints calls. Maintained replay requires unique stored vectors and exact
+returned-array alignment with named keys sorted by native index. It separately
+maps the same proxy offsets in the observed local getter order. Retain both source-volume/target
+views and all original hand/metadata warnings; no arrays are rewritten.
+Dictionary shape is bounded to 256 entries and parameter sequences to 64.
+The three native components/six 30 s workers remain fixed. A third bundled
+public control, ATL, independently checks its bridged source graph/four centres
+and existing T-class NARestraints pairing/stacking compiler. It performs no
+native ATL construction or scaffold insertion. No NAR workbook/release edit,
+standard-DNA pucker replacement, recipe change or ninth live-pair addition.
+Native named-index evidence, full generation and scientific approval remain open.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

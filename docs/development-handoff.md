@@ -934,7 +934,7 @@ clear and recur while local templates share parent objects. Parent snapshots
 can mix temporary local frames, so endpoint signs/timing alone neither qualify
 a completed molecule nor identify a unique causal implementation defect.
 
-**Cedar 50 — next native action:** follow named local coordinate order through
+**Cedar 50 — implemented native action (now returned):** follow named local coordinate order through
 native GetCoordinates/SetCoordinates and actual manager chirality proxy bases.
 Record vectors, local/global indices, native signed targets/weights/both-sign
 flags, and the post-optimizer index transfer. Replay exact assignment and
@@ -946,7 +946,7 @@ Build `50_Cedar_probe_cif_constructor_mapping.py` with both controls; run exact
 **49_Cedar_izfiw4xk** using `--component DP
 --source-constructor-mapping-audit-only`. Bounds: **six owned workers × 30 s**,
 **256 calls / 512 boundaries** each, **64 rows** per vector/proxy capture.
-Native mapping evidence is pending. The full builder, generation, absolute CIP,
+Returned mapping evidence is recorded below. The full builder, generation, absolute CIP,
 scaffold qualification and scientific adoption remain separate. See
 `source_native_constructor_mapping_2026_10_21` in the existing machine ledger.
 Software checks pass **222 focused / 2,760 full tests**, two skips and 276
@@ -954,7 +954,51 @@ subtests. The 43 new regressions cover named vector order, target bases,
 rigid motions, coordinate transfers, fake owned-worker exceptions and C49
 mutation rejection. Actual C49 replay passes after build deletion/relocation,
 poisoned imports and aliased temporary roots, preserving everyday edits.
-These are software/saved-evidence checks; native mapping remains pending.
+These are software/saved-evidence checks; returned native findings follow.
+
+**Cedar 50 returned and verified (2026-10-21): exact repeats and vector
+assignment PASS; proxy-basis REVIEW.** All **2,288 payloads**, clean published
+`2e7c48a7…` build, runner `b7718dea…`, 134 runtime members and unchanged C49
+payloads/manifest verify. Phenix **2.2.1-6174** completes six constructors.
+Observed DP/PDU/5PC times are **1.151182 / 1.048801 / 1.075298 s**; controls are
+**1.637737 / 0.758201 / 0.726506 s**. Fresh and previous endpoint matches pass.
+All **120 calls / 240 boundaries**, **18 getters / nine setters**, and **nine
+sorted-index transfers** replay. Preserve all source-hand and DP marker reviews.
+
+The legacy local-order view has one invalid proxy-origin graph basis in each
+component. Independently sorting the saved names by native index matches all
+nine source tetrahedral graphs and all PDU/5PC target signs. DP C1-prime still
+opposes its source (-2.3736962 versus +2.3867843). This is a hypothesis about
+the producer convention, not proof that native arrays can be substituted.
+
+**Cedar 51 — next native action:** capture native restraint dictionary atom
+keys, indices, live parent sharing/stored coordinates and original returned
+vectors/parameters. Exact named-key/vector alignment must prove the restraint
+order; actual local getter order stays separate. Capture selected native
+RestraintClass.py and geometry_manager.py and fingerprint original methods.
+No additional GetRestraints calls, native array/target edits or chemistry repair.
+Keep original reports/gates and the three fresh native baseline controls.
+
+ATL is a separate pinned public source/stereo/NARestraints compiler control.
+Its bridge and C1/C2/C3/C4-prime declarations pass, as do existing AT and both
+stacking-order compiler checks. NARestraints already has thymine row 54,
+alpha-LNA-T / LNA, so no table/release change is needed. ATL native construction
+is NOT_RUN; the planned eight-pair live run and old recipes remain fixed.
+
+Build `51_Cedar_probe_cif_index_basis.py` with PDU/5PC/ATL controls; run exact
+**50_Cedar_g03y7p0_** using `--component DP
+--source-constructor-index-basis-audit-only`. Bounds remain **six owned workers
+× 30 s**, **256 calls / 512 boundaries** each, **64-row vectors/parameters**
+and **256-entry native restraint dictionaries**. Native named-index proof and
+scientific qualification remain pending. See
+`source_native_constructor_index_basis_2026_10_21` in the existing machine ledger.
+Software validation passes **250 focused / 2,800 full tests**, two skips and
+276 subtests. Forty new regressions cover named native keys, exact/ambiguous
+array alignment, method sources, target views, fake owned-worker exceptions,
+immutable C50 replay and independent ATL chemistry/compiler/bundling. Actual
+C50 replay passes after source-build deletion and relocation with poisoned
+imports, aliased temporary roots and preserved everyday edits. Native index
+proof remains pending Mac; these checks are software and saved-data evidence.
 
 **Requested follow-on after building: a fresh eight-pair synthetic live run.**
 Preserve **K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and F:A** in one explicitly

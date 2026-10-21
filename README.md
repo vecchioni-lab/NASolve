@@ -159,7 +159,11 @@ unobserved/observed runs before any correction. Returned C49 completes all six
 constructors with exact fresh/previous endpoint matches. Source-hand reviews
 and DP native-marker continuity remain open. C50 observes local coordinate
 order, actual native chirality proxy bases and post-optimizer index transfers
-before a repair; native mapping evidence is pending. Equivalent operational mapping
+before a repair. Returned C50 passes all getter/setter checks and exact repeats;
+proxy-index interpretation remains reviewed. C51 records native dictionary atom
+keys/returned arrays to distinguish restraint order from local coordinate order.
+ATL adds a separate public bridged-sugar/NARestraints compiler control. Native
+index proof and scientific qualification remain pending. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

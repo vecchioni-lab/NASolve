@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prove named native restraint index order and add an ATL source control
+
+- Verify all 2,288 C50 payloads, six qualifications, 120 observed calls and
+  exact fresh/previous comparisons. All getter/setter checks and nine sorted
+  transfers pass; preserve source-hand, DP marker and local-order proxy reviews.
+- Add opt-in C51 `--source-constructor-index-basis-audit-only` on exact C50.
+  Record native named dictionary keys and original returned arrays, capture
+  selected producer/factory sources, and distinguish proved restraint order
+  from observed local getter order. Preserve both target views and old gates;
+  no extra GetRestraints calls, native reindexing or chemical repair.
+- Add hash-pinned public ATL as a separate bridged-sugar/four-centre and
+  existing NARestraints pairing/stacking compiler control. Native baseline
+  scope stays three components; ATL native construction is NOT_RUN. No table/
+  release, dependency, production recipe, eight-pair plan or adoption change.
+- Keep six owned 30 s workers/256-call bounds, 64-row sequences and 256-entry
+  restraint dictionaries. Native named-order evidence awaits Mac; fake-worker
+  tests and actual saved-data replay remain distinct from native physics.
+- All 40 new regressions, 250 focused and 2,800 full tests pass (two skips,
+  276 subtests). Actual C50 deleted-build/relocated transport passes, preserving
+  all old findings and compiling ATL independently; native index proof is pending.
+
 ### Observe local coordinate and chirality proxy mapping
 
 - Verify all 2,190 C49 payloads, six native qualifications, 84 observed calls

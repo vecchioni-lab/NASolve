@@ -10057,7 +10057,7 @@
         "automatic_adoption": false
       },
       "artifact_boundary": "Code/tests/docs/hashes only in Git; native snapshots, raw pair lists/gradients, models/CIFs, runners and capsules remain outside Git.",
-      "next_action": "Build 50_Cedar with PDU/5PC controls and run the exact 49_Cedar_izfiw4xk return using --component DP --source-constructor-mapping-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Observe original local coordinate getter/setter order, native indexed chirality proxy bases and post-optimizer index transfers, compared with fresh unobserved controls. Preserve all original hand/metadata warnings. No chemistry repair, full builder, generation, scaffold change or adoption.",
+      "next_action": "Build 51_Cedar with PDU, 5PC and independent ATL controls; run exact 50_Cedar_g03y7p0_ with --component DP --source-constructor-index-basis-audit-only under Phenix 2.2.1-6174. Keep the three native sources/fresh controls fixed and capture native restraint dictionary atom keys, returned vectors and selected source methods before interpreting index order. ATL is public source/stereo/NARestraints compiler only, without native construction. Return console/ZIP; no native repair, full generation, scaffold or adoption.",
       "returned_review": {
         "status": "VERIFIED_NATIVE_CACHE_AND_STRICT_RETRY_PASS",
         "name": "46_Cedar_g9lvlci6_cif_numerical_recovery_review.zip",
@@ -10807,7 +10807,7 @@
         "automatic_adoption": false
       },
       "artifact_boundary": "Code/tests/docs/hashes only in Git; all sources, native snapshots, logs, models, runners and returned capsules remain external.",
-      "next_action": "Build 50_Cedar with PDU/5PC controls and run the exact 49_Cedar_izfiw4xk return using --component DP --source-constructor-mapping-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Observe original local coordinate getter/setter order, native indexed chirality proxy bases and post-optimizer index transfers, compared with fresh unobserved controls. Preserve all original hand/metadata warnings. No chemistry repair, full builder, generation, scaffold change or adoption.",
+      "next_action": "Build 51_Cedar with PDU, 5PC and independent ATL controls; run exact 50_Cedar_g03y7p0_ with --component DP --source-constructor-index-basis-audit-only under Phenix 2.2.1-6174. Keep the three native sources/fresh controls fixed and capture native restraint dictionary atom keys, returned vectors and selected source methods before interpreting index order. ATL is public source/stereo/NARestraints compiler only, without native construction. Return console/ZIP; no native repair, full generation, scaffold or adoption.",
       "returned_execution": {
         "received_date": "2026-10-21",
         "capsule": {
@@ -11015,7 +11015,7 @@
         "Whole-scaffold integration, bounded geometry, refinement and human review remain separate. The requested eight-pair live test is still planned after building."
       ],
       "artifact_boundary": "Git contains code/tests/docs/hashes only. Private sources, snapshots, logs, models, runners and returned capsules remain external.",
-      "next_action": "Build 50_Cedar with PDU/5PC controls and run the exact 49_Cedar_izfiw4xk return using --component DP --source-constructor-mapping-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Observe original local coordinate getter/setter order, native indexed chirality proxy bases and post-optimizer index transfers, compared with fresh unobserved controls. Preserve all original hand/metadata warnings. No chemistry repair, full builder, generation, scaffold change or adoption.",
+      "next_action": "Build 51_Cedar with PDU, 5PC and independent ATL controls; run exact 50_Cedar_g03y7p0_ with --component DP --source-constructor-index-basis-audit-only under Phenix 2.2.1-6174. Keep the three native sources/fresh controls fixed and capture native restraint dictionary atom keys, returned vectors and selected source methods before interpreting index order. ATL is public source/stereo/NARestraints compiler only, without native construction. Return console/ZIP; no native repair, full generation, scaffold or adoption.",
       "returned_execution": {
         "received_date": "2026-10-21",
         "capsule": {
@@ -11449,7 +11449,7 @@
         "The eight-pair ordinary live test remains planned after building, without changing the old recipe or introducing a merge gate."
       ],
       "artifact_boundary": "Only maintained code/tests/docs/hashes in Git. All private source snapshots, native logs, models, generated runners and returned capsules remain external.",
-      "next_action": "Build 50_Cedar with PDU/5PC controls and run the exact 49_Cedar_izfiw4xk return using --component DP --source-constructor-mapping-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Observe original local coordinate getter/setter order, native indexed chirality proxy bases and post-optimizer index transfers, compared with fresh unobserved controls. Preserve all original hand/metadata warnings. No chemistry repair, full builder, generation, scaffold change or adoption.",
+      "next_action": "Build 51_Cedar with PDU, 5PC and independent ATL controls; run exact 50_Cedar_g03y7p0_ with --component DP --source-constructor-index-basis-audit-only under Phenix 2.2.1-6174. Keep the three native sources/fresh controls fixed and capture native restraint dictionary atom keys, returned vectors and selected source methods before interpreting index order. ATL is public source/stereo/NARestraints compiler only, without native construction. Return console/ZIP; no native repair, full generation, scaffold or adoption.",
       "returned_execution": {
         "received_date": "2026-10-21",
         "capsule": {
@@ -11643,7 +11643,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#source_native_constructor_trace_2026_10_21"
     },
     "source_native_constructor_mapping_2026_10_21": {
-      "status": "IMPLEMENTED_NATIVE_LOCAL_COORDINATE_MAPPING_PENDING_MAC",
+      "status": "RETURNED_FRESH_REPEATS_GETTER_SETTER_AND_TRANSFERS_PASS_PROXY_BASIS_REVIEW",
       "recorded_date": "2026-10-21",
       "delivery_prefix": "50_Cedar",
       "policy_id": "cif-native-local-coordinate-mapping-v1",
@@ -11742,10 +11742,10 @@
           "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION"
         },
         "scope": "Component-generic named frames, getter/setter reversal, wrong/invalid native target basis/sign, missing and nonfinite evidence, shared identity, rigid motions, post-optimizer identity/sorted transfers, owned explicit fake-native workers including exceptions, and C49 input/control/source/trace mutation rejection.",
-        "native": "PENDING_USER_MAC. Local fake APIs test observation/transport mechanics, not Phenix physics. Actual C49 offline replay recomputes saved evidence without a new native constructor."
+        "native": "RETURNED actual Phenix 2.2.1-6174: six constructors, three exact fresh/previous comparisons, 18 getter and nine setter checks PASS; nine sorted transfers match. Original hand/DP metadata and local-order proxy-basis reviews remain. No native index-order proof or scientific adoption."
       },
       "execution": {
-        "native_local_mapping_observation": "PENDING_MAC",
+        "native_local_mapping_observation": "RETURNED; PROXY_BASIS_REVIEW",
         "dictionary_generation": "NOT_RUN",
         "whole_builder_replay": "NOT_RUN",
         "whole_molecule_optimization": "NOT_REQUESTED",
@@ -11763,8 +11763,918 @@
         "The requested eight-pair ordinary live challenge stays planned after building; old six-pair recipes remain unchanged."
       ],
       "artifact_boundary": "Only maintained code/tests/docs/hashes in Git. Private source captures, native logs/states/models, generated runners and capsules remain external.",
-      "next_action": "Build 50_Cedar with PDU/5PC controls and run the exact 49_Cedar_izfiw4xk return using --component DP --source-constructor-mapping-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Observe original local coordinate getter/setter order, native indexed chirality proxy bases and post-optimizer index transfers, compared with fresh unobserved controls. Preserve all original hand/metadata warnings. No chemistry repair, full builder, generation, scaffold change or adoption.",
+      "next_action": "Build 51_Cedar with PDU, 5PC and independent ATL controls; run exact 50_Cedar_g03y7p0_ with --component DP --source-constructor-index-basis-audit-only under Phenix 2.2.1-6174. Keep the three native sources/fresh controls fixed and capture native restraint dictionary atom keys, returned vectors and selected source methods before interpreting index order. ATL is public source/stereo/NARestraints compiler only, without native construction. Return console/ZIP; no native repair, full generation, scaffold or adoption.",
+      "returned_execution": {
+        "received_date": "2026-10-21",
+        "capsule": {
+          "name": "50_Cedar_g03y7p0__cif_numerical_recovery_review.zip",
+          "sha256": "8e62fcbb8040c8c348ce2d1f316091b73cdc9f301e50fc9ec5b6647a9a66b7d9",
+          "bytes": 54945432,
+          "verified_payloads": 2288,
+          "build_sha256": "f7b09e98c34e1d140a103661a8edcc91b517ab3d773fec95181ff15b3d7fd1f2",
+          "nasolve_commit": "2e7c48a7da8d40fbfcb243437c3f73161711b6d0",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runner_sha256": "b7718deac0e2ee921b532953729c4a15dad590f8c08d340c3a5632f2f82a8ec4",
+          "runtime_members": 134,
+          "runtime_archive_sha256": "f40a4d6aaabe0c96fd53ac114ea20d3e8c9e78177a7bd6fac5be6cfcbec6a293",
+          "unchanged_prior_payloads": 2190,
+          "prior_manifest": "BYTE_IDENTICAL"
+        },
+        "phenix_version": "2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "native_execution": "SIX_CONSTRUCTORS_COMPLETED; THREE_FRESH_AND_PREVIOUS_ENDPOINT_COMPARISONS_MATCH",
+        "cases": {
+          "5PC": {
+            "observed_worker_sha256": "3577659c40015d2e1906baece163360b217b9c11dbff8ed18b17ea48068cdc28",
+            "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+            "constructor_failed_checks": [
+              "source_handedness_preserved"
+            ],
+            "trace_failed_checks": [],
+            "calls": 40,
+            "first_reviews": [
+              {
+                "call_id": 1,
+                "centre": "C1'",
+                "event_index": 2,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              },
+              {
+                "call_id": 1,
+                "centre": "C3'",
+                "event_index": 2,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              },
+              {
+                "call_id": 13,
+                "centre": "C4'",
+                "event_index": 24,
+                "method": "ChiralClass.GetRSNotation",
+                "phase": "enter"
+              }
+            ],
+            "fresh_comparison": {
+              "automatic_adoption": false,
+              "checks": {
+                "both_workers_completed": true,
+                "exact_endpoint_repeat": true,
+                "same_constructor_status": true,
+                "same_prepared_state": true,
+                "same_reader_and_charge": true,
+                "same_source": true
+              },
+              "checks_pass": true,
+              "previous_endpoint_match": true,
+              "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+              "scientific_approval": "NOT_RUN",
+              "status": "FRESH_REPEAT_MATCH"
+            },
+            "observed_elapsed": 1.075298,
+            "control_elapsed": 0.726506
+          },
+          "DP": {
+            "observed_worker_sha256": "3577659c40015d2e1906baece163360b217b9c11dbff8ed18b17ea48068cdc28",
+            "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+            "constructor_failed_checks": [
+              "source_handedness_preserved"
+            ],
+            "trace_failed_checks": [
+              "chemical_metadata_preserved"
+            ],
+            "calls": 40,
+            "first_reviews": [
+              {
+                "call_id": 2,
+                "centre": "C1'",
+                "event_index": 4,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              },
+              {
+                "call_id": 2,
+                "centre": "C3'",
+                "event_index": 4,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              },
+              {
+                "call_id": 2,
+                "centre": "C4'",
+                "event_index": 4,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              }
+            ],
+            "fresh_comparison": {
+              "automatic_adoption": false,
+              "checks": {
+                "both_workers_completed": true,
+                "exact_endpoint_repeat": true,
+                "same_constructor_status": true,
+                "same_prepared_state": true,
+                "same_reader_and_charge": true,
+                "same_source": true
+              },
+              "checks_pass": true,
+              "previous_endpoint_match": true,
+              "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+              "scientific_approval": "NOT_RUN",
+              "status": "FRESH_REPEAT_MATCH"
+            },
+            "observed_elapsed": 1.151182,
+            "control_elapsed": 1.637737
+          },
+          "PDU": {
+            "observed_worker_sha256": "3577659c40015d2e1906baece163360b217b9c11dbff8ed18b17ea48068cdc28",
+            "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+            "constructor_failed_checks": [
+              "source_handedness_preserved"
+            ],
+            "trace_failed_checks": [],
+            "calls": 40,
+            "first_reviews": [
+              {
+                "call_id": 14,
+                "centre": "C1'",
+                "event_index": 28,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              },
+              {
+                "call_id": 1,
+                "centre": "C3'",
+                "event_index": 2,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              },
+              {
+                "call_id": 1,
+                "centre": "C4'",
+                "event_index": 2,
+                "method": "ChiralClass.GenerateZMatrixClass",
+                "phase": "exit"
+              }
+            ],
+            "fresh_comparison": {
+              "automatic_adoption": false,
+              "checks": {
+                "both_workers_completed": true,
+                "exact_endpoint_repeat": true,
+                "same_constructor_status": true,
+                "same_prepared_state": true,
+                "same_reader_and_charge": true,
+                "same_source": true
+              },
+              "checks_pass": true,
+              "previous_endpoint_match": true,
+              "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+              "scientific_approval": "NOT_RUN",
+              "status": "FRESH_REPEAT_MATCH"
+            },
+            "observed_elapsed": 1.048801,
+            "control_elapsed": 0.758201
+          }
+        },
+        "observed_calls": 120,
+        "enter_exit_boundaries": 240,
+        "exact_getter_checks_passed": 18,
+        "exact_setter_checks_passed": 9,
+        "sorted_index_transfers_matched": 9,
+        "legacy_mapping_results": {
+          "5PC": {
+            "absolute_cip_assignment": "NOT_RUN",
+            "automatic_adoption": false,
+            "checks": {
+              "getters_match_named_order": true,
+              "getters_recorded": true,
+              "local_named_frames": true,
+              "methods_restored": true,
+              "native_chirality_proxies_recorded": true,
+              "native_proxy_bases_valid": false,
+              "policy": true,
+              "setters_match_named_order": true,
+              "setters_recorded": true,
+              "source_hashes_preserved": true
+            },
+            "checks_pass": false,
+            "coordinate_getters": [
+              {
+                "call_id": 9,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 10,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 22,
+                "centre": "C3'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 23,
+                "centre": "C3'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 35,
+                "centre": "C1'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 36,
+                "centre": "C1'",
+                "matches_named_order": true
+              }
+            ],
+            "coordinate_setters": [
+              {
+                "call_id": 11,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 24,
+                "centre": "C3'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 37,
+                "centre": "C1'",
+                "matches_named_order": true
+              }
+            ],
+            "interpretation": "Named local frames and native indexed proxy bases only. Parent atoms can occupy different temporary frames; transfers and local target signs do not establish a completed molecular configuration or causal defect.",
+            "native_chirality_targets": [
+              {
+                "both_signs": false,
+                "call_id": 5,
+                "centre": "C4'",
+                "i_seqs": [
+                  1,
+                  0,
+                  2,
+                  3
+                ],
+                "ordered_atoms": [
+                  "C4'",
+                  "H4'",
+                  "C5'",
+                  "O4'"
+                ],
+                "source_hand_matches_target": false,
+                "source_volume_in_proxy_basis": 1.9180231229999996,
+                "valid_proxy_basis": true,
+                "volume_ideal": -2.511083378373208,
+                "weight": 50.0
+              },
+              {
+                "both_signs": false,
+                "call_id": 18,
+                "centre": "C3'",
+                "i_seqs": [
+                  1,
+                  2,
+                  0,
+                  3
+                ],
+                "ordered_atoms": [
+                  "C3'",
+                  "O3'",
+                  "H3'",
+                  "C4'"
+                ],
+                "source_hand_matches_target": true,
+                "source_volume_in_proxy_basis": 1.7686053160000001,
+                "valid_proxy_basis": true,
+                "volume_ideal": 2.511083378373208,
+                "weight": 50.0
+              },
+              {
+                "both_signs": false,
+                "call_id": 31,
+                "centre": "C1'",
+                "i_seqs": [
+                  2,
+                  0,
+                  3,
+                  1
+                ],
+                "ordered_atoms": [
+                  "O4'",
+                  "H1'",
+                  "N1",
+                  "C1'"
+                ],
+                "source_hand_matches_target": false,
+                "source_volume_in_proxy_basis": null,
+                "valid_proxy_basis": false,
+                "volume_ideal": -2.3867843186876505,
+                "weight": 50.0
+              }
+            ],
+            "policy_id": "cif-native-local-coordinate-mapping-v1",
+            "post_optimizer_transfers": [
+              {
+                "after_event": 24,
+                "before_event": 23,
+                "call_id": 3,
+                "centre": "C4'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": false,
+                "local_source_hand_before": true,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              },
+              {
+                "after_event": 50,
+                "before_event": 49,
+                "call_id": 16,
+                "centre": "C3'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": true,
+                "local_source_hand_before": true,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              },
+              {
+                "after_event": 76,
+                "before_event": 75,
+                "call_id": 29,
+                "centre": "C1'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": false,
+                "local_source_hand_before": false,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              }
+            ],
+            "schema_version": 1,
+            "scientific_approval": "NOT_RUN",
+            "status": "REVIEW",
+            "target_source_hands_preserved": false
+          },
+          "DP": {
+            "absolute_cip_assignment": "NOT_RUN",
+            "automatic_adoption": false,
+            "checks": {
+              "getters_match_named_order": true,
+              "getters_recorded": true,
+              "local_named_frames": true,
+              "methods_restored": true,
+              "native_chirality_proxies_recorded": true,
+              "native_proxy_bases_valid": false,
+              "policy": true,
+              "setters_match_named_order": true,
+              "setters_recorded": true,
+              "source_hashes_preserved": true
+            },
+            "checks_pass": false,
+            "coordinate_getters": [
+              {
+                "call_id": 9,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 10,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 22,
+                "centre": "C1'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 23,
+                "centre": "C1'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 35,
+                "centre": "C3'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 36,
+                "centre": "C3'",
+                "matches_named_order": true
+              }
+            ],
+            "coordinate_setters": [
+              {
+                "call_id": 11,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 24,
+                "centre": "C1'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 37,
+                "centre": "C3'",
+                "matches_named_order": true
+              }
+            ],
+            "interpretation": "Named local frames and native indexed proxy bases only. Parent atoms can occupy different temporary frames; transfers and local target signs do not establish a completed molecular configuration or causal defect.",
+            "native_chirality_targets": [
+              {
+                "both_signs": false,
+                "call_id": 6,
+                "centre": "C4'",
+                "i_seqs": [
+                  1,
+                  3,
+                  0,
+                  2
+                ],
+                "ordered_atoms": [
+                  "C4'",
+                  "C5'",
+                  "H4'",
+                  "C3'"
+                ],
+                "source_hand_matches_target": false,
+                "source_volume_in_proxy_basis": 1.676802554999993,
+                "valid_proxy_basis": true,
+                "volume_ideal": -2.511083378373208,
+                "weight": 50.0
+              },
+              {
+                "both_signs": false,
+                "call_id": 19,
+                "centre": "C1'",
+                "i_seqs": [
+                  1,
+                  0,
+                  2,
+                  3
+                ],
+                "ordered_atoms": [
+                  "C1'",
+                  "H1'",
+                  "O4'",
+                  "N9"
+                ],
+                "source_hand_matches_target": true,
+                "source_volume_in_proxy_basis": 1.5999737550000004,
+                "valid_proxy_basis": true,
+                "volume_ideal": 2.3867843186876505,
+                "weight": 50.0
+              },
+              {
+                "both_signs": false,
+                "call_id": 32,
+                "centre": "C3'",
+                "i_seqs": [
+                  2,
+                  3,
+                  0,
+                  1
+                ],
+                "ordered_atoms": [
+                  "O3'",
+                  "C4'",
+                  "H3'",
+                  "C3'"
+                ],
+                "source_hand_matches_target": false,
+                "source_volume_in_proxy_basis": null,
+                "valid_proxy_basis": false,
+                "volume_ideal": 2.511083378373208,
+                "weight": 50.0
+              }
+            ],
+            "policy_id": "cif-native-local-coordinate-mapping-v1",
+            "post_optimizer_transfers": [
+              {
+                "after_event": 24,
+                "before_event": 23,
+                "call_id": 4,
+                "centre": "C4'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": true,
+                "local_source_hand_before": false,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              },
+              {
+                "after_event": 50,
+                "before_event": 49,
+                "call_id": 17,
+                "centre": "C1'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": false,
+                "local_source_hand_before": true,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              },
+              {
+                "after_event": 76,
+                "before_event": 75,
+                "call_id": 30,
+                "centre": "C3'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": true,
+                "local_source_hand_before": false,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              }
+            ],
+            "schema_version": 1,
+            "scientific_approval": "NOT_RUN",
+            "status": "REVIEW",
+            "target_source_hands_preserved": false
+          },
+          "PDU": {
+            "absolute_cip_assignment": "NOT_RUN",
+            "automatic_adoption": false,
+            "checks": {
+              "getters_match_named_order": true,
+              "getters_recorded": true,
+              "local_named_frames": true,
+              "methods_restored": true,
+              "native_chirality_proxies_recorded": true,
+              "native_proxy_bases_valid": false,
+              "policy": true,
+              "setters_match_named_order": true,
+              "setters_recorded": true,
+              "source_hashes_preserved": true
+            },
+            "checks_pass": false,
+            "coordinate_getters": [
+              {
+                "call_id": 9,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 10,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 22,
+                "centre": "C3'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 23,
+                "centre": "C3'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 35,
+                "centre": "C1'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 36,
+                "centre": "C1'",
+                "matches_named_order": true
+              }
+            ],
+            "coordinate_setters": [
+              {
+                "call_id": 11,
+                "centre": "C4'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 24,
+                "centre": "C3'",
+                "matches_named_order": true
+              },
+              {
+                "call_id": 37,
+                "centre": "C1'",
+                "matches_named_order": true
+              }
+            ],
+            "interpretation": "Named local frames and native indexed proxy bases only. Parent atoms can occupy different temporary frames; transfers and local target signs do not establish a completed molecular configuration or causal defect.",
+            "native_chirality_targets": [
+              {
+                "both_signs": false,
+                "call_id": 5,
+                "centre": "C4'",
+                "i_seqs": [
+                  1,
+                  3,
+                  0,
+                  2
+                ],
+                "ordered_atoms": [
+                  "C4'",
+                  "C5'",
+                  "H4'",
+                  "C3'"
+                ],
+                "source_hand_matches_target": false,
+                "source_volume_in_proxy_basis": 1.8984906170000002,
+                "valid_proxy_basis": true,
+                "volume_ideal": -2.511083378373208,
+                "weight": 50.0
+              },
+              {
+                "both_signs": false,
+                "call_id": 18,
+                "centre": "C3'",
+                "i_seqs": [
+                  1,
+                  2,
+                  3,
+                  0
+                ],
+                "ordered_atoms": [
+                  "C3'",
+                  "O3'",
+                  "C2'",
+                  "H3'"
+                ],
+                "source_hand_matches_target": false,
+                "source_volume_in_proxy_basis": 1.7534379240000002,
+                "valid_proxy_basis": true,
+                "volume_ideal": -2.511083378373208,
+                "weight": 50.0
+              },
+              {
+                "both_signs": false,
+                "call_id": 31,
+                "centre": "C1'",
+                "i_seqs": [
+                  2,
+                  0,
+                  3,
+                  1
+                ],
+                "ordered_atoms": [
+                  "O4'",
+                  "H1'",
+                  "N1",
+                  "C1'"
+                ],
+                "source_hand_matches_target": false,
+                "source_volume_in_proxy_basis": null,
+                "valid_proxy_basis": false,
+                "volume_ideal": -2.3867843186876505,
+                "weight": 50.0
+              }
+            ],
+            "policy_id": "cif-native-local-coordinate-mapping-v1",
+            "post_optimizer_transfers": [
+              {
+                "after_event": 24,
+                "before_event": 23,
+                "call_id": 3,
+                "centre": "C4'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": true,
+                "local_source_hand_before": false,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              },
+              {
+                "after_event": 50,
+                "before_event": 49,
+                "call_id": 16,
+                "centre": "C3'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": false,
+                "local_source_hand_before": true,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              },
+              {
+                "after_event": 76,
+                "before_event": 75,
+                "call_id": 29,
+                "centre": "C1'",
+                "coordinates_unchanged_by_identity": false,
+                "local_source_hand_after": false,
+                "local_source_hand_before": false,
+                "matches_sorted_index_transfer": true,
+                "same_atom_order": true
+              }
+            ],
+            "schema_version": 1,
+            "scientific_approval": "NOT_RUN",
+            "status": "REVIEW",
+            "target_source_hands_preserved": false
+          }
+        },
+        "remaining_reviews": "Original source-relative hand gates remain false for all three; DP marker continuity remains false. Legacy local-order mapping has one invalid proxy-origin graph basis in each component. Keep all original raw results and predicates.",
+        "offline_hypothesis": {
+          "status": "HYPOTHESIS_ONLY_NOT_NATIVE_RESTRAINT_ORDER_PROOF",
+          "basis": "Sort the saved live local atom names by their captured native global indices, then interpret the same saved proxy offsets without changing target signs.",
+          "graph_bases": "All nine saved proxy origins and neighbors then match their declared source tetrahedra.",
+          "source_target_signs": {
+            "PDU": "3/3 agree",
+            "5PC": "3/3 agree",
+            "DP": "2/3 agree; C1-prime source -2.373696206999996 versus target +2.3867843186876505"
+          },
+          "limitation": "A sorted reinterpretation alone does not prove the native restraint array convention or change the actual evaluation-site order. C51 captures named native dictionary keys and returned arrays to test it."
+        },
+        "offline_replay": "All 2288 payloads, clean published build/BUNDLE/runtime, original worker/source/output pins, unchanged C49 bytes, six qualifications, raw trace/mapping analyses and three fresh/previous comparisons independently reproduce without executing capsule code.",
+        "absolute_cip_assignment": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "whole_molecule_optimization": "NOT_REQUESTED",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#source_native_constructor_mapping_2026_10_21"
+    },
+    "source_native_constructor_index_basis_2026_10_21": {
+      "status": "IMPLEMENTED_NAMED_NATIVE_RESTRAINT_INDEX_PROOF_PENDING_MAC",
+      "recorded_date": "2026-10-21",
+      "delivery_prefix": "51_Cedar",
+      "policy_id": "cif-native-named-restraint-index-basis-v1",
+      "module": "src/nasolve/cif_constructor_index_basis.py",
+      "observer": "src/nasolve/cif_constructor_trace.py",
+      "worker_owner": "src/nasolve/cif_source_constructor.py",
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "51_Cedar_probe_cif_index_basis.py",
+      "cli_action": "--source-constructor-index-basis-audit-only",
+      "review_input": {
+        "name": "50_Cedar_g03y7p0__cif_numerical_recovery_review.zip",
+        "sha256": "8e62fcbb8040c8c348ce2d1f316091b73cdc9f301e50fc9ec5b6647a9a66b7d9",
+        "bytes": 54945432,
+        "verified_payloads": 2288,
+        "build_sha256": "f7b09e98c34e1d140a103661a8edcc91b517ab3d773fec95181ff15b3d7fd1f2",
+        "nasolve_commit": "2e7c48a7da8d40fbfcb243437c3f73161711b6d0",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "b7718deac0e2ee921b532953729c4a15dad590f8c08d340c3a5632f2f82a8ec4",
+        "runtime_members": 134,
+        "runtime_archive_sha256": "f40a4d6aaabe0c96fd53ac114ea20d3e8c9e78177a7bd6fac5be6cfcbec6a293",
+        "unchanged_prior_payloads": 2190,
+        "prior_manifest": "BYTE_IDENTICAL"
+      },
+      "reason": "Local template lists and arrays sorted by native global atom index give different proxy-origin/target interpretations. A sorted hypothesis explains public controls but is not evidence of the producer convention. Observe the native named keys and returned array before any reindexing or marker/chemistry repair.",
+      "behavior": {
+        "prerequisite": "Require exact C50 archive/build/worker/source/output proofs, reproduce six qualifications, 120 raw calls, mapping reports and all fresh/previous comparisons. Preserve the complete older source/charge/mechanics/rotation/cache chain and all failures; execute no captured Python or pickle.",
+        "native_observation": "Restart the same DP/PDU/5PC consumers with the same reader/charge/backend/constructor arguments and separate fresh controls. Existing method wrappers remain. At original GetRestrainedParameters returns, inspect the native restraint dictionary atom keys, global indices, live parent sharing and stored coordinates; record the original returned coordinate array and chirality parameters. Never call GetRestraints a second time.",
+        "source_proof": "Capture selected-installation RestraintClass.py and geometry_manager.py in addition to the original seven/backend sources. Fingerprint the bound original GetRestraints and module geometry_manager.run, selected origins/definition lines and source hashes. Recheck installed/captured bytes and all observer pins. Missing/unsupported dictionary or coordinate shapes stay REVIEW; auxiliary parameter types are explicitly recorded as unsupported when they cannot be serialized.",
+        "replay": "Require complete unique live named dictionary keys matching local objects and unique stored-coordinate vectors and exact returned coordinate alignment with keys sorted by captured global index. Separately require the observed getter vector in actual local list order. Map proxy offsets in both named arrays, check the declared centre/neighbor graph and source volume/target sign in each basis. Retain the distinct orders and original local-order report; never silently substitute arrays in native evaluation.",
+        "authority": "A named restraint-order proof does not qualify the actual native optimization or assembled molecular stereochemistry. Original hand/metadata gates, source signed markers, native targets and NARestraints pairing/stacking authority remain fixed. No native repair, normalization, target flip, coordinate edit or adoption."
+      },
+      "independent_ATL_control": {
+        "status": "IMPLEMENTED_OFFLINE_PUBLIC_GRAPH_STEREO_AND_COMPILER_PASS; NATIVE_NOT_RUN",
+        "source": {
+          "atom_count": 38,
+          "bond_count": 40,
+          "code": "ATL",
+          "control_intent": "Independent alpha-LNA-T bridged-sugar graph with four declared source stereocentres. Preserve C4-prime-C6-prime-O2-prime bridge, original charge/H and source configuration; no standard-DNA pucker substitution or native/scaffold approval.",
+          "declared_formal_charge": "0",
+          "declared_type": "RNA LINKING",
+          "source": {
+            "bytes": 9245,
+            "ccd_modified_date": "2011-06-04",
+            "requested_url": "https://files.rcsb.org/ligands/download/ATL.cif",
+            "retrieved_utc": "2026-10-21T19:48:13.818581+00:00",
+            "sha256": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b"
+          },
+          "test_fixture": "tests/fixtures/public_ccd/ATL.cif",
+          "workbook_rows": [
+            {
+              "row": 54,
+              "sheet": "thymine"
+            }
+          ]
+        },
+        "existing_policy": "Pinned NARestraints v1.1.3 thymine sheet row 54 already records alpha-LNA-T, T class and LNA sugar. No workbook/code/release edit.",
+        "public_preflight": {
+          "graph": "PASS",
+          "policy_compiler": "PASS",
+          "mapped_base_class": "T",
+          "pair_recipe": "AT",
+          "bidirectional_stack_controls": 2,
+          "source_stereocentres": {
+            "C4'": "S",
+            "C3'": "R",
+            "C2'": "S",
+            "C1'": "R"
+          },
+          "bridge_edges": [
+            [
+              "C4-prime",
+              "C6-prime"
+            ],
+            [
+              "C6-prime",
+              "O2-prime"
+            ]
+          ],
+          "glycosidic_attachment": {
+            "sugar_atom": "C1'",
+            "base_atom": "N1",
+            "order": "SINGLE"
+          }
+        },
+        "runtime_scope": "Third explicit bundled public control is source/declared-stereo/NARestraints compiler only in the C51 action. It does not join the three native constructors, candidate generation or fixed scaffold. No standard-DNA pucker/stereo replacement. Later native/linked qualification remains separate.",
+        "existing_live_plan": "Preserve the requested eight-pair test and old six-pair recipe exactly; no ninth-pair or merge-gate addition."
+      },
+      "limits": {
+        "max_native_components": 3,
+        "fresh_workers_per_component": 2,
+        "worker_timeout_seconds": 30,
+        "total_timeout_budget_seconds": 180,
+        "max_observed_calls_per_constructor": 256,
+        "max_observed_boundaries": 512,
+        "max_coordinate_or_parameter_sequence_rows": 64,
+        "max_native_restraint_dictionary_entries": 256,
+        "max_explicit_public_controls": 3
+      },
+      "schemas": {
+        "native": "Opt-in index_basis/index_sources spec and captured index_sources; raw index_policy_id/index_method_sources and per-return index_basis records; maintained index_analysis. Base unobserved worker and original reports stay unchanged.",
+        "probe": "New mutually exclusive exact-C50 action, prior mapping replay, independent_component_controls list and public source_stereo_inventory. Third public control is admitted only as a separate read-only control in this action; older native action scopes remain fixed.",
+        "compatibility": "Legacy mapping/trace policies and predicates are preserved byte for byte. No dependencies, production defaults, installed edits, NAR release, scientific input or recipe changes."
+      },
+      "validation": {
+        "fail_before": {
+          "failed": 19,
+          "seconds": 0.37,
+          "reason": "Initial named-basis module and ATL fixture are absent."
+        },
+        "new_regressions": 40,
+        "focused": {
+          "passed": 250,
+          "seconds": 16.21,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_constructor_index_basis.py tests/test_cif_atl_control.py tests/test_cedar51_delivery.py tests/test_cif_constructor_mapping.py tests/test_cif_constructor_trace.py tests/test_cif_source_constructor.py tests/test_cif_constructor_backend.py tests/test_cedar48_delivery.py tests/test_cedar49_delivery.py tests/test_cedar50_delivery.py tests/test_synthetic_dna_shuttle.py tests/test_cif_numerical_recovery_probe.py"
+        },
+        "full": {
+          "passed": 2800,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 218.49,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "source_build_state": {
+            "commit": "2e7c48a7da8d40fbfcb243437c3f73161711b6d0",
+            "working_tree_has_changes": true
+          },
+          "runner_sha256": "9e69585278ee14a59906d6b4eb187ce07bbffb9669389910bb2dd169908b4187",
+          "clean_build_sources_removed_before_replay": true,
+          "relocated_runner": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp": "PASS",
+          "everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "input_payloads": 2288,
+          "runtime_members": 136,
+          "runtime_archive_sha256": "8bc28d2721b4805cb0317b35d6d6f0513b5fe9991acafb34e880d2bce0bf8dc6",
+          "mechanics_prerequisites": 17,
+          "rotation_directions": 96,
+          "cache_transition_proofs_recomputed": 48,
+          "recorded_pair_kernel_calls_verified": 3286,
+          "strict_derivative_directions_recomputed": 246,
+          "original_raw_reader_and_charge_reviews": "PRESERVED",
+          "source_consumer_bytes": "MATCH_PRIOR_DP_PDU; DECLARED_CCD_5PC",
+          "previous_constructor_reviews_recomputed": 6,
+          "prior_observed_calls_replayed": 120,
+          "ATL_scope": "PUBLIC_GRAPH_STEREO_AND_COMPILER_ONLY",
+          "prior_observation_comparisons_recomputed": 3,
+          "backend_selection": "EXPLICIT_NATIVE_CCTBX; INDEX_PROOF_PENDING_USER_MAC",
+          "constructor_native_execution": "PENDING_USER_MAC",
+          "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION"
+        },
+        "scope": "22 generic named-key/order/target/identity mutation checks, four owned fake-native index observations including exceptions and unsupported containers, 12 exact C50 return mutations and two public ATL/control-bundle checks.",
+        "native": "PENDING_USER_MAC. Explicit fake APIs verify observer behavior rather than Phenix physics; actual C50 offline replay rechecks returned data without another native constructor.",
+        "ambiguity_guards": {
+          "fail_before": 4,
+          "seconds": 1.03,
+          "behavior": "Reject repeated stored-coordinate vectors and a method/module mismatch; exact vector coincidence cannot prove an otherwise ambiguous order."
+        }
+      },
+      "execution": {
+        "native_named_index_observation": "PENDING_MAC",
+        "ATL_native_construction": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "whole_builder_replay": "NOT_RUN",
+        "whole_molecule_optimization": "NOT_REQUESTED",
+        "model_editing": "NOT_RUN",
+        "absolute_cip_assignment": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "limitations": [
+        "Index-basis agreement does not prove a native causal bug, convergence or completed molecular stereochemistry. Keep actual evaluation order separate from the named restraint order.",
+        "Object sharing and unchanged original forwarding remain selected-worker observations; JSON replay verifies consistency rather than proving Python identity independently.",
+        "Unsupported native dictionary/coordinate shapes, missing methods and native nondeterminism remain explicit reviews. Native source snapshots are evidence, never executable capsule code.",
+        "Source/generated charge/H, DP signed-marker interpretation, absolute CIP, 5PC plane/angle, full builder and whole-scaffold qualification remain open.",
+        "ATL expands offline graph/stereo/compiler coverage only. Native construction, linkage and the eventual ordinary live model require their own evidence."
+      ],
+      "artifact_boundary": "Only maintained code/tests/docs and public ATL CCD fixture/provenance enter Git. Private capsules, source captures, native logs/states/models and generated runners stay external.",
+      "next_action": "Build 51_Cedar with PDU, 5PC and independent ATL controls; run exact 50_Cedar_g03y7p0_ with --component DP --source-constructor-index-basis-audit-only under Phenix 2.2.1-6174. Keep the three native sources/fresh controls fixed and capture native restraint dictionary atom keys, returned vectors and selected source methods before interpreting index order. ATL is public source/stereo/NARestraints compiler only, without native construction. Return console/ZIP; no native repair, full generation, scaffold or adoption.",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#source_native_constructor_index_basis_2026_10_21"
     }
   },
   "audience": [

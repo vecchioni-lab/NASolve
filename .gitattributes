@@ -3,6 +3,7 @@
 # Exempt only this source file's trailing spaces, not other whitespace errors.
 /src/nasolve/data/ligands/5CM.cif whitespace=-blank-at-eol
 
-# Keep the public PDU fixture byte-identical to its checksum-pinned download.
+# Keep public CCD fixtures byte-identical to their checksum-pinned downloads.
 /tests/fixtures/public_ccd/PDU.cif -text whitespace=-blank-at-eol
 /tests/fixtures/public_ccd/5PC.cif -text whitespace=-blank-at-eol
+/tests/fixtures/public_ccd/ATL.cif -text whitespace=-blank-at-eol

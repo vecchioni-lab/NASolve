@@ -426,6 +426,28 @@
           "ambiguity": "two matching records; neither selected"
         }
       ]
+    },
+    {
+      "atom_count": 38,
+      "bond_count": 40,
+      "code": "ATL",
+      "control_intent": "Independent alpha-LNA-T bridged-sugar graph with four declared source stereocentres. Preserve C4-prime-C6-prime-O2-prime bridge, original charge/H and source configuration; no standard-DNA pucker substitution or native/scaffold approval.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 9245,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/ATL.cif",
+        "retrieved_utc": "2026-10-21T19:48:13.818581+00:00",
+        "sha256": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b"
+      },
+      "test_fixture": "tests/fixtures/public_ccd/ATL.cif",
+      "workbook_rows": [
+        {
+          "row": 54,
+          "sheet": "thymine"
+        }
+      ]
     }
   ],
   "document_kind": "cif-doctor-public-ccd-control-provenance",

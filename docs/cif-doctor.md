@@ -1981,9 +1981,34 @@ and source-relative local hand before/after. Shared parent coordinates can mix
 temporary local frames; no completed-molecule or causal-bug claim follows.
 Original hand and metadata gates remain active. Six owned 30 s workers, 256
 calls/512 boundaries each, and 64 rows per captured vector/proxy list bound
-execution. Unsupported native shapes remain REVIEW. Native mapping evidence
-is pending. Source/generated charge/H, absolute stereo, 5PC plane and scientific
-qualification remain separate, without a repair, full generation or adoption.
+execution. Unsupported native shapes remain REVIEW. Returned C50 passes all
+18 getter/nine setter checks, exact fresh/previous comparisons and nine sorted-
+index transfer comparisons. Its local-order proxy basis remains reviewed. A
+separate sorted-name hypothesis matches all source graphs and PDU/5PC signs,
+with DP C1-prime still opposed; it does not prove native array conventions.
+
+Build C51 with PDU/5PC plus independent ATL; run exact C50 using `--component DP
+--source-constructor-index-basis-audit-only`. Preserve/replay every prior raw
+trace, mapping report, qualification and comparison. The additive
+`cif-native-named-restraint-index-basis-v1` observes native dictionary atom keys,
+indices, stored coordinates, parent sharing and original returned coordinate/
+chirality parameters at existing GetRestrainedParameters exits. Capture and
+pin selected RestraintClass.py/geometry_manager.py plus original constructor
+sources. Fingerprint the bound GetRestraints and module factory sources;
+never call GetRestraints again just for observation.
+
+Prove complete named keys, unique stored vectors and exact alignment with native-
+index ordering. Separately retain actual local getter order and proxy/target
+interpretations in both arrays. Existing hand/metadata gates and local-order
+reports stay active; no evaluation array or target changes. Limit native
+dictionaries to 256 entries, sequences to 64 and the original six 30 s workers.
+
+ATL's pinned public source adds a bridged-sugar/four-centre and existing T-class
+NARestraints compiler control, with native execution NOT_RUN. Third public
+controls are separate read-only sources in this action, outside native cases
+and generation. No workbook/release, standard-DNA pucker assumption, scaffold,
+recipe or planned eight-pair changes. Native index proof, source charge/H,
+absolute stereo, 5PC planes, full generation and scientific approval remain open.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

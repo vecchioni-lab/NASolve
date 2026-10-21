@@ -80,5 +80,9 @@ causal defect. Returned C49 matches all six fresh/observed and earlier endpoints
 hand warnings and DP marker continuity remain reviewed. C50 follows named local
 coordinate order, actual native chirality proxy bases and post-optimizer index
 transfers before a correction. Shared parent coordinates can mix temporary
-frames. Native mapping evidence is pending; optimizer kernels remain
-uninstrumented, with no full-builder, absolute-CIP or adoption arrow.
+frames. Returned C50 passes getters/setters and exact repeats but retains
+proxy-index review. C51 records named native dictionary keys/returned arrays,
+keeping restraint order and local evaluation order distinct. ATL is a separate
+public bridged-sugar/stereo/NARestraints compiler control. Native named-index
+proof is pending; optimizer kernels remain uninstrumented, with no full-builder,
+absolute-CIP or adoption arrow.

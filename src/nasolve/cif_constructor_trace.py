@@ -107,7 +107,8 @@ def observe_native_constructor(parent,method,modules,spec,trace):
     mapping=spec.get('coordinate_mapping') is True
     if mapping:
         scope.extend(('elbow.cctbx_api.CCTBXMixins','CCTBXMixins',name) for name in ['GetCoordinates','SetCoordinates','GetNewManager'])
-    root=Path(spec['installation_root']).resolve(strict=True);proof={r['path']:r for r in spec['trace_sources']}
+    index_basis=spec.get('index_basis') is True
+    root=Path(spec['installation_root']).resolve(strict=True);proof={r['path']:r for r in spec['trace_sources']+spec.get('index_sources',[])}
     for row in spec['sources']:
         path=Path(row['installed']).resolve(strict=True)
         proof.setdefault(path.relative_to(root).as_posix(),{'sha256':row['sha256'],'size':path.stat().st_size})
@@ -131,6 +132,10 @@ def observe_native_constructor(parent,method,modules,spec,trace):
         before=native_inventory(parent),events=[],methods_restored=False,source_hashes_preserved=False,
         max_calls=256,random_state_control='NOT_REQUESTED',scientific_approval='NOT_RUN',automatic_adoption=False)
     if mapping:trace['mapping_policy_id']='cif-native-local-coordinate-mapping-v1'
+    if index_basis:
+        factory=importlib.import_module('elbow.cctbx_api.geometry_manager')
+        trace.update(index_policy_id='cif-native-named-restraint-index-basis-v1',index_sources=spec['index_sources'],
+            index_method_sources=[{'method':'geometry_manager.run',**fingerprint(factory.run)}])
     def scalar(v):
         if type(v) in (str,bool,int,type(None)):return v
         if type(v) is float:return v if math.isfinite(v) else 'NONFINITE'
@@ -150,6 +155,24 @@ def observe_native_constructor(parent,method,modules,spec,trace):
         return {'original_order':[{'atom':a.name.strip(),'global_index':scalar(getattr(a,'index',None))} for a in getattr(obj,'original_order',[])],
             'input_volume':scalar(getattr(obj,'input_volume',None)),'equil':scalar(getattr(obj,'equil',None)),
             'native_marker':scalar(getattr(getattr(obj,'chiral_atom',None),'chiral',None))}
+    def plain(value,depth=0):
+        if type(value) in (str,bool,int,float,type(None)):return scalar(value)
+        if depth<6 and isinstance(value,(list,tuple)) and len(value)<=64:return [plain(v,depth+1) for v in value]
+        return {'unsupported_type':type(value).__module__+'.'+type(value).__name__}
+    def restraint_basis(obj,value):
+        rc=getattr(obj,'restraint_class',None)
+        if not isinstance(rc,dict) or not isinstance(value,(list,tuple)) or len(value)!=6:return {'unsupported':'NATIVE_RESTRAINT_CONTAINER'}
+        method=rc.GetRestraints
+        if not inspect.ismethod(method) or method.__self__ is not rc:raise ValueError('Unsupported native restraint method')
+        source={'method':'RestraintClass.GetRestraints',**fingerprint(method.__func__)}
+        if len(rc)>256:return {'unsupported':'NATIVE_RESTRAINT_DICTIONARY_CAP','restraint_method':source}
+        atoms=[]
+        for atom,stored in rc.items():
+            if not hasattr(atom,'name') or not hasattr(atom,'index'):continue
+            atoms.append({'atom':atom.name.strip(),'global_index':scalar(atom.index),
+                'same_parent_object':any(atom is p for p in parent),'stored_xyz':plain(stored)})
+        return {'restraint_method':source,'native_atom_keys':atoms,'returned_coordinates':coordinates(value[0]),
+            'returned_chirality_parameters':plain(value[5])}
     def invoke(label,original,obj,args,kwargs):
         nonlocal counter
         if counter>=256:
@@ -172,6 +195,7 @@ def observe_native_constructor(parent,method,modules,spec,trace):
                 minimizer=getattr(value[1],'minimizer',None);summary['lbfgs_minimizer_error']=scalar(getattr(minimizer,'error',None))
                 summary['stopping_qualification']='NOT_INDEPENDENTLY_ASSESSED'
             if mapping:
+                if index_basis and label=='ChiralClass.GetRestrainedParameters':mapping_result['index_basis']=restraint_basis(obj,value)
                 if label=='CCTBXMixins.GetCoordinates':mapping_result['coordinates_returned']=coordinates(value)
                 if label=='CCTBXMixins.OptimiseCCTBX':mapping_result['coordinates_returned']=coordinates(value[0] if isinstance(value,tuple) and len(value)==2 and bound.arguments.get('return_lbfgs_object') else value)
                 if label=='CCTBXMixins.GetNewManager':

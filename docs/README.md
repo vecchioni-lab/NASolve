@@ -218,7 +218,11 @@ for actual behavior; history is evidence, not a second task queue.
   a correction. Returned C49 completes all six constructors and exact repeat
   comparisons, retaining hand warnings and DP marker review. C50 observes
   named local coordinate order, native chirality proxy bases and index transfers.
-  Native mapping evidence, full generation and absolute CIP remain open. Equivalent
+  Returned C50 passes getter/setter and fresh-repeat checks, retaining proxy-
+  index review. C51 captures native named dictionary keys and returned arrays,
+  preserving both index interpretations. ATL is a separate public bridged-sugar
+  source/stereo/compiler control. Native index proof, full generation and
+  absolute CIP remain open. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification
