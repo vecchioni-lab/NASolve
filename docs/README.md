@@ -212,7 +212,10 @@ for actual behavior; history is evidence, not a second task queue.
   source reading/charge transfer. The diagnostic omitted native CCTBX backend
   selection. C48 follows the installed reader's explicit backend policy under
   exact state/source gates and retries original sources, preserving failures.
-  Corrected native construction, full generation and absolute CIP remain open. Equivalent
+  Returned C48 completes all three constructors and backend gates, retaining
+  source-relative sugar-hand warnings. C49 observes local native boundaries,
+  compares fresh unobserved/observed runs and checks all neighbor bases before
+  a correction. Native trace evidence, full generation and absolute CIP remain open. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

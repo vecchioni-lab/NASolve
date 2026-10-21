@@ -1928,9 +1928,37 @@ qualifications replay exactly. Each owned process retains its 60 s cap.
 
 Verify/recompute all three original failures and earlier prerequisites before
 retrying byte-identical original consumers. Failed C47 coordinates are never
-reused. Corrected native construction is pending. Source/generated charge/H,
-absolute stereo, 5PC plane and scientific qualification remain separate,
-without full generation or adoption.
+reused. Returned C48 verifies 2,092 payloads and completes all three constructors
+under Phenix 2.2.1-6174. All backend/graph/charge/marker/route checks pass;
+source-relative hands remain reviewed at DP/5PC C1-prime and PDU C1/C3/C4-prime.
+All-basis offline checks add DP C4-prime and a mixed-basis 5PC C4-prime finding.
+Preserve original measurements; temporary template orientation is not an
+independently assigned absolute CIP or complete-molecule verdict.
+
+Build C49 with both controls; run exact C48 with `--component DP
+--source-constructor-trace-audit-only`. The new
+`cif-native-chiral-boundary-observation-v1` module compares separate fresh
+unobserved/observed native constructors. Pin all original inputs/APIs and
+C48's ChiralClass/CCTBXMixins sources. Observe outer/local Chiralise,
+GenerateZMatrixClass, GetRestrainedParameters, TightenRestraints, Optimise,
+GetRSNotation and OptimiseCCTBX using process-local wrappers forwarding the
+original call once. Capture resolved arguments, scalar native R/S returns,
+available minimizer error fields, full parent snapshots, local order/index/
+coordinates and live parent-object-sharing flags. Restore class methods in
+finally and recheck installed sources. No optimizer kernels are instrumented.
+
+Recompute nesting/scope/budget, exact chemical continuity, finite states,
+shared-coordinate consistency, restoration and outer endpoints. Compare every
+ordered triple of four graph neighbors and their four-neighbor determinant to
+the declared source, retaining permissive both. Report preexisting findings,
+first observed reviewed boundaries and adjacent changes, not a unique causal
+step. Live object identity/forwarding remain pinned-worker evidence; offline
+JSON replay cannot independently prove Python object identity. Fresh-repeat
+endpoint equality and agreement with C48 are separate from stereochemistry;
+random state is not reset, and differences remain REVIEW. Limit six owned
+30 s workers and 256 observed calls each. Native trace evidence is pending.
+Source/generated charge/H, absolute stereo, 5PC plane and scientific
+qualification remain separate, without full generation or adoption.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

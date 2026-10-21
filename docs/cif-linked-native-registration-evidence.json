@@ -13952,7 +13952,7 @@
       "automatic_adoption": false
     },
     "artifact_boundary": "Code/tests/docs/hashes only in Git; native snapshots, raw pair lists/gradients, models/CIFs, runners and capsules remain outside Git.",
-    "next_action": "Build 48_Cedar with PDU and 5PC controls; run exact 47_Cedar_eq2g8v23 review ZIP with --component DP --source-constructor-backend-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Restart original source inputs, never failed temporary coordinates; at most three 60-second owned workers. No complete builder, numerical dictionary generation or scaffold adoption.",
+    "next_action": "Build 49_Cedar with PDU/5PC controls and run exact 48_Cedar_5u8wjea_ return using --component DP --source-constructor-trace-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Each component gets a fresh unobserved control and fresh observed constructor, at most six 30-second owned workers total; original source bytes and all old hand reviews stay preserved. No full builder, dictionary generation, scaffold change or adoption.",
     "returned_review": {
       "status": "VERIFIED_NATIVE_CACHE_AND_STRICT_RETRY_PASS",
       "name": "46_Cedar_g9lvlci6_cif_numerical_recovery_review.zip",
@@ -14700,7 +14700,7 @@
       "automatic_adoption": false
     },
     "artifact_boundary": "Code/tests/docs/hashes only in Git; all sources, native snapshots, logs, models, runners and returned capsules remain external.",
-    "next_action": "Build 48_Cedar with PDU and 5PC controls; run exact 47_Cedar_eq2g8v23 review ZIP with --component DP --source-constructor-backend-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Restart original source inputs, never failed temporary coordinates; at most three 60-second owned workers. No complete builder, numerical dictionary generation or scaffold adoption.",
+    "next_action": "Build 49_Cedar with PDU/5PC controls and run exact 48_Cedar_5u8wjea_ return using --component DP --source-constructor-trace-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Each component gets a fresh unobserved control and fresh observed constructor, at most six 30-second owned workers total; original source bytes and all old hand reviews stay preserved. No full builder, dictionary generation, scaffold change or adoption.",
     "returned_execution": {
       "received_date": "2026-10-21",
       "capsule": {
@@ -14780,7 +14780,7 @@
     }
   },
   "source_native_constructor_backend_2026_10_21": {
-    "status": "IMPLEMENTED_NATIVE_CCTBX_CONSTRUCTOR_RETRY_PENDING_MAC",
+    "status": "RETURNED_NATIVE_BACKEND_AND_COMPLETION_PASS_SOURCE_RELATIVE_HAND_REVIEW",
     "recorded_date": "2026-10-21",
     "delivery_prefix": "48_Cedar",
     "policy_id": "cif-native-chiral-cctbx-preparation-v1",
@@ -14874,7 +14874,7 @@
       },
       "actual_source_reference": "All three independently captured C47 Utilities snapshots reproduce the exact SetCCTBX(True) line 605 / Chiralise line 606 reference.",
       "actual_return_replay": "Exact C47 payload/build/source/output gates, all three old exceptions/qualifications and the complete earlier native prerequisite chain replay offline.",
-      "native": "Corrected native CCTBX handoff PENDING_USER_MAC. Local process tests use explicit fake APIs, not Phenix or native chemistry.",
+      "native": "RETURNED actual Phenix 2.2.1-6174: three native backend preparations and constructors complete, all gates pass except source-relative handedness. C49 boundary observation is pending; no full builder or chemistry approval.",
       "regression_scope": "37 new tests: six native-reference controls, eight explicit fake-worker cases, unchanged legacy default, eight backend qualification cases and 14 C47 replay boundaries.",
       "documentation": {
         "mirror_equality": "PASS",
@@ -14907,6 +14907,439 @@
       "Whole-scaffold integration, bounded geometry, refinement and human review remain separate. The requested eight-pair live test is still planned after building."
     ],
     "artifact_boundary": "Git contains code/tests/docs/hashes only. Private sources, snapshots, logs, models, runners and returned capsules remain external.",
-    "next_action": "Build 48_Cedar with PDU and 5PC controls; run exact 47_Cedar_eq2g8v23 review ZIP with --component DP --source-constructor-backend-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Restart original source inputs, never failed temporary coordinates; at most three 60-second owned workers. No complete builder, numerical dictionary generation or scaffold adoption."
+    "next_action": "Build 49_Cedar with PDU/5PC controls and run exact 48_Cedar_5u8wjea_ return using --component DP --source-constructor-trace-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Each component gets a fresh unobserved control and fresh observed constructor, at most six 30-second owned workers total; original source bytes and all old hand reviews stay preserved. No full builder, dictionary generation, scaffold change or adoption.",
+    "returned_execution": {
+      "received_date": "2026-10-21",
+      "capsule": {
+        "name": "48_Cedar_5u8wjea__cif_numerical_recovery_review.zip",
+        "sha256": "27836a06ebc51aa2fdbc0911d48ddafa921b6bb5cb9bc83133e494d84f76a08c",
+        "bytes": 52081582,
+        "verified_payloads": 2092,
+        "build_sha256": "95f048475918acd433e18304be332824bebcfe9d2aba2889b642a3890408aaa8",
+        "nasolve_commit": "bb5efb441fbc62d08bfdffc92e23889844262a88",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "b8ed1739b2ee418852d70ae05f4a01d8b069156fc134adb3454625e9be0b4f56",
+        "runtime_members": 132,
+        "runtime_archive_sha256": "dd979fe4be2ea78ef4eb354795230c0b4e21186d9418e297c28219b9915f9c30",
+        "unchanged_prior_payloads": 2036,
+        "prior_manifest": "BYTE_IDENTICAL"
+      },
+      "phenix_version": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "native_execution": "THREE_WORKERS_AND_CONSTRUCTORS_COMPLETED",
+      "backend": "All four preparation gates PASS in every component; False\u2192True flags and exact unchanged inventories/format before original construction.",
+      "backend_source": {
+        "path": "elbow/cctbx_api/CCTBXMixins.py",
+        "sha256": "219938312d5c9c8c0a3cc27b1a225ff9ecb71bec1c2128d39ebf70918f298f96",
+        "bytes": 37063
+      },
+      "cases": {
+        "5PC": {
+          "seconds": 0.821684,
+          "source_sha256": "c71018468c0817ef6398bb3ce690968f05d02b76a4fbba2f6094af3315f3cdf4",
+          "constructor_status": "COMPLETED",
+          "failed_checks": [
+            "source_handedness_preserved"
+          ],
+          "source_relative_handedness": [
+            {
+              "center": "C1'",
+              "constructor_volume": -1.9871798849145965,
+              "declared_target_matches_both": null,
+              "ordered_neighbors": [
+                "C2'",
+                "H1'",
+                "N1"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": false,
+              "source_volume": 1.748550135,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": null
+            },
+            {
+              "center": "C3'",
+              "constructor_volume": 1.6983731584413284,
+              "declared_target_matches_both": null,
+              "ordered_neighbors": [
+                "C2'",
+                "C4'",
+                "H3'"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": true,
+              "source_volume": 1.8880453099999999,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": null
+            },
+            {
+              "center": "C4'",
+              "constructor_volume": 0.08698285143242346,
+              "declared_target_matches_both": null,
+              "ordered_neighbors": [
+                "C3'",
+                "C5'",
+                "H4'"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": true,
+              "source_volume": 1.787416273,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": null
+            }
+          ],
+          "maximum_coordinate_shift_angstrom": 5.2701503937443785
+        },
+        "DP": {
+          "seconds": 1.984474,
+          "source_sha256": "071486fd8113788b4d1125126fa8167804a7c953dd27ccfb68e273058d94aed7",
+          "constructor_status": "COMPLETED",
+          "failed_checks": [
+            "source_handedness_preserved"
+          ],
+          "source_relative_handedness": [
+            {
+              "center": "P",
+              "constructor_volume": -2.9778588750000106,
+              "declared_target_matches_both": true,
+              "ordered_neighbors": [
+                "O5'",
+                "OP2",
+                "OP3"
+              ],
+              "requires_fixed_hand": false,
+              "source_hand_preserved": true,
+              "source_volume": -2.9778588750000106,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": "both"
+            },
+            {
+              "center": "C4'",
+              "constructor_volume": -0.28547358388425276,
+              "declared_target_matches_both": true,
+              "ordered_neighbors": [
+                "O4'",
+                "C3'",
+                "C5'"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": true,
+              "source_volume": -2.503594989000004,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": "negative"
+            },
+            {
+              "center": "C1'",
+              "constructor_volume": 0.5076194655278568,
+              "declared_target_matches_both": false,
+              "ordered_neighbors": [
+                "O4'",
+                "N9",
+                "C2'"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": false,
+              "source_volume": -2.373696206999996,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": "negative"
+            },
+            {
+              "center": "C3'",
+              "constructor_volume": 2.6361252392542562,
+              "declared_target_matches_both": true,
+              "ordered_neighbors": [
+                "O3'",
+                "C4'",
+                "C2'"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": true,
+              "source_volume": 2.6391494999999985,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": "positive"
+            }
+          ],
+          "maximum_coordinate_shift_angstrom": 63.72807488183556
+        },
+        "PDU": {
+          "seconds": 0.81721,
+          "source_sha256": "ac4d8854e0154d6a694d59473a8b47859b370df0c068f3929b6f2b1e5cba26b4",
+          "constructor_status": "COMPLETED",
+          "failed_checks": [
+            "source_handedness_preserved"
+          ],
+          "source_relative_handedness": [
+            {
+              "center": "C1'",
+              "constructor_volume": -1.9871798849145965,
+              "declared_target_matches_both": null,
+              "ordered_neighbors": [
+                "C2'",
+                "H1'",
+                "N1"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": false,
+              "source_volume": 1.86257745,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": null
+            },
+            {
+              "center": "C3'",
+              "constructor_volume": -1.6603582725497577,
+              "declared_target_matches_both": null,
+              "ordered_neighbors": [
+                "C2'",
+                "C4'",
+                "H3'"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": false,
+              "source_volume": 2.1037402519999997,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": null
+            },
+            {
+              "center": "C4'",
+              "constructor_volume": -0.0972995404765212,
+              "declared_target_matches_both": null,
+              "ordered_neighbors": [
+                "C3'",
+                "C5'",
+                "H4'"
+              ],
+              "requires_fixed_hand": true,
+              "source_hand_preserved": false,
+              "source_volume": 1.898490617,
+              "valid_declared_tetrahedron": true,
+              "volume_sign": null
+            }
+          ],
+          "maximum_coordinate_shift_angstrom": 4.646285349724486
+        }
+      },
+      "all_other_handoff_gates": "PASS; ONLY source_handedness_preserved FAILS",
+      "original_failed_centres": {
+        "DP": [
+          "C1'"
+        ],
+        "PDU": [
+          "C1'",
+          "C3'",
+          "C4'"
+        ],
+        "5PC": [
+          "C1'"
+        ]
+      },
+      "independent_all_basis_assessment": {
+        "scope": "Offline source-relative checks on all four triples of four graph neighbors and the four-neighbor determinant, using the returned endpoints. No constructor or optimizer is executed.",
+        "centres": {
+          "DP": {
+            "C1'": {
+              "preserved_triple_bases": 0,
+              "four_neighbor_hand_preserved": false
+            },
+            "C3'": {
+              "preserved_triple_bases": 4,
+              "four_neighbor_hand_preserved": true
+            },
+            "C4'": {
+              "preserved_triple_bases": 2,
+              "four_neighbor_hand_preserved": false
+            },
+            "P": {
+              "preserved_triple_bases": 4,
+              "four_neighbor_hand_preserved": true,
+              "source_sign": "both; permissive"
+            }
+          },
+          "PDU": {
+            "C1'": {
+              "preserved_triple_bases": 0,
+              "four_neighbor_hand_preserved": false
+            },
+            "C3'": {
+              "preserved_triple_bases": 0,
+              "four_neighbor_hand_preserved": false
+            },
+            "C4'": {
+              "preserved_triple_bases": 1,
+              "four_neighbor_hand_preserved": false
+            }
+          },
+          "5PC": {
+            "C1'": {
+              "preserved_triple_bases": 0,
+              "four_neighbor_hand_preserved": false
+            },
+            "C3'": {
+              "preserved_triple_bases": 4,
+              "four_neighbor_hand_preserved": true
+            },
+            "C4'": {
+              "preserved_triple_bases": 3,
+              "four_neighbor_hand_preserved": true
+            }
+          }
+        },
+        "interpretation": "DP C4-prime adds a four-neighbor orientation review despite the old selected triple passing. 5PC C4-prime has one reversed triple with preserved four-neighbor orientation. These are temporary coordinate findings, not independent absolute CIP or a final molecular configuration verdict."
+      },
+      "offline_replay": "All 2092 manifest payloads, clean published build/runner, original sources, workers, API/backend snapshots and outputs verify. Maintained qualification reproduces all three reports; the complete earlier cache/mechanics/rotation/reader/charge chain survives.",
+      "remaining_uncertainty": "Saved before/after states do not locate the first native stage, distinguish overlapping template effects, or establish a causal native defect. Local construction is not a complete builder or assembled model.",
+      "dictionary_generation": "NOT_RUN",
+      "whole_molecule_optimization": "NOT_REQUESTED",
+      "model_editing": "NOT_RUN",
+      "absolute_cip_assignment": "NOT_RUN",
+      "automatic_adoption": false
+    }
+  },
+  "source_native_constructor_trace_2026_10_21": {
+    "status": "IMPLEMENTED_NATIVE_LOCAL_CHIRAL_BOUNDARY_OBSERVATION_PENDING_MAC",
+    "recorded_date": "2026-10-21",
+    "delivery_prefix": "49_Cedar",
+    "policy_id": "cif-native-chiral-boundary-observation-v1",
+    "module": "src/nasolve/cif_constructor_trace.py",
+    "worker_owner": "src/nasolve/cif_source_constructor.py",
+    "builder": "scripts/build_cif_numerical_recovery_probe.py",
+    "template": "scripts/cif_numerical_recovery_probe_template.py",
+    "runner_filename": "49_Cedar_probe_cif_constructor_trace.py",
+    "cli_action": "--source-constructor-trace-audit-only",
+    "review_input": {
+      "name": "48_Cedar_5u8wjea__cif_numerical_recovery_review.zip",
+      "sha256": "27836a06ebc51aa2fdbc0911d48ddafa921b6bb5cb9bc83133e494d84f76a08c",
+      "bytes": 52081582,
+      "verified_payloads": 2092,
+      "build_sha256": "95f048475918acd433e18304be332824bebcfe9d2aba2889b642a3890408aaa8",
+      "nasolve_commit": "bb5efb441fbc62d08bfdffc92e23889844262a88",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "runner_sha256": "b8ed1739b2ee418852d70ae05f4a01d8b069156fc134adb3454625e9be0b4f56",
+      "runtime_members": 132,
+      "runtime_archive_sha256": "dd979fe4be2ea78ef4eb354795230c0b4e21186d9418e297c28219b9915f9c30",
+      "unchanged_prior_payloads": 2036,
+      "prior_manifest": "BYTE_IDENTICAL"
+    },
+    "reason": "All C48 native constructors return, but source-relative hands disagree while labels/graph/charge remain intact. Locate first observed changes before a chemistry or native-code correction.",
+    "behavior": {
+      "prerequisite": "Require exact C48 ZIP/build/manifest, original worker/source bytes, API/backend captures, full outputs and all three reproduced qualifications. Preserve prior C47 exceptions, C46 proofs and the entire earlier source/mechanics/rotation chain. Never execute capsule Python or load pickles.",
+      "fresh_controls": "For each reviewed source, run one unobserved original constructor and a separate observed original constructor in fresh owned processes from identical consumer bytes. Native backend setup and constructor arguments remain fixed. Compare raw reading/charge/promotion/status and exact endpoints, including a separate descriptive C48 endpoint match. Do not reset random state; a repeat difference stays REVIEW and does not establish observer causality.",
+      "hooks": [
+        "TopologyMixins.Chiralise (outer call)",
+        "ChiralClass.GenerateZMatrixClass",
+        "ChiralClass.Chiralise",
+        "ChiralClass.GetRestrainedParameters",
+        "ChiralClass.TightenRestraints",
+        "ChiralClass.Optimise",
+        "ChiralClass.GetRSNotation",
+        "CCTBXMixins.OptimiseCCTBX"
+      ],
+      "observer": "Validate selected native original function/module origins and pinned source hashes before installing process-local wrappers. Forward original positional/keyword arguments exactly once, retain resolved defaults, native scalar R/S returns and available native minimizer error flags without inferring convergence. Record a nested enter/exit ledger, complete parent inventory, local atom order/index/coordinates and live parent-object-sharing flags at each boundary. Restore original class methods in finally and recheck sources.",
+      "replay": "Recompute nesting/scope/budget, forwarded-call claims, method restoration, finite complete snapshots, graph/charge/metadata continuity, shared-atom coordinate consistency and outer endpoints using maintained code. Live object identity and forwarding execution remain pinned-worker observations; JSON alone cannot independently prove Python alias identity.",
+      "geometry": "Select centers from source signed chirality and declared R/S, not component/atom allowlists. Compare all four ordered neighbor triples and the four-neighbor determinant to source coordinates. Retain permissive both and fixed sugar/R/S distinctions; proper rotations/translations pass. Report first observed reviewed boundaries, prior source findings and adjacent crossings separately. Do not infer a unique causal defect from nested boundary timing.",
+      "authority": "Keep original single-basis C48 findings and all existing graph/charge/stereo gates. Native labels/returns do not replace source geometry; no absolute CIP, targets, tolerances, source state, native chemistry policy or pairing/stacking authority changes."
+    },
+    "source_proofs": {
+      "existing": "Recheck all seven C48 constructor captures plus its CCTBXMixins backend source before each native action; retain C37/C34 pins.",
+      "hook_scope": "ChiralClass and CCTBXMixins must match the exact returned C48 selected-root source proofs; TopologyMixins remains pinned by the constructor capture. Missing/unsupported native hooks stop with explicit evidence, without fallback."
+    },
+    "limits": {
+      "max_components": 3,
+      "fresh_workers_per_component": 2,
+      "worker_timeout_seconds": 30,
+      "max_owned_workers": 6,
+      "total_timeout_budget_seconds": 180,
+      "max_observed_calls_per_constructor": 256,
+      "max_observed_boundaries": 512,
+      "process_groups": "Owned; terminate on timeout/interruption",
+      "optimizer_kernels": "NOT_INSTRUMENTED"
+    },
+    "schemas": {
+      "native": "Opt-in additive constructor_trace raw boundary ledger and trace_analysis replay. The unobserved worker body is unchanged; trace mode inserts only an observation around its original constructor invocation.",
+      "probe": "Add trace_policy_id, observer_control, native_internal_observation and per-case control_native/observer_comparison; prior_constructor_replay now also supports the exact completed C48 review.",
+      "compatibility": "Old default has no observer. C47/C48 inputs/actions retain separate exact gates and their original qualification semantics. No dependencies, production path, recipe, NAR table/release, installed-file edits or frozen-run changes."
+    },
+    "validation": {
+      "fail_before": {
+        "failed": 22,
+        "seconds": 0.36,
+        "reason": "All initial trace tests fail with the missing trace module."
+      },
+      "focused": {
+        "passed": 231,
+        "seconds": 14.9,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_constructor_trace.py tests/test_cedar49_delivery.py tests/test_cif_constructor_backend.py tests/test_cedar48_delivery.py tests/test_cif_source_constructor.py tests/test_cedar47_delivery.py tests/test_cif_source_reader.py tests/test_cif_declared_charge_control.py tests/test_cif_elbow_chirality.py tests/test_cif_stereochemistry_audit.py"
+      },
+      "full": {
+        "passed": 2717,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 220.22,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "bb5efb441fbc62d08bfdffc92e23889844262a88",
+          "working_tree_has_changes": true
+        },
+        "runner_sha256": "6ccf37f722ff334cc289e573497d2f728b65f02be1dc9103878c7671fd543bc5",
+        "clean_build_sources_removed_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_checkout_tracked_edit": "PRESERVED",
+        "runner_local_ignore": "PASS",
+        "input_payloads": 2092,
+        "runtime_members": 133,
+        "runtime_archive_sha256": "00c44ba4e4801e53d69ed132101b2c90ed24b254b3d7dbad0d78fee7216a66cc",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "cache_transition_proofs_recomputed": 48,
+        "recorded_pair_kernel_calls_verified": 3286,
+        "strict_derivative_directions_recomputed": 246,
+        "original_raw_reader_and_charge_reviews": "PRESERVED",
+        "source_consumer_bytes": "MATCH_PRIOR_DP_PDU; DECLARED_CCD_5PC",
+        "previous_constructor_reviews_recomputed": 3,
+        "backend_selection": "EXPLICIT_NATIVE_CCTBX; TRACE_PENDING_USER_MAC",
+        "constructor_native_execution": "PENDING_USER_MAC",
+        "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION"
+      },
+      "regression_scope": "42 new tests: ten component-generic all-basis controls, four owned explicit fake-API observer cases, ten trace-replay mutations, five fresh-repeat comparisons and thirteen exact C48 replay boundaries.",
+      "native": "PENDING_USER_MAC. Local worker tests use explicit fake APIs without Phenix physics. Actual C48 offline replay checks already returned evidence; it executes no new native constructor.",
+      "actual_source_checks": "All C48 source/worker/backend/output hashes and qualifications replay. Offline all-basis endpoint measurements retain original source geometry and all older findings.",
+      "documentation": {
+        "mirror_equality": "PASS",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 151,
+        "protected_source_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      }
+    },
+    "execution": {
+      "native_constructor_boundary_observation": "PENDING_MAC",
+      "dictionary_generation": "NOT_RUN",
+      "whole_builder_replay": "NOT_RUN",
+      "whole_molecule_optimization": "NOT_REQUESTED",
+      "model_editing": "NOT_RUN",
+      "absolute_cip_assignment": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "limitations": [
+      "Method entry/exit snapshots include nested operations and unobserved gaps; first observation does not prove a single native causal step.",
+      "A temporary local template endpoint is not a complete assembled molecule. Orientation comparisons do not independently assign absolute CIP.",
+      "Native random state is not controlled; fresh-repeat disagreement remains visible. Only exact agreement supports the scoped repeat comparison.",
+      "Optimizer kernels/stopping criteria are not independently qualified by this observer. Recorded return/error fields do not establish convergence.",
+      "Source/generated phosphate charge/H, omitted metadata, 5PC plane/angle and whole-scaffold qualification remain open. No generated endpoint is adopted.",
+      "The eight-pair ordinary live test remains planned after building, without changing the old recipe or introducing a merge gate."
+    ],
+    "artifact_boundary": "Only maintained code/tests/docs/hashes in Git. All private source snapshots, native logs, models, generated runners and returned capsules remain external.",
+    "next_action": "Build 49_Cedar with PDU/5PC controls and run exact 48_Cedar_5u8wjea_ return using --component DP --source-constructor-trace-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Each component gets a fresh unobserved control and fresh observed constructor, at most six 30-second owned workers total; original source bytes and all old hand reviews stay preserved. No full builder, dictionary generation, scaffold change or adoption."
   }
 }

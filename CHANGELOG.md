@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Observe local native chiral construction boundaries
+
+- Verify all 2,092 C48 payloads and replay three completed constructors. All
+  backend/chemical-inventory gates pass; source-relative sugar-hand reviews
+  remain. Independent all-basis checks add DP C4-prime and mixed-basis 5PC
+  C4-prime evidence without an absolute CIP or final-configuration claim.
+- Add opt-in C49 `--source-constructor-trace-audit-only` on exact C48. Compare
+  separate fresh unobserved/observed native constructors. Selected-source
+  process-local wrappers forward original calls once, capture nested boundaries,
+  full parent/local atom evidence and native returns/errors, then restore class
+  methods. Recompute trace integrity and all neighbor-basis orientations.
+- Preserve original warnings/inputs and native targets/arguments. Report first
+  observed boundaries without a causal-defect claim. Native randomness, repeat
+  disagreement, uninstrumented optimizer kernels and pending Mac trace evidence
+  remain explicit. Limit six owned 30 s workers and 256 observed calls each.
+  No dependency, installed-file, production recipe, NAR release, chemistry,
+  full-builder/dictionary, scaffold or adoption changes.
+
 ### Preserve the native chiral constructor backend prerequisite
 
 - Verify all 2,036 returned C47 payloads and reproduce all three recorded
@@ -21,7 +39,8 @@ entries are reconstructed from repository history.
   coordinates and format before the original constructor. Preserve all stereo
   gates, legacy defaults, prior failures and 60 s owned-worker bounds. Restart
   original source bytes; exception snapshots now retain after-format too.
-- This is a diagnostic setup correction. Corrected Mac construction is pending;
+- This is a diagnostic setup correction. Returned Mac construction completes;
+  source-relative handedness remains REVIEW;
   local fake-API tests and offline replay do not qualify native chemistry.
   No installed Phenix patch, dependency, full builder/dictionary generation,
   source-state choice, production recipe, NARestraints release or adoption.

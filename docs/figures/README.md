@@ -71,6 +71,10 @@ chiral-constructor handoff, with complete snapshots and source-relative stereo.
 Returned C47 records three constructor exceptions caused by omitted native
 backend preparation, without a chemical-failure or reader-switch claim. C48
 follows the installed reader CCTBX setup under exact unchanged-state checks,
-restarts original sources and preserves all failed evidence. Corrected native
-results are pending. Local chiral-template work may run internally; there is no
-full-builder, absolute-CIP or scientific-adoption arrow.
+restarts original sources and preserves all failed evidence. Returned
+C48 results complete all constructors/backend gates while retaining
+source-relative sugar-hand warnings. C49 observes selected native local method
+boundaries, compares fresh controls and all neighbor bases, preserves original
+calls/failures and restores methods. First observation does not establish a
+causal defect; native trace evidence is pending. Optimizer kernels remain
+uninstrumented, with no full-builder, absolute-CIP or adoption arrow.

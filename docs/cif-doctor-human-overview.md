@@ -1056,8 +1056,27 @@ native constructor and apply the existing hand/marker/graph/charge gates.
 Replay and preserve all C47 failures, and restart original source bytes rather
 than their partial temporary coordinates. This generic control changes no
 chemical targets and requires no installed Phenix patch. Corrected native
-construction remains pending; local internal optimization, full generation,
-absolute CIP and chemical/scientific approval remain separate.
+construction now completes in all three returned cases, with every backend and
+chemical-inventory gate passing. The source-relative hand warnings remain:
+DP/5PC C1-prime and PDU C1/C3/C4-prime. Stored labels survive while temporary
+coordinates disagree. All-neighbor analysis also exposes DP C4-prime and a
+mixed-basis 5PC C4-prime finding. These measurements neither assign absolute
+CIP independently nor qualify a complete molecule.
+
+C49 observes the local construction rather than choosing a chemistry fix from
+an endpoint. Separate fresh native runs compare an unobserved control with an
+observed constructor. Selected-source wrappers forward the original calls once
+and record complete parent state, local atom order/shared-object evidence,
+arguments, returns and exceptions at Z-matrix, local construction, restraint,
+CCTBX optimization, tightening and native R/S-return boundaries. They restore
+the original methods even on exception and retain existing source/hash checks.
+Maintained replay checks the nested ledger and all four neighbor triples plus
+the four-neighbor determinant, then identifies the first observed reviewed
+boundary. Nested timing alone does not establish a causal defect. Exact fresh
+repeat agreement is a separate observation; random state is not reset and
+differences remain visible. The six owned workers have 30 s caps; each trace
+has at most 256 calls. Native boundary evidence is pending. Optimizer kernels,
+full generation, absolute CIP and scientific approval remain separate.
 
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,

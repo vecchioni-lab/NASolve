@@ -688,8 +688,29 @@ coordinates and reader format across backend selection, then invoke original
 Chiralise. Four additional backend gates complement all existing stereo gates.
 Exception snapshots now also retain format. Old qualifications/defaults remain
 unchanged unless the new action is explicit. Each owned worker retains the
-60 s cap. Native internals may optimize local templates; corrected native
-construction remains pending, without full builder/generation/adoption.
+60 s cap. Returned C48 completes all three constructors and all backend,
+graph/charge/marker gates, retaining source-relative sugar-hand warnings. This
+is not a full builder/generation/adoption result.
+
+C49 verifies the exact C48 return and extends independent orientation checks
+to all four graph-neighbor triples plus the four-neighbor determinant. The
+saved DP C4-prime endpoint adds a review beyond the previously selected basis;
+5PC C4-prime has a mixed-basis finding with preserved four-neighbor orientation.
+Neither constitutes an independent absolute CIP or final-configuration verdict.
+For each original source, separate fresh unobserved and observed native workers
+use the same reader/charge/backend/constructor setup. Selected-source process-
+local wrappers record outer/local chiral construction, Z-matrix setup,
+restraint construction, CCTBX optimization, tightening and native R/S-return
+boundaries. Original arguments/returns are forwarded once; complete parent
+states, local atom order/index/shared-object evidence, exceptions and available
+minimizer error fields are retained. Class methods are restored in finally.
+Maintained replay checks nesting, fixed chemical fields and finite snapshots,
+then reports first observed orientation reviews and adjacent crossings. Native
+method boundaries are observed; optimizer kernels remain uninstrumented. Exact
+fresh endpoint agreement and old C48 comparison stay separate from science.
+Random state is not reset, so differences remain REVIEW. At most six 30 s owned
+workers and 256 observed calls per constructor are allowed. No target, chemistry,
+full-builder, scaffold or adoption changes; native trace evidence is pending.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

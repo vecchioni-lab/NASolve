@@ -875,27 +875,46 @@ The old false route gate reflects omitted after-format metadata on exceptions,
 not a demonstrated route change. Partial failed coordinates and failed DP/PDU
 hand gates remain recorded; none is an adopted or restart candidate.
 
-The diagnostic omitted native CCTBX backend selection. The captured installed
-reader explicitly calls `SetCCTBX(True)` immediately before `Chiralise`, while
-the promoted molecule defaults to False. **Cedar 48** follows that same native
-preparation policy, capturing selected method sources, flags and exact state
-before/after selection. Require unchanged atoms, charges, bonds, coordinates,
-markers and format before calling the original constructor. Recompute all C47
-failures and earlier prerequisites; restart byte-identical original sources.
-Record after-format on errors too. Existing stereochemistry gates stay fixed;
-local native template minimization may occur internally.
+The diagnostic omitted native CCTBX backend selection. C48 follows the captured
+native reader's `SetCCTBX(True)` prerequisite before original Chiralise.
 
-Build `48_Cedar_probe_cif_source_constructor_backend.py` with both controls and
-run exact **47_Cedar_eq2g8v23** with `--component DP
---source-constructor-backend-audit-only`. Each of three owned workers retains
-its **60 s** cap. Corrected native construction is pending; no whole-molecule
-optimization, numerical dictionary generation, absolute CIP, chemical-state
-choice or scientific adoption is claimed. See
-`source_native_constructor_backend_2026_10_21` in the existing machine ledger.
-Software checks pass **222 focused / 2,675 full tests**, two skips and 276
-subtests. Actual C47 replay passes after build deletion and relocation, with
-poisoned imports and aliased temporary roots. These verify software/transport;
-corrected native chemistry remains pending.
+**Cedar 48 returned and verified (2026-10-21): backend/completion PASS,
+source-relative handedness REVIEW.** All **2,092 payloads**, clean published
+`bb5efb44…` build, runner `b8ed1739…`, 132 runtime members and unchanged C47
+payloads/manifest verify. Phenix **2.2.1-6174** constructors complete in
+**1.984474 / 0.817210 / 0.821684 s** for DP/PDU/5PC. All four backend gates and
+every graph/charge/promotion/marker/route gate pass. Only source-relative
+handedness fails: **DP C1-prime; PDU C1/C3/C4-prime; 5PC C1-prime**. Original
+sources/labels remain intact; these temporary coordinate results are unadopted.
+
+An independent offline comparison of all four neighbor triples and the four-
+neighbor determinant adds a **DP C4-prime** orientation review that the old
+selected basis passes. **5PC C4-prime** preserves four-neighbor orientation
+while one triple reverses. Keep both measures; neither independently assigns
+absolute CIP or proves a final molecular inversion. Saved endpoints do not
+locate the first native change or establish a causal implementation defect.
+
+**Cedar 49 — next native action:** compare a fresh unobserved constructor and
+a fresh observed constructor for each original DP/PDU/5PC source. Observe
+native outer/local construction, Z-matrix, restraint, CCTBX optimization,
+tightening and native R/S-return boundaries without changing arguments or
+kernels. Retain complete parent snapshots and local atom order/shared-object
+evidence, restore class methods on completion/exception, and replay the call
+ledger/all-basis geometry. Report first observed reviews rather than assigning
+causality. Fresh-repeat equality and the old C48 endpoint comparison remain
+separate; random state is not reset. No failed local endpoint is resumed.
+
+Build `49_Cedar_probe_cif_constructor_trace.py` with both controls; run exact
+**48_Cedar_5u8wjea_** using `--component DP
+--source-constructor-trace-audit-only`. At most **six owned workers × 30 s**;
+cap each observed constructor at **256 calls / 512 boundaries**. Native trace
+evidence is pending. No full builder, numerical dictionary generation,
+chemical-state choice, absolute CIP or adoption is requested. See
+`source_native_constructor_trace_2026_10_21` in the existing machine ledger.
+Software checks pass **231 focused / 2,717 full tests**, two skips and 276
+subtests. Actual C48 replay passes after build deletion and relocation, with
+poisoned imports, aliased temporary roots and preserved everyday edits. These
+checks remain distinct from the pending native boundary evidence.
 
 **Requested follow-on after building: a fresh eight-pair synthetic live run.**
 Preserve **K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and F:A** in one explicitly
