@@ -52,8 +52,9 @@ native deltas preserve the triple/linear terms and all unrelated fields. Native
 candidate comparisons pass in returned C44. C45 compares fixed-coordinate
 energy/gradient deltas and sampled derivatives. Its return passes arithmetic
 but retains two 5PC count reviews. C46 records native pair identities and zero-
-contribution proof before a separate strict retry; native cache proof remains
-pending. No count gate is waived and no optimization/adoption arrow is added.
+contribution proof before a separate strict retry; returned C46 passes all
+six cases and 48 independently replayed transitions. Chemical-state and scaffold
+review remain open. No count gate is waived or optimization/adoption arrow added.
 Cedar 40 captures the literal ReadySet implementation and
 bounded imports as text; its native accessor result does not claim ReadySet
 execution or a mapped-SMILES graph. Explicit scope and budget limits remain in

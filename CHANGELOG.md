@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record returned cache proof and the planned eight-pair live challenge
+
+- Verify all 1,983 Cedar 46 payloads, the published build/runner and unchanged
+  prior capsule. Both installed Phenix 2.2.1-6174 controls complete; all six
+  cache preflights and strict numerical cases pass. Independently recompute
+  48 raw pair-transition proofs and 246 strict derivative directions. Changed
+  pairs have exactly zero energy/force; old count failures remain preserved.
+- Record the requested post-build K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and
+  F:A integration test, retaining Q=S6G, F=DF and reviewed B:S=IGU:IMC.
+  Its complete annotated sequence/site map is not yet staged; the earlier
+  six-pair recipe and runs stay unchanged. Preserve NARestraints authority,
+  donor observations/Free-R, separate chemistry/geometry gates and the pinned
+  single-block `&&` delivery style.
+- Documentation/evidence/figure only: no runtime behavior, dependency,
+  dictionary/model, recipe default, optimization, NAR release or adoption change.
+
 ### Prove native neighbour-cache changes before strict numerical retry
 
 - Verify all 1,910 Cedar 45 payloads and the published runner. Both native jobs

@@ -843,26 +843,45 @@ repeated energies and all gradient components are exactly unchanged. The old
 count/combined-derivative failures remain preserved. Pair identities and changed
 contributions were not captured; cache behavior is an inference pending proof.
 
-**Cedar 46 prepared:** record actual native pair lists without rebuilding them,
-with two full/family cycles at each saved coordinate case. Individual pair sums
-must match native container values; all common parameters/contributions stay
-fixed, and changed pairs must have exactly zero residual and six zero gradient
-components. Settled full/nonbonded and original/candidate memberships must agree.
-A failed proof blocks retry. Otherwise rerun the unchanged strict C45 routine
-with exact repeated counts and old tolerances, additionally tracking pair
-identities/function parameters. Preserve all original failures and installed
-source/input/static signatures; capture installed cache source text. Support
-prolsq simple identity-symmetry pairs only. Bound each control to 2,000 manager
-energy calls plus 5,000 pair kernels/180 s. No generator, optimizer, state
-selection, model/scaffold change or adoption. Native proof awaits Mac.
+**Cedar 46 returned and independently reviewed (2026-10-21):** all **1,983
+payloads**, the clean `e5e79cc8…` published build, runner `89bff37e…` and 131
+runtime members verify. All 1,910 prior payloads and their manifest are unchanged.
+Both Phenix **2.2.1-6174** jobs complete, in **2.943343 s / 1.587708 s** for
+5PC/PDU, with **1,716/2,000** manager calls each and **1,758/1,528** pair kernels.
+All six cache preflights and strict numerical cases PASS. Independent replay
+recomputes **48 transition proofs**, the 3,286-call pair-kernel budget and
+**246 strict derivative directions**, without executing captured code. Four
+added 5PC pairs (71→75) and three removed pairs (70→67) each contribute exactly zero residual and all
+six gradient components exactly zero; common contributions and native sums
+remain fixed. The settled memberships pass the original count/tolerance gates.
+The pinned worker reports continuous perturbed membership PASS; those raw
+perturbed lists are not stored for independent offline identity replay.
 
-**Current action:** build with --delivery-prefix 46_Cedar --component-control PDU
---component-control 5PC, then run the exact Cedar 45 ZIP with --component DP
---nonbonded-cache-audit-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
-Return console/review ZIP. DP remains preserved; PDU/5PC are isolated controls.
-Expect scientific REVIEW. Charge/stereo/plane/full-scaffold findings stay open.
-Preserve the everyday checkout and all
-earlier evidence. The ignored branch-artifact destination and merge-time
+This closes the fixed-coordinate cache question for these controls. Preserve
+the earlier C45 count reviews. Charge/protonation (source 0 versus generated
+−2 and missing HOP2/HOP3), omitted R/S metadata/absolute CIP, 5PC plane/angle
+findings and ordinary whole-scaffold integration remain separate work. No
+optimizer, source dictionary, coordinate model, chemical state, production
+default or scientific adoption changes. Repeating the unchanged audit is not
+the next action.
+
+**Requested follow-on after building: a fresh eight-pair synthetic live run.**
+Preserve **K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and F:A** in one explicitly
+declared target. `Q` resolves to **S6G**, `F` to **DF**; the existing reviewed
+B:S family is **IGU:IMC**, without adding a general S alias. Prepare a complete
+annotated sequence and nonconflicting chain/site map when staging the run;
+the pair list alone is not an executable sequence. Preserve the old six-pair
+recipe/runs. Use a fresh donor-data test directory, explicit termini and source
+hashes, NARestraints-owned pairing/stacking, preserved Free-R and disabled
+synthetic AutoSol. Check ordinary construction/linkage, effective triple-bond
+terms, chemical-state/stereo/plane findings, numerical/geometry/refinement
+evidence and human model/map review separately. This is planned and not run.
+The [sequence contract](sequence-family-targets.md#planned-eight-pair-synthetic-live-test)
+and machine evidence entry `post_build_mixed_sequence_live_test_2026_10_21` own
+the exact requested coverage. The next live delivery retains the single pinned
+fetch/worktree/build/run block joined by `&&`.
+
+Preserve the everyday checkout and all earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model
 result, policy guess or refinement is adopted. Private source snapshots, logs,
 capsules, generated candidates and runners stay outside Git.

@@ -145,8 +145,11 @@ gradients at identical saved coordinates and samples candidate derivatives.
 Returned C45 passes all derivative arithmetic and omitted-term deltas; two 5PC
 cases retain changing nonbonded-count reviews. C46 records native pair identities
 and contributions, requiring zero changed-pair energy/gradient before a separate
-settled-cache retry of the same strict checks. No optimizer, chemical-state
-selection, scaffold change or adoption occurs. Equivalent operational mapping aliases now compile once while
+settled-cache retry of the same strict checks. Returned C46 verifies all
+1,983 payloads: every changed pair contributes exactly zero and all six strict
+numerical cases pass. Chemical-state and whole-scaffold qualification remain
+open; no optimizer, state selection, scaffold change or adoption occurs.
+Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.
 NARestraints policy and production defaults stay fixed; geometry, convergence

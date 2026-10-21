@@ -649,8 +649,14 @@ count/tolerance requirements and additionally monitoring pair identities and
 function parameters through all evaluations. Support explicit prolsq simple
 identity-symmetry pairs only. Capture installed cache source text and preserve
 all pinned source/input/static signatures. Bound each control to 2,000 manager
-energy calls plus 5,000 pair kernels/180 s. Native cache proof awaits Mac; no
-new dictionary/model, generator, optimizer, state selection or adoption runs.
+energy calls plus 5,000 pair kernels/180 s. Returned C46 passes all six
+cache preflights and strict cases. The 48 raw transition proofs independently
+recompute: the four added and three removed 5PC pair identities each have
+exactly zero residual/gradient, with unchanged common pairs and native sums.
+All 246 strict derivative directions replay. The pinned worker reports stable
+identities through temporary perturbations; raw perturbed lists are not stored
+for independent offline replay. No dictionary/model, generator, optimizer,
+state selection or adoption runs. Chemical-state and scaffold review remain open.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

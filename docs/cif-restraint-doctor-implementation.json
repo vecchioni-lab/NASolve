@@ -9884,7 +9884,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#linear_axis_torsion_numerical_impact_2026_10_21"
     },
     "nonbonded_cache_proof_2026_10_21": {
-      "status": "IMPLEMENTED_NATIVE_CACHE_PROOF_AND_STRICT_RETRY_PENDING",
+      "status": "RETURNED_NATIVE_CACHE_PROOF_AND_STRICT_NUMERICAL_RETRY_PASS",
       "recorded_date": "2026-10-21",
       "delivery_prefix": "46_Cedar",
       "policy_id": "cif-native-nonbonded-cache-proof-v1",
@@ -9944,7 +9944,8 @@
             "purpose": "Binding signatures only; installed source captured in next native job."
           }
         ],
-        "manager_source_caution": "Public manager source differs from installed hash 0682c958...; it is API context, not proof of the installed count mechanism."
+        "manager_source_caution": "Public manager source differs from installed hash 0682c958...; it is API context, not proof of the installed count mechanism.",
+        "installed_cache_source_result": "Installed manager.py 0682c958... and energies.py 7b9472ea... plus nonbonded.h and nonbonded_bpl.cpp are captured and hash-verified. Manager pair_proxies rebuilds when diagnostic bond/nonbonded flags change or displacement exceeds its effective buffer; recorded cache updates and cutoff/buffer values accompany the exact-zero pair proof."
       },
       "schemas": {
         "probe": "Existing linear_torsion_impact_audit schema1 with explicit cache_policy_id",
@@ -9996,7 +9997,7 @@
           "native_cache_proof_strict_retry": "PENDING_USER_MAC",
           "generation_optimization_adoption": "NOT_RUN"
         },
-        "native": "PENDING_USER_MAC. Independent pair/quadratic oracles and explicitly fake installed APIs test the proof and worker control flow; saved replay does not establish actual changed-pair identities or zero contributions.",
+        "native": "RETURNED_USER_MAC: Phenix 2.2.1-6174 (dispatcher 2.2.1) completes both controls, at 1716/2000 manager calls each and 1758/1528 pair kernels for 5PC/PDU. All six cache preflights and strict numerical cases pass; 48 transition proofs and 246 strict derivative directions independently replay. All changed pairs have exactly zero residual and all six gradient components exactly zero. No old gate or tolerance is waived.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -10009,12 +10010,42 @@
           "deterministic_svg_and_xml": "PASS",
           "raster_visual_review": "PASS"
         },
-        "regression_scope": "38 new tests: 20 pair-proof/orchestration/native-worker, six raw-impact replay and 12 returned-boundary cases; 15 demonstrated fail-before."
+        "regression_scope": "38 new tests: 20 pair-proof/orchestration/native-worker, six raw-impact replay and 12 returned-boundary cases; 15 demonstrated fail-before.",
+        "returned_evidence": {
+          "verified_payloads": 1983,
+          "unchanged_prior_payloads": 1910,
+          "unchanged_prior_manifest": true,
+          "published_runner_and_runtime": "EXACT_MATCH",
+          "raw_preflight_transition_proofs_recomputed": 48,
+          "strict_manager_calls_recomputed": 3240,
+          "strict_derivative_directions_recomputed": 246,
+          "preflight_manager_calls": 192,
+          "captured_code_execution": "NOT_RUN",
+          "continuous_perturbed_membership": "Pinned native worker reports PASS; raw perturbed pair identities are not stored, so offline replay does not independently recalculate those lists.",
+          "recorded_pair_kernel_calls_verified": 3286
+        },
+        "returned_documentation": {
+          "exact_machine_mirrors": "PASS",
+          "relative_links_checked": 155,
+          "planned_pair_resolutions": 8,
+          "deterministic_svg_and_xml": "PASS",
+          "figure_raster_review": "PASS",
+          "runtime_sources_and_protected_hashes": "UNCHANGED",
+          "full_suite": {
+            "passed": 2565,
+            "skipped": 2,
+            "subtests": 276,
+            "seconds": 213.27,
+            "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q",
+            "scope": "Documentation/evidence/figure-only return update; no new native execution on Linux."
+          }
+        }
       },
       "limitations": [
         "C45 arithmetic agreement is separate from raw count/membership qualification; no old failed gate is erased.",
         "A settled-cache pass remains sampled numerical evidence, not geometry convergence, historical causation or chemical/scientific approval.",
-        "Phosphate 0\u2192\u22122/HOP2/HOP3 changes, omitted R/S metadata, 5PC plane review and whole-scaffold qualification stay open."
+        "Phosphate 0\u2192\u22122/HOP2/HOP3 changes, omitted R/S metadata, 5PC plane review and whole-scaffold qualification stay open.",
+        "The native cache proof closes this fixed-coordinate count question; source/generated phosphate 0\u2192\u22122 and HOP2/HOP3 differences, absent R/S labels, absolute CIP, 5PC plane/angle review and whole-scaffold qualification remain separate."
       ],
       "execution": {
         "generator": "NOT_RUN",
@@ -10026,8 +10057,608 @@
         "automatic_adoption": false
       },
       "artifact_boundary": "Code/tests/docs/hashes only in Git; native snapshots, raw pair lists/gradients, models/CIFs, runners and capsules remain outside Git.",
-      "next_action": "Build Cedar 46 with --delivery-prefix 46_Cedar --component-control PDU --component-control 5PC. Run exact C45 ZIP with --component DP --nonbonded-cache-audit-only under Phenix 2.2.1-6174. Bound each control to 2000 manager evaluations plus 5000 pair kernels/180 s. Prove zero-contribution cache changes before unchanged strict retry; no optimizer or adoption.",
+      "next_action": "The fixed-coordinate cache question is closed for these controls. Continue chemical-state/plane and ordinary-pipeline integration work; then stage the separately requested eight-pair synthetic live test with an explicit reviewed sequence/site map. No repeat of this unchanged audit or automatic adoption is requested.",
+      "returned_review": {
+        "status": "VERIFIED_NATIVE_CACHE_AND_STRICT_RETRY_PASS",
+        "name": "46_Cedar_g9lvlci6_cif_numerical_recovery_review.zip",
+        "sha256": "4900b032e1e0fa2af30e7260bc0974511755afd97eb9643b24bf6f5ac58c3637",
+        "bytes": 50960157,
+        "verified_payloads": 1983,
+        "unchanged_prior_payloads": 1910,
+        "unchanged_prior_manifest": true,
+        "build_sha256": "65ce32505f80abfe115184fdf1f8724e1d39cb2dd2844e47f8bfc2aa64c2d04e",
+        "runner_sha256": "89bff37eb07fa7bfb1d824db4641ba3ce275891b80b9dd526f8ea378ae1717b8",
+        "runtime_members": 131,
+        "captured_code_execution": "NOT_RUN",
+        "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1",
+        "raw_perturbed_pair_identities": "NOT_STORED; continuous membership gate is a pinned native-worker result, not an independent offline pair-list replay.",
+        "nasolve_commit": "e5e79cc8e4d5c0e6017938d30709913eb8153b9d",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runtime_archive_sha256": "34cf57331e709dc39daeca4ac28cb2e7f23bc969686d6a127812c9d81175c5c8",
+        "cases": {
+          "5PC": {
+            "execution": {
+              "elapsed_seconds": 2.943343,
+              "returncode": 0,
+              "status": "COMPLETED",
+              "timeout_seconds": 180
+            },
+            "native_prefix": "linear_torsion_impact/5PC/cif-linear-torsion-impact-j8vbc22s",
+            "manager_signatures": {
+              "candidate": "e898cbf7e0b1d970cf01984a2fc010b3315147f6c41c4da5607d40d002339e10",
+              "original": "a0214c65a471f51632053103a26ce4ea17a5ac91c261c98f61ee7eaf6ade9f35"
+            },
+            "installed_cache_sources": [
+              {
+                "bytes": 88947,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/manager.py",
+                "path": "installed_source/manager.py",
+                "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39",
+                "status": "RECORDED"
+              },
+              {
+                "bytes": 23176,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/energies.py",
+                "path": "installed_source/energies.py",
+                "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f",
+                "status": "RECORDED"
+              },
+              {
+                "bytes": 29326,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/nonbonded.h",
+                "path": "installed_source/nonbonded.h",
+                "sha256": "3c8d39e25f072a25bbae359e83bfe8ee9c304e2149659ed0caf0985286a7d061",
+                "status": "RECORDED"
+              },
+              {
+                "bytes": 13194,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/nonbonded_bpl.cpp",
+                "path": "installed_source/nonbonded_bpl.cpp",
+                "sha256": "b4c3f4d0da6d5211dce0340bcade4d41e36dcce7722f186a3f4a6aa47aaa8949",
+                "status": "RECORDED"
+              }
+            ],
+            "evaluation_calls": 1716,
+            "pair_kernel_calls": 1758,
+            "preflight_transitions_recomputed": 24,
+            "strict_calls_recomputed": 1620,
+            "cases": {
+              "generated_dictionary_full_precision": {
+                "cache_preflight": "PASS",
+                "strict_numerical_checks": "PASS",
+                "arithmetic_replay": {
+                  "failed_checks": [],
+                  "arithmetic_directions_pass": {
+                    "all": 20,
+                    "dihedral": 21
+                  }
+                },
+                "full_gradient_norms": {
+                  "original": 578161.2136621925,
+                  "candidate": 1363.3701376700803
+                },
+                "settled_nonbonded_count": 75,
+                "changed_pair_transitions": {
+                  "original_first_full_to_nonbonded": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [
+                      [
+                        1,
+                        13
+                      ],
+                      [
+                        6,
+                        17
+                      ],
+                      [
+                        13,
+                        16
+                      ],
+                      [
+                        14,
+                        22
+                      ]
+                    ],
+                    "removed_pairs": [],
+                    "before_count": 71,
+                    "after_count": 75,
+                    "automatic_adoption": false
+                  },
+                  "original_full_repeat": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [
+                      [
+                        1,
+                        13
+                      ],
+                      [
+                        6,
+                        17
+                      ],
+                      [
+                        13,
+                        16
+                      ],
+                      [
+                        14,
+                        22
+                      ]
+                    ],
+                    "removed_pairs": [],
+                    "before_count": 71,
+                    "after_count": 75,
+                    "automatic_adoption": false
+                  },
+                  "candidate_first_full_to_nonbonded": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [
+                      [
+                        1,
+                        13
+                      ],
+                      [
+                        6,
+                        17
+                      ],
+                      [
+                        13,
+                        16
+                      ],
+                      [
+                        14,
+                        22
+                      ]
+                    ],
+                    "removed_pairs": [],
+                    "before_count": 71,
+                    "after_count": 75,
+                    "automatic_adoption": false
+                  },
+                  "candidate_full_repeat": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [
+                      [
+                        1,
+                        13
+                      ],
+                      [
+                        6,
+                        17
+                      ],
+                      [
+                        13,
+                        16
+                      ],
+                      [
+                        14,
+                        22
+                      ]
+                    ],
+                    "removed_pairs": [],
+                    "before_count": 71,
+                    "after_count": 75,
+                    "automatic_adoption": false
+                  }
+                },
+                "all_eight_transition_proofs": "PASS"
+              },
+              "generated_dictionary_pdb_rounded": {
+                "cache_preflight": "PASS",
+                "strict_numerical_checks": "PASS",
+                "arithmetic_replay": {
+                  "failed_checks": [],
+                  "arithmetic_directions_pass": {
+                    "all": 20,
+                    "dihedral": 21
+                  }
+                },
+                "full_gradient_norms": {
+                  "original": 48995.109565419334,
+                  "candidate": 1362.041052671536
+                },
+                "settled_nonbonded_count": 75,
+                "changed_pair_transitions": {},
+                "all_eight_transition_proofs": "PASS"
+              },
+              "source_seed_native": {
+                "cache_preflight": "PASS",
+                "strict_numerical_checks": "PASS",
+                "arithmetic_replay": {
+                  "failed_checks": [],
+                  "arithmetic_directions_pass": {
+                    "all": 20,
+                    "dihedral": 21
+                  }
+                },
+                "full_gradient_norms": {
+                  "original": 3389.980096407468,
+                  "candidate": 3351.4189796796086
+                },
+                "settled_nonbonded_count": 67,
+                "changed_pair_transitions": {
+                  "original_first_full_to_nonbonded": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [],
+                    "removed_pairs": [
+                      [
+                        3,
+                        8
+                      ],
+                      [
+                        3,
+                        17
+                      ],
+                      [
+                        10,
+                        18
+                      ]
+                    ],
+                    "before_count": 70,
+                    "after_count": 67,
+                    "automatic_adoption": false
+                  },
+                  "original_full_repeat": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [],
+                    "removed_pairs": [
+                      [
+                        3,
+                        8
+                      ],
+                      [
+                        3,
+                        17
+                      ],
+                      [
+                        10,
+                        18
+                      ]
+                    ],
+                    "before_count": 70,
+                    "after_count": 67,
+                    "automatic_adoption": false
+                  },
+                  "candidate_first_full_to_nonbonded": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [],
+                    "removed_pairs": [
+                      [
+                        3,
+                        8
+                      ],
+                      [
+                        3,
+                        17
+                      ],
+                      [
+                        10,
+                        18
+                      ]
+                    ],
+                    "before_count": 70,
+                    "after_count": 67,
+                    "automatic_adoption": false
+                  },
+                  "candidate_full_repeat": {
+                    "policy_id": "cif-native-nonbonded-cache-proof-v1",
+                    "checks": {
+                      "before_single_container_sum": true,
+                      "after_single_container_sum": true,
+                      "common_pairs_unchanged": true,
+                      "changed_pairs_exactly_zero": true,
+                      "function_unchanged": true,
+                      "nonbonded_target_unchanged": true,
+                      "nonbonded_gradient_unchanged": true
+                    },
+                    "checks_pass": true,
+                    "added_pairs": [],
+                    "removed_pairs": [
+                      [
+                        3,
+                        8
+                      ],
+                      [
+                        3,
+                        17
+                      ],
+                      [
+                        10,
+                        18
+                      ]
+                    ],
+                    "before_count": 70,
+                    "after_count": 67,
+                    "automatic_adoption": false
+                  }
+                },
+                "all_eight_transition_proofs": "PASS"
+              }
+            },
+            "recorded_pair_kernel_calls_verified": 1758
+          },
+          "PDU": {
+            "execution": {
+              "elapsed_seconds": 1.587708,
+              "returncode": 0,
+              "status": "COMPLETED",
+              "timeout_seconds": 180
+            },
+            "native_prefix": "linear_torsion_impact/PDU/cif-linear-torsion-impact-lpbwbgcw",
+            "manager_signatures": {
+              "candidate": "a5803f91803dcc1e5d841e3eda95530009a917e2919c69490c47e32471725c4a",
+              "original": "bb4319fbdd8fa611627075561ba407a302873a76da4bfed5f230cf8b086da31d"
+            },
+            "installed_cache_sources": [
+              {
+                "bytes": 88947,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/manager.py",
+                "path": "installed_source/manager.py",
+                "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39",
+                "status": "RECORDED"
+              },
+              {
+                "bytes": 23176,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/energies.py",
+                "path": "installed_source/energies.py",
+                "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f",
+                "status": "RECORDED"
+              },
+              {
+                "bytes": 29326,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/nonbonded.h",
+                "path": "installed_source/nonbonded.h",
+                "sha256": "3c8d39e25f072a25bbae359e83bfe8ee9c304e2149659ed0caf0985286a7d061",
+                "status": "RECORDED"
+              },
+              {
+                "bytes": 13194,
+                "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/nonbonded_bpl.cpp",
+                "path": "installed_source/nonbonded_bpl.cpp",
+                "sha256": "b4c3f4d0da6d5211dce0340bcade4d41e36dcce7722f186a3f4a6aa47aaa8949",
+                "status": "RECORDED"
+              }
+            ],
+            "evaluation_calls": 1716,
+            "pair_kernel_calls": 1528,
+            "preflight_transitions_recomputed": 24,
+            "strict_calls_recomputed": 1620,
+            "cases": {
+              "generated_dictionary_full_precision": {
+                "cache_preflight": "PASS",
+                "strict_numerical_checks": "PASS",
+                "arithmetic_replay": {
+                  "failed_checks": [],
+                  "arithmetic_directions_pass": {
+                    "all": 20,
+                    "dihedral": 21
+                  }
+                },
+                "full_gradient_norms": {
+                  "original": 60287.679479243394,
+                  "candidate": 1556.5078393729273
+                },
+                "settled_nonbonded_count": 63,
+                "changed_pair_transitions": {},
+                "all_eight_transition_proofs": "PASS"
+              },
+              "generated_dictionary_pdb_rounded": {
+                "cache_preflight": "PASS",
+                "strict_numerical_checks": "PASS",
+                "arithmetic_replay": {
+                  "failed_checks": [],
+                  "arithmetic_directions_pass": {
+                    "all": 20,
+                    "dihedral": 21
+                  }
+                },
+                "full_gradient_norms": {
+                  "original": 60837.07352977675,
+                  "candidate": 1552.8106832075648
+                },
+                "settled_nonbonded_count": 63,
+                "changed_pair_transitions": {},
+                "all_eight_transition_proofs": "PASS"
+              },
+              "source_seed_native": {
+                "cache_preflight": "PASS",
+                "strict_numerical_checks": "PASS",
+                "arithmetic_replay": {
+                  "failed_checks": [],
+                  "arithmetic_directions_pass": {
+                    "all": 20,
+                    "dihedral": 21
+                  }
+                },
+                "full_gradient_norms": {
+                  "original": 18471.06018174971,
+                  "candidate": 3854.949347229049
+                },
+                "settled_nonbonded_count": 62,
+                "changed_pair_transitions": {},
+                "all_eight_transition_proofs": "PASS"
+              }
+            },
+            "recorded_pair_kernel_calls_verified": 1528
+          }
+        }
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#nonbonded_cache_proof_2026_10_21"
+    },
+    "post_build_mixed_sequence_live_test_2026_10_21": {
+      "status": "REQUESTED_POST_BUILD_LIVE_TEST_NOT_STAGED",
+      "recorded_date": "2026-10-21",
+      "purpose": "A fresh ordinary NASolve software integration challenge containing all eight requested modified pair families, after the current construction/recovery work is ready.",
+      "requested_pairs": [
+        {
+          "requested": "KX",
+          "ordered_pair": "K:X",
+          "resolved_component_codes": [
+            "CGY",
+            "DX"
+          ],
+          "resolution_basis": "configured residue aliases"
+        },
+        {
+          "requested": "DT",
+          "ordered_pair": "D:T",
+          "resolved_component_codes": [
+            "1AP",
+            "DT"
+          ],
+          "resolution_basis": "configured residue aliases"
+        },
+        {
+          "requested": "ZP",
+          "ordered_pair": "Z:P",
+          "resolved_component_codes": [
+            "DZ",
+            "DP"
+          ],
+          "resolution_basis": "configured residue aliases"
+        },
+        {
+          "requested": "BS",
+          "ordered_pair": "B:S",
+          "resolved_component_codes": [
+            "IGU",
+            "IMC"
+          ],
+          "resolution_basis": "reviewed B:S family in src/nasolve/synthetic_dna.py; S is not a general residue alias"
+        },
+        {
+          "requested": "PDU:A",
+          "ordered_pair": "PDU:A",
+          "resolved_component_codes": [
+            "PDU",
+            "DA"
+          ],
+          "resolution_basis": "literal PDU plus configured A alias"
+        },
+        {
+          "requested": "5PC:G",
+          "ordered_pair": "5PC:G",
+          "resolved_component_codes": [
+            "5PC",
+            "DG"
+          ],
+          "resolution_basis": "literal 5PC plus configured G alias"
+        },
+        {
+          "requested": "5CM:Q",
+          "ordered_pair": "5CM:Q",
+          "resolved_component_codes": [
+            "5CM",
+            "S6G"
+          ],
+          "resolution_basis": "literal 5CM plus configured Q alias"
+        },
+        {
+          "requested": "F:A",
+          "ordered_pair": "F:A",
+          "resolved_component_codes": [
+            "DF",
+            "DA"
+          ],
+          "resolution_basis": "configured residue aliases"
+        }
+      ],
+      "sequence_and_site_map": "NOT_SELECTED; prepare a complete explicit annotated sequence and nonconflicting chain/residue pair map before launching. Pair-family notation is not an executable sequence.",
+      "existing_six_pair_recipe": "Preserve the earlier synthetic-dna-combined-w recipe and immutable runs; its six-pair coverage does not satisfy this new eight-pair request.",
+      "execution_status": {
+        "staging": "NOT_RUN",
+        "native_execution": "NOT_RUN",
+        "model_optimization": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "input_contract": {
+        "donor_observations": "Use a fresh test directory with explicitly selected/copied donor observations and preserved Free-R assignments; original data/runs stay unchanged.",
+        "chemistry_claim": "Synthetic target identities are software test hypotheses, not claims about donor diffraction chemistry or experimental pairing.",
+        "sequence": "Freeze exact literal component identities, chain/site map, terminal-phosphate policy, input paths/hashes and source/dictionary provenance.",
+        "policy_authority": "NARestraints owns declared pairing and stacking; disable competing Phenix guessed secondary-structure restraints.",
+        "autosol": "Disabled for this synthetic donor-data challenge; no anomalous chemistry is inferred from hypothetical modifications."
+      },
+      "acceptance_checks": [
+        "Exact requested identities at every declared site, with no silent canonical substitutions or alias truncation.",
+        "Ordinary MR/PostMR construction, internal backbone links, selected termini and preserved sugar/chirality conventions.",
+        "Exact declared NARestraints pairing and stacking membership, without competing guessed secondary-structure proxies.",
+        "PDU/5PC triple-bond distances and linear angles preserved in effective native dictionaries/proxies; graph-selected linear-axis torsion findings retained.",
+        "Dictionary/source/effective charge, protonation, stereochemistry and plane/angle findings tracked separately from execution completion.",
+        "Native numerical/stopping and achieved-geometry evidence, followed by refinement statistics and explicit human model/map review."
+      ],
+      "boundary": "Planned integration test, not a present capability or additional gate for otherwise complete changes. No new workbook release, default chemistry, prepared model or pipeline result is claimed.",
+      "next_action": "After current building is ready, stage and review the complete annotated sequence/site map and frozen sources, then deliver one pinned fetch/worktree/build/run block using the established && handoff.",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#post_build_mixed_sequence_live_test_2026_10_21"
     }
   },
   "audience": [

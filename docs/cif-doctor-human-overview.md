@@ -1015,8 +1015,16 @@ and repeated lists: every added/removed pair must contribute exactly zero, and
 shared pairs must keep the same parameters and contributions. Only after the
 full/nonbonded lists settle does a separate retry use the unchanged strict
 numerical checks, now also tracking pair identities and function parameters.
-Original failures remain visible; counts and tolerances are not waived. Native
-cache proof awaits Mac. No dictionary/model, state choice or optimizer changes.
+Original failures remain visible; counts and tolerances are not waived.
+Returned C46 passes all six preflights and strict numerical cases. The 48 raw
+pair-transition comparisons independently replay: each changed pair contributes
+exactly zero energy and force, and shared terms and native sums remain fixed.
+All 246 strict derivative directions agree. The pinned worker reports stable
+pair identities during temporary perturbations; those perturbed lists are not
+retained for independent offline replay. This closes the cache-count question
+at the tested coordinates. It does not settle charge/protonation, absolute
+stereochemistry, 5PC plane/angle findings or linked-scaffold geometry. No
+dictionary/model, state choice or optimizer changes.
 
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,

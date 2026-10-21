@@ -203,8 +203,11 @@ for actual behavior; history is evidence, not a second task queue.
   Returned C44 passes both native comparisons. C45 separately tests numerical
   deltas and candidate derivatives at the same saved coordinates. Returned C45
   passes the arithmetic but retains two 5PC count-change reviews. C46 proves
-  native pair/cache contributions before a separate strict retry; old failures
-  stay preserved. Chemical-state and plane findings remain open. Equivalent
+  native pair/cache contributions before a separate strict retry; returned C46
+  passes all six strict cases with exact-zero changed pairs. Old failures stay
+  preserved. Chemical-state and plane findings remain open. The requested
+  [eight-pair synthetic live test](sequence-family-targets.md#planned-eight-pair-synthetic-live-test)
+  is recorded for after current building, with its sequence/site map not yet staged. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

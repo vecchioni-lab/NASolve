@@ -258,3 +258,41 @@ AutoRefine continuation. That validation does not make the reference a default:
 a future versioned recipe may consider doing so explicitly. The metal-pair
 project, automatic cross-dataset model reuse, and geometry/topology-defined
 campaign families remain separate work.
+
+## Planned eight-pair synthetic live test
+
+The requested follow-on, **after current construction/recovery work is ready**,
+is one fresh ordinary NASolve run containing all eight ordered pair families:
+
+| Requested family | Explicit component identities |
+| --- | --- |
+| K:X | CGY:DX |
+| D:T | 1AP:DT |
+| Z:P | DZ:DP |
+| B:S | IGU:IMC (existing reviewed family mapping) |
+| PDU:A | PDU:DA |
+| 5PC:G | 5PC:DG |
+| 5CM:Q | 5CM:S6G |
+| F:A | DF:DA |
+
+This is a **planned integration test, not a staged sequence or native result**.
+The alias registry already maps Q to S6G and F to DF. B:S uses the earlier
+synthetic recipe's explicit IGU:IMC identities; it does not create a bare S
+alias. Preserve the earlier six-pair recipe and its immutable results. The
+complete annotated sequences, nonconflicting chain/residue pair map, scaffold,
+terminal-phosphate policy and frozen source hashes will be explicit at staging.
+
+Use a new test directory with selected donor observations and preserved Free-R.
+The hypothetical modifications are software test intent, not a claim about the
+donor crystal's chemistry. Keep synthetic AutoSol disabled. NARestraints owns
+declared pairing/stacking, with competing Phenix secondary-structure guesses
+disabled. Check exact identities, ordinary construction/backbone links,
+effective PDU/5PC triple/linear terms, chemical-state/stereochemical findings,
+numerical stopping and achieved geometry, then refinement and human model/map
+review. Completion of one layer does not certify another.
+
+The exact requested coverage and execution boundary are recorded under
+`post_build_mixed_sequence_live_test_2026_10_21` in the
+[native evidence ledger](cif-linked-native-registration-evidence.json), mirrored
+in the [implementation map](cif-restraint-doctor-implementation.json). Future
+live command passage retains the pinned Git delivery block joined by `&&`.

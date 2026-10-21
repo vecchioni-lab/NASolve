@@ -1866,10 +1866,20 @@ count/tolerance/delta/derivative gates, and additionally require stable pair
 identities and function parameters through every active evaluation. Preserve
 both static signatures, all six pinned numerical sources and selected-root
 adapters. Bound each control to 2,000 manager energy calls plus 5,000 single/
-container pair kernels and 180 s. Native pair proof and retry await Mac; explicit
-fake APIs and independent pair/quadratic oracles do not establish actual native
-changed-pair identities. No chemistry, restraint, model, optimizer, state choice,
-installed defaults, NARestraints policy or adoption changes.
+container pair kernels and 180 s. Returned C46 verifies all 1,983 payloads
+and passes both components in all three saved cases: 1,716 manager calls each,
+1,758 pair kernels for 5PC and 1,528 for PDU. Independent offline replay checks
+all 48 raw pair-transition proofs, 246 strict derivative directions and the
+exact prior capsule. Four added 5PC pairs and three removed pairs have exactly
+zero energy and six zero gradient components; shared pairs and native sums stay
+unchanged. Both static signatures and all installed/input hashes are preserved.
+The pinned worker reports stable membership throughout finite differences;
+raw perturbed pair lists are not stored for independent identity replay.
+Installed cache source now records the flag/displacement rebuild route and
+effective cutoff/buffer state. Historical C45 count failures remain preserved.
+Charge/H, stereo, plane/angle and scaffold findings stay open. No chemistry,
+restraint, model, optimizer, state choice, installed defaults, NARestraints policy
+or adoption changes.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
