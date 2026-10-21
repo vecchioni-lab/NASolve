@@ -753,6 +753,25 @@ native ATL construction or scaffold insertion. No NAR workbook/release edit,
 standard-DNA pucker replacement, recipe change or ninth live-pair addition.
 Native named-index evidence, full generation and scientific approval remain open.
 
+Returned C51 verifies all 2,395 payloads and six completed constructors. Fresh
+and previous endpoints match; nine empty named-key inventories expose an
+observer mismatch: RestraintClass stores coordinates under integer keys.
+C52 replays the failed observation and records integer entries, native link
+positions and named local atoms (unique_index takes precedence over index).
+Exact inventories, selected native method sources and returned vectors must
+agree. No native getter is called again and no array is reordered in native
+computation. Legacy findings remain. Native C52 evidence is pending.
+
+The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
+separates internal diagnostics from student workflow. The pure decision core
+excludes demonstrated unusable candidates, respects source authority and ranks
+only comparable fixed-objective endpoints. Nonconvergence and pucker changes
+are nonfatal notes; inversion is a candidate exclusion, triggering automatic
+fallback. PostMR includes an additive plain-language solution_report summary.
+Automatic acquisition/native qualification/adoption and the PDF renderer remain
+planned; the policy core is not yet an integrated recovery pipeline.
+
+
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and
 explicit C5-mod/C7-mod annotations do not select atoms. Equal operational records

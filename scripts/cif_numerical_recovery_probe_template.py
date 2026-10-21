@@ -559,6 +559,9 @@ CEDAR49_WORKER_SHA256='5c3795c0e77625e0743e20ddbedff66cf15f13f38313099b2546fe656
 CEDAR50_SHA256='8e62fcbb8040c8c348ce2d1f316091b73cdc9f301e50fc9ec5b6647a9a66b7d9'
 CEDAR50_BUILD_SHA256='f7b09e98c34e1d140a103661a8edcc91b517ab3d773fec95181ff15b3d7fd1f2'
 CEDAR50_WORKER_SHA256='3577659c40015d2e1906baece163360b217b9c11dbff8ed18b17ea48068cdc28'
+CEDAR51_SHA256='ee2e07a200d3bdfe2789f0523bba5f74d6af78fd4279dd8e5012c4590cf9627d'
+CEDAR51_BUILD_SHA256='1942d1e41d316eb508df6d14cc7c15b96c92ebb1e8a0b825c1fa960a1d70907e'
+CEDAR51_WORKER_SHA256='a18d5d3835467e7572a2ad4a79a28fe456412e1d380c9aef7ae27f5e2f715d70'
 CEDAR41_SHA256 = '7d24e6db59fa814ccd93099d9676f569047147fcb8ab154e05c4980d16a94bd3'
 CEDAR41_BUILD_SHA256 = '0b94d54d60f0153cc46a518507c36af947479da0275b6546a5f8ed50ea42d0aa'
 CEDAR41_WORKER_SHA256 = '9af880ed950dfb66388fa7af40dadc7a4530b88b4553e0b88c0f95b284b430e8'
@@ -588,7 +591,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -1612,10 +1615,42 @@ def _read_cedar46_members(members):
     return qualified,prior,rotation
 
 
-def _check_constructor_return(members,r,*,backend=False,trace=False,control=False,mapping=False):
+def _check_index_capture(members,n,p,spec):
+    """Replay C51's failed observation, including the selected producer sources."""
+    import ast
+    from nasolve.cif_constructor_index_basis import SOURCE_PATHS,POLICY_ID
+    t=n['result']['constructor_trace'];rows=n.get('index_sources',[])
+    if (len(rows)!=2 or {v['snapshot']['path'] for v in rows}!={'index_sources/'+v+'.txt' for v in SOURCE_PATHS}
+            or spec.get('index_sources')!=rows or t.get('index_sources')!=rows
+            or t.get('index_policy_id')!=POLICY_ID):raise ValueError('Prior index-source scope changed')
+    pins={}
+    for row in rows:
+        snapshot=row['snapshot'];data=members[p+'/'+snapshot['path']]
+        if (row.get('anchor')!='phenix_installation' or snapshot.get('anchor')!='constructor_directory'
+                or not _safe(row['path']) or not _safe(snapshot['path'])
+                or _sha(data)!=row['sha256'] or len(data)!=row['size']):raise ValueError('Prior index source changed')
+        pins[row['path']]=(row,ast.parse(data))
+    factories=t.get('index_method_sources',[])
+    if len(factories)!=1 or factories[0].get('method')!='geometry_manager.run':raise ValueError('Prior index factory changed')
+    parameters=[e.get('mapping',{}).get('index_basis',{}) for e in t['events']
+        if e.get('method')=='ChiralClass.GetRestrainedParameters' and e.get('phase')=='exit']
+    if len(parameters)!=3:raise ValueError('Prior index parameter scope changed')
+    methods=factories+[v.get('restraint_method',{}) for v in parameters]
+    for method in methods:
+        pin=pins.get(method.get('path'));parts=method.get('method','').split('.')
+        if pin is None or len(parts)!=2:raise ValueError('Prior index method changed')
+        row,tree=pin;module='elbow.cctbx_api.'+row['path'].split('/')[-1].removesuffix('.py')
+        definitions=([v for v in tree.body if isinstance(v,ast.FunctionDef)] if parts[0]=='geometry_manager' else
+            [v for cls in tree.body if isinstance(cls,ast.ClassDef) and cls.name==parts[0] for v in cls.body if isinstance(v,ast.FunctionDef)])
+        if (method.get('module')!=module or method.get('sha256')!=row['sha256']
+                or sum(v.name==parts[1] and v.lineno==method.get('definition_line') for v in definitions)!=1):
+            raise ValueError('Prior index method definition changed')
+
+
+def _check_constructor_return(members,r,*,backend=False,trace=False,control=False,mapping=False,index=False):
     """Replay original C47/C48 snapshots without running captured code or resuming them."""
     from nasolve.cif_source_constructor import qualify_constructor_evidence,SOURCE_PATHS,POLICY_ID,BACKEND_POLICY_ID,native_cctbx_reference
-    a=r['source_constructor_audit'];replayed={};execution='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if mapping else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if trace else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if backend else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF'
+    a=r['source_constructor_audit'];replayed={};execution='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' if index else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if mapping else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if trace else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if backend else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF'
     if (json.loads(members['source_constructor_receipt.json'])!=a or a.get('policy_id')!=POLICY_ID
             or set(a.get('cases',{}))!={'DP','PDU','5PC'} or a.get('status')!='REVIEW'
             or a.get('native_execution')!=execution or a.get('automatic_adoption') is not False
@@ -1636,7 +1671,7 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
                         'installed_phenix_edits','captured_code_execution','pickle_loading'])
                     or n.get('whole_molecule_optimization')!='NOT_REQUESTED'
                     or n.get('constructor_local_optimization')!='NATIVE_INTERNALS_NOT_INSTRUMENTED'
-                    or _sha(members[p+'/constructor_worker.py'])!=(CEDAR50_WORKER_SHA256 if mapping and not control else CEDAR49_WORKER_SHA256 if trace and not control else CEDAR48_WORKER_SHA256 if backend else CEDAR47_WORKER_SHA256)
+                    or _sha(members[p+'/constructor_worker.py'])!=(CEDAR51_WORKER_SHA256 if index and not control else CEDAR50_WORKER_SHA256 if mapping and not control else CEDAR49_WORKER_SHA256 if trace and not control else CEDAR48_WORKER_SHA256 if backend else CEDAR47_WORKER_SHA256)
                     or json.loads(members[p+'/constructor_receipt.json'])!={k:v for k,v in n.items() if k!='directory'}
                     or json.loads(members[p+'/constructor_result.json'])!=n['result']
                     or (not backend and 'after_format' in n['result']['constructor'])):raise ValueError('Returned constructor execution changed')
@@ -1647,7 +1682,8 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
                     or spec.get('component')!=code or (spec.get('native_cctbx') is not True if backend else spec.get('native_cctbx') is not None)
                     or (spec.get('trace_sources') is None if trace and not control else spec.get('trace_sources') is not None)
                     or (spec.get('coordinate_mapping') is not True if mapping and not control else spec.get('coordinate_mapping') is not None)
-                    or spec.get('index_basis') is not None or spec.get('index_sources') is not None):raise ValueError('Returned constructor source/preparation changed')
+                    or (spec.get('index_basis') is not True or spec.get('index_sources')!=n.get('index_sources') if index and not control else spec.get('index_basis') is not None or spec.get('index_sources') is not None)
+                    or spec.get('integer_keys') is not None):raise ValueError('Returned constructor source/preparation changed')
             rows=n['sources']
             if (len(rows)!=len(SOURCE_PATHS) or {v['snapshot']['path'] for v in rows}!={v+'.txt' for v in SOURCE_PATHS}):
                 raise ValueError('Returned constructor source scope changed')
@@ -1674,7 +1710,7 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
                         or a.get('native_internal_observation')!='METHOD_BOUNDARIES_ONLY'
                         or spec.get('trace_sources')!=expected_sources
                         or (t.get('mapping_policy_id')!='cif-native-local-coordinate-mapping-v1' if mapping else t.get('mapping_policy_id') is not None)
-                        or t.get('index_policy_id') is not None
+                        or (t.get('index_policy_id')!='cif-native-named-restraint-index-basis-v1' if index else t.get('index_policy_id') is not None)
                         or t.get('before')!=n['result']['constructor']['promoted'] or t.get('after')!=n['result']['constructor']['after']):
                     raise ValueError('Prior native boundary scope/endpoints changed')
                 pins={row['path']:row for row in rows+backend_rows}
@@ -1687,6 +1723,7 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
                     tree=__import__('ast').parse(members[p+'/'+row['snapshot']['path']]);definitions=[node for cls in tree.body if isinstance(cls,__import__('ast').ClassDef) and cls.name==name[0]
                         for node in cls.body if isinstance(node,__import__('ast').FunctionDef) and node.name==name[1] and node.lineno==v.get('definition_line')]
                     if len(definitions)!=1:raise ValueError('Prior native method definition changed')
+            if index and not control:_check_index_capture(members,n,p,spec)
             if not n['outputs'] or len({v['path'] for v in n['outputs']})!=len(n['outputs']):raise ValueError('Incomplete constructor outputs')
             for row in n['outputs']:
                 if row.get('anchor')!='constructor_directory' or not _safe(row['path']):raise ValueError('Invalid constructor output anchor')
@@ -1700,6 +1737,9 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
             if mapping and not control:
                 from nasolve.cif_constructor_mapping import analyze_constructor_mapping
                 if analyze_constructor_mapping(source,code,n['result']['constructor_trace'])!=n['mapping_analysis']:raise ValueError('Prior mapping findings do not replay')
+            if index and not control:
+                from nasolve.cif_constructor_index_basis import analyze_index_basis
+                if analyze_index_basis(source,code,n['result']['constructor_trace'])!=n['index_analysis']:raise ValueError('Prior named-index findings do not replay')
             replayed[code]={'qualification':q,'exception_type':n['result']['constructor'].get('exception_type'),
                 'message':n['result']['constructor'].get('message'),'source_sha256':_sha(data),'failed_checks':[k for k,v in q['checks'].items() if not v]}
     return replayed
@@ -1737,16 +1777,17 @@ def _read_cedar48_members(members):
     return qualified,prior,rotation
 
 
-def _check_constructor_trace_return(members,r,*,mapping=False):
+def _check_constructor_trace_return(members,r,*,mapping=False,index=False):
     from nasolve.cif_constructor_trace import compare_constructor_runs
-    observed=_check_constructor_return(members,r,backend=True,trace=True,mapping=mapping)
-    controls=_check_constructor_return(members,r,backend=True,trace=True,control=True,mapping=mapping)
+    observed=_check_constructor_return(members,r,backend=True,trace=True,mapping=mapping,index=index)
+    controls=_check_constructor_return(members,r,backend=True,trace=True,control=True,mapping=mapping,index=index)
     previous=json.loads(members['inputs/review/probe_receipt.json'])['source_constructor_audit']['cases']
     for code,c in r['source_constructor_audit']['cases'].items():
         comparison=compare_constructor_runs(c['control_native'],c['native'],previous[code]['native'])
         if comparison!=c['observer_comparison'] or not comparison['checks_pass'] or not comparison['previous_endpoint_match']:
             raise ValueError('Prior fresh native comparisons do not replay')
         if mapping:observed[code]['mapping_analysis']=c['native']['mapping_analysis']
+        if index:observed[code]['index_analysis']=c['native']['index_analysis']
         observed[code].update(trace_analysis=c['native']['trace_analysis'],observer_comparison=comparison,control_qualification=controls[code]['qualification'])
     return observed
 
@@ -1782,11 +1823,26 @@ def _read_cedar50_members(members):
     qualified,prior,rotation=_read_cedar49_members(nested);_check_constructor_trace_return(members,r,mapping=True)
     return qualified,prior,rotation
 
+def _read_cedar51_members(members):
+    _verify_manifest(members,2395);r=json.loads(members['probe_receipt.json'])
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR51_BUILD_SHA256
+            or r.get('delivery_prefix')!='51_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('status')!='REVIEW' or r.get('analysis_completed') is not True or r.get('automatic_adoption') is not False
+            or r.get('requested_action')!='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS'
+            or r.get('native_execution')!='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' or r.get('policy_authority')!='NARestraints'
+            or any(r.get(k) is not True for k in ['original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='NOT_RUN' for k in ['dictionary_generation','model_editing','model_optimization','native_proxy_validation',
+                'linked_site_validation','policy_recompilation','refinement','installed_phenix_edits','readyset_retry','scientific_approval'])
+            or r['prior_archive']['sha256']!=CEDAR50_SHA256 or r['prior_archive']['verified_payloads']!=2288):raise ValueError('Require exact returned Cedar 51 named-index review')
+    nested={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    qualified,prior,rotation=_read_cedar50_members(nested);_check_constructor_trace_return(members,r,mapping=True,index=True)
+    return qualified,prior,rotation
+
 
 def _source_reader_evidence(members):
     """Reach the verified C34 constructor evidence without dropping wrappers."""
     prefix=''
-    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar'}:
+    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar'}:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
     return members,prefix
@@ -1794,14 +1850,15 @@ def _source_reader_evidence(members):
 
 def _read_capsule(path, expected_sha=None):
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256}):
-        raise ValueError('Require an exact verified Cedar 29--50 review ZIP')
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256}):
+        raise ValueError('Require an exact verified Cedar 29--51 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='50_Cedar':qualified,prior,rotation=_read_cedar50_members(members)
+    if header.get('delivery_prefix')=='51_Cedar':qualified,prior,rotation=_read_cedar51_members(members)
+    elif header.get('delivery_prefix')=='50_Cedar':qualified,prior,rotation=_read_cedar50_members(members)
     elif header.get('delivery_prefix')=='49_Cedar':qualified,prior,rotation=_read_cedar49_members(members)
     elif header.get('delivery_prefix')=='48_Cedar':qualified,prior,rotation=_read_cedar48_members(members)
     elif header.get('delivery_prefix')=='47_Cedar':qualified,prior,rotation=_read_cedar47_members(members)
@@ -2347,11 +2404,13 @@ def _run_source_constructor_action(args,receipt,session,review,original,members,
     from nasolve.cif_source_reader import verify_source_reader_capture
     from nasolve.cif_elbow_chirality import verify_chirality_sources
     if set(sources)!={'DP','PDU','5PC'}:raise ValueError('Require the reviewed DP source and both public constructor controls')
-    all_members,all_frozen=members,frozen;old_constructor=None;index=args.source_constructor_index_basis_audit_only;mapping=args.source_constructor_mapping_audit_only or index;trace=args.source_constructor_trace_audit_only or mapping;backend=args.source_constructor_backend_audit_only or trace
+    all_members,all_frozen=members,frozen;old_constructor=None;index=args.source_constructor_index_basis_audit_only;integer_keys=index and json.loads(members['probe_receipt.json'])['delivery_prefix']=='51_Cedar';mapping=args.source_constructor_mapping_audit_only or index;trace=args.source_constructor_trace_audit_only or mapping;backend=args.source_constructor_backend_audit_only or trace
     if backend:
         old_constructor=json.loads(members['probe_receipt.json'])['source_constructor_audit']
-        receipt['prior_constructor_replay']=(_check_constructor_trace_return(members,json.loads(members['probe_receipt.json']),mapping=index) if mapping
+        receipt['prior_constructor_replay']=(_check_constructor_trace_return(members,json.loads(members['probe_receipt.json']),mapping=index,index=integer_keys) if mapping
             else _check_constructor_return(members,json.loads(members['probe_receipt.json']),backend=trace))
+        members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')};frozen=frozen/'inputs/review'
+    if integer_keys:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')};frozen=frozen/'inputs/review'
     if index:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')};frozen=frozen/'inputs/review'
@@ -2391,8 +2450,8 @@ def _run_source_constructor_action(args,receipt,session,review,original,members,
         from nasolve.cif_constructor_mapping import POLICY_ID as MAPPING_POLICY
         report['mapping_policy_id']=MAPPING_POLICY
         if index:
-            from nasolve.cif_constructor_index_basis import POLICY_ID as INDEX_POLICY
-            report['index_policy_id']=INDEX_POLICY
+            from nasolve.cif_constructor_index_basis import POLICY_ID as INDEX_POLICY,INTEGER_KEYS_POLICY_ID
+            report['index_policy_id']=INTEGER_KEYS_POLICY_ID if integer_keys else INDEX_POLICY
             receipt['limitations'].append('Native restraint dictionary atom keys and returned vectors prove a named restraint order; coordinate getter order stays separate. Preserve legacy mapping/hand/metadata reviews and both source-sign interpretations; no native reindexing or chemical repair.')
         receipt['limitations'].append('Local coordinate getters/setters, native chirality proxy bases and post-optimizer index transfers are observed. Parent atoms may occupy different temporary frames; this is not a completed molecule or a causal-bug verdict. Existing metadata/hand gates remain active.')
     phenix=None
@@ -2426,7 +2485,7 @@ def _run_source_constructor_action(args,receipt,session,review,original,members,
             trace_sources=([r for r in old_constructor['cases'][code]['native']['sources'] if r['path'].endswith('/elbow/chemistry/ChiralClass.py')]
                 +old_constructor['cases'][code]['native']['result']['backend_control']['sources']) if trace else ()
             native=audit_source_constructor(phenix.root,phenix.executables['phenix.python'],receipt['installed_api_sources'],consumer,code,output,
-                environment=phenix.environment,expected_dialect=item['reader_dialect'],prior_sources=list(source_proof.values()),timeout_seconds=min(args.timeout_seconds,30 if trace else 60),native_cctbx=backend,trace_chirality=trace,trace_sources=trace_sources,coordinate_mapping=mapping,index_basis=index)
+                environment=phenix.environment,expected_dialect=item['reader_dialect'],prior_sources=list(source_proof.values()),timeout_seconds=min(args.timeout_seconds,30 if trace else 60),native_cctbx=backend,trace_chirality=trace,trace_sources=trace_sources,coordinate_mapping=mapping,index_basis=index,integer_keys=integer_keys)
             item['native']={'directory':{'anchor':'probe_directory','path':output.relative_to(session).as_posix()},**native}
             if trace:
                 from nasolve.cif_constructor_trace import compare_constructor_runs
@@ -2467,6 +2526,7 @@ def _run_source_constructor_action(args,receipt,session,review,original,members,
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '52_Cedar':'NASolve-live-tests/51_Cedar_cif-numerical-recovery-lnlj_8_6/51_Cedar_lnlj_8_6_cif_numerical_recovery_review.zip',
         '51_Cedar':'NASolve-live-tests/50_Cedar_cif-numerical-recovery-g03y7p0_/50_Cedar_g03y7p0__cif_numerical_recovery_review.zip',
         '50_Cedar':'NASolve-live-tests/49_Cedar_cif-numerical-recovery-izfiw4xk/49_Cedar_izfiw4xk_cif_numerical_recovery_review.zip',
         '49_Cedar':'NASolve-live-tests/48_Cedar_cif-numerical-recovery-5u8wjea_/48_Cedar_5u8wjea__cif_numerical_recovery_review.zip',
@@ -2521,7 +2581,7 @@ def main():
     mode.add_argument('--nonbonded-cache-audit-only',action='store_true',
                       help='Prove zero-contribution pair-cache transitions, then repeat strict fixed-coordinate numerical checks')
     mode.add_argument('--source-constructor-index-basis-audit-only',action='store_true',
-                      help='Prove native named restraint-array order after exact Cedar 50 replay; extra public controls remain read-only')
+                      help='Prove native named restraint-array order after exact Cedar 50/51 replay; C51 uses integer-key/link evidence, extra controls remain read-only')
     mode.add_argument('--source-constructor-mapping-audit-only',action='store_true',
                       help='Observe named local coordinate/native chirality mapping after exact Cedar 49 replay')
     mode.add_argument('--source-constructor-trace-audit-only',action='store_true',
@@ -2572,6 +2632,11 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='51_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'51_Cedar','native_execution':'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS',
+                'constructor_status':'SIX_COMPLETED; FRESH_AND_PREVIOUS_ENDPOINTS_MATCH',
+                'index_status':'NINE_EMPTY_ATOM_KEY_CAPTURES; NATIVE_KEYS_ARE_INTEGERS; OLD_FINDINGS_PRESERVED',
+                'evidence':{'anchor':'probe_directory','path':'inputs/review/probe_receipt.json'}}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='50_Cedar':
             receipt['previous_execution']={'delivery_prefix':'50_Cedar','native_execution':'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING',
                 'constructor_status':'SIX_COMPLETED; THREE_FRESH_COMPARISONS_AND_PREVIOUS_ENDPOINTS_MATCH',
@@ -2669,8 +2734,8 @@ def main():
         if args.stereochemistry_audit_only != (json.loads(members['probe_receipt.json'])['delivery_prefix']=='33_Cedar'):
             raise ValueError('Cedar 33 is only supported by the explicit read-only stereochemistry action')
         input_delivery=json.loads(members['probe_receipt.json'])['delivery_prefix']
-        if args.source_constructor_index_basis_audit_only != (input_delivery=='50_Cedar'):
-            raise ValueError('Cedar 50 requires explicit named restraint-index basis observation')
+        if args.source_constructor_index_basis_audit_only != (input_delivery in {'50_Cedar','51_Cedar'}):
+            raise ValueError('Cedar 50/51 requires explicit named restraint-index basis observation')
         if args.source_constructor_mapping_audit_only != (input_delivery=='49_Cedar'):
             raise ValueError('Cedar 49 requires explicit local coordinate mapping observation')
         if args.source_constructor_trace_audit_only != (input_delivery=='48_Cedar'):
@@ -2721,7 +2786,7 @@ def main():
             from nasolve.cif_source_reader import source_reader_checks
             receipt['prior_source_reader_replay']={}
             charge_members=members;charge_root=frozen
-            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar'}:
+            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar'}:
                 charge_members={n.removeprefix('inputs/review/'):d for n,d in charge_members.items() if n.startswith('inputs/review/')}
                 charge_root=charge_root/'inputs/review'
             for code,row in json.loads(charge_members['probe_receipt.json'])['source_reader_audits'].items():

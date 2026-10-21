@@ -102,6 +102,9 @@ def test_postmr_records_findings_without_changing_readiness_or_sources(tmp_path,
     assert doctor["mode"] == "report-only"
     assert doctor["coordinate_changes"] is False
     assert doctor["native_interpretation"] == "UNASSESSED"
+    digest = doctor["effective"]["solution_report"]
+    assert digest["requires_cif_review"] is False
+    assert digest["native_selection"] == "NOT_RUN" and digest["pdf_status"] == "PLANNED"
     source = resolve_artifact_path(doctor["source"]["report"], run)
     effective = resolve_artifact_path(doctor["effective"]["report"], run)
     source_receipt = json.loads(source.read_text())

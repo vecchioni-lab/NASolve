@@ -1,5 +1,51 @@
 # CIF Doctor
 
+## Automatic continuation and student-facing decisions
+
+Students are not asked to inspect CIF bond tables or approve candidate
+restraints. NASolve should attempt bounded source-preserving repairs and
+optimization, retain the best usable result, and continue solving with explicit
+notes when a component does not converge or retains numerical outliers. A
+native or partially repaired dictionary is a valid fallback when it remains
+usable. Never erase a warning to make that decision look like a scientific PASS.
+
+| Evidence | Decision |
+| --- | --- |
+| Nonconvergence, residual geometry deviations or different DNA sugar pucker | Retain a usable candidate, continue and report limitations. |
+| Stereo or another optional layer not independently assessed | Preserve the unknown result and report it; do not invent a contradiction or require student CIF approval. |
+| Demonstrated atom/graph/order/state corruption, stereochemical inversion, nonfinite parameters, missing essential restraints or native inability to interpret the component | Exclude that candidate and try the next usable fallback automatically. |
+| No usable candidate after bounded recovery | Stop with the component and concrete missing capability; do not ask the student to adjudicate a CIF. |
+
+A temporary local-template sign warning is not a demonstrated inversion of the
+assembled molecule and must not be converted directly into a hard exclusion.
+
+Sugar pucker is conformational freedom; tetrahedral stereochemical inversion is
+a different configuration. No stereocentre, including ordinary DNA or bridged
+ATL, becomes unconstrained just to obtain convergence. NARestraints pairing and
+stacking, curated-source precedence and fixed native target mechanics retain
+their authority. Final structural/model validation remains distinct from CIF
+inspection.
+
+**Implemented now:** `cif-automatic-usable-fallback-v1` is a pure, tested decision
+core consuming verified adapter evidence. It excludes unusable alternatives,
+preserves declared source authority, prefers demonstrated stereo preservation
+within that authority, and ranks endpoints by energy only under the same frozen
+objective. Otherwise declared source order wins. Nonconvergence is a reportable
+note, not rejection. Inputs must describe one component and one declared
+chemical state; this policy does not infer protonation or repair chemistry.
+The decision never changes files, proxies, weights, checkpoint selection or
+native mechanics. PostMR adds a plain-language `solution_report` summary to its
+existing CIF Doctor receipts without introducing an approval gate.
+
+**Still to integrate:** automatic acquisition/repair orchestration, native
+qualification-to-decision adapters, verified effective-bundle adoption and the
+solution PDF renderer. The decision core alone is not a claim of deployed
+end-to-end automatic recovery. The eventual PDF must explain what was tried,
+which source/candidate was used, bounded stopping evidence, fallback reasons
+and unresolved limitations, with technical receipts retained for developers.
+Existing diagnostic `REVIEW`/exit 2 denotes internal evidence, not student CIF
+homework; old diagnostic results remain unchanged.
+
 ## Generated numerical defects and explicit candidates
 
 The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident
@@ -2093,6 +2139,26 @@ Zero-sigma torsion annotations are inventoried under the native inactive-term
 convention, with actual proxy activity still unassessed. A `CONST` name alone
 does not determine activity. Signed periodicity remains visible rather than
 being converted into a guessed sugar-pucker or Gaussian-sigma conclusion.
+
+## Integer-key constructor observation (Cedar 52)
+
+The returned C51 named-index audit verifies 2,395 payloads and six completed
+constructors, with fresh/previous endpoint agreement. Its nine atom-key captures
+are empty because native RestraintClass stores integer index keys. This is an
+observer mismatch and does not establish a molecular stereo failure.
+
+The existing explicit `--source-constructor-index-basis-audit-only` action now
+also accepts the exact C51 return. C51 input enables opt-in
+`cif-native-integer-restraint-keys-v2`; exact C50 input retains v1 behavior.
+Record native integer-coordinate entries, existing link positions and named
+local atoms, preferring unique_index over index as the selected source does.
+Require complete unique inventory/identity/position agreement, source-proved
+key/coordinate methods and exact returned vector alignment. Keep actual local
+getter order separately visible; no extra native getter call or computation
+rewrite occurs. Original v1 empty-key, hand and marker findings replay unchanged.
+Bounds remain six owned 30 s workers/256 calls each, 64-row vectors and 256
+restraint entries. ATL stays a separate source/compiler control. Native C52
+proof is pending; this is not full generation or automatic production adoption.
 
 ## Reviewed preparation
 

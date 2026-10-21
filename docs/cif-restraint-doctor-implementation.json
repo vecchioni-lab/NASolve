@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-20",
+    "updated_date": "2026-10-21",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -2652,8 +2652,8 @@
         "interpretation": {
           "native_mechanics": "17/17 exact checks PASS; identities, definitions, all static proxies, inputs and fixed NARestraints policy survive actual optimization and native PDB readback.",
           "optimizer_stop": "905 iterations / 970 calls; line search reports rounding errors preventing progress, before PDB serialization. Native criterion false; retain NOT_CONVERGED_ERROR.",
-          "geometry": "Full-precision nominal deviations >=5: distance terms 4 to 3; angle terms 10 to 10; no recorded chirality sign conflicts among 158 proxies. Remaining distance outliers are all three declared CGY\u2013DX hydrogen bonds, 4.3379\u20135.5804 A versus 2.8 A targets; the longest contact worsens slightly.",
-          "localized_angle_reviews": "Nine of the ten remaining angle outliers involve CGY A:20/DX D:3; DP B:4 C6\u2013N5\u2013C7 remains 127.8714 degrees versus 109.471 target (nominal 6.1335). This is evidence for review, not a new target assignment.",
+          "geometry": "Full-precision nominal deviations >=5: distance terms 4 to 3; angle terms 10 to 10; no recorded chirality sign conflicts among 158 proxies. Remaining distance outliers are all three declared CGY–DX hydrogen bonds, 4.3379–5.5804 A versus 2.8 A targets; the longest contact worsens slightly.",
+          "localized_angle_reviews": "Nine of the ten remaining angle outliers involve CGY A:20/DX D:3; DP B:4 C6–N5–C7 remains 127.8714 degrees versus 109.471 target (nominal 6.1335). This is evidence for review, not a new target assignment.",
           "parallelity": "Combined pair/stack plane residual decreases 593.5432 to 151.2764; this category contains pair-plane and stack terms and is not a stacking-only metric.",
           "rounding": "The separately PDB-rounded vector changes the fixed-manager target from 2866.5556 to 2870.0305 and gradient norm from 91.2772 to 907.0440. Preserve full precision for future numerical review; the earlier optimizer error is a separate event.",
           "scientific_gate": "REVIEW; mechanics success and objective decrease do not establish convergence or chemical/crystallographic approval."
@@ -7115,7 +7115,7 @@
           "dictionary_generation": "NOT_RUN",
           "installed_component_native_execution": "PENDING_USER_MAC"
         },
-        "native": "Returned selected Phenix 2.2.1-6174 (dispatcher 2.2.1) default monomer lookups supply neither PDU nor 5PC; native cases stop on unknown energy types. The explicitly supplied saved PDU candidate installs active 1.174 \u00c5 / 180\u00b0 restraints and six flagged torsions. Source-seed geometry is not a repaired generated model or scientific qualification.",
+        "native": "Returned selected Phenix 2.2.1-6174 (dispatcher 2.2.1) default monomer lookups supply neither PDU nor 5PC; native cases stop on unknown energy types. The explicitly supplied saved PDU candidate installs active 1.174 Å / 180° restraints and six flagged torsions. Source-seed geometry is not a repaired generated model or scientific qualification.",
         "full": {
           "passed": 2295,
           "skipped": 2,
@@ -9501,7 +9501,7 @@
           "native_numerical_impact": "PENDING_USER_MAC",
           "generation_optimization_adoption": "NOT_RUN"
         },
-        "native": "RETURNED_USER_MAC: both native jobs complete at 1620/2000 evaluations. All 246 derivative arithmetic directions, omitted-term deltas, unrelated-family values and additivity pass. PDU passes all strict cases. Two 5PC cases retain count-only baseline/sample/final review (71\u219275 and 70\u219267), with repeated targets and gradients exactly unchanged. Pair identities/contributions were not captured; cache explanation remains to be proved.",
+        "native": "RETURNED_USER_MAC: both native jobs complete at 1620/2000 evaluations. All 246 derivative arithmetic directions, omitted-term deltas, unrelated-family values and additivity pass. PDU passes all strict cases. Two 5PC cases retain count-only baseline/sample/final review (71→75 and 70→67), with repeated targets and gradients exactly unchanged. Pair identities/contributions were not captured; cache explanation remains to be proved.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -10044,8 +10044,8 @@
       "limitations": [
         "C45 arithmetic agreement is separate from raw count/membership qualification; no old failed gate is erased.",
         "A settled-cache pass remains sampled numerical evidence, not geometry convergence, historical causation or chemical/scientific approval.",
-        "Phosphate 0\u2192\u22122/HOP2/HOP3 changes, omitted R/S metadata, 5PC plane review and whole-scaffold qualification stay open.",
-        "The native cache proof closes this fixed-coordinate count question; source/generated phosphate 0\u2192\u22122 and HOP2/HOP3 differences, absent R/S labels, absolute CIP, 5PC plane/angle review and whole-scaffold qualification remain separate."
+        "Phosphate 0→−2/HOP2/HOP3 changes, omitted R/S metadata, 5PC plane review and whole-scaffold qualification stay open.",
+        "The native cache proof closes this fixed-coordinate count question; source/generated phosphate 0→−2 and HOP2/HOP3 differences, absent R/S labels, absolute CIP, 5PC plane/angle review and whole-scaffold qualification remain separate."
       ],
       "execution": {
         "generator": "NOT_RUN",
@@ -10794,7 +10794,7 @@
         "The native Chiralise implementation calls local chiral-template optimization; those internal operations are not instrumented. Whole-molecule optimization and full builder generation are not requested.",
         "Source-relative handedness and preserved input R/S labels do not independently assign or validate absolute CIP.",
         "No generated numerical dictionary, effective linked-manager qualification, model improvement, convergence, refinement or adoption is claimed.",
-        "PDU/5PC source/generated phosphate 0\u2192\u22122/HOP2/HOP3 differences and the 5PC plane/angle review remain open; this audit does not choose between those states.",
+        "PDU/5PC source/generated phosphate 0→−2/HOP2/HOP3 differences and the 5PC plane/angle review remain open; this audit does not choose between those states.",
         "The requested eight-pair ordinary live test remains planned after current building, with explicit sequence/site staging still required."
       ],
       "execution": {
@@ -10874,7 +10874,7 @@
           "scope": "Diagnostic preparation omission, not a demonstrated failure of source chemistry.",
           "native_reference": "elbow/utilities/Utilities.py::get_elbow_molecule_from_chemical_components",
           "native_source_sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108",
-          "preparation": "Lines 605\u2013606 select molecule.SetCCTBX(True) immediately before molecule.Chiralise().",
+          "preparation": "Lines 605–606 select molecule.SetCCTBX(True) immediately before molecule.Chiralise().",
           "omission": "C47 promoted the source-exact component but never selected CCTBX; MoleculeClass defaults it to False.",
           "observed_paths": "DP/PDU stop in ChiralClass.Chiralise with not chiralised; 5PC reaches the non-CCTBX OptimiseBFGS call, absent from the installed class.",
           "fix_scope": "Use the captured native preparation policy explicitly in an opt-in retry; preserve graph, state, signatures and stereo gates. Do not patch installed Phenix."
@@ -11011,7 +11011,7 @@
       "limitations": [
         "Native backend selection is a preparation correction, not a proven successful constructor until the new Mac return is inspected.",
         "Native internal local optimization remains uninstrumented. A handoff pass does not independently assign absolute CIP or qualify a full dictionary/builder.",
-        "PDU/5PC neutral-source versus generated \u22122 phosphate/H changes, omitted labels and the 5PC plane/angle finding remain open.",
+        "PDU/5PC neutral-source versus generated −2 phosphate/H changes, omitted labels and the 5PC plane/angle finding remain open.",
         "Whole-scaffold integration, bounded geometry, refinement and human review remain separate. The requested eight-pair live test is still planned after building."
       ],
       "artifact_boundary": "Git contains code/tests/docs/hashes only. Private sources, snapshots, logs, models, runners and returned capsules remain external.",
@@ -11035,7 +11035,7 @@
         "phenix_version": "2.2.1-6174",
         "dispatcher_version": "2.2.1",
         "native_execution": "THREE_WORKERS_AND_CONSTRUCTORS_COMPLETED",
-        "backend": "All four preparation gates PASS in every component; False\u2192True flags and exact unchanged inventories/format before original construction.",
+        "backend": "All four preparation gates PASS in every component; False→True flags and exact unchanged inventories/format before original construction.",
         "backend_source": {
           "path": "elbow/cctbx_api/CCTBXMixins.py",
           "sha256": "219938312d5c9c8c0a3cc27b1a225ff9ecb71bec1c2128d39ebf70918f298f96",
@@ -12491,7 +12491,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#source_native_constructor_mapping_2026_10_21"
     },
     "source_native_constructor_index_basis_2026_10_21": {
-      "status": "IMPLEMENTED_NAMED_NATIVE_RESTRAINT_INDEX_PROOF_PENDING_MAC",
+      "status": "RETURNED_NATIVE_CONSTRUCTORS_COMPLETE_OBSERVER_INTEGER_KEY_MISMATCH_REVIEW",
       "recorded_date": "2026-10-21",
       "delivery_prefix": "51_Cedar",
       "policy_id": "cif-native-named-restraint-index-basis-v1",
@@ -12655,7 +12655,7 @@
         }
       },
       "execution": {
-        "native_named_index_observation": "PENDING_MAC",
+        "native_named_index_observation": "COMPLETED_EMPTY_KEY_ADAPTER_REVIEW",
         "ATL_native_construction": "NOT_RUN",
         "dictionary_generation": "NOT_RUN",
         "whole_builder_replay": "NOT_RUN",
@@ -12674,7 +12674,265 @@
       ],
       "artifact_boundary": "Only maintained code/tests/docs and public ATL CCD fixture/provenance enter Git. Private capsules, source captures, native logs/states/models and generated runners stay external.",
       "next_action": "Build 51_Cedar with PDU, 5PC and independent ATL controls; run exact 50_Cedar_g03y7p0_ with --component DP --source-constructor-index-basis-audit-only under Phenix 2.2.1-6174. Keep the three native sources/fresh controls fixed and capture native restraint dictionary atom keys, returned vectors and selected source methods before interpreting index order. ATL is public source/stereo/NARestraints compiler only, without native construction. Return console/ZIP; no native repair, full generation, scaffold or adoption.",
-      "evidence_record": "docs/cif-linked-native-registration-evidence.json#source_native_constructor_index_basis_2026_10_21"
+      "native_return": {
+        "payloads": 2395,
+        "sha256": "ee2e07a200d3bdfe2789f0523bba5f74d6af78fd4279dd8e5012c4590cf9627d",
+        "bytes": 56560907,
+        "build_sha256": "1942d1e41d316eb508df6d14cc7c15b96c92ebb1e8a0b825c1fa960a1d70907e",
+        "runner_sha256": "8d152030de4e1c4002bc5c798f43a4dd01c9ef31d97cce728d390a19b805dc08",
+        "runtime_members": 136,
+        "unchanged_prior_payloads": 2288,
+        "cases": {
+          "5PC": {
+            "worker_sha256": "a18d5d3835467e7572a2ad4a79a28fe456412e1d380c9aef7ae27f5e2f715d70",
+            "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+            "failed_checks": [
+              "source_handedness_preserved"
+            ],
+            "trace_failed_checks": [],
+            "index_failed_checks": [
+              "named_basis_evidence"
+            ],
+            "calls": 40,
+            "empty_native_atom_key_captures": 3,
+            "fresh_comparison": {
+              "automatic_adoption": false,
+              "checks": {
+                "both_workers_completed": true,
+                "exact_endpoint_repeat": true,
+                "same_constructor_status": true,
+                "same_prepared_state": true,
+                "same_reader_and_charge": true,
+                "same_source": true
+              },
+              "checks_pass": true,
+              "previous_endpoint_match": true,
+              "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+              "scientific_approval": "NOT_RUN",
+              "status": "FRESH_REPEAT_MATCH"
+            },
+            "observed_elapsed": 1.119091,
+            "control_elapsed": 0.838406
+          },
+          "DP": {
+            "worker_sha256": "a18d5d3835467e7572a2ad4a79a28fe456412e1d380c9aef7ae27f5e2f715d70",
+            "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+            "failed_checks": [
+              "source_handedness_preserved"
+            ],
+            "trace_failed_checks": [
+              "chemical_metadata_preserved"
+            ],
+            "index_failed_checks": [
+              "named_basis_evidence"
+            ],
+            "calls": 40,
+            "empty_native_atom_key_captures": 3,
+            "fresh_comparison": {
+              "automatic_adoption": false,
+              "checks": {
+                "both_workers_completed": true,
+                "exact_endpoint_repeat": true,
+                "same_constructor_status": true,
+                "same_prepared_state": true,
+                "same_reader_and_charge": true,
+                "same_source": true
+              },
+              "checks_pass": true,
+              "previous_endpoint_match": true,
+              "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+              "scientific_approval": "NOT_RUN",
+              "status": "FRESH_REPEAT_MATCH"
+            },
+            "observed_elapsed": 1.393642,
+            "control_elapsed": 3.737211
+          },
+          "PDU": {
+            "worker_sha256": "a18d5d3835467e7572a2ad4a79a28fe456412e1d380c9aef7ae27f5e2f715d70",
+            "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+            "failed_checks": [
+              "source_handedness_preserved"
+            ],
+            "trace_failed_checks": [],
+            "index_failed_checks": [
+              "named_basis_evidence"
+            ],
+            "calls": 40,
+            "empty_native_atom_key_captures": 3,
+            "fresh_comparison": {
+              "automatic_adoption": false,
+              "checks": {
+                "both_workers_completed": true,
+                "exact_endpoint_repeat": true,
+                "same_constructor_status": true,
+                "same_prepared_state": true,
+                "same_reader_and_charge": true,
+                "same_source": true
+              },
+              "checks_pass": true,
+              "previous_endpoint_match": true,
+              "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+              "scientific_approval": "NOT_RUN",
+              "status": "FRESH_REPEAT_MATCH"
+            },
+            "observed_elapsed": 1.137021,
+            "control_elapsed": 0.83789
+          }
+        },
+        "phenix_version": "2.2.1-6174",
+        "dispatcher_report": "2.2.1",
+        "source_observation": "All nine native_atom_keys arrays are empty. Selected RestraintClass.__setitem__ converts atom objects to index/unique_index integer keys; native GetCoordinates sorts integers and records self.link. No native key inventory was captured by C51; do not backfill or claim native order proof.",
+        "ATL": "PUBLIC_GRAPH_STEREO_AND_COMPILER_PASS; NATIVE_NOT_RUN"
+      },
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "source_native_constructor_integer_keys_2026_10_21": {
+      "status": "IMPLEMENTED_INTEGER_KEY_ADAPTER_PENDING_NATIVE_MAC",
+      "recorded_date": "2026-10-21",
+      "delivery_prefix": "52_Cedar",
+      "policy_id": "cif-native-integer-restraint-keys-v2",
+      "cli_action": "--source-constructor-index-basis-audit-only",
+      "runner_filename": "52_Cedar_probe_cif_integer_keys.py",
+      "review_input": {
+        "name": "51_Cedar_lnlj_8_6_cif_numerical_recovery_review.zip",
+        "sha256": "ee2e07a200d3bdfe2789f0523bba5f74d6af78fd4279dd8e5012c4590cf9627d",
+        "verified_payloads": 2395
+      },
+      "algorithm": [
+        "Replay exact C51 build, all outputs/selected index sources and method definitions, original qualifications/mapping/index findings and fresh/previous comparisons; preserve the complete earlier capsule.",
+        "Record native integer coordinate entries, existing link map and local atom name/global/unique indices at the original GetRestrainedParameters return. Prefer unique_index exactly as selected native get_key does. Record selected get_key/GetCoordinates methods without calling them.",
+        "Require bijective complete key/position/name inventories, shared parent identity, selected method origins/hashes, sorted integer/link agreement and exact returned-coordinate alignment. Keep restraint and local getter order distinct; source-target sign agreement is separate from mapping proof.",
+        "Six original fresh/observed constructor workers, unchanged source chemistry/charges/backend/native arguments. No native reindexing, target/weight changes, optimizer replacement, installed patch, full generation, model edit or adoption."
+      ],
+      "limits": {
+        "max_native_components": 3,
+        "fresh_workers_per_component": 2,
+        "worker_timeout_seconds": 30,
+        "total_timeout_budget_seconds": 180,
+        "max_observed_calls_per_constructor": 256,
+        "max_observed_boundaries": 512,
+        "max_coordinate_or_parameter_sequence_rows": 64,
+        "max_native_restraint_dictionary_entries": 256,
+        "max_explicit_public_controls": 3
+      },
+      "independent_ATL_control": "Unchanged public graph/stereo/NARestraints compiler only; no extra native constructor or ninth live-test pair.",
+      "validation": {
+        "native": "PENDING_USER_MAC; fake APIs and actual saved C51 replay are not Phenix physics qualification.",
+        "fail_before": {
+          "selection_missing_module_failed": 15,
+          "selection_seconds": 0.08,
+          "owned_observer_keyword_api_failed": 6,
+          "observer_seconds": 0.45
+        },
+        "new_regressions": 41,
+        "focused": {
+          "passed": 296,
+          "seconds": 17.41,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_constructor_index_basis.py tests/test_cif_doctor_selection.py tests/test_cif_doctor_postmr.py tests/test_cif_atl_control.py tests/test_cedar52_delivery.py tests/test_cedar51_delivery.py tests/test_cif_constructor_mapping.py tests/test_cif_constructor_trace.py tests/test_cif_source_constructor.py tests/test_cif_constructor_backend.py tests/test_cedar48_delivery.py tests/test_cedar49_delivery.py tests/test_cedar50_delivery.py tests/test_synthetic_dna_shuttle.py tests/test_cif_numerical_recovery_probe.py"
+        },
+        "full": {
+          "passed": 2841,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 232.81,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "source_build_state": {
+            "commit": "7375a5a2df5dc7fdeb0c28336565c108d3b22840",
+            "working_tree_has_changes": true
+          },
+          "runner_sha256": "e8b7cc81d79da8d4629a1fd94a4f85c3cfe61b8482c0a64430a9a73e441e38aa",
+          "clean_build_sources_removed_before_replay": true,
+          "relocated_runner": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp": "PASS",
+          "everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "input_payloads": 2395,
+          "runtime_members": 137,
+          "runtime_archive_sha256": "367ef0cb60aa68a20464b2eadd90738c0b7dac6fb33afe4e54f94862a07f5a3b",
+          "mechanics_prerequisites": 17,
+          "rotation_directions": 96,
+          "cache_transition_proofs_recomputed": 48,
+          "recorded_pair_kernel_calls_verified": 3286,
+          "strict_derivative_directions_recomputed": 246,
+          "original_raw_reader_and_charge_reviews": "PRESERVED",
+          "source_consumer_bytes": "MATCH_PRIOR_DP_PDU; DECLARED_CCD_5PC",
+          "previous_constructor_reviews_recomputed": 6,
+          "prior_observed_calls_replayed": 120,
+          "ATL_scope": "PUBLIC_GRAPH_STEREO_AND_COMPILER_ONLY",
+          "prior_observation_comparisons_recomputed": 3,
+          "backend_selection": "EXPLICIT_NATIVE_CCTBX; INDEX_PROOF_PENDING_USER_MAC",
+          "constructor_native_execution": "PENDING_USER_MAC",
+          "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION"
+        },
+        "scope": "16 decision-core cases, 12 immutable C51-return mutations, 11 integer-key/link mutations and two added owned fake-worker integer/unique-index cases; existing PostMR integration assertions expanded. Real native C52 proof is pending Mac.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "planned_eight_pairs": "PRESERVED",
+          "relative_links": 159,
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+          },
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        }
+      },
+      "automatic_adoption": false,
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "automatic_component_resolution_2026_10_21": {
+      "status": "DECISION_CORE_AND_POSTMR_SUMMARY_IMPLEMENTED_ORCHESTRATION_PENDING",
+      "policy_id": "cif-automatic-usable-fallback-v1",
+      "recorded_date": "2026-10-21",
+      "authority": "Explicit user instruction: no mandatory student CIF inspection or approval; automatic usable fallback and eventual solution-PDF disclosure.",
+      "module": "src/nasolve/cif_doctor_selection.py",
+      "contract": "docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions",
+      "implemented": [
+        "Pure verified-evidence candidate decision: exclude known unusable alternatives, preserve source authority, prefer demonstrated stereo preservation within that tier, compare targets only under the same fixed objective, otherwise preserve declared order.",
+        "Nonconvergence/residual geometry/pucker are notes, not rejection. Unknown stereo remains explicitly unassessed, not invented as inversion or PASS.",
+        "Demonstrated identity/graph/state corruption, stereo inversion, nonfinite parameters, missing essential restraints or native unusability exclude that candidate. Try another usable candidate; stop only when none exists, without student CIF adjudication.",
+        "PostMR CIF Doctor receipts gain an additive plain-language solution_report summary. Historical findings/status/readiness and fixed mechanics are unchanged."
+      ],
+      "planned": [
+        "Bounded automatic source/repair/optimization orchestration retaining best valid endpoints and native fallback.",
+        "Verified native qualification-to-selection and effective-bundle adoption adapters with immutable provenance.",
+        "Solution PDF renderer: sources tried/selected, fixes, stopping evidence, fallback reasons and unresolved limitations."
+      ],
+      "does_not_change": [
+        "CIF targets/weights or native mechanics",
+        "NARestraints authoritative pairing/stacking",
+        "Curated-source precedence",
+        "Chemical state or declared stereochemistry",
+        "Existing immutable runs and historical diagnostic REVIEW outcomes",
+        "Final structural validation"
+      ],
+      "pdf_status": "PLANNED",
+      "automatic_adoption": false,
+      "inversion_evidence_boundary": "A temporary local-frame/source-volume warning is not proof of an inverted assembled molecule. Native qualification adapters must establish the actual mapped molecular configuration before reporting INVERTED; absent evidence stays UNASSESSED.",
+      "validation": {
+        "decision_cases": 16,
+        "postmr_report_integration_cases": 5,
+        "focused": {
+          "passed": 296,
+          "seconds": 17.41,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_constructor_index_basis.py tests/test_cif_doctor_selection.py tests/test_cif_doctor_postmr.py tests/test_cif_atl_control.py tests/test_cedar52_delivery.py tests/test_cedar51_delivery.py tests/test_cif_constructor_mapping.py tests/test_cif_constructor_trace.py tests/test_cif_source_constructor.py tests/test_cif_constructor_backend.py tests/test_cedar48_delivery.py tests/test_cedar49_delivery.py tests/test_cedar50_delivery.py tests/test_synthetic_dna_shuttle.py tests/test_cif_numerical_recovery_probe.py"
+        },
+        "full": {
+          "passed": 2841,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 232.81,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "scope": "Deterministic verified-evidence decisions and report-only PostMR summaries. No automatic native recovery/adoption/PDF execution is claimed."
+      },
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json"
     }
   },
   "audience": [
@@ -13343,7 +13601,7 @@
     "essential_corrections_to_shorthand": [
       {
         "shorthand": "C5 / C5prime bonds swapped; iodine bonds built badly",
-        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 \u00c5; sugar C5prime-I5 coordinate separation is 8.843030419488558 \u00c5 and is not an iodine bond.",
+        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 Å; sugar C5prime-I5 coordinate separation is 8.843030419488558 Å and is not an iodine bond.",
         "must_not_claim": "A general supplier C5/C5prime bond swap, a chemically incorrect 5IU iodine bond, or an edited source dictionary."
       },
       {
@@ -13374,7 +13632,7 @@
           "sugar_C5prime_I5_nonbonded_coordinate_distance_A": 8.843030419488558
         },
         "lesson": "Preserve exact atom identifiers. Remove only an enclosing matching quote pair; a prime inside or at the end of an atom ID is chemical identity data. Distinguish coordinate-derived distance from numerical bond target and establish adjacency first.",
-        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 \u00c5, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
+        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 Å, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
         "generalizable_rules": [
           "GRAPH-01",
           "NUM-01",
@@ -13458,8 +13716,8 @@
           "sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
           "findings": [
             "Aromatic sugar typing/bonds",
-            "C4-O4 single bond target 1.384 \u00c5",
-            "C2-S1 single bond target 1.812 \u00c5",
+            "C4-O4 single bond target 1.384 Å",
+            "C2-S1 single bond target 1.812 Å",
             "No active DF sugar chirality restraints"
           ]
         },
@@ -13745,7 +14003,7 @@
           "Current DE eLBOW dictionary has not changed since addition at b8317b0.",
           "Current file is byte-equivalent to historical repository-root generated 8RO.cif after component-label substitution.",
           "That generated artifact is not proof that official CCD 8RO equals intended laboratory DE.",
-          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 \u00c5 target.",
+          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 Å target.",
           "September replacement candidate remained unapproved; later committed approved replacement not found."
         ],
         "required_recovery": [
@@ -14328,7 +14586,7 @@
         "alternate_degrees": 2.8,
         "alternate_original_sigma_degrees": 6.1,
         "wrong_active_native_residual_approx": 481,
-        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7\u00b0, alternate 2.8\u00b0, primary sigma 6.3\u00b0.",
+        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7°, alternate 2.8°, primary sigma 6.3°.",
         "adopted_diagnostic_derivative_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
         "native_diagnostic": "Native diagnostic PASS; source unchanged; broad production repair is not qualified."
       },
@@ -14354,8 +14612,8 @@
         "bad_effective_readyset_sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
         "bad_definition": [
           "aromatic sugar typing and bonds",
-          "single C4\u2013O4 target 1.384 \u00c5",
-          "single C2\u2013S1 target 1.812 \u00c5",
+          "single C4–O4 target 1.384 Å",
+          "single C2–S1 target 1.812 Å",
           "no active sugar chirality restraints"
         ],
         "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
@@ -14394,7 +14652,7 @@
           "native_verified_heavy_bonds": 21,
           "native_signed_sugar_centres": 3
         },
-        "charge_caution": "Old effective OP1 formal charge \u22121 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
+        "charge_caution": "Old effective OP1 formal charge −1 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
         "generator": {
           "AceDRG": "334",
           "database": "12",
@@ -14464,8 +14722,8 @@
           "zero_sigma_torsions": 6,
           "plane_groups": 5
         },
-        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y\u2192N flags changed only for C4\u2013N9, C8\u2013N9, C7\u2013C8 and C7\u2013N5. Twelve H attachments, formal charge \u22122 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
-        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of \u22121 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
+        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y→N flags changed only for C4–N9, C8–N9, C7–C8 and C7–N5. Twelve H attachments, formal charge −2 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
+        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of −1 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
         "candidate_angles": {
           "target_degrees": [
             108.817,
@@ -14543,7 +14801,7 @@
             180,
             128
           ],
-          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2\u20135 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
+          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2–5 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
           "N5_achieved_degrees": [
             108.115293,
             119.720831,
@@ -14653,9 +14911,9 @@
           }
         ],
         "nonobvious_attachments": [
-          "CGY HO3\u2032 attaches to OP3",
+          "CGY HO3′ attaches to OP3",
           "DX H1 attaches to OP3",
-          "DX H6 attaches to O3\u2032"
+          "DX H6 attaches to O3′"
         ],
         "status": "Linkage mechanics PASS; source-specific OP2 H retained; no uniform protonation policy or qualification of all contexts follows."
       },
@@ -14670,8 +14928,8 @@
       },
       "1AP_challenge": {
         "curated_source_git_blob": "1be06d4bb0848891fd3e7dca22d217dd2ad1b69b",
-        "adaptation": "NON-POLYMER\u2192DNA only; numerical rows, atoms, types, chirality and planes retained.",
-        "failed_generator_connectivity": "Spurious O4\u2032\u2013N1 connection; correct reviewed graph has C1\u2032\u2013N9.",
+        "adaptation": "NON-POLYMER→DNA only; numerical rows, atoms, types, chirality and planes retained.",
+        "failed_generator_connectivity": "Spurious O4′–N1 connection; correct reviewed graph has C1′–N9.",
         "fixture_policy": "Recover the failed artifact or label a synthetic reproduction. The current curated source is a preservation/control case, not presumed defective."
       }
     },
@@ -15188,5 +15446,12 @@
       ]
     },
     "purpose": "Mandatory site/end-state checkpoint before linked preparation. External Cedar 06 diagnostic code is implemented; installed native qualification and adoption remain open."
+  },
+  "current_product_policy": {
+    "record": "automatic_component_resolution_2026_10_21",
+    "contract": "docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions",
+    "requires_student_cif_review": false,
+    "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
+    "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned."
   }
 }

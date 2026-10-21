@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Add usable-fallback decisions and correct native integer-key observation
+
+- Remove mandatory student CIF inspection from the product contract. Add a pure
+  verified-evidence decision core: usable nonconvergence continues with notes;
+  known broken alternatives trigger fallback; energies rank only the same fixed
+  objective under declared source authority. Pucker is distinct from inversion.
+- PostMR records additive plain-language solution_report summaries without a
+  new readiness gate. Automatic acquisition/recovery, qualified bundle adoption
+  and solution PDF rendering remain planned; the core alone does not deploy them.
+- Verify all 2,395 C51 payloads, six qualifications and exact repeat comparisons.
+  Nine empty atom-key records expose an observer mismatch, not proved chemistry
+  failure. C52 records actual integer keys/link positions and index/unique_index
+  identities under selected native source proofs, without extra native getters
+  or changes to target mechanics. Old findings/worker pins remain replayable.
+- Keep native constructors DP/PDU/5PC, ATL as a separate public control and all
+  prior budgets, sources, NARestraints policy, runs and eight-pair plan intact.
+  Native C52 proof remains pending; no new dependency or installed Phenix edit.
+- All 41 new regressions, 296 focused and 2,841 full tests pass (two skips,
+  276 subtests). Exact C51 deleted-build/relocated transport passes with old
+  findings, everyday edits and the eight-pair plan preserved.
+
 ### Prove named native restraint index order and add an ATL source control
 
 - Verify all 2,288 C50 payloads, six qualifications, 120 observed calls and

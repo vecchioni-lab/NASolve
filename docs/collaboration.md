@@ -37,6 +37,17 @@ Use professional, attributable manuscript language and exact software versions;
 private collaboration/personality notes stay outside repository documentation.
 The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
 
+## Diagnostic evidence and student workflow
+
+CIF Doctor diagnostic review receipts are developer-facing evidence. They do
+not imply that students must inspect CIF tables or approve chemical repairs.
+The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
+requires bounded recovery, automatic usable fallback and plain-language
+solution reporting. Preserve hard evidence of unusable chemistry separately
+from nonconvergence, pucker changes and descriptive outliers. Keep implemented
+selection/report capabilities distinct from pending orchestration/adoption/PDF
+integration, and preserve all historical failed diagnostics.
+
 ## Git delivery and terminal handoffs
 
 The default user interaction for reviewed live-test deliveries is **one

@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-19:** offline component/restraint assessment,
+**Implemented scope, updated 2026-10-21:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
 explicit whole-component numerical candidate generation and a separate native
@@ -31,6 +31,23 @@ versions, component inventories, rule identifiers and measurements. The current
 PostMR integration records findings without changing coordinates, selecting new
 chemistry or adding a readiness gate. Researchers can also assess a frozen
 checkpoint without altering the run.
+
+## Automatic decisions and reporting
+
+The student-facing contract is automatic recovery and usable fallback, with
+plain-language reporting. A bounded optimizer can miss its convergence limit
+while leaving a usable dictionary; NASolve should continue and disclose that
+limitation. A chemically broken alternative is excluded, and an intact native
+or repaired fallback can still be used. DNA pucker changes are permitted;
+stereochemical inversion is a distinct chemical change, including for ATL.
+
+The implemented decision core preserves source authority, excludes demonstrated
+unusable candidates and compares energy only for the same fixed objective.
+Unknown stereo remains unknown. PostMR now stores a concise solution-report
+summary alongside its detailed assessment. Automatic generation/recovery-to-
+selection integration, effective-bundle adoption and PDF rendering remain
+planned. Development diagnostics can retain REVIEW without asking students to
+inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 ## How it works
 
@@ -1106,8 +1123,15 @@ stored vectors keep the result under review. The actual
 local getter order remains separately visible, with the same proxies/targets
 mapped in both views. Selected native producer/factory source and methods are
 captured; no extra GetRestraints call, kernel edit or coordinate rewrite occurs.
-Keep the original hand/metadata findings and fresh controls. Native proof is
-pending; optimizer kernels, full generation, absolute CIP and science remain open.
+Keep the original hand/metadata findings and fresh controls. Returned C51
+verifies six constructors but all nine atom-key inventories are empty: the
+observer expected atom objects and the native dictionary uses integer keys.
+C52 records those integer keys, existing native link positions and exact
+named local indices, honoring unique_index before index. It fingerprints the
+selected native key/coordinate methods without calling them again. All
+inventories/returned vectors must agree; no native computation is reindexed.
+Native C52 proof is pending; optimizer kernels, full generation, absolute CIP
+and scientific qualification remain open.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

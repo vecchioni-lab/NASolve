@@ -108,6 +108,7 @@ def observe_native_constructor(parent,method,modules,spec,trace):
     if mapping:
         scope.extend(('elbow.cctbx_api.CCTBXMixins','CCTBXMixins',name) for name in ['GetCoordinates','SetCoordinates','GetNewManager'])
     index_basis=spec.get('index_basis') is True
+    integer_keys=spec.get('integer_keys') is True
     root=Path(spec['installation_root']).resolve(strict=True);proof={r['path']:r for r in spec['trace_sources']+spec.get('index_sources',[])}
     for row in spec['sources']:
         path=Path(row['installed']).resolve(strict=True)
@@ -134,7 +135,7 @@ def observe_native_constructor(parent,method,modules,spec,trace):
     if mapping:trace['mapping_policy_id']='cif-native-local-coordinate-mapping-v1'
     if index_basis:
         factory=importlib.import_module('elbow.cctbx_api.geometry_manager')
-        trace.update(index_policy_id='cif-native-named-restraint-index-basis-v1',index_sources=spec['index_sources'],
+        trace.update(index_policy_id='cif-native-integer-restraint-keys-v2' if integer_keys else 'cif-native-named-restraint-index-basis-v1',index_sources=spec['index_sources'],
             index_method_sources=[{'method':'geometry_manager.run',**fingerprint(factory.run)}])
     def scalar(v):
         if type(v) in (str,bool,int,type(None)):return v
@@ -166,6 +167,24 @@ def observe_native_constructor(parent,method,modules,spec,trace):
         if not inspect.ismethod(method) or method.__self__ is not rc:raise ValueError('Unsupported native restraint method')
         source={'method':'RestraintClass.GetRestraints',**fingerprint(method.__func__)}
         if len(rc)>256:return {'unsupported':'NATIVE_RESTRAINT_DICTIONARY_CAP','restraint_method':source}
+        if integer_keys:
+            methods=[]
+            for name in ['get_key','GetCoordinates']:
+                bound=getattr(rc,name)
+                if not inspect.ismethod(bound) or bound.__self__ is not rc:raise ValueError('Unsupported native integer-key method')
+                methods.append({'method':'RestraintClass.'+name,**fingerprint(bound.__func__)})
+            link=getattr(rc,'link',None)
+            if not isinstance(link,dict) or len(link)>64 or len(obj)>64:
+                return {'unsupported':'NATIVE_INTEGER_KEY_SCOPE','restraint_method':source}
+            entries=[{'native_key':key,'stored_xyz':plain(stored)} for key,stored in dict.items(rc) if type(key) is int]
+            atoms=[{'atom':a.name.strip(),'global_index':scalar(a.index),
+                'unique_index':scalar(getattr(a,'unique_index',None)),
+                'key_attribute':'unique_index' if hasattr(a,'unique_index') else 'index',
+                'native_key':scalar(getattr(a,'unique_index',a.index)),
+                'same_parent_object':any(a is p for p in parent)} for a in obj]
+            return {'restraint_method':source,'integer_key_methods':methods,'local_atom_keys':atoms,
+                'integer_coordinate_entries':entries,'native_link':[{'native_key':scalar(k),'index':scalar(v)} for k,v in link.items()],
+                'returned_coordinates':coordinates(value[0]),'returned_chirality_parameters':plain(value[5])}
         atoms=[]
         for atom,stored in rc.items():
             if not hasattr(atom,'name') or not hasattr(atom,'index'):continue

@@ -5,6 +5,12 @@ Updated **2026-10-21**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
+The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
+keeps student CIF approval out of the product flow. A tested decision core and
+PostMR report summaries are implemented; recovery/adoption/PDF adapters remain
+planned. C51 exposed an observer key-shape mismatch; C52 tests the integer-key
+adapter while preserving all native mechanics and old findings.
+
 ## What's current?
 
 - **Completed:** NARestraints v1.1.3; merged W Saenger overlay and pathless

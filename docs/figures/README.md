@@ -86,3 +86,10 @@ keeping restraint order and local evaluation order distinct. ATL is a separate
 public bridged-sugar/stereo/NARestraints compiler control. Native named-index
 proof is pending; optimizer kernels remain uninstrumented, with no full-builder,
 absolute-CIP or adoption arrow.
+
+The C52 scope note corrects the C51 observer's atom-key assumption without
+changing native computation. Integer keys/link positions must bind to exact
+named atoms. The student-facing policy allows usable nonconvergence with notes,
+with automatic fallback for rejected candidates. The decision core and PostMR
+summary are implemented; recovery/adoption/PDF integration remain planned, so
+no completed automatic-adoption arrow is added.

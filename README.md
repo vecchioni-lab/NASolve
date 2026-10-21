@@ -32,6 +32,13 @@ explicit source-preserving preparation recipes.
 The [human/manuscript overview](docs/cif-doctor-human-overview.md) explains the
 algorithm, tools and pipeline placement and supplies an editable figure.
 
+CIF Doctor now has an explicit automatic-continuation contract: students do
+not inspect or approve CIF tables. A tested decision core retains usable
+nonconverged results or selects a usable fallback while preserving chemistry,
+source authority and fixed mechanics. PostMR records a plain-language summary;
+automatic recovery/adoption adapters and solution PDF rendering remain planned.
+See [automatic continuation](docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions).
+
 The current diagnostic trial has reproduced coordinate damage from legacy
 parent restoration for some modified bases. A separate graph-selected fragment
 candidate and source-recovered DF definitions pass native mechanics, with
@@ -162,8 +169,7 @@ order, actual native chirality proxy bases and post-optimizer index transfers
 before a repair. Returned C50 passes all getter/setter checks and exact repeats;
 proxy-index interpretation remains reviewed. C51 records native dictionary atom
 keys/returned arrays to distinguish restraint order from local coordinate order.
-ATL adds a separate public bridged-sugar/NARestraints compiler control. Native
-index proof and scientific qualification remain pending. Equivalent operational mapping
+ATL adds a separate public bridged-sugar/NARestraints compiler control. C51 returns nine empty key captures: the observer expected atom objects but native keys are integers. C52 corrects the read-only key adapter; native proof and scientific qualification remain pending. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

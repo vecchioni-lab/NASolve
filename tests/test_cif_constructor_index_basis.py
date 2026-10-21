@@ -47,7 +47,7 @@ def test_index_basis_requires_live_named_keys_and_exact_returned_vector_alignmen
     assert q['absolute_cip_assignment']==q['scientific_approval']=='NOT_RUN' and not q['automatic_adoption']
 
 
-@pytest.mark.parametrize('mode',['correct','reversed_return','non_dict','native_exception'])
+@pytest.mark.parametrize('mode',['correct','reversed_return','non_dict','native_exception','integer_keys','unique_index_keys'])
 def test_owned_index_worker_captures_native_dictionary_keys_without_reordering_calls(tmp_path,mode):
     from hashlib import sha256
     import os
@@ -63,6 +63,18 @@ def test_owned_index_worker_captures_native_dictionary_keys_without_reordering_c
   return coordinates,[],[],[],[],[[[0,1,2,3],1.,False,1.]]
 '''.replace('CHANGE','coordinates.reverse()' if mode=='reversed_return' else 'pass'))
     (site/'elbow/cctbx_api/geometry_manager.py').write_text('def run(coordinates,*args,**kwargs):return None\n')
+    integer = mode in {'integer_keys', 'unique_index_keys'}
+    if integer:
+        p.write_text('''class RestraintClass(dict):
+ def get_key(self,atom):return getattr(atom,'unique_index',atom.index)
+ def __setitem__(self,atom,xyz):dict.__setitem__(self,self.get_key(atom),xyz)
+ def GetCoordinates(self):
+  keys=sorted(k for k in self if type(k) is int)
+  self.link={k:i for i,k in enumerate(keys)}
+  return [self[k] for k in keys]
+ def GetRestraints(self):
+  return self.GetCoordinates(),[],[],[],[],[[[0,1,2,3],1.,1.]]
+''')
     p=site/'elbow/cctbx_api/CCTBXMixins.py';s=p.read_text();s=s[:s.index(' def OptimiseCCTBX')]+''' def GetCoordinates(self,cctbx_format=True,proper_atoms_only=False):
   return [(a.xyz.x,a.xyz.y,a.xyz.z) for a in self]
  def SetCoordinates(self,coordinates,cctbx_format=True):
@@ -85,15 +97,46 @@ def test_owned_index_worker_captures_native_dictionary_keys_without_reordering_c
   CHANGE
   return values
 '''.replace('CHANGE','self.restraint_class=object()' if mode=='non_dict' else 'pass')+s[b:];p.write_text(s)
+    if mode=='unique_index_keys':
+        p.write_text(p.read_text().replace('for atom in self:self.restraint_class[atom]',
+            'for atom in self:atom.unique_index=atom.index+100\n  for atom in self:self.restraint_class[atom]'))
     for rows in [proof,trace]:
         for row in rows:
             data=(root/row['path']).read_bytes();row.update(size=len(data),sha256=sha256(data).hexdigest())
     v,_=tetrahedron();source=write(tmp_path/'inputs/source.cif',v);out=tmp_path/'native'
     n=audit_source_constructor(root,python,api,source,'Q17',out,environment={**os.environ,'PYTHONPATH':str(site)},expected_dialect='CHEMICAL_COMPONENTS_CIF',
-        prior_sources=proof,trace_sources=trace,native_cctbx=True,trace_chirality=True,coordinate_mapping=True,index_basis=True,timeout_seconds=10)
+        prior_sources=proof,trace_sources=trace,native_cctbx=True,trace_chirality=True,coordinate_mapping=True,index_basis=True,integer_keys=integer,timeout_seconds=10)
     assert n['execution']['status']=='COMPLETED' and n['source_preserved']
     assert len(n['index_sources'])==2 and all((out/r['snapshot']['path']).is_file() for r in n['index_sources'])
-    assert n['index_analysis']['checks_pass'] is (mode in {'correct','native_exception'})
+    assert n['index_analysis']['checks_pass'] is (mode in {'correct','native_exception','integer_keys','unique_index_keys'})
+    if integer:
+        assert n['index_analysis']['policy_id']=='cif-native-integer-restraint-keys-v2'
+        assert n['index_analysis']['managers'][0]['integer_key_binding']['checks_pass']
     assert n['result']['constructor_trace']['methods_restored'] and n['result']['constructor_trace']['source_hashes_preserved']
     assert n['result']['constructor']['status']==('EXCEPTION' if mode=='native_exception' else 'COMPLETED')
     assert n['index_analysis']['scientific_approval']=='NOT_RUN' and not n['automatic_adoption']
+
+
+@pytest.mark.parametrize('defect',['none','key','link','duplicate','unique_override','identity','method','coordinate','bool_key','extra_entry','missing_method'])
+def test_integer_key_proof_requires_complete_native_links_and_unique_index_precedence(tmp_path,defect):
+    from nasolve.cif_constructor_index_basis import analyze_index_basis,INTEGER_KEYS_POLICY_ID
+    v,_=tetrahedron();source=write(tmp_path/'source.cif',v);t=index_trace(v);t['index_policy_id']=INTEGER_KEYS_POLICY_ID
+    basis=t['events'][5]['mapping']['index_basis'];old=basis.pop('native_atom_keys')
+    basis['integer_coordinate_entries']=[{'native_key':a['global_index']+100,'stored_xyz':a['stored_xyz']} for a in old]
+    basis['local_atom_keys']=[{'atom':a['atom'],'global_index':a['global_index'],'unique_index':a['global_index']+100,
+        'key_attribute':'unique_index','native_key':a['global_index']+100,'same_parent_object':True} for a in old]
+    basis['native_link']=[{'native_key':a['global_index']+100,'index':i} for i,a in enumerate(sorted(old,key=lambda a:a['global_index']))]
+    basis['integer_key_methods']=[{**basis['restraint_method'],'method':'RestraintClass.'+name} for name in ['get_key','GetCoordinates']]
+    if defect=='key':basis['local_atom_keys'][0]['native_key']+=99
+    if defect=='link':basis['native_link'][0]['index']=99
+    if defect=='duplicate':basis['integer_coordinate_entries'].append(deepcopy(basis['integer_coordinate_entries'][0]))
+    if defect=='unique_override':basis['local_atom_keys'][0]['key_attribute']='index'
+    if defect=='identity':basis['local_atom_keys'][0]['same_parent_object']=False
+    if defect=='method':basis['integer_key_methods'][0]['sha256']='CHANGED'
+    if defect=='coordinate':basis['integer_coordinate_entries'][0]['stored_xyz'][0]+=0.5
+    if defect=='bool_key':basis['native_link'][0]['native_key']=True
+    if defect=='extra_entry':basis['integer_coordinate_entries'].append({'native_key':999,'stored_xyz':[0.,0.,0.]})
+    if defect=='missing_method':basis['integer_key_methods'].pop()
+    original=deepcopy(t);q=analyze_index_basis(source,'Q17',t)
+    assert t==original and q['checks_pass'] is (defect=='none')
+    if defect=='none':assert q['managers'][0]['integer_key_binding']['checks_pass']

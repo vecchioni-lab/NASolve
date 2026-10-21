@@ -1582,10 +1582,13 @@ def _cif_doctor_receipt(
     path: Path, assessment: Mapping[str, object], run: Path,
 ) -> dict[str, object]:
     """Describe the report without turning findings into a readiness gate."""
+    from .cif_doctor_selection import assessment_report_summary
+
     return {
         "report": frozen_reference(path, run),
         "status": assessment["status"],
         "summary": assessment["summary"],
+        "solution_report": assessment_report_summary(assessment),
     }
 
 

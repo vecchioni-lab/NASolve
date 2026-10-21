@@ -11,6 +11,41 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Current CIF Doctor continuation boundary
+
+The user-facing policy now removes mandatory CIF inspection/approval. Optimize
+and repair within bounded budgets, retain the best usable candidate or native
+fallback, continue with notes for nonconvergence/residual geometry, and disclose
+choices in the eventual solution PDF. Keep chemistry, NARestraints authority
+and fixed target mechanics intact. DNA pucker is nonfatal; demonstrated stereo
+inversion excludes that candidate rather than being silently allowed.
+
+Implemented: pure `cif-automatic-usable-fallback-v1` selection from verified
+adapter evidence and additive PostMR `solution_report` summaries. Still planned:
+automatic candidate acquisition/repair, native qualification/adoption adapters
+and the PDF renderer. Detailed diagnostic REVIEW results are developer evidence,
+not student CIF approval gates. See the [contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
+
+Returned C51: all **2,395 payloads**, six constructors and fresh/previous
+comparisons verify. All nine named key captures are empty because the observer
+expected atom-object keys while selected native RestraintClass uses integers.
+This does not establish a chemical inversion. Keep original hand/DP metadata
+warnings and all earlier evidence. C52 retries the same three source consumers
+using recorded integer entries, native link positions and named local atoms,
+with selected get_key/GetCoordinates/GetRestraints source proofs. No extra
+native getter calls, target edits or mechanics changes. ATL remains a public
+graph/compiler control, outside native constructors and the eight-pair plan.
+
+Build `52_Cedar_probe_cif_integer_keys.py` with PDU/5PC/ATL, then run the exact
+C51 capsule with `--component DP --source-constructor-index-basis-audit-only`.
+The action identifies C51 and enables integer-key policy v2; older C50 action
+semantics remain available. Six owned 30 s workers and 256 calls each remain
+bounded. Native C52 results are pending; no full generation/adoption is claimed.
+Validation: **296 focused / 2,841 full tests**, two skips and 276 subtests;
+41 new regressions. Exact C51 transport passes after source-build deletion
+and relocation, poisoned imports and aliased temp roots; everyday edits and
+all old review evidence remain intact.
+
 ## Completed and open work
 
 | Workstream | Verified result | Still open |
@@ -971,34 +1006,19 @@ nine source tetrahedral graphs and all PDU/5PC target signs. DP C1-prime still
 opposes its source (-2.3736962 versus +2.3867843). This is a hypothesis about
 the producer convention, not proof that native arrays can be substituted.
 
-**Cedar 51 — next native action:** capture native restraint dictionary atom
-keys, indices, live parent sharing/stored coordinates and original returned
-vectors/parameters. Exact named-key/vector alignment must prove the restraint
-order; actual local getter order stays separate. Capture selected native
-RestraintClass.py and geometry_manager.py and fingerprint original methods.
-No additional GetRestraints calls, native array/target edits or chemistry repair.
-Keep original reports/gates and the three fresh native baseline controls.
+**Cedar 51 returned; Cedar 52 is the next native action.** The original
+named-key audit completed six constructors but captured no atom-object keys:
+the selected native dictionary uses integers. All 2,395 payloads and fresh/
+previous repeats verify. Original mapping/hand/DP-marker findings remain.
 
-ATL is a separate pinned public source/stereo/NARestraints compiler control.
-Its bridge and C1/C2/C3/C4-prime declarations pass, as do existing AT and both
-stacking-order compiler checks. NARestraints already has thymine row 54,
-alpha-LNA-T / LNA, so no table/release change is needed. ATL native construction
-is NOT_RUN; the planned eight-pair live run and old recipes remain fixed.
-
-Build `51_Cedar_probe_cif_index_basis.py` with PDU/5PC/ATL controls; run exact
-**50_Cedar_g03y7p0_** using `--component DP
---source-constructor-index-basis-audit-only`. Bounds remain **six owned workers
-× 30 s**, **256 calls / 512 boundaries** each, **64-row vectors/parameters**
-and **256-entry native restraint dictionaries**. Native named-index proof and
-scientific qualification remain pending. See
-`source_native_constructor_index_basis_2026_10_21` in the existing machine ledger.
-Software validation passes **250 focused / 2,800 full tests**, two skips and
-276 subtests. Forty new regressions cover named native keys, exact/ambiguous
-array alignment, method sources, target views, fake owned-worker exceptions,
-immutable C50 replay and independent ATL chemistry/compiler/bundling. Actual
-C50 replay passes after source-build deletion and relocation with poisoned
-imports, aliased temporary roots and preserved everyday edits. Native index
-proof remains pending Mac; these checks are software and saved-data evidence.
+ATL passes its independent pinned public graph/four-centre and existing T-class
+NARestraints pairing/stacking checks; native ATL construction is NOT_RUN. No NAR
+workbook or release change is needed. C52 records native integer entries/link
+positions and named local atoms under selected get_key/GetCoordinates source
+proofs, with the unchanged three-component/six-worker scope. See the current
+continuation boundary at the top and the existing machine records
+`source_native_constructor_index_basis_2026_10_21` and
+`source_native_constructor_integer_keys_2026_10_21`.
 
 **Requested follow-on after building: a fresh eight-pair synthetic live run.**
 Preserve **K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and F:A** in one explicitly
