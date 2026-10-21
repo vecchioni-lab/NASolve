@@ -565,6 +565,10 @@ CEDAR51_WORKER_SHA256='a18d5d3835467e7572a2ad4a79a28fe456412e1d380c9aef7ae27f5e2
 CEDAR52_SHA256='21d97cf95df2b15fd0c989d7372e1c8538d58b9d152571e010a178b56f275acc'
 CEDAR52_BUILD_SHA256='f0fc6c15852766d0a73a0b9f02d21e6b8b9cd685da5f737a7384cdc9648e47b3'
 CEDAR52_WORKER_SHA256='2a30ca44562841004c68f25b979b9723740b54ba589649e5ccb1f1aa1f1c8158'
+CEDAR53_SHA256='9775ffb07c4a9fa5cd14e12e56b377138f497b2393215163ec3268ae159d8955'
+CEDAR53_BUILD_SHA256='9ac0f3ffb6cee148c985045cc23b2a165b140d86877092cdf55f615b41a446c4'
+CEDAR53_WORKER_SHA256='bf54f7f6abbe4a0b2b5bb2bec299e7e3b24895436f6ec1a1074ea9d696b46915'
+CEDAR53_CONTROL_WORKER_SHA256='59b3483aa0287296a1fbb56a3de31b5a10daa1412ab1ff5c32ed2076ff11763a'
 CEDAR41_SHA256 = '7d24e6db59fa814ccd93099d9676f569047147fcb8ab154e05c4980d16a94bd3'
 CEDAR41_BUILD_SHA256 = '0b94d54d60f0153cc46a518507c36af947479da0275b6546a5f8ed50ea42d0aa'
 CEDAR41_WORKER_SHA256 = '9af880ed950dfb66388fa7af40dadc7a4530b88b4553e0b88c0f95b284b430e8'
@@ -594,7 +598,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -1655,10 +1659,10 @@ def _check_index_capture(members,n,p,spec,*,integer_keys=False):
             raise ValueError('Prior index method definition changed')
 
 
-def _check_constructor_return(members,r,*,backend=False,trace=False,control=False,mapping=False,index=False,integer_keys=False):
+def _check_constructor_return(members,r,*,backend=False,trace=False,control=False,mapping=False,index=False,integer_keys=False,setup=False):
     """Replay original C47/C48 snapshots without running captured code or resuming them."""
     from nasolve.cif_source_constructor import qualify_constructor_evidence,SOURCE_PATHS,POLICY_ID,BACKEND_POLICY_ID,native_cctbx_reference
-    a=r['source_constructor_audit'];replayed={};execution='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' if index else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if mapping else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if trace else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if backend else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF'
+    a=r['source_constructor_audit'];replayed={};execution='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP' if setup else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' if index else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if mapping else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if trace else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if backend else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF'
     if (json.loads(members['source_constructor_receipt.json'])!=a or a.get('policy_id')!=POLICY_ID
             or set(a.get('cases',{}))!={'DP','PDU','5PC'} or a.get('status')!='REVIEW'
             or a.get('native_execution')!=execution or a.get('automatic_adoption') is not False
@@ -1679,7 +1683,7 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
                         'installed_phenix_edits','captured_code_execution','pickle_loading'])
                     or n.get('whole_molecule_optimization')!='NOT_REQUESTED'
                     or n.get('constructor_local_optimization')!='NATIVE_INTERNALS_NOT_INSTRUMENTED'
-                    or _sha(members[p+'/constructor_worker.py'])!=(CEDAR52_WORKER_SHA256 if integer_keys and not control else CEDAR51_WORKER_SHA256 if index and not control else CEDAR50_WORKER_SHA256 if mapping and not control else CEDAR49_WORKER_SHA256 if trace and not control else CEDAR48_WORKER_SHA256 if backend else CEDAR47_WORKER_SHA256)
+                    or _sha(members[p+'/constructor_worker.py'])!=(CEDAR53_CONTROL_WORKER_SHA256 if setup and control else CEDAR53_WORKER_SHA256 if setup else CEDAR52_WORKER_SHA256 if integer_keys and not control else CEDAR51_WORKER_SHA256 if index and not control else CEDAR50_WORKER_SHA256 if mapping and not control else CEDAR49_WORKER_SHA256 if trace and not control else CEDAR48_WORKER_SHA256 if backend else CEDAR47_WORKER_SHA256)
                     or json.loads(members[p+'/constructor_receipt.json'])!={k:v for k,v in n.items() if k!='directory'}
                     or json.loads(members[p+'/constructor_result.json'])!=n['result']
                     or (not backend and 'after_format' in n['result']['constructor'])):raise ValueError('Returned constructor execution changed')
@@ -1692,7 +1696,7 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
                     or (spec.get('coordinate_mapping') is not True if mapping and not control else spec.get('coordinate_mapping') is not None)
                     or (spec.get('index_basis') is not True or spec.get('index_sources')!=n.get('index_sources') if index and not control else spec.get('index_basis') is not None or spec.get('index_sources') is not None)
                     or (spec.get('integer_keys') is not True if integer_keys and not control else spec.get('integer_keys') is not None)
-                    or spec.get('source_setup') is not None or spec.get('setup_sources') is not None or n.get('setup_sources') is not None):raise ValueError('Returned constructor source/preparation changed')
+                    or (spec.get('source_setup') is not True or spec.get('setup_sources')!=n.get('setup_sources') if setup else spec.get('source_setup') is not None or spec.get('setup_sources') is not None or n.get('setup_sources') is not None)):raise ValueError('Returned constructor source/preparation changed')
             rows=n['sources']
             if (len(rows)!=len(SOURCE_PATHS) or {v['snapshot']['path'] for v in rows}!={v+'.txt' for v in SOURCE_PATHS}):
                 raise ValueError('Returned constructor source scope changed')
@@ -1711,6 +1715,24 @@ def _check_constructor_return(members,r,*,backend=False,trace=False,control=Fals
                         or _sha(payload)!=row['sha256'] or row['sha256']!=CEDAR48_BACKEND_SHA256 or len(payload)!=row['size']):raise ValueError('Prior backend API source changed')
                 if set(b.get('methods',{}))!={'SetCCTBX','GetCCTBX'} or any(v.get('path')!=row['path'] or v.get('sha256')!=row['sha256']
                         or v.get('module')!='elbow.cctbx_api.CCTBXMixins' or v.get('selected_source') is not True for v in b['methods'].values()):raise ValueError('Prior backend method source changed')
+            if setup:
+                from nasolve.cif_constructor_setup import native_setup_reference,qualify_setup_evidence,POLICY_ID as SETUP_POLICY
+                ss=n.get('setup_sources',[]);sc=n['result'].get('setup_control',{})
+                if len(ss)!=1 or a.get('setup_policy_id')!=SETUP_POLICY:raise ValueError('Missing native Setup evidence')
+                row=ss[0];payload=members[p+'/'+row['snapshot']['path']]
+                if (row.get('anchor')!='phenix_installation' or row['snapshot'].get('anchor')!='constructor_directory'
+                        or not _safe(row['path']) or not _safe(row['snapshot']['path'])
+                        or not row['path'].endswith('/elbow/command_line/builder.py')
+                        or _sha(payload)!=row['sha256'] or row['sha256']!=ELBOW_SOURCE_SHA256['elbow/command_line/builder.py'] or len(payload)!=row['size']
+                        or native_setup_reference(payload)!=sc.get('reference')):raise ValueError('Native setup reference changed')
+                method=sc.get('method',{});native=next(v for v in rows if v['path'].endswith('/elbow/chemistry/SimpleMoleculeClass.py'))
+                tree=__import__('ast').parse(members[p+'/'+native['snapshot']['path']])
+                definitions=[n for cls in tree.body if isinstance(cls,__import__('ast').ClassDef) and cls.name=='SimpleMoleculeClass'
+                    for n in cls.body if isinstance(n,__import__('ast').FunctionDef) and n.name=='Setup' and n.lineno==method.get('definition_line')]
+                qsetup=qualify_setup_evidence(n['result'])
+                if (method.get('path')!=native['path'] or method.get('sha256')!=native['sha256'] or len(definitions)!=1
+                        or qsetup!=n.get('setup_analysis') or not qsetup['checks_pass']
+                        or not qsetup['cached_input_coordinates_preserved_after_constructor']):raise ValueError('Native Setup does not replay')
             if trace and not control:
                 from nasolve.cif_constructor_trace import analyze_constructor_trace,POLICY_ID as TRACE_POLICY
                 t=n['result']['constructor_trace']
@@ -1786,15 +1808,16 @@ def _read_cedar48_members(members):
     return qualified,prior,rotation
 
 
-def _check_constructor_trace_return(members,r,*,mapping=False,index=False,integer_keys=False):
+def _check_constructor_trace_return(members,r,*,mapping=False,index=False,integer_keys=False,setup=False):
     from nasolve.cif_constructor_trace import compare_constructor_runs
-    observed=_check_constructor_return(members,r,backend=True,trace=True,mapping=mapping,index=index,integer_keys=integer_keys)
-    controls=_check_constructor_return(members,r,backend=True,trace=True,control=True,mapping=mapping,index=index,integer_keys=integer_keys)
+    observed=_check_constructor_return(members,r,backend=True,trace=True,mapping=mapping,index=index,integer_keys=integer_keys,setup=setup)
+    controls=_check_constructor_return(members,r,backend=True,trace=True,control=True,mapping=mapping,index=index,integer_keys=integer_keys,setup=setup)
     previous=json.loads(members['inputs/review/probe_receipt.json'])['source_constructor_audit']['cases']
     for code,c in r['source_constructor_audit']['cases'].items():
         comparison=compare_constructor_runs(c['control_native'],c['native'],previous[code]['native'])
-        if comparison!=c['observer_comparison'] or not comparison['checks_pass'] or not comparison['previous_endpoint_match']:
+        if comparison!=c['observer_comparison'] or not comparison['checks_pass'] or (not setup and not comparison['previous_endpoint_match']):
             raise ValueError('Prior fresh native comparisons do not replay')
+        if setup:observed[code]['setup_analysis']=c['native']['setup_analysis']
         if mapping:observed[code]['mapping_analysis']=c['native']['mapping_analysis']
         if index:observed[code]['index_analysis']=c['native']['index_analysis']
         observed[code].update(trace_analysis=c['native']['trace_analysis'],observer_comparison=comparison,control_qualification=controls[code]['qualification'])
@@ -1863,10 +1886,26 @@ def _read_cedar52_members(members):
     return qualified,prior,rotation
 
 
+def _read_cedar53_members(members):
+    _verify_manifest(members,2615);r=json.loads(members['probe_receipt.json'])
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR53_BUILD_SHA256
+            or r.get('delivery_prefix')!='53_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('status')!='REVIEW' or r.get('analysis_completed') is not True or r.get('automatic_adoption') is not False
+            or r.get('requested_action')!='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP'
+            or r.get('native_execution')!='SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP' or r.get('policy_authority')!='NARestraints'
+            or any(r.get(k) is not True for k in ['original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='NOT_RUN' for k in ['dictionary_generation','model_editing','model_optimization','native_proxy_validation',
+                'linked_site_validation','policy_recompilation','refinement','installed_phenix_edits','readyset_retry','scientific_approval'])
+            or r['prior_archive']['sha256']!=CEDAR52_SHA256 or r['prior_archive']['verified_payloads']!=2502):raise ValueError('Require exact returned Cedar 53 native Setup review')
+    nested={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    qualified,prior,rotation=_read_cedar52_members(nested);_check_constructor_trace_return(members,r,mapping=True,index=True,integer_keys=True,setup=True)
+    return qualified,prior,rotation
+
+
 def _source_reader_evidence(members):
     """Reach the verified C34 constructor evidence without dropping wrappers."""
     prefix=''
-    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar'}:
+    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar'}:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
     return members,prefix
@@ -1874,14 +1913,15 @@ def _source_reader_evidence(members):
 
 def _read_capsule(path, expected_sha=None):
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256}):
-        raise ValueError('Require an exact verified Cedar 29--52 review ZIP')
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256,CEDAR53_SHA256}):
+        raise ValueError('Require an exact verified Cedar 29--53 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='52_Cedar':qualified,prior,rotation=_read_cedar52_members(members)
+    if header.get('delivery_prefix')=='53_Cedar':qualified,prior,rotation=_read_cedar53_members(members)
+    elif header.get('delivery_prefix')=='52_Cedar':qualified,prior,rotation=_read_cedar52_members(members)
     elif header.get('delivery_prefix')=='51_Cedar':qualified,prior,rotation=_read_cedar51_members(members)
     elif header.get('delivery_prefix')=='50_Cedar':qualified,prior,rotation=_read_cedar50_members(members)
     elif header.get('delivery_prefix')=='49_Cedar':qualified,prior,rotation=_read_cedar49_members(members)
@@ -2423,6 +2463,66 @@ def _run_linear_torsion_impact_action(args,receipt,session,review,original,membe
     print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
 
 
+def _run_source_candidate_action(args,receipt,session,review,original,members,frozen,sources,capture,expected):
+    from nasolve.cif_elbow_input import prepare_elbow_source_dialect_input
+    from nasolve.cif_source_candidate import generate_source_candidate,POLICY_ID
+    from nasolve.cif_source_constructor import verify_constructor_capture
+    if set(sources)!={'DP','PDU','5PC'}:raise ValueError('Require the reviewed source and both complete candidate controls')
+    prior=json.loads(members['probe_receipt.json'])['source_constructor_audit']
+    receipt['prior_constructor_replay']=_check_constructor_trace_return(members,json.loads(members['probe_receipt.json']),mapping=True,index=True,integer_keys=True,setup=True)
+    cache_members=members
+    while json.loads(cache_members['probe_receipt.json'])['delivery_prefix']!='46_Cedar':
+        cache_members={n.removeprefix('inputs/review/'):d for n,d in cache_members.items() if n.startswith('inputs/review/')}
+    receipt['prior_cache_impact_replay']=_check_impact_return(cache_members,json.loads(cache_members['probe_receipt.json']),cache=True)
+    report={'schema_version':1,'policy_id':POLICY_ID,'cases':{},'native_execution':'NOT_RUN','dictionary_generation':'NOT_RUN',
+        'single_block_steps':180,'automatic_adoption':False,'requires_cif_review':False,'model_editing':'NOT_RUN',
+        'native_proxy_validation':'NOT_RUN','absolute_cip_assignment':'NOT_RUN','selection':'PENDING_NATIVE_USABILITY'}
+    receipt['limitations']=['Complete separate dictionary candidates use the source-native reader, declared-charge adapter and installed full builder.',
+        'Native run owns Setup and all construction, optimization and serialization; no temporary template endpoint is resumed.',
+        'The native CCTBX preparation and installed optimization options are explicit; native kernels, targets and tolerances are unchanged.',
+        'Written outputs survive nonconvergence, worker errors and time limits for automatic usability/fallback qualification.',
+        'Finished-coordinate handedness is source relative; independent absolute CIP, native proxy readback and production adoption remain separate.',
+        'Students do not inspect CIFs. This development diagnostic supplies evidence for the automatic decision adapter.']
+    phenix=None
+    if not args.inspect_only:
+        from nasolve.phenix_runtime import installation_from_candidate
+        phenix=installation_from_candidate(args.phenix_root,base_environment={k:v for k,v in os.environ.items() if k not in NATIVE_OVERRIDES})
+        receipt['installed_api_sources']=_fingerprints(phenix,{**capture,'native_validation':expected});receipt['phenix_version']=phenix.version
+        for c in prior['cases'].values():verify_constructor_capture(phenix.root,c['native'],frozen/c['native']['directory']['path'])
+    receipt['consumer_preparations']={}
+    for code,source in sources.items():
+        consumer=session/'consumer_preview'/code/'source.cif'
+        preparation=prepare_elbow_source_dialect_input(source,session/'graph_preview'/code/'source.cif',code,consumer)
+        receipt['consumer_preparations'][code]=preparation
+        old=prior['cases'][code]
+        if _sha(consumer.read_bytes())!=old['consumer']['sha256']:raise ValueError('Full builder must start from the verified original source')
+        c={'consumer':{'anchor':'probe_directory','path':consumer.relative_to(session).as_posix(),'sha256':_sha(consumer.read_bytes()),'size':consumer.stat().st_size},
+           'reader_dialect':preparation['consumer_reader_dialect'],'generation':{'status':'NOT_RUN'}}
+        report['cases'][code]=c
+        print(code,'complete candidate:', 'starting bounded native builder' if phenix else 'NOT_RUN (offline inspection)',flush=True)
+        if phenix:
+            output=session/'source_candidates'/code
+            pins=old['native']['sources']+old['native']['setup_sources']
+            generated=generate_source_candidate(phenix.root,phenix.executables['phenix.python'],phenix.executables['phenix.elbow'],receipt['installed_api_sources'],
+                consumer,code,output,environment=phenix.environment,expected_dialect=c['reader_dialect'],prior_sources=pins,
+                phenix_version=phenix.version,single_block_steps=180,timeout_seconds=min(args.timeout_seconds,600))
+            c['generation']={'directory':{'anchor':'probe_directory','path':output.relative_to(session).as_posix()},**generated}
+            print(code,'candidate:',generated['status'],'; output retained:',generated['candidate_retained'],
+                '; stopping:',generated.get('stopping',{}).get('status','NOT_REPORTED'),flush=True)
+            print(code,'finished-coordinate handedness:',generated.get('finished_stereo',{}).get('stereochemistry','NOT_RUN'),flush=True)
+            if generated.get('error'):print(code,'builder evidence:',generated['error'],flush=True)
+    if phenix:
+        report.update(native_execution='SOURCE_NATIVE_COMPLETE_CANDIDATES',dictionary_generation='BOUNDED_NATIVE_BUILDER')
+        for c in prior['cases'].values():verify_constructor_capture(phenix.root,c['native'],frozen/c['native']['directory']['path'])
+        if _fingerprints(phenix,{**capture,'native_validation':expected})!=receipt['installed_api_sources']:raise ValueError('Selected native APIs changed')
+    receipt.update(source_candidate_audit=report,native_execution=report['native_execution'],dictionary_generation=report['dictionary_generation'],
+        analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True,requires_cif_review=False)
+    if any((frozen/PurePosixPath(n)).read_bytes()!=d for n,d in members.items()) or review.read_bytes()!=original:raise ValueError('Original/frozen candidate prerequisite changed')
+    _json(session/'source_candidate_audit.json',report);_json(session/'probe_receipt.json',receipt)
+    print('Diagnostic: REVIEW (complete candidate evidence; native usability and automatic adoption remain open)',flush=True)
+    print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
+
+
 def _run_source_constructor_action(args,receipt,session,review,original,members,frozen,sources,capture,expected):
     from nasolve.cif_elbow_input import prepare_elbow_source_dialect_input
     from nasolve.cif_source_constructor import audit_source_constructor,verify_constructor_capture,PRIOR_PATHS,POLICY_ID,BACKEND_POLICY_ID
@@ -2567,6 +2667,7 @@ def _check_constructor_input_mode(args,delivery):
         'source_constructor_mapping_audit_only':('49_Cedar',),
         'source_constructor_index_basis_audit_only':('50_Cedar','51_Cedar'),
         'source_constructor_setup_audit_only':('52_Cedar',),
+        'source_candidate_generation_only':('53_Cedar',),
     }
     for option,inputs in scopes.items():
         if bool(getattr(args,option,False))!=(delivery in inputs):
@@ -2576,6 +2677,7 @@ def _check_constructor_input_mode(args,delivery):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '54_Cedar':'NASolve-live-tests/53_Cedar_cif-numerical-recovery-5mpyhxt7/53_Cedar_5mpyhxt7_cif_numerical_recovery_review.zip',
         '53_Cedar':'NASolve-live-tests/52_Cedar_cif-numerical-recovery-rjkwfcxk/52_Cedar_rjkwfcxk_cif_numerical_recovery_review.zip',
         '52_Cedar':'NASolve-live-tests/51_Cedar_cif-numerical-recovery-lnlj_8_6/51_Cedar_lnlj_8_6_cif_numerical_recovery_review.zip',
         '51_Cedar':'NASolve-live-tests/50_Cedar_cif-numerical-recovery-g03y7p0_/50_Cedar_g03y7p0__cif_numerical_recovery_review.zip',
@@ -2631,6 +2733,8 @@ def main():
                       help='Compare saved original/candidate numerical contributions at identical coordinates; no optimizer or generation')
     mode.add_argument('--nonbonded-cache-audit-only',action='store_true',
                       help='Prove zero-contribution pair-cache transitions, then repeat strict fixed-coordinate numerical checks')
+    mode.add_argument('--source-candidate-generation-only',action='store_true',
+                      help='Run complete separate source-native dictionary candidates after exact Cedar 53 replay; retain nonconverged outputs')
     mode.add_argument('--source-constructor-setup-audit-only',action='store_true',
                       help='Use the selected native builder input-coordinate Setup before isolated construction after exact Cedar 52 replay')
     mode.add_argument('--source-constructor-index-basis-audit-only',action='store_true',
@@ -2652,7 +2756,7 @@ def main():
         'model_editing':'NOT_RUN','model_optimization':'NOT_RUN','dictionary_generation':'NOT_RUN','policy_recompilation':'NOT_RUN',
         'readyset_retry':'NOT_RUN','refinement':'NOT_RUN','scientific_approval':'NOT_RUN','automatic_adoption':False,
         'diffraction_data':'NOT_READ','policy_authority':'NARestraints','installed_phenix_edits':'NOT_RUN',
-        'requested_action':'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP' if args.source_constructor_setup_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' if args.source_constructor_index_basis_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if args.source_constructor_mapping_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if args.source_constructor_trace_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if args.source_constructor_backend_audit_only else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF' if args.source_constructor_audit_only else 'ISOLATED_NONBONDED_CACHE_PROOF_AND_IMPACT' if args.nonbonded_cache_audit_only else 'ISOLATED_LINEAR_TORSION_NUMERICAL_IMPACT' if args.linear_torsion_impact_only else 'ISOLATED_LINEAR_TORSION_CANDIDATE' if args.linear_torsion_candidate_only else 'ISOLATED_DIHEDRAL_CONDITIONING_AUDIT' if args.torsion_conditioning_audit_only else 'ISOLATED_READYSET_GENERATION_AUDIT' if args.readyset_generation_audit_only else 'READYSET_SOURCE_AND_DESCRIPTOR_AUDIT' if args.readyset_source_audit_only else 'INSTALLED_MONOMER_CCD_SOURCE_AUDIT' if args.installed_source_audit_only else 'INSTALLED_TRIPLE_BOND_AUDIT' if args.triple_bond_audit_only else 'SOURCE_DIALECT_DECLARED_CHARGE_CONTROL' if args.declared_charge_control else 'SOURCE_DIALECT_READER_AUDIT' if args.source_dialect_audit_only else 'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
+        'requested_action':'SOURCE_NATIVE_COMPLETE_CANDIDATES' if args.source_candidate_generation_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP' if args.source_constructor_setup_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' if args.source_constructor_index_basis_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if args.source_constructor_mapping_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if args.source_constructor_trace_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if args.source_constructor_backend_audit_only else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF' if args.source_constructor_audit_only else 'ISOLATED_NONBONDED_CACHE_PROOF_AND_IMPACT' if args.nonbonded_cache_audit_only else 'ISOLATED_LINEAR_TORSION_NUMERICAL_IMPACT' if args.linear_torsion_impact_only else 'ISOLATED_LINEAR_TORSION_CANDIDATE' if args.linear_torsion_candidate_only else 'ISOLATED_DIHEDRAL_CONDITIONING_AUDIT' if args.torsion_conditioning_audit_only else 'ISOLATED_READYSET_GENERATION_AUDIT' if args.readyset_generation_audit_only else 'READYSET_SOURCE_AND_DESCRIPTOR_AUDIT' if args.readyset_source_audit_only else 'INSTALLED_MONOMER_CCD_SOURCE_AUDIT' if args.installed_source_audit_only else 'INSTALLED_TRIPLE_BOND_AUDIT' if args.triple_bond_audit_only else 'SOURCE_DIALECT_DECLARED_CHARGE_CONTROL' if args.declared_charge_control else 'SOURCE_DIALECT_READER_AUDIT' if args.source_dialect_audit_only else 'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
         'limits':{'max_components':3,'generation_timeout_per_component':args.timeout_seconds,'read_only_timeout_per_component':min(args.timeout_seconds,60),
                   'single_block_steps':args.single_block_steps},
         'limitations':['Separate dictionary candidates only; none is applied to a native manager or model.',
@@ -2685,6 +2789,11 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='53_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'53_Cedar','native_execution':'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP',
+                'setup_status':'SIX_SETUP_AND_SOURCE_CACHES_PASS; NINE_SOURCE_TARGET_SIGNS_AGREE',
+                'temporary_handedness':'REVIEW; NOT_A_FINISHED_MOLECULE_VERDICT',
+                'evidence':{'anchor':'probe_directory','path':'inputs/review/probe_receipt.json'}}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='52_Cedar':
             receipt['previous_execution']={'delivery_prefix':'52_Cedar','native_execution':'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS',
                 'index_status':'NINE_NATIVE_INTEGER_BINDINGS_PASS; EIGHT_SOURCE_TARGET_SIGNS_AGREE; DP_C1_PRIME_REVIEW',
@@ -2828,14 +2937,14 @@ def main():
         receipt.update(prior_archive={'sha256':_sha(original),'bytes':len(original),'verified_payloads':len(json.loads(members['manifest.json']))},
             prior_convergence=rotation['prior_convergence'],prior_stopping=rotation['prior_stopping'],prior_continuation=rotation['prior_continuation'],
             prerequisite_mechanics_replayed=True,prior_rotation_evidence_recomputed=validation,source_plan=plan)
-        print('Native source-coordinate setup:' if args.source_constructor_setup_audit_only else 'Native named restraint-index basis:' if args.source_constructor_index_basis_audit_only else 'Native local coordinate/chirality mapping:' if args.source_constructor_mapping_audit_only else 'Native chiral boundary observation:' if args.source_constructor_trace_audit_only else 'Source-native CCTBX constructor retry:' if args.source_constructor_backend_audit_only else 'Source-native chiral constructor handoff:' if args.source_constructor_audit_only else 'Native pair-cache proof and strict impact retry:' if args.nonbonded_cache_audit_only else 'Fixed-coordinate torsion impact audit:' if args.linear_torsion_impact_only else 'Separate linear-torsion candidate audit:' if args.linear_torsion_candidate_only else 'Fixed native torsion-conditioning audit:' if args.torsion_conditioning_audit_only else 'Isolated ReadySet generation audit:' if args.readyset_generation_audit_only else 'ReadySet source/descriptor audit:' if args.readyset_source_audit_only else 'Source-dialect reader audit:' if args.source_dialect_audit_only else 'Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
+        print('Complete source-native dictionary candidates:' if args.source_candidate_generation_only else 'Native source-coordinate setup:' if args.source_constructor_setup_audit_only else 'Native named restraint-index basis:' if args.source_constructor_index_basis_audit_only else 'Native local coordinate/chirality mapping:' if args.source_constructor_mapping_audit_only else 'Native chiral boundary observation:' if args.source_constructor_trace_audit_only else 'Source-native CCTBX constructor retry:' if args.source_constructor_backend_audit_only else 'Source-native chiral constructor handoff:' if args.source_constructor_audit_only else 'Native pair-cache proof and strict impact retry:' if args.nonbonded_cache_audit_only else 'Fixed-coordinate torsion impact audit:' if args.linear_torsion_impact_only else 'Separate linear-torsion candidate audit:' if args.linear_torsion_candidate_only else 'Fixed native torsion-conditioning audit:' if args.torsion_conditioning_audit_only else 'Isolated ReadySet generation audit:' if args.readyset_generation_audit_only else 'ReadySet source/descriptor audit:' if args.readyset_source_audit_only else 'Source-dialect reader audit:' if args.source_dialect_audit_only else 'Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
         print('Preserved prerequisite component:' if args.nonbonded_cache_audit_only or args.linear_torsion_impact_only or args.linear_torsion_candidate_only or args.torsion_conditioning_audit_only or args.readyset_generation_audit_only else 'Explicit candidates:',', '.join(plan['recovery_codes']),flush=True)
         print('Verified prior mechanics and rotational derivatives; no model optimization.',flush=True)
         if constructor_action or args.declared_charge_control or args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only or args.linear_torsion_impact_only or args.nonbonded_cache_audit_only:
             from nasolve.cif_source_reader import source_reader_checks
             receipt['prior_source_reader_replay']={}
             charge_members=members;charge_root=frozen
-            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar'}:
+            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar'}:
                 charge_members={n.removeprefix('inputs/review/'):d for n,d in charge_members.items() if n.startswith('inputs/review/')}
                 charge_root=charge_root/'inputs/review'
             for code,row in json.loads(charge_members['probe_receipt.json'])['source_reader_audits'].items():
@@ -2852,7 +2961,7 @@ def main():
             preparation=prepare_graph_generation_source(source,code,session/'graph_preview'/code/'source.cif')
             receipt['graph_preparations'][code]=preparation
         controls=BUNDLE.get('component_controls',[])
-        if len(components)+len(controls)>(4 if args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only else 3) or set(components)&{r['component'] for r in controls}:raise ValueError('Candidate and public-control scope exceeds bounds or overlaps')
+        if len(components)+len(controls)>(4 if args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only or args.source_candidate_generation_only else 3) or set(components)&{r['component'] for r in controls}:raise ValueError('Candidate and public-control scope exceeds bounds or overlaps')
         receipt['component_controls']={};sources={item['component']:cifs[item['input_index']] for item in plan['selected']}
         receipt['independent_component_controls']=[]
         for control in controls:
@@ -2862,7 +2971,7 @@ def main():
             target=session/'component_controls/sources'/(code+'.cif');target.parent.mkdir(parents=True,exist_ok=True)
             with target.open('xb') as handle:handle.write(data)
             report=assess_component_control(target,code,graph_only_if_ambiguous=(args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only or args.linear_torsion_impact_only or args.nonbonded_cache_audit_only));receipt['component_controls'][code]=report
-            independent=(args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only) and code not in {'PDU','5PC'}
+            independent=(args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only or args.source_candidate_generation_only) and code not in {'PDU','5PC'}
             if independent:
                 from nasolve.cif_stereochemistry_audit import reader_stereo_inventory
                 report.update(scope='INDEPENDENT_PUBLIC_SOURCE_AND_COMPILER_CONTROL',source_stereo_inventory=reader_stereo_inventory(target,code),native_execution='NOT_RUN')
@@ -2872,6 +2981,8 @@ def main():
             receipt['graph_preparations'][code]=prepare_graph_generation_source(target,code,session/'graph_preview'/code/'source.cif')
             if not independent:sources[code]=target
             print('Public control:',code,'; graph',report['graph_status'],'; NARestraints class',report['mapped_base_class'],'; pairing/stacking compiler',report['policy_status'],flush=True)
+        if args.source_candidate_generation_only:
+            return _run_source_candidate_action(args,receipt,session,review,original,members,frozen,sources,capture,expected)
         if constructor_action:
             return _run_source_constructor_action(args,receipt,session,review,original,members,frozen,sources,capture,expected)
         if args.linear_torsion_impact_only or args.nonbonded_cache_audit_only:

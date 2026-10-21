@@ -26,32 +26,32 @@ automatic candidate acquisition/repair, native qualification/adoption adapters
 and the PDF renderer. Detailed diagnostic REVIEW results are developer evidence,
 not student CIF approval gates. See the [contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
-Returned C52: all **2,502 payloads**, six constructors and exact fresh/previous
-comparisons verify. All **nine native integer/link/name/vector proofs PASS**;
-all restraint orders differ from the actual local getter order. PDU/5PC source
-target signs agree at every centre; DP C1-prime remains opposed (-2.3736962
-source versus +2.3867843 native target). Original temporary source-hand and DP
-marker warnings remain. No assembled-molecule inversion is established.
+Returned C53 verifies all **2,615 payloads**, six completed constructors and
+all six native setup/cache qualifications. All **nine native-basis source target
+signs now agree**. DP changes from the unprepared endpoint; PDU/5PC do not.
+Every fresh control/observer pair matches. Temporary-frame hand warnings and DP
+marker-continuity review remain developer evidence, not finished-molecule or
+absolute-CIP verdicts. The full 2,502-payload C52 parent is unchanged. The reported
+runner differs from the clean delivery only in NARestraints dirty-state metadata;
+reconstructing that field exactly reproduces its SHA, with all runtime bytes equal.
 
-**C53 is the next native action.** Captured builder source calls native Setup
-before Chiralise; Setup stores input_xyz, which native R/S handling can use.
-The isolated diagnostic has not invoked it. Test that single preparation step
-with original targets/kernels and explicit state/cache evidence. This is a
-controlled prerequisite test, not a claim that it fixes DP or executes the
-complete builder. Retain C52 as the unprepared baseline, compare separate fresh
-prepared unobserved/observed workers and report any endpoint change separately.
+**C54 is the next native action.** Generate complete separate DP/PDU/5PC
+candidates with `--source-candidate-generation-only` on exact C53. The selected
+native run API accepts the source-prepared object, owns Setup, and executes the
+full builder, optimization and output. Each owned worker requests one 180-step
+block within 600 seconds, retaining written output across nonconvergence and
+later errors. Chemistry and explicit charges remain checked; finished stereo
+uses named four-neighbor tetrahedra so central deformation is not inversion.
+Native proxy usability, automatic production adoption and absolute CIP remain
+separate. Students do not adjudicate these internal diagnostic results.
 
-Build `53_Cedar_probe_cif_input_setup.py` with PDU/5PC/ATL; run exact C52 with
-`--component DP --source-constructor-setup-audit-only`. Six owned 30 s workers,
-one native Setup each and 256 observed constructor calls remain bounded. ATL
-stays public graph/compiler only; the requested eight-pair plan is unchanged.
-Source/setup/native qualifications, temporary handedness, full generation and
-scientific qualification remain distinct. Native C53 evidence is pending.
-Validation passes **343 focused / 2,888 full tests**, two skips and 276 subtests.
-All 47 new regressions and exact-C52 deleted-build/relocated transport pass,
-with poisoned imports, aliased temp roots and everyday edits preserved.
-See `source_native_constructor_integer_keys_2026_10_21` and
-`source_native_constructor_input_setup_2026_10_21` in the existing ledger.
+Build `54_Cedar_probe_cif_complete_candidate.py` with PDU/5PC/ATL. ATL remains
+public graph/compiler only; the requested eight-pair live plan is unchanged.
+No new dependency, native kernel/target change, installed patch or NAR release.
+All **41 new regressions**, **469 focused / 2,929 full tests** pass (two skips,
+276 subtests), plus exact-C53 deleted-build/relocated transport, poisoned imports,
+aliased temp roots and preserved everyday edits. Details are recorded in
+`source_native_complete_candidates_2026_10_21` in the existing ledger.
 
 ## Completed and open work
 

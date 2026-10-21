@@ -94,9 +94,14 @@ with automatic fallback for rejected candidates. The decision core and PostMR
 summary are implemented; recovery/adoption/PDF integration remain planned, so
 no completed automatic-adoption arrow is added.
 
-Returned C52 proves all nine native integer-key bindings; DP C1-prime remains a
-source target-sign review. C53 tests the captured native builder Setup step,
-recording input-coordinate caching and fresh prepared observer comparisons.
-Original native targets/kernels remain unchanged. Temporary frame warnings do
-not establish an inverted completed molecule; full builder/CIP/adoption and
-native C53 evidence remain separate.
+Returned C52 proves all nine native integer-key bindings while retaining DP
+C1-prime review. Returned C53 adds the captured native Setup prerequisite and
+closes that source target-sign mismatch, retaining temporary-frame warnings.
+Original native targets/kernels remain unchanged; this is not an absolute CIP
+or finished-molecule qualification.
+
+C53 now passes all native setup/cache checks and nine source target signs, with
+local-frame warnings preserved. C54 advances to complete separate native builder
+candidates: bounded optimization, retained nonconverged output and finished
+four-neighbor configuration checks. Native usability/production adoption remain
+separate; neither students nor the figure imply CIF adjudication is required.

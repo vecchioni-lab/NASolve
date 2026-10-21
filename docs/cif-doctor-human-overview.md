@@ -1142,7 +1142,20 @@ comparison; an effect of preparation is not observer divergence. Cached values
 are recorded again afterward to expose alias/mutation behavior. Original native
 kernels, targets and source chemistry stay fixed. This is an isolated setup
 control, not a complete builder or independent absolute CIP assignment. Native
-C53 evidence, full generation and scientific qualification remain open.
+C53 evidence now passes all setup/cache checks and nine native-basis target
+signs, with exact fresh repeats. DP changes from the unprepared endpoint while
+PDU/5PC do not. Temporary hand/marker warnings remain separate.
+
+C54 moves from local templates to complete independent dictionaries. It passes
+the source-prepared molecule into the installed full-builder API, whose own
+Setup, construction, optimization and writing remain unchanged. One 180-step
+block and a 600-second worker deadline bound each component. Written output is
+kept across nonconvergence and later exceptions for automatic native usability
+and fallback qualification. Finished configuration uses four named neighbors,
+so central deformation/pucker is not inversion. Source chemistry, charges and
+numerical completeness are still checked. Students do not inspect these CIFs;
+production selection/adoption and the solution PDF adapter remain planned.
+Native full-builder results, absolute CIP and scientific approval remain open.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

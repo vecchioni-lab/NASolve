@@ -2183,8 +2183,40 @@ Separate fresh prepared control/observed workers retain the original constructor
 arguments and integer-key observation. Fresh observer agreement remains required
 evidence; change against the old unprepared C52 endpoint is reported separately,
 not required to be identical. Six owned 30 s workers/256 observed calls remain
-the bounds, with ATL still public source/compiler only. Native C53 preparation
-and constructor results remain pending. No full generation or adoption occurs.
+the bounds, with ATL still public source/compiler only. Returned C53 passes
+all six setup/cache qualifications and fresh comparisons. All nine source target
+signs agree in the proved native integer basis. DP changes from the unprepared
+endpoint, PDU/5PC do not; temporary hand/DP marker warnings remain. C53 does not
+execute full generation or adoption.
+
+## Complete source-native candidates (Cedar 54)
+
+`--source-candidate-generation-only` accepts the exact C53 return, recomputes its
+setup/index/trace findings and preserves every earlier capsule. DP, PDU and 5PC
+restart from exact source-dialect consumer bytes, not temporary template frames.
+The adapter reads the source, transfers only explicit declared charges and
+promotes the native object. A pinned existing run API bypasses file reparsing for
+that supplied object; native run performs its own Setup and complete builder.
+
+One explicit 180-step installed optimization block and a 600-second owned worker
+bound each candidate. The native CCTBX preparation, source-retention selector,
+original chiral treatment and unchanged native kernels/tolerances are explicit.
+Source coordinates seed naming/initial geometry, not independent validation or
+experimental model fitting. A written regular candidate is retained even when
+convergence is unreported, the optimizer stops early or a later native call
+raises. Logs, hashes and stopping evidence stay distinct from chemical approval;
+pickle files are hashed as excluded outputs and never transported or loaded.
+
+Complete output is assessed for graph/elements, hydrogen attachments, explicit
+charges, stereo declarations and numerical coverage. Finished source-relative
+configuration uses fixed named four-neighbor tetrahedra; central-atom deformation
+or pucker alone does not reverse that configuration. Missing/degenerate evidence
+remains unassessed, without asking the student to review CIFs. Known chemical
+changes/opposite configuration exclude that candidate from later automatic
+selection. Native proxy usability, absolute CIP, fallback adoption and solution
+PDF rendering remain separate adapters; C54 does not install a dictionary or
+change a scaffold. ATL remains a public source/compiler control. Native C54
+execution is pending on the reviewed Mac installation.
 
 ## Reviewed preparation
 

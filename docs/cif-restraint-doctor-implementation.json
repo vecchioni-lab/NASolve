@@ -13066,7 +13066,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json"
     },
     "source_native_constructor_input_setup_2026_10_21": {
-      "status": "IMPLEMENTED_EXPLICIT_NATIVE_INPUT_SETUP_PENDING_MAC",
+      "status": "NATIVE_SETUP_AND_NINE_SOURCE_TARGET_SIGNS_PASS; TEMPORARY_HAND_REVIEWS_PRESERVED",
       "recorded_date": "2026-10-21",
       "delivery_prefix": "53_Cedar",
       "policy_id": "cif-native-input-coordinate-setup-v1",
@@ -13114,7 +13114,7 @@
         "compatibility": "No installed patch, kernel/target/weight change, source chemistry/state/recipe change, dependency or automatic adoption. ATL remains a separate public graph/compiler control; eight-pair plan preserved."
       },
       "validation": {
-        "native": "PENDING_USER_MAC. Owned fake APIs and saved C52 replay verify software/evidence boundaries rather than native chemistry.",
+        "native": "Phenix 2.2.1, macOS installation phenix-2.2.1-6174: six completed fresh constructors; all setup/cache qualifications and fresh observer comparisons pass. Nine native-basis source target signs agree. Full builder and absolute CIP not run.",
         "new_regressions": 47,
         "fail_before": {
           "setup_module_or_api_failed": 16,
@@ -13193,6 +13193,159 @@
         }
       },
       "automatic_adoption": false,
+      "returned_review": {
+        "name": "53_Cedar_5mpyhxt7_cif_numerical_recovery_review.zip",
+        "sha256": "9775ffb07c4a9fa5cd14e12e56b377138f497b2393215163ec3268ae159d8955",
+        "bytes": 60095912,
+        "verified_payloads": 2615,
+        "build_sha256": "9ac0f3ffb6cee148c985045cc23b2a165b140d86877092cdf55f615b41a446c4",
+        "reported_runner_sha256": "accee4349561ff9494250dea7d4d224f708ec4deec9dd14060ea897da383892d",
+        "runtime_archive_sha256": "158e0c1660fc3997bd050d727a564f3605574f73da63deeca481d7e5b70bb532",
+        "runtime_members": 138,
+        "delivery_comparison": "Exact clean published BUNDLE/runtime except NARestraints working_tree_has_changes=True metadata. Reconstructing that one metadata change reproduces the reported runner SHA exactly; all bundled runtime bytes match.",
+        "prior_payloads_unchanged": 2502,
+        "observed_worker_sha256": "bf54f7f6abbe4a0b2b5bb2bec299e7e3b24895436f6ec1a1074ea9d696b46915",
+        "control_worker_sha256": "59b3483aa0287296a1fbb56a3de31b5a10daa1412ab1ff5c32ed2076ff11763a",
+        "observed_calls": 123,
+        "setup_qualifications_pass": 6,
+        "source_caches_retained_after_constructor": 6,
+        "native_integer_bindings_pass": 9,
+        "source_target_signs_agree": 9,
+        "fresh_comparisons": "THREE_FRESH_REPEAT_MATCH",
+        "previous_unprepared_endpoint_matches": {
+          "DP": false,
+          "PDU": true,
+          "5PC": true
+        },
+        "preserved_findings": [
+          "All three temporary source-relative hand reviews",
+          "DP native-marker continuity review"
+        ],
+        "meaning": "Native Setup closes the DP C1-prime source/target sign mismatch in the proved integer basis. Setup changes several native metadata attributes; this does not isolate a single causal attribute or certify a finished molecule.",
+        "dictionary_generation": "NOT_RUN",
+        "absolute_cip_assignment": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "next_step": "C54 complete separate source-native candidate generation; do not prolong temporary-frame warnings into a finished-molecule verdict or student approval gate.",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "source_native_complete_candidates_2026_10_21": {
+      "status": "IMPLEMENTED_EXPLICIT_FULL_BUILDER_PENDING_MAC",
+      "recorded_date": "2026-10-21",
+      "delivery_prefix": "54_Cedar",
+      "policy_id": "cif-source-native-complete-candidate-v1",
+      "module": "src/nasolve/cif_source_candidate.py",
+      "cli_action": "--source-candidate-generation-only",
+      "runner_filename": "54_Cedar_probe_cif_complete_candidate.py",
+      "review_input": {
+        "name": "53_Cedar_5mpyhxt7_cif_numerical_recovery_review.zip",
+        "sha256": "9775ffb07c4a9fa5cd14e12e56b377138f497b2393215163ec3268ae159d8955",
+        "bytes": 60095912,
+        "verified_payloads": 2615
+      },
+      "purpose": "Generate actual complete independent dictionaries after the source/setup boundary is qualified, retaining nonconverged outputs for automatic native usability/fallback qualification.",
+      "algorithm": [
+        "Replay exact C53 and every prior capsule with maintained code; pin worker/API/setup method definitions, cache snapshots, original temporary warnings and the separate DP endpoint change.",
+        "Reproduce exact original source-dialect consumers for DP/PDU/5PC, read with selected native APIs, transfer only explicit declared charges, and promote the source object once. Never resume temporary constructor coordinates.",
+        "Pin the installed run API object handoff and guarded parser route, full builder and post_process call sites, and existing Setup sequence. Call original run(molecule=prepared,cctbx=True); native run owns Setup and complete construction/output.",
+        "Discover installed options, retain source state with the native low selector, disable new hydrogens, retain chiral treatment, request opt with one explicit 180-step block and a 600-second owned-worker deadline. Native kernels, targets and tolerances are unchanged.",
+        "Retain the exact regular candidate.cif even after nonconvergence, later exceptions or timeout. Preserve failed outputs and logs; exclude pickle payloads from transport and never load them.",
+        "Assess complete candidate graph, elements, hydrogen attachments, explicit formal charges, labels, signed targets and numerical coverage. Compare finished configuration through fixed named four-neighbor tetrahedra, so central-atom deformation/pucker alone is not inversion. Missing/degenerate stereo stays unassessed; demonstrated opposite configuration excludes the candidate.",
+        "Keep generation, stopping, finished source-relative stereo and future native usability distinct. Native proxy readback and automatic production selection/adoption remain pending; no student CIF inspection is required."
+      ],
+      "native_reference": {
+        "builder_sha256": "7b2c0caf2f061d7fff65633da3add4e1b5176710ac2f7fee6c81a14c99789afd",
+        "function": "run",
+        "object_line": 2095,
+        "guarded_parser_line": 2145,
+        "builder_line": 2387,
+        "postprocess_line": 2442,
+        "setup_line": 814
+      },
+      "limits": {
+        "max_native_components": 3,
+        "owned_workers_per_component": 1,
+        "worker_timeout_seconds": 600,
+        "installed_help_timeout_seconds": 20,
+        "single_block_steps": 180,
+        "supported_step_range": [
+          1,
+          600
+        ]
+      },
+      "schemas": {
+        "candidate": "New opt-in source candidate spec/result/receipt, API text snapshots, raw output hashes, stopping/inspection/finished-stereo evidence and explicit pending native usability; no replacement of legacy constructor schemas.",
+        "probe": "Exact-C53 full-candidate action and preserved full parent capsule; source_candidate_audit separate from historical source_constructor_audit.",
+        "compatibility": "Ordinary PostMR, old actions/workers, NARestraints policies/workbook, curated sources, physics and eight-pair live plan are unchanged. ATL is independent public source/compiler only."
+      },
+      "validation": {
+        "native": "PENDING_USER_MAC; actual captured API AST and exact return replay are offline evidence. Owned fake processes are software tests, not native scientific qualification.",
+        "new_regressions": 41,
+        "fail_before": {
+          "new_module_failures": 23,
+          "seconds": 0.4
+        },
+        "focused": {
+          "passed": 469,
+          "seconds": 30.5,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_source_candidate.py tests/test_cedar54_delivery.py tests/test_cif_constructor_setup.py tests/test_cif_constructor_index_basis.py tests/test_cedar53_delivery.py tests/test_cedar52_delivery.py tests/test_cedar51_delivery.py tests/test_cif_constructor_mapping.py tests/test_cif_constructor_trace.py tests/test_cif_source_constructor.py tests/test_cif_constructor_backend.py tests/test_cedar48_delivery.py tests/test_cedar49_delivery.py tests/test_cedar50_delivery.py tests/test_synthetic_dna_shuttle.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_atl_control.py tests/test_cif_doctor_selection.py tests/test_cif_doctor_postmr.py tests/test_cif_generation.py tests/test_cif_source_dialect.py"
+        },
+        "full": {
+          "passed": 2929,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 228.84,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "source_build_state": {
+            "commit": "770f881d104935872a146d3590e12dfbd058ae79",
+            "working_tree_has_changes": true
+          },
+          "runner_sha256": "88bdbde06f3c6ebf90adcaf8d31a684bb5f192f9116e0235cc278122cdced468",
+          "build_sources_deleted_before_replay": true,
+          "relocated_runner": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp": "PASS",
+          "everyday_edit": "PRESERVED",
+          "ignored_runner": "PASS",
+          "input_payloads": 2615,
+          "runtime_members": 139,
+          "runtime_archive_sha256": "d824fdf7c564114c60967fb0ab0e6cd283a687c943570ea9be5221c00a5c2296",
+          "prior_constructor_calls": 123,
+          "setup_qualifications": 6,
+          "source_target_signs": 9,
+          "mechanics_prerequisites": 17,
+          "rotation_directions": 96,
+          "cache_transitions": 48,
+          "strict_derivative_directions": 246,
+          "recorded_pair_kernels": 3286,
+          "source_consumers": "EXACT_PRIOR",
+          "ATL": "INDEPENDENT_PUBLIC_ONLY",
+          "full_builder_native_execution": "PENDING_USER_MAC",
+          "selection_adoption": "NOT_RUN"
+        },
+        "documentation": {
+          "mirror_equality": "PASS",
+          "planned_eight_pairs": "PRESERVED",
+          "relative_links": 156,
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+          },
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        },
+        "scope": "26 native API/final-coordinate/owned fake worker cases, including nonconvergence, retained output after exception, unknown stereo, central deformation, chemical mismatch and timeouts; 12 mutated Setup return checks and three action-routing checks. Native full-builder execution is pending Mac."
+      },
+      "production_selection": "PENDING_NATIVE_USABILITY_ADAPTER",
+      "scientific_approval": "NOT_RUN",
+      "absolute_cip_assignment": "NOT_RUN",
+      "automatic_adoption": false,
+      "requires_cif_review": false,
       "evidence_record": "docs/cif-linked-native-registration-evidence.json"
     }
   },

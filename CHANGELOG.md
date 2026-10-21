@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Generate complete source-native dictionary candidates
+
+- Verify all 2,615 C53 payloads, six completed native setup/cache qualifications,
+  123 observed calls and exact fresh comparisons. All nine native-basis source
+  target signs agree; DP changes from its unprepared endpoint. Preserve local
+  hand/marker warnings without declaring finished-molecule inversion.
+- Add explicit C54 --source-candidate-generation-only on exact C53. Pass exact
+  source-dialect native objects with declared charges into the selected existing
+  full builder; native run owns Setup, construction, optimization and output.
+- Request one 180-step optimization block per component within 600 seconds.
+  Retain written candidates across nonconvergence and later errors; record exact
+  chemical/charge/numerical comparisons and finished four-neighbor configuration.
+  Missing stereo is a note; known unusable outputs remain excluded from future
+  automatic selection. Students do not inspect CIFs.
+- Keep native proxy usability, automatic adoption and solution PDF integration
+  separate. ATL remains public source/compiler only. No dependency, NAR release,
+  installed patch, changed kernel/target or ordinary PostMR behavior.
+- All 41 new regressions, 469 focused and 2,929 full tests pass (two skips,
+  276 subtests). Exact-C53 deleted-build/relocated transport passes with poisoned
+  imports, aliased temp roots and everyday edits preserved.
+
 ### Test native source-coordinate setup before chiral construction
 
 - Verify all 2,502 C52 payloads, six constructors, 120 observed calls and exact

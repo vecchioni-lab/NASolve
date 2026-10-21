@@ -173,9 +173,11 @@ ATL adds a separate public bridged-sugar/NARestraints compiler control.
 C51 returns nine empty key captures: the observer expected atom objects but
 native keys are integers. Returned C52 proves all nine integer-key bindings and
 eight source target signs; DP C1-prime and temporary hand warnings remain.
-C53 tests the native builder input-coordinate Setup prerequisite without
-changing kernels or targets. Full generation and scientific qualification
-remain pending. Equivalent operational mapping
+Returned C53 passes all setup/cache checks and brings all nine native-basis
+source target signs into agreement, retaining temporary-frame warnings. C54
+requests complete separate candidates with bounded optimization and retains
+nonconverged written outputs. Finished stereo and chemical checks are distinct
+from future native usability/production adoption; scientific qualification remains open. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

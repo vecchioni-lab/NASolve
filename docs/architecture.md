@@ -771,7 +771,21 @@ exact retained input_xyz. Capture cache values again after construction.
 Separate fresh prepared controls/observers must be compared; the old unprepared
 endpoint comparison remains a separate outcome. Preserve every original target,
 weight, kernel and warning. This does not replay the complete builder or assign
-independent absolute CIP. Native results remain pending.
+independent absolute CIP. Returned C53 passes all six setup/cache qualifications
+and fresh comparisons; all nine native-basis source target signs agree. Only DP
+changes from its unprepared endpoint. Temporary hand/marker warnings remain.
+
+C54 uses the selected native full-builder run API with the source-prepared
+molecule, explicit charge transfer and native CCTBX preparation. The installed
+run owns Setup, construction, optimization and output. Source/API fingerprints,
+one 180-step optimization block and a 600-second worker deadline bound each of
+three independent candidates. Written output survives nonconvergence or later
+errors; raw evidence is retained and serialized molecule payloads stay excluded.
+Finished-coordinate checks use the four named neighbors of each declared centre,
+separate from temporary local frames and central deformation. Complete chemical,
+charge and numerical checks remain active. This supplies evidence for the later
+native usability/adoption adapter, without changing native kernels or ordinary
+PostMR. ATL remains an independent public source/compiler control.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core
