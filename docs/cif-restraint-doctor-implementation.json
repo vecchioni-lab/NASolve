@@ -9370,7 +9370,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#linear_axis_torsion_candidate_2026_10_21"
     },
     "linear_axis_torsion_numerical_impact_2026_10_21": {
-      "status": "IMPLEMENTED_FIXED_COORDINATE_NUMERICAL_IMPACT_NATIVE_PENDING",
+      "status": "RETURNED_NUMERICAL_DELTAS_AND_DERIVATIVE_ARITHMETIC_PASS_5PC_COUNT_REVIEW",
       "recorded_date": "2026-10-21",
       "delivery_prefix": "45_Cedar",
       "policy_id": "cif-fixed-linear-torsion-numerical-impact-v1",
@@ -9501,7 +9501,7 @@
           "native_numerical_impact": "PENDING_USER_MAC",
           "generation_optimization_adoption": "NOT_RUN"
         },
-        "native": "PENDING_USER_MAC. Linux tests use an independent quadratic oracle and explicitly fake installed APIs; saved-capsule replay is not a fresh native energy evaluation.",
+        "native": "RETURNED_USER_MAC: both native jobs complete at 1620/2000 evaluations. All 246 derivative arithmetic directions, omitted-term deltas, unrelated-family values and additivity pass. PDU passes all strict cases. Two 5PC cases retain count-only baseline/sample/final review (71\u219275 and 70\u219267), with repeated targets and gradients exactly unchanged. Pair identities/contributions were not captured; cache explanation remains to be proved.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -9522,8 +9522,512 @@
         "No historical floppy-chain cause, full linked scaffold result, convergence or adoption is established."
       ],
       "artifact_boundary": "Maintained code/tests/docs and hashes only; review capsules, installed snapshots, generated CIFs/models, runners and logs remain outside Git.",
-      "next_action": "Build Cedar 45 with --delivery-prefix 45_Cedar --component-control PDU --component-control 5PC. Run exact C44 ZIP with --component DP --linear-torsion-impact-only under Phenix 2.2.1-6174. At most 2000 native energy evaluations /180 s per control; no optimizer, generation or adoption.",
+      "next_action": "Build Cedar 46 with --delivery-prefix 46_Cedar --component-control PDU --component-control 5PC. Run exact C45 ZIP with --component DP --nonbonded-cache-audit-only under Phenix 2.2.1-6174. Bound each control to 2000 manager evaluations plus 5000 pair kernels/180 s. Prove zero-contribution cache changes before unchanged strict retry; no optimizer or adoption.",
+      "returned_review": {
+        "name": "45_Cedar_y8dnomjz_cif_numerical_recovery_review.zip",
+        "sha256": "9d3d5231bd929b45b16cffea07108a392bfbb90111baa57ba13cffd0c3bdc035",
+        "bytes": 48383404,
+        "verified_payloads": 1910,
+        "build_sha256": "dd28c12591458c674141cccb58c8e2717cc046583816484b8d29059274af4147",
+        "nasolve_commit": "1609d4b61aa1e10895e61eab935113915081ffbc",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "90215a210fd3b51e39519abb1f9f59e098251ea7d9619ae688b9f86818501992",
+        "runtime_members": 130,
+        "runtime_archive_sha256": "cf52b9a2a2d382b65351d9ccb2b8684999a0bed95dab047c8199004fd63aa856",
+        "trusted_runner_build": "EXACT_MATCH",
+        "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1",
+        "cases": {
+          "5PC": {
+            "execution": {
+              "elapsed_seconds": 2.877606,
+              "returncode": 0,
+              "status": "COMPLETED",
+              "timeout_seconds": 180
+            },
+            "captured_inventories_match": true,
+            "static_signatures_preserved": true,
+            "evaluation_calls": 1620,
+            "max_evaluation_calls": 2000,
+            "cases": {
+              "generated_dictionary_full_precision": {
+                "numerical_checks_pass": false,
+                "failed_checks": [
+                  "baseline_repeats_consistent",
+                  "candidate_all_sampled_derivatives",
+                  "final_repeats_consistent"
+                ],
+                "full_gradient_norms": {
+                  "original": 578161.2136621925,
+                  "candidate": 1363.3701376700803
+                },
+                "all_and_dihedral_deltas_match_omitted_terms": true,
+                "all_unrelated_family_targets_gradients": "PASS",
+                "target_gradient_additivity": "PASS",
+                "all_gradient_repeat_differences": {
+                  "repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  },
+                  "final_repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  }
+                },
+                "nonbonded_counts": {
+                  "baselines": {
+                    "original": 71,
+                    "candidate": 71
+                  },
+                  "repeats": {
+                    "original": 75,
+                    "candidate": 75
+                  },
+                  "final_repeats": {
+                    "original": 75,
+                    "candidate": 75
+                  }
+                },
+                "arithmetic_directions_pass": {
+                  "all": 20,
+                  "dihedral": 21
+                }
+              },
+              "generated_dictionary_pdb_rounded": {
+                "numerical_checks_pass": true,
+                "failed_checks": [],
+                "full_gradient_norms": {
+                  "original": 48995.109565419334,
+                  "candidate": 1362.041052671536
+                },
+                "all_and_dihedral_deltas_match_omitted_terms": true,
+                "all_unrelated_family_targets_gradients": "PASS",
+                "target_gradient_additivity": "PASS",
+                "all_gradient_repeat_differences": {
+                  "repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  },
+                  "final_repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  }
+                },
+                "nonbonded_counts": {
+                  "baselines": {
+                    "original": 75,
+                    "candidate": 75
+                  },
+                  "repeats": {
+                    "original": 75,
+                    "candidate": 75
+                  },
+                  "final_repeats": {
+                    "original": 75,
+                    "candidate": 75
+                  }
+                },
+                "arithmetic_directions_pass": {
+                  "all": 20,
+                  "dihedral": 21
+                }
+              },
+              "source_seed_native": {
+                "numerical_checks_pass": false,
+                "failed_checks": [
+                  "baseline_repeats_consistent",
+                  "candidate_all_sampled_derivatives",
+                  "final_repeats_consistent"
+                ],
+                "full_gradient_norms": {
+                  "original": 3389.980096407468,
+                  "candidate": 3351.4189796796086
+                },
+                "all_and_dihedral_deltas_match_omitted_terms": true,
+                "all_unrelated_family_targets_gradients": "PASS",
+                "target_gradient_additivity": "PASS",
+                "all_gradient_repeat_differences": {
+                  "repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  },
+                  "final_repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  }
+                },
+                "nonbonded_counts": {
+                  "baselines": {
+                    "original": 70,
+                    "candidate": 70
+                  },
+                  "repeats": {
+                    "original": 67,
+                    "candidate": 67
+                  },
+                  "final_repeats": {
+                    "original": 67,
+                    "candidate": 67
+                  }
+                },
+                "arithmetic_directions_pass": {
+                  "all": 20,
+                  "dihedral": 21
+                }
+              }
+            }
+          },
+          "PDU": {
+            "execution": {
+              "elapsed_seconds": 1.302614,
+              "returncode": 0,
+              "status": "COMPLETED",
+              "timeout_seconds": 180
+            },
+            "captured_inventories_match": true,
+            "static_signatures_preserved": true,
+            "evaluation_calls": 1620,
+            "max_evaluation_calls": 2000,
+            "cases": {
+              "generated_dictionary_full_precision": {
+                "numerical_checks_pass": true,
+                "failed_checks": [],
+                "full_gradient_norms": {
+                  "original": 60287.679479243394,
+                  "candidate": 1556.5078393729273
+                },
+                "all_and_dihedral_deltas_match_omitted_terms": true,
+                "all_unrelated_family_targets_gradients": "PASS",
+                "target_gradient_additivity": "PASS",
+                "all_gradient_repeat_differences": {
+                  "repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  },
+                  "final_repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  }
+                },
+                "nonbonded_counts": {
+                  "baselines": {
+                    "original": 63,
+                    "candidate": 63
+                  },
+                  "repeats": {
+                    "original": 63,
+                    "candidate": 63
+                  },
+                  "final_repeats": {
+                    "original": 63,
+                    "candidate": 63
+                  }
+                },
+                "arithmetic_directions_pass": {
+                  "all": 20,
+                  "dihedral": 21
+                }
+              },
+              "generated_dictionary_pdb_rounded": {
+                "numerical_checks_pass": true,
+                "failed_checks": [],
+                "full_gradient_norms": {
+                  "original": 60837.07352977675,
+                  "candidate": 1552.8106832075648
+                },
+                "all_and_dihedral_deltas_match_omitted_terms": true,
+                "all_unrelated_family_targets_gradients": "PASS",
+                "target_gradient_additivity": "PASS",
+                "all_gradient_repeat_differences": {
+                  "repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  },
+                  "final_repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  }
+                },
+                "nonbonded_counts": {
+                  "baselines": {
+                    "original": 63,
+                    "candidate": 63
+                  },
+                  "repeats": {
+                    "original": 63,
+                    "candidate": 63
+                  },
+                  "final_repeats": {
+                    "original": 63,
+                    "candidate": 63
+                  }
+                },
+                "arithmetic_directions_pass": {
+                  "all": 20,
+                  "dihedral": 21
+                }
+              },
+              "source_seed_native": {
+                "numerical_checks_pass": true,
+                "failed_checks": [],
+                "full_gradient_norms": {
+                  "original": 18471.06018174971,
+                  "candidate": 3854.949347229049
+                },
+                "all_and_dihedral_deltas_match_omitted_terms": true,
+                "all_unrelated_family_targets_gradients": "PASS",
+                "target_gradient_additivity": "PASS",
+                "all_gradient_repeat_differences": {
+                  "repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  },
+                  "final_repeats": {
+                    "original": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    },
+                    "candidate": {
+                      "target_delta": 0.0,
+                      "largest_gradient_component_difference": 0.0
+                    }
+                  }
+                },
+                "nonbonded_counts": {
+                  "baselines": {
+                    "original": 62,
+                    "candidate": 62
+                  },
+                  "repeats": {
+                    "original": 62,
+                    "candidate": 62
+                  },
+                  "final_repeats": {
+                    "original": 62,
+                    "candidate": 62
+                  }
+                },
+                "arithmetic_directions_pass": {
+                  "all": 20,
+                  "dihedral": 21
+                }
+              }
+            }
+          }
+        }
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#linear_axis_torsion_numerical_impact_2026_10_21"
+    },
+    "nonbonded_cache_proof_2026_10_21": {
+      "status": "IMPLEMENTED_NATIVE_CACHE_PROOF_AND_STRICT_RETRY_PENDING",
+      "recorded_date": "2026-10-21",
+      "delivery_prefix": "46_Cedar",
+      "policy_id": "cif-native-nonbonded-cache-proof-v1",
+      "module": "src/nasolve/cif_nonbonded_cache_audit.py",
+      "native_backend": "src/nasolve/cif_linear_torsion_impact.py",
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "46_Cedar_probe_cif_nonbonded_cache.py",
+      "review_input": {
+        "name": "45_Cedar_y8dnomjz_cif_numerical_recovery_review.zip",
+        "sha256": "9d3d5231bd929b45b16cffea07108a392bfbb90111baa57ba13cffd0c3bdc035",
+        "bytes": 48383404,
+        "verified_payloads": 1910,
+        "build_sha256": "dd28c12591458c674141cccb58c8e2717cc046583816484b8d29059274af4147",
+        "nasolve_commit": "1609d4b61aa1e10895e61eab935113915081ffbc",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "90215a210fd3b51e39519abb1f9f59e098251ea7d9619ae688b9f86818501992",
+        "runtime_members": 130,
+        "runtime_archive_sha256": "cf52b9a2a2d382b65351d9ccb2b8684999a0bed95dab047c8199004fd63aa856",
+        "trusted_runner_build": "EXACT_MATCH",
+        "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1"
+      },
+      "reason": "C45 strict gates correctly retain changing neighbour counts even though all saved numerical arithmetic passes. Changed identities and native contributions must be proved before a separate settled-cache retry.",
+      "behavior": {
+        "original_review": "PRESERVED; no reclassification or count/tolerance waiver",
+        "new_case_preflight": "Rebuild both exact C44 managers. At each saved coordinate case perform two full/family cycles, retaining raw pair lists, function parameters, native single/container values and cache state.",
+        "pair_proof": "Use the actual native energy object pair list, without a lookup that would rebuild it. Compare native single-pair sums against native container targets/gradients and manager nonbonded residual. Common pair parameters/contributions remain equal; every added/removed pair must have exactly zero residual and all six gradient components exactly zero.",
+        "settled_state": "Repeated full/nonbonded lists and original/candidate memberships must match, with unchanged full energies/gradients. A failed proof blocks the strict retry for that case.",
+        "retry": "Re-use the unchanged C45 strict numerical routine after preflight; keep exact repeated counts, old tolerances, sampled arithmetic, omitted-term deltas, family/additivity and static signatures. Additionally monitor full pair identities and function parameters through every active evaluation.",
+        "scientific_inputs": "No dictionary, coordinates, targets, weights, charge/stereo state, NARestraints policy or production resource changes."
+      },
+      "scope": {
+        "native_function": "Explicit prolsq_repulsion_function only",
+        "pairs": "Unique identity/identity-symmetry simple pairs; ASU and nonidentity symmetry are refused",
+        "cases": "Same source/full-precision/PDB-rounded coordinates for isolated PDU and 5PC; DP remains preserved prerequisite.",
+        "unsupported": "Missing APIs, nonfinite/incomplete/duplicate pair records, nonzero changed pairs, altered common parameters, membership drift, special positions or parallelity-bearing managers retain review/failure."
+      },
+      "limits": {
+        "max_manager_energy_evaluations_per_component": 2000,
+        "max_single_and_container_pair_kernels_per_component": 5000,
+        "timeout_seconds_per_component": 180
+      },
+      "provenance": {
+        "old_code": "Never executed; all 1910 payloads, complete lineage and raw C45 call sequence are verified/recomputed with maintained code.",
+        "runtime": "Pin six installed numerical module/binary hashes and selected-root geometry/flex adapters; recheck both static signatures and installed/input hashes.",
+        "source_capture": "Record installed manager.py, energies.py and available nonbonded.h/nonbonded_bpl.cpp as text; snapshot hashes must stay unchanged.",
+        "public_API_references": [
+          {
+            "url": "https://github.com/cctbx/cctbx_project/blob/master/cctbx/geometry_restraints/energies.py",
+            "git_blob": "762debe3994bc1d5d80d766d937a5da7b9b6a4fc",
+            "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f",
+            "installed_match": true
+          },
+          {
+            "url": "https://github.com/cctbx/cctbx_project/blob/master/cctbx/geometry_restraints/nonbonded_bpl.cpp",
+            "git_blob": "894e8a52b84bc6c09320cbd727e0fce4ea73bd3e",
+            "purpose": "Binding signatures only; installed source captured in next native job."
+          }
+        ],
+        "manager_source_caution": "Public manager source differs from installed hash 0682c958...; it is API context, not proof of the installed count mechanism."
+      },
+      "schemas": {
+        "probe": "Existing linear_torsion_impact_audit schema1 with explicit cache_policy_id",
+        "native": "Impact result schema1 gains raw cache_preflight, pair-kernel budget and strict-retry/membership fields; opt-in backend cache_preflight boolean.",
+        "compatibility": "Existing non-cache action defaults and strict routine unchanged; no dependency, migration, NAR release or installed modification."
+      },
+      "validation": {
+        "fail_before": {
+          "tests": 15,
+          "result": "All 15 initial pair-proof/orchestration tests fail with missing module before implementation."
+        },
+        "focused": {
+          "passed": 246,
+          "seconds": 31.23,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_nonbonded_cache_audit.py tests/test_cedar46_delivery.py tests/test_cif_linear_torsion_impact.py tests/test_cedar45_delivery.py tests/test_cif_linear_torsion_candidate.py tests/test_cif_dihedral_conditioning.py tests/test_cedar44_delivery.py tests/test_cedar43_delivery.py tests/test_cedar42_delivery.py tests/test_cif_readyset_generation_audit.py tests/test_cedar41_delivery.py tests/test_cedar40_delivery.py tests/test_cif_component_controls.py tests/test_cif_numerical_recovery_probe.py --tb=short"
+        },
+        "full": {
+          "passed": 2565,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 226.46,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_build_sources_removed_before_replay": true,
+          "relocated_runner": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp": "PASS",
+          "everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "input_payloads": 1910,
+          "runtime_members": 131,
+          "runtime_archive_sha256": "34cf57331e709dc39daeca4ac28cb2e7f23bc969686d6a127812c9d81175c5c8",
+          "mechanics_prerequisites": 17,
+          "rotation_directions": 96,
+          "completed_readyset_and_active_triple_screens_replayed": true,
+          "prior_missing_resources_and_failed_invocations_preserved": true,
+          "5PC_policy": "C; PASS",
+          "source_charge": 0,
+          "generated_charge": -2,
+          "dictionary_torsions_each": 6,
+          "expected_native_omissions_each": 3,
+          "candidate_dictionary_omissions_each": 6,
+          "saved_conditioning_directions_recomputed": 234,
+          "candidate_omission_inventories": "BOTH_RETURNED_PASS",
+          "saved_impact_arithmetic_directions_recomputed": 246,
+          "original_count_reviews": "PRESERVED",
+          "native_cache_proof_strict_retry": "PENDING_USER_MAC",
+          "generation_optimization_adoption": "NOT_RUN"
+        },
+        "native": "PENDING_USER_MAC. Independent pair/quadratic oracles and explicitly fake installed APIs test the proof and worker control flow; saved replay does not establish actual changed-pair identities or zero contributions.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 149,
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+          },
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        },
+        "regression_scope": "38 new tests: 20 pair-proof/orchestration/native-worker, six raw-impact replay and 12 returned-boundary cases; 15 demonstrated fail-before."
+      },
+      "limitations": [
+        "C45 arithmetic agreement is separate from raw count/membership qualification; no old failed gate is erased.",
+        "A settled-cache pass remains sampled numerical evidence, not geometry convergence, historical causation or chemical/scientific approval.",
+        "Phosphate 0\u2192\u22122/HOP2/HOP3 changes, omitted R/S metadata, 5PC plane review and whole-scaffold qualification stay open."
+      ],
+      "execution": {
+        "generator": "NOT_RUN",
+        "readyset": "NOT_RUN",
+        "model_editing": "NOT_RUN",
+        "optimization": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "artifact_boundary": "Code/tests/docs/hashes only in Git; native snapshots, raw pair lists/gradients, models/CIFs, runners and capsules remain outside Git.",
+      "next_action": "Build Cedar 46 with --delivery-prefix 46_Cedar --component-control PDU --component-control 5PC. Run exact C45 ZIP with --component DP --nonbonded-cache-audit-only under Phenix 2.2.1-6174. Bound each control to 2000 manager evaluations plus 5000 pair kernels/180 s. Prove zero-contribution cache changes before unchanged strict retry; no optimizer or adoption.",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#nonbonded_cache_proof_2026_10_21"
     }
   },
   "audience": [

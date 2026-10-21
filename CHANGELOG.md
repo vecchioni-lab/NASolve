@@ -8,6 +8,30 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prove native neighbour-cache changes before strict numerical retry
+
+- Verify all 1,910 Cedar 45 payloads and the published runner. Both native jobs
+  complete; all 246 derivative arithmetic directions, omitted-term deltas and
+  unrelated-family/additivity checks pass. Preserve two 5PC count-only reviews
+  (71→75 and 70→67), with exactly unchanged repeated energies/gradients.
+- Add opt-in Cedar 46 --nonbonded-cache-audit-only. Record actual native pair
+  lists, parameters and single/container contributions without a rebuilding
+  lookup. Added/removed pairs require exactly zero residual/gradient; common
+  parameters/contributions stay fixed. Failed proof blocks retry. After a
+  proved settled cache, rerun the unchanged strict C45 criteria and additionally
+  track pair identities/function parameters. Preserve all old failed gates.
+- Capture installed cache source text; pin numerical APIs and all input/static
+  signatures. Limit each control to 2,000 manager energy calls plus 5,000 pair
+  kernels/180 s. Support explicit prolsq simple identity-symmetry pairs only.
+  Native proof awaits Mac; fake APIs and saved replay remain distinct evidence.
+- No dependency, production recipe/default, source dictionary/model, generator,
+  optimizer, charge/stereo choice, installed modification, NAR release or
+  adoption change. Scientific geometry and whole-scaffold qualification stay open.
+- All 38 new regressions, 246 focused and 2,565 full tests pass (two skips,
+  276 subtests). Actual C45 replay passes after build deletion/relocation,
+  poisoned imports and aliased temp paths, preserving all count failures and
+  recomputing 246 derivative directions. Native pair proof remains pending.
+
 ### Compare numerical effects of qualified linear-torsion candidates
 
 - Verify all 1,847 Cedar 44 payloads and the clean published runner. Four installed

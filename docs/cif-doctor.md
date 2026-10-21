@@ -1804,9 +1804,7 @@ gradient, convergence, historical causation, scaffold suitability or adoption.
 No ReadySet, generator, optimizer, model writer, refinement or installed edits
 run. Explicit NARestraints pairing/stacking authority is unchanged.
 
-Build Cedar 45 with --delivery-prefix 45_Cedar --component-control PDU
---component-control 5PC and run the exact C44 ZIP with --component DP
---linear-torsion-impact-only. Verify all 1,847 payloads and replay the candidate
+Cedar 45 used --linear-torsion-impact-only on the exact C44 ZIP. Verify all 1,847 payloads and replay the candidate
 plan/bytes, exact native delta and dictionary/native triple screens using
 current maintained code. Preserve all earlier evidence, including C43 arithmetic,
 without executing captured Python. Inputs use reviewed relative anchors/hashes.
@@ -1834,9 +1832,44 @@ absolute/relative 1e-4 tolerance; sample proxy counts must equal their baseline.
 Cap each control at 2,000 energy evaluations and 180 s. Norm changes are
 reported descriptively, not required to decrease. Numerical agreement is not
 scientific approval, convergence, historical causation or scaffold validation.
-Native numerical results await Mac; explicit fake-API/quadratic-oracle tests
-and saved-capsule replay are separate evidence. No generator, optimizer,
+Returned C45 passes all 246 arithmetic directions and numerical-delta checks.
+PDU passes every strict case; two 5PC cases retain count-only repeat/combined-FD
+review (71→75 and 70→67), with exactly unchanged repeated energies/gradients.
+Actual pair identities/contributions remain unrecorded; cache interpretation is
+an inference until native proof. Original failures remain preserved. No generator, optimizer,
 coordinate model, state selection, installed edit, refinement or adoption runs.
+
+Build Cedar 46 with --delivery-prefix 46_Cedar --component-control PDU
+--component-control 5PC and run the exact C45 ZIP with --component DP
+--nonbonded-cache-audit-only. Verify all 1,910 payloads and reconstruct the raw
+C45 call sequence with maintained code. Recompute every baseline, repeat,
+difference and finite-difference comparison, retaining the original count and
+combined-direction failures; captured Python never executes.
+
+The cif-native-nonbonded-cache-proof-v1 preflight rebuilds both exact managers
+and records two full/family cycles at each saved case. Inspect the actual native
+energy object's pair list without another manager lookup that could rebuild it.
+Record canonical identities, VDW distances, prolsq parameters, raw cache state,
+per-pair native residuals/gradients and a separate native container evaluation.
+Require pair sums to reproduce container target/gradient and the manager's
+nonbonded target. Shared pair parameters/contributions must remain unchanged;
+added/removed pairs require exactly zero residual and all six gradient entries
+exactly zero. Missing, duplicate, nonfinite, ASU or nonidentity-symmetry pairs
+and unsupported functions refuse qualification. Capture installed manager.py,
+energies.py and available nonbonded header/binding text with before/after hashes;
+public source is API context, not a substitute for installed evidence.
+
+Require settled full/nonbonded and original/candidate memberships, with unchanged
+full targets/gradients. A failed proof blocks the strict retry for that case.
+Otherwise rerun the unchanged C45 routine after preflight, retaining its original
+count/tolerance/delta/derivative gates, and additionally require stable pair
+identities and function parameters through every active evaluation. Preserve
+both static signatures, all six pinned numerical sources and selected-root
+adapters. Bound each control to 2,000 manager energy calls plus 5,000 single/
+container pair kernels and 180 s. Native pair proof and retry await Mac; explicit
+fake APIs and independent pair/quadratic oracles do not establish actual native
+changed-pair identities. No chemistry, restraint, model, optimizer, state choice,
+installed defaults, NARestraints policy or adoption changes.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

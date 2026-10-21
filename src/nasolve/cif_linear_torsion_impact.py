@@ -126,6 +126,55 @@ def audit_linear_torsion_impact(evaluate,coordinate_cases,selected_indices,remov
     return result
 
 
+def replay_impact_evidence(saved,cases,indices,references):
+    """Replay the raw saved call sequence, preserving failing count checks."""
+    events=[];count=len(next(iter(cases.values())))
+    for label,points in cases.items():
+        c=saved['cases'][label]
+        for stage in ['baselines','repeats']:
+            for manager in ['original','candidate']:
+                for family in FAMILIES:events.append((manager,points,family,c[stage][manager][family]))
+        candidate=c['baselines']['candidate']
+        vectors={'alternating_global':[(-1. if i%2==0 else 1.)/math.sqrt(3*count) for i in range(3*count)]}
+        if candidate['all']['gradient_norm']:vectors['full_gradient']=[v/candidate['all']['gradient_norm'] for v in candidate['all']['gradient']]
+        for i in indices:
+            for axis in range(3):vectors[f'atom_{i}_axis_{axis}']=[float(j==3*i+axis) for j in range(3*count)]
+        for family in ['all','dihedral']:
+            directions=dict(vectors)
+            if family=='dihedral' and candidate[family]['gradient_norm']:
+                directions['family_gradient']=[v/candidate[family]['gradient_norm'] for v in candidate[family]['gradient']]
+            rows=c['candidate_derivatives'][family]
+            if [r['direction'] for r in rows]!=list(directions):raise ValueError('Saved derivative directions differ')
+            for row in rows:
+                v=directions[row['direction']]
+                if len(row['samples'])!=len(STEPS):raise ValueError('Saved step count differs')
+                for sample,h in zip(row['samples'],STEPS):
+                    if sample['step_angstrom']!=h:raise ValueError('Saved finite-difference step differs')
+                    for sign,prefix in [(1,'plus'),(-1,'minus')]:
+                        moved=[[x+sign*h*v[3*i+j] for j,x in enumerate(p)] for i,p in enumerate(points)]
+                        events.append(('candidate',moved,family,{'target':sample[prefix+'_target'],'gradient':[0.]*(3*count),'proxy_counts':sample[prefix+'_proxy_counts']}))
+        for manager in ['original','candidate']:
+            for family in FAMILIES:events.append((manager,points,family,c['final_repeats'][manager][family]))
+    cursor=0
+    def evaluate(manager,points,family):
+        nonlocal cursor
+        if cursor>=len(events):raise ValueError('Saved call sequence exhausted')
+        m,p,f,row=events[cursor];cursor+=1
+        if (m,p,f)!=(manager,points,family):raise ValueError('Saved native call identity differs')
+        return deepcopy(row)
+    rebuilt=audit_linear_torsion_impact(evaluate,cases,indices,references,max_calls=2000)
+    def same(a,b):
+        if type(a) is float or type(b) is float:return type(a) in (int,float) and type(b) in (int,float) and _close(a,b)
+        if isinstance(a,dict):return isinstance(b,dict) and set(a)==set(b) and all(same(a[k],b[k]) for k in a)
+        if isinstance(a,list):return isinstance(b,list) and len(a)==len(b) and all(same(x,y) for x,y in zip(a,b))
+        return type(a) is type(b) and a==b
+    if cursor!=len(events) or any(not same(rebuilt[k],saved[k]) for k in rebuilt):raise ValueError('Saved numerical impact evidence does not replay')
+    return {'status':'SAVED_EVIDENCE_REPLAY_PASS','captured_code_execution':'NOT_RUN','evaluation_calls_recomputed':cursor,
+        'cases':{label:{'failed_checks':[k for k,v in c['checks'].items() if not v],
+            'arithmetic_directions_pass':{family:sum(any(a['absolute_error']<=a['bound'] and b['absolute_error']<=b['bound'] for a,b in zip(d['samples'],d['samples'][1:])) for d in rows)
+                for family,rows in c['candidate_derivatives'].items()}} for label,c in rebuilt['cases'].items()}}
+
+
 _WORKER=r'''from pathlib import Path
 import hashlib,importlib,json,os,sys,traceback
 from impact_core import POLICY_ID,audit_linear_torsion_impact
@@ -162,11 +211,26 @@ try:
         e=geo.energies_sites(sites_cart=flex.vec3_double(points),flags=active,compute_gradients=True,normalization=False)
         return {'target':float(e.target),'gradient':[float(v) for v in e.gradients.as_double()],
             'proxy_counts':{k:v for k,v in vars(e).items() if k.startswith('n_') and k.endswith('_proxies') and (v is None or isinstance(v,int))}}
-    result.update(audit_linear_torsion_impact(evaluate,spec['coordinate_cases'],spec['selected_indices'],spec['removed_references'],max_calls=2000))
+    if spec.get('cache_preflight'):
+        from cache_core import audit_cache_stabilized_impact,native_cache_evaluator
+        installed=[]
+        for path in [*[Path(r['historical_path']) for r in sources if r['module'] in ['cctbx.geometry_restraints.manager','cctbx.geometry_restraints.energies']],
+                     Path(gr.__file__).resolve().parent/'nonbonded.h',Path(gr.__file__).resolve().parent/'nonbonded_bpl.cpp']:
+            row={'historical_path':str(path),'status':'UNAVAILABLE'}
+            if path.is_file():
+                data=path.read_bytes();target=work/'installed_source'/path.name;target.parent.mkdir(exist_ok=True);target.write_bytes(data)
+                row.update(status='RECORDED',path=target.relative_to(work).as_posix(),sha256=hashlib.sha256(data).hexdigest(),bytes=len(data))
+            installed.append(row)
+        result.update(audit_cache_stabilized_impact(native_cache_evaluator(managers,gr,flex,flags),spec['coordinate_cases'],spec['selected_indices'],spec['removed_references']))
+        result['installed_cache_sources']=installed
+    else:
+        result.update(audit_linear_torsion_impact(evaluate,spec['coordinate_cases'],spec['selected_indices'],spec['removed_references'],max_calls=2000))
     after={name:fixed_signature(geo,sites) for name,(geo,sites) in managers.items()}
     if after!=signatures:raise RuntimeError('Native constraints changed during numerical impact audit')
     for row in sources+adapters:
         if hashlib.sha256(Path(row['historical_path']).read_bytes()).hexdigest()!=row['sha256']:raise RuntimeError('Native numerical adapter/source changed during audit')
+    for row in result.get('installed_cache_sources',[]):
+        if row['status']=='RECORDED' and hashlib.sha256(Path(row['historical_path']).read_bytes()).hexdigest()!=row['sha256']:raise RuntimeError('Installed cache source changed')
     result.update(status='REVIEW',captured_inventories_match=True,constraint_signatures_before=signatures,constraint_signatures_after=after,
         installed_numeric_sources=sources,installed_adapter_sources=adapters,normalization=False)
 except Exception as exc:
@@ -178,13 +242,14 @@ sys.exit(0 if result['status']=='REVIEW' else 2)
 
 
 def run_native_linear_torsion_impact(model,original_dictionary,candidate_dictionary,phils,expected,coordinate_cases,selected_indices,
-        removed_references,numeric_sources,output_parent,executable,*,environment,phenix_version,installation_root,timeout_seconds=180):
+        removed_references,numeric_sources,output_parent,executable,*,environment,phenix_version,installation_root,timeout_seconds=180,cache_preflight=False):
     """Rebuild two exact isolated managers in one owned, bounded interpreter."""
     from .cif_native_validation import _NATIVE_WORKER,_artifact,_stop,NATIVE_POLICY_ID
     from .cif_fixed_geometry import _model,_fixed_policy
     from . import cif_gradient_audit
     if set(expected)!={'original','candidate'} or not all(_fixed_policy(v) for v in expected.values()):raise ValueError('Require both captured explicit policies')
     if not phenix_version or type(timeout_seconds) is not int or not 1<=timeout_seconds<=180:raise ValueError('Require bounded native execution/version')
+    if type(cache_preflight) is not bool:raise ValueError('Cache preflight must be explicit boolean')
     if len(numeric_sources)!=6 or len({v['module'] for v in numeric_sources})!=6:raise ValueError('Require six pinned numerical source identities')
     root=Path(installation_root).resolve(strict=True);executable=Path(executable).resolve(strict=True)
     if not executable.is_relative_to(root):raise ValueError('Require selected installation interpreter')
@@ -207,11 +272,15 @@ def run_native_linear_torsion_impact(model,original_dictionary,candidate_diction
             (phase/filename).write_text(json.dumps(value,indent=2,sort_keys=True,allow_nan=False)+'\n')
         (phase/'native_worker.py').write_text(_NATIVE_WORKER)
     spec={'installation_root':str(root),'coordinate_cases':coordinate_cases,'selected_indices':selected_indices,'removed_references':removed_references,'expected_numeric_sources':numeric_sources}
+    if cache_preflight:
+        from . import cif_nonbonded_cache_audit
+        spec['cache_preflight']=True;(work/'cache_core.py').write_bytes(Path(cif_nonbonded_cache_audit.__file__).read_bytes())
     (work/'impact_spec.json').write_text(json.dumps(spec,indent=2,sort_keys=True,allow_nan=False)+'\n');(work/'impact_worker.py').write_text(_WORKER)
     (work/'impact_core.py').write_bytes(Path(__file__).read_bytes());(work/'gradient_core.py').write_bytes(Path(cif_gradient_audit.__file__).read_bytes())
     receipt={'schema_version':1,'policy_id':POLICY_ID,'status':'FAILED','native_directory':str(work),'inputs':inputs,'phenix_version':phenix_version,
         'executable_sha256':hashlib.sha256(dispatcher).hexdigest(),'execution':{'status':'NOT_RUN','timeout_seconds':timeout_seconds},
         'model_optimization':'NOT_RUN','model_editing':'NOT_RUN','readyset':'NOT_RUN','dictionary_generation':'NOT_RUN','scientific_approval':'NOT_RUN','automatic_adoption':False}
+    if cache_preflight:receipt['cache_preflight_requested']=True
     started=time.monotonic()
     try:
         with (work/'impact.log').open('xb') as log:
@@ -226,7 +295,9 @@ def run_native_linear_torsion_impact(model,original_dictionary,candidate_diction
                 if (rc==0 and result.get('policy_id')==POLICY_ID and result.get('status')=='REVIEW' and result.get('analysis_completed') is True
                         and result.get('captured_inventories_match') is True and result.get('model_optimization')=='NOT_RUN' and result.get('automatic_adoption') is False
                         and 0<result.get('evaluation_calls',0)<=2000 and set(result.get('cases',{}))==set(coordinate_cases)
-                        and result.get('constraint_signatures_before')==result.get('constraint_signatures_after')):receipt['status']='REVIEW'
+                        and result.get('constraint_signatures_before')==result.get('constraint_signatures_after')
+                        and (not cache_preflight or result.get('cache_preflight_completed') is True and result.get('cache_policy_id')=='cif-native-nonbonded-cache-proof-v1'
+                             and 0<result.get('pair_kernel_calls',0)<=5000)):receipt['status']='REVIEW'
                 else:receipt['error']=result.get('error','Incomplete numerical impact evidence')
     except (OSError,ValueError,KeyError,TypeError) as exc:receipt['error']=str(exc);receipt['execution']['status']='FAILED'
     receipt['source_preserved']=all(p.is_file() and p.read_bytes()==d for p,d in zip(paths,original)) and executable.read_bytes()==dispatcher

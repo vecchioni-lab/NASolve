@@ -68,6 +68,27 @@ def test_removed_gradients_scatter_by_exact_proxy_indices_and_add_shared_atoms()
     with pytest.raises(ValueError):removed_torsion_references({'cases':{'saved':{'proxies':rows}}},proxies,6)
 
 
+@pytest.mark.parametrize('defect',['none','counts_only','target','arithmetic','selection','hide_review'])
+def test_saved_native_impact_replays_arithmetic_without_promoting_count_review(defect):
+    from nasolve.cif_linear_torsion_impact import audit_linear_torsion_impact,replay_impact_evidence
+    cases,oracle,refs=fixture();calls=0
+    def evaluate(m,p,f):
+        nonlocal calls
+        calls+=1;r=oracle(m,p,f)
+        if defect in {'counts_only','hide_review'} and calls>16:r['proxy_counts']['cache']=2
+        return r
+    r=audit_linear_torsion_impact(evaluate,cases,[0,1],refs)
+    if defect=='target':r['cases']['source_seed_native']['baselines']['original']['all']['target']+=1
+    if defect=='arithmetic':r['cases']['source_seed_native']['candidate_derivatives']['all'][0]['samples'][0]['numerical']+=1
+    if defect=='selection':r['selected_indices']=[1]
+    if defect=='hide_review':r['cases']['source_seed_native']['checks']['baseline_repeats_consistent']=True
+    if defect in {'none','counts_only'}:
+        q=replay_impact_evidence(r,cases,[0,1],refs);assert q['captured_code_execution']=='NOT_RUN'
+        if defect=='counts_only':assert q['cases']['source_seed_native']['failed_checks']
+    else:
+        with pytest.raises(ValueError):replay_impact_evidence(r,cases,[0,1],refs)
+
+
 @pytest.mark.parametrize('mode',['correct','wrong_gradient','changed_original','changed_candidate','changed_api','changed_adapter','timeout'])
 def test_native_pair_worker_matches_both_managers_and_never_calls_optimizer(tmp_path,monkeypatch,mode):
     from hashlib import sha256

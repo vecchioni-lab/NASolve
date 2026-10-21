@@ -50,8 +50,10 @@ Returned C43 passes sampled derivatives while retaining near-collinear review.
 C44 prepares separate graph/declared-180° torsion omission candidates; exact
 native deltas preserve the triple/linear terms and all unrelated fields. Native
 candidate comparisons pass in returned C44. C45 compares fixed-coordinate
-energy/gradient deltas and sampled candidate derivatives; native numerical
-impact remains pending. No optimization or adoption arrow is added.
+energy/gradient deltas and sampled derivatives. Its return passes arithmetic
+but retains two 5PC count reviews. C46 records native pair identities and zero-
+contribution proof before a separate strict retry; native cache proof remains
+pending. No count gate is waived and no optimization/adoption arrow is added.
 Cedar 40 captures the literal ReadySet implementation and
 bounded imports as text; its native accessor result does not claim ReadySet
 execution or a mapped-SMILES graph. Explicit scope and budget limits remain in

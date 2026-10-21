@@ -1003,7 +1003,20 @@ selected Cartesian and gradient directions. A lower total gradient is not an
 acceptance rule: removing a contribution can expose strain that it previously
 cancelled. Both managers retain their exact signatures and source/API hashes.
 The audit is bounded to 2,000 evaluations/180 s per control, without optimization,
-model output or adoption. Native numerical impact remains pending.
+model output or adoption. Returned C45 passes all 246 derivative arithmetic
+directions and confirms that the omitted terms explain the numerical deltas.
+PDU passes every strict case. Two 5PC cases retain changing neighbour-count
+reviews even though repeated energies and gradients are exactly unchanged.
+
+Cedar 46 tests the cache explanation directly. Record each native energy
+object's actual pair list, parameters and individual pair energies/gradients,
+checking their sum against the native container calculation. Compare the early
+and repeated lists: every added/removed pair must contribute exactly zero, and
+shared pairs must keep the same parameters and contributions. Only after the
+full/nonbonded lists settle does a separate retry use the unchanged strict
+numerical checks, now also tracking pair identities and function parameters.
+Original failures remain visible; counts and tolerances are not waived. Native
+cache proof awaits Mac. No dictionary/model, state choice or optimizer changes.
 
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,

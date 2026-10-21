@@ -142,7 +142,11 @@ angles targeted at 180°. Fresh native comparisons require exactly the planned
 omissions and every unrelated term intact. Returned C44 passes both exact
 comparisons and triple screens. C45 compares original/candidate energies and
 gradients at identical saved coordinates and samples candidate derivatives.
-No optimizer, chemical-state selection, scaffold change or adoption occurs. Equivalent operational mapping aliases now compile once while
+Returned C45 passes all derivative arithmetic and omitted-term deltas; two 5PC
+cases retain changing nonbonded-count reviews. C46 records native pair identities
+and contributions, requiring zero changed-pair energy/gradient before a separate
+settled-cache retry of the same strict checks. No optimizer, chemical-state
+selection, scaffold change or adoption occurs. Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.
 NARestraints policy and production defaults stay fixed; geometry, convergence

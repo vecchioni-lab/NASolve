@@ -833,24 +833,34 @@ and no linear-axis torsion remains. Source/generated phosphate and stereo
 findings stay open. This is exact native mechanics, without an energy comparison
 or adoption.
 
-**Cedar 45 prepared:** read-only original/candidate numerical comparison at the
-same source/full/rounded coordinates. Reproduce candidate bytes and prior gates,
-then rebuild both exact managers under pinned numerical APIs. Full and dihedral
-energy/gradient differences must equal the saved sum of the three omitted
-torsions; unrelated family values, additivity, repeats and static signatures
-must stay consistent. Sample candidate full/dihedral derivatives in six steps
-and graph-selected Cartesian/gradient directions. Proxy counts remain recorded
-and sample counts must match baselines. A smaller gradient norm is descriptive,
-not required. Cap each control at 2,000 evaluations/180 s. No generator,
-optimizer, coordinate-model write, state choice, scaffold edit or adoption.
-Native impact checks await Mac; synthetic APIs and offline replay do not replace
-them. The original qualified plane-gradient correction stays unchanged.
+**Cedar 45 returned and reviewed (2026-10-21):** all 1,910 payloads and the
+trusted published runner/build verify. Both native jobs complete at 1,620/2,000
+evaluations. All 246 derivative arithmetic directions, omitted-term deltas,
+unrelated families and target/gradient additivity pass. Full 5PC gradient norm
+falls 578,161→1,363; full PDU 60,288→1,557. PDU passes all strict cases. Two 5PC
+cases retain count-only review: full-precision 71→75 and source-seed 70→67;
+repeated energies and all gradient components are exactly unchanged. The old
+count/combined-derivative failures remain preserved. Pair identities and changed
+contributions were not captured; cache behavior is an inference pending proof.
 
-**Current action:** build with --delivery-prefix 45_Cedar --component-control PDU
---component-control 5PC, then run the exact Cedar 44 ZIP with --component DP
---linear-torsion-impact-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
-Return console/review ZIP. DP remains the preserved prerequisite; PDU and 5PC
-are fixed isolated controls. Expect scientific REVIEW.
+**Cedar 46 prepared:** record actual native pair lists without rebuilding them,
+with two full/family cycles at each saved coordinate case. Individual pair sums
+must match native container values; all common parameters/contributions stay
+fixed, and changed pairs must have exactly zero residual and six zero gradient
+components. Settled full/nonbonded and original/candidate memberships must agree.
+A failed proof blocks retry. Otherwise rerun the unchanged strict C45 routine
+with exact repeated counts and old tolerances, additionally tracking pair
+identities/function parameters. Preserve all original failures and installed
+source/input/static signatures; capture installed cache source text. Support
+prolsq simple identity-symmetry pairs only. Bound each control to 2,000 manager
+energy calls plus 5,000 pair kernels/180 s. No generator, optimizer, state
+selection, model/scaffold change or adoption. Native proof awaits Mac.
+
+**Current action:** build with --delivery-prefix 46_Cedar --component-control PDU
+--component-control 5PC, then run the exact Cedar 45 ZIP with --component DP
+--nonbonded-cache-audit-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
+Return console/review ZIP. DP remains preserved; PDU/5PC are isolated controls.
+Expect scientific REVIEW. Charge/stereo/plane/full-scaffold findings stay open.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

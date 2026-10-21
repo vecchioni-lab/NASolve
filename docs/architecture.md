@@ -632,8 +632,25 @@ six atoms. Perturbed proxy counts must remain equal to their baseline counts.
 Special-position or parallelity-bearing managers are outside this isolated
 slice. Cap each control at 2,000 evaluations/180 s. Gradient norms are descriptive;
 removing cancelling contributions need not reduce the total norm. Native impact
-results await Mac; no optimizer, generator, coordinate model, state selection,
-scaffold change or adoption runs.
+results return with all arithmetic and omitted-term deltas passing. Two 5PC
+cases retain strict count review: 71→75 and 70→67, with repeated energy/gradient
+values exactly unchanged. Pair identities/contributions were not captured, so
+the cache explanation is not yet a native proof. No scientific adoption occurs.
+
+C46 preserves those failures and replays all raw arithmetic. A separate preflight
+uses each native energy object's actual nonbonded pair list, avoiding a lookup
+that could rebuild it. Record two full/family cycles at each case with pair
+identities, VDW/function parameters, individual/native-container contributions
+and cache state. Require complete single/container sums, unchanged common pairs
+and exactly zero residual/gradient for added/removed pairs. Repeat full/nonbonded
+memberships and original/candidate lists must agree; failed proof blocks retry.
+Only then run the unchanged strict C45 routine from that settled state, retaining
+count/tolerance requirements and additionally monitoring pair identities and
+function parameters through all evaluations. Support explicit prolsq simple
+identity-symmetry pairs only. Capture installed cache source text and preserve
+all pinned source/input/static signatures. Bound each control to 2,000 manager
+energy calls plus 5,000 pair kernels/180 s. Native cache proof awaits Mac; no
+new dictionary/model, generator, optimizer, state selection or adoption runs.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and
