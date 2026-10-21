@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Test separate candidates for graph-undefined linear torsions
+
+- Verify all 1,794 Cedar 43 payloads and the clean published build. Both installed
+  Phenix 2.2.1-6174 controls pass sampled derivatives; all 234 real-coordinate
+  directions recompute offline. Near-collinear force growth and undefined exact
+  controls retain REVIEW; correct derivatives do not establish conditioning.
+- Add opt-in Cedar 44 --linear-torsion-candidate-only: select complete torsion
+  rows from explicit triple graphs and unique declared 180° targets, without
+  coordinate thresholds or component/atom-name lists. Prepare separate CIFs
+  omitting six rows each and require exact preservation of every other parsed
+  value. Fresh original/candidate native inventories may differ only in the six
+  definition rows and three active heavy proxies/counts; triple targets and all
+  unrelated terms stay intact. Each interpretation is bounded to 60 s.
+- No new dependency, production repair recipe/default, model optimization,
+  charge/stereo choice, installed Phenix change, scaffold edit, NAR release or
+  adoption. Native candidate checks await Mac. Saved-capsule and synthetic
+  inventory tests are explicitly separate from new installed execution.
+- All 54 additional regressions, 178 focused and 2,497 full tests pass (two
+  skips, 276 subtests). Actual C43 replay passes after build deletion/relocation
+  with poisoned imports and an aliased temp path. Both separate candidates
+  preserve parsed values and triple targets; native exact omission awaits Mac.
+
 ### Audit fixed native torsions around declared triple bonds
 
 - Verify all 1,747 Cedar 42 payloads and the clean published runner. Both isolated

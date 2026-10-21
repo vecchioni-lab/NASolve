@@ -974,7 +974,25 @@ for a defined torsion. Original parameter/membership signatures and installed
 hashes are checked before and after. The 3,000-pair/180 s bound applies per
 component. No optimizer or coordinate-model writer runs. Source phosphate
 charge/hydrogen changes and 5PC's separate angle/plane review remain visible;
-this is numerical evidence, not a chemistry decision or a repair. Process-local observers forward the original eLBOW
+this is numerical evidence, not a chemistry decision or a repair. Returned C43
+passes all sampled derivatives, including 234 independently recomputed
+real-coordinate directions, but every selected torsion stays near-collinear.
+Large forces grow as the defining atoms approach a straight line; a correctly
+calculated derivative can still be poorly conditioned.
+
+Cedar 44 prepares separate test dictionaries. A torsion is selected only when
+its graph contains an explicit triple-bond flank whose angle is declared as
+180°. Such a straight defining triple has no unique torsion plane. The rule
+uses declarations, without fitting to the model or naming PDU/5PC atoms. Six
+whole dictionary rows are omitted per control; every other parsed field must
+remain identical. Fresh native comparisons must reproduce the original manager
+and show only the six planned definition-row and three heavy-proxy omissions.
+The strong triple-bond distance and straight-angle restraints stay intact.
+This is an opt-in candidate test: no model optimization, charge/stereo repair
+or adoption occurs, and native candidate results are pending. All earlier
+chemical-state and plane reviews stay visible.
+
+Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,
 returned graphs or caught failures. A 180 s deadline bounds generation, followed
 by at most 60 s native interpretation per control. Ligand AM1 and final hydrogen

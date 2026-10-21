@@ -813,24 +813,33 @@ retains an angle/plane consistency review. The existing PDU T / 5PC C compiler
 controls PASS. No dictionary is adopted and no historical floppy-chain or SMILES
 cause is established by this isolated result.
 
-**Cedar 43 prepared:** read-only numerical conditioning of the three active
-heavy-atom torsions in each captured manager. Rebuild and match C42's exact
-manager, then compare single/container residuals and gradients with central
-differences (10⁻³…10⁻⁸ Å) at source seeds and generated full/rounded coordinates.
-Retain plane-normal sines, every raw step, repeats, reversed order and synthetic
-bent/exact-collinear controls, including approach-to-linearity profiles.
-Geometrically undefined torsions cannot pass because a native gradient is zero.
-Pin numerical APIs/binaries and preserve complete manager signatures before/after.
-Cap each control at **3,000 paired evaluations / 180 s**. No ReadySet, generation,
-optimization, restraint removal, chemical-state selection or coordinate-model
-write occurs. Native results remain pending; offline and explicit fake-API
-regressions do not stand in for a returned Phenix result.
+**Cedar 43 returned and reviewed (2026-10-21):** all 1,794 payloads and the
+published runner/build metadata verify. Both Phenix 2.2.1-6174 controls complete
+at 1,603/3,000 paired evaluations. Single/container, repeat and reversal evidence
+passes at all three saved coordinate cases; all 234 real-coordinate directional
+checks independently recompute. Every selected torsion remains near-collinear.
+The largest full-precision 5PC single-torsion gradient norm is 578,927.34;
+approach controls show inverse-radius growth and undefined exact-collinear
+geometry. This is conditioning evidence, not another demonstrated gradient bug,
+convergence or historical causation. Original manager signatures remain fixed.
 
-**Current action:** build with --delivery-prefix 43_Cedar --component-control PDU
---component-control 5PC, then run the exact Cedar 42 ZIP with --component DP
---torsion-conditioning-audit-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
-Return console/review ZIP. DP remains the preserved prerequisite; the numerical
-controls are PDU and 5PC. Expect scientific REVIEW.
+**Cedar 44 prepared:** opt-in separate candidates omit only torsions containing
+explicit triple-bond defining angles with unique declared 180° targets. The
+rule uses graph paths and declarations, never achieved coordinates or names.
+Six dictionary rows per control are removed; all other parsed fields compare
+exactly. Fresh original native inventories must match C43, then the candidate
+may differ only by six effective-definition rows and three active proxies/counts.
+Triple distances, linear-angle targets, all other definitions/proxies, coordinates
+and NARestraints policy remain fixed. Each native interpretation is bounded to
+60 s. No generator, optimizer, state selection, scaffold edit or adoption runs.
+Native candidate mechanics await the Mac; offline and synthetic tests are not
+new installed evidence. Phosphate/stereo/5PC plane reviews remain open.
+
+**Current action:** build with --delivery-prefix 44_Cedar --component-control PDU
+--component-control 5PC, then run the exact Cedar 43 ZIP with --component DP
+--linear-torsion-candidate-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
+Return console/review ZIP. DP remains the preserved prerequisite, and the
+separate candidate controls are PDU and 5PC. Expect scientific REVIEW.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

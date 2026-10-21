@@ -153,6 +153,84 @@ def native_evaluator(gr,flex):
     return evaluate
 
 
+def replay_conditioning_evidence(result, coordinate_cases, proxies):
+    """Recompute saved geometry, directional arithmetic and summary claims.
+
+    This consumes JSON evidence only. It never imports the captured worker or
+    substitutes numerical replay for another native execution.
+    """
+    _validate(coordinate_cases,proxies)
+    if (result.get('policy_id')!=POLICY_ID or result.get('analysis_completed') is not True
+            or result.get('restraint_changes')!='NONE' or result.get('automatic_adoption') is not False
+            or result.get('model_optimization')!='NOT_RUN' or result.get('coordinate_model_written') is not False
+            or result.get('step_sizes_angstrom')!=list(STEPS)
+            or result.get('directional_tolerance')!={'absolute':1e-4,'relative':1e-4}
+            or set(result.get('cases',{}))!=set(coordinate_cases)):
+        raise ValueError('Unsupported conditioning evidence scope')
+    def same(a,b):
+        if type(a) is float or type(b) is float:
+            return type(a) in (int,float) and type(b) in (int,float) and _close(a,b)
+        if isinstance(a,dict):return isinstance(b,dict) and set(a)==set(b) and all(same(a[k],b[k]) for k in a)
+        if isinstance(a,list):return isinstance(b,list) and len(a)==len(b) and all(same(x,y) for x,y in zip(a,b))
+        return type(a) is type(b) and a==b
+    directions_checked=0;cases={}
+    for label,points in coordinate_cases.items():
+        saved=result['cases'][label];rows=saved['proxies']
+        if len(rows)!=len(proxies):raise ValueError('Saved proxy selection differs')
+        for row,p in zip(rows,proxies):
+            geometry=dihedral_geometry([points[i] for i in p['i_seqs']]);b=row['baseline']
+            if row['proxy']!=p or not same(geometry,row['geometry']) or not geometry['geometry_defined']:
+                raise ValueError('Saved conditioning geometry differs or is undefined')
+            for kind in ['single','accumulated']:
+                if (b['status']!='FINITE' or b.get('native_angle_defined') is not True
+                        or len(b[kind+'_gradient'])!=12 or not all(math.isfinite(v) for v in [b[kind+'_target'],*b[kind+'_gradient']])
+                        or not _close(_norm(b[kind+'_gradient']),b[kind+'_gradient_norm'])):
+                    raise ValueError('Invalid saved native baseline')
+            if (not same(b,row['repeat']) or not row['baseline_repeats_consistent']
+                    or not _close(b['single_target'],b['accumulated_target'])
+                    or not same(b['single_gradient'],b['accumulated_gradient']) or not row['single_and_container_agree']):
+                raise ValueError('Saved native repeats or kernels differ')
+            rev=row['reversed_order_baseline']
+            for kind in ['single','accumulated']:
+                reversed_gradient=[v for i in [9,6,3,0] for v in rev[kind+'_gradient'][i:i+3]]
+                if not _close(b[kind+'_target'],rev[kind+'_target']) or not same(b[kind+'_gradient'],reversed_gradient):
+                    raise ValueError('Saved reversal evidence differs')
+            if not row['reversed_order_consistent']:raise ValueError('Saved reversal claim differs')
+            directions=[('atom_'+str(i//3)+'_axis_'+str(i%3),[float(i==j) for j in range(12)]) for i in range(12)]
+            if b['single_gradient_norm']:directions.append(('single_gradient',[v/b['single_gradient_norm'] for v in b['single_gradient']]))
+            if len(row['directions'])!=len(directions):raise ValueError('Saved directional sample count differs')
+            for direction,(name,vector) in zip(row['directions'],directions):
+                if direction['direction']!=name or len(direction['samples'])!=len(STEPS):raise ValueError('Saved direction or steps differ')
+                for kind in ['single','accumulated']:
+                    analytic=math.fsum(v*g for v,g in zip(vector,b[kind+'_gradient']));passes=[]
+                    if not _close(analytic,direction['analytical'][kind]):raise ValueError('Saved analytic projection differs')
+                    for sample,h in zip(direction['samples'],STEPS):
+                        plus,minus=sample['plus'],sample['minus']
+                        if (sample['step']!=h or plus['status']!=minus['status'] or plus['status']!='FINITE'
+                                or plus.get('native_angle_defined') is not True or minus.get('native_angle_defined') is not True):
+                            raise ValueError('Saved derivative sample is unsupported')
+                        numerical=(plus[kind+'_target']-minus[kind+'_target'])/(2*h)
+                        error=abs(numerical-analytic);bound=1e-4+1e-4*max(abs(numerical),abs(analytic));passed=error<=bound
+                        if not same(sample[kind],{'numerical':numerical,'absolute_error':error,'bound':bound,'consistent':passed}):
+                            raise ValueError('Saved finite-difference arithmetic differs')
+                        passes.append(passed)
+                    if not any(a and b for a,b in zip(passes,passes[1:])) or direction[kind+'_consistent'] is not True:
+                        raise ValueError('Saved sampled derivative does not pass adjacent steps')
+                directions_checked+=1
+            if row['sampled_derivatives_consistent'] is not True:raise ValueError('Saved derivative summary differs')
+        summary={'proxy_count':len(rows),'sampled_derivatives_consistent':True,'baseline_repeats_consistent':True,
+            'single_and_container_agree':True,'near_collinear_proxies':sum(r['geometry']['near_collinear_review'] for r in rows),'undefined_proxies':0}
+        if saved['summary']!=summary:raise ValueError('Saved case summary differs')
+        cases[label]={**summary,'largest_single_gradient_norm':max(r['baseline']['single_gradient_norm'] for r in rows)}
+    undefined=result['numerical_controls']['exact_collinear']
+    if (undefined['geometry']['geometry_defined'] is not False or undefined['qualification']!='UNDEFINED_GEOMETRY'
+            or undefined['sampled_derivatives_consistent'] is not False or undefined['directions']):
+        raise ValueError('Undefined numerical control was promoted')
+    return {'status':'SAMPLED_DERIVATIVES_REPLAY_PASS','captured_code_execution':'NOT_RUN',
+        'directions_recomputed':directions_checked,'cases':cases,'conditioning_qualification':'REVIEW',
+        'scientific_approval':'NOT_RUN','automatic_adoption':False}
+
+
 _WORKER=r'''from pathlib import Path
 import hashlib,importlib,json,sys,traceback
 from conditioning_core import POLICY_ID,audit_dihedral_conditioning,native_evaluator

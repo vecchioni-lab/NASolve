@@ -45,7 +45,11 @@ calls; completed output remains subject to independent native qualification.
 Returned C42 passes generated/native triple length and linear-angle targets,
 retaining linear-axis torsions and phosphate-state reviews. C43 separately
 checks fixed torsion kernels/derivatives, plane-normal conditioning and exact
-collinear controls without changing restraints or writing a coordinate model. The C43 native result remains pending.
+collinear controls without changing restraints or writing a coordinate model.
+Returned C43 passes sampled derivatives while retaining near-collinear review.
+C44 prepares separate graph/declared-180° torsion omission candidates; exact
+native deltas preserve the triple/linear terms and all unrelated fields. Native
+candidate results remain pending; no optimization or adoption arrow is added.
 Cedar 40 captures the literal ReadySet implementation and
 bounded imports as text; its native accessor result does not claim ReadySet
 execution or a mapped-SMILES graph. Explicit scope and budget limits remain in

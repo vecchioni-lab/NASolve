@@ -516,6 +516,11 @@ CEDAR42_WORKER_SHA256 = '6bf5696e7c0ba1d3302281f5ee32160dd7c80a475a8ace3314e7cfa
 CEDAR42_NATIVE_WORKER_SHA256 = '9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78'
 CEDAR42_NATIVE_PREFIX = {'PDU':'readyset_controls/native/PDU/cif-native-0qfexcli','5PC':'readyset_controls/native/5PC/cif-native-l546wyy6'}
 CEDAR42_CANDIDATE_SHA256 = {'PDU':'576d2601c34f3bee99473368e4a17657890d2b538e556c08318e0e760d09e2ae','5PC':'dc89031959b3fc95710675f64c6466472f22519491d4aabacbc072c6f9fc1ef7'}
+CEDAR43_SHA256 = '00456d4c8223176a44d4fccf602876de81fbf2a949c5098b52061ce1c6654c09'
+CEDAR43_BUILD_SHA256 = '97394da562e14f30e861d3e0b79892a288e67e4d273e8b71f84df52e3155b990'
+CEDAR43_WORKER_SHA256 = '69bb1a3afd353e48c8633511197e9044f42cf5739e4805844a1dc04617dfc10b'
+CEDAR43_NATIVE_PREFIX = {'PDU':'torsion_conditioning/PDU/cif-dihedral-conditioning-lz377mtf',
+                         '5PC':'torsion_conditioning/5PC/cif-dihedral-conditioning-bl52r2wz'}
 CEDAR41_SHA256 = '7d24e6db59fa814ccd93099d9676f569047147fcb8ab154e05c4980d16a94bd3'
 CEDAR41_BUILD_SHA256 = '0b94d54d60f0153cc46a518507c36af947479da0275b6546a5f8ed50ea42d0aa'
 CEDAR41_WORKER_SHA256 = '9af880ed950dfb66388fa7af40dadc7a4530b88b4553e0b88c0f95b284b430e8'
@@ -545,7 +550,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -1340,10 +1345,71 @@ def _read_cedar42_members(members):
     return qualified,prior,rotation
 
 
+def _check_conditioning_return(members,r):
+    from nasolve.cif_dihedral_conditioning import POLICY_ID,replay_conditioning_evidence
+    a=r['torsion_conditioning_audit'];replayed={}
+    if (a.get('policy_id')!=POLICY_ID or a.get('status')!='REVIEW' or set(a.get('cases',{}))!={'PDU','5PC'}
+            or a.get('restraint_changes')!='NONE' or a.get('automatic_adoption') is not False
+            or a.get('native_execution')!='ISOLATED_DIHEDRAL_CONDITIONING_ONLY'
+            or any(a.get(k)!='NOT_RUN' for k in ['dictionary_generation','readyset','model_optimization','scientific_approval'])):
+        raise ValueError('Require original fixed conditioning scope')
+    if json.loads(members['torsion_conditioning_receipt.json'])!=a:raise ValueError('Conditioning receipt differs')
+    previous=json.loads(members['inputs/review/probe_receipt.json'])['readyset_generation_audit']['cases']
+    for code,c in a['cases'].items():
+        n=c['native'];p=CEDAR43_NATIVE_PREFIX[code];x=n['result'];old=previous[code]['native_interpretation']
+        if (c['candidate_sha256']!=CEDAR42_CANDIDATE_SHA256[code]
+                or n.get('status')!='REVIEW' or n['execution'].get('status')!='COMPLETED' or n['execution'].get('returncode')!=0
+                or n.get('source_preserved') is not True or n.get('frozen_inputs_preserved') is not True
+                or n.get('automatic_adoption') is not False or n.get('restraint_changes')!='NONE'
+                or x.get('captured_inventory_matches') is not True
+                or x['constraint_signature_before']!=x['constraint_signature_after']
+                or x['max_evaluation_pairs']!=3000 or not 0<x['evaluation_pairs']<=3000
+                or len(c['proxies'])!=3 or len(x['installed_numeric_sources'])!=6
+                or _sha(members[p+'/conditioning_worker.py'])!=CEDAR43_WORKER_SHA256
+                or _sha(members[p+'/native_worker.py'])!=CEDAR42_NATIVE_WORKER_SHA256
+                or json.loads(members[p+'/expected_inventory.json'])!=old['native_validation']
+                or json.loads(members[p+'/conditioning_receipt.json'])!=n
+                or json.loads(members[p+'/conditioning_result.json'])!=x):
+            raise ValueError('Returned native conditioning execution differs')
+        spec=json.loads(members[p+'/conditioning_spec.json'])
+        if (spec['coordinate_cases']!=c['coordinate_cases'] or spec['proxies']!=c['proxies']
+                or [(v['module'],v['sha256']) for v in spec['expected_numeric_sources']]!=[(v['module'],v['sha256']) for v in x['installed_numeric_sources']]):
+            raise ValueError('Returned conditioning specification differs')
+        _returned_outputs(members,p,n['inputs'],'native_directory');_returned_outputs(members,p,n['outputs'],'native_directory')
+        for row in n['inputs']:
+            matches=[v for v in old['inputs'] if v['role']==row['role']]
+            if len(matches)!=1 or row['sha256']!=matches[0]['sha256']:raise ValueError('Conditioning scientific input differs')
+        for row in x['installed_dihedral_sources']:
+            if row['status']=='RECORDED' and _sha(members[p+'/installed_source/'+row['path']])!=row['sha256']:
+                raise ValueError('Captured installed dihedral source differs')
+        if (c['source_state_review']['source_charge_sum']!=0 or c['source_state_review']['generated_charge_sum']!=-2
+                or len(c['source_state_review']['missing_source_atoms'])!=2 or c['source_state_review']['status']!='REVIEW'):
+            raise ValueError('Open chemical-state findings were hidden')
+        replayed[code]=replay_conditioning_evidence(x,c['coordinate_cases'],c['proxies'])
+    return replayed
+
+
+def _read_cedar43_members(members):
+    _verify_manifest(members,1794);r=json.loads(members['probe_receipt.json'])
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR43_BUILD_SHA256
+            or r.get('delivery_prefix')!='43_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('status')!='REVIEW' or r.get('analysis_completed') is not True or r.get('automatic_adoption') is not False
+            or r.get('requested_action')!='ISOLATED_DIHEDRAL_CONDITIONING_AUDIT'
+            or r.get('native_execution')!='ISOLATED_DIHEDRAL_CONDITIONING_ONLY' or r.get('policy_authority')!='NARestraints'
+            or any(r.get(k) is not True for k in ['original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='NOT_RUN' for k in ['dictionary_generation','model_editing','model_optimization','native_proxy_validation',
+                'linked_site_validation','policy_recompilation','refinement','installed_phenix_edits','readyset_retry','scientific_approval'])
+            or r['prior_archive']['sha256']!=CEDAR42_SHA256 or r['prior_archive']['verified_payloads']!=1747):
+        raise ValueError('Require exact returned Cedar 43 fixed conditioning controls')
+    nested={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    qualified,prior,rotation=_read_cedar42_members(nested);_check_conditioning_return(members,r)
+    return qualified,prior,rotation
+
+
 def _source_reader_evidence(members):
     """Reach the verified C34 constructor evidence without dropping wrappers."""
     prefix=''
-    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar'}:
+    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar'}:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
     return members,prefix
@@ -1351,14 +1417,15 @@ def _source_reader_evidence(members):
 
 def _read_capsule(path, expected_sha=None):
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256}):
-        raise ValueError('Require an exact verified Cedar 29--42 review ZIP')
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256}):
+        raise ValueError('Require an exact verified Cedar 29--43 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='42_Cedar':qualified,prior,rotation=_read_cedar42_members(members)
+    if header.get('delivery_prefix')=='43_Cedar':qualified,prior,rotation=_read_cedar43_members(members)
+    elif header.get('delivery_prefix')=='42_Cedar':qualified,prior,rotation=_read_cedar42_members(members)
     elif header.get('delivery_prefix')=='41_Cedar':qualified,prior,rotation=_read_cedar41_members(members)
     elif header.get('delivery_prefix')=='40_Cedar':qualified,prior,rotation=_read_cedar40_members(members)
     elif header.get('delivery_prefix')=='39_Cedar':qualified,prior,rotation=_read_cedar39_members(members)
@@ -1730,9 +1797,91 @@ def _run_torsion_conditioning_action(args,receipt,session,review,original,member
     print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
 
 
+def _run_linear_torsion_candidate_action(args,receipt,session,review,original,members,frozen,controls,sources,capture,expected):
+    from nasolve.cif_linear_torsion_candidate import POLICY_ID,prepare_linear_torsion_candidate,qualify_linear_torsion_candidate
+    from nasolve.cif_triple_bond_audit import audit_triple_bonds
+    from nasolve.cif_native_validation import inspect_native_bundle
+    selected={r['component']:sources[r['component']] for r in controls}
+    if set(selected)!={'PDU','5PC'}:raise ValueError('Require both reviewed public controls')
+    returned=json.loads(members['probe_receipt.json'])
+    receipt['prior_conditioning_replay']=_check_conditioning_return(members,returned)
+    nested={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    receipt['prior_readyset_generation_replay']=_replay_readyset_generation_return(nested,frozen/'inputs/review',selected)
+    view,viewroot=nested,frozen/'inputs/review'
+    while json.loads(view['probe_receipt.json'])['delivery_prefix'] in {'42_Cedar','41_Cedar'}:
+        view={n.removeprefix('inputs/review/'):d for n,d in view.items() if n.startswith('inputs/review/')};viewroot=viewroot/'inputs/review'
+    catalogue={n.removeprefix('inputs/review/'):d for n,d in view.items() if n.startswith('inputs/review/')}
+    triple={n.removeprefix('inputs/review/'):d for n,d in catalogue.items() if n.startswith('inputs/review/')}
+    receipt['prior_triple_evidence_replay']=_replay_triple_return(triple,viewroot/'inputs/review/inputs/review',selected)
+    receipt['prior_installed_source_replay']=_replay_catalogue_return(catalogue,viewroot/'inputs/review',selected)
+    descriptor=json.loads(view['probe_receipt.json'])['readyset_source_audit']['components']
+    receipt['prior_readyset_source_replay']={c:{'selected_smiles':r['selected_smiles'],'matching_descriptors':r['matching_descriptors'],
+        'mapped_smiles_graph_comparison':'NOT_RUN'} for c,r in descriptor.items()}
+    receipt['limitations']=['Separate dictionary candidates omit only torsions containing graph-declared triple-bond angles explicitly targeted at 180 degrees.',
+        'Fresh original and candidate native inventories must differ only by the exact planned torsion rows/proxies; no native definition/proxy gate is relaxed.',
+        'No energy minimization, model changes, charge/stereo repair, scientific approval or adoption. Other chemical-state and plane findings remain open.',
+        'Correct sampled derivatives do not establish useful conditioning or explain the historical floppy PDU observation.']
+    phenix=None
+    if not args.inspect_only:
+        from nasolve.phenix_runtime import installation_from_candidate
+        phenix=installation_from_candidate(args.phenix_root,base_environment={k:v for k,v in os.environ.items() if k not in NATIVE_OVERRIDES})
+        receipt['installed_api_sources']=_fingerprints(phenix,{**capture,'native_validation':expected});receipt['phenix_version']=phenix.version
+    report={'schema_version':1,'policy_id':POLICY_ID,'status':'REVIEW','cases':{},'native_execution':'NOT_RUN',
+        'dictionary_generation':'NOT_RUN','readyset':'NOT_RUN','model_optimization':'NOT_RUN','model_editing':'NOT_RUN',
+        'scientific_approval':'NOT_RUN','automatic_adoption':False,'restraint_changes':'SEPARATE_CANDIDATE_TORSION_OMISSIONS_ONLY'}
+    for code,old in returned['torsion_conditioning_audit']['cases'].items():
+        prefix=frozen/CEDAR43_NATIVE_PREFIX[code];saved=json.loads((prefix/'expected_inventory.json').read_text())
+        paths={row['role']:prefix/PurePosixPath(row['path']) for row in old['native']['inputs']}
+        candidate=session/'linear_torsion_candidates'/code/(code+'_linear_torsion_candidate.cif')
+        plan=prepare_linear_torsion_candidate(paths['dictionary'],code,candidate)
+        screen=audit_triple_bonds(selected[code],code,dictionary=candidate)
+        if plan['removed_torsion_count']!=6 or screen['target_screen']!='PASS' or screen['linear_axis_torsions']:
+            raise ValueError('Candidate failed exact omission/triple-target preflight')
+        item={'plan':plan,'candidate':{'anchor':'probe_directory','path':candidate.relative_to(session).as_posix(),
+            'sha256':_sha(candidate.read_bytes()),'size':candidate.stat().st_size},'dictionary_triple_screen':screen,
+            'source_state_review':old['source_state_review'],'original_native':{'status':'NOT_RUN'},'candidate_native':{'status':'NOT_RUN'},
+            'native_mechanics':{'status':'NOT_RUN'}};report['cases'][code]=item
+        print(code,'separate candidate:',plan['removed_torsion_count'],'torsion rows omitted; triple targets',screen['target_screen'],flush=True)
+        if phenix:
+            baseline=inspect_native_bundle(paths['model'],[paths['dictionary']],session/'linear_torsion_native/original'/code,
+                phenix.executables['phenix.python'],environment=phenix.environment,phenix_version=phenix.version,
+                timeout_seconds=min(args.timeout_seconds,60),phil_files=[paths['phil']],inventory_detail='linked',policy_inventory=True)
+            item['original_native']=baseline
+            fields=['atoms','atom_count','monomer_mappings','geometry','installed_api_sources','restraint_policy','fatal_problems','unused_definitions','unsupported_fields']
+            matched=(baseline['status']=='REVIEW' and baseline['execution']['returncode']==0
+                and baseline['source_preserved'] and baseline['frozen_inputs_preserved']
+                and all(baseline['native_validation'].get(k)==saved.get(k) for k in fields))
+            item['original_inventory_matches']=matched
+            print(code,'original native inventory:','PASS' if matched else 'REVIEW',flush=True)
+            if matched:
+                native=inspect_native_bundle(paths['model'],[candidate],session/'linear_torsion_native/candidate'/code,
+                    phenix.executables['phenix.python'],environment=phenix.environment,phenix_version=phenix.version,
+                    timeout_seconds=min(args.timeout_seconds,60),phil_files=[paths['phil']],inventory_detail='linked',policy_inventory=True)
+                item['candidate_native']=native
+                if native['status']=='REVIEW' and native['execution']['returncode']==0:
+                    item['native_mechanics']=qualify_linear_torsion_candidate(saved,native['native_validation'],plan)
+                    item['native_triple_screen']=audit_triple_bonds(selected[code],code,native=native['native_validation'])
+                    q=item['native_mechanics'];ns=item['native_triple_screen']
+                    if (sum(q['removed_native_proxy_counts'].values())!=3 or ns['target_screen']!='PASS' or ns['linear_axis_torsions']):
+                        q['mechanics_checks_pass']=False;q['checks']['triple_targets_and_exact_omission']=False
+                    print(code,'exact native omission:','PASS' if q['mechanics_checks_pass'] else 'REVIEW',
+                        '; removed',q['removed_native_proxy_counts'],'; triple targets',ns['target_screen'],flush=True)
+                else:print(code,'candidate native inventory:',native['status'],native.get('error',''),flush=True)
+    if phenix:
+        report['native_execution']='ISOLATED_TORSION_OMISSION_INVENTORIES'
+        if _fingerprints(phenix,{**capture,'native_validation':expected})!=receipt['installed_api_sources']:raise ValueError('Selected native APIs changed')
+    receipt['linear_torsion_candidate_audit']=report;receipt['native_execution']=report['native_execution']
+    if any((frozen/PurePosixPath(n)).read_bytes()!=d for n,d in members.items()) or review.read_bytes()!=original:raise ValueError('Original or frozen evidence changed')
+    receipt.update(analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True)
+    _json(session/'linear_torsion_candidate_receipt.json',report);_json(session/'probe_receipt.json',receipt)
+    print('Diagnostic: REVIEW (separate torsion candidates and exact native delta; no optimization or adoption)',flush=True)
+    print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '44_Cedar':'NASolve-live-tests/43_Cedar_cif-numerical-recovery-vitgl_98/43_Cedar_vitgl_98_cif_numerical_recovery_review.zip',
         '43_Cedar':'NASolve-live-tests/42_Cedar_cif-numerical-recovery-9s73mlh5/42_Cedar_9s73mlh5_cif_numerical_recovery_review.zip',
         '42_Cedar':'NASolve-live-tests/41_Cedar_cif-numerical-recovery-ofvcwzhl/41_Cedar_ofvcwzhl_cif_numerical_recovery_review.zip',
         '41_Cedar':'NASolve-live-tests/40_Cedar_cif-numerical-recovery-qnxdgivs/40_Cedar_qnxdgivs_cif_numerical_recovery_review.zip',
@@ -1772,6 +1921,8 @@ def main():
                       help='Run isolated heavy-atom ReadySet controls with observed eLBOW calls and candidate triple-proxy checks')
     mode.add_argument('--torsion-conditioning-audit-only',action='store_true',
                       help='Evaluate saved generated torsions under fixed native definitions; no ReadySet, generation or optimization')
+    mode.add_argument('--linear-torsion-candidate-only',action='store_true',
+                      help='Prepare separate graph-declared linear-torsion omission candidates and check exact native inventory deltas')
     parser.add_argument('--declared-charge-control',action='store_true',
                         help='Explicitly test source-declared charges on the temporary native component, retaining raw reader evidence')
     args=parser.parse_args();session=None;review=None;original=None;members=None
@@ -1780,7 +1931,7 @@ def main():
         'model_editing':'NOT_RUN','model_optimization':'NOT_RUN','dictionary_generation':'NOT_RUN','policy_recompilation':'NOT_RUN',
         'readyset_retry':'NOT_RUN','refinement':'NOT_RUN','scientific_approval':'NOT_RUN','automatic_adoption':False,
         'diffraction_data':'NOT_READ','policy_authority':'NARestraints','installed_phenix_edits':'NOT_RUN',
-        'requested_action':'ISOLATED_DIHEDRAL_CONDITIONING_AUDIT' if args.torsion_conditioning_audit_only else 'ISOLATED_READYSET_GENERATION_AUDIT' if args.readyset_generation_audit_only else 'READYSET_SOURCE_AND_DESCRIPTOR_AUDIT' if args.readyset_source_audit_only else 'INSTALLED_MONOMER_CCD_SOURCE_AUDIT' if args.installed_source_audit_only else 'INSTALLED_TRIPLE_BOND_AUDIT' if args.triple_bond_audit_only else 'SOURCE_DIALECT_DECLARED_CHARGE_CONTROL' if args.declared_charge_control else 'SOURCE_DIALECT_READER_AUDIT' if args.source_dialect_audit_only else 'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
+        'requested_action':'ISOLATED_LINEAR_TORSION_CANDIDATE' if args.linear_torsion_candidate_only else 'ISOLATED_DIHEDRAL_CONDITIONING_AUDIT' if args.torsion_conditioning_audit_only else 'ISOLATED_READYSET_GENERATION_AUDIT' if args.readyset_generation_audit_only else 'READYSET_SOURCE_AND_DESCRIPTOR_AUDIT' if args.readyset_source_audit_only else 'INSTALLED_MONOMER_CCD_SOURCE_AUDIT' if args.installed_source_audit_only else 'INSTALLED_TRIPLE_BOND_AUDIT' if args.triple_bond_audit_only else 'SOURCE_DIALECT_DECLARED_CHARGE_CONTROL' if args.declared_charge_control else 'SOURCE_DIALECT_READER_AUDIT' if args.source_dialect_audit_only else 'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
         'limits':{'max_components':3,'generation_timeout_per_component':args.timeout_seconds,'read_only_timeout_per_component':min(args.timeout_seconds,60),
                   'single_block_steps':args.single_block_steps},
         'limitations':['Separate dictionary candidates only; none is applied to a native manager or model.',
@@ -1813,6 +1964,11 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='43_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'43_Cedar','native_execution':'ISOLATED_DIHEDRAL_CONDITIONING_ONLY',
+                'sampled_derivatives':'BOTH_CONTROLS_ALL_THREE_SAVED_CASES_PASS','near_collinear_torsions':'THREE_EACH_REMAIN_REVIEW',
+                'chemical_state':'SOURCE_NEUTRAL_TO_GENERATED_MINUS_TWO_REMAINS_REVIEW',
+                'evidence':{'anchor':'probe_directory','path':'inputs/review/probe_receipt.json'}}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='42_Cedar':
             receipt['previous_execution']={'delivery_prefix':'42_Cedar','readyset_execution':'BOTH_COMPLETED',
                 'triple_target_screens':'BOTH_DICTIONARY_AND_NATIVE_PASS','linear_axis_torsions':'SIX_DICTIONARY_THREE_HEAVY_NATIVE_EACH',
@@ -1870,6 +2026,8 @@ def main():
         if args.stereochemistry_audit_only != (json.loads(members['probe_receipt.json'])['delivery_prefix']=='33_Cedar'):
             raise ValueError('Cedar 33 is only supported by the explicit read-only stereochemistry action')
         input_delivery=json.loads(members['probe_receipt.json'])['delivery_prefix']
+        if args.linear_torsion_candidate_only != (input_delivery=='43_Cedar'):
+            raise ValueError('Cedar 43 requires the explicit separate linear-torsion candidate action')
         if args.torsion_conditioning_audit_only != (input_delivery=='42_Cedar'):
             raise ValueError('Cedar 42 requires the explicit fixed torsion-conditioning audit')
         if args.readyset_generation_audit_only != (input_delivery in {'40_Cedar','41_Cedar'}):
@@ -1899,14 +2057,14 @@ def main():
         receipt.update(prior_archive={'sha256':_sha(original),'bytes':len(original),'verified_payloads':len(json.loads(members['manifest.json']))},
             prior_convergence=rotation['prior_convergence'],prior_stopping=rotation['prior_stopping'],prior_continuation=rotation['prior_continuation'],
             prerequisite_mechanics_replayed=True,prior_rotation_evidence_recomputed=validation,source_plan=plan)
-        print('Fixed native torsion-conditioning audit:' if args.torsion_conditioning_audit_only else 'Isolated ReadySet generation audit:' if args.readyset_generation_audit_only else 'ReadySet source/descriptor audit:' if args.readyset_source_audit_only else 'Source-dialect reader audit:' if args.source_dialect_audit_only else 'Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
-        print('Preserved prerequisite component:' if args.torsion_conditioning_audit_only or args.readyset_generation_audit_only else 'Explicit candidates:',', '.join(plan['recovery_codes']),flush=True)
+        print('Separate linear-torsion candidate audit:' if args.linear_torsion_candidate_only else 'Fixed native torsion-conditioning audit:' if args.torsion_conditioning_audit_only else 'Isolated ReadySet generation audit:' if args.readyset_generation_audit_only else 'ReadySet source/descriptor audit:' if args.readyset_source_audit_only else 'Source-dialect reader audit:' if args.source_dialect_audit_only else 'Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
+        print('Preserved prerequisite component:' if args.linear_torsion_candidate_only or args.torsion_conditioning_audit_only or args.readyset_generation_audit_only else 'Explicit candidates:',', '.join(plan['recovery_codes']),flush=True)
         print('Verified prior mechanics and rotational derivatives; no model optimization.',flush=True)
-        if args.declared_charge_control or args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only:
+        if args.declared_charge_control or args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only:
             from nasolve.cif_source_reader import source_reader_checks
             receipt['prior_source_reader_replay']={}
             charge_members=members;charge_root=frozen
-            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar'}:
+            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar'}:
                 charge_members={n.removeprefix('inputs/review/'):d for n,d in charge_members.items() if n.startswith('inputs/review/')}
                 charge_root=charge_root/'inputs/review'
             for code,row in json.loads(charge_members['probe_receipt.json'])['source_reader_audits'].items():
@@ -1915,7 +2073,7 @@ def main():
                 if replayed!=row['checks']:raise ValueError('Returned raw reader inventory does not replay')
                 receipt['prior_source_reader_replay'][code]=replayed
             if args.declared_charge_control:receipt['declared_charge_control_requested']=True
-            if args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only:receipt['prior_declared_charge_replay']=_replay_charge_controls(charge_members,charge_root)
+            if args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only:receipt['prior_declared_charge_replay']=_replay_charge_controls(charge_members,charge_root)
         receipt['graph_preparations']={}
         for item in plan['selected']:
             code=item['component'];source=cifs[item['input_index']]
@@ -1931,12 +2089,14 @@ def main():
             if len(data)!=control['size'] or _sha(data)!=control['sha256']:raise ValueError('Pinned public control changed')
             target=session/'component_controls/sources'/(code+'.cif');target.parent.mkdir(parents=True,exist_ok=True)
             with target.open('xb') as handle:handle.write(data)
-            report=assess_component_control(target,code,graph_only_if_ambiguous=(args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only));receipt['component_controls'][code]=report
+            report=assess_component_control(target,code,graph_only_if_ambiguous=(args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only));receipt['component_controls'][code]=report
             _json(session/'component_controls'/(code+'_control.json'),report)
-            if report['policy_status']!='PASS' and not ((args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only) and report['graph_status']=='PASS'):raise ValueError('Component control policy requires review: '+code)
+            if report['policy_status']!='PASS' and not ((args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only) and report['graph_status']=='PASS'):raise ValueError('Component control policy requires review: '+code)
             receipt['graph_preparations'][code]=prepare_graph_generation_source(target,code,session/'graph_preview'/code/'source.cif')
             sources[code]=target
             print('Public control:',code,'; graph',report['graph_status'],'; NARestraints class',report['mapped_base_class'],'; pairing/stacking compiler',report['policy_status'],flush=True)
+        if args.linear_torsion_candidate_only:
+            return _run_linear_torsion_candidate_action(args,receipt,session,review,original,members,frozen,controls,sources,capture,expected)
         if args.torsion_conditioning_audit_only:
             return _run_torsion_conditioning_action(args,receipt,session,review,original,members,frozen,controls,sources,proof['installed_numeric_sources'],capture,expected)
         if args.readyset_generation_audit_only:

@@ -196,9 +196,11 @@ for actual behavior; history is evidence, not a second task queue.
   Surviving CIFs are unchanged source copies; native triple checks did not run.
   Returned Cedar 42 completes both isolated controls and passes generated/native
   triple length/linearity targets. Six dictionary/three active heavy-atom torsions
-  per component and neutral→−2 phosphate changes retain REVIEW. Cedar 43 audits
-  unchanged native torsion derivatives/conditioning at source and generated
-  full/rounded coordinates, preserving all other chemistry and plane findings. Equivalent
+  per component and neutral→−2 phosphate changes retain REVIEW. Returned Cedar 43 passes sampled derivatives
+  but retains near-collinear conditioning review. Cedar 44 prepares separate
+  graph/180°-selected torsion omission candidates and checks exact original/
+  candidate native deltas, preserving triple targets and all unrelated terms.
+  Chemical-state and plane findings remain open; no optimization or adoption. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

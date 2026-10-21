@@ -135,10 +135,12 @@ Returned Cedar 42 completes both isolated ReadySet controls. Generated and
 native triple targets pass: PDU 1.203 Å, 5PC 1.186 Å (both 0.020 Å ESD), with
 180° / 3° linear-angle terms. Each dictionary retains six linear-axis torsions,
 three active in the heavy-only manager, and changes neutral source phosphate
-to charge −2 by losing HOP2/HOP3. These remain review findings. Cedar 43 evaluates
-those unchanged native torsions at saved source and generated full/rounded
-coordinates, with finite differences and collinearity controls. No optimization,
-restraint removal, chemical-state selection or scaffold change is performed. Equivalent operational mapping aliases now compile once while
+to charge −2 by losing HOP2/HOP3. These remain review findings. Returned Cedar 43 passes all sampled torsion derivatives while exposing large
+near-linear forces and undefined exact-collinear controls. Cedar 44 prepares
+separate candidates omitting only torsions containing graph-declared triple-bond
+angles targeted at 180°. Fresh native comparisons require exactly the planned
+omissions and every unrelated term intact. No optimizer, chemical-state
+selection, scaffold change or adoption occurs. Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.
 NARestraints policy and production defaults stay fixed; geometry, convergence

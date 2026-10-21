@@ -1725,9 +1725,7 @@ recipes before modified-family synthetic controls: 5PC exercises existing G:C
 and both stack orders. No NARestraints table edit, package release or recipe
 change is required; the conditional missing-entry case was not present.
 
-Build Cedar 43 with --delivery-prefix 43_Cedar --component-control PDU
---component-control 5PC. Run the exact C42 ZIP with --component DP
---torsion-conditioning-audit-only. This mutually exclusive action replays the
+Cedar 43 used --torsion-conditioning-audit-only on the exact C42 ZIP. This mutually exclusive action replays the
 completed generated/native triple screens and all earlier prerequisites, then
 evaluates only existing graph-selected heavy-atom dihedrals. The prior native
 inputs are reached through exact reviewed relative anchors and hashes; old
@@ -1758,8 +1756,13 @@ even if native code returns a finite residual or zero gradient. Independent
 nonchemical bent/exact-collinear controls and radius/phase profiles approaching
 collinearity inspect this distinction. Bound each component to 3,000 paired
 single/container evaluations (at most 6,000 kernels), plus a 180 s owned-process
-deadline. Native results are pending; --inspect-only performs saved-evidence,
-coordinate/geometry and chemical-state preflight without native evaluations.
+deadline. Returned C43 completes both controls at 1,603 pairs each. All 234
+real-coordinate directional checks independently recompute; every selected
+torsion remains near-collinear. The 5PC full-precision maximum single gradient
+norm is 578,927.34. Fixed-phase gradients grow approximately as inverse radius
+in approach controls, and exact-collinear zero gradients remain undefined.
+Correct sampled derivatives do not establish useful conditioning. The
+--inspect-only action performs saved-evidence preflight without native kernels.
 
 Retain the raw 0→−2 charge and HOP2/HOP3 loss, omitted R/S declarations,
 source-relative stereo rejection and all other numerical findings. Passing
@@ -1767,6 +1770,39 @@ triple targets does not approve those generated changes. No ReadySet, dictionary
 generation, optimizer, refinement, restraint removal, adoption or production
 default change occurs in this action. Historical floppy-chain causation stays
 unestablished.
+
+Build Cedar 44 with --delivery-prefix 44_Cedar --component-control PDU
+--component-control 5PC and run the exact C43 ZIP with --component DP
+--linear-torsion-candidate-only. The exclusive action verifies all 1,794
+payloads, replays saved directional arithmetic and preserves the entire prior
+lineage without executing captured Python. Reach scientific inputs only via
+reviewed relative anchors/checksums.
+
+The cif-declared-linear-torsion-candidate-v1 preparation requires explicit C-C
+or C-N triple orders, unique exact 180° flank targets with positive ESDs, and
+supported unique consecutive torsion paths/finite parameters. Select rows only
+from those declarations, never coordinate thresholds or code/atom-name lists.
+Write a separate CIF omitting the six complete selected rows per control.
+All other parsed values, including unknown fields, must compare exactly;
+unmodified blocks retain original text. Affected blocks may reformat. Invalid
+or ambiguous declarations refuse preparation before the candidate is written.
+No production repair recipe is added and no source is overwritten.
+
+Fresh original interpretation must match C43 atom/definition/proxy/API/policy
+inventories. Candidate interpretation must match an expected inventory formed
+only by removing the six effective-definition torsions and three matching active
+heavy proxies/counts. Every other field, including charges, stereo, coordinates,
+triple bonds, angles, planes and unrelated torsions/proxies, stays exact; any
+extra inferred term or changed field remains REVIEW. Native triple-target
+screens must still pass and no linear-axis torsion may remain. Each inventory
+has a 60 s deadline. Candidate native results await the user Mac; offline
+actual-capsule and synthetic inventory tests do not replace that execution.
+
+Keep phosphate 0→−2/HOP2/HOP3 differences, omitted R/S metadata and 5PC plane
+findings open. This candidate does not select chemistry or prove a lower total
+gradient, convergence, historical causation, scaffold suitability or adoption.
+No ReadySet, generator, optimizer, model writer, refinement or installed edits
+run. Explicit NARestraints pairing/stacking authority is unchanged.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

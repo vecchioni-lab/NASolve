@@ -599,7 +599,23 @@ kernels are compared with central differences at saved seed and generated
 full/rounded coordinates. Plane-normal sines, repeats, reversal and nonchemical
 bent/collinear controls keep undefined geometry separate from finite zero
 gradients. Original manager signatures, source bytes and installed hashes stay
-fixed. No dihedral is removed and no model or chemical state is selected.
+fixed. Returned C43 passes all 234 real-coordinate directional checks; all
+selected proxies are near-collinear. Approaching exact linearity produces large
+phase-sensitive forces, while exact-collinear native zero gradients remain
+undefined evidence. This audit changes no restraint.
+
+C44 adds opt-in separate dictionary candidates. Select a torsion only when its
+consecutive graph path contains an explicitly declared C-C/C-N triple flank
+with a unique exact 180° target and positive ESD. Do not use achieved geometry,
+component names or atom-name lists. Omit the six complete selected rows while
+requiring all other parsed fields unchanged; unsupported/ambiguous inputs fail
+before writing. Rebuild the original native manager and require exact C43
+matching, then interpret the candidate under the same model/PHIL/APIs. Only six
+effective-definition rows and three active heavy-atom proxies/counts may differ.
+Every other definition, coordinate, proxy and policy must compare exactly;
+unexpected inferred terms remain REVIEW. Both interpretations have a 60 s
+deadline per control. No generator, optimizer, charge/stereo correction,
+scaffold change or adoption runs. Production repair recipes stay unchanged.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

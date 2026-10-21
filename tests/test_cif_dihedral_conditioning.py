@@ -65,6 +65,27 @@ def test_budget_and_mutating_callbacks_do_not_silently_pass():
     with pytest.raises(ValueError,match='mutated'):audit_dihedral_conditioning(mutate,{'saved':points},[proxy])
 
 
+@pytest.mark.parametrize('defect',['none','arithmetic','analytic','summary','undefined','geometry','selection','repeat','reverse','step','adoption'])
+def test_saved_derivative_evidence_is_recomputed_without_executing_captured_code(defect):
+    from nasolve.cif_dihedral_conditioning import audit_dihedral_conditioning,replay_conditioning_evidence
+    points,proxy=source();cases={'saved':points};r=audit_dihedral_conditioning(oracle,cases,[proxy]);row=r['cases']['saved']['proxies'][0]
+    if defect=='arithmetic':row['directions'][0]['samples'][0]['single']['numerical']+=1
+    if defect=='analytic':row['directions'][0]['analytical']['single']+=1
+    if defect=='summary':r['cases']['saved']['summary']['undefined_proxies']=1
+    if defect=='undefined':r['numerical_controls']['exact_collinear']['qualification']='PASS'
+    if defect=='geometry':row['geometry']['minimum_sine']=.1
+    if defect=='selection':row['proxy']['angle_ideal']+=1
+    if defect=='repeat':row['repeat']['single_target']+=1
+    if defect=='reverse':row['reversed_order_baseline']['single_gradient'][0]+=1
+    if defect=='step':row['directions'][0]['samples'][0]['step']=.1
+    if defect=='adoption':r['automatic_adoption']=True
+    if defect=='none':
+        replay=replay_conditioning_evidence(r,cases,[proxy])
+        assert replay['directions_recomputed']==13 and replay['conditioning_qualification']=='REVIEW'
+    else:
+        with pytest.raises(ValueError):replay_conditioning_evidence(r,cases,[proxy])
+
+
 @pytest.mark.parametrize('defect',['index','repeated','weight','periodicity','alternate','nonfinite','empty'])
 def test_invalid_selection_or_unsupported_proxy_parameters_are_refused(defect):
     from nasolve.cif_dihedral_conditioning import audit_dihedral_conditioning
