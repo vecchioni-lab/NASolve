@@ -93,3 +93,10 @@ named atoms. The student-facing policy allows usable nonconvergence with notes,
 with automatic fallback for rejected candidates. The decision core and PostMR
 summary are implemented; recovery/adoption/PDF integration remain planned, so
 no completed automatic-adoption arrow is added.
+
+Returned C52 proves all nine native integer-key bindings; DP C1-prime remains a
+source target-sign review. C53 tests the captured native builder Setup step,
+recording input-coordinate caching and fresh prepared observer comparisons.
+Original native targets/kernels remain unchanged. Temporary frame warnings do
+not establish an inverted completed molecule; full builder/CIP/adoption and
+native C53 evidence remain separate.

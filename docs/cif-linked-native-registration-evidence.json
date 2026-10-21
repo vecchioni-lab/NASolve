@@ -16675,7 +16675,7 @@
     }
   },
   "source_native_constructor_integer_keys_2026_10_21": {
-    "status": "IMPLEMENTED_INTEGER_KEY_ADAPTER_PENDING_NATIVE_MAC",
+    "status": "RETURNED_NINE_NATIVE_INTEGER_BINDINGS_PASS_EIGHT_SOURCE_TARGET_SIGNS_AGREE",
     "recorded_date": "2026-10-21",
     "delivery_prefix": "52_Cedar",
     "policy_id": "cif-native-integer-restraint-keys-v2",
@@ -16705,7 +16705,7 @@
     },
     "independent_ATL_control": "Unchanged public graph/stereo/NARestraints compiler only; no extra native constructor or ninth live-test pair.",
     "validation": {
-      "native": "PENDING_USER_MAC; fake APIs and actual saved C51 replay are not Phenix physics qualification.",
+      "native": "RETURNED actual Phenix 2.2.1-6174: six constructors complete, all nine integer/link/name/vector proofs pass and fresh/previous endpoints match. Eight source target signs agree; DP C1-prime and all original temporary hand warnings remain. No full builder/generation/adoption.",
       "fail_before": {
         "selection_missing_module_failed": 15,
         "selection_seconds": 0.08,
@@ -16771,7 +16771,138 @@
         "raster_visual_review": "PASS"
       }
     },
-    "automatic_adoption": false
+    "automatic_adoption": false,
+    "native_return": {
+      "payloads": 2502,
+      "sha256": "21d97cf95df2b15fd0c989d7372e1c8538d58b9d152571e010a178b56f275acc",
+      "bytes": 58223753,
+      "build_sha256": "f0fc6c15852766d0a73a0b9f02d21e6b8b9cd685da5f737a7384cdc9648e47b3",
+      "runner_sha256": "5fb360f67396ac7dfd35618ac8547658cf172332542676f04f329c2681e86007",
+      "runtime_members": 137,
+      "unchanged_prior_payloads": 2395,
+      "cases": {
+        "5PC": {
+          "worker_sha256": "2a30ca44562841004c68f25b979b9723740b54ba589649e5ccb1f1aa1f1c8158",
+          "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+          "failed_checks": [
+            "source_handedness_preserved"
+          ],
+          "trace_failed_checks": [],
+          "index_failed_checks": [],
+          "calls": 40,
+          "integer_key_bindings_pass": 3,
+          "source_target_signs": {
+            "C4'": true,
+            "C3'": true,
+            "C1'": true
+          },
+          "fresh_comparison": {
+            "automatic_adoption": false,
+            "checks": {
+              "both_workers_completed": true,
+              "exact_endpoint_repeat": true,
+              "same_constructor_status": true,
+              "same_prepared_state": true,
+              "same_reader_and_charge": true,
+              "same_source": true
+            },
+            "checks_pass": true,
+            "previous_endpoint_match": true,
+            "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+            "scientific_approval": "NOT_RUN",
+            "status": "FRESH_REPEAT_MATCH"
+          },
+          "observed_elapsed": 1.121482,
+          "control_elapsed": 0.76408
+        },
+        "DP": {
+          "worker_sha256": "2a30ca44562841004c68f25b979b9723740b54ba589649e5ccb1f1aa1f1c8158",
+          "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+          "failed_checks": [
+            "source_handedness_preserved"
+          ],
+          "trace_failed_checks": [
+            "chemical_metadata_preserved"
+          ],
+          "index_failed_checks": [],
+          "calls": 40,
+          "integer_key_bindings_pass": 3,
+          "source_target_signs": {
+            "C4'": true,
+            "C1'": false,
+            "C3'": true
+          },
+          "fresh_comparison": {
+            "automatic_adoption": false,
+            "checks": {
+              "both_workers_completed": true,
+              "exact_endpoint_repeat": true,
+              "same_constructor_status": true,
+              "same_prepared_state": true,
+              "same_reader_and_charge": true,
+              "same_source": true
+            },
+            "checks_pass": true,
+            "previous_endpoint_match": true,
+            "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+            "scientific_approval": "NOT_RUN",
+            "status": "FRESH_REPEAT_MATCH"
+          },
+          "observed_elapsed": 1.120353,
+          "control_elapsed": 2.176767
+        },
+        "PDU": {
+          "worker_sha256": "2a30ca44562841004c68f25b979b9723740b54ba589649e5ccb1f1aa1f1c8158",
+          "control_worker_sha256": "8acfb6b6070d52d683a9bbb7c0712d3b27347471e93d857703df39872079e741",
+          "failed_checks": [
+            "source_handedness_preserved"
+          ],
+          "trace_failed_checks": [],
+          "index_failed_checks": [],
+          "calls": 40,
+          "integer_key_bindings_pass": 3,
+          "source_target_signs": {
+            "C4'": true,
+            "C3'": true,
+            "C1'": true
+          },
+          "fresh_comparison": {
+            "automatic_adoption": false,
+            "checks": {
+              "both_workers_completed": true,
+              "exact_endpoint_repeat": true,
+              "same_constructor_status": true,
+              "same_prepared_state": true,
+              "same_reader_and_charge": true,
+              "same_source": true
+            },
+            "checks_pass": true,
+            "previous_endpoint_match": true,
+            "random_state_control": "NOT_REQUESTED; DIFFERENCES MAY INCLUDE NATIVE NONDETERMINISM",
+            "scientific_approval": "NOT_RUN",
+            "status": "FRESH_REPEAT_MATCH"
+          },
+          "observed_elapsed": 1.065104,
+          "control_elapsed": 0.798605
+        }
+      },
+      "phenix_version": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "named_restraint_order": "ALL_NINE_PASS; ALL_DIFFER_FROM_LOCAL_GETTER_ORDER",
+      "source_target_signs": "PDU_3_OF_3;5PC_3_OF_3;DP_2_OF_3",
+      "remaining_DP_C1_prime": {
+        "source_volume_in_proved_basis": -2.373696206999996,
+        "native_target": 2.3867843186876505,
+        "ordered_atoms": [
+          "C1'",
+          "O4'",
+          "N9",
+          "C2'"
+        ]
+      },
+      "interpretation": "The native index basis is now proved. Temporary constructor hand warnings and DP marker continuity remain; neither is an assembled-molecule inversion or independent absolute CIP verdict.",
+      "ATL": "PUBLIC_GRAPH_STEREO_AND_COMPILER_PASS; NATIVE_NOT_RUN"
+    }
   },
   "automatic_component_resolution_2026_10_21": {
     "status": "DECISION_CORE_AND_POSTMR_SUMMARY_IMPLEMENTED_ORCHESTRATION_PENDING",
@@ -16819,5 +16950,134 @@
       },
       "scope": "Deterministic verified-evidence decisions and report-only PostMR summaries. No automatic native recovery/adoption/PDF execution is claimed."
     }
+  },
+  "source_native_constructor_input_setup_2026_10_21": {
+    "status": "IMPLEMENTED_EXPLICIT_NATIVE_INPUT_SETUP_PENDING_MAC",
+    "recorded_date": "2026-10-21",
+    "delivery_prefix": "53_Cedar",
+    "policy_id": "cif-native-input-coordinate-setup-v1",
+    "module": "src/nasolve/cif_constructor_setup.py",
+    "worker_owner": "src/nasolve/cif_source_constructor.py",
+    "cli_action": "--source-constructor-setup-audit-only",
+    "runner_filename": "53_Cedar_probe_cif_input_setup.py",
+    "review_input": {
+      "name": "52_Cedar_rjkwfcxk_cif_numerical_recovery_review.zip",
+      "sha256": "21d97cf95df2b15fd0c989d7372e1c8538d58b9d152571e010a178b56f275acc",
+      "bytes": 58223753,
+      "verified_payloads": 2502
+    },
+    "native_reference": {
+      "builder_path": "elbow/command_line/builder.py",
+      "builder_sha256": "7b2c0caf2f061d7fff65633da3add4e1b5176710ac2f7fee6c81a14c99789afd",
+      "function": "builder",
+      "setup_line": 814,
+      "constructor_line": 937,
+      "setup_method_path": "elbow/chemistry/SimpleMoleculeClass.py",
+      "setup_method_sha256": "a57aa79f7f6d9113d6e7ab747498ed3e4878dda8056613a27eb067836901e9a7",
+      "setup_method_definition_line": 1550,
+      "meaning": "Installed builder calls Setup before Chiralise. Setup stores input_xyz and serial/input-index metadata. Native GetRSNotation(input_xyz=True) can consult this cache. This source relationship does not prove omission caused the DP mismatch."
+    },
+    "algorithm": [
+      "Require exact C52 return and replay all qualifications, trace/mapping/index analysis, integer-key native method definitions and fresh/previous comparisons. Retain every prior warning and complete capsule.",
+      "Recognize the selected builder same-object, unconditional zero-argument Setup call preceding Chiralise, with no intervening molecule rebind. Pin/capture builder text and the already selected native SimpleMoleculeClass method; no captured code execution.",
+      "Call selected original Setup once per fresh worker before isolated construction. Capture full component/format before/after, cache presence/values/alias context and selected method proof. Require exact unchanged component coordinates/chemistry/format and complete exact input-coordinate cache.",
+      "Use separate fresh prepared controls/observers, keep the native CCTBX backend, original constructor arguments and all integer-key observations. Compare fresh endpoints, then separately report change versus the old unprepared C52 endpoint; an expected preparation effect is not observer divergence.",
+      "Record cached coordinates again after construction to expose native alias/mutation behavior. Setup qualification concerns preparation only; temporary endpoint hand/metadata and source-target signs remain separate evidence, with no independent absolute CIP result."
+    ],
+    "limits": {
+      "max_native_components": 3,
+      "fresh_workers_per_component": 2,
+      "worker_timeout_seconds": 30,
+      "total_timeout_budget_seconds": 180,
+      "max_observed_calls_per_constructor": 256,
+      "max_native_setup_calls_per_worker": 1,
+      "max_native_restraint_dictionary_entries": 256,
+      "max_coordinate_sequence_rows": 64
+    },
+    "schemas": {
+      "native": "Opt-in source_setup/setup_sources spec, setup_sources snapshots and result.setup_control; maintained setup_analysis. Legacy WORKER and modes remain byte-identical unless the new action is explicit.",
+      "probe": "Exact-C52 setup action with original prior index replay; fresh prepared observer/control comparisons, previous unprepared endpoint comparison and setup/index policies.",
+      "compatibility": "No installed patch, kernel/target/weight change, source chemistry/state/recipe change, dependency or automatic adoption. ATL remains a separate public graph/compiler control; eight-pair plan preserved."
+    },
+    "validation": {
+      "native": "PENDING_USER_MAC. Owned fake APIs and saved C52 replay verify software/evidence boundaries rather than native chemistry.",
+      "new_regressions": 47,
+      "fail_before": {
+        "setup_module_or_api_failed": 16,
+        "setup_seconds": 0.35,
+        "routing_cases_failed_before_helper": 16,
+        "routing_seconds": 1.17
+      },
+      "focused": {
+        "passed": 343,
+        "seconds": 21.98,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_constructor_setup.py tests/test_cif_constructor_index_basis.py tests/test_cedar53_delivery.py tests/test_cedar52_delivery.py tests/test_cedar51_delivery.py tests/test_cif_constructor_mapping.py tests/test_cif_constructor_trace.py tests/test_cif_source_constructor.py tests/test_cif_constructor_backend.py tests/test_cedar48_delivery.py tests/test_cedar49_delivery.py tests/test_cedar50_delivery.py tests/test_synthetic_dna_shuttle.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_atl_control.py tests/test_cif_doctor_selection.py tests/test_cif_doctor_postmr.py"
+      },
+      "full": {
+        "passed": 2888,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 228.67,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "eb29bc9c7857898f04a8264200f2f47827dc1817",
+          "working_tree_has_changes": true
+        },
+        "runner_sha256": "e57c17af233ac33f5e4b684139a79632e7a2a675be73ef062a67e8f9cc1b9e1d",
+        "clean_build_sources_removed_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_checkout_tracked_edit": "PRESERVED",
+        "runner_local_ignore": "PASS",
+        "input_payloads": 2502,
+        "runtime_members": 138,
+        "runtime_archive_sha256": "158e0c1660fc3997bd050d727a564f3605574f73da63deeca481d7e5b70bb532",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "cache_transition_proofs_recomputed": 48,
+        "recorded_pair_kernel_calls_verified": 3286,
+        "strict_derivative_directions_recomputed": 246,
+        "original_raw_reader_and_charge_reviews": "PRESERVED",
+        "source_consumer_bytes": "MATCH_PRIOR_DP_PDU; DECLARED_CCD_5PC",
+        "previous_constructor_reviews_recomputed": 6,
+        "prior_observed_calls_replayed": 120,
+        "ATL_scope": "PUBLIC_GRAPH_STEREO_AND_COMPILER_ONLY",
+        "prior_observation_comparisons_recomputed": 3,
+        "backend_selection": "EXPLICIT_NATIVE_CCTBX",
+        "constructor_native_execution": "PENDING_USER_MAC",
+        "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION",
+        "baseline_native_integer_bindings_replayed": 9,
+        "baseline_source_target_signs": {
+          "PDU": true,
+          "5PC": true,
+          "DP": false
+        },
+        "native_source_coordinate_setup": "PENDING_USER_MAC"
+      },
+      "documentation": {
+        "mirror_equality": "PASS",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_source_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      },
+      "scope": "18 native-reference/owned fake setup/cache/exception/legacy checks, one combined setup+trace+integer-key worker, 12 immutable C52-return mutations and 16 accepted/rejected action-routing cases. Real native C53 behavior remains pending Mac.",
+      "transport_routing_correction": {
+        "initial_result": "FAILED_BEFORE_NATIVE_EXECUTION",
+        "reason": "The new setup input was inadvertently included in the old index-action input set.",
+        "correction": "Centralize the explicit action/input mapping; retain index-only C50/C51 and setup-only C52 scopes. Sixteen action-routing regressions and final actual-input transport PASS."
+      }
+    },
+    "automatic_adoption": false
   }
 }

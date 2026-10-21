@@ -1130,8 +1130,19 @@ C52 records those integer keys, existing native link positions and exact
 named local indices, honoring unique_index before index. It fingerprints the
 selected native key/coordinate methods without calling them again. All
 inventories/returned vectors must agree; no native computation is reindexed.
-Native C52 proof is pending; optimizer kernels, full generation, absolute CIP
-and scientific qualification remain open.
+Returned C52 proves all nine bindings and all public-control source target
+signs; DP C1-prime retains the opposite target sign. Temporary frame/marker
+warnings remain separate from a finished molecule's configuration.
+
+C53 tests the native builder preparation that stores input_xyz before chiral
+construction. It calls selected native Setup once, checks exact unchanged
+component state and original-coordinate caching, then compares fresh prepared
+unobserved/observed constructors. The old unprepared endpoint remains a separate
+comparison; an effect of preparation is not observer divergence. Cached values
+are recorded again afterward to expose alias/mutation behavior. Original native
+kernels, targets and source chemistry stay fixed. This is an isolated setup
+control, not a complete builder or independent absolute CIP assignment. Native
+C53 evidence, full generation and scientific qualification remain open.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

@@ -8,6 +8,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Test native source-coordinate setup before chiral construction
+
+- Verify all 2,502 C52 payloads, six constructors, 120 observed calls and exact
+  fresh/previous comparisons. All nine integer-key/name/link/vector proofs pass;
+  eight source target signs agree. Preserve DP C1-prime and temporary hand/
+  marker warnings without calling them assembled-molecule inversion.
+- Add explicit C53 --source-constructor-setup-audit-only. Pin selected builder
+  and original Setup sources, recognize normal preparation order and call Setup
+  once per worker. Require unchanged component/format and exact input-coordinate
+  caching; retain cached values again after construction.
+- Compare separate fresh prepared controls/observers while reporting the old
+  unprepared endpoint separately. Preserve original targets, weights, kernels,
+  source chemistry, old qualifications and bounded six-worker scope. ATL remains
+  a public control. Full builder/generation/CIP/adoption remain separate; native
+  C53 results are pending. No new dependency, NAR release or installed patch.
+- Centralize explicit action/input routing to keep C52 setup separate from
+  C50/C51 index-only inputs. All 47 new regressions, 343 focused and 2,888 full
+  tests pass (two skips, 276 subtests). Actual C52 deleted-build/relocated
+  transport passes with all nine proofs and historical findings preserved.
+
 ### Add usable-fallback decisions and correct native integer-key observation
 
 - Remove mandatory student CIF inspection from the product contract. Add a pure

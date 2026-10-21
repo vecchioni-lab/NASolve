@@ -258,10 +258,15 @@ def verify_constructor_capture(installation_root,report,output):
         for path in [_inside(root,row['path']),_inside(output,row['snapshot']['path'])]:
             data=path.read_bytes()
             if len(data)!=row['size'] or sha256(data).hexdigest()!=row['sha256']:raise ValueError('Installed/captured native index source changed')
+    for row in report.get('setup_sources',[]):
+        if row.get('anchor')!='phenix_installation' or row['snapshot'].get('anchor')!='constructor_directory':raise ValueError('Invalid native setup source anchor')
+        for path in [_inside(root,row['path']),_inside(output,row['snapshot']['path'])]:
+            data=path.read_bytes()
+            if len(data)!=row['size'] or sha256(data).hexdigest()!=row['sha256']:raise ValueError('Installed/captured setup source changed')
     return True
 
 
-def audit_source_constructor(installation_root,python_executable,api_sources,source,code,output,*,environment,expected_dialect,prior_sources,timeout_seconds=60,native_cctbx=False,trace_chirality=False,trace_sources=(),coordinate_mapping=False,index_basis=False,integer_keys=False):
+def audit_source_constructor(installation_root,python_executable,api_sources,source,code,output,*,environment,expected_dialect,prior_sources,timeout_seconds=60,native_cctbx=False,trace_chirality=False,trace_sources=(),coordinate_mapping=False,index_basis=False,integer_keys=False,source_setup=False,setup_reference_sha256=None):
     """Run one exact-source reader/charge/promotion/Chiralise handoff."""
     if expected_dialect not in {'MONOMER_LIBRARY_CIF','CHEMICAL_COMPONENTS_CIF'}:raise ValueError('Unsupported explicit reader dialect')
     if type(native_cctbx) is not bool:raise ValueError('Require explicit native backend selection')
@@ -269,6 +274,9 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
     if type(coordinate_mapping) is not bool or coordinate_mapping and not trace_chirality:raise ValueError('Native mapping observation requires boundary observation')
     if type(index_basis) is not bool or index_basis and not coordinate_mapping:raise ValueError('Native index observation requires coordinate mapping')
     if type(integer_keys) is not bool or integer_keys and not index_basis:raise ValueError('Native integer keys require explicit index observation')
+    if type(source_setup) is not bool or source_setup and not native_cctbx:raise ValueError('Native source setup requires explicit CCTBX preparation')
+    if source_setup and (not isinstance(setup_reference_sha256,str) or len(setup_reference_sha256)!=64):raise ValueError('Require prior native builder source proof')
+    if not source_setup and setup_reference_sha256 is not None:raise ValueError('Setup reference requires explicit setup')
     if trace_chirality:
         names={'elbow/chemistry/ChiralClass.py','elbow/cctbx_api/CCTBXMixins.py'}
         if (len(trace_sources)!=2 or any(r.get('anchor')!='phenix_installation' for r in trace_sources)
@@ -298,12 +306,21 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
             'snapshot':{'anchor':'constructor_directory','path':name+'.txt'}})
     if native_cctbx:native_cctbx_reference(payloads['elbow/utilities/Utilities.py'])
     worker=WORKER
+    setup_sources=[]
+    if source_setup:
+        from .cif_constructor_setup import REFERENCE_PATH,native_setup_reference,source_setup_worker
+        relative=(site/REFERENCE_PATH).as_posix();data=_inside(root,relative).read_bytes()
+        if len(data)>MAX_SOURCE_BYTES or sha256(data).hexdigest()!=setup_reference_sha256:raise ValueError('Prior native builder source changed')
+        native_setup_reference(data);snapshot='setup_sources/'+REFERENCE_PATH+'.txt';payloads['setup_sources/'+REFERENCE_PATH]=data
+        setup_sources=[{'anchor':'phenix_installation','path':relative,'sha256':sha256(data).hexdigest(),'size':len(data),
+            'snapshot':{'anchor':'constructor_directory','path':snapshot}}]
+        worker=source_setup_worker(worker)
     if trace_chirality:
         from .cif_constructor_trace import constructor_trace_worker
         for row in trace_sources:
             data=_inside(root,row['path']).read_bytes()
             if len(data)!=row['size'] or sha256(data).hexdigest()!=row['sha256']:raise ValueError('Prior native trace method source changed')
-        worker=constructor_trace_worker(WORKER)
+        worker=constructor_trace_worker(worker)
     index_sources=[]
     if index_basis:
         from .cif_constructor_index_basis import SOURCE_PATHS as INDEX_PATHS
@@ -326,6 +343,7 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
     if coordinate_mapping:spec['coordinate_mapping']=True
     if index_basis:spec.update(index_basis=True,index_sources=index_sources)
     if integer_keys:spec['integer_keys']=True
+    if source_setup:spec.update(source_setup=True,setup_sources=setup_sources)
     (output/'constructor_spec.json').write_text(json.dumps(spec,indent=2)+'\n')
     report={'schema_version':1,'policy_id':POLICY_ID,'status':'FAILED','component':code,'sources':rows,'expected_dialect':expected_dialect,
         'source_sha256':sha256(original).hexdigest(),'dispatcher_sha256':sha256(dispatcher).hexdigest(),'execution':{'status':'NOT_RUN','timeout_seconds':timeout_seconds},
@@ -333,6 +351,7 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
         'constructor_local_optimization':'NATIVE_INTERNALS_NOT_INSTRUMENTED','absolute_cip_assignment':'NOT_RUN','installed_phenix_edits':'NOT_RUN',
         'captured_code_execution':'NOT_RUN','pickle_loading':'NOT_RUN','automatic_adoption':False}
     if index_basis:report['index_sources']=index_sources
+    if source_setup:report['setup_sources']=setup_sources
     started=time.monotonic()
     try:
         verify_constructor_capture(root,report,output)
@@ -348,6 +367,9 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
                 if rc==0:
                     result=json.loads((output/'constructor_result.json').read_text());report['result']=result
                     report['qualification']=qualify_constructor_evidence(source,code,result,expected_dialect,native_cctbx=native_cctbx);report['status']='REVIEW'
+                    if source_setup:
+                        from .cif_constructor_setup import qualify_setup_evidence
+                        report['setup_analysis']=qualify_setup_evidence(result)
                     if trace_chirality:
                         from .cif_constructor_trace import analyze_constructor_trace
                         report['trace_analysis']=analyze_constructor_trace(source,code,result.get('constructor_trace',{}))

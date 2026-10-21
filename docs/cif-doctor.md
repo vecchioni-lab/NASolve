@@ -2157,8 +2157,34 @@ key/coordinate methods and exact returned vector alignment. Keep actual local
 getter order separately visible; no extra native getter call or computation
 rewrite occurs. Original v1 empty-key, hand and marker findings replay unchanged.
 Bounds remain six owned 30 s workers/256 calls each, 64-row vectors and 256
-restraint entries. ATL stays a separate source/compiler control. Native C52
-proof is pending; this is not full generation or automatic production adoption.
+restraint entries. ATL stays a separate source/compiler control. Returned C52
+passes all nine bindings, all six PDU/5PC source target signs and exact repeats;
+DP C1-prime and original temporary hand/marker warnings remain. This does not
+establish assembled-molecule inversion or production adoption.
+
+## Native input-coordinate setup (Cedar 53)
+
+The selected eLBOW builder calls native Setup before Chiralise. Setup stores
+input_xyz plus serial/input-index metadata; native R/S handling can consult
+those original coordinates. C53 tests this preparation in the isolated native
+constructor via `--source-constructor-setup-audit-only` on exact C52. It does not
+replay all intervening builder chemistry or establish a causal bug.
+
+Capture/pin builder.py and the existing native SimpleMoleculeClass.Setup source.
+Recognize unconditional same-object Setup before Chiralise without a molecule
+rebind. Call the original zero-argument method once per fresh worker and require
+unchanged complete component/format and exact retained input coordinates.
+Record cache presence/values/alias context before/after preparation and after
+construction. Preserve source/input bytes, native targets/kernels and all old
+qualifications. Recompute setup qualification independently from temporary hand,
+metadata and index/target-sign evidence; no absolute CIP is claimed.
+
+Separate fresh prepared control/observed workers retain the original constructor
+arguments and integer-key observation. Fresh observer agreement remains required
+evidence; change against the old unprepared C52 endpoint is reported separately,
+not required to be identical. Six owned 30 s workers/256 observed calls remain
+the bounds, with ATL still public source/compiler only. Native C53 preparation
+and constructor results remain pending. No full generation or adoption occurs.
 
 ## Reviewed preparation
 

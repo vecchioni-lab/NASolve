@@ -8,8 +8,9 @@ for actual behavior; history is evidence, not a second task queue.
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 keeps student CIF approval out of the product flow. A tested decision core and
 PostMR report summaries are implemented; recovery/adoption/PDF adapters remain
-planned. C51 exposed an observer key-shape mismatch; C52 tests the integer-key
-adapter while preserving all native mechanics and old findings.
+planned. C52 proves all nine native integer-key bindings while retaining temporary hand
+findings and one DP target-sign mismatch. C53 tests the native builder input-
+coordinate Setup prerequisite; native proof remains pending.
 
 ## What's current?
 

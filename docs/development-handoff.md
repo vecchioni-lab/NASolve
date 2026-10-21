@@ -26,25 +26,32 @@ automatic candidate acquisition/repair, native qualification/adoption adapters
 and the PDF renderer. Detailed diagnostic REVIEW results are developer evidence,
 not student CIF approval gates. See the [contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
-Returned C51: all **2,395 payloads**, six constructors and fresh/previous
-comparisons verify. All nine named key captures are empty because the observer
-expected atom-object keys while selected native RestraintClass uses integers.
-This does not establish a chemical inversion. Keep original hand/DP metadata
-warnings and all earlier evidence. C52 retries the same three source consumers
-using recorded integer entries, native link positions and named local atoms,
-with selected get_key/GetCoordinates/GetRestraints source proofs. No extra
-native getter calls, target edits or mechanics changes. ATL remains a public
-graph/compiler control, outside native constructors and the eight-pair plan.
+Returned C52: all **2,502 payloads**, six constructors and exact fresh/previous
+comparisons verify. All **nine native integer/link/name/vector proofs PASS**;
+all restraint orders differ from the actual local getter order. PDU/5PC source
+target signs agree at every centre; DP C1-prime remains opposed (-2.3736962
+source versus +2.3867843 native target). Original temporary source-hand and DP
+marker warnings remain. No assembled-molecule inversion is established.
 
-Build `52_Cedar_probe_cif_integer_keys.py` with PDU/5PC/ATL, then run the exact
-C51 capsule with `--component DP --source-constructor-index-basis-audit-only`.
-The action identifies C51 and enables integer-key policy v2; older C50 action
-semantics remain available. Six owned 30 s workers and 256 calls each remain
-bounded. Native C52 results are pending; no full generation/adoption is claimed.
-Validation: **296 focused / 2,841 full tests**, two skips and 276 subtests;
-41 new regressions. Exact C51 transport passes after source-build deletion
-and relocation, poisoned imports and aliased temp roots; everyday edits and
-all old review evidence remain intact.
+**C53 is the next native action.** Captured builder source calls native Setup
+before Chiralise; Setup stores input_xyz, which native R/S handling can use.
+The isolated diagnostic has not invoked it. Test that single preparation step
+with original targets/kernels and explicit state/cache evidence. This is a
+controlled prerequisite test, not a claim that it fixes DP or executes the
+complete builder. Retain C52 as the unprepared baseline, compare separate fresh
+prepared unobserved/observed workers and report any endpoint change separately.
+
+Build `53_Cedar_probe_cif_input_setup.py` with PDU/5PC/ATL; run exact C52 with
+`--component DP --source-constructor-setup-audit-only`. Six owned 30 s workers,
+one native Setup each and 256 observed constructor calls remain bounded. ATL
+stays public graph/compiler only; the requested eight-pair plan is unchanged.
+Source/setup/native qualifications, temporary handedness, full generation and
+scientific qualification remain distinct. Native C53 evidence is pending.
+Validation passes **343 focused / 2,888 full tests**, two skips and 276 subtests.
+All 47 new regressions and exact-C52 deleted-build/relocated transport pass,
+with poisoned imports, aliased temp roots and everyday edits preserved.
+See `source_native_constructor_integer_keys_2026_10_21` and
+`source_native_constructor_input_setup_2026_10_21` in the existing ledger.
 
 ## Completed and open work
 

@@ -760,7 +760,18 @@ C52 replays the failed observation and records integer entries, native link
 positions and named local atoms (unique_index takes precedence over index).
 Exact inventories, selected native method sources and returned vectors must
 agree. No native getter is called again and no array is reordered in native
-computation. Legacy findings remain. Native C52 evidence is pending.
+computation. Returned C52 passes all nine bindings and exact repeats. All six PDU/5PC
+source target signs agree; DP C1-prime remains opposed, while original temporary
+hand/marker warnings remain. This does not establish final molecular inversion.
+
+C53 tests the native builder's Setup prerequisite before isolated Chiralise.
+Pin selected builder/Setup source and require the normal same-object call order.
+Call original Setup once per worker, proving unchanged component/format and
+exact retained input_xyz. Capture cache values again after construction.
+Separate fresh prepared controls/observers must be compared; the old unprepared
+endpoint comparison remains a separate outcome. Preserve every original target,
+weight, kernel and warning. This does not replay the complete builder or assign
+independent absolute CIP. Native results remain pending.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core

@@ -47,7 +47,7 @@ def test_index_basis_requires_live_named_keys_and_exact_returned_vector_alignmen
     assert q['absolute_cip_assignment']==q['scientific_approval']=='NOT_RUN' and not q['automatic_adoption']
 
 
-@pytest.mark.parametrize('mode',['correct','reversed_return','non_dict','native_exception','integer_keys','unique_index_keys'])
+@pytest.mark.parametrize('mode',['correct','reversed_return','non_dict','native_exception','integer_keys','unique_index_keys','setup_before_trace'])
 def test_owned_index_worker_captures_native_dictionary_keys_without_reordering_calls(tmp_path,mode):
     from hashlib import sha256
     import os
@@ -63,7 +63,7 @@ def test_owned_index_worker_captures_native_dictionary_keys_without_reordering_c
   return coordinates,[],[],[],[],[[[0,1,2,3],1.,False,1.]]
 '''.replace('CHANGE','coordinates.reverse()' if mode=='reversed_return' else 'pass'))
     (site/'elbow/cctbx_api/geometry_manager.py').write_text('def run(coordinates,*args,**kwargs):return None\n')
-    integer = mode in {'integer_keys', 'unique_index_keys'}
+    integer = mode in {'integer_keys', 'unique_index_keys','setup_before_trace'}
     if integer:
         p.write_text('''class RestraintClass(dict):
  def get_key(self,atom):return getattr(atom,'unique_index',atom.index)
@@ -100,15 +100,25 @@ def test_owned_index_worker_captures_native_dictionary_keys_without_reordering_c
     if mode=='unique_index_keys':
         p.write_text(p.read_text().replace('for atom in self:self.restraint_class[atom]',
             'for atom in self:atom.unique_index=atom.index+100\n  for atom in self:self.restraint_class[atom]'))
+    setup=mode=='setup_before_trace';setup_sha=None
+    if setup:
+        from tests.test_cif_constructor_setup import REFERENCE
+        folder=site/'elbow/command_line';folder.mkdir();(folder/'__init__.py').write_text('')
+        (folder/'builder.py').write_text(REFERENCE);setup_sha=sha256(REFERENCE.encode()).hexdigest()
+        p=site/'elbow/chemistry/SimpleMoleculeClass.py';p.write_text(p.read_text()+''' def Setup(self):
+  for a in self:a.input_xyz=a.xyz
+''')
     for rows in [proof,trace]:
         for row in rows:
             data=(root/row['path']).read_bytes();row.update(size=len(data),sha256=sha256(data).hexdigest())
     v,_=tetrahedron();source=write(tmp_path/'inputs/source.cif',v);out=tmp_path/'native'
     n=audit_source_constructor(root,python,api,source,'Q17',out,environment={**os.environ,'PYTHONPATH':str(site)},expected_dialect='CHEMICAL_COMPONENTS_CIF',
-        prior_sources=proof,trace_sources=trace,native_cctbx=True,trace_chirality=True,coordinate_mapping=True,index_basis=True,integer_keys=integer,timeout_seconds=10)
+        prior_sources=proof,trace_sources=trace,native_cctbx=True,trace_chirality=True,coordinate_mapping=True,index_basis=True,integer_keys=integer,
+        source_setup=setup,setup_reference_sha256=setup_sha,timeout_seconds=10)
     assert n['execution']['status']=='COMPLETED' and n['source_preserved']
     assert len(n['index_sources'])==2 and all((out/r['snapshot']['path']).is_file() for r in n['index_sources'])
-    assert n['index_analysis']['checks_pass'] is (mode in {'correct','native_exception','integer_keys','unique_index_keys'})
+    assert n['index_analysis']['checks_pass'] is (mode in {'correct','native_exception','integer_keys','unique_index_keys','setup_before_trace'})
+    if setup:assert n['setup_analysis']['checks_pass']
     if integer:
         assert n['index_analysis']['policy_id']=='cif-native-integer-restraint-keys-v2'
         assert n['index_analysis']['managers'][0]['integer_key_binding']['checks_pass']
