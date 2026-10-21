@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Audit the source-native chiral construction handoff
+
+- Add opt-in Cedar 47 `--source-constructor-audit-only`, gated on the exact
+  completed C46 return. Recompute saved pair proofs and strict arithmetic,
+  preserving historical count and chemistry reviews without executing old code.
+- Test source reader, explicit declared-charge transfer, native class promotion
+  and original `Chiralise` for DP plus PDU/5PC controls. Record full raw/after
+  inventories and exceptions; check graph, charge, declared markers and source-
+  relative handedness. Pin six prior modules, capture seven installed sources,
+  isolate process arguments and cap each owned worker at 60 s.
+- Native local chiral-template optimization may occur internally. No whole-
+  molecule optimizer, full builder/dictionary generation, absolute CIP result,
+  source-state choice, scaffold change, NARestraints release or adoption.
+  Native results await Mac; explicit fake-worker and saved-replay checks remain
+  distinct from native chemistry. Existing recipe and runtime defaults stay fixed.
+- All 73 new regressions, 305 focused and 2,638 full tests pass (two skips,
+  276 subtests), with actual-input deleted-build/relocated transport, poisoned
+  imports, aliased temporary roots and preserved everyday-checkout edits.
+
 ### Record returned cache proof and the planned eight-pair live challenge
 
 - Verify all 1,983 Cedar 46 payloads, the published build/runner and unchanged

@@ -1026,6 +1026,21 @@ at the tested coordinates. It does not settle charge/protonation, absolute
 stereochemistry, 5PC plane/angle findings or linked-scaffold geometry. No
 dictionary/model, state choice or optimizer changes.
 
+Cedar 47 returns to the earlier DP constructor failure. Preserve the correct
+source reader and declared graph, record the raw native inventory, then apply
+only the already tested source-charge transfer. Promote the parsed component
+with the installed class adapter and require its inventory to remain identical.
+Invoke the original native chiral constructor on this temporary object, retaining
+completion/exception and full after-snapshots. Compare names, elements, orders,
+charges, declared markers and nondegenerate source-relative signed volumes.
+An explicit “both” sign remains permissive; fixed sugar hands stay protected.
+Proper rigid motions are allowed. DP and both public controls share this generic
+check. Existing installed sources, inputs and all earlier failures stay pinned.
+The constructor may optimize local chiral templates internally, so the receipt
+keeps this separate from whole-molecule optimization and full generation. A
+handoff pass does not independently assign absolute CIP or settle phosphate,
+5PC plane, linked geometry or scientific approval. Native results are pending.
+
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,
 returned graphs or caught failures. A 180 s deadline bounds generation, followed

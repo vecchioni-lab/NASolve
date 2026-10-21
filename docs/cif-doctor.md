@@ -1881,6 +1881,36 @@ Charge/H, stereo, plane/angle and scaffold findings stay open. No chemistry,
 restraint, model, optimizer, state choice, installed defaults, NARestraints policy
 or adoption changes.
 
+Build Cedar 47 with both public controls and run the exact C46 return using
+`--component DP --source-constructor-audit-only`. The return gate verifies all
+1,983 payloads, build, worker/helpers, scientific inputs, installed source text
+and both static signatures; maintained code recomputes 48 pair proofs and 246
+strict derivative directions without executing captured Python. Perturbed
+membership remains explicitly scoped to the pinned worker result.
+
+The `cif-source-native-constructor-handoff-v1` worker uses the declared source
+reader route for DP, PDU and 5PC. Retain raw reading, apply the checked explicit
+source-charge control, promote using native `return_molecule_class(simple=False)`
+and require an identical inventory. Call the selected native `Chiralise` with
+its default arguments. Retain completion, exceptions and complete after-inventory.
+Check exact identities/elements/orders/charges, source R/S and signed metadata,
+unaccounted new centres and nondegenerate source-relative coordinate hands,
+including applicable declared signs. Explicit `both` remains permissive, while
+fixed sugar/R/S hands stay protected. Report coordinate shifts descriptively;
+proper rotations/translations do not change a hand. Unknown or incomplete
+stereo cannot pass by absence. No absolute CIP is independently assigned.
+
+Pin the prior six reader/charge/chirality modules and newly capture the selected
+SimpleMoleculeClass source as text. Verify actual import/method origins and
+supported signatures, clear wrapper argv before installed imports, and recheck
+all installed/captured/input/dispatcher hashes. Each owned process is capped at
+60 s and terminated on timeout/interruption; at most three components run.
+The native constructor can optimize local chiral templates internally, which
+this audit does not instrument. Whole-molecule optimization, the complete
+builder, numerical dictionary generation and scaffold changes are not requested.
+Native results remain pending. Source/generated charge/H, absolute stereo,
+5PC plane and scientific qualification remain separate, without adoption.
+
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight
 graph and numerical checks. It does not require an LLM, RDKit, a generator or

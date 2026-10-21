@@ -658,6 +658,22 @@ identities through temporary perturbations; raw perturbed lists are not stored
 for independent offline replay. No dictionary/model, generator, optimizer,
 state selection or adoption runs. Chemical-state and scaffold review remain open.
 
+C47 verifies the exact C46 return and recomputes its pair proofs and strict
+arithmetic with maintained code. It then exports the original DP/PDU/5PC graphs
+through the preserved source dialect, checking C37 consumer-byte reproduction
+for DP/PDU. A selected-root worker retains the raw reader inventory, applies
+only the explicit declared-source charge control, promotes through the native
+return_molecule_class(simple=False) API and requires the promoted inventory to
+match. The original native Chiralise method runs on that temporary component;
+complete before/after snapshots, exceptions and source hashes are retained.
+Seven source modules are captured, with six existing source pins; wrapper argv
+is isolated and each owned worker is capped at 60 s. Generic qualification checks
+identities/elements/orders/charges, declared stereo metadata and source-relative
+nondegenerate signed volumes, allowing proper rigid rotations/translations.
+The native constructor may optimize local chiral templates internally. No
+whole-molecule optimization, full builder, dictionary writer, scaffold or
+absolute CIP validation is requested. Native handoff results await Mac.
+
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and
 explicit C5-mod/C7-mod annotations do not select atoms. Equal operational records

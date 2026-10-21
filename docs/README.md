@@ -207,7 +207,11 @@ for actual behavior; history is evidence, not a second task queue.
   passes all six strict cases with exact-zero changed pairs. Old failures stay
   preserved. Chemical-state and plane findings remain open. The requested
   [eight-pair synthetic live test](sequence-family-targets.md#planned-eight-pair-synthetic-live-test)
-  is recorded for after current building, with its sequence/site map not yet staged. Equivalent
+  is recorded for after current building, with its sequence/site map not yet staged.
+  Cedar 47 separately checks the source-native reader/declared-charge/chiral-
+  constructor handoff for DP and both controls before another generation trial.
+  Local constructor work, source-relative handedness and absolute CIP remain
+  separate; native results are pending. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

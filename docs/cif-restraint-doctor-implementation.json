@@ -10057,7 +10057,7 @@
         "automatic_adoption": false
       },
       "artifact_boundary": "Code/tests/docs/hashes only in Git; native snapshots, raw pair lists/gradients, models/CIFs, runners and capsules remain outside Git.",
-      "next_action": "The fixed-coordinate cache question is closed for these controls. Continue chemical-state/plane and ordinary-pipeline integration work; then stage the separately requested eight-pair synthetic live test with an explicit reviewed sequence/site map. No repeat of this unchanged audit or automatic adoption is requested.",
+      "next_action": "Build 47_Cedar with both PDU and 5PC controls; run exact Cedar 46 review ZIP with --component DP --source-constructor-audit-only under Phenix 2.2.1-6174. Return console and review ZIP. At most three 60-second owned workers; no full dictionary generation or scaffold adoption.",
       "returned_review": {
         "status": "VERIFIED_NATIVE_CACHE_AND_STRICT_RETRY_PASS",
         "name": "46_Cedar_g9lvlci6_cif_numerical_recovery_review.zip",
@@ -10659,6 +10659,156 @@
       "boundary": "Planned integration test, not a present capability or additional gate for otherwise complete changes. No new workbook release, default chemistry, prepared model or pipeline result is claimed.",
       "next_action": "After current building is ready, stage and review the complete annotated sequence/site map and frozen sources, then deliver one pinned fetch/worktree/build/run block using the established && handoff.",
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#post_build_mixed_sequence_live_test_2026_10_21"
+    },
+    "source_native_constructor_handoff_2026_10_21": {
+      "status": "IMPLEMENTED_SOURCE_NATIVE_CONSTRUCTOR_HANDOFF_PENDING_MAC",
+      "recorded_date": "2026-10-21",
+      "delivery_prefix": "47_Cedar",
+      "policy_id": "cif-source-native-constructor-handoff-v1",
+      "module": "src/nasolve/cif_source_constructor.py",
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "47_Cedar_probe_cif_source_constructor.py",
+      "cli_action": "--source-constructor-audit-only",
+      "review_input": {
+        "name": "46_Cedar_g9lvlci6_cif_numerical_recovery_review.zip",
+        "sha256": "4900b032e1e0fa2af30e7260bc0974511755afd97eb9643b24bf6f5ac58c3637",
+        "bytes": 50960157,
+        "verified_payloads": 1983,
+        "build_sha256": "65ce32505f80abfe115184fdf1f8724e1d39cb2dd2844e47f8bfc2aa64c2d04e",
+        "nasolve_commit": "e5e79cc8e4d5c0e6017938d30709913eb8153b9d",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de"
+      },
+      "reason": "DP full generation stopped in the former forced-CCD chiral constructor. The correct source reader, declared monomer bond orders and explicit source-charge transfer now have returned proof. Test their next native construction handoff before another full-generation trial; preserve the independent PDU/5PC state reviews.",
+      "prerequisite_replay": {
+        "module": "src/nasolve/cif_nonbonded_cache_audit.py::replay_cache_impact_evidence",
+        "scope": "Verify exact C46 build/manifest, worker/helper hashes, both native input inventories/static signatures and all installed cache snapshots. Recompute 48 pair-transition proofs, recorded pair-kernel accounting and 246 strict derivative directions. Keep all prior C45 failures and earlier source/generation evidence.",
+        "limit": "Perturbed pair identities were not stored by C46; their continuous membership gate remains a pinned-worker result, explicitly separate from offline raw preflight/arithmetic replay.",
+        "captured_code_execution": "NOT_RUN"
+      },
+      "behavior": {
+        "selection": "The diagnostic uses the original DP source and pinned PDU/5PC public controls. The runtime module accepts any supported component; it has no code/atom allowlist.",
+        "export": "Retain the source reader dialect and exact target-free graph; DP/PDU consumer bytes must reproduce the previously qualified C37 input. 5PC uses the same declared CCD projection.",
+        "raw_reader": "Use selected installed any_chemical_format_reader(simple=True, return_all_restraints=True, do_not_check_for_smiles=True), retaining raw identities/elements/orders/coordinates/charges/markers and route.",
+        "charge": "Reuse the explicit declared-source integer-charge control. Only the previously proved zero-charge omission in the monomer reader can be populated; already correct CCD charges are checked unchanged. No pH, protonation or charge is inferred.",
+        "promotion": "Use the installed return_molecule_class(simple=False), requiring an exactly unchanged charged inventory before the constructor.",
+        "constructor": "Invoke only the selected installed TopologyMixins.Chiralise with its original default arguments. Record its class, completion/exception and complete after-inventory. Clear wrapper process arguments before installed imports.",
+        "qualification": "Recompute reader/graph, exact charge transfer, promotion and post-constructor identities/elements/orders/charges, declared R/S markers, signed-volume metadata and unaccounted new-centre checks. Require source-declared tetrahedra to preserve nondegenerate coordinate hands and applicable declared signs. Proper rigid rotations/translations remain allowed and shifts are descriptive. Explicit volume_sign=both remains permissive; it does not acquire a single-hand requirement. Fixed sugar hands and any independently declared R/S centres retain their preservation gates.",
+        "verdict": "SOURCE_CONSTRUCTOR_HANDOFF_PASS applies only to this bounded handoff. Raw failures, partial native snapshots, missing/unknown stereo, exceptions and other reviews remain separate from scientific approval."
+      },
+      "installed_source_scope": {
+        "paths": [
+          "elbow/chemistry/any_chemical_format_reader.py",
+          "elbow/formats/monomer_library_cif_parser.py",
+          "elbow/utilities/Utilities.py",
+          "elbow/chemistry/MoleculeClass.py",
+          "elbow/chemistry/SimpleMoleculeClass.py",
+          "elbow/chemistry/TopologyMixins.py",
+          "elbow/chemistry/ChiralClass.py"
+        ],
+        "prior_pins": "Six reader/charge/chirality sources must match the existing C37/C34 captures; SimpleMoleculeClass is newly captured as text from the selected root.",
+        "guards": "Check import resolution, native constructor method origin, supported signatures, before/after source snapshots, frozen source and dispatcher hashes. Snapshot text/captured workers are never executed."
+      },
+      "limits": {
+        "max_components": 3,
+        "worker_timeout_seconds_per_component": 60,
+        "process_group": "Owned and terminated on timeout/interruption"
+      },
+      "schemas": {
+        "probe": "Schema 1 gains source_constructor_audit and prior_cache_impact_replay; existing review actions retain their own scope and exact input gates.",
+        "native": "New schema-1 constructor receipt/result with raw reader, charge-control, promoted/after snapshots and independently recomputed qualification.",
+        "compatibility": "Opt-in diagnostics only; no dependency, production reader/generator/recipe, NARestraints release, pairing/stacking authority or existing frozen run changes."
+      },
+      "validation": {
+        "fail_before": {
+          "tests": 40,
+          "result": "Forty initial generic handoff/cache-replay tests fail before implementation with missing module/function."
+        },
+        "focused": {
+          "passed": 305,
+          "seconds": 35.03,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_source_constructor.py tests/test_cedar47_delivery.py tests/test_cif_nonbonded_cache_audit.py tests/test_cedar46_delivery.py tests/test_cif_linear_torsion_impact.py tests/test_cedar45_delivery.py tests/test_cif_source_dialect.py tests/test_cif_source_reader.py tests/test_cif_elbow_chirality.py tests/test_cif_declared_charge_control.py tests/test_cif_stereochemistry_audit.py tests/test_cif_numerical_recovery.py tests/test_cif_numerical_recovery_probe.py tests/test_cif_component_controls.py --tb=short"
+        },
+        "full": {
+          "passed": 2638,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 224.01,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "source_build_state": {
+            "commit": "81c3c1657d49e1c86cc1d4535e8d8c4f9e2d3770",
+            "working_tree_has_changes": true
+          },
+          "runner_sha256": "3555f2f3b0f41a1c9cdd78960513581f9fc2ea915b483dfbcb016d13a56247d2",
+          "clean_build_sources_removed_before_replay": true,
+          "relocated_runner": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp": "PASS",
+          "everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "input_payloads": 1983,
+          "runtime_members": 132,
+          "runtime_archive_sha256": "c9a069fe309735cfedf5f6969c45e6ced7c7fb2b406e0e505ddb82e419121364",
+          "mechanics_prerequisites": 17,
+          "rotation_directions": 96,
+          "cache_transition_proofs_recomputed": 48,
+          "recorded_pair_kernel_calls_verified": 3286,
+          "strict_derivative_directions_recomputed": 246,
+          "original_raw_reader_and_charge_reviews": "PRESERVED",
+          "source_consumer_bytes": "MATCH_PRIOR_DP_PDU; DECLARED_CCD_5PC",
+          "constructor_native_execution": "PENDING_USER_MAC",
+          "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION"
+        },
+        "native": "PENDING_USER_MAC. Local worker tests use explicit fake APIs, without Phenix or native chiral physics; actual C46 replay only verifies the already returned prerequisite.",
+        "regression_scope": "73 new tests: 39 generic handoff/source-relative stereo cases (including nonchiral markers, reader-route drift and permissive both), nine saved-cache replay boundaries, 13 owned fake-worker/source/timeout guards and 12 completed-C46 boundary cases.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 151,
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+          },
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        },
+        "actual_source_identity_control": {
+          "status": "PASS",
+          "scope": "Offline identity transformation of saved C37 DP charge-corrected snapshots; no native constructor executed.",
+          "fixed_signed_centres": [
+            "C4'",
+            "C1'",
+            "C3'"
+          ],
+          "permissive_signed_centres": [
+            "P"
+          ],
+          "raw_reader_charge_discrepancy": "PRESERVED"
+        }
+      },
+      "limitations": [
+        "The native Chiralise implementation calls local chiral-template optimization; those internal operations are not instrumented. Whole-molecule optimization and full builder generation are not requested.",
+        "Source-relative handedness and preserved input R/S labels do not independently assign or validate absolute CIP.",
+        "No generated numerical dictionary, effective linked-manager qualification, model improvement, convergence, refinement or adoption is claimed.",
+        "PDU/5PC source/generated phosphate 0\u2192\u22122/HOP2/HOP3 differences and the 5PC plane/angle review remain open; this audit does not choose between those states.",
+        "The requested eight-pair ordinary live test remains planned after current building, with explicit sequence/site staging still required."
+      ],
+      "execution": {
+        "dictionary_generation": "NOT_RUN",
+        "whole_molecule_optimization": "NOT_REQUESTED",
+        "constructor_local_optimization": "NATIVE_INTERNALS_NOT_INSTRUMENTED",
+        "whole_builder_replay": "NOT_RUN",
+        "model_editing": "NOT_RUN",
+        "scientific_approval": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "artifact_boundary": "Code/tests/docs/hashes only in Git; all sources, native snapshots, logs, models, runners and returned capsules remain external.",
+      "next_action": "Build 47_Cedar with both PDU and 5PC controls; run exact Cedar 46 review ZIP with --component DP --source-constructor-audit-only under Phenix 2.2.1-6174. Return console and review ZIP. At most three 60-second owned workers; no full dictionary generation or scaffold adoption.",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#source_native_constructor_handoff_2026_10_21"
     }
   },
   "audience": [

@@ -865,6 +865,30 @@ optimizer, source dictionary, coordinate model, chemical state, production
 default or scientific adoption changes. Repeating the unchanged audit is not
 the next action.
 
+**Cedar 47 prepared — next native action:** return to DP's original constructor
+blocker using the now-qualified source reader, declared bond orders and explicit
+source-charge transfer. Verify/recompute the exact C46 cache/strict prerequisite,
+then test the source-native reader → charge control → native class promotion →
+Chiralise handoff for **DP, PDU and 5PC**. Keep raw and complete after-snapshots,
+exceptions, graph/charge/marker gates and source-relative signed volumes. The
+native constructor can optimize local chiral templates internally; no whole-
+molecule optimization, numerical dictionary generation or scaffold change is
+requested. Seven source modules are captured and six existing pins must match.
+Bound each of the three owned workers to **60 s**. Native results remain pending;
+local worker fixtures do not qualify Phenix chemistry.
+
+Build `47_Cedar_probe_cif_source_constructor.py` with both public controls and
+run the exact **46_Cedar_g9lvlci6** review ZIP with `--component DP
+--source-constructor-audit-only` under Phenix **2.2.1-6174**. Return console and
+review ZIP; expect aggregate scientific REVIEW even if the bounded handoff
+passes. Do not select phosphate/protonation, erase the 5PC plane finding or
+infer absolute CIP from preserved coordinate hands. See
+`source_native_constructor_handoff_2026_10_21` in the existing machine ledger.
+Software checks pass **305 focused / 2,638 full tests**, two skips and 276
+subtests. Actual C46 replay passes after source-build deletion and relocation,
+with poisoned imports and aliased temporary roots. These are software/transport
+checks; native construction remains pending.
+
 **Requested follow-on after building: a fresh eight-pair synthetic live run.**
 Preserve **K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and F:A** in one explicitly
 declared target. `Q` resolves to **S6G**, `F` to **DF**; the existing reviewed

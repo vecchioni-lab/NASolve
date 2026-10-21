@@ -65,3 +65,8 @@ calls from independently assessed candidate/native triple terms. Native internal
 geometry operations may run; no scaffold/adoption arrow is added. Equivalent
 operational mapping aliases are diagnostic evidence, without an upstream
 workbook/recipe/release change. Conflicts remain blocked.
+
+The C47 scope note adds the source-native reader/declared-charge/native-class/
+chiral-constructor handoff, with complete snapshots and source-relative stereo.
+Native results are pending. Local chiral-template work may run internally;
+there is no full-builder, absolute-CIP or scientific-adoption arrow.

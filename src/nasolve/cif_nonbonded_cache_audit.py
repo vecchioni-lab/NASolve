@@ -86,6 +86,69 @@ def audit_cache_stabilized_impact(evaluate,cases,indices,references,*,max_calls=
     return result
 
 
+def replay_cache_impact_evidence(saved,cases,indices,references):
+    """Recompute saved pair proofs and strict arithmetic without native code.
+
+    Perturbed pair lists were not stored by v1. Their continuous membership
+    gate remains an explicitly identified, pinned-worker result.
+    """
+    from .cif_linear_torsion_impact import replay_impact_evidence,FAMILIES,STEPS
+    try:
+        if (saved['cache_policy_id']!=POLICY_ID or saved['cache_preflight_completed'] is not True
+                or saved['analysis_completed'] is not True or saved['numerical_checks_pass'] is not True
+                or saved['automatic_adoption'] is not False or set(saved['cases'])!=set(cases)
+                or saved['max_evaluation_calls']!=2000 or saved['max_pair_kernel_calls']!=5000):
+            raise ValueError('Incomplete successful cache audit')
+        kernels=0;calls=0;transitions=0;proof={}
+        for label,points in cases.items():
+            case=saved['cases'][label];pf=case['cache_preflight'];snapshots=pf['snapshots']
+            if (len(snapshots)!=2 or pf['policy_id']!=POLICY_ID or any(pf[k] is not True for k in
+                    ['checks_pass','strict_impact_retried','post_preflight_membership_stable','raw_transitions_preserved'])):
+                raise ValueError('Cache preflight did not qualify')
+            rebuilt={};stable={}
+            for manager in ['original','candidate']:
+                first,last=snapshots[0][manager],snapshots[1][manager]
+                if set(first)!=set(FAMILIES) or set(last)!=set(FAMILIES):raise ValueError('Incomplete cache cycle')
+                for name,left,right in [('first_full_to_nonbonded',first['all'],first['nonbonded']),
+                        ('full_repeat',first['all'],last['all']),('nonbonded_repeat',first['nonbonded'],last['nonbonded']),
+                        ('settled_full_to_nonbonded',last['all'],last['nonbonded'])]:
+                    q=compare_cache_snapshots(left,right,len(points));rebuilt[manager+'_'+name]=q;transitions+=1
+                    if not q['checks_pass']:raise ValueError('Saved native pair contributions require review')
+                if not _close(first['all']['target'],last['all']['target']) or not _vector(first['all']['gradient'],last['all']['gradient']):
+                    raise ValueError('Cache repeat changed full energy or gradient')
+                stable[manager]=last['all']['nonbonded_membership']
+                if last['nonbonded']['nonbonded_membership']!=stable[manager]:raise ValueError('Unsettled saved membership')
+                for cycle in [first,last]:
+                    for family in ['all','nonbonded']:
+                        row=cycle[family];pairs,valid=_pair_proof(row,len(points))
+                        membership=[{'i_seqs':list(ids),'vdw_distance':p['vdw_distance']} for ids,p in sorted(pairs.items())]
+                        if not valid or row['nonbonded_membership']!=membership:raise ValueError('Pair proof and membership differ')
+                        kernels+=len(pairs)+1
+                for stage in ['baselines','repeats','final_repeats']:
+                    for family in ['all','nonbonded']:
+                        row=case[stage][manager][family]
+                        if row['nonbonded_membership']!=stable[manager] or row['function_parameters']!=last['all']['function_parameters']:
+                            raise ValueError('Saved strict baseline membership or function changed')
+            if stable['original']!=stable['candidate'] or rebuilt!=pf['transitions'] or case['checks']['cache_pair_membership_stable'] is not True:
+                raise ValueError('Saved cache proof differs')
+            projected=deepcopy(saved);projected['cases']={label:deepcopy(case)}
+            del projected['cases'][label]['cache_preflight'];del projected['cases'][label]['checks']['cache_pair_membership_stable']
+            projected['cases'][label]['numerical_checks_pass']=all(projected['cases'][label]['checks'].values())
+            projected['evaluation_calls']=6*len(FAMILIES)+2*len(STEPS)*sum(len(rows) for rows in case['candidate_derivatives'].values())
+            q=replay_impact_evidence(projected,{label:points},indices,{label:references[label]})
+            if q['cases'][label]['failed_checks'] or case['numerical_checks_pass'] is not True:raise ValueError('Strict numerical retry requires review')
+            calls+=q['evaluation_calls_recomputed'];proof[label]=q['cases'][label]
+        if (not 0<kernels==saved['pair_kernel_calls']<=5000 or calls!=saved['impact_evaluation_calls']
+                or calls+4*len(FAMILIES)*len(cases)!=saved['evaluation_calls'] or saved['evaluation_calls']>2000):
+            raise ValueError('Saved cache evaluation accounting differs')
+        return {'status':'SAVED_CACHE_AND_STRICT_REPLAY_PASS','captured_code_execution':'NOT_RUN',
+            'preflight_transitions_recomputed':transitions,'recorded_pair_kernel_calls_verified':kernels,
+            'strict_calls_recomputed':calls,'evaluation_calls_recomputed':saved['evaluation_calls'],'cases':proof,
+            'perturbed_membership':'PINNED_WORKER_RESULT_ONLY; raw perturbed pair lists were not stored'}
+    except (KeyError,TypeError,IndexError,OverflowError) as exc:
+        raise ValueError('Incomplete saved cache proof') from exc
+
+
 def native_cache_evaluator(managers,gr,flex,flags):
     """Use the native energy object's actual pair list; never rebuild to inspect."""
     def evaluate(manager,points,family,*,capture_pairs=False):
