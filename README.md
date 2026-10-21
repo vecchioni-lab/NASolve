@@ -149,10 +149,11 @@ settled-cache retry of the same strict checks. Returned C46 verifies all
 1,983 payloads: every changed pair contributes exactly zero and all six strict
 numerical cases pass. Chemical-state and whole-scaffold qualification remain
 open; no optimizer, state selection, scaffold change or adoption occurs.
-Cedar 47 now tests the corrected source reader, explicit declared-charge
-transfer and temporary native chiral constructor for DP, PDU and 5PC before
-another full-generation trial. It records local constructor work and source-
-relative handedness separately from full optimization or absolute CIP. Native
+Returned C47 preserves the source graphs and charges but records three
+constructor exceptions: the diagnostic omitted the native CCTBX backend
+prerequisite. C48 explicitly selects that backend using the installed reader's
+own policy, checks an exact unchanged state before construction, and retries
+from original sources. All C47 failures remain recorded; corrected native
 results await Mac. Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

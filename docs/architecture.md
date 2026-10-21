@@ -672,7 +672,24 @@ identities/elements/orders/charges, declared stereo metadata and source-relative
 nondegenerate signed volumes, allowing proper rigid rotations/translations.
 The native constructor may optimize local chiral templates internally. No
 whole-molecule optimization, full builder, dictionary writer, scaffold or
-absolute CIP validation is requested. Native handoff results await Mac.
+absolute CIP validation is requested. Returned C47 records three exceptions:
+DP/PDU stop with `not chiralised`; 5PC reaches the unavailable legacy
+`OptimiseBFGS`. Graph/charge/promotion and marker gates pass. The absent
+`after_format` on exception explains the reported route gate, without proving
+route mutation. Failed local coordinates remain evidence only.
+
+C48 adds an explicit native-CCTBX preparation policy and exact C47 return gate.
+Recompute original exceptions/qualifications and all earlier prerequisites.
+Start from byte-identical original consumers, never partial failed endpoints.
+AST-check the selected native reader's same-object `SetCCTBX(True)` then
+`Chiralise` sequence. Resolve/capture selected-root setter/getter sources and
+signatures; retain flags and complete inventories. Require identical chemistry,
+coordinates and reader format across backend selection, then invoke original
+Chiralise. Four additional backend gates complement all existing stereo gates.
+Exception snapshots now also retain format. Old qualifications/defaults remain
+unchanged unless the new action is explicit. Each owned worker retains the
+60 s cap. Native internals may optimize local templates; corrected native
+construction remains pending, without full builder/generation/adoption.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

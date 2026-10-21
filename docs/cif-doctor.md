@@ -1908,8 +1908,29 @@ all installed/captured/input/dispatcher hashes. Each owned process is capped at
 The native constructor can optimize local chiral templates internally, which
 this audit does not instrument. Whole-molecule optimization, the complete
 builder, numerical dictionary generation and scaffold changes are not requested.
-Native results remain pending. Source/generated charge/H, absolute stereo,
-5PC plane and scientific qualification remain separate, without adoption.
+Returned C47 verifies all 2,036 payloads and retains three constructor
+exceptions. DP/PDU stop with `not chiralised`; 5PC reaches missing legacy
+`OptimiseBFGS`. Source graph/charge, promotion and marker gates pass. The probe
+omitted native CCTBX selection, which the captured Utilities reader performs
+at lines 605–606 immediately before Chiralise. C47's missing after-format on
+exception is retained as unreported, not evidence of route mutation.
+
+Build Cedar 48 with both controls and run exact C47 with `--component DP
+--source-constructor-backend-audit-only`. The new
+`cif-native-chiral-cctbx-preparation-v1` opt-in policy checks that native reader
+sequence by AST, resolves bound setter/getter origins and supported signatures,
+captures their selected installed source text and rechecks hashes. Record flags,
+format and full state before/after `SetCCTBX(True)`; require the true flag and
+exactly unchanged chemistry/coordinates before original Chiralise. Preserve
+all graph/charge/marker/hand gates, with four additional backend gates. Capture
+after-format on exceptions too. The legacy default remains false and old C47
+qualifications replay exactly. Each owned process retains its 60 s cap.
+
+Verify/recompute all three original failures and earlier prerequisites before
+retrying byte-identical original consumers. Failed C47 coordinates are never
+reused. Corrected native construction is pending. Source/generated charge/H,
+absolute stereo, 5PC plane and scientific qualification remain separate,
+without full generation or adoption.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

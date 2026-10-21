@@ -68,5 +68,9 @@ workbook/recipe/release change. Conflicts remain blocked.
 
 The C47 scope note adds the source-native reader/declared-charge/native-class/
 chiral-constructor handoff, with complete snapshots and source-relative stereo.
-Native results are pending. Local chiral-template work may run internally;
-there is no full-builder, absolute-CIP or scientific-adoption arrow.
+Returned C47 records three constructor exceptions caused by omitted native
+backend preparation, without a chemical-failure or reader-switch claim. C48
+follows the installed reader CCTBX setup under exact unchanged-state checks,
+restarts original sources and preserves all failed evidence. Corrected native
+results are pending. Local chiral-template work may run internally; there is no
+full-builder, absolute-CIP or scientific-adoption arrow.

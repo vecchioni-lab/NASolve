@@ -13952,7 +13952,7 @@
       "automatic_adoption": false
     },
     "artifact_boundary": "Code/tests/docs/hashes only in Git; native snapshots, raw pair lists/gradients, models/CIFs, runners and capsules remain outside Git.",
-    "next_action": "Build 47_Cedar with both PDU and 5PC controls; run exact Cedar 46 review ZIP with --component DP --source-constructor-audit-only under Phenix 2.2.1-6174. Return console and review ZIP. At most three 60-second owned workers; no full dictionary generation or scaffold adoption.",
+    "next_action": "Build 48_Cedar with PDU and 5PC controls; run exact 47_Cedar_eq2g8v23 review ZIP with --component DP --source-constructor-backend-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Restart original source inputs, never failed temporary coordinates; at most three 60-second owned workers. No complete builder, numerical dictionary generation or scaffold adoption.",
     "returned_review": {
       "status": "VERIFIED_NATIVE_CACHE_AND_STRICT_RETRY_PASS",
       "name": "46_Cedar_g9lvlci6_cif_numerical_recovery_review.zip",
@@ -14554,7 +14554,7 @@
     "next_action": "After current building is ready, stage and review the complete annotated sequence/site map and frozen sources, then deliver one pinned fetch/worktree/build/run block using the established && handoff."
   },
   "source_native_constructor_handoff_2026_10_21": {
-    "status": "IMPLEMENTED_SOURCE_NATIVE_CONSTRUCTOR_HANDOFF_PENDING_MAC",
+    "status": "RETURNED_THREE_NATIVE_CONSTRUCTOR_EXCEPTIONS_BACKEND_PREREQUISITE_MISSING",
     "recorded_date": "2026-10-21",
     "delivery_prefix": "47_Cedar",
     "policy_id": "cif-source-native-constructor-handoff-v1",
@@ -14655,7 +14655,7 @@
         "constructor_native_execution": "PENDING_USER_MAC",
         "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION"
       },
-      "native": "PENDING_USER_MAC. Local worker tests use explicit fake APIs, without Phenix or native chiral physics; actual C46 replay only verifies the already returned prerequisite.",
+      "native": "RETURNED: actual Phenix 2.2.1-6174 workers completed and recorded three constructor exceptions. Corrected-backend construction is pending C48; no chemical verdict follows from failed temporary states.",
       "regression_scope": "73 new tests: 39 generic handoff/source-relative stereo cases (including nonchiral markers, reader-route drift and permissive both), nine saved-cache replay boundaries, 13 owned fake-worker/source/timeout guards and 12 completed-C46 boundary cases.",
       "documentation": {
         "mirror_equality": "PASS",
@@ -14700,6 +14700,213 @@
       "automatic_adoption": false
     },
     "artifact_boundary": "Code/tests/docs/hashes only in Git; all sources, native snapshots, logs, models, runners and returned capsules remain external.",
-    "next_action": "Build 47_Cedar with both PDU and 5PC controls; run exact Cedar 46 review ZIP with --component DP --source-constructor-audit-only under Phenix 2.2.1-6174. Return console and review ZIP. At most three 60-second owned workers; no full dictionary generation or scaffold adoption."
+    "next_action": "Build 48_Cedar with PDU and 5PC controls; run exact 47_Cedar_eq2g8v23 review ZIP with --component DP --source-constructor-backend-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Restart original source inputs, never failed temporary coordinates; at most three 60-second owned workers. No complete builder, numerical dictionary generation or scaffold adoption.",
+    "returned_execution": {
+      "received_date": "2026-10-21",
+      "capsule": {
+        "name": "47_Cedar_eq2g8v23_cif_numerical_recovery_review.zip",
+        "sha256": "a7bbcac7868ecaba68c639d341bdc7a8ac69a53b9124c78a60896a64a4640461",
+        "bytes": 51497522,
+        "verified_payloads": 2036,
+        "build_sha256": "618afc135dca4d4b10e5ecf10a83d4136bed6baea623cef39cbba2d8b7e73921",
+        "nasolve_commit": "96209831da3565f835c37815aaf0862f77c0efde",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "551d6a5c05a7c8237c785eae08e8bc8aabdbec19ac3eec93133248e6a9524f6a",
+        "runtime_members": 132,
+        "runtime_archive_sha256": "c9a069fe309735cfedf5f6969c45e6ced7c7fb2b406e0e505ddb82e419121364",
+        "unchanged_prior_payloads": 1983,
+        "prior_manifest": "BYTE_IDENTICAL"
+      },
+      "phenix_version": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "worker_execution": "ALL_COMPLETED_RETURN_CODE_ZERO; CONSTRUCTOR_EXCEPTIONS_RECORDED",
+      "cases": {
+        "DP": {
+          "constructor": "EXCEPTION",
+          "exception_type": "MoleculeClassError",
+          "message": "not chiralised",
+          "charge_action": "POPULATED_FROM_EXPLICIT_SOURCE",
+          "seconds": 2.348079,
+          "source_sha256": "071486fd8113788b4d1125126fa8167804a7c953dd27ccfb68e273058d94aed7",
+          "failed_checks": [
+            "constructor_completed",
+            "native_reader_route_preserved",
+            "source_handedness_preserved"
+          ]
+        },
+        "PDU": {
+          "constructor": "EXCEPTION",
+          "exception_type": "MoleculeClassError",
+          "message": "not chiralised",
+          "charge_action": "ALREADY_PRESERVED",
+          "seconds": 0.743316,
+          "source_sha256": "ac4d8854e0154d6a694d59473a8b47859b370df0c068f3929b6f2b1e5cba26b4",
+          "failed_checks": [
+            "constructor_completed",
+            "native_reader_route_preserved",
+            "source_handedness_preserved"
+          ]
+        },
+        "5PC": {
+          "constructor": "EXCEPTION",
+          "exception_type": "AttributeError",
+          "message": "'ChiralClass' object has no attribute 'OptimiseBFGS'",
+          "charge_action": "ALREADY_PRESERVED",
+          "seconds": 0.737424,
+          "source_sha256": "c71018468c0817ef6398bb3ce690968f05d02b76a4fbba2f6094af3315f3cdf4",
+          "failed_checks": [
+            "constructor_completed",
+            "native_reader_route_preserved"
+          ]
+        }
+      },
+      "all_cases_raw_graph_charge_promotion_marker_gates": "PASS",
+      "reader_route_review": "C47 omitted after_format on exceptions; its false route gate means UNREPORTED, not demonstrated route change.",
+      "partial_coordinates": "Failed local template coordinates are retained only as evidence. DP/PDU source-relative hand gates fail; 5PC hands survive. None is a completed candidate or restart input.",
+      "diagnosis": {
+        "scope": "Diagnostic preparation omission, not a demonstrated failure of source chemistry.",
+        "native_reference": "elbow/utilities/Utilities.py::get_elbow_molecule_from_chemical_components",
+        "native_source_sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108",
+        "preparation": "Lines 605\u2013606 select molecule.SetCCTBX(True) immediately before molecule.Chiralise().",
+        "omission": "C47 promoted the source-exact component but never selected CCTBX; MoleculeClass defaults it to False.",
+        "observed_paths": "DP/PDU stop in ChiralClass.Chiralise with not chiralised; 5PC reaches the non-CCTBX OptimiseBFGS call, absent from the installed class.",
+        "fix_scope": "Use the captured native preparation policy explicitly in an opt-in retry; preserve graph, state, signatures and stereo gates. Do not patch installed Phenix."
+      },
+      "offline_qualification_replay": "All three original qualification reports reproduce exactly with maintained code; old workers/snapshots are never executed.",
+      "dictionary_generation": "NOT_RUN",
+      "whole_molecule_optimization": "NOT_REQUESTED",
+      "model_editing": "NOT_RUN",
+      "automatic_adoption": false
+    }
+  },
+  "source_native_constructor_backend_2026_10_21": {
+    "status": "IMPLEMENTED_NATIVE_CCTBX_CONSTRUCTOR_RETRY_PENDING_MAC",
+    "recorded_date": "2026-10-21",
+    "delivery_prefix": "48_Cedar",
+    "policy_id": "cif-native-chiral-cctbx-preparation-v1",
+    "constructor_policy_id": "cif-source-native-constructor-handoff-v1",
+    "module": "src/nasolve/cif_source_constructor.py",
+    "builder": "scripts/build_cif_numerical_recovery_probe.py",
+    "template": "scripts/cif_numerical_recovery_probe_template.py",
+    "runner_filename": "48_Cedar_probe_cif_source_constructor_backend.py",
+    "cli_action": "--source-constructor-backend-audit-only",
+    "review_input": {
+      "name": "47_Cedar_eq2g8v23_cif_numerical_recovery_review.zip",
+      "sha256": "a7bbcac7868ecaba68c639d341bdc7a8ac69a53b9124c78a60896a64a4640461",
+      "bytes": 51497522,
+      "verified_payloads": 2036,
+      "build_sha256": "618afc135dca4d4b10e5ecf10a83d4136bed6baea623cef39cbba2d8b7e73921",
+      "nasolve_commit": "96209831da3565f835c37815aaf0862f77c0efde",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "runner_sha256": "551d6a5c05a7c8237c785eae08e8bc8aabdbec19ac3eec93133248e6a9524f6a",
+      "runtime_members": 132,
+      "runtime_archive_sha256": "c9a069fe309735cfedf5f6969c45e6ced7c7fb2b406e0e505ddb82e419121364",
+      "unchanged_prior_payloads": 1983,
+      "prior_manifest": "BYTE_IDENTICAL"
+    },
+    "reason": "Supply the explicit native backend prerequisite omitted in C47 before judging the source-native constructor.",
+    "behavior": {
+      "prerequisite": "Require exact C47 ZIP/build/manifest, old worker, original source hashes, captured APIs, result/receipt/output identities. Independently replay all three original constructor qualifications, retaining exceptions and false gates. Recheck the complete C46 cache/mechanics/rotation and earlier source-reader/charge chain.",
+      "restart": "Prepare all three original sources again. Every consumer byte must equal C47, and DP/PDU also equal the qualified C37 inputs. Never reuse partial C47 constructor coordinates.",
+      "native_reference": "AST-check the selected installed Utilities.get_elbow_molecule_from_chemical_components: the chirals branch must call SetCCTBX(True) then Chiralise on the same molecule.",
+      "backend_methods": "Resolve the actual bound SetCCTBX/GetCCTBX methods from the selected installed library, check supported signatures/import origins, capture their source text/hashes and recheck it after execution. Refuse unselected/symlinked/unsupported methods.",
+      "state_control": "Capture pre/post backend flags, original-format route and full inventories. Require a true CCTBX flag with exactly unchanged identities, elements, charges, bonds, coordinates and stereo fields before the original constructor call.",
+      "constructor": "Invoke original selected Chiralise with unchanged default arguments. Keep all existing source/charge/promotion/marker/handedness gates. Record after_format on exceptions too, distinguishing unavailable metadata from a demonstrated route change.",
+      "scope": "Component-generic helper, no residue/atom allowlist or special coordinates. C48 delivery selects the reviewed DP source plus PDU/5PC controls. No tolerances, targets or chemistry are relaxed."
+    },
+    "schemas": {
+      "probe": "Additive schema-1 prior_constructor_replay plus backend_policy_id/native_backend_selection in source_constructor_audit.",
+      "native": "Additive backend_control with preparation reference, method provenance/source captures, flags and complete before/after inventories; qualification adds four recomputed backend gates and backend_policy_id only when explicitly requested.",
+      "compatibility": "Legacy default remains native_cctbx=False; old C47 qualifications replay unchanged. C47 action remains gated on C46, new C48 action on C47. No dependency, recipe, production reader/generator, NAR release or frozen-input changes."
+    },
+    "limits": {
+      "max_components": 3,
+      "worker_timeout_seconds_per_component": 60,
+      "process_group": "Owned and terminated on timeout/interruption",
+      "native_transitive_operations": "Local chiral-template CCTBX minimization may run internally; not instrumented."
+    },
+    "validation": {
+      "fail_before": {
+        "failed": 22,
+        "passed": 1,
+        "seconds": 0.46,
+        "reason": "New reference/backend worker/qualification tests fail on the unmodified implementation; the legacy-mode test already preserves the failure."
+      },
+      "focused": {
+        "passed": 222,
+        "seconds": 21.92,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_constructor_backend.py tests/test_cedar48_delivery.py tests/test_cif_source_constructor.py tests/test_cedar47_delivery.py tests/test_cif_source_reader.py tests/test_cif_declared_charge_control.py tests/test_cif_elbow_input.py tests/test_cif_elbow_chirality.py tests/test_cif_nonbonded_cache_audit.py tests/test_cedar46_delivery.py"
+      },
+      "full": {
+        "passed": 2675,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 235.41,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "96209831da3565f835c37815aaf0862f77c0efde",
+          "working_tree_has_changes": true
+        },
+        "runner_sha256": "d4837031c99f9e51a1c04d68834908b9d84610da065bf9bdd50a6d434ca36206",
+        "clean_build_sources_removed_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_checkout_tracked_edit": "PRESERVED",
+        "runner_local_ignore": "PASS",
+        "input_payloads": 2036,
+        "runtime_members": 132,
+        "runtime_archive_sha256": "dd979fe4be2ea78ef4eb354795230c0b4e21186d9418e297c28219b9915f9c30",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "cache_transition_proofs_recomputed": 48,
+        "recorded_pair_kernel_calls_verified": 3286,
+        "strict_derivative_directions_recomputed": 246,
+        "original_raw_reader_and_charge_reviews": "PRESERVED",
+        "source_consumer_bytes": "MATCH_PRIOR_DP_PDU; DECLARED_CCD_5PC",
+        "previous_constructor_failures_recomputed": 3,
+        "backend_selection": "EXPLICIT_NATIVE_CCTBX; PENDING_USER_MAC",
+        "constructor_native_execution": "PENDING_USER_MAC",
+        "generation_optimization_adoption": "NOT_RUN; NO CONSTRUCTOR IN OFFLINE INSPECTION"
+      },
+      "actual_source_reference": "All three independently captured C47 Utilities snapshots reproduce the exact SetCCTBX(True) line 605 / Chiralise line 606 reference.",
+      "actual_return_replay": "Exact C47 payload/build/source/output gates, all three old exceptions/qualifications and the complete earlier native prerequisite chain replay offline.",
+      "native": "Corrected native CCTBX handoff PENDING_USER_MAC. Local process tests use explicit fake APIs, not Phenix or native chemistry.",
+      "regression_scope": "37 new tests: six native-reference controls, eight explicit fake-worker cases, unchanged legacy default, eight backend qualification cases and 14 C47 replay boundaries.",
+      "documentation": {
+        "mirror_equality": "PASS",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 151,
+        "protected_source_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      }
+    },
+    "execution": {
+      "dictionary_generation": "NOT_RUN",
+      "whole_molecule_optimization": "NOT_REQUESTED",
+      "constructor_local_optimization": "NATIVE_INTERNALS_NOT_INSTRUMENTED",
+      "whole_builder_replay": "NOT_RUN",
+      "absolute_cip_assignment": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "limitations": [
+      "Native backend selection is a preparation correction, not a proven successful constructor until the new Mac return is inspected.",
+      "Native internal local optimization remains uninstrumented. A handoff pass does not independently assign absolute CIP or qualify a full dictionary/builder.",
+      "PDU/5PC neutral-source versus generated \u22122 phosphate/H changes, omitted labels and the 5PC plane/angle finding remain open.",
+      "Whole-scaffold integration, bounded geometry, refinement and human review remain separate. The requested eight-pair live test is still planned after building."
+    ],
+    "artifact_boundary": "Git contains code/tests/docs/hashes only. Private sources, snapshots, logs, models, runners and returned capsules remain external.",
+    "next_action": "Build 48_Cedar with PDU and 5PC controls; run exact 47_Cedar_eq2g8v23 review ZIP with --component DP --source-constructor-backend-audit-only under Phenix 2.2.1-6174. Return console and ZIP. Restart original source inputs, never failed temporary coordinates; at most three 60-second owned workers. No complete builder, numerical dictionary generation or scaffold adoption."
   }
 }

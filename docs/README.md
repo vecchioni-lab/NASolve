@@ -208,10 +208,11 @@ for actual behavior; history is evidence, not a second task queue.
   preserved. Chemical-state and plane findings remain open. The requested
   [eight-pair synthetic live test](sequence-family-targets.md#planned-eight-pair-synthetic-live-test)
   is recorded for after current building, with its sequence/site map not yet staged.
-  Cedar 47 separately checks the source-native reader/declared-charge/chiral-
-  constructor handoff for DP and both controls before another generation trial.
-  Local constructor work, source-relative handedness and absolute CIP remain
-  separate; native results are pending. Equivalent
+  Returned C47 records three temporary constructor exceptions after correct
+  source reading/charge transfer. The diagnostic omitted native CCTBX backend
+  selection. C48 follows the installed reader's explicit backend policy under
+  exact state/source gates and retries original sources, preserving failures.
+  Corrected native construction, full generation and absolute CIP remain open. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve the native chiral constructor backend prerequisite
+
+- Verify all 2,036 returned C47 payloads and reproduce all three recorded
+  constructor exceptions. Source graphs, charges, promotion and markers pass;
+  the diagnostic omitted native CCTBX backend selection. Keep failed local
+  coordinates and missing after-format metadata as evidence, without treating
+  them as completed candidates or proof of reader-route mutation.
+- Add explicit C48 `--source-constructor-backend-audit-only` on exact C47.
+  Follow the selected installed reader's `SetCCTBX(True)` preparation, verify
+  bound native methods/source/signatures, and require unchanged chemistry,
+  coordinates and format before the original constructor. Preserve all stereo
+  gates, legacy defaults, prior failures and 60 s owned-worker bounds. Restart
+  original source bytes; exception snapshots now retain after-format too.
+- This is a diagnostic setup correction. Corrected Mac construction is pending;
+  local fake-API tests and offline replay do not qualify native chemistry.
+  No installed Phenix patch, dependency, full builder/dictionary generation,
+  source-state choice, production recipe, NARestraints release or adoption.
+
 ### Audit the source-native chiral construction handoff
 
 - Add opt-in Cedar 47 `--source-constructor-audit-only`, gated on the exact

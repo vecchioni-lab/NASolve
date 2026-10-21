@@ -18,10 +18,67 @@ from .cif_source_reader import source_reader_checks
 from .cif_stereochemistry_audit import _values,_graph,_coordinates,_volume,reader_stereo_inventory,VOLUME_EPSILON
 
 POLICY_ID='cif-source-native-constructor-handoff-v1'
+BACKEND_POLICY_ID='cif-native-chiral-cctbx-preparation-v1'
 SOURCE_PATHS=('elbow/chemistry/any_chemical_format_reader.py','elbow/formats/monomer_library_cif_parser.py',
     'elbow/utilities/Utilities.py','elbow/chemistry/MoleculeClass.py','elbow/chemistry/SimpleMoleculeClass.py',
     'elbow/chemistry/TopologyMixins.py','elbow/chemistry/ChiralClass.py')
 PRIOR_PATHS=tuple(p for p in SOURCE_PATHS if not p.endswith('/SimpleMoleculeClass.py'))
+
+
+def native_cctbx_reference(text):
+    """Recognize the native reader's explicit same-object backend handoff."""
+    import ast
+    tree=ast.parse(text)
+    functions=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='get_elbow_molecule_from_chemical_components']
+    if len(functions)!=1:raise ValueError('Missing native CCTBX preparation reference')
+    def call(statement,name,args):
+        return (isinstance(statement,ast.Expr) and isinstance(statement.value,ast.Call)
+            and isinstance(statement.value.func,ast.Attribute) and isinstance(statement.value.func.value,ast.Name)
+            and statement.value.func.value.id=='molecule' and statement.value.func.attr==name
+            and not statement.value.keywords and len(statement.value.args)==len(args)
+            and all(isinstance(a,ast.Constant) and a.value is b for a,b in zip(statement.value.args,args)))
+    rows=[n for n in functions[0].body if isinstance(n,ast.If) and isinstance(n.test,ast.Name) and n.test.id=='chirals'
+        and len(n.body)==2 and not n.orelse and call(n.body[0],'SetCCTBX',[True]) and call(n.body[1],'Chiralise',[])]
+    if len(rows)!=1:raise ValueError('Unsupported native CCTBX preparation reference')
+    return {'function':functions[0].name,'setter_line':rows[0].body[0].lineno,'constructor_line':rows[0].body[1].lineno,'value':True}
+
+
+def prepare_native_cctbx(molecule,spec,result):
+    """Use selected native methods, capturing their source and exact state delta."""
+    from pathlib import Path
+    from hashlib import sha256
+    import ast,importlib.util,inspect
+    root=Path(spec['installation_root']).resolve(strict=True);library=Path(spec['library']).resolve(strict=True)
+    reference=native_cctbx_reference(Path(spec['backend_reference']).read_text())
+    control={'policy_id':BACKEND_POLICY_ID,'status':'STARTED','reference':reference,'methods':{},'sources':[],
+        'before':native_inventory(molecule),'before_format':molecule.GetOriginalFormat()}
+    result['backend_control']=control
+    methods={name:getattr(molecule,name) for name in ['SetCCTBX','GetCCTBX']}
+    for name,method in methods.items():
+        if not inspect.ismethod(method) or method.__self__ is not molecule:raise ValueError('Unsupported bound native backend API')
+        module=inspect.getmodule(method);path=Path(module.__file__).absolute();resolved=path.resolve(strict=True)
+        if (path!=resolved or not path.is_relative_to(library) or path.suffix!='.py'
+                or any(p.is_symlink() for p in [path,*path.parents])):raise ValueError('Unselected native backend method source')
+        found=importlib.util.find_spec(module.__name__)
+        if found is None or found.origin is None or Path(found.origin).resolve(strict=True)!=path:raise ValueError('Unselected native backend import')
+        data=path.read_bytes()
+        if len(data)>1024*1024:raise ValueError('Oversized native backend source')
+        ast.parse(data);relative=path.relative_to(root).as_posix();snapshot='backend_sources/'+relative+'.txt'
+        row={'anchor':'phenix_installation','path':relative,'sha256':sha256(data).hexdigest(),'size':len(data),
+            'snapshot':{'anchor':'constructor_directory','path':snapshot}}
+        if row not in control['sources']:
+            target=Path(snapshot);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);control['sources'].append(row)
+        control['methods'][name]={'module':module.__name__,'path':relative,'sha256':row['sha256'],'selected_source':True}
+    inspect.signature(methods['SetCCTBX']).bind(True);inspect.signature(methods['GetCCTBX']).bind()
+    control['previous_value']=methods['GetCCTBX']()
+    if type(control['previous_value']) not in (bool,int) or control['previous_value'] not in (False,True):
+        raise ValueError('Unsupported native backend flag type')
+    methods['SetCCTBX'](True)
+    control.update(selected_value=methods['GetCCTBX'](),after=native_inventory(molecule),after_format=molecule.GetOriginalFormat())
+    if (type(control['selected_value']) not in (bool,int) or control['selected_value']!=True
+            or control['after']!=control['before'] or control['after_format']!=control['before_format']):
+        raise ValueError('Native backend preparation changed chemical state or failed selection')
+    control['status']='NATIVE_CCTBX_PREPARATION_PASS'
 
 
 def _snapshot(row):
@@ -38,7 +95,7 @@ def _snapshot(row):
     except (KeyError,TypeError,ValueError):return {},{},False
 
 
-def qualify_constructor_evidence(source,code,result,dialect):
+def qualify_constructor_evidence(source,code,result,dialect,*,native_cctbx=False):
     """Recompute chemical/state/stereo gates from complete saved snapshots."""
     source=Path(source);before=source.read_bytes();values=_values(source,code)
     elements,bonds,charges,neighbors=_graph(values);_,source_xyz=_coordinates(values,source=True)
@@ -103,6 +160,18 @@ def qualify_constructor_evidence(source,code,result,dialect):
     checks['source_handedness_assessed']=any(t['requires_fixed_hand'] for t in terms) and len(seen)==len(terms)
     checks['source_handedness_preserved']=bool(terms) and all(t['valid_declared_tetrahedron'] and (not t['requires_fixed_hand'] or
         t['source_hand_preserved'] and (t['volume_sign'] is None or t['declared_target_matches_both'] is True)) for t in terms)
+    if native_cctbx:
+        backend=result.get('backend_control',{});reference=backend.get('reference',{})
+        checks['native_backend_selected']=(backend.get('policy_id')==BACKEND_POLICY_ID
+            and backend.get('status')=='NATIVE_CCTBX_PREPARATION_PASS'
+            and type(backend.get('selected_value')) in (bool,int) and backend['selected_value']==True)
+        checks['native_backend_reference']=(reference.get('function')=='get_elbow_molecule_from_chemical_components'
+            and reference.get('value') is True and type(reference.get('setter_line')) is int
+            and type(reference.get('constructor_line')) is int and 0<reference['setter_line']<reference['constructor_line'])
+        checks['native_backend_chemistry_preserved']=(backend.get('before')==backend.get('after')==constructor.get('promoted')==charged
+            and backend.get('before_format')==backend.get('after_format')==reader.get('format'))
+        checks['native_backend_methods_selected']=(set(backend.get('methods',{}))=={'SetCCTBX','GetCCTBX'}
+            and all(v.get('selected_source') is True for v in backend['methods'].values()))
     shifted=[math.dist(source_xyz[n],a['xyz']) for n,a in current.items() if valid and n in source_xyz]
     if source.read_bytes()!=before:raise ValueError('Constructor qualification changed its input')
     return {'schema_version':1,'policy_id':POLICY_ID,'status':'SOURCE_CONSTRUCTOR_HANDOFF_PASS' if all(checks.values()) else 'REVIEW',
@@ -110,10 +179,12 @@ def qualify_constructor_evidence(source,code,result,dialect):
         'source_relative_handedness':terms,'maximum_coordinate_shift_angstrom':max(shifted,default=0.),
         'source_sha256':sha256(before).hexdigest(),'absolute_cip_assignment':'NOT_RUN','whole_builder_replay':'NOT_RUN',
         'whole_molecule_optimization':'NOT_REQUESTED','constructor_local_optimization':'NATIVE_INTERNALS_NOT_INSTRUMENTED',
-        'dictionary_generation':'NOT_RUN','model_editing':'NOT_RUN','automatic_adoption':False}
+        'dictionary_generation':'NOT_RUN','model_editing':'NOT_RUN','automatic_adoption':False,
+        **({'backend_policy_id':BACKEND_POLICY_ID} if native_cctbx else {})}
 
 
-WORKER=getsource(native_inventory)+'\n'+getsource(control_declared_charges)+'\n'+r'''from pathlib import Path
+WORKER=(getsource(native_inventory)+'\n'+getsource(control_declared_charges)+'\n'+getsource(native_cctbx_reference)+'\n'
+    +getsource(prepare_native_cctbx)+f'\nBACKEND_POLICY_ID={BACKEND_POLICY_ID!r}\n')+r'''from pathlib import Path
 from hashlib import sha256
 import importlib,importlib.util,inspect,json,sys,traceback
 spec=json.loads(Path(sys.argv[1]).read_text());directory=Path.cwd().resolve()
@@ -150,17 +221,20 @@ try:
         method=molecule.Chiralise
         if Path(inspect.getmodule(method).__file__).resolve(strict=True)!=Path(spec['constructor_module']).resolve(strict=True):raise ValueError('Unselected native constructor method')
         if 'chiral_treatment' not in inspect.signature(method).parameters:raise ValueError('Unsupported native constructor signature')
+        if spec.get('native_cctbx') is True:prepare_native_cctbx(molecule,spec,result)
         result['constructor'].update(status='STARTED',native_class=type(molecule).__module__+'.'+type(molecule).__name__)
         method()
         result['constructor'].update(status='COMPLETED',after=native_inventory(molecule),after_format=molecule.GetOriginalFormat())
 except Exception as exc:
     result['constructor'].update(status='EXCEPTION',exception_type=type(exc).__name__,message=str(exc),traceback=traceback.format_exc())
     if result['reader']['execution']=='COMPLETED':
-        try:result['constructor']['after']=native_inventory(molecule)
+        try:result['constructor'].update(after=native_inventory(molecule),after_format=molecule.GetOriginalFormat())
         except Exception:pass
 if digest(source)!=original:raise ValueError('Constructor changed frozen source')
 for row in spec['sources']:
     if digest(row['installed'])!=row['sha256']:raise ValueError('Installed constructor source changed')
+for row in result.get('backend_control',{}).get('sources',[]):
+    if digest(Path(spec['installation_root'])/row['path'])!=row['sha256']:raise ValueError('Installed native backend source changed')
 Path('constructor_result.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
 '''
 
@@ -174,12 +248,18 @@ def verify_constructor_capture(installation_root,report,output):
         for path in [_inside(root,row['path']),_inside(output,row['snapshot']['path'])]:
             data=path.read_bytes()
             if len(data)!=row['size'] or sha256(data).hexdigest()!=row['sha256']:raise ValueError('Installed/captured constructor source changed')
+    for row in report.get('result',{}).get('backend_control',{}).get('sources',[]):
+        if row.get('anchor')!='phenix_installation' or row['snapshot'].get('anchor')!='constructor_directory':raise ValueError('Invalid native backend source anchor')
+        for path in [_inside(root,row['path']),_inside(output,row['snapshot']['path'])]:
+            data=path.read_bytes()
+            if len(data)!=row['size'] or sha256(data).hexdigest()!=row['sha256']:raise ValueError('Installed/captured native backend source changed')
     return True
 
 
-def audit_source_constructor(installation_root,python_executable,api_sources,source,code,output,*,environment,expected_dialect,prior_sources,timeout_seconds=60):
+def audit_source_constructor(installation_root,python_executable,api_sources,source,code,output,*,environment,expected_dialect,prior_sources,timeout_seconds=60,native_cctbx=False):
     """Run one exact-source reader/charge/promotion/Chiralise handoff."""
     if expected_dialect not in {'MONOMER_LIBRARY_CIF','CHEMICAL_COMPONENTS_CIF'}:raise ValueError('Unsupported explicit reader dialect')
+    if type(native_cctbx) is not bool:raise ValueError('Require explicit native backend selection')
     if type(timeout_seconds) not in (int,float) or not math.isfinite(timeout_seconds) or not 0<timeout_seconds<=60:raise ValueError('Constructor timeout must be in (0,60]')
     root=Path(installation_root).resolve(strict=True);python_executable=Path(python_executable).resolve(strict=True)
     source=Path(source).resolve(strict=True);output=Path(output).absolute()
@@ -203,11 +283,13 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
         if relative in proof and (sha256(data).hexdigest()!=proof[relative]['sha256'] or len(data)!=proof[relative]['size']):raise ValueError('Prior constructor API source changed')
         payloads[name]=data;rows.append({'anchor':'phenix_installation','path':relative,'sha256':sha256(data).hexdigest(),'size':len(data),
             'snapshot':{'anchor':'constructor_directory','path':name+'.txt'}})
+    if native_cctbx:native_cctbx_reference(payloads['elbow/utilities/Utilities.py'])
     output.mkdir(parents=True,exist_ok=False)
     for name,data in payloads.items():
         target=output/(name+'.txt');target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
     (output/'source.cif').write_bytes(original);(output/'constructor_worker.py').write_text(WORKER)
-    spec={'component':code,'library':str(root/site),'constructor_module':str(root/site/'elbow/chemistry/TopologyMixins.py'),
+    spec={'component':code,'library':str(root/site),'installation_root':str(root),'native_cctbx':native_cctbx,
+        'backend_reference':str(root/site/'elbow/utilities/Utilities.py'),'constructor_module':str(root/site/'elbow/chemistry/TopologyMixins.py'),
         'sources':[{'installed':str(root/r['path']),'sha256':r['sha256'],'module':name[:-3].replace('/','.')} for name,r in zip(SOURCE_PATHS,rows)],
         'declared_charge_control':{'component':code,'dialect':expected_dialect,'elements':elements,'charges':{n:int(q) for n,q in charges.items()},
             'coordinates':coordinates,'bonds':[{'atoms':list(p),'order':normalized[o]} for p,o in bonds.items()]}}
@@ -231,7 +313,7 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
                 report['execution'].update(status='COMPLETED' if rc==0 else 'FAILED',returncode=rc)
                 if rc==0:
                     result=json.loads((output/'constructor_result.json').read_text());report['result']=result
-                    report['qualification']=qualify_constructor_evidence(source,code,result,expected_dialect);report['status']='REVIEW'
+                    report['qualification']=qualify_constructor_evidence(source,code,result,expected_dialect,native_cctbx=native_cctbx);report['status']='REVIEW'
         verify_constructor_capture(root,report,output)
     except (OSError,ValueError,KeyError,TypeError) as exc:report.update(status='FAILED',error=type(exc).__name__+': '+str(exc))
     report['source_preserved']=source.read_bytes()==original and (output/'source.cif').read_bytes()==original and python_executable.read_bytes()==dispatcher

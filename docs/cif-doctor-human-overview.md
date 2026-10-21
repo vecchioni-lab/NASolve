@@ -1039,7 +1039,25 @@ check. Existing installed sources, inputs and all earlier failures stay pinned.
 The constructor may optimize local chiral templates internally, so the receipt
 keeps this separate from whole-molecule optimization and full generation. A
 handoff pass does not independently assign absolute CIP or settle phosphate,
-5PC plane, linked geometry or scientific approval. Native results are pending.
+5PC plane, linked geometry or scientific approval.
+
+The C47 return records three exceptions after the source/charge gates pass.
+Our diagnostic missed an installed-reader prerequisite: select the CCTBX
+backend before asking for chiral construction. Without it, DP/PDU stop during
+chirality setup and 5PC reaches an unavailable legacy optimizer. The failed
+local coordinates stay evidence, with no completed-candidate claim. The old
+route warning means missing after-format metadata, not a proven reader switch.
+
+C48 supplies the native prerequisite explicitly. Check the selected reader's
+source, resolve and capture the actual backend methods, then record both flags
+and full molecular inventories around `SetCCTBX(True)`. Refuse any change to
+chemistry, coordinates or reader format at that step. Only then call the same
+native constructor and apply the existing hand/marker/graph/charge gates.
+Replay and preserve all C47 failures, and restart original source bytes rather
+than their partial temporary coordinates. This generic control changes no
+chemical targets and requires no installed Phenix patch. Corrected native
+construction remains pending; local internal optimization, full generation,
+absolute CIP and chemical/scientific approval remain separate.
 
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,

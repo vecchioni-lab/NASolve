@@ -865,29 +865,37 @@ optimizer, source dictionary, coordinate model, chemical state, production
 default or scientific adoption changes. Repeating the unchanged audit is not
 the next action.
 
-**Cedar 47 prepared — next native action:** return to DP's original constructor
-blocker using the now-qualified source reader, declared bond orders and explicit
-source-charge transfer. Verify/recompute the exact C46 cache/strict prerequisite,
-then test the source-native reader → charge control → native class promotion →
-Chiralise handoff for **DP, PDU and 5PC**. Keep raw and complete after-snapshots,
-exceptions, graph/charge/marker gates and source-relative signed volumes. The
-native constructor can optimize local chiral templates internally; no whole-
-molecule optimization, numerical dictionary generation or scaffold change is
-requested. Seven source modules are captured and six existing pins must match.
-Bound each of the three owned workers to **60 s**. Native results remain pending;
-local worker fixtures do not qualify Phenix chemistry.
+**Cedar 47 returned and verified (2026-10-21): three constructor exceptions.**
+All **2,036 payloads**, clean published `96209831…` build, runner `551d6a5c…`
+and 132 runtime members verify, preserving all 1,983 prior payloads and manifest.
+Phenix **2.2.1-6174** workers complete in **2.348079 / 0.743316 / 0.737424 s**
+for DP/PDU/5PC. Source graph/charge, promotion and marker gates pass. DP/PDU
+raise `MoleculeClassError: not chiralised`; 5PC raises missing `OptimiseBFGS`.
+The old false route gate reflects omitted after-format metadata on exceptions,
+not a demonstrated route change. Partial failed coordinates and failed DP/PDU
+hand gates remain recorded; none is an adopted or restart candidate.
 
-Build `47_Cedar_probe_cif_source_constructor.py` with both public controls and
-run the exact **46_Cedar_g9lvlci6** review ZIP with `--component DP
---source-constructor-audit-only` under Phenix **2.2.1-6174**. Return console and
-review ZIP; expect aggregate scientific REVIEW even if the bounded handoff
-passes. Do not select phosphate/protonation, erase the 5PC plane finding or
-infer absolute CIP from preserved coordinate hands. See
-`source_native_constructor_handoff_2026_10_21` in the existing machine ledger.
-Software checks pass **305 focused / 2,638 full tests**, two skips and 276
-subtests. Actual C46 replay passes after source-build deletion and relocation,
-with poisoned imports and aliased temporary roots. These are software/transport
-checks; native construction remains pending.
+The diagnostic omitted native CCTBX backend selection. The captured installed
+reader explicitly calls `SetCCTBX(True)` immediately before `Chiralise`, while
+the promoted molecule defaults to False. **Cedar 48** follows that same native
+preparation policy, capturing selected method sources, flags and exact state
+before/after selection. Require unchanged atoms, charges, bonds, coordinates,
+markers and format before calling the original constructor. Recompute all C47
+failures and earlier prerequisites; restart byte-identical original sources.
+Record after-format on errors too. Existing stereochemistry gates stay fixed;
+local native template minimization may occur internally.
+
+Build `48_Cedar_probe_cif_source_constructor_backend.py` with both controls and
+run exact **47_Cedar_eq2g8v23** with `--component DP
+--source-constructor-backend-audit-only`. Each of three owned workers retains
+its **60 s** cap. Corrected native construction is pending; no whole-molecule
+optimization, numerical dictionary generation, absolute CIP, chemical-state
+choice or scientific adoption is claimed. See
+`source_native_constructor_backend_2026_10_21` in the existing machine ledger.
+Software checks pass **222 focused / 2,675 full tests**, two skips and 276
+subtests. Actual C47 replay passes after build deletion and relocation, with
+poisoned imports and aliased temporary roots. These verify software/transport;
+corrected native chemistry remains pending.
 
 **Requested follow-on after building: a fresh eight-pair synthetic live run.**
 Preserve **K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and F:A** in one explicitly
