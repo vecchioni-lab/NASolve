@@ -12813,7 +12813,7 @@
     }
   },
   "linear_axis_torsion_candidate_2026_10_21": {
-    "status": "IMPLEMENTED_SEPARATE_CANDIDATE_EXACT_NATIVE_DELTA_PENDING",
+    "status": "RETURNED_EXACT_CANDIDATE_NATIVE_OMISSIONS_PASS",
     "recorded_date": "2026-10-21",
     "delivery_prefix": "44_Cedar",
     "policy_id": "cif-declared-linear-torsion-candidate-v1",
@@ -13062,7 +13062,7 @@
         "native_exact_omission": "PENDING_USER_MAC",
         "generation_optimization_adoption": "NOT_RUN"
       },
-      "native": "PENDING_USER_MAC. Offline exact-C43 replay and synthetic native-inventory tests are not a fresh installed candidate test.",
+      "native": "RETURNED_USER_MAC: four completed native interpretations under Phenix 2.2.1-6174. Both original inventories match; both candidates omit exactly six definition rows/three dihedrals, preserving all unrelated fields and passing triple-target screens.",
       "documentation": {
         "mirror_equality": "PASS",
         "relative_links": 149,
@@ -13083,6 +13083,341 @@
       "This slice does not address other linear chemistries, chemical state, historical ReadySet causation or the full scaffold.",
       "Any extra inferred term, changed parameter, identity, stereo or API requires REVIEW; exact equality gates are not relaxed."
     ],
-    "next_action": "Build Cedar 44 with --delivery-prefix 44_Cedar --component-control PDU --component-control 5PC. Run exact C43 ZIP with --component DP --linear-torsion-candidate-only under Phenix 2.2.1-6174. Rebuild original and separate candidate inventories, <=60 s each. No optimizer, scaffold change or adoption."
+    "next_action": "Build Cedar 45 with --delivery-prefix 45_Cedar --component-control PDU --component-control 5PC. Run exact C44 ZIP with --component DP --linear-torsion-impact-only under Phenix 2.2.1-6174. At most 2000 native energy evaluations /180 s per control; no optimizer, generation or adoption.",
+    "returned_review": {
+      "name": "44_Cedar_q8nw_af7_cif_numerical_recovery_review.zip",
+      "sha256": "cbf3d03755875b63f4b00544fa63ad4a515dd06f38a2b49c3bc6cfffa7ab619f",
+      "bytes": 47152419,
+      "verified_payloads": 1847,
+      "build_sha256": "11d156c514857325f7874c430577a38ff6bd988d69ce31d353f8491eca65c816",
+      "nasolve_commit": "5d9fb36fe9df501ec15eb4da6ce848acd7910e30",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "runtime_members": 129,
+      "runtime_archive_sha256": "9e3220ad29fe65c70f73eb68a67c89a38f0fff7107474452f4a8ab84499f8141",
+      "runner_sha256": "9ce4fabc14889a3c8160dd9e123188fec53bf43d2d72a39c506007510bcce408",
+      "runner_build_metadata": "EXACT_MATCH_TO_TRUSTED_PUBLISHED_RUNNER",
+      "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1",
+      "cases": {
+        "5PC": {
+          "candidate": {
+            "anchor": "probe_directory",
+            "path": "linear_torsion_candidates/5PC/5PC_linear_torsion_candidate.cif",
+            "sha256": "f75a0595fd9aa8b39fd77fffb2d6351f0d0716bfe4cc3c2539cd8dfdc56a99e1",
+            "size": 9760
+          },
+          "original_execution": {
+            "elapsed_seconds": 2.255751,
+            "finished_at": "2026-10-21T11:08:04.031735+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-21T11:08:01.776005+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "candidate_execution": {
+            "elapsed_seconds": 0.797241,
+            "finished_at": "2026-10-21T11:08:04.843029+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-21T11:08:04.045818+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "original_inventory_matches": true,
+          "mechanics": {
+            "automatic_adoption": false,
+            "checks": {
+              "atom_count_exact": true,
+              "atoms_exact": true,
+              "geometry_exact": true,
+              "installed_api_sources_exact": true,
+              "monomer_mappings_exact": true,
+              "native_report_valid": true,
+              "restraint_policy_exact": true
+            },
+            "mechanics_checks_pass": true,
+            "model_editing": "NOT_RUN",
+            "optimization": "NOT_RUN",
+            "policy_id": "cif-declared-linear-torsion-candidate-v1",
+            "removed_effective_torsions": 6,
+            "removed_native_proxy_counts": {
+              "const_dihedral": 0,
+              "dihedral": 3
+            },
+            "schema_version": 1,
+            "scientific_approval": "NOT_RUN",
+            "status": "REVIEW"
+          },
+          "original_proxy_counts": {
+            "angle": 35,
+            "bond_asu": 0,
+            "bond_simple": 24,
+            "chirality": 3,
+            "const_dihedral": 8,
+            "dihedral": 28,
+            "parallelity": 0,
+            "planarity": 1
+          },
+          "candidate_proxy_counts": {
+            "angle": 35,
+            "bond_asu": 0,
+            "bond_simple": 24,
+            "chirality": 3,
+            "const_dihedral": 8,
+            "dihedral": 25,
+            "parallelity": 0,
+            "planarity": 1
+          },
+          "dictionary_target_screen": "PASS",
+          "native_target_screen": "PASS",
+          "remaining_linear_axis_torsions": 0,
+          "all_unrelated_inventory_fields": "EXACT_MATCH",
+          "source_charge_sum": 0,
+          "generated_charge_sum": -2,
+          "missing_source_hydrogens": [
+            "HOP2",
+            "HOP3"
+          ],
+          "source_state_review": "UNCHANGED; OPEN",
+          "scientific_approval": "NOT_RUN",
+          "automatic_adoption": false
+        },
+        "PDU": {
+          "candidate": {
+            "anchor": "probe_directory",
+            "path": "linear_torsion_candidates/PDU/PDU_linear_torsion_candidate.cif",
+            "sha256": "8a200874f62fdbe312e9bf622893714d4a80267b7647ace4476159bc69b5c426",
+            "size": 9625
+          },
+          "original_execution": {
+            "elapsed_seconds": 0.806576,
+            "finished_at": "2026-10-21T11:08:05.712111+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-21T11:08:04.905557+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "candidate_execution": {
+            "elapsed_seconds": 0.749115,
+            "finished_at": "2026-10-21T11:08:06.483856+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-21T11:08:05.734762+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "original_inventory_matches": true,
+          "mechanics": {
+            "automatic_adoption": false,
+            "checks": {
+              "atom_count_exact": true,
+              "atoms_exact": true,
+              "geometry_exact": true,
+              "installed_api_sources_exact": true,
+              "monomer_mappings_exact": true,
+              "native_report_valid": true,
+              "restraint_policy_exact": true
+            },
+            "mechanics_checks_pass": true,
+            "model_editing": "NOT_RUN",
+            "optimization": "NOT_RUN",
+            "policy_id": "cif-declared-linear-torsion-candidate-v1",
+            "removed_effective_torsions": 6,
+            "removed_native_proxy_counts": {
+              "const_dihedral": 0,
+              "dihedral": 3
+            },
+            "schema_version": 1,
+            "scientific_approval": "NOT_RUN",
+            "status": "REVIEW"
+          },
+          "original_proxy_counts": {
+            "angle": 35,
+            "bond_asu": 0,
+            "bond_simple": 24,
+            "chirality": 3,
+            "const_dihedral": 8,
+            "dihedral": 28,
+            "parallelity": 0,
+            "planarity": 1
+          },
+          "candidate_proxy_counts": {
+            "angle": 35,
+            "bond_asu": 0,
+            "bond_simple": 24,
+            "chirality": 3,
+            "const_dihedral": 8,
+            "dihedral": 25,
+            "parallelity": 0,
+            "planarity": 1
+          },
+          "dictionary_target_screen": "PASS",
+          "native_target_screen": "PASS",
+          "remaining_linear_axis_torsions": 0,
+          "all_unrelated_inventory_fields": "EXACT_MATCH",
+          "source_charge_sum": 0,
+          "generated_charge_sum": -2,
+          "missing_source_hydrogens": [
+            "HOP2",
+            "HOP3"
+          ],
+          "source_state_review": "UNCHANGED; OPEN",
+          "scientific_approval": "NOT_RUN",
+          "automatic_adoption": false
+        }
+      }
+    }
+  },
+  "linear_axis_torsion_numerical_impact_2026_10_21": {
+    "status": "IMPLEMENTED_FIXED_COORDINATE_NUMERICAL_IMPACT_NATIVE_PENDING",
+    "recorded_date": "2026-10-21",
+    "delivery_prefix": "45_Cedar",
+    "policy_id": "cif-fixed-linear-torsion-numerical-impact-v1",
+    "module": "src/nasolve/cif_linear_torsion_impact.py",
+    "builder": "scripts/build_cif_numerical_recovery_probe.py",
+    "template": "scripts/cif_numerical_recovery_probe_template.py",
+    "runner_filename": "45_Cedar_probe_cif_torsion_impact.py",
+    "review_input": {
+      "name": "44_Cedar_q8nw_af7_cif_numerical_recovery_review.zip",
+      "sha256": "cbf3d03755875b63f4b00544fa63ad4a515dd06f38a2b49c3bc6cfffa7ab619f",
+      "bytes": 47152419,
+      "verified_payloads": 1847,
+      "build_sha256": "11d156c514857325f7874c430577a38ff6bd988d69ce31d353f8491eca65c816",
+      "nasolve_commit": "5d9fb36fe9df501ec15eb4da6ce848acd7910e30",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "runtime_members": 129,
+      "runtime_archive_sha256": "9e3220ad29fe65c70f73eb68a67c89a38f0fff7107474452f4a8ab84499f8141",
+      "runner_sha256": "9ce4fabc14889a3c8160dd9e123188fec53bf43d2d72a39c506007510bcce408",
+      "runner_build_metadata": "EXACT_MATCH_TO_TRUSTED_PUBLISHED_RUNNER",
+      "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1"
+    },
+    "behavior": {
+      "before": "C44 proves exact definition/proxy omissions but performs no energy/gradient comparison.",
+      "after": "Read-only original/candidate numerical comparison at identical saved coordinates, with candidate derivative sampling; no additional restraint or coordinate change.",
+      "scope": "Isolated PDU and 5PC heavy-atom controls; DP remains the preserved scaffold prerequisite."
+    },
+    "prerequisites": [
+      "Exact 1847-member C44 manifest/build and complete earlier lineage.",
+      "Regenerate the candidate from its original with current graph/180-degree policy; require exact plan/bytes and both triple screens to replay.",
+      "Recompute six-row/three-proxy omission mechanics and all 234 saved C43 real-coordinate directional checks without captured-code execution.",
+      "Fresh original/candidate atom, definition, proxy, API and policy inventories must match the C44 captures."
+    ],
+    "algorithm": {
+      "coordinate_cases": [
+        "source_seed_native",
+        "generated_dictionary_full_precision",
+        "generated_dictionary_pdb_rounded"
+      ],
+      "coordinate_changes": "TEMPORARY_FINITE_DIFFERENCES_ONLY; no output coordinate model",
+      "family_flags": [
+        "all",
+        "bond",
+        "angle",
+        "dihedral",
+        "chirality",
+        "planarity",
+        "parallelity",
+        "nonbonded"
+      ],
+      "baselines": "Record original/candidate targets, full Cartesian gradients and proxy counts for each flag set; repeat before and after sampling.",
+      "delta": "Original-minus-candidate full and dihedral targets/gradients must equal the sum of the three saved original single-torsion contributions, scattered by exact atom indices.",
+      "other_families": "Targets and gradients must remain equal; each manager target/gradient must equal its family sum.",
+      "derivatives": "Candidate all/dihedral central differences in 18 Cartesian directions from six graph-selected atoms, alternating-global, full-gradient and nonzero dihedral-gradient directions. Six steps 1e-3 through 1e-8 A; two adjacent consistent steps required.",
+      "directional_tolerance": {
+        "absolute": 0.0001,
+        "relative": 0.0001
+      },
+      "repeat_delta_tolerance": {
+        "absolute": 1e-08,
+        "relative": 1e-10
+      },
+      "proxy_counts": "Record each baseline and perturbation; candidate sample counts must match its corresponding baseline.",
+      "gradient_norms": "DESCRIPTIVE_ONLY; a decrease is not required because removing cancelling contributions can expose strain.",
+      "native_identity": "Pin six numerical module/binary hashes plus selected-root gr/flex adapters; preserve both complete static signatures and source hashes before/after.",
+      "unsupported": "Special positions or nonzero parallelity proxies are refused; the qualified plane correction is not changed or bypassed."
+    },
+    "limits": {
+      "max_native_energy_evaluations_per_component": 2000,
+      "timeout_seconds_per_component": 180,
+      "max_coordinate_cases": 3,
+      "max_selected_atoms": 6
+    },
+    "schemas": {
+      "report": "linear_torsion_impact_audit schema1",
+      "native_receipt": "impact_receipt.json schema1",
+      "native_result": "impact_result.json schema1",
+      "compatibility": "New opt-in mutually exclusive action; existing production recipes/defaults and older gates unchanged."
+    },
+    "execution": {
+      "readyset": "NOT_RUN",
+      "dictionary_generation": "NOT_RUN",
+      "model_editing": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "validation": {
+      "fail_before": {
+        "tests": 17,
+        "result": "All 17 new numerical/native-worker regressions fail with missing module before implementation."
+      },
+      "focused": {
+        "passed": 208,
+        "seconds": 17.16,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_linear_torsion_impact.py tests/test_cedar45_delivery.py tests/test_cif_linear_torsion_candidate.py tests/test_cif_dihedral_conditioning.py tests/test_cedar44_delivery.py tests/test_cedar43_delivery.py tests/test_cedar42_delivery.py tests/test_cif_readyset_generation_audit.py tests/test_cedar41_delivery.py tests/test_cedar40_delivery.py tests/test_cif_component_controls.py tests/test_cif_numerical_recovery_probe.py --tb=short"
+      },
+      "full": {
+        "passed": 2527,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 197.68,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "clean_build_sources_removed_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_checkout_tracked_edit": "PRESERVED",
+        "runner_local_ignore": "PASS",
+        "input_payloads": 1847,
+        "runtime_members": 130,
+        "runtime_archive_sha256": "cf52b9a2a2d382b65351d9ccb2b8684999a0bed95dab047c8199004fd63aa856",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "completed_readyset_and_active_triple_screens_replayed": true,
+        "prior_missing_resources_and_failed_invocations_preserved": true,
+        "5PC_policy": "C; PASS",
+        "source_charge": 0,
+        "generated_charge": -2,
+        "dictionary_torsions_each": 6,
+        "expected_native_omissions_each": 3,
+        "candidate_dictionary_omissions_each": 6,
+        "saved_conditioning_directions_recomputed": 234,
+        "candidate_omission_inventories": "BOTH_RETURNED_PASS",
+        "native_numerical_impact": "PENDING_USER_MAC",
+        "generation_optimization_adoption": "NOT_RUN"
+      },
+      "native": "PENDING_USER_MAC. Linux tests use an independent quadratic oracle and explicitly fake installed APIs; saved-capsule replay is not a fresh native energy evaluation.",
+      "documentation": {
+        "mirror_equality": "PASS",
+        "relative_links": 149,
+        "protected_source_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      },
+      "regression_scope": "30 added tests: 17 independent numerical/native-worker cases and 13 completed-return boundary cases; 17 demonstrated fail-before."
+    },
+    "limitations": [
+      "Numerical impact, sampled derivative agreement, geometry qualification and scientific approval are distinct.",
+      "Phosphate 0-to-minus-two/HOP2/HOP3 loss, omitted R/S metadata and 5PC angle/plane review remain open and unchanged.",
+      "No historical floppy-chain cause, full linked scaffold result, convergence or adoption is established."
+    ],
+    "artifact_boundary": "Maintained code/tests/docs and hashes only; review capsules, installed snapshots, generated CIFs/models, runners and logs remain outside Git.",
+    "next_action": "Build Cedar 45 with --delivery-prefix 45_Cedar --component-control PDU --component-control 5PC. Run exact C44 ZIP with --component DP --linear-torsion-impact-only under Phenix 2.2.1-6174. At most 2000 native energy evaluations /180 s per control; no optimizer, generation or adoption."
   }
 }

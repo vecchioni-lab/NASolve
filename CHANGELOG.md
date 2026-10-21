@@ -8,6 +8,29 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare numerical effects of qualified linear-torsion candidates
+
+- Verify all 1,847 Cedar 44 payloads and the clean published runner. Four installed
+  Phenix 2.2.1-6174 interpretations complete. Both exact native comparisons and
+  triple-target screens PASS: six definition rows/three active dihedrals omitted,
+  with dihedral counts 28→25 and every unrelated field preserved.
+- Add opt-in Cedar 45 --linear-torsion-impact-only. Reproduce candidate bytes and
+  all prior gates, then rebuild both exact managers under pinned numerical APIs.
+  Compare full/family energies and gradients at identical saved coordinates;
+  full/dihedral deltas must equal the saved omitted-torsion sum. Check unrelated
+  families, additivity, repeats before/after and candidate full/dihedral finite
+  differences. Preserve signatures/hashes and bound each control to 2,000 energy
+  evaluations/180 s. Gradient norms are descriptive, not required to decrease.
+- No dependency, production recipe/default, generator, optimizer, state choice,
+  model/scaffold edit, installed modification, NAR release or adoption change.
+  Native numerical impact awaits Mac; Linux uses an independent quadratic oracle,
+  explicit fake APIs and actual saved-capsule replay. Chemical-state and 5PC
+  angle/plane findings remain open.
+- All 30 new regressions, 208 focused and 2,527 full tests pass (two skips,
+  276 subtests). Actual C44 replay passes after build deletion/relocation,
+  poisoned imports and aliased temp paths; candidate bytes, exact omissions
+  and all earlier gates replay. Native numerical impact remains pending.
+
 ### Test separate candidates for graph-undefined linear torsions
 
 - Verify all 1,794 Cedar 43 payloads and the clean published build. Both installed

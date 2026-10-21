@@ -200,7 +200,9 @@ for actual behavior; history is evidence, not a second task queue.
   but retains near-collinear conditioning review. Cedar 44 prepares separate
   graph/180°-selected torsion omission candidates and checks exact original/
   candidate native deltas, preserving triple targets and all unrelated terms.
-  Chemical-state and plane findings remain open; no optimization or adoption. Equivalent
+  Returned C44 passes both native comparisons. C45 separately tests numerical
+  deltas and candidate derivatives at the same saved coordinates. Chemical-state
+  and plane findings remain open; no optimization or adoption. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

@@ -616,6 +616,24 @@ Every other definition, coordinate, proxy and policy must compare exactly;
 unexpected inferred terms remain REVIEW. Both interpretations have a 60 s
 deadline per control. No generator, optimizer, charge/stereo correction,
 scaffold change or adoption runs. Production repair recipes stay unchanged.
+Returned C44 passes both exact comparisons: dihedral proxies change 28→25,
+with all other inventory fields and triple targets intact.
+
+C45 evaluates the preserved original and candidate managers at the same three
+saved coordinate cases. Pin numerical module/binary identities and selected-root
+adapters; rebuild both exact C44 inventories and preserve their static signatures.
+Record full and seven family-control targets, Cartesian gradients and counts,
+with repeats before/after. Full/dihedral original-minus-candidate deltas must
+match the saved sum of the three omitted original torsions, scattered by exact
+indices. Unrelated family values remain equal, and family sums must reproduce
+each full objective. Sample candidate full/dihedral derivatives at six central
+steps in Cartesian, alternating and gradient directions from the graph-selected
+six atoms. Perturbed proxy counts must remain equal to their baseline counts.
+Special-position or parallelity-bearing managers are outside this isolated
+slice. Cap each control at 2,000 evaluations/180 s. Gradient norms are descriptive;
+removing cancelling contributions need not reduce the total norm. Native impact
+results await Mac; no optimizer, generator, coordinate model, state selection,
+scaffold change or adoption runs.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

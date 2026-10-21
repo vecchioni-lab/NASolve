@@ -989,8 +989,21 @@ remain identical. Fresh native comparisons must reproduce the original manager
 and show only the six planned definition-row and three heavy-proxy omissions.
 The strong triple-bond distance and straight-angle restraints stay intact.
 This is an opt-in candidate test: no model optimization, charge/stereo repair
-or adoption occurs, and native candidate results are pending. All earlier
-chemical-state and plane reviews stay visible.
+or adoption occurs. Returned C44 passes both native comparisons: three active
+torsions are removed from each 28-torsion manager, with all unrelated terms and
+triple targets intact. All earlier chemical-state and plane reviews stay visible.
+
+Cedar 45 asks what those exact omissions change numerically. Rebuild both saved
+managers and evaluate them at identical source, generated full-precision and
+rounded coordinates. The difference in total and torsion energy/gradient must
+match the sum of the three omitted terms; other families must give the same
+values. Repeated evaluations and family sums test consistency. Candidate total
+and torsion derivatives are sampled with six finite-difference steps in graph-
+selected Cartesian and gradient directions. A lower total gradient is not an
+acceptance rule: removing a contribution can expose strain that it previously
+cancelled. Both managers retain their exact signatures and source/API hashes.
+The audit is bounded to 2,000 evaluations/180 s per control, without optimization,
+model output or adoption. Native numerical impact remains pending.
 
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,

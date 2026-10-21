@@ -139,8 +139,10 @@ to charge −2 by losing HOP2/HOP3. These remain review findings. Returned Cedar
 near-linear forces and undefined exact-collinear controls. Cedar 44 prepares
 separate candidates omitting only torsions containing graph-declared triple-bond
 angles targeted at 180°. Fresh native comparisons require exactly the planned
-omissions and every unrelated term intact. No optimizer, chemical-state
-selection, scaffold change or adoption occurs. Equivalent operational mapping aliases now compile once while
+omissions and every unrelated term intact. Returned C44 passes both exact
+comparisons and triple screens. C45 compares original/candidate energies and
+gradients at identical saved coordinates and samples candidate derivatives.
+No optimizer, chemical-state selection, scaffold change or adoption occurs. Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.
 NARestraints policy and production defaults stay fixed; geometry, convergence

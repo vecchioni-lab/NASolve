@@ -1771,9 +1771,7 @@ generation, optimizer, refinement, restraint removal, adoption or production
 default change occurs in this action. Historical floppy-chain causation stays
 unestablished.
 
-Build Cedar 44 with --delivery-prefix 44_Cedar --component-control PDU
---component-control 5PC and run the exact C43 ZIP with --component DP
---linear-torsion-candidate-only. The exclusive action verifies all 1,794
+Cedar 44 used --linear-torsion-candidate-only on the exact C43 ZIP. The exclusive action verifies all 1,794
 payloads, replays saved directional arithmetic and preserves the entire prior
 lineage without executing captured Python. Reach scientific inputs only via
 reviewed relative anchors/checksums.
@@ -1795,14 +1793,50 @@ heavy proxies/counts. Every other field, including charges, stereo, coordinates,
 triple bonds, angles, planes and unrelated torsions/proxies, stays exact; any
 extra inferred term or changed field remains REVIEW. Native triple-target
 screens must still pass and no linear-axis torsion may remain. Each inventory
-has a 60 s deadline. Candidate native results await the user Mac; offline
-actual-capsule and synthetic inventory tests do not replace that execution.
+has a 60 s deadline. Returned C44 completes all four interpretations and passes
+both exact comparisons. Active dihedrals change 28→25; the eight constant
+dihedrals and every unrelated inventory field remain unchanged. Both native
+triple-target screens pass with no remaining linear-axis torsion.
 
 Keep phosphate 0→−2/HOP2/HOP3 differences, omitted R/S metadata and 5PC plane
 findings open. This candidate does not select chemistry or prove a lower total
 gradient, convergence, historical causation, scaffold suitability or adoption.
 No ReadySet, generator, optimizer, model writer, refinement or installed edits
 run. Explicit NARestraints pairing/stacking authority is unchanged.
+
+Build Cedar 45 with --delivery-prefix 45_Cedar --component-control PDU
+--component-control 5PC and run the exact C44 ZIP with --component DP
+--linear-torsion-impact-only. Verify all 1,847 payloads and replay the candidate
+plan/bytes, exact native delta and dictionary/native triple screens using
+current maintained code. Preserve all earlier evidence, including C43 arithmetic,
+without executing captured Python. Inputs use reviewed relative anchors/hashes.
+
+The cif-fixed-linear-torsion-numerical-impact-v1 worker rebuilds separate
+original and candidate managers under the exact captured C44 inventories. Pin
+six numerical module/binary hashes and selected-installation geometry/flex
+adapters. Refuse special positions or nonzero parallelity proxies in this
+isolated slice; the qualified plane correction remains untouched. Preserve both
+complete static signatures and all input/installed hashes before and after.
+
+At the same three saved coordinate cases, record original/candidate full and
+seven family-control targets, Cartesian gradients and proxy counts. Repeat all
+baselines before and after temporary perturbations. Full/dihedral original-minus-
+candidate differences must equal the saved three single-torsion sums, scattered
+into full vectors by exact native indices. Bond, angle, chirality, planarity,
+parallelity and nonbonded values must remain equal; family sums reproduce each
+full target/gradient. Absolute/relative repeat/delta tolerances are 1e-8/1e-10.
+
+For the candidate full and dihedral objectives, sample the 18 Cartesian axes of
+the six atoms selected from omitted-proxy endpoints, alternating-global,
+nonzero full-gradient and dihedral-gradient directions. Six central steps
+(1e-3…1e-8 A) retain raw values and require two adjacent consistent steps with
+absolute/relative 1e-4 tolerance; sample proxy counts must equal their baseline.
+Cap each control at 2,000 energy evaluations and 180 s. Norm changes are
+reported descriptively, not required to decrease. Numerical agreement is not
+scientific approval, convergence, historical causation or scaffold validation.
+Native numerical results await Mac; explicit fake-API/quadratic-oracle tests
+and saved-capsule replay are separate evidence. No generator, optimizer,
+coordinate model, state selection, installed edit, refinement or adoption runs.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

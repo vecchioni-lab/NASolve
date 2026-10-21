@@ -49,7 +49,9 @@ collinear controls without changing restraints or writing a coordinate model.
 Returned C43 passes sampled derivatives while retaining near-collinear review.
 C44 prepares separate graph/declared-180° torsion omission candidates; exact
 native deltas preserve the triple/linear terms and all unrelated fields. Native
-candidate results remain pending; no optimization or adoption arrow is added.
+candidate comparisons pass in returned C44. C45 compares fixed-coordinate
+energy/gradient deltas and sampled candidate derivatives; native numerical
+impact remains pending. No optimization or adoption arrow is added.
 Cedar 40 captures the literal ReadySet implementation and
 bounded imports as text; its native accessor result does not claim ReadySet
 execution or a mapped-SMILES graph. Explicit scope and budget limits remain in
