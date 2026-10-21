@@ -958,7 +958,23 @@ not evidence of missing generated triple restraints. Cedar 42 passes ReadySet
 arguments only through its API and leaves process options empty, matching the
 captured native entrypoint. Original builder calls and chemistry stay fixed.
 Worker completion, native success and output provenance are reported separately;
-failed evidence and exact seed-model/triple-screen replay remain preserved. Process-local observers forward the original eLBOW
+failed evidence and exact seed-model/triple-screen replay remain preserved.
+The returned C42 test completes both controls and verifies generated/native
+triple lengths and linear-angle targets. Its file-input builder route supplies
+no SMILES argument. It does not reproduce a missing-triple defect at these
+isolated controls; historical behavior and linked-model geometry remain open.
+
+Cedar 43 examines the remaining linear-axis torsions without deleting them.
+Three existing heavy-atom proxies per component are rebuilt under the exact
+captured manager. Single-restraint/container kernels and six-step central
+differences are evaluated at the preserved source seeds and generated full/
+rounded coordinates. Plane-normal sines describe conditioning; bent and exact
+collinear numerical controls keep a finite zero gradient from being mistaken
+for a defined torsion. Original parameter/membership signatures and installed
+hashes are checked before and after. The 3,000-pair/180 s bound applies per
+component. No optimizer or coordinate-model writer runs. Source phosphate
+charge/hydrogen changes and 5PC's separate angle/plane review remain visible;
+this is numerical evidence, not a chemistry decision or a repair. Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,
 returned graphs or caught failures. A 180 s deadline bounds generation, followed
 by at most 60 s native interpretation per control. Ligand AM1 and final hydrogen

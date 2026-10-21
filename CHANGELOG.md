@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Audit fixed native torsions around declared triple bonds
+
+- Verify all 1,747 Cedar 42 payloads and the clean published runner. Both isolated
+  ReadySet controls and native interpretations complete; PDU/5PC generated and
+  active triple-target screens pass. Six dictionary/three active heavy-atom
+  linear-axis torsions each, phosphate charge/H changes, source-relative stereo
+  rejection and 5PC's angle/plane review remain explicit.
+- Add Cedar 43's exact completed-return gate and --torsion-conditioning-audit-only.
+  Rebuild captured managers and pin numerical sources before single/container
+  kernels, six-step central differences, geometry/repeat/reversal checks and
+  nonchemical collinear controls. Preserve signatures and all original inputs;
+  cap each component at 3,000 paired evaluations / 180 s.
+- No new dependency, generation, ReadySet run, optimizer, restraint removal,
+  coordinate-model output, chemical-state selection, NARestraints recipe/table/
+  release, production-default or adoption change. Installed Phenix 2.2.1-6174
+  numerical results await Mac; Linux checks use explicit fake APIs and replay.
+  All 32 new regressions, 124 focused and 2,443 full tests pass (two skips,
+  276 subtests). Actual C42 replay passes after build deletion/relocation,
+  poisoned imports and aliased temp paths; generated/native screens and all
+  earlier failures remain preserved.
+
 ### Isolate ReadySet API arguments from nested eLBOW parsing
 
 - Verify all 1,624 Cedar 41 payloads. Both receipt workers finish, but native

@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-20**. Start with the
+Updated **2026-10-21**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -194,8 +194,11 @@ for actual behavior; history is evidence, not a second task queue.
   static sources. Returned Cedar 41 stops both isolated controls in the nested
   eLBOW options parser because the wrapper leaked ReadySet PHIL arguments.
   Surviving CIFs are unchanged source copies; native triple checks did not run.
-  Cedar 42 isolates process arguments, replays the failed evidence and separates
-  worker success, native outcome and output provenance. Equivalent
+  Returned Cedar 42 completes both isolated controls and passes generated/native
+  triple length/linearity targets. Six dictionary/three active heavy-atom torsions
+  per component and neutral→−2 phosphate changes retain REVIEW. Cedar 43 audits
+  unchanged native torsion derivatives/conditioning at source and generated
+  full/rounded coordinates, preserving all other chemistry and plane findings. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

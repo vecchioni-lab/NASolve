@@ -586,6 +586,21 @@ options. Builder kwargs and chemistry stay unchanged. Record process argv per
 observed call, classify unchanged/partial/completed output separately, and retain
 the old failed calls without executing captured code.
 
+Returned C42 verifies 1,747 payloads, both completed file-input builder calls,
+23-atom isolated native managers and independent triple-target screens. Neither
+call supplies a SMILES argument. Six generated torsions use linear atom triples;
+three survive in each heavy-only manager. Generated phosphate charge differs
+from the neutral source (−2, with HOP2/HOP3 omitted); sugar stereo declarations
+are also handled separately. No historical floppy-chain cause is established.
+C43 adds a read-only native dihedral-conditioning action. Rebuild each exact
+C42 manager, pin six numerical modules/binaries, and check selected membership
+and default function/symmetry parameters. Single-restraint and singleton-container
+kernels are compared with central differences at saved seed and generated
+full/rounded coordinates. Plane-normal sines, repeats, reversal and nonchemical
+bent/collinear controls keep undefined geometry separate from finite zero
+gradients. Original manager signatures, source bytes and installed hashes stay
+fixed. No dihedral is removed and no model or chemical state is selected.
+
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and
 explicit C5-mod/C7-mod annotations do not select atoms. Equal operational records

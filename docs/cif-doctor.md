@@ -1664,9 +1664,15 @@ Both surviving CIFs exactly match the public CCD sources, without numerical
 targets, and native interpretation remains NOT_RUN. Missing terms in these
 preparatory copies do not establish a generation defect or historical cause.
 
-Build Cedar 42 with --delivery-prefix 42_Cedar --component-control PDU
---component-control 5PC. Run the exact C41 ZIP with --component DP
---readyset-generation-audit-only. DP remains a preserved prerequisite; the new
+The returned Cedar 42 capsule verifies all 1,747 payloads and the clean
+published runner. Both file-input eLBOW calls and isolated ReadySet invocations
+complete with no SMILES argument. PDU/5PC generated and active native targets
+pass: lengths 1.203/1.186 Å with 0.020 Å ESD, and both linear angles 180° with
+3° ESD. Native evaluation uses fixed public source seeds, not an optimized
+linked model. Six generated/three active heavy-atom linear-axis torsions each,
+source-relative chemistry and 5PC's angle/plane review remain open.
+
+Cedar 42 used --readyset-generation-audit-only on the exact C41 ZIP. DP remains a preserved prerequisite; the new
 generation cases are PDU/5PC only. --inspect-only replays saved evidence and
 writes complete/heavy source-seed controls without native execution.
 
@@ -1718,6 +1724,49 @@ metadata handling. Prefer an available canonical partner from registered
 recipes before modified-family synthetic controls: 5PC exercises existing G:C
 and both stack orders. No NARestraints table edit, package release or recipe
 change is required; the conditional missing-entry case was not present.
+
+Build Cedar 43 with --delivery-prefix 43_Cedar --component-control PDU
+--component-control 5PC. Run the exact C42 ZIP with --component DP
+--torsion-conditioning-audit-only. This mutually exclusive action replays the
+completed generated/native triple screens and all earlier prerequisites, then
+evaluates only existing graph-selected heavy-atom dihedrals. The prior native
+inputs are reached through exact reviewed relative anchors and hashes; old
+absolute paths are provenance only. Captured code never executes.
+
+The new cif-native-linear-axis-dihedral-conditioning-v1 module rebuilds the
+exact captured manager before evaluating selected single-restraint and
+singleton-container kernels. All atom/definition/proxy/API/policy inventory
+fields match C42, six numerical module/binary hashes are pinned, and special
+positions, symmetry-bearing torsions or nondefault limit/top-out/slack functions
+are refused. Every original target, weight, periodicity and alternate remains
+unchanged. Complete manager signatures and installed hashes are rechecked.
+
+Cases use the saved native source-seed coordinates and generated dictionary
+Cartesian coordinates at full precision and separately rounded to 0.001 Å.
+Perturbations are temporary numerical evaluations; no model is written. At each
+selected four-atom proxy, test all 12 Cartesian directions and the nonzero
+single-gradient direction with six central-difference steps (10^-3…10^-8 Å).
+Retain every step and require two adjacent agreeing steps per direction for
+sampled agreement, with absolute/relative tolerance 10^-4. Record single versus
+container energies/gradients, repeats, reversed order and the original function
+parameters. Nonfinite values and native exceptions remain explicit JSON evidence.
+
+Normalized cross-product sines describe each defining plane. A minimum sine
+below 10^-3 raises descriptive near-collinearity review; this is not a universal
+chemical cutoff or a removal policy. Exactly zero plane geometry is undefined,
+even if native code returns a finite residual or zero gradient. Independent
+nonchemical bent/exact-collinear controls and radius/phase profiles approaching
+collinearity inspect this distinction. Bound each component to 3,000 paired
+single/container evaluations (at most 6,000 kernels), plus a 180 s owned-process
+deadline. Native results are pending; --inspect-only performs saved-evidence,
+coordinate/geometry and chemical-state preflight without native evaluations.
+
+Retain the raw 0→−2 charge and HOP2/HOP3 loss, omitted R/S declarations,
+source-relative stereo rejection and all other numerical findings. Passing
+triple targets does not approve those generated changes. No ReadySet, dictionary
+generation, optimizer, refinement, restraint removal, adoption or production
+default change occurs in this action. Historical floppy-chain causation stays
+unestablished.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

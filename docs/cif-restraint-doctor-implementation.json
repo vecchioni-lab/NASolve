@@ -8209,7 +8209,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#isolated_readyset_generation_audit_2026_10_20"
     },
     "readyset_invocation_isolation_2026_10_20": {
-      "status": "IMPLEMENTED_INVOCATION_AND_OUTPUT_PROVENANCE_CORRECTION_NATIVE_PENDING",
+      "status": "RETURNED_BOTH_READYSET_AND_NATIVE_TRIPLE_TARGET_CONTROLS_PASS_RETAINING_REVIEWS",
       "recorded_date": "2026-10-20",
       "delivery_prefix": "42_Cedar",
       "policy_id": "cif-isolated-readyset-call-and-triple-restraint-audit-v2",
@@ -8267,7 +8267,7 @@
         "after": "Clear process options before selected-module import and pass the original explicit arguments only to ReadySet.run. Preserve builder kwargs, record argv per observed call, classify source-identical/partial/completed outputs and print worker/native/file states separately.",
         "production_defaults": "UNCHANGED",
         "policy_authority": "NARestraints",
-        "native_acceptance": "PENDING_USER_MAC"
+        "native_acceptance": "BOTH_COMPLETED; GENERATED_AND_NATIVE_TRIPLE_TARGET_SCREENS_PASS; FULL_QUALIFICATION_REVIEW"
       },
       "methods": {
         "source_basis": "Captured ready_set.py __main__ lines 1112-1118 copies args then clears process argv. builder.run line2039 calls options_parser; options_parser lines1361-1390 independently reads/mutates/parses sys.argv.",
@@ -8349,7 +8349,7 @@
           "prior_active_native_screen_replayed": true,
           "prior_failed_readyset_source_copies_replayed": true
         },
-        "native": "PENDING_USER_MAC; Linux selected API regressions are explicitly fake.",
+        "native": "RETURNED: completed ReadySet and source-seed interpretation for both controls under Phenix 2.2.1-6174. Torsions/chemical-state/plane findings retained.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 147,
@@ -8370,8 +8370,394 @@
         "Generated/loaded terms, chemical graph/stereo, achieved geometry, convergence and adoption remain separate gates."
       ],
       "artifact_boundary": "Maintained code/tests/docs and metadata only. Private/installed source snapshots, generated models/CIFs, runners and ZIPs remain outside Git.",
-      "next_action": "Build Cedar 42 with --delivery-prefix 42_Cedar --component-control PDU --component-control 5PC. Run the exact returned C41 ZIP with --component DP --readyset-generation-audit-only under Phenix 2.2.1-6174. Return console/ZIP; <=180 s generation plus <=60 s eligible native interpretation per control.",
+      "next_action": "Build Cedar 43 with --delivery-prefix 43_Cedar --component-control PDU --component-control 5PC. Run exact C42 ZIP with --component DP --torsion-conditioning-audit-only under Phenix 2.2.1-6174. Return console/ZIP; <=3000 paired evaluations / <=180 s per control. No optimizer or generation.",
+      "returned_evidence": {
+        "name": "42_Cedar_9s73mlh5_cif_numerical_recovery_review.zip",
+        "sha256": "668a253670b79ad472184fb4e7f92feca5cacb30ce369d124dcc27963e960f77",
+        "bytes": 45634804,
+        "verified_payloads": 1747,
+        "build_sha256": "4f2eb1b482fcf382f9bbaf27a8eb8d49a8dae670a7988f8d06cf2a95694c00ca",
+        "nasolve_commit": "d1388fb55cb6a3daec1ef213b5ea76e201a041c9",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "8c1a9724d9f39ca15abdf2d3a8df9471c516670ab1e8ef5570d17fbfff69b2ee",
+        "runtime_members": 127,
+        "runtime_archive_sha256": "13bf2a0669cf99f64a639dcb769cc96f32dcc02ee6b82fbe80d69f4cd29c0974",
+        "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1",
+        "cases": {
+          "5PC": {
+            "readyset_execution": {
+              "elapsed_seconds": 5.993324,
+              "returncode": 0,
+              "status": "COMPLETED"
+            },
+            "readyset_result": "COMPLETED",
+            "candidate": {
+              "anchor": "readyset_directory",
+              "classification": "COMPLETED_READYSET_OUTPUT",
+              "generation_claim": "COMPLETED_READYSET_OUTPUT",
+              "path": "5PC.cif",
+              "sha256": "dc89031959b3fc95710675f64c6466472f22519491d4aabacbc072c6f9fc1ef7",
+              "size": 12925,
+              "source_bytes_match": false,
+              "status": "RECORDED"
+            },
+            "builder_kwargs": {
+              "file": "5PC.cif",
+              "id": "5PC",
+              "output": "5PC",
+              "silent": true
+            },
+            "builder_result": "RETURNED; CHARGED_CCD_MOLECULE",
+            "smiles_argument": "ABSENT",
+            "native_execution": {
+              "elapsed_seconds": 0.796326,
+              "finished_at": "2026-10-21T09:00:10.747917+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-21T09:00:09.951626+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "native_atom_count": 23,
+            "dictionary_target_screen": "PASS",
+            "active_native_target_screen": "PASS",
+            "triple_target_angstrom": 1.186,
+            "length_esd_angstrom": 0.02,
+            "linear_angle_target_degrees": 180.0,
+            "angle_esd_degrees": 3.0,
+            "dictionary_linear_axis_torsions": 6,
+            "active_heavy_atom_linear_axis_torsions": 3,
+            "source_charge_sum": 0,
+            "generated_charge_sum": -2,
+            "missing_source_hydrogens": [
+              "HOP2",
+              "HOP3"
+            ],
+            "raw_source_state": "REVIEW; SOURCE_RELATIVE_STEREO_COMPARISON_REJECTED_ON_CHEMICAL_STATE_DIFFERENCE",
+            "absolute_CIP": "NOT_ASSIGNED",
+            "other_numerical_findings": "ANGLE_PLANE_CONSISTENCY_REVIEW",
+            "full_chemical_or_geometry_qualification": "OPEN"
+          },
+          "PDU": {
+            "readyset_execution": {
+              "elapsed_seconds": 13.447281,
+              "returncode": 0,
+              "status": "COMPLETED"
+            },
+            "readyset_result": "COMPLETED",
+            "candidate": {
+              "anchor": "readyset_directory",
+              "classification": "COMPLETED_READYSET_OUTPUT",
+              "generation_claim": "COMPLETED_READYSET_OUTPUT",
+              "path": "PDU.cif",
+              "sha256": "576d2601c34f3bee99473368e4a17657890d2b538e556c08318e0e760d09e2ae",
+              "size": 12668,
+              "source_bytes_match": false,
+              "status": "RECORDED"
+            },
+            "builder_kwargs": {
+              "file": "PDU.cif",
+              "id": "PDU",
+              "output": "PDU",
+              "silent": true
+            },
+            "builder_result": "RETURNED; CHARGED_CCD_MOLECULE",
+            "smiles_argument": "ABSENT",
+            "native_execution": {
+              "elapsed_seconds": 0.967536,
+              "finished_at": "2026-10-21T09:00:03.783879+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-21T09:00:02.816383+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "native_atom_count": 23,
+            "dictionary_target_screen": "PASS",
+            "active_native_target_screen": "PASS",
+            "triple_target_angstrom": 1.203,
+            "length_esd_angstrom": 0.02,
+            "linear_angle_target_degrees": 180.0,
+            "angle_esd_degrees": 3.0,
+            "dictionary_linear_axis_torsions": 6,
+            "active_heavy_atom_linear_axis_torsions": 3,
+            "source_charge_sum": 0,
+            "generated_charge_sum": -2,
+            "missing_source_hydrogens": [
+              "HOP2",
+              "HOP3"
+            ],
+            "raw_source_state": "REVIEW; SOURCE_RELATIVE_STEREO_COMPARISON_REJECTED_ON_CHEMICAL_STATE_DIFFERENCE",
+            "absolute_CIP": "NOT_ASSIGNED",
+            "other_numerical_findings": "RECORDED_OFFLINE_CHECKS_PASS",
+            "full_chemical_or_geometry_qualification": "OPEN"
+          }
+        },
+        "historical_floppy_geometry_cause": "NOT_ESTABLISHED",
+        "experimental_scaffold_changes": "NOT_RUN",
+        "automatic_adoption": false
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#readyset_invocation_isolation_2026_10_20"
+    },
+    "linear_axis_torsion_conditioning_2026_10_21": {
+      "status": "IMPLEMENTED_FIXED_TORSION_NUMERICAL_AUDIT_NATIVE_PENDING",
+      "recorded_date": "2026-10-21",
+      "delivery_prefix": "43_Cedar",
+      "policy_id": "cif-native-linear-axis-dihedral-conditioning-v1",
+      "module": "src/nasolve/cif_dihedral_conditioning.py",
+      "builder": "scripts/build_cif_numerical_recovery_probe.py",
+      "template": "scripts/cif_numerical_recovery_probe_template.py",
+      "runner_filename": "43_Cedar_probe_cif_torsion_conditioning.py",
+      "review_input": {
+        "name": "42_Cedar_9s73mlh5_cif_numerical_recovery_review.zip",
+        "sha256": "668a253670b79ad472184fb4e7f92feca5cacb30ce369d124dcc27963e960f77",
+        "bytes": 45634804,
+        "verified_payloads": 1747,
+        "build_sha256": "4f2eb1b482fcf382f9bbaf27a8eb8d49a8dae670a7988f8d06cf2a95694c00ca",
+        "nasolve_commit": "d1388fb55cb6a3daec1ef213b5ea76e201a041c9",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runner_sha256": "8c1a9724d9f39ca15abdf2d3a8df9471c516670ab1e8ef5570d17fbfff69b2ee",
+        "runtime_members": 127,
+        "runtime_archive_sha256": "13bf2a0669cf99f64a639dcb769cc96f32dcc02ee6b82fbe80d69f4cd29c0974",
+        "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1",
+        "cases": {
+          "5PC": {
+            "readyset_execution": {
+              "elapsed_seconds": 5.993324,
+              "returncode": 0,
+              "status": "COMPLETED"
+            },
+            "readyset_result": "COMPLETED",
+            "candidate": {
+              "anchor": "readyset_directory",
+              "classification": "COMPLETED_READYSET_OUTPUT",
+              "generation_claim": "COMPLETED_READYSET_OUTPUT",
+              "path": "5PC.cif",
+              "sha256": "dc89031959b3fc95710675f64c6466472f22519491d4aabacbc072c6f9fc1ef7",
+              "size": 12925,
+              "source_bytes_match": false,
+              "status": "RECORDED"
+            },
+            "builder_kwargs": {
+              "file": "5PC.cif",
+              "id": "5PC",
+              "output": "5PC",
+              "silent": true
+            },
+            "builder_result": "RETURNED; CHARGED_CCD_MOLECULE",
+            "smiles_argument": "ABSENT",
+            "native_execution": {
+              "elapsed_seconds": 0.796326,
+              "finished_at": "2026-10-21T09:00:10.747917+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-21T09:00:09.951626+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "native_atom_count": 23,
+            "dictionary_target_screen": "PASS",
+            "active_native_target_screen": "PASS",
+            "triple_target_angstrom": 1.186,
+            "length_esd_angstrom": 0.02,
+            "linear_angle_target_degrees": 180.0,
+            "angle_esd_degrees": 3.0,
+            "dictionary_linear_axis_torsions": 6,
+            "active_heavy_atom_linear_axis_torsions": 3,
+            "source_charge_sum": 0,
+            "generated_charge_sum": -2,
+            "missing_source_hydrogens": [
+              "HOP2",
+              "HOP3"
+            ],
+            "raw_source_state": "REVIEW; SOURCE_RELATIVE_STEREO_COMPARISON_REJECTED_ON_CHEMICAL_STATE_DIFFERENCE",
+            "absolute_CIP": "NOT_ASSIGNED",
+            "other_numerical_findings": "ANGLE_PLANE_CONSISTENCY_REVIEW",
+            "full_chemical_or_geometry_qualification": "OPEN"
+          },
+          "PDU": {
+            "readyset_execution": {
+              "elapsed_seconds": 13.447281,
+              "returncode": 0,
+              "status": "COMPLETED"
+            },
+            "readyset_result": "COMPLETED",
+            "candidate": {
+              "anchor": "readyset_directory",
+              "classification": "COMPLETED_READYSET_OUTPUT",
+              "generation_claim": "COMPLETED_READYSET_OUTPUT",
+              "path": "PDU.cif",
+              "sha256": "576d2601c34f3bee99473368e4a17657890d2b538e556c08318e0e760d09e2ae",
+              "size": 12668,
+              "source_bytes_match": false,
+              "status": "RECORDED"
+            },
+            "builder_kwargs": {
+              "file": "PDU.cif",
+              "id": "PDU",
+              "output": "PDU",
+              "silent": true
+            },
+            "builder_result": "RETURNED; CHARGED_CCD_MOLECULE",
+            "smiles_argument": "ABSENT",
+            "native_execution": {
+              "elapsed_seconds": 0.967536,
+              "finished_at": "2026-10-21T09:00:03.783879+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-21T09:00:02.816383+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "native_atom_count": 23,
+            "dictionary_target_screen": "PASS",
+            "active_native_target_screen": "PASS",
+            "triple_target_angstrom": 1.203,
+            "length_esd_angstrom": 0.02,
+            "linear_angle_target_degrees": 180.0,
+            "angle_esd_degrees": 3.0,
+            "dictionary_linear_axis_torsions": 6,
+            "active_heavy_atom_linear_axis_torsions": 3,
+            "source_charge_sum": 0,
+            "generated_charge_sum": -2,
+            "missing_source_hydrogens": [
+              "HOP2",
+              "HOP3"
+            ],
+            "raw_source_state": "REVIEW; SOURCE_RELATIVE_STEREO_COMPARISON_REJECTED_ON_CHEMICAL_STATE_DIFFERENCE",
+            "absolute_CIP": "NOT_ASSIGNED",
+            "other_numerical_findings": "RECORDED_OFFLINE_CHECKS_PASS",
+            "full_chemical_or_geometry_qualification": "OPEN"
+          }
+        },
+        "historical_floppy_geometry_cause": "NOT_ESTABLISHED",
+        "experimental_scaffold_changes": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "behavior": {
+        "before": "Triple targets pass but generated linear-axis torsions and their native numerical conditioning remain unassessed.",
+        "after": "Rebuild exact captured isolated managers and inspect original torsion kernels/derivatives with independent finite differences and geometry controls; preserve all parameters and chemical-state reviews.",
+        "production_defaults": "UNCHANGED",
+        "NARestraints_authority": "UNCHANGED",
+        "native_acceptance": "PENDING_USER_MAC"
+      },
+      "methods": {
+        "selection": "Existing active dihedral proxies selected by the source triple graph and its linear triplets; no atom-name or residue-code repair allowlist. C43 delivery scope is explicitly PDU/5PC, three heavy-atom proxies each.",
+        "prior_gate": "Exact C42 archive/build, 1747 manifest payloads, worker/result/trace/source proofs, generated candidate hashes and active native receipts/worker/input lineage; recursively retain C41 failures and all earlier evidence.",
+        "prior_replay": "Recompute generated and native triple screens, exact complete/heavy seed models, prior 17 mechanics/96 rotation directions, raw/controlled reader, installed CCD and descriptor evidence. Captured Python never executes.",
+        "native_bootstrap": "Reinterpret exact saved native model/CIF/PHIL; require equality of atoms, definitions, geometry/proxies, installed APIs and SS-disabled policy before evaluations.",
+        "parameters": "Preserve angle, weight, periodicity, alternates and origin; reject symmetry/special positions or nondefault limit/top-out/slack. Full manager signature before/after.",
+        "numeric_provenance": "Six prior numerical modules/binaries must match; all imported numerical/adapter modules remain under selected installation. Recheck hashes; record installed dihedral header/binding text if available, without equating source with binary proof.",
+        "coordinates": [
+          "source_seed_native",
+          "generated_dictionary_full_precision",
+          "generated_dictionary_pdb_rounded_0.001_A"
+        ],
+        "kernels": "Native original single dihedral and singleton shared-container residual/gradient kernels; preserve complete raw results. No adopted objective.",
+        "finite_difference_steps_angstrom": [
+          0.001,
+          0.0001,
+          1e-05,
+          1e-06,
+          1e-07,
+          1e-08
+        ],
+        "directions": "All 12 local Cartesian axes and nonzero single-gradient direction. Require two adjacent consistent steps per direction; record every step.",
+        "directional_tolerance": {
+          "absolute": 0.0001,
+          "relative": 0.0001
+        },
+        "repeat_reversal_tolerance": {
+          "absolute": 1e-08,
+          "relative": 1e-10
+        },
+        "conditioning": "Normalized plane-normal sines; minimum <1e-3 is descriptive near-collinearity review, not a chemical cutoff. Zero plane geometry is undefined regardless of finite zero native gradients.",
+        "controls": "Nonchemical bent/exact-collinear controls, repeated baselines, reversed quadruples and radius/phase profiles approaching collinearity.",
+        "nonfinite_or_native_exception": "RETAINED_AS_EXPLICIT_JSON_REVIEW; NOT_ZEROED_OR_PROMOTED",
+        "budget_per_component": {
+          "paired_evaluations": 3000,
+          "kernels_per_pair": 2,
+          "timeout_seconds": 180
+        },
+        "model_optimization": "NOT_RUN",
+        "coordinate_model_written": false,
+        "restraint_changes": "NONE",
+        "chemical_state_selection": "NOT_RUN",
+        "readyset": "NOT_RUN",
+        "dictionary_generation": "NOT_RUN",
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "schemas": {
+        "schema_version": 1,
+        "new_flag": "--torsion-conditioning-audit-only; mutually exclusive; exact C42 input",
+        "requested_action": "ISOLATED_DIHEDRAL_CONDITIONING_AUDIT",
+        "native_execution": "ISOLATED_DIHEDRAL_CONDITIONING_ONLY",
+        "additive_receipt_fields": [
+          "torsion_conditioning_audit",
+          "source_state_review",
+          "geometry_preflight"
+        ],
+        "compatibility": "Opt-in diagnostic. C29-C42 prior evidence stays exact and readable. No new dependencies, migrations, production or NARestraints changes."
+      },
+      "software_validation": {
+        "fail_before": "Twelve core regressions fail without the module. Twelve completed-return boundary cases fail without C42 scope constants/gate. Eight additional selected-native API fakes cover full worker control flow.",
+        "new_tests": 32,
+        "focused": {
+          "passed": 124,
+          "seconds": 11.65,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_dihedral_conditioning.py tests/test_cedar43_delivery.py tests/test_cedar42_delivery.py tests/test_cif_readyset_generation_audit.py tests/test_cedar41_delivery.py tests/test_cedar40_delivery.py tests/test_cif_component_controls.py tests/test_cif_numerical_recovery_probe.py --tb=short"
+        },
+        "full": {
+          "passed": 2443,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 260.18,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "clean_build_sources_removed_before_replay": true,
+          "relocated_runner": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp": "PASS",
+          "everyday_checkout_tracked_edit": "PRESERVED",
+          "runner_local_ignore": "PASS",
+          "input_payloads": 1747,
+          "runtime_members": 128,
+          "runtime_archive_sha256": "13e506571a417a1e27253d7e47d569fcca31453d316b9e2f0ee9b4930a999d57",
+          "mechanics_prerequisites": 17,
+          "rotation_directions": 96,
+          "completed_readyset_and_active_triple_screens_replayed": true,
+          "prior_missing_resources_and_failed_invocations_preserved": true,
+          "5PC_policy": "C; PASS",
+          "source_charge": 0,
+          "generated_charge": -2,
+          "dictionary_torsions_each": 6,
+          "native_torsions_each": 3,
+          "native_conditioning": "PENDING_USER_MAC",
+          "generation_optimization_adoption": "NOT_RUN"
+        },
+        "native": "PENDING_USER_MAC. Linux worker control-flow tests use explicitly fake APIs; saved C42 replay is not a new native evaluation.",
+        "documentation": {
+          "mirror_equality": "PASS",
+          "relative_links": 147,
+          "protected_source_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+          },
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        }
+      },
+      "limitations": [
+        "This audit does not remove torsions, tune targets or select phosphate protonation.",
+        "Generated/source graph and charge/H differences remain scientific review; source-relative rejection is not an absolute CIP assignment or an inversion claim.",
+        "Hydrogen-bearing dictionary torsions and 5PC angle/plane findings remain recorded outside this heavy-only kernel slice.",
+        "Sampled derivative agreement does not prove conditioning, all-gradient correctness, convergence or historical causation.",
+        "No scaffold, diffraction data, refinement or production integration is changed."
+      ],
+      "artifact_boundary": "Maintained code/tests/docs and hashes only. Private/installed snapshots, numerical/generated models/CIFs, runners and review ZIPs stay outside Git.",
+      "next_action": "Build Cedar 43 with --delivery-prefix 43_Cedar --component-control PDU --component-control 5PC. Run exact C42 ZIP with --component DP --torsion-conditioning-audit-only under Phenix 2.2.1-6174. Return console/ZIP; <=3000 paired evaluations / <=180 s per control. No optimizer or generation.",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#linear_axis_torsion_conditioning_2026_10_21"
     }
   },
   "audience": [

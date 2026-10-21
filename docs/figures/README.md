@@ -42,6 +42,10 @@ numerical restraints. Returned Cedar 41 separates a receipt worker's successful
 exit from failed native ReadySet calls and unchanged preparatory source copies.
 Cedar 42 isolates API/process arguments, preserving chemistry and original builder
 calls; completed output remains subject to independent native qualification.
+Returned C42 passes generated/native triple length and linear-angle targets,
+retaining linear-axis torsions and phosphate-state reviews. C43 separately
+checks fixed torsion kernels/derivatives, plane-normal conditioning and exact
+collinear controls without changing restraints or writing a coordinate model. The C43 native result remains pending.
 Cedar 40 captures the literal ReadySet implementation and
 bounded imports as text; its native accessor result does not claim ReadySet
 execution or a mapped-SMILES graph. Explicit scope and budget limits remain in

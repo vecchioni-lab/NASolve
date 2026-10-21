@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-20** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-21** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -796,24 +796,41 @@ byte-identical public-source copies, with no numerical length/angle targets;
 native interpretation stays NOT_RUN. No historical floppy-chain cause is
 established. PDU T and 5PC C pairing/stacking compiler controls both PASS.
 
-**Cedar 42 prepared:** use the same explicit generation action on the exact
-C41 ZIP. Keep ReadySet's API arguments separate from empty process options,
-as its captured command-line entrypoint does. Preserve all actual builder
-kwargs, chemistry and native defaults. Record argv at observed calls and print
-worker/native/output states separately. Retain unchanged-source/partial files
-without calling them completed generation. Exact C41 failure/source snapshots,
-fixed complete/heavy models and dictionary triple screens replay before retry.
-Each generation remains capped at 180 s; eligible output gets <=60 s native
-interpretation with SS off. Native internal template operations remain
-uninstrumented; AM1/final-H options stay disabled. No scaffold, refinement or
-adoption change is authorized by a surviving file. Exact software/native
-provenance and limits remain in the native ledger.
+**Cedar 42 returned and verified (2026-10-21):** all **1,747 payloads** and
+the rebuilt clean published runner match. Phenix 2.2.1-6174 completes PDU/5PC
+ReadySet in **13.447281 / 5.993324 s** and their fixed-source-seed native
+interpretations in **0.967536 / 0.796326 s**. Each observed file-input eLBOW call
+returns successfully with unchanged kwargs and no SMILES argument. Generated
+triple targets are **1.203 / 1.186 Å**, both ESD **0.020 Å**; both adjoining
+angles target **180°**, ESD **3°**. All four dictionary/native target screens
+PASS. Each heavy-only manager has 23 atoms, with exact captured native output.
 
-**Current action:** build with --delivery-prefix 41_Cedar --component-control PDU
---component-control 5PC, then run the exact Cedar 40 ZIP with --component DP
---readyset-generation-audit-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
-Return console/review ZIP. DP is only the preserved prerequisite; the new
-ReadySet controls are PDU and 5PC. Expect scientific REVIEW, not adoption.
+Six generated torsions per dictionary include a linear atom triple; three are
+active without hydrogens. Those reviews stay visible alongside raw generated
+chemistry: HOP2/HOP3 are absent, charge sum changes **0→−2**, R/S metadata is
+omitted and generated signed chirality remains separately assessed. 5PC also
+retains an angle/plane consistency review. The existing PDU T / 5PC C compiler
+controls PASS. No dictionary is adopted and no historical floppy-chain or SMILES
+cause is established by this isolated result.
+
+**Cedar 43 prepared:** read-only numerical conditioning of the three active
+heavy-atom torsions in each captured manager. Rebuild and match C42's exact
+manager, then compare single/container residuals and gradients with central
+differences (10⁻³…10⁻⁸ Å) at source seeds and generated full/rounded coordinates.
+Retain plane-normal sines, every raw step, repeats, reversed order and synthetic
+bent/exact-collinear controls, including approach-to-linearity profiles.
+Geometrically undefined torsions cannot pass because a native gradient is zero.
+Pin numerical APIs/binaries and preserve complete manager signatures before/after.
+Cap each control at **3,000 paired evaluations / 180 s**. No ReadySet, generation,
+optimization, restraint removal, chemical-state selection or coordinate-model
+write occurs. Native results remain pending; offline and explicit fake-API
+regressions do not stand in for a returned Phenix result.
+
+**Current action:** build with --delivery-prefix 43_Cedar --component-control PDU
+--component-control 5PC, then run the exact Cedar 42 ZIP with --component DP
+--torsion-conditioning-audit-only under Phenix **2.2.1-6174** (dispatcher **2.2.1**).
+Return console/review ZIP. DP remains the preserved prerequisite; the numerical
+controls are PDU and 5PC. Expect scientific REVIEW.
 Preserve the everyday checkout and all
 earlier evidence. The ignored branch-artifact destination and merge-time
 inventory/hash/archive policy remain in force. No new dictionary, native-model

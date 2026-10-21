@@ -131,10 +131,14 @@ canonical selections and 24 static source files. Returned Cedar 41 exposes
 an invocation bug: ReadySet PHIL arguments reached the nested eLBOW options
 parser, stopping both controls before numerical generation. Its two surviving
 CIFs are byte-identical source copies; native triple checks did not run.
-Cedar 42 isolates process arguments while retaining the original explicit API
-arguments and builder calls, and prints worker/native/file outcomes separately. Source-seed heavy-atom coordinates
-are fixed for interpretation; native generation may perform internal geometry
-operations. Equivalent operational mapping aliases now compile once while
+Returned Cedar 42 completes both isolated ReadySet controls. Generated and
+native triple targets pass: PDU 1.203 Å, 5PC 1.186 Å (both 0.020 Å ESD), with
+180° / 3° linear-angle terms. Each dictionary retains six linear-axis torsions,
+three active in the heavy-only manager, and changes neutral source phosphate
+to charge −2 by losing HOP2/HOP3. These remain review findings. Cedar 43 evaluates
+those unchanged native torsions at saved source and generated full/rounded
+coordinates, with finite differences and collinearity controls. No optimization,
+restraint removal, chemical-state selection or scaffold change is performed. Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.
 NARestraints policy and production defaults stay fixed; geometry, convergence
