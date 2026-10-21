@@ -8,6 +8,30 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify retained candidates for isolated native usability
+
+- Verify all 2,677 C54 payloads and the unchanged parent. Three complete native
+  builders finish, preserving explicit charges and all nine finished
+  source-relative configurations. Retain PDU nonconvergence, DP/5PC unknown
+  stopping, four DP geometry findings and the raw phosphate `both` rejection.
+- Add C55 `--candidate-native-usability-only`, reusing saved dictionaries at
+  source and generated coordinates. Six bounded native workers require exact
+  effective definitions/covalent targets and finite repeatable native energies
+  and gradients. Generation and optimization are not repeated.
+- Distinguish unoriented `both` volume omission from loss of a fixed hand;
+  require complete native four-bond/six-angle coverage while preserving the
+  mechanical-difference note and legacy verdict. No component-name exception.
+- Feed verified evidence into the existing automatic decision core for this
+  isolated generated-candidate pool. Nonconvergence is a note; no student CIF
+  inspection, linked adoption or ordinary pipeline change is introduced.
+  Preserve ligand/non-polymer classification, formal-charge access limits and
+  unresolved chemistry/geometry evidence for later linked integration.
+- All 63 new regressions, 296 focused and 2,992 full tests pass (two skips,
+  276 subtests), plus exact-C54 deleted-build/relocated replay with preserved
+  everyday edits, poisoned imports and aliased temporary roots.
+  Native Mac execution remains pending. Default native worker bytes, kernels,
+  targets, dependencies and NARestraints release/workbook are unchanged.
+
 ### Generate complete source-native dictionary candidates
 
 - Verify all 2,615 C53 payloads, six completed native setup/cache qualifications,

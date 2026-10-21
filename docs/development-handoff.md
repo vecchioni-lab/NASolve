@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-21** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-22** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -21,36 +21,49 @@ and fixed target mechanics intact. DNA pucker is nonfatal; demonstrated stereo
 inversion excludes that candidate rather than being silently allowed.
 
 Implemented: pure `cif-automatic-usable-fallback-v1` selection from verified
-adapter evidence and additive PostMR `solution_report` summaries. Still planned:
-automatic candidate acquisition/repair, native qualification/adoption adapters
-and the PDF renderer. Detailed diagnostic REVIEW results are developer evidence,
+adapter evidence and additive PostMR `solution_report` summaries. C55 adds an
+opt-in isolated native qualification-to-decision adapter, pending the Mac return.
+Automatic acquisition/repair, production bundle adoption and the PDF renderer
+remain planned. Detailed diagnostic REVIEW results are developer evidence,
 not student CIF approval gates. See the [contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
-Returned C53 verifies all **2,615 payloads**, six completed constructors and
-all six native setup/cache qualifications. All **nine native-basis source target
-signs now agree**. DP changes from the unprepared endpoint; PDU/5PC do not.
-Every fresh control/observer pair matches. Temporary-frame hand warnings and DP
-marker-continuity review remain developer evidence, not finished-molecule or
-absolute-CIP verdicts. The full 2,502-payload C52 parent is unchanged. The reported
-runner differs from the clean delivery only in NARestraints dirty-state metadata;
-reconstructing that field exactly reproduces its SHA, with all runtime bytes equal.
+Returned C54 verifies all **2,677 payloads**, including the unchanged 2,615-payload
+C53 parent. All three native full builders complete and retain written outputs;
+explicit formal charges and all **nine finished four-neighbor source-relative
+configurations are preserved**. PDU reports nonconvergence. DP/5PC logs do not
+provide qualified convergence verdicts. DP retains four plane/angle findings.
+Its legacy rejection is solely the omitted source phosphate `both` volume row;
+the three fixed sugar-hand definitions match. A `both` term permits either hand
+but remains a mechanical volume restraint, so its omission is not equivalence.
+The reported runner differs from clean C54 only in NARestraints dirty-state
+metadata; reconstructing that field reproduces its SHA with equal runtime bytes.
 
-**C54 is the next native action.** Generate complete separate DP/PDU/5PC
-candidates with `--source-candidate-generation-only` on exact C53. The selected
-native run API accepts the source-prepared object, owns Setup, and executes the
-full builder, optimization and output. Each owned worker requests one 180-step
-block within 600 seconds, retaining written output across nonconvergence and
-later errors. Chemistry and explicit charges remain checked; finished stereo
-uses named four-neighbor tetrahedra so central deformation is not inversion.
-Native proxy usability, automatic production adoption and absolute CIP remain
-separate. Students do not adjudicate these internal diagnostic results.
+**C55 is the next native action.** Use `--candidate-native-usability-only` on the
+exact C54 return. Reuse each saved dictionary at source-seed and generated-output
+coordinates: six workers, at most 60 seconds each, two fixed unnormalized native
+energy/gradient evaluations per worker. No generation or optimization repeats.
+Require exact effective definitions, active covalent targets/weights, atom
+identities, finite repeatable values and unchanged covalent proxies across cases.
+The omitted `both` term additionally requires all four native bonds and six
+angles at that centre. Fixed-hand loss, charge changes and actual opposed
+finished configuration remain exclusions. Preserve the raw DP rejection while
+recording the separate general reassessment; there is no residue-name exception.
 
-Build `54_Cedar_probe_cif_complete_candidate.py` with PDU/5PC/ATL. ATL remains
+Pass verified evidence to the existing automatic decision core within the
+**isolated generated-candidate pool only**. Nonconvergence and unreported
+convergence are notes. No student CIF inspection or linked adoption occurs.
+Generated classification is ligand (DP) or non-polymer (PDU/5PC); linked polymer
+classification, phosphate state, absolute CIP and production/PDF integration
+remain subsequent work. Linear-axis torsions and geometry findings stay visible.
+
+Build `55_Cedar_probe_cif_native_usability.py` with PDU/5PC/ATL. ATL remains
 public graph/compiler only; the requested eight-pair live plan is unchanged.
-No new dependency, native kernel/target change, installed patch or NAR release.
-All **41 new regressions**, **469 focused / 2,929 full tests** pass (two skips,
-276 subtests), plus exact-C53 deleted-build/relocated transport, poisoned imports,
-aliased temp roots and preserved everyday edits. Details are recorded in
+No dependency, native kernel/target change, installed patch or NAR release.
+All **63 new regressions**, **296 focused / 2,992 full tests** pass (two skips,
+276 subtests). The exact-C54 deleted-build/relocated replay passes with 140
+runtime members, poisoned imports, aliased temporary roots and everyday edits
+preserved. Validation and exact return hashes are recorded in
+`isolated_candidate_native_usability_2026_10_22` and
 `source_native_complete_candidates_2026_10_21` in the existing ledger.
 
 ## Completed and open work

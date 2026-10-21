@@ -44,9 +44,9 @@ stereochemical inversion is a distinct chemical change, including for ATL.
 The implemented decision core preserves source authority, excludes demonstrated
 unusable candidates and compares energy only for the same fixed objective.
 Unknown stereo remains unknown. PostMR now stores a concise solution-report
-summary alongside its detailed assessment. Automatic generation/recovery-to-
-selection integration, effective-bundle adoption and PDF rendering remain
-planned. Development diagnostics can retain REVIEW without asking students to
+summary alongside its detailed assessment. C55 adds an opt-in isolated native
+usability-to-decision adapter, pending Mac execution. Automatic production
+recovery, effective-bundle adoption and PDF rendering remain planned. Development diagnostics can retain REVIEW without asking students to
 inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 ## How it works
@@ -1155,7 +1155,35 @@ and fallback qualification. Finished configuration uses four named neighbors,
 so central deformation/pucker is not inversion. Source chemistry, charges and
 numerical completeness are still checked. Students do not inspect these CIFs;
 production selection/adoption and the solution PDF adapter remain planned.
-Native full-builder results, absolute CIP and scientific approval remain open.
+Returned C54 completes all three builders and preserves charges and all nine
+finished source-relative configurations. PDU is nonconverged; DP/5PC stopping is
+unreported. DP's raw rejection is one omitted phosphate volume term marked
+`both`, which permits either hand; the three fixed sugar definitions match.
+That volume term still constrains geometry, so its omission remains explicit.
+
+C55 reuses the saved outputs at source-seed and generated coordinates to test
+isolated native usability. Exact effective definitions, complete essential
+restraints and fixed covalent targets/weights must survive. The omitted `both`
+term requires four active bonds and six angles at its centre. Two fixed native
+energy/gradient evaluations per case must be finite and repeatable; their size
+is not an acceptance threshold. Six workers have 60-second deadlines, with no
+regeneration or optimization. Verified evidence reaches the existing automatic
+decision core for this isolated generated-candidate pool only. Nonconvergence
+is a note, and unselected generated output leaves production dictionaries
+untouched. Native Mac results remain pending.
+
+**Methods.** Freeze and hash the prior output; compare named chemical graphs,
+explicit formal charges, fixed signed definitions and finished four-neighbor
+configuration. Keep the old rejection alongside the narrower reassessment.
+Interpret each candidate independently at two coordinate sets, pin selected
+native energy implementation sources, compare complete effective definitions
+and name-normalized covalent proxies, and record two unnormalized energies and
+gradients per case. Continue decisions depend on verified usability rather than
+convergence. Unsupported native formal-charge access remains unassessed and
+never uses partial charge as a replacement. The generated ligand/non-polymer
+classification, phosphate state, triple-axis torsions, absolute CIP and linked
+scaffold integration remain separate qualifications. No student CIF inspection
+or automatic production adoption is involved.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

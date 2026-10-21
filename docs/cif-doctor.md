@@ -37,9 +37,13 @@ The decision never changes files, proxies, weights, checkpoint selection or
 native mechanics. PostMR adds a plain-language `solution_report` summary to its
 existing CIF Doctor receipts without introducing an approval gate.
 
-**Still to integrate:** automatic acquisition/repair orchestration, native
-qualification-to-decision adapters, verified effective-bundle adoption and the
-solution PDF renderer. The decision core alone is not a claim of deployed
+C55 adds an opt-in isolated native qualification-to-decision adapter for saved
+complete candidates; its Mac execution is pending. It selects only within that
+isolated generated-candidate pool and does not adopt a linked component.
+
+**Still to integrate:** automatic acquisition/repair orchestration, production
+qualification, verified effective-bundle adoption and the solution PDF renderer.
+The decision core and isolated adapter are not a claim of deployed
 end-to-end automatic recovery. The eventual PDF must explain what was tried,
 which source/candidate was used, bounded stopping evidence, fallback reasons
 and unresolved limitations, with technical receipts retained for developers.
@@ -2215,8 +2219,51 @@ remains unassessed, without asking the student to review CIFs. Known chemical
 changes/opposite configuration exclude that candidate from later automatic
 selection. Native proxy usability, absolute CIP, fallback adoption and solution
 PDF rendering remain separate adapters; C54 does not install a dictionary or
-change a scaffold. ATL remains a public source/compiler control. Native C54
-execution is pending on the reviewed Mac installation.
+change a scaffold. ATL remains a public source/compiler control. Returned C54
+completes all three builders on Phenix 2.2.1-6174, preserving explicit charges
+and all nine finished source-relative configurations. PDU reports nonconvergence;
+DP/5PC stopping is unreported. DP retains four plane/angle findings and its raw
+rejection for one omitted phosphate `both` volume term; fixed sugar definitions
+match. These results do not certify native proxy usability or linked adoption.
+
+## Saved candidate native usability (Cedar 55)
+
+`--candidate-native-usability-only` accepts exact C54 and replays every retained
+source/API/output hash and preceding qualification with maintained code. It
+reuses frozen source and generated dictionaries/models without running a builder
+or optimizer. Raw legacy inspection and stopping evidence remain unchanged.
+
+The general reassessor distinguishes fixed signed chirality from a source
+unoriented `both` volume term. An omission can proceed only when every fixed
+hand is intact, no source R/S centre loses its fixed term, explicit charges and
+chemistry match, and no actual opposed finished configuration is demonstrated.
+This is an explicit mechanical difference, not equivalent restraint mechanics:
+all four native bonds and six angles at the omitted centre must remain active.
+There is no component-name or phosphorus exception.
+
+**Methods.** At source-seed and generated-output coordinates for each of three
+components, interpret the saved dictionary with guessed secondary structure
+disabled. Pin the selected flags, energy and manager source files. Require exact
+model identities/coordinates, complete monomer mapping, six effective-definition
+categories, declared bond orders and active bonds, angles, torsions, planes and
+signed chirality. Compare fixed covalent targets/weights by atom name across the
+two cases; dynamic nonbonded pair membership is not a covalent signature. Check
+two unnormalized native energies/gradients for finite complete values and
+repeatability (absolute 1e-8, relative 1e-10). Six workers have 60-second deadlines,
+with twelve energy calls total and no magnitude cutoff or objective ranking.
+
+Feed verified qualification to `cif-automatic-usable-fallback-v1` for the isolated
+generated-candidate pool. Usable nonconvergence/unknown stopping yields notes;
+unusable generated output is unselected while existing production dictionaries
+remain intact. This does not prove another fallback usable or stop an ordinary
+NASolve run. Native formal-charge access can be unsupported and stays explicit;
+a contradictory available formal charge fails. Partial charges do not replace
+formal declarations. DP ligand and PDU/5PC non-polymer metadata, triple-axis
+torsions, geometry findings and absolute CIP remain recorded boundaries before
+linked adoption. Native Mac execution is pending. The default native worker is
+byte-identical unless the new energy-inventory opt-in is enabled. Students are
+not asked to inspect CIFs; production recovery/adoption and PDF rendering remain
+separate integration work.
 
 ## Reviewed preparation
 

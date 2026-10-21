@@ -785,7 +785,22 @@ Finished-coordinate checks use the four named neighbors of each declared centre,
 separate from temporary local frames and central deformation. Complete chemical,
 charge and numerical checks remain active. This supplies evidence for the later
 native usability/adoption adapter, without changing native kernels or ordinary
-PostMR. ATL remains an independent public source/compiler control.
+PostMR. Returned C54 completes all three builders with preserved explicit
+charges and nine finished source-relative configurations. DP's raw rejection
+concerns one omitted phosphate `both` volume term; fixed sugar hands match.
+PDU reports nonconvergence and DP/5PC stopping is unreported.
+
+C55 adds opt-in isolated usability on the frozen C54 dictionaries, without
+generation or optimization. Six 60-second native workers check source-seed and
+generated coordinates, exact effective definitions and covalent proxies, and
+two finite repeatable unnormalized energy/gradient evaluations each. A general
+`both` omission reassessment preserves the raw rejection and requires all four
+bonds and six angles at that centre, without changing native kernels or targets.
+Verified evidence reaches the existing decision core for this isolated generated
+pool only. Usable nonconvergence is a note; unusable output remains unselected
+and existing production dictionaries are preserved. Mac execution, linked
+polymer classification and production adoption remain open. Unsupported native
+formal-charge readback is explicit, not substituted with partial charges.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core
@@ -793,8 +808,9 @@ excludes demonstrated unusable candidates, respects source authority and ranks
 only comparable fixed-objective endpoints. Nonconvergence and pucker changes
 are nonfatal notes; inversion is a candidate exclusion, triggering automatic
 fallback. PostMR includes an additive plain-language solution_report summary.
-Automatic acquisition/native qualification/adoption and the PDF renderer remain
-planned; the policy core is not yet an integrated recovery pipeline.
+Automatic acquisition, production qualification/adoption and the PDF renderer
+remain planned; the policy core and isolated adapter are not an integrated
+recovery pipeline.
 
 
 The component-control auditor compares duplicate records by all atom roles and

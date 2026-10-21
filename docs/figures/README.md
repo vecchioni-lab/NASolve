@@ -100,8 +100,10 @@ closes that source target-sign mismatch, retaining temporary-frame warnings.
 Original native targets/kernels remain unchanged; this is not an absolute CIP
 or finished-molecule qualification.
 
-C53 now passes all native setup/cache checks and nine source target signs, with
-local-frame warnings preserved. C54 advances to complete separate native builder
-candidates: bounded optimization, retained nonconverged output and finished
-four-neighbor configuration checks. Native usability/production adoption remain
-separate; neither students nor the figure imply CIF adjudication is required.
+Returned C54 completes all three full builders with preserved explicit charges
+and finished four-neighbor configuration. C55 reuses saved dictionaries for
+isolated native usability and automatic decisions; DP's omitted `both` volume
+term remains a mechanical difference requiring complete tetrahedral coverage.
+Nonconvergence is a note. Linked classification/adoption remain separate and
+Mac usability execution is pending; no completed production-adoption arrow or
+student CIF adjudication is implied.

@@ -415,7 +415,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           phil_namespace_policy: str = "direct",
                           inventory_detail: str = "basic",
                           policy_inventory: bool = False,
-                          installed_library_only: bool = False) -> dict:
+                          installed_library_only: bool = False,
+                          energy_inventory: bool = False) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -431,6 +432,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         raise ValueError("Policy inventory must be an explicit boolean")
     if type(installed_library_only) is not bool:
         raise ValueError("Installed-library selection must be an explicit boolean")
+    if type(energy_inventory) is not bool:
+        raise ValueError("Native energy inventory must be an explicit boolean")
     if not phenix_version or not str(phenix_version).strip():
         raise ValueError("An explicit Phenix version is required")
     if not isfinite(float(timeout_seconds)) or timeout_seconds <= 0:
@@ -472,7 +475,13 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
     if installed_library_only:
         spec["installed_library_only"] = True
     (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
-    (work / "native_worker.py").write_text(_NATIVE_WORKER, encoding="utf-8")
+    worker = _NATIVE_WORKER
+    if energy_inventory:
+        from .cif_candidate_usability import native_energy_worker
+        spec["energy_inventory"] = True
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_energy_worker(worker)
+    (work / "native_worker.py").write_text(worker, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]
     clock = time.monotonic()
     receipt = {"schema_version": 1, "audit_kind": "cif_native_bundle_inspection", "policy_id": NATIVE_POLICY_ID,

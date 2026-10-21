@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-21**. Start with the
+Updated **2026-10-22**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -8,10 +8,11 @@ for actual behavior; history is evidence, not a second task queue.
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 keeps student CIF approval out of the product flow. A tested decision core and
 PostMR report summaries are implemented; recovery/adoption/PDF adapters remain
-planned. Returned C53 passes native setup/cache checks and all nine source target signs.
-C54 requests complete separate source-native dictionaries, retains nonconverged
-outputs and assesses finished coordinates. Native usability/adoption remain open;
-temporary-template warnings are separate from final configuration.
+planned. Returned C54 completes all three builders and preserves charges and
+finished source-relative configuration. C55 reuses those saved dictionaries for
+isolated native usability and automatic decisions, retaining the phosphate
+`both` omission, geometry findings and unknown convergence as explicit evidence.
+Linked classification/adoption remain separate; no student CIF approval is required.
 
 ## What's current?
 

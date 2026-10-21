@@ -16915,11 +16915,12 @@
       "Pure verified-evidence candidate decision: exclude known unusable alternatives, preserve source authority, prefer demonstrated stereo preservation within that tier, compare targets only under the same fixed objective, otherwise preserve declared order.",
       "Nonconvergence/residual geometry/pucker are notes, not rejection. Unknown stereo remains explicitly unassessed, not invented as inversion or PASS.",
       "Demonstrated identity/graph/state corruption, stereo inversion, nonfinite parameters, missing essential restraints or native unusability exclude that candidate. Try another usable candidate; stop only when none exists, without student CIF adjudication.",
-      "PostMR CIF Doctor receipts gain an additive plain-language solution_report summary. Historical findings/status/readiness and fixed mechanics are unchanged."
+      "PostMR CIF Doctor receipts gain an additive plain-language solution_report summary. Historical findings/status/readiness and fixed mechanics are unchanged.",
+      "C55 opt-in isolated saved-candidate native usability-to-decision adapter is implemented and software-tested, pending Mac execution. Selection is confined to the isolated generated-candidate pool; no production adoption occurs."
     ],
     "planned": [
       "Bounded automatic source/repair/optimization orchestration retaining best valid endpoints and native fallback.",
-      "Verified native qualification-to-selection and effective-bundle adoption adapters with immutable provenance.",
+      "Production native qualification-to-selection and effective-bundle adoption adapters with immutable provenance; the C55 isolated adapter does not deploy these.",
       "Solution PDF renderer: sources tried/selected, fixes, stopping evidence, fallback reasons and unresolved limitations."
     ],
     "does_not_change": [
@@ -17115,7 +17116,7 @@
     "next_step": "C54 complete separate source-native candidate generation; do not prolong temporary-frame warnings into a finished-molecule verdict or student approval gate."
   },
   "source_native_complete_candidates_2026_10_21": {
-    "status": "IMPLEMENTED_EXPLICIT_FULL_BUILDER_PENDING_MAC",
+    "status": "THREE_NATIVE_BUILDERS_COMPLETED; FINISHED_SOURCE_RELATIVE_CONFIGURATION_PRESERVED; USABILITY_PENDING",
     "recorded_date": "2026-10-21",
     "delivery_prefix": "54_Cedar",
     "policy_id": "cif-source-native-complete-candidate-v1",
@@ -17164,7 +17165,7 @@
       "compatibility": "Ordinary PostMR, old actions/workers, NARestraints policies/workbook, curated sources, physics and eight-pair live plan are unchanged. ATL is independent public source/compiler only."
     },
     "validation": {
-      "native": "PENDING_USER_MAC; actual captured API AST and exact return replay are offline evidence. Owned fake processes are software tests, not native scientific qualification.",
+      "native": "Phenix 2.2.1-6174 (dispatcher 2.2.1), complete native full-builder execution for DP/PDU/5PC; all three completed with written dictionaries. No native usability or scientific approval claimed.",
       "new_regressions": 41,
       "fail_before": {
         "new_module_failures": 23,
@@ -17224,9 +17225,365 @@
         "deterministic_svg_and_xml": "PASS",
         "raster_visual_review": "PASS"
       },
-      "scope": "26 native API/final-coordinate/owned fake worker cases, including nonconvergence, retained output after exception, unknown stereo, central deformation, chemical mismatch and timeouts; 12 mutated Setup return checks and three action-routing checks. Native full-builder execution is pending Mac."
+      "scope": "Original delivery: 26 API/final-coordinate/owned fake worker cases, 12 mutated Setup returns and three routing checks. The returned complete Mac executions are recorded separately in returned_review; no native usability proof is implied."
     },
     "production_selection": "PENDING_NATIVE_USABILITY_ADAPTER",
+    "scientific_approval": "NOT_RUN",
+    "absolute_cip_assignment": "NOT_RUN",
+    "automatic_adoption": false,
+    "requires_cif_review": false,
+    "returned_review": {
+      "recorded_date": "2026-10-22",
+      "name": "54_Cedar_as2vrmzt_cif_numerical_recovery_review.zip",
+      "sha256": "57395e14def54f7603373c6bca4fe8f8dd5c1014a882bc6c46c1dcde10ffbfe8",
+      "bytes": 61031683,
+      "build_sha256": "47dac80ab749dc3bd5256d1e4aaec0295e3aeec8f69a77747197788d0fc93aea",
+      "reported_runner_sha256": "3b972fa6303eb7248668a31258c7de2c8d317e188c922794cfd0cc7143e56bae",
+      "runtime_archive_sha256": "d824fdf7c564114c60967fb0ab0e6cd283a687c943570ea9be5221c00a5c2296",
+      "runtime_members": 139,
+      "verified_payloads": 2677,
+      "prior_payloads_unchanged": 2615,
+      "delivery_comparison": "Exact clean published C54 BUNDLE/runtime except NARestraints working_tree_has_changes=True metadata; reconstructing that single field reproduces the reported runner SHA.",
+      "source_commit": "596404dd57330267215d05ac1646f9b3b40c8f87",
+      "worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+      "native_installation": "Phenix 2.2.1-6174",
+      "complete_builders": 3,
+      "finished_source_relative_centres_preserved": 9,
+      "candidate_cases": {
+        "5PC": {
+          "candidate_sha256": "3736b5c9f5a6d3b97d9ae32e85eae49302146e79038f5e4002fe7e788183f836",
+          "execution": {
+            "elapsed_seconds": 9.298234,
+            "returncode": 0,
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "builder_status": "COMPLETED",
+          "worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+          "candidate_status": "CANDIDATE_REVIEW",
+          "rejection_reasons": [],
+          "formal_charges_preserved": true,
+          "finished_stereochemistry": "PRESERVED",
+          "finished_centres": 3,
+          "stopping": "NOT_REPORTED",
+          "source_target_chirality_change": [
+            {
+              "component_id": "5PC",
+              "field": "signed_chirality",
+              "source": [],
+              "effective": [
+                [
+                  "C1'",
+                  [
+                    "C2'",
+                    "N1",
+                    "O4'"
+                  ],
+                  "positive"
+                ],
+                [
+                  "C3'",
+                  [
+                    "C2'",
+                    "C4'",
+                    "O3'"
+                  ],
+                  "negative"
+                ],
+                [
+                  "C4'",
+                  [
+                    "C3'",
+                    "C5'",
+                    "O4'"
+                  ],
+                  "negative"
+                ]
+              ]
+            }
+          ],
+          "retained_plane_reviews": 0
+        },
+        "DP": {
+          "candidate_sha256": "a17f13a87da8716c7d357dabf659fc22749394eefaa817c7689dcf18328abdfa",
+          "execution": {
+            "elapsed_seconds": 23.100613,
+            "returncode": 0,
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "builder_status": "COMPLETED",
+          "worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+          "candidate_status": "REJECTED",
+          "rejection_reasons": [
+            "generated-declared-chirality-changed"
+          ],
+          "formal_charges_preserved": true,
+          "finished_stereochemistry": "PRESERVED",
+          "finished_centres": 3,
+          "stopping": "NOT_REPORTED",
+          "source_target_chirality_change": [
+            {
+              "component_id": "DP",
+              "field": "signed_chirality",
+              "source": [
+                [
+                  "C1'",
+                  [
+                    "C2'",
+                    "N9",
+                    "O4'"
+                  ],
+                  "positive"
+                ],
+                [
+                  "C3'",
+                  [
+                    "C2'",
+                    "C4'",
+                    "O3'"
+                  ],
+                  "negative"
+                ],
+                [
+                  "C4'",
+                  [
+                    "C3'",
+                    "C5'",
+                    "O4'"
+                  ],
+                  "negative"
+                ],
+                [
+                  "P",
+                  [
+                    "O5'",
+                    "OP2",
+                    "OP3"
+                  ],
+                  "both"
+                ]
+              ],
+              "effective": [
+                [
+                  "C1'",
+                  [
+                    "C2'",
+                    "N9",
+                    "O4'"
+                  ],
+                  "positive"
+                ],
+                [
+                  "C3'",
+                  [
+                    "C2'",
+                    "C4'",
+                    "O3'"
+                  ],
+                  "negative"
+                ],
+                [
+                  "C4'",
+                  [
+                    "C3'",
+                    "C5'",
+                    "O4'"
+                  ],
+                  "negative"
+                ]
+              ]
+            }
+          ],
+          "retained_plane_reviews": 4
+        },
+        "PDU": {
+          "candidate_sha256": "e0732f581cc00e2cbf6086c0ad588aadeffc175c21d437aecc2b4abcbc6283e8",
+          "execution": {
+            "elapsed_seconds": 156.716297,
+            "returncode": 0,
+            "status": "COMPLETED",
+            "timeout_seconds": 600
+          },
+          "builder_status": "COMPLETED",
+          "worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+          "candidate_status": "CANDIDATE_REVIEW",
+          "rejection_reasons": [],
+          "formal_charges_preserved": true,
+          "finished_stereochemistry": "PRESERVED",
+          "finished_centres": 3,
+          "stopping": "NOT_CONVERGED_REPORTED",
+          "source_target_chirality_change": [
+            {
+              "component_id": "PDU",
+              "field": "signed_chirality",
+              "source": [],
+              "effective": [
+                [
+                  "C1'",
+                  [
+                    "C2'",
+                    "N1",
+                    "O4'"
+                  ],
+                  "positive"
+                ],
+                [
+                  "C3'",
+                  [
+                    "C2'",
+                    "C4'",
+                    "O3'"
+                  ],
+                  "negative"
+                ],
+                [
+                  "C4'",
+                  [
+                    "C3'",
+                    "C5'",
+                    "O4'"
+                  ],
+                  "negative"
+                ]
+              ]
+            }
+          ],
+          "retained_plane_reviews": 0
+        }
+      },
+      "native_groups": {
+        "DP": "ligand",
+        "PDU": "non-polymer",
+        "5PC": "non-polymer"
+      },
+      "interpretation": "DP raw rejection is solely one omitted P/both source volume term; three fixed sugar chirality definitions match. Missing both is a mechanical delta requiring native coverage, not loss of a fixed hand. All charges and finished source-relative configurations survive. PDU nonconverged; DP/5PC convergence unreported.",
+      "excluded_pickle_payloads": "Hashes retained; payloads neither transported nor loaded. Counts vary by native output.",
+      "native_usability": "NOT_RUN",
+      "absolute_cip_assignment": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "next_step": "C55 reuses saved outputs for isolated native usability and automatic decisions; no regeneration, optimization, linked adoption or student CIF adjudication."
+  },
+  "isolated_candidate_native_usability_2026_10_22": {
+    "status": "IMPLEMENTED_ISOLATED_NATIVE_ADAPTER_PENDING_MAC",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "55_Cedar",
+    "policy_id": "cif-isolated-candidate-native-usability-v1",
+    "energy_policy_id": "cif-fixed-native-usability-energy-v1",
+    "module": "src/nasolve/cif_candidate_usability.py",
+    "cli_action": "--candidate-native-usability-only",
+    "runner_filename": "55_Cedar_probe_cif_native_usability.py",
+    "review_input": {
+      "name": "54_Cedar_as2vrmzt_cif_numerical_recovery_review.zip",
+      "sha256": "57395e14def54f7603373c6bca4fe8f8dd5c1014a882bc6c46c1dcde10ffbfe8",
+      "bytes": 61031683,
+      "verified_payloads": 2677
+    },
+    "purpose": "Determine isolated usability of retained complete outputs despite nonconvergence and pass verified evidence to the existing automatic decision core without student CIF review.",
+    "algorithm": [
+      "Replay exact C54 and prior immutable capsules, pin generation worker/source/API/spec/output receipts, and retain raw legacy rejection/stopping evidence.",
+      "Reassess omissions of only unoriented both volume terms generically: preserve all fixed signed and source-labelled hands, charges, graph and finished source-relative configuration. An omission is explicitly mechanically different and requires all four bonds and six native angles at that centre. No residue-name or element allowlist.",
+      "Reuse saved candidate.cif at original source-seed and written generated-model coordinates; no generation or optimization. Pin selected native flags, energy and manager implementation files; disable guessed secondary structure and retain NARestraints authority.",
+      "Require exact complete atom/model identities and coordinates, effective definitions and orders, complete native proxy counts, finite positive parameters and exact active covalent bonds/angles/torsions/planes/fixed chirality, including omission tetrahedral coverage.",
+      "At each coordinate case compute two finite complete unnormalized native energies/gradients with strict repeats. Compare static covalent signatures by named atoms across cases; no magnitude threshold, objective ranking or nonbonded-cache equivalence claim.",
+      "Feed verified isolated usability into cif-automatic-usable-fallback-v1 for the generated-candidate pool only. Nonconvergence/unknown stopping remain notes. Unselected generated outputs preserve existing production dictionaries; no linked adoption or ordinary solve stopping follows."
+    ],
+    "limits": {
+      "native_components": 3,
+      "coordinate_cases_per_component": 2,
+      "max_workers": 6,
+      "worker_timeout_seconds": 60,
+      "fixed_energy_calls_per_worker": 2,
+      "max_energy_calls": 12,
+      "repeat_absolute_tolerance": 1e-08,
+      "repeat_relative_tolerance": 1e-10,
+      "generation_calls": 0,
+      "optimization_calls": 0
+    },
+    "schemas": {
+      "native": "Additive opt-in energy_inventory, including selected source fingerprints and two raw target/gradient snapshots; default legacy worker bytes unchanged.",
+      "probe": "New candidate_usability_audit with anchored saved candidate/native-directory references, legacy plus revised assessment, two native qualifications, fixed-proxy comparison and isolated decision.",
+      "compatibility": "Old actions/verdicts/workers, production pipelines, curated sources, NARestraints policy/workbook and requested eight-pair live test stay unchanged. ATL is independent public/compiler only."
+    },
+    "validation": {
+      "native": "PENDING_USER_MAC; actual return/source replay and owned fake processes are software evidence, not native usability proof.",
+      "new_regressions": 63,
+      "fail_before": {
+        "failed": 29,
+        "seconds": 0.58
+      },
+      "focused": {
+        "passed": 296,
+        "seconds": 21.83,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_candidate_usability.py tests/test_cedar55_delivery.py tests/test_cif_native_validation.py tests/test_cedar54_delivery.py tests/test_cedar53_delivery.py tests/test_cedar52_delivery.py tests/test_cif_source_candidate.py tests/test_cif_generation.py tests/test_cif_doctor_selection.py tests/test_cif_terminal_qualification.py tests/test_cif_fixed_geometry.py"
+      },
+      "full": {
+        "passed": 2992,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 227.52,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "596404dd57330267215d05ac1646f9b3b40c8f87",
+          "working_tree_has_changes": true
+        },
+        "runner_sha256": "52231f6b5398ba83f01ef4ff9dcd481208e8fd411b6efc488eb1d533b4732042",
+        "build_sources_deleted_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 2677,
+        "runtime_members": 140,
+        "runtime_archive_sha256": "68da9d5505e91f357b6bf0170ba92858a1dc346eaf7a6ae8b5b7271551b9bc6d",
+        "prior_constructor_calls": 123,
+        "setup_qualifications": 6,
+        "source_target_signs": 9,
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "cache_transitions": 48,
+        "strict_derivative_directions": 246,
+        "recorded_pair_kernels": 3286,
+        "source_consumers": "EXACT_PRIOR",
+        "ATL": "INDEPENDENT_PUBLIC_ONLY",
+        "isolated_native_usability": "PENDING_USER_MAC",
+        "selection_adoption": "NOT_RUN; ISOLATED_COMPONENT_SCOPE"
+      },
+      "documentation": {
+        "mirror_equality": "PASS",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_source_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      },
+      "scope": "46 general chemistry/native-proxy/energy/policy cases, 14 immutable return mutation cases and three action-routing cases. Default-worker isolation, finite/repeat failure, reordered native atoms, torsion parameters and missing tetrahedral angles are covered.",
+      "default_native_worker": {
+        "byte_identical_to_prior": true,
+        "bytes": 19036,
+        "sha256": "9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78"
+      }
+    },
+    "remaining_limits": [
+      "Native Mac usability execution pending.",
+      "Isolated generated-candidate pool only; no inferred native fallback qualification or linked scaffold adoption.",
+      "Generated DP ligand/PDU/5PC non-polymer classification still requires source-preserving linked polymer integration.",
+      "Unsupported native formal-charge readback stays explicit; available contradictions fail and partial charges never replace formal declarations.",
+      "Linear-axis torsions, geometry findings, phosphate state, independent absolute CIP and final structural validation remain separate.",
+      "Production recovery/adoption and solution PDF renderer remain planned."
+    ],
     "scientific_approval": "NOT_RUN",
     "absolute_cip_assignment": "NOT_RUN",
     "automatic_adoption": false,
