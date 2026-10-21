@@ -1956,9 +1956,34 @@ step. Live object identity/forwarding remain pinned-worker evidence; offline
 JSON replay cannot independently prove Python object identity. Fresh-repeat
 endpoint equality and agreement with C48 are separate from stereochemistry;
 random state is not reset, and differences remain REVIEW. Limit six owned
-30 s workers and 256 observed calls each. Native trace evidence is pending.
-Source/generated charge/H, absolute stereo, 5PC plane and scientific
-qualification remain separate, without full generation or adoption.
+30 s workers and 256 observed calls each. Returned C49 completes six native
+constructors and matches all fresh and earlier C48 endpoints exactly. The
+original hand warnings remain. DP native chiral markers change while signed
+volume metadata survives, so its trace chemical-metadata gate stays REVIEW;
+PDU/5PC trace replay passes. First boundary timing does not prove a causal bug.
+
+Build C50 with both controls; run exact C49 with `--component DP
+--source-constructor-mapping-audit-only`. The additive
+`cif-native-local-coordinate-mapping-v1` policy independently replays all six
+prior qualifications, raw trace/source-definition evidence and three fresh/
+previous comparisons. Restart original sources and preserve the old failures.
+Observe selected native GetCoordinates, SetCoordinates and GetNewManager in
+addition to existing hooks. Record original vectors and named local/global
+indices, original local order/input volume/equil/marker, and actual native
+chirality proxy i_seqs, volume_ideal, weight and both_signs. Original arguments,
+returns, kernels and source files are unchanged; methods are restored.
+
+Replay exact getter order and setter writeback with unchanged outside atoms.
+Map each actual indexed proxy basis to source names and compare signed source
+volume to the native target, retaining both-sign uncertainty. Separately report
+the observed sorted-index transfer between final tightening and R/S inspection
+and source-relative local hand before/after. Shared parent coordinates can mix
+temporary local frames; no completed-molecule or causal-bug claim follows.
+Original hand and metadata gates remain active. Six owned 30 s workers, 256
+calls/512 boundaries each, and 64 rows per captured vector/proxy list bound
+execution. Unsupported native shapes remain REVIEW. Native mapping evidence
+is pending. Source/generated charge/H, absolute stereo, 5PC plane and scientific
+qualification remain separate, without a repair, full generation or adoption.
 
 CIF Doctor assesses component dictionaries without changing their chemistry or
 the model. It runs offline, using NASolve's existing CIF reader and lightweight

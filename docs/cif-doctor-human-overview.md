@@ -1075,8 +1075,25 @@ the four-neighbor determinant, then identifies the first observed reviewed
 boundary. Nested timing alone does not establish a causal defect. Exact fresh
 repeat agreement is a separate observation; random state is not reset and
 differences remain visible. The six owned workers have 30 s caps; each trace
-has at most 256 calls. Native boundary evidence is pending. Optimizer kernels,
-full generation, absolute CIP and scientific approval remain separate.
+has at most 256 calls. Returned C49 completes all six constructors: fresh
+observed/unobserved endpoints and earlier C48 endpoints match exactly. Hand
+warnings remain. DP's native marker fields change while its signed-volume
+metadata survives; retain the failed continuity gate. Reviews can clear and
+recur as overlapping local templates move shared atoms into temporary frames.
+A parent endpoint is therefore not a completed-molecule stereo verdict.
+
+C50 follows coordinates by name through local native read/write order and
+actual manager chirality proxy indices. The observer records original vectors,
+local indices, native signed volume targets/weights and both-sign flags.
+Maintained replay checks exact vector assignment and maps each ordered proxy
+basis to source atom names, then compares the source volume with the native
+target sign. A separate replay identifies any sorted-index transfer between
+final restraint tightening and native R/S inspection and reports local hand
+before/after. These are observations before a repair: source warnings, marker
+gates, native arguments/targets and NARestraints authority remain fixed.
+The same six 30 s workers/256-call bounds apply, with 64-row vector/proxy caps.
+Native mapping evidence is pending. Optimizer kernels, full generation,
+absolute CIP and scientific approval remain separate.
 
 Process-local observers forward the original eLBOW
 builder/template calls unchanged and record their arguments, call sites,

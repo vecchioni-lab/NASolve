@@ -256,11 +256,12 @@ def verify_constructor_capture(installation_root,report,output):
     return True
 
 
-def audit_source_constructor(installation_root,python_executable,api_sources,source,code,output,*,environment,expected_dialect,prior_sources,timeout_seconds=60,native_cctbx=False,trace_chirality=False,trace_sources=()):
+def audit_source_constructor(installation_root,python_executable,api_sources,source,code,output,*,environment,expected_dialect,prior_sources,timeout_seconds=60,native_cctbx=False,trace_chirality=False,trace_sources=(),coordinate_mapping=False):
     """Run one exact-source reader/charge/promotion/Chiralise handoff."""
     if expected_dialect not in {'MONOMER_LIBRARY_CIF','CHEMICAL_COMPONENTS_CIF'}:raise ValueError('Unsupported explicit reader dialect')
     if type(native_cctbx) is not bool:raise ValueError('Require explicit native backend selection')
     if type(trace_chirality) is not bool or trace_chirality and not native_cctbx:raise ValueError('Native boundary observation requires explicit CCTBX selection')
+    if type(coordinate_mapping) is not bool or coordinate_mapping and not trace_chirality:raise ValueError('Native mapping observation requires boundary observation')
     if trace_chirality:
         names={'elbow/chemistry/ChiralClass.py','elbow/cctbx_api/CCTBXMixins.py'}
         if (len(trace_sources)!=2 or any(r.get('anchor')!='phenix_installation' for r in trace_sources)
@@ -306,6 +307,7 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
         'declared_charge_control':{'component':code,'dialect':expected_dialect,'elements':elements,'charges':{n:int(q) for n,q in charges.items()},
             'coordinates':coordinates,'bonds':[{'atoms':list(p),'order':normalized[o]} for p,o in bonds.items()]}}
     if trace_chirality:spec['trace_sources']=list(trace_sources)
+    if coordinate_mapping:spec['coordinate_mapping']=True
     (output/'constructor_spec.json').write_text(json.dumps(spec,indent=2)+'\n')
     report={'schema_version':1,'policy_id':POLICY_ID,'status':'FAILED','component':code,'sources':rows,'expected_dialect':expected_dialect,
         'source_sha256':sha256(original).hexdigest(),'dispatcher_sha256':sha256(dispatcher).hexdigest(),'execution':{'status':'NOT_RUN','timeout_seconds':timeout_seconds},
@@ -330,6 +332,9 @@ def audit_source_constructor(installation_root,python_executable,api_sources,sou
                     if trace_chirality:
                         from .cif_constructor_trace import analyze_constructor_trace
                         report['trace_analysis']=analyze_constructor_trace(source,code,result.get('constructor_trace',{}))
+                        if coordinate_mapping:
+                            from .cif_constructor_mapping import analyze_constructor_mapping
+                            report['mapping_analysis']=analyze_constructor_mapping(source,code,result.get('constructor_trace',{}))
         verify_constructor_capture(root,report,output)
     except (OSError,ValueError,KeyError,TypeError) as exc:report.update(status='FAILED',error=type(exc).__name__+': '+str(exc))
     report['source_preserved']=source.read_bytes()==original and (output/'source.cif').read_bytes()==original and python_executable.read_bytes()==dispatcher

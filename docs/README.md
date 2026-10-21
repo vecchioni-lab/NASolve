@@ -215,7 +215,10 @@ for actual behavior; history is evidence, not a second task queue.
   Returned C48 completes all three constructors and backend gates, retaining
   source-relative sugar-hand warnings. C49 observes local native boundaries,
   compares fresh unobserved/observed runs and checks all neighbor bases before
-  a correction. Native trace evidence, full generation and absolute CIP remain open. Equivalent
+  a correction. Returned C49 completes all six constructors and exact repeat
+  comparisons, retaining hand warnings and DP marker review. C50 observes
+  named local coordinate order, native chirality proxy bases and index transfers.
+  Native mapping evidence, full generation and absolute CIP remain open. Equivalent
   role aliases and descriptive columns are reconciled in the auditor; 5PC
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification

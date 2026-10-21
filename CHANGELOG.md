@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Observe local coordinate and chirality proxy mapping
+
+- Verify all 2,190 C49 payloads, six native qualifications, 84 observed calls
+  and three exact fresh/previous endpoint comparisons. Preserve sugar-hand
+  warnings and DP native-marker continuity review; temporary shared local
+  frames do not establish a completed molecular configuration or causal bug.
+- Add opt-in C50 `--source-constructor-mapping-audit-only` on exact C49.
+  Observe unchanged native local getters/setters and manager chirality proxies;
+  replay named vector order, exact writeback, ordered source/target volume signs
+  and post-optimizer index transfers. Keep original chemistry/metadata gates.
+- Bound six owned 30 s workers, 256 calls each and 64-row captures. Native
+  mapping evidence awaits Mac; explicit fake-worker tests and saved offline
+  replay remain distinct. No dependency, installed edit, chemistry/coordinate
+  repair, full generation, production recipe, NARestraints release or adoption.
+- All 43 new regressions, 222 focused and 2,760 full tests pass (two skips,
+  276 subtests), with actual-input deleted-build/relocated transport and
+  preserved everyday edits. Native mapping evidence remains pending.
+
 ### Observe local native chiral construction boundaries
 
 - Verify all 2,092 C48 payloads and replay three completed constructors. All
@@ -21,8 +39,8 @@ entries are reconstructed from repository history.
   methods. Recompute trace integrity and all neighbor-basis orientations.
 - Preserve original warnings/inputs and native targets/arguments. Report first
   observed boundaries without a causal-defect claim. Native randomness, repeat
-  disagreement, uninstrumented optimizer kernels and pending Mac trace evidence
-  remain explicit. Limit six owned 30 s workers and 256 observed calls each.
+  disagreement and uninstrumented optimizer kernels remain explicit. Returned
+  C49 matches all fresh/previous endpoints; hand and DP marker reviews remain. Limit six owned 30 s workers and 256 observed calls each.
   No dependency, installed-file, production recipe, NAR release, chemistry,
   full-builder/dictionary, scaffold or adoption changes.
 

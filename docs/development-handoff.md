@@ -894,7 +894,7 @@ while one triple reverses. Keep both measures; neither independently assigns
 absolute CIP or proves a final molecular inversion. Saved endpoints do not
 locate the first native change or establish a causal implementation defect.
 
-**Cedar 49 — next native action:** compare a fresh unobserved constructor and
+**Cedar 49 — implemented native action (now returned):** compare a fresh unobserved constructor and
 a fresh observed constructor for each original DP/PDU/5PC source. Observe
 native outer/local construction, Z-matrix, restraint, CCTBX optimization,
 tightening and native R/S-return boundaries without changing arguments or
@@ -907,14 +907,54 @@ separate; random state is not reset. No failed local endpoint is resumed.
 Build `49_Cedar_probe_cif_constructor_trace.py` with both controls; run exact
 **48_Cedar_5u8wjea_** using `--component DP
 --source-constructor-trace-audit-only`. At most **six owned workers × 30 s**;
-cap each observed constructor at **256 calls / 512 boundaries**. Native trace
-evidence is pending. No full builder, numerical dictionary generation,
+cap each observed constructor at **256 calls / 512 boundaries**. Returned
+native trace evidence is recorded below. No full builder, numerical dictionary generation,
 chemical-state choice, absolute CIP or adoption is requested. See
 `source_native_constructor_trace_2026_10_21` in the existing machine ledger.
 Software checks pass **231 focused / 2,717 full tests**, two skips and 276
 subtests. Actual C48 replay passes after build deletion and relocation, with
 poisoned imports, aliased temporary roots and preserved everyday edits. These
-checks remain distinct from the pending native boundary evidence.
+checks remain distinct from the native boundary evidence below.
+
+**Cedar 49 returned and verified (2026-10-21): exact fresh repeats PASS;
+hand and DP marker reviews remain.** All **2,190 payloads**, clean published
+`c5346623…` build, runner `eeae96ce…`, 133 runtime members and every unchanged
+C48 payload/manifest verify. Phenix **2.2.1-6174** completes all six constructors.
+Observed DP/PDU/5PC times are **1.010668 / 0.979949 / 0.992760 s**; controls are
+**2.434568 / 0.767758 / 0.790353 s**. Every fresh comparison gate passes and
+each control matches C48 exactly. All **84 calls / 168 enter-exit boundaries**
+replay from raw records. PDU/5PC trace integrity passes; DP fails only chemical
+metadata continuity. Native signed-volume words become native chiral markers,
+then `GetRSNotation(input_xyz=True)` returns None and the chiral field becomes
+None. Separate volume_sign fields survive. Keep that review and all hand gates.
+
+No preexisting source hand reviews occur. First warnings mostly appear at
+Z-matrix exit; 5PC C4-prime first appears at R/S inspection entry. Warnings
+clear and recur while local templates share parent objects. Parent snapshots
+can mix temporary local frames, so endpoint signs/timing alone neither qualify
+a completed molecule nor identify a unique causal implementation defect.
+
+**Cedar 50 — next native action:** follow named local coordinate order through
+native GetCoordinates/SetCoordinates and actual manager chirality proxy bases.
+Record vectors, local/global indices, native signed targets/weights/both-sign
+flags, and the post-optimizer index transfer. Replay exact assignment and
+ordered source-volume/target comparisons; report local hands before/after.
+Keep fresh controls and every original source/metadata/hand warning. No native
+patch, marker translation, coordinate repair, chemical-state choice or adoption.
+
+Build `50_Cedar_probe_cif_constructor_mapping.py` with both controls; run exact
+**49_Cedar_izfiw4xk** using `--component DP
+--source-constructor-mapping-audit-only`. Bounds: **six owned workers × 30 s**,
+**256 calls / 512 boundaries** each, **64 rows** per vector/proxy capture.
+Native mapping evidence is pending. The full builder, generation, absolute CIP,
+scaffold qualification and scientific adoption remain separate. See
+`source_native_constructor_mapping_2026_10_21` in the existing machine ledger.
+Software checks pass **222 focused / 2,760 full tests**, two skips and 276
+subtests. The 43 new regressions cover named vector order, target bases,
+rigid motions, coordinate transfers, fake owned-worker exceptions and C49
+mutation rejection. Actual C49 replay passes after build deletion/relocation,
+poisoned imports and aliased temporary roots, preserving everyday edits.
+These are software/saved-evidence checks; native mapping remains pending.
 
 **Requested follow-on after building: a fresh eight-pair synthetic live run.**
 Preserve **K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and F:A** in one explicitly

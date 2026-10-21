@@ -710,7 +710,27 @@ method boundaries are observed; optimizer kernels remain uninstrumented. Exact
 fresh endpoint agreement and old C48 comparison stay separate from science.
 Random state is not reset, so differences remain REVIEW. At most six 30 s owned
 workers and 256 observed calls per constructor are allowed. No target, chemistry,
-full-builder, scaffold or adoption changes; native trace evidence is pending.
+full-builder, scaffold or adoption changes. Returned C49 completes all six
+constructors: observed endpoints match fresh controls and C48 exactly. All
+three retain source-relative hand review. DP additionally changes native
+chiral marker fields while separate signed-volume metadata survives. Its
+chemical-metadata continuity check remains failed; PDU/5PC trace replay passes.
+
+C50 requires exact C49 and independently replays six qualifications, raw traces,
+method-source definitions and fresh/previous comparisons. It adds opt-in local
+coordinate mapping observation: selected native GetCoordinates, SetCoordinates
+and GetNewManager calls retain original arguments/returns and kernels. Capture
+local named order/global indices, vectors and actual native manager chirality
+proxy indices, signed volume target, weight and both-sign flag. Maintained
+replay maps each proxy basis to source names, checks exact getter/setter order
+and unchanged outside atoms, and reports source-volume/target sign agreement.
+Separately compare the final tightening-to-R/S boundary gap with the observed
+sorted-index coordinate transfer and local before/after hands. Shared parent
+atoms may occupy different temporary frames; no completed-molecule stereo or
+causal-bug inference follows. Keep original hand/metadata gates, targets and
+NARestraints authority. Bounds remain six 30 s workers/256 calls each, with
+64-row vector/proxy caps. Native mapping evidence is pending; no correction,
+full builder/generation, installed edit, chemical-state choice or adoption.
 
 The component-control auditor compares duplicate records by all atom roles and
 operational category/sugar/phosphate/attachment context. Descriptive aliases and

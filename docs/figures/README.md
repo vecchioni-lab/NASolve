@@ -76,5 +76,9 @@ C48 results complete all constructors/backend gates while retaining
 source-relative sugar-hand warnings. C49 observes selected native local method
 boundaries, compares fresh controls and all neighbor bases, preserves original
 calls/failures and restores methods. First observation does not establish a
-causal defect; native trace evidence is pending. Optimizer kernels remain
+causal defect. Returned C49 matches all six fresh/observed and earlier endpoints;
+hand warnings and DP marker continuity remain reviewed. C50 follows named local
+coordinate order, actual native chirality proxy bases and post-optimizer index
+transfers before a correction. Shared parent coordinates can mix temporary
+frames. Native mapping evidence is pending; optimizer kernels remain
 uninstrumented, with no full-builder, absolute-CIP or adoption arrow.

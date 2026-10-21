@@ -104,6 +104,9 @@ def observe_native_constructor(parent,method,modules,spec,trace):
     scope=[('elbow.chemistry.ChiralClass','ChiralClass',name) for name in
         ['GenerateZMatrixClass','Chiralise','GetRestrainedParameters','TightenRestraints','Optimise','GetRSNotation']]
     scope.append(('elbow.cctbx_api.CCTBXMixins','CCTBXMixins','OptimiseCCTBX'))
+    mapping=spec.get('coordinate_mapping') is True
+    if mapping:
+        scope.extend(('elbow.cctbx_api.CCTBXMixins','CCTBXMixins',name) for name in ['GetCoordinates','SetCoordinates','GetNewManager'])
     root=Path(spec['installation_root']).resolve(strict=True);proof={r['path']:r for r in spec['trace_sources']}
     for row in spec['sources']:
         path=Path(row['installed']).resolve(strict=True)
@@ -127,6 +130,7 @@ def observe_native_constructor(parent,method,modules,spec,trace):
     trace.update(policy_id='cif-native-chiral-boundary-observation-v1',hooks=[r['method'] for r in records],method_sources=records,
         before=native_inventory(parent),events=[],methods_restored=False,source_hashes_preserved=False,
         max_calls=256,random_state_control='NOT_REQUESTED',scientific_approval='NOT_RUN',automatic_adoption=False)
+    if mapping:trace['mapping_policy_id']='cif-native-local-coordinate-mapping-v1'
     def scalar(v):
         if type(v) in (str,bool,int,type(None)):return v
         if type(v) is float:return v if math.isfinite(v) else 'NONFINITE'
@@ -135,6 +139,17 @@ def observe_native_constructor(parent,method,modules,spec,trace):
     def frame(obj):
         return [{'atom':a.name.strip(),'global_index':scalar(getattr(a,'index',None)),
             'same_parent_object':any(a is p for p in parent),'xyz':[float(a.xyz.x),float(a.xyz.y),float(a.xyz.z)]} for a in obj]
+    def coordinates(value):
+        try:
+            if len(value)>64:return {'unsupported':'COORDINATE_CAP'}
+            result=[[float(x) for x in row] for row in value]
+            if any(len(row)!=3 or any(not math.isfinite(x) for x in row) for row in result):return {'unsupported':'NONFINITE_OR_SHAPE'}
+            return result
+        except (TypeError,ValueError,AttributeError):return {'unsupported':'COORDINATE_TYPE'}
+    def local_state(obj):
+        return {'original_order':[{'atom':a.name.strip(),'global_index':scalar(getattr(a,'index',None))} for a in getattr(obj,'original_order',[])],
+            'input_volume':scalar(getattr(obj,'input_volume',None)),'equil':scalar(getattr(obj,'equil',None)),
+            'native_marker':scalar(getattr(getattr(obj,'chiral_atom',None),'chiral',None))}
     def invoke(label,original,obj,args,kwargs):
         nonlocal counter
         if counter>=256:
@@ -145,7 +160,10 @@ def observe_native_constructor(parent,method,modules,spec,trace):
             'centre':getattr(getattr(obj,'chiral_atom',None),'name','').strip(),'local_atoms':frame(obj),
             'resolved_arguments':{k:scalar(v) for k,v in bound.arguments.items() if k!='self'},
             'arguments_forwarded_unchanged':True}
-        trace['events'].append(start);stack.append(call);status='EXCEPTION';error=None;summary={}
+        if mapping:
+            start['mapping']={'local_state':local_state(obj)}
+            if label=='CCTBXMixins.SetCoordinates':start['mapping']['coordinates_input']=coordinates(bound.arguments['coordinates'])
+        trace['events'].append(start);stack.append(call);status='EXCEPTION';error=None;summary={};mapping_result={}
         try:
             value=original(obj,*args,**kwargs);status='COMPLETED'
             summary={'return_type':type(value).__name__}
@@ -153,12 +171,24 @@ def observe_native_constructor(parent,method,modules,spec,trace):
             if label=='CCTBXMixins.OptimiseCCTBX' and isinstance(value,tuple) and len(value)==2:
                 minimizer=getattr(value[1],'minimizer',None);summary['lbfgs_minimizer_error']=scalar(getattr(minimizer,'error',None))
                 summary['stopping_qualification']='NOT_INDEPENDENTLY_ASSESSED'
+            if mapping:
+                if label=='CCTBXMixins.GetCoordinates':mapping_result['coordinates_returned']=coordinates(value)
+                if label=='CCTBXMixins.OptimiseCCTBX':mapping_result['coordinates_returned']=coordinates(value[0] if isinstance(value,tuple) and len(value)==2 and bound.arguments.get('return_lbfgs_object') else value)
+                if label=='CCTBXMixins.GetNewManager':
+                    try:
+                        proxies=value.chirality_proxies
+                        if len(proxies)>64:raise ValueError('Native chirality proxy cap')
+                        mapping_result['chirality_proxies']=[{'i_seqs':[int(i) for i in p.i_seqs],
+                            'volume_ideal':scalar(p.volume_ideal),'weight':scalar(p.weight),'both_signs':scalar(p.both_signs)} for p in proxies]
+                    except (AttributeError,TypeError,ValueError) as exc:mapping_result['proxy_observation_error']=type(exc).__name__+': '+str(exc)
             return value
         except BaseException as exc:
             error={'exception_type':type(exc).__name__,'message':str(exc)};raise
         finally:
-            stack.pop();trace['events'].append({'call_id':call,'parent_call_id':pid,'method':label,'phase':'exit',
-                'snapshot':native_inventory(parent),'local_atoms':frame(obj),'centre':start['centre'],'status':status,'exception':error,'return_summary':summary})
+            stack.pop();end={'call_id':call,'parent_call_id':pid,'method':label,'phase':'exit',
+                'snapshot':native_inventory(parent),'local_atoms':frame(obj),'centre':start['centre'],'status':status,'exception':error,'return_summary':summary}
+            if mapping:end['mapping']={'local_state':local_state(obj),**mapping_result}
+            trace['events'].append(end)
     def wrapper(label,original):
         @functools.wraps(original)
         def observed(obj,*args,**kwargs):return invoke(label,original,obj,args,kwargs)

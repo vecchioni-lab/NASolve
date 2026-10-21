@@ -155,8 +155,11 @@ prerequisite. C48 explicitly selects that backend using the installed reader's
 own policy and passes backend/completion gates in all three returned cases.
 Source-relative sugar-hand warnings remain despite preserved labels. C49
 observes native local template/optimizer boundaries and compares fresh
-unobserved/observed runs before any correction. All previous findings stay
-recorded; native boundary evidence is pending. Equivalent operational mapping
+unobserved/observed runs before any correction. Returned C49 completes all six
+constructors with exact fresh/previous endpoint matches. Source-hand reviews
+and DP native-marker continuity remain open. C50 observes local coordinate
+order, actual native chirality proxy bases and post-optimizer index transfers
+before a repair; native mapping evidence is pending. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.
