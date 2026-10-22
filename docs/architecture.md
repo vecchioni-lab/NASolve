@@ -1683,3 +1683,28 @@ interpretation belongs alongside inspection evidence; it does not require
 altering the recorded clashscore. Future campaign acceptance policies should
 be preset-specific and should preserve the distinction between numerical
 acceptance and structural assessment.
+
+### Ordinary dictionary acquisition preflight (Cedar 67)
+
+C67 now preflights the ordinary source selector for the exact eight-pair plan: 15
+component sources, eight declared NARestraints pair recipes and both stacking
+orientations per pair. Equivalent operational aliases now work in ordinary
+lookup, and generic CIF identities support native loop headers while rejecting
+ambiguous or contradictory IDs. Saved repairs cannot override a different
+selected source/authority. Local simulated-source controls pass; the Mac probe
+checks actual installed resources. No native execution or repair adoption is
+claimed, and the full live run remains pending.
+
+The existing ligand_dictionary Path API delegates to the shared ligand_source
+selector. Source priority is unchanged. Operational aliases share the same
+complete role/context comparison as the existing diagnostic; the ordinary
+NAR loader collapses only required equivalent records in memory. Unknown role
+columns remain operational. Scalar and loop metadata must declare one exact
+component, consistent with all component-labelled rows.
+
+The source/role preflight freezes exact source bytes and compiler PHIL through
+acquisition_directory references with hashes and sizes. It compares C66 repairs
+through their original recipe/producer/consumer evidence without adopting them
+or certifying a current runtime. A different source projection or authority can
+correctly miss the cache. This leaves automatic recovery/adoption as subsequent
+integration rather than treating a three-letter code as chemical authority.

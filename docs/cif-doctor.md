@@ -136,6 +136,31 @@ replay reproduces all 30 controls and nine frozen snapshots, including original
 stopping/limitation notes, with every subprocess forbidden. Ordinary PostMR
 orchestration and the requested eight-pair live run remain separate work.
 
+## Ordinary source and declared-pair preflight
+
+C67 now preflights the ordinary source selector for the exact eight-pair plan: 15
+component sources, eight declared NARestraints pair recipes and both stacking
+orientations per pair. Equivalent operational aliases now work in ordinary
+lookup, and generic CIF identities support native loop headers while rejecting
+ambiguous or contradictory IDs. Saved repairs cannot override a different
+selected source/authority. Local simulated-source controls pass; the Mac probe
+checks actual installed resources. No native execution or repair adoption is
+claimed, and the full live run remains pending.
+
+`--ordinary-acquisition-only` accepts exact returned C66. It replays the
+closed saved evidence, selects sources through the same ligand_source API
+used by ordinary ligand_dictionary calls, freezes each source and compiles
+the eight literal intended pairs without distance guessing or coordinates.
+Both stack orientations use the existing NARestraints matrix. Configured
+ReadySet paths select installed CCD files; no environment/version subprocess
+runs. A saved-repair MISS caused by different source bytes/authority is expected
+and never authorizes substitution. All original stopping notes survive.
+
+Expected successful evidence is ORDINARY_ACQUISITION_CONTROLS_PASS, 15/15
+sources, 8/8 pairs and 16/16 stack orientations. Overall REVIEW/exit 2 still
+marks the separate native integration/scientific boundary, not student CIF
+approval. ATL remains an independent public source/compiler control.
+
 ## Generated numerical defects and explicit candidates
 
 The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident

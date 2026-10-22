@@ -20654,5 +20654,184 @@
       "ATL": "INDEPENDENT_PUBLIC_GRAPH_AND_COMPILER_CONTROL",
       "new_delivery_in_this_return_record": "NONE"
     }
+  },
+  "ordinary_source_acquisition_2026_10_22": {
+    "status": "IMPLEMENTED_AND_LOCAL_FIXTURE_TRANSPORT_PASS; MAC_C67_INSTALLED_SOURCE_PREFLIGHT_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "67_Cedar",
+    "runner_filename": "67_Cedar_probe_cif_acquisition.py",
+    "cli_action": "--ordinary-acquisition-only",
+    "requested_action": "ORDINARY_SOURCE_ACQUISITION_PREFLIGHT",
+    "policy_id": "cif-ordinary-source-acquisition-controls-v1",
+    "review_input": {
+      "delivery_prefix": "66_Cedar",
+      "filename": "66_Cedar_gaqcxmxo_cif_numerical_recovery_review.zip",
+      "sha256": "bd0369f2901ccb71fed7272e491e8afd611ec6e3689bad939f457fdedee496fc",
+      "bytes": 97587484,
+      "verified_payloads": 3659
+    },
+    "before": "Diagnostic aliases compile, but ordinary 5PC lookup rejects duplicate equivalent records; generic identity validation reads scalar headers only.",
+    "after": "Share exact operational alias resolution with ordinary lookup and the process-local NAR loader; accept one exact scalar or loop metadata identity; retain source priority.",
+    "modules": [
+      "src/nasolve/component_records.py",
+      "src/nasolve/cif_acquisition.py",
+      "src/nasolve/curated_ligands.py",
+      "src/nasolve/postmr.py",
+      "src/nasolve/cif_component_controls.py",
+      "src/nasolve/cif_dictionary_reuse.py"
+    ],
+    "shared_source_api": "nasolve.curated_ligands.ligand_source; existing ligand_dictionary still returns its Path",
+    "source_precedence": [
+      "Registered curated/local dictionary; missing curated resource is never replaced",
+      "Explicit noncurated local dictionary",
+      "Unique CCD beneath the configured ReadySet installation"
+    ],
+    "alias_policy": {
+      "comparison": "Every declared atom role, unknown nonmetadata role and operational category/sugar/phosphate/attachment context must agree.",
+      "ignored": "Names, bibliography, entry counts and explicit C5-mod/C7-mod descriptions only.",
+      "production_scope": "Collapse only required equivalent records in memory; preserve raw records in diagnostic evidence and workbook bytes.",
+      "conflicting_records": "REJECT; NEVER_SELECT_FIRST_DIFFERENT_CHEMISTRY"
+    },
+    "identity_policy": "Require one exact _chem_comp.id in scalar or loop form; every declared component id must match. No graph/state rewrite.",
+    "declared_pairs": [
+      [
+        "CGY",
+        "DX"
+      ],
+      [
+        "1AP",
+        "DT"
+      ],
+      [
+        "DZ",
+        "DP"
+      ],
+      [
+        "IGU",
+        "IMC"
+      ],
+      [
+        "PDU",
+        "DA"
+      ],
+      [
+        "5PC",
+        "DG"
+      ],
+      [
+        "5CM",
+        "S6G"
+      ],
+      [
+        "DF",
+        "DA"
+      ]
+    ],
+    "source_components": 15,
+    "pair_compiler_controls": 8,
+    "stacking_orientations": 16,
+    "compiler_scope": "Named source/role compiler inputs only; no observed coordinates or active native proxies.",
+    "cache_applicability": {
+      "cases": [
+        "DP",
+        "PDU",
+        "5PC"
+      ],
+      "selection": "ORDINARY_SOURCE_AND_AUTHORITY_BEFORE_SAVED_REPAIR_LOOKUP",
+      "same_code_substitution": false,
+      "candidate_adoption": "NOT_RUN",
+      "consumer_identity": "SAVED_CAPTURE_ONLY; CURRENT_INSTALLED_CONSUMER_NOT_CERTIFIED",
+      "source_projection_or_authority_mismatch": "MISS_IS_EXPECTED; RETAIN_PRIMARY_SOURCE_AND_ORIGINAL_REPAIR_NOTES"
+    },
+    "artifacts": {
+      "receipt_field": "ordinary_acquisition_audit",
+      "report": "ordinary_acquisition_audit.json",
+      "directory": "ordinary_acquisition",
+      "nested_report": "ordinary_acquisition/acquisition.json",
+      "artifact_anchor": "acquisition_directory",
+      "frozen_source_files": 15,
+      "generated_role_PHIL_files": 24,
+      "paths": "Relative hash/size-bound source/PHIL references; original source paths are historical provenance only."
+    },
+    "validation": {
+      "new_regressions": 49,
+      "fail_before": [
+        {
+          "scope": "Ordinary alias/source API and acquisition control absent",
+          "failed": 16,
+          "seconds": 0.76
+        },
+        {
+          "scope": "Exact C66 input/action boundary absent",
+          "failed": 16,
+          "already_passed": 3,
+          "seconds": 2.12
+        }
+      ],
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q tests/test_component_records.py tests/test_cif_acquisition.py tests/test_cedar67_delivery.py tests/test_cedar66_delivery.py tests/test_cif_component_controls.py tests/test_dictionary_postmr.py tests/test_frame_secondary_overlay.py tests/test_construction_scaffolds.py",
+        "passed": 141,
+        "seconds": 12.48
+      },
+      "full": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q",
+        "passed": 4008,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 327.17
+      },
+      "portability": {
+        "aliased_TMPDIR": "PASS",
+        "all_input_payloads_and_manifest_preserved": true,
+        "all_subprocesses_forbidden": "PASS",
+        "ambient_import_poison": "PASS",
+        "build_sources_removed": true,
+        "declared_pairs": 8,
+        "everyday_edit": "PRESERVED",
+        "frozen_sources_after_owned_installation_removal": "PASS",
+        "ignored_runner": "PASS",
+        "input_payloads": 3659,
+        "new_native_calls": 0,
+        "ordinary_source_priority": "PASS",
+        "output_payloads": 3713,
+        "relocated_delivery": true,
+        "runner_sha256": "c07963f505a702f5717d63da9078bc9c6b1144eda2a74d17f3c1996b696000e3",
+        "runtime_archive_sha256": "1473fb47cd4489b06c46833fc083da2a943c2331d246c2c7bac2d51d64e6766b",
+        "runtime_members": 157,
+        "source_commit": "ae6d64fcef12ca0463e30cdd8a98e2f5e1b6c148",
+        "source_installation_fixture": "SIMULATED_FROM_CAPTURED_GRAPHS; NOT_NATIVE_PHENIX_VALIDATION",
+        "sources": 15,
+        "stacking_orientations": 16,
+        "standalone_relative_references": 39,
+        "status": "PASS"
+      },
+      "source_fixture_scope": "Simulated installation from explicitly declared captured/public graphs; no real Phenix is installed here.",
+      "Mac_scope": "Read the actual configured installation through the ordinary source selector; execute no dispatcher, version check, ReadySet, generator or optimizer.",
+      "document_checks": {
+        "relative_links": 162,
+        "mirrored_records": 12,
+        "protected_mechanics": "UNCHANGED",
+        "NAR_workbook": "UNCHANGED",
+        "eight_pair_plan": "UNCHANGED",
+        "SVG_determinism": "PASS",
+        "visible_SVG": "EXACT_BASELINE_94ababa; UPDATED_METADATA_AND_CAPTION_ONLY"
+      }
+    },
+    "compatibility": "Additive source metadata API; existing Path API, source priority and old run schemas remain. Equivalent aliases now work in ordinary construction/NAR loading; ambiguous identities/roles remain blocked.",
+    "requires_cif_review": false,
+    "native_execution": "NOT_RUN",
+    "dictionary_generation": "NOT_RUN",
+    "model_optimization": "NOT_RUN",
+    "production_adoption": "NOT_RUN",
+    "scientific_qualification": "NOT_ASSESSED",
+    "NARestraints_workbook_and_release": "UNCHANGED",
+    "native_kernels_targets_weights_optimizer_plane_correction": "UNCHANGED",
+    "remaining_limits": [
+      "Mac actual-installed source preflight is pending.",
+      "Compiler controls do not establish observed pairing, stacking geometry or native membership.",
+      "Automatic source-to-repair acquisition/adoption, current native/site qualification, production checkpoints/refinement and PDF rendering remain separate.",
+      "The exact eight-pair full NASolve live run remains pending; ATL remains independent."
+    ],
+    "generated_artifacts": "Private capsules, runners, models, simulated installations and source copies remain outside Git."
   }
 }

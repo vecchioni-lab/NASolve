@@ -1079,6 +1079,19 @@ def _patch_narestraints_records(
     """Apply reviewed, process-local corrections to NARestraints records."""
     patched = [dict(record) for record in records]
     corrections: list[dict[str, str]] = []
+    from .component_records import resolve_component_record
+    for code in sorted(required_codes):
+        matches = [r for r in patched if str(r.get('Ligand code')) == code]
+        if len(matches) > 1:
+            try:
+                selected, proof = resolve_component_record(matches, code)
+            except ValueError as exc:
+                raise PostMRPreparationError(str(exc)) from exc
+            first = next(i for i, r in enumerate(patched) if str(r.get('Ligand code')) == code)
+            patched = [r for r in patched if str(r.get('Ligand code')) != code]
+            patched.insert(first, selected)
+            corrections.append({'ligand_code':code,'canonical_atom':'equivalent-role-records',
+                'before':str(proof['matching_records']),'after':'1','scope':'process-local'})
     correction_specs = (
         ("DF", "O2", "S1", frozenset({"S1", "S2"})),
         ("S6G", "C5", "C5", frozenset({"C5", "C5 "})),

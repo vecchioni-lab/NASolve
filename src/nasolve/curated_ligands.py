@@ -45,6 +45,14 @@ class CuratedLigand:
     ring_substituents: tuple[RingSubstituent, ...] = ()
 
 
+@dataclass(frozen=True)
+class LigandDictionarySource:
+    code: str
+    path: Path
+    authority: str
+    kind: str
+
+
 CURATED_LIGANDS: dict[str, CuratedLigand] = {
     "DP": CuratedLigand(
         code="DP", dictionary_filename="DP.cif",
@@ -216,11 +224,8 @@ def ligand_definition(code: str) -> CuratedLigand:
         for record in load_residue_records()
         if str(record.get("Ligand code")) == code
     ]
-    if len(matches) != 1:
-        raise ValueError(
-            f"Expected one NARestraints record for {code}, found {len(matches)}"
-        )
-    record = matches[0]
+    from .component_records import resolve_component_record
+    record, _ = resolve_component_record(matches, code)
     parent_code = construction_parent_code(record)
     return CuratedLigand(
         code=code,
@@ -258,6 +263,11 @@ def ligand_dictionary(
     *,
     ready_set_executable: Path | None = None,
 ) -> Path:
+    return ligand_source(code, data_root, ready_set_executable=ready_set_executable).path
+
+
+def ligand_source(code: str, data_root: Path | None = None, *,
+                  ready_set_executable: Path | None = None) -> LigandDictionarySource:
     """Choose a local reviewed dictionary, or a verified installed Phenix CCD.
 
     The canonical construction parent and component identity come from
@@ -272,7 +282,9 @@ def ligand_dictionary(
     ligand = ligand_definition(code)
     path = ligand_data_directory(data_root) / ligand.dictionary_filename
     if path.is_file():
-        return path
+        curated = code in CURATED_LIGANDS
+        return LigandDictionarySource(code, path, 'CURATED' if curated else 'EXPLICIT',
+                                      'curated' if curated else 'local-verified')
     if code in CURATED_LIGANDS:
         raise FileNotFoundError(
             f"Curated dictionary for {code} is missing: {path}"
@@ -306,7 +318,7 @@ def ligand_dictionary(
     # The caller validates component identity before using this source;
     # neither file naming nor NARestraints family classification alone is
     # authority to change the full chemical graph.
-    return candidates[0]
+    return LigandDictionarySource(code, candidates[0], 'NATIVE', 'installed-phenix-ccd')
 
 
 def validate_ligand_dictionary(code: str, path: Path) -> None:
@@ -314,18 +326,13 @@ def validate_ligand_dictionary(code: str, path: Path) -> None:
     if code in CURATED_LIGANDS:
         validate_curated_dictionary(code, path)
         return
-    component_ids: set[str] = set()
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        try:
-            fields = shlex.split(raw_line, comments=False)
-        except ValueError:
-            continue
-        if len(fields) >= 2 and fields[0] == "_chem_comp.id":
-            component_ids.add(fields[1])
-    if code not in component_ids:
-        found = ", ".join(sorted(component_ids)) or "none"
+    from .ligand_profiles import _blocks, dictionary_component_codes
+    component_ids = [value for block in _blocks(path)
+                     for value in block.values.get('_chem_comp.id', [])]
+    if component_ids != [code] or dictionary_component_codes(path) != {code}:
+        found = ", ".join(sorted(set(component_ids))) or "none"
         raise ValueError(
-            f"Dictionary {path} does not declare _chem_comp.id {code}; found {found}"
+            f"Dictionary {path} does not declare one exact _chem_comp.id {code}; found {found}"
         )
 
 

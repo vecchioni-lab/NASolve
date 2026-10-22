@@ -105,3 +105,52 @@ def exercise_dictionary_reuse(resources, store_root, output):
         'pipeline_boundary':'Shared component resolver API implemented; ordinary PostMR acquisition/adoption orchestration remains separate.'}
     (output/'dictionary_reuse.json').write_text(json.dumps(result, sort_keys=True, indent=2, allow_nan=False)+'\n')
     return result
+
+
+def replay_dictionary_reuse(members, output):
+    """Reproduce the exact closed C66 parent with current code and owned storage."""
+    from pathlib import PurePosixPath
+    from .cif_dictionary_store import resolve_dictionary_snapshot
+    report=json.loads(members['dictionary_reuse_audit.json'])
+    expected={k:v for k,v in report.items() if k not in {'directory','source_resources'}}
+    if expected!=json.loads(members['dictionary_reuse/dictionary_reuse.json']):raise ValueError('Reuse report copies differ')
+    output=Path(output);output.mkdir(parents=True,exist_ok=False);resources={}
+    def safe(name):
+        return isinstance(name,str) and not name.startswith('/') and '\\' not in name and ':' not in name and all(p not in {'','.','..'} for p in name.split('/'))
+    for code,row in report['cases'].items():
+        loaded=[]
+        for field in ['first_snapshot','repeat_snapshot','standalone_snapshot']:
+            ref=row[field]
+            if ref.get('anchor')!='dictionary_reuse_directory' or not safe(ref.get('path')):raise ValueError('Unsafe returned reuse snapshot')
+            name='dictionary_reuse/'+ref['path'];data=members[name]
+            if len(data)!=ref['size'] or sha256(data).hexdigest()!=ref['sha256']:raise ValueError('Reuse snapshot reference differs')
+            prefix=PurePosixPath(name).parent.as_posix()+'/'
+            folder=output/'captured'/code/field
+            for n,d in members.items():
+                if n.startswith(prefix):
+                    relative=n.removeprefix(prefix)
+                    if not safe(relative):raise ValueError('Unsafe returned entry member')
+                    path=folder/relative;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(d)
+            loaded.append(resolve_dictionary_snapshot(folder))
+        first=loaded[0]
+        if any(e['entry_id']!=first['entry_id'] or e['dictionary'].read_bytes()!=first['dictionary'].read_bytes() for e in loaded):
+            raise ValueError('Returned reuse entries differ')
+        for kind,key in [('source','source'),('numerical','dictionary')]:
+            ref=report['source_resources'][code][kind]
+            if ref.get('anchor')!='input_capsule' or not safe(ref.get('path')):raise ValueError('Unsafe reuse source reference')
+            data=members['inputs/review/'+ref['path']]
+            if len(data)!=ref['size'] or sha256(data).hexdigest()!=ref['sha256'] or data!=first[key].read_bytes():
+                raise ValueError('Reuse source binding differs')
+        request=first['manifest']['request']
+        resources[code]={'source':first['source'],'numerical':first['dictionary'],
+            'qualification':first['qualification'],'provenance':first['provenance'],
+            'consumer':first['manifest']['consumer'],**{k:request[k] for k in ['source_authority','recipe','generator']}}
+    actual=exercise_dictionary_reuse(resources,output/'owned_store',output/'replayed')
+    if {k:v for k,v in actual.items() if k!='persistent_store_location'}!={k:v for k,v in expected.items() if k!='persistent_store_location'}:
+        raise ValueError('Maintained C66 controls differ')
+    files={p.relative_to(output/'replayed').as_posix():p for p in (output/'replayed').rglob('*') if p.is_file()}
+    if set(files)!={n.removeprefix('dictionary_reuse/') for n in members if n.startswith('dictionary_reuse/')}:
+        raise ValueError('Maintained reuse inventory differs')
+    for name,path in files.items():
+        if name!='dictionary_reuse.json' and path.read_bytes()!=members['dictionary_reuse/'+name]:raise ValueError('Maintained reuse payload differs')
+    return True

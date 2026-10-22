@@ -75,10 +75,11 @@ def test_unknown_sugar_is_not_reinterpreted_by_the_base_fallback(monkeypatch, su
         ligand_definition("XYZ")
 
 
-@pytest.mark.parametrize("records", [[], [{"Ligand code": "XYZ"}, {"Ligand code": "XYZ"}]])
-def test_c_fallback_does_not_invent_a_missing_or_ambiguous_target(monkeypatch, records):
+@pytest.mark.parametrize("records,reason", [([], "unambiguous"),
+    ([{"Ligand code": "XYZ"}, {"Ligand code": "XYZ"}], "Sugar Type")])
+def test_c_fallback_does_not_invent_a_missing_or_incomplete_target(monkeypatch, records, reason):
     install_records(monkeypatch, records)
-    with pytest.raises(ValueError, match="Expected one NARestraints record"):
+    with pytest.raises(ValueError, match=reason):
         ligand_definition("XYZ")
 
 

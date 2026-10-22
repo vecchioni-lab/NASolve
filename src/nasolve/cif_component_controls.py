@@ -12,22 +12,7 @@ from .cif_doctor import assess_dictionaries, _ORDERS
 from .cif_linked_preparation import component_values, atom_rows, hydrogen_neighbors
 
 POLICY_ID = 'cif-explicit-component-policy-control-v1'
-_ANNOTATION_COLUMNS = {'C5-mod','C7-mod'}  # Also metadata in NARestraints' mirror loader.
-_RECORD_METADATA = {'Ligand code','Name','Abbreviation','Base Analog','Phosphate','Sugar Type','SugarType',
-    'Saenger','Notes','Ref','Entries','Function','Source sheet','Glycosidic atom'}
-_OPERATIONAL_METADATA = ('Base Analog','Phosphate','Sugar Type','SugarType','Saenger','Function','Source sheet','Glycosidic atom')
-
-
-def _role_signature(record):
-    """Compare every declared atom role and chemical/category context exactly.
-
-    Names, bibliography, entry counts and explicit modification-description
-    columns do not select a recipe or an atom. Unknown columns remain roles,
-    so a misspelt/missing role cannot disappear during duplicate reconciliation.
-    """
-    return {'context':{k:record.get(k) for k in _OPERATIONAL_METADATA},
-        'atom_roles':{k:str(v).strip() for k,v in record.items()
-            if k not in _RECORD_METADATA|_ANNOTATION_COLUMNS and v not in (None,'')}}
+from .component_records import (ANNOTATION_COLUMNS as _ANNOTATION_COLUMNS, role_signature as _role_signature)
 
 
 def assess_component_control(source, code, *, records=None, graph_only_if_ambiguous=False):

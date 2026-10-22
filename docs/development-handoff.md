@@ -13,6 +13,31 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Next delivery is C67:** `67_Cedar_probe_cif_acquisition.py` with
+`--ordinary-acquisition-only` consumes exact C66. It checks ordinary source
+priority, source-bound cache applicability and the exact eight-pair NAR
+compiler plan: 15 sources, eight pairs and 16 stacking orientations. Expected
+ORDINARY_ACQUISITION_CONTROLS_PASS; source/authority cache MISS is legitimate.
+No native process, version probe, ReadySet, optimizer, adoption or student CIF
+inspection occurs. Actual Mac installed-source preflight remains pending.
+
+The fixes are shared with ordinary code: equivalent operational role aliases
+are reconciled without workbook changes, and exact scalar/loop CIF metadata
+is accepted with contradictory identities rejected. C66 repairs bind reviewed
+source projections; they cannot replace a different ordinary curated/native
+source. Current consumer/site qualification and automatic repair/adoption
+remain subsequent integration, followed by the unchanged eight-pair live run.
+
+C67 passes 49 new regressions, 141 focused and 4008 full tests (two skips,
+276 subtests; full run 327.17 s). A real-C66 deleted-build/relocated
+runner with simulated installed sources passes 15/15 sources, 8/8 recipes
+and 16/16 stacks while all subprocesses are forbidden. All parent payloads
+survive; 39 relative source/PHIL references remain readable after removing
+the owned simulated installation. This is transport/compiler evidence, not
+a local native Phenix claim. Use the existing four-command pinned Git ferry,
+ignored runner destination and unchanged everyday checkout. See
+ordinary_source_acquisition_2026_10_22 in both machine ledgers.
+
 The user-facing policy now removes mandatory CIF inspection/approval. Optimize
 and repair within bounded budgets, retain the best usable candidate or native
 fallback, continue with notes for nonconvergence/residual geometry, and disclose

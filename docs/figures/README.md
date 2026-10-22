@@ -153,6 +153,11 @@ control introduces no ordinary production-adoption arrow in this figure.
 Returned C66 verifies 3,659 payloads, reproduces all 30 reuse controls and
 independently reads nine exact frozen snapshots with original stopping notes
 and zero native processes. This closes reuse transport only.
+C67 checks ordinary source priority and explicit intended pair/stack coverage.
+Shared alias reconciliation and loop-header identity support fix ordinary
+compatibility; source-bound repair applicability does not imply adoption.
+Local installation fixtures are simulated; actual Mac source checks remain
+pending. No new native or production-adoption arrow is added.
 Site/model qualification and automatic PostMR orchestration remain separate.
 This resource/reader bridge does not fabricate an AutoMR/PostMR checkpoint or
 claim automated acquisition, production adoption, refinement or PDF integration.

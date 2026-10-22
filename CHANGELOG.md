@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preflight ordinary sources and exact intended NARestraints pairs
+
+- Share source selection metadata with the existing ordinary Path API; preserve
+  curated/local/configured-Phenix priority and refuse missing curated fallback.
+- Reconcile equivalent operational role aliases in ordinary lookup and the
+  process-local NAR loader; retain conflicts and the unchanged workbook.
+- Accept one exact scalar or loop CIF metadata identity; reject duplicate or
+  contradictory component IDs without changing chemistry or numerical terms.
+- Add C67 on exact C66: freeze 15 selected sources, check saved-repair source
+  applicability and compile the exact eight pairs plus 16 stacking directions.
+  No native process, source substitution, model change, optimizer or adoption.
+- All 49 new / 141 focused / 4008 full tests pass (two skips, 276 subtests;
+  full run 327.17 s). Relocated real-C66 transport passes with simulated
+  installed sources and all subprocesses forbidden. Mac source preflight and
+  ordinary automatic repair/adoption remain pending. No dependency/run migration.
+
 ### Record the verified C66 persistent-reuse return
 
 - Verify all 3,659 payloads, the byte-identical C65 parent/manifest and all

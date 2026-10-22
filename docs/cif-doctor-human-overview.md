@@ -1506,3 +1506,29 @@ orchestration and the requested eight-pair live run remain separate work.
 The Mac return preserves PDU's reported nonconvergence and DP/5PC's unknown
 convergence evidence. A reuse pass certifies retained isolated numerics and
 their provenance; it does not certify a new crystal or installed runtime.
+
+## Ordinary sources and the intended pair matrix (Cedar 67)
+
+C67 now preflights the ordinary source selector for the exact eight-pair plan: 15
+component sources, eight declared NARestraints pair recipes and both stacking
+orientations per pair. Equivalent operational aliases now work in ordinary
+lookup, and generic CIF identities support native loop headers while rejecting
+ambiguous or contradictory IDs. Saved repairs cannot override a different
+selected source/authority. Local simulated-source controls pass; the Mac probe
+checks actual installed resources. No native execution or repair adoption is
+claimed, and the full live run remains pending.
+
+A repair is useful only if it belongs to the chemistry the pipeline actually
+selected. C67 therefore asks the ordinary source selector first and preserves
+curated priority. It records source/repair differences instead of substituting
+a cached component by name. Two compatibility defects are fixed generally:
+equivalent descriptive workbook aliases no longer block construction, and
+valid native loop metadata no longer fails scalar-only identity validation.
+
+Methods: compare every operational role and sugar/phosphate/attachment context;
+reject conflicts; freeze selected source bytes with SHA-256 references; map
+NARestraints roles onto those exact atom names; compile each explicitly
+requested pair and both stacking orientations using the existing library.
+These controls have no observed coordinates or native restraints. The local
+source installation is simulated from recorded/public graphs; the Mac return
+must establish actual installed-source behavior before broader integration.
