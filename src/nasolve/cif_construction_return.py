@@ -1,13 +1,15 @@
-"""Read-only replay of C62's fresh ordinary Coot construction controls.
+"""Read-only replay of fresh ordinary Coot construction controls.
 
 The caller first validates the exact C61 parent capsule. Saved Python is parsed
 only for literal historical paths, then compared with the maintained generator;
-it is never imported or executed. This proves the recorded raw-site fallback,
-not successful fragment transport or scientific geometry qualification.
+it is never imported or executed. C62 proves the recorded raw-site fallback;
+C63 recomputes the transactional context and proper whole-base transport.
+Neither replay establishes scientific geometry qualification.
 """
 import ast
 from dataclasses import asdict
 from hashlib import sha256
+import json
 from pathlib import Path, PurePosixPath
 import re
 from tempfile import TemporaryDirectory
@@ -23,6 +25,21 @@ from .synthetic_dna import prepare_free_five_prime_model
 POLICY_ID = 'cif-saved-postmr-construction-replay-v1'
 C62_SOURCE_COMMIT = '782672648934d22162de12375a1cb131d160f24a'
 C62_RUNTIME_SHA256 = '2afbdb61614561add523fcd7622d92a6577a01ee206acdb47676676191e462c6'
+C63_SOURCE_COMMIT = 'ae665f1c68d80c74bda0620fc9e6aeea39999201'
+C63_RUNTIME_SHA256 = '38e9513ba27da2c3e0f7092074c94b80e53526ce03e7c2cc233cde3ba29e3549'
+C63_SOURCE_SHA256 = {
+    'src/nasolve/postmr.py': '59e9cb91d9e5774f57d654688a212faba78e2b7d0a36b1f1b57e8b878d54d187',
+    'src/nasolve/postmr_context.py': '02772205b2e16dd4b88a4748155eda88c4f724a242af2af0fb1cae8187a9b798',
+    'src/nasolve/postmr_restoration.py': '766cc1f02bfb02d133c08ea5d15bb268afdc35c7a5dece2d86f924589d4398fe',
+    'src/nasolve/cif_postmr_construction.py': 'eb69c54d209d7c5eeab03f973783ec2767246ff5073a01ec5c632442f8ad1075',
+    'src/nasolve/cif_review_transport.py': '897c5bc3b6d5ab372997991a933924f273cfa10c881bc013a3a3c980577dbbc6',
+    'src/nasolve/synthetic_dna.py': '0830b5e1e50d88cdbf4af3623a659af12095cee109f9f2eb1329667ab4d343b0',
+}
+C62_PREREQUISITE = {'delivery_prefix': '62_Cedar',
+    'sha256': '1c78b4ceb12478b05fd968ec891822d237ed3be44fe46a9bf0184bbc9ff38996',
+    'status': 'CONSTRUCTION_CONTROLS_PASS_WITH_NOTES', 'raw_fallback_sites': ['A:6', 'A:9', 'A:7'],
+    'rigid_transport_exercised': False, 'coot_version': '1.3.3',
+    'captured_code_execution': 'NOT_RUN', 'original_raw_models': 'PRESERVED'}
 C61_SHA256 = '73476fe624d7f951d7c0b6af8ff2da75c4caf7b9f19f1e1870610f1e383c8472'
 C62_SOURCE_SHA256 = {
     'src/nasolve/postmr.py': '60739b061fc92df48ae9f2c79d552d609b65d72e36e4503c40cdc6a7a3677838',
@@ -48,6 +65,10 @@ def _reference(members, ref, *, expected_path=None):
 def _source_candidates(members):
     """Follow declared parent scopes; never search dictionaries by basename."""
     prefix = 'inputs/review/'
+    if _json(members, 'probe_receipt.json').get('delivery_prefix') == '63_Cedar':
+        _need(_json(members, prefix + 'probe_receipt.json').get('delivery_prefix') == '62_Cedar',
+            'Saved context construction lost its declared C62 parent')
+        prefix += 'inputs/review/'
     for delivery in ('61_Cedar', '60_Cedar', '59_Cedar', '58_Cedar', '57_Cedar'):
         receipt = _json(members, prefix + 'probe_receipt.json')
         _need(receipt.get('delivery_prefix') == delivery, 'Saved construction source lineage differs')
@@ -90,7 +111,7 @@ def _historical_root(script):
 
 
 def replay_postmr_construction(members, *, runtime_sources=None):
-    """Recompute C62 staging, generated script, raw fallback and independent audit.
+    """Recompute staging, script, fallback/context transport and independent audit.
 
     The full exact C61 parent is the caller's responsibility. Optional original
     runtime bytes are hash-checked as data only. The canonical packaged frame is
@@ -98,14 +119,16 @@ def replay_postmr_construction(members, *, runtime_sources=None):
     """
     try:
         receipt = _json(members, 'probe_receipt.json'); report = receipt['postmr_construction_audit']
-        _need(receipt.get('delivery_prefix') == '62_Cedar'
+        delivery = receipt.get('delivery_prefix'); context_mode = delivery == '63_Cedar'
+        _need(delivery in {'62_Cedar', '63_Cedar'}
             and report == _json(members, 'postmr_construction_audit.json'), 'Saved construction report differs')
         build = receipt['build']
-        _need(build['nasolve_source'] == {'commit': C62_SOURCE_COMMIT, 'working_tree_has_changes': False}
-            and build['runtime_archive_sha256'] == C62_RUNTIME_SHA256,
+        _need(build['nasolve_source'] == {'commit': C63_SOURCE_COMMIT if context_mode else C62_SOURCE_COMMIT,
+                'working_tree_has_changes': False}
+            and build['runtime_archive_sha256'] == (C63_RUNTIME_SHA256 if context_mode else C62_RUNTIME_SHA256),
             'Saved construction source/runtime provenance differs')
-        for name, digest in C62_SOURCE_SHA256.items():
-            _need(build['runtime_files'][name]['sha256'] == digest, 'Saved C62 source hash differs: ' + name)
+        for name, digest in (C63_SOURCE_SHA256 if context_mode else C62_SOURCE_SHA256).items():
+            _need(build['runtime_files'][name]['sha256'] == digest, 'Saved construction source hash differs: ' + name)
             if runtime_sources is not None:
                 _need(type(runtime_sources.get(name)) is bytes and sha256(runtime_sources[name]).hexdigest() == digest,
                     'Original C62 runtime source bytes differ: ' + name)
@@ -124,8 +147,17 @@ def replay_postmr_construction(members, *, runtime_sources=None):
             for r in ORDINARY_POSTMR_CONSTRUCTION_CONTROLS]
         _need(report['controls'] == controls, 'Saved construction actions differ')
         actions = tuple(MutationAction(**row) for row in controls)
+        output_paths = {'model': 'model/constructed_model.pdb', 'raw_model': 'model/constructed_model_raw.pdb',
+            'geometry_model': 'model/constructed_model_geometry.pdb', 'coot_log': 'model/Coot/coot.log'}
+        if context_mode:
+            output_paths.update(restoration_input='model/constructed_model_context.pdb',
+                context_shadow='model/constructed_model_context_shadow.pdb',
+                context_sanitized_shadow='model/constructed_model_context_shadow_sanitized.pdb',
+                context_rechecked_model='model/constructed_model_context_rechecked.pdb')
+            _need(report['construction_prerequisite'] == C62_PREREQUISITE,
+                'Saved construction context prerequisite differs')
         _need(set(report['dictionaries']) == set(sources) and set(report['parents']) == {a.site for a in actions}
-            and set(report['outputs']) == {'model', 'raw_model', 'geometry_model', 'coot_log'},
+            and set(report['outputs']) == set(output_paths),
             'Saved construction input/output roles differ')
         initial_bytes = _reference(members, report['input_model'], expected_path='inputs/canonical_free_5oh.pdb')
         staged, removed = prepare_free_five_prime_model(canonical)
@@ -136,8 +168,7 @@ def replay_postmr_construction(members, *, runtime_sources=None):
             saved = _reference(members, report['dictionaries'][code], expected_path='inputs/' + code + '.cif')
             _need(saved == data, 'Saved staged numerical dictionary differs from its qualified source')
             artifact_bytes[report['dictionaries'][code]['path']] = data
-        for role, path in {'model': 'model/constructed_model.pdb', 'raw_model': 'model/constructed_model_raw.pdb',
-                'geometry_model': 'model/constructed_model_geometry.pdb', 'coot_log': 'model/Coot/coot.log'}.items():
+        for role, path in output_paths.items():
             artifact_bytes[path] = _reference(members, report['outputs'][role], expected_path=path)
         for action in actions:
             path = 'model/Coot/parent_' + action.site.replace(':', '_') + '_' + action.parent_code + '.pdb'
@@ -180,11 +211,34 @@ def replay_postmr_construction(members, *, runtime_sources=None):
                 _need(_atoms(_pdb_inventory(parents[action.site]), action.site) == _atoms(inventory, action.site),
                     'Frozen selected parent differs from the staged canonical input')
             replayed = folder / 'replayed_geometry.pdb'
-            restoration = _restore_shared_parent_coordinates(outputs['raw_model'], replayed, actions, parents, dictionaries)
+            context = None
+            if context_mode:
+                from .postmr_context import prepare_construction_context
+                from .phosphate import sanitize_phosphates
+                context = prepare_construction_context(outputs['raw_model'], initial, actions, dictionaries,
+                    parents, folder / 'recomputed_context.pdb')
+                _need(context['receipt']['status'] == 'CONTEXT_PREPARED', 'Saved context is not proved')
+                for role, key in [('restoration_input', 'model'), ('context_shadow', 'shadow'),
+                        ('context_sanitized_shadow', 'sanitized_shadow')]:
+                    _need(context[key].read_bytes() == outputs[role].read_bytes(),
+                        'Saved context stage does not reproduce: ' + role)
+            restoration = _restore_shared_parent_coordinates(context['model'] if context_mode else outputs['raw_model'],
+                replayed, actions, parents, dictionaries)
             _need(restoration == report['coordinate_restoration'] and replayed.read_bytes() == outputs['geometry_model'].read_bytes()
                 and outputs['geometry_model'].read_bytes() == outputs['model'].read_bytes(),
                 'Saved construction restoration/fallback does not replay')
-            audit = audit_postmr_construction(initial, outputs['raw_model'], outputs['model'], actions, dictionaries, parents, restoration)
+            if context_mode:
+                checked = folder / 'recomputed_recheck.pdb'
+                check = sanitize_phosphates(replayed, checked, reference_model=initial,
+                    check_sites=tuple(row['site'] for row in context['receipt']['removed_atoms']))
+                _need(not check['removed'] and checked.read_bytes() == replayed.read_bytes()
+                    and checked.read_bytes() == outputs['context_rechecked_model'].read_bytes(),
+                    'Saved final phosphate recheck does not reproduce')
+                context['receipt']['final_sanitizer_recheck'] = check
+                _need(context['receipt'] == report['context_receipt'], 'Saved context proof receipt does not reproduce')
+            audit = audit_postmr_construction(initial, outputs['raw_model'], outputs['model'], actions, dictionaries, parents,
+                restoration, **({'restoration_input': outputs['restoration_input'], 'context_receipt': context['receipt'],
+                    'context_shadow': outputs['context_shadow']} if context_mode else {}))
             _need(audit == report['audit'], 'Saved independent construction audit does not replay')
             atl = {'component': 'ATL', 'scope': 'PUBLIC_GRAPH_ELIGIBILITY_ONLY', 'coot_execution': 'NOT_RUN',
                 'reason': 'No qualified numerical ATL dictionary is supplied for fresh Coot construction.', 'source': atl_ref}
@@ -197,7 +251,8 @@ def replay_postmr_construction(members, *, runtime_sources=None):
                 'ordinary_construction_api': 'nasolve.postmr.construct_postmr_model', 'controls': controls,
                 'source_graph_eligibility': graph, 'expected_restoration_context': {a.site: {
                     'dictionary_scaffold_atoms_absent_from_parent': sorted(set(graph[a.after]['scaffold_atoms']) - _atoms(inventory, a.site).keys()),
-                    'unmatched_raw_scaffold_policy': 'RAW_SITE_RETAINED', 'actual_coot_composition': 'NOT_YET_OBSERVED'} for a in actions},
+                    'unmatched_raw_scaffold_policy': 'SOURCE_PROVEN_CONTEXT_OR_RAW_SITE_RETAINED' if context_mode else 'RAW_SITE_RETAINED',
+                    'actual_coot_composition': 'NOT_YET_OBSERVED'} for a in actions},
                 'input_model': report['input_model'], 'dictionaries': report['dictionaries'], 'canonical_source_sha256': CANONICAL_SHA256,
                 'five_prime_phosphate_atoms_removed': removed, 'atl_control': atl,
                 'coot': {'execution': 'NOT_RUN', 'version': coot['version'], 'timeout_seconds': 600},
@@ -208,12 +263,31 @@ def replay_postmr_construction(members, *, runtime_sources=None):
             completed = {**plan, 'status': audit['status'], 'analysis_completed': True,
                 'coot': {**plan['coot'], 'execution': 'COMPLETED'}, 'audit': audit, 'coordinate_restoration': restoration,
                 'outputs': report['outputs'], 'parents': report['parents'], 'source_inputs_preserved': True}
+            if context_mode:
+                completed['context_receipt'] = context['receipt']
+                completed['expected_restoration_context'] = json.loads(json.dumps(plan['expected_restoration_context']))
+                raw_inventory = _pdb_inventory(outputs['raw_model'])
+                context_inventory = _pdb_inventory(outputs['restoration_input'])
+                for action in actions:
+                    before, after = _atoms(raw_inventory, action.site), _atoms(context_inventory, action.site)
+                    expected = completed['expected_restoration_context'][action.site]
+                    expected.update(actual_coot_composition='OBSERVED', actual_coot_inventory={
+                        'atom_count': len(before), 'atom_ids': sorted(before),
+                        'component_codes': sorted({a['code'] for a in before.values()}),
+                        'scaffold_atoms_absent_from_parent': sorted((set(graph[action.after]['scaffold_atoms']) & before.keys())
+                            - _atoms(inventory, action.site).keys())}, actual_restoration_input_composition={
+                        'status': 'OBSERVED', 'atom_count': len(after), 'atom_ids': sorted(after),
+                        'removed_from_raw_coot': sorted(before.keys() - after.keys())})
+            additions = {'construction_prerequisite': C62_PREREQUISITE} if context_mode else {}
             _need(completed == _json(members, PREFIX + '/construction_report.json')
-                and {**completed, 'source_numerical_candidates': source_refs, 'qualified_runtime_input': report['qualified_runtime_input']} == report,
+                and {**completed, 'source_numerical_candidates': source_refs,
+                    'qualified_runtime_input': report['qualified_runtime_input'], **additions} == report,
                 'Completed saved construction report has changed scope or unsupported claims')
             raw_inventory = _pdb_inventory(outputs['raw_model'])
+            final_atom_count = len(_pdb_inventory(outputs['model']))
             identical = outputs['raw_model'].read_bytes() == outputs['model'].read_bytes()
         return {'schema_version': 1, 'policy_id': POLICY_ID, 'status': 'SAVED_POSTMR_CONSTRUCTION_REPLAY_PASS',
+            **({'context_replayed': True, 'final_atom_count': final_atom_count} if context_mode else {}),
             'audit': audit, 'controls': controls, 'initial_atom_count': len(inventory), 'constructed_atom_count': len(raw_inventory),
             'raw_final_geometry_identical': identical, 'source_numerical_candidates': source_refs,
             'coot': {'version': coot['version'], 'executable_sha256': coot['sha256'], 'script_sha256': sha256(script.encode()).hexdigest(),

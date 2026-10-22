@@ -34,6 +34,22 @@ automatic acquisition/repair adoption, generic NAR compilation, production
 checkpoints/refinement, PDF rendering and scientific qualification remain
 separate. Students do not approve CIFs.
 
+Returned C63 verifies all **3,489 payloads**, preserves the complete C62 parent,
+and completes Coot 1.3.3 through the ordinary construction API. All three
+DP/PDU/5PC sites use proper whole-base restoration, with three proved internal
+OP3 deletions, 69 selected serial normalizations and no raw fallback. The final
+unchanged phosphate recheck removes nothing. Base geometry changes by at most
+0.001041 A, consistent with PDB rounding; this is construction evidence, not a
+native-restraint or scientific-geometry verdict.
+
+C64 connects that exact constructed model to native Phenix readback: a
+canonical reference and the constructed model, using existing source-qualified
+site modifiers, explicit backbone contexts and disabled native secondary
+structure. Two fixed interpretations check effective definitions, all backbone
+links, heavy-atom restraints, triple targets and finite repeated evaluations.
+ReadySet, optimization, generic NAR compilation and production adoption remain
+separate; the eventual eight-pair full run remains unchanged.
+
 ## What's current?
 
 - **Completed:** NARestraints v1.1.3; merged W Saenger overlay and pathless

@@ -2661,7 +2661,15 @@ receipts are preserved byte-for-byte. All **140 new regressions**, **290 focused
 (two skips, 276 subtests; full run 350.46 s). Actual-C62 strict
 replay, deleted-build/relocated transport, eight mirrors, 156 links and protected
 hash/figure checks pass. All 3,445 source payloads and the everyday edit are
-preserved. Fresh Coot construction remains pending.
+preserved. Returned C63 now closes that fresh Coot construction gate.
+
+Returned C63 verifies all **3,489 payloads**, preserves the complete C62 parent,
+and completes Coot 1.3.3 through the ordinary construction API. All three
+DP/PDU/5PC sites use proper whole-base restoration, with three proved internal
+OP3 deletions, 69 selected serial normalizations and no raw fallback. The final
+unchanged phosphate recheck removes nothing. Base geometry changes by at most
+0.001041 A, consistent with PDB rounding; this is construction evidence, not a
+native-restraint or scientific-geometry verdict.
 
 cif-review-diagnostic-transport-v1 accepts only timestamped opaque Coot backup
 `.pdb.gz` names in the declared backup directory as an exception to strict
@@ -2677,6 +2685,41 @@ Automatic acquisition/repair adoption, generic pairing/stacking compilation and
 production checkpoint/refinement still precede the full eight-pair live run;
 PDF rendering and scientific geometry/state/CIP qualification remain separate.
 No student CIF gate is introduced.
+
+## Native readback of ordinary construction (Cedar 64)
+
+C64 `--postmr-construction-native-only` consumes exact C63 evidence and replays
+its context, serials, deletions, transform and independent audit through current
+maintained code. Captured Python is never executed. Historical C62 raw fallback
+and every parent receipt remain unchanged.
+
+`cif-ordinary-construction-native-readback-v1` stages byte-exact canonical and
+constructed models with the existing qualified source-graph modifier preparation
+for DP A:6, 5PC A:7 and PDU A:9. Explicit incoming/outgoing contexts include
+adjacent modified sites. Six CIF inputs and four PHIL inputs preserve the source
+numerics; no new numerical generation, charge/protonation selection or coordinate
+adjustment occurs. The canonical reference uses installed monomers and the same
+secondary-structure-disabled policy. NARestraints remains authoritative; this
+construction test does not compile or guess pairing/stacking relationships.
+
+Two Phenix 2.2.1-6174 interpretation workers are bounded at 60 seconds each,
+with two fixed energy/gradient evaluations per worker. Require exact written
+models, complete effective sites, projected definitions, modifier membership,
+heavy-atom covalent proxies, all canonical backbone links and unchanged
+unselected definitions/proxies. Each selected incoming phosphate needs four
+bonds and six angles. Triple-bond readback uses an explicit heavy-atom site view;
+check active length/linearity membership and positive weights. Descriptive
+coordinate bending and retained linear-axis torsions remain separate findings.
+Unknown formal-charge access stays unsupported; contradictions do not pass.
+
+The report is `construction_native_audit.json`, duplicated in the probe receipt;
+all input/output references use the owned construction_native_directory anchor.
+A prepared bundle remains usable after relocation without the original capsule.
+The two models have different objectives: their energies are not ranked.
+Scientific geometry, absolute CIP, general repair/adoption, generic NAR policy
+compilation, ReadySet, production checkpoints/refinement and solution PDF
+rendering remain separate. ATL remains an independent public/compiler control.
+Students never approve CIF tables. Fresh native execution is pending on the Mac.
 
 ## Reviewed preparation
 

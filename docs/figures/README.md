@@ -129,7 +129,12 @@ parent-scaffold shadow; only proved deletions pass to original raw coordinates
 before whole-base transport and the same sanitizer recheck. Frozen phosphate
 intent, unsupported raw-site fallback and curated placement stay intact. A
 saved-data context study is not fresh native evidence. Fresh C63 controls use
-the same ordinary API with one Coot process/600 seconds; ATL stays independent
+the same ordinary API with one Coot process/600 seconds. Returned C63 passes
+all three transports after three internal OP3 deletions, preserving geometry
+within 0.0011 A and passing unchanged final sanitation. C64 separately checks
+the exact constructed model in native Phenix with source-qualified site modifiers,
+canonical-link/proxy/triple checks and fixed evaluations; no new optimizer,
+ReadySet or NAR compilation. ATL stays independent
 public graph/eligibility only. Narrow diagnostic-backup mapping preserves legacy
 timestamped bytes without relaxing scientific paths. General acquisition/repair
 adoption, generic NAR compilation, production checkpoints/refinement and PDF

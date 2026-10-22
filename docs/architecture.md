@@ -934,16 +934,26 @@ context with notes; curated special placements and independent ATL scope stay
 intact. All source files remain immutable.
 
 The controls use one fresh Coot construction process bounded at 600 seconds, leaving ordinary
-default timing unchanged. The C63 saved-C62 context study is offline replay,
-not a new native result. Completed composition reports distinguish observed
+default timing unchanged. The C63 saved-C62 context study is offline replay. Returned C63 separately
+completes Coot 1.3.3: all three controls restore whole bases, three internal OP3
+atoms are removed, serial authority and unchanged final sanitation pass, and no
+raw fallback is selected. This is fresh construction evidence, not native
+restraint or scientific geometry qualification. Completed composition reports distinguish observed
 raw/context inventories; inspect-only remains unobserved. The narrow
 cif-review-diagnostic-transport-v1 mapping preserves timestamped opaque Coot
 backup names and bytes across relocation without relaxing scientific paths.
 Dictionary chemistry, curated precedence, NARestraints authority, native kernels
 and the qualified correction remain unchanged. No ReadySet, observations,
 optimizer, new pairing/stacking policy or fabricated checkpoint is introduced.
-Automatic resource repair/adoption and generic NAR compilation still precede
-the planned fresh eight-pair full run.
+C64 adds a separate native readback of that exact constructed model and the
+canonical reference. Existing source-qualified site modifiers preserve the
+numerical inputs; two fixed Phenix interpretations check all canonical backbone
+links, selected heavy-atom proxies/effective definitions, triple targets and
+finite repeatable energies/gradients. Native secondary-structure guessing stays
+disabled; NARestraints remains authoritative and no pairing/stacking compilation
+runs in this test. Native kernels, the plane correction and optimizers are
+unchanged. Automatic resource repair/adoption and generic NAR compilation still
+precede the planned fresh eight-pair full run.
 
 The bundle assessment summary distinguishes inherited native evidence from a
 new native operation: native_selection is VERIFIED_SOURCE_CAPTURE and

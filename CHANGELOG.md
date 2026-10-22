@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read back ordinary Coot construction with fixed native restraints
+
+- Verify all 3,489 C63 payloads and unchanged C62 parent. Coot 1.3.3 completes
+  all three whole-base transports after exactly three proved OP3 deletions and
+  69 selected serial normalizations. The unchanged final sanitizer removes
+  nothing; all unselected identities/elements/XYZ survive. No raw fallback.
+- Extend maintained saved construction replay to every C63 context/transform
+  stage; preserve historical C62 fallback and captured Python as data only.
+- Add C64 --postmr-construction-native-only: exact canonical/constructed models,
+  existing source-qualified modifiers, two bounded native interpretations,
+  exact backbone/site/proxy/triple checks and fixed repeated evaluations.
+  Disable native secondary-structure guessing; preserve NAR authority and all
+  source numerical targets. Different-objective energies are not ranked.
+- All **93 new regressions**, **362 focused / 3745 full tests** pass
+  (two skips, 276 subtests; full run 344.88 s), including strict C63 replay and
+  deleted-build/relocated delivery with every source payload preserved. Fresh
+  Phenix 2.2.1-6174 readback remains pending on the Mac. No Coot rerun, ReadySet, optimizer, observations,
+  production checkpoint/adoption or refinement. Generic NAR compilation and
+  automatic acquisition/repair remain integration work before the eight-pair
+  full run. No student CIF gate, new NAR release or ATL merge gate.
+
 ### Prepare verified internal-phosphate context before ordinary base restoration
 
 - Verify returned C62: all 3,445 payloads preserve C61; Coot 1.3.3 completes
@@ -26,7 +47,7 @@ entries are reconstructed from repository history.
 - All **140 new regressions**, **290 focused / 3652 full tests** pass
   (two skips, 276 subtests), plus actual-C62 strict replay and deleted-build
   relocated transport. The everyday edit, all original payloads and narrow
-  backup transport preserve their checked scope. Fresh native Coot remains pending. One fresh Coot construction process is bounded at
+  backup transport preserve their checked scope. Returned C63 closes fresh Coot construction; native readback remains separate. One fresh Coot construction process is bounded at
   600 seconds; no new optimizer, ReadySet, Phenix, NAR release/compilation,
   observations, fake checkpoint or refinement. General repair/adoption and the
   exact eight-pair full run remain separate; no student CIF gate.

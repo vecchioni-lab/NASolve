@@ -1360,7 +1360,11 @@ with notes. This changes ordinary coordinate preparation, not dictionary
 chemistry or native restraint mechanics.
 
 The saved-C62 study proves three deletions and preserves base geometry within
-PDB rounding; it is not a fresh Coot result. C63 tests the same ordinary API
+PDB rounding; it is not a fresh Coot result. Returned C63 now independently
+completes fresh Coot construction: all three bases are transported, three internal
+OP3 atoms are removed under the existing policy and no raw fallback occurs.
+The final model retains 854 atoms at 42 sites; 788 unselected atoms retain their
+identities, elements and coordinates. C63 tests the same ordinary API
 with one fresh process bounded at 600 seconds, plus an independent context
 change audit. Completed reports describe observed raw/context composition;
 inspect-only remains unobserved. Portable diagnostic-backup mapping preserves
@@ -1369,6 +1373,26 @@ public graph/restoration eligibility only, with no fresh Coot outcome claimed.
 Observations, ReadySet, generic NAR compilation, repair/adoption, production
 checkpoints/refinement and PDF output remain separate integration work before
 the planned full eight-pair run. No student CIF decision is added.
+
+C64 checks that exact constructed model in native Phenix before another
+production boundary. A canonical reference and the constructed model use the
+same secondary-structure-disabled policy, with existing source-qualified site
+modifiers for the three internal components. The implementation compares native
+backbone links, effective chemical definitions, heavy-atom proxies and active
+triple length/linearity terms, then records two fixed evaluations per model.
+The different objectives are not compared as an optimization improvement.
+This readback is bounded to two 60-second workers and changes no model, native
+kernel, numerical target or optimizer. Pairing/stacking compilation and ordinary
+repair/adoption remain subsequent integration work; no student CIF gate is added.
+
+Methods: preserve the exact Coot-built coordinates and frozen canonical input,
+prepare explicit source-graph component modifiers, and interpret both layouts
+with Phenix 2.2.1-6174. Compare named native atom identities, canonical backbone
+link targets/weights, projected site definitions and active heavy-atom proxies.
+Require complete phosphate tetrahedral coverage and finite repeatable native
+evaluations. Assess graph-declared triples at the same explicit native site;
+keep residual geometry and linear-axis torsion findings separate from numerical
+membership. No diffraction or convergence claim follows from this test.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class
