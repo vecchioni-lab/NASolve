@@ -1457,3 +1457,39 @@ links explain each tool's role and are not validation receipts for NASolve.
 - [NASolve implementation and provenance](cif-doctor.md),
   [scientific audit design](cif-restraint-audit-methods.md) and
   [NARestraints](https://github.com/vecchioni-lab/NARestraints).
+
+## Persistent reusable component numerics (Cedar 66)
+
+Repeated crystals should not repeat a successful component repair. The shared
+store/resolver saves usable numerical dictionaries locally, including a finite
+nonconverged candidate and its original notes, and consults them before another
+acquisition callback. Source authority and exact declared chemical state are
+preserved. Ordinary PostMR acquisition/adoption orchestration is still separate;
+C66 exercises the implemented API explicitly with DP, PDU and 5PC.
+
+The algorithm uses SHA-256 content identities, standard-library JSON/filesystem
+operations and the existing usable-candidate policy. A semantic source/recipe/
+backend-family lookup is separate from an immutable entry digest containing
+candidate bytes, complete original producer and native consumer provenance,
+qualification and stopping evidence. Publication uses an owned staging
+directory and atomic rename. Current-source/configuration checks and artifact
+hashes precede reuse. Source/state mismatch creates another request; a changed
+consumer or check policy requalifies saved numerics before regeneration. An
+upgraded Phenix builder is not misattributed as the producer of old bytes.
+
+The resolver freezes source, numerics and immutable evidence per run with
+relative anchored references. Removing the cache cannot change that run.
+Terminal/linkage modifiers and new-model geometry remain separate qualification
+layers; cache reuse never certifies a new crystal. C66 uses saved Phenix
+2.2.1-6174 evidence without new native processes or an installed energy-library
+resource-file qualification. It does not upload chemistry, change native
+mechanics or ask students to inspect CIFs.
+
+Methods: accept only complete source/candidate-bound isolated native evidence,
+reassess the current declared graph/configuration, look up reusable numerical
+bytes, and copy their checksummed source/qualification/provenance into an owned
+run snapshot. Preserve nonconvergence and unsupported evidence as notes. Test
+source/authority/consumer invalidation and consume relocated snapshots after
+removing an owned cache copy. Producer/consumer/check-policy upgrades retain
+base numerics for requalification; automatic ordinary-pipeline and PDF consumers
+remain to be integrated.

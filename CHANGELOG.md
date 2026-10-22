@@ -8,6 +8,30 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Persist qualified component numerics and reuse before generation
+
+- Add a shared user-local dictionary store and acquisition resolver. Bind source,
+  declared chemistry/authority, numerical recipe and backend family; preserve
+  immutable producer/consumer/qualification/parameter hashes and stopping notes.
+- Reuse before acquisition, including usable nonconverged candidates. Consumer,
+  native-check-policy and combined Phenix upgrades requalify saved bytes before
+  regeneration. Keep original producer attribution after requalification.
+- Publish atomically, exclude corrupt/unusable or symlink-substituted entries,
+  and freeze independent relative run snapshots. Optional cache-write failure
+  still retains a verified run copy. No new package, daemon or external upload.
+- Add C66 --local-dictionary-reuse-only on exact C65 for DP/PDU/5PC persistence,
+  repeat reuse, source/authority/version invalidation and cache-removal/relocation
+  controls. Zero new native/generator/optimizer processes; native evidence is
+  inherited, not a fresh installed energy-library qualification.
+- Ordinary automatic acquisition/adoption, intended-pair compilation, the full
+  eight-pair run and PDF integration remain separate. Native mechanics, NAR
+  authority/workbook, source chemistry and existing run schemas stay unchanged.
+- All **76 new regressions**, **389 focused / 3959 full tests** pass
+  (two skips, 276 subtests; full run 355.38 s). Relocated actual-C65 delivery
+  passes all 30 controls and preserves every input payload with subprocesses
+  forbidden. Nine frozen snapshots survive owned-cache removal and relocation.
+  Mac C66 transport remains pending.
+
 ### Record the verified C65 construction-native return
 
 - Verify all 3,587 returned payloads, complete byte-identical C64 parent and

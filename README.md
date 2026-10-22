@@ -252,6 +252,13 @@ screens pass; three linear-axis torsions per site remain recorded. Independent
 replay reproduces the report and prepared scientific bytes with subprocesses
 forbidden. No repeat of this construction-native gate is needed.
 
+C66 adds a persistent component store and shared acquisition resolver. It
+automatically reuses qualified numerical dictionaries before another builder
+call, preserves nonconvergence notes and freezes independent run copies.
+Changed consumers or check policies requalify saved numerics first; site and
+model checks stay separate. The explicit DP/PDU/5PC reuse diagnostic exercises
+this API; ordinary PostMR acquisition/adoption orchestration remains planned.
+
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

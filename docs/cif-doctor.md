@@ -69,35 +69,63 @@ homework; old diagnostic results remain unchanged.
 
 ## Persistent local reuse of qualified repairs
 
-**Required integration behavior; not yet a deployed component store.** NASolve
-must automatically retain a usable repaired numerical dictionary in a persistent
-user-local store and consult it before generating or optimizing that component
-again. Repeated structures with matching chemistry reuse the exact saved
-dictionary, including usable nonconverged candidates and their original notes.
-Students do not manually save, select or inspect CIF tables.
+**Implemented shared component store and resolver; ordinary PostMR orchestration
+remains planned.** `nasolve.cif_dictionary_store.resolve_qualified_dictionary`
+consults persistent local numerics before its verified acquisition callback.
+C66 explicitly exercises this API with the qualified DP/PDU/5PC candidates.
+It does not silently enable production repair/adoption or make students save,
+select or inspect CIF tables.
 
-Entries are immutable and content-addressed, with exact source/candidate hashes,
-atom mapping, declared bond orders, formal charges, explicit hydrogens,
-stereochemistry, recipe/policy, generator and consumer/energy-library provenance,
-qualification scope and stopping/limitation evidence. Component code alone is
-not a valid reuse key. Preserve curated and explicit-source precedence; a cached
-repair cannot silently override a different declared chemical state.
+The semantic lookup binds exact source bytes and authority, original atom names,
+declared elements/orders/formal charges/explicit hydrogens/stereochemistry, the
+numerical recipe and generator family. Component code alone is insufficient.
+The immutable entry digest also binds exact candidate bytes, the complete
+original producer identity, consumer fingerprints, native qualification and
+stopping/limitation evidence. Usable nonconverged candidates remain reusable.
+Curated and explicit-source precedence is selected upstream and remains part
+of the request; a local repair cannot override another source or chemical state.
 
-Store component numerics separately from terminal/linkage modifiers and from
-coordinate-dependent manager/geometry evidence. A new crystal's coordinates do
-not invalidate the reusable component dictionary or trigger its optimization.
-New site contexts require the corresponding modifier/link checks; changed
-consumer versions invalidate affected native qualifications and prompt
-requalification of the saved dictionary before regeneration is considered.
-Known-unusable candidates remain evidence, never automatic cache hits.
+Changing a consumer, native qualification policy or both Phenix's builder and
+consumer retains existing numerics for requalification before regeneration.
+An upgraded producer is not recorded as the author of old numerical bytes.
+Different numerical recipes/backends create distinct requests. Source/candidate
+bindings and current graph/configuration are checked on every entry read;
+incomplete, corrupt, failed or symlink-substituted entries cannot become hits.
+Publication verifies an owned staging directory and renames it atomically,
+without overwriting a historical entry. Cache-write failure still permits a
+separately verified, independently frozen run copy.
 
-Each run freezes its selected dictionary, modifiers and immutable provenance
-into run-local anchored artifacts, so cache removal or later entries cannot
-change a historical run. Report reuse, original stopping notes and any fallback
-in the ordinary solution summary and eventual PDF. The local store lives outside
-tracked source trees; it does not replace per-run receipts, upload unpublished
-chemistry or change native mechanics. Store orchestration and reuse regression
-tests belong to the pending automatic acquisition/repair/adoption integration.
+Base numerics are separate from terminal/linkage modifiers and coordinate-based
+evidence. New crystal coordinates do not trigger component optimization. A hit
+does not certify a new site, model or installed runtime. C66 inherits verified
+Phenix 2.2.1-6174 source fingerprints; it neither reprobes the installed runtime
+nor claims a captured energy-library resource-file fingerprint. Current-site
+and changed-consumer native qualification remain explicit separate work.
+
+Each run freezes `source.cif`, `dictionary.cif`, `qualification.json`,
+`provenance.json` and `manifest.json` beneath an owned `entry/` directory.
+`resolution.json` uses the `dictionary_resolution` and `dictionary_entry`
+anchors. Its source/parameter/qualification hashes and original stopping notes
+remain usable after cache removal, source-capsule loss or relocation. Selection
+among matching entries uses the existing usable-candidate policy and stable
+entry order, without comparing energies from different objectives.
+
+Default storage is user-local application data outside tracked source trees:
+`~/Library/Application Support/NASolve/cif-dictionaries/v1` on macOS,
+`${XDG_DATA_HOME:-~/.local/share}/nasolve/cif-dictionaries/v1` on Linux and
+`%LOCALAPPDATA%/NASolve/cif-dictionaries/v1` on Windows. `NASOLVE_CIF_STORE`
+overrides this path; the C66 diagnostic also accepts `--dictionary-store PATH`.
+No new dependency, daemon, network upload or student configuration is required.
+The ordinary solution/PDF consumer will report reuse and preserved limitations
+when its pending acquisition/adoption adapters are integrated.
+
+The explicit `--local-dictionary-reuse-only` diagnostic accepts exact C65 and
+preserves every parent payload. For each component it tests persistence,
+repeat reuse without acquisition, exact bytes/notes, source and authority
+mismatches, consumer requalification and frozen snapshots after removal of an
+owned cache copy. It never removes user entries. Zero new native, generator,
+optimizer, Coot, ReadySet or refinement processes are requested; overall REVIEW
+still describes the ordinary-pipeline and scientific boundary.
 
 ## Generated numerical defects and explicit candidates
 

@@ -145,6 +145,12 @@ public graph/eligibility only. Narrow diagnostic-backup mapping preserves legacy
 timestamped bytes without relaxing scientific paths. General acquisition/repair
 adoption, generic NAR compilation, production checkpoints/refinement and PDF
 rendering remain separate.
+C66 adds a separate persistent component-store/resolver API, with exact
+source/state/authority identity, immutable producer/consumer provenance and
+independent run copies. Repeated component use avoids generation; changed
+consumers/check policies requalify saved numerics first. Its explicit reuse
+control introduces no ordinary production-adoption arrow in this figure.
+Site/model qualification and automatic PostMR orchestration remain separate.
 This resource/reader bridge does not fabricate an AutoMR/PostMR checkpoint or
 claim automated acquisition, production adoption, refinement or PDF integration.
 Existing native classifications already say DNA despite generic written groups.

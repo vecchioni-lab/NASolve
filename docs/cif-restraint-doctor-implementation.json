@@ -16504,6 +16504,202 @@
         "follow_up": "Use the requested eight-pair chemical intent, including DZ:DP for Z:P, for pairing/stacking integration. Do not invent a P:C recipe, relabel chemistry or repeat the closed construction-native gate."
       },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#saved_constructed_native_replay_2026_10_22"
+    },
+    "qualified_dictionary_reuse_2026_10_22": {
+      "status": "IMPLEMENTED_AND_COMPLETE_LOCAL_TRANSPORT_PASS; MAC_C66_TRANSPORT_PENDING",
+      "recorded_date": "2026-10-22",
+      "delivery_prefix": "66_Cedar",
+      "runner_filename": "66_Cedar_probe_cif_local_reuse.py",
+      "cli_action": "--local-dictionary-reuse-only",
+      "requested_action": "QUALIFIED_LOCAL_DICTIONARY_REUSE",
+      "policy_id": "cif-qualified-dictionary-store-v1",
+      "control_policy_id": "cif-qualified-dictionary-reuse-controls-v1",
+      "modules": [
+        "src/nasolve/cif_dictionary_store.py",
+        "src/nasolve/cif_dictionary_reuse.py"
+      ],
+      "shared_api": [
+        "make_dictionary_request",
+        "publish_dictionary",
+        "lookup_dictionary",
+        "resolve_qualified_dictionary",
+        "resolve_dictionary_snapshot"
+      ],
+      "review_input": {
+        "delivery_prefix": "65_Cedar",
+        "filename": "65_Cedar_gvru7iah_cif_numerical_recovery_review.zip",
+        "sha256": "7922b7399e0205553a06ec090ae834e76ba51482ee96ba96b8b940eb9378843b",
+        "bytes": 96959814,
+        "verified_payloads": 3587
+      },
+      "scope": "PERSISTENT_REUSABLE_ISOLATED_COMPONENT_NUMERICS; NO_ORDINARY_POSTMR_ADOPTION",
+      "components": [
+        "DP",
+        "PDU",
+        "5PC"
+      ],
+      "independent_control": "ATL_PUBLIC_GRAPH_AND_COMPILER_ONLY; NO_CACHED_ATL_NATIVE_CANDIDATE",
+      "algorithm": [
+        "Verify exact C65 manifest/header, unchanged C64-and-earlier lineage and maintained saved construction report; execute no captured code.",
+        "Resolve three source-qualified C57 numerical dictionaries through declared anchors; retain full C54 generator and C57 native/stopping provenance.",
+        "Consult the shared persistent component resolver before its verified acquisition callback; store usable complete native-qualified numerics atomically.",
+        "Request identity binds source bytes, authority, exact declared graph/names/charges/H/stereo, numerical recipe and generator family. Producer versions remain immutable provenance rather than forcing regeneration.",
+        "Immutable entry digest additionally binds candidate bytes, complete qualification, original producer/consumer identities and stopping/limitation notes.",
+        "Repeated consumers reuse exact numerics; changed consumer or native qualification policy retains saved numerics for requalification before generation, including a combined Phenix generator/consumer upgrade.",
+        "Corrupt/unusable or symlink-substituted entries are excluded without overwrite; optional cache-write failure still freezes a separately verified run copy.",
+        "Freeze source/dictionary/qualification/provenance/manifest per run with relative anchored references; run snapshots remain usable after cache removal or relocation."
+      ],
+      "storage": {
+        "macOS": "~/Library/Application Support/NASolve/cif-dictionaries/v1",
+        "Linux": "${XDG_DATA_HOME:-~/.local/share}/nasolve/cif-dictionaries/v1",
+        "Windows": "${LOCALAPPDATA}/NASolve/cif-dictionaries/v1",
+        "environment_override": "NASOLVE_CIF_STORE",
+        "explicit_probe_path": "--dictionary-store PATH",
+        "layout": "entries/<semantic-request-key>/<immutable-entry-digest>/{source.cif,dictionary.cif,qualification.json,provenance.json,manifest.json}",
+        "atomic_publication": "Owned pending directory, complete hash verification and directory rename; no in-place scientific updates.",
+        "git_or_external_upload": "NONE; USER_LOCAL_APPLICATION_DATA"
+      },
+      "artifact_schema": {
+        "schema_version": 1,
+        "entry_anchor": "dictionary_entry",
+        "run_anchor": "dictionary_resolution",
+        "control_anchor": "dictionary_reuse_directory",
+        "entry_manifest": "manifest.json",
+        "run_receipt": "resolution.json",
+        "probe_report": "dictionary_reuse_audit.json",
+        "probe_receipt_field": "dictionary_reuse_audit",
+        "lookup_statuses": [
+          "HIT",
+          "REQUALIFICATION_REQUIRED",
+          "MISS"
+        ],
+        "resolved_statuses": [
+          "PREPARED_AND_FROZEN",
+          "REUSED",
+          "REQUALIFIED_AND_FROZEN",
+          "REQUALIFICATION_REQUIRED",
+          "MISS"
+        ]
+      },
+      "native_evidence": {
+        "qualification": "VERIFIED_SAVED_C57_ISOLATED_EVIDENCE; CURRENT_POLICY_V2",
+        "consumer_identity": "SAVED_VERIFIED_PHENIX_2.2.1-6174_EXECUTABLE_API_AND_ENERGY_SOURCE_FINGERPRINTS",
+        "installed_runtime_reprobe": "NOT_RUN",
+        "energy_library_resource_file_fingerprint": "NOT_CAPTURED",
+        "current_link_modifier_and_model_validation": "REQUIRED_SEPARATE_LAYER; NEVER_SKIPPED_BY_CACHE_HIT",
+        "new_native_generator_optimizer_processes": 0
+      },
+      "control_checks": [
+        "persistent_store_available",
+        "independent_first_snapshot",
+        "repeat_reuses_same_entry",
+        "repeat_exact_numerical_bytes",
+        "original_stopping_and_notes_preserved",
+        "different_source_is_not_a_hit",
+        "source_authority_is_not_overridden",
+        "changed_consumer_requalifies_before_generation",
+        "snapshot_survives_cache_removal_and_relocation",
+        "site_and_model_evidence_remain_separate"
+      ],
+      "validation": {
+        "new_regressions": 76,
+        "fail_before": [
+          {
+            "scope": "Persistent store API absent",
+            "failed": 36,
+            "seconds": 0.4
+          },
+          {
+            "scope": "Real resolver reuse controls absent",
+            "failed": 3,
+            "seconds": 0.25
+          },
+          {
+            "scope": "Exact C65 replay/action boundary absent",
+            "failed": 23,
+            "already_passed": 3,
+            "seconds": 2.99
+          },
+          {
+            "scope": "Changed native qualification policy discarded reusable numerics",
+            "failed": 1
+          },
+          {
+            "scope": "Combined generator/consumer upgrade discarded reusable numerics",
+            "failed": 1
+          }
+        ],
+        "focused": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q tests/test_cif_dictionary_store.py tests/test_cif_dictionary_reuse.py tests/test_cedar66_delivery.py tests/test_cedar65_delivery.py tests/test_cedar64_delivery.py tests/test_cif_named_proxy_comparison.py tests/test_cif_candidate_usability.py tests/test_cif_linked_usability_bridge.py tests/test_cif_runtime_bundle.py tests/test_cif_doctor_selection.py tests/test_cif_review_transport.py tests/test_synthetic_dna_shuttle.py",
+          "passed": 389,
+          "seconds": 17.09
+        },
+        "full": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q",
+          "passed": 3959,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 355.38
+        },
+        "portability": {
+          "aliased_TMPDIR": "PASS",
+          "all_input_payloads_and_manifest_preserved": true,
+          "all_subprocesses_forbidden": "PASS",
+          "ambient_import_poison": "PASS",
+          "build_sources_removed": true,
+          "component_reuse_passes": 3,
+          "everyday_edit": "PRESERVED",
+          "external_scientific_reads_forbidden_during_standalone_readback": true,
+          "ignored_runner": "PASS",
+          "input_payloads": 3587,
+          "new_native_calls": 0,
+          "output_payloads": 3659,
+          "per_component_controls": 10,
+          "relocated_delivery": true,
+          "reuse_controls": 30,
+          "runner_sha256": "fd05ef4a6638fc8338263fb3e1eb8bf1ed8f746f45a26610776f9ea66debf5f7",
+          "runtime_archive_sha256": "296df2dc5ee099fba6b0cf45d7615e3735f7274bfb600d348a08825a0ae4fed0",
+          "runtime_members": 155,
+          "snapshot_consumption_after_owned_cache_removal": "PASS",
+          "source_capsule_independent_snapshots": "PASS",
+          "standalone_snapshot_reads": 9,
+          "status": "PASS",
+          "standalone_reader": "Current maintained code; absolute import path; external scientific reads forbidden."
+        },
+        "environment": {
+          "Python": "3.12.14",
+          "pytest": "9.1.1",
+          "pytest-subtests": "0.15.0",
+          "numpy": "2.3.5",
+          "Biopython": "1.88",
+          "NARestraints": "1.1.3",
+          "Phenix_Coot": "NOT_INSTALLED; NO_NEW_NATIVE_EXECUTION"
+        },
+        "document_checks": {
+          "relative_links": 162,
+          "mirrored_records": 11,
+          "protected_mechanics": "UNCHANGED",
+          "NAR_workbook": "UNCHANGED",
+          "eight_pair_plan": "UNCHANGED",
+          "SVG_determinism": "PASS",
+          "visible_SVG": "EXACT_BASELINE_94ababa; UPDATED_METADATA_AND_CAPTION_ONLY"
+        }
+      },
+      "compatibility": "Additive shared resolver/store API and explicit C66 diagnostic. Ordinary PostMR still uses its existing acquisition/adoption path; no silent cache adoption, package install or schema migration of old runs.",
+      "remaining_limits": [
+        "Automatic ordinary acquisition/repair orchestration and effective-bundle adoption remain separate integration.",
+        "Authoritative pairing/stacking integration must use explicit intended pairs, including requested DZ:DP; no invented P:C recipe.",
+        "Scientific geometry, absolute CIP/state qualification, production checkpoints/refinement and solution PDF rendering remain separate.",
+        "The full eight-pair live run is unchanged and still pending; ATL remains independent.",
+        "Store entries are isolated reusable numerics, not a certificate for a new crystal, site context or changed installed runtime."
+      ],
+      "generated_artifacts": "Private review capsules, models, runners, caches and native evidence remain outside Git.",
+      "requires_cif_review": false,
+      "production_adoption": "NOT_RUN",
+      "scientific_approval": "NOT_RUN",
+      "native_kernels_weights_optimizer_plane_correction": "UNCHANGED",
+      "NARestraints_workbook_and_release": "UNCHANGED",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#qualified_dictionary_reuse_2026_10_22"
     }
   },
   "audience": [
@@ -16997,23 +17193,29 @@
       "cache_invalidation": "Any changed source, graph mapping, site/link/symmetry context, parameter/weight, tool/energy library, coordinate/cell or policy invalidates the affected layer. Cached unsupported/failed results stay clearly typed; fresh tool availability changes capability identity.",
       "replay": "No host-absolute path as sole operational reference; hashes and declared run/dataset/repository anchors permit relocated replay. No input lookup by basename. Cache may optimize calculations but must not replace the run-local immutable receipt.",
       "qualified_dictionary_store": {
-        "status": "REQUIRED_PLANNED_INTEGRATION; NOT_IMPLEMENTED_BY_C65",
+        "status": "IMPLEMENTED_SHARED_COMPONENT_STORE_AND_RESOLVER; ORDINARY_ORCHESTRATION_PENDING",
         "recorded_date": "2026-10-22",
         "behavior": "Automatically persist usable repaired numerical dictionaries locally and reuse them before regeneration or optimization for later matching structures.",
-        "identity": "Content-addressed immutable source/candidate hashes plus exact atom mapping, declared orders/charges/explicit-H/stereochemistry and recipe/policy; component code alone is insufficient.",
-        "provenance": "Retain generator, native consumer and energy-library versions, qualification scope, convergence/stopping evidence and unresolved notes; usable nonconverged results remain reusable.",
+        "identity": "Semantic source/state/authority/recipe/backend-family lookup; immutable entry additionally binds candidate bytes, complete producer and consumer versions, qualification and stopping notes.",
+        "provenance": "Retain original producer versions and fingerprints after consumer requalification; never attribute old numerical bytes to an upgraded builder. Usable nonconverged results remain reusable.",
         "separate_layers": [
           "Reusable base numerical dictionary",
           "Terminal/linkage modifiers and effective native qualification",
           "Coordinate-dependent manager and geometry evidence"
         ],
-        "invalidation": "A new model does not invalidate base numerics. Changed context or consumer requires only affected-layer requalification before regeneration is considered. Changed source/state cannot silently reuse an incompatible entry.",
+        "invalidation": "New model coordinates do not invalidate numerics. Consumer, native-check-policy and combined Phenix upgrades requalify saved bytes before regeneration. Different source/state/authority/numerical recipe/backend family creates a different request.",
         "authority": "Preserve curated and explicit-source precedence; known-unusable candidates are evidence only, not automatic cache hits.",
         "per_run": "Freeze selected exact bytes and anchored provenance per run; historical runs never depend solely on a mutable or removable cache.",
         "reporting": "Automatic reuse and original stopping/limitations enter the solution summary and eventual PDF; students neither save nor inspect CIFs.",
         "storage": "Persistent user-local application data outside tracked repositories; no automatic external upload.",
-        "contract": "docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs"
-      }
+        "contract": "docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs",
+        "implementation": [
+          "src/nasolve/cif_dictionary_store.py",
+          "src/nasolve/cif_dictionary_reuse.py"
+        ],
+        "delivery": "66_Cedar --local-dictionary-reuse-only; MAC_TRANSPORT_PENDING"
+      },
+      "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },
     "generation_and_adoption_protocol": [
       "Acquire exact source and freeze it; reviewed-override registry is separate from acquisition/cache.",
@@ -19042,6 +19244,6 @@
     "requires_student_cif_review": false,
     "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
     "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned.",
-    "qualified_dictionary_reuse": "REQUIRED_LOCAL_STORE_PLANNED; source/state-bound reusable numerics, separate site/coordinate evidence, automatic reuse without repeat optimization."
+    "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_RESOLVER; source/state-bound reusable numerics and frozen run copies; ordinary automatic acquisition/adoption still pending."
   }
 }

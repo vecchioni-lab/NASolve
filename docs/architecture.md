@@ -1002,16 +1002,26 @@ Full linked ReadySet reproduction, mapped-SMILES graphs, native stereo and
 scientific qualification remain open. All production/default resource and curated-ligand
 precedence rules remain fixed.
 
-Automatic repair integration must include a persistent user-local component
-store: retain usable repaired numerical dictionaries with complete source/state,
-tool/policy and qualification provenance, and reuse them before another generator
-or optimizer call. Component identity alone is insufficient. Keep component
-numerics separate from site modifiers and coordinate-dependent evidence; new
-crystal coordinates require fresh geometry assessment, not dictionary generation.
-Changed consumer/context invalidates the affected qualification layer first.
-Freeze selected bytes and notes per run and preserve curated/explicit-source
-precedence. This store is required planned integration, not deployed by the
-saved-data replay. See [local repair reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
+The shared `cif-qualified-dictionary-store-v1` component resolver now implements
+persistent local reuse independently of ordinary PostMR orchestration. Its
+semantic lookup binds source/state/authority, original-name graph mapping,
+numerical recipe and generator family. Immutable entry digests additionally
+bind numerical bytes, complete original producer and consumer provenance,
+current isolated native evidence and stopping/limitations. Store publication
+is atomic; corrupt/unusable entries are excluded without overwrite. Current
+consumer or native-policy changes requalify saved numerics before generation,
+including a combined Phenix upgrade; original producer provenance is retained.
+
+The resolver consults this store before its verified acquisition callback and
+freezes independently hash-bound relative run artifacts. Cache-write failure
+retains a verified per-run copy. No site modifier or model is cached as reusable
+component numerics; new coordinates need fresh geometry assessment and site
+checks. Curated/explicit source authority remains upstream and in the key.
+C66 separately exercises persistence, repeated reuse, invalidation and snapshot
+portability for DP/PDU/5PC with inherited saved native fingerprints, without a
+new native process or installed energy-library qualification. Ordinary automatic
+acquisition/repair/adoption, pairing/stacking integration and solution PDF use
+remain subsequent work. See [local repair reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

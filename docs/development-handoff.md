@@ -258,6 +258,47 @@ coordinates must not invalidate base-component numerics. See the
 This requirement is recorded; the store is not implemented by C65.
 
 
+**C66 is the next delivery:** `66_Cedar_probe_cif_local_reuse.py` with
+`--local-dictionary-reuse-only` consumes exact C65. The shared component store
+and resolver now persist source/state/authority-bound qualified numerics,
+consult them before acquisition, and freeze independent run copies. The
+numerical request separates original generator provenance from current
+consumer qualification, so combined Phenix or native-check-policy upgrades
+requalify saved bytes first. Failed/corrupt entries never become hits; optional
+cache-write failure still preserves a verified run copy and limitation notes.
+
+The Mac test writes immutable DP/PDU/5PC entries in local application data,
+then exercises repeated API use without a generator, source/authority mismatch,
+consumer-version requalification and standalone snapshots after removing only
+an owned cache copy. Expect QUALIFIED_DICTIONARY_REUSE_PASS and ten checks per
+component, with zero new native/generator/optimizer processes. A warm first
+lookup may already say REUSED. Default macOS storage is
+`~/Library/Application Support/NASolve/cif-dictionaries/v1`; optional
+`--dictionary-store PATH` and NASOLVE_CIF_STORE overrides preserve explicit paths.
+The usual Git/worktree/build/run block and ignored runner destination apply.
+
+Original source/CIF/model bytes, C65's closed construction mechanics and all
+older findings survive. Native evidence uses saved 2.2.1-6174 fingerprints;
+installed runtime and energy-library resource files are not newly certified.
+The store/API is implemented, while ordinary automatic acquisition/adoption,
+authoritative intended-pair compilation and the eight-pair live run remain
+separate integration. No Phenix/Coot installation, package update, chemistry
+change, student CIF gate, optimizer cycle, NAR release or ATL merge gate is added.
+The machine record is qualified_dictionary_reuse_2026_10_22 in both ledgers.
+
+C66 validation passes **76 new regressions**, **389 focused / 3959 full tests**
+(two skips, 276 subtests; full run 355.38 s). The deleted-build/relocated
+actual-C65 runner passes all 30 reuse controls with every subprocess
+forbidden. All 3,587 input payloads and the manifest survive byte-identically;
+the QA output contains 3,659 payloads. Poisoned imports, aliased TMPDIR, the
+everyday edit and ignored runner pass. Nine relocated snapshots remain
+readable after removing the owned test cache, with external scientific reads
+forbidden. Eleven evidence mirrors, 162 links, protected mechanics/workbook
+and the unchanged eight-pair plan pass. The visible SVG stays unchanged; its
+caption/metadata now distinguish the component API from pending production
+orchestration. Mac transport is the remaining C66 check.
+
+
 
 C65 validation passes **138 new regressions**, **347 focused / 3883 full
 tests** (two skips, 276 subtests; full run 353.98 s). Actual-C64 maintained
