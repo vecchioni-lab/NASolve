@@ -609,7 +609,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -2192,6 +2192,36 @@ CEDAR59_SOURCE_COMMIT='bbfd5a7a79c8a3b2ca52bb74bf997033e77ea1e1'
 CEDAR60_SHA256='3035ccbf1b89c399d36ed195b5df43c6aad78bbf831f68217103d9fad76e759c'
 CEDAR60_BUILD_SHA256='96c9b75c1569501f8c050b3a63ab23301b33de765195880e42ff587295e50c8a'
 CEDAR60_SOURCE_COMMIT='1bcf781a28b90647dbfb8dd8538ad7c921b25161'
+CEDAR61_SHA256='73476fe624d7f951d7c0b6af8ff2da75c4caf7b9f19f1e1870610f1e383c8472'
+CEDAR61_BUILD_SHA256='495bc081d5271eb6544d03ba17a1a2141131bd4adb0e716c68cf452ef5c032cf'
+CEDAR61_SOURCE_COMMIT='c1fdd6c97b833e265cc3f952c333c824269a1b0c'
+
+
+def _replay_runtime_activation(members):
+    from nasolve.cif_runtime_return import replay_runtime_activation
+    # The caller has already replayed the complete C60 parent.
+    return replay_runtime_activation(members)
+
+
+def _read_cedar61_members(members):
+    _verify_manifest(members,3406);r=json.loads(members['probe_receipt.json']);a=r['runtime_bundle_audit']
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR61_BUILD_SHA256
+            or r.get('delivery_prefix')!='61_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('requested_action')!='QUALIFIED_RUNTIME_BUNDLE_ACTIVATION' or r.get('status')!='REVIEW' or r.get('phenix_version')!='2.2.1'
+            or r.get('policy_authority')!='NARestraints' or r.get('requires_cif_review') is not False or r.get('automatic_adoption') is not False
+            or any(r.get(k) is not True for k in ['analysis_completed','original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='QUALIFIED_RUNTIME_BUNDLE_READBACK' for k in ['native_execution','native_proxy_validation','linked_site_validation'])
+            or r.get('model_editing')!='EXACT_SELECTED_BUNDLE_COPY' or r.get('model_optimization')!='NOT_RUN'
+            or any(r.get(k)!='NOT_RUN' for k in ['dictionary_generation','policy_recompilation','refinement','readyset_retry','installed_phenix_edits','scientific_approval'])
+            or r['prior_archive'].get('sha256')!=CEDAR60_SHA256 or r['prior_archive'].get('verified_payloads')!=3300
+            or a!=json.loads(members['runtime_bundle_audit.json']) or a.get('policy_id')!='cif-runtime-bundle-activation-trial-v1'
+            or a.get('scope')!='SEPARATE_PORTABLE_RUNTIME_BUNDLE' or a.get('native_execution')!='QUALIFIED_RUNTIME_BUNDLE_READBACK'
+            or a.get('component')!='DP' or a.get('selected_sites')!=['B:4'] or a.get('existing_runs')!='UNCHANGED'
+            or a.get('production_checkpoint')!='NOT_CREATED' or a.get('model_optimization')!='NOT_RUN' or a.get('dictionary_generation')!='NOT_RUN'
+            or a.get('automatic_adoption') is not False or a.get('requires_cif_review') is not False):
+        raise ValueError('Require exact completed Cedar 61 runtime bundle activation evidence')
+    nested={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    prior=_read_cedar60_members(nested);_replay_runtime_activation(members);return prior
 
 
 def _replay_scaffold_geometry(members):
@@ -2500,25 +2530,73 @@ def _replacement_plane_parent(members):
 
 def _runtime_readback_checks(expected,native,model,reference_target):
     """Verify the activated ordinary input layout without optimizing it again."""
-    from nasolve.cif_candidate_usability import energy_inventory_checks
-    from nasolve.cif_fixed_geometry import _fixed_policy
-    from nasolve.cif_fragment_restoration import _model
-    checks={key:native.get(key)==expected.get(key) for key in
-        ['atoms','atom_count','monomer_mappings','geometry','installed_api_sources','restraint_policy']}
-    checks.update(energy_inventory_checks(native))
-    checks['native_interpreter']=(native.get('status')=='REVIEW' and native.get('fatal_problems') is None
-        and native.get('unused_definitions')==[] and native.get('unsupported_fields')==[])
-    checks['fixed_na_policy']=_fixed_policy(native)
-    snapshots=native.get('energy_inventory',{}).get('snapshots',[])
-    checks['repeatable_fixed_energy']=(len(snapshots)==2 and snapshots[0]==snapshots[1])
-    checks['same_serialized_objective']=(len(snapshots)==2 and type(reference_target) in (int,float)
-        and math.isfinite(reference_target) and all(type(v.get('target')) in (int,float)
-        and math.isfinite(v['target']) and math.isclose(v['target'],reference_target,rel_tol=1e-10,abs_tol=1e-8) for v in snapshots))
-    try:_model(native,model,coordinates_match=True);checks['exact_selected_model']=True
-    except (KeyError,ValueError,TypeError):checks['exact_selected_model']=False
-    return {'policy_id':'cif-activated-runtime-native-readback-v1','checks':checks,
-        'native_usable':all(checks.values()),'status':'PASS' if all(checks.values()) else 'REVIEW','model_sha256':_sha(Path(model).read_bytes()),
-        'model_optimization':'NOT_RUN','requires_cif_review':False}
+    from nasolve.cif_runtime_return import qualify_runtime_readback
+    return qualify_runtime_readback(expected,native,model,reference_target)
+
+
+def _postmr_control_dictionaries(members,frozen):
+    """Use C57's declared, already qualified numerical artifacts by exact lineage."""
+    view=members;prefix=''
+    for delivery in ['61_Cedar','60_Cedar','59_Cedar','58_Cedar','57_Cedar']:
+        current=json.loads(view['probe_receipt.json'])
+        if current.get('delivery_prefix')!=delivery:raise ValueError('Fresh construction controls lost their declared source lineage')
+        if delivery=='57_Cedar':break
+        view={n.removeprefix('inputs/review/'):d for n,d in view.items() if n.startswith('inputs/review/')}
+        prefix+='inputs/review/'
+    cases=current['source_classification_audit']['cases'];paths={};references={}
+    for code in ['DP','PDU','5PC']:
+        row=cases[code];preparation=row['preparation'];directory=preparation['directory'];artifact=preparation['candidate']
+        if (directory.get('anchor')!='probe_directory' or artifact.get('anchor')!='candidate_directory'
+                or not _safe(directory['path']) or not _safe(artifact['path'])
+                or row['decision'].get('status')!='CONTINUE_WITH_NOTES'
+                or row['decision'].get('selected_candidate')!='source_declared_dna'):
+            raise ValueError('Require the source-declared usable numerical control: '+code)
+        name=prefix+directory['path']+'/'+artifact['path'];data=members[name];path=frozen/PurePosixPath(name)
+        if (_sha(data)!=artifact['sha256'] or len(data)!=artifact['size'] or path.is_symlink() or path.read_bytes()!=data):
+            raise ValueError('Qualified numerical construction control changed: '+code)
+        paths[code]=path;references[code]={'anchor':'input_capsule','path':name,'sha256':_sha(data),'size':len(data)}
+    return paths,references
+
+
+def _run_postmr_construction_action(args,receipt,session,review,original,members,frozen,runtime):
+    from nasolve.cif_postmr_construction import run_postmr_construction_controls
+    dictionaries,references=_postmr_control_dictionaries(members,frozen)
+    canonical='MR_frames/5W6W/5W6W_noPO4.pdb';model=session/'runtime'/canonical
+    if model.read_bytes()!=runtime[canonical]:raise ValueError('Fresh canonical construction frame changed')
+    environment={k:v for k,v in os.environ.items() if k not in NATIVE_OVERRIDES}
+    coot=None;executable_hash=None
+    if not args.inspect_only:
+        from nasolve.config import load_config
+        from nasolve.coot_runtime import discover_coot
+        coot=discover_coot(load_config(),explicit=args.coot,environ=environment)
+        executable_hash=_sha(coot.executable.read_bytes())
+        receipt['coot_runtime']={'executable':str(coot.executable),'version':coot.version,'source':coot.source,'sha256':executable_hash}
+        print('Running one bounded fresh Coot construction through the ordinary PostMR helper.',flush=True)
+    else:print('Staging fresh controls; Coot construction is not run in inspect-only mode.',flush=True)
+    atl=session/'component_controls/sources/ATL.cif'
+    report=run_postmr_construction_controls(model,dictionaries,session/'postmr_construction',
+        coot_executable=coot.executable if coot else None,environment=environment,
+        coot_version=coot.version if coot else None,inspect_only=args.inspect_only,
+        atl_dictionary=atl if atl.is_file() else None,timeout_seconds=min(args.timeout_seconds,600))
+    report['source_numerical_candidates']=references
+    report['qualified_runtime_input']={'delivery_prefix':'61_Cedar','sha256':CEDAR61_SHA256,
+        'native_readback':'PASS','native_checks':15,'selected_bundle':'PRESERVED'}
+    if coot is not None and _sha(coot.executable.read_bytes())!=executable_hash:raise ValueError('Coot executable changed during fresh construction')
+    if model.read_bytes()!=runtime[canonical]:raise ValueError('Fresh construction changed the canonical frame')
+    if any((frozen/PurePosixPath(n)).read_bytes()!=d for n,d in members.items()) or review.read_bytes()!=original:
+        raise ValueError('Fresh construction changed preserved evidence')
+    receipt.update(postmr_construction_audit=report,native_execution='NOT_RUN' if args.inspect_only else 'FRESH_COOT_POSTMR_CONSTRUCTION',
+        model_editing='NOT_RUN' if args.inspect_only else 'SEPARATE_FRESH_CONSTRUCTION_CONTROLS',
+        analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True,requires_cif_review=False)
+    receipt['limitations']=['Fresh DP/PDU/5PC construction uses the same source-graph restoration API as ordinary PostMR; the qualified C61 runtime bundle is preserved.',
+        'Supported DNA base fragments move rigidly. Unsupported or unmatched sugar/backbone contexts keep the intact raw residue with automatic notes.',
+        'ATL remains an independent graph/compiler/eligibility control; no new numerical ATL dictionary is invented.',
+        'This construction-only control does not acquire diffraction data, compile a new NARestraints scaffold, run ReadySet, optimize, refine or create a production checkpoint.',
+        'Fresh full eight-pair auto and solution PDF integration remain follow-up validation.']
+    _json(session/'postmr_construction_audit.json',report);_json(session/'probe_receipt.json',receipt)
+    print('Fresh ordinary PostMR construction:',report['status'],flush=True)
+    print('Diagnostic: REVIEW (ordinary construction controls; automatic raw fallback, no refinement or adoption)',flush=True)
+    print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
 
 
 def _run_runtime_bundle_action(args,receipt,session,review,original,members,frozen):
@@ -2934,7 +3012,7 @@ def _run_source_classification_action(args,receipt,session,review,original,membe
 def _source_reader_evidence(members):
     """Reach the verified C34 constructor evidence without dropping wrappers."""
     prefix=''
-    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar'}:
+    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar'}:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
     return members,prefix
@@ -2942,14 +3020,15 @@ def _source_reader_evidence(members):
 
 def _read_capsule(path, expected_sha=None):
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256,CEDAR53_SHA256,CEDAR54_SHA256,CEDAR55_SHA256,CEDAR56_SHA256,CEDAR57_SHA256,CEDAR58_SHA256,CEDAR59_SHA256,CEDAR60_SHA256}):
-        raise ValueError('Require an exact verified Cedar 29--60 review ZIP')
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256,CEDAR53_SHA256,CEDAR54_SHA256,CEDAR55_SHA256,CEDAR56_SHA256,CEDAR57_SHA256,CEDAR58_SHA256,CEDAR59_SHA256,CEDAR60_SHA256,CEDAR61_SHA256}):
+        raise ValueError('Require an exact verified Cedar 29--61 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='60_Cedar':qualified,prior,rotation=_read_cedar60_members(members)
+    if header.get('delivery_prefix')=='61_Cedar':qualified,prior,rotation=_read_cedar61_members(members)
+    elif header.get('delivery_prefix')=='60_Cedar':qualified,prior,rotation=_read_cedar60_members(members)
     elif header.get('delivery_prefix')=='59_Cedar':qualified,prior,rotation=_read_cedar59_members(members)
     elif header.get('delivery_prefix')=='58_Cedar':qualified,prior,rotation=_read_cedar58_members(members)
     elif header.get('delivery_prefix')=='57_Cedar':qualified,prior,rotation=_read_cedar57_members(members)
@@ -3797,6 +3876,7 @@ def _check_constructor_input_mode(args,delivery):
         'scaffold_candidate_only':('58_Cedar',),
         'scaffold_geometry_only':('59_Cedar',),
         'runtime_bundle_only':('60_Cedar',),
+        'postmr_construction_only':('61_Cedar',),
     }
     for option,inputs in scopes.items():
         if bool(getattr(args,option,False))!=(delivery in inputs):
@@ -3806,6 +3886,7 @@ def _check_constructor_input_mode(args,delivery):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '62_Cedar':'NASolve-live-tests/61_Cedar_cif-numerical-recovery-zclptcef/61_Cedar_zclptcef_cif_numerical_recovery_review.zip',
         '61_Cedar':'NASolve-live-tests/60_Cedar_cif-numerical-recovery-9bzo82lh/60_Cedar_9bzo82lh_cif_numerical_recovery_review.zip',
         '60_Cedar':'NASolve-live-tests/59_Cedar_cif-numerical-recovery-rivd7_vt/59_Cedar_rivd7_vt_cif_numerical_recovery_review.zip',
         '59_Cedar':'NASolve-live-tests/58_Cedar_cif-numerical-recovery-srot3_x3/58_Cedar_srot3_x3_cif_numerical_recovery_review.zip',
@@ -3841,6 +3922,7 @@ def main():
     parser.add_argument('--review-zip',type=Path,default=Path.home()/default_review)
     parser.add_argument('--output-parent',type=Path,default=Path.home()/'NASolve-live-tests')
     parser.add_argument('--phenix-root',type=Path,default=Path.home()/'Applications/phenix-2.2.1-6174')
+    parser.add_argument('--coot',type=Path,help='Optional Coot executable override; otherwise use ordinary runtime discovery')
     parser.add_argument('--component',action='append',help='Explicit component candidate selection; this reviewed slice defaults to DP')
     parser.add_argument('--max-iterations',type=int,default=1000,help='Bounded scaffold geometry iterations (1--1000)')
     parser.add_argument('--timeout-seconds',type=int,default=600)
@@ -3870,6 +3952,8 @@ def main():
                       help='Compare saved original/candidate numerical contributions at identical coordinates; no optimizer or generation')
     mode.add_argument('--nonbonded-cache-audit-only',action='store_true',
                       help='Prove zero-contribution pair-cache transitions, then repeat strict fixed-coordinate numerical checks')
+    mode.add_argument('--postmr-construction-only',action='store_true',
+                      help='Exercise ordinary graph-preserving PostMR construction on fresh DP/PDU/5PC controls; no diffraction or optimization')
     mode.add_argument('--runtime-bundle-only',action='store_true',
                       help='Activate the verified selected model and exact resources into a portable bundle consumed by the ordinary assessor; one native readback, no optimization')
     mode.add_argument('--scaffold-geometry-only',action='store_true',
@@ -3907,7 +3991,7 @@ def main():
         'model_editing':'NOT_RUN','model_optimization':'NOT_RUN','dictionary_generation':'NOT_RUN','policy_recompilation':'NOT_RUN',
         'readyset_retry':'NOT_RUN','refinement':'NOT_RUN','scientific_approval':'NOT_RUN','automatic_adoption':False,
         'diffraction_data':'NOT_READ','policy_authority':'NARestraints','installed_phenix_edits':'NOT_RUN',
-        'requested_action':'QUALIFIED_RUNTIME_BUNDLE_ACTIVATION' if args.runtime_bundle_only else 'SOURCE_NATIVE_SCAFFOLD_GEOMETRY_TRIAL' if args.scaffold_geometry_only else 'SOURCE_NATIVE_FULL_SCAFFOLD_CANDIDATE' if args.scaffold_candidate_only else 'SOURCE_DNA_LINKED_CONTROLS' if args.linked_control_only else 'SOURCE_DNA_METADATA_NATIVE_EQUIVALENCE' if args.source_dna_metadata_only else 'SAVED_ISOLATED_CANDIDATE_NATIVE_USABILITY' if args.saved_native_usability_only else 'ISOLATED_CANDIDATE_NATIVE_USABILITY' if args.candidate_native_usability_only else 'SOURCE_NATIVE_COMPLETE_CANDIDATES' if args.source_candidate_generation_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP' if args.source_constructor_setup_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' if args.source_constructor_index_basis_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if args.source_constructor_mapping_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if args.source_constructor_trace_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if args.source_constructor_backend_audit_only else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF' if args.source_constructor_audit_only else 'ISOLATED_NONBONDED_CACHE_PROOF_AND_IMPACT' if args.nonbonded_cache_audit_only else 'ISOLATED_LINEAR_TORSION_NUMERICAL_IMPACT' if args.linear_torsion_impact_only else 'ISOLATED_LINEAR_TORSION_CANDIDATE' if args.linear_torsion_candidate_only else 'ISOLATED_DIHEDRAL_CONDITIONING_AUDIT' if args.torsion_conditioning_audit_only else 'ISOLATED_READYSET_GENERATION_AUDIT' if args.readyset_generation_audit_only else 'READYSET_SOURCE_AND_DESCRIPTOR_AUDIT' if args.readyset_source_audit_only else 'INSTALLED_MONOMER_CCD_SOURCE_AUDIT' if args.installed_source_audit_only else 'INSTALLED_TRIPLE_BOND_AUDIT' if args.triple_bond_audit_only else 'SOURCE_DIALECT_DECLARED_CHARGE_CONTROL' if args.declared_charge_control else 'SOURCE_DIALECT_READER_AUDIT' if args.source_dialect_audit_only else 'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
+        'requested_action':'ORDINARY_POSTMR_CONSTRUCTION_CONTROLS' if args.postmr_construction_only else 'QUALIFIED_RUNTIME_BUNDLE_ACTIVATION' if args.runtime_bundle_only else 'SOURCE_NATIVE_SCAFFOLD_GEOMETRY_TRIAL' if args.scaffold_geometry_only else 'SOURCE_NATIVE_FULL_SCAFFOLD_CANDIDATE' if args.scaffold_candidate_only else 'SOURCE_DNA_LINKED_CONTROLS' if args.linked_control_only else 'SOURCE_DNA_METADATA_NATIVE_EQUIVALENCE' if args.source_dna_metadata_only else 'SAVED_ISOLATED_CANDIDATE_NATIVE_USABILITY' if args.saved_native_usability_only else 'ISOLATED_CANDIDATE_NATIVE_USABILITY' if args.candidate_native_usability_only else 'SOURCE_NATIVE_COMPLETE_CANDIDATES' if args.source_candidate_generation_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INPUT_SETUP' if args.source_constructor_setup_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_INDEX_BASIS' if args.source_constructor_index_basis_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_MAPPING' if args.source_constructor_mapping_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_TRACE' if args.source_constructor_trace_audit_only else 'SOURCE_NATIVE_CCTBX_CONSTRUCTOR_HANDOFF' if args.source_constructor_backend_audit_only else 'SOURCE_NATIVE_CONSTRUCTOR_HANDOFF' if args.source_constructor_audit_only else 'ISOLATED_NONBONDED_CACHE_PROOF_AND_IMPACT' if args.nonbonded_cache_audit_only else 'ISOLATED_LINEAR_TORSION_NUMERICAL_IMPACT' if args.linear_torsion_impact_only else 'ISOLATED_LINEAR_TORSION_CANDIDATE' if args.linear_torsion_candidate_only else 'ISOLATED_DIHEDRAL_CONDITIONING_AUDIT' if args.torsion_conditioning_audit_only else 'ISOLATED_READYSET_GENERATION_AUDIT' if args.readyset_generation_audit_only else 'READYSET_SOURCE_AND_DESCRIPTOR_AUDIT' if args.readyset_source_audit_only else 'INSTALLED_MONOMER_CCD_SOURCE_AUDIT' if args.installed_source_audit_only else 'INSTALLED_TRIPLE_BOND_AUDIT' if args.triple_bond_audit_only else 'SOURCE_DIALECT_DECLARED_CHARGE_CONTROL' if args.declared_charge_control else 'SOURCE_DIALECT_READER_AUDIT' if args.source_dialect_audit_only else 'READ_ONLY_STEREOCHEMISTRY_AUDIT' if args.stereochemistry_audit_only else 'NATIVE_READ_ONLY_CONTRACT' if args.native_contract_only else 'SINGLE_BLOCK_NUMERICAL_GENERATION' if args.single_block_steps is not None else 'INDEPENDENT_NUMERICAL_GENERATION',
         'limits':{'max_components':3,'generation_timeout_per_component':args.timeout_seconds,'read_only_timeout_per_component':min(args.timeout_seconds,60),
                   'single_block_steps':args.single_block_steps},
         'limitations':['Separate dictionary candidates only; none is applied to a native manager or model.',
@@ -3941,6 +4025,8 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='61_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'61_Cedar','runtime_bundle_native_mechanics':'PASS','native_checks':15,'ordinary_assessment':'REVIEW','production_checkpoint':'NOT_CREATED'}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='60_Cedar':
             receipt['previous_execution']={'delivery_prefix':'60_Cedar','replacement_initial_derivatives':'PASS','endpoint_derivatives':'PASS','automatic_choice':'qualified_geometry_endpoint','stopping':'NOT_CONVERGED_LIMIT','production_adoption':'NOT_RUN'}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='59_Cedar':
@@ -4106,14 +4192,14 @@ def main():
         receipt.update(prior_archive={'sha256':_sha(original),'bytes':len(original),'verified_payloads':len(json.loads(members['manifest.json']))},
             prior_convergence=rotation['prior_convergence'],prior_stopping=rotation['prior_stopping'],prior_continuation=rotation['prior_continuation'],
             prerequisite_mechanics_replayed=True,prior_rotation_evidence_recomputed=validation,source_plan=plan)
-        print('Qualified runtime bundle activation:' if args.runtime_bundle_only else 'Qualified scaffold geometry trial:' if args.scaffold_geometry_only else 'Qualified full-scaffold candidate:' if args.scaffold_candidate_only else 'Qualified DNA linked controls:' if args.linked_control_only else 'Source DNA metadata/native equivalence:' if args.source_dna_metadata_only else 'Saved isolated candidate native usability:' if args.saved_native_usability_only else 'Isolated candidate native usability:' if args.candidate_native_usability_only else 'Complete source-native dictionary candidates:' if args.source_candidate_generation_only else 'Native source-coordinate setup:' if args.source_constructor_setup_audit_only else 'Native named restraint-index basis:' if args.source_constructor_index_basis_audit_only else 'Native local coordinate/chirality mapping:' if args.source_constructor_mapping_audit_only else 'Native chiral boundary observation:' if args.source_constructor_trace_audit_only else 'Source-native CCTBX constructor retry:' if args.source_constructor_backend_audit_only else 'Source-native chiral constructor handoff:' if args.source_constructor_audit_only else 'Native pair-cache proof and strict impact retry:' if args.nonbonded_cache_audit_only else 'Fixed-coordinate torsion impact audit:' if args.linear_torsion_impact_only else 'Separate linear-torsion candidate audit:' if args.linear_torsion_candidate_only else 'Fixed native torsion-conditioning audit:' if args.torsion_conditioning_audit_only else 'Isolated ReadySet generation audit:' if args.readyset_generation_audit_only else 'ReadySet source/descriptor audit:' if args.readyset_source_audit_only else 'Source-dialect reader audit:' if args.source_dialect_audit_only else 'Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
+        print('Ordinary PostMR construction controls:' if args.postmr_construction_only else 'Qualified runtime bundle activation:' if args.runtime_bundle_only else 'Qualified scaffold geometry trial:' if args.scaffold_geometry_only else 'Qualified full-scaffold candidate:' if args.scaffold_candidate_only else 'Qualified DNA linked controls:' if args.linked_control_only else 'Source DNA metadata/native equivalence:' if args.source_dna_metadata_only else 'Saved isolated candidate native usability:' if args.saved_native_usability_only else 'Isolated candidate native usability:' if args.candidate_native_usability_only else 'Complete source-native dictionary candidates:' if args.source_candidate_generation_only else 'Native source-coordinate setup:' if args.source_constructor_setup_audit_only else 'Native named restraint-index basis:' if args.source_constructor_index_basis_audit_only else 'Native local coordinate/chirality mapping:' if args.source_constructor_mapping_audit_only else 'Native chiral boundary observation:' if args.source_constructor_trace_audit_only else 'Source-native CCTBX constructor retry:' if args.source_constructor_backend_audit_only else 'Source-native chiral constructor handoff:' if args.source_constructor_audit_only else 'Native pair-cache proof and strict impact retry:' if args.nonbonded_cache_audit_only else 'Fixed-coordinate torsion impact audit:' if args.linear_torsion_impact_only else 'Separate linear-torsion candidate audit:' if args.linear_torsion_candidate_only else 'Fixed native torsion-conditioning audit:' if args.torsion_conditioning_audit_only else 'Isolated ReadySet generation audit:' if args.readyset_generation_audit_only else 'ReadySet source/descriptor audit:' if args.readyset_source_audit_only else 'Source-dialect reader audit:' if args.source_dialect_audit_only else 'Source-graph numerical recovery:',BUNDLE['delivery_prefix'],flush=True)
         print('Preserved prerequisite component:' if args.nonbonded_cache_audit_only or args.linear_torsion_impact_only or args.linear_torsion_candidate_only or args.torsion_conditioning_audit_only or args.readyset_generation_audit_only else 'Explicit candidates:',', '.join(plan['recovery_codes']),flush=True)
         print('Verified prior mechanics and rotational derivatives; no model optimization.',flush=True)
         if constructor_action or args.declared_charge_control or args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only or args.linear_torsion_impact_only or args.nonbonded_cache_audit_only:
             from nasolve.cif_source_reader import source_reader_checks
             receipt['prior_source_reader_replay']={}
             charge_members=members;charge_root=frozen
-            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar'}:
+            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar'}:
                 charge_members={n.removeprefix('inputs/review/'):d for n,d in charge_members.items() if n.startswith('inputs/review/')}
                 charge_root=charge_root/'inputs/review'
             for code,row in json.loads(charge_members['probe_receipt.json'])['source_reader_audits'].items():
@@ -4130,7 +4216,7 @@ def main():
             preparation=prepare_graph_generation_source(source,code,session/'graph_preview'/code/'source.cif')
             receipt['graph_preparations'][code]=preparation
         controls=BUNDLE.get('component_controls',[])
-        if len(components)+len(controls)>(4 if args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only or args.source_candidate_generation_only or args.candidate_native_usability_only or args.saved_native_usability_only or args.source_dna_metadata_only or args.linked_control_only or args.scaffold_candidate_only or args.scaffold_geometry_only or args.runtime_bundle_only else 3) or set(components)&{r['component'] for r in controls}:raise ValueError('Candidate and public-control scope exceeds bounds or overlaps')
+        if len(components)+len(controls)>(4 if args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only or args.source_candidate_generation_only or args.candidate_native_usability_only or args.saved_native_usability_only or args.source_dna_metadata_only or args.linked_control_only or args.scaffold_candidate_only or args.scaffold_geometry_only or args.runtime_bundle_only or args.postmr_construction_only else 3) or set(components)&{r['component'] for r in controls}:raise ValueError('Candidate and public-control scope exceeds bounds or overlaps')
         receipt['component_controls']={};sources={item['component']:cifs[item['input_index']] for item in plan['selected']}
         receipt['independent_component_controls']=[]
         for control in controls:
@@ -4140,7 +4226,7 @@ def main():
             target=session/'component_controls/sources'/(code+'.cif');target.parent.mkdir(parents=True,exist_ok=True)
             with target.open('xb') as handle:handle.write(data)
             report=assess_component_control(target,code,graph_only_if_ambiguous=(args.triple_bond_audit_only or args.installed_source_audit_only or args.readyset_source_audit_only or args.readyset_generation_audit_only or args.torsion_conditioning_audit_only or args.linear_torsion_candidate_only or args.linear_torsion_impact_only or args.nonbonded_cache_audit_only));receipt['component_controls'][code]=report
-            independent=(args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only or args.source_candidate_generation_only or args.candidate_native_usability_only or args.saved_native_usability_only or args.source_dna_metadata_only or args.linked_control_only or args.scaffold_candidate_only or args.scaffold_geometry_only or args.runtime_bundle_only) and code not in {'PDU','5PC'}
+            independent=(args.source_constructor_index_basis_audit_only or args.source_constructor_setup_audit_only or args.source_candidate_generation_only or args.candidate_native_usability_only or args.saved_native_usability_only or args.source_dna_metadata_only or args.linked_control_only or args.scaffold_candidate_only or args.scaffold_geometry_only or args.runtime_bundle_only or args.postmr_construction_only) and code not in {'PDU','5PC'}
             if independent:
                 from nasolve.cif_stereochemistry_audit import reader_stereo_inventory
                 report.update(scope='INDEPENDENT_PUBLIC_SOURCE_AND_COMPILER_CONTROL',source_stereo_inventory=reader_stereo_inventory(target,code),native_execution='NOT_RUN')
@@ -4150,6 +4236,8 @@ def main():
             receipt['graph_preparations'][code]=prepare_graph_generation_source(target,code,session/'graph_preview'/code/'source.cif')
             if not independent:sources[code]=target
             print('Public control:',code,'; graph',report['graph_status'],'; NARestraints class',report['mapped_base_class'],'; pairing/stacking compiler',report['policy_status'],flush=True)
+        if args.postmr_construction_only:
+            return _run_postmr_construction_action(args,receipt,session,review,original,members,frozen,runtime)
         if args.runtime_bundle_only:
             return _run_runtime_bundle_action(args,receipt,session,review,original,members,frozen)
         if args.scaffold_geometry_only:

@@ -199,6 +199,17 @@ def test_public_bundle_cli_uses_ordinary_assessor_without_native_discovery(tmp_p
     assert calls == [tmp_path] and json.loads(stream.getvalue()) == audit
 
 
+@pytest.mark.parametrize('fallback', [False, True])
+def test_bundle_report_identifies_inherited_native_selection_without_claiming_a_new_run(tmp_path, fallback):
+    from nasolve.cif_runtime_bundle import assess_runtime_bundle
+    out, manifest, _ = activate(tmp_path, fallback=fallback)
+    summary = assess_runtime_bundle(out)['solution_report']
+    assert summary['native_selection'] == 'VERIFIED_SOURCE_CAPTURE'
+    assert summary['native_selection_executed'] is False
+    assert summary['selected_candidate'] == manifest['decision']['selected_candidate']
+    assert summary['native_evidence'] == manifest['native_evidence']
+
+
 @pytest.mark.parametrize('extra', [['--run', '/a/run'], ['source.cif'], ['--model', 'model.pdb'], ['--checkpoint', 'postmr'], ['--stage', 'effective']])
 def test_bundle_cli_rejects_ambiguous_sources(tmp_path, extra):
     from nasolve.cli import main

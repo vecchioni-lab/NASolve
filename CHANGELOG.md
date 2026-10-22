@@ -8,6 +8,30 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve complete modified-base geometry in ordinary PostMR construction
+
+- Verify all 3,406 C61 payloads, unchanged C60 evidence and the exact selected
+  model/19 CIFs/14 PHILs. All 15 fresh staged native checks pass with two finite
+  repeated evaluations; ordinary assessment remains REVIEW with solution notes.
+- Replace partial same-name base copying in ordinary parent restoration with
+  source-graph connected-base rigid transport. Restore parent DNA sugar/backbone
+  while retaining the raw base's internal geometry and attachment hand within
+  PDB rounding. Unsupported/bridged/ambiguous sites retain the whole raw site
+  with nonfatal notes; canonical and explicit curated placements stay intact.
+- Share `postmr.construct_postmr_model` between ordinary preparation and fresh
+  MTZ-free C62 `--postmr-construction-only` controls. Bound control Coot execution
+  at 600 seconds; leave ordinary default timing, source chemistry, NAR policy,
+  native kernels and the qualified correction unchanged.
+- Clarify bundle summary native_selection as VERIFIED_SOURCE_CAPTURE with
+  native_selection_executed false; preserve historical C61 receipt bytes.
+  All **118 new regressions**, **257 focused / 3512 full tests** pass (two skips,
+  276 subtests). Actual-C61 strict replay, deleted-build/relocated transport,
+  poisoned imports, aliased temporary roots and preserved everyday-edit checks
+  pass. Fresh Coot execution remains pending. No ReadySet, new NAR
+  compilation, fake checkpoint, diffraction/refinement or further saved-geometry
+  optimizer cycle. General repair/adoption and the exact eight-pair full run
+  remain next integration work; no student CIF gate.
+
 ### Stage the qualified selection as a portable runtime bundle
 
 - Verify all 3,300 C60 payloads and unchanged C59 parent. Fresh initial and both
@@ -24,8 +48,8 @@ entries are reconstructed from repository history.
 - All **106 new regressions**, **215 focused / 3394 full tests** pass (two skips,
   276 subtests), plus actual-C60 relocated replay and standalone ordinary CLI
   assessment after the source capsule and build paths are gone. The everyday
-  edit, poisoned-import and aliased-temporary-root checks pass. Staged native
-  Mac execution remains pending. No generation,
+  edit, poisoned-import and aliased-temporary-root checks pass. Returned staged
+  native Mac execution passes all 15 checks. No generation,
   optimizer, new NAR policy compilation, diffraction/refinement, fake AutoMR or
   PostMR checkpoint, automated acquisition/adoption or PDF rendering. Curated
   precedence, NAR authority, ATL independent scope and the eight-pair plan stay fixed.

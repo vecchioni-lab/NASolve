@@ -509,7 +509,11 @@ def _run_coot(
     environment: Mapping[str, str] | None,
     dictionary_paths: Mapping[str, Path],
     parent_models: Mapping[str, Path],
+    *,
+    timeout_seconds: float | None = None,
 ) -> tuple[Path, Path]:
+    if timeout_seconds is not None and (isinstance(timeout_seconds, bool) or not isfinite(timeout_seconds) or timeout_seconds <= 0):
+        raise PostMRPreparationError("Coot timeout must be finite and positive")
     script = coot_directory / "mutate.py"
     log = coot_directory / "coot.log"
     backups = coot_directory / "backups"
@@ -547,7 +551,16 @@ def _run_coot(
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             check=False,
+            **({"timeout": timeout_seconds} if timeout_seconds is not None else {}),
         )
+    except subprocess.TimeoutExpired as exc:
+        captured = exc.stdout or ""
+        if isinstance(captured, bytes):
+            captured = captured.decode("utf-8", errors="replace")
+        log.write_text(captured + "\nNASolve: bounded Coot construction timed out.\n", encoding="utf-8")
+        raise PostMRPreparationError(
+            f"Coot construction exceeded {timeout_seconds:g} seconds; inspect {log}"
+        ) from exc
     except OSError as exc:
         raise PostMRPreparationError(f"Could not launch Coot: {exc}") from exc
     log.write_text(completed.stdout, encoding="utf-8")
@@ -658,6 +671,72 @@ def _unique_named_atom(
 
 
 def _restore_shared_parent_coordinates(
+    raw_model: Path,
+    output_model: Path,
+    actions: tuple[MutationAction, ...],
+    parent_models: Mapping[str, Path],
+    dictionary_paths: Mapping[str, Path] | None = None,
+) -> dict[str, object]:
+    """Restore supported DNA scaffolds without copying partial same-name bases.
+
+    Explicit curated substitution/ring placements retain their declared legacy
+    rule. Every other overlap uses the source connectivity and one intact base
+    transport, or retains the entire raw site automatically with a note.
+    """
+    from tempfile import TemporaryDirectory
+    from .postmr_restoration import POLICY_ID, restore_graph_site
+
+    raw_model, output_model = Path(raw_model), Path(output_model)
+    if output_model.exists() or output_model.is_symlink():
+        raise FileExistsError(output_model)
+    modified = tuple(a for a in actions if a.method == "coot-parent-overlap")
+    if len({a.site for a in modified}) != len(modified):
+        raise PostMRPreparationError("Duplicate selected restoration sites")
+    records = _coordinate_records(raw_model)
+    report: dict[str, object] = {}
+    special = tuple(a for a in modified if (ligand := CURATED_LIGANDS.get(a.after)) is not None
+                    and (ligand.atom_substitutions or ligand.ring_substituents))
+    if special:
+        # Only explicit curated metadata authorizes the historical placement
+        # rule; a graph failure must never fall through to name-based copying.
+        with TemporaryDirectory(prefix="nasolve-curated-restoration-") as temporary:
+            intermediate = Path(temporary) / "curated.pdb"
+            report.update(_restore_curated_parent_coordinates(
+                raw_model, intermediate, special, parent_models, dictionary_paths))
+            records = _coordinate_records(intermediate)
+        for action in special:
+            report[action.site].update(status="CURATED_DECLARED_PLACEMENT",
+                policy_id="postmr-curated-declared-placement-v1", requires_cif_review=False)
+    for action in modified:
+        if action in special:
+            continue
+        chain, resid = _site_parts(action.site)
+        indices = [i for i,line in enumerate(records)
+                   if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
+        try:
+            if not dictionary_paths or action.after not in dictionary_paths:
+                raise ValueError("No explicit construction source dictionary was supplied")
+            if action.site not in parent_models or not action.parent_code:
+                raise ValueError("No explicit canonical parent snapshot was supplied")
+            parent_records = [line for line in _coordinate_records(Path(parent_models[action.site]))
+                if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
+            replacements, item = restore_graph_site([records[i] for i in indices], parent_records,
+                dictionary_paths[action.after], action.after, action.parent_code)
+        except (OSError, ValueError, KeyError, PostMRPreparationError) as exc:
+            item = {"policy_id": POLICY_ID, "component": action.after,
+                "status": "RAW_SITE_RETAINED", "count": 0, "atoms": [],
+                "substitutions": [], "reason": str(exc), "requires_cif_review": False,
+                "notes": ["The complete raw Coot site was retained because this DNA transport rule does not support its graph or coordinate context."]}
+        else:
+            for index,line in zip(indices,replacements):
+                records[index] = line
+        report[action.site] = item
+    with output_model.open("x", encoding="utf-8") as handle:
+        handle.write("".join(records))
+    return report
+
+
+def _restore_curated_parent_coordinates(
     raw_model: Path,
     output_model: Path,
     actions: tuple[MutationAction, ...],
@@ -1592,6 +1671,78 @@ def _cif_doctor_receipt(
     }
 
 
+def construct_postmr_model(
+    input_model: Path,
+    actions: tuple[MutationAction, ...],
+    dictionary_paths: Mapping[str, Path],
+    output_model: Path,
+    *,
+    coot_executable: Path | None = None,
+    environment: Mapping[str, str] | None = None,
+    coot_directory: Path | None = None,
+    reference_model: Path | None = None,
+    timeout_seconds: float | None = None,
+) -> dict[str, object]:
+    """Run the ordinary PostMR Coot construction stage without MR/MTZ state.
+
+    This shared stage writes a separate model and retains raw output and parent
+    snapshots. It does not run termini sanitation, NARestraints, ReadySet,
+    optimization, or claim a completed PostMR run. The optional external-process
+    budget leaves default production invocation behavior unchanged.
+    """
+    input_model, output_model = Path(input_model), Path(output_model)
+    reference_model = Path(reference_model) if reference_model is not None else input_model
+    if output_model.exists() or output_model.is_symlink():
+        raise FileExistsError(output_model)
+    inputs = [input_model, reference_model, *map(Path, dictionary_paths.values())]
+    if output_model.resolve() in {p.resolve() for p in inputs}:
+        raise PostMRPreparationError("Construction output must be separate from every input")
+    coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
+    if len({a.site for a in coot_actions}) != len(coot_actions):
+        raise PostMRPreparationError("Duplicate Coot construction sites")
+    output_model.parent.mkdir(parents=True, exist_ok=True)
+    if not coot_actions:
+        with output_model.open("xb") as handle:
+            handle.write(input_model.read_bytes())
+        return {"model": output_model, "raw_model": None, "geometry_model": None,
+                "parent_models": {}, "coot_log": None, "coordinate_restoration": {}}
+    if coot_executable is None:
+        sites = ", ".join(a.site for a in coot_actions)
+        raise PostMRPreparationError(f"Coot is required for supported mutation site(s) {sites}")
+    overlap_actions = tuple(a for a in coot_actions if a.method == "coot-parent-overlap")
+    canonical_actions = tuple(a for a in coot_actions if a.method == "coot-mutate-base")
+    coot_directory = Path(coot_directory) if coot_directory is not None else output_model.parent / "Coot"
+    raw_model = output_model.with_name(output_model.stem + "_raw.pdb")
+    geometry_model = output_model.with_name(output_model.stem + "_geometry.pdb")
+    parent_models = {a.site: coot_directory / f"parent_{a.site.replace(':', '_')}_{a.parent_code}.pdb"
+                     for a in overlap_actions}
+    for path in [raw_model, geometry_model, coot_directory / "mutate.py",
+                 coot_directory / "coot.log", *parent_models.values()]:
+        if path.exists() or path.is_symlink():
+            raise FileExistsError(path)
+        if path.resolve() in {p.resolve() for p in inputs}:
+            raise PostMRPreparationError("Construction intermediates must be separate from every input")
+    coot_dictionaries = {a.after: Path(dictionary_paths[a.after]) for a in overlap_actions}
+    coot_directory.mkdir(parents=True, exist_ok=True)
+    _, coot_log = _run_coot(input_model, raw_model, coot_actions, coot_executable,
+        coot_directory, environment, coot_dictionaries, parent_models,
+        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
+    if overlap_actions:
+        restoration = _restore_shared_parent_coordinates(raw_model, geometry_model,
+            overlap_actions, parent_models, dictionary_paths)
+    else:
+        shutil.copyfile(raw_model, geometry_model)
+        restoration = {}
+    if canonical_actions:
+        restoration.update(_restore_canonical_mutation_backbones(reference_model,
+            geometry_model, output_model, canonical_actions))
+    else:
+        shutil.copyfile(geometry_model, output_model)
+    return {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,
+            "parent_models": parent_models, "coot_log": coot_log,
+            "coordinate_restoration": restoration}
+
+
 def prepare_postmr(
     run_directory: Path,
     ready_set_executable: Path,
@@ -1739,68 +1890,15 @@ def prepare_postmr(
             "output": frozen_reference(coot_input, run),
         }
 
-    coot_actions = tuple(
-        action
-        for action in actions
-        if action.method in {"coot-mutate-base", "coot-parent-overlap"}
-    )
-    overlap_actions = tuple(
-        action for action in coot_actions if action.method == "coot-parent-overlap"
-    )
-    canonical_actions = tuple(
-        action for action in coot_actions if action.method == "coot-mutate-base"
-    )
-    coot_log: Path | None = None
-    coordinate_restoration: dict[str, object] = {}
     after_coot = model_dir / "after_coot.pdb"
-    if coot_actions:
-        if coot_executable is None:
-            sites = ", ".join(action.site for action in coot_actions)
-            raise PostMRPreparationError(
-                f"Coot is required for supported mutation site(s) {sites}"
-            )
-        raw_after_coot = model_dir / "after_coot_raw.pdb"
-        parent_models = {
-            action.site: coot_dir
-            / f"parent_{action.site.replace(':', '_')}_{action.parent_code}.pdb"
-            for action in overlap_actions
-        }
-        coot_dictionaries = {
-            action.after: ligand_sources[action.after] for action in overlap_actions
-        }
-        _, coot_log = _run_coot(
-            coot_input,
-            raw_after_coot,
-            coot_actions,
-            coot_executable,
-            coot_dir,
-            environment,
-            coot_dictionaries,
-            parent_models,
-        )
-        geometry_after_coot = model_dir / "after_coot_geometry.pdb"
-        if overlap_actions:
-            coordinate_restoration = _restore_shared_parent_coordinates(
-                raw_after_coot,
-                geometry_after_coot,
-                overlap_actions,
-                parent_models,
-                ligand_sources,
-            )
-        else:
-            shutil.copyfile(raw_after_coot, geometry_after_coot)
-        if canonical_actions:
-            canonical_restoration = _restore_canonical_mutation_backbones(
-                original,
-                geometry_after_coot,
-                after_coot,
-                canonical_actions,
-            )
-            coordinate_restoration.update(canonical_restoration)
-        else:
-            shutil.copyfile(geometry_after_coot, after_coot)
-    else:
-        shutil.copyfile(coot_input, after_coot)
+    construction = construct_postmr_model(
+        coot_input, actions, ligand_sources, after_coot,
+        coot_executable=coot_executable, environment=environment,
+        coot_directory=coot_dir, reference_model=original,
+    )
+    coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
+    coot_log = construction["coot_log"]
+    coordinate_restoration = construction["coordinate_restoration"]
 
     terminal_ready = model_dir / "terminal_phosphate_model.pdb"
     try:
@@ -2182,7 +2280,7 @@ def prepare_postmr(
         "input_sha256": file_sha256(source_model),
         "mutation_actions": [asdict(action) for action in actions],
         "coot": {
-            "ran": bool(coot_actions),
+            "ran": construction["raw_model"] is not None,
             "executable": str(coot_executable) if coot_executable else None,
             "log": str(coot_log) if coot_log else None,
             "shared_parent_coordinates_restored": coordinate_restoration,

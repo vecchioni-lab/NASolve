@@ -276,7 +276,8 @@ def assess_runtime_bundle(manifest):
     elif stopping:
         text += 'The bounded geometry trial stopped before convergence; its usable selection was retained. '
     text += 'Dictionary findings and unresolved chemistry or geometry notes remain recorded. CIF inspection is not required.'
-    summary.update(text=text, selected_candidate=selection['selected_candidate'], stopping=deepcopy(selection.get('stopping')),
+    summary.update(text=text, native_selection='VERIFIED_SOURCE_CAPTURE', native_selection_executed=False,
+        selected_candidate=selection['selected_candidate'], stopping=deepcopy(selection.get('stopping')),
         notes=deepcopy(selection['notes']), native_evidence=value['native_evidence'], checkpoint_adoption='NOT_RUN')
     assessment['requires_cif_review'] = False
     assessment['solution_report'] = summary

@@ -120,8 +120,13 @@ all 17 native readback checks pass, retaining its iteration-limit note. C61
 stages the exact selected model/19 CIFs/14 PHILs in a portable manifest-bound
 runtime bundle consumed by the ordinary `assess --bundle` reader, with retained
 initial-model evidence and a plain-language selection/stopping solution_report,
-then checks one fresh native readback from that layout. Native C61 execution
-and PDF rendering remain pending.
+then checks one fresh native readback from that layout. Returned C61 passes
+all 15 native checks. C62 moves the connected-base rigid restoration rule into
+ordinary PostMR and exercises fresh controls through the same Coot API. Whole
+raw sites are retained with notes for unsupported or bridged graphs. Fresh
+native controls cover DP/PDU/5PC; ATL remains public graph/eligibility only.
+New Coot execution, general acquisition/repair adoption, fresh NAR compilation, production
+checkpoints/refinement and PDF rendering remain separate.
 This resource/reader bridge does not fabricate an AutoMR/PostMR checkpoint or
 claim automated acquisition, production adoption, refinement or PDF integration.
 Existing native classifications already say DNA despite generic written groups.

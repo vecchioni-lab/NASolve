@@ -10,8 +10,9 @@ The current workflow provides **AutoMR**, **PostMR**, a conditional
 **AutoSol** branch, checkpointed **AutoRefine**, bounded **Refine Doctor**
 triage, and sequential campaign execution from frozen plans with per-dataset
 review isolation. PostMR constructs
-supported modified nucleotides through Coot, restores trusted parent
-coordinates, can apply complete chain sequences, generates either the 5W6W
+supported modified nucleotides through Coot, restores the parent DNA scaffold
+while moving each supported connected modified base rigidly, can apply complete
+chain sequences, generates either the 5W6W
 restraint stack or modification-scoped pair restraints, supplies curated,
 supported local or configured-Phenix CCD dictionaries, and runs ReadySet without
 hydrogens. When PostMR finds iodine, bromine, or selenium in a nucleotide,
@@ -191,11 +192,15 @@ B:4 dictionary in the full 877-atom model, preserving all 38 links and the
 NARestraints pairing/stacking policy; the automatic diagnostic choice retains
 that candidate with notes. Returned C60 passes the new initial and both
 endpoint derivative checks plus exact native readback, and automatically retains
-a usable endpoint while reporting its iteration limit. C61 stages that selected
-model and exact dictionaries/parameters in a portable runtime bundle, assessed
-through `cif-doctor assess --bundle PATH`, with a separate native readback.
-Automatic acquisition, PostMR adoption, production checkpoints/refinement, PDF
-rendering and scientific qualification remain separate. Equivalent operational mapping
+a usable endpoint while reporting its iteration limit. Returned C61 passes all
+15 native staged-bundle checks for that exact model/19 CIFs/14 PHILs; the ordinary
+`assess --bundle` reader preserves its selection and stopping notes. C62 moves
+the connected-base restoration rule into ordinary PostMR construction, avoiding
+partial copying by base-atom name. Unsupported or bridged sites retain the raw
+Coot site with notes. Fresh MTZ-free controls use the same construction API;
+Coot execution, automatic acquisition/repair adoption, fresh NAR compilation,
+production checkpoints/refinement, PDF rendering and scientific qualification
+remain separate. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

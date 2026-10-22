@@ -118,45 +118,70 @@ in both coordinate representations. The automatic decision selects
 qualified_geometry_endpoint with CONTINUE_WITH_NOTES. No further geometry
 continuation is required to progress.
 
-**C61 is the next delivery.** `--runtime-bundle-only` accepts exact C60. Build
-`61_Cedar_probe_cif_runtime_bundle.py` with PDU/5PC/ATL. Stage the selected written
-model and its exact 19 CIF/14 PHIL resources through the generic
-cif-qualified-runtime-bundle-v1 adapter. Keep ordered resource identities,
-relative anchored paths, hashes and activation evidence in runtime_bundle.json.
-The generic resolver and public `cif-doctor assess --bundle PATH` assess that
-bundle independently of old source paths or a diagnostic wrapper.
-
-The separate cif-runtime-bundle-activation-trial-v1 audit performs one fresh
-native readback from the staged layout against C60's qualified rounded native
-manager. Require exact model identities, definitions, all fixed proxies/links,
-selected native APIs and the explicit NARestraints policy. No dictionary
-generation, optimization, new NAR policy compilation, diffraction read or
-refinement runs. Do not fabricate an AutoMR/PostMR run or checkpoint: this
-capsule has neither observations nor an ordinary PostMR report. Existing
-sources and the selected model remain untouched.
-
-This is a reusable runtime-resource and ordinary offline-assessment bridge,
-not automated acquisition/repair, ordinary PostMR adoption, production checkpoint
-activation or a refinement result. Those integrations, the planned eight-pair
-live run and solution PDF rendering remain next work. Scientific geometry,
-absolute CIP, phosphate-state selection and nonbonded pair identity remain
-separate. Students do not inspect or approve CIF tables; nonconvergence remains
-a report note. ATL stays independent, curated precedence and NARestraints
-authority stay fixed, and the exact eight-pair plan is unchanged.
-C60 returned evidence is in `replacement_geometry_trial_2026_10_22`; the next
-software/native boundary is `portable_runtime_bundle_2026_10_22`. C61 local
-validation and new staged native readback remain pending.
+**Returned C61 verifies 3,406 payloads** and all 3,300 unchanged C60 payloads.
+The fresh staged-layout Phenix worker completes in 5.281162 s; all 15 native
+readback checks pass and two finite energy/gradient evaluations repeat. The
+target 2511.569429708212 matches the previously qualified serialized objective.
+The selected model SHA e35c0636c654fd007285a94eb4e880ff6a66dfdfa269c861eb4b3214b461d16b,
+19 CIFs and 14 PHILs retain their exact bytes. All 877 atoms, 43 sites,
+38 links, effective definitions/proxies and explicit NARestraints policy survive.
+The ordinary resolver and 33-input assessor replay independently of capsule
+paths; the assessment remains REVIEW with the same selection/stopping notes
+and PDF PLANNED. No generation, optimizer, diffraction/refinement or production
+checkpoint runs.
 
 C61 local validation is complete: **106 new regressions**, **215 focused /
 3394 full tests** pass (two skips, 276 subtests; full run 331.01 s).
-Actual-C60 replay reproduces the saved proofs, serialization, 17 native checks
-and automatic choice. Deleted-build/relocated transport preserves all 3,300
-source payloads, the everyday edit and ignored runners. After the source capsule
-is removed, the standalone activated bundle resolves through the ordinary
-public CLI with solution notes. Poisoned imports, aliased temporary roots,
-156 relative links, six evidence mirrors and protected hashes/figure checks
-pass. New staged-layout native Mac readback remains pending; there is no
-optimizer, generation, diffraction refinement or production-checkpoint claim.
+Actual-C60 replay reproduces the proofs, serialization, native checks and choice.
+Deleted-build/relocated transport preserves source payloads, the everyday edit
+and ignored runners. Standalone ordinary CLI consumption after source removal,
+poisoned imports, aliased temporary roots, 156 links, six evidence mirrors and
+protected hash/figure checks pass. The returned native gate is now closed;
+this is not an ordinary production checkpoint or a scientific-geometry verdict.
+
+**C62 is the next delivery.** `--postmr-construction-only` accepts exact C61.
+Build `62_Cedar_probe_postmr_construction.py` with PDU/5PC/ATL. Fresh controls
+construct DP A:6 from DG, PDU A:9 from DT and 5PC A:7 from DC on an MTZ-free,
+free-5-prime-OH W frame, using verified numerical dictionaries. One Coot construction process
+uses the same ordinary API; ATL remains public graph/restoration-eligibility
+only because no qualified numerical ATL dictionary is supplied.
+Move the existing connected-base restoration rule into ordinary `_restore_shared_parent_coordinates`
+under postmr-source-graph-fragment-restoration-v1, and call the same
+`postmr.construct_postmr_model` API from ordinary PostMR and fresh MTZ-free
+controls. Source connectivity selects a complete heavy base with one C1-prime
+attachment; a proper raw-to-parent C1-prime/O4-prime/C2-prime transform retains
+its internal geometry and attachment hand while restoring the parent DNA
+sugar/backbone. Do not copy part of a base by parent atom name.
+
+Unsupported, ambiguous or bridged-sugar sites retain their entire raw Coot site
+with explicit nonfatal notes. ATL is an independent public/eligibility control,
+with no fresh native/Coot outcome claimed, and is not a new eight-pair run
+requirement. Canonical base-mutation backbone behavior and explicit curated
+substitution/ring placements keep their prior semantics. Source CIF chemistry,
+curated precedence, NARestraints policy, native kernels and the qualified plane
+correction remain fixed. The controls bound Coot at 600 seconds; ordinary
+default timing stays unchanged.
+
+The diagnostic exercises fresh ordinary construction, without observations,
+fake AutoMR/PostMR checkpoints, ReadySet, new NAR compilation or refinement.
+It is not another saved-geometry optimization. General acquisition/repair
+adoption and generic NAR compilation remain necessary before the fresh exact
+eight-pair live run. Scientific geometry, absolute CIP, phosphate state,
+nonbonded pair identity, production checkpoint/refinement and solution PDF
+rendering remain separate. Students do not inspect CIF tables.
+
+The bundle-only summary now labels inherited native evidence as
+VERIFIED_SOURCE_CAPTURE with native_selection_executed false. Historical C61
+receipts are preserved, rather than rewritten to match this additive reporting
+correction. C61 returned evidence is in `portable_runtime_bundle_2026_10_22`;
+the next software/native edge is `ordinary_postmr_construction_2026_10_22`.
+C62 local validation passes: **118 new regressions**, **257 focused / 3512 full
+tests** (two skips, 276 subtests; full run 336.16 s). Actual-C61 strict
+replay and deleted-build/relocated runner checks preserve all 3,406 source
+payloads, the everyday edit and ignored runner. Poisoned imports, aliased
+temporary roots, seven evidence mirrors, 156 relative links and protected
+hashes/figure checks pass. Fresh Coot construction remains pending on the Mac;
+no local test claims a new Coot, ReadySet, optimizer or refinement result.
 
 ## Completed and open work
 

@@ -28,9 +28,10 @@ for model construction and after ReadySet has prepared the refinement inputs.
 
 The output is a reproducible audit with the exact input hashes, software
 versions, component inventories, rule identifiers and measurements. The current
-PostMR integration records findings without changing coordinates, selecting new
-chemistry or adding a readiness gate. Researchers can also assess a frozen
-checkpoint without altering the run.
+PostMR audit hooks record findings without changing coordinates, selecting new
+chemistry or adding a readiness gate. Ordinary Coot construction separately uses
+the connected-base restoration described below. Researchers can also assess a
+frozen checkpoint without altering the run.
 
 ## Automatic decisions and reporting
 
@@ -53,10 +54,12 @@ three components select the restored header with notes. Returned C58 passes
 all three separate short-chain linkage controls. Returned C59 qualifies DP in
 the actual full scaffold and selects it with notes. Returned C60 retains a
 usable geometry endpoint after fresh derivatives and exact native readback pass,
-while reporting nonconvergence. C61 stages that model and its exact restraints
-in a portable runtime bundle, read through the ordinary assessment command.
-Automatic production recovery, PostMR adoption, production checkpoints/refinement
-and PDF rendering remain planned. Development
+while reporting nonconvergence. Returned C61 passes all 15 native staged-bundle
+checks for that model and its exact restraints. C62 applies connected-base rigid
+restoration in ordinary PostMR construction, retaining unsupported raw sites
+with notes, and tests fresh controls through the same API. Automatic production
+recovery/adoption, fresh NAR compilation, production checkpoints/refinement and
+PDF rendering remain planned. Development
 diagnostics can retain REVIEW without asking students to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 ## How it works
@@ -1307,8 +1310,13 @@ existing read-only assessor. Its plain-language solution_report preserves the
 selected model, stopping verdict and continuation notes; PDF rendering remains
 planned. One separate native readback from this staged
 layout must reproduce the qualified rounded manager and explicit NARestraints
-policy. Native C61 execution remains pending. There is no parameter generation,
-optimization, new pairing/stacking guess or diffraction/refinement run.
+policy. Returned C61 passes all 15 fresh native checks and two finite repeatable
+evaluations, preserving the exact selected model/19 CIFs/14 PHILs. The ordinary
+33-input assessment remains REVIEW with continuation notes. There is no
+parameter generation, optimization, new pairing/stacking guess or diffraction/
+refinement run. The current bundle summary labels native selection as inherited
+VERIFIED_SOURCE_CAPTURE, with native_selection_executed false; old receipts
+remain unchanged.
 
 This is a resource/reader bridge toward production and the eight-pair test.
 Automatic acquisition/repair, ordinary PostMR adoption, production checkpoints
@@ -1316,6 +1324,27 @@ and PDF rendering remain future work. The capsule lacks observations and an
 ordinary PostMR report; neither an AutoMR run nor a checkpoint is fabricated.
 Students do not approve CIFs. Curated sources and NARestraints retain their
 authority.
+
+C62 fixes ordinary modified-base construction. It prevents the restoration step
+from combining part of a parent base with a newly built substituent merely
+because atom names match. The complete connected base now moves together while
+the intended parent DNA scaffold is restored. The fresh controls call the same
+construction API used by ordinary PostMR, rather than replaying an old damaged
+model or running another geometry continuation.
+
+**Methods.** Read the explicit source graph, select the heavy base connected only
+through C1-prime, and apply a proper rigid transformation between raw Coot and
+parent C1-prime/O4-prime/C2-prime frames. Preserve the base's internal geometry
+and attachment hand within PDB rounding and restore parent sugar/backbone
+coordinates. Canonical mutation backbones and explicit curated substitution/
+ring placements retain their previous semantics. Unsupported, ambiguous or
+bridged components keep their whole raw Coot site with notes; ATL is an
+independent example. No partial base copying or forced bridged-sugar conversion
+is used. The fresh native slice covers DP, PDU and 5PC at three explicit W-frame
+sites through one bounded Coot process. ATL is public graph/restoration-eligibility
+only, with no fresh Coot outcome claimed. Fresh Coot construction is pending;
+observations, ReadySet, new NAR compilation, checkpoints/refinement and PDF output are separate integration
+work before the planned full eight-pair run. No student CIF decision is added.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

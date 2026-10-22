@@ -18814,7 +18814,7 @@
     }
   },
   "portable_runtime_bundle_2026_10_22": {
-    "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; STAGED_NATIVE_READBACK_PENDING",
+    "status": "RETURNED_STAGED_NATIVE_READBACK_PASS; EXACT_PORTABLE_SELECTION_PRESERVED",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "61_Cedar",
     "module": "src/nasolve/cif_runtime_bundle.py",
@@ -18879,7 +18879,7 @@
       "ordinary_assessment": "assess_runtime_bundle adds bundle_context and a plain-language solution_report to the existing assess_dictionaries receipt, retaining the model choice, inherited stopping/notes and PDF status PLANNED."
     },
     "validation": {
-      "status": "LOCAL_PASS; NEW_NATIVE_MAC_READBACK_PENDING",
+      "status": "LOCAL_AND_RETURNED_NATIVE_PASS",
       "new_regressions": 106,
       "fail_before": [
         {
@@ -18989,17 +18989,37 @@
         "raster_sha256": "89022875056663deaa9eeb17d6d773fc8bd5aaf1b59455af7083a2be5fab2581"
       },
       "native": {
-        "status": "PENDING_USER_MAC",
+        "status": "RETURNED_STAGED_NATIVE_READBACK_PASS",
         "phenix_release": "2.2.1-6174",
         "dispatcher_version": "2.2.1",
-        "execution": "NOT_RUN_HERE",
-        "note": "Controlled native-call fixtures and the source-C60 replay do not establish a new staged-layout Phenix execution. No optimizer, generation or refinement is requested."
+        "execution": "COMPLETED",
+        "elapsed_seconds": 5.281162,
+        "timeout_seconds": 60,
+        "returncode": 0,
+        "checks": {
+          "PASS": 15,
+          "REVIEW": 0
+        },
+        "finite_exactly_repeated_evaluations": 2,
+        "target": 2511.569429708212,
+        "reference_serialized_target": 2511.5694297082136,
+        "model_atoms": 877,
+        "model_sites": 43,
+        "backbone_links": 38,
+        "model_sha256": "e35c0636c654fd007285a94eb4e880ff6a66dfdfa269c861eb4b3214b461d16b",
+        "dictionary_resources": 19,
+        "phil_resources": 14,
+        "ordinary_assessment": "REVIEW",
+        "ordinary_assessment_inputs": 33,
+        "solution_notes": "SELECTION_STOPPING_AND_LIMITATIONS_PRESERVED; PDF_PLANNED",
+        "independent_maintained_replay": "ORDINARY_LOADER_ASSESSMENT_AND_ALL_15_NATIVE_CHECKS_REPRODUCE_WITHOUT_SOURCE_CAPSULE_PATHS; NO_CAPTURED_CODE_EXECUTION",
+        "generation_optimization_refinement_checkpoint": "NOT_RUN"
       }
     },
     "compatibility": "Additive generic bundle loader and public assess --bundle selector plus an explicit diagnostic action. Existing standalone/run assessment behavior and ordinary production defaults stay intact. Preserve native kernels/workers/targets, qualified correction, curated precedence, NARestraints authority/release/workbook, original source bytes and all old runs. No migration or student CIF gate.",
     "generated_artifacts": "Private activated bundles, selected models/CIFs/PHILs, capsules and native capture/log files remain uncommitted; maintained code/tests, methods and compact evidence summaries only.",
     "remaining_limits": [
-      "The new staged-layout native readback remains pending; C60 native qualification is inherited, not re-created by a loader.",
+      "All 15 new staged-layout native checks pass. Native byte-copy/resource-consumer mechanics do not establish ordinary production adoption or achieved scientific geometry.",
       "Portable resource activation and ordinary offline assessment are not automated acquisition/repair or ordinary PostMR adoption.",
       "The source capsule contains no observations or ordinary PostMR report; no AutoMR run, production checkpoint or refinement result is fabricated.",
       "Scientific geometry, absolute CIP, phosphate-state selection, nonbonded pair identity and solution PDF rendering remain separate.",
@@ -19010,6 +19030,305 @@
     "scientific_approval": "NOT_RUN",
     "saved_return_module": "src/nasolve/cif_scaffold_return.py",
     "saved_return_policy_id": "cif-saved-scaffold-geometry-replay-v1",
-    "native_readback_policy_id": "cif-activated-runtime-native-readback-v1"
+    "native_readback_policy_id": "cif-activated-runtime-native-readback-v1",
+    "returned_capsule": {
+      "name": "61_Cedar_zclptcef_cif_numerical_recovery_review.zip",
+      "sha256": "73476fe624d7f951d7c0b6af8ff2da75c4caf7b9f19f1e1870610f1e383c8472",
+      "bytes": 90640595,
+      "verified_payloads": 3406,
+      "parent_payloads_preserved": 3300,
+      "build_sha256": "495bc081d5271eb6544d03ba17a1a2141131bd4adb0e716c68cf452ef5c032cf",
+      "source_commit": "c1fdd6c97b833e265cc3f952c333c824269a1b0c",
+      "source_working_tree_has_changes": false,
+      "runtime_members": 146,
+      "runtime_archive_sha256": "8483e971c1d228b17156e5f96bd636171e0abb5bc52912a5a54a7b629f1bb03f",
+      "captured_code_execution": "NOT_RUN"
+    },
+    "reporting_semantics": {
+      "bundle_summary_native_selection": "VERIFIED_SOURCE_CAPTURE",
+      "native_selection_executed": false,
+      "scope": "BUNDLE_READER_ONLY; INHERITED_VERIFIED_EVIDENCE_WITHOUT_NEW_NATIVE_OPERATION",
+      "historical_C61_summary_native_selection": "NOT_RUN_PRESERVED_IN_ORIGINAL_RECEIPTS",
+      "compatibility": "Additive current-summary semantics; compatible replay preserves historical receipts and the same model/resource choice."
+    }
+  },
+  "ordinary_postmr_construction_2026_10_22": {
+    "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; FRESH_COOT_CONSTRUCTION_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "62_Cedar",
+    "module": "src/nasolve/postmr.py",
+    "shared_api": "postmr.construct_postmr_model",
+    "restoration_policy_id": "postmr-source-graph-fragment-restoration-v1",
+    "diagnostic_policy_id": "cif-postmr-construction-controls-v1",
+    "cli_action": "--postmr-construction-only",
+    "runner_filename": "62_Cedar_probe_postmr_construction.py",
+    "requested_action": "ORDINARY_POSTMR_CONSTRUCTION_CONTROLS",
+    "review_input": {
+      "name": "61_Cedar_zclptcef_cif_numerical_recovery_review.zip",
+      "sha256": "73476fe624d7f951d7c0b6af8ff2da75c4caf7b9f19f1e1870610f1e383c8472",
+      "bytes": 90640595,
+      "verified_payloads": 3406,
+      "parent_payloads_preserved": 3300,
+      "build_sha256": "495bc081d5271eb6544d03ba17a1a2141131bd4adb0e716c68cf452ef5c032cf",
+      "source_commit": "c1fdd6c97b833e265cc3f952c333c824269a1b0c",
+      "source_working_tree_has_changes": false,
+      "runtime_members": 146,
+      "runtime_archive_sha256": "8483e971c1d228b17156e5f96bd636171e0abb5bc52912a5a54a7b629f1bb03f",
+      "captured_code_execution": "NOT_RUN"
+    },
+    "purpose": "Prevent ordinary parent restoration from mixing parent base coordinates with raw modified substituents; exercise fresh controls through the same ordinary Coot construction path rather than another saved-geometry optimizer.",
+    "algorithm": [
+      "Verify exact returned C61, preserved lineage and portable bundle native/ordinary-consumer evidence without executing captured code. Preserve original artifacts and completed native qualifications.",
+      "Use the shared postmr.construct_postmr_model API from ordinary prepare_postmr and fresh MTZ-free controls, retaining existing Coot construction and canonical mutation behavior.",
+      "For dictionary-overlap sites, use explicit source connectivity to select one complete heavy base fragment attached only at C1-prime. Derive a proper rigid transform from raw Coot C1-prime/O4-prime/C2-prime to the canonical-parent frame.",
+      "Restore the parent DNA sugar/backbone and transport every connected raw base atom together, preserving internal base geometry and attachment handedness within PDB rounding. Parent base atom names do not form a partial coordinate-copy map.",
+      "Retain the complete raw Coot site with explicit nonfatal notes when graph/scaffold/context is unsupported, bridged or ambiguous. ATL remains an independent control and is not forced into a standard DNA scaffold.",
+      "Keep canonical mutate_base backbone behavior and explicit curated substitution/ring placement semantics unchanged; source CIF chemistry, curated precedence, NAR authority, native kernels and qualified correction stay fixed.",
+      "Use run_postmr_construction_controls on a fresh MTZ-free free-5-prime-OH W-frame model with verified numerical DP/PDU/5PC dictionaries, at explicit A:6(DG), A:9(DT), A:7(DC) construction contexts. Run one shared ordinary-API Coot process with a 600-second bound, leaving ordinary timing unchanged. Audit exact composition, restored scaffold, raw-fragment rigidity/attachment orientation, unselected records and source preservation. ATL is public graph/restoration-eligibility only without a fresh native/Coot claim. Inspect-only stages controls/plan without Coot. No ReadySet, Phenix, new NAR compilation, fake observations/checkpoint or diffraction/refinement.",
+      "Clarify the current bundle-only solution summary as inherited VERIFIED_SOURCE_CAPTURE with native_selection_executed false, preserving historical C61 receipt bytes and compatible replay.",
+      "Proceed toward generic NAR compilation and automatic resource repair/adoption before the exact planned eight-pair live run. Scientific geometry, state/CIP, nonbonded pair identity, production checkpoint/refinement and PDF rendering remain separate; no student CIF inspection gate."
+    ],
+    "limits": {
+      "control_coot_timeout_seconds": 600,
+      "ordinary_coot_default_timeout": "UNCHANGED",
+      "observations": "NOT_READ",
+      "readyset": "NOT_RUN",
+      "new_nar_compilation": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "additional_saved_geometry_optimizer_cycle": "NOT_RUN",
+      "maximum_new_construction_processes": 1,
+      "fresh_native_components": [
+        "DP",
+        "PDU",
+        "5PC"
+      ],
+      "fresh_native_sites": [
+        "A:6",
+        "A:9",
+        "A:7"
+      ],
+      "ATL_fresh_native_coot": "NOT_RUN",
+      "phenix": "NOT_RUN"
+    },
+    "artifact_schema": {
+      "version": 1,
+      "ordinary_restoration": "Source-graph fragment policy and site-specific successful rigid transport or whole-raw-site fallback notes in ordinary construction reporting.",
+      "control": "cif-postmr-construction-controls-v1 fresh ordinary-path construction report and preserved source/raw/parent/restored evidence; not an AutoMR/PostMR checkpoint."
+    },
+    "validation": {
+      "status": "LOCAL_PASS; FRESH_COOT_MAC_PENDING",
+      "new_regressions": 118,
+      "fail_before": [
+        {
+          "scope": "Exact completed C61 boundary and explicit matching action",
+          "failed": 17,
+          "seconds": 1.87
+        },
+        {
+          "scope": "Inherited bundle native-selection report before correction",
+          "failed": 2,
+          "seconds": 0.39
+        },
+        {
+          "scope": "Maintained runtime-return qualifier module absent",
+          "failed": 14,
+          "seconds": 0.08
+        },
+        {
+          "scope": "Ordinary whole-base restoration before implementation",
+          "cases": [
+            "Shared-name partial base corruption",
+            "Free-OH context incorrectly rejected"
+          ],
+          "result": "FAILED_BEFORE_FIX"
+        }
+      ],
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cedar62_delivery.py tests/test_cedar62_orchestration.py tests/test_cif_runtime_bundle.py tests/test_cif_runtime_return.py tests/test_cedar61_delivery.py tests/test_cedar61_runtime_readback.py tests/test_cedar61_orchestration.py tests/test_postmr_restoration.py tests/test_cif_postmr_construction.py tests/test_postmr.py tests/test_cif_doctor_postmr.py tests/test_cif_fragment_restoration.py tests/test_cif_effective_source_recovery.py",
+        "passed": 257,
+        "seconds": 15.28
+      },
+      "full": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q",
+        "passed": 3512,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 336.16
+      },
+      "portability": {
+        "status": "PASS",
+        "runtime_members": 149,
+        "build_sources_deleted_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 3406,
+        "unchanged_parent_payloads": 3406,
+        "C61": "STRICT_RUNTIME_ACTIVATION_AND_NATIVE_READBACK_REPLAYED",
+        "C60": "STRICT_SAVED_REPLACEMENT_PROOFS_REPLAYED",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "prior_native_readback_checks": 15,
+        "fresh_controls": [
+          {
+            "after": "DP",
+            "before": "DG",
+            "deposition_code": null,
+            "method": "coot-parent-overlap",
+            "parent_code": "DG",
+            "site": "A:6"
+          },
+          {
+            "after": "PDU",
+            "before": "DT",
+            "deposition_code": null,
+            "method": "coot-parent-overlap",
+            "parent_code": "DT",
+            "site": "A:9"
+          },
+          {
+            "after": "5PC",
+            "before": "DC",
+            "deposition_code": null,
+            "method": "coot-parent-overlap",
+            "parent_code": "DC",
+            "site": "A:7"
+          }
+        ],
+        "source_numerical_candidates": {
+          "5PC": {
+            "anchor": "input_capsule",
+            "path": "inputs/review/inputs/review/inputs/review/inputs/review/source_classification/5PC/candidate.cif",
+            "sha256": "7edbaef484b768557cb52667e6d79a0052e4f3e3c3cba72066e53cf640088e56",
+            "size": 10610
+          },
+          "DP": {
+            "anchor": "input_capsule",
+            "path": "inputs/review/inputs/review/inputs/review/inputs/review/source_classification/DP/candidate.cif",
+            "sha256": "10160ee58b146fda655e289ddcd7d7e7fe4b64f164ce2327b4c33936fadad670",
+            "size": 10514
+          },
+          "PDU": {
+            "anchor": "input_capsule",
+            "path": "inputs/review/inputs/review/inputs/review/inputs/review/source_classification/PDU/candidate.cif",
+            "sha256": "92131cd42f50be9daae3647240d62a51d1fa0dc8aa4d2ba9effd5848ee728da7",
+            "size": 10511
+          }
+        },
+        "source_graph_fragment_atoms": {
+          "DP": 11,
+          "PDU": 11,
+          "5PC": 11
+        },
+        "unmatched_OP3_context": "EXPLICIT_RAW_SITE_FALLBACK_IF_OBSERVED",
+        "ATL": "INDEPENDENT_PUBLIC_ONLY",
+        "standalone_plan_without_source_capsule": "PASS",
+        "student_cif_gate": false,
+        "existing_runs": "UNCHANGED",
+        "new_Coot_construction": "PENDING_USER_MAC",
+        "new_optimization_generation_refinement": "NOT_RUN"
+      },
+      "actual_return_replay": {
+        "status": "PASS",
+        "complete_lineage": "VERIFIED_BY_MAINTAINED_CODE",
+        "C61_runtime_copies_assessment_and_15_native_checks": "RECOMPUTED",
+        "coordinated_actual_return_mutations_rejected": 11,
+        "historical_selection_flag": "NARROW_REPLAY_COMPATIBILITY_ONLY; ORIGINAL_BYTES_UNCHANGED",
+        "source_numerical_controls": "EXACT_DECLARED_C57_PATHS_AND_HASHES",
+        "captured_code_execution": "NOT_RUN"
+      },
+      "documentation": {
+        "mirror_equality": "PASS",
+        "mirrored_records": [
+          "automatic_component_resolution_2026_10_21",
+          "source_declared_dna_metadata_2026_10_22",
+          "qualified_dna_linked_controls_2026_10_22",
+          "full_scaffold_candidate_2026_10_22",
+          "replacement_geometry_trial_2026_10_22",
+          "portable_runtime_bundle_2026_10_22",
+          "ordinary_postmr_construction_2026_10_22"
+        ],
+        "unrelated_runtime_history": "PRESERVED",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "src/nasolve/cif_native_validation.py": "a80014965b04e224f0ac9b62ed5065c090fb2814893ef823855ef982f4ee34ce",
+          "src/nasolve/cif_fixed_geometry.py": "6b87732f1ab9165531d297e633edc13f755c70a5cc350ff8ff51f75e4053db14",
+          "src/nasolve/cif_gradient_audit.py": "a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc",
+          "src/nasolve/cif_candidate_usability.py": "09ab86621a3f7623f8594c6094ee9c0c7daf4aaa4e6f6c937d034d5cce9abbf9",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "native_worker_module_unchanged": "PASS",
+        "v2_usability_module_unchanged": "PASS",
+        "fixed_geometry_module_unchanged": "PASS",
+        "gradient_audit_module_unchanged": "PASS",
+        "native_geometry_worker_unchanged": "PASS",
+        "native_worker_sha256": "9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78",
+        "native_geometry_worker_sha256": "348a28b7a85883eb1bdf6767a75cb4d6db6c500d82539ca734d8d7ea6ad9f47f",
+        "deterministic_svg_and_xml": "PASS",
+        "figure_svg_sha256": "f4e664d88b20d714f97e43a34935901580874f8aa800cf92ab794b76a76e62ac",
+        "raster_visual_review": "PASS",
+        "raster_file": "cedar62-figure-review.png",
+        "raster_sha256": "0e884df999833e4fe187999e710ba61cdce55ec599d41ad00f55d63f9ebc3e0b"
+      },
+      "tools": {
+        "Python": "3.12.14",
+        "Biopython": "1.88",
+        "numpy": "2.3.5",
+        "openpyxl": "3.1.5",
+        "pytest": "9.1.1",
+        "git": "2.51.1"
+      },
+      "native": {
+        "status": "PENDING_USER_MAC",
+        "Coot": "NOT_INSTALLED_HERE; ORDINARY_DISCOVERY_ON_MAC",
+        "Phenix": "NOT_RUN_OR_REQUIRED_IN_THIS_SLICE",
+        "note": "Tests fake only external Coot execution while exercising actual shared production restoration and independent audit. Saved native evidence and software fixtures are not a fresh Coot result."
+      }
+    },
+    "compatibility": "Ordinary modified-site coordinate-restoration behavior changes: preserve complete connected base geometry rather than mixing partial same-name parent base coordinates. Canonical mutation and explicit curated placements retain behavior. Unsupported/bridged/ambiguous graph sites retain raw Coot coordinates with notes. No source chemistry, NAR authority/release/workbook, native kernel/correction, ReadySet/refinement, checkpoint or migration change. Historical artifacts remain immutable.",
+    "generated_artifacts": "Private fresh control models, raw Coot snapshots/logs, source dictionaries and review capsules remain uncommitted; maintained code/tests, methods and compact evidence summaries only.",
+    "remaining_limits": [
+      "New fresh ordinary-path Coot construction remains pending; saved evidence and software fixtures are not a native execution result.",
+      "Connected-base rigid transport preserves raw local geometry and is not a minimizer, chemical-state choice or scientific geometry approval.",
+      "General resource repair/adoption and generic NAR compilation still precede the fresh eight-pair full workflow.",
+      "ReadySet, observations, production checkpoints/refinement, nonbonded pair identity, absolute CIP and solution PDF rendering remain separate.",
+      "ATL independent scope, curated precedence, NAR authority and the exact eight-pair plan stay fixed."
+    ],
+    "automatic_adoption": false,
+    "requires_cif_review": false,
+    "scientific_approval": "NOT_RUN",
+    "control_module": "src/nasolve/cif_postmr_construction.py",
+    "control_api": "cif_postmr_construction.run_postmr_construction_controls",
+    "controls": {
+      "template": "FRESH_MTZ_FREE_W_FRAME_FREE_5_PRIME_OH",
+      "native_cases": [
+        {
+          "component": "DP",
+          "site": "A:6",
+          "construction_parent": "DG"
+        },
+        {
+          "component": "PDU",
+          "site": "A:9",
+          "construction_parent": "DT"
+        },
+        {
+          "component": "5PC",
+          "site": "A:7",
+          "construction_parent": "DC"
+        }
+      ],
+      "dictionaries": "VERIFIED_PRIOR_NUMERICAL_CANDIDATES",
+      "ATL": "PUBLIC_GRAPH_AND_PRODUCTION_RESTORATION_ELIGIBILITY_ONLY; NO_QUALIFIED_NUMERICAL_DICTIONARY_SUPPLIED; FRESH_NATIVE_COOT_NOT_RUN"
+    },
+    "saved_runtime_return_module": "src/nasolve/cif_runtime_return.py",
+    "saved_runtime_return_policy_id": "cif-saved-runtime-activation-replay-v1"
   }
 }

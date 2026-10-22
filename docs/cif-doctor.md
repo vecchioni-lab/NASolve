@@ -48,10 +48,12 @@ checks and three selections. Returned C58 passes separate linked-context
 controls. Returned C59 qualifies a separate full-scaffold DP bundle and selects
 it automatically with notes. Returned C60 retains a usable geometry endpoint
 after fresh initial/endpoint derivative checks and exact native readback pass,
-while reporting its iteration limit. C61 adds a portable activated runtime bundle
-and the ordinary `assess --bundle PATH` reader. Automated acquisition/repair,
-PostMR adoption, production checkpoints/refinement and PDF rendering remain
-separate; no run or checkpoint is manufactured from diagnostic evidence.
+while reporting its iteration limit. Returned C61 passes the portable bundle's
+15 staged native checks. C62 applies graph-selected connected-base restoration
+in ordinary PostMR and uses the same construction API for fresh controls.
+Automated acquisition/repair adoption, generic NAR compilation, production
+checkpoints/refinement and PDF rendering remain separate; no run or checkpoint
+is manufactured from diagnostic evidence.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
@@ -2569,7 +2571,12 @@ source directories unavailable. One fresh native interpretation from the staged
 layout must match C60's rounded manager: model identities, effective definitions,
 all fixed proxy/link inventories, native APIs and explicit pairing/stacking
 policy. This cif-runtime-bundle-activation-trial-v1 diagnostic writes
-runtime_bundle_audit; local validation and native staged readback are pending.
+runtime_bundle_audit. All 106 new regressions, 215 focused and 3394 full tests
+pass. Returned C61 verifies 3,406 payloads and the unchanged C60 parent; all
+15 fresh native readback checks pass, with two finite repeatable evaluations
+and unchanged target 2511.569429708212. The exact model/19 CIFs/14 PHILs survive.
+Ordinary 33-input assessment remains REVIEW with preserved solution notes;
+PDF rendering remains planned.
 
 The activated bundle is an explicit portable resource selection. Automated
 source acquisition/repair, fresh NAR compilation, ordinary PostMR adoption,
@@ -2578,6 +2585,55 @@ integration. The source capsule contains no observations or ordinary PostMR
 report, so no AutoMR run or checkpoint is fabricated. Curated precedence,
 NARestraints authority, ATL independent scope and the eight-pair live-run plan
 remain unchanged. No generation or optimization occurs in C61.
+The bundle-only summary now states native_selection VERIFIED_SOURCE_CAPTURE
+and native_selection_executed false: the public reader inherits/replays verified
+evidence rather than performing a new native selection. Historical C61 summary
+receipts are preserved with their original NOT_RUN label; compatible replay
+does not rewrite them or change the selected model.
+
+## Ordinary PostMR connected-base restoration (Cedar 62)
+
+The restored-parent step in ordinary PostMR now keeps a connected modified base
+together. Legacy same-name copying could combine parent base coordinates with
+new substituent coordinates, producing the damage reproduced in Cedar 16.
+The graph-selected rigid fragment method tested separately in Cedar 17 now runs
+in the ordinary construction path. It changes coordinate handling, not source
+chemistry, restraint targets or NARestraints policy.
+
+**Methods.** `postmr.construct_postmr_model` is the shared Coot construction API
+used by ordinary `prepare_postmr` and the fresh MTZ-free controls. Under
+postmr-source-graph-fragment-restoration-v1, select one complete heavy base
+fragment from the explicit source graph with a single C1-prime attachment.
+Transport all its atoms through the proper raw-to-parent C1-prime/O4-prime/C2-prime
+frame transform while restoring the parent DNA sugar/backbone. Preserve raw
+base internal geometry and attachment hand within PDB rounding; parent base
+names supply no partial coordinate map. Canonical base-mutation backbones and
+explicit curated substitution/ring placements retain their documented behavior.
+
+Unsupported, bridged or ambiguous graph/context cases retain their entire raw
+Coot site with nonfatal notes. This includes the independent ATL control;
+unsupported transport is not an invitation to force a standard DNA sugar into
+a bridged component or ask a student to inspect a CIF. Source bytes, curated
+precedence, native kernels and the qualified plane correction remain fixed.
+
+`--postmr-construction-only` accepts exact C61. The
+`cif_postmr_construction.run_postmr_construction_controls` helper prepares a fresh
+MTZ-free, free-5-prime-OH W frame and constructs DP A:6 from DG, PDU A:9 from DT
+and 5PC A:7 from DC using verified numerical dictionaries. One Coot construction process
+calls the shared ordinary API, with a 600-second bound and no change to ordinary
+default timing. ATL remains public graph/production-restoration eligibility
+only, because no qualified numerical ATL dictionary is supplied; no fresh
+native/Coot ATL result is claimed. Inspect-only prepares models, dictionaries
+and the plan without starting Coot. Its ORDINARY_POSTMR_CONSTRUCTION_CONTROLS
+action uses the separate cif-postmr-construction-controls-v1 report. All 118 new
+regressions, 257 focused and 3512 full tests pass (two skips, 276 subtests),
+including actual-C61 strict replay and relocated transport after deleting build
+sources. Fresh native Coot construction remains pending. The controls do not fabricate observations or an
+AutoMR/PostMR checkpoint, run ReadySet/refinement or compile a new NAR policy.
+Automatic acquisition/repair adoption, generic pairing/stacking compilation and
+production checkpoint/refinement still precede the full eight-pair live run;
+PDF rendering and scientific geometry/state/CIP qualification remain separate.
+No additional saved-geometry optimization or student CIF gate is introduced.
 
 ## Reviewed preparation
 

@@ -302,11 +302,17 @@ mirror-side sequence change stops until the guarded
 unmirror/Coot/remirror construction path is implemented.
 
 For supported dictionary modifications, Coot also writes a canonical-parent
-snapshot. NASolve copies the coordinates, occupancies, and B factors of every shared
-atom back into the replaced residue and requires the complete sugar/phosphate
-atom set to survive. Thus dictionary overlap positions only the new chemistry;
-it cannot rotate or curl the existing phosphate. The restoration inventory is
-recorded in the run report.
+snapshot. Ordinary restoration now uses
+postmr-source-graph-fragment-restoration-v1: source connectivity selects a
+complete heavy base fragment attached only at C1-prime. A proper rigid transform
+maps the raw Coot C1-prime/O4-prime/C2-prime frame to the parent frame. Restore
+the parent sugar/backbone while moving the entire connected base together;
+never partly overwrite it by shared atom names. Preserve raw base internal
+geometry and attachment handedness within PDB rounding. Unsupported, ambiguous
+or bridged-sugar sites retain their entire raw Coot site automatically with notes.
+Canonical mutate_base backbone behavior and explicit curated sulfur/ring
+placements keep their existing semantics. Restoration choices remain in the run
+report; a dictionary or parent name never licenses a partial base copy.
 
 The returned Cedar 16 evidence demonstrates a limitation of this legacy
 same-name/element restoration: it introduces 55 captured threshold crossings,
@@ -324,7 +330,9 @@ scientific qualification remains under review. Cedar 20 shows that fresh native
 managers can add distance-filtered hydrogen bonds despite unchanged input
 bytes. Read-only attribution preserves the old exact comparison and separately
 records fixed-manager endpoint equivalence; it changes no native gate.
-It is separate from production PostMR. See the
+Those geometry/native trials remain separate diagnostics. C62 applies the
+connected-base construction rule to ordinary PostMR through the shared
+`postmr.construct_postmr_model` API; fresh controls call that same API. See the
 [restoration diagnostic](cif-doctor.md#separate-attached-fragment-restoration-candidate)
 and [current handoff](development-handoff.md).
 
@@ -898,7 +906,27 @@ policy, optimize, read diffraction or refine. Source resources remain intact;
 curated precedence and NARestraints authority stay fixed. Ordinary automated
 acquisition/repair, PostMR adoption, production checkpoints/refinement and PDF
 rendering remain future integration work. No production workflow is fabricated
-from a capsule without observations or a PostMR checkpoint.
+from a capsule without observations or a PostMR checkpoint. Returned C61
+verifies all 3,406 payloads and the unchanged C60 parent; one fresh native worker
+passes all 15 staged-layout checks with two finite repeatable evaluations of
+the same serialized objective. The selected model/19 CIFs/14 PHILs retain their
+exact bytes. Ordinary assessment stays REVIEW with solution notes; this does
+not erase the inherited stopping or scientific limitations.
+
+C62 changes the ordinary construction path rather than adding another optimizer
+cycle. `prepare_postmr` and the fresh MTZ-free controls share
+`construct_postmr_model`, including Coot construction and graph-selected rigid
+base restoration. A 600-second Coot limit applies to the controls; ordinary
+default timing stays unchanged. The controls do not fabricate AutoMR data or a
+checkpoint, invoke ReadySet/refinement or compile a new pairing/stacking policy.
+Dictionary chemistry, curated precedence, NARestraints authority, native kernels
+and the qualified correction remain unchanged. Automatic resource repair/adoption
+and generic NAR compilation still precede the planned fresh eight-pair full run.
+
+The bundle assessment summary distinguishes inherited native evidence from a
+new native operation: native_selection is VERIFIED_SOURCE_CAPTURE and
+native_selection_executed is false. Historical C61 receipts remain byte-identical;
+this additive reporting correction does not change their selection or physics.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core
