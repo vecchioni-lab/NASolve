@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Stage the qualified selection as a portable runtime bundle
+
+- Verify all 3,300 C60 payloads and unchanged C59 parent. Fresh initial and both
+  endpoint sampled derivatives pass, with all 17 native readback and eight
+  selection checks. Retain the usable endpoint with notes and preserve
+  NOT_CONVERGED_LIMIT at 1,000 iterations/1,033 calls; no further cycle required.
+- Add cif-qualified-runtime-bundle-v1 and the public read-only
+  `cif-doctor assess --bundle PATH` consumer. Stage the exact selected model,
+  19 CIFs and 14 PHILs with ordered relative anchored hashes and activation
+  evidence, preserving original resources and inherited limitations.
+- Add C61 `--runtime-bundle-only` on exact C60. Perform one fresh native
+  readback from the staged layout against C60's qualified rounded manager,
+  preserving all identities, definitions, proxies/links and NARestraints policy.
+- All **106 new regressions**, **215 focused / 3394 full tests** pass (two skips,
+  276 subtests), plus actual-C60 relocated replay and standalone ordinary CLI
+  assessment after the source capsule and build paths are gone. The everyday
+  edit, poisoned-import and aliased-temporary-root checks pass. Staged native
+  Mac execution remains pending. No generation,
+  optimizer, new NAR policy compilation, diffraction/refinement, fake AutoMR or
+  PostMR checkpoint, automated acquisition/adoption or PDF rendering. Curated
+  precedence, NAR authority, ATL independent scope and the eight-pair plan stay fixed.
+
 ### Trial geometry under the qualified replacement manager
 
 - Verify all 3,097 C59 payloads, both completed native workers and automatic
@@ -30,9 +52,9 @@ entries are reconstructed from repository history.
   This is a new fixed objective, not a C28 continuation. All 82 new regressions,
   235 focused and 3288 full tests pass (two skips,
   276 subtests), plus actual-C59 deleted-build/relocated replay with preserved
-  everyday edits, poisoned imports and aliased temporary roots. Native Mac
-  execution remains pending; production/eight-pair integration follows the
-  bounded trial. Scientific geometry, state/CIP, production adoption and PDF
+  everyday edits, poisoned imports and aliased temporary roots. Returned native
+  execution qualifies and selects the usable endpoint with notes; portable
+  runtime-bundle integration follows the bounded trial. Scientific geometry, state/CIP, production adoption and PDF
   rendering remain separate. No student CIF gate or NARestraints policy change.
 
 ### Test a separate qualified dictionary in the full NARestraints scaffold

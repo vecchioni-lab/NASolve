@@ -46,9 +46,12 @@ source-declared DNA metadata candidate and automatic verified-original fallback
 within the same isolated scope. Returned C57 passes all six native equivalence
 checks and three selections. Returned C58 passes separate linked-context
 controls. Returned C59 qualifies a separate full-scaffold DP bundle and selects
-it automatically with notes. C60 supplies one bounded geometry trial under the
-new fixed definitions, with fresh derivatives and verified-initial fallback.
-Native geometry execution and production adoption remain separate.
+it automatically with notes. Returned C60 retains a usable geometry endpoint
+after fresh initial/endpoint derivative checks and exact native readback pass,
+while reporting its iteration limit. C61 adds a portable activated runtime bundle
+and the ordinary `assess --bundle PATH` reader. Automated acquisition/repair,
+PostMR adoption, production checkpoints/refinement and PDF rendering remain
+separate; no run or checkpoint is manufactured from diagnostic evidence.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
@@ -2516,11 +2519,65 @@ nonconvergence, pucker and residual geometry as notes; these alone are not
 failure conditions.
 Do not rank targets across the old and replacement dictionaries or require more
 continuation cycles. All 82 new regressions, 235 focused and 3288 full
-tests pass, plus actual-C59 relocated replay and bridge validation. New native
-geometry execution remains pending. Follow this bounded trial with production/eight-pair integration work;
-scientific structure qualification, absolute CIP, phosphate state, nonbonded
-pair identity, ordinary production adoption and PDF rendering remain separate.
-No student CIF inspection or approval is introduced.
+tests pass, plus actual-C59 relocated replay and bridge validation. Returned
+C60 verifies 3,300 payloads and the complete unchanged C59 parent. Fresh initial
+and both endpoint sampled derivatives pass; all 17 native readback and eight
+selection checks pass. The full-precision target falls 2671.029230 to
+2508.431084 (6.09%) and gradient norm 1507.689322 to 50.997383 (96.62%).
+The written PDB separately records target 2511.569430 and gradient norm
+878.690317. Both have zero sign conflicts among 158 chirality proxies and retain
+three bond/nine angle nominal deviations at least five sigma. Preserve
+NOT_CONVERGED_LIMIT at 1,000 iterations/1,033 calls; the native criterion is false.
+The usable endpoint is selected with notes. No additional geometry continuation
+is required. Scientific structure qualification, absolute CIP, phosphate state,
+nonbonded pair identity, ordinary production adoption and PDF rendering remain
+separate. No student CIF inspection or approval is introduced.
+
+## Portable activated runtime bundle (Cedar 61)
+
+The selected written model and the exact resources that produced its qualified
+native manager can now be staged independently of the diagnostic capsule.
+`cif_runtime_bundle.prepare_runtime_bundle` writes a separate schema-1
+runtime_bundle.json under cif-qualified-runtime-bundle-v1, preserving the exact
+model, ordered dictionary/PHIL bytes, source hashes, activation evidence and
+continuation notes. The model and resources live within that bundle; every
+operational reference is relative to its root and carries a hash and size.
+No original resource is overwritten. The evidence directory also retains the
+verified initial_model.pdb needed to reproduce the coordinate choice.
+
+`resolve_runtime_bundle` checks schema, anchored paths and integrity, then
+returns the selected model and ordered resources. `assess_runtime_bundle`
+feeds that inventory to the existing read-only assessor with bundle_context.
+Its additive solution_report explains the selected model, inherited stopping
+verdict and continuation notes in plain language; PDF rendering stays PLANNED.
+The ordinary command is:
+
+```bash
+./nasolve cif-doctor assess --bundle /path/to/runtime_bundle.json --json
+```
+
+This selects the bundle's model/resources rather than a run/checkpoint. It does
+not infer new chemistry, perform native refinement or promote audit findings
+into scientific approval. Detailed findings remain developer evidence, without
+a student CIF-inspection gate.
+
+**Methods.** `--runtime-bundle-only` accepts exact C60, replays the selected
+endpoint, and stages its written PDB plus all 19 CIFs and 14 PHILs. Preserve
+resource ordering, inherited decisions/limitations and the fixed NARestraints
+policy. Use the ordinary generic loader/assessment path after relocation, with
+source directories unavailable. One fresh native interpretation from the staged
+layout must match C60's rounded manager: model identities, effective definitions,
+all fixed proxy/link inventories, native APIs and explicit pairing/stacking
+policy. This cif-runtime-bundle-activation-trial-v1 diagnostic writes
+runtime_bundle_audit; local validation and native staged readback are pending.
+
+The activated bundle is an explicit portable resource selection. Automated
+source acquisition/repair, fresh NAR compilation, ordinary PostMR adoption,
+production checkpoints, diffraction/refinement and PDF rendering remain planned
+integration. The source capsule contains no observations or ordinary PostMR
+report, so no AutoMR run or checkpoint is fabricated. Curated precedence,
+NARestraints authority, ATL independent scope and the eight-pair live-run plan
+remain unchanged. No generation or optimization occurs in C61.
 
 ## Reviewed preparation
 

@@ -18,10 +18,13 @@ selects the three source-declared candidates with notes; the verified original
 remains available as automatic fallback. Returned C58 passes all three separate
 DNA linkage controls against their canonical reference. Returned C59 qualifies
 DP B:4 in the preserved full model with all 38 links and the complete
-NARestraints policy intact. C60 supplies one bounded geometry trial under those
-new fixed definitions, with fresh derivative checks and the verified C59 start
-as fallback. Native geometry execution, production adoption, phosphate state
-and scientific qualification remain separate. Students do not approve CIFs.
+NARestraints policy intact. Returned C60 selects a usable geometry endpoint
+after initial/endpoint derivatives and exact native readback pass, retaining
+its iteration-limit note. C61 exposes the exact selected model/19 CIFs/14 PHILs
+as a portable runtime bundle through `cif-doctor assess --bundle PATH`, with
+separate staged native readback. Automatic acquisition, PostMR adoption,
+production checkpoints/refinement, PDF rendering, phosphate state and scientific
+qualification remain separate. Students do not approve CIFs.
 
 ## What's current?
 

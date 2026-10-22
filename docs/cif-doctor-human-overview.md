@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-21:** offline component/restraint assessment,
+**Implemented scope, updated 2026-10-22:** offline component/restraint assessment,
 report-only PostMR integration, explicit source/candidate comparison and two
 bounded preparation recipes, dictionary coordinate-degeneracy checks, and
 explicit whole-component numerical candidate generation and a separate native
@@ -51,11 +51,12 @@ metadata restoration with automatic fallback to the verified original if its
 isolated native comparison fails. All six C57 native comparisons pass and all
 three components select the restored header with notes. Returned C58 passes
 all three separate short-chain linkage controls. Returned C59 qualifies DP in
-the actual full scaffold and selects it with notes. C60 supplies one bounded
-geometry trial under those new fixed definitions, with fresh derivative checks
-and the verified initial model as fallback. Native geometry execution and
-automatic production recovery,
-effective-bundle adoption and PDF rendering remain planned. Development
+the actual full scaffold and selects it with notes. Returned C60 retains a
+usable geometry endpoint after fresh derivatives and exact native readback pass,
+while reporting nonconvergence. C61 stages that model and its exact restraints
+in a portable runtime bundle, read through the ordinary assessment command.
+Automatic production recovery, PostMR adoption, production checkpoints/refinement
+and PDF rendering remain planned. Development
 diagnostics can retain REVIEW without asking students to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 ## How it works
@@ -1282,10 +1283,39 @@ geometry must have zero fixed-hand sign conflicts; both targets must be no worse
 than the new trial's initial target under the same objective. Retain a usable
 endpoint or the verified initial model automatically, including when no endpoint
 is produced. Nonconvergence, pucker and residual outliers alone do not require
-failure or further cycles. Native C60
-execution, achieved scientific geometry, state/CIP qualification, production
-adoption and PDF rendering remain separate. After the bounded trial, the next
-path is production/eight-pair integration rather than open-ended optimization.
+failure or further cycles. Returned C60 passes its initial and two endpoint
+sampled derivative cases, all 17 native readback checks and all eight selection
+checks. It retains a usable endpoint with notes while preserving the 1,000-step
+iteration-limit verdict. The fixed-objective target decreases 6.09% and gradient
+norm 96.62%; full-precision and written-PDB values remain separately reported.
+Both geometries retain zero fixed-hand conflicts and three bond/nine angle
+outlier descriptions. This supports progression without another continuation
+cycle; scientific geometry, state/CIP, production adoption and PDF rendering
+remain separate.
+
+C61 packages the selected written model and its exact 19 dictionary/14 parameter
+resources into a portable runtime bundle. The practical purpose is to let an
+ordinary NASolve reader consume the verified resource choice after the original
+diagnostic paths disappear, without manufacturing a completed structure run.
+
+**Methods.** Copy exact bytes into a separate manifest-bound bundle, retaining
+ordered resources, source hashes, continuation notes and activation evidence.
+Every operational path stays relative to the bundle root. The evidence retains
+the initial model so the coordinate choice can be reproduced. A generic resolver
+checks integrity, then the public `cif-doctor assess --bundle PATH` uses the
+existing read-only assessor. Its plain-language solution_report preserves the
+selected model, stopping verdict and continuation notes; PDF rendering remains
+planned. One separate native readback from this staged
+layout must reproduce the qualified rounded manager and explicit NARestraints
+policy. Native C61 execution remains pending. There is no parameter generation,
+optimization, new pairing/stacking guess or diffraction/refinement run.
+
+This is a resource/reader bridge toward production and the eight-pair test.
+Automatic acquisition/repair, ordinary PostMR adoption, production checkpoints
+and PDF rendering remain future work. The capsule lacks observations and an
+ordinary PostMR report; neither an AutoMR run nor a checkpoint is fabricated.
+Students do not approve CIFs. Curated sources and NARestraints retain their
+authority.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

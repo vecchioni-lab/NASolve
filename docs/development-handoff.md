@@ -98,48 +98,65 @@ five sigma change 3 to 4 and angle deviations 10 to 9, with zero chirality sign
 conflicts in both managers. These are different fixed objectives, not an
 optimization improvement or a convergence result.
 
-**C60 is the next delivery.** `--scaffold-geometry-only` accepts exact C59.
-Build `60_Cedar_probe_cif_scaffold_geometry.py` with PDU/5PC/ATL. Start from the
-verified C59 PDB-rounded model and fixed replacement dictionary/NARestraints
-policy. This is a fresh bounded trial, not a continuation under C28's objective.
-A new initial corrected-gradient audit must pass before optimization. Reuse the
-strict C26 plane proof only when full plane/parallelity inventories, named atom
-mapping and native API/source pins match; generate the new manager's own
-constraint signature and fresh derivative evidence. Never relabel the old
-manager's qualification as proof for changed covalent targets.
+**Returned C60 verifies 3,300 payloads** and all 3,097 unchanged C59 payloads.
+The fresh replacement-manager initial derivative audit passes (1,367/2,000
+native evaluations), as do both full-precision/PDB-rounded endpoint derivative
+cases (2,734/4,000 evaluations). All 17 exact native readback checks and all eight
+coordinate-selection checks pass. The fixed constraint signature, 877 atoms,
+43 sites, 38 backbone links and explicit NARestraints policy survive. Both
+geometries have zero sign conflicts across 158 recorded chirality proxies.
+Maintained validators reproduce the qualifications and automatic choice without
+executing captured code.
 
-The qualified plane correction, native kernels, geometry worker, L-BFGS and
-termination mechanics stay unchanged. Run at most 1,000 iterations, retaining
-native stopping evidence. At the endpoint, repeat sampled derivatives at full
-precision and PDB-rounded coordinates and require exact native readback of
-identities, definitions, constraints and the explicit NARestraints policy.
-Verify exact serialization/source hashes. Require zero fixed-hand sign conflicts
-in both the full-precision geometry and freshly read rounded native geometry,
-and require both endpoint targets to be no worse than the new trial's initial
-target under that same objective. Pucker is distinct from inversion.
-`cif_scaffold_candidate.select_scaffold_geometry` selects the finite usable
-endpoint under cif-qualified-scaffold-geometry-choice-v1 or retains the verified
-C59 initial model automatically, including when no endpoint is produced.
-Nonconvergence, pucker and residual outliers alone are report notes, not failures
-or requirements for more continuation cycles. The report uses
-cif-qualified-scaffold-geometry-trial-v1; the native trial policy remains
-cif-fixed-na-corrected-geometry-trial-v1.
+The same-objective full-precision target falls **2671.029230 → 2508.431084
+(6.09%)** and gradient norm **1507.689322 → 50.997383 (96.62%)**. The written
+PDB has a separate target **2511.569430** and gradient norm **878.690317**; do not
+substitute these for the full-precision endpoint. Native stopping remains
+**NOT_CONVERGED_LIMIT**, 1,000 iterations/1,033 calls, with the native criterion
+false. Three bond and nine angle nominal deviations at least five sigma remain
+in both coordinate representations. The automatic decision selects
+qualified_geometry_endpoint with CONTINUE_WITH_NOTES. No further geometry
+continuation is required to progress.
 
-After this bounded trial, advance toward production integration and the planned
-eight-pair live run rather than adding open-ended geometry cycles. Achieved
-scientific geometry, absolute CIP, phosphate-state selection, nonbonded pair
-identity, ordinary production adoption and solution PDF rendering remain
-separate. Students do not inspect or approve CIF tables. ATL remains an
-independent public/compiler control. Curated precedence, NARestraints authority,
-dependencies/release and the exact eight-pair plan stay fixed.
-C59 returned evidence is in `full_scaffold_candidate_2026_10_22`; the next
-software/native boundary is `replacement_geometry_trial_2026_10_22`. All **82 new
-regressions**, **235 focused / 3288 full tests** pass (two skips, 276 subtests),
-plus actual-C59 deleted-build/relocated replay, strict prior-plane bridge,
-poisoned imports, aliased temporary roots and the everyday edit preserved.
-All 156 relative links, current evidence mirrors, protected hashes and editable
-figure checks pass. New native Mac execution remains pending; the optimizer,
-geometry worker, native kernels, correction and v2 usability bytes stay fixed.
+**C61 is the next delivery.** `--runtime-bundle-only` accepts exact C60. Build
+`61_Cedar_probe_cif_runtime_bundle.py` with PDU/5PC/ATL. Stage the selected written
+model and its exact 19 CIF/14 PHIL resources through the generic
+cif-qualified-runtime-bundle-v1 adapter. Keep ordered resource identities,
+relative anchored paths, hashes and activation evidence in runtime_bundle.json.
+The generic resolver and public `cif-doctor assess --bundle PATH` assess that
+bundle independently of old source paths or a diagnostic wrapper.
+
+The separate cif-runtime-bundle-activation-trial-v1 audit performs one fresh
+native readback from the staged layout against C60's qualified rounded native
+manager. Require exact model identities, definitions, all fixed proxies/links,
+selected native APIs and the explicit NARestraints policy. No dictionary
+generation, optimization, new NAR policy compilation, diffraction read or
+refinement runs. Do not fabricate an AutoMR/PostMR run or checkpoint: this
+capsule has neither observations nor an ordinary PostMR report. Existing
+sources and the selected model remain untouched.
+
+This is a reusable runtime-resource and ordinary offline-assessment bridge,
+not automated acquisition/repair, ordinary PostMR adoption, production checkpoint
+activation or a refinement result. Those integrations, the planned eight-pair
+live run and solution PDF rendering remain next work. Scientific geometry,
+absolute CIP, phosphate-state selection and nonbonded pair identity remain
+separate. Students do not inspect or approve CIF tables; nonconvergence remains
+a report note. ATL stays independent, curated precedence and NARestraints
+authority stay fixed, and the exact eight-pair plan is unchanged.
+C60 returned evidence is in `replacement_geometry_trial_2026_10_22`; the next
+software/native boundary is `portable_runtime_bundle_2026_10_22`. C61 local
+validation and new staged native readback remain pending.
+
+C61 local validation is complete: **106 new regressions**, **215 focused /
+3394 full tests** pass (two skips, 276 subtests; full run 331.01 s).
+Actual-C60 replay reproduces the saved proofs, serialization, 17 native checks
+and automatic choice. Deleted-build/relocated transport preserves all 3,300
+source payloads, the everyday edit and ignored runners. After the source capsule
+is removed, the standalone activated bundle resolves through the ordinary
+public CLI with solution notes. Poisoned imports, aliased temporary roots,
+156 relative links, six evidence mirrors and protected hashes/figure checks
+pass. New staged-layout native Mac readback remains pending; there is no
+optimizer, generation, diffraction refinement or production-checkpoint claim.
 
 ## Completed and open work
 

@@ -114,13 +114,16 @@ selections have returned PASS/continue-with-notes. The verified original remains
 available as automatic fallback. Returned C58 passes three separate linked
 controls, preserving canonical links and exact projected/heavy restraints.
 Returned C59 qualifies DP B:4 in the full model with all 38 links and the
-complete NARestraints policy intact, selecting the candidate with notes. C60
-supplies one bounded geometry trial under the new fixed definitions, preceded
-by fresh initial derivatives and followed by endpoint/readback checks. Both
-full-precision and reread rounded endpoints need zero fixed-hand conflicts,
-exact serialization/source hashes and no worse target under the same new
-objective. The verified C59 start remains automatic fallback, including absent
-endpoints; native C60 execution is pending.
+complete NARestraints policy intact, selecting the candidate with notes.
+Returned C60 selects its usable endpoint after initial/endpoint derivatives and
+all 17 native readback checks pass, retaining its iteration-limit note. C61
+stages the exact selected model/19 CIFs/14 PHILs in a portable manifest-bound
+runtime bundle consumed by the ordinary `assess --bundle` reader, with retained
+initial-model evidence and a plain-language selection/stopping solution_report,
+then checks one fresh native readback from that layout. Native C61 execution
+and PDF rendering remain pending.
+This resource/reader bridge does not fabricate an AutoMR/PostMR checkpoint or
+claim automated acquisition, production adoption, refinement or PDF integration.
 Existing native classifications already say DNA despite generic written groups.
 No production-adoption arrow, nonbonded pair-identity proof or student CIF
 adjudication is implied.

@@ -189,9 +189,13 @@ linked controls: both canonical links, projected heavy-atom restraints and
 phosphate tetrahedral coverage survive. Returned C59 qualifies the new DP
 B:4 dictionary in the full 877-atom model, preserving all 38 links and the
 NARestraints pairing/stacking policy; the automatic diagnostic choice retains
-that candidate with notes. C60 supplies one bounded geometry trial under the
-new fixed definitions, with fresh derivative checks and the verified C59 start
-as fallback. Production adoption and scientific qualification remain separate. Equivalent operational mapping
+that candidate with notes. Returned C60 passes the new initial and both
+endpoint derivative checks plus exact native readback, and automatically retains
+a usable endpoint while reporting its iteration limit. C61 stages that selected
+model and exact dictionaries/parameters in a portable runtime bundle, assessed
+through `cif-doctor assess --bundle PATH`, with a separate native readback.
+Automatic acquisition, PostMR adoption, production checkpoints/refinement, PDF
+rendering and scientific qualification remain separate. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

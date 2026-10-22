@@ -875,8 +875,30 @@ retains the verified C59 initial model automatically, including when no endpoint
 is produced. Nonconvergence, pucker and residual outliers are notes, not forced
 continuation cycles or failure conditions by themselves. This is a
 new fixed objective, not a continuation of C28 or an energy comparison with its
-old dictionary. Production adoption, scientific qualification and PDF rendering
-remain separate; no production default changes.
+old dictionary. Returned C60 verifies all 3,300 payloads and unchanged C59
+parent. The initial and both endpoint sampled derivative cases pass; all 17
+native readback checks pass. Its eight selection checks retain the usable
+endpoint with notes while preserving NOT_CONVERGED_LIMIT at 1,000 iterations.
+Production adoption and scientific qualification remain separate.
+
+C61 adds cif-qualified-runtime-bundle-v1 in `cif_runtime_bundle.py`. It stages
+the exact selected written model, 19 dictionary resources and 14 PHIL resources
+in a standalone directory with ordered relative hash-bound references and
+activation evidence. The generic resolver validates the schema and resource
+integrity and resolves within the bundle root after relocation. The public
+`cif-doctor assess --bundle PATH` uses this resolver and the ordinary read-only
+assessor, without constructing an AutoMR run or checkpoint. Assessment does not
+upgrade the inherited native/scientific qualification.
+
+The separate C61 activation diagnostic replays C60 and performs one fresh
+native interpretation from the staged layout, requiring the same identities,
+definitions, proxies, backbone links and explicit NARestraints policy as C60's
+rounded readback. It does not regenerate parameters, compile a new pairing/stack
+policy, optimize, read diffraction or refine. Source resources remain intact;
+curated precedence and NARestraints authority stay fixed. Ordinary automated
+acquisition/repair, PostMR adoption, production checkpoints/refinement and PDF
+rendering remain future integration work. No production workflow is fabricated
+from a capsule without observations or a PostMR checkpoint.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core
