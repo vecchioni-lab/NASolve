@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Test qualified candidates in separate DNA linkage controls
+
+- Verify all 2,854 C57 payloads, six completed native equivalence passes and
+  three source-declared DNA selections with notes. All twelve finite evaluations
+  repeat exactly; complete worker/source/input/selection evidence replays.
+- Add C58 `--linked-control-only` on exact C57. Prepare separate three-residue
+  controls with fixed 5W6W backbone/flanks and a rigid graph-selected base graft.
+  A passed, hash-bound isolated qualification explicitly bridges existing linked
+  preparation to legacy DNA metadata and reassessed complete candidates; old
+  callers retain their existing gates and raw findings remain visible.
+- Use the existing graph-selected OP3/outgoing-H modifiers and PHIL namespace
+  adapter. One canonical and three modified native workers must preserve exact
+  links/targets, projected definitions/heavy proxies, phosphate tetrahedral
+  coverage and flanking mechanics, with finite repeatable fixed evaluations.
+- Native Mac linked execution remains pending. No native kernel/target,
+  optimizer, production adoption/default, dependency, NAR release or student
+  approval change. Local validation and remaining scientific limits are in
+  the native ledger; ATL and the eight-pair full-run plan stay unchanged.
+
 ### Preserve source-declared DNA metadata with verified fallback
 
 - Verify the C56 return: 2,774 payloads, six saved native usability passes and

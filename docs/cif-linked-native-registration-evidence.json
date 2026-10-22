@@ -16918,7 +16918,7 @@
       "PostMR CIF Doctor receipts gain an additive plain-language solution_report summary. Historical findings/status/readiness and fixed mechanics are unchanged.",
       "C55 isolated native adapter received six completed Mac workers; corrected C56 saved replay passes all six cases and three isolated decisions. No production adoption occurs.",
       "C56 corrected saved native usability-to-decision replay passes all six returned cases and three isolated decisions with notes, preserving the v1 failures; no linked adoption occurs.",
-      "C57 source-declared DNA metadata preparation and isolated equivalence-to-selection adapter are software-tested. A qualified new candidate is preferred; otherwise the verified original is retained automatically. New Mac equivalence is pending."
+      "C57 source-declared DNA metadata adapter receives six native equivalence passes and three source_declared_dna selections with notes. Verified-original fallback paths are software-tested; no fallback was needed in this return and no production adoption occurs."
     ],
     "planned": [
       "Bounded automatic source/repair/optimization orchestration retaining best valid endpoints and native fallback.",
@@ -17858,7 +17858,7 @@
     }
   },
   "source_declared_dna_metadata_2026_10_22": {
-    "status": "PREPARATION_EQUIVALENCE_AND_FALLBACK_SOFTWARE_TESTED; NATIVE_MAC_EXECUTION_PENDING",
+    "status": "SIX_NATIVE_METADATA_EQUIVALENCE_CASES_PASS; THREE_SOURCE_DECLARED_DNA_SELECTIONS_WITH_NOTES; LINKED_ADOPTION_PENDING",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "57_Cedar",
     "policy_id": "cif-source-declared-dna-metadata-v1",
@@ -17952,7 +17952,7 @@
         "new_native_equivalence": "PENDING_USER_MAC",
         "generation_optimization_adoption": "NOT_RUN"
       },
-      "native": "PENDING_USER_MAC: no Phenix installation here. Actual C56 saved-data replay and three source preparations pass; synthetic native fixtures test qualification/fallback behavior only. Six new Phenix 2.2.1-6174 interpretations remain pending.",
+      "native": "RETURNED Phenix 2.2.1-6174, dispatcher 2.2.1: six completed native workers, twelve finite exactly repeatable evaluations, all metadata/proxy/full-target/named-gradient equivalence checks PASS. Complete maintained-code receipt/worker/spec/input/output/preparation/decision replay PASS; no captured Python executes.",
       "documentation": {
         "mirror_equality": "PASS",
         "mirrored_records": [
@@ -17979,7 +17979,7 @@
     "compatibility": "Additive explicit opt-in C57 action and schema-1 metadata/equivalence receipts. No existing CLI default, native worker/energy policy, CIF target/kernel, dependency, curated precedence or NARestraints release/workbook change. ATL remains public/compiler only; the eight-pair run plan is unchanged.",
     "remaining_limits": [
       "All existing raw native monomer classifications already say DNA. This restores written source metadata and is not proof of a newly repaired native classification.",
-      "New native metadata equivalence, actual polymer links/terminal modifiers and effective-bundle adoption remain unqualified.",
+      "Source metadata and isolated native equivalence are qualified. Actual polymer links/terminal modifiers and effective-bundle adoption remain separate.",
       "Nonbonded pair identity is not compared by this isolated signature/target/gradient check.",
       "DP omitted unoriented phosphate volume coverage and geometry notes remain; no convergence, absolute CIP or phosphate state is invented.",
       "Native formal-charge access remains unsupported; unchanged explicit CIF formal charges are not substituted with partial charges.",
@@ -17988,6 +17988,236 @@
     "requires_cif_review": false,
     "automatic_adoption": false,
     "linked_adoption": "NOT_RUN",
+    "scientific_approval": "NOT_RUN",
+    "returned_review": {
+      "name": "57_Cedar_60_lkctb_cif_numerical_recovery_review.zip",
+      "sha256": "011ae3e9de560dd23d1835b4a31c075aa14deea225a2d368c6e0c7f95aa486b7",
+      "bytes": 65729146,
+      "verified_payloads": 2854,
+      "build_sha256": "71d512bd4ff6fa9325e6466ab8ae032a6e19264223fc1a18753527687cd212cb",
+      "source_commit": "7a14f2259e22bd2ccac9ead7074874b19be7cafb",
+      "reported_runner_sha256": "cb816983787ff45010f2d4b5ea9f317585ba5090a73a214672c3dc0057263f60",
+      "trusted_clean_runner_sha256": "4eeea60bb3b6238d116d61c5b9327fc65339e34bcb87a80d9a653d24467136d5",
+      "runtime_members": 141,
+      "runtime_archive_sha256": "09b94e572c9de3a21ac34cdc9e1417af29de65a58b0ca229d0caa7692380ef46",
+      "runner_comparison": "Only NARestraints working_tree_has_changes differs. Reconstructing that field on the clean ordered BUNDLE exactly reproduces the reported runner SHA; runtime bytes match.",
+      "parent_payloads_preserved": 2774,
+      "native_workers_completed": 6,
+      "native_energy_calls": 12,
+      "exact_repeat_evaluations": true,
+      "native_equivalence_cases_pass": 6,
+      "energy_change_all_cases": 0.0,
+      "maximum_named_gradient_change_all_cases": 0.0,
+      "cases": {
+        "5PC": {
+          "candidate_sha256": "7edbaef484b768557cb52667e6d79a0052e4f3e3c3cba72066e53cf640088e56",
+          "cases": [
+            {
+              "case": "generated_output",
+              "energy": 2550.8467183576427,
+              "energy_delta": 0.0,
+              "maximum_gradient_delta": 0.0,
+              "worker_sha256": "0d10c459f194564937e1b27d13c2650f077e6c6f6214d5172132f3472848e0a6"
+            },
+            {
+              "case": "source_seed",
+              "energy": 2565.1663366724,
+              "energy_delta": 0.0,
+              "maximum_gradient_delta": 0.0,
+              "worker_sha256": "0d10c459f194564937e1b27d13c2650f077e6c6f6214d5172132f3472848e0a6"
+            }
+          ],
+          "selected_candidate": "source_declared_dna",
+          "status": "CONTINUE_WITH_NOTES"
+        },
+        "DP": {
+          "candidate_sha256": "10160ee58b146fda655e289ddcd7d7e7fe4b64f164ce2327b4c33936fadad670",
+          "cases": [
+            {
+              "case": "generated_output",
+              "energy": 1286.6461293397044,
+              "energy_delta": 0.0,
+              "maximum_gradient_delta": 0.0,
+              "worker_sha256": "0d10c459f194564937e1b27d13c2650f077e6c6f6214d5172132f3472848e0a6"
+            },
+            {
+              "case": "source_seed",
+              "energy": 1658.141039147275,
+              "energy_delta": 0.0,
+              "maximum_gradient_delta": 0.0,
+              "worker_sha256": "0d10c459f194564937e1b27d13c2650f077e6c6f6214d5172132f3472848e0a6"
+            }
+          ],
+          "selected_candidate": "source_declared_dna",
+          "status": "CONTINUE_WITH_NOTES"
+        },
+        "PDU": {
+          "candidate_sha256": "92131cd42f50be9daae3647240d62a51d1fa0dc8aa4d2ba9effd5848ee728da7",
+          "cases": [
+            {
+              "case": "generated_output",
+              "energy": 25.233050697655102,
+              "energy_delta": 0.0,
+              "maximum_gradient_delta": 0.0,
+              "worker_sha256": "0d10c459f194564937e1b27d13c2650f077e6c6f6214d5172132f3472848e0a6"
+            },
+            {
+              "case": "source_seed",
+              "energy": 121.46662212425683,
+              "energy_delta": 0.0,
+              "maximum_gradient_delta": 0.0,
+              "worker_sha256": "0d10c459f194564937e1b27d13c2650f077e6c6f6214d5172132f3472848e0a6"
+            }
+          ],
+          "selected_candidate": "source_declared_dna",
+          "status": "CONTINUE_WITH_NOTES"
+        }
+      },
+      "maintained_full_replay": "PASS",
+      "automatic_adoption": false,
+      "requires_cif_review": false,
+      "generation_optimization": "NOT_RUN",
+      "scope": "Isolated component/header equivalence. Existing native classification was DNA; C57 restores written group/type. Linked state, phosphate/CIP/geometry and scaffold adoption remain separate."
+    }
+  },
+  "qualified_dna_linked_controls_2026_10_22": {
+    "status": "PREPARATION_QUALIFICATION_AND_ORCHESTRATION_SOFTWARE_TESTED; NATIVE_MAC_EXECUTION_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "58_Cedar",
+    "policy_id": "cif-qualified-dna-linked-control-v1",
+    "module": "src/nasolve/cif_linked_control.py",
+    "linked_preparation_policy": "cif-source-preserving-linked-sites-v2",
+    "cli_action": "--linked-control-only",
+    "runner_filename": "58_Cedar_probe_cif_linked_controls.py",
+    "review_input": {
+      "name": "57_Cedar_60_lkctb_cif_numerical_recovery_review.zip",
+      "sha256": "011ae3e9de560dd23d1835b4a31c075aa14deea225a2d368c6e0c7f95aa486b7",
+      "bytes": 65729146,
+      "verified_payloads": 2854
+    },
+    "purpose": "Test independently usable source-DNA candidates between two declared neighbors before scaffold integration, preserving native targets, source state evidence and student-free automatic continuation policy.",
+    "algorithm": [
+      "Verify exact C57/complete lineage; rederive three metadata candidates and six native equivalence/selection cases from maintained code. Pin saved worker/spec/input/output and selected native implementation sources without executing captured code.",
+      "Select explicit A:1-3 from the bundled hash-bound 5W6W A_T frame. Keep flanking residues and central DNA sugar/backbone coordinates. Rigidly transport the graph-selected connected base using proper C1-prime/O4-prime/C2-prime frames. Heavy-atom controls omit coordinate OP3 and declare incoming/outgoing links and free terminal OH states.",
+      "Require a standard DNA scaffold and one C1-prime base attachment. Refuse bridged/ambiguous graphs, missing coordinates or unrequested initial phosphate; ATL remains independent public/compiler only.",
+      "An explicit passed isolated v2 qualification must match component, source and candidate hashes and pass every check. Fresh source reassessment remains mandatory. Accept legacy DNA group authority only through that bridge; keep existing type-only/default behavior and raw legacy/reassessment records.",
+      "Use established source-graph OP3/attached-H and outgoing O3-prime-H deletions plus the reviewed OC2 type. Preserve OP2 H, all unrelated parsed numerical rows and original inputs. Register exact site-specific modifier IDs.",
+      "Interpret one installed-library canonical reference and three modified controls under the selected Phenix API/energy sources. Use refinement-root-to-interpreter-v1 for modifier PHIL and the same frozen secondary-structure-disabled policy. Four workers have 60-second deadlines and two fixed evaluations each; no optimizer/generator runs.",
+      "Require exact model correspondence, both declared native backbone links and canonical targets/weights, complete heavy-site mappings, DNA metadata, exact modifier IDs/projected definitions and active heavy bond/angle/torsion/constant/plane/fixed-hand proxies.",
+      "Require all four phosphate bonds and six angles, using the incoming backbone O as fourth ligand. Preserve flanking definitions and every unaffected proxy; require finite positive active parameters, finite repeatable energy/gradient evidence and retained triple targets. Missing formal-charge readback is unsupported; contradictions fail, with no partial-charge substitution.",
+      "Record synthetic linked-control mechanics only. Preserve previous isolated selections/fallbacks and stopping/geometry notes. No model/scaffold adoption, student CIF approval, production pipeline or PDF integration occurs."
+    ],
+    "limits": {
+      "modified_components": [
+        "DP",
+        "PDU",
+        "5PC"
+      ],
+      "canonical_references": 1,
+      "maximum_native_workers": 4,
+      "native_timeout_seconds_per_worker": 60,
+      "fixed_evaluations_per_worker": 2,
+      "maximum_fixed_evaluations": 8,
+      "generation": "NOT_RUN",
+      "optimization": "NOT_RUN"
+    },
+    "artifact_schema": {
+      "version": 1,
+      "control": "control_receipt.json with explicit links, model-frame provenance and anchored reference/candidate models",
+      "preparation": "Existing linked receipt gains optional isolated_native_qualification and candidate_reassessment under v2; unqualified/default v1 receipts retain behavior.",
+      "native": "linked_control_audit with canonical_reference, three native/preparation/qualification cases and preserved verified_isolated_decision"
+    },
+    "validation": {
+      "new_regressions": 64,
+      "fail_before": [
+        {
+          "failed": 9,
+          "passed": 1,
+          "seconds": 0.39,
+          "scope": "Initial optional-bridge tests before implementation; new source-volume/component guards are additional."
+        },
+        {
+          "failed": 1,
+          "passed": 1,
+          "seconds": 0.49,
+          "scope": "Owned fake native orchestration exposed omitted PHIL namespace policy before correction; no real native result is claimed."
+        }
+      ],
+      "focused": {
+        "passed": 228,
+        "seconds": 7.91,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_linked_control.py tests/test_cif_linked_usability_bridge.py tests/test_cif_linked_control_qualification.py tests/test_cedar58_delivery.py tests/test_cedar58_orchestration.py tests/test_cif_linked_preparation.py tests/test_cif_linked_qualification.py tests/test_cif_terminal_qualification.py tests/test_cedar57_delivery.py tests/test_cif_source_classification.py tests/test_cif_candidate_usability.py tests/test_cif_native_validation.py"
+      },
+      "full": {
+        "passed": 3133,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 242.98,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "9f472ac5d770c8738198c4cc7b47e8ba2e09199a",
+          "working_tree_has_changes": false
+        },
+        "runner_sha256": "7a91508ecfa7295266ea39dec51b7d883ab17baf637449ea052ed196f4d4714e",
+        "build_sources_deleted_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 2854,
+        "runtime_members": 142,
+        "runtime_archive_sha256": "e53e1e8115bb2b0633b371d3733108dab606492d3f6db78b7f25e3990df9c2d1",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "metadata_native_cases_replayed": 6,
+        "verified_isolated_decisions": 3,
+        "linked_controls_prepared": 3,
+        "canonical_reference_models": "IDENTICAL",
+        "source_graph_modifier_ids": "THREE_DISTINCT",
+        "ATL": "INDEPENDENT_PUBLIC_ONLY",
+        "linked_native_execution": "PENDING_USER_MAC",
+        "generation_optimization_adoption": "NOT_RUN"
+      },
+      "native": "PENDING_USER_MAC: no Phenix installation here. Exact C57 saved data/preparation/selection replay and three real-input linked-control preparations pass locally. Synthetic complete inventories and owned fake calls test software gates/orchestration only; the four new native workers have not run.",
+      "documentation": {
+        "mirror_equality": "PASS",
+        "mirrored_records": [
+          "automatic_component_resolution_2026_10_21",
+          "source_declared_dna_metadata_2026_10_22",
+          "qualified_dna_linked_controls_2026_10_22"
+        ],
+        "unrelated_runtime_history": "PRESERVED",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "native_worker_module_unchanged": "PASS",
+        "v2_usability_module_unchanged": "PASS",
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      }
+    },
+    "compatibility": "Additive explicit C58 action and optional keyword-only isolated-evidence bridge. Old linked preparation callers keep their source-type gate, policy and behavior. No native worker/kernel/target, dependency, curated precedence, NARestraints release/workbook or ordinary pipeline default changes. No migration or student CIF approval.",
+    "generated_artifacts": "Private capsules, CIF derivatives, models, logs, worker captures and transport fixtures remain uncommitted. Only maintained code/tests, methods, public-source references and compact evidence summaries are committed.",
+    "remaining_limits": [
+      "Four native linkage executions remain pending on Phenix 2.2.1-6174; prepared controls do not prove native mechanics.",
+      "Synthetic short strands are not full-scaffold integration or a diffraction refinement; achieved geometry and scientific qualification remain open.",
+      "No absolute CIP, phosphate/protonation-state selection, nonbonded pair-identity equivalence or convergence verdict is inferred.",
+      "Original DP unoriented phosphate volume/geometry findings, PDU nonconvergence, linear-axis torsions and native formal-charge access limits remain visible.",
+      "NARestraints authoritative pairing/stacking, curated dictionaries, ATL independent scope and the planned eight-pair live run are unchanged.",
+      "Production recovery/adoption and solution PDF rendering remain planned."
+    ],
+    "automatic_adoption": false,
+    "requires_cif_review": false,
     "scientific_approval": "NOT_RUN"
   }
 }

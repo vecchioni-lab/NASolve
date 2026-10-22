@@ -109,8 +109,11 @@ C55 supplies six completed native interpretations; corrected v2 saved replay
 passes them while preserving v1 roundoff/constant-torsion failures. C56 replays
 that evidence without new native calls; all six passes and three continue
 decisions have returned. C57 restores only explicit source DNA group/type
-metadata in separate candidates, with isolated native equivalence pending and
-the verified original as automatic fallback. Existing native classifications
+metadata in separate candidates; all six native equivalence checks and three
+selections have returned PASS/continue-with-notes. The verified original remains
+available as automatic fallback. C58 tests separate three-residue contexts with
+graph-selected site modifiers, canonical link targets and exact projected/heavy
+restraint coverage; native execution remains pending. Existing native classifications
 already say DNA despite generic written groups. No completed polymer-link or
 production-adoption arrow, nonbonded pair-identity proof or student CIF
 adjudication is implied.

@@ -181,11 +181,13 @@ Returned C55 supplies six completed native interpretations and twelve finite,
 repeatable energy/gradient evaluations. The v1 auditor rejected floating-point
 roundoff and native period-zero constant torsions. Corrected v2 replay passes
 all six cases and selects all three isolated candidates with notes. Returned
-C56 verifies that replay without new native calls. C57 restores only explicit
-source DNA group/type metadata in separate candidates, then tests isolated
-native equivalence with the verified original as automatic fallback. Existing
-native classifications already say DNA despite generic written headers. Linked
-adoption, production recovery and scientific qualification remain open. Equivalent operational mapping
+C56 verifies that replay without new native calls. Returned C57 passes all six
+source-DNA metadata/native equivalence checks and selects all three restored
+headers with notes. Existing native classifications already said DNA despite
+generic written headers. C58 tests the qualified candidates between declared
+neighbors in separate three-residue DNA controls, with a canonical reference,
+graph-selected site modifiers and exact link/projection checks. Native linked
+execution, scaffold adoption and scientific qualification remain separate. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

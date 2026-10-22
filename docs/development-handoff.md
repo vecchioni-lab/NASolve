@@ -62,31 +62,44 @@ the clean pinned C56 build; only NARestraints dirty-state metadata explains the
 reported runner SHA. All C55 payloads, failures and current source bytes remain
 preserved. See `saved_native_usability_correction_2026_10_22` for exact hashes.
 
-**C57 is the next delivery.** `--source-dna-metadata-only` accepts exact C56.
-Restore only the group/type fields from explicit consistent source DNA
-declarations in separate candidates. DP writes ligand and PDU/5PC non-polymer;
-all six old native interpretations already classify as DNA. Do not describe
-this as missing native recognition. Every other parsed field, input byte and
-numerical definition remains fixed.
+**Returned C57 verifies 2,854 payloads** and the complete C56 parent. Six
+Phenix 2.2.1-6174 workers pass every source-DNA metadata/effective-proxy/full
+target/named-gradient comparison at both saved coordinate sets. Twelve finite
+evaluations repeat exactly; all three isolated decisions select source_declared_dna
+with notes. Maintained code replays all preparations, workers/specs/inputs/outputs
+and decisions. Only NARestraints dirty-state metadata explains the reported
+runner SHA; runtime bytes match the clean pinned build. No optimizer runs.
 
-Six 60-second Phenix 2.2.1-6174 workers reuse the same frozen source-seed and
-generated models/PHIL, requiring native DNA metadata, identical fixed covalent
-proxies, full target and named gradient. If preparation or native equivalence
-fails, automatically retain the verified original generated dictionary. The
-selection is isolated; no actual polymer link, production adoption or student
-CIF adjudication occurs. Nonbonded pair identities are not qualified here.
+**C58 is the next delivery.** `--linked-control-only` accepts exact C57. Build
+`58_Cedar_probe_cif_linked_controls.py` with PDU/5PC/ATL. It prepares separate
+three-residue DNA controls from explicit 5W6W A:1-3 sites, preserving backbone
+and flanking coordinates and transporting each graph-selected base rigidly.
+The existing graph-selected incoming OP3/outgoing-H modifiers accept an explicit
+passed, hash-bound isolated qualification; old callers keep their strict gates.
+Legacy DNA group metadata and DP's reassessed unoriented phosphate omission are
+carried with their original evidence, not hidden or treated as convergence.
 
-Build `57_Cedar_probe_cif_source_dna_metadata.py` with PDU/5PC/ATL. ATL stays
-public/compiler only; NARestraints pairing/stacking, curated precedence, native
-kernels, dependencies/release and the eight-pair full-run plan remain fixed.
-Actual linked/terminal qualification precedes production recovery/adoption and
-solution PDF integration. State/CIP, torsions, geometry and stopping notes stay
-visible. Local validation is recorded in `source_declared_dna_metadata_2026_10_22`;
-new native Mac execution remains pending.
-All **43 new regressions**, **183 focused / 3,069 full tests** pass (two skips,
-276 subtests), with exact-C56 deleted-build/relocated replay, poisoned ambient
-imports, aliased temporary roots and the everyday edit preserved. All 156
-relative links, mirrored records, protected hashes and editable figure pass QA.
+One canonical and three modified native workers have 60-second deadlines and
+two fixed evaluations each. Use the existing PHIL namespace adapter. Require
+the two declared links and their canonical targets/weights, projected numerical
+definitions, exact active heavy proxies, all phosphate tetrahedral bonds/angles,
+unchanged flanking mechanics and finite repeatable energies/gradients. Native
+charge readback remains explicit; contradictions fail and unavailable access
+does not invent partial-charge equivalence. No automatic Phenix SS is enabled.
+
+The original models, qualified isolated choices and fallback remain preserved.
+No generation, optimizer, scaffold adoption, ordinary pipeline change or student
+CIF approval occurs. Native Mac linkage, phosphate-state/CIP/achieved geometry,
+nonbonded pair identity and full-scaffold/PDF integration remain separate.
+ATL stays public/compiler only; NARestraints authority, curated precedence,
+native kernels, dependencies/release and the eight-pair full-run plan remain fixed.
+Validation is in `qualified_dna_linked_controls_2026_10_22`; new native execution
+is pending the Mac return.
+All **64 new regressions**, **228 focused / 3,133 full tests** pass (two skips,
+276 subtests), plus exact-C57 deleted-build/relocated preparation, poisoned
+ambient imports, aliased temporary roots and the everyday edit preserved.
+All 156 relative links, current evidence mirrors, protected hashes and editable
+figure/XML/raster checks pass. Native worker and v2 energy/usability bytes stay fixed.
 
 ## Completed and open work
 

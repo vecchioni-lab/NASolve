@@ -43,7 +43,9 @@ saved replay passes all six cases and three decisions. It selects only within th
 isolated generated-candidate pool and does not adopt a linked component.
 Returned C56 reproduces those passes without new native calls. C57 adds a
 source-declared DNA metadata candidate and automatic verified-original fallback
-within the same isolated scope; its native equivalence test is pending.
+within the same isolated scope. Returned C57 passes all six native equivalence
+checks and three selections. C58 adds separate linked-context controls; native
+execution and scaffold integration remain unqualified.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
@@ -2356,14 +2358,74 @@ adds `source_classification_audit`, field-level preparation and per-coordinate
 equivalence/selection evidence with anchored artifacts. Historical failures and
 the fallback remain immutable.
 
-Software preparation, equivalence checks, fallback decisions and actual-C56
-deleted-build/relocated replay pass locally. New native equivalence is pending
-the Mac return. No generator or optimizer runs. Actual links/terminal modifiers,
+Returned C57 verifies all 2,854 payloads and six completed Phenix 2.2.1-6174
+workers. All metadata/effective-proxy/full-target/named-gradient comparisons
+pass at both coordinate sets; twelve finite evaluations repeat exactly. All
+three decisions select source_declared_dna with notes. Maintained code replays
+every preparation, worker/spec/input/output receipt and decision without
+executing captured Python. The runtime is identical to the clean source build;
+only NARestraints dirty-state metadata explains the runner SHA. No generator
+or optimizer runs. Actual links/terminal modifiers,
 phosphate-state choice, absolute CIP, linear-axis torsions, DP geometry findings,
 production adoption and solution PDF integration remain separate qualifications.
 Unsupported native formal-charge access remains explicit; partial charge never
 substitutes for the unchanged declared CIF formal charges. ATL stays an
 independent public/compiler control without native construction.
+
+## Qualified DNA linked controls (Cedar 58)
+
+The next diagnostic tests whether independently usable complete candidates can
+retain their source chemistry and fixed restraints in an actual linked native
+manager. It prepares separate synthetic three-residue controls, not a new
+diffraction model or an adoption into the saved scaffold. The prior isolated
+CONTINUE_WITH_NOTES decisions and their qualified fallback remain unchanged.
+
+**Methods.** Select explicit A:1-3 from the hash-bound bundled 5W6W A_T frame.
+Keep the two flanking residues and every central sugar/backbone coordinate.
+Partition the candidate graph into the supported DNA scaffold and one connected
+base attached at C1-prime, then transport the entire base through proper
+orthonormal C1-prime/O4-prime/C2-prime frames. Use heavy atoms, omit coordinate
+OP3, and declare incoming A:1 to A:2 and outgoing A:2 to A:3 links. The first
+end is free 5-prime OH and the last free 3-prime OH. Bridged/ambiguous scaffolds,
+missing coordinates, unrequested terminal phosphate and unsupported graph
+attachments are refused; ATL stays outside this native control.
+
+`prepare_linked_component(..., native_qualification=...)` is an explicit bridge
+from passed isolated usability v2. Bind component, source and candidate hashes,
+require every qualification check and repeat the complete source-preserving
+candidate assessment. A legacy source DNA group is accepted only through this
+bridge. Preserve raw legacy findings, including the phosphate `both` omission,
+alongside reassessment. Existing callers keep their original strict type-only
+contract. The v2 linked preparation uses the established graph-selected atom
+deletions and reviewed OC2 outgoing-oxygen type. Remove incoming OP3 and its
+attached H, remove outgoing O3-prime H by connectivity, preserve OP2 H and all
+unaffected numerical rows. Native modification IDs remain site-specific.
+
+`--linked-control-only` accepts exact C57 and replays all six returned native
+equivalence cases before preparation. One canonical installed-library reference
+and three modified controls each have a 60-second native deadline and two fixed
+energy/gradient evaluations. Use the existing refinement-root PHIL adapter for
+site modifiers; retain the frozen secondary-structure-disabled policy and pin
+selected installation APIs/energy sources. No pairing/stacking is guessed in
+these unpaired controls; NARestraints remains authoritative for the scaffold.
+
+Require exact model correspondence, the two canonical backbone-link targets
+and weights, native DNA metadata, complete heavy-site mappings, exact modifier
+membership and every projected definition row. Match active heavy-atom bond,
+angle, signed torsion/constant, plane and fixed-hand proxies. Require four
+phosphate bonds and all six angles, with the incoming backbone O replacing OP3.
+Preserve flanking definitions and every unaffected proxy. Check finite active
+parameters, finite repeatable energies/gradients and retained triple targets;
+their magnitude does not prove convergence. Missing native formal-charge access
+is explicit and never substituted with partial charge; contradictions fail.
+
+Schema-1 `linked_control_audit` records anchored control models, preparations,
+canonical/native evidence and qualifications. Generation, optimization, original
+model changes, scaffold adoption and production pipeline changes do not occur.
+Software preparation/qualification/orchestration and relocated exact-C57 replay
+are tested; native Mac linked execution remains pending. Achieved geometry,
+phosphate state, absolute CIP, nonbonded pair identity and full-scaffold
+integration remain separate. No student CIF inspection or approval is required.
 
 ## Reviewed preparation
 

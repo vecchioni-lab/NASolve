@@ -48,7 +48,9 @@ summary alongside its detailed assessment. C55 adds an opt-in isolated native
 usability-to-decision adapter; corrected replay now passes its six returned
 native cases. Returned C56 verifies that replay. C57 adds source-declared DNA
 metadata restoration with automatic fallback to the verified original if its
-isolated native comparison fails. Automatic production recovery,
+isolated native comparison fails. All six C57 native comparisons pass and all
+three components select the restored header with notes. C58 adds separate
+short-chain linkage controls, pending native execution. Automatic production recovery,
 effective-bundle adoption and PDF rendering remain planned. Development diagnostics can retain REVIEW without asking students to
 inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
@@ -1200,8 +1202,8 @@ classification, phosphate state, triple-axis torsions, absolute CIP and linked
 scaffold integration remain separate qualifications. No student CIF inspection
 or automatic production adoption is involved.
 
-C56 has now returned all six saved passes and three continue decisions. The
-next step restores DNA labels from the source into separate written headers.
+C56 returned all six saved passes and three continue decisions. C57 restores
+DNA labels from the source into separate written headers.
 Phenix already classified all three components as DNA, even though the files
 say ligand/non-polymer. The test asks whether clearer source metadata preserves
 the same mechanics; it does not claim that a DNA chain has been linked.
@@ -1212,10 +1214,28 @@ files, then reinterpret the same two frozen coordinate sets per component.
 Require native DNA metadata, the same fixed covalent restraints, and matching
 full targets and named gradients. If either comparison fails, automatically
 retain the already-verified original. Software preparation/fallback tests and
-relocated actual-C56 replay pass; the six new Mac interpretations remain
-pending. No optimization, production adoption or student approval is involved.
+relocated actual-C56 replay pass. The six Mac interpretations have now returned
+PASS and their twelve finite evaluations repeat exactly; all worker/source and
+selection evidence replays from the preserved C57 capsule. No optimization, production adoption or student approval is involved.
 Polymer links, nonbonded pair identities and final structure qualification are
 separate evidence.
+
+C58 places each qualified component between two explicitly declared DNA
+neighbors in a separate three-residue control. Its baseline is the same short
+canonical strand. Backbone and flanking coordinates stay fixed; the connected
+base is transported rigidly into the sugar frame. The existing graph rule
+removes only the incoming OP3 group and outgoing oxygen H, and uses the reviewed
+outgoing-oxygen type. The passed isolated evidence is hash-bound before this
+preparation; old callers retain their existing source gates.
+
+**Methods.** Reinterpret one canonical and three modified controls under the
+same native API/energy policy, with explicit site modifiers and no automatic
+secondary-structure guesses. Require both backbone links, unchanged link targets,
+all selected projected/heavy-atom restraints and phosphate tetrahedral coverage,
+with flanking mechanics preserved. Fixed energies must be finite and repeatable;
+no optimization or cross-component energy ranking occurs. Software and relocated
+preparation tests pass; Mac linkage remains pending. These are synthetic linkage
+controls, not full-scaffold adoption or scientific structure qualification.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

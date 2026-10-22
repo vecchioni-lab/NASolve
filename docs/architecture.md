@@ -815,10 +815,24 @@ already say DNA; written generated groups are ligand/non-polymer. Six bounded
 workers reuse the same two models and PHIL per component, requiring native DNA
 metadata, exact name-normalized covalent proxies and matching full targets and
 named gradients. The verified original remains an automatic isolated fallback.
-Native Mac equivalence is pending; no polymer link, production adoption or
-pipeline change is implied. Unsupported native formal-charge readback is
+Returned C57 verifies all 2,854 payloads, six native equivalence passes and
+three source-metadata selections with notes. No polymer link, production
+adoption or pipeline change is implied. Unsupported native formal-charge readback is
 explicit, not substituted with partial charges. Nonbonded pair identity is not
 qualified by the target/gradient comparison.
+
+C58 adds separate three-residue controls using explicit 5W6W A:1-3 sites. Keep
+canonical backbone/flanking coordinates and rigidly transport the graph-selected
+base in its sugar frame. The linked-preparation API accepts an optional hash-bound
+passed isolated qualification: fresh source reassessment remains mandatory,
+legacy DNA group metadata is allowed only through that bridge, and old callers
+keep the type-only gate. Prepare graph-selected incoming OP3 and outgoing-H
+deletions plus the reviewed OC2 type. Do not infer OP2 protonation or targets.
+One canonical reference and three modified workers use the existing PHIL
+namespace adapter, fixed native kernels and 60-second limits. Require exact
+two-link membership/targets, projected definitions/heavy proxies, all phosphate
+tetrahedral bonds/angles and unchanged flanking mechanics. Native linked
+execution remains pending; no scaffold adoption or production default changes.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core

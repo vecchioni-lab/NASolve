@@ -13,11 +13,12 @@ finished source-relative configuration. Returned C55 completes six native
 interpretations. Corrected v2 replay handles Cartesian roundoff and native
 constant-torsion representation, passes all six cases and retains three isolated
 candidates with notes. Returned C56 verifies this replay without new native
-calls. C57 prepares source-declared DNA headers and tests isolated native
-equivalence, retaining the verified original automatically if the new candidate
-fails. Native classification already says DNA despite generic written headers.
-Actual linkage, production adoption, phosphate state and geometry/stopping
-remain separate; no student CIF approval is required.
+calls. Returned C57 passes all six DNA-header/native equivalence checks and
+selects the three source-declared candidates with notes; the verified original
+remains available as automatic fallback. C58 prepares separate three-residue
+DNA controls and tests exact native links and projected heavy-atom restraints
+against a canonical reference. Native linked execution, scaffold adoption,
+phosphate state and geometry/stopping remain separate. Students do not approve CIFs.
 
 ## What's current?
 
