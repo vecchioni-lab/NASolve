@@ -70,36 +70,46 @@ with notes. Maintained code replays all preparations, workers/specs/inputs/outpu
 and decisions. Only NARestraints dirty-state metadata explains the reported
 runner SHA; runtime bytes match the clean pinned build. No optimizer runs.
 
-**C58 is the next delivery.** `--linked-control-only` accepts exact C57. Build
-`58_Cedar_probe_cif_linked_controls.py` with PDU/5PC/ATL. It prepares separate
-three-residue DNA controls from explicit 5W6W A:1-3 sites, preserving backbone
-and flanking coordinates and transporting each graph-selected base rigidly.
-The existing graph-selected incoming OP3/outgoing-H modifiers accept an explicit
-passed, hash-bound isolated qualification; old callers keep their strict gates.
-Legacy DNA group metadata and DP's reassessed unoriented phosphate omission are
-carried with their original evidence, not hidden or treated as convergence.
+**Returned C58 verifies 2,940 payloads** and the complete C57 parent. One
+canonical and three DP/PDU/5PC Phenix 2.2.1-6174 workers complete. All three
+modified cases are LINKED_CONTROL_MECHANICS_PASS: the two canonical backbone
+links and targets/weights, projected definitions/heavy restraints, phosphate
+four-bond/six-angle coverage and flanking mechanics survive. Eight finite
+energy/gradient evaluations repeat exactly. Each modified case records only
+the already unsupported formal-charge readback, without contradiction or
+partial-charge substitution. The runtime matches the clean pinned build;
+only NARestraints dirty-state metadata differs. No optimizer or adoption runs.
 
-One canonical and three modified native workers have 60-second deadlines and
-two fixed evaluations each. Use the existing PHIL namespace adapter. Require
-the two declared links and their canonical targets/weights, projected numerical
-definitions, exact active heavy proxies, all phosphate tetrahedral bonds/angles,
-unchanged flanking mechanics and finite repeatable energies/gradients. Native
-charge readback remains explicit; contradictions fail and unavailable access
-does not invent partial-charge equivalence. No automatic Phenix SS is enabled.
+**C59 is the next delivery.** `--scaffold-candidate-only` accepts exact C58.
+Build `59_Cedar_probe_cif_scaffold_candidate.py` with PDU/5PC/ATL. Prepare a
+separate DP B:4 bundle in the preserved 877-atom/43-site full model, using the
+saved PDB-rounded endpoint. A fresh original native manager must match the
+captured baseline before the candidate is tested. Each worker has a 60-second
+deadline and two fixed energy/gradient evaluations.
 
-The original models, qualified isolated choices and fallback remain preserved.
-No generation, optimizer, scaffold adoption, ordinary pipeline change or student
-CIF approval occurs. Native Mac linkage, phosphate-state/CIP/achieved geometry,
-nonbonded pair identity and full-scaffold/PDF integration remain separate.
+Replace only the old DP dictionary and B:4 modifier requests. Preserve the
+shared NASnoOP3 definition and the three other sites that use it, and install
+the existing qualified incoming OP3/outgoing-H preparation for B:4. Require
+all 38 original backbone links, unchanged model bytes, all unselected effective
+definitions/proxies and every explicit NARestraints pairing/stacking request.
+Match selected projected/heavy restraints, modifier IDs and phosphate coverage;
+require finite positive active parameters and repeatable energies/gradients.
+Automatic Phenix secondary-structure guessing remains disabled.
+
+The separate diagnostic chooses the candidate only after these mechanics
+checks; otherwise it preserves the verified original bundle automatically.
+No generation, optimizer, ordinary pipeline adoption or student CIF approval
+occurs. Geometry/convergence, phosphate state, absolute CIP, nonbonded pair
+identity, production orchestration and solution PDF rendering remain separate.
 ATL stays public/compiler only; NARestraints authority, curated precedence,
-native kernels, dependencies/release and the eight-pair full-run plan remain fixed.
-Validation is in `qualified_dna_linked_controls_2026_10_22`; new native execution
-is pending the Mac return.
-All **64 new regressions**, **228 focused / 3,133 full tests** pass (two skips,
-276 subtests), plus exact-C57 deleted-build/relocated preparation, poisoned
-ambient imports, aliased temporary roots and the everyday edit preserved.
-All 156 relative links, current evidence mirrors, protected hashes and editable
-figure/XML/raster checks pass. Native worker and v2 energy/usability bytes stay fixed.
+native kernels, dependencies/release and the eight-pair full-run plan stay fixed.
+C58 returned evidence is in `qualified_dna_linked_controls_2026_10_22`; the next
+software/native boundary is `full_scaffold_candidate_2026_10_22`. All **73 new
+regressions**, **137 focused / 3206 full tests** pass (two skips, 276 subtests),
+plus actual-C58 deleted-build/relocated preparation, poisoned imports, aliased
+temporary roots and the everyday edit preserved. All 156 relative links, current
+evidence mirrors, protected hashes and editable figure checks pass. The two
+new native Mac interpretations remain pending; kernels and v2 usability stay fixed.
 
 ## Completed and open work
 

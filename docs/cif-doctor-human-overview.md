@@ -49,10 +49,12 @@ usability-to-decision adapter; corrected replay now passes its six returned
 native cases. Returned C56 verifies that replay. C57 adds source-declared DNA
 metadata restoration with automatic fallback to the verified original if its
 isolated native comparison fails. All six C57 native comparisons pass and all
-three components select the restored header with notes. C58 adds separate
-short-chain linkage controls, pending native execution. Automatic production recovery,
-effective-bundle adoption and PDF rendering remain planned. Development diagnostics can retain REVIEW without asking students to
-inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
+three components select the restored header with notes. Returned C58 passes
+all three separate short-chain linkage controls. C59 tests DP in the actual full
+scaffold and retains the verified original as automatic fallback if needed.
+Native full-scaffold execution and automatic production recovery,
+effective-bundle adoption and PDF rendering remain planned. Development
+diagnostics can retain REVIEW without asking students to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 ## How it works
 
@@ -1233,9 +1235,29 @@ same native API/energy policy, with explicit site modifiers and no automatic
 secondary-structure guesses. Require both backbone links, unchanged link targets,
 all selected projected/heavy-atom restraints and phosphate tetrahedral coverage,
 with flanking mechanics preserved. Fixed energies must be finite and repeatable;
-no optimization or cross-component energy ranking occurs. Software and relocated
-preparation tests pass; Mac linkage remains pending. These are synthetic linkage
-controls, not full-scaffold adoption or scientific structure qualification.
+no optimization or cross-component energy ranking occurs. Returned C58 passes
+all three modified linkage controls after four completed native interpretations
+and eight finite, exactly repeated evaluations. Formal-charge readback remains
+unsupported without contradictions. These synthetic linkage controls establish
+neither full-scaffold adoption nor scientific structure qualification.
+
+C59 tests the new DP dictionary at B:4 in a separate copy of the preserved full
+model and NARestraints bundle. This asks whether a usable component can enter
+the real model without disturbing its neighbors or designed interactions. The
+original bundle remains available automatically if the candidate is unusable.
+
+**Methods.** Keep all 877 atoms and 43 sites at the saved PDB-rounded coordinates.
+Replace only the selected dictionary and that site's old modifier requests;
+preserve shared definitions and other sites' requests byte for byte. Apply the
+qualified source-graph incoming/outgoing preparation. Rebuild and match the
+original native manager, then test the candidate, with two fixed evaluations
+and a 60-second deadline per worker. Require every one of the 38 backbone links,
+unselected definition/proxy and explicit NARestraints pairing/stacking request
+to survive, alongside the selected projected restraints and phosphate coverage.
+Select the qualified candidate or retain the verified original automatically;
+no student CIF decision is introduced. Native full-scaffold execution, achieved
+geometry, state/CIP qualification, production adoption and PDF rendering remain
+separate. No generation, optimization or native target/kernel change occurs.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

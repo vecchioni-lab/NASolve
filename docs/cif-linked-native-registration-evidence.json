@@ -18081,7 +18081,7 @@
     }
   },
   "qualified_dna_linked_controls_2026_10_22": {
-    "status": "PREPARATION_QUALIFICATION_AND_ORCHESTRATION_SOFTWARE_TESTED; NATIVE_MAC_EXECUTION_PENDING",
+    "status": "RETURNED_LINKED_CONTROL_MECHANICS_PASS; FULL_SCAFFOLD_INTEGRATION_REMAINS_SEPARATE",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "58_Cedar",
     "policy_id": "cif-qualified-dna-linked-control-v1",
@@ -18182,7 +18182,45 @@
         "linked_native_execution": "PENDING_USER_MAC",
         "generation_optimization_adoption": "NOT_RUN"
       },
-      "native": "PENDING_USER_MAC: no Phenix installation here. Exact C57 saved data/preparation/selection replay and three real-input linked-control preparations pass locally. Synthetic complete inventories and owned fake calls test software gates/orchestration only; the four new native workers have not run.",
+      "native": {
+        "status": "RETURNED_LINKED_CONTROL_MECHANICS_PASS",
+        "phenix_release": "2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "execution": "COMPLETE",
+        "canonical_workers_completed": 1,
+        "modified_workers_completed": 3,
+        "fixed_evaluations": 8,
+        "finite_repeatable_energy_and_gradients": true,
+        "cases": {
+          "DP": "LINKED_CONTROL_MECHANICS_PASS",
+          "PDU": "LINKED_CONTROL_MECHANICS_PASS",
+          "5PC": "LINKED_CONTROL_MECHANICS_PASS"
+        },
+        "formal_charge_readback": "ONE_UNSUPPORTED_CHECK_PER_MODIFIED_CASE; NO_CONTRADICTIONS; NO_PARTIAL_CHARGE_SUBSTITUTION",
+        "generation_optimization_adoption": "NOT_RUN",
+        "checks_per_modified_case": {
+          "PASS": 44,
+          "UNSUPPORTED": 1,
+          "REVIEW": 0
+        },
+        "worker_elapsed_seconds": {
+          "canonical": 2.704135,
+          "5PC": 0.829805,
+          "DP": 0.979827,
+          "PDU": 0.904465
+        },
+        "control_atoms": {
+          "canonical": 62,
+          "modified_each": 63
+        },
+        "native_worker_sha256": "0d10c459f194564937e1b27d13c2650f077e6c6f6214d5172132f3472848e0a6",
+        "independent_replay": "COMPLETE_C57_LINEAGE_AND_2854_PARENT_PAYLOADS_PRESERVED; CONTROL_PREPARATION_PROJECTED_MODIFIER_BYTES_AND_ALL_WORKER_SPEC_INPUT_OUTPUT_API_ENERGY_PINS_MATCH; THREE_QUALIFICATIONS_REPRODUCED",
+        "semantic_mutation_checks": {
+          "cases": 8,
+          "all_rejected": true,
+          "scope": "Worker bytes, PHIL namespace, input roles, repeat gradient, native proxy, projected bytes, model bytes and preserved decision; consistent receipt hashes do not bypass semantic replay."
+        }
+      },
       "documentation": {
         "mirror_equality": "PASS",
         "mirrored_records": [
@@ -18209,12 +18247,185 @@
     "compatibility": "Additive explicit C58 action and optional keyword-only isolated-evidence bridge. Old linked preparation callers keep their source-type gate, policy and behavior. No native worker/kernel/target, dependency, curated precedence, NARestraints release/workbook or ordinary pipeline default changes. No migration or student CIF approval.",
     "generated_artifacts": "Private capsules, CIF derivatives, models, logs, worker captures and transport fixtures remain uncommitted. Only maintained code/tests, methods, public-source references and compact evidence summaries are committed.",
     "remaining_limits": [
-      "Four native linkage executions remain pending on Phenix 2.2.1-6174; prepared controls do not prove native mechanics.",
+      "All four native linkage workers complete and three modified controls pass. These short synthetic controls do not establish full-scaffold qualification.",
       "Synthetic short strands are not full-scaffold integration or a diffraction refinement; achieved geometry and scientific qualification remain open.",
       "No absolute CIP, phosphate/protonation-state selection, nonbonded pair-identity equivalence or convergence verdict is inferred.",
       "Original DP unoriented phosphate volume/geometry findings, PDU nonconvergence, linear-axis torsions and native formal-charge access limits remain visible.",
       "NARestraints authoritative pairing/stacking, curated dictionaries, ATL independent scope and the planned eight-pair live run are unchanged.",
       "Production recovery/adoption and solution PDF rendering remain planned."
+    ],
+    "automatic_adoption": false,
+    "requires_cif_review": false,
+    "scientific_approval": "NOT_RUN",
+    "returned_capsule": {
+      "name": "58_Cedar_srot3_x3_cif_numerical_recovery_review.zip",
+      "sha256": "d5b1dce287dac1c198ffab42da071514480199671dc85e55efcf728905fd3626",
+      "bytes": 67278109,
+      "verified_payloads": 2940,
+      "build_sha256": "97bf2506f1281d38b68b708b207a93971299769f99de1af1004b1d8936a65c86",
+      "source_commit": "8a9604b06997db6718db074b5227ee63bfbca289",
+      "source_working_tree_has_changes": false,
+      "runtime_members": 142,
+      "runtime_archive_sha256": "e53e1e8115bb2b0633b371d3733108dab606492d3f6db78b7f25e3990df9c2d1",
+      "clean_build_comparison": "RUNTIME_BYTES_EQUAL; ONLY_NARESTRAINTS_DIRTY_STATE_METADATA_DIFFERS",
+      "captured_code_execution": "NOT_RUN"
+    }
+  },
+  "full_scaffold_candidate_2026_10_22": {
+    "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; NATIVE_MAC_EXECUTION_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "59_Cedar",
+    "policy_id": "cif-qualified-scaffold-candidate-v1",
+    "module": "src/nasolve/cif_scaffold_candidate.py",
+    "cli_action": "--scaffold-candidate-only",
+    "runner_filename": "59_Cedar_probe_cif_scaffold_candidate.py",
+    "review_input": {
+      "name": "58_Cedar_srot3_x3_cif_numerical_recovery_review.zip",
+      "sha256": "d5b1dce287dac1c198ffab42da071514480199671dc85e55efcf728905fd3626",
+      "bytes": 67278109,
+      "verified_payloads": 2940,
+      "build_sha256": "97bf2506f1281d38b68b708b207a93971299769f99de1af1004b1d8936a65c86",
+      "source_commit": "8a9604b06997db6718db074b5227ee63bfbca289",
+      "source_working_tree_has_changes": false,
+      "runtime_members": 142,
+      "runtime_archive_sha256": "e53e1e8115bb2b0633b371d3733108dab606492d3f6db78b7f25e3990df9c2d1",
+      "clean_build_comparison": "RUNTIME_BYTES_EQUAL; ONLY_NARESTRAINTS_DIRTY_STATE_METADATA_DIFFERS",
+      "captured_code_execution": "NOT_RUN"
+    },
+    "purpose": "Test one independently qualified source-native numerical dictionary in the preserved full NARestraints scaffold, retaining the verified original automatically when candidate mechanics fail.",
+    "algorithm": [
+      "Verify exact C58, all 2940 payloads and complete lineage; reconstruct control models, preparations and all three linked qualifications using maintained code without executing captured code.",
+      "Use the unchanged 877-atom/43-site saved PDB-rounded model and fixed NARestraints manager. Explicitly select DP B:4 with declared incoming B:3 and outgoing B:5 links; refuse incomplete shared-code contexts or ambiguous resource ownership.",
+      "Prepare the source-qualified dictionary through the existing incoming OP3/outgoing-H graph modifier bridge. Replace only the selected old dictionary and selected site modifier requests. Preserve shared NASnoOP3 definitions and requests for the other three sites byte for byte.",
+      "Interpret the original bundle first and require the captured native baseline to match. Then interpret the separate candidate under the same pinned native API/energy sources, existing PHIL namespace adapter and explicit NARestraints policy, with native secondary-structure guesses disabled.",
+      "Require exact model identities/coordinates, all 38 backbone links and targets, unchanged unselected effective definitions/proxies, every custom pairing/stacking request, projected heavy restraints, exact modifier IDs and phosphate tetrahedral coverage.",
+      "Require finite positive active parameters and finite repeatable fixed native energies/gradients. Formal-charge contradictions exclude the candidate; unavailable readback remains explicit and partial charge never substitutes.",
+      "Select only a mechanically usable separate candidate; otherwise retain the freshly verified original automatically. Do not rank different dictionary objectives by energy or request student CIF approval.",
+      "Preserve original runs, source-state/stereo/stopping/geometry notes, curated precedence, ATL independent scope and the planned eight-pair full live run. No generation, optimization, production adoption or solution PDF renderer is introduced."
+    ],
+    "limits": {
+      "components": [
+        "DP"
+      ],
+      "selected_sites": [
+        "B:4"
+      ],
+      "model_atoms": 877,
+      "model_sites": 43,
+      "backbone_links": 38,
+      "maximum_native_workers": 2,
+      "native_timeout_seconds_per_worker": 60,
+      "fixed_evaluations_per_worker": 2,
+      "maximum_fixed_evaluations": 4,
+      "generation": "NOT_RUN",
+      "optimization": "NOT_RUN"
+    },
+    "artifact_schema": {
+      "version": 1,
+      "preparation": "scaffold_preparation.json: schema v1, preserved model artifact, ordered dictionary/PHIL artifact arrays, site-keyed projected artifacts, input hashes, exact removed modifier requests and independently qualified linked preparation. All operational paths relative to candidate directory.",
+      "native": "scaffold_candidate_audit.json: schema v1, fresh original and separate candidate native receipts, bound baseline/candidate qualification, automatic qualified_candidate/original_frozen_bundle diagnostic choice; no production adoption."
+    },
+    "validation": {
+      "status": "LOCAL_PASS; NEW_NATIVE_MAC_EXECUTION_PENDING",
+      "new_regressions": 73,
+      "fail_before": [
+        {
+          "failed": 17,
+          "seconds": 1.52,
+          "scope": "C58 completed-return boundary and explicit C59 action routing before implementation."
+        },
+        {
+          "failed": 38,
+          "seconds": 0.27,
+          "scope": "Initial full-bundle preparation/qualification/selection regressions before implementation; six additional mutation cases added afterward."
+        }
+      ],
+      "focused": {
+        "passed": 137,
+        "seconds": 5.05,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_scaffold_candidate.py tests/test_cedar59_delivery.py tests/test_cedar59_orchestration.py tests/test_cedar58_delivery.py tests/test_cedar58_orchestration.py tests/test_cif_linked_control.py tests/test_cif_linked_control_qualification.py tests/test_cif_linked_usability_bridge.py"
+      },
+      "full": {
+        "passed": 3206,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 267.51,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "78b22b7cb9767edbfb17104eec2a2cc5262ee008",
+          "working_tree_has_changes": false
+        },
+        "runner_sha256": "86c0127715f1fb098b284f580ec7af623e58dce610cb738f0fd96f613c931998",
+        "build_sources_deleted_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 2940,
+        "runtime_members": 143,
+        "runtime_archive_sha256": "b3171bcc13659cb0bf27454d9e61b74ef8c7cbe726a0fa2847d50ca175f69c21",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "linked_controls_replayed": 3,
+        "captured_linked_workers_replayed": 4,
+        "metadata_native_cases_replayed": 6,
+        "verified_isolated_decisions": 3,
+        "full_scaffold_bundle_prepared": true,
+        "model_bytes": "PRESERVED",
+        "dictionary_resources": 19,
+        "phil_resources": 14,
+        "selected_sites": [
+          "B:4"
+        ],
+        "removed_modifier_requests": 2,
+        "shared_modification_and_unselected_requests": "PRESERVED",
+        "ATL": "INDEPENDENT_PUBLIC_ONLY",
+        "scaffold_native_execution": "PENDING_USER_MAC",
+        "generation_optimization_adoption": "NOT_RUN"
+      },
+      "documentation": {
+        "mirror_equality": "PASS",
+        "mirrored_records": [
+          "automatic_component_resolution_2026_10_21",
+          "source_declared_dna_metadata_2026_10_22",
+          "qualified_dna_linked_controls_2026_10_22",
+          "full_scaffold_candidate_2026_10_22"
+        ],
+        "unrelated_runtime_history": "PRESERVED",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "native_worker_module_unchanged": "PASS",
+        "v2_usability_module_unchanged": "PASS",
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      },
+      "native": {
+        "status": "PENDING_USER_MAC",
+        "phenix_release": "2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "execution": "NOT_RUN_HERE",
+        "note": "No Phenix installation here; fake-worker tests and actual-return preparation do not establish new native full-scaffold physics."
+      }
+    },
+    "compatibility": "Additive explicit diagnostic action only. Preserve native workers/kernels/targets, v2 isolated qualification, curated precedence, ordinary PostMR defaults, dependencies and NARestraints release/workbook. No migration or student CIF gate. Existing original inputs and every previous capsule remain byte-identical; the separate adapter adds no production file migration.",
+    "generated_artifacts": "Private capsules, CIF derivatives, models, logs, captured workers and transport fixtures remain uncommitted; maintained code/tests, methods and compact evidence summaries only.",
+    "remaining_limits": [
+      "Native full-scaffold mechanics must return from Phenix 2.2.1-6174; local tests and preparation alone are not native evidence.",
+      "A separate bundle selection is not ordinary production adoption or diffraction refinement.",
+      "Geometry/convergence, phosphate-state selection, independent absolute CIP and nonbonded pair identity remain separate.",
+      "Production recovery/adoption and solution PDF rendering remain planned.",
+      "NARestraints authority, curated precedence, ATL public/compiler-only scope and the exact eight-pair full-run plan remain unchanged."
     ],
     "automatic_adoption": false,
     "requires_cif_review": false,

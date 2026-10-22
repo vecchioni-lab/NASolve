@@ -111,9 +111,11 @@ that evidence without new native calls; all six passes and three continue
 decisions have returned. C57 restores only explicit source DNA group/type
 metadata in separate candidates; all six native equivalence checks and three
 selections have returned PASS/continue-with-notes. The verified original remains
-available as automatic fallback. C58 tests separate three-residue contexts with
-graph-selected site modifiers, canonical link targets and exact projected/heavy
-restraint coverage; native execution remains pending. Existing native classifications
-already say DNA despite generic written groups. No completed polymer-link or
-production-adoption arrow, nonbonded pair-identity proof or student CIF
+available as automatic fallback. Returned C58 passes three separate linked
+controls, preserving canonical links and exact projected/heavy restraints.
+C59 tests DP B:4 in the preserved full model, requiring all 38 links and the
+complete NARestraints pairing/stacking inventory to survive, with automatic
+verified-original fallback. Native full-scaffold execution remains pending.
+Existing native classifications already say DNA despite generic written groups.
+No production-adoption arrow, nonbonded pair-identity proof or student CIF
 adjudication is implied.

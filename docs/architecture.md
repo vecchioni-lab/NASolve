@@ -831,8 +831,24 @@ deletions plus the reviewed OC2 type. Do not infer OP2 protonation or targets.
 One canonical reference and three modified workers use the existing PHIL
 namespace adapter, fixed native kernels and 60-second limits. Require exact
 two-link membership/targets, projected definitions/heavy proxies, all phosphate
-tetrahedral bonds/angles and unchanged flanking mechanics. Native linked
-execution remains pending; no scaffold adoption or production default changes.
+tetrahedral bonds/angles and unchanged flanking mechanics. Returned C58 verifies
+all 2,940 payloads and four completed Phenix 2.2.1-6174 workers. The three
+modified cases pass; eight finite energy/gradient evaluations repeat exactly.
+Unavailable formal-charge readback remains explicit, with no contradiction.
+
+C59 tests a separately assembled DP B:4 bundle in the preserved 877-atom,
+43-site scaffold at its saved PDB-rounded coordinates. A fresh original native
+manager must match the captured baseline before testing the candidate. Replace
+only the selected component dictionary and that site's previous modifier
+requests. Shared modification definitions and other sites' requests retain
+their exact bytes; source-graph incoming/outgoing preparation supplies the new
+site modifier. Preserve the model, every unselected effective definition and
+proxy, all 38 backbone links and the complete explicit NARestraints custom
+pairing/stacking requests. Require exact projected heavy restraints and finite
+repeatable fixed evaluations. Each of the two workers has a 60-second limit;
+there is no generation or optimizer. Select the qualified candidate or retain
+the verified original automatically. C59 native execution, production adoption
+and PDF rendering remain separate; no production default changes.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core

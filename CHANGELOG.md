@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Test a separate qualified dictionary in the full NARestraints scaffold
+
+- Verify all 2,940 C58 payloads and four completed Phenix 2.2.1-6174 workers.
+  All three linked controls pass their mechanics checks; eight finite fixed
+  energy/gradient evaluations repeat exactly. Formal-charge readback remains
+  unsupported without contradictions.
+- Add C59 `--scaffold-candidate-only` on exact C58. Prepare a separate DP B:4
+  bundle at the preserved full model's saved coordinates. Replace only the
+  selected dictionary and site's old modifier requests; preserve shared
+  definitions, other sites' requests and every unselected resource byte.
+- Match a fresh original native manager before the candidate worker. Require
+  all 38 backbone links, unselected definitions/proxies and every explicit
+  NARestraints pairing/stacking request, with exact selected projected heavy
+  restraints and finite repeatable fixed evaluations. Retain the verified
+  original automatically if the candidate is unusable; no student CIF gate.
+- All 73 new regressions, 137 focused and 3206 full tests pass (two skips,
+  276 subtests), plus actual-C58 deleted-build/relocated preparation with poisoned
+  imports, aliased temporary roots and everyday edits preserved. Native Mac
+  full-scaffold execution remains pending. No
+  generation, optimizer, native kernel/target, production default/adoption,
+  dependency, NAR release, eight-pair plan or PDF-rendering change.
+
 ### Test qualified candidates in separate DNA linkage controls
 
 - Verify all 2,854 C57 payloads, six completed native equivalence passes and
@@ -22,7 +44,8 @@ entries are reconstructed from repository history.
   adapter. One canonical and three modified native workers must preserve exact
   links/targets, projected definitions/heavy proxies, phosphate tetrahedral
   coverage and flanking mechanics, with finite repeatable fixed evaluations.
-- Native Mac linked execution remains pending. No native kernel/target,
+- Returned native linked execution passes all three modified controls. No native
+  kernel/target,
   optimizer, production adoption/default, dependency, NAR release or student
   approval change. Local validation and remaining scientific limits are in
   the native ledger; ATL and the eight-pair full-run plan stay unchanged.

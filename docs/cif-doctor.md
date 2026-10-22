@@ -44,8 +44,9 @@ isolated generated-candidate pool and does not adopt a linked component.
 Returned C56 reproduces those passes without new native calls. C57 adds a
 source-declared DNA metadata candidate and automatic verified-original fallback
 within the same isolated scope. Returned C57 passes all six native equivalence
-checks and three selections. C58 adds separate linked-context controls; native
-execution and scaffold integration remain unqualified.
+checks and three selections. Returned C58 passes separate linked-context
+controls. C59 tests a separate full-scaffold DP bundle with automatic
+verified-original fallback. Native full-scaffold execution remains pending.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
@@ -2374,9 +2375,8 @@ independent public/compiler control without native construction.
 
 ## Qualified DNA linked controls (Cedar 58)
 
-The next diagnostic tests whether independently usable complete candidates can
-retain their source chemistry and fixed restraints in an actual linked native
-manager. It prepares separate synthetic three-residue controls, not a new
+This diagnostic tests whether independently usable complete candidates retain
+their source chemistry and fixed restraints in an actual linked native manager. It prepares separate synthetic three-residue controls, not a new
 diffraction model or an adoption into the saved scaffold. The prior isolated
 CONTINUE_WITH_NOTES decisions and their qualified fallback remain unchanged.
 
@@ -2422,10 +2422,51 @@ is explicit and never substituted with partial charge; contradictions fail.
 Schema-1 `linked_control_audit` records anchored control models, preparations,
 canonical/native evidence and qualifications. Generation, optimization, original
 model changes, scaffold adoption and production pipeline changes do not occur.
-Software preparation/qualification/orchestration and relocated exact-C57 replay
-are tested; native Mac linked execution remains pending. Achieved geometry,
-phosphate state, absolute CIP, nonbonded pair identity and full-scaffold
-integration remain separate. No student CIF inspection or approval is required.
+Returned C58 verifies all 2,940 payloads and the complete C57 lineage. One
+canonical and three modified Phenix 2.2.1-6174 workers complete; all three
+modified cases pass LINKED_CONTROL_MECHANICS_PASS. Their eight total fixed
+energy/gradient evaluations are finite and repeat exactly. The only unsupported
+check per modified case is native formal-charge readback, with no contradiction.
+Achieved geometry, phosphate state, absolute CIP, nonbonded pair identity and
+full-scaffold integration remain separate. No student CIF inspection or approval
+is required.
+
+## Separate full-scaffold candidate (Cedar 59)
+
+`--scaffold-candidate-only` accepts the exact returned C58 capsule and replays
+its linkage qualifications before a separate DP B:4 trial in the preserved full
+NARestraints manager. This moves from short synthetic controls to the actual
+877-atom/43-site scaffold without optimizing or changing its saved coordinates.
+The original bundle remains the automatic fallback.
+
+**Methods.** Assemble the independently qualified source-DNA candidate with the
+existing incoming OP3/outgoing-H site preparation. Replace the selected original
+component dictionary. Remove only the selected site's old modifier requests,
+preserving shared modifier definitions and all unselected PHIL bytes. The shared
+NASnoOP3 requests for the other three sites remain intact. Keep the complete
+model byte for byte and retain anchored hashes for every original and derivative
+resource. Refuse ambiguous resource ownership or incomplete shared-code context.
+
+First reinterpret the original bundle and require the captured native baseline
+to match. Then interpret the candidate under the same pinned installation and
+explicit NARestraints policy. Both workers have 60-second deadlines and two fixed
+energy/gradient evaluations. Require all 38 backbone links and their targets,
+all unselected effective definitions and native proxies, and the full custom
+pairing/stacking request inventory to survive. Native secondary-structure guesses
+remain disabled. Require exact selected projected/heavy restraints, new modifier
+membership, phosphate tetrahedral coverage, finite active parameters and finite
+repeatable energies/gradients. Formal-charge contradictions fail; unsupported
+readback never substitutes partial charges.
+
+A mechanically usable candidate can be selected for this separate diagnostic;
+otherwise retain the verified original automatically and report the limitation.
+Different dictionary objectives are not ranked by energy. Nonconvergence and
+existing geometry findings remain notes. The original run and prior candidates
+remain preserved; students do not inspect or approve CIF tables. All 73 new
+regressions, 137 focused and 3206 full tests pass, plus actual-return
+relocated preparation. New native Mac execution remains pending. This does not deploy automatic
+production adoption, select phosphate state, establish absolute CIP or implement
+solution PDF rendering.
 
 ## Reviewed preparation
 

@@ -15,10 +15,12 @@ constant-torsion representation, passes all six cases and retains three isolated
 candidates with notes. Returned C56 verifies this replay without new native
 calls. Returned C57 passes all six DNA-header/native equivalence checks and
 selects the three source-declared candidates with notes; the verified original
-remains available as automatic fallback. C58 prepares separate three-residue
-DNA controls and tests exact native links and projected heavy-atom restraints
-against a canonical reference. Native linked execution, scaffold adoption,
-phosphate state and geometry/stopping remain separate. Students do not approve CIFs.
+remains available as automatic fallback. Returned C58 passes all three separate
+DNA linkage controls against their canonical reference. C59 tests DP at B:4 in
+the preserved full model, requiring all 38 links and the complete NARestraints
+pairing/stacking policy to survive, with the original bundle as automatic
+fallback. Native full-scaffold execution, production adoption, phosphate state
+and geometry/stopping remain separate. Students do not approve CIFs.
 
 ## What's current?
 
