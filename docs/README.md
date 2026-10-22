@@ -16,11 +16,12 @@ candidates with notes. Returned C56 verifies this replay without new native
 calls. Returned C57 passes all six DNA-header/native equivalence checks and
 selects the three source-declared candidates with notes; the verified original
 remains available as automatic fallback. Returned C58 passes all three separate
-DNA linkage controls against their canonical reference. C59 tests DP at B:4 in
-the preserved full model, requiring all 38 links and the complete NARestraints
-pairing/stacking policy to survive, with the original bundle as automatic
-fallback. Native full-scaffold execution, production adoption, phosphate state
-and geometry/stopping remain separate. Students do not approve CIFs.
+DNA linkage controls against their canonical reference. Returned C59 qualifies
+DP B:4 in the preserved full model with all 38 links and the complete
+NARestraints policy intact. C60 supplies one bounded geometry trial under those
+new fixed definitions, with fresh derivative checks and the verified C59 start
+as fallback. Native geometry execution, production adoption, phosphate state
+and scientific qualification remain separate. Students do not approve CIFs.
 
 ## What's current?
 

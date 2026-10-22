@@ -80,36 +80,66 @@ the already unsupported formal-charge readback, without contradiction or
 partial-charge substitution. The runtime matches the clean pinned build;
 only NARestraints dirty-state metadata differs. No optimizer or adoption runs.
 
-**C59 is the next delivery.** `--scaffold-candidate-only` accepts exact C58.
-Build `59_Cedar_probe_cif_scaffold_candidate.py` with PDU/5PC/ATL. Prepare a
-separate DP B:4 bundle in the preserved 877-atom/43-site full model, using the
-saved PDB-rounded endpoint. A fresh original native manager must match the
-captured baseline before the candidate is tested. Each worker has a 60-second
-deadline and two fixed energy/gradient evaluations.
+**Returned C59 verifies 3,097 payloads** and the complete 2,940-payload C58
+parent. Both Phenix 2.2.1-6174 interpretations complete: original baseline in
+3.357285 s and replacement DP B:4 candidate in 1.474756 s. The twelve baseline
+checks pass; the candidate has 67 PASS and one expected unsupported
+formal-charge check, without contradictions or REVIEW findings. The separate
+automatic decision is CONTINUE_WITH_NOTES, selecting qualified_candidate.
+All 877 atoms, 43 sites, 38 backbone links and every explicit NARestraints
+pairing/stacking term survive. Global plane/parallelity inventories are exact.
+The runtime matches the clean pinned build; only NARestraints dirty-state
+metadata explains the reported runner SHA. No optimizer or production adoption
+runs in C59.
 
-Replace only the old DP dictionary and B:4 modifier requests. Preserve the
-shared NASnoOP3 definition and the three other sites that use it, and install
-the existing qualified incoming OP3/outgoing-H preparation for B:4. Require
-all 38 original backbone links, unchanged model bytes, all unselected effective
-definitions/proxies and every explicit NARestraints pairing/stacking request.
-Match selected projected/heavy restraints, modifier IDs and phosphate coverage;
-require finite positive active parameters and repeatable energies/gradients.
-Automatic Phenix secondary-structure guessing remains disabled.
+DP C6-N5-C7 now uses the independently generated 128.1-degree target rather than
+109.471 degrees. At the same coordinates, descriptive bond deviations at least
+five sigma change 3 to 4 and angle deviations 10 to 9, with zero chirality sign
+conflicts in both managers. These are different fixed objectives, not an
+optimization improvement or a convergence result.
 
-The separate diagnostic chooses the candidate only after these mechanics
-checks; otherwise it preserves the verified original bundle automatically.
-No generation, optimizer, ordinary pipeline adoption or student CIF approval
-occurs. Geometry/convergence, phosphate state, absolute CIP, nonbonded pair
-identity, production orchestration and solution PDF rendering remain separate.
-ATL stays public/compiler only; NARestraints authority, curated precedence,
-native kernels, dependencies/release and the eight-pair full-run plan stay fixed.
-C58 returned evidence is in `qualified_dna_linked_controls_2026_10_22`; the next
-software/native boundary is `full_scaffold_candidate_2026_10_22`. All **73 new
-regressions**, **137 focused / 3206 full tests** pass (two skips, 276 subtests),
-plus actual-C58 deleted-build/relocated preparation, poisoned imports, aliased
-temporary roots and the everyday edit preserved. All 156 relative links, current
-evidence mirrors, protected hashes and editable figure checks pass. The two
-new native Mac interpretations remain pending; kernels and v2 usability stay fixed.
+**C60 is the next delivery.** `--scaffold-geometry-only` accepts exact C59.
+Build `60_Cedar_probe_cif_scaffold_geometry.py` with PDU/5PC/ATL. Start from the
+verified C59 PDB-rounded model and fixed replacement dictionary/NARestraints
+policy. This is a fresh bounded trial, not a continuation under C28's objective.
+A new initial corrected-gradient audit must pass before optimization. Reuse the
+strict C26 plane proof only when full plane/parallelity inventories, named atom
+mapping and native API/source pins match; generate the new manager's own
+constraint signature and fresh derivative evidence. Never relabel the old
+manager's qualification as proof for changed covalent targets.
+
+The qualified plane correction, native kernels, geometry worker, L-BFGS and
+termination mechanics stay unchanged. Run at most 1,000 iterations, retaining
+native stopping evidence. At the endpoint, repeat sampled derivatives at full
+precision and PDB-rounded coordinates and require exact native readback of
+identities, definitions, constraints and the explicit NARestraints policy.
+Verify exact serialization/source hashes. Require zero fixed-hand sign conflicts
+in both the full-precision geometry and freshly read rounded native geometry,
+and require both endpoint targets to be no worse than the new trial's initial
+target under that same objective. Pucker is distinct from inversion.
+`cif_scaffold_candidate.select_scaffold_geometry` selects the finite usable
+endpoint under cif-qualified-scaffold-geometry-choice-v1 or retains the verified
+C59 initial model automatically, including when no endpoint is produced.
+Nonconvergence, pucker and residual outliers alone are report notes, not failures
+or requirements for more continuation cycles. The report uses
+cif-qualified-scaffold-geometry-trial-v1; the native trial policy remains
+cif-fixed-na-corrected-geometry-trial-v1.
+
+After this bounded trial, advance toward production integration and the planned
+eight-pair live run rather than adding open-ended geometry cycles. Achieved
+scientific geometry, absolute CIP, phosphate-state selection, nonbonded pair
+identity, ordinary production adoption and solution PDF rendering remain
+separate. Students do not inspect or approve CIF tables. ATL remains an
+independent public/compiler control. Curated precedence, NARestraints authority,
+dependencies/release and the exact eight-pair plan stay fixed.
+C59 returned evidence is in `full_scaffold_candidate_2026_10_22`; the next
+software/native boundary is `replacement_geometry_trial_2026_10_22`. All **82 new
+regressions**, **235 focused / 3288 full tests** pass (two skips, 276 subtests),
+plus actual-C59 deleted-build/relocated replay, strict prior-plane bridge,
+poisoned imports, aliased temporary roots and the everyday edit preserved.
+All 156 relative links, current evidence mirrors, protected hashes and editable
+figure checks pass. New native Mac execution remains pending; the optimizer,
+geometry worker, native kernels, correction and v2 usability bytes stay fixed.
 
 ## Completed and open work
 

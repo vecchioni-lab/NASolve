@@ -177,3 +177,14 @@ def test_failed_candidate_automatically_retains_verified_original(tmp_path, defe
     assert d['selected_candidate'] == 'original_frozen_bundle'
     assert d['status'] == 'CONTINUE_WITH_NOTES' and d['continue_solving']
     assert d['objective_comparison'] == 'NOT_RUN' and not d['automatic_adoption']
+
+
+def test_qualification_proxy_checks_have_deterministic_order(tmp_path):
+    from nasolve.cif_scaffold_candidate import qualify_scaffold_candidate
+    a,b,model,r=native_case(tmp_path)
+    q=qualify_scaffold_candidate(a,b,model,r,tmp_path,code='ZZZ')
+    names=[row['check'] for row in q['checks']]
+    assert len(names)==len(set(names))
+    rows=[n for n in names if n.startswith(('unaffected-native-proxies:','inter-site-native-proxies:','explicit-policy-proxies:'))]
+    kinds=sorted({'bond_simple','bond_asu','angle','dihedral','const_dihedral','chirality','planarity','parallelity'})
+    assert rows==[prefix+kind for kind in kinds for prefix in ['unaffected-native-proxies:','inter-site-native-proxies:','explicit-policy-proxies:']]

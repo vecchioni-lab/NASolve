@@ -14392,7 +14392,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json"
     },
     "full_scaffold_candidate_2026_10_22": {
-      "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; NATIVE_MAC_EXECUTION_PENDING",
+      "status": "RETURNED_FULL_SCAFFOLD_MECHANICS_PASS; QUALIFIED_CANDIDATE_SELECTED_WITH_NOTES",
       "recorded_date": "2026-10-22",
       "delivery_prefix": "59_Cedar",
       "policy_id": "cif-qualified-scaffold-candidate-v1",
@@ -14446,7 +14446,7 @@
         "native": "scaffold_candidate_audit.json: schema v1, fresh original and separate candidate native receipts, bound baseline/candidate qualification, automatic qualified_candidate/original_frozen_bundle diagnostic choice; no production adoption."
       },
       "validation": {
-        "status": "LOCAL_PASS; NEW_NATIVE_MAC_EXECUTION_PENDING",
+        "status": "LOCAL_AND_RETURNED_NATIVE_PASS",
         "new_regressions": 73,
         "fail_before": [
           {
@@ -14531,17 +14531,77 @@
           "raster_visual_review": "PASS"
         },
         "native": {
-          "status": "PENDING_USER_MAC",
+          "status": "RETURNED_FULL_SCAFFOLD_MECHANICS_PASS",
           "phenix_release": "2.2.1-6174",
           "dispatcher_version": "2.2.1",
-          "execution": "NOT_RUN_HERE",
-          "note": "No Phenix installation here; fake-worker tests and actual-return preparation do not establish new native full-scaffold physics."
+          "execution": "COMPLETE",
+          "workers_completed": 2,
+          "worker_elapsed_seconds": {
+            "original": 3.357285,
+            "candidate": 1.474756
+          },
+          "baseline_checks": {
+            "passed": 12,
+            "failed": 0
+          },
+          "candidate_checks": {
+            "PASS": 67,
+            "UNSUPPORTED": 1,
+            "REVIEW": 0
+          },
+          "formal_charge_readback": "UNSUPPORTED_WITHOUT_CONTRADICTIONS; NO_PARTIAL_CHARGE_SUBSTITUTION",
+          "automatic_decision": "CONTINUE_WITH_NOTES",
+          "selected_candidate": "qualified_candidate",
+          "model_atoms": 877,
+          "model_sites": 43,
+          "backbone_links": 38,
+          "explicit_narestraints_policy": "PRESERVED",
+          "plane_and_parallelity_inventories": "EXACTLY_UNCHANGED",
+          "generation_optimization_production_adoption": "NOT_RUN",
+          "fixed_evaluations": 4,
+          "finite_repeatable_energy_and_gradients": true,
+          "model_sha256": "4ebad302c7d81f6383efb859c0082b233037ddd9532ea797f8bb7fe53177ab40",
+          "explicit_policy_request_counts": {
+            "bond": 52,
+            "angle": 86,
+            "planarity": 8,
+            "parallelity": 58
+          },
+          "explicit_policy_proxy_counts": {
+            "angle": 86,
+            "bond_asu": 0,
+            "bond_simple": 52,
+            "chirality": 0,
+            "const_dihedral": 0,
+            "dihedral": 0,
+            "parallelity": 58,
+            "planarity": 8
+          },
+          "input_resource_counts": {
+            "baseline": {
+              "model": 1,
+              "dictionary": 19,
+              "phil": 13
+            },
+            "candidate": {
+              "model": 1,
+              "dictionary": 19,
+              "phil": 14
+            }
+          },
+          "independent_replay": "COMPLETE_C58_LINEAGE_AND_2940_PARENT_PAYLOADS_PRESERVED; MODEL_PREPARATION_WORKER_SPEC_INPUT_OUTPUT_API_ENERGY_EVIDENCE_REPLAYS; NAMED_CHECK_PAYLOADS_IDENTICAL_AFTER_SET_ORDER_CANONICALIZATION_WITH_DUPLICATES_REJECTED"
+        },
+        "returned_replay_regression_evidence": {
+          "scope": "LOCAL_SAVED_DATA_VALIDATION; NO_NEW_NATIVE_EXECUTION",
+          "malformed_return_mutations_rejected": 10,
+          "historical_set_order_only_difference": "ACCEPTED_AFTER_CANONICALIZATION",
+          "duplicate_or_changed_named_checks": "REJECTED"
         }
       },
       "compatibility": "Additive explicit diagnostic action only. Preserve native workers/kernels/targets, v2 isolated qualification, curated precedence, ordinary PostMR defaults, dependencies and NARestraints release/workbook. No migration or student CIF gate. Existing original inputs and every previous capsule remain byte-identical; the separate adapter adds no production file migration.",
       "generated_artifacts": "Private capsules, CIF derivatives, models, logs, captured workers and transport fixtures remain uncommitted; maintained code/tests, methods and compact evidence summaries only.",
       "remaining_limits": [
-        "Native full-scaffold mechanics must return from Phenix 2.2.1-6174; local tests and preparation alone are not native evidence.",
+        "Full-scaffold native mechanics pass and the separate candidate is selected with notes; bounded geometry under the replacement manager remains a new qualification.",
         "A separate bundle selection is not ordinary production adoption or diffraction refinement.",
         "Geometry/convergence, phosphate-state selection, independent absolute CIP and nonbonded pair identity remain separate.",
         "Production recovery/adoption and solution PDF rendering remain planned.",
@@ -14550,6 +14610,250 @@
       "automatic_adoption": false,
       "requires_cif_review": false,
       "scientific_approval": "NOT_RUN",
+      "returned_capsule": {
+        "name": "59_Cedar_rivd7_vt_cif_numerical_recovery_review.zip",
+        "sha256": "7a67af5579d5ea2cc260bff2e64dff35c45e21aa128ee53cde5f8e0107e8d777",
+        "bytes": 71109325,
+        "verified_payloads": 3097,
+        "parent_payloads_preserved": 2940,
+        "build_sha256": "a4dc1648ec9a42441dc546dd63c603d372b9ee125cbe7a1fbad413a20e846d45",
+        "source_commit": "bbfd5a7a79c8a3b2ca52bb74bf997033e77ea1e1",
+        "source_working_tree_has_changes": false,
+        "runtime_members": 143,
+        "runtime_archive_sha256": "b3171bcc13659cb0bf27454d9e61b74ef8c7cbe726a0fa2847d50ca175f69c21",
+        "clean_build_comparison": "RUNTIME_BYTES_EQUAL; REPORTED_RUNNER_REPRODUCED_ONLY_NARESTRAINTS_DIRTY_STATE_METADATA_DIFFERS",
+        "captured_code_execution": "NOT_RUN",
+        "clean_runner_sha256": "fbac7964d31088e65f483c331962d8a826c6a299358dd9f2eca867d6598986c4",
+        "reported_runner_sha256": "71b66eb9f152f4e02402f837de297f9b2e8cc87e608c029aaf1c5701a896d859"
+      },
+      "fixed_coordinate_description": {
+        "selected_angle": {
+          "site": "B:4",
+          "atoms": [
+            "C6",
+            "N5",
+            "C7"
+          ],
+          "original_target_degrees": 109.471,
+          "replacement_target_degrees": 128.1
+        },
+        "nominal_deviations_at_least_five": {
+          "original": {
+            "bond_simple": 3,
+            "angle": 10,
+            "chirality_sign_conflicts": 0
+          },
+          "replacement": {
+            "bond_simple": 4,
+            "angle": 9,
+            "chirality_sign_conflicts": 0
+          }
+        },
+        "interpretation": "DIFFERENT_FIXED_DICTIONARY_OBJECTIVES; DESCRIPTIVE_ONLY; NO_OPTIMIZATION_OR_IMPROVEMENT_CLAIM"
+      },
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json"
+    },
+    "replacement_geometry_trial_2026_10_22": {
+      "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; NATIVE_MAC_EXECUTION_PENDING",
+      "recorded_date": "2026-10-22",
+      "delivery_prefix": "60_Cedar",
+      "initial_proof_policy_id": "cif-replacement-manager-gradient-qualification-v1",
+      "module": "src/nasolve/cif_replacement_geometry.py",
+      "validator_module": "src/nasolve/cif_corrected_geometry.py",
+      "cli_action": "--scaffold-geometry-only",
+      "runner_filename": "60_Cedar_probe_cif_scaffold_geometry.py",
+      "review_input": {
+        "name": "59_Cedar_rivd7_vt_cif_numerical_recovery_review.zip",
+        "sha256": "7a67af5579d5ea2cc260bff2e64dff35c45e21aa128ee53cde5f8e0107e8d777",
+        "bytes": 71109325,
+        "verified_payloads": 3097,
+        "parent_payloads_preserved": 2940,
+        "build_sha256": "a4dc1648ec9a42441dc546dd63c603d372b9ee125cbe7a1fbad413a20e846d45",
+        "source_commit": "bbfd5a7a79c8a3b2ca52bb74bf997033e77ea1e1",
+        "source_working_tree_has_changes": false,
+        "runtime_members": 143,
+        "runtime_archive_sha256": "b3171bcc13659cb0bf27454d9e61b74ef8c7cbe726a0fa2847d50ca175f69c21",
+        "clean_build_comparison": "RUNTIME_BYTES_EQUAL; REPORTED_RUNNER_REPRODUCED_ONLY_NARESTRAINTS_DIRTY_STATE_METADATA_DIFFERS",
+        "captured_code_execution": "NOT_RUN",
+        "clean_runner_sha256": "fbac7964d31088e65f483c331962d8a826c6a299358dd9f2eca867d6598986c4",
+        "reported_runner_sha256": "71b66eb9f152f4e02402f837de297f9b2e8cc87e608c029aaf1c5701a896d859"
+      },
+      "purpose": "Run one bounded geometry-only trial under the independently qualified replacement dictionary and fixed NARestraints policy, with fresh derivatives and automatic verified-initial fallback.",
+      "algorithm": [
+        "Verify the exact returned C59 capsule, complete lineage, full-scaffold preparation, two completed native workers, baseline/candidate qualifications and automatic candidate choice from maintained code; captured code is never executed.",
+        "Use the verified C59 PDB-rounded coordinates, new DP numerical definition, existing selected site modifiers and unchanged explicit NARestraints pairing/stacking policy. Treat this as a new fixed objective rather than continuing or ranking against the older C28 dictionary objective.",
+        "Run a fresh initial corrected-gradient audit. Carry strict C26 general plane proof only when complete plane/parallelity inventories, named atom mapping and selected native API/source pins match exactly.",
+        "Derive the replacement covalent manager constraint signature freshly and require its sampled full-objective derivatives. The additive replacement-manager proof validator must not forge or relabel the old manager constraint signature/qualification.",
+        "Preserve the established NASolve plane correction, native kernels/targets, geometry worker, L-BFGS and termination rules. Run at most 1000 iterations with fixed definitions, modifiers and policy; preserve stopping, full-precision and rounded endpoint evidence.",
+        "Qualify endpoint derivatives at full precision and after PDB rounding, plus exact native readback of identities, definitions, every fixed constraint and NARestraints policy. Verify exact serialization and source-model hash. Require zero fixed-hand sign conflicts in both full-precision and freshly reread rounded geometry; require both full-precision and serialized endpoint targets no worse than the new trial initial target under the same fixed objective.",
+        "Use select_scaffold_geometry under cif-qualified-scaffold-geometry-choice-v1 to choose qualified_geometry_endpoint only after finite, mechanical, derivative, fixed-hand, serialization and same-objective endpoint checks. Otherwise, including no endpoint, retain verified_initial_scaffold automatically. Nonconvergence, pucker and residual outliers alone are notes, not failure conditions or mandates for additional cycles; no student CIF decision is introduced.",
+        "After this bounded trial, move toward production integration and the exact planned eight-pair live run. Scientific geometry, absolute CIP, phosphate state, nonbonded pair identity, ordinary production adoption and solution PDF rendering remain separate."
+      ],
+      "limits": {
+        "model_atoms": 877,
+        "model_sites": 43,
+        "backbone_links": 38,
+        "maximum_geometry_iterations": 1000,
+        "optimizer_history": "FRESH",
+        "initial_coordinates": "VERIFIED_C59_PDB_ROUNDED",
+        "dictionary_generation": "NOT_RUN",
+        "diffraction_refinement": "NOT_RUN",
+        "mandatory_additional_continuation_cycles": false,
+        "initial_audit_evaluation_budget": 2000,
+        "endpoint_audit_evaluation_budget": 4000,
+        "initial_timeout_seconds": 600,
+        "geometry_timeout_seconds": 600,
+        "native_readback_timeout_seconds": 60
+      },
+      "artifact_schema": {
+        "version": 1,
+        "initial_proof": "Fresh replacement-manager corrected-gradient qualification with exact carried general plane proof and newly derived constraint signature.",
+        "trial": "scaffold_geometry_audit.json: schema v1, cif-qualified-scaffold-geometry-trial-v1, existing cif-fixed-na-corrected-geometry-trial-v1 bounded native trial records, stopping, full/rounded endpoint derivative qualifications, exact native readback/serialization/source hashes and geometry reviews.",
+        "coordinate_choice": "cif-qualified-scaffold-geometry-choice-v1 returns qualified_geometry_endpoint or verified_initial_scaffold with named checks and notes; always separate diagnostic artifact selection, no production adoption."
+      },
+      "validation": {
+        "status": "LOCAL_PASS; NEW_NATIVE_MAC_EXECUTION_PENDING",
+        "new_regressions": 82,
+        "fail_before": [
+          {
+            "failed": 1,
+            "seconds": 0.22,
+            "scope": "Future native check ordering must be deterministic; historical replay compares unique names."
+          },
+          {
+            "failed": 17,
+            "seconds": 1.73,
+            "scope": "Exact completed-C59 boundary and explicit C60 routing before implementation."
+          },
+          {
+            "failed": 17,
+            "seconds": 0.3,
+            "scope": "Usable-start fallback, endpoint integrity, derivatives, fixed hands and nonfatal stopping/pucker selection."
+          },
+          {
+            "failed": 9,
+            "passed": 24,
+            "seconds": 3.07,
+            "scope": "New initial-only manager replacement qualification before its additive validator; later four arithmetic mutation checks add coverage."
+          },
+          {
+            "failed": 1,
+            "seconds": 0.32,
+            "scope": "A full-precision improvement must not select a PDB-rounded artifact whose same-objective target worsens the initial target."
+          }
+        ],
+        "focused": {
+          "passed": 235,
+          "seconds": 31.72,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_replacement_geometry.py tests/test_cif_corrected_geometry.py tests/test_cif_fixed_geometry.py tests/test_cif_geometry_continuation.py tests/test_cif_scaffold_candidate.py tests/test_cif_scaffold_geometry_selection.py tests/test_cedar60_delivery.py tests/test_cedar60_orchestration.py tests/test_cedar59_delivery.py tests/test_cedar59_orchestration.py"
+        },
+        "full": {
+          "passed": 3288,
+          "skipped": 2,
+          "subtests": 276,
+          "seconds": 277.12,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+        },
+        "portability": {
+          "status": "PASS",
+          "source_build_state": {
+            "commit": "a3e37ebd0e759d4d5b49ba891a28a3ca3d1598f7",
+            "working_tree_has_changes": false
+          },
+          "runner_sha256": "bc71c6f994139ce02a626310fa3c3dbf196effee55b5f19867b3452de11da96b",
+          "build_sources_deleted_before_replay": true,
+          "relocated_runner": true,
+          "poisoned_ambient_imports": "PASS",
+          "aliased_system_temp": "PASS",
+          "everyday_edit": "PRESERVED",
+          "ignored_runner": "PASS",
+          "input_payloads": 3097,
+          "runtime_members": 144,
+          "runtime_archive_sha256": "7d64637742e41f498703cb153421bf96fb81d69ac603d8058ac99053b53f9aa2",
+          "mechanics_prerequisites": 17,
+          "rotation_directions": 96,
+          "linked_controls_replayed": 3,
+          "captured_linked_workers_replayed": 4,
+          "full_scaffold_native_workers_replayed": 2,
+          "full_scaffold_qualification": "67_PASS_PLUS_KNOWN_UNSUPPORTED_CHARGE",
+          "initial_bundle_choice": "qualified_candidate_REPLAYED",
+          "plane_parent_qualification": "STRICT_C26_FULL_PROOF_REPLAYED",
+          "replacement_bridge": "877_NAMED_ATOMS_54_PLANES_58_PARALLELITIES_NA_POLICY_AND_APIS_EQUAL",
+          "selected_sites": [
+            "B:4"
+          ],
+          "native_probe_indices": 6,
+          "fixed_distance_groups": 20,
+          "usable_initial_fallback": "SELECTED_WITH_NOTES",
+          "ATL": "INDEPENDENT_PUBLIC_ONLY",
+          "new_native_execution": "PENDING_USER_MAC",
+          "new_optimization_adoption": "NOT_RUN"
+        },
+        "documentation": {
+          "mirror_equality": "PASS",
+          "mirrored_records": [
+            "automatic_component_resolution_2026_10_21",
+            "source_declared_dna_metadata_2026_10_22",
+            "qualified_dna_linked_controls_2026_10_22",
+            "full_scaffold_candidate_2026_10_22",
+            "replacement_geometry_trial_2026_10_22"
+          ],
+          "unrelated_runtime_history": "PRESERVED",
+          "planned_eight_pairs": "PRESERVED",
+          "relative_links": 156,
+          "protected_hashes": {
+            "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+            "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+            "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+            "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+            "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+            "src/nasolve/cif_fixed_geometry.py": "6b87732f1ab9165531d297e633edc13f755c70a5cc350ff8ff51f75e4053db14",
+            "src/nasolve/cif_gradient_audit.py": "a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc"
+          },
+          "native_worker_module_unchanged": "PASS",
+          "v2_usability_module_unchanged": "PASS",
+          "fixed_geometry_module_unchanged": "PASS",
+          "gradient_audit_module_unchanged": "PASS",
+          "native_geometry_worker_unchanged": "PASS",
+          "native_geometry_worker_sha256": "348a28b7a85883eb1bdf6767a75cb4d6db6c500d82539ca734d8d7ea6ad9f47f",
+          "deterministic_svg_and_xml": "PASS",
+          "raster_visual_review": "PASS"
+        },
+        "native": {
+          "status": "PENDING_USER_MAC",
+          "phenix_release": "2.2.1-6174",
+          "dispatcher_version": "2.2.1",
+          "execution": "NOT_RUN_HERE",
+          "note": "No Phenix installation here. Controlled fake-native audit-to-unchanged-optimizer tests and actual saved-data bridge replay do not establish new installed native physics."
+        }
+      },
+      "compatibility": "Additive explicit diagnostic action and replacement-manager proof validator branch. Preserve the qualified plane correction, native workers/kernels/targets, optimizer and termination mechanics, source authority, NARestraints policy/release/workbook, curated precedence and ordinary production defaults. No migration or student CIF gate.",
+      "generated_artifacts": "Private capsules, derivative dictionaries/models, native logs/captures and transport fixtures remain uncommitted; maintained code/tests, methods and compact evidence summaries only.",
+      "remaining_limits": [
+        "Native initial derivatives, geometry trial and endpoint/native readback remain pending on Phenix 2.2.1-6174.",
+        "A usable nonconverged endpoint is permitted; this trial does not establish achieved scientific geometry or absolute CIP.",
+        "Phosphate-state selection, nonbonded pair identity, ordinary production adoption and solution PDF rendering remain separate.",
+        "The verified C59 initial model remains automatic fallback; no mandatory repeated continuation cycles.",
+        "ATL independent public/compiler scope and the exact eight-pair full-run plan remain unchanged."
+      ],
+      "automatic_adoption": false,
+      "requires_cif_review": false,
+      "scientific_approval": "NOT_RUN",
+      "policy_id": "cif-qualified-scaffold-geometry-trial-v1",
+      "native_trial_policy_id": "cif-fixed-na-corrected-geometry-trial-v1",
+      "coordinate_choice_policy_id": "cif-qualified-scaffold-geometry-choice-v1",
+      "coordinate_choice_adapter": "src/nasolve/cif_scaffold_candidate.py:select_scaffold_geometry",
+      "endpoint_acceptance": {
+        "full_precision_and_rounded_derivatives": "REQUIRED",
+        "fixed_hand_sign_conflicts": {
+          "full_precision": 0,
+          "fresh_rounded_native": 0
+        },
+        "targets": "BOTH_FULL_PRECISION_AND_SERIALIZED_NO_WORSE_THAN_NEW_INITIAL_SAME_OBJECTIVE",
+        "serialization": "EXACT_IDENTITY_BIJECTION_AND_BOUND_SOURCE_MODEL_HASH",
+        "unusable_or_absent_endpoint": "AUTOMATIC_VERIFIED_INITIAL_FALLBACK",
+        "nonconvergence_pucker_residual_outliers_alone": "NOT_FAILURE_CONDITIONS"
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json"
     }
   },

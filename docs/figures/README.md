@@ -113,9 +113,14 @@ metadata in separate candidates; all six native equivalence checks and three
 selections have returned PASS/continue-with-notes. The verified original remains
 available as automatic fallback. Returned C58 passes three separate linked
 controls, preserving canonical links and exact projected/heavy restraints.
-C59 tests DP B:4 in the preserved full model, requiring all 38 links and the
-complete NARestraints pairing/stacking inventory to survive, with automatic
-verified-original fallback. Native full-scaffold execution remains pending.
+Returned C59 qualifies DP B:4 in the full model with all 38 links and the
+complete NARestraints policy intact, selecting the candidate with notes. C60
+supplies one bounded geometry trial under the new fixed definitions, preceded
+by fresh initial derivatives and followed by endpoint/readback checks. Both
+full-precision and reread rounded endpoints need zero fixed-hand conflicts,
+exact serialization/source hashes and no worse target under the same new
+objective. The verified C59 start remains automatic fallback, including absent
+endpoints; native C60 execution is pending.
 Existing native classifications already say DNA despite generic written groups.
 No production-adoption arrow, nonbonded pair-identity proof or student CIF
 adjudication is implied.

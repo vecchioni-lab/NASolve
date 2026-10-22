@@ -186,11 +186,12 @@ source-DNA metadata/native equivalence checks and selects all three restored
 headers with notes. Existing native classifications already said DNA despite
 generic written headers. Returned C58 passes all three separate DP/PDU/5PC
 linked controls: both canonical links, projected heavy-atom restraints and
-phosphate tetrahedral coverage survive. C59 tests the new DP dictionary at B:4
-in a separate copy of the preserved full model and NARestraints bundle. The
-original bundle remains automatic fallback if the candidate is unusable.
-Native full-scaffold execution, production adoption and scientific qualification
-remain separate. Equivalent operational mapping
+phosphate tetrahedral coverage survive. Returned C59 qualifies the new DP
+B:4 dictionary in the full 877-atom model, preserving all 38 links and the
+NARestraints pairing/stacking policy; the automatic diagnostic choice retains
+that candidate with notes. C60 supplies one bounded geometry trial under the
+new fixed definitions, with fresh derivative checks and the verified C59 start
+as fallback. Production adoption and scientific qualification remain separate. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

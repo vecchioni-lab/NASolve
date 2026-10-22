@@ -847,8 +847,36 @@ proxy, all 38 backbone links and the complete explicit NARestraints custom
 pairing/stacking requests. Require exact projected heavy restraints and finite
 repeatable fixed evaluations. Each of the two workers has a 60-second limit;
 there is no generation or optimizer. Select the qualified candidate or retain
-the verified original automatically. C59 native execution, production adoption
-and PDF rendering remain separate; no production default changes.
+the verified original automatically. Returned C59 verifies all 3,097 payloads:
+the original baseline passes all twelve checks, and the candidate passes 67
+checks with only unavailable formal-charge readback unsupported. The separate
+automatic decision selects qualified_candidate with notes. All 877 atoms,
+43 sites, 38 links and explicit NARestraints mechanics survive.
+
+C60 performs one bounded geometry trial from this verified C59 PDB-rounded
+start under the replacement manager's fixed definitions. A new initial
+corrected-gradient audit must pass before the existing native optimizer runs.
+Carry the C26 plane correction proof only if the complete plane/parallelity
+inventories, named atom mapping and native API/source pins match; calculate a
+new constraint signature for the replacement covalent manager. The old
+manager's signature or derivative verdict cannot qualify changed targets.
+The additive cif-replacement-manager-gradient-qualification-v1 validator keeps
+this boundary explicit. The qualified local plane correction and native kernels
+remain unchanged. The existing geometry worker, optimizer and termination rules
+retain a 1,000-iteration bound under the unchanged native trial policy
+cif-fixed-na-corrected-geometry-trial-v1. Check endpoint derivatives at full
+precision and PDB-rounded coordinates, exact native readback and serialization
+bound to the verified source-model hash. Both the full-precision endpoint and
+the freshly reread rounded PDB must have zero fixed-hand sign conflicts and a
+target no worse than the new trial's initial target under the same objective.
+The cif-qualified-scaffold-geometry-choice-v1 adapter
+`cif_scaffold_candidate.select_scaffold_geometry` chooses a usable endpoint or
+retains the verified C59 initial model automatically, including when no endpoint
+is produced. Nonconvergence, pucker and residual outliers are notes, not forced
+continuation cycles or failure conditions by themselves. This is a
+new fixed objective, not a continuation of C28 or an energy comparison with its
+old dictionary. Production adoption, scientific qualification and PDF rendering
+remain separate; no production default changes.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core

@@ -264,7 +264,7 @@ def qualify_scaffold_candidate(baseline, native, model, receipt, output, *, code
                    for row in details[kind] if row.get('origin_id') == edit_origin) != 1:
                 failures.append(request['kind'])
         check('exact-custom-request-membership', not failures, failures=failures)
-        for kind in kinds:
+        for kind in sorted(kinds):
             check('unaffected-native-proxies:' + kind, _proxy_subset(baseline, changed, kind) == _proxy_subset(native, changed, kind))
             check('inter-site-native-proxies:' + kind, _cross_site_proxies(baseline, kind) == _cross_site_proxies(native, kind))
             check('explicit-policy-proxies:' + kind, Counter(dump(r) for r in baseline['geometry']['proxy_details'][kind] if r.get('origin_id') == edit_origin)
@@ -315,3 +315,63 @@ def select_scaffold_candidate(preparation, qualification, baseline_usable, *, ca
         'ranking': 'VERIFIED_CONTEXT_THEN_PRESERVED_FALLBACK', 'objective_comparison': 'NOT_RUN',
         'scientific_approval': 'NOT_RUN', 'automatic_adoption': False, 'requires_cif_review': False,
         'production_pipeline': 'UNCHANGED'}
+
+
+def select_scaffold_geometry(initial_qualification, trial, mechanics, geometry_review, serialization, *, atom_count, rounded_geometry_review=None):
+    """Retain a usable fixed bundle when an optional coordinate trial is unusable.
+
+    Native stopping is reported, never used as a convergence gate. A selected
+    endpoint must preserve the manager and fixed hands, pass fresh sampled
+    derivatives, and improve only its own unchanged objective. Pucker and
+    descriptive residuals remain notes. This chooses a separate artifact only.
+    """
+    from .cif_corrected_geometry import _sampled_cases, _close
+    from .cif_fixed_geometry import _points
+    q=initial_qualification
+    if (q.get('policy_id')!=POLICY_ID or q.get('native_usable') is not True
+            or q.get('status')!='SCAFFOLD_CANDIDATE_MECHANICS_PASS' or not mechanics_can_continue(q)
+            or not re.fullmatch('[0-9a-f]{64}',q.get('model_sha256',''))
+            or type(atom_count) is not int or atom_count<=0):
+        raise ValueError('Require independently usable initial full-scaffold evidence')
+    checks={};result=(trial or {}).get('result',{})
+    if trial is not None:
+        checks['completed_preserved_trial']=(trial.get('status')=='REVIEW' and trial.get('execution',{}).get('status')=='COMPLETED'
+            and trial['execution'].get('returncode')==0 and trial.get('source_preserved') is True and trial.get('frozen_inputs_preserved') is True)
+        checks['fixed_native_readback']=bool(mechanics and mechanics.get('mechanics_checks_pass') is True
+            and mechanics.get('checks') and all(v.get('status')=='PASS' for v in mechanics['checks']))
+        try:
+            signature=result['constraint_signature_before']
+            checks['fixed_objective']=(result['policy_id']=='cif-fixed-na-corrected-geometry-trial-v1'
+                and result['captured_inventory_matches'] is True and result['qualified_initial_snapshot_matches'] is True
+                and result['normalization'] is False and result['starting_coordinates']=='CAPTURED_INITIAL'
+                and re.fullmatch('[0-9a-f]{64}',signature) is not None and signature==result['constraint_signature_after'])
+            _points(result['final_sites_cart'],atom_count);checks['finite_coordinates']=True
+            audit=result['endpoint_gradient_audit']
+            _sampled_cases(audit,atom_count,{'full_precision','pdb_rounded'})
+            checks['qualified_endpoint_derivatives']=(result['endpoint_derivative_qualification']=='SAMPLED_NATIVE_DERIVATIVES_PASS'
+                and audit['analysis_completed'] is True and audit['model_optimization']=='NOT_RUN' and audit['automatic_adoption'] is False
+                and type(audit['evaluation_calls']) is int and 0<audit['evaluation_calls']<=audit['max_evaluation_calls']<=4000
+                and all(_close(result[field][key],audit['cases'][label]['families']['all']['baseline'][key])
+                    for label,field in [('full_precision','final'),('pdb_rounded','serialized')] for key in ['target','gradient_norm']))
+            checks['same_objective_endpoint_retained']=(all(type(result[name][key]) in (int,float) and math.isfinite(result[name][key])
+                and (key!='gradient_norm' or result[name][key]>=0) for name in ['initial','final','serialized'] for key in ['target','gradient_norm'])
+                and all(result[name]['target']<=result['initial']['target']+1e-8+1e-10*abs(result['initial']['target']) for name in ['final','serialized']))
+            checks['fixed_hands_preserved']=(geometry_review['analysis_completed'] is True and geometry_review['atom_count']==atom_count
+                and geometry_review['summary']['chirality']['sign_conflicts']==0
+                and rounded_geometry_review['analysis_completed'] is True and rounded_geometry_review['atom_count']==atom_count
+                and rounded_geometry_review['summary']['chirality']['sign_conflicts']==0)
+            checks['exact_serialization']=(serialization['source_preserved'] is True and serialization['metadata_and_headers_preserved'] is True
+                and serialization['source_sha256']==q['model_sha256'] and serialization['atom_count']==atom_count
+                and serialization['atom_correspondence']=='EXACT_IDENTITY_BIJECTION'
+                and re.fullmatch('[0-9a-f]{64}',serialization['candidate_sha256']) is not None)
+        except (KeyError,TypeError,ValueError,OverflowError,ZeroDivisionError):
+            checks['complete_endpoint_evidence']=False
+    usable=bool(checks) and all(checks.values())
+    selected='qualified_geometry_endpoint' if usable else 'verified_initial_scaffold'
+    notes=['Geometry, source-state and absolute stereochemical qualification remain recorded with the solution; no CIF approval is required.']
+    if usable:notes.append('The bounded trial retained a usable endpoint under the same fixed definitions; its native stopping verdict is reported separately.')
+    else:notes.append('The optional coordinate trial was not selected; the independently usable starting model and bundle were retained automatically.')
+    return {'schema_version':1,'policy_id':'cif-qualified-scaffold-geometry-choice-v1','scope':'SEPARATE_FULL_SCAFFOLD_GEOMETRY_TRIAL',
+        'status':'CONTINUE_WITH_NOTES','continue_solving':True,'selected_candidate':selected,'endpoint_usable':usable,'checks':checks,
+        'stopping':result.get('stopping'),'notes':notes,'objective_comparison':'SAME_FIXED_DICTIONARY_TRIAL_ONLY',
+        'scientific_approval':'NOT_RUN','automatic_adoption':False,'requires_cif_review':False,'production_pipeline':'UNCHANGED'}

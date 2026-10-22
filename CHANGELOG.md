@@ -8,6 +8,33 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Trial geometry under the qualified replacement manager
+
+- Verify all 3,097 C59 payloads, both completed native workers and automatic
+  selection of the qualified DP B:4 candidate with notes. The twelve baseline
+  checks and 67 candidate checks pass; formal-charge readback remains unsupported
+  without contradictions. All 877 atoms, 43 sites, 38 links and explicit
+  NARestraints mechanics survive.
+- Add C60 `--scaffold-geometry-only` on exact C59. Audit fresh initial corrected
+  derivatives and bind the new manager's own constraint signature. Carry the
+  C26 general plane proof only under exact plane/parallelity, named-atom and
+  native API/source agreement; preserve the established correction and kernels.
+- Use the existing geometry worker, L-BFGS and termination rules for one trial
+  capped at 1,000 iterations. Require endpoint derivatives at full precision
+  and PDB-rounded coordinates, exact native readback/serialization/source hashes,
+  zero fixed-hand conflicts in both geometries and no worse full/serialized
+  targets under the same new objective. The explicit geometry-choice adapter
+  retains a usable endpoint or verified C59 start, including absent endpoints.
+- Nonconvergence, pucker and residual outliers alone remain notes without
+  mandatory continuation cycles.
+  This is a new fixed objective, not a C28 continuation. All 82 new regressions,
+  235 focused and 3288 full tests pass (two skips,
+  276 subtests), plus actual-C59 deleted-build/relocated replay with preserved
+  everyday edits, poisoned imports and aliased temporary roots. Native Mac
+  execution remains pending; production/eight-pair integration follows the
+  bounded trial. Scientific geometry, state/CIP, production adoption and PDF
+  rendering remain separate. No student CIF gate or NARestraints policy change.
+
 ### Test a separate qualified dictionary in the full NARestraints scaffold
 
 - Verify all 2,940 C58 payloads and four completed Phenix 2.2.1-6174 workers.
@@ -25,8 +52,8 @@ entries are reconstructed from repository history.
   original automatically if the candidate is unusable; no student CIF gate.
 - All 73 new regressions, 137 focused and 3206 full tests pass (two skips,
   276 subtests), plus actual-C58 deleted-build/relocated preparation with poisoned
-  imports, aliased temporary roots and everyday edits preserved. Native Mac
-  full-scaffold execution remains pending. No
+  imports, aliased temporary roots and everyday edits preserved. Returned native
+  full-scaffold execution passes and selects the candidate with notes. No
   generation, optimizer, native kernel/target, production default/adoption,
   dependency, NAR release, eight-pair plan or PDF-rendering change.
 

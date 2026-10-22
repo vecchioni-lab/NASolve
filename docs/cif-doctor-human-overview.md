@@ -50,9 +50,11 @@ native cases. Returned C56 verifies that replay. C57 adds source-declared DNA
 metadata restoration with automatic fallback to the verified original if its
 isolated native comparison fails. All six C57 native comparisons pass and all
 three components select the restored header with notes. Returned C58 passes
-all three separate short-chain linkage controls. C59 tests DP in the actual full
-scaffold and retains the verified original as automatic fallback if needed.
-Native full-scaffold execution and automatic production recovery,
+all three separate short-chain linkage controls. Returned C59 qualifies DP in
+the actual full scaffold and selects it with notes. C60 supplies one bounded
+geometry trial under those new fixed definitions, with fresh derivative checks
+and the verified initial model as fallback. Native geometry execution and
+automatic production recovery,
 effective-bundle adoption and PDF rendering remain planned. Development
 diagnostics can retain REVIEW without asking students to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
@@ -1255,9 +1257,35 @@ and a 60-second deadline per worker. Require every one of the 38 backbone links,
 unselected definition/proxy and explicit NARestraints pairing/stacking request
 to survive, alongside the selected projected restraints and phosphate coverage.
 Select the qualified candidate or retain the verified original automatically;
-no student CIF decision is introduced. Native full-scaffold execution, achieved
-geometry, state/CIP qualification, production adoption and PDF rendering remain
-separate. No generation, optimization or native target/kernel change occurs.
+no student CIF decision is introduced. Returned C59 passes the twelve baseline
+checks and 67 candidate checks, retaining only unsupported formal-charge
+readback, and selects qualified_candidate with notes. Every model identity,
+backbone link and designed pairing/stacking request survives. The independently
+generated DP angle target is a new fixed definition; fixed-coordinate outlier
+counts under different objectives are not an optimization comparison.
+
+C60 performs one bounded geometry-only trial under that replacement manager.
+It starts from the verified C59 coordinates and retains them automatically if
+the trial is unusable. This allows the workflow to progress without asking a
+student to diagnose a bond table or run indefinite continuation cycles.
+
+**Methods.** Audit fresh corrected derivatives at the new initial coordinates.
+Carry the established general plane correction proof only when complete
+plane/parallelity inventories, atom-name mapping and native API/source pins
+match; the replacement covalent manager receives a new constraint signature
+and fresh full-objective derivative evidence. Preserve the qualified correction,
+native kernels, dictionaries and NARestraints policy. Use the existing geometry
+worker, L-BFGS and termination rules for at most 1,000 iterations. Check endpoint
+derivatives in full precision and after PDB rounding, exact native readback and
+serialization/source hashes. Both full-precision and freshly reread rounded
+geometry must have zero fixed-hand sign conflicts; both targets must be no worse
+than the new trial's initial target under the same objective. Retain a usable
+endpoint or the verified initial model automatically, including when no endpoint
+is produced. Nonconvergence, pucker and residual outliers alone do not require
+failure or further cycles. Native C60
+execution, achieved scientific geometry, state/CIP qualification, production
+adoption and PDF rendering remain separate. After the bounded trial, the next
+path is production/eight-pair integration rather than open-ended optimization.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

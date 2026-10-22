@@ -1,6 +1,7 @@
 """Derivative-evidence preconditions for an explicit corrected geometry trial."""
 from __future__ import annotations
 import math
+from copy import deepcopy
 
 POLICY_ID='cif-fixed-na-corrected-geometry-trial-v1'
 CONTINUATION_POLICY_ID='cif-fixed-na-corrected-geometry-continuation-v1'
@@ -9,6 +10,11 @@ AUDIT_ID='cif-fixed-native-plane-order-gradient-audit-v1'
 FAMILIES=('all','bond','angle','dihedral','chirality','planarity','parallelity','nonbonded')
 CASES={'initial','full_precision','pdb_rounded'}
 STEPS=[1e-3,1e-4,1e-5,1e-6]
+REPLACEMENT_AUDIT_ID='cif-replacement-manager-gradient-qualification-v1'
+QUALIFIED_CORRECTION_SHA256='701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f'
+NUMERIC_MODULES=('scitbx.lbfgs','cctbx.geometry_restraints.flags','cctbx.geometry_restraints.manager',
+    'cctbx.geometry_restraints.energies','scitbx_lbfgs_ext','cctbx_geometry_restraints_ext')
+ADAPTER_MODULES=('cctbx.geometry_restraints','cctbx.array_family.flex')
 
 
 def _need(value):
@@ -64,6 +70,8 @@ def _sampled_cases(q,atom_count,cases):
 
 def validate_gradient_qualification(result,atom_count):
     """Recompute sampled proof before allowing any optimizer invocation."""
+    if isinstance(result,dict) and result.get('policy_id')==REPLACEMENT_AUDIT_ID:
+        return validate_replacement_gradient_qualification(result,atom_count)
     try:
         q=result
         _need(q['policy_id']==AUDIT_ID and q['correction_policy_id']==CORRECTION_ID and q['plane_order_safe'] is True)
@@ -94,6 +102,103 @@ def validate_gradient_qualification(result,atom_count):
         return True
     except (KeyError,TypeError,OverflowError,ZeroDivisionError) as exc:
         raise ValueError('Require complete qualified native gradient evidence') from exc
+
+
+def replacement_manager_view(native):
+    """Keep named plane membership, policy and APIs; covalent targets may differ."""
+    return deepcopy({'atom_count':native['atom_count'],
+        'atoms':[{k:a[k] for k in ['i_seq','atom_id','label','element','identity']} for a in native['atoms']],
+        'planarity':native['geometry']['proxy_details']['planarity'],
+        'parallelity':native['geometry']['proxy_details']['parallelity'],
+        'restraint_policy':native['restraint_policy'],'installed_api_sources':native['installed_api_sources']})
+
+
+def _plane_projection(rows):
+    keys=('i_seqs','j_seqs','weight','target_angle_deg','slack','top_out','origin_id')
+    return [{k:r[k] for k in keys} for r in rows]
+
+
+def validate_replacement_manager_bridge(bridge,parent,atom_count):
+    """Require the exact already qualified plane inventory and named index basis."""
+    try:
+        _need(parent['policy_id']==AUDIT_ID)
+        validate_gradient_qualification(parent,atom_count)
+        old,new=bridge['previous'],bridge['replacement'];_need(old==new)
+        _need(old['atom_count']==atom_count and len(old['atoms'])==atom_count
+            and [a['i_seq'] for a in old['atoms']]==list(range(atom_count)))
+        labels=[a['label'] for a in old['atoms']];_need(len(set(labels))==atom_count)
+        keys=[(a['identity']['model_id'],a['identity']['chain_id'],a['identity']['resseq'],
+            a['identity']['icode'],a['identity']['altloc'],a['atom_id']) for a in old['atoms']]
+        _need(len(set(keys))==atom_count and bool(old['installed_api_sources']))
+        policy=old['restraint_policy'];ids=policy['origin_ids']
+        names={'hydrogen bonds','edits','basepair stacking','basepair parallelity','basepair planarity'}
+        _need(policy['secondary_structure_enabled'] is False and set(ids)==names
+            and all(type(i) is int for i in ids.values()) and len(set(ids.values()))==len(names))
+        competing={i for k,i in ids.items() if k!='edits'}
+        for kind in ['planarity','parallelity']:
+            _need(isinstance(old[kind],list))
+            for row in old[kind]:
+                _need(row.get('origin_id') not in competing)
+                for field,names_field in [('i_seqs','atoms'),*([('j_seqs','j_atoms')] if kind=='parallelity' else [])]:
+                    indices=row[field];_need(len(indices)>=3 and len(indices)==len(set(indices))
+                        and all(type(i) is int and 0<=i<atom_count for i in indices)
+                        and row[names_field]==[labels[i] for i in indices])
+        _need(bool(old['parallelity']) and _plane_projection(old['parallelity'])==_plane_projection(parent['native_parallelity_proxies']))
+        _need(all(_plane_projection([r['proxy'] for r in case['proxies']])==_plane_projection(parent['native_parallelity_proxies'])
+            for case in parent['plane_order_audit']['cases'].values()))
+        return True
+    except (KeyError,TypeError,IndexError,OverflowError,ZeroDivisionError) as exc:
+        raise ValueError('Require unchanged qualified plane membership and native index basis') from exc
+
+
+def validate_replacement_gradient_qualification(result,atom_count):
+    """Qualify a new fixed covalent objective without recycling the old target."""
+    try:
+        q=result;parent=q['parent_qualification']
+        _need(q['policy_id']==REPLACEMENT_AUDIT_ID and parent['policy_id']==AUDIT_ID)
+        validate_replacement_manager_bridge(q['manager_bridge'],parent,atom_count)
+        _need(q['correction_policy_id']==CORRECTION_ID and q['plane_order_safe'] is True
+            and q['correction_core_sha256']==QUALIFIED_CORRECTION_SHA256)
+        _need(q['correction_qualification']=='SAMPLED_NATIVE_DERIVATIVES_PASS' and q['analysis_completed'] is True
+            and q['captured_inventory_matches'] is True and q['normalization'] is False
+            and q['model_optimization']=='NOT_RUN' and q['automatic_adoption'] is False)
+        digest=q['constraint_signature_before'];_need(digest==q['constraint_signature_after']
+            and isinstance(digest,str) and len(digest)==64 and all(c in '0123456789abcdef' for c in digest))
+        _need(type(q['evaluation_calls']) is int and type(q['max_evaluation_calls']) is int
+            and 0<q['evaluation_calls']<=q['max_evaluation_calls']<=2000)
+        _need(q['correction_statistics']['max_energy_change']==0.)
+        for field,modules in [('installed_numeric_sources',NUMERIC_MODULES),('installed_adapter_sources',ADAPTER_MODULES)]:
+            rows=q[field];_need([r['module'] for r in rows]==list(modules))
+            _need([(r['module'],r['sha256']) for r in rows]==[(r['module'],r['sha256']) for r in parent[field]])
+            _need(all(isinstance(r['sha256'],str) and len(r['sha256'])==64 and all(c in '0123456789abcdef' for c in r['sha256']) for r in rows))
+        cpp=q['installed_parallelity_sources'];_need(cpp==parent['installed_parallelity_sources']
+            and len(cpp)==2 and {r['path'] for r in cpp}=={'parallelity.h','parallelity_bpl.cpp'}
+            and all(r['status']=='RECORDED' and type(r['bytes']) is int and r['bytes']>0
+                and len(r['sha256'])==64 and all(c in '0123456789abcdef' for c in r['sha256']) for r in cpp))
+        _need(q['native_parallelity_proxies']==parent['native_parallelity_proxies'])
+        _sampled_cases(q,atom_count,{'initial'})
+        case=q['cases']['initial'];families=case['families'];baseline=families['all']['baseline']
+        for family in families.values():
+            b=family['baseline'];_finite([b['target'],family['repeat_target'],family['repeat_gradient_norm']],3)
+            _need(_close(b['target'],family['repeat_target']) and _close(b['gradient_norm'],family['repeat_gradient_norm']))
+        total=math.fsum(families[name]['baseline']['target'] for name in FAMILIES[1:])
+        _need(_close(total,baseline['target']) and _close(case['target_additivity']['all'],baseline['target'])
+            and _close(case['target_additivity']['sum_controls'],total))
+        summed=[math.fsum(families[name]['baseline']['gradient'][i] for name in FAMILIES[1:]) for i in range(3*atom_count)]
+        mismatch=_norm([a-b for a,b in zip(summed,baseline['gradient'])])
+        _need(_close(mismatch,case['gradient_additivity']['difference_norm'])
+            and mismatch<=1e-8+1e-10*max(1.,baseline['gradient_norm']))
+        raw=q['raw_snapshot'];captured,rebuilt=raw['captured'],raw['rebuilt']
+        for row in [captured,rebuilt]:_finite([row['target'],*row['gradient']],1+3*atom_count)
+        _need(_close(captured['target'],rebuilt['target'])
+            and all(_close(a,b) for a,b in zip(captured['gradient'],rebuilt['gradient'])))
+        _need(_close(baseline['target'],captured['target']))
+        comparison=case['captured_snapshot_match']['comparisons']['target']
+        _need(comparison['consistent'] is True and _close(comparison['captured'],captured['target'])
+            and _close(comparison['rebuilt'],baseline['target']))
+        return True
+    except (KeyError,TypeError,IndexError,OverflowError,ZeroDivisionError) as exc:
+        raise ValueError('Require complete replacement-manager gradient qualification') from exc
 
 
 def validate_continuation(result,qualified,atom_count):

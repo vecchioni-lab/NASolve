@@ -45,8 +45,10 @@ Returned C56 reproduces those passes without new native calls. C57 adds a
 source-declared DNA metadata candidate and automatic verified-original fallback
 within the same isolated scope. Returned C57 passes all six native equivalence
 checks and three selections. Returned C58 passes separate linked-context
-controls. C59 tests a separate full-scaffold DP bundle with automatic
-verified-original fallback. Native full-scaffold execution remains pending.
+controls. Returned C59 qualifies a separate full-scaffold DP bundle and selects
+it automatically with notes. C60 supplies one bounded geometry trial under the
+new fixed definitions, with fresh derivatives and verified-initial fallback.
+Native geometry execution and production adoption remain separate.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
@@ -2463,10 +2465,62 @@ otherwise retain the verified original automatically and report the limitation.
 Different dictionary objectives are not ranked by energy. Nonconvergence and
 existing geometry findings remain notes. The original run and prior candidates
 remain preserved; students do not inspect or approve CIF tables. All 73 new
-regressions, 137 focused and 3206 full tests pass, plus actual-return
-relocated preparation. New native Mac execution remains pending. This does not deploy automatic
-production adoption, select phosphate state, establish absolute CIP or implement
-solution PDF rendering.
+regressions, 137 focused and 3206 full tests pass, plus actual-return relocated
+preparation. Returned C59 verifies all 3,097 payloads and both completed native
+workers. Twelve original-baseline checks pass; the candidate records 67 PASS
+and one unsupported formal-charge readback, without contradictions or REVIEW
+findings. The diagnostic decision selects qualified_candidate with notes.
+All 877 atoms, 43 sites, 38 links and the full NARestraints policy survive.
+At fixed coordinates, DP C6-N5-C7 changes from a 109.471-degree target to the
+independently generated 128.1-degree target. Descriptive outlier counts belong
+to their respective objectives and do not establish optimization improvement.
+This does not deploy automatic production adoption, select phosphate state,
+establish absolute CIP or implement solution PDF rendering.
+
+## Replacement-manager geometry trial (Cedar 60)
+
+`--scaffold-geometry-only` accepts exact C59 and verifies the selected full
+bundle before one separate geometry-only trial. The saved C59 PDB-rounded
+coordinates and replacement numerical definitions are the starting authority.
+This is a new fixed manager, not a continuation of C28's different objective.
+The verified initial model remains an automatic fallback.
+
+**Methods.** First run a fresh corrected-gradient audit at the new initial
+coordinates. Reuse the previously qualified C26 general plane proof only when
+all plane/parallelity inventories, named atom mapping and native API/source pins
+match exactly. Derive a new constraint signature from the replacement manager
+and require fresh sampled derivatives for the complete new objective. The
+cif-replacement-manager-gradient-qualification-v1 adapter binds these separate
+proofs without reusing or forging the old covalent manager's qualification.
+The qualified local plane correction and native kernels/targets stay fixed.
+
+Use the existing geometry worker, L-BFGS and termination rules, bounded at
+1,000 iterations. Keep dictionaries, selected modifiers and explicit NARestraints
+pairing/stacking policy fixed throughout; native secondary-structure guessing
+remains disabled. Check endpoint derivatives at full precision and after PDB
+rounding, and require fresh exact native readback of model identities, chemical
+definitions, constraints and policy. Bind exact PDB serialization to the verified
+source-model hash. Require zero fixed-hand sign conflicts in both the
+full-precision geometry and freshly reread rounded native geometry. Both the
+full-precision and serialized endpoint targets must be no worse than the new
+trial's initial target under the same fixed objective. Pucker is not inversion.
+
+Schema-1 scaffold_geometry_audit uses cif-qualified-scaffold-geometry-trial-v1;
+the existing native trial policy remains
+cif-fixed-na-corrected-geometry-trial-v1. The additive
+`cif_scaffold_candidate.select_scaffold_geometry` adapter uses
+cif-qualified-scaffold-geometry-choice-v1 to select qualified_geometry_endpoint
+only when these checks pass. Otherwise, including an absent endpoint, retain
+verified_initial_scaffold automatically. Report the native stopping reason,
+nonconvergence, pucker and residual geometry as notes; these alone are not
+failure conditions.
+Do not rank targets across the old and replacement dictionaries or require more
+continuation cycles. All 82 new regressions, 235 focused and 3288 full
+tests pass, plus actual-C59 relocated replay and bridge validation. New native
+geometry execution remains pending. Follow this bounded trial with production/eight-pair integration work;
+scientific structure qualification, absolute CIP, phosphate state, nonbonded
+pair identity, ordinary production adoption and PDF rendering remain separate.
+No student CIF inspection or approval is introduced.
 
 ## Reviewed preparation
 
