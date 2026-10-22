@@ -16916,7 +16916,8 @@
       "Nonconvergence/residual geometry/pucker are notes, not rejection. Unknown stereo remains explicitly unassessed, not invented as inversion or PASS.",
       "Demonstrated identity/graph/state corruption, stereo inversion, nonfinite parameters, missing essential restraints or native unusability exclude that candidate. Try another usable candidate; stop only when none exists, without student CIF adjudication.",
       "PostMR CIF Doctor receipts gain an additive plain-language solution_report summary. Historical findings/status/readiness and fixed mechanics are unchanged.",
-      "C55 opt-in isolated saved-candidate native usability-to-decision adapter is implemented and software-tested, pending Mac execution. Selection is confined to the isolated generated-candidate pool; no production adoption occurs."
+      "C55 opt-in isolated saved-candidate native usability-to-decision adapter is implemented and software-tested, pending Mac execution. Selection is confined to the isolated generated-candidate pool; no production adoption occurs.",
+      "C56 corrected saved native usability-to-decision replay passes all six returned cases and three isolated decisions with notes, preserving the v1 failures; no linked adoption occurs."
     ],
     "planned": [
       "Bounded automatic source/repair/optimization orchestration retaining best valid endpoints and native fallback.",
@@ -17467,7 +17468,7 @@
     "next_step": "C55 reuses saved outputs for isolated native usability and automatic decisions; no regeneration, optimization, linked adoption or student CIF adjudication."
   },
   "isolated_candidate_native_usability_2026_10_22": {
-    "status": "IMPLEMENTED_ISOLATED_NATIVE_ADAPTER_PENDING_MAC",
+    "status": "SIX_NATIVE_INTERPRETATIONS_COMPLETED; V1_AUDITOR_REPRESENTATION_REVIEW",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "55_Cedar",
     "policy_id": "cif-isolated-candidate-native-usability-v1",
@@ -17508,7 +17509,7 @@
       "compatibility": "Old actions/verdicts/workers, production pipelines, curated sources, NARestraints policy/workbook and requested eight-pair live test stay unchanged. ATL is independent public/compiler only."
     },
     "validation": {
-      "native": "PENDING_USER_MAC; actual return/source replay and owned fake processes are software evidence, not native usability proof.",
+      "native": "Phenix 2.2.1-6174: six completed interpretation/energy workers, twelve finite exactly repeated evaluations. V1 auditor fails on roundoff, zero-weight constant rows and division by zero; corrected replay is separate.",
       "new_regressions": 63,
       "fail_before": {
         "failed": 29,
@@ -17587,6 +17588,250 @@
     "scientific_approval": "NOT_RUN",
     "absolute_cip_assignment": "NOT_RUN",
     "automatic_adoption": false,
-    "requires_cif_review": false
+    "requires_cif_review": false,
+    "returned_review": {
+      "name": "55_Cedar_nhnh_xco_cif_numerical_recovery_review.zip",
+      "sha256": "b7946b33fd946a1a6c039ebcc0f836214369d9ffc70266bd48d81d6aab85f832",
+      "bytes": 62584612,
+      "verified_payloads": 2760,
+      "prior_payloads_unchanged": 2677,
+      "source_commit": "f9efef60fc9768cdb9a9065dbd9e6a1d780c0e05",
+      "build_sha256": "6c5668e93fad13f152d0ba6a1660af571a855b2538fac514074f6cde9c82a66d",
+      "reported_runner_sha256": "3646cd790629abf18f55ece6966f6593fb3f03ac1ae516675769d43d05851ba3",
+      "runtime_archive_sha256": "68da9d5505e91f357b6bf0170ba92858a1dc346eaf7a6ae8b5b7271551b9bc6d",
+      "runtime_members": 140,
+      "delivery_comparison": "Exact clean published runtime/BUNDLE except NARestraints working_tree_has_changes=True metadata; reconstructing that single field reproduces the reported runner SHA.",
+      "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1",
+      "native_workers_completed": 6,
+      "captured_energy_calls": 12,
+      "case_facts": {
+        "5PC": {
+          "generated_output": {
+            "max_coordinate_delta": 8.881784197001252e-16,
+            "zero_weight_proxies": {
+              "angle": 0,
+              "bond_asu": 0,
+              "bond_simple": 0,
+              "chirality": 0,
+              "const_dihedral": 10,
+              "dihedral": 0,
+              "parallelity": 0,
+              "planarity": 0
+            },
+            "target": 2550.8467183576427,
+            "gradient_norm": 5059.275143646401,
+            "exact_repeat": true,
+            "all_finite": true
+          },
+          "source_seed": {
+            "max_coordinate_delta": 8.881784197001252e-16,
+            "zero_weight_proxies": {
+              "angle": 0,
+              "bond_asu": 0,
+              "bond_simple": 0,
+              "chirality": 0,
+              "const_dihedral": 10,
+              "dihedral": 0,
+              "parallelity": 0,
+              "planarity": 0
+            },
+            "target": 2565.1663366724,
+            "gradient_norm": 24573.41707089082,
+            "exact_repeat": true,
+            "all_finite": true
+          }
+        },
+        "DP": {
+          "generated_output": {
+            "max_coordinate_delta": 8.881784197001252e-16,
+            "zero_weight_proxies": {
+              "angle": 0,
+              "bond_asu": 0,
+              "bond_simple": 0,
+              "chirality": 0,
+              "const_dihedral": 27,
+              "dihedral": 0,
+              "parallelity": 0,
+              "planarity": 0
+            },
+            "target": 1286.6461293397044,
+            "gradient_norm": 3582.3057993539173,
+            "exact_repeat": true,
+            "all_finite": true
+          },
+          "source_seed": {
+            "max_coordinate_delta": 3.552713678800501e-15,
+            "zero_weight_proxies": {
+              "angle": 0,
+              "bond_asu": 0,
+              "bond_simple": 0,
+              "chirality": 0,
+              "const_dihedral": 27,
+              "dihedral": 0,
+              "parallelity": 0,
+              "planarity": 0
+            },
+            "target": 1658.141039147275,
+            "gradient_norm": 3797.230910038927,
+            "exact_repeat": true,
+            "all_finite": true
+          }
+        },
+        "PDU": {
+          "generated_output": {
+            "max_coordinate_delta": 8.881784197001252e-16,
+            "zero_weight_proxies": {
+              "angle": 0,
+              "bond_asu": 0,
+              "bond_simple": 0,
+              "chirality": 0,
+              "const_dihedral": 9,
+              "dihedral": 0,
+              "parallelity": 0,
+              "planarity": 0
+            },
+            "target": 25.233050697655102,
+            "gradient_norm": 195.69196323242022,
+            "exact_repeat": true,
+            "all_finite": true
+          },
+          "source_seed": {
+            "max_coordinate_delta": 8.881784197001252e-16,
+            "zero_weight_proxies": {
+              "angle": 0,
+              "bond_asu": 0,
+              "bond_simple": 0,
+              "chirality": 0,
+              "const_dihedral": 9,
+              "dihedral": 0,
+              "parallelity": 0,
+              "planarity": 0
+            },
+            "target": 121.46662212425683,
+            "gradient_norm": 33512.35765997532,
+            "exact_repeat": true,
+            "all_finite": true
+          }
+        }
+      },
+      "legacy_qualification": "SIX_REVIEW; all exact_native_sites=false, finite_positive_proxy_parameters=false, complete_native_evidence=false; every error ZeroDivisionError: float division by zero.",
+      "legacy_decisions": "THREE_NO_USABLE_DICTIONARY; isolated generated-candidate pool only; production dictionaries unchanged.",
+      "cause": "Bitwise coordinate roundtrip comparison and unsupported period-zero/zero-ESD constant torsion representation; the failures are in the auditor, not native execution.",
+      "automatic_adoption": false,
+      "scientific_approval": "NOT_RUN"
+    }
+  },
+  "saved_native_usability_correction_2026_10_22": {
+    "status": "SAVED_NATIVE_SIX_CASES_PASS; THREE_ISOLATED_CONTINUE_WITH_NOTES; PRODUCTION_ADOPTION_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "56_Cedar",
+    "policy_id": "cif-isolated-candidate-native-usability-v2",
+    "energy_policy_id": "cif-fixed-native-usability-energy-v1",
+    "module": "src/nasolve/cif_candidate_usability.py",
+    "cli_action": "--saved-native-usability-only",
+    "runner_filename": "56_Cedar_probe_cif_native_usability_replay.py",
+    "review_input": {
+      "name": "55_Cedar_nhnh_xco_cif_numerical_recovery_review.zip",
+      "sha256": "b7946b33fd946a1a6c039ebcc0f836214369d9ffc70266bd48d81d6aab85f832",
+      "bytes": 62584612,
+      "verified_payloads": 2760
+    },
+    "purpose": "Correct audit representation assumptions and qualify saved native data without forcing a native rerun, changing target mechanics or asking students to inspect CIFs.",
+    "algorithm": [
+      "Verify exact C55, complete lineage and all pinned native workers/specs/receipts, inputs, output inventories and selected implementation snapshots; never execute captured code.",
+      "Require complete finite Cartesian arrays and fixed atom identity/model bytes; accept only absolute native/hierarchy roundtrip difference <=1e-12 A. Observed maximum is 3.552713678800501e-15 A.",
+      "Preserve every declared period-zero/zero-ESD torsion in the native constant container with exact zero weight, integer period, named membership and target; active zero-weight or mismatched/missing terms remain excluded.",
+      "Name-normalize independent outer and central torsion swaps with target/alternate sign changes. Preserve periods, weights and native container assignment; compare the same fixed covalent signatures across both coordinate cases.",
+      "Replay the twelve finite repeatable native energies/gradients, preserve all historical v1 failures and pass corrected verified evidence to the existing isolated generated-candidate decision core.",
+      "No new native invocation, generation, optimization, source/proxy/kernel change, linked adoption or production pipeline change. Retain stopping/geometry/state/CIP/classification evidence and authoritative NARestraints pairing/stacking."
+    ],
+    "result": {
+      "native_coordinate_cases_pass": 6,
+      "decisions": "THREE_CONTINUE_WITH_NOTES",
+      "fixed_proxy_comparisons_pass": 3,
+      "omitted_both_tetrahedral_coverage": "DP four bonds and six angles PASS",
+      "constant_rows_per_case": {
+        "DP": 27,
+        "5PC": 10,
+        "PDU": 9
+      },
+      "native_energies_replayed": 12,
+      "new_native_calls": 0
+    },
+    "validation": {
+      "new_regressions": 34,
+      "fail_before": {
+        "failed": 9,
+        "passed": 8,
+        "seconds": 0.62,
+        "scope": "Initial 17 representation cases before implementation; new replay and integer-period cases are separate."
+      },
+      "focused": {
+        "passed": 140,
+        "seconds": 7.46,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_native_usability_representation.py tests/test_cedar56_delivery.py tests/test_cif_candidate_usability.py tests/test_cedar55_delivery.py tests/test_cif_native_validation.py tests/test_cif_doctor_selection.py"
+      },
+      "full": {
+        "passed": 3026,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 239.03,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "ea4e4fefa103f031cc56590ed24e860516f1771e",
+          "working_tree_has_changes": false
+        },
+        "runner_sha256": "13bf51c185863c11cbcc6c3013c3b8f939f632319df7c6f11197023c7dd6c835",
+        "build_sources_deleted_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 2760,
+        "runtime_members": 140,
+        "runtime_archive_sha256": "2e09351d6e7e5727daf9fac4cf27cb44f3fb6d0898eea558d187e97980ae4f26",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "captured_native_cases_replayed": 6,
+        "captured_energy_calls_verified": 12,
+        "isolated_native_usability": "SIX_PASS",
+        "decisions": "THREE_CONTINUE_WITH_NOTES",
+        "legacy_rejections": "PRESERVED",
+        "ATL": "INDEPENDENT_PUBLIC_ONLY",
+        "new_native_calls": 0,
+        "generation_optimization_adoption": "NOT_RUN"
+      },
+      "documentation": {
+        "mirror_equality": "PASS",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "native_worker_module_unchanged": "PASS",
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      },
+      "native": "SAVED_DATA_REPLAY: six actual Phenix 2.2.1-6174 workers captured by C55. No new native execution. Synthetic fixtures and owned fake source text test schema/software behavior only."
+    },
+    "compatibility": "Additive explicit C56 action and v2 qualification receipts. Historical v1 receipts, default native worker/energy policy, CIFs, proxies, kernels, dependencies, curated precedence and NARestraints release/workbook stay fixed. ATL remains public/compiler only and the eight-pair full-run plan is unchanged.",
+    "remaining_limits": [
+      "Isolated generated-candidate selection only; production recovery/adoption and solution PDF integration remain planned.",
+      "Native ligand/non-polymer classification needs source-preserving linked qualification.",
+      "No convergence/scientific approval, mapped absolute CIP or phosphate-state selection is inferred.",
+      "Linear-axis torsions, DP geometry findings and unsupported native formal-charge access remain visible."
+    ],
+    "requires_cif_review": false,
+    "automatic_adoption": false,
+    "scientific_approval": "NOT_RUN",
+    "absolute_cip_assignment": "NOT_RUN"
   }
 }

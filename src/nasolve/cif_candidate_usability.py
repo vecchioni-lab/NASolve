@@ -16,8 +16,30 @@ from .cif_source_candidate import complete_candidate_stereo
 from .cif_stereochemistry_audit import _values,_graph,reader_stereo_inventory
 from .cif_terminal_qualification import definition_projection_checks,_rows
 
-POLICY_ID='cif-isolated-candidate-native-usability-v1'
+POLICY_ID='cif-isolated-candidate-native-usability-v2'
 ENERGY_POLICY_ID='cif-fixed-native-usability-energy-v1'
+
+
+def _torsion_signature(names,target,period,alternates=None):
+    """Name-normalize the native independent outer/central swaps and signs."""
+    value=float(period)
+    if type(period) is bool or not math.isfinite(value) or value<0 or not value.is_integer():raise ValueError('Invalid torsion periodicity')
+    ns=list(names);sign=1
+    for i,j in [(0,3),(1,2)]:
+        if ns[i]>ns[j]:ns[i],ns[j]=ns[j],ns[i];sign*=-1
+    if alternates is None or alternates in ('','.','?'):alt=[]
+    else:alt=alternates if isinstance(alternates,(list,tuple)) else str(alternates).split(',')
+    angle=lambda x:format((sign*float(x))%360.,'.10g')
+    return tuple(ns),angle(target),int(value),tuple(sorted(angle(x) for x in alt))
+
+
+def _torsion_weight(row):
+    sigma=float(row['value_angle_esd']);period=int(row['period'])
+    if not math.isfinite(sigma) or sigma<0 or period<0:raise ValueError('Invalid torsion parameters')
+    if sigma==0:
+        if period!=0:raise ValueError('Zero torsion ESD requires a declared constant row')
+        return 0.
+    return 1/sigma**2
 
 
 def reassess_complete_candidate(source,candidate,code):
@@ -113,7 +135,12 @@ def qualify_candidate_native(source,candidate,model,code,native):
         _model(native,Path(model),coordinates_match=True);atoms=native['atoms'];indices={a['i_seq']:a['atom_id'] for a in atoms}
         checks['exact_model_and_component']=(len(indices)==len(elements) and set(indices.values())==set(elements)
             and all(a['identity']['resname'].strip()==code and a['element'].strip().upper()==elements[a['atom_id']] for a in atoms))
-        checks['exact_native_sites']=native['geometry'].get('sites_cart_exact')==[a['xyz'] for a in atoms]
+        positions=native['geometry'].get('sites_cart_exact');xyz=[a['xyz'] for a in atoms]
+        valid=(isinstance(positions,list) and len(positions)==len(xyz)
+            and all(len(p)==3 and all(type(x) in (float,int) and math.isfinite(x) for x in p) for p in positions))
+        delta=max((abs(x-y) for p,q in zip(positions,xyz) for x,y in zip(p,q)),default=0.) if valid else None
+        checks['native_coordinate_roundtrip']=valid and delta<=1e-12
+        evidence['native_coordinate_roundtrip']={'maximum_absolute_difference_angstrom':delta,'absolute_tolerance_angstrom':1e-12}
         mappings=native['monomer_mappings']['rows'];checks['one_complete_monomer']=(len(mappings)==1 and mappings[0]['resname'].strip()==code
             and all(mappings[0].get(k,{}).get('status')=='RECORDED' and mappings[0][k].get('atom_ids')==[]
                     for k in ['missing_non_hydrogen_atoms','missing_hydrogen_atoms','unexpected_atoms']))
@@ -133,16 +160,17 @@ def qualify_candidate_native(source,candidate,model,code,native):
             return tuple(indices[i] for i in ids)
         def key(a):return min(a,a[::-1])
         def numeric(row,fields):return all(type(row.get(k)) in (float,int) and math.isfinite(row[k]) for k in fields)
-        checks['finite_positive_proxy_parameters']=True
+        checks['finite_active_proxy_parameters']=True
         for kind,rows in details.items():
             for row in rows:
                 names(row)
                 if kind=='planarity':valid=len(row.get('weights',[]))==len(row['i_seqs']) and all(type(w) in (int,float) and math.isfinite(w) and w>0 for w in row['weights'])
                 else:
                     fields=['weight']+(['distance_ideal'] if kind in {'bond_simple','bond_asu'} else ['angle_ideal'] if kind in {'angle','dihedral','const_dihedral'} else ['volume_ideal'] if kind=='chirality' else ['target_angle_deg'])
-                    valid=numeric(row,fields) and row['weight']>0
+                    valid=numeric(row,fields) and (row['weight']>0 or
+                        (kind=='const_dihedral' and row['weight']==0 and type(row.get('periodicity')) is int and row['periodicity']==0))
                     if kind=='chirality':valid &= type(row.get('both_signs')) is bool and abs(row.get('volume_ideal',0))>0
-                checks['finite_positive_proxy_parameters'] &= valid
+                checks['finite_active_proxy_parameters'] &= valid
         def matching(kind,category,size,target,source_target,esd):
             expected=Counter((key(tuple(r['atom_id_'+str(i)] for i in range(1,size+1))),format(float(r[source_target]),'.10g'),format(1/float(r[esd])**2,'.10g')) for r in _rows(values,category))
             actual=Counter((key(names(r)),format(float(r[target]),'.10g'),format(float(r['weight']),'.10g')) for r in details[kind])
@@ -151,16 +179,15 @@ def qualify_candidate_native(source,candidate,model,code,native):
         checks['exact_active_angles']=matching('angle','_chem_comp_angle',3,'angle_ideal','value_angle','value_angle_esd')
         from .dictionary_compatibility import normalize_torsion_block
         normalized,_=normalize_torsion_block(values)
-        def angle(x):return format(float(x)%360.,'.10g')
-        def alternatives(x):
-            if x is None or x in ('','.','?'):return ()
-            return tuple(sorted(angle(v) for v in (x if isinstance(x,(list,tuple)) else str(x).split(','))))
-        torsions=Counter((key(tuple(r['atom_id_'+str(i)] for i in range(1,5))),angle(r['value_angle']),
-            format(1/float(r['value_angle_esd'])**2,'.10g'),int(r['period']),alternatives(r.get('alt_value_angle')))
+        torsions=Counter(('const_dihedral' if int(r['period'])==0 else 'dihedral',
+            _torsion_signature(tuple(r['atom_id_'+str(i)] for i in range(1,5)),r['value_angle'],r['period'],r.get('alt_value_angle')),
+            format(_torsion_weight(r),'.10g'))
             for r in _rows(normalized,'_chem_comp_tor'))
-        active_torsions=Counter((key(names(r)),angle(r['angle_ideal']),format(float(r['weight']),'.10g'),
-            r['periodicity'],alternatives(r.get('alt_angle_ideals'))) for kind in ['dihedral','const_dihedral'] for r in details[kind])
+        active_torsions=Counter((kind,_torsion_signature(names(r),r['angle_ideal'],r['periodicity'],r.get('alt_angle_ideals')),
+            format(float(r['weight']),'.10g')) for kind in ['dihedral','const_dihedral'] for r in details[kind])
         checks['exact_active_torsions']=torsions==active_torsions
+        evidence['native_constant_torsions']=[{'atom_names':list(names(r)),'target':r['angle_ideal'],
+            'periodicity':r['periodicity'],'weight':r['weight']} for r in details['const_dihedral']]
         planes={}
         for r in _rows(values,'_chem_comp_plane_atom'):planes.setdefault(r['plane_id'],[]).append((r['atom_id'],format(1/float(r['dist_esd'])**2,'.10g')))
         expected_planes=Counter(tuple(sorted(rows)) for rows in planes.values())
@@ -204,7 +231,10 @@ def covalent_proxy_signature(native):
         for row in rows:
             r={k:v for k,v in row.items() if k not in {'i_seqs','atoms','j_seqs','j_atoms'}}
             ns=tuple(index[i] for i in row['i_seqs'])
-            if kind in {'bond_simple','bond_asu','angle','dihedral','const_dihedral'}:ns=min(ns,ns[::-1])
+            if kind in {'bond_simple','bond_asu','angle'}:ns=min(ns,ns[::-1])
+            if kind in {'dihedral','const_dihedral'}:
+                ns,target,_,alt=_torsion_signature(ns,r['angle_ideal'],r['periodicity'],r.get('alt_angle_ideals'))
+                r['angle_ideal']=target;r.pop('alt_angle_ideals',None);r['alt_angle_ideals']=alt
             if kind=='chirality':
                 center,*others=ns;parity=(-1 if sum(others[i]>others[j] for i in range(3) for j in range(i+1,3))%2 else 1)
                 ns=(center,*sorted(others));r['volume_ideal']=abs(r['volume_ideal']) if r['both_signs'] else parity*r['volume_ideal']
@@ -239,7 +269,7 @@ def isolated_candidate_decision(source,candidate,code,qualification,stopping):
     record=ComponentCandidate(candidate_id='source_native_generated',component=code,source_priority=0,
         artifact_sha256=q['candidate_sha256'],chemistry_sha256=chemistry,integrity_verified=True,native_usable=q['native_usable'],
         chemistry_preserved=a['candidate_status']=='CANDIDATE_REVIEW',essential_restraints_present=q['native_usable'],
-        finite_parameters=q['checks'].get('finite_positive_proxy_parameters',False),stereochemistry=a['finished_stereo']['stereochemistry'],
+        finite_parameters=q['checks'].get('finite_active_proxy_parameters',False),stereochemistry=a['finished_stereo']['stereochemistry'],
         converged=converged,warnings=tuple(notes))
     result=select_component_candidate([record]);result.update(scope='ISOLATED_COMPONENT_ONLY',linked_adoption='NOT_RUN',production_pipeline='UNCHANGED')
     if not result['continue_solving']:result['report_text']='The generated candidate was not selected by this isolated check; existing production dictionaries were preserved.'

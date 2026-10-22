@@ -45,7 +45,8 @@ The implemented decision core preserves source authority, excludes demonstrated
 unusable candidates and compares energy only for the same fixed objective.
 Unknown stereo remains unknown. PostMR now stores a concise solution-report
 summary alongside its detailed assessment. C55 adds an opt-in isolated native
-usability-to-decision adapter, pending Mac execution. Automatic production
+usability-to-decision adapter; corrected replay now passes its six returned
+native cases. Automatic production
 recovery, effective-bundle adoption and PDF rendering remain planned. Development diagnostics can retain REVIEW without asking students to
 inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
@@ -1170,7 +1171,19 @@ is not an acceptance threshold. Six workers have 60-second deadlines, with no
 regeneration or optimization. Verified evidence reaches the existing automatic
 decision core for this isolated generated-candidate pool only. Nonconvergence
 is a note, and unselected generated output leaves production dictionaries
-untouched. Native Mac results remain pending.
+untouched. Returned C55 completes all six native interpretations. Its twelve
+recorded energy/gradient evaluations are finite and repeat exactly. The auditor
+needs two representation corrections: allow 1e-12 A Cartesian roundtrip error
+and recognise period-zero/zero-ESD native constant torsions. Signed torsion
+sorting must also transform target and alternate angles. These checks preserve
+every native row and keep positive-weight requirements for active restraints.
+
+Corrected v2 replay passes all six cases and retains three isolated candidates
+with notes, preserving the original failed records. C56 pins and replays those
+saved receipts, source snapshots and data without executing captured Python or
+starting Phenix again. This is native usability evidence, not convergence,
+linked polymer classification or scientific approval. Students do not inspect
+CIFs, and production dictionaries are not replaced by this diagnostic.
 
 **Methods.** Freeze and hash the prior output; compare named chemical graphs,
 explicit formal charges, fixed signed definitions and finished four-neighbor

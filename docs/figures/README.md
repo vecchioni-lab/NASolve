@@ -105,5 +105,7 @@ and finished four-neighbor configuration. C55 reuses saved dictionaries for
 isolated native usability and automatic decisions; DP's omitted `both` volume
 term remains a mechanical difference requiring complete tetrahedral coverage.
 Nonconvergence is a note. Linked classification/adoption remain separate and
-Mac usability execution is pending; no completed production-adoption arrow or
-student CIF adjudication is implied.
+C55 supplies six completed native interpretations; corrected v2 saved replay
+passes them while preserving v1 roundoff/constant-torsion failures. C56 replays
+that evidence without new native calls. No completed production-adoption arrow
+or student CIF adjudication is implied.

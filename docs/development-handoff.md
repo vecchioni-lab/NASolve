@@ -22,7 +22,8 @@ inversion excludes that candidate rather than being silently allowed.
 
 Implemented: pure `cif-automatic-usable-fallback-v1` selection from verified
 adapter evidence and additive PostMR `solution_report` summaries. C55 adds an
-opt-in isolated native qualification-to-decision adapter, pending the Mac return.
+opt-in isolated native qualification-to-decision adapter; corrected saved replay
+passes the returned native cases.
 Automatic acquisition/repair, production bundle adoption and the PDF renderer
 remain planned. Detailed diagnostic REVIEW results are developer evidence,
 not student CIF approval gates. See the [contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
@@ -38,33 +39,41 @@ but remains a mechanical volume restraint, so its omission is not equivalence.
 The reported runner differs from clean C54 only in NARestraints dirty-state
 metadata; reconstructing that field reproduces its SHA with equal runtime bytes.
 
-**C55 is the next native action.** Use `--candidate-native-usability-only` on the
-exact C54 return. Reuse each saved dictionary at source-seed and generated-output
-coordinates: six workers, at most 60 seconds each, two fixed unnormalized native
-energy/gradient evaluations per worker. No generation or optimization repeats.
-Require exact effective definitions, active covalent targets/weights, atom
-identities, finite repeatable values and unchanged covalent proxies across cases.
-The omitted `both` term additionally requires all four native bonds and six
-angles at that centre. Fixed-hand loss, charge changes and actual opposed
-finished configuration remain exclusions. Preserve the raw DP rejection while
-recording the separate general reassessment; there is no residue-name exception.
+Returned C55 verifies **2,760 payloads** and all preserved C54 evidence. Six
+Phenix 2.2.1-6174 interpretations complete, with twelve finite, exactly repeated
+native energy/gradient evaluations. The v1 auditor fails because it demands
+bitwise equality across Cartesian roundtrips (maximum difference 3.55e-15 A),
+rejects native zero-weight constant rows and divides by their declared zero ESD.
+Its six REVIEW results and three unselected decisions remain historical evidence.
 
-Pass verified evidence to the existing automatic decision core within the
-**isolated generated-candidate pool only**. Nonconvergence and unreported
-convergence are notes. No student CIF inspection or linked adoption occurs.
-Generated classification is ligand (DP) or non-polymer (PDU/5PC); linked polymer
-classification, phosphate state, absolute CIP and production/PDF integration
-remain subsequent work. Linear-axis torsions and geometry findings stay visible.
+**Corrected v2 replay passes all six native cases and three isolated decisions
+are CONTINUE_WITH_NOTES.** Compare native/hierarchy Cartesian arrays within
+1e-12 A while preserving exact identities, frozen inputs and definitions.
+Match every declared period-zero/zero-ESD row to the native constant container,
+including zero weight and signed target; active zero-weight restraints remain
+invalid. Canonicalize independent outer/central torsion swaps with their target
+and alternate-angle sign changes. Do not edit CIFs, native proxies or kernels.
+DP retains complete four-bond/six-angle coverage around the omitted `both` term.
+All other geometry, charge-access, stopping, classification and CIP notes remain.
 
-Build `55_Cedar_probe_cif_native_usability.py` with PDU/5PC/ATL. ATL remains
-public graph/compiler only; the requested eight-pair live plan is unchanged.
-No dependency, native kernel/target change, installed patch or NAR release.
-All **63 new regressions**, **296 focused / 2,992 full tests** pass (two skips,
-276 subtests). The exact-C54 deleted-build/relocated replay passes with 140
-runtime members, poisoned imports, aliased temporary roots and everyday edits
-preserved. Validation and exact return hashes are recorded in
-`isolated_candidate_native_usability_2026_10_22` and
-`source_native_complete_candidates_2026_10_21` in the existing ledger.
+**C56 is the next delivery.** `--saved-native-usability-only` accepts exact C55,
+pins/replays its six native receipts/workers/specs/inputs/outputs and selected
+energy implementation sources, preserves original v1 failures, then evaluates
+the data with maintained v2 code. No captured code or new Phenix call executes;
+generation, optimization and linked adoption remain NOT_RUN. The generated
+candidate pool is isolated; production dictionaries are not replaced. Neither
+students nor the PI are asked to adjudicate CIFs for this decision.
+
+Build `56_Cedar_probe_cif_native_usability_replay.py` with PDU/5PC/ATL. ATL stays
+public/compiler only, NARestraints retains pairing/stacking authority and the
+eight-pair full-run plan is unchanged. Source-preserving polymer classification
+and linked qualification are next integration boundaries, followed by production
+recovery/adoption and solution PDF reporting. No dependency or NAR release.
+All **34 new regressions**, **140 focused / 3,026 full tests** pass (two skips,
+276 subtests), plus exact-C55 deleted-build/relocated replay, poisoned ambient
+imports, aliased temporary roots and preserved everyday edits. Validation is
+recorded in `saved_native_usability_correction_2026_10_22`;
+the raw return remains under `isolated_candidate_native_usability_2026_10_22`.
 
 ## Completed and open work
 

@@ -9,10 +9,12 @@ The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-s
 keeps student CIF approval out of the product flow. A tested decision core and
 PostMR report summaries are implemented; recovery/adoption/PDF adapters remain
 planned. Returned C54 completes all three builders and preserves charges and
-finished source-relative configuration. C55 reuses those saved dictionaries for
-isolated native usability and automatic decisions, retaining the phosphate
-`both` omission, geometry findings and unknown convergence as explicit evidence.
-Linked classification/adoption remain separate; no student CIF approval is required.
+finished source-relative configuration. Returned C55 completes six native
+interpretations. Corrected v2 replay handles Cartesian roundoff and native
+constant-torsion representation, passes all six cases and retains three isolated
+candidates with notes. C56 replays saved data without new native calls. The
+phosphate `both` omission, geometry/stopping and linked classification/adoption
+remain explicit; no student CIF approval is required.
 
 ## What's current?
 

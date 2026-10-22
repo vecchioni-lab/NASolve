@@ -798,9 +798,16 @@ two finite repeatable unnormalized energy/gradient evaluations each. A general
 bonds and six angles at that centre, without changing native kernels or targets.
 Verified evidence reaches the existing decision core for this isolated generated
 pool only. Usable nonconvergence is a note; unusable output remains unselected
-and existing production dictionaries are preserved. Mac execution, linked
-polymer classification and production adoption remain open. Unsupported native
-formal-charge readback is explicit, not substituted with partial charges.
+and existing production dictionaries are preserved. Returned C55 completes six
+native interpretations with finite repeatable energy/gradient values. Its v1
+auditor rejects roundoff and period-zero/zero-ESD native constant rows. V2
+compares Cartesian roundtrips within 1e-12 A, requires exact constant-container
+rows/weights and canonical signed torsion permutations, and passes all six cases
+with three isolated CONTINUE_WITH_NOTES decisions. C56 verifies/pins the saved
+receipts and replays them without new native calls or captured-code execution.
+Historical failures remain intact. Linked polymer classification and production
+adoption remain open. Unsupported native formal-charge readback is explicit,
+not substituted with partial charges.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core

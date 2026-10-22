@@ -177,9 +177,12 @@ Returned C54 completes all three native builders, preserves explicit formal
 charges and all nine finished source-relative configurations, and retains
 nonconvergence/unknown stopping evidence. DP's legacy rejection concerns one
 omitted phosphate `both` volume term, rather than a lost fixed sugar hand.
-C55 reuses those dictionaries for isolated native usability and automatic
-decisions, requiring complete tetrahedral coverage for that omission. Linked
-classification, production adoption and scientific qualification remain open. Equivalent operational mapping
+Returned C55 supplies six completed native interpretations and twelve finite,
+repeatable energy/gradient evaluations. The v1 auditor rejected floating-point
+roundoff and native period-zero constant torsions. Corrected v2 replay passes
+all six cases and selects all three isolated candidates with notes. C56 replays
+that saved evidence without new native calls. Linked classification, production
+adoption and scientific qualification remain open. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

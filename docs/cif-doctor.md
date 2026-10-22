@@ -38,7 +38,8 @@ native mechanics. PostMR adds a plain-language `solution_report` summary to its
 existing CIF Doctor receipts without introducing an approval gate.
 
 C55 adds an opt-in isolated native qualification-to-decision adapter for saved
-complete candidates; its Mac execution is pending. It selects only within that
+complete candidates. Returned C55 supplies complete native data; corrected v2
+saved replay passes all six cases and three decisions. It selects only within that
 isolated generated-candidate pool and does not adopt a linked component.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
@@ -2260,10 +2261,56 @@ NASolve run. Native formal-charge access can be unsupported and stays explicit;
 a contradictory available formal charge fails. Partial charges do not replace
 formal declarations. DP ligand and PDU/5PC non-polymer metadata, triple-axis
 torsions, geometry findings and absolute CIP remain recorded boundaries before
-linked adoption. Native Mac execution is pending. The default native worker is
+linked adoption. Returned C55 supplies six completed native interpretations and
+twelve finite, repeatable energy/gradient evaluations. The original auditor's
+roundoff/constant-torsion failures remain recorded below. The default native worker is
 byte-identical unless the new energy-inventory opt-in is enabled. Students are
 not asked to inspect CIFs; production recovery/adoption and PDF rendering remain
 separate integration work.
+
+
+## Corrected saved native usability (Cedar 56)
+
+All 2,760 C55 payloads verify, including the complete C54 parent. Six Phenix
+2.2.1-6174 interpretations complete; twelve native energy/gradient evaluations
+are finite and repeat exactly. The v1 auditor mistakes 0.89e-15–3.55e-15 A
+Cartesian roundtrip differences for model changes, rejects zero-weight native
+constant torsions and raises ZeroDivisionError on their declared zero ESD.
+These six REVIEW records and three NO_USABLE_DICTIONARY decisions stay intact.
+
+`cif-isolated-candidate-native-usability-v2` corrects the representation checks.
+Native/hierarchy arrays must have complete finite 3D coordinates agreeing within
+1e-12 A absolute tolerance. Exact atom identities, model/input hashes, effective
+definitions, chemical state and actual coordinates are preserved. Every declared
+period-zero/zero-ESD row must match the native constant-dihedral container,
+zero weight, named atoms and target. Positive-ESD active restraints still require
+positive weights; missing terms or unexpected zero-weight rows fail. The 27 DP,
+10 5PC and nine PDU constant rows per coordinate set are retained, not deleted.
+
+**Methods.** Canonicalize a torsion by sorting its two outer names and its two
+central names independently, reversing the target/alternate angle signs for
+each swap. Keep weights, integer periods and container membership fixed. This
+matches the signed permutations observed in native proxy sorting; changing only
+a target or period still fails. Compare static covalent signatures across both
+coordinate cases in the same named basis. This changes audit interpretation,
+not CIFs, proxies, target mechanics or native kernels.
+
+Corrected replay passes all six saved cases. DP has the required four bonds and
+six angles around its omitted `both` term. All three isolated generated
+candidates yield CONTINUE_WITH_NOTES. Nonconvergence, unreported stopping,
+geometry findings, unsupported native formal-charge access, absolute CIP,
+phosphate state and ligand/non-polymer classification remain separate evidence.
+Finite gradients, including large gradients, do not establish convergence or
+scientific approval. Energies are not ranked across components or coordinate
+cases; linked adoption and production recovery remain separate integration work.
+
+`--saved-native-usability-only` accepts exact C55 and validates preserved native
+receipts, unchanged inputs, output hashes, the original native worker/spec and
+selected energy source snapshots before maintained-code replay. Captured Python
+is never executed. There are no new native calls, generation or optimization.
+The pure decision core receives corrected verified evidence within the isolated
+generated pool, while old failures remain alongside it. No student CIF approval
+or dictionary adoption occurs. Every original capsule remains unchanged.
 
 ## Reviewed preparation
 

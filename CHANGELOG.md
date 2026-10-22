@@ -8,6 +8,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Correct and replay saved native usability evidence
+
+- Verify all 2,760 C55 payloads and six completed Phenix 2.2.1-6174 workers.
+  Their twelve energy/gradient evaluations are finite and repeat exactly. Keep
+  the original six audit failures and three isolated unselected decisions.
+- Correct v2 native/hierarchy Cartesian comparison to a finite 1e-12 A bound.
+  Match declared period-zero/zero-ESD torsions to exact native constant rows and
+  weights; preserve positive-weight requirements for active terms. Canonicalize
+  signed native torsion permutations, including alternate angles and periods.
+- All six saved cases and three isolated decisions now pass with notes, including
+  DP tetrahedral coverage. Add C56 --saved-native-usability-only to verify/pin
+  captured inputs, receipts, workers and implementation sources before replay.
+  Captured code is not executed; there are no new native calls or optimization.
+- No CIF, native kernel/target, production adoption, dependency, NAR release or
+  student approval change. Linked classification, state/stereo, geometry and
+  convergence limits remain explicit. All 34 new regressions, 140 focused and
+  3,026 full tests pass (two skips, 276 subtests), plus actual-C55 deleted-build/
+  relocated replay with poisoned imports, aliased temp roots and everyday edits
+  preserved. Exact validation is recorded in the native ledger.
+
 ### Qualify retained candidates for isolated native usability
 
 - Verify all 2,677 C54 payloads and the unchanged parent. Three complete native
