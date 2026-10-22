@@ -20148,7 +20148,7 @@
     }
   },
   "saved_constructed_native_replay_2026_10_22": {
-    "status": "IMPLEMENTED_AND_LOCAL_COMPLETE_TRANSPORT_PASS; USER_C65_TRANSPORT_PENDING",
+    "status": "RETURNED_C65_VERIFIED; CONSTRUCTED_NATIVE_MECHANICS_PASS; NO_NEW_NATIVE_CALLS",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "65_Cedar",
     "runner_filename": "65_Cedar_probe_postmr_native_replay.py",
@@ -20296,6 +20296,17 @@
         "Biopython": "1.88",
         "NARestraints": "1.1.3",
         "Phenix_Coot": "NOT_INSTALLED; NO_NEW_NATIVE_EXECUTION"
+      },
+      "returned_transport": {
+        "status": "PASS",
+        "all_payload_hashes": 3587,
+        "parent_payloads": 3552,
+        "parent_manifest": "BYTE_IDENTICAL",
+        "complete_parent_lineage": "MAINTAINED_REPLAY_PASS",
+        "current_report_and_preparations": "REPRODUCED",
+        "runtime_files_verified": 153,
+        "native_execution": "NOT_RUN",
+        "captured_code_execution": "NOT_RUN"
       }
     },
     "compatibility": "General shared comparison fix and additive saved action; native/geometry worker bytes, chemistry, dictionaries, models, NAR workbook, optimizer, qualified correction and previous receipts unchanged.",
@@ -20313,6 +20324,58 @@
     "scientific_approval": "NOT_RUN",
     "policy_authority": "NARestraints",
     "new_Coot_Phenix_ReadySet_optimizer_refinement": "NOT_RUN",
-    "NAR_workbook_or_release_changes": false
+    "NAR_workbook_or_release_changes": false,
+    "returned_capsule": {
+      "filename": "65_Cedar_gvru7iah_cif_numerical_recovery_review.zip",
+      "sha256": "7922b7399e0205553a06ec090ae834e76ba51482ee96ba96b8b940eb9378843b",
+      "bytes": 96959814,
+      "verified_payloads": 3587,
+      "complete_C64_parent_and_manifest_preserved": true,
+      "runner_sha256": "d2291f98e7a0679cdeb3bb429baee00cb27021b0648b8cf8eb35bd980e5c564b",
+      "build_sha256": "92c48d833eed0322298b6ffd37942470d4c4140af154995778693adda0d01d28",
+      "nasolve_source": {
+        "commit": "a846f68bbcc05501818cebbd392684ccf3c294dc",
+        "working_tree_has_changes": false
+      },
+      "narestraints_source": {
+        "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "working_tree_has_changes": true
+      },
+      "runner_verification": "EXACT_PUBLISHED_RUNNER_AFTER_ONLY_RECORDED_NARESTRAINTS_DIRTY_FLAG_CHANGE",
+      "runtime_archive_sha256": "490b9d566a286c682bd797788d558f51be510431a817a29c4b6e2ab40ace5762",
+      "runtime_members": 153,
+      "qualification_status": "CONSTRUCTED_NATIVE_MECHANICS_PASS",
+      "checks": 96,
+      "passed": 93,
+      "review": 0,
+      "unsupported": 3,
+      "unaffected_named_restraints": 3148,
+      "exact_family_comparisons": "8/8",
+      "active_triple_targets": {
+        "A:7": "5PC_PASS",
+        "A:9": "PDU_PASS"
+      },
+      "retained_linear_axis_torsions_per_site": 3,
+      "new_native_processes": 0,
+      "original_C64_review_checks_preserved": 6,
+      "maintained_independent_report_replay": "PASS",
+      "scientific_bytes_reproduced": "EXACT_MODEL_CIF_PHIL_AND_NATIVE_PROXY_PARAMETERS",
+      "derived_preparation_measurements": "EXISTING_EIGENVALUE_DETERMINANT_ONLY_1e-12_BOUND",
+      "subprocesses_forbidden_during_independent_replay": true,
+      "student_cif_review_required": false,
+      "production_checkpoint": "NOT_CREATED",
+      "full_run_and_scientific_qualification": "SEPARATE_OPEN_SCOPE"
+    },
+    "next_integration_preflight": {
+      "scope": "LOCAL_ORDINARY_FRAME_PAIRING_PREFLIGHT_ONLY",
+      "model_sha256": "520330ae8531c6a7790f120fbee33832dc176fe12809cd98c055ee39bf375695",
+      "function": "nasolve.frame_secondary_overlay.prepare_frame_modified_secondary_overlay",
+      "observation": "Construction-only DP at A:6 faces canonical C at C:10; NARestraints has no configured P:C recipe.",
+      "outcome": "PAIR_INTENT_MUST_BE_DECLARED; NOT_A_CONSTRUCTION_OR_CIF_FAILURE",
+      "policy_builder": "NOT_RUN_AFTER_UNSUPPORTED_PAIR_PREFLIGHT",
+      "native_execution": "NOT_RUN",
+      "source_or_policy_changes": false,
+      "follow_up": "Use the requested eight-pair chemical intent, including DZ:DP for Z:P, for pairing/stacking integration. Do not invent a P:C recipe, relabel chemistry or repeat the closed construction-native gate."
+    }
   }
 }

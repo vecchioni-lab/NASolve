@@ -244,6 +244,14 @@ C65 replays the exact saved native evidence with zero new Coot/Phenix calls.
 It preserves the original REVIEW receipt and exposes the corrected mechanics
 verdict separately; full-run integration and scientific qualification remain open.
 
+Returned C65 verifies all **3,587 payloads**, preserves the entire C64
+parent and manifest, and reproduces the maintained qualification: **93 PASS,
+zero REVIEW, three unsupported formal-charge readbacks**. All eight unaffected
+proxy families compare exactly, covering 3,148 restraints. Both active triple
+screens pass; three linear-axis torsions per site remain recorded. Independent
+replay reproduces the report and prepared scientific bytes with subprocesses
+forbidden. No repeat of this construction-native gate is needed.
+
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

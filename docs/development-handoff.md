@@ -221,17 +221,31 @@ identities and unbound labels. All **3,148 unaffected restraints** match exactly
 by named identity; numerical tolerances, native kernels and source chemistry
 are unchanged. Historical C64 receipts remain immutable.
 
-**C65 is the next delivery.** `65_Cedar_probe_postmr_native_replay.py` with
-`--saved-postmr-construction-native-only` consumes exact C64 and replays the
-complete parent lineage, source-qualified preparation, native input/output
-bindings, original worker/spec/result and implementation fingerprints. Requalify
-the saved canonical/constructed inventories with maintained code; run zero new
-native processes. The report is saved_construction_native_audit.json. Overall
-diagnostic REVIEW still denotes the full-run/scientific boundary, without a
-student CIF gate. The expected mechanics status is CONSTRUCTED_NATIVE_MECHANICS_PASS.
-The original model, dictionaries, torsions, charges and prior failures survive.
-Generic NAR compilation and automatic repair/adoption remain subsequent work;
-no new geometry cycle, native patch, release or ninth pair is requested.
+**C65 was delivered, returned and independently verified.**
+Returned C65 verifies all **3,587 payloads**, preserves the entire C64
+parent and manifest, and reproduces the maintained qualification: **93 PASS,
+zero REVIEW, three unsupported formal-charge readbacks**. All eight unaffected
+proxy families compare exactly, covering 3,148 restraints. Both active triple
+screens pass; three linear-axis torsions per site remain recorded. Independent
+replay reproduces the report and prepared scientific bytes with subprocesses
+forbidden. No repeat of this construction-native gate is needed.
+
+The returned runner exactly matches published `a846f68` after changing only
+the recorded NARestraints dirty-state flag; all 153 runtime members match.
+The original six C64 reviews remain immutable. Overall diagnostic REVIEW
+continues to describe the full-run/scientific boundary, without student CIF
+inspection. No new native process, geometry cycle, release or adoption ran.
+
+**Next integration boundary:** ordinary automatic resource acquisition/repair,
+persistent local reuse and authoritative pairing/stacking compilation remain
+necessary before the requested eight-pair live run. A local ordinary overlay
+preflight shows that the construction-only control places DP at A:6 opposite
+canonical C at C:10; NARestraints has no configured P:C recipe. That fixture
+tests construction, not declared pairing intent. Use the already requested
+DZ:DP (Z:P) combination for the paired integration control; do not invent a
+recipe or treat this as another CIF defect. No new native delivery is prepared
+by this return-record update. The exact eight-pair plan and independent ATL
+scope remain unchanged.
 
 **Required reuse policy:** automatic acquisition/repair integration must persist
 usable numerical repairs locally and consult them before regenerating or

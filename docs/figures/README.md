@@ -137,7 +137,9 @@ canonical-link/proxy/triple checks and fixed evaluations. Returned native
 workers complete and triple targets pass. C65 replays that saved evidence using
 structured atom identities, preserving every restraint parameter while accepting
 display padding and atom renumbering; all 3,148 unaffected terms match. Original
-REVIEW receipts survive and no new native process runs. No new optimizer,
+REVIEW receipts survive and no new native process runs. Returned C65 verifies
+all 3,587 payloads and reproduces 93 PASS, zero REVIEW and three unsupported
+formal-charge checks. No new optimizer,
 ReadySet or NAR compilation. ATL stays independent
 public graph/eligibility only. Narrow diagnostic-backup mapping preserves legacy
 timestamped bytes without relaxing scientific paths. General acquisition/repair

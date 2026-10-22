@@ -1395,7 +1395,9 @@ are required before comparison; altered targets, weights, symmetry, origins,
 endpoints or multiplicity remain failures. Saved preparations, native workers,
 specifications and results are replayed as data with zero new native calls, and
 the original REVIEW receipt remains unchanged. Scientific geometry and full-run
-integration stay separate.
+integration stay separate. Returned C65 verifies all 3,587 payloads and
+independently reproduces 93 passing checks, zero review checks and three
+unsupported formal-charge readbacks. Both active triple screens pass.
 
 This readback is bounded to two 60-second workers and changes no model, native
 kernel, numerical target or optimizer. Pairing/stacking compilation and ordinary

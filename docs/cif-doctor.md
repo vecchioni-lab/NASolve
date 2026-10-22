@@ -2791,6 +2791,14 @@ original C64 qualification remain byte-identical. Automatic acquisition/repair,
 generic NAR compilation, production adoption/refinement and PDF integration
 remain subsequent work; students never inspect CIF tables.
 
+Returned C65 verifies all **3,587 payloads**, preserves the entire C64
+parent and manifest, and reproduces the maintained qualification: **93 PASS,
+zero REVIEW, three unsupported formal-charge readbacks**. All eight unaffected
+proxy families compare exactly, covering 3,148 restraints. Both active triple
+screens pass; three linear-axis torsions per site remain recorded. Independent
+replay reproduces the report and prepared scientific bytes with subprocesses
+forbidden. No repeat of this construction-native gate is needed.
+
 ## Reviewed preparation
 
 Preparation is an explicit derivative write, separate from PostMR adoption:

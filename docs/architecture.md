@@ -967,6 +967,13 @@ and implementation fingerprints before applying that comparison. It runs no
 native process and preserves the old C64 verdict. This is a saved-data mechanics
 qualification, not a new interpretation or production adoption.
 
+Returned C65 preserves all 3,587 payloads and the exact C64 parent. Independent
+maintained replay reproduces 93 PASS, zero REVIEW and three unsupported
+formal-charge checks, with all 3,148 unaffected terms matching across eight
+families. No new native process executes. The construction-only DP:C context
+does not declare a supported pairing recipe; pairing integration must use
+explicit supported intent, including the planned Z:P combination.
+
 
 The bundle assessment summary distinguishes inherited native evidence from a
 new native operation: native_selection is VERIFIED_SOURCE_CAPTURE and

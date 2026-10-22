@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the verified C65 construction-native return
+
+- Verify all 3,587 returned payloads, complete byte-identical C64 parent and
+  all 153 runtime members. Reconstruct the reported runner exactly using only
+  its recorded NARestraints dirty-state metadata difference.
+- Reproduce the maintained preparation and qualification with subprocesses
+  forbidden: 93 PASS, zero REVIEW, three unsupported formal-charge readbacks;
+  all 3,148 unaffected restraints and both active triple screens pass.
+- Close this saved construction-native gate. Record that the construction-only
+  DP:C fixture lacks declared supported pairing intent; use the requested
+  Z:P combination for subsequent pairing integration. Persistent repair reuse
+  and ordinary automatic adoption remain planned.
+- Documentation and evidence only: no runtime/schema/dependency change, new
+  native call, optimization, production checkpoint or student CIF gate.
+
 ### Compare native restraints by structured atom identity and replay C64
 
 - Verify all 3,552 C64 payloads and unchanged C63 evidence. Both Phenix
