@@ -278,6 +278,16 @@ their raw source bytes/authority differ; all inventoried chemical declarations
 match. No repair is substituted by component name.
 No native process or adoption occurs; full-run integration remains open.
 
+C68 adds an ordinary-source reuse API without weakening exact cache keys.
+It selects the ordinary source first, verifies a saved projection against its
+named chemistry and configuration, then requires current isolated native
+usability before publishing a new source/authority-bound entry. Numerical bytes,
+original producer and stopping notes are retained; repeats reuse them. Failed
+candidates retain the selected source for standard preparation. No student
+CIF inspection, generation, optimizer or production adoption is introduced.
+Local tests, saved-native-data replay and relocated offline delivery pass;
+the Mac current-native test and full-run integration remain open.
+
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

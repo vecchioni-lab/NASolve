@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Requalify saved numerics against ordinary selected sources
+
+- Keep exact store keys and curated precedence; prove source projections and
+  require current native evidence before a new source-bound numerical entry.
+- Preserve old entries, numerical bytes, producer and stopping notes; reuse
+  repeats and retain independent relative run copies. Failed candidates retain
+  ordinary source preparation. Optional cache-write failure retains a qualified
+  run copy. No student CIF gate, native mechanics or dependency change.
+- Add C68 on exact C67: up to three fixed native readbacks, no generation,
+  optimization, ReadySet or production adoption. Mac qualification is pending.
+- All 49 new / 160 focused / 4057 full tests pass (two skips, 276 subtests;
+  full run 367.96 s). Saved-data replay passes 63 checks and six
+  relocated qualified copies; cold inspect-only transport forbids subprocesses.
+- Bind successful and failed native receipts to relative probe-directory anchors;
+  no host-absolute path is their sole operational reference.
+  Old store/run schemas remain valid; no migration or NAR release required.
+
 ### Record the verified C67 ordinary source/compiler return
 
 - Verify all 3,713 payloads, unchanged C66 parent/manifest and 157 runtime

@@ -1709,3 +1709,34 @@ through their original recipe/producer/consumer evidence without adopting them
 or certifying a current runtime. A different source projection or authority can
 correctly miss the cache. This leaves automatic recovery/adoption as subsequent
 integration rather than treating a three-letter code as chemical authority.
+
+## Ordinary source-to-numerics reuse (Cedar 68)
+
+C68 adds an ordinary-source reuse API without weakening exact cache keys.
+It selects the ordinary source first, verifies a saved projection against its
+named chemistry and configuration, then requires current isolated native
+usability before publishing a new source/authority-bound entry. Numerical bytes,
+original producer and stopping notes are retained; repeats reuse them. Failed
+candidates retain the selected source for standard preparation. No student
+CIF inspection, generation, optimizer or production adoption is introduced.
+Local tests, saved-native-data replay and relocated offline delivery pass;
+the Mac current-native test and full-run integration remain open.
+
+Methods: compare all seven inventoried named chemical fields and the repair
+recipe/backend; reassess completed source-relative configuration; require
+current isolated native qualification; publish a new entry bound to the selected
+raw source/authority while crediting the original numerical producer. Keep the
+old entry immutable and freeze both provenance records with relative hashes.
+A failed or mutating adapter receives disposable inputs and excludes only that
+candidate. A changed consumer requalifies saved bytes first. Optional cache-write
+failure retains a qualified run copy. An unparameterized fallback source still
+requires ordinary preparation; it is not a native-usability verdict.
+
+Local integration uses actual returned source bytes and saved native data:
+all 63 checks pass and six qualified/reused results survive source/cache removal
+and relocation, with external scientific reads forbidden. This does not claim
+fresh Phenix execution. C68 supplies the Mac current-native test with up to
+three fixed readbacks and immediate repeat reuse; inspect-only instead retains
+ordinary-source fallback without native calls or persistent-store writes.
+Native guessing stays disabled. Native energy resource files are not inventoried;
+current linked/model qualification and production PostMR adoption remain open.

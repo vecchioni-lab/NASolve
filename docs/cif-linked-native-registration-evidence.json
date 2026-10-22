@@ -21169,5 +21169,203 @@
       "production_checkpoint_refinement_PDF": "SEPARATE_OPEN_SCOPE",
       "new_delivery_in_this_return_record": "NONE"
     }
+  },
+  "ordinary_source_reuse_2026_10_22": {
+    "status": "IMPLEMENTED_LOCAL_REGRESSIONS_SAVED_DATA_AND_COLD_TRANSPORT_PASS; MAC_C68_CURRENT_NATIVE_QUALIFICATION_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "68_Cedar",
+    "runner_filename": "68_Cedar_probe_cif_source_reuse.py",
+    "cli_action": "--source-reuse-qualification-only",
+    "requested_action": "ORDINARY_SOURCE_REUSE_QUALIFICATION",
+    "policy_id": "cif-ordinary-source-reuse-v1",
+    "diagnostic_policy_id": "cif-ordinary-source-reuse-qualification-v1",
+    "review_input": {
+      "delivery_prefix": "67_Cedar",
+      "filename": "67_Cedar_qla6xlvi_cif_numerical_recovery_review.zip",
+      "sha256": "fc71e088bd6fefbfe3cee77fafbdd24d25e11c31e6110d1ec582545120bd189f",
+      "bytes": 98012849,
+      "verified_payloads": 3713
+    },
+    "before": "Exact ordinary source bytes/authority differ from reviewed C66 projections; strict cache misses cannot authorize reuse.",
+    "after": "Keep exact keys strict; prove named declarations, recipe/backend and source-relative configuration; require current native usability before publishing a new selected-source entry with unchanged numerics.",
+    "modules": [
+      "src/nasolve/cif_source_reuse.py",
+      "src/nasolve/cif_acquisition.py",
+      "scripts/cif_numerical_recovery_probe_template.py"
+    ],
+    "shared_API": [
+      "resolve_ordinary_dictionary",
+      "source_projection",
+      "read_ordinary_dictionary"
+    ],
+    "source_priority": "ORDINARY_ligand_source_FIRST; MISSING_CURATED_SOURCE_NEVER_FALLS_THROUGH",
+    "projection_fields": [
+      "atom_mapping",
+      "elements",
+      "bond_orders",
+      "formal_charges",
+      "explicit_hydrogens",
+      "atom_stereo",
+      "signed_chirality"
+    ],
+    "additional_checks": [
+      "repair_recipe",
+      "numerical_backend",
+      "complete_source_candidate_assessment",
+      "source_configuration_not_inverted"
+    ],
+    "native_requirement": "Current bound isolated native evidence; unchanged complete v2 21-check qualification and strict store validation.",
+    "new_entry": "Selected raw source and authority; original producer and stopping/notes retained; old entry immutable; complete prior snapshot and projection proof frozen.",
+    "repeat": "EXACT_SOURCE_AND_CONSUMER_HIT; NO_ADAPTER_OR_GENERATOR",
+    "fallback": "ORDINARY_SOURCE_FALLBACK; CONTINUE_WITH_NOTES; STANDARD_PREPARATION_REQUIRED; NOT_A_NATIVE_USABILITY_VERDICT",
+    "cache_failure": "Qualified independent run copy retained when optional persistent-store write fails.",
+    "schema": {
+      "report": "ordinary_dictionary.json schema_version 1",
+      "anchor": "ordinary_dictionary_directory",
+      "source": "source.cif",
+      "qualified_snapshot": "numerics/resolution.json",
+      "prior_evidence": "prior_snapshot/",
+      "store": "UNCHANGED_v1; ADDITIVE_SOURCE_PROJECTION_PROVENANCE",
+      "native_receipt_directory": {
+        "anchor": "probe_directory",
+        "path": "source_reuse_native/COMPONENT/readback/OWNED_NATIVE_TOKEN"
+      }
+    },
+    "validation": {
+      "new_regressions": 49,
+      "fail_before": [
+        {
+          "scope": "Shared API absent",
+          "failed": 24,
+          "seconds": 2.09
+        },
+        {
+          "scope": "Exact C67 header/action absent",
+          "failed": 16,
+          "already_passed": 3,
+          "seconds": 2.03
+        },
+        {
+          "scope": "Native success/failure receipts lack a relative operational directory",
+          "failed": 2,
+          "seconds": 0.51
+        }
+      ],
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q tests/test_cif_source_reuse.py tests/test_cedar68_delivery.py tests/test_cedar67_delivery.py tests/test_cedar66_delivery.py tests/test_cif_dictionary_store.py tests/test_cif_acquisition.py",
+        "passed": 160,
+        "seconds": 20.7
+      },
+      "full": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q",
+        "passed": 4057,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 367.96
+      },
+      "saved_data_integration": {
+        "all_subprocesses_forbidden": true,
+        "cases": {
+          "5PC": {
+            "candidate_sha256": "7edbaef484b768557cb52667e6d79a0052e4f3e3c3cba72066e53cf640088e56",
+            "converged": null,
+            "first": "SOURCE_REQUALIFIED_AND_FROZEN",
+            "native_checks": 21,
+            "repeat": "REUSED",
+            "saved_data_adapter_calls": 1,
+            "source_authority": "NATIVE",
+            "stopping": "NOT_REPORTED"
+          },
+          "DP": {
+            "candidate_sha256": "10160ee58b146fda655e289ddcd7d7e7fe4b64f164ce2327b4c33936fadad670",
+            "converged": null,
+            "first": "SOURCE_REQUALIFIED_AND_FROZEN",
+            "native_checks": 21,
+            "repeat": "REUSED",
+            "saved_data_adapter_calls": 1,
+            "source_authority": "CURATED",
+            "stopping": "NOT_REPORTED"
+          },
+          "PDU": {
+            "candidate_sha256": "92131cd42f50be9daae3647240d62a51d1fa0dc8aa4d2ba9effd5848ee728da7",
+            "converged": false,
+            "first": "SOURCE_REQUALIFIED_AND_FROZEN",
+            "native_checks": 21,
+            "repeat": "REUSED",
+            "saved_data_adapter_calls": 1,
+            "source_authority": "NATIVE",
+            "stopping": "NOT_CONVERGED_REPORTED"
+          }
+        },
+        "external_scientific_reads_forbidden": true,
+        "new_native_calls": 0,
+        "relocated_qualified_results": 6,
+        "saved_data_adapter_calls": 3,
+        "scope": "ACTUAL_RETURNED_SOURCES_AND_SAVED_NATIVE_DATA_REPLAY; NO_NEW_NATIVE_QUALIFICATION",
+        "source_and_cache_removed": true,
+        "status": "PASS"
+      },
+      "portability": {
+        "aliased_TMPDIR": "PASS",
+        "all_input_payloads_and_manifest_preserved": true,
+        "all_subprocesses_forbidden": true,
+        "ambient_import_poison": "PASS",
+        "build_sources_removed": true,
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 3713,
+        "new_native_calls": 0,
+        "output_payloads": 3733,
+        "persistent_store_writes": 0,
+        "relocated_delivery": true,
+        "runner_sha256": "2306953d77fb6a451d461f00488971bba6f9207a3613b8ecc4a279bf454ec947",
+        "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+        "runtime_members": 158,
+        "scope": "OFFLINE_COLD_TRANSPORT; MAC_NATIVE_QUALIFICATION_PENDING",
+        "source_commit": "a984b7ddaee3a9eb6ed5fd1b1a37fa65fcbdbef6",
+        "source_file_absence": "ALL_FILES_AND_SYMLINKS_REMOVED; HOST_REVIVED_ONLY_EMPTY_DIRECTORY_SKELETONS",
+        "source_fixture": "RETURNED_C67_SOURCE_BYTES_IN_OWNED_LAYOUT; NO_LOCAL_PHENIX",
+        "source_projection_passes": 3,
+        "standalone_relative_source_results": 3,
+        "status": "PASS"
+      },
+      "local_native_execution": "NOT_RUN; NO_PHENIX_INSTALLED",
+      "Mac_scope": "At most three fixed isolated native readbacks, two repeat evaluations each, 60-second deadlines; repeat requests reuse unchanged bytes. No generator, optimizer or ReadySet.",
+      "document_checks": {
+        "relative_links": 162,
+        "mirrored_records": 13,
+        "protected_mechanics": "UNCHANGED",
+        "NAR_workbook": "UNCHANGED",
+        "eight_pair_plan": "UNCHANGED",
+        "SVG_determinism": "PASS",
+        "visible_SVG": "EXACT_BASELINE_94ababa; UPDATED_METADATA_AND_CAPTION_ONLY"
+      },
+      "published_runner_requirement": "Same runtime and body as cold-tested source after only NASolve source-commit metadata replacement; verify before delivery.",
+      "native_receipt_paths": {
+        "passed": 2,
+        "cases": [
+          "COMPLETED_REVIEW",
+          "FAILED"
+        ],
+        "scope": "EXPLICIT_FAKE_NATIVE_ACTION_CALLBACK; DIRECTORY_ANCHORS_AND_FALLBACK_ONLY",
+        "anchor": "probe_directory",
+        "status": "RELOCATABLE_NATIVE_RECEIPTS_PASS"
+      }
+    },
+    "consumer_identity": "CURRENT_SELECTED_DISPATCHER_AND_NATIVE_API/ENERGY_PYTHON_SOURCE_HASHES",
+    "energy_library_resource_files": "NOT_CAPTURED; CURRENT_SITE_NATIVE_CHECKS_REMAIN_REQUIRED",
+    "scope": "SHARED_ORDINARY_SOURCE_RESOLVER_AND_COMPONENT_DIAGNOSTIC; NOT_WIRED_TO_PRODUCTION_POSTMR_ADOPTION",
+    "requires_cif_review": false,
+    "dictionary_generation": "NOT_RUN",
+    "model_optimization": "NOT_RUN",
+    "production_adoption": "NOT_RUN",
+    "compatibility": "Additive API/report and exact C67 input; old store/run schemas remain valid. No migration, dependency or NAR release.",
+    "protected_mechanics": "Native kernels/targets/weights/optimizer/plane correction and NAR workbook unchanged.",
+    "remaining_limits": [
+      "Actual Mac native qualification and source-bound repeat reuse pending.",
+      "Production PostMR invocation/adoption, current linked/model qualification and the exact eight-pair full live run remain separate.",
+      "Energy-library resource-file fingerprints, absolute CIP, refinement and solution PDF rendering are not claimed."
+    ],
+    "generated_artifacts": "Private capsules, models, dictionaries, installations, cache entries and runners excluded from Git."
   }
 }

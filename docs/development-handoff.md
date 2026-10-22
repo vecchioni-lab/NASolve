@@ -13,47 +13,51 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**C67 was delivered, returned and independently verified.**
-Returned C67 verifies all **3,713 payloads**, including the unchanged C66
-parent and manifest. The ordinary source selector passes **15/15 sources**
-(six curated, nine installed CCD), and NARestraints compiles **8/8 declared
-pairs and 16/16 stacking orientations**. Independent maintained replay
-reproduces all 39 source/PHIL files exactly; report differences are limited
-to historical source paths. DP/PDU/5PC saved repairs correctly miss because
-their raw source bytes/authority differ; all inventoried chemical declarations
-match. No repair is substituted by component name.
-No native process or adoption occurs; full-run integration remains open.
+**Next delivery is C68:** 68_Cedar_probe_cif_source_reuse.py on exact C67,
+with --source-reuse-qualification-only. Select ordinary sources, prove saved
+DP/PDU/5PC source projections, qualify unchanged numerics in the current native
+reader, publish new source-bound entries and repeat requests. Expected
+SOURCE_REUSE_QUALIFICATION_PASS and repeat REUSED. At most three fixed native
+readbacks are needed for new bindings, each with two repeat evaluations and
+a 60-second deadline. No generation, optimizer, ReadySet or scaffold edits.
 
-All 157 bundled runtime members match; the exact reported runner is reproduced
-from published `05fc88f` by changing only its recorded NARestraints dirty flag.
-The complete maintained C66-and-earlier replay passes with all subprocesses
-forbidden. All 39 returned relative source/PHIL references remain readable
-after removing the owned installation layout, with external scientific reads
-forbidden. The local replay uses captured source bytes, not installed Phenix.
+C68 adds an ordinary-source reuse API without weakening exact cache keys.
+It selects the ordinary source first, verifies a saved projection against its
+named chemistry and configuration, then requires current isolated native
+usability before publishing a new source/authority-bound entry. Numerical bytes,
+original producer and stopping notes are retained; repeats reuse them. Failed
+candidates retain the selected source for standard preparation. No student
+CIF inspection, generation, optimizer or production adoption is introduced.
+Local tests, saved-native-data replay and relocated offline delivery pass;
+the Mac current-native test and full-run integration remain open.
 
-The shared alias fix accepts both equivalent 5PC C-sheet records in memory;
-no workbook or NAR release change is needed. Six curated sources retain
-priority. The source-bound DP/PDU/5PC cache misses preserve original entries
-and stopping notes; they do not refute the verified C66 reuse behavior. All
-seven inventoried chemical fields match for each component, so the next bridge
-concerns exact source-projection provenance and current qualification.
+Validation: **49 new regressions**, **160 focused / 4057 full tests** (two
+skips, 276 subtests; full run 367.96 s). Actual-source saved-data replay
+passes 63 checks and six relocated qualified/reused copies. Deleted-build,
+relocated delivery on real C67 passes all three source projections with every
+subprocess forbidden, poisoned imports and aliased TMPDIR. All 3,713 parent
+payloads and manifest survive. This cold route is inspect-only, preserving
+ordinary-source fallback and making no fresh native claim.
+Both successful and failed native receipts have explicit relative probe-directory
+anchors; callback regressions exercise both outcomes before delivery.
 
-**Next integration boundary:** connect the shared resolver to ordinary
-source-to-repair acquisition and automatic usable fallback, verify the source
-projection relationship before reuse, bind chosen numerics to the selected
-source and authority, and qualify the current native/site context. Then
-exercise the unchanged eight-pair live plan with authoritative
-NARestraints pairing/stacking. Production checkpoints, refinement and PDF
-rendering remain subsequent work. This source/compiler gate is closed and
-needs no repeat; this return record creates no new delivery or merge gate.
+The API and diagnostic do not yet wire adoption into ordinary prepare_postmr.
+Current linked/model qualification, production checkpoints/refinement, the exact
+eight-pair full live run and final PDF rendering remain separate. Native energy
+resource files are not fingerprinted; current APIs/dispatchers are. ATL stays
+independent. See ordinary_source_reuse_2026_10_22 in both machine ledgers.
 
-C67 implementation validation remains **49 new regressions**, **141 focused /
-4008 full tests** (two skips, 276 subtests; full run 327.17 s). Its deleted-build
-and relocated transport used simulated sources; the actual Mac source/compiler
-return now passes independent replay. This documentation-only update adds no
-runtime, dependency, schema or mechanics change. Protected kernels, targets,
-weights, optimizer, plane correction, workbook and eight-pair plan remain
-unchanged. See ordinary_source_acquisition_2026_10_22 in both ledgers.
+
+**C67 source/compiler gate is closed.** All 3,713 returned payloads and
+the complete C66 parent verify. Ordinary selection passes 15 sources (six
+curated, nine installed CCD), eight exact intended pairs and 16 stacking
+orientations. All 39 source/PHIL files independently reproduce. DP/PDU/5PC
+inventoried chemistry matches saved projections, while raw bytes/authority
+differ; their strict cache misses are expected. C68 addresses that source
+relationship through qualified rebinding rather than a relaxed lookup.
+All 157 original runtime members and the reported runner match; original
+entries and native evidence remain immutable. See
+ordinary_source_acquisition_2026_10_22 for exact returned evidence.
 
 The user-facing policy now removes mandatory CIF inspection/approval. Optimize
 and repair within bounded budgets, retain the best usable candidate or native

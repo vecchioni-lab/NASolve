@@ -167,3 +167,17 @@ claim automated acquisition, production adoption, refinement or PDF integration.
 Existing native classifications already say DNA despite generic written groups.
 No production-adoption arrow, nonbonded pair-identity proof or student CIF
 adjudication is implied.
+
+C68 adds an ordinary-source reuse API without weakening exact cache keys.
+It selects the ordinary source first, verifies a saved projection against its
+named chemistry and configuration, then requires current isolated native
+usability before publishing a new source/authority-bound entry. Numerical bytes,
+original producer and stopping notes are retained; repeats reuse them. Failed
+candidates retain the selected source for standard preparation. No student
+CIF inspection, generation, optimizer or production adoption is introduced.
+Local tests, saved-native-data replay and relocated offline delivery pass;
+the Mac current-native test and full-run integration remain open.
+
+The existing native diagnostic branch covers isolated source binding. Local
+saved-data/inspect-only evidence is distinct from fresh Mac qualification;
+no production-adoption arrow or numerical mechanics change is added.

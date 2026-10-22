@@ -142,3 +142,61 @@ def audit_ordinary_acquisition(ready_set_executable, output, *, data_root=None,
             'C66 saved repairs bind different source projections/authority; no same-code substitution is permitted.']}
     (output/'acquisition.json').write_text(json.dumps(result,sort_keys=True,indent=2,allow_nan=False)+'\n')
     return result
+
+
+def replay_ordinary_acquisition(members,output):
+    """Replay returned source/role evidence with captured bytes and no native call."""
+    from pathlib import PurePosixPath
+    from .cif_dictionary_store import resolve_dictionary_snapshot
+    from .curated_ligands import curated_dictionary
+    expected=json.loads(members['ordinary_acquisition/acquisition.json'])
+    report=json.loads(members['ordinary_acquisition_audit.json'])
+    if expected!={k:v for k,v in report.items() if k not in {'directory','dispatcher'}}:
+        raise ValueError('Ordinary acquisition report copies differ')
+    output=Path(output);output.mkdir(parents=True,exist_ok=False)
+    executable=output/'installation/bin/phenix.ready_set';executable.parent.mkdir(parents=True)
+    executable.write_text('Captured-source selection fixture only; never execute.\n')
+    def read(ref,prefix):
+        name=ref['path']
+        if (not isinstance(name,str) or name.startswith('/') or '\\' in name or ':' in name
+                or any(p in {'','.','..'} for p in name.split('/'))):raise ValueError('Unsafe source/role reference')
+        data=members[prefix+name]
+        if len(data)!=ref['size'] or sha256(data).hexdigest()!=ref['sha256']:raise ValueError('Source/role reference differs')
+        return data
+    for code,row in expected['sources'].items():
+        ref=row['source']
+        if ref['anchor']!='acquisition_directory':raise ValueError('Wrong acquisition source anchor')
+        data=read(ref,'ordinary_acquisition/')
+        if row['authority']=='CURATED':
+            if data!=curated_dictionary(code).read_bytes():raise ValueError('Curated source differs from returned source')
+        elif row['authority']=='NATIVE':
+            p=executable.parent.parent/'lib/python3.11/site-packages/chem_data/chemical_components'/code[0].lower()/('data_'+code+'.cif')
+            p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
+        else:raise ValueError('Unsupported returned ordinary source authority')
+    reuse=json.loads(members['inputs/review/dictionary_reuse_audit.json']);snapshots={}
+    for code,row in reuse['cases'].items():
+        ref=row['first_snapshot'];read(ref,'inputs/review/dictionary_reuse/')
+        if ref['anchor']!='dictionary_reuse_directory':raise ValueError('Wrong projection snapshot anchor')
+        snapshots[code]=output/'snapshots'/code
+    # Copy the complete snapshots through their declared prefix (including entry).
+    for code,row in reuse['cases'].items():
+        prefix='inputs/review/dictionary_reuse/'+str(PurePosixPath(row['first_snapshot']['path']).parent)+'/'
+        folder=snapshots[code]
+        for n,d in members.items():
+            if not n.startswith(prefix):continue
+            relative=n.removeprefix(prefix)
+            if relative not in {'resolution.json','entry/source.cif','entry/dictionary.cif','entry/manifest.json','entry/provenance.json','entry/qualification.json'}:
+                raise ValueError('Unexpected projection snapshot member')
+            p=folder/relative;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(d)
+        resolve_dictionary_snapshot(folder)
+    fresh=audit_ordinary_acquisition(executable,output/'replay',saved_snapshots=snapshots,store_root=output/'absent_cache')
+    left,right=json.loads(json.dumps(fresh)),json.loads(json.dumps(expected))
+    for value in [left,right]:
+        for row in value['sources'].values():row.pop('historical_source_path')
+    if left!=right:raise ValueError('Maintained ordinary source/compiler evidence differs')
+    files={p.relative_to(output/'replay').as_posix():p for p in (output/'replay').rglob('*') if p.is_file()}
+    if set(files)!={n.removeprefix('ordinary_acquisition/') for n in members if n.startswith('ordinary_acquisition/')}:
+        raise ValueError('Ordinary source/role inventory differs')
+    for name,path in files.items():
+        if name!='acquisition.json' and path.read_bytes()!=members['ordinary_acquisition/'+name]:raise ValueError('Ordinary source/role bytes differ')
+    return True
