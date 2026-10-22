@@ -330,9 +330,11 @@ scientific qualification remains under review. Cedar 20 shows that fresh native
 managers can add distance-filtered hydrogen bonds despite unchanged input
 bytes. Read-only attribution preserves the old exact comparison and separately
 records fixed-manager endpoint equivalence; it changes no native gate.
-Those geometry/native trials remain separate diagnostics. C62 applies the
-connected-base construction rule to ordinary PostMR through the shared
-`postmr.construct_postmr_model` API; fresh controls call that same API. See the
+Those geometry/native trials remain separate diagnostics. Ordinary PostMR now
+uses the connected-base construction rule through the shared
+`postmr.construct_postmr_model` API; fresh controls call that same API. C63 adds
+source-proven internal-phosphate context preparation before transport, with
+unchanged phosphate policy and automatic whole-raw-site fallback. See the
 [restoration diagnostic](cif-doctor.md#separate-attached-fragment-restoration-candidate)
 and [current handoff](development-handoff.md).
 
@@ -913,15 +915,35 @@ the same serialized objective. The selected model/19 CIFs/14 PHILs retain their
 exact bytes. Ordinary assessment stays REVIEW with solution notes; this does
 not erase the inherited stopping or scientific limitations.
 
-C62 changes the ordinary construction path rather than adding another optimizer
-cycle. `prepare_postmr` and the fresh MTZ-free controls share
+Ordinary `prepare_postmr` and fresh MTZ-free controls share
 `construct_postmr_model`, including Coot construction and graph-selected rigid
-base restoration. A 600-second Coot limit applies to the controls; ordinary
-default timing stays unchanged. The controls do not fabricate AutoMR data or a
-checkpoint, invoke ReadySet/refinement or compile a new pairing/stacking policy.
+base restoration. Returned C62 completes Coot 1.3.3, but unmatched OP3 causes
+all three sites to retain their whole raw coordinates; it proves the fallback,
+not successful base transport.
+
+C63 adds postmr-source-graph-internal-phosphate-context-v1 to this ordinary
+default path. Frozen inherited CONECT and unchanged unselected atom identities
+permit selected-site serial normalization when needed. A discarded shadow
+places only graph-matched scaffold coordinates in the frozen parent frame;
+the unchanged phosphate sanitizer, with the frozen allowed-OP3/passthrough
+policy, must prove the selected internal OP3 deletions. Transfer only those
+deletions and authorized serial fields to original raw records, never shadow
+coordinates. Then perform the existing proper whole-base transform and recheck
+with the same sanitizer. Ambiguous/unsupported proof retains the complete raw
+context with notes; curated special placements and independent ATL scope stay
+intact. All source files remain immutable.
+
+The controls use one fresh Coot construction process bounded at 600 seconds, leaving ordinary
+default timing unchanged. The C63 saved-C62 context study is offline replay,
+not a new native result. Completed composition reports distinguish observed
+raw/context inventories; inspect-only remains unobserved. The narrow
+cif-review-diagnostic-transport-v1 mapping preserves timestamped opaque Coot
+backup names and bytes across relocation without relaxing scientific paths.
 Dictionary chemistry, curated precedence, NARestraints authority, native kernels
-and the qualified correction remain unchanged. Automatic resource repair/adoption
-and generic NAR compilation still precede the planned fresh eight-pair full run.
+and the qualified correction remain unchanged. No ReadySet, observations,
+optimizer, new pairing/stacking policy or fabricated checkpoint is introduced.
+Automatic resource repair/adoption and generic NAR compilation still precede
+the planned fresh eight-pair full run.
 
 The bundle assessment summary distinguishes inherited native evidence from a
 new native operation: native_selection is VERIFIED_SOURCE_CAPTURE and

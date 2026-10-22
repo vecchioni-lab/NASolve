@@ -49,11 +49,14 @@ controls. Returned C59 qualifies a separate full-scaffold DP bundle and selects
 it automatically with notes. Returned C60 retains a usable geometry endpoint
 after fresh initial/endpoint derivative checks and exact native readback pass,
 while reporting its iteration limit. Returned C61 passes the portable bundle's
-15 staged native checks. C62 applies graph-selected connected-base restoration
-in ordinary PostMR and uses the same construction API for fresh controls.
-Automated acquisition/repair adoption, generic NAR compilation, production
-checkpoints/refinement and PDF rendering remain separate; no run or checkpoint
-is manufactured from diagnostic evidence.
+15 staged native checks. Returned C62 completes Coot construction but retains
+all three raw sites for
+unmatched OP3, without exercising rigid base transport. C63 adds ordinary
+source-proven internal-phosphate context preparation before that transport,
+using the unchanged phosphate sanitizer and immutable raw coordinates. Fresh
+controls call the same ordinary API. Automated acquisition/repair adoption,
+generic NAR compilation, production checkpoints/refinement and PDF rendering
+remain separate; no run or checkpoint is manufactured from diagnostic evidence.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
@@ -621,8 +624,8 @@ mechanics checks. Preparation replays byte for byte and native geometry
 confirms the predicted counts. Intrasite improvements do not prove a sound
 pairing pose: CGY–DX contacts include 9.357476 and 6.818964 Å versus 2.8 Å
 targets; the latter worsens from 2.947120 Å. This is a
-separate diagnostic candidate; ordinary PostMR retains the demonstrated legacy
-restoration issue until a separately qualified integration is adopted.
+separate C17 diagnostic candidate. C62 later moves connected-base restoration
+into ordinary PostMR; C63 adds source-proven internal-phosphate context.
 
 ### Effective/source graph recovery
 
@@ -741,8 +744,8 @@ contacts without competing automatic additions or a distance-based omission of
 an intended contact. Phenix remains the native restraint consumer and geometry
 measurement engine; this authority does not waive identity, component, covalent
 geometry or achieved-geometry checks. A separate diagnostic compiler now prepares explicit membership and
-suppression of competing inference; both Cedar 21 native checks pass and
-ordinary PostMR is unchanged.
+suppression of competing inference; both Cedar 21 native checks pass. Generic
+ordinary NARestraints policy compilation remains separate integration work.
 
 The existing NARestraints stacking builder applies its shared base-class plane
 mapping to chain neighbours. Canonical stacks use explicitly selected native
@@ -2625,15 +2628,55 @@ default timing. ATL remains public graph/production-restoration eligibility
 only, because no qualified numerical ATL dictionary is supplied; no fresh
 native/Coot ATL result is claimed. Inspect-only prepares models, dictionaries
 and the plan without starting Coot. Its ORDINARY_POSTMR_CONSTRUCTION_CONTROLS
-action uses the separate cif-postmr-construction-controls-v1 report. All 118 new
-regressions, 257 focused and 3512 full tests pass (two skips, 276 subtests),
-including actual-C61 strict replay and relocated transport after deleting build
-sources. Fresh native Coot construction remains pending. The controls do not fabricate observations or an
-AutoMR/PostMR checkpoint, run ReadySet/refinement or compile a new NAR policy.
+action uses the separate cif-postmr-construction-controls-v1 report. All 118
+C62 regressions, 257 focused and 3512 full tests pass (two skips,
+276 subtests), including strict prior-return replay and relocated transport.
+Returned C62 verifies 3,445 payloads and completes one Coot 1.3.3 process. All
+three sites retain their whole raw site because OP3 lacks a parent scaffold
+match. The 857-atom raw/final models are byte-identical; rigid transport was not
+exercised. Scientific geometry and native restraints were not assessed.
+
+**Internal-phosphate context (Cedar 63).** Ordinary construction now runs
+postmr-source-graph-internal-phosphate-context-v1 before connected-base
+restoration. Establish selected serial authority from exactly inherited frozen
+CONECT records and unchanged unselected atom identities/XYZ. In a separate,
+discarded shadow, place only graph-matched scaffold atoms in the parent frame.
+Run the existing unchanged phosphate sanitizer with frozen allowed-OP3 and
+passthrough intent to prove the selected internal OP3 deletions. Transfer only
+those deletions and authorized selected serial fields to the original raw
+records; never propagate shadow XYZ. Apply the existing proper whole-base
+transport and recheck with the unchanged sanitizer. An unsuccessful or
+ambiguous proof retains the complete raw context with nonfatal notes. Explicit
+curated placements and bridged/unsupported ATL retain their existing treatment.
+This is an ordinary default construction fix, not an optional chemistry change.
+
+C63 repeats `--postmr-construction-only` on exact C62 through the same API and
+cif-postmr-construction-controls-v1 report, with an additive independent context
+delta audit. One fresh Coot construction process remains bounded at 600 seconds. The offline
+saved-C62 study proves three OP3 deletions/69 selected serial normalizations and
+preserves all three base geometries within 0.0011 A after transport; it is not
+a fresh native result. Completed actual_coot_composition reports OBSERVED raw
+and context inventories; inspect-only remains NOT_YET_OBSERVED. Old C62
+receipts are preserved byte-for-byte. All **140 new regressions**, **290 focused / 3652 full tests** pass
+(two skips, 276 subtests; full run 350.46 s). Actual-C62 strict
+replay, deleted-build/relocated transport, eight mirrors, 156 links and protected
+hash/figure checks pass. All 3,445 source payloads and the everyday edit are
+preserved. Fresh Coot construction remains pending.
+
+cif-review-diagnostic-transport-v1 accepts only timestamped opaque Coot backup
+`.pdb.gz` names in the declared backup directory as an exception to strict
+portable payload names. A checked staging index maps legacy names to safe
+hashed object paths while preserving original logical names, gzip bytes and
+parent manifests in archives. Newly owned backups use portable timestamp
+names with provenance in postmr_construction/diagnostic_transport.json. The
+mapping does not execute/decompress backups or relax scientific resource paths.
+
+The controls do not fabricate observations or an AutoMR/PostMR checkpoint, run
+ReadySet/Phenix/refinement, optimize a model or compile a new NAR policy.
 Automatic acquisition/repair adoption, generic pairing/stacking compilation and
 production checkpoint/refinement still precede the full eight-pair live run;
 PDF rendering and scientific geometry/state/CIP qualification remain separate.
-No additional saved-geometry optimization or student CIF gate is introduced.
+No student CIF gate is introduced.
 
 ## Reviewed preparation
 

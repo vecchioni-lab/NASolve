@@ -139,49 +139,77 @@ poisoned imports, aliased temporary roots, 156 links, six evidence mirrors and
 protected hash/figure checks pass. The returned native gate is now closed;
 this is not an ordinary production checkpoint or a scientific-geometry verdict.
 
-**C62 is the next delivery.** `--postmr-construction-only` accepts exact C61.
-Build `62_Cedar_probe_postmr_construction.py` with PDU/5PC/ATL. Fresh controls
-construct DP A:6 from DG, PDU A:9 from DT and 5PC A:7 from DC on an MTZ-free,
-free-5-prime-OH W frame, using verified numerical dictionaries. One Coot construction process
-uses the same ordinary API; ATL remains public graph/restoration-eligibility
-only because no qualified numerical ATL dictionary is supplied.
-Move the existing connected-base restoration rule into ordinary `_restore_shared_parent_coordinates`
-under postmr-source-graph-fragment-restoration-v1, and call the same
-`postmr.construct_postmr_model` API from ordinary PostMR and fresh MTZ-free
-controls. Source connectivity selects a complete heavy base with one C1-prime
-attachment; a proper raw-to-parent C1-prime/O4-prime/C2-prime transform retains
-its internal geometry and attachment hand while restoring the parent DNA
-sugar/backbone. Do not copy part of a base by parent atom name.
+**Returned C62 verifies 3,445 payloads** and all 3,406 unchanged C61 payloads.
+One Coot 1.3.3 process from saved configuration completes all three graph
+constructions under the 600-second bound. The maintained audit reproduces
+CONSTRUCTION_CONTROLS_PASS_WITH_NOTES. DP A:6, PDU A:9 and 5PC A:7 each retain
+their whole raw site because OP3 is the sole unmatched scaffold atom. The
+857-atom/42-site raw and final models are byte-identical: **successful rigid
+base transport was not exercised**. The 788 atoms at 39 unselected sites retain
+identities, elements and XYZ from the initial model, not full record bytes.
+All numerical dictionary bytes remain exact C57 candidates. Source/runtime
+bytes match clean C62; only NARestraints dirty-state metadata explains the
+reported runner SHA. No new native execution occurs during return verification.
 
-Unsupported, ambiguous or bridged-sugar sites retain their entire raw Coot site
-with explicit nonfatal notes. ATL is an independent public/eligibility control,
-with no fresh native/Coot outcome claimed, and is not a new eight-pair run
-requirement. Canonical base-mutation backbone behavior and explicit curated
-substitution/ring placements keep their prior semantics. Source CIF chemistry,
-curated precedence, NARestraints policy, native kernels and the qualified plane
-correction remain fixed. The controls bound Coot at 600 seconds; ordinary
-default timing stays unchanged.
+C62 local validation passed **118 new regressions**, **257 focused / 3512 full
+tests** (two skips, 276 subtests; full run 336.16 s). Actual-C61 strict replay,
+deleted-build/relocated runner, poisoned imports, aliased temporary roots,
+seven mirrors, 156 links and protected hashes/figure checks passed. These local
+checks and the returned Coot construction are separate evidence. Scientific
+geometry, native restraints and refinement were not assessed in C62. Historical
+receipts, including the old unobserved-composition label, stay unchanged.
 
-The diagnostic exercises fresh ordinary construction, without observations,
-fake AutoMR/PostMR checkpoints, ReadySet, new NAR compilation or refinement.
-It is not another saved-geometry optimization. General acquisition/repair
-adoption and generic NAR compilation remain necessary before the fresh exact
-eight-pair live run. Scientific geometry, absolute CIP, phosphate state,
-nonbonded pair identity, production checkpoint/refinement and solution PDF
+**C63 is the next delivery.** `--postmr-construction-only` accepts exact C62;
+runner `63_Cedar_probe_postmr_context.py` repeats the fresh DP/PDU/5PC controls
+through the same ordinary construction API. Ordinary construction now adds
+postmr-source-graph-internal-phosphate-context-v1 before its existing whole-base
+transport. Prove inherited CONECT and unchanged unselected identities before
+normalizing selected serial fields. In a discarded shadow, restore only the
+source-graph-matched parent scaffold XYZ; the unchanged phosphate sanitizer,
+using frozen allowed-OP3 and passthrough intent, must prove selected internal
+OP3 deletions. Transfer only those deletions to original raw coordinates, then
+run the existing proper whole-base transform and unchanged sanitizer recheck.
+Shadow coordinates never become the model. Ambiguous context retains complete
+raw coordinates with notes. Canonical mutations, explicit curated placements
+and unsupported/bridged ATL behavior retain their contracts.
+
+An offline saved-C62 study normalizes 69 selected serials and proves three
+internal OP3 removals. Of those 69 normalized serials, 66 remain after the
+three deletions; the prepared model has 854 atoms. All three transports preserve
+base geometry within 0.0011 A of PDB rounding. This is not a fresh Coot or
+native-restraint result.
+The new fresh control remains bounded to one Coot process/600 seconds, with
+ordinary default timing unchanged. Completed actual_coot_composition is
+OBSERVED with raw/context inventories; inspect-only is NOT_YET_OBSERVED.
+
+C63 also adds narrow opaque transport for ten legacy timestamped Coot backup
+names containing colons. Preserve logical names, gzip bytes and parent manifests
+through a checked portable staging map; scientific paths remain strict. Newly
+owned backup names use portable timestamps with archived provenance. No native
+backup is executed or decompressed. Historical captures are never rewritten.
+
+Source chemistry, curated precedence, NARestraints pairing/stacking authority,
+native kernels and the qualified correction remain unchanged; no NARestraints
+release is needed. General acquisition/repair adoption and generic NAR
+compilation remain necessary before the exact eight-pair live run. ATL remains
+an independent public/eligibility control, without a new fresh Coot/native
+claim or ninth pair. No ReadySet, Phenix, observations, optimizer, fake
+checkpoint or refinement is requested. Scientific geometry, absolute CIP,
+phosphate-state approval, production checkpoint/refinement and solution PDF
 rendering remain separate. Students do not inspect CIF tables.
 
-The bundle-only summary now labels inherited native evidence as
-VERIFIED_SOURCE_CAPTURE with native_selection_executed false. Historical C61
-receipts are preserved, rather than rewritten to match this additive reporting
-correction. C61 returned evidence is in `portable_runtime_bundle_2026_10_22`;
-the next software/native edge is `ordinary_postmr_construction_2026_10_22`.
-C62 local validation passes: **118 new regressions**, **257 focused / 3512 full
-tests** (two skips, 276 subtests; full run 336.16 s). Actual-C61 strict
-replay and deleted-build/relocated runner checks preserve all 3,406 source
-payloads, the everyday edit and ignored runner. Poisoned imports, aliased
-temporary roots, seven evidence mirrors, 156 relative links and protected
-hashes/figure checks pass. Fresh Coot construction remains pending on the Mac;
-no local test claims a new Coot, ReadySet, optimizer or refinement result.
+The bundle-only summary denotes inherited VERIFIED_SOURCE_CAPTURE with
+native_selection_executed false; old C61 receipts remain byte-identical.
+Returned construction evidence is in ordinary_postmr_construction_2026_10_22;
+the next ordinary context edge is ordinary_postmr_context_2026_10_22.
+All **140 new regressions**, **290 focused / 3652 full tests** pass
+(two skips, 276 subtests; full run 350.46 s). Actual-C62 strict
+replay, deleted-build/relocated transport, eight mirrors, 156 links and protected
+hash/figure checks pass. All 3,445 source payloads and the everyday edit are
+preserved. Fresh Coot construction remains pending.
+No new native C63 outcome is claimed. The maintained
+cif-saved-postmr-construction-replay-v1 reader validates the exact historical
+C62 fallback with current code rather than executing captured scripts.
 
 ## Completed and open work
 

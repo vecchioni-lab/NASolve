@@ -194,18 +194,22 @@ that candidate with notes. Returned C60 passes the new initial and both
 endpoint derivative checks plus exact native readback, and automatically retains
 a usable endpoint while reporting its iteration limit. Returned C61 passes all
 15 native staged-bundle checks for that exact model/19 CIFs/14 PHILs; the ordinary
-`assess --bundle` reader preserves its selection and stopping notes. C62 moves
-the connected-base restoration rule into ordinary PostMR construction, avoiding
-partial copying by base-atom name. Unsupported or bridged sites retain the raw
-Coot site with notes. Fresh MTZ-free controls use the same construction API;
-Coot execution, automatic acquisition/repair adoption, fresh NAR compilation,
-production checkpoints/refinement, PDF rendering and scientific qualification
-remain separate. Equivalent operational mapping
-aliases now compile once while
+`assess --bundle` reader preserves its selection and stopping notes. Returned
+C62 completes Coot 1.3.3 construction, but all three DP/PDU/5PC sites
+retain the entire raw site because OP3 lacks a parent scaffold match; no rigid
+base transport is exercised. C63 adds ordinary internal-phosphate context
+preparation: prove selected internal OP3 removal with the existing sanitizer on
+a discarded parent-scaffold shadow, transfer only proved deletions to raw
+coordinates, then transport the complete base. Unsupported or bridged sites
+retain raw coordinates with notes. Fresh controls use the same ordinary API;
+automatic acquisition/repair adoption, generic NAR compilation, production
+checkpoints/refinement, PDF rendering and scientific qualification remain
+separate. Equivalent operational mapping aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.
-NARestraints policy and production defaults stay fixed; geometry, convergence
-and adoption remain open.
+NARestraints policy and source-resource defaults stay fixed; ordinary construction
+now preserves connected-base geometry. Scientific qualification, convergence
+and general resource adoption remain open.
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

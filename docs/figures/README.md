@@ -121,12 +121,19 @@ stages the exact selected model/19 CIFs/14 PHILs in a portable manifest-bound
 runtime bundle consumed by the ordinary `assess --bundle` reader, with retained
 initial-model evidence and a plain-language selection/stopping solution_report,
 then checks one fresh native readback from that layout. Returned C61 passes
-all 15 native checks. C62 moves the connected-base rigid restoration rule into
-ordinary PostMR and exercises fresh controls through the same Coot API. Whole
-raw sites are retained with notes for unsupported or bridged graphs. Fresh
-native controls cover DP/PDU/5PC; ATL remains public graph/eligibility only.
-New Coot execution, general acquisition/repair adoption, fresh NAR compilation, production
-checkpoints/refinement and PDF rendering remain separate.
+all 15 native checks. Returned C62 completes Coot 1.3.3, retaining all three DP/PDU/5PC raw sites
+because OP3 lacks a parent scaffold match; no rigid base transport is exercised.
+C63 adds ordinary source-proven internal-phosphate context preparation: an
+unchanged sanitizer proves selected internal OP3 removal in a discarded
+parent-scaffold shadow; only proved deletions pass to original raw coordinates
+before whole-base transport and the same sanitizer recheck. Frozen phosphate
+intent, unsupported raw-site fallback and curated placement stay intact. A
+saved-data context study is not fresh native evidence. Fresh C63 controls use
+the same ordinary API with one Coot process/600 seconds; ATL stays independent
+public graph/eligibility only. Narrow diagnostic-backup mapping preserves legacy
+timestamped bytes without relaxing scientific paths. General acquisition/repair
+adoption, generic NAR compilation, production checkpoints/refinement and PDF
+rendering remain separate.
 This resource/reader bridge does not fabricate an AutoMR/PostMR checkpoint or
 claim automated acquisition, production adoption, refinement or PDF integration.
 Existing native classifications already say DNA despite generic written groups.

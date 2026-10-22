@@ -55,11 +55,14 @@ all three separate short-chain linkage controls. Returned C59 qualifies DP in
 the actual full scaffold and selects it with notes. Returned C60 retains a
 usable geometry endpoint after fresh derivatives and exact native readback pass,
 while reporting nonconvergence. Returned C61 passes all 15 native staged-bundle
-checks for that model and its exact restraints. C62 applies connected-base rigid
-restoration in ordinary PostMR construction, retaining unsupported raw sites
-with notes, and tests fresh controls through the same API. Automatic production
-recovery/adoption, fresh NAR compilation, production checkpoints/refinement and
-PDF rendering remain planned. Development
+checks for that model and its exact restraints. Returned C62 completes Coot
+construction but retains three whole raw sites
+because of unmatched OP3; rigid base transport is not exercised. C63 prepares
+source-proven internal-phosphate context before ordinary connected-base
+restoration and tests it through the same API. Unsupported raw sites remain
+usable with notes. Automatic production recovery/adoption, generic NAR
+compilation, production checkpoints/refinement and PDF rendering remain planned.
+Development
 diagnostics can retain REVIEW without asking students to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 ## How it works
@@ -1340,11 +1343,32 @@ coordinates. Canonical mutation backbones and explicit curated substitution/
 ring placements retain their previous semantics. Unsupported, ambiguous or
 bridged components keep their whole raw Coot site with notes; ATL is an
 independent example. No partial base copying or forced bridged-sugar conversion
-is used. The fresh native slice covers DP, PDU and 5PC at three explicit W-frame
-sites through one bounded Coot process. ATL is public graph/restoration-eligibility
-only, with no fresh Coot outcome claimed. Fresh Coot construction is pending;
-observations, ReadySet, new NAR compilation, checkpoints/refinement and PDF output are separate integration
-work before the planned full eight-pair run. No student CIF decision is added.
+is used. Returned C62 completes Coot 1.3.3 for DP, PDU and 5PC, but each site
+keeps its
+whole raw coordinates: the raw OP3 has no parent scaffold match. The fallback
+works as intended; this return does not exercise rigid base transport.
+
+C63 supplies the missing internal-phosphate context in ordinary construction.
+Use frozen connectivity and atom identities to authorize selected serial
+normalization. A discarded shadow places only matched sugar/backbone atoms in
+the parent frame so the existing phosphate sanitizer can prove internal OP3
+removal. Transfer only the proved deletions to the original raw coordinates,
+then move the complete base with the existing proper transform and recheck
+phosphates. Shadow coordinates never enter the model. The frozen allowed-OP3
+and passthrough policy is unchanged; ambiguous proof retains the whole raw site
+with notes. This changes ordinary coordinate preparation, not dictionary
+chemistry or native restraint mechanics.
+
+The saved-C62 study proves three deletions and preserves base geometry within
+PDB rounding; it is not a fresh Coot result. C63 tests the same ordinary API
+with one fresh process bounded at 600 seconds, plus an independent context
+change audit. Completed reports describe observed raw/context composition;
+inspect-only remains unobserved. Portable diagnostic-backup mapping preserves
+legacy timestamped backup bytes without relaxing scientific paths. ATL remains
+public graph/restoration eligibility only, with no fresh Coot outcome claimed.
+Observations, ReadySet, generic NAR compilation, repair/adoption, production
+checkpoints/refinement and PDF output remain separate integration work before
+the planned full eight-pair run. No student CIF decision is added.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

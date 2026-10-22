@@ -19053,7 +19053,7 @@
     }
   },
   "ordinary_postmr_construction_2026_10_22": {
-    "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; FRESH_COOT_CONSTRUCTION_PENDING",
+    "status": "RETURNED_COOT_CONSTRUCTION_PASS_WITH_NOTES; ALL_THREE_RAW_FALLBACK; TRANSPORT_NOT_EXERCISED",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "62_Cedar",
     "module": "src/nasolve/postmr.py",
@@ -19116,7 +19116,7 @@
       "control": "cif-postmr-construction-controls-v1 fresh ordinary-path construction report and preserved source/raw/parent/restored evidence; not an AutoMR/PostMR checkpoint."
     },
     "validation": {
-      "status": "LOCAL_PASS; FRESH_COOT_MAC_PENDING",
+      "status": "LOCAL_PASS; RETURNED_COOT_CONSTRUCTION_PASS_WITH_NOTES",
       "new_regressions": 118,
       "fail_before": [
         {
@@ -19227,7 +19227,7 @@
         "standalone_plan_without_source_capsule": "PASS",
         "student_cif_gate": false,
         "existing_runs": "UNCHANGED",
-        "new_Coot_construction": "PENDING_USER_MAC",
+        "new_Coot_construction": "RETURNED_COMPLETED_ALL_THREE_WHOLE_RAW_SITE_FALLBACK",
         "new_optimization_generation_refinement": "NOT_RUN"
       },
       "actual_return_replay": {
@@ -19286,16 +19286,16 @@
         "git": "2.51.1"
       },
       "native": {
-        "status": "PENDING_USER_MAC",
-        "Coot": "NOT_INSTALLED_HERE; ORDINARY_DISCOVERY_ON_MAC",
+        "status": "RETURNED_CONSTRUCTION_CONTROLS_PASS_WITH_NOTES",
+        "Coot": "1.3.3",
         "Phenix": "NOT_RUN_OR_REQUIRED_IN_THIS_SLICE",
-        "note": "Tests fake only external Coot execution while exercising actual shared production restoration and independent audit. Saved native evidence and software fixtures are not a fresh Coot result."
+        "note": "One native Coot process completed; all three unmatched-OP3 sites retained whole raw coordinates. No successful rigid transport or native restraint/scientific geometry qualification was exercised."
       }
     },
     "compatibility": "Ordinary modified-site coordinate-restoration behavior changes: preserve complete connected base geometry rather than mixing partial same-name parent base coordinates. Canonical mutation and explicit curated placements retain behavior. Unsupported/bridged/ambiguous graph sites retain raw Coot coordinates with notes. No source chemistry, NAR authority/release/workbook, native kernel/correction, ReadySet/refinement, checkpoint or migration change. Historical artifacts remain immutable.",
     "generated_artifacts": "Private fresh control models, raw Coot snapshots/logs, source dictionaries and review capsules remain uncommitted; maintained code/tests, methods and compact evidence summaries only.",
     "remaining_limits": [
-      "New fresh ordinary-path Coot construction remains pending; saved evidence and software fixtures are not a native execution result.",
+      "Returned C62 completes Coot but retains all three whole raw sites for unmatched OP3; no successful rigid fragment transport was exercised. C63 adds ordinary context preparation and a fresh same-path check.",
       "Connected-base rigid transport preserves raw local geometry and is not a minimizer, chemical-state choice or scientific geometry approval.",
       "General resource repair/adoption and generic NAR compilation still precede the fresh eight-pair full workflow.",
       "ReadySet, observations, production checkpoints/refinement, nonbonded pair identity, absolute CIP and solution PDF rendering remain separate.",
@@ -19329,6 +19329,491 @@
       "ATL": "PUBLIC_GRAPH_AND_PRODUCTION_RESTORATION_ELIGIBILITY_ONLY; NO_QUALIFIED_NUMERICAL_DICTIONARY_SUPPLIED; FRESH_NATIVE_COOT_NOT_RUN"
     },
     "saved_runtime_return_module": "src/nasolve/cif_runtime_return.py",
-    "saved_runtime_return_policy_id": "cif-saved-runtime-activation-replay-v1"
+    "saved_runtime_return_policy_id": "cif-saved-runtime-activation-replay-v1",
+    "return": {
+      "name": "62_Cedar_4n9u9wvj_cif_numerical_recovery_review.zip",
+      "sha256": "1c78b4ceb12478b05fd968ec891822d237ed3be44fe46a9bf0184bbc9ff38996",
+      "bytes": 91187227,
+      "verified_payloads": 3445,
+      "manifest_sha256": "34eb72bf70d84298bc20f88f2d06f825750d619683198933bf34cf87f7c782d1",
+      "unchanged_parent_payloads": 3406,
+      "build_sha256": "e75ec8fbdee2ce6ef7411f31d7e850fb7f6d95e4dc206a45efa1be5f1e46ca86",
+      "source_commit": "782672648934d22162de12375a1cb131d160f24a",
+      "source_working_tree_has_changes": false,
+      "runtime_members": 149,
+      "runtime_archive_sha256": "2afbdb61614561add523fcd7622d92a6577a01ee206acdb47676676191e462c6",
+      "reported_runner_sha256": "4253d8576849064662e55707b688cf947eb671fbff38e2347cad730865bb178c",
+      "clean_runner_sha256": "e24b60b3d55134b4f7158e102a89441492ec06bfe854c285476da4d854ee67cf",
+      "only_build_difference": "narestraints_source.working_tree_has_changes",
+      "runtime_bytes_match_clean_build": true,
+      "native_coot": {
+        "completion_evidence": "Trusted host helper returns only after zero process status and output existence; retained script, native log and outputs agree.",
+        "executable": "/opt/homebrew/Cellar/coot/1.3.3/bin/coot",
+        "execution": "COMPLETED",
+        "log": {
+          "anchor": "construction_directory",
+          "path": "model/Coot/coot.log",
+          "sha256": "fe8285772847aad35067d2fd8a431324b0ca98018dd4f93d8e633fd8abd036ed",
+          "size": 13384
+        },
+        "python_traceback_present": false,
+        "replacement_molecule_ids": [
+          2,
+          4,
+          6
+        ],
+        "script_reproduced_by_maintained_generator": true,
+        "script_sha256": "ea41796805315a203aa9069d8a6399604d6f534cd7c920505eb087099ef59ce4",
+        "sha256": "19bb878deb0a439021b64f3b346a8640f44028fe22d5a1e6ebc829cd4685185d",
+        "source": "saved configuration",
+        "structured_elapsed_seconds_recorded": false,
+        "structured_returncode_recorded": false,
+        "successful_graph_matches": 3,
+        "timeout_seconds": 600,
+        "version": "1.3.3"
+      },
+      "construction": {
+        "initial_atoms": 849,
+        "initial_sites": 42,
+        "maintained_audit_replayed_exact": true,
+        "raw_fallback_sites": [
+          "A:6",
+          "A:9",
+          "A:7"
+        ],
+        "raw_final_geometry_atoms": 857,
+        "raw_final_geometry_globally_byte_identical": true,
+        "raw_final_geometry_sites": 42,
+        "raw_to_final_all_857_atom_and_noncoordinate_records_exact": true,
+        "rigid_fragment_transport_tested": false,
+        "scientific_geometry_qualification": "NOT_ASSESSED",
+        "sites": {
+          "A:6": {
+            "common_scaffold_atoms": 11,
+            "component": "DP",
+            "max_raw_parent_scaffold_displacement_angstrom": 1.045719,
+            "parent": "DG",
+            "parent_atoms": 22,
+            "raw_atoms": 23,
+            "raw_equals_source_heavy_graph": true,
+            "selected_frozen_parent_matches_initial": true,
+            "sole_unmatched_scaffold_atom": "OP3"
+          },
+          "A:7": {
+            "common_scaffold_atoms": 11,
+            "component": "5PC",
+            "max_raw_parent_scaffold_displacement_angstrom": 2.930411,
+            "parent": "DC",
+            "parent_atoms": 19,
+            "raw_atoms": 23,
+            "raw_equals_source_heavy_graph": true,
+            "selected_frozen_parent_matches_initial": true,
+            "sole_unmatched_scaffold_atom": "OP3"
+          },
+          "A:9": {
+            "common_scaffold_atoms": 11,
+            "component": "PDU",
+            "max_raw_parent_scaffold_displacement_angstrom": 3.633138,
+            "parent": "DT",
+            "parent_atoms": 20,
+            "raw_atoms": 23,
+            "raw_equals_source_heavy_graph": true,
+            "selected_frozen_parent_matches_initial": true,
+            "sole_unmatched_scaffold_atom": "OP3"
+          }
+        },
+        "status": "CONSTRUCTION_CONTROLS_PASS_WITH_NOTES",
+        "unselected_atoms": 788,
+        "unselected_initial_to_raw_coordinate_columns_exact": true,
+        "unselected_initial_to_raw_full_lines_exact": 0,
+        "unselected_initial_to_raw_identity_code_element_xyz_exact": true,
+        "unselected_sites": 39
+      },
+      "source_dictionary_bytes_exact": true,
+      "input_output_bindings_verified": 12,
+      "original_C61_payloads_preserved": true,
+      "captured_code_execution": "NOT_RUN",
+      "new_native_execution_during_verification": "NOT_RUN",
+      "scientific_geometry_native_restraints_refinement": "NOT_ASSESSED",
+      "legacy_timestamped_diagnostic_backups": 10
+    },
+    "next_boundary": "ordinary_postmr_context_2026_10_22"
+  },
+  "ordinary_postmr_context_2026_10_22": {
+    "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; FRESH_COOT_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "63_Cedar",
+    "module": "src/nasolve/postmr_context.py",
+    "api": "postmr_context.prepare_construction_context",
+    "ordinary_shared_api": "postmr.construct_postmr_model",
+    "policy_id": "postmr-source-graph-internal-phosphate-context-v1",
+    "restoration_policy_id": "postmr-source-graph-fragment-restoration-v1",
+    "diagnostic_policy_id": "cif-postmr-construction-controls-v1",
+    "cli_action": "--postmr-construction-only",
+    "runner_filename": "63_Cedar_probe_postmr_context.py",
+    "requested_action": "ORDINARY_POSTMR_CONSTRUCTION_CONTROLS",
+    "review_input": {
+      "name": "62_Cedar_4n9u9wvj_cif_numerical_recovery_review.zip",
+      "sha256": "1c78b4ceb12478b05fd968ec891822d237ed3be44fe46a9bf0184bbc9ff38996",
+      "bytes": 91187227,
+      "verified_payloads": 3445,
+      "manifest_sha256": "34eb72bf70d84298bc20f88f2d06f825750d619683198933bf34cf87f7c782d1",
+      "source_commit": "782672648934d22162de12375a1cb131d160f24a",
+      "source_working_tree_has_changes": false,
+      "build_sha256": "e75ec8fbdee2ce6ef7411f31d7e850fb7f6d95e4dc206a45efa1be5f1e46ca86",
+      "runtime_members": 149,
+      "runtime_archive_sha256": "2afbdb61614561add523fcd7622d92a6577a01ee206acdb47676676191e462c6"
+    },
+    "purpose": "Allow ordinary whole-base restoration to proceed when source-proven internal OP3 is the sole unmatched scaffold atom, without using displaced raw phosphate geometry or adopting shadow coordinates.",
+    "algorithm": [
+      "Use the same ordinary construction API for production prepare_postmr and fresh MTZ-free controls, retaining the source raw Coot snapshot and dictionary bytes.",
+      "For eligible noncurated overlap sites, prove the source heavy graph and proper fragment transform. Preserve frozen allowed-OP3 and experimental passthrough intent; do not force bridged/ambiguous sugars.",
+      "Authorize selected-site serial normalization only from exactly inherited frozen CONECT records, unchanged unselected identities/XYZ/serials and unselected unchanged CONECT endpoints; no unrelated/global renumbering.",
+      "Prepare a separate discarded shadow with only exact source-graph scaffold coordinates restored from frozen canonical parents. Run the unchanged existing phosphate sanitizer with frozen intent to prove precisely the selected internal OP3 removals.",
+      "Transfer only proved atom deletions and authorized selected serial fields to original raw records; shadow XYZ never enter the model. Then apply the existing proper whole-base transport and unchanged sanitizer recheck.",
+      "If context authority or phosphate proof is unsupported/ambiguous, retain complete raw context with nonfatal notes. Canonical mutation and explicit curated substitution/ring placement semantics remain intact; ATL stays independent.",
+      "Add an independent context-delta audit to the same fresh controls. Completed actual_coot_composition reports OBSERVED raw/context inventories; inspect-only remains NOT_YET_OBSERVED. Replaying C62 without the additive context audit reproduces its original report exactly.",
+      "Preserve immutable historical capsules and narrow diagnostic-backup portability without relaxing scientific paths. No new NARestraints release, chemistry change or native kernel/correction change."
+    ],
+    "offline_saved_C62_study": {
+      "status": "PROOF_FROM_SAVED_INPUTS_ONLY",
+      "normalized_selected_serials": 69,
+      "proven_internal_OP3_deletions": 3,
+      "successful_existing_whole_base_transports": 3,
+      "maximum_internal_geometry_change_angstrom_bound": 0.0011,
+      "precision_context": "PDB rounding",
+      "fresh_native_execution": "NOT_RUN",
+      "scientific_geometry_qualification": "NOT_ASSESSED",
+      "retained_normalized_serials_after_deletion": 66,
+      "prepared_model_atoms": 854,
+      "initial_model_atoms": 849,
+      "raw_model_atoms": 857,
+      "sites": 42,
+      "unselected_atoms": 788,
+      "unselected_sites": 39,
+      "maximum_internal_geometry_change_angstrom": {
+        "A:6": 0.0010405628404115408,
+        "A:7": 0.0009109567492178172,
+        "A:9": 0.0008130101505501308
+      }
+    },
+    "diagnostic_transport": {
+      "module": "src/nasolve/cif_review_transport.py",
+      "policy_id": "cif-review-diagnostic-transport-v1",
+      "scope": "TIMESTAMPED_OPAQUE_COOT_BACKUP_PDB_GZ_ONLY",
+      "legacy_C62_members": 10,
+      "legacy_path_pattern": "(inputs/review/)*postmr_construction/model/Coot/backups/*.pdb.gz",
+      "staging": "Checked logical-name SHA mapping under .review-transport/objects; metadata excluded from returned archives.",
+      "archive": "Original legacy logical names, gzip bytes and parent manifests preserved through nesting and relocation.",
+      "owned_backups": "Portable timestamp names and archived postmr_construction/diagnostic_transport.json provenance: original_name, path, sha256, size.",
+      "scientific_paths": "STRICT_UNCHANGED",
+      "backup_execution_or_decompression": "NOT_RUN"
+    },
+    "controls": {
+      "template": "FRESH_MTZ_FREE_W_FRAME_FREE_5_PRIME_OH",
+      "native_cases": [
+        {
+          "component": "DP",
+          "site": "A:6",
+          "construction_parent": "DG"
+        },
+        {
+          "component": "PDU",
+          "site": "A:9",
+          "construction_parent": "DT"
+        },
+        {
+          "component": "5PC",
+          "site": "A:7",
+          "construction_parent": "DC"
+        }
+      ],
+      "dictionaries": "VERIFIED_PRIOR_NUMERICAL_CANDIDATES",
+      "ATL": "PUBLIC_GRAPH_AND_PRODUCTION_RESTORATION_ELIGIBILITY_ONLY; NO_QUALIFIED_NUMERICAL_DICTIONARY_SUPPLIED; FRESH_NATIVE_COOT_NOT_RUN"
+    },
+    "limits": {
+      "control_coot_timeout_seconds": 600,
+      "ordinary_coot_default_timeout": "UNCHANGED",
+      "observations": "NOT_READ",
+      "readyset": "NOT_RUN",
+      "new_nar_compilation": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "additional_saved_geometry_optimizer_cycle": "NOT_RUN",
+      "maximum_new_construction_processes": 1,
+      "fresh_native_components": [
+        "DP",
+        "PDU",
+        "5PC"
+      ],
+      "fresh_native_sites": [
+        "A:6",
+        "A:9",
+        "A:7"
+      ],
+      "ATL_fresh_native_coot": "NOT_RUN",
+      "phenix": "NOT_RUN"
+    },
+    "validation": {
+      "status": "LOCAL_PASS; FRESH_COOT_MAC_PENDING",
+      "new_regressions": 140,
+      "fail_before": [
+        {
+          "scope": "Exact completed C62/action boundary; three compatible older input cases already passed",
+          "failed": 15,
+          "already_passed": 3,
+          "seconds": 2.14
+        },
+        {
+          "scope": "Maintained construction-return module absent",
+          "failed": 26,
+          "seconds": 0.63
+        },
+        {
+          "scope": "Ordinary internal context before implementation observed raw fallback instead of whole-fragment restoration",
+          "failed": 1,
+          "seconds": 0.28
+        },
+        {
+          "scope": "Existing fresh-control auditor rejected legitimate contextual atom omissions and left completed composition unobserved",
+          "result": "FAILED_BEFORE_FIX; OBSERVED_LABEL_REPRODUCED"
+        }
+      ],
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cedar63_delivery.py tests/test_cedar62_delivery.py tests/test_cedar62_orchestration.py tests/test_cif_construction_return.py tests/test_cif_review_transport.py tests/test_postmr_context.py tests/test_postmr_restoration.py tests/test_cif_postmr_construction.py tests/test_postmr.py tests/test_phosphate.py tests/test_cif_doctor_postmr.py tests/test_cif_fragment_restoration.py",
+        "passed": 290,
+        "subtests_passed": 10,
+        "seconds": 11.16
+      },
+      "full": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q",
+        "passed": 3652,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 350.46
+      },
+      "strict_C62_return_replay": {
+        "status": "PASS",
+        "manifest_payloads": 3445,
+        "parent_C61_payloads_preserved": 3406,
+        "source_build_runtime_script_staging": "RECOMPUTED",
+        "all_three_original_raw_fallbacks": "RECOMPUTED",
+        "coordinated_actual_return_mutations_rejected": 8,
+        "captured_code_execution": "NOT_RUN"
+      },
+      "saved_C62_current_production_replay": {
+        "status": "PASS",
+        "execution": "SAVED_DATA_ONLY; EXTERNAL_COOT_STUBBED_WITH_EXACT_RETAINED_OUTPUTS",
+        "raw_atoms": 857,
+        "prepared_atoms": 854,
+        "source_sites": 42,
+        "serial_repairs_before_deletion": 69,
+        "retained_serial_repairs": 66,
+        "verified_internal_OP3_removed": 3,
+        "fragment_transport_sites": [
+          {
+            "attachment_orientation_preserved": true,
+            "component": "DP",
+            "max_fragment_distance_change": 0.0010405628404115408,
+            "scaffold_matches_frozen_parent": true,
+            "site": "A:6",
+            "status": "GRAPH_FRAGMENT_RESTORED"
+          },
+          {
+            "attachment_orientation_preserved": true,
+            "component": "PDU",
+            "max_fragment_distance_change": 0.0008130101505501308,
+            "scaffold_matches_frozen_parent": true,
+            "site": "A:9",
+            "status": "GRAPH_FRAGMENT_RESTORED"
+          },
+          {
+            "attachment_orientation_preserved": true,
+            "component": "5PC",
+            "max_fragment_distance_change": 0.0009109567492178172,
+            "scaffold_matches_frozen_parent": true,
+            "site": "A:7",
+            "status": "GRAPH_FRAGMENT_RESTORED"
+          }
+        ],
+        "unselected_atoms": 788,
+        "unselected_sites": 39,
+        "final_existing_phosphate_policy": "PASS_WITH_NO_FURTHER_DELETION",
+        "fresh_native_execution": "NOT_RUN"
+      },
+      "deleted_build_relocated_transport": {
+        "status": "PASS",
+        "runtime_members": 152,
+        "build_sources_deleted_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 3445,
+        "unchanged_parent_payloads": 3445,
+        "C62": "STRICT_FRESH_COOT_FALLBACK_STAGE_AND_SOURCE_INVENTORY_REPLAYED",
+        "C61": "STRICT_RUNTIME_ACTIVATION_AND_NATIVE_READBACK_REPLAYED",
+        "C60": "STRICT_SAVED_REPLACEMENT_PROOFS_REPLAYED",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "prior_native_readback_checks": 15,
+        "fresh_controls": [
+          {
+            "after": "DP",
+            "before": "DG",
+            "deposition_code": null,
+            "method": "coot-parent-overlap",
+            "parent_code": "DG",
+            "site": "A:6"
+          },
+          {
+            "after": "PDU",
+            "before": "DT",
+            "deposition_code": null,
+            "method": "coot-parent-overlap",
+            "parent_code": "DT",
+            "site": "A:9"
+          },
+          {
+            "after": "5PC",
+            "before": "DC",
+            "deposition_code": null,
+            "method": "coot-parent-overlap",
+            "parent_code": "DC",
+            "site": "A:7"
+          }
+        ],
+        "source_numerical_candidates": {
+          "5PC": {
+            "anchor": "input_capsule",
+            "path": "inputs/review/inputs/review/inputs/review/inputs/review/inputs/review/source_classification/5PC/candidate.cif",
+            "sha256": "7edbaef484b768557cb52667e6d79a0052e4f3e3c3cba72066e53cf640088e56",
+            "size": 10610
+          },
+          "DP": {
+            "anchor": "input_capsule",
+            "path": "inputs/review/inputs/review/inputs/review/inputs/review/inputs/review/source_classification/DP/candidate.cif",
+            "sha256": "10160ee58b146fda655e289ddcd7d7e7fe4b64f164ce2327b4c33936fadad670",
+            "size": 10514
+          },
+          "PDU": {
+            "anchor": "input_capsule",
+            "path": "inputs/review/inputs/review/inputs/review/inputs/review/inputs/review/source_classification/PDU/candidate.cif",
+            "sha256": "92131cd42f50be9daae3647240d62a51d1fa0dc8aa4d2ba9effd5848ee728da7",
+            "size": 10511
+          }
+        },
+        "source_graph_fragment_atoms": {
+          "DP": 11,
+          "PDU": 11,
+          "5PC": 11
+        },
+        "legacy_timestamped_backup_members": 10,
+        "legacy_backup_roundtrip": "EXACT_LOGICAL_NAMES_AND_BYTES; PORTABLE_PHYSICAL_STAGING",
+        "unmatched_OP3_context": "TRANSACTIONAL_PROVEN_INTERNAL_CONTEXT_OR_RAW_FALLBACK",
+        "ATL": "INDEPENDENT_PUBLIC_ONLY",
+        "standalone_plan_without_source_capsule": "PASS",
+        "student_cif_gate": false,
+        "existing_runs": "UNCHANGED",
+        "new_Coot_construction": "PENDING_USER_MAC",
+        "new_optimization_generation_refinement": "NOT_RUN"
+      },
+      "opaque_backup_transport": {
+        "status": "PASS",
+        "full_logical_members": 3446,
+        "full_uncompressed_bytes": 1229699626,
+        "legacy_timestamped_backups": 10,
+        "logical_names_and_bytes": "UNCHANGED",
+        "portable_physical_staging": "PASS",
+        "full_actual_relocation": "PASS",
+        "two_generation_backup_subset": "PASS",
+        "scientific_input_path_validation": "STRICT_UNCHANGED"
+      },
+      "documentation": {
+        "mirror_equality": "PASS",
+        "mirrored_records": [
+          "automatic_component_resolution_2026_10_21",
+          "source_declared_dna_metadata_2026_10_22",
+          "qualified_dna_linked_controls_2026_10_22",
+          "full_scaffold_candidate_2026_10_22",
+          "replacement_geometry_trial_2026_10_22",
+          "portable_runtime_bundle_2026_10_22",
+          "ordinary_postmr_construction_2026_10_22",
+          "ordinary_postmr_context_2026_10_22"
+        ],
+        "unrelated_runtime_history": "PRESERVED",
+        "unrelated_canonical_history": "PRESERVED",
+        "historical_unicode_tokens": {
+          "docs/cif-linked-native-registration-evidence.json": 11,
+          "docs/cif-restraint-doctor-implementation.json": 26
+        },
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "src/nasolve/cif_native_validation.py": "a80014965b04e224f0ac9b62ed5065c090fb2814893ef823855ef982f4ee34ce",
+          "src/nasolve/cif_fixed_geometry.py": "6b87732f1ab9165531d297e633edc13f755c70a5cc350ff8ff51f75e4053db14",
+          "src/nasolve/cif_gradient_audit.py": "a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc",
+          "src/nasolve/cif_candidate_usability.py": "09ab86621a3f7623f8594c6094ee9c0c7daf4aaa4e6f6c937d034d5cce9abbf9",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "native_worker_module_unchanged": "PASS",
+        "v2_usability_module_unchanged": "PASS",
+        "fixed_geometry_module_unchanged": "PASS",
+        "gradient_audit_module_unchanged": "PASS",
+        "native_geometry_worker_unchanged": "PASS",
+        "native_worker_sha256": "9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78",
+        "native_geometry_worker_sha256": "348a28b7a85883eb1bdf6767a75cb4d6db6c500d82539ca734d8d7ea6ad9f47f",
+        "deterministic_svg_and_xml": "PASS",
+        "figure_svg_sha256": "0c2e660c9213833152eb9d6dc30f0fd0bd1f364c92ba913fb01fa617181cc64a",
+        "raster_visual_review": "PASS",
+        "raster_file": "cedar63-figure-review.png",
+        "raster_sha256": "00015dea9a0a17690c17e2a9ddce271db17cfa09db3a0b164b90e28ff7d57bf9",
+        "diff_check": "PASS",
+        "C62_return": {
+          "verified_payloads": 3445,
+          "native_coot": "COMPLETED_1.3.3",
+          "all_three_raw_site_fallback": "CONFIRMED",
+          "successful_fragment_transport": "NOT_EXERCISED",
+          "captured_code_execution": "NOT_RUN"
+        },
+        "C63_fresh_native": "PENDING_USER_MAC; OFFLINE_CONTEXT_STUDY_NOT_NATIVE",
+        "validation_counts": "PENDING_ROOT_FINALIZATION",
+        "relative_link_scope": "Markdown document and image targets in eight prose documents"
+      },
+      "tools": {
+        "Python": "3.12.14",
+        "Biopython": "1.88",
+        "numpy": "2.3.5",
+        "openpyxl": "3.1.5",
+        "pytest": "9.1.1",
+        "git": "2.51.1"
+      },
+      "native": {
+        "status": "PENDING_USER_MAC",
+        "Coot": "NOT_INSTALLED_HERE; ORDINARY_DISCOVERY_ON_MAC; PREVIOUS_RETURN_1.3.3",
+        "Phenix": "NOT_RUN_OR_REQUIRED_IN_THIS_SLICE",
+        "note": "Saved C62 data replay, exact parent preservation and controlled external-Coot fixtures do not establish a fresh C63 native construction result."
+      }
+    },
+    "compatibility": "Ordinary default construction prepares source-proven internal phosphate context before existing whole-base transport. No chemistry, source precedence, frozen phosphate intent, NAR workbook/release/pairing/stacking policy, native kernels, optimizer or correction changes. Unsupported contexts retain raw coordinates with notes; historical evidence remains immutable.",
+    "remaining_limits": [
+      "Fresh C63 Coot construction remains pending; offline saved-C62 proof is not a new native result.",
+      "Source graph/coordinate preservation is not absolute CIP, phosphate-state or scientific geometry approval.",
+      "General resource acquisition/repair/adoption and generic NAR compilation still precede the exact eight-pair full workflow.",
+      "ReadySet, Phenix, observations, optimization, production checkpoints/refinement and solution PDF rendering are not part of this slice.",
+      "ATL remains independent public/eligibility only, not a ninth pair or fresh native result."
+    ],
+    "automatic_adoption": false,
+    "ordinary_construction_default": true,
+    "requires_cif_review": false,
+    "scientific_approval": "NOT_RUN",
+    "generated_artifacts": "Private models, Coot outputs/backups/logs, dictionary copies and review capsules remain uncommitted; maintained code/tests, methods and compact public evidence summaries only.",
+    "saved_return_module": "src/nasolve/cif_construction_return.py",
+    "saved_return_policy_id": "cif-saved-postmr-construction-replay-v1",
+    "saved_return_api": "cif_construction_return.replay_postmr_construction"
   }
 }

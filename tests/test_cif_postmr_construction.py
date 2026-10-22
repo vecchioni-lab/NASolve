@@ -12,7 +12,7 @@ import pytest
 
 from nasolve.cif_postmr_construction import (
     ORDINARY_POSTMR_CONSTRUCTION_CONTROLS, POLICY_ID,
-    audit_postmr_construction, run_postmr_construction_controls,
+    audit_construction_context, audit_postmr_construction, run_postmr_construction_controls,
 )
 from nasolve.postmr import MutationAction
 from tests.test_cif_fragment_restoration import fixture, SCAFFOLD, EDGES
@@ -174,9 +174,8 @@ def test_failed_coot_leaves_portable_plan_sources_and_failed_receipt(tmp_path, m
     assert (output / "construction_plan.json").is_file()
 
 
-@pytest.mark.parametrize("op3", [False, True])
-def test_live_controls_use_shared_ordinary_construction_once_and_audit_the_actual_files(tmp_path, monkeypatch, op3):
-    """Fake only the external Coot process; run ordinary production restoration."""
+def live_fixture(tmp_path, monkeypatch, op3=True, *, foreign_conect=False):
+    """Fake only the external Coot process; run ordinary production context/restoration."""
     from nasolve.cif_construction_provenance import _pdb_inventory
     sources = dictionaries(tmp_path, op3=op3)
     calls = []
@@ -213,6 +212,8 @@ def test_live_controls_use_shared_ordinary_construction_once_and_audit_the_actua
             elif site not in {a.site for a in actions}:
                 lines.append(line)
         output_model.write_text(''.join(lines))
+        if foreign_conect:
+            output_model.write_text(output_model.read_text() + "CONECT9999999998\n")
         log = coot_directory / "coot.log"; log.write_text("Synthetic external process fixture; no Coot installed.\n")
         script = coot_directory / "mutate.py"; script.write_text("# synthetic process fixture\n")
         return script, log
@@ -220,22 +221,96 @@ def test_live_controls_use_shared_ordinary_construction_once_and_audit_the_actua
     output = tmp_path / "fresh"
     report = run_postmr_construction_controls(FRAME, sources, output,
         coot_executable=Path("/fixture/coot"), coot_version="fixture", environment={"FIXTURE": "yes"})
+    return output, report, calls
+
+
+@pytest.mark.parametrize("op3", [False, True])
+def test_live_controls_use_shared_ordinary_construction_once_and_audit_the_actual_files(tmp_path, monkeypatch, op3):
+    output, report, calls = live_fixture(tmp_path, monkeypatch, op3)
     assert len(calls) == 1 and calls[0][-1] == 600
     assert calls[0][3] == {"FIXTURE": "yes"}
     assert {a.after for a in calls[0][0]} == {"DP", "PDU", "5PC"}
     assert set(calls[0][1]) == {"DP", "PDU", "5PC"}
     assert report["coot"]["execution"] == "COMPLETED" and report["analysis_completed"]
     assert report["source_inputs_preserved"]
+    assert all(row["actual_coot_composition"] == "OBSERVED" for row in report["expected_restoration_context"].values())
+    assert all(row["actual_coot_inventory"]["atom_count"] == 14 + op3 for row in report["expected_restoration_context"].values())
+    assert report["status"] == "CONSTRUCTION_CONTROLS_PASS"
+    assert all(r["fragment_transport_tested"] for r in report["audit"]["sites"])
+    assert all(r["status"] == "GRAPH_FRAGMENT_RESTORED" for r in report["coordinate_restoration"].values())
     if op3:
-        assert report["status"] == "CONSTRUCTION_CONTROLS_PASS_WITH_NOTES"
-        assert set(report["audit"]["raw_fallback_sites"]) == {"A:6", "A:9", "A:7"}
-        assert all(r["status"] == "RAW_SITE_RETAINED" for r in report["coordinate_restoration"].values())
-        assert (output / report["outputs"]["model"]["path"]).read_bytes() == (output / report["outputs"]["raw_model"]["path"]).read_bytes()
+        context = report["audit"]["context_audit"]
+        assert context["status"] == "CONSTRUCTION_CONTEXT_DELTA_PASS"
+        assert report["audit"]["raw_composition_preserved"] is False
+        assert report["audit"]["contextual_composition_preserved"] is True
+        assert context["raw_coordinates_preserved"] is True
+        assert {row["site"] for row in context["removed_atoms"]} == {"A:6", "A:9", "A:7"}
+        assert all(row["atom"] == "OP3" for row in context["removed_atoms"])
+        assert len(context["serial_repairs"]) == 45 and len(context["retained_atom_serial_repairs"]) == 42
+        assert context["unique_context_serials"] and context["inherited_connections_rebound"]
+        assert context["final_phosphate_audit"]["removed"] == []
+        assert all(row["actual_restoration_input_composition"]["removed_from_raw_coot"] == ["OP3"]
+                   for row in report["expected_restoration_context"].values())
     else:
-        assert report["status"] == "CONSTRUCTION_CONTROLS_PASS"
-        assert all(r["fragment_transport_tested"] for r in report["audit"]["sites"])
-        assert all(r["status"] == "GRAPH_FRAGMENT_RESTORED" for r in report["coordinate_restoration"].values())
+        assert report["audit"]["context_audit"]["status"] == "NO_CONTEXT_CHANGE"
+        assert report["audit"]["raw_composition_preserved"] is True
     assert report["readyset_execution"] == report["phenix_execution"] == report["optimization"] == "NOT_RUN"
+
+
+def test_unproved_context_retains_complete_raw_with_observed_inventory_and_notes(tmp_path, monkeypatch):
+    output, report, calls = live_fixture(tmp_path, monkeypatch, foreign_conect=True)
+    assert len(calls) == 1
+    assert report["status"] == "CONSTRUCTION_CONTROLS_PASS_WITH_NOTES"
+    assert report["context_receipt"]["status"] == "RAW_CONTEXT_RETAINED"
+    assert report["context_receipt"]["removed_atoms"] == report["context_receipt"]["serial_repairs"] == []
+    assert report["audit"]["raw_composition_preserved"] is True
+    assert report["audit"]["context_audit"]["unique_context_serials"] is False
+    assert set(report["audit"]["raw_fallback_sites"]) == {"A:6", "A:9", "A:7"}
+    assert all(row["actual_coot_composition"] == "OBSERVED" for row in report["expected_restoration_context"].values())
+    assert (output / report["outputs"]["model"]["path"]).read_bytes() == (output / report["outputs"]["raw_model"]["path"]).read_bytes()
+    assert report["user_cif_review_required"] is False
+
+
+@pytest.mark.parametrize("defect", ["retained_xyz", "unselected_serial", "extra_deletion", "context_conect", "raw_conect", "shadow_base", "shadow_scaffold", "repair_identity", "deletion_identity", "file_binding"])
+def test_independent_context_audit_refuses_unauthorized_delta_or_forged_proof(tmp_path, monkeypatch, defect):
+    output, report, _ = live_fixture(tmp_path, monkeypatch)
+    def path(row):
+        return output / row["path"]
+    initial = path(report["input_model"])
+    raw = path(report["outputs"]["raw_model"])
+    context = path(report["outputs"]["restoration_input"])
+    shadow = path(report["outputs"]["context_shadow"])
+    if defect in {"retained_xyz", "unselected_serial", "extra_deletion"}:
+        lines = context.read_text().splitlines(keepends=True)
+        index = next(i for i,l in enumerate(lines) if l.startswith("HETATM") and l[12:16].strip() == "NX")
+        if defect == "retained_xyz":
+            lines[index] = lines[index][:30] + f'{91.:8.3f}' + lines[index][38:]
+        elif defect == "extra_deletion":
+            lines.pop(index)
+        else:
+            index = next(i for i,l in enumerate(lines) if l.startswith("ATOM  ") and l[21:26] == "A   1")
+            lines[index] = lines[index][:6] + "50000" + lines[index][11:]
+        context.write_text(''.join(lines))
+    elif defect in {"context_conect", "raw_conect"}:
+        target = context if defect == "context_conect" else raw
+        target.write_text(target.read_text() + "CONECT    1    3\n")
+    elif defect in {"shadow_base", "shadow_scaffold"}:
+        lines = shadow.read_text().splitlines(keepends=True)
+        name = "NX" if defect == "shadow_base" else "C3'"
+        index = next(i for i,l in enumerate(lines) if l.startswith("HETATM") and l[12:16].strip() == name)
+        lines[index] = lines[index][:30] + f'{91.:8.3f}' + lines[index][38:]
+        shadow.write_text(''.join(lines))
+    elif defect == "repair_identity":
+        report["context_receipt"]["serial_repairs"][0]["site"] = "A:99"
+    elif defect == "deletion_identity":
+        report["context_receipt"]["removed_atoms"][0]["atom"] = "OP1"
+    else:
+        report["context_receipt"]["raw_model_sha256"] = "0" * 64
+    actions = tuple(MutationAction(**row) for row in report["controls"])
+    with pytest.raises(ValueError):
+        audit_construction_context(initial, raw, context, actions,
+            {code: path(row) for code, row in report["dictionaries"].items()}, report["context_receipt"],
+            context_shadow=shadow, parent_models={site: path(row) for site, row in report["parents"].items()})
 
 
 @pytest.mark.parametrize("defect", ["missing_dictionary", "extra_dictionary", "timeout", "parent", "existing", "symlink"])

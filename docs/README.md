@@ -22,12 +22,17 @@ NARestraints policy intact. Returned C60 selects a usable geometry endpoint
 after initial/endpoint derivatives and exact native readback pass, retaining
 its iteration-limit note. Returned C61 passes all 15 staged native checks for
 the exact model/19 CIFs/14 PHILs, consumed by the ordinary `assess --bundle`
-reader. C62 applies connected-base rigid restoration in ordinary PostMR and
-runs fresh MTZ-free controls through the same Coot construction API. Unsupported
-or bridged sites retain their entire raw site with notes. Fresh Coot execution,
-automatic acquisition/repair adoption, fresh NAR compilation, production
-checkpoints/refinement, PDF rendering, phosphate state and scientific
-qualification remain separate. Students do not approve CIFs.
+reader. Returned C62 completes Coot 1.3.3 construction, but all three
+DP/PDU/5PC sites
+retain the entire raw site because OP3 lacks a parent scaffold match; no rigid
+base transport is exercised. C63 adds ordinary internal-phosphate context
+preparation: prove selected internal OP3 removal with the existing sanitizer on
+a discarded parent-scaffold shadow, transfer only proved deletions to raw
+coordinates, then transport the complete base. Unsupported or bridged sites
+retain raw coordinates with notes. Fresh controls use the same ordinary API;
+automatic acquisition/repair adoption, generic NAR compilation, production
+checkpoints/refinement, PDF rendering and scientific qualification remain
+separate. Students do not approve CIFs.
 
 ## What's current?
 
@@ -251,8 +256,9 @@ qualification remain separate. Students do not approve CIFs.
   already has matching C-sheet roles, so no NAR table/release change is needed.
   Scientific qualification
   remains open.
-  Native energy definitions and production defaults stay fixed. Production PostMR,
-  full scientific qualification and adoption remain separate.
+  Native energy definitions and source-resource defaults stay fixed. Ordinary
+  connected-base/context construction is implemented; general resource adoption,
+  fresh NAR compilation and full scientific qualification remain separate.
   [The source-recovery record](cif-linked-source-recovery-evidence.json)
   owns exact returned hashes and offline replay; Cedar 05's inventory is
   recorded in the native ledger.

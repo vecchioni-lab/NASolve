@@ -89,14 +89,8 @@ def _materialize(members, target):
 def _review_zip(session):
     token = session.name.rsplit('-', 1)[-1]
     destination = session / (BUNDLE['delivery_prefix']+'_'+token+'_cif_numerical_recovery_review.zip')
-    files = {}
-    for path in sorted(session.rglob('*')):
-        if path == destination or path.is_relative_to(session/'runtime'):
-            continue
-        if path.is_symlink():
-            raise ValueError('Unexpected output symlink')
-        if path.is_file() and path.suffix not in {'.pyc', '.pkl', '.pickle'}:
-            files[path.relative_to(session).as_posix()] = path.read_bytes()
+    from nasolve.cif_review_transport import review_archive_files
+    files=review_archive_files(session,destination)
     with zipfile.ZipFile(destination, 'x', zipfile.ZIP_DEFLATED) as archive:
         for name, data in files.items():
             archive.writestr(name, data)
@@ -122,11 +116,12 @@ def _fingerprints(phenix,capture):
 
 
 def _verify_manifest(members, count):
+    from nasolve.cif_review_transport import is_safe_review_member
     manifest=json.loads(members['manifest.json'])
     if set(members)!=set(manifest)|{'manifest.json'} or len(manifest)!=count:
         raise ValueError('Unexpected preserved payload inventory')
     for name,row in manifest.items():
-        if not _safe(name) or len(members[name])!=row['bytes'] or _sha(members[name])!=row['sha256']:
+        if not is_safe_review_member(name) or len(members[name])!=row['bytes'] or _sha(members[name])!=row['sha256']:
             raise ValueError('Preserved payload integrity mismatch')
 
 
@@ -609,7 +604,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -2195,6 +2190,40 @@ CEDAR60_SOURCE_COMMIT='1bcf781a28b90647dbfb8dd8538ad7c921b25161'
 CEDAR61_SHA256='73476fe624d7f951d7c0b6af8ff2da75c4caf7b9f19f1e1870610f1e383c8472'
 CEDAR61_BUILD_SHA256='495bc081d5271eb6544d03ba17a1a2141131bd4adb0e716c68cf452ef5c032cf'
 CEDAR61_SOURCE_COMMIT='c1fdd6c97b833e265cc3f952c333c824269a1b0c'
+CEDAR62_SHA256='1c78b4ceb12478b05fd968ec891822d237ed3be44fe46a9bf0184bbc9ff38996'
+CEDAR62_BUILD_SHA256='e75ec8fbdee2ce6ef7411f31d7e850fb7f6d95e4dc206a45efa1be5f1e46ca86'
+CEDAR62_SOURCE_COMMIT='782672648934d22162de12375a1cb131d160f24a'
+
+
+def _replay_postmr_construction(members):
+    from nasolve.cif_construction_return import replay_postmr_construction
+    # The complete C61 parent is validated by the caller; captured code is data.
+    return replay_postmr_construction(members)
+
+
+def _read_cedar62_members(members):
+    _verify_manifest(members,3445);r=json.loads(members['probe_receipt.json']);a=r['postmr_construction_audit']
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR62_BUILD_SHA256
+            or r.get('delivery_prefix')!='62_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('requested_action')!='ORDINARY_POSTMR_CONSTRUCTION_CONTROLS' or r.get('status')!='REVIEW'
+            or r.get('coot_runtime',{}).get('version')!='1.3.3' or r.get('policy_authority')!='NARestraints'
+            or r.get('requires_cif_review') is not False or r.get('automatic_adoption') is not False
+            or any(r.get(k) is not True for k in ['analysis_completed','original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or r.get('native_execution')!='FRESH_COOT_POSTMR_CONSTRUCTION'
+            or r.get('model_editing')!='SEPARATE_FRESH_CONSTRUCTION_CONTROLS' or r.get('model_optimization')!='NOT_RUN'
+            or any(r.get(k)!='NOT_RUN' for k in ['native_proxy_validation','linked_site_validation','dictionary_generation','policy_recompilation','refinement','readyset_retry','installed_phenix_edits','scientific_approval'])
+            or r['prior_archive'].get('sha256')!=CEDAR61_SHA256 or r['prior_archive'].get('verified_payloads')!=3406
+            or a!=json.loads(members['postmr_construction_audit.json']) or a.get('policy_id')!='cif-postmr-construction-controls-v1'
+            or a.get('status')!='CONSTRUCTION_CONTROLS_PASS_WITH_NOTES' or a.get('analysis_completed') is not True
+            or a.get('ordinary_construction_api')!='nasolve.postmr.construct_postmr_model'
+            or a.get('coot')!={'execution':'COMPLETED','version':'1.3.3','timeout_seconds':600}
+            or a.get('audit',{}).get('raw_fallback_sites')!=['A:6','A:9','A:7']
+            or a.get('source_inputs_preserved') is not True or a.get('user_cif_review_required') is not False
+            or a.get('mtz_used') is not False or any(a.get(k)!='NOT_RUN' for k in
+                ['mr_execution','phenix_execution','readyset_execution','optimization','refinement'])):
+        raise ValueError('Require exact completed Cedar 62 ordinary construction fallback evidence')
+    nested={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    prior=_read_cedar61_members(nested);_replay_postmr_construction(members);return prior
 
 
 def _replay_runtime_activation(members):
@@ -2537,7 +2566,9 @@ def _runtime_readback_checks(expected,native,model,reference_target):
 def _postmr_control_dictionaries(members,frozen):
     """Use C57's declared, already qualified numerical artifacts by exact lineage."""
     view=members;prefix=''
-    for delivery in ['61_Cedar','60_Cedar','59_Cedar','58_Cedar','57_Cedar']:
+    order=['62_Cedar','61_Cedar','60_Cedar','59_Cedar','58_Cedar','57_Cedar']
+    if json.loads(view['probe_receipt.json']).get('delivery_prefix')=='61_Cedar':order=order[1:]
+    for delivery in order:
         current=json.loads(view['probe_receipt.json'])
         if current.get('delivery_prefix')!=delivery:raise ValueError('Fresh construction controls lost their declared source lineage')
         if delivery=='57_Cedar':break
@@ -2581,14 +2612,21 @@ def _run_postmr_construction_action(args,receipt,session,review,original,members
     report['source_numerical_candidates']=references
     report['qualified_runtime_input']={'delivery_prefix':'61_Cedar','sha256':CEDAR61_SHA256,
         'native_readback':'PASS','native_checks':15,'selected_bundle':'PRESERVED'}
+    if json.loads(members['probe_receipt.json']).get('delivery_prefix')=='62_Cedar':
+        report['construction_prerequisite']={'delivery_prefix':'62_Cedar','sha256':CEDAR62_SHA256,
+            'coot_version':'1.3.3','status':'CONSTRUCTION_CONTROLS_PASS_WITH_NOTES',
+            'raw_fallback_sites':['A:6','A:9','A:7'],'rigid_transport_exercised':False,
+            'captured_code_execution':'NOT_RUN','original_raw_models':'PRESERVED'}
     if coot is not None and _sha(coot.executable.read_bytes())!=executable_hash:raise ValueError('Coot executable changed during fresh construction')
     if model.read_bytes()!=runtime[canonical]:raise ValueError('Fresh construction changed the canonical frame')
-    if any((frozen/PurePosixPath(n)).read_bytes()!=d for n,d in members.items()) or review.read_bytes()!=original:
+    from nasolve.cif_review_transport import read_staged_review_member
+    if any(read_staged_review_member(frozen,n)!=d for n,d in members.items()) or review.read_bytes()!=original:
         raise ValueError('Fresh construction changed preserved evidence')
     receipt.update(postmr_construction_audit=report,native_execution='NOT_RUN' if args.inspect_only else 'FRESH_COOT_POSTMR_CONSTRUCTION',
         model_editing='NOT_RUN' if args.inspect_only else 'SEPARATE_FRESH_CONSTRUCTION_CONTROLS',
         analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True,requires_cif_review=False)
-    receipt['limitations']=['Fresh DP/PDU/5PC construction uses the same source-graph restoration API as ordinary PostMR; the qualified C61 runtime bundle is preserved.',
+    receipt['limitations']=['Fresh DP/PDU/5PC construction uses the same source-graph restoration and transactional internal-phosphate context API as ordinary PostMR; the qualified C61 runtime bundle and every prior raw model are preserved.',
+        'Inherited CONECT authority must be proven before selected atom serial normalization. A discarded parent-scaffold shadow supplies only unchanged-sanitizer evidence for exact internal OP3 omissions; final retained coordinates come from the original raw model and proper whole-base transport.',
         'Supported DNA base fragments move rigidly. Unsupported or unmatched sugar/backbone contexts keep the intact raw residue with automatic notes.',
         'ATL remains an independent graph/compiler/eligibility control; no new numerical ATL dictionary is invented.',
         'This construction-only control does not acquire diffraction data, compile a new NARestraints scaffold, run ReadySet, optimize, refine or create a production checkpoint.',
@@ -3012,22 +3050,24 @@ def _run_source_classification_action(args,receipt,session,review,original,membe
 def _source_reader_evidence(members):
     """Reach the verified C34 constructor evidence without dropping wrappers."""
     prefix=''
-    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar'}:
+    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar'}:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
     return members,prefix
 
 
 def _read_capsule(path, expected_sha=None):
+    from nasolve.cif_review_transport import is_safe_review_member
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256,CEDAR53_SHA256,CEDAR54_SHA256,CEDAR55_SHA256,CEDAR56_SHA256,CEDAR57_SHA256,CEDAR58_SHA256,CEDAR59_SHA256,CEDAR60_SHA256,CEDAR61_SHA256}):
-        raise ValueError('Require an exact verified Cedar 29--61 review ZIP')
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256,CEDAR53_SHA256,CEDAR54_SHA256,CEDAR55_SHA256,CEDAR56_SHA256,CEDAR57_SHA256,CEDAR58_SHA256,CEDAR59_SHA256,CEDAR60_SHA256,CEDAR61_SHA256,CEDAR62_SHA256}):
+        raise ValueError('Require an exact verified Cedar 29--62 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
-        if len(names)!=len(set(names)) or any(not _safe(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
+        if len(names)!=len(set(names)) or any(not is_safe_review_member(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='61_Cedar':qualified,prior,rotation=_read_cedar61_members(members)
+    if header.get('delivery_prefix')=='62_Cedar':qualified,prior,rotation=_read_cedar62_members(members)
+    elif header.get('delivery_prefix')=='61_Cedar':qualified,prior,rotation=_read_cedar61_members(members)
     elif header.get('delivery_prefix')=='60_Cedar':qualified,prior,rotation=_read_cedar60_members(members)
     elif header.get('delivery_prefix')=='59_Cedar':qualified,prior,rotation=_read_cedar59_members(members)
     elif header.get('delivery_prefix')=='58_Cedar':qualified,prior,rotation=_read_cedar58_members(members)
@@ -3876,7 +3916,7 @@ def _check_constructor_input_mode(args,delivery):
         'scaffold_candidate_only':('58_Cedar',),
         'scaffold_geometry_only':('59_Cedar',),
         'runtime_bundle_only':('60_Cedar',),
-        'postmr_construction_only':('61_Cedar',),
+        'postmr_construction_only':('61_Cedar','62_Cedar'),
     }
     for option,inputs in scopes.items():
         if bool(getattr(args,option,False))!=(delivery in inputs):
@@ -3886,6 +3926,7 @@ def _check_constructor_input_mode(args,delivery):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '63_Cedar':'NASolve-live-tests/62_Cedar_cif-numerical-recovery-4n9u9wvj/62_Cedar_4n9u9wvj_cif_numerical_recovery_review.zip',
         '62_Cedar':'NASolve-live-tests/61_Cedar_cif-numerical-recovery-zclptcef/61_Cedar_zclptcef_cif_numerical_recovery_review.zip',
         '61_Cedar':'NASolve-live-tests/60_Cedar_cif-numerical-recovery-9bzo82lh/60_Cedar_9bzo82lh_cif_numerical_recovery_review.zip',
         '60_Cedar':'NASolve-live-tests/59_Cedar_cif-numerical-recovery-rivd7_vt/59_Cedar_rivd7_vt_cif_numerical_recovery_review.zip',
@@ -4011,7 +4052,9 @@ def main():
         # files are frozen evidence and are never imported or executed.
         parent.mkdir(parents=True,exist_ok=True);session=Path(tempfile.mkdtemp(prefix=BUNDLE['delivery_prefix']+'_cif-numerical-recovery-',dir=parent))
         _materialize(runtime,session/'runtime');sys.path[:0]=[str(session/'runtime/src'),str(session/'runtime')];sys.dont_write_bytecode=True
-        members,qualified,prior,rotation,original=_read_capsule(review);_materialize(members,session/'inputs/review');frozen=session/'inputs/review'
+        members,qualified,prior,rotation,original=_read_capsule(review)
+        from nasolve.cif_review_transport import stage_review_members
+        stage_review_members(members,session/'inputs/review');frozen=session/'inputs/review'
         source_members,source_prefix=_source_view(members);source_root=frozen/PurePosixPath(source_prefix) if source_prefix else frozen
         reader_members,reader_prefix=_source_reader_evidence(members);reader_root=frozen/PurePosixPath(reader_prefix) if reader_prefix else frozen
         if source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='30_Cedar':
@@ -4025,6 +4068,8 @@ def main():
                     'evidence':{'anchor':'probe_directory','path':'inputs/review/'+prefix+'/generation/'+generatedir+'/elbow.log'}}
                     for code,(prefix,generatedir,_) in CEDAR31_CASES.items()},
                 'pickle_evidence':'EXCLUDED_BY_PRIOR_SHUTTLE_NOT_LOADED'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='62_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'62_Cedar','coot_version':'1.3.3','ordinary_construction':'PASS_WITH_NOTES','raw_fallback_sites':['A:6','A:9','A:7'],'fragment_transport_tested':False,'source_inputs_preserved':True}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='61_Cedar':
             receipt['previous_execution']={'delivery_prefix':'61_Cedar','runtime_bundle_native_mechanics':'PASS','native_checks':15,'ordinary_assessment':'REVIEW','production_checkpoint':'NOT_CREATED'}
         elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='60_Cedar':
@@ -4199,7 +4244,7 @@ def main():
             from nasolve.cif_source_reader import source_reader_checks
             receipt['prior_source_reader_replay']={}
             charge_members=members;charge_root=frozen
-            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar'}:
+            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar'}:
                 charge_members={n.removeprefix('inputs/review/'):d for n,d in charge_members.items() if n.startswith('inputs/review/')}
                 charge_root=charge_root/'inputs/review'
             for code,row in json.loads(charge_members['probe_receipt.json'])['source_reader_audits'].items():

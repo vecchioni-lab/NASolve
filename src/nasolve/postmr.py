@@ -1682,11 +1682,14 @@ def construct_postmr_model(
     coot_directory: Path | None = None,
     reference_model: Path | None = None,
     timeout_seconds: float | None = None,
+    allow_op3_sites: tuple[str, ...] = (),
+    passthrough_sites: tuple[str, ...] = (),
 ) -> dict[str, object]:
     """Run the ordinary PostMR Coot construction stage without MR/MTZ state.
 
     This shared stage writes a separate model and retains raw output and parent
-    snapshots. It does not run termini sanitation, NARestraints, ReadySet,
+    snapshots. Existing phosphate policy proves only selected internal OP3
+    context deletion before intact-base transport. It does not run NARestraints, ReadySet,
     optimization, or claim a completed PostMR run. The optional external-process
     budget leaves default production invocation behavior unchanged.
     """
@@ -1705,7 +1708,9 @@ def construct_postmr_model(
         with output_model.open("xb") as handle:
             handle.write(input_model.read_bytes())
         return {"model": output_model, "raw_model": None, "geometry_model": None,
-                "parent_models": {}, "coot_log": None, "coordinate_restoration": {}}
+                "parent_models": {}, "coot_log": None, "coordinate_restoration": {},
+                "restoration_input": None, "context_receipt": None,
+                "context_shadow": None, "context_sanitized_shadow": None, "context_rechecked_model": None}
     if coot_executable is None:
         sites = ", ".join(a.site for a in coot_actions)
         raise PostMRPreparationError(f"Coot is required for supported mutation site(s) {sites}")
@@ -1727,20 +1732,80 @@ def construct_postmr_model(
     _, coot_log = _run_coot(input_model, raw_model, coot_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
         **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
-    if overlap_actions:
-        restoration = _restore_shared_parent_coordinates(raw_model, geometry_model,
-            overlap_actions, parent_models, dictionary_paths)
+    from .postmr_context import prepare_construction_context
+    context = prepare_construction_context(raw_model, reference_model, overlap_actions,
+        dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
+        allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites)
+    restoration_input = context["model"]
+    restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
+    if restoration_actions:
+        restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
+            restoration_actions, parent_models, dictionary_paths)
     else:
-        shutil.copyfile(raw_model, geometry_model)
+        shutil.copyfile(restoration_input, geometry_model)
         restoration = {}
+    for action in overlap_actions:
+        if action.site in passthrough_sites:
+            restoration[action.site] = {"status": "RAW_SITE_RETAINED", "count": 0,
+                "atoms": [], "substitutions": [], "requires_cif_review": False,
+                "reason": "Frozen experimental backbone passthrough is preserved.",
+                "notes": ["The raw site was retained under its explicit frozen backbone policy."]}
     if canonical_actions:
         restoration.update(_restore_canonical_mutation_backbones(reference_model,
             geometry_model, output_model, canonical_actions))
     else:
         shutil.copyfile(geometry_model, output_model)
+    rechecked = None
+    if context["receipt"]["status"] == "CONTEXT_PREPARED":
+        rechecked = output_model.with_name(output_model.stem + "_context_rechecked.pdb")
+        if rechecked.exists() or rechecked.is_symlink():
+            raise FileExistsError(rechecked)
+        try:
+            final_check = sanitize_phosphates(output_model, rechecked, reference_model=reference_model,
+                check_sites=tuple(row["site"] for row in context["receipt"]["removed_atoms"]),
+                allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites)
+            if final_check["removed"] or rechecked.read_bytes() != output_model.read_bytes():
+                raise PhosphateError("Final context recheck changed the restored model")
+        except (OSError, ValueError) as exc:
+            # Roll back only the new context stage. Replay the established
+            # curated/canonical restoration from immutable raw Coot records so
+            # a failed new proof cannot discard their legitimate behavior.
+            rollback_geometry = output_model.with_name(output_model.stem + "_context_rollback_geometry.pdb")
+            if restoration_actions:
+                restoration = _restore_shared_parent_coordinates(raw_model, rollback_geometry,
+                    restoration_actions, parent_models, dictionary_paths)
+            else:
+                shutil.copyfile(raw_model, rollback_geometry)
+                restoration = {}
+            for action in overlap_actions:
+                if action.site in passthrough_sites:
+                    restoration[action.site] = {"status": "RAW_SITE_RETAINED", "count": 0,
+                        "atoms": [], "substitutions": [], "requires_cif_review": False,
+                        "reason": "Frozen experimental backbone passthrough is preserved.",
+                        "notes": ["The raw site was retained under its explicit frozen backbone policy."]}
+            if canonical_actions:
+                restoration.update(_restore_canonical_mutation_backbones(reference_model,
+                    rollback_geometry, output_model, canonical_actions))
+            else:
+                shutil.copyfile(rollback_geometry, output_model)
+            attempted_geometry = geometry_model
+            geometry_model = rollback_geometry
+            rechecked = rechecked if rechecked.is_file() else None
+            restoration_input = raw_model
+            context["receipt"].update(status="RAW_CONTEXT_RETAINED", reason=str(exc),
+                attempted_serial_repairs=context["receipt"]["serial_repairs"],
+                attempted_removed_atoms=context["receipt"]["removed_atoms"],
+                serial_repairs=[], removed_atoms=[],
+                restoration_input_sha256=file_sha256(raw_model),
+                attempted_geometry_sha256=file_sha256(attempted_geometry),
+                notes=["The new context changes were discarded after final phosphate revalidation failed; established ordinary restoration was retained."])
+        else:
+            context["receipt"]["final_sanitizer_recheck"] = final_check
     return {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,
             "parent_models": parent_models, "coot_log": coot_log,
-            "coordinate_restoration": restoration}
+            "coordinate_restoration": restoration, "restoration_input": restoration_input,
+            "context_receipt": context["receipt"], "context_shadow": context["shadow"],
+            "context_sanitized_shadow": context["sanitized_shadow"], "context_rechecked_model": rechecked}
 
 
 def prepare_postmr(
@@ -1895,6 +1960,7 @@ def prepare_postmr(
         coot_input, actions, ligand_sources, after_coot,
         coot_executable=coot_executable, environment=environment,
         coot_directory=coot_dir, reference_model=original,
+        allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
     )
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     coot_log = construction["coot_log"]
@@ -2284,6 +2350,9 @@ def prepare_postmr(
             "executable": str(coot_executable) if coot_executable else None,
             "log": str(coot_log) if coot_log else None,
             "shared_parent_coordinates_restored": coordinate_restoration,
+            "parent_context": construction["context_receipt"],
+            "restoration_input": (frozen_reference(construction["restoration_input"], run)
+                if construction["restoration_input"] is not None else None),
         },
         "phosphate_policy": phosphate_policy,
         **({"sequence_family_audit": family_audit} if family_audit is not None else {}),

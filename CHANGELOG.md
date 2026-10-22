@@ -8,6 +8,29 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepare verified internal-phosphate context before ordinary base restoration
+
+- Verify returned C62: all 3,445 payloads preserve C61; Coot 1.3.3 completes
+  three graph constructions. All three whole-raw-site fallbacks are correct for
+  unmatched OP3; no rigid transport is exercised and raw/final bytes are exact.
+- Add ordinary postmr-source-graph-internal-phosphate-context-v1: inherited
+  CONECT/unchanged atom authority permits selected serial normalization; the
+  existing sanitizer proves internal OP3 deletions in a discarded parent-frame
+  shadow. Transfer only deletions to original raw coordinates, then use the
+  existing proper whole-base transport and unchanged sanitizer recheck. Frozen
+  phosphate intent, curated placements and unsupported-site fallback stay intact.
+- Add C63 same-path fresh controls and independent context deltas. Report actual
+  completed raw/context composition as OBSERVED, leaving inspect-only unobserved
+  and old receipts unchanged. Preserve timestamped opaque Coot backup payloads
+  through a narrow checked portable map; scientific paths remain strict.
+- All **140 new regressions**, **290 focused / 3652 full tests** pass
+  (two skips, 276 subtests), plus actual-C62 strict replay and deleted-build
+  relocated transport. The everyday edit, all original payloads and narrow
+  backup transport preserve their checked scope. Fresh native Coot remains pending. One fresh Coot construction process is bounded at
+  600 seconds; no new optimizer, ReadySet, Phenix, NAR release/compilation,
+  observations, fake checkpoint or refinement. General repair/adoption and the
+  exact eight-pair full run remain separate; no student CIF gate.
+
 ### Preserve complete modified-base geometry in ordinary PostMR construction
 
 - Verify all 3,406 C61 payloads, unchanged C60 evidence and the exact selected
@@ -27,7 +50,9 @@ entries are reconstructed from repository history.
   All **118 new regressions**, **257 focused / 3512 full tests** pass (two skips,
   276 subtests). Actual-C61 strict replay, deleted-build/relocated transport,
   poisoned imports, aliased temporary roots and preserved everyday-edit checks
-  pass. Fresh Coot execution remains pending. No ReadySet, new NAR
+  pass. Returned Coot 1.3.3 completes construction with whole-raw-site fallback
+  at all three controls; see the internal-phosphate context entry. No ReadySet,
+  new NAR
   compilation, fake checkpoint, diffraction/refinement or further saved-geometry
   optimizer cycle. General repair/adoption and the exact eight-pair full run
   remain next integration work; no student CIF gate.

@@ -95,20 +95,204 @@ def _volume(points: list) -> float:
             + x[2] * (y[0]*z[1] - y[1]*z[0]))
 
 
+def _connections(path: Path) -> list[list[int]]:
+    result = []
+    for line in Path(path).read_text().splitlines():
+        if not line.startswith("CONECT"):
+            continue
+        try:
+            row = [int(line[i:i+5]) for i in range(6, len(line), 5) if line[i:i+5].strip()]
+        except ValueError as exc:
+            raise ValueError("Malformed construction CONECT record") from exc
+        if len(row) < 2 or any(serial <= 0 for serial in row):
+            raise ValueError("Incomplete construction CONECT record")
+        result.append(row)
+    return result
+
+
+def _serial(line: str) -> int:
+    try:
+        serial = int(line[6:11])
+    except ValueError as exc:
+        raise ValueError("Malformed construction atom serial") from exc
+    if not 1 <= serial <= 99999:
+        raise ValueError("Construction atom serial exceeds the PDB identity range")
+    return serial
+
+
+def _delta_identity(key: tuple, row: dict) -> dict:
+    return {"site": _site(key), "atom": key[-1], "chain_id": key[0], "resseq": key[1],
+            "icode": key[2], "altloc": key[3], "component": row["code"], "element": row["element"]}
+
+
+def audit_construction_context(initial_model: Path, raw_model: Path, context_model: Path,
+                               actions: tuple[MutationAction, ...],
+                               dictionary_paths: Mapping[str, Path], context_receipt: Mapping, *,
+                               context_shadow: Path | None = None,
+                               parent_models: Mapping[str, Path] | None = None) -> dict:
+    """Verify the exact delta before graph restoration, without trusting a receipt.
+
+    Only selected atom serial fields and declared internal OP3 deletion may
+    change. Every retained XYZ and all unselected records remain raw Coot data.
+    Inherited CONECT records bind to their unique, unselected source identities;
+    duplicate serials in a raw fallback are recorded, never called usable.
+    """
+    from .postmr_restoration import source_graph_fragment
+
+    policy = "postmr-source-graph-internal-phosphate-context-v1"
+    if context_receipt.get("policy_id") != policy:
+        raise ValueError("Missing ordinary construction context policy receipt")
+    status = context_receipt.get("status")
+    if status not in {"CONTEXT_PREPARED", "RAW_CONTEXT_RETAINED", "NO_CONTEXT_CHANGE"}:
+        raise ValueError("Unsupported ordinary construction context outcome")
+    raw, context = _pdb_inventory(raw_model), _pdb_inventory(context_model)
+    raw_lines, raw_other = _records(raw_model)
+    context_lines, context_other = _records(context_model)
+    selected = {a.site: a for a in actions}
+    removed = raw.keys() - context.keys()
+    if context.keys() - raw.keys():
+        raise ValueError("Construction context added an atom")
+    if raw_other != context_other:
+        raise ValueError("Construction context changed non-coordinate records")
+    removals = []
+    for key in sorted(removed):
+        if _site(key) not in selected or _canonical(key[-1]) != "OP3" or raw[key]["element"] != "O":
+            raise ValueError("Construction context removed an atom other than selected OP3")
+        action = selected[_site(key)]
+        graph = source_graph_fragment(dictionary_paths[action.after], action.after)
+        if _canonical(key[-1]) not in graph["phosphate_atoms"]:
+            raise ValueError("Removed oxygen is not a declared terminal phosphate atom")
+        removals.append({**_delta_identity(key, raw[key]), "old_serial": _serial(raw_lines[key])})
+    retained_repairs = []
+    for key in sorted(context):
+        before, after = raw_lines[key], context_lines[key]
+        if raw[key] != context[key] or before[:6] + before[11:] != after[:6] + after[11:]:
+            raise ValueError("Construction context changed raw coordinates, identity or atom metadata")
+        if before[6:11] != after[6:11]:
+            if _site(key) not in selected:
+                raise ValueError("Construction context changed an unselected atom serial")
+            retained_repairs.append({**_delta_identity(key, raw[key]), "old_serial": _serial(before),
+                                     "new_serial": _serial(after)})
+    serials = [_serial(line) for line in context_lines.values()]
+    unique_serials = len(serials) == len(set(serials))
+    bindings = {"raw_model_sha256": raw_model, "reference_model_sha256": initial_model,
+                "restoration_input_sha256": context_model}
+    if any(context_receipt.get(field) != sha256(Path(path).read_bytes()).hexdigest() for field, path in bindings.items()):
+        raise ValueError("Construction context receipt file binding differs")
+    if status in {"RAW_CONTEXT_RETAINED", "NO_CONTEXT_CHANGE"}:
+        if Path(raw_model).read_bytes() != Path(context_model).read_bytes():
+            raise ValueError("Unchanged construction context did not retain the complete raw file")
+        if context_receipt.get("removed_atoms") or context_receipt.get("serial_repairs"):
+            raise ValueError("Unchanged construction receipt declares a coordinate delta")
+        return {"status": status, "raw_coordinates_preserved": True, "removed_atoms": [],
+                "serial_repairs": [], "unique_context_serials": unique_serials,
+                "raw_composition_preserved": True, "inherited_connections_rebound": False}
+    if not unique_serials:
+        raise ValueError("Prepared construction context still contains duplicate atom serials")
+    if context_shadow is None or parent_models is None:
+        raise ValueError("Prepared construction context lacks its independently auditable proof shadow")
+    shadow = _pdb_inventory(context_shadow)
+    shadow_lines, shadow_other = _records(context_shadow)
+    if raw.keys() != shadow.keys() or raw_other != shadow_other:
+        raise ValueError("Construction proof shadow changed raw composition or non-coordinate records")
+    graphs = {a.site: source_graph_fragment(dictionary_paths[a.after], a.after) for a in actions}
+    parents = {site: _atoms(_pdb_inventory(path), site) for site, path in parent_models.items()}
+    parent_shadow_sites = set()
+    for site in selected:
+        raw_atoms, shadow_atoms = _atoms(raw, site), _atoms(shadow, site)
+        common = set(graphs[site]["scaffold_atoms"]) & raw_atoms.keys() & parents.get(site, {}).keys()
+        if all(shadow_atoms[name]["xyz"] == parents[site][name]["xyz"] for name in common):
+            parent_shadow_sites.add(site)
+        elif any(shadow_atoms[name]["xyz"] != raw_atoms[name]["xyz"] for name in common):
+            raise ValueError("Construction proof shadow contains a partial parent scaffold")
+    if any(_site(key) not in parent_shadow_sites for key in removed):
+        raise ValueError("Internal OP3 deletion lacks its complete parent-scaffold proof")
+    repairs = []
+    for key, before in raw_lines.items():
+        after = shadow_lines[key]
+        if before[:6] + before[11:30] + before[54:] != after[:6] + after[11:30] + after[54:]:
+            raise ValueError("Construction proof shadow changed atom identity or metadata")
+        expected = raw[key]["xyz"]
+        site, name = _site(key), _canonical(key[-1])
+        if site in parent_shadow_sites and name in graphs[site]["scaffold_atoms"] and name in parents.get(site, {}):
+            expected = parents[site][name]["xyz"]
+        if shadow[key]["xyz"] != expected:
+            raise ValueError("Construction proof shadow changed coordinates outside its exact parent scaffold")
+        if before[6:11] != after[6:11]:
+            if site not in selected:
+                raise ValueError("Construction proof shadow changed an unselected serial")
+            repairs.append({**_delta_identity(key, raw[key]), "old_serial": _serial(before), "new_serial": _serial(after)})
+        if key in context and _serial(context_lines[key]) != _serial(after):
+            raise ValueError("Context input serial differs from its normalized proof shadow")
+    for row, key in zip(removals, sorted(removed)):
+        row.update(new_serial=_serial(shadow_lines[key]), serial=_serial(shadow_lines[key]))
+    # This independent binding uses the staged source identity table, not raw
+    # ambiguous serials or a guessed correspondence to a generated ligand.
+    if repairs:
+        initial_lines, _ = _records(initial_model)
+        initial_serials = {}
+        for key, line in initial_lines.items():
+            serial = _serial(line)
+            if serial in initial_serials:
+                raise ValueError("Canonical construction input has ambiguous atom serials")
+            initial_serials[serial] = key
+        if _connections(raw_model) != _connections(initial_model) or _connections(context_model) != _connections(initial_model):
+            raise ValueError("Construction CONECT records differ from their declared source")
+        for row in _connections(initial_model):
+            for serial in row:
+                key = initial_serials.get(serial)
+                if key is None or key not in context or _site(key) in selected:
+                    raise ValueError("Inherited CONECT endpoint lacks an unchanged unselected source identity")
+                if _serial(context_lines[key]) != serial:
+                    raise ValueError("Inherited CONECT endpoint serial changed")
+    elif len({_serial(line) for line in raw_lines.values()}) != len(raw_lines):
+        raise ValueError("Duplicate raw atom serials lack an explicit normalization proof")
+    # Compare the public receipt to actual full-identity deltas as well. Keeping
+    # receipt rows complete makes a wrong-site deletion impossible to conceal.
+    for field, actual in (("removed_atoms", removals), ("serial_repairs", repairs)):
+        declared = context_receipt.get(field)
+        if not isinstance(declared, list) or len(declared) != len(actual):
+            raise ValueError("Construction context receipt delta count differs")
+        # New serials uniquely identify repair rows; removed site/atom pairs
+        # uniquely identify the permitted terminal-oxygen deletions.
+        fields = ("site", "atom", "chain_id", "resseq", "icode", "altloc", "component", "element", "old_serial", "new_serial")
+        if sorted(tuple(row.get(k) for k in fields) for row in declared) != sorted(tuple(row[k] for k in fields) for row in actual):
+            raise ValueError("Construction context receipt delta identity differs")
+    if context_receipt.get("shadow_sha256") != sha256(Path(context_shadow).read_bytes()).hexdigest():
+        raise ValueError("Construction context receipt file binding differs")
+    return {"status": "CONSTRUCTION_CONTEXT_DELTA_PASS", "ordinary_context_status": status,
+            "removed_atoms": removals, "serial_repairs": repairs,
+            "retained_atom_serial_repairs": retained_repairs, "raw_coordinates_preserved": True,
+            "raw_composition_preserved": not removals, "unselected_records_preserved": True,
+            "unique_context_serials": True, "inherited_connections_rebound": bool(repairs)}
+
+
 def audit_postmr_construction(initial_model: Path, raw_model: Path, final_model: Path,
                               actions: tuple[MutationAction, ...],
                               dictionary_paths: Mapping[str, Path],
                               parent_models: Mapping[str, Path],
-                              coordinate_restoration: Mapping[str, dict]) -> dict:
+                              coordinate_restoration: Mapping[str, dict], *,
+                              restoration_input: Path | None = None,
+                              context_receipt: Mapping | None = None,
+                              context_shadow: Path | None = None) -> dict:
     """Independently test composition, frozen scaffold and raw fragment geometry.
 
     Unsupported graph contexts may keep the entire raw site. That fallback is
     tested byte for byte and is reported separately from successful transport.
     A completion message from Coot or a restoration receipt alone cannot pass
-    this audit.
+    this audit. When a separate restoration input is supplied, raw Coot data
+    first undergo an explicit context-delta audit; fragment geometry and atom
+    metadata are then compared from that input to the final model. Historical
+    controls without that context retain their original audit schema.
     """
     from .postmr_restoration import source_graph_fragment
 
+    context_audit = None
+    if restoration_input is not None:
+        context_audit = audit_construction_context(initial_model, raw_model, restoration_input,
+            actions, dictionary_paths, context_receipt or {},
+            context_shadow=context_shadow, parent_models=parent_models)
+        raw_model = Path(restoration_input)
     selected = {action.site for action in actions}
     if len(selected) != len(actions) or not selected:
         raise ValueError("Require unique explicit construction actions")
@@ -196,11 +380,29 @@ def audit_postmr_construction(initial_model: Path, raw_model: Path, final_model:
                         "max_fragment_distance_change": maximum,
                         "scaffold_matches_frozen_parent": True})
     fallbacks = [r["site"] for r in results if r["status"] == "RAW_SITE_RETAINED"]
-    return {"status": "CONSTRUCTION_CONTROLS_PASS" if not fallbacks else "CONSTRUCTION_CONTROLS_PASS_WITH_NOTES",
+    result = {"status": "CONSTRUCTION_CONTROLS_PASS" if not fallbacks else "CONSTRUCTION_CONTROLS_PASS_WITH_NOTES",
             "sites": results, "raw_fallback_sites": fallbacks, "raw_composition_preserved": True,
             "atom_metadata_preserved": True, "unselected_raw_records_preserved": True,
             "unselected_input_coordinates_preserved": True, "noncoordinate_records_preserved": True,
             "scientific_geometry_qualification": "NOT_ASSESSED"}
+    if context_audit is not None:
+        for row in results:
+            row["geometry_source"] = "restoration_input"
+            if "dictionary_heavy_atoms_absent_from_coot" in row:
+                row["dictionary_heavy_atoms_absent_from_restoration_input"] = row.pop("dictionary_heavy_atoms_absent_from_coot")
+            if "raw_site_preserved" in row:
+                row["restoration_input_site_preserved"] = row.pop("raw_site_preserved")
+        removed_sites = tuple(sorted({r["site"] for r in context_audit["removed_atoms"]}))
+        if removed_sites:
+            from .phosphate import audit_phosphates
+            context_audit["final_phosphate_audit"] = audit_phosphates(
+                final_model, check_sites=removed_sites, reference_model=initial_model)
+        result.update(context_audit=context_audit,
+                      raw_composition_preserved=context_audit["raw_composition_preserved"],
+                      contextual_composition_preserved=True,
+                      atom_metadata_scope="restoration_input_to_final",
+                      restoration_input_metadata_preserved=True)
+    return result
 
 
 def run_postmr_construction_controls(canonical_model: Path, dictionary_paths: Mapping[str, Path],
@@ -278,7 +480,7 @@ def run_postmr_construction_controls(canonical_model: Path, dictionary_paths: Ma
                   "dictionary_scaffold_atoms_absent_from_parent": sorted(
                       set(eligibility[row["component"]]["scaffold_atoms"])
                       - _atoms(original_inventory, row["site"]).keys()),
-                  "unmatched_raw_scaffold_policy": "RAW_SITE_RETAINED",
+                  "unmatched_raw_scaffold_policy": "SOURCE_PROVEN_CONTEXT_OR_RAW_SITE_RETAINED",
                   "actual_coot_composition": "NOT_YET_OBSERVED"}
                   for row in ORDINARY_POSTMR_CONSTRUCTION_CONTROLS},
               "input_model": _reference(model, output),
@@ -302,10 +504,34 @@ def run_postmr_construction_controls(canonical_model: Path, dictionary_paths: Ma
             report["coot"]["execution"] = "COMPLETED"
             if result.get("raw_model") is None:
                 raise ValueError("Fresh ordinary construction did not retain raw Coot evidence")
+            raw_inventory = _pdb_inventory(result["raw_model"])
+            context_model = result.get("restoration_input") or result["raw_model"]
+            context_inventory = _pdb_inventory(context_model)
+            for action in actions:
+                before = _atoms(raw_inventory, action.site)
+                after = _atoms(context_inventory, action.site)
+                expected = report["expected_restoration_context"][action.site]
+                expected["actual_coot_composition"] = "OBSERVED"
+                expected["actual_coot_inventory"] = {
+                    "atom_count": len(before), "atom_ids": sorted(before),
+                    "component_codes": sorted({atom["code"] for atom in before.values()}),
+                    "scaffold_atoms_absent_from_parent": sorted(
+                        (set(eligibility[action.after]["scaffold_atoms"]) & before.keys())
+                        - _atoms(original_inventory, action.site).keys())}
+                expected["actual_restoration_input_composition"] = {
+                    "status": "OBSERVED", "atom_count": len(after), "atom_ids": sorted(after),
+                    "removed_from_raw_coot": sorted(before.keys() - after.keys())}
             report["audit"] = audit_postmr_construction(model, result["raw_model"], result["model"],
-                actions, dictionaries, result["parent_models"], result["coordinate_restoration"])
+                actions, dictionaries, result["parent_models"], result["coordinate_restoration"],
+                **({"restoration_input": result["restoration_input"], "context_receipt": result["context_receipt"],
+                    "context_shadow": result.get("context_shadow")}
+                   if result.get("restoration_input") is not None else {}))
             report["coordinate_restoration"] = result["coordinate_restoration"]
-            report["outputs"] = {key: _reference(result[key], output) for key in ("model", "raw_model", "geometry_model", "coot_log")
+            if result.get("context_receipt") is not None:
+                report["context_receipt"] = result["context_receipt"]
+            report["outputs"] = {key: _reference(result[key], output) for key in (
+                "model", "raw_model", "restoration_input", "geometry_model", "coot_log",
+                "context_shadow", "context_sanitized_shadow", "context_rechecked_model")
                                  if result.get(key) is not None}
             report["parents"] = {site: _reference(path, output) for site, path in result["parent_models"].items()}
             report.update(status=report["audit"]["status"], analysis_completed=True)
