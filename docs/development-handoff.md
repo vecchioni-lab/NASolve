@@ -178,7 +178,7 @@ exercise successful graph transport. All source/numerical dictionaries retain
 exact bytes. Source/runtime match clean ae665f1; only NARestraints dirty-state
 metadata explains the reported runner SHA. Historical C62 outcomes stay intact.
 
-**C64 is the next delivery.** Runner `64_Cedar_probe_postmr_native.py` uses
+**C64 was delivered and returned.** Runner `64_Cedar_probe_postmr_native.py` uses
 `--postmr-construction-native-only` on exact C63. Stage the exact canonical and
 constructed models, three qualified source candidates and existing site-modifier
 preparations. Interpret one canonical reference and one constructed layout with
@@ -203,8 +203,58 @@ deleted-build/relocated delivery, poisoned ambient imports, aliased TMPDIR and
 standalone preparation after source-capsule removal pass. All 3,489 payloads,
 the everyday local edit and legacy backup bytes/names survive. Nine evidence
 mirrors, 156 relative links, protected mechanics and deterministic figure/raster
-checks pass. Fresh native Phenix remains pending on the Mac; no new native
-result is claimed. C63's historical local suite remains 3652 passed/two skipped.
+checks pass. The C64 local checks did not execute Phenix; the separate returned Mac evidence
+is recorded below. C63's historical local suite remains 3652 passed/two skipped.
+
+Returned C64 verifies all **3,552 payloads** and preserves the complete C63
+parent. Both Phenix 2.2.1-6174 workers complete with four finite repeatable fixed
+evaluations. Active PDU/5PC triple length and linear-angle targets pass at A:9
+and A:7. The original qualifier records 87 PASS, six REVIEW and three unsupported
+formal-charge checks. All six REVIEW findings compare display labels containing
+different residue-name padding (`DG ` versus ` DG`), not changed parameters.
+
+C65 uses the shared cif-native-named-proxy-comparison-v1 comparator: bind each
+label to its own manager index, replace it with the complete structured atom
+identity, normalize field padding only, and retain endpoint order, every
+parameter, symmetry, origin and multiplicity exactly. Reject missing/ambiguous
+identities and unbound labels. All **3,148 unaffected restraints** match exactly
+by named identity; numerical tolerances, native kernels and source chemistry
+are unchanged. Historical C64 receipts remain immutable.
+
+**C65 is the next delivery.** `65_Cedar_probe_postmr_native_replay.py` with
+`--saved-postmr-construction-native-only` consumes exact C64 and replays the
+complete parent lineage, source-qualified preparation, native input/output
+bindings, original worker/spec/result and implementation fingerprints. Requalify
+the saved canonical/constructed inventories with maintained code; run zero new
+native processes. The report is saved_construction_native_audit.json. Overall
+diagnostic REVIEW still denotes the full-run/scientific boundary, without a
+student CIF gate. The expected mechanics status is CONSTRUCTED_NATIVE_MECHANICS_PASS.
+The original model, dictionaries, torsions, charges and prior failures survive.
+Generic NAR compilation and automatic repair/adoption remain subsequent work;
+no new geometry cycle, native patch, release or ninth pair is requested.
+
+**Required reuse policy:** automatic acquisition/repair integration must persist
+usable numerical repairs locally and consult them before regenerating or
+optimizing a component for another structure. Reuse keys bind exact source and
+declared chemical state, with tool/policy/qualification provenance; code alone
+cannot select a repair. Recheck site modifiers/native compatibility separately,
+retain nonconvergence notes, and freeze selected bytes in every run. New model
+coordinates must not invalidate base-component numerics. See the
+[local reuse contract](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
+This requirement is recorded; the store is not implemented by C65.
+
+
+
+C65 validation passes **138 new regressions**, **347 focused / 3883 full
+tests** (two skips, 276 subtests; full run 353.98 s). Actual-C64 maintained
+replay and deleted-build/relocated delivery reproduce all 96 checks: 93 PASS,
+three unsupported formal-charge checks, zero REVIEW. All 3,552 input payloads
+and the original manifest survive, including the six original REVIEW findings.
+Poisoned imports, aliased TMPDIR, forbidden native subprocesses, the everyday
+edit, ignored runner and standalone preparation hashes pass. Ten evidence
+mirrors, 161 links and protected mechanics/workbook/eight-pair plan pass.
+Visible SVG geometry is exactly the C64 baseline; metadata and caption describe
+the new comparison. Full-run and scientific qualification remain open.
 
 ## Completed and open work
 

@@ -133,7 +133,11 @@ the same ordinary API with one Coot process/600 seconds. Returned C63 passes
 all three transports after three internal OP3 deletions, preserving geometry
 within 0.0011 A and passing unchanged final sanitation. C64 separately checks
 the exact constructed model in native Phenix with source-qualified site modifiers,
-canonical-link/proxy/triple checks and fixed evaluations; no new optimizer,
+canonical-link/proxy/triple checks and fixed evaluations. Returned native
+workers complete and triple targets pass. C65 replays that saved evidence using
+structured atom identities, preserving every restraint parameter while accepting
+display padding and atom renumbering; all 3,148 unaffected terms match. Original
+REVIEW receipts survive and no new native process runs. No new optimizer,
 ReadySet or NAR compilation. ATL stays independent
 public graph/eligibility only. Narrow diagnostic-backup mapping preserves legacy
 timestamped bytes without relaxing scientific paths. General acquisition/repair

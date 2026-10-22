@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare native restraints by structured atom identity and replay C64
+
+- Verify all 3,552 C64 payloads and unchanged C63 evidence. Both Phenix
+  2.2.1-6174 workers complete; active PDU/5PC triple length and linear-angle
+  targets pass. Six unaffected-proxy reviews arise from display-label padding.
+- Bind proxy labels to their own manager indices, then compare named identities
+  with field padding removed. Preserve ordered endpoints, elements, every target,
+  weight, symmetry, origin and multiplicity. Reject ambiguous identities or
+  inconsistent labels. All 3,148 unaffected terms match without changed physics.
+- Add C65 `--saved-postmr-construction-native-only`: replay exact preparations,
+  original workers/specifications, input/output/result bindings and implementation
+  fingerprints as data. Record the corrected qualification separately and
+  preserve every historical receipt. Zero new native calls, generation or
+  optimization; scientific/full-run integration remains open. No student CIF gate.
+- Record required persistent local reuse of usable numerical repairs, with
+  source/state/provenance keys and separate site/geometry validation. The store
+  remains pending automatic-repair integration; C65 does not implement caching.
+- All **138 new regressions**, **347 focused / 3883 full tests** pass
+  (two skips, 276 subtests; full run 353.98 s). Cold relocated delivery
+  preserves all C64 payloads and passes with every native subprocess forbidden.
+
 ### Read back ordinary Coot construction with fixed native restraints
 
 - Verify all 3,489 C63 payloads and unchanged C62 parent. Coot 1.3.3 completes

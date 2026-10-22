@@ -19,6 +19,7 @@ _CATEGORIES={
     'plane_atoms':('_chem_comp_plane_atom',('plane_id','atom_id','dist_esd')),
 }
 _NUMERIC={'partial_charge','value_dist','value_dist_esd','value_dist_neutron','value_angle','value_angle_esd','period','dist_esd'}
+PROXY_COMPARISON_POLICY = 'cif-native-named-proxy-comparison-v1'
 
 
 def _value(key,value):
@@ -76,14 +77,44 @@ def definition_projection_checks(native: dict, projections: Mapping[str,tuple[Pa
 
 
 def _proxy_subset(native,changed,kind):
-    atoms={r['i_seq']:r for r in native['atoms']}
+    """Compare ordered named endpoints and every parameter, not display labels.
+
+    Strip only padding in structured identity fields. Bind each proxy label to
+    its own manager index before replacing it with that atom's identity; do not
+    parse labels, infer aliases, reorder endpoints or round numerical values.
+    Duplicate indices/names and incomplete identities cannot become a match.
+    """
+    atoms={}; identities={}; seen=set()
+    fields=('model_id','chain_id','resseq','icode','resname','altloc')
+    for atom in native['atoms']:
+        index=atom['i_seq']; identity=atom['identity']
+        if type(index) is not int or index<0 or index in atoms:
+            raise ValueError('Invalid or duplicate native atom index')
+        values=[identity[k] for k in fields]+[atom['atom_id']]
+        if any(not isinstance(v,str) for v in values) or not isinstance(atom['label'],str):
+            raise ValueError('Incomplete native atom identity')
+        key=tuple(v.strip() for v in values)
+        if not key[2] or not key[4] or not key[-1] or key in seen:
+            raise ValueError('Missing or ambiguous named native atom')
+        element=atom.get('element')
+        if element is not None and (not isinstance(element,str) or not element.strip()):
+            raise ValueError('Invalid native element')
+        atoms[index]=atom; identities[index]=key+(element.strip() if element is not None else None,); seen.add(key)
     rows=native['geometry']['proxy_details'][kind]
-    if rows is None:raise ValueError('Native proxy detail unavailable: '+kind)
+    if not isinstance(rows,list):raise ValueError('Native proxy detail unavailable: '+kind)
     selected=[]
     for row in rows:
-        indices=list(row['i_seqs'])+list(row.get('j_seqs',[]))
+        named={}; indices=[]
+        if ('j_seqs' in row)!=('j_atoms' in row):raise ValueError('Incomplete native second-plane endpoints')
+        for endpoint,labels in [('i_seqs','atoms'),*([('j_seqs','j_atoms')] if 'j_seqs' in row else [])]:
+            ids=row[endpoint]
+            if (not isinstance(ids,list) or not ids or any(type(i) is not int or i not in atoms for i in ids)
+                    or row[labels]!=[atoms[i]['label'] for i in ids]):
+                raise ValueError('Native proxy labels do not bind to exact atom indices')
+            indices.extend(ids); named[labels]=[identities[i] for i in ids]
         if all(_site(atoms[i]) not in changed for i in indices):
-            selected.append(json.dumps({k:v for k,v in row.items() if k not in {'i_seqs','j_seqs'}},sort_keys=True))
+            parameters={k:v for k,v in row.items() if k not in {'i_seqs','j_seqs','atoms','j_atoms'}}
+            selected.append(json.dumps({**parameters,**named},sort_keys=True,allow_nan=False))
     return Counter(selected)
 
 

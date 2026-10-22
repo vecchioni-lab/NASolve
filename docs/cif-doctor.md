@@ -67,6 +67,38 @@ and unresolved limitations, with technical receipts retained for developers.
 Existing diagnostic `REVIEW`/exit 2 denotes internal evidence, not student CIF
 homework; old diagnostic results remain unchanged.
 
+## Persistent local reuse of qualified repairs
+
+**Required integration behavior; not yet a deployed component store.** NASolve
+must automatically retain a usable repaired numerical dictionary in a persistent
+user-local store and consult it before generating or optimizing that component
+again. Repeated structures with matching chemistry reuse the exact saved
+dictionary, including usable nonconverged candidates and their original notes.
+Students do not manually save, select or inspect CIF tables.
+
+Entries are immutable and content-addressed, with exact source/candidate hashes,
+atom mapping, declared bond orders, formal charges, explicit hydrogens,
+stereochemistry, recipe/policy, generator and consumer/energy-library provenance,
+qualification scope and stopping/limitation evidence. Component code alone is
+not a valid reuse key. Preserve curated and explicit-source precedence; a cached
+repair cannot silently override a different declared chemical state.
+
+Store component numerics separately from terminal/linkage modifiers and from
+coordinate-dependent manager/geometry evidence. A new crystal's coordinates do
+not invalidate the reusable component dictionary or trigger its optimization.
+New site contexts require the corresponding modifier/link checks; changed
+consumer versions invalidate affected native qualifications and prompt
+requalification of the saved dictionary before regeneration is considered.
+Known-unusable candidates remain evidence, never automatic cache hits.
+
+Each run freezes its selected dictionary, modifiers and immutable provenance
+into run-local anchored artifacts, so cache removal or later entries cannot
+change a historical run. Report reuse, original stopping notes and any fallback
+in the ordinary solution summary and eventual PDF. The local store lives outside
+tracked source trees; it does not replace per-run receipts, upload unpublished
+chemistry or change native mechanics. Store orchestration and reuse regression
+tests belong to the pending automatic acquisition/repair/adoption integration.
+
 ## Generated numerical defects and explicit candidates
 
 The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident
@@ -2719,7 +2751,45 @@ The two models have different objectives: their energies are not ranked.
 Scientific geometry, absolute CIP, general repair/adoption, generic NAR policy
 compilation, ReadySet, production checkpoints/refinement and solution PDF
 rendering remain separate. ATL remains an independent public/compiler control.
-Students never approve CIF tables. Fresh native execution is pending on the Mac.
+Students never approve CIF tables. The returned Mac workers both complete;
+the original six label-padding comparisons retain REVIEW, while active triple
+targets and the other evaluable checks pass. The original receipt is preserved.
+
+## Saved construction native replay (Cedar 65)
+
+`--saved-postmr-construction-native-only` accepts the exact C64 capsule. Its
+manifest, completed native receipt, unchanged C63 lineage and source-qualified
+preparation are verified before maintained code requalifies both saved managers.
+The original worker/specification, ordered input roles/bytes, output inventories,
+effective results and native implementation fingerprints remain bound as data.
+Captured Python is never executed; no Coot or Phenix installation is needed.
+Only recomputed descriptive finding eigenvalues/determinants admit a 1e-12
+cross-platform roundoff bound; finding identities/verdicts and all other fields
+remain exact. CIF, PHIL and model bytes and every native proxy parameter remain
+exact; this bound does not apply to restraint or stereochemical targets.
+
+The shared `cif-native-named-proxy-comparison-v1` comparison normalizes padding
+in the structured model/chain/residue/insertion/alternate/component/atom fields,
+then compares every ordered named endpoint and parameter exactly. Elements
+remain part of the signature. Raw labels must first bind to the same capture's
+indices; duplicate indices/names, incomplete identities and unbound labels fail.
+Manager renumbering does not change identity. No endpoint permutation, alias,
+case folding, numerical rounding or target/weight relaxation is introduced.
+
+The C64 return contains **3,148 unaffected terms**: 880 simple bonds, 1,346
+angles, 152 chirality, 327 constant torsions, 404 periodic torsions and 39 planes.
+Both empty symmetry-bond and parallelity families also compare exactly. Active
+PDU/5PC triple lengths and linear-angle weights remain qualified, with three
+linear-axis torsions per modified site retained as notes. Formal-charge readback
+remains unsupported; scientific geometry/CIP/state approval is separate.
+
+`saved_construction_native_audit.json` adds the corrected mechanics verdict,
+per-family missing/extra counts, the original review-check names, anchored
+original evidence and `new_native_calls = 0`. Overall diagnostic status remains
+REVIEW until full-run/scientific qualification. Every historical payload and the
+original C64 qualification remain byte-identical. Automatic acquisition/repair,
+generic NAR compilation, production adoption/refinement and PDF integration
+remain subsequent work; students never inspect CIF tables.
 
 ## Reviewed preparation
 

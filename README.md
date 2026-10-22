@@ -226,6 +226,24 @@ links, heavy-atom restraints, triple targets and finite repeated evaluations.
 ReadySet, optimization, generic NAR compilation and production adoption remain
 separate; the eventual eight-pair full run remains unchanged.
 
+Returned C64 verifies all **3,552 payloads** and preserves the complete C63
+parent. Both Phenix 2.2.1-6174 workers complete with four finite repeatable fixed
+evaluations. Active PDU/5PC triple length and linear-angle targets pass at A:9
+and A:7. The original qualifier records 87 PASS, six REVIEW and three unsupported
+formal-charge checks. All six REVIEW findings compare display labels containing
+different residue-name padding (`DG ` versus ` DG`), not changed parameters.
+
+C65 uses the shared cif-native-named-proxy-comparison-v1 comparator: bind each
+label to its own manager index, replace it with the complete structured atom
+identity, normalize field padding only, and retain endpoint order, every
+parameter, symmetry, origin and multiplicity exactly. Reject missing/ambiguous
+identities and unbound labels. All **3,148 unaffected restraints** match exactly
+by named identity; numerical tolerances, native kernels and source chemistry
+are unchanged. Historical C64 receipts remain immutable.
+C65 replays the exact saved native evidence with zero new Coot/Phenix calls.
+It preserves the original REVIEW receipt and exposes the corrected mechanics
+verdict separately; full-run integration and scientific qualification remain open.
+
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start

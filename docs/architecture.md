@@ -955,6 +955,19 @@ runs in this test. Native kernels, the plane correction and optimizers are
 unchanged. Automatic resource repair/adoption and generic NAR compilation still
 precede the planned fresh eight-pair full run.
 
+Returned C64 completes both native interpretations and passes active triple
+targets. Its six unaffected-proxy reviews arise from residue-name padding in
+display labels. The shared cif-native-named-proxy-comparison-v1 signature binds
+each label to its own index, then compares complete structured atom identities
+with padding stripped, retaining ordered endpoints, all parameters, symmetry,
+origins and multiplicities. Duplicate identities/indices and unbound labels fail.
+All 3,148 unaffected terms match; no scientific tolerance or target changes.
+C65 replays exact saved preparations, workers/specifications, input/result bytes
+and implementation fingerprints before applying that comparison. It runs no
+native process and preserves the old C64 verdict. This is a saved-data mechanics
+qualification, not a new interpretation or production adoption.
+
+
 The bundle assessment summary distinguishes inherited native evidence from a
 new native operation: native_selection is VERIFIED_SOURCE_CAPTURE and
 native_selection_executed is false. Historical C61 receipts remain byte-identical;
@@ -981,6 +994,17 @@ controls. NARestraints code, workbook and recipe policy remain unchanged.
 Full linked ReadySet reproduction, mapped-SMILES graphs, native stereo and
 scientific qualification remain open. All production/default resource and curated-ligand
 precedence rules remain fixed.
+
+Automatic repair integration must include a persistent user-local component
+store: retain usable repaired numerical dictionaries with complete source/state,
+tool/policy and qualification provenance, and reuse them before another generator
+or optimizer call. Component identity alone is insufficient. Keep component
+numerics separate from site modifiers and coordinate-dependent evidence; new
+crystal coordinates require fresh geometry assessment, not dictionary generation.
+Changed consumer/context invalidates the affected qualification layer first.
+Freeze selected bytes and notes per run and preserve curated/explicit-source
+precedence. This store is required planned integration, not deployed by the
+saved-data replay. See [local repair reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
 
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification

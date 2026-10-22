@@ -16039,7 +16039,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_postmr_context_2026_10_22"
     },
     "ordinary_constructed_native_readback_2026_10_22": {
-      "status": "IMPLEMENTED_AND_LOCALLY_VALIDATED; FRESH_PHENIX_PENDING",
+      "status": "RETURNED_BOTH_NATIVE_WORKERS_COMPLETED; ORIGINAL_DISPLAY_LABEL_REVIEW_PRESERVED",
       "recorded_date": "2026-10-22",
       "delivery_prefix": "64_Cedar",
       "module": "src/nasolve/cif_construction_native.py",
@@ -16103,7 +16103,7 @@
         "C63_context_replayed": true
       },
       "validation": {
-        "status": "LOCAL_PASS; FRESH_PHENIX_MAC_PENDING",
+        "status": "LOCAL_PASS_AT_DELIVERY; SEPARATE_USER_NATIVE_RETURN_COMPLETED",
         "fail_before": [
           {
             "scope": "Saved C63 context replay absent",
@@ -16184,11 +16184,11 @@
           "eight_pair_plan": "UNCHANGED",
           "protected_mechanics": "UNCHANGED",
           "SVG_and_raster": "PASS"
-        }
+        },
+        "historical_at_C64_delivery": true
       },
       "compatibility": "Additive diagnostic action; existing C62/C63 reports, production construction and numerical kernels unchanged.",
       "remaining_limits": [
-        "Fresh Phenix execution pending on the Mac.",
         "Scientific geometry, absolute CIP, phosphate-state approval and nonbonded identity qualification remain separate.",
         "Retained linear-axis torsions and coordinate bending remain explicit notes.",
         "Generic NARestraints compilation, ordinary acquisition/repair/adoption and production checkpoints/refinement precede full run.",
@@ -16201,7 +16201,246 @@
       "scientific_approval": "NOT_RUN",
       "policy_authority": "NARestraints",
       "NAR_workbook_or_release_changes": false,
+      "returned_evidence": {
+        "filename": "64_Cedar_i69d23if_cif_numerical_recovery_review.zip",
+        "sha256": "f233b0a29e1d803d389b942835a45012d0bb25932e24f8228dda0dd92cbbbf24",
+        "bytes": 95610036,
+        "verified_payloads": 3552,
+        "uncompressed_payload_bytes": 1286781695,
+        "all_C63_payloads_and_manifest_preserved": true,
+        "build_sha256": "4cd745f544cae808bb77b819ecd9b2eb7ff396cf34e6bff68a15bd188b59dd50",
+        "nasolve_commit": "94ababa13dea4cbae499e905dd6507bc97f42a43",
+        "native_version": "Phenix 2.2.1-6174 (dispatcher 2.2.1)",
+        "canonical_reference": {
+          "atoms": 849,
+          "execution": {
+            "elapsed_seconds": 4.347738,
+            "finished_at": "2026-10-22T16:28:13.350486+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-22T16:28:09.002811+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "version": "2.2.1"
+        },
+        "constructed_model": {
+          "atoms": 854,
+          "execution": {
+            "elapsed_seconds": 0.983655,
+            "finished_at": "2026-10-22T16:28:14.451026+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-22T16:28:13.467409+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "version": "2.2.1"
+        },
+        "fixed_evaluations": 4,
+        "finite_exact_repeats": true,
+        "canonical_links": 38,
+        "constructed_links": 38,
+        "original_checks": {
+          "PASS": 87,
+          "REVIEW": 6,
+          "UNSUPPORTED": 3,
+          "total": 96
+        },
+        "original_review_families": [
+          "angle",
+          "bond_simple",
+          "chirality",
+          "const_dihedral",
+          "dihedral",
+          "planarity"
+        ],
+        "cause": "Display residue-name padding DG-space versus space-DG; complete structured named endpoints and every parameter are identical.",
+        "active_triple_targets": {
+          "5PC_A7": "PASS",
+          "PDU_A9": "PASS"
+        },
+        "linear_axis_torsions_retained_per_site": 3,
+        "formal_charge_readback": "UNSUPPORTED_WITHOUT_CONTRADICTIONS; NO_PARTIAL_CHARGE_SUBSTITUTION",
+        "source_runtime_proof": {
+          "clean_sha256": "550115767994076de34676b2bce7c5d3b810c74914f4f01a9e9719862d874875",
+          "user_sha256": "ae7eb1b6c4289015f7d85a06160fc6fbe1335931360c733e8f134306f98d9d2b",
+          "only_difference": "narestraints_source.working_tree_has_changes True",
+          "runtime_archive_sha256": "652ae91ab11442cf0c43877bb8baf7bf6b9ab96b5d1945139f62f46e0bf730df",
+          "runtime_files": 153
+        },
+        "scientific_geometry_qualification": "NOT_ASSESSED",
+        "original_qualification": "IMMUTABLE_REVIEW; corrected maintained replay recorded separately",
+        "return_verification_native_execution": "NOT_RUN"
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_constructed_native_readback_2026_10_22"
+    },
+    "saved_constructed_native_replay_2026_10_22": {
+      "status": "IMPLEMENTED_AND_LOCAL_COMPLETE_TRANSPORT_PASS; USER_C65_TRANSPORT_PENDING",
+      "recorded_date": "2026-10-22",
+      "delivery_prefix": "65_Cedar",
+      "runner_filename": "65_Cedar_probe_postmr_native_replay.py",
+      "cli_action": "--saved-postmr-construction-native-only",
+      "requested_action": "SAVED_ORDINARY_CONSTRUCTION_NATIVE_READBACK",
+      "module": "src/nasolve/cif_construction_native.py",
+      "policy_id": "cif-saved-constructed-native-replay-v1",
+      "comparison_module": "src/nasolve/cif_terminal_qualification.py",
+      "comparison_policy_id": "cif-native-named-proxy-comparison-v1",
+      "scope": "SAVED_ORDINARY_CONSTRUCTION_NATIVE_READBACK",
+      "review_input": {
+        "delivery_prefix": "64_Cedar",
+        "filename": "64_Cedar_i69d23if_cif_numerical_recovery_review.zip",
+        "sha256": "f233b0a29e1d803d389b942835a45012d0bb25932e24f8228dda0dd92cbbbf24",
+        "bytes": 95610036,
+        "verified_payloads": 3552
+      },
+      "algorithm": [
+        "Verify exact C64 header/manifest and complete parent lineage; preserve all historical reports.",
+        "Resolve source/numerical resources only through declared C63-to-C57 references and reprepare the same three site modifiers.",
+        "Match every model/CIF/PHIL byte, ordered native input, original worker/spec/result and implementation fingerprint; captured Python is data only.",
+        "Bind labels to their own manager indices, then compare complete structured named identities with field padding removed.",
+        "Retain ordered endpoints, elements, all parameters, symmetry, origins and multiplicities exactly; reject ambiguous or unbound identities.",
+        "Requalify all construction-native checks and record missing/extra counts without new native calls or adoption."
+      ],
+      "preparation_measurements": "Only derived finding eigenvalues/determinants admit 1e-12 absolute/relative cross-platform roundoff; all other fields, finding identities/verdicts and scientific bytes/proxies remain exact.",
+      "qualification": {
+        "status": "CONSTRUCTED_NATIVE_MECHANICS_PASS",
+        "checks": 96,
+        "passed": 93,
+        "review": 0,
+        "unsupported": 3,
+        "unsupported_scope": "Formal-charge attribute unavailable at A:6/A:7/A:9; no contradiction or partial-charge substitution.",
+        "unaffected_proxy_counts": {
+          "angle": 1346,
+          "bond_asu": 0,
+          "bond_simple": 880,
+          "chirality": 152,
+          "const_dihedral": 327,
+          "dihedral": 404,
+          "parallelity": 0,
+          "planarity": 39
+        },
+        "unaffected_proxy_total": 3148,
+        "active_triple_targets": "PDU_AND_5PC_PASS",
+        "linear_axis_torsions": "THREE_PER_SITE_RETAINED_AS_NOTES",
+        "canonical_links": 38,
+        "constructed_links": 38,
+        "native_evidence": "PRESERVED_PHENIX_2.2.1-6174_CAPTURE",
+        "new_native_calls": 0,
+        "scientific_geometry_qualification": "NOT_ASSESSED"
+      },
+      "artifact_schema": {
+        "report": "saved_construction_native_audit.json",
+        "receipt_field": "saved_construction_native_audit",
+        "reference_anchor": "construction_native_directory",
+        "prepared_subdirectory": "constructed_native_replay/prepared",
+        "original_evidence_anchor": "input_capsule",
+        "original_evidence_path": "construction_native_audit.json",
+        "existing_C64_qualification": "IMMUTABLE_REVIEW",
+        "additive_fields": [
+          "unaffected_proxy_comparison",
+          "reference_rows",
+          "constructed_rows",
+          "missing_or_changed_rows",
+          "extra_or_changed_rows"
+        ]
+      },
+      "validation": {
+        "new_regressions": 138,
+        "fail_before": [
+          {
+            "scope": "Named comparison/identity integrity",
+            "failed": 18,
+            "already_passed": 62,
+            "seconds": 0.45
+          },
+          {
+            "scope": "Saved native capture binding absent",
+            "failed": 24,
+            "seconds": 0.59
+          },
+          {
+            "scope": "Exact C64/action boundary absent",
+            "failed": 19,
+            "already_passed": 4,
+            "seconds": 2.85
+          },
+          {
+            "scope": "Derived preparation measurement replay absent",
+            "failed": 11,
+            "seconds": 0.31
+          }
+        ],
+        "focused": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q tests/test_cif_named_proxy_comparison.py tests/test_cif_constructed_native_return.py tests/test_cedar65_delivery.py tests/test_cedar64_delivery.py tests/test_cif_construction_native.py tests/test_cif_terminal_qualification.py tests/test_cif_linked_control_qualification.py tests/test_cif_native_validation.py tests/test_cif_review_transport.py tests/test_synthetic_dna_shuttle.py",
+          "passed": 347,
+          "seconds": 12.86
+        },
+        "full": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c65-venv/bin/python -m pytest -q",
+          "passed": 3883,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 353.98
+        },
+        "portability": {
+          "aliased_TMPDIR": "PASS",
+          "all_input_payloads_and_manifest_preserved": true,
+          "all_native_subprocesses_forbidden": "PASS",
+          "ambient_import_poison": "PASS",
+          "build_sources_removed": true,
+          "checks": 96,
+          "dictionary_cache": "DOCUMENTED_REQUIREMENT_NOT_IMPLEMENTED",
+          "everyday_edit": "PRESERVED",
+          "ignored_runner": "PASS",
+          "input_payloads": 3552,
+          "native_mechanics": "CONSTRUCTED_NATIVE_MECHANICS_PASS",
+          "new_native_calls": 0,
+          "original_REVIEW_checks_preserved": 6,
+          "output_payloads": 3587,
+          "passed": 93,
+          "relocated_delivery": true,
+          "runtime_archive_sha256": "490b9d566a286c682bd797788d558f51be510431a817a29c4b6e2ab40ace5762",
+          "runtime_members": 153,
+          "standalone_preparation_refs": "PASS",
+          "status": "PASS",
+          "unchanged_restraints": 3148,
+          "unsupported": 3
+        },
+        "document_checks": {
+          "mirrored_records": 10,
+          "relative_links": 161,
+          "protected_mechanics": "UNCHANGED",
+          "NAR_workbook": "UNCHANGED",
+          "eight_pair_plan": "UNCHANGED",
+          "SVG_determinism": "PASS",
+          "visible_SVG": "EXACT_C64_BASELINE; UPDATED_METADATA_AND_CAPTION_ONLY"
+        },
+        "environment": {
+          "Python": "3.12.14",
+          "pytest": "9.1.1",
+          "pytest-subtests": "0.15.0",
+          "numpy": "2.3.5",
+          "Biopython": "1.88",
+          "NARestraints": "1.1.3",
+          "Phenix_Coot": "NOT_INSTALLED; NO_NEW_NATIVE_EXECUTION"
+        }
+      },
+      "compatibility": "General shared comparison fix and additive saved action; native/geometry worker bytes, chemistry, dictionaries, models, NAR workbook, optimizer, qualified correction and previous receipts unchanged.",
+      "local_dictionary_reuse": "Required persistent store documented for automatic-repair integration; not implemented by C65.",
+      "remaining_limits": [
+        "Formal-charge readback unavailable; never presumed zero.",
+        "Scientific geometry, absolute CIP, phosphate state and nonbonded pair identity remain separate.",
+        "Generic NAR compilation, acquisition/repair/local-store reuse and production adoption/checkpoints/refinement remain integration work.",
+        "Solution PDF rendering remains planned; students never adjudicate CIF tables.",
+        "ATL independent public/compiler only; exact eight-pair live-test plan unchanged."
+      ],
+      "generated_artifacts": "Private capsules, models, CIFs, logs and runners excluded from Git.",
+      "automatic_adoption": false,
+      "requires_cif_review": false,
+      "scientific_approval": "NOT_RUN",
+      "policy_authority": "NARestraints",
+      "new_Coot_Phenix_ReadySet_optimizer_refinement": "NOT_RUN",
+      "NAR_workbook_or_release_changes": false,
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#saved_constructed_native_replay_2026_10_22"
     }
   },
   "audience": [
@@ -16693,7 +16932,25 @@
         "geometry algorithm/settings"
       ],
       "cache_invalidation": "Any changed source, graph mapping, site/link/symmetry context, parameter/weight, tool/energy library, coordinate/cell or policy invalidates the affected layer. Cached unsupported/failed results stay clearly typed; fresh tool availability changes capability identity.",
-      "replay": "No host-absolute path as sole operational reference; hashes and declared run/dataset/repository anchors permit relocated replay. No input lookup by basename. Cache may optimize calculations but must not replace the run-local immutable receipt."
+      "replay": "No host-absolute path as sole operational reference; hashes and declared run/dataset/repository anchors permit relocated replay. No input lookup by basename. Cache may optimize calculations but must not replace the run-local immutable receipt.",
+      "qualified_dictionary_store": {
+        "status": "REQUIRED_PLANNED_INTEGRATION; NOT_IMPLEMENTED_BY_C65",
+        "recorded_date": "2026-10-22",
+        "behavior": "Automatically persist usable repaired numerical dictionaries locally and reuse them before regeneration or optimization for later matching structures.",
+        "identity": "Content-addressed immutable source/candidate hashes plus exact atom mapping, declared orders/charges/explicit-H/stereochemistry and recipe/policy; component code alone is insufficient.",
+        "provenance": "Retain generator, native consumer and energy-library versions, qualification scope, convergence/stopping evidence and unresolved notes; usable nonconverged results remain reusable.",
+        "separate_layers": [
+          "Reusable base numerical dictionary",
+          "Terminal/linkage modifiers and effective native qualification",
+          "Coordinate-dependent manager and geometry evidence"
+        ],
+        "invalidation": "A new model does not invalidate base numerics. Changed context or consumer requires only affected-layer requalification before regeneration is considered. Changed source/state cannot silently reuse an incompatible entry.",
+        "authority": "Preserve curated and explicit-source precedence; known-unusable candidates are evidence only, not automatic cache hits.",
+        "per_run": "Freeze selected exact bytes and anchored provenance per run; historical runs never depend solely on a mutable or removable cache.",
+        "reporting": "Automatic reuse and original stopping/limitations enter the solution summary and eventual PDF; students neither save nor inspect CIFs.",
+        "storage": "Persistent user-local application data outside tracked repositories; no automatic external upload.",
+        "contract": "docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs"
+      }
     },
     "generation_and_adoption_protocol": [
       "Acquire exact source and freeze it; reviewed-override registry is separate from acquisition/cache.",
@@ -18721,6 +18978,7 @@
     "contract": "docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions",
     "requires_student_cif_review": false,
     "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
-    "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned."
+    "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned.",
+    "qualified_dictionary_reuse": "REQUIRED_LOCAL_STORE_PLANNED; source/state-bound reusable numerics, separate site/coordinate evidence, automatic reuse without repeat optimization."
   }
 }

@@ -65,6 +65,12 @@ compilation, production checkpoints/refinement and PDF rendering remain planned.
 Development
 diagnostics can retain REVIEW without asking students to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
+The planned automatic workflow must save usable repairs locally and reuse them
+for later matching chemistry. The repaired component dictionary is independent
+of a new crystal's coordinates; site modifiers and native compatibility still
+need their own checks. Each run retains exact selected bytes and inherited
+notes. This persistent store is required integration work, not yet deployed.
+
 ## How it works
 
 The assessor parses each CIF data block separately and builds an adjacency graph
@@ -1381,6 +1387,16 @@ modifiers for the three internal components. The implementation compares native
 backbone links, effective chemical definitions, heavy-atom proxies and active
 triple length/linearity terms, then records two fixed evaluations per model.
 The different objectives are not compared as an optimization improvement.
+The returned workers both complete and retain active PDU/5PC triple targets.
+Six reviews come from display-label residue-name padding. C65 compares complete
+structured atom identities and every ordered restraint parameter instead: all
+3,148 unaffected terms match exactly. Label/index bindings and unique identities
+are required before comparison; altered targets, weights, symmetry, origins,
+endpoints or multiplicity remain failures. Saved preparations, native workers,
+specifications and results are replayed as data with zero new native calls, and
+the original REVIEW receipt remains unchanged. Scientific geometry and full-run
+integration stay separate.
+
 This readback is bounded to two 60-second workers and changes no model, native
 kernel, numerical target or optimizer. Pairing/stacking compilation and ordinary
 repair/adoption remain subsequent integration work; no student CIF gate is added.
