@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve source-declared DNA metadata with verified fallback
+
+- Verify the C56 return: 2,774 payloads, six saved native usability passes and
+  three isolated CONTINUE_WITH_NOTES decisions, with zero new native calls.
+- Add C57 `--source-dna-metadata-only` on exact C56. Translate only explicit
+  consistent source DNA group/type metadata into separate candidates; preserve
+  all other parsed fields, numerical rows, coordinates and original bytes.
+  Old native classifications already say DNA despite generic written groups.
+- Reuse two frozen coordinate cases per component in six bounded native
+  interpretations. Require native DNA metadata, identical fixed covalent
+  proxies and matching full targets/named gradients. Retain the independently
+  verified original automatically if preparation or equivalence fails.
+- No native kernel/target, optimizer, production pipeline/adoption, dependency,
+  NARestraints release or student CIF-approval change. Actual linkage, pair
+  identities, chemical-state/scientific qualification and PDF integration remain
+  separate. Local validation and pending native Mac scope are in the ledger.
+
 ### Correct and replay saved native usability evidence
 
 - Verify all 2,760 C55 payloads and six completed Phenix 2.2.1-6174 workers.

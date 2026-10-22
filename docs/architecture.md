@@ -805,9 +805,20 @@ compares Cartesian roundtrips within 1e-12 A, requires exact constant-container
 rows/weights and canonical signed torsion permutations, and passes all six cases
 with three isolated CONTINUE_WITH_NOTES decisions. C56 verifies/pins the saved
 receipts and replays them without new native calls or captured-code execution.
-Historical failures remain intact. Linked polymer classification and production
-adoption remain open. Unsupported native formal-charge readback is explicit,
-not substituted with partial charges.
+Returned C56 verifies all 2,774 payloads, six saved passes and three isolated
+continue decisions without new native calls. Historical failures remain intact.
+
+C57 adds `cif-source-declared-dna-metadata-v1`: accept only explicit consistent
+source DNA group/type declarations, then prepare a separate candidate changing
+only `_chem_comp.group` and `_chem_comp.type`. Existing native classifications
+already say DNA; written generated groups are ligand/non-polymer. Six bounded
+workers reuse the same two models and PHIL per component, requiring native DNA
+metadata, exact name-normalized covalent proxies and matching full targets and
+named gradients. The verified original remains an automatic isolated fallback.
+Native Mac equivalence is pending; no polymer link, production adoption or
+pipeline change is implied. Unsupported native formal-charge readback is
+explicit, not substituted with partial charges. Nonbonded pair identity is not
+qualified by the target/gradient comparison.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 separates internal diagnostics from student workflow. The pure decision core

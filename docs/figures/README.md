@@ -107,5 +107,10 @@ term remains a mechanical difference requiring complete tetrahedral coverage.
 Nonconvergence is a note. Linked classification/adoption remain separate and
 C55 supplies six completed native interpretations; corrected v2 saved replay
 passes them while preserving v1 roundoff/constant-torsion failures. C56 replays
-that evidence without new native calls. No completed production-adoption arrow
-or student CIF adjudication is implied.
+that evidence without new native calls; all six passes and three continue
+decisions have returned. C57 restores only explicit source DNA group/type
+metadata in separate candidates, with isolated native equivalence pending and
+the verified original as automatic fallback. Existing native classifications
+already say DNA despite generic written groups. No completed polymer-link or
+production-adoption arrow, nonbonded pair-identity proof or student CIF
+adjudication is implied.

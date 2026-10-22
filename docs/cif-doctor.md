@@ -41,6 +41,9 @@ C55 adds an opt-in isolated native qualification-to-decision adapter for saved
 complete candidates. Returned C55 supplies complete native data; corrected v2
 saved replay passes all six cases and three decisions. It selects only within that
 isolated generated-candidate pool and does not adopt a linked component.
+Returned C56 reproduces those passes without new native calls. C57 adds a
+source-declared DNA metadata candidate and automatic verified-original fallback
+within the same isolated scope; its native equivalence test is pending.
 
 **Still to integrate:** automatic acquisition/repair orchestration, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
@@ -2311,6 +2314,56 @@ is never executed. There are no new native calls, generation or optimization.
 The pure decision core receives corrected verified evidence within the isolated
 generated pool, while old failures remain alongside it. No student CIF approval
 or dictionary adoption occurs. Every original capsule remains unchanged.
+
+## Source-declared DNA metadata (Cedar 57)
+
+Returned C56 verifies all 2,774 payloads, six saved usability passes and three
+CONTINUE_WITH_NOTES decisions. Its capsule, runtime archive and complete parent
+lineage replay without new native calls. The reported runner differs from a
+clean build only in NARestraints working-tree metadata; reconstructing that
+field reproduces its SHA with equal runtime bytes.
+
+The source declarations identify DP as DNA through its monomer-library group
+and PDU/5PC as DNA linking through CCD type. Generated dictionaries instead
+write ligand/non-polymer groups and omit type. All six existing native
+interpretations already classify the monomers as DNA. This is a written-header
+restoration, not a claim that Phenix failed to recognize DNA.
+
+**Methods.** `cif-source-declared-dna-metadata-v1` requires explicit consistent
+source declarations and an independently usable saved numerical candidate.
+Translate only `_chem_comp.group` to DNA and `_chem_comp.type` to DNA LINKING in
+a separate file. Compare every other parsed field exactly, including atom names,
+formal charges, coordinates, signed stereo and all numerical rows. Refuse
+conflicting/unsupported declarations, existing output and symlink traversal;
+hash-preserve both inputs. No component-name or atom-pattern inference applies.
+
+`--source-dna-metadata-only` accepts exact C56 and replays the original verified
+decisions before preparing derivatives. Six native workers, each bounded to
+60 seconds, reuse the same frozen source-seed/generated model and isolated PHIL.
+Pin the selected Phenix 2.2.1-6174 APIs and energy implementation sources.
+Require independently usable output, native DNA group/classification, identical
+name-normalized fixed covalent proxies and matching full unnormalized target
+and named Cartesian gradient at both coordinate sets. Atom reordering is allowed;
+identity, coordinate and active-parameter checks remain those of usability v2.
+Each worker records two finite repeatable evaluations. This comparison does
+not establish nonbonded pair-identity equivalence or construct a polymer link.
+
+The existing decision core prefers a qualified source-metadata candidate. If
+preparation or either native comparison fails, it retains the already-qualified
+generated dictionary automatically. Missing convergence remains a note; no
+student CIF inspection or ordinary pipeline change is introduced. The receipt
+adds `source_classification_audit`, field-level preparation and per-coordinate
+equivalence/selection evidence with anchored artifacts. Historical failures and
+the fallback remain immutable.
+
+Software preparation, equivalence checks, fallback decisions and actual-C56
+deleted-build/relocated replay pass locally. New native equivalence is pending
+the Mac return. No generator or optimizer runs. Actual links/terminal modifiers,
+phosphate-state choice, absolute CIP, linear-axis torsions, DP geometry findings,
+production adoption and solution PDF integration remain separate qualifications.
+Unsupported native formal-charge access remains explicit; partial charge never
+substitutes for the unchanged declared CIF formal charges. ATL stays an
+independent public/compiler control without native construction.
 
 ## Reviewed preparation
 

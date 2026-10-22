@@ -180,9 +180,12 @@ omitted phosphate `both` volume term, rather than a lost fixed sugar hand.
 Returned C55 supplies six completed native interpretations and twelve finite,
 repeatable energy/gradient evaluations. The v1 auditor rejected floating-point
 roundoff and native period-zero constant torsions. Corrected v2 replay passes
-all six cases and selects all three isolated candidates with notes. C56 replays
-that saved evidence without new native calls. Linked classification, production
-adoption and scientific qualification remain open. Equivalent operational mapping
+all six cases and selects all three isolated candidates with notes. Returned
+C56 verifies that replay without new native calls. C57 restores only explicit
+source DNA group/type metadata in separate candidates, then tests isolated
+native equivalence with the verified original as automatic fallback. Existing
+native classifications already say DNA despite generic written headers. Linked
+adoption, production recovery and scientific qualification remain open. Equivalent operational mapping
 aliases now compile once while
 conflicting roles remain blocked. 5PC was already present twice on the C sheet;
 NARestraints needs no table edit or release for this audit correction.

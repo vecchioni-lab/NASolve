@@ -56,24 +56,37 @@ and alternate-angle sign changes. Do not edit CIFs, native proxies or kernels.
 DP retains complete four-bond/six-angle coverage around the omitted `both` term.
 All other geometry, charge-access, stopping, classification and CIP notes remain.
 
-**C56 is the next delivery.** `--saved-native-usability-only` accepts exact C55,
-pins/replays its six native receipts/workers/specs/inputs/outputs and selected
-energy implementation sources, preserves original v1 failures, then evaluates
-the data with maintained v2 code. No captured code or new Phenix call executes;
-generation, optimization and linked adoption remain NOT_RUN. The generated
-candidate pool is isolated; production dictionaries are not replaced. Neither
-students nor the PI are asked to adjudicate CIFs for this decision.
+**Returned C56 verifies 2,774 payloads**, six saved usability passes and three
+CONTINUE_WITH_NOTES decisions with zero new native calls. The runtime matches
+the clean pinned C56 build; only NARestraints dirty-state metadata explains the
+reported runner SHA. All C55 payloads, failures and current source bytes remain
+preserved. See `saved_native_usability_correction_2026_10_22` for exact hashes.
 
-Build `56_Cedar_probe_cif_native_usability_replay.py` with PDU/5PC/ATL. ATL stays
-public/compiler only, NARestraints retains pairing/stacking authority and the
-eight-pair full-run plan is unchanged. Source-preserving polymer classification
-and linked qualification are next integration boundaries, followed by production
-recovery/adoption and solution PDF reporting. No dependency or NAR release.
-All **34 new regressions**, **140 focused / 3,026 full tests** pass (two skips,
-276 subtests), plus exact-C55 deleted-build/relocated replay, poisoned ambient
-imports, aliased temporary roots and preserved everyday edits. Validation is
-recorded in `saved_native_usability_correction_2026_10_22`;
-the raw return remains under `isolated_candidate_native_usability_2026_10_22`.
+**C57 is the next delivery.** `--source-dna-metadata-only` accepts exact C56.
+Restore only the group/type fields from explicit consistent source DNA
+declarations in separate candidates. DP writes ligand and PDU/5PC non-polymer;
+all six old native interpretations already classify as DNA. Do not describe
+this as missing native recognition. Every other parsed field, input byte and
+numerical definition remains fixed.
+
+Six 60-second Phenix 2.2.1-6174 workers reuse the same frozen source-seed and
+generated models/PHIL, requiring native DNA metadata, identical fixed covalent
+proxies, full target and named gradient. If preparation or native equivalence
+fails, automatically retain the verified original generated dictionary. The
+selection is isolated; no actual polymer link, production adoption or student
+CIF adjudication occurs. Nonbonded pair identities are not qualified here.
+
+Build `57_Cedar_probe_cif_source_dna_metadata.py` with PDU/5PC/ATL. ATL stays
+public/compiler only; NARestraints pairing/stacking, curated precedence, native
+kernels, dependencies/release and the eight-pair full-run plan remain fixed.
+Actual linked/terminal qualification precedes production recovery/adoption and
+solution PDF integration. State/CIP, torsions, geometry and stopping notes stay
+visible. Local validation is recorded in `source_declared_dna_metadata_2026_10_22`;
+new native Mac execution remains pending.
+All **43 new regressions**, **183 focused / 3,069 full tests** pass (two skips,
+276 subtests), with exact-C56 deleted-build/relocated replay, poisoned ambient
+imports, aliased temporary roots and the everyday edit preserved. All 156
+relative links, mirrored records, protected hashes and editable figure pass QA.
 
 ## Completed and open work
 

@@ -46,8 +46,10 @@ unusable candidates and compares energy only for the same fixed objective.
 Unknown stereo remains unknown. PostMR now stores a concise solution-report
 summary alongside its detailed assessment. C55 adds an opt-in isolated native
 usability-to-decision adapter; corrected replay now passes its six returned
-native cases. Automatic production
-recovery, effective-bundle adoption and PDF rendering remain planned. Development diagnostics can retain REVIEW without asking students to
+native cases. Returned C56 verifies that replay. C57 adds source-declared DNA
+metadata restoration with automatic fallback to the verified original if its
+isolated native comparison fails. Automatic production recovery,
+effective-bundle adoption and PDF rendering remain planned. Development diagnostics can retain REVIEW without asking students to
 inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 ## How it works
@@ -1197,6 +1199,23 @@ never uses partial charge as a replacement. The generated ligand/non-polymer
 classification, phosphate state, triple-axis torsions, absolute CIP and linked
 scaffold integration remain separate qualifications. No student CIF inspection
 or automatic production adoption is involved.
+
+C56 has now returned all six saved passes and three continue decisions. The
+next step restores DNA labels from the source into separate written headers.
+Phenix already classified all three components as DNA, even though the files
+say ligand/non-polymer. The test asks whether clearer source metadata preserves
+the same mechanics; it does not claim that a DNA chain has been linked.
+
+**Methods.** Use only explicit consistent source DNA declarations. Change the
+two group/type fields, preserve every other parsed value and both original
+files, then reinterpret the same two frozen coordinate sets per component.
+Require native DNA metadata, the same fixed covalent restraints, and matching
+full targets and named gradients. If either comparison fails, automatically
+retain the already-verified original. Software preparation/fallback tests and
+relocated actual-C56 replay pass; the six new Mac interpretations remain
+pending. No optimization, production adoption or student approval is involved.
+Polymer links, nonbonded pair identities and final structure qualification are
+separate evidence.
 
 ATL is now a separate public control: its bridged sugar and four declared
 stereocentres survive graph assessment and the existing NARestraints T-class

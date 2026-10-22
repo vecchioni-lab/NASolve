@@ -16916,8 +16916,9 @@
       "Nonconvergence/residual geometry/pucker are notes, not rejection. Unknown stereo remains explicitly unassessed, not invented as inversion or PASS.",
       "Demonstrated identity/graph/state corruption, stereo inversion, nonfinite parameters, missing essential restraints or native unusability exclude that candidate. Try another usable candidate; stop only when none exists, without student CIF adjudication.",
       "PostMR CIF Doctor receipts gain an additive plain-language solution_report summary. Historical findings/status/readiness and fixed mechanics are unchanged.",
-      "C55 opt-in isolated saved-candidate native usability-to-decision adapter is implemented and software-tested, pending Mac execution. Selection is confined to the isolated generated-candidate pool; no production adoption occurs.",
-      "C56 corrected saved native usability-to-decision replay passes all six returned cases and three isolated decisions with notes, preserving the v1 failures; no linked adoption occurs."
+      "C55 isolated native adapter received six completed Mac workers; corrected C56 saved replay passes all six cases and three isolated decisions. No production adoption occurs.",
+      "C56 corrected saved native usability-to-decision replay passes all six returned cases and three isolated decisions with notes, preserving the v1 failures; no linked adoption occurs.",
+      "C57 source-declared DNA metadata preparation and isolated equivalence-to-selection adapter are software-tested. A qualified new candidate is preferred; otherwise the verified original is retained automatically. New Mac equivalence is pending."
     ],
     "planned": [
       "Bounded automatic source/repair/optimization orchestration retaining best valid endpoints and native fallback.",
@@ -17825,13 +17826,168 @@
     "compatibility": "Additive explicit C56 action and v2 qualification receipts. Historical v1 receipts, default native worker/energy policy, CIFs, proxies, kernels, dependencies, curated precedence and NARestraints release/workbook stay fixed. ATL remains public/compiler only and the eight-pair full-run plan is unchanged.",
     "remaining_limits": [
       "Isolated generated-candidate selection only; production recovery/adoption and solution PDF integration remain planned.",
-      "Native ligand/non-polymer classification needs source-preserving linked qualification.",
+      "Written ligand/non-polymer group/type metadata needs source-declared restoration and native equivalence. Existing native classification already records DNA; actual polymer linkage/adoption remains separate.",
       "No convergence/scientific approval, mapped absolute CIP or phosphate-state selection is inferred.",
       "Linear-axis torsions, DP geometry findings and unsupported native formal-charge access remain visible."
     ],
     "requires_cif_review": false,
     "automatic_adoption": false,
     "scientific_approval": "NOT_RUN",
-    "absolute_cip_assignment": "NOT_RUN"
+    "absolute_cip_assignment": "NOT_RUN",
+    "returned_review": {
+      "name": "56_Cedar_ob29i1wn_cif_numerical_recovery_review.zip",
+      "sha256": "2967cb4c4dc96b5855b62e2f3327f56a5ac6e32a2f771efe0596553a84cfdfc0",
+      "bytes": 63698773,
+      "verified_payloads": 2774,
+      "build_sha256": "65f90da32d24517b5fb717014e3fccc3488fcb74d4f5a606c4a3d728c187c801",
+      "source_commit": "2790c67b1019f454523ab3932f22b72882c0f3ca",
+      "reported_runner_sha256": "ae07ebc15cf32b9d731ab27b003efcfdf95ee1e0ff6e20cf368ca27391a2b933",
+      "trusted_clean_runner_sha256": "d23a70e176e290f2ace2954afa7ed41503cc0a5642d44d286d4255d4034151fe",
+      "runtime_members": 140,
+      "runtime_archive_sha256": "2e09351d6e7e5727daf9fac4cf27cb44f3fb6d0898eea558d187e97980ae4f26",
+      "comparison": "NARestraints working_tree_has_changes metadata only. Reconstructing that field exactly reproduces the reported runner SHA; runtime bytes match the pinned clean build.",
+      "parent_payloads_preserved": 2760,
+      "saved_native_cases_pass": 6,
+      "isolated_decisions": "THREE_CONTINUE_WITH_NOTES",
+      "native_calls": 0,
+      "captured_code_execution": "NOT_RUN",
+      "automatic_adoption": false,
+      "requires_cif_review": false,
+      "maintained_replay": "PASS: full C55/C54 lineage and six qualifications/three decisions reproduced from saved data under maintained v2 code.",
+      "native_metadata_clarification": "All six raw native monomer classifications already record DNA. Written generated groups are DP ligand, PDU/5PC non-polymer; the source metadata restoration is separate from actual polymer linkage."
+    }
+  },
+  "source_declared_dna_metadata_2026_10_22": {
+    "status": "PREPARATION_EQUIVALENCE_AND_FALLBACK_SOFTWARE_TESTED; NATIVE_MAC_EXECUTION_PENDING",
+    "recorded_date": "2026-10-22",
+    "delivery_prefix": "57_Cedar",
+    "policy_id": "cif-source-declared-dna-metadata-v1",
+    "module": "src/nasolve/cif_source_classification.py",
+    "cli_action": "--source-dna-metadata-only",
+    "runner_filename": "57_Cedar_probe_cif_source_dna_metadata.py",
+    "review_input": {
+      "name": "56_Cedar_ob29i1wn_cif_numerical_recovery_review.zip",
+      "sha256": "2967cb4c4dc96b5855b62e2f3327f56a5ac6e32a2f771efe0596553a84cfdfc0",
+      "bytes": 63698773,
+      "verified_payloads": 2774
+    },
+    "purpose": "Restore explicit source DNA metadata in a separate numerical dictionary while retaining the already-qualified original as an automatic isolated fallback; never ask students to inspect CIFs.",
+    "source_observations": {
+      "DP": {
+        "source_group": "DNA",
+        "generated_group": "ligand",
+        "generated_type": "ABSENT",
+        "native_classification": "DNA"
+      },
+      "PDU": {
+        "source_type": "DNA linking",
+        "generated_group": "non-polymer",
+        "generated_type": "ABSENT",
+        "native_classification": "DNA"
+      },
+      "5PC": {
+        "source_type": "DNA LINKING",
+        "generated_group": "non-polymer",
+        "generated_type": "ABSENT",
+        "native_classification": "DNA"
+      }
+    },
+    "algorithm": [
+      "Verify exact C56, complete parent lineage and six saved v2 qualifications/three automatic decisions; do not execute captured Python or pickle data.",
+      "Require explicit consistent source group DNA and/or type DNA LINKING, without component-code exceptions or atom-pattern inference. Reject conflicting or unsupported authority.",
+      "Prepare a separate candidate changing only _chem_comp.group to DNA and _chem_comp.type to DNA LINKING. Compare every other parsed field exactly; preserve source/base bytes, formal charges, coordinates and numerical rows. Keep already-correct input bytes unchanged.",
+      "Reinterpret the unchanged frozen source-seed/generated models and isolated PHIL in six workers bounded to 60 seconds each; pin selected Phenix APIs/energy sources before and after. Each worker records two finite repeatable full native evaluations.",
+      "Require independent v2 usability, native DNA group/classification, exact name-normalized fixed covalent proxy signatures and matching full unnormalized target/named Cartesian gradient against the corresponding saved baseline. Native atom reordering is permitted without identity or coordinate changes.",
+      "Select qualified source metadata through the existing verified-evidence decision core; if preparation or either native comparison fails, automatically retain the independently usable original generated candidate with notes.",
+      "No polymer link, generation, optimization, ordinary pipeline/adoption or student approval occurs. Nonbonded pair-identity equivalence is unassessed; full target/gradient equality alone does not prove it."
+    ],
+    "artifact_schema": {
+      "version": 1,
+      "preparation": "metadata_receipt.json with field-level group/type delta and anchored candidate hashes",
+      "native_comparison": "Per-coordinate SOURCE_DNA_METADATA_NATIVE_PASS or REVIEW with baseline/candidate v2 qualifications",
+      "aggregate": "source_classification_audit plus isolated decision and verified_original_decision; existing historical receipts remain unchanged"
+    },
+    "validation": {
+      "new_regressions": 43,
+      "fail_before": {
+        "failed": 25,
+        "seconds": 1.15,
+        "scope": "Initial preparation/equivalence/fallback cases before the new module; later authority/idempotence and delivery-boundary cases are additional."
+      },
+      "focused": {
+        "passed": 183,
+        "seconds": 9.3,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q tests/test_cif_source_classification.py tests/test_cedar57_delivery.py tests/test_cif_candidate_usability.py tests/test_cif_native_usability_representation.py tests/test_cedar56_delivery.py tests/test_cedar55_delivery.py tests/test_cif_native_validation.py tests/test_cif_doctor_selection.py"
+      },
+      "full": {
+        "passed": 3069,
+        "skipped": 2,
+        "subtests": 276,
+        "seconds": 251.68,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q"
+      },
+      "portability": {
+        "status": "PASS",
+        "source_build_state": {
+          "commit": "ad3a1be0867be5795afa568d042b2c3ddd05d65f",
+          "working_tree_has_changes": false
+        },
+        "runner_sha256": "408444a6771f4d7b37a766d90406ff6161b50fa81d7e187e5cc60631170124df",
+        "build_sources_deleted_before_replay": true,
+        "relocated_runner": true,
+        "poisoned_ambient_imports": "PASS",
+        "aliased_system_temp": "PASS",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "input_payloads": 2774,
+        "runtime_members": 141,
+        "runtime_archive_sha256": "09b94e572c9de3a21ac34cdc9e1417af29de65a58b0ca229d0caa7692380ef46",
+        "mechanics_prerequisites": 17,
+        "rotation_directions": 96,
+        "captured_native_cases_replayed": 6,
+        "isolated_fallbacks": "THREE_VERIFIED_WITH_NOTES",
+        "source_dna_preparations": 3,
+        "only_group_and_type_changed": true,
+        "ATL": "INDEPENDENT_PUBLIC_ONLY",
+        "new_native_equivalence": "PENDING_USER_MAC",
+        "generation_optimization_adoption": "NOT_RUN"
+      },
+      "native": "PENDING_USER_MAC: no Phenix installation here. Actual C56 saved-data replay and three source preparations pass; synthetic native fixtures test qualification/fallback behavior only. Six new Phenix 2.2.1-6174 interpretations remain pending.",
+      "documentation": {
+        "mirror_equality": "PASS",
+        "mirrored_records": [
+          "automatic_component_resolution_2026_10_21",
+          "saved_native_usability_correction_2026_10_22",
+          "source_declared_dna_metadata_2026_10_22"
+        ],
+        "unrelated_runtime_history": "PRESERVED",
+        "planned_eight_pairs": "PRESERVED",
+        "relative_links": 156,
+        "protected_hashes": {
+          "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "tests/fixtures/public_ccd/PDU.cif": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+          "tests/fixtures/public_ccd/5PC.cif": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650",
+          "tests/fixtures/public_ccd/ATL.cif": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b",
+          "../NARestraints/restraints/data/Ligands.xlsx": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+        },
+        "native_worker_module_unchanged": "PASS",
+        "v2_usability_module_unchanged": "PASS",
+        "deterministic_svg_and_xml": "PASS",
+        "raster_visual_review": "PASS"
+      }
+    },
+    "compatibility": "Additive explicit opt-in C57 action and schema-1 metadata/equivalence receipts. No existing CLI default, native worker/energy policy, CIF target/kernel, dependency, curated precedence or NARestraints release/workbook change. ATL remains public/compiler only; the eight-pair run plan is unchanged.",
+    "remaining_limits": [
+      "All existing raw native monomer classifications already say DNA. This restores written source metadata and is not proof of a newly repaired native classification.",
+      "New native metadata equivalence, actual polymer links/terminal modifiers and effective-bundle adoption remain unqualified.",
+      "Nonbonded pair identity is not compared by this isolated signature/target/gradient check.",
+      "DP omitted unoriented phosphate volume coverage and geometry notes remain; no convergence, absolute CIP or phosphate state is invented.",
+      "Native formal-charge access remains unsupported; unchanged explicit CIF formal charges are not substituted with partial charges.",
+      "Production recovery/adoption and solution PDF rendering remain planned."
+    ],
+    "requires_cif_review": false,
+    "automatic_adoption": false,
+    "linked_adoption": "NOT_RUN",
+    "scientific_approval": "NOT_RUN"
   }
 }
