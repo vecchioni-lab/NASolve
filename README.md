@@ -268,14 +268,15 @@ replay reproduces all 30 controls and nine frozen snapshots, including original
 stopping/limitation notes, with every subprocess forbidden. Ordinary PostMR
 orchestration and the requested eight-pair live run remain separate work.
 
-C67 now preflights the ordinary source selector for the exact eight-pair plan: 15
-component sources, eight declared NARestraints pair recipes and both stacking
-orientations per pair. Equivalent operational aliases now work in ordinary
-lookup, and generic CIF identities support native loop headers while rejecting
-ambiguous or contradictory IDs. Saved repairs cannot override a different
-selected source/authority. Local simulated-source controls pass; the Mac probe
-checks actual installed resources. No native execution or repair adoption is
-claimed, and the full live run remains pending.
+Returned C67 verifies all **3,713 payloads**, including the unchanged C66
+parent and manifest. The ordinary source selector passes **15/15 sources**
+(six curated, nine installed CCD), and NARestraints compiles **8/8 declared
+pairs and 16/16 stacking orientations**. Independent maintained replay
+reproduces all 39 source/PHIL files exactly; report differences are limited
+to historical source paths. DP/PDU/5PC saved repairs correctly miss because
+their raw source bytes/authority differ; all inventoried chemical declarations
+match. No repair is substituted by component name.
+No native process or adoption occurs; full-run integration remains open.
 
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 

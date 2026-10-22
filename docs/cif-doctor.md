@@ -138,14 +138,15 @@ orchestration and the requested eight-pair live run remain separate work.
 
 ## Ordinary source and declared-pair preflight
 
-C67 now preflights the ordinary source selector for the exact eight-pair plan: 15
-component sources, eight declared NARestraints pair recipes and both stacking
-orientations per pair. Equivalent operational aliases now work in ordinary
-lookup, and generic CIF identities support native loop headers while rejecting
-ambiguous or contradictory IDs. Saved repairs cannot override a different
-selected source/authority. Local simulated-source controls pass; the Mac probe
-checks actual installed resources. No native execution or repair adoption is
-claimed, and the full live run remains pending.
+Returned C67 verifies all **3,713 payloads**, including the unchanged C66
+parent and manifest. The ordinary source selector passes **15/15 sources**
+(six curated, nine installed CCD), and NARestraints compiles **8/8 declared
+pairs and 16/16 stacking orientations**. Independent maintained replay
+reproduces all 39 source/PHIL files exactly; report differences are limited
+to historical source paths. DP/PDU/5PC saved repairs correctly miss because
+their raw source bytes/authority differ; all inventoried chemical declarations
+match. No repair is substituted by component name.
+No native process or adoption occurs; full-run integration remains open.
 
 `--ordinary-acquisition-only` accepts exact returned C66. It replays the
 closed saved evidence, selects sources through the same ligand_source API
@@ -156,9 +157,9 @@ ReadySet paths select installed CCD files; no environment/version subprocess
 runs. A saved-repair MISS caused by different source bytes/authority is expected
 and never authorizes substitution. All original stopping notes survive.
 
-Expected successful evidence is ORDINARY_ACQUISITION_CONTROLS_PASS, 15/15
-sources, 8/8 pairs and 16/16 stack orientations. Overall REVIEW/exit 2 still
-marks the separate native integration/scientific boundary, not student CIF
+Returned evidence is ORDINARY_ACQUISITION_CONTROLS_PASS: 15/15 sources,
+8/8 pairs and 16/16 stack orientations. Overall REVIEW/exit 2 records the
+remaining native integration/scientific scope; it requires no student CIF
 approval. ATL remains an independent public source/compiler control.
 
 ## Generated numerical defects and explicit candidates

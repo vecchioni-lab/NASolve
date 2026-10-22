@@ -1509,14 +1509,15 @@ their provenance; it does not certify a new crystal or installed runtime.
 
 ## Ordinary sources and the intended pair matrix (Cedar 67)
 
-C67 now preflights the ordinary source selector for the exact eight-pair plan: 15
-component sources, eight declared NARestraints pair recipes and both stacking
-orientations per pair. Equivalent operational aliases now work in ordinary
-lookup, and generic CIF identities support native loop headers while rejecting
-ambiguous or contradictory IDs. Saved repairs cannot override a different
-selected source/authority. Local simulated-source controls pass; the Mac probe
-checks actual installed resources. No native execution or repair adoption is
-claimed, and the full live run remains pending.
+Returned C67 verifies all **3,713 payloads**, including the unchanged C66
+parent and manifest. The ordinary source selector passes **15/15 sources**
+(six curated, nine installed CCD), and NARestraints compiles **8/8 declared
+pairs and 16/16 stacking orientations**. Independent maintained replay
+reproduces all 39 source/PHIL files exactly; report differences are limited
+to historical source paths. DP/PDU/5PC saved repairs correctly miss because
+their raw source bytes/authority differ; all inventoried chemical declarations
+match. No repair is substituted by component name.
+No native process or adoption occurs; full-run integration remains open.
 
 A repair is useful only if it belongs to the chemistry the pipeline actually
 selected. C67 therefore asks the ordinary source selector first and preserves
@@ -1529,6 +1530,8 @@ Methods: compare every operational role and sugar/phosphate/attachment context;
 reject conflicts; freeze selected source bytes with SHA-256 references; map
 NARestraints roles onto those exact atom names; compile each explicitly
 requested pair and both stacking orientations using the existing library.
-These controls have no observed coordinates or native restraints. The local
-source installation is simulated from recorded/public graphs; the Mac return
-must establish actual installed-source behavior before broader integration.
+These controls have no observed coordinates or native restraints. The Mac
+return establishes ordinary selection from the configured installation and
+the exact declared-role compiler behavior. Independent replay uses those
+captured source bytes; automatic repair/adoption and current native/site
+qualification remain separate integration work. No student inspects CIFs.

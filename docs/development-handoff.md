@@ -13,30 +13,47 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Next delivery is C67:** `67_Cedar_probe_cif_acquisition.py` with
-`--ordinary-acquisition-only` consumes exact C66. It checks ordinary source
-priority, source-bound cache applicability and the exact eight-pair NAR
-compiler plan: 15 sources, eight pairs and 16 stacking orientations. Expected
-ORDINARY_ACQUISITION_CONTROLS_PASS; source/authority cache MISS is legitimate.
-No native process, version probe, ReadySet, optimizer, adoption or student CIF
-inspection occurs. Actual Mac installed-source preflight remains pending.
+**C67 was delivered, returned and independently verified.**
+Returned C67 verifies all **3,713 payloads**, including the unchanged C66
+parent and manifest. The ordinary source selector passes **15/15 sources**
+(six curated, nine installed CCD), and NARestraints compiles **8/8 declared
+pairs and 16/16 stacking orientations**. Independent maintained replay
+reproduces all 39 source/PHIL files exactly; report differences are limited
+to historical source paths. DP/PDU/5PC saved repairs correctly miss because
+their raw source bytes/authority differ; all inventoried chemical declarations
+match. No repair is substituted by component name.
+No native process or adoption occurs; full-run integration remains open.
 
-The fixes are shared with ordinary code: equivalent operational role aliases
-are reconciled without workbook changes, and exact scalar/loop CIF metadata
-is accepted with contradictory identities rejected. C66 repairs bind reviewed
-source projections; they cannot replace a different ordinary curated/native
-source. Current consumer/site qualification and automatic repair/adoption
-remain subsequent integration, followed by the unchanged eight-pair live run.
+All 157 bundled runtime members match; the exact reported runner is reproduced
+from published `05fc88f` by changing only its recorded NARestraints dirty flag.
+The complete maintained C66-and-earlier replay passes with all subprocesses
+forbidden. All 39 returned relative source/PHIL references remain readable
+after removing the owned installation layout, with external scientific reads
+forbidden. The local replay uses captured source bytes, not installed Phenix.
 
-C67 passes 49 new regressions, 141 focused and 4008 full tests (two skips,
-276 subtests; full run 327.17 s). A real-C66 deleted-build/relocated
-runner with simulated installed sources passes 15/15 sources, 8/8 recipes
-and 16/16 stacks while all subprocesses are forbidden. All parent payloads
-survive; 39 relative source/PHIL references remain readable after removing
-the owned simulated installation. This is transport/compiler evidence, not
-a local native Phenix claim. Use the existing four-command pinned Git ferry,
-ignored runner destination and unchanged everyday checkout. See
-ordinary_source_acquisition_2026_10_22 in both machine ledgers.
+The shared alias fix accepts both equivalent 5PC C-sheet records in memory;
+no workbook or NAR release change is needed. Six curated sources retain
+priority. The source-bound DP/PDU/5PC cache misses preserve original entries
+and stopping notes; they do not refute the verified C66 reuse behavior. All
+seven inventoried chemical fields match for each component, so the next bridge
+concerns exact source-projection provenance and current qualification.
+
+**Next integration boundary:** connect the shared resolver to ordinary
+source-to-repair acquisition and automatic usable fallback, verify the source
+projection relationship before reuse, bind chosen numerics to the selected
+source and authority, and qualify the current native/site context. Then
+exercise the unchanged eight-pair live plan with authoritative
+NARestraints pairing/stacking. Production checkpoints, refinement and PDF
+rendering remain subsequent work. This source/compiler gate is closed and
+needs no repeat; this return record creates no new delivery or merge gate.
+
+C67 implementation validation remains **49 new regressions**, **141 focused /
+4008 full tests** (two skips, 276 subtests; full run 327.17 s). Its deleted-build
+and relocated transport used simulated sources; the actual Mac source/compiler
+return now passes independent replay. This documentation-only update adds no
+runtime, dependency, schema or mechanics change. Protected kernels, targets,
+weights, optimizer, plane correction, workbook and eight-pair plan remain
+unchanged. See ordinary_source_acquisition_2026_10_22 in both ledgers.
 
 The user-facing policy now removes mandatory CIF inspection/approval. Optimize
 and repair within bounded budgets, retain the best usable candidate or native

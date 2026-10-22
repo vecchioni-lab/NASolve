@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the verified C67 ordinary source/compiler return
+
+- Verify all 3,713 payloads, unchanged C66 parent/manifest and 157 runtime
+  members; reconstruct the reported runner using only recorded NAR dirty state.
+- Independently reproduce ordinary source selection (15/15), all eight declared
+  pair recipes and 16 stacking directions using returned installed CCD bytes
+  and maintained code, with every subprocess forbidden. All 39 source/PHIL
+  byte copies match and resolve independently after source-layout removal.
+- Preserve six curated sources and expected DP/PDU/5PC source-bound cache
+  misses, original entries and stopping notes. Close this source/compiler gate;
+  automatic repair/adoption, current native/site qualification and full run
+  remain separate. No runtime, dependency, schema or student-review change.
+
 ### Preflight ordinary sources and exact intended NARestraints pairs
 
 - Share source selection metadata with the existing ordinary Path API; preserve
@@ -21,8 +34,9 @@ entries are reconstructed from repository history.
   No native process, source substitution, model change, optimizer or adoption.
 - All 49 new / 141 focused / 4008 full tests pass (two skips, 276 subtests;
   full run 327.17 s). Relocated real-C66 transport passes with simulated
-  installed sources and all subprocesses forbidden. Mac source preflight and
-  ordinary automatic repair/adoption remain pending. No dependency/run migration.
+  installed sources and all subprocesses forbidden. The returned Mac source
+  preflight now passes; ordinary automatic repair/adoption remains pending.
+  No dependency/run migration.
 
 ### Record the verified C66 persistent-reuse return
 

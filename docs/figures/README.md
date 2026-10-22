@@ -156,8 +156,11 @@ and zero native processes. This closes reuse transport only.
 C67 checks ordinary source priority and explicit intended pair/stack coverage.
 Shared alias reconciliation and loop-header identity support fix ordinary
 compatibility; source-bound repair applicability does not imply adoption.
-Local installation fixtures are simulated; actual Mac source checks remain
-pending. No new native or production-adoption arrow is added.
+Returned C67 verifies all 3,713 payloads and passes actual Mac source
+selection (15/15), declared pair compilation (8/8) and both stack directions
+(16/16). Independent replay preserves all 39 source/PHIL bytes and expected
+source-bound cache misses, without native processes or repair adoption.
+No production-adoption arrow is added.
 Site/model qualification and automatic PostMR orchestration remain separate.
 This resource/reader bridge does not fabricate an AutoMR/PostMR checkpoint or
 claim automated acquisition, production adoption, refinement or PDF integration.
