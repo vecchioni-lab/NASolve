@@ -1023,6 +1023,13 @@ new native process or installed energy-library qualification. Ordinary automatic
 acquisition/repair/adoption, pairing/stacking integration and solution PDF use
 remain subsequent work. See [local repair reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
 
+Returned C66 verifies all 3,659 payloads and the unchanged C65 parent. All
+30 source/authority/consumer/reuse controls reproduce under maintained code.
+Nine returned snapshots resolve independently with exact numerical and
+stopping evidence, every subprocess and external scientific read forbidden.
+This closes component-reuse transport, without changing the ordinary
+acquisition/adoption or current-site qualification boundary.
+
 
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
 (`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The

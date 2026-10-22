@@ -127,6 +127,15 @@ owned cache copy. It never removes user entries. Zero new native, generator,
 optimizer, Coot, ReadySet or refinement processes are requested; overall REVIEW
 still describes the ordinary-pipeline and scientific boundary.
 
+Returned C66 verifies all **3,659 payloads** and the byte-identical C65
+parent and manifest. DP, PDU and 5PC each pass ten reuse controls: their
+first qualified dictionaries are saved and repeated requests reuse the exact
+bytes without acquisition. Source/authority mismatches are excluded and a
+changed consumer requires requalification before generation. Independent
+replay reproduces all 30 controls and nine frozen snapshots, including original
+stopping/limitation notes, with every subprocess forbidden. Ordinary PostMR
+orchestration and the requested eight-pair live run remain separate work.
+
 ## Generated numerical defects and explicit candidates
 
 The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident

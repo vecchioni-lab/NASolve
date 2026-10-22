@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the verified C66 persistent-reuse return
+
+- Verify all 3,659 payloads, the byte-identical C65 parent/manifest and all
+  155 runtime members; reconstruct the reported runner using only its
+  recorded NARestraints dirty-state metadata difference.
+- Reproduce all 30 reuse/source/authority/consumer controls under maintained
+  code and independently validate nine returned snapshots with exact source,
+  numerical, qualification and original stopping/limitation evidence. All
+  subprocesses and external scientific reads are forbidden during readback.
+- Close the C66 reuse-transport gate. Ordinary automatic acquisition/adoption,
+  intended pairing/stacking and the requested eight-pair live run remain
+  separate; no student CIF gate, native process, optimization or adoption.
+- Documentation/evidence only; no runtime, dependency or schema change.
+
 ### Persist qualified component numerics and reuse before generation
 
 - Add a shared user-local dictionary store and acquisition resolver. Bind source,
@@ -30,7 +44,8 @@ entries are reconstructed from repository history.
   (two skips, 276 subtests; full run 355.38 s). Relocated actual-C65 delivery
   passes all 30 controls and preserves every input payload with subprocesses
   forbidden. Nine frozen snapshots survive owned-cache removal and relocation.
-  Mac C66 transport remains pending.
+  The returned Mac C66 transport also passes all 30 controls and nine independent
+  snapshot reads; its complete C65 parent remains unchanged.
 
 ### Record the verified C65 construction-native return
 

@@ -23,7 +23,9 @@ inversion excludes that candidate rather than being silently allowed.
 Implemented: pure `cif-automatic-usable-fallback-v1` selection from verified
 adapter evidence and additive PostMR `solution_report` summaries. C55 adds an
 opt-in isolated native qualification-to-decision adapter; corrected saved replay
-passes the returned native cases.
+passes the returned native cases. C66 now verifies the shared persistent
+component store/resolver on the Mac: all 30 reuse controls and nine frozen
+snapshots independently reproduce without native processes.
 Automatic acquisition/repair, production bundle adoption and the PDF renderer
 remain planned. Detailed diagnostic REVIEW results are developer evidence,
 not student CIF approval gates. See the [contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
@@ -236,9 +238,9 @@ The original six C64 reviews remain immutable. Overall diagnostic REVIEW
 continues to describe the full-run/scientific boundary, without student CIF
 inspection. No new native process, geometry cycle, release or adoption ran.
 
-**Next integration boundary:** ordinary automatic resource acquisition/repair,
-persistent local reuse and authoritative pairing/stacking compilation remain
-necessary before the requested eight-pair live run. A local ordinary overlay
+**Next integration boundary:** ordinary automatic resource acquisition/repair
+using the verified shared reuse API, and authoritative pairing/stacking
+compilation remain necessary before the requested eight-pair live run. A local ordinary overlay
 preflight shows that the construction-only control places DP at A:6 opposite
 canonical C at C:10; NARestraints has no configured P:C recipe. That fixture
 tests construction, not declared pairing intent. Use the already requested
@@ -258,46 +260,45 @@ coordinates must not invalidate base-component numerics. See the
 This requirement is recorded; the store is not implemented by C65.
 
 
-**C66 is the next delivery:** `66_Cedar_probe_cif_local_reuse.py` with
-`--local-dictionary-reuse-only` consumes exact C65. The shared component store
-and resolver now persist source/state/authority-bound qualified numerics,
-consult them before acquisition, and freeze independent run copies. The
-numerical request separates original generator provenance from current
-consumer qualification, so combined Phenix or native-check-policy upgrades
-requalify saved bytes first. Failed/corrupt entries never become hits; optional
-cache-write failure still preserves a verified run copy and limitation notes.
+**C66 was delivered, returned and independently verified.**
+Returned C66 verifies all **3,659 payloads** and the byte-identical C65
+parent and manifest. DP, PDU and 5PC each pass ten reuse controls: their
+first qualified dictionaries are saved and repeated requests reuse the exact
+bytes without acquisition. Source/authority mismatches are excluded and a
+changed consumer requires requalification before generation. Independent
+replay reproduces all 30 controls and nine frozen snapshots, including original
+stopping/limitation notes, with every subprocess forbidden. Ordinary PostMR
+orchestration and the requested eight-pair live run remain separate work.
 
-The Mac test writes immutable DP/PDU/5PC entries in local application data,
-then exercises repeated API use without a generator, source/authority mismatch,
-consumer-version requalification and standalone snapshots after removing only
-an owned cache copy. Expect QUALIFIED_DICTIONARY_REUSE_PASS and ten checks per
-component, with zero new native/generator/optimizer processes. A warm first
-lookup may already say REUSED. Default macOS storage is
-`~/Library/Application Support/NASolve/cif-dictionaries/v1`; optional
-`--dictionary-store PATH` and NASOLVE_CIF_STORE overrides preserve explicit paths.
-The usual Git/worktree/build/run block and ignored runner destination apply.
+The Mac runner matches published `5f90e70` exactly after changing only the
+recorded NARestraints dirty-state flag; all 155 runtime members match. The
+default application-data store contains immutable source/state/authority-bound
+entries, and each run keeps independent source/numerical/evidence copies.
+PDU remains explicitly nonconverged; DP/5PC retain unreported stopping notes.
+Consumer fingerprints are saved evidence; installed runtime and energy-library
+resource files are not newly certified by this diagnostic.
+No new builder, optimizer or native process ran, and no student CIF approval
+is required. The persistent path is historical provenance; all nine returned
+snapshots resolve without reading an external source, dictionary or ZIP.
 
-Original source/CIF/model bytes, C65's closed construction mechanics and all
-older findings survive. Native evidence uses saved 2.2.1-6174 fingerprints;
-installed runtime and energy-library resource files are not newly certified.
-The store/API is implemented, while ordinary automatic acquisition/adoption,
-authoritative intended-pair compilation and the eight-pair live run remain
-separate integration. No Phenix/Coot installation, package update, chemistry
-change, student CIF gate, optimizer cycle, NAR release or ATL merge gate is added.
-The machine record is qualified_dictionary_reuse_2026_10_22 in both ledgers.
+**Next integration boundary:** connect ordinary acquisition/adoption to this
+verified resolver, retain usable fallback and qualify current site/model
+context, then compile authoritative intended pairing/stacking for the exact
+eight-pair live run. The construction-only DP:C fixture remains outside
+supported pairing intent; use declared DZ:DP rather than inventing a recipe.
+The C66 transport/reuse gate is closed and needs no repeat. This return-record
+update prepares no new native delivery, NAR release or ATL merge gate.
 
-C66 validation passes **76 new regressions**, **389 focused / 3959 full tests**
-(two skips, 276 subtests; full run 355.38 s). The deleted-build/relocated
-actual-C65 runner passes all 30 reuse controls with every subprocess
-forbidden. All 3,587 input payloads and the manifest survive byte-identically;
-the QA output contains 3,659 payloads. Poisoned imports, aliased TMPDIR, the
-everyday edit and ignored runner pass. Nine relocated snapshots remain
-readable after removing the owned test cache, with external scientific reads
-forbidden. Eleven evidence mirrors, 162 links, protected mechanics/workbook
-and the unchanged eight-pair plan pass. The visible SVG stays unchanged; its
-caption/metadata now distinguish the component API from pending production
-orchestration. Mac transport is the remaining C66 check.
-
+C66 implementation validation remains **76 new regressions**, **389 focused /
+3959 full tests** (two skips, 276 subtests; full run 355.38 s). The deleted-build/
+relocated actual-C65 delivery passes all 30 controls with subprocesses
+forbidden; all 3,587 input payloads and the manifest survive. Poisoned imports,
+aliased TMPDIR, the everyday edit and ignored runner pass. Nine local QA
+snapshots survive owned-cache removal and relocation with external scientific
+reads forbidden. The real Mac return independently reproduces the same
+controls and exact frozen payload bytes. Protected mechanics/workbook and
+the eight-pair plan are unchanged. See qualified_dictionary_reuse_2026_10_22
+in both machine ledgers for hashes and the original full-suite evidence.
 
 
 C65 validation passes **138 new regressions**, **347 focused / 3883 full

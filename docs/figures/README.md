@@ -150,6 +150,9 @@ source/state/authority identity, immutable producer/consumer provenance and
 independent run copies. Repeated component use avoids generation; changed
 consumers/check policies requalify saved numerics first. Its explicit reuse
 control introduces no ordinary production-adoption arrow in this figure.
+Returned C66 verifies 3,659 payloads, reproduces all 30 reuse controls and
+independently reads nine exact frozen snapshots with original stopping notes
+and zero native processes. This closes reuse transport only.
 Site/model qualification and automatic PostMR orchestration remain separate.
 This resource/reader bridge does not fabricate an AutoMR/PostMR checkpoint or
 claim automated acquisition, production adoption, refinement or PDF integration.

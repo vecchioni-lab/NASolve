@@ -16506,7 +16506,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#saved_constructed_native_replay_2026_10_22"
     },
     "qualified_dictionary_reuse_2026_10_22": {
-      "status": "IMPLEMENTED_AND_COMPLETE_LOCAL_TRANSPORT_PASS; MAC_C66_TRANSPORT_PENDING",
+      "status": "RETURNED_C66_VERIFIED; QUALIFIED_DICTIONARY_REUSE_PASS; ORDINARY_ORCHESTRATION_PENDING",
       "recorded_date": "2026-10-22",
       "delivery_prefix": "66_Cedar",
       "runner_filename": "66_Cedar_probe_cif_local_reuse.py",
@@ -16683,6 +16683,22 @@
           "eight_pair_plan": "UNCHANGED",
           "SVG_determinism": "PASS",
           "visible_SVG": "EXACT_BASELINE_94ababa; UPDATED_METADATA_AND_CAPTION_ONLY"
+        },
+        "returned_transport": {
+          "status": "PASS",
+          "all_payload_hashes": 3659,
+          "parent_payloads": 3587,
+          "parent_manifest": "BYTE_IDENTICAL",
+          "complete_parent_lineage": "MAINTAINED_REPLAY_PASS",
+          "runtime_files_verified": 155,
+          "maintained_reuse_controls_reproduced": 30,
+          "returned_snapshots_independently_read": 9,
+          "frozen_payload_bytes_reproduced": "EXACT",
+          "original_nonconvergence_and_notes": "PRESERVED",
+          "external_scientific_reads_forbidden_during_standalone_readback": true,
+          "all_subprocesses_forbidden": true,
+          "native_execution": "NOT_RUN",
+          "captured_code_execution": "NOT_RUN"
         }
       },
       "compatibility": "Additive shared resolver/store API and explicit C66 diagnostic. Ordinary PostMR still uses its existing acquisition/adoption path; no silent cache adoption, package install or schema migration of old runs.",
@@ -16699,6 +16715,72 @@
       "scientific_approval": "NOT_RUN",
       "native_kernels_weights_optimizer_plane_correction": "UNCHANGED",
       "NARestraints_workbook_and_release": "UNCHANGED",
+      "returned_capsule": {
+        "filename": "66_Cedar_gaqcxmxo_cif_numerical_recovery_review.zip",
+        "sha256": "bd0369f2901ccb71fed7272e491e8afd611ec6e3689bad939f457fdedee496fc",
+        "bytes": 97587484,
+        "verified_payloads": 3659,
+        "complete_C65_parent_and_manifest_preserved": true,
+        "runner_sha256": "56f4c3015e3dd7f1715e17d5f8292d33392cecd64dd4cc1186f10c7d2cd00061",
+        "build_sha256": "f8212858284c35eb09dc25a7c0bc0cb0c54b3b189beb3ab62ebe189ea036d86b",
+        "nasolve_source": {
+          "commit": "5f90e70cd49695fcce9275f8a2c262661cb00b1d",
+          "working_tree_has_changes": false
+        },
+        "narestraints_source": {
+          "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "working_tree_has_changes": true
+        },
+        "runner_verification": "EXACT_PUBLISHED_RUNNER_AFTER_ONLY_RECORDED_NARESTRAINTS_DIRTY_FLAG_CHANGE",
+        "runtime_archive_sha256": "296df2dc5ee099fba6b0cf45d7615e3735f7274bfb600d348a08825a0ae4fed0",
+        "runtime_members": 155,
+        "reuse_status": "QUALIFIED_DICTIONARY_REUSE_PASS",
+        "passed_controls": 30,
+        "per_component_controls": 10,
+        "first_status": "PREPARED_AND_FROZEN",
+        "repeat_status": "REUSED",
+        "saved_acquisition_callbacks": 3,
+        "new_generator_optimizer_native_processes": 0,
+        "persistent_store_platform": "macOS_APPLICATION_SUPPORT_DEFAULT",
+        "entry_ids": {
+          "5PC": "5a4076f6814a6cfd1bb9c1a49b27ba6eea1e98d32240203295a727512660b433",
+          "DP": "df671ec03cc9894abcf0bef44ffbc844c7b71f5fb58b196686fdf0d4442af613",
+          "PDU": "f39821632e0915a166c047bbeb60344bb09db7d499bad2854617ad978a1ec7d8"
+        },
+        "component_stopping": {
+          "5PC": {
+            "converged": null,
+            "stopping": "NOT_REPORTED"
+          },
+          "DP": {
+            "converged": null,
+            "stopping": "NOT_REPORTED"
+          },
+          "PDU": {
+            "converged": false,
+            "stopping": "NOT_CONVERGED_REPORTED"
+          }
+        },
+        "source_and_authority_mismatch": "MISS; EXISTING_ENTRY_PRESERVED",
+        "changed_consumer": "REQUALIFICATION_REQUIRED; NO_REGENERATION",
+        "independent_returned_snapshots": 9,
+        "snapshot_source_numerics_qualification_provenance": "EXACT",
+        "standalone_scientific_reads": "ONLY_WITHIN_FROZEN_SNAPSHOTS",
+        "maintained_independent_replay": "ALL_30_CONTROLS_AND_FROZEN_PAYLOAD_BYTES_REPRODUCED",
+        "native_evidence": "INHERITED_SAVED_CAPTURE; NO_INSTALLED_RUNTIME_OR_ENERGY_RESOURCE_REPROBE",
+        "student_cif_review_required": false,
+        "ordinary_postmr_orchestration": "PENDING",
+        "production_adoption": "NOT_RUN",
+        "scientific_qualification": "SEPARATE_OPEN_SCOPE"
+      },
+      "next_integration_boundary": {
+        "reuse_transport_gate": "CLOSED; NO_REPEAT_REQUIRED",
+        "ordinary_resource_acquisition_and_adoption": "CONNECT_VERIFIED_SHARED_RESOLVER_WITH_USABLE_FALLBACK",
+        "pairing_and_stacking": "NARestraints_AUTHORITATIVE; EXPLICIT_SUPPORTED_INTENT_REQUIRED",
+        "requested_eight_pair_run": "PENDING; PLAN_UNCHANGED",
+        "ATL": "INDEPENDENT_PUBLIC_GRAPH_AND_COMPILER_CONTROL",
+        "new_delivery_in_this_return_record": "NONE"
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#qualified_dictionary_reuse_2026_10_22"
     }
   },

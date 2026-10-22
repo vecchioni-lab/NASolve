@@ -1493,3 +1493,16 @@ source/authority/consumer invalidation and consume relocated snapshots after
 removing an owned cache copy. Producer/consumer/check-policy upgrades retain
 base numerics for requalification; automatic ordinary-pipeline and PDF consumers
 remain to be integrated.
+
+Returned C66 verifies all **3,659 payloads** and the byte-identical C65
+parent and manifest. DP, PDU and 5PC each pass ten reuse controls: their
+first qualified dictionaries are saved and repeated requests reuse the exact
+bytes without acquisition. Source/authority mismatches are excluded and a
+changed consumer requires requalification before generation. Independent
+replay reproduces all 30 controls and nine frozen snapshots, including original
+stopping/limitation notes, with every subprocess forbidden. Ordinary PostMR
+orchestration and the requested eight-pair live run remain separate work.
+
+The Mac return preserves PDU's reported nonconvergence and DP/5PC's unknown
+convergence evidence. A reuse pass certifies retained isolated numerics and
+their provenance; it does not certify a new crystal or installed runtime.

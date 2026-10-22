@@ -83,6 +83,15 @@ Changed consumers or check policies requalify saved numerics first; site and
 model checks stay separate. The explicit DP/PDU/5PC reuse diagnostic exercises
 this API; ordinary PostMR acquisition/adoption orchestration remains planned.
 
+Returned C66 verifies all **3,659 payloads** and the byte-identical C65
+parent and manifest. DP, PDU and 5PC each pass ten reuse controls: their
+first qualified dictionaries are saved and repeated requests reuse the exact
+bytes without acquisition. Source/authority mismatches are excluded and a
+changed consumer requires requalification before generation. Independent
+replay reproduces all 30 controls and nine frozen snapshots, including original
+stopping/limitation notes, with every subprocess forbidden. Ordinary PostMR
+orchestration and the requested eight-pair live run remain separate work.
+
 See [persistent local reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs)
 for the implemented API, schema and remaining integration boundary.
 
