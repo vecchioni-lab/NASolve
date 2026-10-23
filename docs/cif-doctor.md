@@ -380,8 +380,9 @@ resource-query proof, all eight consumption checks, site modifiers and native
 qualifiers stay unchanged. The captured input reader registers one returned mol.id
 per file and skips objects without id; together with C75/C76 traces this supports
 a combined-container registration mismatch. The native parser return type was
-not independently probed. Fresh Mac C77 evidence must establish the new route.
-The default production orchestration still supplies its original combined path.
+not independently probed. C77 stops during staging; returned C78 establishes the
+separate-file route below. At C77 delivery, default production orchestration still
+supplied the combined path; C79 changes that narrow handoff.
 
 The v2 report separates intentionally excluded serialized outputs from required
 portable files. A v1 reader recognizes only exact matching nested exclusion
@@ -413,8 +414,42 @@ failure ZIP retains the receipt and verified input members directly from memory;
 it explicitly excludes uncollected outputs and never claims incomplete staging
 was preserved. A ZIP-writing failure leaves the receipt and secondary diagnostic.
 C78 repeats C77 on exact C76, retaining the same chemical definitions, separate
-CIF arguments, native checks and automatic verified-start fallback. Fresh Mac
-qualification remains pending; prior failed directories and runs stay untouched.
+CIF arguments, native checks and automatic verified-start fallback. At delivery,
+fresh Mac qualification was pending; returned C78 is recorded below. Prior failed
+directories and runs stay untouched.
+
+Returned C78 closes the explicit whole-model cached-dictionary/ReadySet gate.
+The verified 8,741-payload archive preserves the exact C76 parent and manifest.
+Phenix 2.2.1-6174 completes one ReadySet control and two fixed native readbacks.
+All eight consumption checks pass with no observed builder/template calls and
+one source-verified memory query. Before and after each pass 93 checks with only
+three unsupported formal-charge readbacks; all 28 roundtrip checks pass. Exact
+cached numerics, heavy coordinates, 38 backbone links and 3,148 unaffected named
+restraints survive. The automatic decision selects `readyset_checked_model` with
+notes. This evidence qualifies the preserved construction control, not an eight-pair
+solution or a diffraction experiment.
+
+C79 ordinary handoff methods: after shared source/cache acquisition and existing
+normalization, pass the ordered complete component-file tuple (or no input when
+empty) to the existing ordinary ReadySet helper. Include cached, curated and
+uncached fallback files; do not reselect sources or infer coverage by filenames.
+Keep the combined dictionary for assessment/refinement and its existing
+`readyset_dictionary_input` receipt reference. Add ordered checksum-bound
+`readyset_dictionary_inputs` references and `per-component-files-v1` policy so
+receipts identify the operational arguments. Source authority, cache keys,
+normalization, generic numerical-generation checks, effective precedence, native
+mechanics and NARestraints are unchanged. Local validation passes 139 focused / 4,408 full tests, including five
+fail-before cases and source-removed cold ordinary-route checks; no new native cycle is required only to repeat C78's
+qualified argument representation.
+
+The intended eight-pair live test still needs an explicit site map and active
+NARestraints membership. The current construction-only DP A:6 faces C C:10;
+NARestraints has no P:C recipe. Do not infer that relationship or substitute a
+DZ:DP declaration without constructing the requested sites. Keep the exact eight
+requested pairs and sixteen stacking orientations; ATL remains independent.
+An ordinary end-to-end report, observations/refinement, solution PDF and scientific
+qualification remain separate. Students do not inspect or approve CIF tables.
+
 
 
 

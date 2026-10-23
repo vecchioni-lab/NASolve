@@ -18552,13 +18552,13 @@
         "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
       },
       "next_boundary": {
-        "work": "Observe the existing ordinary ReadySet stage consuming qualified parameterized inputs, including whether they avoid regeneration, then qualify current whole-model linked and NARestraints membership.",
+        "work": "Carry the qualified separate-file representation into ordinary PostMR, then construct an explicitly mapped eight-pair live fixture and qualify current native NARestraints membership before a diffraction/full NASolve claim.",
         "cache_gate": "C71_RETURN_VERIFIED; DO_NOT_REPEAT_COMPLETED_ISOLATED_CACHE_HANDOFF",
         "required_evidence": "An explicitly bounded integration delivery or ordinary PostMR report; observations/MTZ required before claiming a diffraction/full NASolve run.",
         "user_flow": "Automatic usable selection/fallback and solution notes; no CIF inspection or student approval.",
         "live_scope": "Keep the exact eight intended pairs and sixteen stacking orientations; ATL is independent.",
-        "status": "C77_MAC_TRANSPORT_FAILURE; C78_BOUNDED_INDEXED_TRANSPORT_AND_COMPONENT_INPUT_RETRY_PENDING",
-        "delivery_record": "indexed_review_transport_2026_10_23"
+        "status": "C78_WHOLE_MODEL_READYSET_NATIVE_PASS; C79_ORDINARY_COMPONENT_HANDOFF_TESTED; EXPLICIT_EIGHT_PAIR_NATIVE_AND_FULL_RUN_NEXT",
+        "delivery_record": "ordinary_component_input_handoff_2026_10_23"
       },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_postmr_cache_acquisition_2026_10_23"
     },
@@ -20485,7 +20485,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#readyset_component_input_registration_2026_10_23"
     },
     "indexed_review_transport_2026_10_23": {
-      "status": "IMPLEMENTED_639_FOCUSED_4403_FULL_MAC_PATH_BUDGET_COLD_TRANSPORT_PASS; MAC_C78_PENDING",
+      "status": "RETURNED_C78_POSTMR_CACHED_MODEL_PASS; EXACT_READYSET_AND_BOTH_NATIVE_READBACKS_VERIFIED",
       "recorded_date": "2026-10-23",
       "delivery_prefix": "78_Cedar",
       "runner_filename": "78_Cedar_probe_review_transport.py",
@@ -20595,11 +20595,199 @@
         "diff_check": "PASS"
       },
       "remaining_limits": [
-        "Fresh Mac C78 bounded staging, separate-component consumption and endpoint native readback remain pending.",
-        "The intended eight-pair/16-stacking live-model membership, ordinary full run, observations/refinement, solution PDF and scientific qualification remain separate."
+        "The requested eight-pair/16-stacking live model requires an explicit site map and current native NARestraints membership; ATL remains independent.",
+        "The preserved construction control places DP A:6 opposite C C:10, for which NARestraints has no P:C recipe. Do not infer that pair intent or relabel it DZ:DP.",
+        "Ordinary end-to-end execution with observations, checkpoints/refinement, solution PDF and scientific qualification remains separate."
       ],
       "generated_artifacts": "PRIVATE_CAPSULES_MODELS_SDK_SOURCES_LOGS_STORES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+      "returned_capsule": {
+        "filename": "78_Cedar_cdfvi89r_cif_numerical_recovery_review.zip",
+        "bytes": 170987285,
+        "sha256": "023fde102846e98118246e2343434a3012fa680f792acbe37ab99dad0e9eef68",
+        "verified_payloads": 8741,
+        "source_commit": "5993a923b5913a0e5f099baa38e13554e9dbdfc6",
+        "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
+      },
+      "returned_verification": {
+        "recorded_date": "2026-10-23",
+        "status": "VERIFIED_C78_WHOLE_MODEL_CACHED_READYSET_READBACK_PASS",
+        "manifest_exact": true,
+        "all_8741_payload_hashes_sizes_and_crc_reads": "PASS",
+        "C76_parent_payloads": 6691,
+        "C76_parent_payloads_and_manifest_byte_exact": true,
+        "actual_installation": "Phenix 2.2.1-6174",
+        "native_version": "2.2.1",
+        "readyset_calls": 1,
+        "fixed_native_readbacks": 2,
+        "readyset_status": "READYSET_CACHED_INPUT_PASS",
+        "readyset_checks_passed": 8,
+        "observed_builder_calls": 0,
+        "observed_template_calls": 0,
+        "source_verified_resource_queries": 1,
+        "unclassified_subprocess_calls": 0,
+        "source_evidence_files": 28,
+        "before_native_checks": {
+          "PASS": 93,
+          "REVIEW": 0,
+          "UNSUPPORTED": 3
+        },
+        "after_native_checks": {
+          "PASS": 93,
+          "REVIEW": 0,
+          "UNSUPPORTED": 3
+        },
+        "unsupported_scope": "FORMAL_CHARGE_READBACK_UNAVAILABLE; NO_GATE_RELAXATION",
+        "roundtrip_checks_passed": 28,
+        "backbone_links_preserved": 38,
+        "unaffected_named_restraints": 3148,
+        "effective_numerics": "EXACT",
+        "heavy_coordinates": "UNCHANGED",
+        "selection": {
+          "status": "CONTINUE_WITH_NOTES",
+          "selected": "readyset_checked_model",
+          "requires_cif_review": false,
+          "automatic_adoption": false
+        },
+        "runner_sha256_reported": "284d88dfaeedb75b1630bcc9ba5f793133cd4b9b8396db31227d3f437b4173ef",
+        "runtime_archive_sha256": "4edb685d5b3162eaf58639decc92aaec961201c26550f0cf098ffa4a482554d9",
+        "runtime_members": 162,
+        "new_verification_native_processes": 0,
+        "captured_python_execution": "NOT_RUN",
+        "scope": "PRESERVED_CONSTRUCTION_MODEL_AND_THREE_SOURCE_BOUND_CACHE_DICTIONARIES; NOT_EIGHT_PAIR_OR_DIFFRACTION_FULL_RUN",
+        "maintained_replay": {
+          "portable_cached_model_reader": "PASS",
+          "fresh_source_qualified_preparation_replay": "PASS",
+          "before": {
+            "maintained_native_worker_spec_inputs_inventory_binding": "PASS",
+            "maintained_construction_qualification_replay": "PASS",
+            "canonical_dispatcher_api8_energy3_sources_exact": true,
+            "check_counts": {
+              "PASS": 93,
+              "UNSUPPORTED": 3
+            }
+          },
+          "after": {
+            "maintained_native_worker_spec_inputs_inventory_binding": "PASS",
+            "maintained_construction_qualification_replay": "PASS",
+            "canonical_dispatcher_api8_energy3_sources_exact": true,
+            "check_counts": {
+              "PASS": 93,
+              "UNSUPPORTED": 3
+            }
+          },
+          "roundtrip_maintained_replay": "PASS",
+          "readyset": {
+            "portable_reader": "PASS",
+            "source_snapshots_exact_to_C76": 28,
+            "maintained_observer_worker_exact": true,
+            "observer_spec_and_trace_binding": "PASS",
+            "maintained_resource_classification_replay": "PASS",
+            "maintained_8_consumption_checks_replay": "PASS",
+            "separate_component_combination_exact": true
+          },
+          "runner": {
+            "reported_sha256": "284d88dfaeedb75b1630bcc9ba5f793133cd4b9b8396db31227d3f437b4173ef",
+            "match": "EXACT_AFTER_NAR_DIRTY_METADATA_ONLY",
+            "source_commit": "5993a923b5913a0e5f099baa38e13554e9dbdfc6",
+            "runtime_archive_sha256": "4edb685d5b3162eaf58639decc92aaec961201c26550f0cf098ffa4a482554d9"
+          },
+          "new_subprocesses": 0,
+          "captured_python_execution": "NOT_RUN"
+        },
+        "runner_metadata_difference": "NAR_DIRTY_STATE_FIELD_ONLY; SOURCE_RUNTIME_AND_RECONSTRUCTED_REPORTED_SHA_EXACT"
+      },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#indexed_review_transport_2026_10_23"
+    },
+    "ordinary_component_input_handoff_2026_10_23": {
+      "status": "IMPLEMENTED_139_FOCUSED_4408_FULL_COLD_ORDINARY_ROUTE_PASS; EIGHT_PAIR_FULL_RUN_REMAINS_SEPARATE",
+      "recorded_date": "2026-10-23",
+      "change_label": "C79_ORDINARY_POSTMR_COMPONENT_INPUT_HANDOFF",
+      "before": "Ordinary prepare_postmr acquires and normalizes each component separately, then supplies only its combined curated_ligands.cif to ReadySet. C78 validates the separate-file representation in the explicit whole-model control.",
+      "after": "Ordinary prepare_postmr supplies every normalized component file in stable acquisition order as a separate repeatable ReadySet CIF argument. Zero selected dictionaries supply no CIF argument. Curated, qualified cached and uncached ordinary fallback components all retain coverage.",
+      "shared_API": "nasolve.postmr.prepare_postmr -> nasolve.postmr._run_readyset",
+      "input_policy": "per-component-files-v1",
+      "combined_artifact": "RETAINED_FOR_ASSESSMENT_REFINEMENT_AND_LEGACY_PROVENANCE",
+      "receipt_changes": {
+        "readyset_dictionary_input": "EXISTING_COMBINED_REFERENCE_RETAINED",
+        "readyset_dictionary_inputs": "ADDITIVE_ORDERED_RUN_ANCHORED_SIZE_SHA_REFERENCES_TO_ACTUAL_PER_COMPONENT_INPUTS",
+        "readyset_dictionary_input_policy": "per-component-files-v1"
+      },
+      "native_evidence": "C78_QUALIFIES_THE_SAME_REPEATED_ARGUMENT_REPRESENTATION_ON_THE_PRESERVED_CONSTRUCTION_MODEL; ORDINARY_END_TO_END_MAC_RUN_REMAINS_SEPARATE",
+      "native_mechanics": "UNCHANGED",
+      "source_priority_cache_keys_and_normalization": "UNCHANGED",
+      "generic_parameterization_and_effective_precedence_guards": "UNCHANGED",
+      "NARestraints": "AUTHORITATIVE_AND_UNCHANGED; NO_NEW_PAIR_OR_STACK_DECLARATION_OR_GUESS",
+      "compatibility": "ADDITIVE_REPORT_FIELDS; COMBINED_FILE_AND_LEGACY_REFERENCE_RETAINED; NO_CLI_DEPENDENCY_STORE_OR_NAR_RELEASE_CHANGE",
+      "requires_cif_review": false,
+      "production_checkpoint": "NOT_CREATED",
+      "scientific_qualification": "NOT_ASSESSED",
+      "validation": {
+        "status": "PASS",
+        "code_checkpoint": "c14c08aa18e41a27f668fa26074c52132371b228",
+        "new_permanent_tests": 5,
+        "fail_before": "ALL_FIVE_NEW_ORDINARY_ROUTE_CASES_FAIL_ON_C78_5993A92; MULTI_COMPONENT_AND_MIXED_SOURCE_CASES_EXPOSE_COMBINED_ARGUMENT",
+        "focused_tests": {
+          "passed": 121,
+          "seconds": 8.89,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q tests/test_postmr_component_inputs.py tests/test_cif_postmr_cache.py tests/test_postmr.py tests/test_cif_postmr_cached_model.py tests/test_cedar77_delivery.py"
+        },
+        "unchanged_generic_generation_guards": {
+          "passed": 18,
+          "seconds": 1.37,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q tests/test_postmr_generation_failure.py"
+        },
+        "full_suite": {
+          "passed": 4408,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 399.09,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q"
+        },
+        "cold_relocation": {
+          "status": "PASS",
+          "mode": "TOY_ORDINARY_ORCHESTRATION_ONLY; NO_NATIVE_SDK_EXECUTION",
+          "tests_passed": 5,
+          "fake_copy_readyset_calls": 5,
+          "native_phenix_coot_generator_optimizer_calls": 0,
+          "original_build_source_paths_absent": true,
+          "all_build_and_original_repository_reads_forbidden": true,
+          "checked_open_operations": 1644,
+          "ambient_poison": "NOT_IMPORTED",
+          "aliased_TMPDIR": true,
+          "original_store": "ABSENT_AND_UNTOUCHED",
+          "ordinary_reports_relocated": 5,
+          "component_refs_verified_after_source_removal": 8,
+          "combined_compatibility_refs_verified": 4,
+          "original_native_consumption_evidence": "C78; NOT_REPEATED_BY_THIS_TOY_TEST",
+          "source_commit": "c14c08aa18e41a27f668fa26074c52132371b228",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runtime_members": 159,
+          "runtime_archive_sha256": "fbedc9cf0a54bd8c06747c9b550e6ca0a50a0fa7a81d9861479a59bfd3edd50c",
+          "runner_sha256": "9bfc08e63aa16b9f796066694f067d858b02b8cf1cab3cc20e61554c87c38042",
+          "QA_runner_scope": "BUILD_AND_RUNTIME_CONTAINER_ONLY; NOT_A_NEW_USER_NATIVE_TEST"
+        },
+        "external_scope": "C79_LOCAL_TOY_ORDINARY_ORCHESTRATION_ONLY; C78_ACTUAL_MAC_READYSET_NATIVE_EVIDENCE_REPLAYED_SEPARATELY",
+        "prior_lineage_replay": "EXACT_C76_TO_C75_AND_EARLIER_REPLAY_PASS; ALL_SUBPROCESSES_FORBIDDEN",
+        "independent_code_review": "NO_BLOCKER; ALL_COMPONENT_COVERAGE_AND_SOURCE_CACHE_GENERATION_PRECEDENCE_GUARDS_RETAINED",
+        "documentation": {
+          "status": "PASS",
+          "relative_links": 165,
+          "mirrored_records": 59,
+          "protected_mechanics_files": 14,
+          "NAR_workbook": "UNCHANGED",
+          "historical_C78_validation": "UNCHANGED",
+          "eight_pair_plan": "UNCHANGED",
+          "SVG_deterministic_and_rendered": "PASS; ONLY_CURRENT_PASS_LABEL_UPDATED; VISUALLY_VERIFIED",
+          "preexisting_unequal_mirrors": "TWELVE_LEGACY_RECORDS_PRESERVED_WITHOUT_REINTERPRETATION"
+        }
+      },
+      "remaining_limits": [
+        "No new Mac native cycle is requested solely to repeat the already-qualified C78 argument representation.",
+        "An ordinary end-to-end PostMR report and the intended eight-pair live-model native membership remain separate; no MR_SUCCESS or observation data are fabricated.",
+        "Automatic repair on cache misses, observations/refinement, solution PDF and scientific qualification remain separate."
+      ],
+      "generated_artifacts": "PRIVATE_CAPSULES_MODELS_SDK_SOURCES_LOGS_STORES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_component_input_handoff_2026_10_23"
     }
   },
   "audience": [

@@ -13,13 +13,36 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Returned C78 closes whole-model cached ReadySet readback.** All 8,741 payloads,
+the exact C76 parent and its manifest verify. Phenix 2.2.1-6174 completes one
+ReadySet control (8/8 checks, zero observed builder/template calls, one checked
+memory query) and two fixed native reads. Before and after each pass 93 checks
+with three unsupported formal-charge readbacks. All 28 roundtrip checks preserve
+38 links, 3,148 unaffected restraints, exact numerics and heavy coordinates.
+`CONTINUE_WITH_NOTES` selects `readyset_checked_model`; no student CIF review.
+
+**C79 integrates the qualified argument representation into ordinary PostMR.**
+Pass every normalized selected component separately, including curated and ordinary
+fallback sources. Preserve the combined artifact/legacy receipt reference and add
+ordered portable actual-input references. Source/cache precedence, native actions,
+NAR and all scientific guards are unchanged. Local validation passes 139 focused / 4,408 full tests (two skips, 276 subtests),
+including five fail-before cases and source-removed cold ordinary-route checks. No new Mac cycle is needed solely to repeat the
+already-qualified C78 argument representation.
+
+**Next scientific boundary:** the explicit eight-pair live model and native
+NARestraints membership, then an ordinary end-to-end report with observations.
+Current DP A:6 opposes C C:10 in a construction-only control; there is no NAR P:C
+recipe. Construct the requested DZ:DP sites rather than inventing intent or
+reusing legacy Saenger-only compilation for all eight custom recipes. ATL stays
+independent. Do not fabricate an MR result, checkpoint or diffraction full run.
+
 **C77 stopped before native execution on macOS.** The user trace reports errno
 63 during deeply nested history staging and again during failure reporting; no
 C77 ZIP exists. Its reported runner SHA matches the published code with only NAR
 dirty-state metadata changed. Local C77 Linux tests remain valid in that scope;
 they did not simulate the macOS path limit. Preserve the failed directory/worktree.
 
-**Next delivery is C78:** `78_Cedar_probe_review_transport.py`, same explicit
+**C78 delivery and original validation:** `78_Cedar_probe_review_transport.py`, same explicit
 `--postmr-cached-model-only` action on exact C76, not incomplete C77. Indexed v2
 staging keeps all original logical names/bytes behind short hash-derived paths;
 export restores the original parent members and manifest. Materialize the declared
@@ -28,7 +51,7 @@ per-component arguments, strict gates, fallback, cache identity and NAR remain
 unchanged. Robust failure reporting preserves the first error and can export
 verified input members from memory when staging is incomplete. Record
 `indexed_review_transport_2026_10_23` contains the simulated consumer-limit,
-source-removed relocation and regression evidence. Fresh Mac C78 remains pending.
+source-removed relocation and regression evidence. Returned Mac C78 passes as recorded above.
 
 **Returned C76 passes initial full-model native mechanics; ReadySet remains under review.**
 All 6,691 payloads and exact C75 lineage verify. Native result: 93 PASS, three

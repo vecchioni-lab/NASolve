@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Use per-component ReadySet inputs in ordinary PostMR
+
+- Verify returned C78: 8,741 payloads, the exact C76 parent, eight ReadySet
+  checks and both native readbacks pass. Zero builder/template calls are observed;
+  all 28 roundtrip checks preserve numerics, heavy sites, 38 links and 3,148 terms.
+- Ordinary PostMR now passes every normalized component separately, including
+  curated, cached and uncached fallback inputs. Keep the combined dictionary and
+  legacy provenance reference; add ordered portable actual-input references.
+- Source/cache priority, numerical checks, native mechanics and NARestraints stay
+  unchanged. No student CIF gate or repeated Mac diagnostic is introduced.
+- Validation: 139 focused / 4,408 full tests pass (two skips, 276 subtests),
+  with five fail-before cases and source-removed cold ordinary-route checks. The
+  intended eight-pair native membership and ordinary end-to-end run remain separate.
+
+
 ### Bound historical review paths and preserve failure diagnostics
 
 - Record the C77 macOS path-limit failure before native execution; retain the

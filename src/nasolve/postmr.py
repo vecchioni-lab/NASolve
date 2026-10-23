@@ -2289,6 +2289,13 @@ def prepare_postmr(
     source_assessment["readyset_dictionary_input"] = (
         frozen_reference(readyset_cif, run) if readyset_cif is not None else None
     )
+    # Preserve the combined compatibility artifact above, but register each
+    # selected component independently with ReadySet. Its native reader binds
+    # one molecule id per supplied file; a combined container can be skipped.
+    source_assessment["readyset_dictionary_input_policy"] = "per-component-files-v1"
+    source_assessment["readyset_dictionary_inputs"] = [
+        frozen_reference(path, run) for path in copied_cifs
+    ]
     source_report = restraints_dir / "cif_doctor_source.json"
     _write_json(source_report, source_assessment)
 
@@ -2296,7 +2303,7 @@ def prepare_postmr(
         prepared,
         ready_set_executable.expanduser().resolve(),
         readyset_dir,
-        readyset_cif,
+        tuple(copied_cifs) if copied_cifs else None,
         environment,
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,

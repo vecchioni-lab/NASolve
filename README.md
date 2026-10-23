@@ -322,13 +322,16 @@ Python entrypoint, checks retained cached numerics and unchanged heavy sites,
 then reads back effective native terms. Up to three bounded isolated controls;
 ReadySet consumption qualification and whole-model checks remain open.
 
-Returned C76 verifies all 6,691 payloads. Initial whole-model native checks pass:
-93 PASS, three unsupported charge readbacks, and all 38 backbone links preserved.
-ReadySet keeps exact cached numerics and heavy coordinates but calls three builders;
-the strict guard retains the verified start automatically. C77 stops while staging
-its deeply nested history on macOS, before native execution. C78 adds short indexed
-staging and robust failure capsules, then repeats the same per-component input test.
-Fresh Mac consumption, the eight-pair live run and scientific qualification remain open.
+Returned C78 verifies all 8,741 payloads and the exact C76 parent. Short indexed
+staging succeeds on macOS. ReadySet consumes the three separately supplied cached
+dictionaries with all eight checks passing and zero observed builder/template calls.
+Both native readbacks pass 93 checks (three formal-charge readbacks remain unsupported),
+and all 28 roundtrip comparisons preserve 38 backbone links and 3,148 unaffected
+restraints. NASolve selects `readyset_checked_model` with notes automatically.
+C79 carries that separate-file handoff into ordinary PostMR for cached, curated
+and ordinary fallback inputs; local ordinary-route and complete-suite validation pass. The
+explicit eight-pair live model, ordinary end-to-end run and scientific qualification
+remain separate.
 
 
 See the [ordinary cache contract](docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
