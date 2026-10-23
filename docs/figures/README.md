@@ -192,6 +192,18 @@ and stopping notes survive, including PDU nonconvergence. No new native process
 runs. Current installation/site/model checks and ordinary PostMR/full-run
 integration remain separate; no repeat of this saved cache gate is needed.
 
+C71 wires ordinary PostMR cache acquisition before ReadySet. Coot retains the
+original sources; eligible cached numerics require exact source/authority,
+supported recipe/backend and current recorded Phenix identity. Misses,
+corruption and changed consumers retain ordinary preparation with notes. Cache
+entries, original producer/stopping evidence and independent run copies survive.
+
+The C71 probe checks the same API and normalized DP/PDU/5PC inputs with at most
+three fixed native reads (60 seconds each). It runs no Coot, ReadySet, generator
+or optimizer. Current linked/model/full-run qualification remains separate.
+See the [ordinary cache contract](../cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
+
+
 The existing native diagnostic branch covers isolated source binding. Local
 saved-data/inspect-only evidence is distinct from fresh Mac qualification;
 no production-adoption arrow or numerical mechanics change is added.

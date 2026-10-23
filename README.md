@@ -37,7 +37,8 @@ CIF Doctor now has an explicit automatic-continuation contract: students do
 not inspect or approve CIF tables. A tested decision core retains usable
 nonconverged results or selects a usable fallback while preserving chemistry,
 source authority and fixed mechanics. PostMR records a plain-language summary;
-automatic recovery/adoption adapters and solution PDF rendering remain planned.
+ordinary cache acquisition is implemented. Automatic recovery on misses, full
+model/bundle qualification and solution PDF rendering remain separate.
 See [automatic continuation](docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 The current diagnostic trial has reproduced coordinate damage from legacy
@@ -301,6 +302,18 @@ evidence removal with external scientific reads forbidden. Original producer
 and stopping notes survive, including PDU nonconvergence. No new native process
 runs. Current installation/site/model checks and ordinary PostMR/full-run
 integration remain separate; no repeat of this saved cache gate is needed.
+
+C71 wires ordinary PostMR cache acquisition before ReadySet. Coot retains the
+original sources; eligible cached numerics require exact source/authority,
+supported recipe/backend and current recorded Phenix identity. Misses,
+corruption and changed consumers retain ordinary preparation with notes. Cache
+entries, original producer/stopping evidence and independent run copies survive.
+
+The C71 probe checks the same API and normalized DP/PDU/5PC inputs with at most
+three fixed native reads (60 seconds each). It runs no Coot, ReadySet, generator
+or optimizer. Current linked/model/full-run qualification remains separate.
+See the [ordinary cache contract](docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
+
 
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 

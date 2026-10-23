@@ -1562,6 +1562,38 @@ and stopping notes survive, including PDU nonconvergence. No new native process
 runs. Current installation/site/model checks and ordinary PostMR/full-run
 integration remain separate; no repeat of this saved cache gate is needed.
 
+C71 connects local reuse to ordinary PostMR. Before ReadySet,
+`prepare_postmr_dictionaries` selects and freezes ordinary sources, then checks
+eligible source-bound cached numerics. Original sources still drive Coot and
+remain in source receipts. The existing normalization/combination and dictionary
+precedence receive cached numerical inputs only when their exact source,
+authority, supported recipe/backend and current native consumer match.
+Fresh version discovery is lazy and runs once per eligible batch; the selected
+native dispatcher and all eight recorded API/three energy source hashes must
+match inside the configured installation. This is the recorded identity scope,
+not an exhaustive compiled-kernel or energy-library-data fingerprint.
+
+Missing, corrupt, unsupported or changed-consumer entries retain ordinary
+preparation with notes. Missing curated sources keep their existing refusal.
+The cache is read-only and each run freezes independent relative/hash-bound
+copies with original producer/stopping evidence. Nonconvergence remains a note;
+no student inspects CIFs. PostMR records reuse/fallback and plain-language notes.
+This adapter does not generate or optimize a dictionary. Uncached components
+continue through the existing preparation path.
+
+Methods: validate indexed entries against the selected source and the existing
+isolated qualifier, verify the current recorded consumer identity, use the
+existing automatic usable-candidate policy and exact-key resolver, then freeze
+source and numerics separately. C71's explicit `--postmr-dictionary-reuse-only`
+probe consumes exact returned C70, calls this same ordinary API and checks the
+normalized DP/PDU/5PC inputs in at most three 60-second fixed native readbacks.
+Expected: three REUSED cases and POSTMR_CACHE_HANDOFF_PASS. No ReadySet, Coot,
+generator or optimizer executes in the probe. Current linked/model policy,
+fresh ReadySet behavior, the eight-pair full run, refinement and the solution PDF
+remain separate. Inspect-only uses captured source bytes with an empty owned
+store and makes no current-consumer/cache-hit/native claim.
+
+
 Methods: compare all seven inventoried named chemical fields and the repair
 recipe/backend; reassess completed source-relative configuration; require
 current isolated native qualification; publish a new entry bound to the selected

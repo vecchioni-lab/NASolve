@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reuse qualified local numerics in ordinary PostMR
+
+- Call a shared acquisition batch before ReadySet. Keep ordinary source
+  chemistry for Coot/audits and feed eligible cached numerics through existing
+  normalization/combination and parameterized-input precedence.
+- Require exact source/authority/chemistry, supported repair/backend and current
+  recorded Phenix identity: lazy version discovery, configured dispatcher and
+  all eight API/three energy source hashes. Retain ordinary preparation for
+  misses, corruption and changed/unverified consumers; missing curated sources
+  retain their existing failure. No student CIF approval is introduced.
+- Preserve read-only cache entries, original producer/stopping notes and
+  independent relative run snapshots. Add PostMR reuse/fallback solution notes;
+  no store migration, dependency, NAR release or scientific kernel change.
+- Add C71 on exact C70: the ordinary API selects cached DP/PDU/5PC dictionaries,
+  then at most three bounded fixed native reads check normalized inputs.
+  ReadySet/Coot/generation/optimization and the full eight-pair run remain
+  separate from this probe. All 231 focused / 4,137 full tests pass (two skips,
+  276 subtests; 389.49 s). Cold source-removed/relocated inspect-only transport
+  preserves all 4,008 parent payloads and independently resolves three fallbacks
+  with every subprocess forbidden. Current Mac cache/native evidence is pending.
+
 ### Record successful returned C70 source-bound dictionary reuse
 
 - Verify all 4,008 payloads, byte-identical C69 parent and 158 pinned runtime

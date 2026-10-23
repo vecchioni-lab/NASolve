@@ -2194,6 +2194,16 @@ def prepare_postmr(
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []
     dictionary_source_provenance: dict[str, dict[str, object]] = {}
+    from .cif_postmr_cache import prepare_postmr_dictionaries, read_postmr_dictionaries
+    reuse_directory = restraints_dir / "dictionary_reuse"
+    try:
+        reuse_report = prepare_postmr_dictionaries(
+            ligand_codes, ready_set_executable, reuse_directory,
+            data_root=data_root, environment=environment,
+        )
+        reused_dictionaries = read_postmr_dictionaries(reuse_directory)
+    except (OSError, ValueError, KeyError) as exc:
+        raise PostMRPreparationError(f"Dictionary acquisition failed: {exc}") from exc
     for code in ligand_codes:
         try:
             source = ligand_sources.get(code) or ligand_dictionary(
@@ -2220,15 +2230,18 @@ def prepare_postmr(
                 "installed-phenix-ccd" if code not in CURATED_LIGANDS
                 and source.name == f"data_{code}.cif" else "local-verified"
             ),
-            "parameterized": code in _parameterized_codes(source),
+            "source_parameterized": code in _parameterized_codes(source),
+            "parameterized": code in _parameterized_codes(reused_dictionaries[code]["dictionary"]),
+            "local_dictionary_reuse": reused_dictionaries[code]["report"]["status"],
         }
         shutil.copyfile(source, source_snapshot)
         if (file_sha256(source_snapshot) != source_sha
-                or file_sha256(source) != source_sha):
+                or file_sha256(source) != source_sha
+                or file_sha256(reused_dictionaries[code]["source"]) != source_sha):
             raise PostMRPreparationError(f"Dictionary changed while freezing {code}")
         try:
             normalize_ccp4_torsion_alternates(
-                source_snapshot, destination, audit=dictionary_input_audit)
+                reused_dictionaries[code]["dictionary"], destination, audit=dictionary_input_audit)
         except (PhosphateError, ValueError, OSError) as exc:
             raise PostMRPreparationError(f"Dictionary preparation failed for {code}: {exc}") from exc
         copied_cifs.append(destination)
@@ -2344,6 +2357,18 @@ def prepare_postmr(
         "native_interpretation": "UNASSESSED",
         "source": _cif_doctor_receipt(source_report, source_assessment, run),
         "effective": _cif_doctor_receipt(effective_report, effective_assessment, run),
+        "dictionary_reuse": {
+            "policy_id": reuse_report["policy_id"],
+            "report": frozen_reference(reuse_directory / "postmr_dictionaries.json", run),
+            "reused_components": [c for c, row in reuse_report["components"].items()
+                                  if row["status"] == "REUSED"],
+            "solution_report": {
+                "requires_cif_review": False, "pdf_status": "PLANNED",
+                "text": "Qualified local dictionaries were reused where the selected source and current native consumer match; ordinary preparation was retained otherwise.",
+                "notes": {c: row["notes"] for c, row in reuse_report["components"].items()},
+                "current_links_and_model": "ORDINARY_PIPELINE_CHECKS; ISOLATED_CACHE_IS_NOT_MODEL_QUALIFICATION",
+            },
+        },
     }
     if mutation_doctor is not None:
         cif_doctor["mutation"] = mutation_doctor

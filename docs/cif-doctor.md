@@ -58,7 +58,7 @@ controls call the same ordinary API. Automated acquisition/repair adoption,
 generic NAR compilation, production checkpoints/refinement and PDF rendering
 remain separate; no run or checkpoint is manufactured from diagnostic evidence.
 
-**Still to integrate:** automatic acquisition/repair orchestration, production
+**Still to integrate:** automatic repair/generation on misses, production
 qualification, verified effective-bundle adoption and the solution PDF renderer.
 The decision core and isolated adapter are not a claim of deployed
 end-to-end automatic recovery. The eventual PDF must explain what was tried,
@@ -69,8 +69,9 @@ homework; old diagnostic results remain unchanged.
 
 ## Persistent local reuse of qualified repairs
 
-**Implemented shared component store and resolver; ordinary PostMR orchestration
-remains planned.** `nasolve.cif_dictionary_store.resolve_qualified_dictionary`
+**Implemented shared component store/resolver and ordinary PostMR cache
+acquisition (C71). Automatic repair on misses and full-run qualification remain
+separate.** `nasolve.cif_dictionary_store.resolve_qualified_dictionary`
 consults persistent local numerics before its verified acquisition callback.
 C66 explicitly exercises this API with the qualified DP/PDU/5PC candidates.
 It does not silently enable production repair/adoption or make students save,
@@ -116,8 +117,8 @@ Default storage is user-local application data outside tracked source trees:
 `%LOCALAPPDATA%/NASolve/cif-dictionaries/v1` on Windows. `NASOLVE_CIF_STORE`
 overrides this path; the C66 diagnostic also accepts `--dictionary-store PATH`.
 No new dependency, daemon, network upload or student configuration is required.
-The ordinary solution/PDF consumer will report reuse and preserved limitations
-when its pending acquisition/adoption adapters are integrated.
+Ordinary PostMR now records reuse and preserved limitations in its solution
+summary. PDF rendering and full effective-bundle qualification remain separate.
 
 The explicit `--local-dictionary-reuse-only` diagnostic accepts exact C65 and
 preserves every parent payload. For each component it tests persistence,
@@ -187,6 +188,38 @@ evidence removal with external scientific reads forbidden. Original producer
 and stopping notes survive, including PDU nonconvergence. No new native process
 runs. Current installation/site/model checks and ordinary PostMR/full-run
 integration remain separate; no repeat of this saved cache gate is needed.
+
+C71 connects local reuse to ordinary PostMR. Before ReadySet,
+`prepare_postmr_dictionaries` selects and freezes ordinary sources, then checks
+eligible source-bound cached numerics. Original sources still drive Coot and
+remain in source receipts. The existing normalization/combination and dictionary
+precedence receive cached numerical inputs only when their exact source,
+authority, supported recipe/backend and current native consumer match.
+Fresh version discovery is lazy and runs once per eligible batch; the selected
+native dispatcher and all eight recorded API/three energy source hashes must
+match inside the configured installation. This is the recorded identity scope,
+not an exhaustive compiled-kernel or energy-library-data fingerprint.
+
+Missing, corrupt, unsupported or changed-consumer entries retain ordinary
+preparation with notes. Missing curated sources keep their existing refusal.
+The cache is read-only and each run freezes independent relative/hash-bound
+copies with original producer/stopping evidence. Nonconvergence remains a note;
+no student inspects CIFs. PostMR records reuse/fallback and plain-language notes.
+This adapter does not generate or optimize a dictionary. Uncached components
+continue through the existing preparation path.
+
+Methods: validate indexed entries against the selected source and the existing
+isolated qualifier, verify the current recorded consumer identity, use the
+existing automatic usable-candidate policy and exact-key resolver, then freeze
+source and numerics separately. C71's explicit `--postmr-dictionary-reuse-only`
+probe consumes exact returned C70, calls this same ordinary API and checks the
+normalized DP/PDU/5PC inputs in at most three 60-second fixed native readbacks.
+Expected: three REUSED cases and POSTMR_CACHE_HANDOFF_PASS. No ReadySet, Coot,
+generator or optimizer executes in the probe. Current linked/model policy,
+fresh ReadySet behavior, the eight-pair full run, refinement and the solution PDF
+remain separate. Inspect-only uses captured source bytes with an empty owned
+store and makes no current-consumer/cache-hit/native claim.
+
 
 Methods: compare all seven inventoried named chemical fields and the repair
 recipe/backend; reassess completed source-relative configuration; require

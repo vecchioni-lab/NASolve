@@ -30,14 +30,38 @@ source authority, consumer identity and original producer/stopping notes survive
 PDU's bounded nonconvergence remains a note. Zero new native, ReadySet,
 generator, optimizer or refinement processes run; no captured Python executes.
 
-**Next work is ordinary PostMR cache consumption.** Wire the shared resolver
-into `prepare_postmr` dictionary acquisition before ReadySet, keeping ordinary
-source chemistry separate from selected numerical dictionaries. Bind eligibility
-to the configured current installation; changed/unverified consumers requalify
-or retain ordinary usable fallback. Current linked-site/model checks remain
-required. Keep the existing automatic continuation/report policy and exact
-eight-pair/16-stacking plan; ATL stays independent. No C71 action or Mac command
-has been published, and the successful saved-cache gate needs no repeat.
+**Next delivery is C71:** `71_Cedar_probe_postmr_dictionary_reuse.py`,
+`--postmr-dictionary-reuse-only` on exact C70. Ordinary `prepare_postmr` now
+calls the shared current-consumer cache acquisition API before ReadySet. Coot
+keeps original source dictionaries; cached numerics feed the existing
+normalization/combination and parameterized-input precedence. Source/state/
+authority/recipe/backend mismatches, corruption or changed/unverified consumers
+retain ordinary preparation with notes. One lazy version discovery and exact
+dispatcher/eight-API/three-energy-source hashes establish only the recorded
+consumer identity scope. Store entries and original producer/stopping notes
+remain immutable; independently frozen run copies use relative hashes.
+
+The C71 probe tests the same API and normalized DP/PDU/5PC inputs in at most
+three fixed native reads, 60 seconds each. Expected three REUSED cases and
+POSTMR_CACHE_HANDOFF_PASS; no ReadySet, Coot, generator, optimizer or refinement
+runs. It preserves all C70 payloads. Inspect-only proves captured-source
+fallback/transport without any installed-consumer or cache-hit claim. Full tests
+and relocation results are recorded before publication under
+`ordinary_postmr_cache_acquisition_2026_10_23` in both machine ledgers.
+Validation: **231 focused / 4,137 full tests pass** (two skips, 276 subtests;
+389.49 s), including 40 new permanent tests. The source-error regression fails
+against the reviewed predecessor. The final 159-member runtime passes cold
+inspect-only transport after build-source removal/relocation with poisoned
+imports, aliased TMPDIR and every subprocess forbidden. All 4,008 C70 payloads
+and manifest survive in 4,171 output payloads; three standalone fallback copies
+resolve after source/evidence removal. Explicit fake-native contract tests also
+exercise fresh-action wiring and reject mismatched worker identity; these are
+not installed Phenix evidence. The current Mac cache/native return is pending.
+
+Current linked/model policy and full ReadySet/no-regeneration observation remain
+separate from isolated reusable numerics. Keep automatic continuation/report
+policy and the exact eight-pair/16-stacking plan; ATL stays independent. Neither
+this action nor its fixture manufactures an AutoMR run or production checkpoint.
 
 **Returned C69 passes native usability.** All 3,849 payloads, the complete C68
 parent/manifest and 158 runtime members verify. Only NAR dirty-state metadata
@@ -75,7 +99,7 @@ six relocated readbacks. Both ledgers record the verified return under
 completion, not a fresh live-installation or full-run verdict. The current
 change records evidence only; the previously passing runtime/tests are unchanged.
 
-Ordinary `prepare_postmr` adoption, current installation/site/model qualification,
+Ordinary cache acquisition is implemented in C71; current site/model qualification,
 production checkpoints/refinement, the exact eight-pair full live run and solution
 PDF remain separate. Energy-library resource files are not fingerprinted; ATL
 stays independent. The C68 prelaunch failure and C69 reporting failure remain
@@ -105,8 +129,8 @@ opt-in isolated native qualification-to-decision adapter; corrected saved replay
 passes the returned native cases. C66 now verifies the shared persistent
 component store/resolver on the Mac: all 30 reuse controls and nine frozen
 snapshots independently reproduce without native processes.
-Automatic acquisition/repair, production bundle adoption and the PDF renderer
-remain planned. Detailed diagnostic REVIEW results are developer evidence,
+Ordinary cache acquisition is implemented. Automatic repair on misses, production
+bundle qualification and the PDF renderer remain separate. Detailed diagnostic REVIEW results are developer evidence,
 not student CIF approval gates. See the [contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
 
 Returned C54 verifies all **2,677 payloads**, including the unchanged 2,615-payload
