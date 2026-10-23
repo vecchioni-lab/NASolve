@@ -175,8 +175,13 @@ usability before publishing a new source/authority-bound entry. Numerical bytes,
 original producer and stopping notes are retained; repeats reuse them. Failed
 candidates retain the selected source for standard preparation. No student
 CIF inspection, generation, optimizer or production adoption is introduced.
-Local tests, saved-native-data replay and relocated offline delivery pass;
-the Mac current-native test and full-run integration remain open.
+Returned C68 preserves all 3,766 payloads and the complete C67 parent.
+All three source projections pass, but native input/output placement triggers
+the preservation guard before any worker launches. Its historical call count
+of three records attempts; it supplies no fresh native qualification.
+C69 keeps that failure, puts inputs and readback in sibling directories and
+retries the same checks. Reports now separate attempts from launched workers.
+Current Mac native qualification and full-run integration remain open.
 
 The existing native diagnostic branch covers isolated source binding. Local
 saved-data/inspect-only evidence is distinct from fresh Mac qualification;

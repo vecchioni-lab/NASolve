@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-22** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-23** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -13,40 +13,46 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Next delivery is C68:** 68_Cedar_probe_cif_source_reuse.py on exact C67,
-with --source-reuse-qualification-only. Select ordinary sources, prove saved
-DP/PDU/5PC source projections, qualify unchanged numerics in the current native
-reader, publish new source-bound entries and repeat requests. Expected
-SOURCE_REUSE_QUALIFICATION_PASS and repeat REUSED. At most three fixed native
-readbacks are needed for new bindings, each with two repeat evaluations and
-a 60-second deadline. No generation, optimizer, ReadySet or scaffold edits.
+**Next delivery is C69:** `69_Cedar_probe_cif_source_reuse.py` on exact
+C68 with `--source-reuse-qualification-only`. Retain/replay the failed capsule
+and its complete C67 lineage. Put temporary model/PHIL inputs in an `inputs/`
+directory beside `readback/`; keep the native preservation guard unchanged.
+Retry at most three fixed readbacks (60 seconds each), then repeat the exact
+requests without another adapter call. Expected SOURCE_REUSE_QUALIFICATION_PASS
+with immediate repeats REUSED. No generation, optimizer, ReadySet or scaffold edit.
 
-C68 adds an ordinary-source reuse API without weakening exact cache keys.
-It selects the ordinary source first, verifies a saved projection against its
-named chemistry and configuration, then requires current isolated native
-usability before publishing a new source/authority-bound entry. Numerical bytes,
-original producer and stopping notes are retained; repeats reuse them. Failed
-candidates retain the selected source for standard preparation. No student
-CIF inspection, generation, optimizer or production adoption is introduced.
-Local tests, saved-native-data replay and relocated offline delivery pass;
-the Mac current-native test and full-run integration remain open.
+**Returned C68 is verified, but native qualification did not run.** All 3,766
+payloads, complete C67 parent/manifest and 158 runtime members verify. The
+reported runner differs from the clean build only in NAR dirty-state metadata.
+All three source projections reproduce. Every adapter stops with
+`Native output parent must be outside every source input directory`: the model/PHIL
+input folder also contained the requested readback directory. Real guard replay
+reproduces all three refusals without a subprocess. Historical `new_native_calls=3`
+counts attempts; actual native workers launched: **zero**. Preserve that original
+receipt. This is a diagnostic layout bug, not a chemical rejection.
 
-Validation: **49 new regressions**, **160 focused / 4057 full tests** (two
-skips, 276 subtests; full run 367.96 s). Actual-source saved-data replay
-passes 63 checks and six relocated qualified/reused copies. Deleted-build,
-relocated delivery on real C67 passes all three source projections with every
-subprocess forbidden, poisoned imports and aliased TMPDIR. All 3,713 parent
-payloads and manifest survive. This cold route is inspect-only, preserving
-ordinary-source fallback and making no fresh native claim.
-Both successful and failed native receipts have explicit relative probe-directory
-anchors; callback regressions exercise both outcomes before delivery.
+The real native transport now has a regression using an explicit failed worker,
+in addition to mocked success/failure receipts. Reports separately count attempts
+and receipts with an execution return code; an unlaunched attempt claims no native
+proxy validation. The three source-bound fallbacks retain exact sources/notes;
+they still require ordinary preparation and are not native-usability verdicts.
 
-The API and diagnostic do not yet wire adoption into ordinary prepare_postmr.
-Current linked/model qualification, production checkpoints/refinement, the exact
-eight-pair full live run and final PDF rendering remain separate. Native energy
-resource files are not fingerprinted; current APIs/dispatchers are. ATL stays
-independent. See ordinary_source_reuse_2026_10_22 in both machine ledgers.
+Validation: **22 new regressions, 183 focused / 4079 full tests pass** (two
+skips, 276 subtests; 363.99 s). Cold inspect-only delivery after source deletion
+and relocation passes all three exact-source projections, full failed-return
+replay, poisoned imports and aliased TMPDIR with every subprocess forbidden.
+All 3,766 parent payloads/manifest survive in the 3,786-payload output; three
+standalone fallback copies resolve after fixture removal. This is transport
+and saved-data evidence, not fresh Phenix qualification. Both machine ledgers
+record `source_reuse_qualification_retry_2026_10_23`.
 
+The reuse API keeps exact keys/source priority, immutable entries and unchanged
+numerics, original producer and stopping notes. Current isolated native usability
+is required before rebinding to the ordinary raw source/authority. It is not yet
+wired into ordinary `prepare_postmr` adoption. Current linked/model qualification,
+production checkpoints/refinement, the exact eight-pair full run and solution PDF
+remain separate. Energy-library resource files are not fingerprinted. ATL stays
+independent; no student CIF review gate is added.
 
 **C67 source/compiler gate is closed.** All 3,713 returned payloads and
 the complete C66 parent verify. Ordinary selection passes 15 sources (six

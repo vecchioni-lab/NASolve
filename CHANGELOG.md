@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Correct ordinary-source reuse probe layout and retry C68
+
+- Verify all 3,766 returned payloads, preserved C67 parent and 158 runtime
+  members. Reproduce three passing source projections and the exact prelaunch
+  preservation refusal without native/captured execution. No native worker ran;
+  the historical count of three describes adapter attempts.
+- Put temporary model/PHIL inputs beside the readback directory, preserving the
+  guard, definitions, qualification criteria, cache keys and scientific mechanics.
+- C69 consumes the exact failed C68 capsule, retries up to three 60-second fixed
+  readbacks and checks immediate reuse. Count attempts separately from native
+  receipts; a prelaunch failure claims no native proxy validation.
+- Add a regression through the real native preflight/freezing path with an
+  explicit failed-worker stub. All 183 focused / 4079 full tests pass (two skips,
+  276 subtests; 363.99 s). Relocated inspect-only transport preserves all 3,766
+  parent payloads, replays three exact-source projections/failures and resolves
+  standalone fallbacks, with every subprocess forbidden. Mac qualification is
+  pending. No dependency, migration, NAR release, student gate or adoption change.
+
 ### Requalify saved numerics against ordinary selected sources
 
 - Keep exact store keys and curated precedence; prove source projections and
@@ -17,7 +35,8 @@ entries are reconstructed from repository history.
   ordinary source preparation. Optional cache-write failure retains a qualified
   run copy. No student CIF gate, native mechanics or dependency change.
 - Add C68 on exact C67: up to three fixed native readbacks, no generation,
-  optimization, ReadySet or production adoption. Mac qualification is pending.
+  optimization, ReadySet or production adoption. Its return stopped before native
+  launch; current qualification is pending the C69 layout retry.
 - All 49 new / 160 focused / 4057 full tests pass (two skips, 276 subtests;
   full run 367.96 s). Saved-data replay passes 63 checks and six
   relocated qualified copies; cold inspect-only transport forbids subprocesses.

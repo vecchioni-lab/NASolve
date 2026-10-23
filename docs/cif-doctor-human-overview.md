@@ -1545,8 +1545,13 @@ usability before publishing a new source/authority-bound entry. Numerical bytes,
 original producer and stopping notes are retained; repeats reuse them. Failed
 candidates retain the selected source for standard preparation. No student
 CIF inspection, generation, optimizer or production adoption is introduced.
-Local tests, saved-native-data replay and relocated offline delivery pass;
-the Mac current-native test and full-run integration remain open.
+Returned C68 preserves all 3,766 payloads and the complete C67 parent.
+All three source projections pass, but native input/output placement triggers
+the preservation guard before any worker launches. Its historical call count
+of three records attempts; it supplies no fresh native qualification.
+C69 keeps that failure, puts inputs and readback in sibling directories and
+retries the same checks. Reports now separate attempts from launched workers.
+Current Mac native qualification and full-run integration remain open.
 
 Methods: compare all seven inventoried named chemical fields and the repair
 recipe/backend; reassess completed source-relative configuration; require
@@ -1561,8 +1566,9 @@ requires ordinary preparation; it is not a native-usability verdict.
 Local integration uses actual returned source bytes and saved native data:
 all 63 checks pass and six qualified/reused results survive source/cache removal
 and relocation, with external scientific reads forbidden. This does not claim
-fresh Phenix execution. C68 supplies the Mac current-native test with up to
-three fixed readbacks and immediate repeat reuse; inspect-only instead retains
+fresh Phenix execution. The returned C68 attempt stops before launch; C69
+retries up to three fixed readbacks and immediate repeat reuse after correcting
+only the temporary layout. Inspect-only instead retains
 ordinary-source fallback without native calls or persistent-store writes.
 Native guessing stays disabled. Native energy resource files are not inventoried;
 current linked/model qualification and production PostMR adoption remain open.

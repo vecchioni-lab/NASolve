@@ -17300,7 +17300,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_source_acquisition_2026_10_22"
     },
     "ordinary_source_reuse_2026_10_22": {
-      "status": "IMPLEMENTED_LOCAL_REGRESSIONS_SAVED_DATA_AND_COLD_TRANSPORT_PASS; MAC_C68_CURRENT_NATIVE_QUALIFICATION_PENDING",
+      "status": "RETURNED_C68_SOURCE_PROJECTIONS_PASS; NATIVE_PREFLIGHT_LAYOUT_REFUSED_ALL_THREE; C69_RETRY_PENDING",
       "recorded_date": "2026-10-22",
       "delivery_prefix": "68_Cedar",
       "runner_filename": "68_Cedar_probe_cif_source_reuse.py",
@@ -17496,7 +17496,155 @@
         "Energy-library resource-file fingerprints, absolute CIP, refinement and solution PDF rendering are not claimed."
       ],
       "generated_artifacts": "Private capsules, models, dictionaries, installations, cache entries and runners excluded from Git.",
+      "returned_2026_10_23": {
+        "actual_native_workers_launched": 0,
+        "all_parent_payloads_and_manifest_preserved": true,
+        "archive_sha256": "24241dd8d20182981e74c9075c96d76d975ea92c9569dbbad18e91f17473a78b",
+        "build_sha256": "642d08d3f9849af7136d2993bc5c6dcfd6033d7e061c4b718f8c0047615b3d09",
+        "bytes": 98536380,
+        "captured_code_execution": "NOT_RUN",
+        "historical_new_native_calls_field": 3,
+        "independent_source_projections": 3,
+        "maintained_C67_and_earlier_replay": "PASS",
+        "new_native_generator_optimizer_processes": 0,
+        "prelaunch_refusals_reproduced": 3,
+        "preserved_ordinary_source_fallbacks": 3,
+        "reason": "Native output parent must be outside every source input directory",
+        "reported_runner_sha256": "e9e002e28309c42f0311df31587ab9634ead94ced38d86a9e56e0a6c05d08dfa",
+        "runner_difference": "NAR dirty-state metadata only",
+        "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+        "runtime_members": 158,
+        "verified_payloads": 3766
+      },
+      "returned_scope": "Source comparisons pass; native qualification NOT_RUN. Historical new_native_calls=3 is adapter attempts, not launched workers.",
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_source_reuse_2026_10_22"
+    },
+    "source_reuse_qualification_retry_2026_10_23": {
+      "status": "IMPLEMENTED_LOCAL_REGRESSIONS_FULL_SUITE_AND_COLD_TRANSPORT_PASS; MAC_C69_CURRENT_NATIVE_QUALIFICATION_PENDING",
+      "recorded_date": "2026-10-23",
+      "delivery_prefix": "69_Cedar",
+      "runner_filename": "69_Cedar_probe_cif_source_reuse.py",
+      "cli_action": "--source-reuse-qualification-only",
+      "requested_action": "ORDINARY_SOURCE_REUSE_QUALIFICATION",
+      "review_input": {
+        "delivery_prefix": "68_Cedar",
+        "filename": "68_Cedar_3pm1n_in_cif_numerical_recovery_review.zip",
+        "sha256": "24241dd8d20182981e74c9075c96d76d975ea92c9569dbbad18e91f17473a78b",
+        "bytes": 98536380,
+        "verified_payloads": 3766
+      },
+      "verified_return": {
+        "actual_native_workers_launched": 0,
+        "all_parent_payloads_and_manifest_preserved": true,
+        "archive_sha256": "24241dd8d20182981e74c9075c96d76d975ea92c9569dbbad18e91f17473a78b",
+        "build_sha256": "642d08d3f9849af7136d2993bc5c6dcfd6033d7e061c4b718f8c0047615b3d09",
+        "bytes": 98536380,
+        "captured_code_execution": "NOT_RUN",
+        "historical_new_native_calls_field": 3,
+        "independent_source_projections": 3,
+        "maintained_C67_and_earlier_replay": "PASS",
+        "new_native_generator_optimizer_processes": 0,
+        "prelaunch_refusals_reproduced": 3,
+        "preserved_ordinary_source_fallbacks": 3,
+        "reason": "Native output parent must be outside every source input directory",
+        "reported_runner_sha256": "e9e002e28309c42f0311df31587ab9634ead94ced38d86a9e56e0a6c05d08dfa",
+        "runner_difference": "NAR dirty-state metadata only",
+        "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+        "runtime_members": 158,
+        "verified_payloads": 3766
+      },
+      "returned_result": "THREE_SOURCE_PROJECTIONS_PASS; THREE_PRESERVED_SOURCE_FALLBACKS; ZERO_NATIVE_WORKERS_LAUNCHED",
+      "before": "C68 placed its output parent inside the model/PHIL input directory; unchanged native preservation preflight rejected all three attempts before launch. Earlier callback mocks skipped this guard.",
+      "after": "Place generated model/PHIL under source_reuse_native/COMPONENT/inputs and native work under sibling readback. Preserve/replay the exact failed C68 capsule and complete C67 lineage before retrying the same qualified source bindings.",
+      "changed_files": [
+        "scripts/cif_numerical_recovery_probe_template.py",
+        "tests/test_cedar68_delivery.py",
+        "tests/test_cedar69_delivery.py"
+      ],
+      "protected_guard": "Native output parent must be outside every source input directory",
+      "protected_mechanics": "UNCHANGED; NATIVE_WORKER, ENERGY_WORKER, QUALIFIER_V2, STORE_KEYS, SOURCE_PRIORITY, NARestraints_POLICY_AND_WORKBOOK",
+      "new_report_fields": {
+        "native_attempts": "Entered qualification callbacks, including prelaunch failure.",
+        "new_native_calls": "Returned native receipts with an execution returncode; prelaunch refusals count zero.",
+        "preserved_preflight_failure": "Replayed C68 failure; adapter_attempts 3, native_worker_launches 0; no historical receipt rewritten."
+      },
+      "native_budget": {
+        "components": [
+          "DP",
+          "PDU",
+          "5PC"
+        ],
+        "maximum_new_readbacks": 3,
+        "timeout_seconds_per_readback": 60,
+        "energy_evaluations": "TWO_FIXED_REPEATS_PER_SUCCESSFUL_READBACK; NO_OPTIMIZER"
+      },
+      "expected_result": "SOURCE_REUSE_QUALIFICATION_PASS; FIRST_SOURCE_REQUALIFIED_AND_FROZEN_OR_EXISTING_HIT; IMMEDIATE_REPEAT_REUSED",
+      "fallback": "Retain selected source and notes if current evidence fails; standard preparation still required. No student CIF gate.",
+      "validation": {
+        "new_regressions": 22,
+        "fail_before": {
+          "failed": 19,
+          "already_passed": 23,
+          "seconds": 4.58
+        },
+        "focused": {
+          "passed": 183,
+          "seconds": 23.93,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q tests/test_cedar69_delivery.py tests/test_cedar68_delivery.py tests/test_cedar67_delivery.py tests/test_cif_source_reuse.py tests/test_cif_dictionary_store.py tests/test_cif_acquisition.py tests/test_cif_native_validation.py"
+        },
+        "real_native_transport_regression": "REAL_inspect_native_bundle_PREFLIGHT_AND_FREEZING; EXPLICIT_FAKE_FAILED_SUBPROCESS; NOT_PHENIX_CHEMISTRY_VALIDATION",
+        "full_suite": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q",
+          "passed": 4079,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 363.99
+        },
+        "cold_transport": {
+          "aliased_TMPDIR": "PASS",
+          "all_input_payloads_and_manifest_preserved": true,
+          "all_subprocesses_forbidden": "PASS",
+          "ambient_import_poison": "PASS",
+          "build_source_files_removed": true,
+          "everyday_edit": "PRESERVED",
+          "ignored_runner": "PASS",
+          "input_payloads": 3766,
+          "new_native_calls": 0,
+          "output_payloads": 3786,
+          "preserved_preflight_failure": "REPRODUCED_WITHOUT_NATIVE_LAUNCH",
+          "relocated_delivery": true,
+          "runner_sha256": "bf5155dd4b3e7bdbe773b49a82f3843849c9520dbf1acb2de9a53be3c5f282d3",
+          "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+          "runtime_members": 158,
+          "source_commit": "8c86e8e27918827be6d66e5f5aa509e95a30bd95",
+          "source_installation_fixture": "SIMULATED_FROM_CAPTURED_C67_CCD; NOT_NATIVE_PHENIX_VALIDATION",
+          "source_projections": 3,
+          "standalone_fallback_readbacks": 3,
+          "status": "PASS",
+          "scope": "INSPECT_ONLY; NO_CURRENT_NATIVE_QUALIFICATION; ALL_THREE_EXACT_C67_SOURCES_MATCH"
+        },
+        "docs": {
+          "mirrored_records": 14,
+          "relative_links": 162,
+          "protected_mechanics_and_workbook": "UNCHANGED",
+          "eight_pair_plan": "UNCHANGED",
+          "figure": "DETERMINISTIC; VISIBLE_94ababa_BASELINE_UNCHANGED; SCOPE_METADATA_UPDATED"
+        }
+      },
+      "compatibility": "Additive diagnostic report fields and exact failed-return reader; no store/run migration, dependency or NARestraints release.",
+      "requires_cif_review": false,
+      "dictionary_generation": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "production_adoption": "NOT_RUN",
+      "remaining_limits": [
+        "Mac current-native qualification pending C69.",
+        "Ordinary prepare_postmr adoption is not wired by this diagnostic.",
+        "Current linked/model qualification, exact eight-pair full run, refinement, solution PDF and scientific qualification remain separate.",
+        "Native energy-library resource files are not inventoried; current site checks remain required.",
+        "ATL remains an independent public graph/compiler control."
+      ],
+      "generated_artifacts": "PRIVATE_RETURN_ZIP_MODELS_LOGS_AND_NATIVE_SNAPSHOTS_EXCLUDED_FROM_GIT",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#source_reuse_qualification_retry_2026_10_23"
     }
   },
   "audience": [

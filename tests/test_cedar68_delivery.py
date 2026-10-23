@@ -62,8 +62,8 @@ def test_source_reuse_action_is_explicit_and_isolated(action,delivery,valid):
         with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)
 
 
-@pytest.mark.parametrize('native_status',['REVIEW','FAILED'])
-def test_current_native_evidence_has_a_relocatable_directory(monkeypatch,tmp_path,native_status):
+@pytest.mark.parametrize('native_status,real_preflight',[('REVIEW',False),('FAILED',False),('FAILED',True),('NOT_RUN',False)])
+def test_current_native_evidence_has_a_relocatable_directory(monkeypatch,tmp_path,native_status,real_preflight):
     """Exercise the actual action callback, including a failed native receipt."""
     from pathlib import Path
     import nasolve.cif_source_reuse as reuse
@@ -74,6 +74,7 @@ def test_current_native_evidence_has_a_relocatable_directory(monkeypatch,tmp_pat
     import nasolve.cif_native_validation as native_api
     import nasolve.cif_triple_bond_audit as triple
     import nasolve.cif_review_transport as transport
+    inspect_bundle=native_api.inspect_native_bundle
     m=template();session=tmp_path/'session';session.mkdir()
     root=tmp_path/'phenix';exe=root/'bin/phenix.ready_set';exe.parent.mkdir(parents=True);exe.write_text('EXPLICIT_FAKE')
     site=Path('lib/python3.11/site-packages')
@@ -93,19 +94,31 @@ def test_current_native_evidence_has_a_relocatable_directory(monkeypatch,tmp_pat
     monkeypatch.setattr(triple,'audit_triple_bonds',lambda *a,**k:{'scope':'EXPLICIT_FAKE'})
     monkeypatch.setattr(usability,'qualify_candidate_native',lambda *a:{
         'status':'EXPLICIT_FAKE_PASS','checks':{'EXPLICIT_FAKE':True}})
+    launches=[]
+    class FailedWorker:
+        def __init__(self,command,**kwargs):
+            launches.append(kwargs['cwd']);self.returncode=1
+        def wait(self,timeout):return self.returncode
+    if real_preflight:monkeypatch.setattr(native_api.subprocess,'Popen',FailedWorker)
     def inspect(model,cifs,output,*a,**k):
+        if native_status=='NOT_RUN':raise ValueError('EXPLICIT_FAILED_PREFLIGHT')
+        if real_preflight:return inspect_bundle(model,cifs,output,*a,**k)
         folder=output/'native-test';folder.mkdir(parents=True)
         return {'status':native_status,'source_preserved':True,'frozen_inputs_preserved':True,
-            'native_directory':str(folder),'native_validation':{'energy_inventory':{'installed_sources':energy}}}
+            'native_directory':str(folder),'native_validation':{'energy_inventory':{'installed_sources':energy}},
+            'execution':{'status':'COMPLETED' if native_status=='REVIEW' else 'FAILED','returncode':0 if native_status=='REVIEW' else 1}}
     monkeypatch.setattr(native_api,'inspect_native_bundle',inspect)
+    inputs=tmp_path/'qualification_inputs';inputs.mkdir()
+    for name in ['source.cif','candidate.cif']:(inputs/name).write_text('EXPLICIT_FAKE_INPUT')
     def resolve(code,dispatcher,cache,output,**kwargs):
-        try:kwargs['qualify'](tmp_path/'source.cif',tmp_path/'candidate.cif',kwargs['consumer'])
+        try:kwargs['qualify'](inputs/'source.cif',inputs/'candidate.cif',kwargs['consumer'])
         except ValueError:pass  # The ordinary resolver retains the source on native failure.
         return {'selected':'ordinary_source','status':'ORDINARY_SOURCE_FALLBACK',
             'source':{'authority':'CURATED','artifact':{'sha256':'1'*64}}}
     monkeypatch.setattr(reuse,'resolve_ordinary_dictionary',resolve)
     cases={c:{'first_snapshot':{'path':c+'/resolution.json'}} for c in ['DP','PDU','5PC']}
-    members={'inputs/review/dictionary_reuse_audit.json':json.dumps({'cases':cases}).encode(),
+    members={'probe_receipt.json':json.dumps({'delivery_prefix':'67_Cedar'}).encode(),
+        'inputs/review/dictionary_reuse_audit.json':json.dumps({'cases':cases}).encode(),
         'ordinary_acquisition_audit.json':json.dumps({'sources':{
             c:{'authority':'CURATED','source':{'sha256':'1'*64}} for c in cases}}).encode()}
     monkeypatch.setattr(transport,'read_staged_review_member',lambda folder,n:members[n])
@@ -114,8 +127,23 @@ def test_current_native_evidence_has_a_relocatable_directory(monkeypatch,tmp_pat
     args=SimpleNamespace(phenix_root=root,dictionary_store=tmp_path/'cache',inspect_only=False,timeout_seconds=60)
     receipt={}
     assert m._run_source_reuse_qualification_action(args,receipt,session,review,b'EXPLICIT_FAKE',members,tmp_path/'frozen',{}, {})==2
-    report=receipt['source_reuse_audit'];assert report['new_native_calls']==3
+    report=receipt['source_reuse_audit'];assert report['native_attempts']==3
+    if native_status=='NOT_RUN':
+        assert report['new_native_calls']==0 and report['native_execution']=='NOT_RUN'
+        assert receipt['native_proxy_validation']=='NOT_RUN'
+        assert all(r['native']=={'status':'NOT_RUN'} for r in report['cases'].values())
+        return
+    assert report['new_native_calls']==3
     for code,row in report['cases'].items():
         ref=row['native']['directory']
-        assert ref=={'anchor':'probe_directory','path':'source_reuse_native/'+code+'/readback/native-test'}
+        if not real_preflight:assert ref=={'anchor':'probe_directory','path':'source_reuse_native/'+code+'/readback/native-test'}
         assert (session/ref['path']).is_dir() and row['native']['native_directory']==str(session/ref['path'])
+    if real_preflight:
+        assert len(launches)==3
+        assert report['native_attempts']==3 and report['new_native_calls']==3
+        for row in report['cases'].values():
+            n=row['native'];work=session/n['directory']['path']
+            assert n['execution']['returncode']==1 and n['frozen_inputs_preserved']
+            for ref in n['inputs']:
+                original=__import__('pathlib').Path(ref['source_provenance'])
+                assert not work.is_relative_to(original.parent)
