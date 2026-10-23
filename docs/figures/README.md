@@ -211,6 +211,12 @@ Python entrypoint, checks retained cached numerics and unchanged heavy sites,
 then reads back effective native terms. Up to three bounded isolated controls;
 actual Mac consumption and whole-model qualification remain pending.
 
+Returned C72 stops before ReadySet because the static import scan omits an
+indirectly imported observer target. All 4,482 payloads and unchanged C71 parent
+verify. C73 captures that target explicitly with the same path/size/hash guards;
+no chemistry or restraint changes. Actual ReadySet consumption remains pending.
+
+
 See the [ordinary cache contract](../cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
 
 

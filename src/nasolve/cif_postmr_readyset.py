@@ -18,10 +18,40 @@ from .cif_generation import _terminate_owned_group
 from .cif_postmr_cache import verify_current_consumer
 from .cif_readyset_source_audit import capture_readyset_sources, verify_readyset_sources
 from .cif_elbow_chirality import _library_anchor
+from .cif_elbow_contract import _inside, MAX_SOURCE_BYTES
 
 POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v1'
 EXPECTED_ACTIONS = {'hydrogens':False,'ligands':True,'optimise_ligand_geometry':False,
                     'optimise_final_geometry_of_hydrogens':False}
+OBSERVED_MODULES = ('elbow/command_line/ready_set.py','elbow/command_line/builder.py',
+                    'elbow/scripts/elbow_on_pdb_file.py')
+
+
+def _capture_consumption_sources(root,site,dispatcher,output):
+    """Freeze observer targets even when the bounded import scan stops earlier.
+
+    Explicit observer roots do not extend or relabel transitive import coverage.
+    Every additional root retains the same containment, size and hash checks.
+    """
+    report=capture_readyset_sources(root,site,dispatcher,output)
+    seen={r['path'] for r in report['sources']};added=[]
+    total=sum(r['size'] for r in report['sources'])
+    for module in OBSERVED_MODULES:
+        relative=(site/module).as_posix()
+        if relative in seen:continue
+        path=_inside(root,relative);data=path.read_bytes()
+        if (len(report['sources'])>=report['source_file_budget'] or len(data)>MAX_SOURCE_BYTES
+                or total+len(data)>8*MAX_SOURCE_BYTES):raise ValueError('Observed ReadySet source budget exceeded')
+        target=output/'sources'/(module+'.txt');target.parent.mkdir(parents=True,exist_ok=True)
+        target.write_bytes(data)
+        report['sources'].append({'anchor':'phenix_installation','path':relative,'size':len(data),
+            'sha256':sha256(data).hexdigest(),'snapshot':{'anchor':'readyset_audit_directory','path':target.relative_to(output).as_posix()}})
+        seen.add(relative);added.append(relative);total+=len(data)
+    report['observed_module_roots']=[(site/module).as_posix() for module in OBSERVED_MODULES]
+    report['explicit_observer_sources']=added
+    report['observer_coverage']='EXACT_NAMED_OBSERVER_ROOTS; TRANSITIVE_IMPORT_COVERAGE_UNCHANGED'
+    verify_readyset_sources(root,report,output)
+    return report
 
 WORKER = r'''from pathlib import Path
 from hashlib import sha256
@@ -173,8 +203,8 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
         ready=Path(phenix.executables['phenix.ready_set']).resolve(strict=True)
         proof={'anchor':'phenix_installation','path':ready.relative_to(root).as_posix(),
             'size':ready.stat().st_size,'sha256':sha256(ready.read_bytes()).hexdigest()}
-        sources=capture_readyset_sources(root,site,proof,output/'source_evidence')
-        required={str(site/name) for name in ['elbow/command_line/ready_set.py','elbow/command_line/builder.py','elbow/scripts/elbow_on_pdb_file.py']}
+        sources=_capture_consumption_sources(root,site,proof,output/'source_evidence')
+        required={str(site/name) for name in OBSERVED_MODULES}
         if not required<={r['path'] for r in sources['sources']}:raise ValueError('Incomplete ReadySet builder source coverage')
         report['source_evidence']=sources;report['readyset_dispatcher']=proof
         run=output/'readyset';run.mkdir();(run/'consumption_worker.py').write_text(WORKER)

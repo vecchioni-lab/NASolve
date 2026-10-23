@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Capture indirect ReadySet observer sources before retry
+
+- Verify the returned C72 prelaunch failure: 4,482 payloads, unchanged C71
+  lineage, pinned runtime and reported runner SHA. No ReadySet/native readback
+  launched; retain the original failed receipt and independently verified inputs.
+- Explicitly freeze named observer modules missed by the bounded import scan,
+  preserving selected-root, size/budget and hash checks. The real captured layout
+  becomes 25 sources; indirect-import regressions cover both builder/no-builder
+  paths and keep unsafe or changed sources blocked.
+- Add C73 retry on exact C72 without altering chemistry, cache keys/numerics,
+  ordinary arguments, observer gates, native mechanics, NARestraints or dependencies.
+  Actual Mac consumption and current whole-model/full-run checks remain pending.
+- Validation: 290 focused / 4,196 full tests pass (two skips, 276 subtests),
+  including 22 new tests and both original fail-before cases. Cold source-removed,
+  relocated inspect-only transport preserves every C72 payload and independently
+  reads three controls with original build reads and all subprocesses forbidden.
+
 ### Observe ordinary ReadySet consumption of qualified cached dictionaries
 
 - Add C72 on exact C71. Use ordinary ReadySet arguments through a selected

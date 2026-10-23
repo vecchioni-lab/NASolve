@@ -22425,12 +22425,12 @@
       "required_evidence": "An explicitly bounded integration delivery or ordinary PostMR report; observations/MTZ required before claiming a diffraction/full NASolve run.",
       "user_flow": "Automatic usable selection/fallback and solution notes; no CIF inspection or student approval.",
       "live_scope": "Keep the exact eight intended pairs and sixteen stacking orientations; ATL is independent.",
-      "status": "C72_READYSET_CONSUMPTION_CONTROL_IMPLEMENTED_AND_LOCALLY_VERIFIED; MAC_RETURN_PENDING",
-      "delivery_record": "ordinary_readyset_consumption_2026_10_23"
+      "status": "C72_PRELAUNCH_FAILURE_VERIFIED; C73_SOURCE_CAPTURE_RETRY_IMPLEMENTED; MAC_CONSUMPTION_PENDING",
+      "delivery_record": "readyset_observer_source_retry_2026_10_23"
     }
   },
   "ordinary_readyset_consumption_2026_10_23": {
-    "status": "IMPLEMENTED_268_FOCUSED_4174_FULL_37_FINAL_SCOPE_AND_GUARDED_COLD_TRANSPORT_PASS; MAC_C72_READYSET_CONSUMPTION_PENDING",
+    "status": "RETURNED_C72_PRELAUNCH_SOURCE_COVERAGE_FAILURE_VERIFIED; C71_INPUTS_PRESERVED; C73_RETRY_PENDING",
     "recorded_date": "2026-10-23",
     "delivery_prefix": "72_Cedar",
     "runner_filename": "72_Cedar_probe_postmr_readyset_consumption.py",
@@ -22564,12 +22564,193 @@
       }
     },
     "remaining_limits": [
-      "Mac actual C72 ReadySet consumption and effective native readbacks pending.",
+      "C72 stops at source coverage before ReadySet; C73 retries with explicit observer-module source proofs. No current consumption verdict exists.",
       "Current whole-model linked and exact NARestraints pairing/stacking integration remain separate.",
       "Exact eight-pair full live run, observations/refinement/checkpoints, solution PDF and scientific qualification remain separate.",
       "ATL remains independent public/compiler control.",
       "No exhaustive compiled/data installation fingerprint or native-internal optimization absence claim."
     ],
-    "generated_artifacts": "PRIVATE_CAPSULES_MODELS_LOGS_AND_RUNNERS_EXCLUDED_FROM_GIT"
+    "generated_artifacts": "PRIVATE_CAPSULES_MODELS_LOGS_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "returned_2026_10_23": {
+      "status": "VERIFIED_C72_PRELAUNCH_SOURCE_COVERAGE_FAILURE",
+      "archive_sha256": "ffbe8ba91310369ede1846e4a10b1a5325b7a92530c13701c5991429606e67db",
+      "bytes": 104260676,
+      "verified_payloads": 4482,
+      "parent_payloads_preserved": 4231,
+      "all_parent_payloads_and_manifest_preserved": true,
+      "build_sha256": "e9ef803626e0522fa7a8b42c48bb26474f1fdad85c8db0a7f9148a386b6b25f2",
+      "runtime_members": 160,
+      "runtime_archive_sha256": "86f67e37e0c3348fd52ac25dee9ddcb1b14778130f708c933d015659e1b0ef62",
+      "reported_runner_sha256": "0ecda735a2a69d78aa1f5e3f2e9483abc3cb899b4a0cb59034ae0bf34d069ce6",
+      "build_difference": "NAR dirty-state metadata only; source/runtime unchanged",
+      "source_commit": "df51eed29faddef89d32f56ba75742c13f78be6c",
+      "new_readyset_calls": 0,
+      "new_fixed_native_readbacks": 0,
+      "native_version_discovery": "CURRENT_PHENIX_VERSION_RECORDED; DISTINCT_FROM_READYSET_OR_INTERPRETATION",
+      "captured_source_files": 24,
+      "missing_observer_root": "elbow/command_line/builder.py",
+      "captured_route_import": "elbow/scripts/elbow_on_pdb_file.py: from elbow.command_line import builder",
+      "captured_sources_equal_verified_C40_inventory": true,
+      "original_failure_receipt": "PRESERVED; analysis_completed and frozen_inputs_preserved remain false as recorded",
+      "independently_verified_frozen_inputs": "FOUR_5PC_INPUTS_AND_ALL_C71_LINEAGE_PASS",
+      "maintained_complete_C71_and_earlier_replay": "PASS",
+      "new_verification_subprocesses": 0,
+      "captured_python_execution": "NOT_RUN",
+      "current_consumption_and_full_run": "NOT_ASSESSED"
+    },
+    "returned_capsule": {
+      "filename": "72_Cedar_pe1cy80o_cif_numerical_recovery_review.zip",
+      "sha256": "ffbe8ba91310369ede1846e4a10b1a5325b7a92530c13701c5991429606e67db",
+      "bytes": 104260676,
+      "verified_payloads": 4482,
+      "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
+    },
+    "next_delivery": "readyset_observer_source_retry_2026_10_23"
+  },
+  "readyset_observer_source_retry_2026_10_23": {
+    "status": "IMPLEMENTED_290_FOCUSED_4196_FULL_COLD_TRANSPORT_PASS; MAC_C73_RETRY_PENDING",
+    "recorded_date": "2026-10-23",
+    "delivery_prefix": "73_Cedar",
+    "runner_filename": "73_Cedar_probe_postmr_readyset_consumption.py",
+    "cli_action": "--postmr-readyset-consumption-only",
+    "policy_id": "cif-ordinary-readyset-cached-input-consumption-v1",
+    "requested_action": "ORDINARY_POSTMR_READYSET_CONSUMPTION",
+    "review_input": {
+      "filename": "72_Cedar_pe1cy80o_cif_numerical_recovery_review.zip",
+      "sha256": "ffbe8ba91310369ede1846e4a10b1a5325b7a92530c13701c5991429606e67db",
+      "bytes": 104260676,
+      "verified_payloads": 4482,
+      "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
+    },
+    "before": "The bounded static scan stops at non-ReadySet routing modules; C72 requires builder.py to be discovered there and aborts before launch. The original direct-import fake fixture misses this installed indirect-import layout.",
+    "after": "Capture exact named observer modules separately when the static import scan omits them. Keep root containment, file/total byte budgets, unique source rows and before/after hash verification. Ordinary CLI arguments, observer criteria and all chemistry/mechanics remain unchanged.",
+    "observed_module_roots": [
+      "elbow/command_line/ready_set.py",
+      "elbow/command_line/builder.py",
+      "elbow/scripts/elbow_on_pdb_file.py"
+    ],
+    "source_metadata": "ADDITIVE observed_module_roots, explicit_observer_sources and observer_coverage fields; existing source-row and artifact schemas unchanged.",
+    "coverage": "EXACT_NAMED_OBSERVER_ROOTS; TRANSITIVE_IMPORT_COVERAGE_UNCHANGED; NO_EXHAUSTIVE_NATIVE_INTERNALS_CLAIM",
+    "bounded_sources": {
+      "max_files": 32,
+      "max_each_bytes": 1048576,
+      "max_total_bytes": 8388608,
+      "captured_layout_before": 24,
+      "captured_layout_after": 25,
+      "explicit_builder_bytes": 93791
+    },
+    "input_lineage": "Exact failed C72 manifest/build/receipt/sources and all preserved C71 evidence are verified with maintained code. The original failed receipt retains analysis_completed=False and frozen_inputs_preserved=False; copied inputs are independently verified rather than rewriting those flags.",
+    "failure_scope": "NO_READYSET_OR_FIXED_NATIVE_READBACK_LAUNCHED; PHENIX_VERSION_DISCOVERY_IS_DISTINCT",
+    "retry": "C73 defaults to the exact C72 failure capsule and preserves every payload/manifest; the existing explicit C71 input remains supported. Reuse verified C71 source/numerics/models; no repair generation or optimizer rerun requested.",
+    "requires_cif_review": false,
+    "automatic_adoption": false,
+    "protected_mechanics": "SOURCE_PRIORITY_CHEMISTRY_CACHE_KEYS_AND_BYTES_ORDINARY_ARGUMENTS_OBSERVER_GATES_NATIVE_WORKER_QUALIFIER_KERNELS_PLANE_CORRECTION_NAR_WORKBOOK_PAIRING_AND_STACKING_UNCHANGED",
+    "compatibility": "No install, dependency, NARestraints release or store migration. Existing source-only audit retains its original static-import contract.",
+    "validation": {
+      "fail_before": {
+        "failed": 2,
+        "deselected": 21,
+        "seconds": 1.13
+      },
+      "new_permanent_tests": 22,
+      "focused": {
+        "passed": 290,
+        "seconds": 36.23,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q tests/test_cif_postmr_readyset.py tests/test_cedar73_delivery.py tests/test_cedar72_delivery.py tests/test_cif_postmr_cache.py tests/test_cedar71_delivery.py tests/test_cedar70_delivery.py tests/test_cedar69_delivery.py tests/test_cedar68_delivery.py tests/test_cif_source_reuse.py tests/test_cif_dictionary_store.py tests/test_postmr.py tests/test_postmr_restoration.py"
+      },
+      "actual_C72_return": {
+        "status": "VERIFIED_C72_PRELAUNCH_SOURCE_COVERAGE_FAILURE",
+        "archive_sha256": "ffbe8ba91310369ede1846e4a10b1a5325b7a92530c13701c5991429606e67db",
+        "bytes": 104260676,
+        "verified_payloads": 4482,
+        "parent_payloads_preserved": 4231,
+        "all_parent_payloads_and_manifest_preserved": true,
+        "build_sha256": "e9ef803626e0522fa7a8b42c48bb26474f1fdad85c8db0a7f9148a386b6b25f2",
+        "runtime_members": 160,
+        "runtime_archive_sha256": "86f67e37e0c3348fd52ac25dee9ddcb1b14778130f708c933d015659e1b0ef62",
+        "reported_runner_sha256": "0ecda735a2a69d78aa1f5e3f2e9483abc3cb899b4a0cb59034ae0bf34d069ce6",
+        "build_difference": "NAR dirty-state metadata only; source/runtime unchanged",
+        "source_commit": "df51eed29faddef89d32f56ba75742c13f78be6c",
+        "new_readyset_calls": 0,
+        "new_fixed_native_readbacks": 0,
+        "native_version_discovery": "CURRENT_PHENIX_VERSION_RECORDED; DISTINCT_FROM_READYSET_OR_INTERPRETATION",
+        "captured_source_files": 24,
+        "missing_observer_root": "elbow/command_line/builder.py",
+        "captured_route_import": "elbow/scripts/elbow_on_pdb_file.py: from elbow.command_line import builder",
+        "captured_sources_equal_verified_C40_inventory": true,
+        "original_failure_receipt": "PRESERVED; analysis_completed and frozen_inputs_preserved remain false as recorded",
+        "independently_verified_frozen_inputs": "FOUR_5PC_INPUTS_AND_ALL_C71_LINEAGE_PASS",
+        "maintained_complete_C71_and_earlier_replay": "PASS",
+        "new_verification_subprocesses": 0,
+        "captured_python_execution": "NOT_RUN",
+        "current_consumption_and_full_run": "NOT_ASSESSED"
+      },
+      "captured_source_layout": {
+        "status": "PASS",
+        "actual_C72_source_files": 24,
+        "consistent_prior_builder_snapshots": 13,
+        "builder_source_bytes": 93791,
+        "builder_sha256": "7b2c0caf2f061d7fff65633da3add4e1b5176710ac2f7fee6c81a14c99789afd",
+        "completed_source_files": 25,
+        "explicit_observer_sources": [
+          "lib/python3.11/site-packages/elbow/command_line/builder.py"
+        ],
+        "all_root_size_hash_checks": "PASS",
+        "dispatcher": "EXPLICIT_INERT_FIXTURE_MATCHING_CAPTURED_LITERAL_TARGET; NEVER_EXECUTED",
+        "captured_or_installed_code_execution": "NOT_RUN",
+        "all_subprocesses": "FORBIDDEN",
+        "scope": "READ_ONLY_CAPTURED_SOURCE_LAYOUT_REPLAY; NOT_CURRENT_MAC_READYSET_EXECUTION"
+      },
+      "fixture_scope": "Generic indirect-import and actual captured-source layout replay, no installed Phenix execution.",
+      "full": {
+        "passed": 4196,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 401.79,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q"
+      },
+      "cold_transport": {
+        "status": "PASS",
+        "mode": "INSPECT_ONLY; FROZEN_READYSET_INPUTS; LIVE_MAC_CONSUMPTION_PENDING",
+        "runtime_members": 160,
+        "runtime_archive_sha256": "855abe417675baeb2861ed8b6c451afd9821cc79ffee98f81516e07e9dec1919",
+        "runner_sha256": "13f788edc5852f431e1f3f3fb6677cdcd3d8b922b8a5cfeb93179288c7c4ae75",
+        "build_source_files_removed_before_launch": true,
+        "all_original_build_source_access_forbidden": "PASS",
+        "build_source_paths_absent_at_completion": true,
+        "relocated_delivery": true,
+        "ambient_import_poison": "PASS",
+        "aliased_TMPDIR": "PASS",
+        "all_subprocesses_forbidden": "PASS",
+        "new_native_calls": 0,
+        "input_payloads": 4482,
+        "all_input_payloads_and_manifest_preserved": true,
+        "output_payloads": 4722,
+        "independent_relocated_readyset_inputs": 3,
+        "original_store": "NOT_READ_OR_WRITTEN",
+        "original_producer_stopping_notes": "VERIFIED_IN_C72_AND_C71_LINEAGE",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "code_checkpoint": "c1c9afcf65ef6fb061b96227008ecb0944beaa13",
+        "publication_scope": "Owned clean code checkpoint; final publication may change source-commit metadata only. Frozen runtime/body equivalence is checked separately."
+      },
+      "documentation": {
+        "relative_links": 165,
+        "mirrored_records": 18,
+        "protected_mechanics": "UNCHANGED",
+        "NAR_workbook": "UNCHANGED",
+        "eight_pair_plan": "UNCHANGED",
+        "SVG_determinism": "PASS",
+        "visible_SVG": "TWO_CACHE_SCOPE_LABELS_UPDATED; TOPOLOGY_UNCHANGED; RENDER_VISUALLY_VERIFIED"
+      },
+      "diff_check": "PASS"
+    },
+    "remaining_limits": [
+      "Actual Mac C73 ReadySet consumption and effective native checks pending.",
+      "Current whole-model links and exact NARestraints pairing/stacking remain separate.",
+      "Exact eight-pair/16-stacking full live run, observations/refinement/checkpoints, solution PDF and scientific qualification remain separate.",
+      "ATL remains independent public/compiler control."
+    ],
+    "generated_artifacts": "PRIVATE_CAPSULES_SOURCES_MODELS_LOGS_AND_RUNNERS_EXCLUDED_FROM_GIT"
   }
 }

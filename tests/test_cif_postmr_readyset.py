@@ -131,3 +131,43 @@ def test_existing_parameterized_precedence_preserves_cache_against_changed_ready
     selected,checks=effective_cached_input(c,generated,out)
     assert checks['effective_numerics_exact'] and checks['single_effective_dictionary']
     assert selected.read_bytes()==c.read_bytes() and generated.read_bytes()!=c.read_bytes()
+
+
+@pytest.mark.parametrize('generate',[False,True])
+def test_observed_builder_is_captured_when_only_imported_by_routing_module(tmp_path,monkeypatch,generate):
+    """The installed ReadySet layout reaches builder through a non-ReadySet module."""
+    from nasolve.cif_postmr_readyset import audit_readyset_consumption
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch,'builder' if generate else 'noop')
+    site=installation.root/'lib/python3.11/site-packages'
+    ready=site/'elbow/command_line/ready_set.py'
+    ready.write_text(ready.read_text().replace('from elbow.command_line import builder\n','').replace('builder.run()','elbow_on_pdb_file.call_builder()'))
+    route=site/'elbow/scripts/elbow_on_pdb_file.py'
+    route.write_text(route.read_text()+'\nfrom elbow.command_line import builder\ndef call_builder():\n    return builder.run()\n')
+    r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    assert r['status']==('REVIEW' if generate else 'READYSET_CACHED_INPUT_PASS')
+    assert r['trace']['builder_calls']==int(generate)
+    proof=r['source_evidence']
+    assert proof['explicit_observer_sources']==['lib/python3.11/site-packages/elbow/command_line/builder.py']
+    row=next(v for v in proof['sources'] if v['path'].endswith('/elbow/command_line/builder.py'))
+    assert (tmp_path/'control/source_evidence'/row['snapshot']['path']).read_bytes()==(site/'elbow/command_line/builder.py').read_bytes()
+
+
+@pytest.mark.parametrize('defect',['missing','escaped','oversized','changed_after_capture'])
+def test_explicit_observer_sources_keep_existing_proof_guards(tmp_path,monkeypatch,defect):
+    import nasolve.cif_postmr_readyset as api
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch)
+    site=installation.root/'lib/python3.11/site-packages';ready=site/'elbow/command_line/ready_set.py'
+    ready.write_text(ready.read_text().replace('from elbow.command_line import builder\n',''))
+    builder=site/'elbow/command_line/builder.py'
+    if defect=='missing':builder.unlink()
+    elif defect=='escaped':
+        outside=tmp_path/'outside.py';outside.write_bytes(builder.read_bytes());builder.unlink();builder.symlink_to(outside)
+    elif defect=='oversized':builder.write_bytes(b'#'+b'x'*api.MAX_SOURCE_BYTES)
+    else:
+        original=api._capture_consumption_sources
+        def capture(*args):
+            result=original(*args);builder.write_bytes(b'# CHANGED AFTER CAPTURE\n');return result
+        monkeypatch.setattr(api,'_capture_consumption_sources',capture)
+    with pytest.raises((ValueError,OSError)):
+        api.audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    assert not (tmp_path/'control/readyset/consumption_result.json').exists()

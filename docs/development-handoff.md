@@ -13,6 +13,36 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Returned C72 is a source-coverage prelaunch failure.** All 4,482 payloads,
+unchanged C71 parent, pinned 160-member runtime and reported `0ecda735...` runner
+SHA verify. The source scan captured 24 files but stopped at the routing module;
+that module imports the omitted builder. No ReadySet or fixed native readback
+launched. Keep the failed receipt's false completion/preservation flags unchanged;
+independent maintained replay verifies its four copied 5PC inputs and C71 lineage.
+
+**Next delivery is C73:** `73_Cedar_probe_postmr_readyset_consumption.py`, same
+explicit action on exact C72. Capture every named observer module explicitly
+when the static import scan omits it, with unchanged root/size/hash/budget guards.
+Keep the scan's transitive-coverage limit. The captured installed layout replays
+as 25 sources; 13 prior builder snapshots agree. New indirect-import regressions
+cover builder/no-builder paths and retain missing/escaped/oversized/changed-source
+refusals. C73 preserves the failed capsule and uses verified C71 inputs; original
+arguments, observation gates, native mechanics and NARestraints stay unchanged.
+Actual Mac ReadySet consumption and whole-model qualification remain pending.
+
+C73 validation: **290 focused / 4,196 full tests pass** (two skips, 276 subtests;
+401.79 s), including 22 new permanent tests. Both indirect-import cases fail
+against C72 before the fix. The clean 160-member runtime passes cold relocated
+inspect-only replay of exact C72 with original build-source reads and all
+subprocesses forbidden, poisoned imports and aliased TMPDIR. All 4,482 input
+payloads/manifest survive in 4,722 output payloads; three standalone controls
+resolve after owned evidence removal. The original store is untouched and the
+everyday edit survives. The captured 24-source layout plus a verified prior builder
+snapshot becomes 25 sources without executing captured Python. All 165 relative
+document links, 18 mirrored records, protected mechanics, NAR workbook and eight-pair
+plan verify; the deterministic editable figure is rendered and visually checked.
+These checks do not claim a current Mac ReadySet or native-consumption result.
+
 **Returned C71 closes ordinary cache handoff.** The exact
 `71_Cedar_6nki0gti_cif_numerical_recovery_review.zip` verifies all 4,231 payloads,
 the unchanged 4,008-payload C70 parent/manifest and 159 runtime members. Only NAR
@@ -42,7 +72,7 @@ combination and parameterized-input precedence. Missing/corrupt/unsupported or
 changed-consumer entries retain ordinary preparation with notes. Recorded identity
 matching is not an exhaustive compiled-kernel/energy-library fingerprint.
 
-**Next delivery is C72:** `72_Cedar_probe_postmr_readyset_consumption.py`,
+**C72 delivery and original validation:** `72_Cedar_probe_postmr_readyset_consumption.py`,
 `--postmr-readyset-consumption-only` on exact returned C71. It calls ordinary
 `_run_readyset` and `effective_restraints` with exact C71 saved numerical inputs.
 An optional private process hook executes the selected dispatcher's literal
@@ -59,7 +89,8 @@ three ReadySet calls, 180 seconds each, plus three fixed reads, 60 seconds each;
 no retry, Coot, cache write, refinement or production checkpoint. Preserve original
 producer/stopping notes and usable inputs. Inspect-only freezes controls with
 every subprocess forbidden. Local validation is recorded under
-`ordinary_readyset_consumption_2026_10_23`; actual Mac C72 return is pending.
+`ordinary_readyset_consumption_2026_10_23`; its verified prelaunch failure is
+recorded above. C73 retry evidence belongs to `readyset_observer_source_retry_2026_10_23`.
 
 C72 validation: **268 focused / 4,174 full tests pass** (two skips, 276 subtests;
 406.13 s), including 37 new permanent tests. The final 37-test scope/controller
@@ -68,7 +99,7 @@ transport after build-source removal and relocation, with original build reads
 and all subprocesses forbidden, poisoned imports and aliased TMPDIR. All 4,231
 C71 payloads/manifest survive in 4,470 output payloads; three standalone controls
 resolve after evidence removal. The owned everyday edit survives. No actual
-Phenix ReadySet execution is claimed until the Mac C72 return.
+Phenix ReadySet execution is claimed; the C72 return stops at source capture.
 
 Current whole-model links and exact NARestraints pairing/stacking remain separate.
 Keep automatic continuation/report notes and the exact eight-pair/16-stacking

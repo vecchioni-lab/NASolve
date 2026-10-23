@@ -1635,6 +1635,32 @@ No dependency, cache migration or NAR release is needed. Actual Mac consumption,
 whole-model links and exact pairing/stacking, the eight-pair full live run,
 refinement and solution PDF remain separate; students do not approve CIFs.
 
+Returned C72 verifies all 4,482 payloads, unchanged C71 parent, 160 runtime
+members and the reported runner SHA (only NAR dirty-state metadata differs).
+The source scanner captured 24 files, including the routing module that imports
+`elbow.command_line.builder`, but does not traverse that non-ReadySet module.
+The required observer target is absent, so the source guard stops before any
+ReadySet or fixed native readback. Preserve the original failure receipt and its
+false completion/preservation flags; independent replay verifies the four copied
+5PC inputs and complete C71 lineage without changing those recorded flags.
+
+C73 methods: retain the bounded literal-import scan and explicitly freeze each
+named observer module that it does not discover. Enforce the same selected-root,
+32-file, 1 MiB per-file, 8 MiB total and before/after hash checks. Add explicit
+observer-root/source metadata without claiming transitive or native-internal
+coverage. The actual captured 24-file layout plus 13 identical prior builder
+snapshots reproduces a 25-file source inventory without executing captured code.
+A generic indirect-import fixture now covers both no-builder and observed-builder
+paths; missing, escaped, oversized and changed sources remain blocked.
+
+The default C73 retry consumes the exact failed C72 capsule and preserves all
+its evidence while recovering only verified C71 numerical inputs. Existing C71
+input support remains. ReadySet arguments, observation gates, target mechanics,
+cache identity, original stopping notes and NARestraints are unchanged. No new
+install or optimization is requested. Actual consumption and whole-model/full-run
+qualification remain pending; students do not inspect or approve CIF tables.
+
+
 
 
 Methods: compare all seven inventoried named chemical fields and the repair
