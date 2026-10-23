@@ -13,12 +13,31 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Next delivery is C70:** `70_Cedar_probe_cif_saved_source_reuse.py` on exact
-C69 with `--saved-source-reuse-only`. Recompute saved native qualifications,
-record separate dictionary/native triple screens, finish exact source-bound
-publication and verify three immediate REUSED requests. Expected
-SAVED_SOURCE_REUSE_PASS. This action needs no Phenix root or new native,
-ReadySet, generator, optimizer or refinement process.
+**Returned C70 closes source-bound cache completion.** The exact
+`70_Cedar_vpx276th_cif_numerical_recovery_review.zip` verifies all 4,008
+payloads and the byte-identical 3,849-payload C69 parent plus its manifest.
+All 158 runtime members match the pinned C70 build. The build differs only
+in recorded NAR dirty-state metadata; no terminal runner SHA was supplied,
+so no independent reported-runner SHA match is claimed.
+
+DP, PDU and 5PC each report SOURCE_REQUALIFIED_AND_FROZEN followed by REUSED.
+Maintained code reproduces all 63 native checks, separate dictionary/native
+triple reports and 72 frozen result artifacts, rebasing only explicitly
+PROVENANCE_ONLY source paths. All six returned copies resolve independently
+after removing the owned original source/cache/evidence directories, with
+external scientific reads forbidden. Old entries, exact numerical bytes,
+source authority, consumer identity and original producer/stopping notes survive.
+PDU's bounded nonconvergence remains a note. Zero new native, ReadySet,
+generator, optimizer or refinement processes run; no captured Python executes.
+
+**Next work is ordinary PostMR cache consumption.** Wire the shared resolver
+into `prepare_postmr` dictionary acquisition before ReadySet, keeping ordinary
+source chemistry separate from selected numerical dictionaries. Bind eligibility
+to the configured current installation; changed/unverified consumers requalify
+or retain ordinary usable fallback. Current linked-site/model checks remain
+required. Keep the existing automatic continuation/report policy and exact
+eight-pair/16-stacking plan; ATL stays independent. No C71 action or Mac command
+has been published, and the successful saved-cache gate needs no repeat.
 
 **Returned C69 passes native usability.** All 3,849 payloads, the complete C68
 parent/manifest and 158 runtime members verify. Only NAR dirty-state metadata
@@ -49,9 +68,12 @@ deletion and relocation with poisoned imports/aliased TMPDIR and every subproces
 forbidden, publishes three qualified entries and passes three immediate reuses.
 All 3,849 parent payloads/manifest survive in 4,008 output payloads. Six independent
 qualified/reused copies resolve after deleting the original cache/layout/evidence;
-producer/stopping notes survive. Both ledgers record
+producer/stopping notes survive. The actual returned Mac C70 capsule now
+independently reproduces these successes, including 72 result artifacts and
+six relocated readbacks. Both ledgers record the verified return under
 `source_reuse_saved_completion_2026_10_23`. This is saved qualification/store
-completion, not a fresh live-installation or full-run verdict.
+completion, not a fresh live-installation or full-run verdict. The current
+change records evidence only; the previously passing runtime/tests are unchanged.
 
 Ordinary `prepare_postmr` adoption, current installation/site/model qualification,
 production checkpoints/refinement, the exact eight-pair full live run and solution

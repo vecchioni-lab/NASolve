@@ -21171,7 +21171,7 @@
     }
   },
   "ordinary_source_reuse_2026_10_22": {
-    "status": "C68_PRELAUNCH_FAILURE_PRESERVED; C69_ALL_63_NATIVE_CHECKS_PASS; C70_STORE_COMPLETION_PENDING",
+    "status": "C68_PRELAUNCH_FAILURE_PRESERVED; C69_ALL_63_NATIVE_CHECKS_PASS; C70_SOURCE_BOUND_PUBLICATION_AND_REPEAT_PASS",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "68_Cedar",
     "runner_filename": "68_Cedar_probe_cif_source_reuse.py",
@@ -21362,7 +21362,7 @@
     "compatibility": "Additive API/report and exact C67 input; old store/run schemas remain valid. No migration, dependency or NAR release.",
     "protected_mechanics": "Native kernels/targets/weights/optimizer/plane correction and NAR workbook unchanged.",
     "remaining_limits": [
-      "Actual Mac native qualification and source-bound repeat reuse pending.",
+      "C69 native qualification and C70 source-bound publication/repeat reuse are verified; ordinary PostMR integration remains pending.",
       "Production PostMR invocation/adoption, current linked/model qualification and the exact eight-pair full live run remain separate.",
       "Energy-library resource-file fingerprints, absolute CIP, refinement and solution PDF rendering are not claimed."
     ],
@@ -21387,10 +21387,11 @@
       "runtime_members": 158,
       "verified_payloads": 3766
     },
-    "returned_scope": "Source comparisons pass; native qualification NOT_RUN. Historical new_native_calls=3 is adapter attempts, not launched workers."
+    "returned_scope": "Source comparisons pass; native qualification NOT_RUN. Historical new_native_calls=3 is adapter attempts, not launched workers.",
+    "completion_record": "source_reuse_saved_completion_2026_10_23#returned_2026_10_23"
   },
   "source_reuse_qualification_retry_2026_10_23": {
-    "status": "RETURNED_C69_ALL_63_NATIVE_CHECKS_PASS; REPORTING_CALL_FAILED_AFTER_QUALIFICATION; C70_SAVED_COMPLETION_PENDING",
+    "status": "RETURNED_C69_ALL_63_NATIVE_CHECKS_PASS; ORIGINAL_REPORTING_FAILURE_PRESERVED; C70_SAVED_COMPLETION_PASS",
     "recorded_date": "2026-10-23",
     "delivery_prefix": "69_Cedar",
     "runner_filename": "69_Cedar_probe_cif_source_reuse.py",
@@ -21507,7 +21508,7 @@
     "model_optimization": "NOT_RUN",
     "production_adoption": "NOT_RUN",
     "remaining_limits": [
-      "Mac current-native qualification pending C69.",
+      "C69 native usability passes; C70 completes source-bound publication/reuse from that exact saved evidence without new native calls.",
       "Ordinary prepare_postmr adoption is not wired by this diagnostic.",
       "Current linked/model qualification, exact eight-pair full run, refinement, solution PDF and scientific qualification remain separate.",
       "Native energy-library resource files are not inventoried; current site checks remain required.",
@@ -21665,10 +21666,11 @@
           }
         }
       }
-    }
+    },
+    "completion_record": "source_reuse_saved_completion_2026_10_23#returned_2026_10_23"
   },
   "source_reuse_saved_completion_2026_10_23": {
-    "status": "IMPLEMENTED_FULL_FOCUSED_AND_COLD_SAVED_COMPLETION_PASS; MAC_C70_CACHE_COMPLETION_PENDING",
+    "status": "RETURNED_C70_SAVED_SOURCE_REUSE_PASS; THREE_SOURCE_BOUND_ENTRIES_AND_THREE_IMMEDIATE_REUSES_VERIFIED; ORDINARY_POSTMR_INTEGRATION_PENDING",
     "recorded_date": "2026-10-23",
     "delivery_prefix": "70_Cedar",
     "runner_filename": "70_Cedar_probe_cif_saved_source_reuse.py",
@@ -21923,17 +21925,176 @@
         "relative_links": 162,
         "protected_mechanics_workbook_and_eight_pair_plan": "UNCHANGED",
         "figure": "DETERMINISTIC; VISIBLE_94ababa_BASELINE_UNCHANGED; SCOPE_METADATA_UPDATED"
+      },
+      "returned_Mac_replay": {
+        "status": "PASS",
+        "verified_payloads": 4008,
+        "parent_payloads_preserved": 3849,
+        "recomputed_native_checks": 63,
+        "source_bound_entries": 3,
+        "immediate_exact_reuses": 3,
+        "independent_relocated_readbacks": 6,
+        "independently_reproduced_result_artifacts": 72,
+        "artifact_reproduction_exception": "Only explicitly PROVENANCE_ONLY source historical_path rebased",
+        "new_native_calls": 0,
+        "all_verification_subprocesses": "FORBIDDEN",
+        "captured_code_execution": "NOT_RUN",
+        "original_producer_and_stopping_notes": "PRESERVED",
+        "runtime_members": 158,
+        "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+        "build_identity": "PINNED_C70_SOURCE_AND_RUNTIME; ONLY_NAR_DIRTY_METADATA_DIFFERS",
+        "reported_runner_sha256": "NOT_SUPPLIED; BUILD_AND_RUNTIME_VERIFIED_INDEPENDENTLY"
+      },
+      "return_record_validation": {
+        "change_scope": "DOCUMENTATION_ONLY; RUNTIME_AND_TESTS_UNCHANGED",
+        "focused": {
+          "passed": 201,
+          "seconds": 18.84,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q tests/test_cedar70_delivery.py tests/test_cedar69_delivery.py tests/test_cedar68_delivery.py tests/test_cif_source_reuse.py tests/test_cif_triple_bond_audit.py tests/test_cif_dictionary_store.py"
+        },
+        "docs": {
+          "mirrored_records": 15,
+          "relative_links": 162,
+          "original_C68_C69_return_records": "UNCHANGED",
+          "protected_mechanics_workbook_and_eight_pair_plan": "UNCHANGED",
+          "SVG_determinism": "PASS",
+          "visible_SVG": "UNCHANGED"
+        },
+        "full_suite_basis": "4097 passed, two skipped, 276 subtests on unchanged published C70 implementation; not rerun for evidence-only documentation update."
       }
     },
     "compatibility": "Additive diagnostic action/report and verified C69 reader; no dependency/store migration or NAR release.",
     "protected_mechanics": "NATIVE_WORKER_ENERGY_KERNELS_QUALIFIER_V2_STORE_AND_SOURCE_PRIORITY_UNCHANGED; NARestraints_PAIRING_STACKING_AND_WORKBOOK_UNCHANGED",
     "remaining_limits": [
-      "C70 Mac cache completion pending.",
       "Ordinary prepare_postmr adoption is not wired by this diagnostic.",
       "Current installation/site/model and scientific geometry qualification, production checkpoints/refinement, exact eight-pair full run and solution PDF remain separate.",
       "Energy-library resource files are not fingerprinted; current native checks remain required for new contexts.",
       "ATL remains independent public graph/compiler control."
     ],
-    "generated_artifacts": "PRIVATE_CAPSULES_NATIVE_LOGS_MODELS_AND_RUNNERS_EXCLUDED_FROM_GIT"
+    "generated_artifacts": "PRIVATE_CAPSULES_NATIVE_LOGS_MODELS_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "returned_2026_10_23": {
+      "all_parent_payloads_and_manifest_preserved": true,
+      "archive_sha256": "4204041a4b3e60fac6f7567c9bc9a68e748250d33a729cd3749495660b64f9fb",
+      "artifact_reproduction_exception": "Only explicitly PROVENANCE_ONLY source historical_path rebased",
+      "build_difference": "NAR dirty-state metadata only; pinned source/runtime identical",
+      "build_sha256": "fb93471c673501c76f2a0a2dfd86690b79eb8601bc83a37cd56126f24f34570f",
+      "bytes": 100938048,
+      "captured_code_execution": "NOT_RUN",
+      "cases": {
+        "5PC": {
+          "converged": null,
+          "dictionary_sha256": "7edbaef484b768557cb52667e6d79a0052e4f3e3c3cba72066e53cf640088e56",
+          "entry_id": "f4379b0da23d33c5841efc89c50c5062b5d588cee85fd8b8cf34ff0aa29c468b",
+          "first": "SOURCE_REQUALIFIED_AND_FROZEN",
+          "original_producer_and_stopping_notes": "PRESERVED",
+          "qualification_checks": 21,
+          "qualification_reproduced": "PASS",
+          "repeat": "REUSED",
+          "source_authority": "NATIVE",
+          "source_sha256": "b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025",
+          "stopping": "NOT_REPORTED",
+          "triple_screens": {
+            "dictionary": {
+              "linear_axis_torsions": 6,
+              "status": "REVIEW",
+              "target_screen": "PASS"
+            },
+            "native": {
+              "linear_axis_torsions": 6,
+              "status": "REVIEW",
+              "target_screen": "PASS"
+            }
+          }
+        },
+        "DP": {
+          "converged": null,
+          "dictionary_sha256": "10160ee58b146fda655e289ddcd7d7e7fe4b64f164ce2327b4c33936fadad670",
+          "entry_id": "4d669f816aac1ebeceaa530f825e5a9808a3d801b6930a16f31b4a930c9f15c5",
+          "first": "SOURCE_REQUALIFIED_AND_FROZEN",
+          "original_producer_and_stopping_notes": "PRESERVED",
+          "qualification_checks": 21,
+          "qualification_reproduced": "PASS",
+          "repeat": "REUSED",
+          "source_authority": "CURATED",
+          "source_sha256": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+          "stopping": "NOT_REPORTED",
+          "triple_screens": {
+            "dictionary": {
+              "linear_axis_torsions": 0,
+              "status": "UNASSESSED",
+              "target_screen": "NOT_APPLICABLE"
+            },
+            "native": {
+              "linear_axis_torsions": 0,
+              "status": "UNASSESSED",
+              "target_screen": "NOT_APPLICABLE"
+            }
+          }
+        },
+        "PDU": {
+          "converged": false,
+          "dictionary_sha256": "92131cd42f50be9daae3647240d62a51d1fa0dc8aa4d2ba9effd5848ee728da7",
+          "entry_id": "79e393518bbbf0ac000dadbca8684fed25c8f8151c11839e074f7969c87573c9",
+          "first": "SOURCE_REQUALIFIED_AND_FROZEN",
+          "original_producer_and_stopping_notes": "PRESERVED",
+          "qualification_checks": 21,
+          "qualification_reproduced": "PASS",
+          "repeat": "REUSED",
+          "source_authority": "NATIVE",
+          "source_sha256": "98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258",
+          "stopping": "NOT_CONVERGED_REPORTED",
+          "triple_screens": {
+            "dictionary": {
+              "linear_axis_torsions": 6,
+              "status": "REVIEW",
+              "target_screen": "PASS"
+            },
+            "native": {
+              "linear_axis_torsions": 6,
+              "status": "REVIEW",
+              "target_screen": "PASS"
+            }
+          }
+        }
+      },
+      "external_scientific_reads_forbidden_at_readback": true,
+      "immediate_exact_reuses": 3,
+      "independent_relocated_readbacks": 6,
+      "independently_reproduced_result_artifacts": 72,
+      "maintained_complete_C69_and_earlier_replay": "PASS",
+      "nasolve_source_commit": "2099b7630209efa071e9b929f300411decb7cf9d",
+      "new_native_calls": 0,
+      "new_verification_subprocesses": 0,
+      "parent_payloads": 3849,
+      "production_adoption": "NOT_RUN",
+      "published_source_bound_entries": 3,
+      "recomputed_native_checks": 63,
+      "reconstructed_runner_sha256": "48cb4d55f5851a10581997872854d013e42c86ea9d580b393884aaf3a118f928",
+      "reported_runner_sha256": "NOT_SUPPLIED_IN_C70_TERMINAL_TEXT",
+      "requires_cif_review": false,
+      "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+      "runtime_members": 158,
+      "scope": "SOURCE_BOUND_ISOLATED_NUMERICS; CURRENT_INSTALLATION_LINKS_AND_MODEL_REMAIN_SEPARATE",
+      "separate_dictionary_native_triple_reports": "REPRODUCED",
+      "standalone_source_cache_and_evidence_removed": true,
+      "status": "VERIFIED_C70_SAVED_SOURCE_REUSE_PASS",
+      "verified_payloads": 4008
+    },
+    "returned_capsule": {
+      "filename": "70_Cedar_vpx276th_cif_numerical_recovery_review.zip",
+      "sha256": "4204041a4b3e60fac6f7567c9bc9a68e748250d33a729cd3749495660b64f9fb",
+      "bytes": 100938048,
+      "verified_payloads": 4008,
+      "source_commit": "2099b7630209efa071e9b929f300411decb7cf9d",
+      "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
+    },
+    "next_boundary": {
+      "work": "Connect the shared resolver to ordinary prepare_postmr dictionary acquisition before ReadySet, preserving the ordinary source separately from selected numerical dictionaries.",
+      "current_consumer": "Establish the actual configured installation identity before a stored qualification is eligible; changed or unverified consumers require requalification or ordinary usable fallback.",
+      "current_site_and_model": "Require current linked contexts and exact model/native readback; isolated cache usability alone does not authorize linked adoption.",
+      "user_flow": "Automatic qualified selection or usable fallback with solution notes; no student CIF inspection/approval.",
+      "live_scope": "Keep the requested eight declared pairs and sixteen stacking orientations unchanged; ATL remains independent.",
+      "status": "PLANNED; NO_C71_RUNTIME_OR_MAC_COMMAND_PUBLISHED"
+    }
   }
 }

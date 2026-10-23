@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-22**. Start with the
+Updated **2026-10-23**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -116,9 +116,15 @@ of three records attempts; it supplies no fresh native qualification.
 Returned C69 completes all three native reads: 63/63 usability checks and
 six fixed repeat evaluations pass. A later reporting call supplies two mutually
 exclusive auditor inputs, so source-bound publication/repeats are not selected.
-C70 separates those reports and finishes publication/reuse from the verified
-saved native evidence, with zero new Phenix calls. Current installation/site/model
-checks and full-run integration remain separate.
+Returned C70 verifies all 4,008 payloads and the complete C69 parent. DP,
+PDU and 5PC each publish a qualified source-bound entry and immediately REUSE
+the exact numerical bytes. Maintained code reproduces all 63 native checks,
+both triple reports and 72 result artifacts; only explicitly nonoperational
+source paths rebase. All six frozen copies resolve after original source/cache/
+evidence removal with external scientific reads forbidden. Original producer
+and stopping notes survive, including PDU nonconvergence. No new native process
+runs. Current installation/site/model checks and ordinary PostMR/full-run
+integration remain separate; no repeat of this saved cache gate is needed.
 
 See [persistent local reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs)
 for the implemented API, schema and remaining integration boundary.

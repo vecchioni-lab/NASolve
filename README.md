@@ -292,9 +292,15 @@ of three records attempts; it supplies no fresh native qualification.
 Returned C69 completes all three native reads: 63/63 usability checks and
 six fixed repeat evaluations pass. A later reporting call supplies two mutually
 exclusive auditor inputs, so source-bound publication/repeats are not selected.
-C70 separates those reports and finishes publication/reuse from the verified
-saved native evidence, with zero new Phenix calls. Current installation/site/model
-checks and full-run integration remain separate.
+Returned C70 verifies all 4,008 payloads and the complete C69 parent. DP,
+PDU and 5PC each publish a qualified source-bound entry and immediately REUSE
+the exact numerical bytes. Maintained code reproduces all 63 native checks,
+both triple reports and 72 result artifacts; only explicitly nonoperational
+source paths rebase. All six frozen copies resolve after original source/cache/
+evidence removal with external scientific reads forbidden. Original producer
+and stopping notes survive, including PDU nonconvergence. No new native process
+runs. Current installation/site/model checks and ordinary PostMR/full-run
+integration remain separate; no repeat of this saved cache gate is needed.
 
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 

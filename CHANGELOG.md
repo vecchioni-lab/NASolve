@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record successful returned C70 source-bound dictionary reuse
+
+- Verify all 4,008 payloads, byte-identical C69 parent and 158 pinned runtime
+  members. DP/PDU/5PC each save a source-bound entry and immediately reuse it.
+- Reproduce 63 native checks, separate triple reports and 72 result artifacts
+  with subprocesses forbidden; six independent copies resolve after removing
+  their original source/cache/evidence. Retain original numerical bytes,
+  authority, consumer identity and producer/stopping notes, including usable
+  PDU nonconvergence. No native, generator or optimizer process runs.
+- Close the saved-cache gate and identify ordinary PostMR cache consumption as
+  the next integration boundary. Preserve C68/C69 failures and all existing
+  chemistry, mechanics, tests, dependencies and schemas. Current installation,
+  linked/model and full-run qualification remain separate; students do not
+  inspect or approve CIFs.
+
 ### Finish source reuse from completed native qualification
 
 - Verify all 3,849 returned C69 payloads, complete C68 lineage and 158 runtime
@@ -56,7 +71,8 @@ entries are reconstructed from repository history.
   run copy. No student CIF gate, native mechanics or dependency change.
 - Add C68 on exact C67: up to three fixed native readbacks, no generation,
   optimization, ReadySet or production adoption. Its return stopped before native
-  launch; current qualification is pending the C69 layout retry.
+  launch; C69 completes native qualification and returned C70 completes source-bound
+  publication/reuse. The original failure remains immutable.
 - All 49 new / 160 focused / 4057 full tests pass (two skips, 276 subtests;
   full run 367.96 s). Saved-data replay passes 63 checks and six
   relocated qualified copies; cold inspect-only transport forbids subprocesses.
