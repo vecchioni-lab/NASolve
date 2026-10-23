@@ -21,6 +21,7 @@ from .cif_elbow_chirality import _library_anchor
 from .cif_elbow_contract import _inside, MAX_SOURCE_BYTES
 from .cif_readyset_process_policy import RESOURCE_MODULES,classify_subprocesses
 
+BUNDLE_POLICY_ID = 'cif-ordinary-readyset-cached-bundle-consumption-v1'
 LEGACY_POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v1'
 POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v2'
 EXPECTED_ACTIONS = {'hydrogens':False,'ligands':True,'optimise_ligand_geometry':False,
@@ -197,7 +198,7 @@ def read_readyset_consumption(directory):
     report_path=root/'readyset_consumption.json'
     if report_path.is_symlink():raise ValueError('Unsafe ReadySet control report')
     r=json.loads(report_path.read_bytes())
-    if r['policy_id'] not in {LEGACY_POLICY_ID,POLICY_ID} or r['requires_cif_review'] is not False:raise ValueError('ReadySet control policy differs')
+    if r['policy_id'] not in {LEGACY_POLICY_ID,POLICY_ID,BUNDLE_POLICY_ID} or r['requires_cif_review'] is not False:raise ValueError('ReadySet control policy differs')
     def resolve(ref):
         name=ref['path']
         if (ref.get('anchor')!='postmr_readyset_directory' or not isinstance(name,str)
@@ -211,7 +212,7 @@ def read_readyset_consumption(directory):
     return {'report':r,**inputs,'dictionary':resolve(r['effective_dictionary']) if r.get('effective_dictionary') else inputs['dictionary']}
 
 
-def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,output,*,timeout_seconds=180):
+def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,output,*,timeout_seconds=180,_components=None):
     """One bounded ordinary helper call; retain verified inputs on failed evidence."""
     from .postmr import _run_readyset,PostMRPreparationError
     if type(timeout_seconds) not in (int,float) or not math.isfinite(timeout_seconds) or not 0<timeout_seconds<=180:
@@ -233,6 +234,9 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
         'dispatcher_execution':'NOT_RUN; SELECTED_PHENIX_PYTHON_OBSERVER_TRANSPORT',
         'scope':'ISOLATED_ORDINARY_READYSET_CONSUMPTION; NOT_FULL_POSTMR_OR_LINKED_MODEL',
         'model_optimization_requested':False,'native_internal_operations':'NOT_EXHAUSTIVELY_INSTRUMENTED'}
+    if _components is not None:
+        report.pop('component');report.update(policy_id=BUNDLE_POLICY_ID,components=list(_components),
+            scope='WHOLE_MODEL_ORDINARY_READYSET_CONSUMPTION; LINKED_NATIVE_QUALIFICATION_SEPARATE')
     if phenix is not None:
         if not verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer):raise ValueError('Current ReadySet consumer differs')
         root=Path(phenix.root).resolve(strict=True);site=_library_anchor(consumer['api_sources'])
@@ -307,3 +311,24 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
             else:report['outputs'].append(_ref(p,output))
     _json(output/'readyset_consumption.json',report);read_readyset_consumption(output)
     return report
+
+
+def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,consumer,output,*,timeout_seconds=180):
+    """Use identical ordinary arguments and checks for a declared component bundle.
+
+    The bundle must cover two to sixteen explicit components present in both
+    source and numerical inputs and at least one heavy model site per component.
+    It is a separate diagnostic; current linked native qualification is required
+    by the caller before choosing a result. No parameter, source or model is edited.
+    """
+    from .ligand_profiles import dictionary_component_codes,_parameterized_codes
+    if (not isinstance(components,(list,tuple)) or not 2<=len(components)<=16
+            or any(not isinstance(c,str) or re.fullmatch('[A-Za-z0-9]{1,3}',c) is None for c in components)
+            or len(set(components))!=len(components)):
+        raise ValueError('Require two to sixteen unique explicit bundle components')
+    codes=set(components);observed={k[3] for k in _atoms(Path(model))}
+    if (dictionary_component_codes(Path(source))!=codes or dictionary_component_codes(Path(dictionary))!=codes
+            or _parameterized_codes(Path(dictionary))!=codes or not codes<=observed):
+        raise ValueError('Bundle source, numerical or model component scope differs')
+    return audit_readyset_consumption(source,dictionary,model,'ALL',phenix,consumer,output,
+        timeout_seconds=timeout_seconds,_components=tuple(sorted(codes)))

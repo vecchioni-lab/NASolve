@@ -322,11 +322,12 @@ Python entrypoint, checks retained cached numerics and unchanged heavy sites,
 then reads back effective native terms. Up to three bounded isolated controls;
 ReadySet consumption qualification and whole-model checks remain open.
 
-Returned C74 verifies all 5,304 payloads and identifies the sole child call as
-CCTBX querying macOS hardware memory. Cached numerics and heavy sites remain exact.
-C75 distinguishes that literal resource query using captured native caller sources;
-unknown children remain flagged. Seven other checks and all chemistry/native
-mechanics remain unchanged; fresh effective native consumption is still pending.
+Returned C75 verifies all 5,949 payloads. All three cached dictionaries pass
+ordinary ReadySet consumption and native usability: 24 consumption checks and
+63 native checks replay exactly. The only observed child per control is the
+source-verified CCTBX memory query. C76 now checks these cached definitions in
+the preserved constructed whole model, before and after one ReadySet call, with
+automatic verified-start fallback. The exact eight-pair live run remains separate.
 
 
 See the [ordinary cache contract](docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.

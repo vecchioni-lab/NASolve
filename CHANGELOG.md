@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Verify cached dictionaries through whole-model construction and ReadySet
+
+- Verify returned C75 ordinary ReadySet cached-input consumption and effective
+  native usability for DP/PDU/5PC: all 24 consumption and 63 native checks pass,
+  with source-proved memory queries and exact frozen inputs.
+- Add explicit C76 whole-model cached-dictionary readback around one ordinary
+  ReadySet control. Preserve every named native restraint/link and automatically
+  retain a verified constructed start on an optional roundtrip review. Existing
+  single-component checks, native mechanics, cache identity and NARestraints stay
+  unchanged; the eight-pair live run and scientific qualification remain separate.
+- Validation: 495 focused / 4,323 full tests pass (two skips, 276 subtests),
+  including 52 new tests. Cold source-removed transport preserves every C75
+  payload and independently resolves the prepared whole-model bundle. Actual
+  Mac C76 native/ReadySet qualification remains pending.
+
 ### Distinguish a checked native hardware query from chemistry subprocesses
 
 - Verify returned C74: 5,304 payloads, exact C73 parent, runtime inventory and
@@ -19,7 +34,8 @@ entries are reconstructed from repository history.
   unknown, modified or incompletely proven children retain review.
 - Add C75 on exact C74 and retain v1 frozen-report compatibility. Passing controls
   receive unchanged fixed native checks. No dependency, NAR, cache, dictionary,
-  coordinate or ordinary-argument change; current Mac v2 qualification is pending.
+  coordinate or ordinary-argument change. Mac v2 qualification was pending at
+  delivery; returned C75 is verified above.
 - Validation: 365 focused / 4,271 full tests pass (two skips, 276 subtests),
   including 48 new tests and two fail-before cases. Cold relocated inspect-only
   transport preserves every C74 payload and resolves three control copies with

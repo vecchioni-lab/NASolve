@@ -13,6 +13,44 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Returned C75 closes isolated ordinary ReadySet consumption.** All 5,949
+payloads, exact C74 parent, 161-member runtime inventory and reported runner SHA
+verify. Only NAR dirty-state metadata differs from the published clean build.
+All three Phenix 2.2.1-6174 controls pass: 24 consumption checks, 63 native
+usability checks and six finite repeated fixed evaluations. Each captures 28
+sources and classifies its sole subprocess as the exact CCTBX Mac memory query;
+zero builder/template calls and zero unclassified children are observed. Full
+maintained replay verifies source AST/callers, frozen numerics/full-H seeds,
+worker/spec/output/consumer and triple reports without captured-code execution.
+Original C73/C74 reviews and retained torsion/bending/nonconvergence notes survive.
+
+**Next delivery is C76:** `76_Cedar_probe_postmr_cached_model.py`, explicit
+`--postmr-cached-model-only` on exact C75. Resolve its source-bound numerical
+copies and the immutable C63 full constructed model. Reprepare the same three
+source-qualified linked contexts, require native usability against the verified
+saved canonical reference, then run one whole-model ordinary ReadySet control
+and one fixed native readback. Compare all 38 backbone links and every named
+proxy/definition exactly. A verified start remains automatic fallback with notes.
+The wrapper changes diagnostic scope/metadata only; native mechanics, source
+priority, cache keys, producer notes, ordinary arguments and NARestraints remain
+unchanged. No install, NAR release, Coot, optimizer, observations or checkpoint.
+Actual Mac C76 evidence is pending. The declared eight-pair/16-stacking live
+model and policy membership are the following integration boundary; ATL stays
+independent and students do not inspect CIF tables.
+
+C76 validation: **495 focused / 4,323 full tests pass** (two skips, 276 subtests;
+436.19 s), including 52 new tests, a scope fail-before and the direct C75-record
+adapter regression. The 162-member runtime passes source-removed cold relocated
+inspect-only replay of exact C75 with every subprocess and original build-source
+read forbidden, poisoned imports and aliased TMPDIR. All 5,949 parent payloads
+and manifest survive in 6,626 output payloads. The standalone whole-model bundle
+resolves after original evidence removal; the application store is untouched
+and the everyday edit survives. All 165 relative document links, 21 mirrored
+records, protected mechanics, NAR workbook and eight-pair plan verify. The
+editable figure is deterministic, rendered and visually checked. These local
+checks prepare inputs; actual Mac C76 native/ReadySet qualification is pending.
+See `whole_model_cached_readyset_2026_10_23` for exact technical evidence.
+
 **Returned C74 identifies a native memory query.** All 5,304 payloads, exact
 C73 parent, pinned runtime inventory and reported `c03dbb68...` runner SHA verify;
 only NAR dirty-state metadata differs from the clean build. DP/PDU/5PC each keep
@@ -24,7 +62,7 @@ Caller source files are not in C74, so keep all original v1 reviews and the
 explicit zero fixed-native count. Maintained replay reproduces all 24 checks
 and the exact recorded trace without executing captured Python.
 
-**Next delivery is C75:** `75_Cedar_probe_postmr_resource_queries.py`, same
+**C75 delivery and original validation:** `75_Cedar_probe_postmr_resource_queries.py`, same
 explicit action on exact C74. V2 adds fresh captured easy_run/introspection/
 cubicle_neighbors source, AST call-span checks and the exact literal command
 matcher. Keep raw events and distinguish known resource queries from unknown
@@ -33,8 +71,8 @@ frames are truncated. The seven other consumption checks and every scientific
 kernel/parameter remain unchanged. Only passing controls receive the unchanged
 native/consumer/triple qualification on original C71 full-H seeds. Old v1 reports
 remain readable with their original verdicts; no student CIF approval, package,
-NAR release or cache migration is introduced. Actual Mac v2 classification and
-effective native/whole-model/full-run qualification remain pending.
+NAR release or cache migration is introduced. Actual Mac v2 classification and effective native qualification are verified
+above; current whole-model/full-run qualification remains separate.
 
 C75 validation: **365 focused / 4,271 full tests pass** (two skips, 276 subtests;
 450.86 s), including 48 new permanent tests and two fail-before cases. The
@@ -46,7 +84,7 @@ owned evidence removal. The store is untouched and the everyday edit survives.
 All 165 relative document links, 20 mirrored records, protected mechanics, NAR
 workbook and exact eight-pair plan verify; the deterministic editable figure is
 rendered and visually checked. Fake SDK query tests and public upstream context
-are distinct from the still-pending fresh Mac source/native qualification.
+are distinct from the actual Mac source/native qualification recorded above.
 
 **Returned C73 completes ReadySet but retains unclassified child calls.** All
 4,830 payloads, the exact C72 parent, pinned runtime inventory and reported

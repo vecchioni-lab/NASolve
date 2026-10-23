@@ -328,9 +328,41 @@ native function, ordinary argument, numerical dictionary or target changes.
 The C75 retry preserves exact C74 and all prior evidence, reuses verified C71
 inputs and performs the same three bounded controls. Only passing controls receive
 the unchanged fixed native checks on the unchanged full-H seeds. No installation,
-generation, optimization or student CIF approval is requested. Actual C75 source
-proof/effective native consumption and whole-model/full-run qualification remain
-open; cache identity, original stopping notes and NARestraints stay unchanged.
+generation, optimization or student CIF approval is requested. Returned C75
+verifies all 5,949 payloads and the exact C74 parent. All three Phenix 2.2.1-6174
+controls pass their eight checks. Each retains zero builder/template calls and
+one source-proved resource query with zero unclassified children. Fresh native
+readback passes all 63 usability checks and six finite repeated evaluations with
+matching consumer identity. The 28-source installed snapshots, classifier and
+native qualification replay as data; no captured Python is executed. Original
+C73/C74 reviews, nonconvergence and retained torsion/bending notes remain intact.
+
+C76 methods: resolve current-source-bound resources from exact C75 and the full
+constructed model/canonical reference from the verified C63/C64 lineage. Reuse
+the existing source-qualified site modifiers at DP A:6, 5PC A:7 and PDU A:9.
+Require a fixed native readback to pass the unchanged construction qualifier
+against the saved canonical reference, with freshly matching dispatcher/version,
+eight API and three energy-source fingerprints. No Coot or optimizer is rerun.
+
+Merge only the three prepared base dictionaries for one ordinary whole-model
+ReadySet call. The bundle wrapper requires matching declared source/numerical
+components and their presence in the model; it uses the same arguments, observer,
+resource-query proof and eight consumption checks. A passing result receives one
+fixed native readback with unchanged site modifiers and explicit PHILs. Require
+all backbone links, exact projected site definitions and every ordered named
+proxy/parameter/origin/symmetry/multiplicity in all eight families to survive.
+Only display padding in structured identities is normalized. Both fixed reads
+retain the existing finite/repeatable energy/gradient checks; no derivative or
+scientific geometry verdict is inferred.
+
+Select the checked endpoint only after every gate passes; otherwise retain the
+verified constructed start with notes. Unverified starts cannot be selected.
+Inspect-only prepares portable inputs and reports NOT_ASSESSED. This is at most
+one ReadySet call (180 seconds) and two native reads (60 seconds each), with no
+retry, generation or model optimization requested. No cache key/entry, numerical
+target, ordinary production behavior or NARestraints policy changes. Pair/stack
+guessing stays disabled; the intended eight-pair/16-stacking live-model membership
+and full-run qualification remain separate. No student CIF approval is required.
 
 
 
