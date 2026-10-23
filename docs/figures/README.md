@@ -214,9 +214,10 @@ ReadySet consumption qualification and whole-model checks remain open.
 Returned C76 verifies all 6,691 payloads. Initial whole-model native checks pass:
 93 PASS, three unsupported charge readbacks, and all 38 backbone links preserved.
 ReadySet keeps exact cached numerics and heavy coordinates but calls three builders;
-the strict guard retains the verified start automatically. C77 passes each checked
-component dictionary separately to test the input-registration inference. Fresh
-Mac consumption, the exact eight-pair live run and scientific qualification remain open.
+the strict guard retains the verified start automatically. C77 stops while staging
+its deeply nested history on macOS, before native execution. C78 adds short indexed
+staging and robust failure capsules, then repeats the same per-component input test.
+Fresh Mac consumption, the eight-pair live run and scientific qualification remain open.
 
 
 See the [ordinary cache contract](../cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.

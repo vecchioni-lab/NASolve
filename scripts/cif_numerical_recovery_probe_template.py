@@ -98,6 +98,50 @@ def _review_zip(session):
     return destination
 
 
+def _report_probe_failure(session,receipt,members,review,original,exc):
+    """Keep the original exception visible even if staging/archive collection fails."""
+    from nasolve.cif_review_transport import staged_review_members_match,is_safe_review_member
+    def save_receipt():
+        path=session/'probe_receipt.json'
+        if path.is_symlink():raise ValueError('Failure receipt cannot be a symlink')
+        descriptor,temporary=tempfile.mkstemp(prefix='.failure-receipt-',dir=session)
+        try:
+            with os.fdopen(descriptor,'w') as handle:
+                handle.write(json.dumps(receipt,indent=2,sort_keys=True,allow_nan=False)+'\n')
+            os.replace(temporary,path)
+        finally:Path(temporary).unlink(missing_ok=True)
+    receipt.update(analysis_completed=False,error=str(exc),error_type=type(exc).__name__)
+    try:receipt['original_archive_preserved']=bool(original is not None and review and review.read_bytes()==original)
+    except OSError:receipt['original_archive_preserved']=False
+    receipt['frozen_inputs_preserved']=bool(members is not None and staged_review_members_match(members,session/'inputs/review'))
+    save_receipt()
+    if receipt['frozen_inputs_preserved']:
+        try:return _review_zip(session)
+        except Exception as archive_exc:
+            receipt['archive_collection_error']=type(archive_exc).__name__+': '+str(archive_exc)
+    else:receipt['archive_collection']='SKIPPED_INCOMPLETE_STAGING'
+    receipt['failure_archive_scope']='RECEIPT_AND_VERIFIED_INPUT_MEMORY_COPY; OTHER_OUTPUTS_NOT_COLLECTED'
+    save_receipt()
+    token=session.name.rsplit('-',1)[-1]
+    destination=session/(BUNDLE['delivery_prefix']+'_'+token+'_failure_review.zip')
+    files={'probe_receipt.json':(session/'probe_receipt.json').read_bytes()}
+    if members is not None:
+        if any(not is_safe_review_member(n) or not isinstance(d,bytes) for n,d in members.items()):
+            receipt['failure_input_copy_error']='UNSAFE_INPUT_MAPPING; RECEIPT_ONLY'
+            save_receipt()
+            files['probe_receipt.json']=(session/'probe_receipt.json').read_bytes()
+        else:files.update({'inputs/review/'+n:d for n,d in members.items()})
+    try:
+        with zipfile.ZipFile(destination,'x',zipfile.ZIP_DEFLATED) as archive:
+            for name,data in files.items():archive.writestr(name,data)
+            archive.writestr('manifest.json',json.dumps({n:{'sha256':_sha(d),'bytes':len(d)} for n,d in files.items()},indent=2))
+        return destination
+    except Exception as fallback_exc:
+        receipt['failure_archive_error']=type(fallback_exc).__name__+': '+str(fallback_exc)
+        save_receipt()
+        return None
+
+
 def _fingerprints(phenix,capture):
     if not phenix.root or phenix.version!=capture['phenix_version']:
         raise ValueError('Selected Phenix differs from captured native version')
@@ -2893,7 +2937,8 @@ def _run_postmr_cached_model_action(args,receipt,session,review,original,members
         'Verified saved canonical reference requires matching current source/consumer fingerprints; no canonical energy ranking.',
         'NARestraints remains authoritative. No pair/stack guessing or compilation here; exact eight-pair live-run policy membership remains next.',
         'No diffraction, production checkpoint, refinement, global adoption or student CIF inspection. Original producer and nonconvergence notes are retained in the exact parent.']
-    if any(read_staged_review_member(frozen,n)!=d for n,d in members.items()) or review.read_bytes()!=original:raise ValueError('Cached model readback changed preserved evidence')
+    from nasolve.cif_review_transport import staged_review_members_match
+    if not staged_review_members_match(members,frozen) or review.read_bytes()!=original:raise ValueError('Cached model readback changed preserved evidence')
     _json(session/'postmr_cached_model_audit.json',receipt['postmr_cached_model_audit']);_json(session/'probe_receipt.json',receipt)
     print('Whole-model cached readback:',report['status'],'; ReadySet / native calls:',report['new_readyset_calls'],'/',report['new_native_calls'],flush=True)
     print('Automatic coordinate decision:',report['decision']['status'],'; selected:',report['decision']['selected'],flush=True)
@@ -5553,6 +5598,7 @@ def _check_constructor_input_mode(args,delivery):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '78_Cedar':'NASolve-live-tests/76_Cedar_cif-numerical-recovery-ov7j_6bc/76_Cedar_ov7j_6bc_cif_numerical_recovery_review.zip',
         '77_Cedar':'NASolve-live-tests/76_Cedar_cif-numerical-recovery-ov7j_6bc/76_Cedar_ov7j_6bc_cif_numerical_recovery_review.zip',
         '76_Cedar':'NASolve-live-tests/75_Cedar_cif-numerical-recovery-n5f0jkvr/75_Cedar_n5f0jkvr_cif_numerical_recovery_review.zip',
         '75_Cedar':'NASolve-live-tests/74_Cedar_cif-numerical-recovery-vkqu5gzq/74_Cedar_vkqu5gzq_cif_numerical_recovery_review.zip',
@@ -5708,8 +5754,14 @@ def main():
         _materialize(runtime,session/'runtime');sys.path[:0]=[str(session/'runtime/src'),str(session/'runtime')];sys.dont_write_bytecode=True
         members,qualified,prior,rotation,original=_read_capsule(review)
         from nasolve.cif_review_transport import stage_review_members
-        stage_review_members(members,session/'inputs/review');frozen=session/'inputs/review'
-        source_members,source_prefix=_source_view(members);source_root=frozen/PurePosixPath(source_prefix) if source_prefix else frozen
+        stage_review_members(members,session/'inputs/review',indexed=args.postmr_cached_model_only);frozen=session/'inputs/review'
+        source_members,source_prefix=_source_view(members)
+        if args.postmr_cached_model_only:
+            source_root=session/'prerequisite_view';_materialize(source_members,source_root)
+            receipt['review_transport']={'policy_id':'cif-review-member-transport-v2','logical_members':len(members),
+                'prerequisite_view':{'anchor':'probe_directory','path':'prerequisite_view','logical_prefix':source_prefix},
+                'source_view_files':len(source_members),'scientific_reference_rules':'UNCHANGED'}
+        else:source_root=frozen/PurePosixPath(source_prefix) if source_prefix else frozen
         reader_members,reader_prefix=_source_reader_evidence(members);reader_root=frozen/PurePosixPath(reader_prefix) if reader_prefix else frozen
         if source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='76_Cedar':
             receipt['previous_execution']={'delivery_prefix':'76_Cedar','new_readyset_calls':1,'new_native_readbacks':1,
@@ -6179,14 +6231,15 @@ def main():
         print('Diagnostic: REVIEW ('+('source-dialect reader evidence' if args.source_dialect_audit_only else 'read-only source/candidate stereochemistry' if args.stereochemistry_audit_only else 'installed source/read-only input evidence' if args.native_contract_only else 'dictionary candidates only')+'; native/scientific qualification remains open)',flush=True)
         print('REVIEW ZIP:',_review_zip(session),flush=True);return 2
     except Exception as exc:
-        receipt.update(analysis_completed=False,error=str(exc))
+        print('Numerical recovery stopped:',str(exc),file=sys.stderr,flush=True)
         if session:
-            receipt['original_archive_preserved']=bool(original is not None and review and review.read_bytes()==original)
-            receipt['frozen_inputs_preserved']=bool(members is not None and all((session/'inputs/review'/PurePosixPath(n)).is_file()
-                and (session/'inputs/review'/PurePosixPath(n)).read_bytes()==d for n,d in members.items()))
-            if not (session/'probe_receipt.json').exists():_json(session/'probe_receipt.json',receipt)
-            print('REVIEW ZIP:',_review_zip(session),flush=True)
-        print('Numerical recovery stopped:',str(exc),file=sys.stderr,flush=True);return 2
+            try:
+                archive=_report_probe_failure(session,receipt,members,review,original,exc)
+                if archive:print('REVIEW ZIP:',archive,flush=True)
+                else:print('Failure receipt:',session/'probe_receipt.json',flush=True)
+            except Exception as report_exc:
+                print('Failure reporting stopped:',type(report_exc).__name__+': '+str(report_exc),file=sys.stderr,flush=True)
+        return 2
 
 
 if __name__=='__main__':raise SystemExit(main())

@@ -13,13 +13,30 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**C77 stopped before native execution on macOS.** The user trace reports errno
+63 during deeply nested history staging and again during failure reporting; no
+C77 ZIP exists. Its reported runner SHA matches the published code with only NAR
+dirty-state metadata changed. Local C77 Linux tests remain valid in that scope;
+they did not simulate the macOS path limit. Preserve the failed directory/worktree.
+
+**Next delivery is C78:** `78_Cedar_probe_review_transport.py`, same explicit
+`--postmr-cached-model-only` action on exact C76, not incomplete C77. Indexed v2
+staging keeps all original logical names/bytes behind short hash-derived paths;
+export restores the original parent members and manifest. Materialize the declared
+shallow C29 prerequisite view for existing scientific APIs. Native definitions,
+per-component arguments, strict gates, fallback, cache identity and NAR remain
+unchanged. Robust failure reporting preserves the first error and can export
+verified input members from memory when staging is incomplete. Record
+`indexed_review_transport_2026_10_23` contains the simulated consumer-limit,
+source-removed relocation and regression evidence. Fresh Mac C78 remains pending.
+
 **Returned C76 passes initial full-model native mechanics; ReadySet remains under review.**
 All 6,691 payloads and exact C75 lineage verify. Native result: 93 PASS, three
 unsupported charge readbacks, 38 links and 3,148 unaffected named terms preserved.
 ReadySet preserves cached numerics/heavy coordinates but calls three builders.
 The strict guard retains `verified_constructed_model`; no endpoint native readback.
 
-**Next delivery is C77:** `77_Cedar_probe_postmr_component_inputs.py`,
+**C77 delivery and original validation:** `77_Cedar_probe_postmr_component_inputs.py`,
 `--postmr-cached-model-only` on exact C76. Freeze the already-prepared component
 files separately, require exact parameterization/coverage/recombination and pass
 one repeatable CIF argument per file. All native gates/actions and fallback stay

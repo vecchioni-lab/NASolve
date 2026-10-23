@@ -391,6 +391,32 @@ notes only. Scientific bytes, parameters, hashes and verdicts stay exact. These
 are compatibility and argument-transport changes; cache identity and chemical
 mechanics remain unchanged. The same verified-start fallback and bounds apply.
 
+C77 consumer transport failure and C78 methods: the reported macOS trace stops
+in `stage_review_members` before the native phase, then its exception handler
+repeats the long-path lookup. No C77 ZIP was created. The verified C76 archive
+has a 939-byte logical member path; Linux transport checks did not impose the
+consumer limit. This is transport evidence, not a new chemistry verdict.
+
+Explicit `cif-review-member-transport-v2` stages all accepted members at bounded
+hash-derived object paths. Its checked index binds exact logical names, sizes
+and SHA-256 values; readers and archive export preserve every original byte/name
+and manifest without materializing the historical path. The cached-model action
+uses this layout and a shallow prerequisite view selected through the declared
+C29 lineage prefix (1,174 files, maximum relative path 281 bytes). The legacy
+v1 layout/backup-name exception remains supported, and scientific references
+retain their strict validation. No captured Python or opaque backup is executed.
+
+Bulk preservation validation reads each indexed payload once. Incomplete staging
+reports false. Failure reporting prints the original exception first and writes
+an owned atomic receipt. If complete collection is unavailable, a reduced-scope
+failure ZIP retains the receipt and verified input members directly from memory;
+it explicitly excludes uncollected outputs and never claims incomplete staging
+was preserved. A ZIP-writing failure leaves the receipt and secondary diagnostic.
+C78 repeats C77 on exact C76, retaining the same chemical definitions, separate
+CIF arguments, native checks and automatic verified-start fallback. Fresh Mac
+qualification remains pending; prior failed directories and runs stay untouched.
+
+
 
 
 

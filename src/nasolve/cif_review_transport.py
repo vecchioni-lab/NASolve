@@ -1,9 +1,9 @@
-"""Portable transport for opaque Coot diagnostics in preserved review capsules.
+"""Portable transport for preserved review members and opaque diagnostics.
 
-Scientific references keep their stricter path rules. Only timestamped Coot
-backup names have a logical-name exception; their gzip payloads are never opened.
-Historical names and bytes return unchanged to the next archive, while newly
-owned backups receive portable names with explicit normalization provenance.
+Scientific references retain strict path rules. Legacy v1 maps only timestamped
+Coot backup names. Explicit indexed v2 keeps every accepted logical member behind
+a bounded hash-derived path. Both restore exact names and bytes to the next
+archive; captured code and opaque backups are never executed or decompressed.
 """
 from __future__ import annotations
 
@@ -17,6 +17,7 @@ import stat
 import unicodedata
 
 POLICY_ID = "cif-review-diagnostic-transport-v1"
+INDEXED_POLICY_ID = "cif-review-member-transport-v2"
 _METADATA = ".review-transport"
 _INDEX = "index.json"
 _PROVENANCE = "postmr_construction/diagnostic_transport.json"
@@ -111,31 +112,35 @@ def _json_bytes(value) -> bytes:
     return (json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n").encode()
 
 
-def _row(logical: str, data: bytes) -> dict:
-    return {"physical": _METADATA + "/objects/" + sha256(logical.encode()).hexdigest() + ".pdb.gz",
+def _row(logical: str, data: bytes, *, indexed=False) -> dict:
+    return {"physical": _METADATA + "/objects/" + sha256(logical.encode()).hexdigest() + (".bin" if indexed else ".pdb.gz"),
             "sha256": sha256(data).hexdigest(), "size": len(data)}
 
 
-def _load_index(root: Path) -> dict:
+def _load_index(root: Path, *, verify_payloads=True) -> dict:
     directory = root / _METADATA
     if not directory.exists() and not directory.is_symlink():
         return {}
     try:
         value = _parse_json(_read(root, _METADATA + "/" + _INDEX))
-        if set(value) != {"policy_id", "members"} or value["policy_id"] != POLICY_ID or not isinstance(value["members"], dict) or not value["members"]:
+        if set(value) != {"policy_id", "members"} or value["policy_id"] not in {POLICY_ID, INDEXED_POLICY_ID} or not isinstance(value["members"], dict) or not value["members"]:
             raise ValueError("Invalid diagnostic transport index")
         rows = value["members"]
+        indexed = value["policy_id"] == INDEXED_POLICY_ID
+        if indexed and any(p.name != _METADATA for p in root.iterdir()):
+            raise ValueError("Indexed staging root contains unbound files")
         _unique(rows)
         expected = {_METADATA + "/" + _INDEX}
         for logical, row in rows.items():
-            if not isinstance(logical, str) or not _BACKUP.fullmatch(logical) or not isinstance(row, dict) or set(row) != {"physical", "sha256", "size"}:
+            if not is_safe_review_member(logical) or (not indexed and not _BACKUP.fullmatch(logical)) or not isinstance(row, dict) or set(row) != {"physical", "sha256", "size"}:
                 raise ValueError("Invalid diagnostic transport index row")
-            physical = _row(logical, b"")["physical"]
+            physical = _row(logical, b"", indexed=indexed)["physical"]
             if row["physical"] != physical or not isinstance(row["sha256"], str) or not _SHA.fullmatch(row["sha256"]) or type(row["size"]) is not int or row["size"] < 0:
                 raise ValueError("Invalid diagnostic transport binding")
-            data = _read(root, physical)
-            if len(data) != row["size"] or sha256(data).hexdigest() != row["sha256"]:
-                raise ValueError("Staged diagnostic bytes changed")
+            if verify_payloads:
+                data = _read(root, physical)
+                if len(data) != row["size"] or sha256(data).hexdigest() != row["sha256"]:
+                    raise ValueError("Staged diagnostic bytes changed")
             expected.add(physical)
         actual = set()
         for path in directory.rglob("*"):
@@ -152,12 +157,19 @@ def _load_index(root: Path) -> dict:
         raise ValueError("Invalid diagnostic transport index") from exc
 
 
-def stage_review_members(members: Mapping[str, bytes], target: Path) -> dict[str, str]:
-    """Write a fresh owned copy without materializing historical colon names."""
+def stage_review_members(members: Mapping[str, bytes], target: Path, *, indexed=False) -> dict[str, str]:
+    """Stage legacy backups or all members behind bounded hash-derived paths.
+
+    Indexed v2 is explicit: logical names remain archive identities and never
+    become OS paths. Read them through the bound reader. Legacy v1 retains its
+    ordinary file layout and the narrow historical backup-name exception.
+    """
     if not isinstance(members, Mapping) or any(not is_safe_review_member(n) or not isinstance(d, bytes) for n, d in members.items()):
         raise ValueError("Unsafe diagnostic review member")
     _unique(members)
-    mapping = {n: _row(n, d)["physical"] if ":" in n else n for n, d in members.items()}
+    if indexed and not members:
+        raise ValueError("Indexed staging requires at least one member")
+    mapping = {n: _row(n, d, indexed=indexed)["physical"] if indexed or ":" in n else n for n, d in members.items()}
     _unique(mapping.values())
     root = _root(target, create=True)
     if any(root.iterdir()):
@@ -170,23 +182,44 @@ def stage_review_members(members: Mapping[str, bytes], target: Path) -> dict[str
         with path.open("xb") as handle:
             handle.write(data)
         if physical != logical:
-            rows[logical] = _row(logical, data)
+            rows[logical] = _row(logical, data, indexed=indexed)
     if rows:
-        (root / _METADATA / _INDEX).write_bytes(_json_bytes({"policy_id": POLICY_ID, "members": rows}))
+        (root / _METADATA / _INDEX).write_bytes(_json_bytes({"policy_id": INDEXED_POLICY_ID if indexed else POLICY_ID, "members": rows}))
     return mapping
 
 
 def read_staged_review_member(target: Path, logical: str) -> bytes:
-    """Read an original logical member while checking its portable byte binding."""
+    """Resolve an exact logical name; never probe its long historical OS path."""
     if not is_safe_review_member(logical):
         raise ValueError("Unsafe diagnostic review member")
     root = _root(target)
-    if ":" not in logical:
-        return _read(root, logical)
-    rows = _load_index(root)
-    if logical not in rows:
+    rows = _load_index(root, verify_payloads=False)
+    if logical in rows:
+        row = rows[logical]
+        data = _read(root, row["physical"])
+        if len(data) != row["size"] or sha256(data).hexdigest() != row["sha256"]:
+            raise ValueError("Staged diagnostic bytes changed")
+        return data
+    if ":" in logical or any(r["physical"].endswith(".bin") for r in rows.values()):
         raise ValueError("Missing staged logical diagnostic member")
-    return _read(root, rows[logical]["physical"])
+    return _read(root, logical)
+
+
+def staged_review_members_match(members: Mapping[str, bytes], target: Path) -> bool:
+    """Check all expected bytes once; partial/error staging simply reports false."""
+    try:
+        if not isinstance(members, Mapping) or any(not is_safe_review_member(n) or not isinstance(d, bytes) for n, d in members.items()):
+            return False
+        root = _root(target)
+        rows = _load_index(root)
+        indexed = bool(rows) and all(r["physical"].endswith(".bin") for r in rows.values())
+        if indexed:
+            return set(rows) == set(members) and all(rows[n]["size"] == len(d)
+                and rows[n]["sha256"] == sha256(d).hexdigest() for n, d in members.items())
+        return all((_read(root, rows[n]["physical"]) if n in rows else _read(root, n)) == d
+                   for n, d in members.items())
+    except (OSError, ValueError, TypeError, KeyError):
+        return False
 
 
 def _files(root: Path, destination: Path) -> list[Path]:

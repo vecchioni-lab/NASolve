@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bound historical review paths and preserve failure diagnostics
+
+- Record the C77 macOS path-limit failure before native execution; retain the
+  original C76 input and all prior scientific qualifications.
+- C78 opts into checked indexed staging with short physical object paths and a
+  declared shallow prerequisite view. Export preserves original logical names,
+  bytes and manifests; legacy staging and scientific-reference rules remain.
+- Report the first error even when staging or archive collection fails. A clearly
+  scoped failure ZIP can retain verified input members from memory; incomplete
+  staging is never reported as preserved. Native mechanics and NAR are unchanged.
+- Validation: 639 focused / 4,403 full tests pass (two skips, 276 subtests),
+  including 23 new cases. Source-removed cold transport under a simulated macOS
+  limit preserves every C76 payload/manifest; maximum observed path is 404 bytes.
+  Fresh Mac C78 native consumption remains pending.
+
+
 ### Preserve component registration when supplying cached ReadySet dictionaries
 
 - Verify returned C76 initial native mechanics and preserve its original
