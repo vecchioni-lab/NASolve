@@ -1464,7 +1464,7 @@ def _run_readyset(
     model: Path,
     ready_set_executable: Path,
     readyset_directory: Path,
-    ligand_cif: Path | None,
+    ligand_cif: Path | Sequence[Path] | None,
     environment: Mapping[str, str] | None,
     *,
     phosphate_sites: tuple[str, ...] = (),
@@ -1480,7 +1480,14 @@ def _run_readyset(
         "ready_set.actions.optimise_ligand_geometry=False",
     ]
     if ligand_cif is not None:
-        command.append(f"ready_set.input.cif_file_name={ligand_cif}")
+        # ReadySet registers one molecule id per input file. Preserve the
+        # existing single-file form; explicit sequences supply separate inputs.
+        cifs = list(ligand_cif) if isinstance(ligand_cif, (list, tuple)) else [ligand_cif]
+        if not 1 <= len(cifs) <= 64 or any(not isinstance(p, (str, Path)) for p in cifs):
+            raise ValueError("Require one to 64 explicit ReadySet CIF paths")
+        if len({str(p) for p in cifs}) != len(cifs):
+            raise ValueError("Duplicate ReadySet CIF input")
+        command.extend(f"ready_set.input.cif_file_name={p}" for p in cifs)
     log = readyset_directory / "ready_set.log"
     try:
         completed = (subprocess.run if process_runner is None else process_runner)(

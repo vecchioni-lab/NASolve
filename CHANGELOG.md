@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve component registration when supplying cached ReadySet dictionaries
+
+- Verify returned C76 initial native mechanics and preserve its original
+  three-builder ReadySet review and automatic verified-start choice.
+- C77 supplies exact parameterized components separately to the ordinary helper;
+  strict consumption/native gates remain unchanged. Retain v1 report compatibility
+  for explicitly excluded opaque files and derived diagnostic roundoff only.
+- Fresh Mac per-component consumption and whole-model endpoint readback remain
+  pending; ordinary production orchestration and NARestraints are unchanged.
+- Validation: 552 focused tests pass, including 57 new cases and two fail-before
+  regressions. Cold source-removed transport preserves all 6,691 C76 payloads;
+  component inputs resolve independently after relocation. Full suite: 4,380 pass,
+  two skips and 276 passing subtests.
+
+
 ### Verify cached dictionaries through whole-model construction and ReadySet
 
 - Verify returned C75 ordinary ReadySet cached-input consumption and effective

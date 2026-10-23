@@ -9,7 +9,33 @@ from .cif_fragment_restoration import _model
 from .cif_linked_qualification import native_backbone_links
 from .cif_terminal_qualification import _proxy_subset, PROXY_COMPARISON_POLICY
 
-POLICY_ID='cif-postmr-cached-model-readback-v1'
+LEGACY_POLICY_ID='cif-postmr-cached-model-readback-v1'
+POLICY_ID='cif-postmr-cached-model-readback-v2'
+
+
+def cached_preparation_replays(recorded,recomputed,path=()):
+    """Allow platform roundoff only in duplicated derived eigensystem notes.
+
+    The construction comparator already permits 1e-12 roundoff in finding
+    measurements. The legacy inspection repeats those measurements under
+    numerical_issues. Apply the same bound there; source targets, coordinates,
+    proxies, hashes, rules and verdicts still compare exactly.
+    """
+    import math
+    from .cif_construction_native import _preparation_replays
+    if type(recorded) is not type(recomputed):return False
+    if isinstance(recorded,dict):
+        return set(recorded)==set(recomputed) and all(cached_preparation_replays(
+            v,recomputed[k],path+(k,)) for k,v in recorded.items())
+    if isinstance(recorded,list):
+        return len(recorded)==len(recomputed) and all(cached_preparation_replays(
+            v,w,path+(i,)) for i,(v,w) in enumerate(zip(recorded,recomputed)))
+    derived=('numerical_issues' in path and (
+        path[-2:]==('measurements','determinant')
+        or len(path)>=3 and path[-3:-1]==('measurements','eigenvalues') and type(path[-1]) is int))
+    if type(recorded) is float and derived:
+        return math.isfinite(recorded) and math.isfinite(recomputed) and math.isclose(recorded,recomputed,rel_tol=1e-12,abs_tol=1e-12)
+    return _preparation_replays(recorded,recomputed,path)
 
 
 def qualify_cached_model_roundtrip(before,after,before_model,after_model):
@@ -97,7 +123,8 @@ def audit_cached_model(reference_model,model,canonical_capture,resources,phenix,
     Explicit linked-site contexts and isolated source qualifications are required;
     no residue name, pair intent or chemistry is inferred here. The canonical
     comparison is a verified saved capture, with fresh matching implementation
-    fingerprints required. The ordinary ReadySet arguments/kernels stay unchanged.
+    fingerprints required. Only the checked per-component CIF argument representation changes;
+    native actions, chemical definitions and kernels stay unchanged.
     """
     from hashlib import sha256
     import json,math
@@ -151,7 +178,8 @@ def audit_cached_model(reference_model,model,canonical_capture,resources,phenix,
             report['before_qualification']=qualify_constructed_native(canonical_capture['native_validation'],before['native_validation'],reference,initial,entries)
     initial_usable=report['before_qualification'].get('mechanics_checks_pass') is True
     if phenix is None or initial_usable:
-        control=audit_readyset_bundle_consumption(sources,combined,initial,sorted(resources),phenix,consumer,output/'readyset_consumption',timeout_seconds=timeout_seconds)
+        control=audit_readyset_bundle_consumption(sources,combined,initial,sorted(resources),phenix,consumer,output/'readyset_consumption',timeout_seconds=timeout_seconds,
+            component_dictionaries={c:root/'preparations'/c/preparation['preparations'][c]['outputs']['dictionary']['path'] for c in sorted(resources)})
         report['readyset']={'directory':{'anchor':'cached_model_directory','path':'readyset_consumption'},**control}
         if 'returncode' in control['execution']:report['new_readyset_calls']+=1
         loaded=read_readyset_consumption(output/'readyset_consumption')
@@ -168,12 +196,13 @@ def audit_cached_model(reference_model,model,canonical_capture,resources,phenix,
     if phenix is None:report['decision']={'status':'NOT_ASSESSED','selected':None,'requires_cif_review':False,'automatic_adoption':False,'notes':['Prepared inputs only; no native process.']}
     report['status']='PREPARED_ONLY' if phenix is None else 'POSTMR_CACHED_MODEL_PASS' if endpoint_usable else 'REVIEW'
     if phenix:verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer)
-    report['outputs']=[]
+    report['outputs']=[];report['excluded_serialized_outputs']=[]
     for path in sorted(output.rglob('*')):
         if path.is_symlink():raise ValueError('Unexpected cached-model output symlink')
         if path.is_file() and path.name!='cached_model.json':
-            data=path.read_bytes();report['outputs'].append({'anchor':'cached_model_directory','path':path.relative_to(output).as_posix(),
-                'size':len(data),'sha256':sha256(data).hexdigest()})
+            data=path.read_bytes();ref={'anchor':'cached_model_directory','path':path.relative_to(output).as_posix(),
+                'size':len(data),'sha256':sha256(data).hexdigest()}
+            report['excluded_serialized_outputs' if path.suffix in {'.pickle','.pkl','.pyc'} else 'outputs'].append(ref)
     (output/'cached_model.json').write_text(json.dumps(report,indent=2,sort_keys=True,allow_nan=False)+'\n')
     return report
 
@@ -186,16 +215,29 @@ def read_cached_model(directory):
     if any(p.is_symlink() for p in [root,*root.parents]):raise ValueError('Unsafe cached-model directory')
     if (root/'cached_model.json').is_symlink():raise ValueError('Unsafe cached-model report')
     report=json.loads((root/'cached_model.json').read_bytes())
-    if report.get('policy_id')!=POLICY_ID or report.get('requires_cif_review') is not False:raise ValueError('Cached-model policy differs')
+    if report.get('policy_id') not in {LEGACY_POLICY_ID,POLICY_ID} or report.get('requires_cif_review') is not False:raise ValueError('Cached-model policy differs')
+    excluded={}
+    # C76 v1 accidentally included explicitly excluded ReadySet pickles in its
+    # required inventory. Preserve its report; waive only those exact metadata
+    # entries, never an input/model/CIF or an unrecorded missing file.
+    if report['policy_id']==LEGACY_POLICY_ID:
+        for ref in report.get('readyset',{}).get('excluded_serialized_outputs',[]):
+            if ref.get('anchor')!='postmr_readyset_directory' or Path(ref['path']).suffix not in {'.pickle','.pkl','.pyc'}:
+                raise ValueError('Invalid legacy serialized exclusion')
+            row={**ref,'anchor':'cached_model_directory','path':'readyset_consumption/'+ref['path']}
+            excluded[row['path']]=row
     seen=set()
     for ref in report['outputs']:
         name=ref['path']
         if (ref.get('anchor')!='cached_model_directory' or not isinstance(name,str) or name.startswith('/')
                 or '\\' in name or ':' in name or any(p in {'','.','..'} for p in name.split('/')) or name in seen):
             raise ValueError('Unsafe cached-model artifact reference')
+        seen.add(name)
+        if name in excluded:
+            if ref!=excluded[name]:raise ValueError('Legacy serialized exclusion metadata differs')
+            continue
         path=root/name
         if any(p.is_symlink() for p in [path,*path.parents]):raise ValueError('Symlinked cached-model artifact')
         data=path.read_bytes()
         if len(data)!=ref['size'] or sha256(data).hexdigest()!=ref['sha256']:raise ValueError('Cached-model artifact changed')
-        seen.add(name)
     return report

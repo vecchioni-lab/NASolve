@@ -322,12 +322,12 @@ Python entrypoint, checks retained cached numerics and unchanged heavy sites,
 then reads back effective native terms. Up to three bounded isolated controls;
 ReadySet consumption qualification and whole-model checks remain open.
 
-Returned C75 verifies all 5,949 payloads. All three cached dictionaries pass
-ordinary ReadySet consumption and native usability: 24 consumption checks and
-63 native checks replay exactly. The only observed child per control is the
-source-verified CCTBX memory query. C76 now checks these cached definitions in
-the preserved constructed whole model, before and after one ReadySet call, with
-automatic verified-start fallback. The exact eight-pair live run remains separate.
+Returned C76 verifies all 6,691 payloads. Initial whole-model native checks pass:
+93 PASS, three unsupported charge readbacks, and all 38 backbone links preserved.
+ReadySet keeps exact cached numerics and heavy coordinates but calls three builders;
+the strict guard retains the verified start automatically. C77 passes each checked
+component dictionary separately to test the input-registration inference. Fresh
+Mac consumption, the exact eight-pair live run and scientific qualification remain open.
 
 
 See the [ordinary cache contract](docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.

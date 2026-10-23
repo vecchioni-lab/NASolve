@@ -5,7 +5,7 @@ import pytest
 
 @pytest.mark.parametrize('action,delivery,valid',[
     ('postmr_cached_model_only','75_Cedar',True),('postmr_readyset_consumption_only','75_Cedar',False),
-    ('postmr_cached_model_only','74_Cedar',False),('postmr_cached_model_only','76_Cedar',False)])
+    ('postmr_cached_model_only','74_Cedar',False),('postmr_cached_model_only','77_Cedar',False)])
 def test_cached_whole_model_has_explicit_input_scope(action,delivery,valid):
     m=template();args=SimpleNamespace(**{action:True})
     if valid:m._check_constructor_input_mode(args,delivery)
@@ -53,7 +53,8 @@ def test_c75_return_header_preserves_completed_scope(monkeypatch,defect):
         with pytest.raises(ValueError):m._read_cedar75_members(members)
 
 
-def test_c75_direct_native_qualification_reaches_the_whole_model_adapter(tmp_path,monkeypatch):
+@pytest.mark.parametrize('delivery',['75_Cedar','76_Cedar'])
+def test_c75_direct_native_qualification_reaches_the_whole_model_adapter(tmp_path,monkeypatch,delivery):
     """C75 returns its native qualification directly, unlike the C57 wrapper."""
     from hashlib import sha256
     import json
@@ -64,9 +65,9 @@ def test_c75_direct_native_qualification_reaches_the_whole_model_adapter(tmp_pat
     for code in ['DP','PDU','5PC']:
         s=inputs/(code+'_source.cif');c=inputs/(code+'_numerics.cif');s.write_bytes(b'SOURCE');c.write_bytes(b'NUMERICS')
         resources[code]={'source':s,'candidate':c,'qualification':{'native_usable':True,'candidate_sha256':sha256(c.read_bytes()).hexdigest()},'consumer':{'fixture':'SAME_CONSUMER'}}
-    monkeypatch.setattr(m,'_replay_cedar75_return',lambda *a:resources)
+    monkeypatch.setattr(m,'_replay_cedar75_return' if delivery=='75_Cedar' else '_replay_cedar76_return',lambda *a:resources)
     data=b'EXACT CONSTRUCTED MODEL\n';ref={'anchor':'construction_directory','path':'model.pdb','size':len(data),'sha256':sha256(data).hexdigest()}
-    members={'probe_receipt.json':json.dumps({'delivery_prefix':'75_Cedar'}).encode(),
+    members={'probe_receipt.json':json.dumps({'delivery_prefix':delivery}).encode(),
         'inputs/review/probe_receipt.json':json.dumps({'delivery_prefix':'64_Cedar','construction_native_audit':{'canonical_reference':{'fixture':'VERIFIED'}}}).encode(),
         'inputs/review/inputs/review/probe_receipt.json':json.dumps({'delivery_prefix':'63_Cedar','postmr_construction_audit':{'input_model':ref,'outputs':{'model':ref}}}).encode(),
         'inputs/review/inputs/review/postmr_construction/model.pdb':data}

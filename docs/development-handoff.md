@@ -13,6 +13,23 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Returned C76 passes initial full-model native mechanics; ReadySet remains under review.**
+All 6,691 payloads and exact C75 lineage verify. Native result: 93 PASS, three
+unsupported charge readbacks, 38 links and 3,148 unaffected named terms preserved.
+ReadySet preserves cached numerics/heavy coordinates but calls three builders.
+The strict guard retains `verified_constructed_model`; no endpoint native readback.
+
+**Next delivery is C77:** `77_Cedar_probe_postmr_component_inputs.py`,
+`--postmr-cached-model-only` on exact C76. Freeze the already-prepared component
+files separately, require exact parameterization/coverage/recombination and pass
+one repeatable CIF argument per file. All native gates/actions and fallback stay
+unchanged. The combined-container registration explanation is source-supported;
+a native parser return-type probe has not independently established it. Existing
+ordinary orchestration remains unchanged pending this explicit Mac diagnostic.
+Readers preserve v1 reports and honor only exact opaque-exclusion metadata;
+no serialized payload is loaded. Record `readyset_component_input_registration_2026_10_23`
+contains validation and limits. No student CIF inspection, install or NAR release.
+
 **Returned C75 closes isolated ordinary ReadySet consumption.** All 5,949
 payloads, exact C74 parent, 161-member runtime inventory and reported runner SHA
 verify. Only NAR dirty-state metadata differs from the published clean build.
@@ -24,7 +41,7 @@ maintained replay verifies source AST/callers, frozen numerics/full-H seeds,
 worker/spec/output/consumer and triple reports without captured-code execution.
 Original C73/C74 reviews and retained torsion/bending/nonconvergence notes survive.
 
-**Next delivery is C76:** `76_Cedar_probe_postmr_cached_model.py`, explicit
+**C76 delivery and original validation:** `76_Cedar_probe_postmr_cached_model.py`, explicit
 `--postmr-cached-model-only` on exact C75. Resolve its source-bound numerical
 copies and the immutable C63 full constructed model. Reprepare the same three
 source-qualified linked contexts, require native usability against the verified

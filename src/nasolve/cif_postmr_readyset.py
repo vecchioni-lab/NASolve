@@ -21,6 +21,7 @@ from .cif_elbow_chirality import _library_anchor
 from .cif_elbow_contract import _inside, MAX_SOURCE_BYTES
 from .cif_readyset_process_policy import RESOURCE_MODULES,classify_subprocesses
 
+COMPONENT_POLICY_ID = 'cif-ordinary-readyset-cached-bundle-consumption-v2'
 BUNDLE_POLICY_ID = 'cif-ordinary-readyset-cached-bundle-consumption-v1'
 LEGACY_POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v1'
 POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v2'
@@ -198,7 +199,7 @@ def read_readyset_consumption(directory):
     report_path=root/'readyset_consumption.json'
     if report_path.is_symlink():raise ValueError('Unsafe ReadySet control report')
     r=json.loads(report_path.read_bytes())
-    if r['policy_id'] not in {LEGACY_POLICY_ID,POLICY_ID,BUNDLE_POLICY_ID} or r['requires_cif_review'] is not False:raise ValueError('ReadySet control policy differs')
+    if r['policy_id'] not in {LEGACY_POLICY_ID,POLICY_ID,BUNDLE_POLICY_ID,COMPONENT_POLICY_ID} or r['requires_cif_review'] is not False:raise ValueError('ReadySet control policy differs')
     def resolve(ref):
         name=ref['path']
         if (ref.get('anchor')!='postmr_readyset_directory' or not isinstance(name,str)
@@ -208,11 +209,12 @@ def read_readyset_consumption(directory):
         return path
     inputs={k:resolve(v) for k,v in r['inputs'].items()}
     resolve(r['heavy_control'])
+    for ref in r.get('component_inputs',{}).values():resolve(ref)
     for ref in r['outputs']:resolve(ref)
     return {'report':r,**inputs,'dictionary':resolve(r['effective_dictionary']) if r.get('effective_dictionary') else inputs['dictionary']}
 
 
-def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,output,*,timeout_seconds=180,_components=None):
+def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,output,*,timeout_seconds=180,_components=None,_component_dictionaries=None):
     """One bounded ordinary helper call; retain verified inputs on failed evidence."""
     from .postmr import _run_readyset,PostMRPreparationError
     if type(timeout_seconds) not in (int,float) or not math.isfinite(timeout_seconds) or not 0<timeout_seconds<=180:
@@ -221,7 +223,7 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
     if (not re.fullmatch('[A-Za-z0-9]{1,3}',code) or output.exists() or output.is_symlink()
             or any(p.is_symlink() for p in output.parents)):raise ValueError('Require fresh separate ReadySet control')
     output.mkdir(parents=True);inputs=output/'inputs';inputs.mkdir()
-    originals={Path(p):Path(p).read_bytes() for p in [source,dictionary,model]}
+    originals={Path(p):Path(p).read_bytes() for p in [source,dictionary,model,*(_component_dictionaries or {}).values()]}
     frozen={}
     for kind,path in [('source',source),('dictionary',dictionary),('model',model)]:
         target=inputs/(kind+('.pdb' if kind=='model' else '.cif'));target.write_bytes(Path(path).read_bytes());frozen[kind]=target
@@ -237,6 +239,13 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
     if _components is not None:
         report.pop('component');report.update(policy_id=BUNDLE_POLICY_ID,components=list(_components),
             scope='WHOLE_MODEL_ORDINARY_READYSET_CONSUMPTION; LINKED_NATIVE_QUALIFICATION_SEPARATE')
+    component_inputs={}
+    if _component_dictionaries:
+        folder=inputs/'components';folder.mkdir()
+        for component,path in sorted(_component_dictionaries.items()):
+            target=folder/(component+'.cif');target.write_bytes(Path(path).read_bytes());component_inputs[component]=target
+        report.update(policy_id=COMPONENT_POLICY_ID,input_representation='ONE_PARAMETERIZED_COMPONENT_PER_PHIL_ARGUMENT',
+            component_inputs={c:_ref(p,output) for c,p in component_inputs.items()})
     if phenix is not None:
         if not verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer):raise ValueError('Current ReadySet consumer differs')
         root=Path(phenix.root).resolve(strict=True);site=_library_anchor(consumer['api_sources'])
@@ -267,7 +276,8 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
                     _terminate_owned_group(process);rc=process.returncode;report['execution'].update(status='TIMED_OUT',returncode=rc)
                 except BaseException:_terminate_owned_group(process);raise
             report['execution'].update(elapsed_seconds=round(time.monotonic()-clock,6),timeout_seconds=timeout_seconds)
-            if _ref(heavy,output)!=report['heavy_control'] or any(_ref(p,output)!=report['inputs'][k] for k,p in frozen.items()):
+            if (_ref(heavy,output)!=report['heavy_control'] or any(_ref(p,output)!=report['inputs'][k] for k,p in frozen.items())
+                    or any(_ref(p,output)!=report['component_inputs'][c] for c,p in component_inputs.items())):
                 raise ValueError('ReadySet changed a frozen input')
             verify_readyset_sources(root,sources,output/'source_evidence')
             for name,key in [('consumption_trace.json','trace'),('consumption_result.json','worker_result')]:
@@ -276,7 +286,7 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
                 if p.is_file():report[key]=json.loads(p.read_bytes())
             return subprocess.CompletedProcess(command,rc,(run/'observer.log').read_text(errors='replace'))
         try:
-            checked,log,generated,command,audit=_run_readyset(heavy,ready,run,frozen['dictionary'],phenix.environment,
+            checked,log,generated,command,audit=_run_readyset(heavy,ready,run,list(component_inputs.values()) if component_inputs else frozen['dictionary'],phenix.environment,
                 allow_op3_sites=tuple(sorted({':'.join(k[:2]) for k in _atoms(heavy) if k[-1]=='OP3'})),process_runner=execute)
             report['ordinary_arguments']=command;report['readyset_output_mode']=audit['readyset_output_mode']
             report['phosphate_audit']=audit;report['readyset_model']=_ref(checked,output)
@@ -313,12 +323,14 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
     return report
 
 
-def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,consumer,output,*,timeout_seconds=180):
-    """Use identical ordinary arguments and checks for a declared component bundle.
+def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,consumer,output,*,timeout_seconds=180,component_dictionaries=None):
+    """Use the ordinary helper and strict checks for a declared component bundle.
 
     The bundle must cover two to sixteen explicit components present in both
     source and numerical inputs and at least one heavy model site per component.
-    It is a separate diagnostic; current linked native qualification is required
+    Optional per-component files must reproduce the exact combined bytes and
+    are supplied as separate repeatable CIF arguments. It is a separate
+    diagnostic; current linked native qualification is required
     by the caller before choosing a result. No parameter, source or model is edited.
     """
     from .ligand_profiles import dictionary_component_codes,_parameterized_codes
@@ -330,5 +342,16 @@ def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,
     if (dictionary_component_codes(Path(source))!=codes or dictionary_component_codes(Path(dictionary))!=codes
             or _parameterized_codes(Path(dictionary))!=codes or not codes<=observed):
         raise ValueError('Bundle source, numerical or model component scope differs')
+    if component_dictionaries is not None:
+        from tempfile import TemporaryDirectory
+        from .ligand_profiles import combine_dictionary_inputs
+        if set(component_dictionaries)!=codes:raise ValueError('Per-component ReadySet input scope differs')
+        for c,path in component_dictionaries.items():
+            if dictionary_component_codes(Path(path))!={c} or _parameterized_codes(Path(path))!={c}:
+                raise ValueError('Require one parameterized component per ReadySet file')
+        with TemporaryDirectory(prefix='nasolve-readyset-components-') as temporary:
+            combined=Path(temporary).resolve()/'combined.cif'
+            combine_dictionary_inputs([Path(component_dictionaries[c]) for c in sorted(codes)],combined)
+            if combined.read_bytes()!=Path(dictionary).read_bytes():raise ValueError('Per-component inputs change the combined numerical dictionary')
     return audit_readyset_consumption(source,dictionary,model,'ALL',phenix,consumer,output,
-        timeout_seconds=timeout_seconds,_components=tuple(sorted(codes)))
+        timeout_seconds=timeout_seconds,_components=tuple(sorted(codes)),_component_dictionaries=component_dictionaries)

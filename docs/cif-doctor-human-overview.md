@@ -1737,6 +1737,34 @@ target, ordinary production behavior or NARestraints policy changes. Pair/stack
 guessing stays disabled; the intended eight-pair/16-stacking live-model membership
 and full-run qualification remain separate. No student CIF approval is required.
 
+Returned C76: all 6,691 payloads, exact C75 parent, clean runtime inventory and
+reported runner identity verify. Native mechanics pass (93 PASS, three unsupported
+formal-charge readbacks), including all 38 links and 3,148 unaffected named terms.
+ReadySet finishes with unchanged heavy sites and exact cached numerical bytes,
+but three builder calls fail the unchanged consumption guard. The verified
+constructed model remains selected; the endpoint native readback was not run.
+Its original REVIEW and decision are preserved, rather than relabeled as a pass.
+
+C77 methods: freeze each already-prepared DP/PDU/5PC dictionary independently and
+require one parameterized component per file, exact declared coverage and a
+byte-identical recombination to the original combined dictionary. Supply separate
+repeatable CIF arguments to the same ordinary helper. Native actions, observer,
+resource-query proof, all eight consumption checks, site modifiers and native
+qualifiers stay unchanged. The captured input reader registers one returned mol.id
+per file and skips objects without id; together with C75/C76 traces this supports
+a combined-container registration mismatch. The native parser return type was
+not independently probed. Fresh Mac C77 evidence must establish the new route.
+The default production orchestration still supplies its original combined path.
+
+The v2 report separates intentionally excluded serialized outputs from required
+portable files. A v1 reader recognizes only exact matching nested exclusion
+metadata for absent opaque payloads; no pickle is loaded. Saved preparation replay
+also allows the existing 1e-12 bound for duplicated derived determinant/eigenvalue
+notes only. Scientific bytes, parameters, hashes and verdicts stay exact. These
+are compatibility and argument-transport changes; cache identity and chemical
+mechanics remain unchanged. The same verified-start fallback and bounds apply.
+
+
 
 
 
