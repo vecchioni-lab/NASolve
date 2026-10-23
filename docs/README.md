@@ -132,9 +132,12 @@ supported recipe/backend and current recorded Phenix identity. Misses,
 corruption and changed consumers retain ordinary preparation with notes. Cache
 entries, original producer/stopping evidence and independent run copies survive.
 
-The C71 probe checks the same API and normalized DP/PDU/5PC inputs with at most
-three fixed native reads (60 seconds each). It runs no Coot, ReadySet, generator
-or optimizer. Current linked/model/full-run qualification remains separate.
+Returned C71 verifies three ordinary cache reuses with exact saved numerical
+bytes and all 63 checks in three fresh Phenix 2.2.1-6174 readbacks. All 4,231
+payloads, the complete C70 parent and the reported runner SHA verify. Original
+producer/stopping notes survive, and all three run copies resolve independently
+after source/cache/evidence removal. ReadySet behavior and current linked/model/
+full-run qualification remain separate; this cache gate needs no repeat.
 See the [ordinary cache contract](cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
 
 

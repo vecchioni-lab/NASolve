@@ -1585,13 +1585,26 @@ Methods: validate indexed entries against the selected source and the existing
 isolated qualifier, verify the current recorded consumer identity, use the
 existing automatic usable-candidate policy and exact-key resolver, then freeze
 source and numerics separately. C71's explicit `--postmr-dictionary-reuse-only`
-probe consumes exact returned C70, calls this same ordinary API and checks the
-normalized DP/PDU/5PC inputs in at most three 60-second fixed native readbacks.
-Expected: three REUSED cases and POSTMR_CACHE_HANDOFF_PASS. No ReadySet, Coot,
-generator or optimizer executes in the probe. Current linked/model policy,
-fresh ReadySet behavior, the eight-pair full run, refinement and the solution PDF
-remain separate. Inspect-only uses captured source bytes with an empty owned
-store and makes no current-consumer/cache-hit/native claim.
+probe consumes exact returned C70 and calls this same ordinary API. The actual
+Mac return verifies all three REUSED cases and POSTMR_CACHE_HANDOFF_PASS: exact
+saved numerical bytes pass all 63 checks in three fresh Phenix 2.2.1-6174 native
+readbacks. Six fixed energy/gradient evaluations are finite and exactly repeated;
+all worker dispatcher/API/energy inventories match the selected recorded consumer.
+Existing normalization changes none of the three dictionaries. The combined
+31,252-byte ReadySet input reproduces exactly. Both triple/180-degree target
+screens pass for PDU/5PC; linear-axis torsions and seed bending remain notes.
+
+All 4,231 payloads, the unchanged C70 parent and 159 runtime members verify.
+Reconstructing only NAR dirty-state metadata reproduces the reported runner SHA.
+All three independent run copies resolve after original source/cache/evidence
+removal with external scientific reads and every subprocess forbidden. Original
+producer/stopping notes, including usable PDU nonconvergence, are unchanged.
+No ReadySet, Coot, generator or optimizer executes in this probe. The next
+boundary is observing ordinary ReadySet consumption/no-regeneration and current
+linked/whole-model NARestraints membership. The eight-pair full run, refinement
+and solution PDF remain separate. Inspect-only remains a captured-source fallback
+check with no current-consumer/cache-hit/native claim. This returned-evidence
+update changes no runtime, schema, chemistry, mechanics or dependency.
 
 
 Methods: compare all seven inventoried named chemical fields and the repair

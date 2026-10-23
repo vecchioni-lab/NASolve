@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record successful returned C71 ordinary PostMR cache handoff
+
+- Verify all 4,231 payloads, unchanged C70 parent, 159 runtime members and the
+  reported runner SHA. DP/PDU/5PC each reuse exact saved numerical bytes through
+  the ordinary acquisition API; all 63 current native checks pass in three
+  actual Phenix 2.2.1-6174 readbacks with matching recorded consumer identity.
+- Reproduce normalization, the combined ReadySet input and six finite repeated
+  energy/gradient evaluations. Three independent copies survive source/cache/
+  evidence removal; original producer/stopping notes remain exact. No generator,
+  optimizer, Coot, ReadySet or refinement process runs in this probe.
+- Close the isolated cache gate. Ordinary ReadySet consumption/no-regeneration,
+  whole-model linked/NARestraints membership and the eight-pair full run remain
+  separate. This evidence-only update changes no runtime, chemistry, mechanics,
+  schemas or dependencies and introduces no student CIF approval gate.
+
 ### Reuse qualified local numerics in ordinary PostMR
 
 - Call a shared acquisition batch before ReadySet. Keep ordinary source
@@ -27,7 +42,9 @@ entries are reconstructed from repository history.
   separate from this probe. All 231 focused / 4,137 full tests pass (two skips,
   276 subtests; 389.49 s). Cold source-removed/relocated inspect-only transport
   preserves all 4,008 parent payloads and independently resolves three fallbacks
-  with every subprocess forbidden. Current Mac cache/native evidence is pending.
+  with every subprocess forbidden. The actual Mac C71 cache/native return now
+  verifies all three reuses and 63 current native checks; see the returned-evidence
+  entry above.
 
 ### Record successful returned C70 source-bound dictionary reuse
 

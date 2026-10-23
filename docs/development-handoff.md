@@ -13,6 +13,52 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Returned C71 closes ordinary cache handoff.** The exact
+`71_Cedar_6nki0gti_cif_numerical_recovery_review.zip` verifies all 4,231 payloads,
+the unchanged 4,008-payload C70 parent/manifest and 159 runtime members. Only NAR
+dirty-state metadata differs from the clean pinned build; reconstructing that
+field reproduces the reported `971ca54f...` runner SHA exactly.
+
+DP, PDU and 5PC each REUSE their exact C70 source-bound numerical dictionaries.
+All 63 unchanged native-usability checks independently reproduce from three
+fresh Phenix 2.2.1-6174 reads of normalized inputs; six energy/gradient evaluations
+are finite and exactly repeated. Each worker's recorded dispatcher/version,
+eight APIs and three energy sources match its selected cache consumer. Existing
+normalization changes no bytes; the 31,252-byte combined ReadySet input also
+reproduces. PDU/5PC retain active triple/180-degree targets; six complete-H
+linear-axis torsions each and seed bending remain descriptive notes.
+
+All three returned run copies resolve after owned source/cache/evidence removal,
+with external scientific reads forbidden. Exact old entries, source authority,
+consumer and producer/stopping notes survive, including PDU nonconvergence.
+No captured Python or new verification subprocess runs. The actual Mac probe
+runs three fixed native reads only, without Coot, ReadySet, generation,
+optimization, refinement or a production checkpoint. Both ledgers close the
+gate under `ordinary_postmr_cache_acquisition_2026_10_23#returned_2026_10_23`.
+
+Ordinary `prepare_postmr` already uses the shared acquisition API before ReadySet.
+Coot keeps original sources; eligible cached numerics use existing normalization,
+combination and parameterized-input precedence. Missing/corrupt/unsupported or
+changed-consumer entries retain ordinary preparation with notes. Recorded identity
+matching is not an exhaustive compiled-kernel/energy-library fingerprint.
+
+**Next boundary: ordinary ReadySet consumption and whole-model integration.**
+Observe whether the existing ReadySet stage retains these parameterized inputs
+without regeneration, then check current links and exact NARestraints pairing/
+stacking membership. Keep automatic continuation/report notes and the exact
+eight-pair/16-stacking plan; ATL stays independent. The capsule contains neither
+observations/MTZ nor an ordinary production PostMR report, so it does not establish
+a diffraction/full NASolve run. No new runtime action or ferry command is created
+by this documentation-only return update. The completed cache handoff needs no
+repeat and students do not inspect or approve CIFs.
+
+Validation basis: **231 focused / 4,137 full tests pass** (two skips, 276 subtests;
+389.49 s), including 40 new regressions, cold source-removed/relocated inspect-only
+transport and explicit fake-native action-contract checks. Those fake checks are
+separate from this actual Mac native return. Runtime and scientific mechanics
+are unchanged by recording the return; current native evidence is now verified.
+The same 231 focused tests pass again in 26.32 s for this return record.
+
 **Returned C70 closes source-bound cache completion.** The exact
 `70_Cedar_vpx276th_cif_numerical_recovery_review.zip` verifies all 4,008
 payloads and the byte-identical 3,849-payload C69 parent plus its manifest.
@@ -29,39 +75,6 @@ external scientific reads forbidden. Old entries, exact numerical bytes,
 source authority, consumer identity and original producer/stopping notes survive.
 PDU's bounded nonconvergence remains a note. Zero new native, ReadySet,
 generator, optimizer or refinement processes run; no captured Python executes.
-
-**Next delivery is C71:** `71_Cedar_probe_postmr_dictionary_reuse.py`,
-`--postmr-dictionary-reuse-only` on exact C70. Ordinary `prepare_postmr` now
-calls the shared current-consumer cache acquisition API before ReadySet. Coot
-keeps original source dictionaries; cached numerics feed the existing
-normalization/combination and parameterized-input precedence. Source/state/
-authority/recipe/backend mismatches, corruption or changed/unverified consumers
-retain ordinary preparation with notes. One lazy version discovery and exact
-dispatcher/eight-API/three-energy-source hashes establish only the recorded
-consumer identity scope. Store entries and original producer/stopping notes
-remain immutable; independently frozen run copies use relative hashes.
-
-The C71 probe tests the same API and normalized DP/PDU/5PC inputs in at most
-three fixed native reads, 60 seconds each. Expected three REUSED cases and
-POSTMR_CACHE_HANDOFF_PASS; no ReadySet, Coot, generator, optimizer or refinement
-runs. It preserves all C70 payloads. Inspect-only proves captured-source
-fallback/transport without any installed-consumer or cache-hit claim. Full tests
-and relocation results are recorded before publication under
-`ordinary_postmr_cache_acquisition_2026_10_23` in both machine ledgers.
-Validation: **231 focused / 4,137 full tests pass** (two skips, 276 subtests;
-389.49 s), including 40 new permanent tests. The source-error regression fails
-against the reviewed predecessor. The final 159-member runtime passes cold
-inspect-only transport after build-source removal/relocation with poisoned
-imports, aliased TMPDIR and every subprocess forbidden. All 4,008 C70 payloads
-and manifest survive in 4,171 output payloads; three standalone fallback copies
-resolve after source/evidence removal. Explicit fake-native contract tests also
-exercise fresh-action wiring and reject mismatched worker identity; these are
-not installed Phenix evidence. The current Mac cache/native return is pending.
-
-Current linked/model policy and full ReadySet/no-regeneration observation remain
-separate from isolated reusable numerics. Keep automatic continuation/report
-policy and the exact eight-pair/16-stacking plan; ATL stays independent. Neither
-this action nor its fixture manufactures an AutoMR run or production checkpoint.
 
 **Returned C69 passes native usability.** All 3,849 payloads, the complete C68
 parent/manifest and 158 runtime members verify. Only NAR dirty-state metadata
@@ -99,7 +112,8 @@ six relocated readbacks. Both ledgers record the verified return under
 completion, not a fresh live-installation or full-run verdict. The current
 change records evidence only; the previously passing runtime/tests are unchanged.
 
-Ordinary cache acquisition is implemented in C71; current site/model qualification,
+Ordinary cache acquisition and isolated current native inputs are verified in
+C71; current site/model qualification,
 production checkpoints/refinement, the exact eight-pair full live run and solution
 PDF remain separate. Energy-library resource files are not fingerprinted; ATL
 stays independent. The C68 prelaunch failure and C69 reporting failure remain
