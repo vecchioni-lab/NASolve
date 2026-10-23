@@ -1606,6 +1606,36 @@ and solution PDF remain separate. Inspect-only remains a captured-source fallbac
 check with no current-consumer/cache-hit/native claim. This returned-evidence
 update changes no runtime, schema, chemistry, mechanics or dependency.
 
+C72 methods: consume the exact verified C71 capsule and preserve all 4,231
+payloads. Separate DP/PDU/5PC controls use the ordinary `_run_readyset` helper
+and its unchanged CLI arguments. An optional private execution hook launches
+the selected Phenix Python on the dispatcher's verified literal entrypoint as
+`__main__`; the shell dispatcher itself is not executed. A process-local profile
+observer records selected eLBOW builder/template calls, Python subprocess calls
+and effective ReadySet actions. It replaces no native function and overrides no
+native argument. Fresh bounded source snapshots and the recorded consumer
+identity are verified before/after execution. An absent call is reported only
+within this observer scope, never as exhaustive native/optimizer coverage.
+
+The copied heavy seed omits H/D records while retaining exact heavy coordinates.
+Require a completed untruncated observation, the requested actions, no observed
+builder/template/child calls, unchanged named heavy sites and exact cached
+numerics under ordinary parameterized-input precedence. Only then read back
+effective terms on the unchanged C71 full-H seed, with current consumer checks,
+the existing 21-check qualifier and separate triple screens. The native H sites
+are saved control coordinates, not new ReadySet placements. Each of at most
+three ReadySet calls is capped at 180 seconds; each fixed readback at 60 seconds.
+There are no retries. Failed observations retain verified inputs and notes.
+
+Frozen relative/hash-bound inputs, outputs, worker/spec and source evidence make
+the diagnostic auditable. Inspect-only prepares three input controls without
+any installed process or cache access. Default ordinary execution, chemical
+definitions, target mechanics, native kernels and NARestraints remain unchanged.
+No dependency, cache migration or NAR release is needed. Actual Mac consumption,
+whole-model links and exact pairing/stacking, the eight-pair full live run,
+refinement and solution PDF remain separate; students do not approve CIFs.
+
+
 
 Methods: compare all seven inventoried named chemical fields and the repair
 recipe/backend; reassess completed source-relative configuration; require

@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Observe ordinary ReadySet consumption of qualified cached dictionaries
+
+- Add C72 on exact C71. Use ordinary ReadySet arguments through a selected
+  literal Python entrypoint observer transport; the dispatcher shell is not
+  executed. Record selected builder/template calls, Python child calls and
+  effective actions without changing native functions or arguments.
+- Require complete observation, unchanged heavy sites and exact cached numerics
+  after existing effective-dictionary precedence. Passing isolated controls may
+  receive one fixed native readback each on unchanged saved full-H seeds; no
+  ReadySet hydrogen-placement claim. Cap three ReadySet calls at 180 seconds
+  each and three fixed native reads at 60 seconds each; no retry.
+- Preserve verified inputs, original stopping notes and independent frozen
+  relative/hash-bound artifacts. Inspect-only uses no installed process/cache.
+  Add an optional private process hook to `_run_readyset`; default execution,
+  source chemistry, native mechanics, NARestraints and dependencies are unchanged.
+  Actual Mac consumption and current whole-model/full-run qualification remain
+  pending; no student CIF review gate is added.
+- Validation: 268 focused / 4,174 full tests pass (two skips, 276 subtests),
+  including 37 new tests; final scope/controller checks pass 37/37. Cold relocated
+  inspect-only transport preserves all 4,231 C71 payloads, passes three independent
+  control readbacks and forbids original build-source reads and all subprocesses.
+
 ### Record successful returned C71 ordinary PostMR cache handoff
 
 - Verify all 4,231 payloads, unchanged C70 parent, 159 runtime members and the

@@ -204,6 +204,13 @@ payloads, the complete C70 parent and the reported runner SHA verify. Original
 producer/stopping notes survive, and all three run copies resolve independently
 after source/cache/evidence removal. ReadySet behavior and current linked/model/
 full-run qualification remain separate; this cache gate needs no repeat.
+
+C72 tests the next boundary with `--postmr-readyset-consumption-only` on exact
+C71. It uses the ordinary ReadySet arguments through an observed selected
+Python entrypoint, checks retained cached numerics and unchanged heavy sites,
+then reads back effective native terms. Up to three bounded isolated controls;
+actual Mac consumption and whole-model qualification remain pending.
+
 See the [ordinary cache contract](../cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
 
 

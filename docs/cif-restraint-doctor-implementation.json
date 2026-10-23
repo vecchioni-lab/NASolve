@@ -18557,9 +18557,154 @@
         "required_evidence": "An explicitly bounded integration delivery or ordinary PostMR report; observations/MTZ required before claiming a diffraction/full NASolve run.",
         "user_flow": "Automatic usable selection/fallback and solution notes; no CIF inspection or student approval.",
         "live_scope": "Keep the exact eight intended pairs and sixteen stacking orientations; ATL is independent.",
-        "status": "PLANNED; NO_NEW_RUNTIME_ACTION_OR_FERRY_COMMAND_PUBLISHED_BY_THIS_RETURN_RECORD"
+        "status": "C72_READYSET_CONSUMPTION_CONTROL_IMPLEMENTED_AND_LOCALLY_VERIFIED; MAC_RETURN_PENDING",
+        "delivery_record": "ordinary_readyset_consumption_2026_10_23"
       },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_postmr_cache_acquisition_2026_10_23"
+    },
+    "ordinary_readyset_consumption_2026_10_23": {
+      "status": "IMPLEMENTED_268_FOCUSED_4174_FULL_37_FINAL_SCOPE_AND_GUARDED_COLD_TRANSPORT_PASS; MAC_C72_READYSET_CONSUMPTION_PENDING",
+      "recorded_date": "2026-10-23",
+      "delivery_prefix": "72_Cedar",
+      "runner_filename": "72_Cedar_probe_postmr_readyset_consumption.py",
+      "cli_action": "--postmr-readyset-consumption-only",
+      "requested_action": "ORDINARY_POSTMR_READYSET_CONSUMPTION",
+      "review_input": {
+        "filename": "71_Cedar_6nki0gti_cif_numerical_recovery_review.zip",
+        "sha256": "1c78c85dce5b0d50d125d81c4629323ab05b69eed5efecfee4fefcd300173d7e",
+        "bytes": 102714929,
+        "verified_payloads": 4231
+      },
+      "policy_id": "cif-ordinary-readyset-cached-input-consumption-v1",
+      "diagnostic_policy_id": "cif-postmr-readyset-consumption-controls-v1",
+      "before": "C71 verifies ordinary acquisition and isolated normalized inputs; it does not execute ReadySet consumption.",
+      "after": "A separate C72 control calls ordinary _run_readyset and effective_restraints with exact C71 numerical inputs and the same CLI arguments, then checks the selected effective dictionaries.",
+      "ordinary_behavior": "Default _run_readyset process execution and all arguments/audits remain unchanged. An optional private process_runner accepts a bounded diagnostic observer transport.",
+      "modules": [
+        "nasolve.cif_postmr_readyset",
+        "nasolve.postmr._run_readyset",
+        "nasolve.ligand_profiles.effective_restraints"
+      ],
+      "execution": {
+        "transport": "SELECTED_PHENIX_PYTHON; EXECUTE_THE_READYSET_DISPATCHERS_VERIFIED_LITERAL_PYTHON_ENTRYPOINT_AS___main__",
+        "dispatcher_shell_execution": "NOT_RUN; THIS_IS_AN_OBSERVED_ENTRYPOINT_TRANSPORT, NOT_SHELL_DISPATCHER_EXECUTION",
+        "arguments": "EXACT_ORDINARY_HELPER_ARGUMENTS; hydrogens=False; ligands=True; optimise_ligand_geometry=False; EXPLICIT_CACHED_CIF",
+        "native_function_replacements": "NONE",
+        "native_argument_overrides": "NONE",
+        "observer": "sys.setprofile observes the selected eLBOW builder.run, CCD-template helper, ReadySet.run effective actions and Python subprocess calls in the worker process.",
+        "absence_claim": "NO_OBSERVED_SELECTED_BUILDER_TEMPLATE_OR_PYTHON_SUBPROCESS_CALLS; COMPLETE_UNTRUNCATED_TRACE_REQUIRED",
+        "coverage_limit": "Not exhaustive transitive/dynamic/C++ code, subprocess-native internals or optimizer instrumentation.",
+        "local_environment": "Remove READY_SET_LIGAND_CACHE_DIRECTORY to avoid an unrelated user cache; preserve selected Phenix environment."
+      },
+      "component_scope": [
+        "DP",
+        "PDU",
+        "5PC"
+      ],
+      "input_policy": "Copy exact C71 source, normalized numerics and full-H seed; omit H/D records in a separate heavy ReadySet control without moving heavy sites.",
+      "readyset_checks": [
+        "Completed worker/native entrypoint",
+        "Retained untruncated observer",
+        "Requested effective actions including final-H optimization disabled",
+        "No observed builder/template calls",
+        "No observed Python child process calls",
+        "Unchanged named heavy identities/elements/coordinates",
+        "Single effective dictionary",
+        "Exact original cached numerical bytes after existing parameterized-input precedence"
+      ],
+      "native_followup": "Only for passing ReadySet controls: unchanged C71 full-H seed plus exact selected effective dictionary. Current consumer identity and unchanged 21-check qualifier, two fixed repeated evaluations and separate triple reports.",
+      "hydrogen_scope": "ReadySet runs heavy-only. Full-H native checks use unchanged C71 H coordinates separately; no ReadySet H placement or new-H geometry claim.",
+      "bounds": {
+        "readyset_calls": 3,
+        "readyset_timeout_seconds_each_max": 180,
+        "native_readbacks": 3,
+        "native_timeout_seconds_each_max": 60,
+        "retries": 0
+      },
+      "source_capture": "Fresh bounded literal import source inventory and dispatcher proof, verified before/after each worker; worker and observer spec frozen as evidence.",
+      "current_consumer": "C71 selected version/dispatcher/eight API/three energy sources must match before/after; actual follow-up worker inventories must also match. This is not an exhaustive compiled/data fingerprint.",
+      "fallback": "Keep verified C71 inputs and original producer/stopping notes on any REVIEW. Diagnostic does not install a dictionary, rewrite the cache or claim a new production fallback path.",
+      "requires_cif_review": false,
+      "automatic_adoption": false,
+      "model_optimization_requested": false,
+      "Coot": "NOT_RUN",
+      "diffraction": "NOT_READ",
+      "refinement": "NOT_RUN",
+      "production_checkpoint": "NOT_CREATED",
+      "schema": "ADDITIVE_V1_READYSET_CONSUMPTION_CONTROL_AND_PROBE_RECEIPTS; EXISTING_STORE_AND_ORDINARY_REPORT_SCHEMAS_UNCHANGED",
+      "portability": "Relative/hash-bound frozen controls and effective dictionaries; captured worker Python remains data during replay. No original installation/cache required for the portable reader.",
+      "protected_mechanics": "UNCHANGED_SOURCE_CHEMISTRY_CACHE_BYTES_NORMALIZATION_PRECEDENCE_NATIVE_WORKER_QUALIFIER_KERNELS_PLANE_CORRECTION_NAR_PAIRING_STACKING_AND_WORKBOOK",
+      "compatibility": "No dependency, install command, store migration or NARestraints release. The optional private helper hook does not change default ordinary execution.",
+      "validation": {
+        "initial_fail_before": {
+          "failed": 22,
+          "already_passed": 3,
+          "seconds": 1.56
+        },
+        "new_permanent_tests": 37,
+        "focused": {
+          "passed": 268,
+          "seconds": 34.73,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q tests/test_cif_postmr_readyset.py tests/test_cedar72_delivery.py tests/test_cif_postmr_cache.py tests/test_cedar71_delivery.py tests/test_cedar70_delivery.py tests/test_cedar69_delivery.py tests/test_cedar68_delivery.py tests/test_cif_source_reuse.py tests/test_cif_dictionary_store.py tests/test_postmr.py tests/test_postmr_restoration.py"
+        },
+        "fake_execution_scope": "Explicit fake installed Python entrypoint/builders; actual controller/helper/observer process flow executes, no Phenix scientific execution.",
+        "full_suite": {
+          "passed": 4174,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 406.13,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q",
+          "core_source_commit": "95f67dba1ad778d570b5c9ea0a81ea686284398a"
+        },
+        "final_scope": {
+          "passed": 37,
+          "seconds": 6.11,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q tests/test_cedar72_delivery.py tests/test_cif_postmr_readyset.py",
+          "reason": "Final exact prerequisite identity and bijective current-source proof checks; core behavior unchanged."
+        },
+        "docs": {
+          "relative_links": 165,
+          "mirrored_records": 17,
+          "protected_mechanics": "UNCHANGED",
+          "NAR_workbook": "UNCHANGED",
+          "eight_pair_plan": "UNCHANGED",
+          "SVG_determinism": "PASS",
+          "visible_SVG": "TWO_CACHE_SCOPE_LABELS_UPDATED; TOPOLOGY_UNCHANGED; RENDER_VISUALLY_VERIFIED"
+        },
+        "cold_transport": {
+          "status": "PASS",
+          "mode": "INSPECT_ONLY; FROZEN_READYSET_INPUTS; LIVE_MAC_CONSUMPTION_PENDING",
+          "source_commit": "d83a9db2f0e13bfc3a73b16a5d31fea119ac6500",
+          "runtime_members": 160,
+          "runtime_archive_sha256": "86f67e37e0c3348fd52ac25dee9ddcb1b14778130f708c933d015659e1b0ef62",
+          "runner_sha256": "3c55065976f6a0ad67455abcc508b3796be82c795ef7e833585898b6e5223fee",
+          "build_source_files_removed_before_launch": true,
+          "all_original_build_source_access_forbidden": "PASS",
+          "build_source_paths_absent_at_completion": true,
+          "relocated_delivery": true,
+          "ambient_import_poison": "PASS",
+          "aliased_TMPDIR": "PASS",
+          "all_subprocesses_forbidden": "PASS",
+          "new_native_calls": 0,
+          "input_payloads": 4231,
+          "all_input_payloads_and_manifest_preserved": true,
+          "output_payloads": 4470,
+          "independent_relocated_readyset_inputs": 3,
+          "original_store": "NOT_READ_OR_WRITTEN",
+          "original_producer_stopping_notes": "VERIFIED_IN_C71_LINEAGE",
+          "everyday_edit": "PRESERVED",
+          "ignored_runner": "PASS"
+        }
+      },
+      "remaining_limits": [
+        "Mac actual C72 ReadySet consumption and effective native readbacks pending.",
+        "Current whole-model linked and exact NARestraints pairing/stacking integration remain separate.",
+        "Exact eight-pair full live run, observations/refinement/checkpoints, solution PDF and scientific qualification remain separate.",
+        "ATL remains independent public/compiler control.",
+        "No exhaustive compiled/data installation fingerprint or native-internal optimization absence claim."
+      ],
+      "generated_artifacts": "PRIVATE_CAPSULES_MODELS_LOGS_AND_RUNNERS_EXCLUDED_FROM_GIT",
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_readyset_consumption_2026_10_23"
     }
   },
   "audience": [

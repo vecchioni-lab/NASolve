@@ -42,15 +42,39 @@ combination and parameterized-input precedence. Missing/corrupt/unsupported or
 changed-consumer entries retain ordinary preparation with notes. Recorded identity
 matching is not an exhaustive compiled-kernel/energy-library fingerprint.
 
-**Next boundary: ordinary ReadySet consumption and whole-model integration.**
-Observe whether the existing ReadySet stage retains these parameterized inputs
-without regeneration, then check current links and exact NARestraints pairing/
-stacking membership. Keep automatic continuation/report notes and the exact
-eight-pair/16-stacking plan; ATL stays independent. The capsule contains neither
-observations/MTZ nor an ordinary production PostMR report, so it does not establish
-a diffraction/full NASolve run. No new runtime action or ferry command is created
-by this documentation-only return update. The completed cache handoff needs no
-repeat and students do not inspect or approve CIFs.
+**Next delivery is C72:** `72_Cedar_probe_postmr_readyset_consumption.py`,
+`--postmr-readyset-consumption-only` on exact returned C71. It calls ordinary
+`_run_readyset` and `effective_restraints` with exact C71 saved numerical inputs.
+An optional private process hook executes the selected dispatcher's literal
+Python entrypoint with unchanged ordinary arguments; it does not execute the
+dispatcher shell. A profile observer records selected builder/template and
+Python subprocess calls plus effective actions without replacing native functions.
+Keep the distinction between no observed calls and exhaustive optimization proof.
+
+Three separate heavy-only controls retain named heavy coordinates. Passing
+controls require eight consumption checks and may receive one fixed native
+readback each on the unchanged C71 full-H seed with the effective dictionary.
+H coordinates are original saved controls, not ReadySet placements. Maximum
+three ReadySet calls, 180 seconds each, plus three fixed reads, 60 seconds each;
+no retry, Coot, cache write, refinement or production checkpoint. Preserve original
+producer/stopping notes and usable inputs. Inspect-only freezes controls with
+every subprocess forbidden. Local validation is recorded under
+`ordinary_readyset_consumption_2026_10_23`; actual Mac C72 return is pending.
+
+C72 validation: **268 focused / 4,174 full tests pass** (two skips, 276 subtests;
+406.13 s), including 37 new permanent tests. The final 37-test scope/controller
+check also passes. The final 160-member runtime passes cold inspect-only
+transport after build-source removal and relocation, with original build reads
+and all subprocesses forbidden, poisoned imports and aliased TMPDIR. All 4,231
+C71 payloads/manifest survive in 4,470 output payloads; three standalone controls
+resolve after evidence removal. The owned everyday edit survives. No actual
+Phenix ReadySet execution is claimed until the Mac C72 return.
+
+Current whole-model links and exact NARestraints pairing/stacking remain separate.
+Keep automatic continuation/report notes and the exact eight-pair/16-stacking
+plan; ATL stays independent. No observations/MTZ or ordinary production PostMR
+report is in this capsule, so do not manufacture a diffraction/full NASolve run.
+The completed C71 cache gate needs no repeat and students do not inspect CIFs.
 
 Validation basis: **231 focused / 4,137 full tests pass** (two skips, 276 subtests;
 389.49 s), including 40 new regressions, cold source-removed/relocated inspect-only

@@ -1470,6 +1470,7 @@ def _run_readyset(
     phosphate_sites: tuple[str, ...] = (),
     allow_op3_sites: tuple[str, ...] = (),
     passthrough_sites: tuple[str, ...] = (),
+    process_runner=None,
 ) -> tuple[Path, Path, Path | None, list[str], dict[str, object]]:
     command = [
         str(ready_set_executable),
@@ -1482,7 +1483,7 @@ def _run_readyset(
         command.append(f"ready_set.input.cif_file_name={ligand_cif}")
     log = readyset_directory / "ready_set.log"
     try:
-        completed = subprocess.run(
+        completed = (subprocess.run if process_runner is None else process_runner)(
             command,
             cwd=readyset_directory,
             env=dict(environment) if environment is not None else None,
