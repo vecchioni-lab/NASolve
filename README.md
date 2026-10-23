@@ -333,6 +333,16 @@ and ordinary fallback inputs; local ordinary-route and complete-suite validation
 explicit eight-pair live model, ordinary end-to-end run and scientific qualification
 remain separate.
 
+C80 now binds the eight requested pairs to sixteen explicit sites on the public
+W frame and retains twelve canonical background pairs. One bounded ordinary
+Coot construction precedes NARestraints compilation against actual PDB atoms:
+twenty declared pairs and thirty-eight chain-adjacency stacks, each included once.
+The sixteen bidirectional plane-order files remain separate compiler controls.
+This fresh diagnostic needs no historical review ZIP or donor observations.
+Local tests, source-removed inspect-only checks and maintained lineage replay pass.
+Mac construction and active native membership remain pending; ATL stays independent.
+
+
 
 See the [ordinary cache contract](docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
 

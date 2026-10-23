@@ -96,6 +96,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "cif_geometry_continuation_probe_template.py": "28_Cedar",
         "cif_base_rotation_probe_template.py": "29_Cedar",
         "cif_numerical_recovery_probe_template.py": "30_Cedar",
+        "mixed_pair_probe_template.py": "80_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -120,7 +121,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
     members[recipe] = (root / recipe).read_bytes()
     controls = []
     if component_controls:
-        if (template_name != 'cif_numerical_recovery_probe_template.py'
+        if (template_name not in {'cif_numerical_recovery_probe_template.py', 'mixed_pair_probe_template.py'}
                 or len(component_controls) > 3 or len(set(component_controls)) != len(component_controls)):
             raise ValueError('Require one to three unique explicit numerical component controls')
         catalog = json.loads((root/'docs/cif-doctor-ccd-controls.json').read_text())
@@ -257,6 +258,15 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         if controls:
             metadata['component_controls'] = controls
             metadata['dependencies'].append('openpyxl for bundled NARestraints role controls')
+    if template_name == "mixed_pair_probe_template.py":
+        metadata.update(kind="mixed-eight-pair-construction-shuttle", delivery_prefix=delivery_prefix,
+                        recipe="nasolve.cif_mixed_pair_fixture.build_mixed_pair_plan",
+                        native_validation="NOT_RUN; CONSTRUCTION_AND_PDB_SELECTOR_COMPILATION_ONLY",
+                        automatic_adoption=False, component_controls=controls,
+                        default_model="MR_frames/5W6W/C_G.pdb")
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
+                                    "Phenix installation for read-only CCD sources",
+                                    "Coot for one bounded construction"]
     template = (root / "scripts" / template_name).read_text()
     generated = template.replace("BUNDLE = None  # @bundle-metadata@", "BUNDLE = " + repr(metadata))
     generated = generated.replace("RUNTIME_BASE64 = None  # @runtime-base64@",

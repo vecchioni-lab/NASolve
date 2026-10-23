@@ -1989,13 +1989,93 @@ mechanics and NARestraints are unchanged. Local validation passes 139 focused / 
 fail-before cases and source-removed cold ordinary-route checks; no new native cycle is required only to repeat C78's
 qualified argument representation.
 
-The intended eight-pair live test still needs an explicit site map and active
-NARestraints membership. The current construction-only DP A:6 faces C C:10;
-NARestraints has no P:C recipe. Do not infer that relationship or substitute a
-DZ:DP declaration without constructing the requested sites. Keep the exact eight
-requested pairs and sixteen stacking orientations; ATL remains independent.
-An ordinary end-to-end report, observations/refinement, solution PDF and scientific
-qualification remain separate. Students do not inspect or approve CIF tables.
+C80 provides the separate explicitly mapped eight-pair construction fixture.
+It starts from the packaged `MR_frames/5W6W/C_G.pdb`, whose twenty disjoint pairs
+come from seventeen literal secondary-structure declarations and the three-pair
+central stretch. The eight requested replacements bind sixteen unique internal
+sites; twelve modified sites require Coot parent overlap and four canonical
+partners already have the requested identity. Full annotated chain sequences and
+all source/declaration hashes are frozen. Existing free-five-prime preparation
+removes ten declared terminal atoms in a separate input; the public source frame
+is preserved. The prior DP:C construction control is not reused as pair intent.
+
+| Requested pair | Exact components | First site | Second site |
+| --- | --- | --- | --- |
+| K:X | CGY:DX | A:20 | D:3 |
+| D:T | 1AP:DT | A:5 | C:11 |
+| Z:P | DZ:DP | A:12 | B:4 |
+| B:S | IGU:IMC | A:6 | C:10 |
+| PDU:A | PDU:DA | D:5 | A:18 |
+| 5PC:G | 5PC:DG | A:4 | C:12 |
+| 5CM:Q | 5CM:S6G | A:7 | C:9 |
+| F:A | DF:DA | A:19 | D:4 |
+
+Methods: freeze the fifteen ordinary selected requested-component sources plus
+canonical DC for background roles, preserving ordinary authority and priority.
+The exact source copies feed the ordinary `construct_postmr_model` entrypoint for
+one Coot construction with a deadline of at most 600 seconds. Ordinary Coot
+version and embedded-Python validation probes are recorded separately. First
+check global atom composition, metadata, unchanged unselected coordinates and
+internal-phosphate context. Ten graph-selected sites use the existing independent
+connected-fragment or exact whole-raw-site auditor. S6G at C:9 and DF at A:19 use
+exact replays of their existing curated placement rules, frozen-parent scaffolds
+and declared substitution bond intent. Their existing parent occupancy/B transfer
+is checked by exact replay; rigid preservation of raw curated fragments is not
+claimed. A separate identity check covers all sixteen requested sites. Audited
+whole-raw-site fallback retains notes, while a failed mixed fixture cannot select
+its canonical template as though the requested chemistry were built.
+
+The mixed-batch context regression fixes a narrow ordinary-path serial-authority
+error: explicitly mutated curated sites join serial collision repair without
+becoming graph or OP3 candidates. Frozen passthrough sites stay excluded. Graph
+eligibility, shadow coordinates, phosphate-deletion proof and the final sanitizer
+are unchanged; the fix authorizes serial fields only.
+
+The new explicit-site compiler uses the pinned NARestraints role table and pair
+recipes on the actual constructed PDB. It preserves twelve canonical background
+pairs and compiles all twenty pairs. It also emits one mapped parallelity for
+each of the thirty-eight declared consecutive-chain relationships, following
+NARestraints' existing chain-order policy. Chain adjacency is declared topology;
+it is not evidence that a physical stack or covalent link has been observed.
+All emitted selectors bind to actual PDB atoms and frozen source graph roles.
+Request indices are explicitly `PDB_RECORD_ORDER`, not native capture indices.
+Native secondary-structure guessing is disabled in the resulting PHIL.
+
+The earlier sixteen stacking orientations are two plane-order compiler controls
+per requested pair. C80 writes them as separate files and never concatenates both
+orders into the active policy. They are not sixteen physical stacking edges;
+including both orders would duplicate restraints. The requested eight pair
+recipes emit 38 angle, 22 bond and eight pair-parallelity requests. Native proxy
+membership and achieved geometry are still unassessed.
+
+`80_Cedar_probe_mixed_pairs.py` carries an independent frozen runtime and public
+frame; it accepts no historical review capsule and reads no donor observations.
+Inspect-only mode freezes the plan/sources without Coot. Fresh mode records one
+construction and its PDB-selector compiler evidence, not a fabricated MR result
+or completed NASolve run. Relative checksum-bound artifacts support independent
+readback; existing opaque Coot-backup transport and first-error/failure capsules
+preserve diagnostics. ATL remains an independent public source-graph control.
+The mixed-context, existing-context and construction regression passes 53 tests
+in 2.05 seconds after the new case fails before the serial-authority fix. Combined
+focused validation passes 154 tests in 30.71 seconds, followed by one additional
+fixture integration test. The four new files contain 68 cases: twenty-one fixture,
+thirty-one compiler, twelve delivery and four mixed-context cases. These groups
+overlap and their counts are not additive.
+
+Source-removed inspect-only validation passes with 162 frozen runtime members
+and fifty capsule payloads, all subprocesses forbidden, a poisoned ambient import
+path, aliased temporary directory and macOS path budgets. A standalone reader
+passes after the source clones are removed. It uses fifteen exact ordinary C67
+component sources and an explicit synthetic nonnative DC fixture; it establishes
+transport and plan integrity, not chemical or native SDK qualification. The full
+suite passes 4,475 tests, with two skips and 276 subtests, in 420.39 seconds. One
+integration test added after collection passes separately in 1.99 seconds, with
+no production-code change; these two runs cover all current test cases. Maintained
+C76 and prior-lineage replay also pass with every subprocess forbidden and no
+captured Python executed. Actual Mac C80 construction, native dictionary/link/
+triple-target/pair/stack membership, ordinary end-to-end execution, observations/
+refinement, solution PDF and scientific qualification remain separate. Students
+do not inspect or approve CIF tables.
 
 
 

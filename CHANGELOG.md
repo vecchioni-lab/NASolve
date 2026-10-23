@@ -8,6 +8,30 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Construct the explicitly mapped eight-pair fixture
+
+- Add independent C80 construction and PDB-selector compilation on the public W
+  frame: eight requested pair families at sixteen sites, with twelve canonical
+  background pairs retained. Freeze ordinary selected sources and exact identity.
+- Audit global/context preservation, ten graph-selected fragments and two exact
+  existing curated placement rules with their bond intent and occupancy/B transfer.
+  Compile twenty declared NARestraints pairs and thirty-eight chain-adjacency
+  stacks with native guessing disabled; keep sixteen orientation controls separate.
+- Fix mixed graph/curated serial authority for explicitly mutated sites only.
+  Frozen passthrough guards and graph/OP3 chemical scope remain unchanged; the
+  new fail-before case and 53 combined context/construction tests pass afterward.
+- Distinguish PDB selector binding from active native membership. Preserve errors,
+  raw-fallback notes and portable source evidence; students do not approve CIFs.
+- Validation: 154 focused tests, 4,475 full-suite tests (two skips, 276 subtests)
+  and one integration test added after collection pass; all current cases are
+  covered. Source-removed inspect-only checks pass with 162 runtime members/fifty
+  payloads and an explicit nonnative DC fixture. Maintained prior-lineage replay
+  also passes without subprocesses or captured-code execution.
+- Fresh Mac C80 construction remains pending. No donor data, ReadySet, native
+  worker, requested model optimizer, refinement, checkpoint or NAR release is
+  added; Coot internals are not exhaustively observed.
+
+
 ### Use per-component ReadySet inputs in ordinary PostMR
 
 - Verify returned C78: 8,741 payloads, the exact C76 parent, eight ReadySet

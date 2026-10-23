@@ -13,6 +13,45 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Next delivery is C80:** `80_Cedar_probe_mixed_pairs.py`, an independent
+MTZ-free eight-pair construction and PDB-selector policy test. No review ZIP is
+an input. Freeze the public C_G frame and its 17+3 declared pairs, then place all
+eight requested families at sixteen explicit internal sites (twelve Coot
+mutations, four already-canonical partners). Read ordinary selected sources for
+fifteen requested components plus background DC; run the ordinary construction
+entrypoint with at most 600 seconds. Global/context checks precede ten independent
+graph-fragment/raw-site audits and two exact existing curated-rule replays (S6G
+C:9 and DF A:19), including bond intent and parent occupancy/B transfer. No rigid
+raw-fragment claim applies to these curated placements. Check all sixteen target
+identities separately.
+
+Fix the mixed-batch serial-authority error by including explicitly mutated
+curated sites for serial fields only. Frozen passthrough exclusions, graph/OP3
+eligibility, shadow-coordinate scope and phosphate proof are unchanged. The new
+regression fails before this fix; 53 combined context/construction tests pass in
+2.05 seconds afterward. Combined focused validation passes 154 tests in 30.71
+seconds, plus one subsequent fixture integration test. The four new files contain
+68 cases (21 fixture, 31 compiler, 12 delivery, four mixed context); groups overlap.
+
+Compile the eight requested and twelve canonical background pairs plus 38
+unique declared chain-adjacency stacks through NARestraints. The sixteen
+bidirectional plane-order files stay separate compiler controls, not physical
+stack edges and not duplicate active restraints. Indices bind PDB record order;
+active native membership is unassessed. C80 requests no ReadySet, model optimizer
+or native worker; Coot internals are not exhaustively instrumented. There are no
+observations, MR result or checkpoint. ATL stays independent and students
+do not inspect CIFs. Source-removed inspect-only validation passes at code checkpoint
+`0dcc738f688dc6328d19512165deb5148f0fff22`: 162 runtime members and fifty capsule
+payloads, no subprocesses, standalone reader/ambient/temporary-alias/macOS-path
+controls passed. Fifteen C67 ordinary sources are exact; DC is explicitly synthetic
+and nonnative, so this is no chemical or SDK qualification. The full suite passes
+4,475 tests, two skips and 276 subtests in 420.39 seconds. One integration test
+added after collection passes separately in 1.99 seconds with no production-code
+change, covering all current cases across both runs. Maintained C76 and prior
+lineage replay pass with all subprocesses forbidden and no captured Python
+executed. Actual Mac C80 construction remains pending. The technical record is
+`mixed_eight_pair_construction_2026_10_23`.
+
 **Returned C78 closes whole-model cached ReadySet readback.** All 8,741 payloads,
 the exact C76 parent and its manifest verify. Phenix 2.2.1-6174 completes one
 ReadySet control (8/8 checks, zero observed builder/template calls, one checked
@@ -29,12 +68,12 @@ NAR and all scientific guards are unchanged. Local validation passes 139 focused
 including five fail-before cases and source-removed cold ordinary-route checks. No new Mac cycle is needed solely to repeat the
 already-qualified C78 argument representation.
 
-**Next scientific boundary:** the explicit eight-pair live model and native
-NARestraints membership, then an ordinary end-to-end report with observations.
-Current DP A:6 opposes C C:10 in a construction-only control; there is no NAR P:C
-recipe. Construct the requested DZ:DP sites rather than inventing intent or
-reusing legacy Saenger-only compilation for all eight custom recipes. ATL stays
-independent. Do not fabricate an MR result, checkpoint or diffraction full run.
+**Following scientific boundary:** native dictionary/link/triple-target and
+full declared NARestraints membership on the C80 fixture, then an ordinary
+end-to-end report with observations. The old DP A:6 versus C C:10 control is not
+pair intent; C80 explicitly places DZ:DP at A:12/B:4. The legacy Saenger-only
+compiler is unchanged. Preserve all historical runs and do not fabricate MR
+success, a checkpoint or a diffraction full run.
 
 **C77 stopped before native execution on macOS.** The user trace reports errno
 63 during deeply nested history staging and again during failure reporting; no

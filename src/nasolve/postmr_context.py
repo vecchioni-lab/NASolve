@@ -107,8 +107,10 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
 
     Source-graph and proper-transport preflight must succeed before any proposed
     deletion. A failed authority or phosphate proof authorizes no deletion or
-    serial change. Curated special placements and explicit passthrough sites do
-    not participate. The ordinary final model must still pass the same sanitizer.
+    serial change. Curated special placements do not become OP3 candidates, but
+    their explicitly mutated sites share serial authority when a mixed context
+    needs collision repair. Frozen passthrough sites remain excluded. The
+    ordinary final model must still pass the same sanitizer.
     """
     raw_model,reference_model,output_model = map(Path,(raw_model,reference_model,output_model))
     allow_op3_sites = validate_op3_sites(allow_op3_sites)
@@ -160,7 +162,15 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
     if candidates:
         try:
             raw_inventory,reference_inventory = _pdb_inventory(raw_model),_pdb_inventory(reference_model)
-            selected = set(graphs)
+            # Curated sites have also been changed by the declared Coot plan.
+            # Calling them unchanged input would falsely reject a mixed batch.
+            # This authorizes serial fields only; graph eligibility, shadow XYZ
+            # and phosphate deletions remain scoped to the original graph sites.
+            curated = {action.site for action in actions
+                       if action.method == 'coot-parent-overlap' and action.site not in passthrough_sites
+                       and (ligand := CURATED_LIGANDS.get(action.after)) is not None
+                       and (ligand.atom_substitutions or ligand.ring_substituents)}
+            selected = set(graphs) | curated
             normalized,repairs,authority = _serial_context(raw_lines,_rows(reference_model),raw_inventory,reference_inventory,selected)
             # The shadow receives only exact graph-scaffold parent coordinates.
             # Its base geometry is intentionally ignored and never propagated.
@@ -198,6 +208,11 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
                 shadow_sha256=sha256(shadow.read_bytes()).hexdigest(),
                 sanitized_shadow_sha256=sha256(sanitized.read_bytes()).hexdigest(),
                 notes=['Internal OP3 removal was proved with the existing phosphate policy; original raw base coordinates were retained for rigid transport.'])
+            if curated - set(graphs) and repairs:
+                report['serial_scope_extension'] = {
+                    'sites': sorted(curated - set(graphs)),
+                    'authority': 'EXPLICIT_CURATED_PLACEMENT_MUTATION; SERIAL_FIELDS_ONLY',
+                    'chemical_context': 'UNCHANGED; CURATED_SITES_ARE_NOT_OP3_CANDIDATES'}
         except (OSError,ValueError,KeyError) as exc:
             report.update(status='RAW_CONTEXT_RETAINED',reason=str(exc),
                 notes=['The complete raw Coot context was retained because internal-phosphate or serial authority could not be proved.'])
