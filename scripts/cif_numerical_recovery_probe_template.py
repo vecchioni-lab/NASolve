@@ -604,7 +604,7 @@ def _source_view(members):
     prefix=''
     while True:
         header=json.loads(members['probe_receipt.json'])
-        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar','63_Cedar','64_Cedar','65_Cedar','66_Cedar','67_Cedar','68_Cedar','69_Cedar','70_Cedar','71_Cedar','72_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
+        if header.get('delivery_prefix') not in {'30_Cedar','31_Cedar','32_Cedar','33_Cedar','34_Cedar','35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar','63_Cedar','64_Cedar','65_Cedar','66_Cedar','67_Cedar','68_Cedar','69_Cedar','70_Cedar','71_Cedar','72_Cedar','73_Cedar'} or header.get('kind')!='cif-source-graph-numerical-recovery-probe':
             return members,prefix
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
@@ -2205,6 +2205,9 @@ CEDAR68_SHA256='24241dd8d20182981e74c9075c96d76d975ea92c9569dbbad18e91f17473a78b
 CEDAR68_BUILD_SHA256='642d08d3f9849af7136d2993bc5c6dcfd6033d7e061c4b718f8c0047615b3d09'
 CEDAR69_SHA256='199a795df9d3d782192c459d0c754bb6ad68d22e7d5712c3eb6d2cf3248850e2'
 CEDAR69_BUILD_SHA256='4fc588e617fdd4c7e12cff3f779a6b02fd7fff53e1ec75447a3bc647d9dd3517'
+CEDAR73_SHA256='afa0372ffe8d30eed800ef3f0446c62196a63b9ccac574af6675835ffc653f9a'
+CEDAR73_BUILD_SHA256='ff903f76bbd5dc281c6f8883e246a36a91bfd651dbe0bf66ba444086a6a52ef4'
+CEDAR73_WORKER_SHA256='91b9b48a0efee1869a3e378673868568a0397a6fbca001d8be03d4556781ea25'
 CEDAR72_SHA256='ffbe8ba91310369ede1846e4a10b1a5325b7a92530c13701c5991429606e67db'
 CEDAR72_BUILD_SHA256='e9ef803626e0522fa7a8b42c48bb26474f1fdad85c8db0a7f9148a386b6b25f2'
 CEDAR71_SHA256='1c78c85dce5b0d50d125d81c4629323ab05b69eed5efecfee4fefcd300173d7e'
@@ -2374,8 +2377,101 @@ def _read_cedar72_members(members):
     return result
 
 
+def _replay_cedar73_return(members,output=None):
+    """Recheck completed controls as data; do not execute captured workers."""
+    from nasolve.cif_postmr_readyset import read_readyset_consumption,heavy_control,effective_cached_input,_atoms,EXPECTED_ACTIONS
+    from nasolve.cif_elbow_chirality import _library_anchor
+    if output is None:
+        with tempfile.TemporaryDirectory(prefix='nasolve-c73-replay-') as temporary:
+            return {c:{k:v for k,v in row.items() if k not in {'source','candidate','model','snapshot'}}
+                for c,row in _replay_cedar73_return(members,Path(temporary).resolve()/'evidence').items()}
+    root=Path(output);root.mkdir(parents=True,exist_ok=False)
+    parent={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    resources=_replay_cedar72_failure(parent,root/'c72')
+    _materialize({n:d for n,d in members.items() if n.startswith('readyset_consumption/')},root)
+    audit=json.loads(members['postmr_readyset_consumption_audit.json'])
+    for code,item in resources.items():
+        directory=root/'readyset_consumption'/code;loaded=read_readyset_consumption(directory);control=loaded['report']
+        row=audit['cases'][code];prefix='readyset_consumption/'+code+'/';execution=control['execution']
+        if (row['control']!={'directory':{'anchor':'probe_directory','path':prefix.rstrip('/')},**control}
+                or row['native']!={'status':'NOT_RUN'} or set(row)!={'control','native'}
+                or control['component']!=code or control['status']!='REVIEW'
+                or control.get('verified_input_retained') is not True or control.get('automatic_adoption') is not False
+                or execution.get('status')!='COMPLETED' or execution.get('returncode')!=0 or execution.get('timeout_seconds')!=120
+                or control.get('excluded_serialized_outputs') or len(control['outputs'])!=40):raise ValueError('Saved C73 control execution differs')
+        for kind,path in [('source',item['source']),('dictionary',item['candidate']),('model',item['model'])]:
+            if loaded[kind].read_bytes()!=path.read_bytes():raise ValueError('Saved C73 frozen input differs')
+        heavy=root/(code+'_heavy.pdb');heavy_control(item['model'],heavy)
+        if (directory/control['heavy_control']['path']).read_bytes()!=heavy.read_bytes():raise ValueError('Saved C73 heavy seed differs')
+        source=control['source_evidence'];spec=json.loads(members[prefix+'readyset/consumption_spec.json'])
+        library=_library_anchor(item['consumer']['api_sources']);expected_sources=set()
+        for source_row in source['sources']:
+            ref=source_row['snapshot'];name=prefix+'source_evidence/'+ref['path'];expected_sources.add(name)
+            if (ref.get('anchor')!='readyset_audit_directory' or not _safe(ref['path']) or not _safe(source_row['path'])
+                    or source_row.get('anchor')!='phenix_installation' or len(members[name])!=source_row['size']
+                    or _sha(members[name])!=source_row['sha256']):raise ValueError('Saved C73 source snapshot differs')
+            if source_row['path']==str(library/'elbow/command_line/builder.py'):
+                if source_row['sha256']!='7b2c0caf2f061d7fff65633da3add4e1b5176710ac2f7fee6c81a14c99789afd':raise ValueError('Saved C73 builder differs')
+            elif members[name]!=parent['readyset_consumption/5PC/source_evidence/'+ref['path']]:raise ValueError('Saved C73 prior source differs')
+        if (len(expected_sources)!=25 or {n for n in members if n.startswith(prefix+'source_evidence/')}!=expected_sources
+                or source.get('coverage_complete') is not True
+                or source.get('explicit_observer_sources')!=[str(library/'elbow/command_line/builder.py')]
+                or source.get('observer_coverage')!='EXACT_NAMED_OBSERVER_ROOTS; TRANSITIVE_IMPORT_COVERAGE_UNCHANGED'
+                or spec['library']!=str(library) or spec['entrypoint']!=source['entrypoint']['path']
+                or spec['sources']!=[{k:v[k] for k in ['path','sha256']} for v in source['sources']]
+                or spec['expected_actions']!=EXPECTED_ACTIONS
+                or spec['arguments']!=control['ordinary_arguments'][1:]
+                or control['ordinary_arguments'][0]!=str(Path(spec['installation'])/control['readyset_dispatcher']['path'])
+                or _sha(members[prefix+'readyset/consumption_worker.py'])!=CEDAR73_WORKER_SHA256):raise ValueError('Saved C73 observer/spec differs')
+        trace=json.loads(members[prefix+'readyset/consumption_trace.json']);result=json.loads(members[prefix+'readyset/consumption_result.json'])
+        if (control['trace']!=trace or control['worker_result']!=result
+                or result.get('execution')!='COMPLETED' or result.get('observer_retained') is not True
+                or result.get('argument_overrides')!='NONE'
+                or result['entry_argv']!=[str(Path(spec['installation'])/spec['entrypoint']),*spec['arguments']]
+                or trace.get('builder_calls')!=0 or trace.get('template_calls')!=0 or trace.get('subprocess_calls')!=1
+                or trace.get('effective_actions')!=EXPECTED_ACTIONS or trace.get('truncated') is not False
+                or trace.get('argument_overrides')!='NONE' or len(trace['events'])!=1
+                or trace['events'][0]!={'kind':'subprocess','function':'__init__','source':str(Path(spec['installation'])/'lib/python3.11/subprocess.py')}):
+            raise ValueError('Saved C73 execution trace differs')
+        effective=root/(code+'_effective');effective.mkdir()
+        generated=directory/control['raw_readyset_dictionary']['path'];selected,checks=effective_cached_input(loaded['dictionary'],generated,effective)
+        checks.update(unchanged_heavy_sites=_atoms(directory/control['readyset_model']['path'])==_atoms(heavy),
+            readyset_completed=True,observer_complete=True,effective_actions=True,
+            no_observed_builder_or_template_calls=True,no_observed_subprocess_calls=False)
+        if (control['checks']!=checks or len(checks)!=8 or sum(checks.values())!=7 or selected.read_bytes()!=loaded['dictionary'].read_bytes()
+                or loaded['dictionary']!=directory/control['effective_dictionary']['path']):raise ValueError('Saved C73 consumption checks differ')
+    if any(n.startswith('readyset_native/') for n in members):raise ValueError('Saved C73 unexpectedly contains native readback')
+    return resources
+
+
+def _read_cedar73_members(members):
+    _verify_manifest(members,4830);r=json.loads(members['probe_receipt.json']);a=r['postmr_readyset_consumption_audit']
+    if (_sha(json.dumps(r['build'],sort_keys=True,separators=(',',':')).encode())!=CEDAR73_BUILD_SHA256
+            or r.get('delivery_prefix')!='73_Cedar' or r.get('kind')!='cif-source-graph-numerical-recovery-probe'
+            or r.get('requested_action')!='ORDINARY_POSTMR_READYSET_CONSUMPTION' or r.get('status')!='REVIEW'
+            or r.get('requires_cif_review') is not False or r.get('automatic_adoption') is not False or r.get('policy_authority')!='NARestraints'
+            or any(r.get(k) is not True for k in ['analysis_completed','original_archive_preserved','frozen_inputs_preserved','prerequisite_mechanics_replayed'])
+            or any(r.get(k)!='NOT_RUN' for k in ['model_editing','policy_recompilation','refinement','installed_phenix_edits','scientific_approval','linked_site_validation','native_proxy_validation'])
+            or r.get('native_execution')!='ISOLATED_READYSET_CONSUMPTION_AND_EFFECTIVE_NATIVE_READBACK'
+            or r.get('dictionary_generation')!='NOT_OBSERVED_BY_SELECTED_BUILDER_TRACE'
+            or r.get('model_optimization')!='NOT_REQUESTED; NATIVE_INTERNALS_NOT_EXHAUSTIVELY_INSTRUMENTED'
+            or r.get('readyset_retry')!='ISOLATED_ORDINARY_ARGUMENTS_OBSERVED_ENTRYPOINT'
+            or r['prior_archive'].get('sha256')!=CEDAR72_SHA256 or r['prior_archive'].get('verified_payloads')!=4482
+            or a!=json.loads(members['postmr_readyset_consumption_audit.json'])
+            or a.get('policy_id')!='cif-postmr-readyset-consumption-controls-v1' or a.get('status')!='REVIEW'
+            or a.get('new_readyset_calls')!=3 or a.get('new_native_calls')!=0
+            or a.get('requires_cif_review') is not False or a.get('automatic_adoption') is not False
+            or a.get('production_checkpoint')!='NOT_CREATED' or set(a.get('cases',{}))!={'DP','PDU','5PC'}):
+        raise ValueError('Require exact completed C73 subprocess-review controls')
+    parent={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
+    result=_read_cedar72_members(parent)
+    if not _replay_cedar73_return(members):raise ValueError('Saved C73 consumption evidence differs')
+    return result
+
+
 def _replay_readyset_consumption_input(members,output):
     delivery=json.loads(members['probe_receipt.json'])['delivery_prefix']
+    if delivery=='73_Cedar':return _replay_cedar73_return(members,output)
     if delivery=='72_Cedar':return _replay_cedar72_failure(members,output)
     if delivery=='71_Cedar':return _replay_cedar71_return(members,output)
     raise ValueError('Unsupported ordinary ReadySet consumption input')
@@ -2486,7 +2582,9 @@ def _run_postmr_readyset_consumption_action(args,receipt,session,review,original
         control=audit_readyset_consumption(item['source'],item['candidate'],item['model'],code,phenix,item['consumer'],directory,timeout_seconds=min(args.timeout_seconds,180))
         row={'control':{'directory':{'anchor':'probe_directory','path':directory.relative_to(session).as_posix()},**control},'native':{'status':'NOT_RUN'}};report['cases'][code]=row
         if 'returncode' in control['execution']:report['new_readyset_calls']+=1
-        print(code,'ordinary ReadySet consumption:',control['status'],'; observed builder calls:',control['trace'].get('builder_calls','NOT_RUN'),flush=True)
+        print(code,'ordinary ReadySet consumption:',control['status'],'; observed builder / subprocess calls:',control['trace'].get('builder_calls','NOT_RUN'),'/',control['trace'].get('subprocess_calls','NOT_RUN'),flush=True)
+        observed=next((v.get('process') for v in control['trace'].get('events',[]) if v.get('kind')=='subprocess'),None)
+        if observed:print(code,'first observed subprocess command:',json.dumps(observed['args'],ensure_ascii=True)[:400],flush=True)
         loaded=read_readyset_consumption(directory)
         if phenix and control['status']=='READYSET_CACHED_INPUT_PASS':
             inputs=session/'readyset_native'/code/'inputs';inputs.mkdir(parents=True)
@@ -2509,7 +2607,7 @@ def _run_postmr_readyset_consumption_action(args,receipt,session,review,original
         if len(report['cases'])==3 and all(r['control']['status']=='READYSET_CACHED_INPUT_PASS' and r.get('qualification',{}).get('native_usable') is True for r in report['cases'].values()) else 'REVIEW')
     if any(read_staged_review_member(frozen,n)!=d for n,d in members.items()) or review.read_bytes()!=original:raise ValueError('ReadySet consumption changed preserved evidence')
     receipt.update(postmr_readyset_consumption_audit=report,analysis_completed=True,original_archive_preserved=True,frozen_inputs_preserved=True,
-        native_execution='ISOLATED_READYSET_CONSUMPTION_AND_EFFECTIVE_NATIVE_READBACK' if report['new_readyset_calls'] else 'NOT_RUN',
+        native_execution='ISOLATED_READYSET_CONSUMPTION_AND_EFFECTIVE_NATIVE_READBACK' if report['new_native_calls'] else 'ISOLATED_READYSET_CONSUMPTION_ONLY' if report['new_readyset_calls'] else 'NOT_RUN',
         requires_cif_review=False,readyset_retry='ISOLATED_ORDINARY_ARGUMENTS_OBSERVED_ENTRYPOINT' if report['new_readyset_calls'] else 'NOT_RUN')
     receipt['dictionary_generation']=('OBSERVED_NATIVE_BUILDER_CALLS' if any(r['control']['trace'].get('builder_calls',0)>0 for r in report['cases'].values()) else 'NOT_OBSERVED_BY_SELECTED_BUILDER_TRACE' if report['new_readyset_calls'] else 'NOT_RUN')
     receipt['model_optimization']='NOT_REQUESTED; NATIVE_INTERNALS_NOT_EXHAUSTIVELY_INSTRUMENTED' if report['new_readyset_calls'] else 'NOT_RUN'
@@ -4213,7 +4311,7 @@ def _run_source_classification_action(args,receipt,session,review,original,membe
 def _source_reader_evidence(members):
     """Reach the verified C34 constructor evidence without dropping wrappers."""
     prefix=''
-    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar','63_Cedar','64_Cedar','65_Cedar','66_Cedar','67_Cedar','68_Cedar','69_Cedar','70_Cedar','71_Cedar','72_Cedar'}:
+    while json.loads(members['probe_receipt.json']).get('delivery_prefix') in {'35_Cedar','36_Cedar','37_Cedar','38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar','63_Cedar','64_Cedar','65_Cedar','66_Cedar','67_Cedar','68_Cedar','69_Cedar','70_Cedar','71_Cedar','72_Cedar','73_Cedar'}:
         members={n.removeprefix('inputs/review/'):d for n,d in members.items() if n.startswith('inputs/review/')}
         prefix+='inputs/review/'
     return members,prefix
@@ -4222,14 +4320,15 @@ def _source_reader_evidence(members):
 def _read_capsule(path, expected_sha=None):
     from nasolve.cif_review_transport import is_safe_review_member
     original=path.read_bytes();digest=_sha(original)
-    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256,CEDAR53_SHA256,CEDAR54_SHA256,CEDAR55_SHA256,CEDAR56_SHA256,CEDAR57_SHA256,CEDAR58_SHA256,CEDAR59_SHA256,CEDAR60_SHA256,CEDAR61_SHA256,CEDAR62_SHA256,CEDAR63_SHA256,CEDAR64_SHA256,CEDAR65_SHA256,CEDAR66_SHA256,CEDAR67_SHA256,CEDAR68_SHA256,CEDAR69_SHA256,CEDAR70_SHA256,CEDAR71_SHA256,CEDAR72_SHA256}):
-        raise ValueError('Require an exact verified Cedar 29--72 review ZIP')
+    if digest not in ({expected_sha} if expected_sha else {REVIEW_SHA256,CEDAR30_SHA256,CEDAR31_SHA256,CEDAR32_SHA256,CEDAR33_SHA256,CEDAR34_SHA256,CEDAR35_SHA256,CEDAR36_SHA256,CEDAR37_SHA256,CEDAR38_SHA256,CEDAR39_SHA256,CEDAR40_SHA256,CEDAR41_SHA256,CEDAR42_SHA256,CEDAR43_SHA256,CEDAR44_SHA256,CEDAR45_SHA256,CEDAR46_SHA256,CEDAR47_SHA256,CEDAR48_SHA256,CEDAR49_SHA256,CEDAR50_SHA256,CEDAR51_SHA256,CEDAR52_SHA256,CEDAR53_SHA256,CEDAR54_SHA256,CEDAR55_SHA256,CEDAR56_SHA256,CEDAR57_SHA256,CEDAR58_SHA256,CEDAR59_SHA256,CEDAR60_SHA256,CEDAR61_SHA256,CEDAR62_SHA256,CEDAR63_SHA256,CEDAR64_SHA256,CEDAR65_SHA256,CEDAR66_SHA256,CEDAR67_SHA256,CEDAR68_SHA256,CEDAR69_SHA256,CEDAR70_SHA256,CEDAR71_SHA256,CEDAR72_SHA256,CEDAR73_SHA256}):
+        raise ValueError('Require an exact verified Cedar 29--73 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as z:
         entries=z.infolist();names=[e.filename for e in entries]
         if len(names)!=len(set(names)) or any(not is_safe_review_member(e.filename) or stat.S_ISLNK(e.external_attr>>16) for e in entries):raise ValueError('Unsafe or duplicate review member')
         members={e.filename:z.read(e) for e in entries}
     header=json.loads(members['probe_receipt.json'])
-    if header.get('delivery_prefix')=='72_Cedar':qualified,prior,rotation=_read_cedar72_members(members)
+    if header.get('delivery_prefix')=='73_Cedar':qualified,prior,rotation=_read_cedar73_members(members)
+    elif header.get('delivery_prefix')=='72_Cedar':qualified,prior,rotation=_read_cedar72_members(members)
     elif header.get('delivery_prefix')=='71_Cedar':qualified,prior,rotation=_read_cedar71_members(members)
     elif header.get('delivery_prefix')=='70_Cedar':qualified,prior,rotation=_read_cedar70_members(members)
     elif header.get('delivery_prefix')=='69_Cedar':qualified,prior,rotation=_read_cedar69_members(members)
@@ -5094,7 +5193,7 @@ def _check_constructor_input_mode(args,delivery):
         'saved_postmr_construction_native_only':('64_Cedar',),
         'source_reuse_qualification_only':('67_Cedar','68_Cedar'),
         'saved_source_reuse_only':('69_Cedar',),
-        'postmr_readyset_consumption_only':('71_Cedar','72_Cedar'),
+        'postmr_readyset_consumption_only':('71_Cedar','72_Cedar','73_Cedar'),
         'postmr_dictionary_reuse_only':('70_Cedar',),
         'ordinary_acquisition_only':('66_Cedar',),
         'local_dictionary_reuse_only':('65_Cedar',),
@@ -5107,6 +5206,7 @@ def _check_constructor_input_mode(args,delivery):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     default_review={
+        '74_Cedar':'NASolve-live-tests/73_Cedar_cif-numerical-recovery-xxo5_36z/73_Cedar_xxo5_36z_cif_numerical_recovery_review.zip',
         '73_Cedar':'NASolve-live-tests/72_Cedar_cif-numerical-recovery-pe1cy80o/72_Cedar_pe1cy80o_cif_numerical_recovery_review.zip',
         '72_Cedar':'NASolve-live-tests/71_Cedar_cif-numerical-recovery-6nki0gti/71_Cedar_6nki0gti_cif_numerical_recovery_review.zip',
         '71_Cedar':'NASolve-live-tests/70_Cedar_cif-numerical-recovery-vpx276th/70_Cedar_vpx276th_cif_numerical_recovery_review.zip',
@@ -5260,7 +5360,12 @@ def main():
         stage_review_members(members,session/'inputs/review');frozen=session/'inputs/review'
         source_members,source_prefix=_source_view(members);source_root=frozen/PurePosixPath(source_prefix) if source_prefix else frozen
         reader_members,reader_prefix=_source_reader_evidence(members);reader_root=frozen/PurePosixPath(reader_prefix) if reader_prefix else frozen
-        if source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='72_Cedar':
+        if source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='73_Cedar':
+            receipt['previous_execution']={'delivery_prefix':'73_Cedar','new_readyset_calls':3,'new_native_readbacks':0,
+                'completed_controls':3,'observed_builder_calls':0,'observed_subprocess_calls':3,
+                'checks_per_control':{'pass':7,'review':1},'unresolved':'SUBPROCESS_COMMAND_AND_CALLER_NOT_RECORDED',
+                'cached_numerics':'EXACT','heavy_sites':'UNCHANGED','preserved_C71_cache_handoff':'POSTMR_CACHE_HANDOFF_PASS'}
+        elif source_prefix and json.loads(members['probe_receipt.json'])['delivery_prefix']=='72_Cedar':
             receipt['previous_execution']={'delivery_prefix':'72_Cedar','error':'Incomplete ReadySet builder source coverage',
                 'phase':'SOURCE_CAPTURE_BEFORE_READYSET_LAUNCH','new_readyset_calls':0,'new_native_readbacks':0,
                 'preserved_C71_cache_handoff':'POSTMR_CACHE_HANDOFF_PASS'}
@@ -5463,7 +5568,7 @@ def main():
             from nasolve.cif_source_reader import source_reader_checks
             receipt['prior_source_reader_replay']={}
             charge_members=members;charge_root=frozen
-            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar','63_Cedar','64_Cedar','65_Cedar','66_Cedar','67_Cedar','68_Cedar','69_Cedar','70_Cedar','71_Cedar','72_Cedar'}:
+            while json.loads(charge_members['probe_receipt.json'])['delivery_prefix'] in {'38_Cedar','39_Cedar','40_Cedar','41_Cedar','42_Cedar','43_Cedar','44_Cedar','45_Cedar','46_Cedar','47_Cedar','48_Cedar','49_Cedar','50_Cedar','51_Cedar','52_Cedar','53_Cedar','54_Cedar','55_Cedar','56_Cedar','57_Cedar','58_Cedar','59_Cedar','60_Cedar','61_Cedar','62_Cedar','63_Cedar','64_Cedar','65_Cedar','66_Cedar','67_Cedar','68_Cedar','69_Cedar','70_Cedar','71_Cedar','72_Cedar','73_Cedar'}:
                 charge_members={n.removeprefix('inputs/review/'):d for n,d in charge_members.items() if n.startswith('inputs/review/')}
                 charge_root=charge_root/'inputs/review'
             for code,row in json.loads(charge_members['probe_receipt.json'])['source_reader_audits'].items():

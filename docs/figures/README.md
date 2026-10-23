@@ -209,12 +209,13 @@ C72 tests the next boundary with `--postmr-readyset-consumption-only` on exact
 C71. It uses the ordinary ReadySet arguments through an observed selected
 Python entrypoint, checks retained cached numerics and unchanged heavy sites,
 then reads back effective native terms. Up to three bounded isolated controls;
-actual Mac consumption and whole-model qualification remain pending.
+ReadySet consumption qualification and whole-model checks remain open.
 
-Returned C72 stops before ReadySet because the static import scan omits an
-indirectly imported observer target. All 4,482 payloads and unchanged C71 parent
-verify. C73 captures that target explicitly with the same path/size/hash guards;
-no chemistry or restraint changes. Actual ReadySet consumption remains pending.
+Returned C73 verifies all 4,830 payloads and completes three ReadySet controls.
+Exact cached numerics, unchanged heavy sites and seven checks per control pass;
+one unclassified subprocess call per control retains review and no fixed native
+readback runs. C74 records bounded command/caller details while keeping the
+existing no-child acceptance rule, chemistry and native mechanics unchanged.
 
 
 See the [ordinary cache contract](../cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.

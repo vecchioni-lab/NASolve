@@ -69,8 +69,37 @@ sys.path.insert(0,str(root/spec['library']))
 trace={'schema_version':1,'events':[],'event_budget':128,'truncated':False,
        'builder_calls':0,'template_calls':0,'subprocess_calls':0,'effective_actions':None,
        'argument_overrides':'NONE','coverage':'SELECTED_ENTRYPOINT_BUILDER_CCD_TEMPLATE_AND_PYTHON_SUBPROCESS_CALLS; CURRENT_PROCESS_ONLY'}
+trace['process_observation_schema_version']=1
+trace['process_limits']={'argument_items':64,'string_characters':2048,'total_argument_characters':8192,'caller_frames':16}
 paths={str((root/spec['library']/name).resolve()):kind for name,kind in [
     ('elbow/command_line/builder.py','builder'),('elbow/scripts/elbow_on_pdb_file.py','template')]}
+def process_details(frame):
+    remaining=8192;truncated=False;unsupported=False
+    def literal(value):
+        nonlocal remaining,truncated,unsupported
+        if value is None or type(value) is bool:return value
+        if type(value) in (str,bytes):
+            keep=min(len(value),2048,remaining);remaining-=keep
+            if keep!=len(value):truncated=True
+            return value[:keep] if type(value) is str else {'encoding':'hex','value':value[:keep].hex()}
+        unsupported=True
+        return {'unsupported_type':type(value).__name__[:80]}
+    values=frame.f_locals;args=values.get('args')
+    if type(args) in (list,tuple):
+        if len(args)>64:truncated=True
+        args=[literal(v) for v in args[:64]]
+    else:args=literal(args)
+    result={'args':args,'executable':literal(values.get('executable')),
+        'shell':literal(values.get('shell')),'cwd':literal(values.get('cwd')),
+        'environment':'NOT_CAPTURED','truncated':truncated,
+        'parameters_complete':not truncated and not unsupported,'callers':[]}
+    caller=frame.f_back
+    while caller is not None and len(result['callers'])<16:
+        result['callers'].append({'source':caller.f_code.co_filename[:2048],
+            'function':caller.f_code.co_name[:128],'line':caller.f_lineno})
+        caller=caller.f_back
+    result['callers_truncated']=caller is not None
+    return result
 def save():
     path=Path('consumption_trace.tmp');path.write_text(json.dumps(trace,indent=2,allow_nan=False)+'\n');path.replace('consumption_trace.json')
 def profile(frame,event,arg):
@@ -85,7 +114,10 @@ def profile(frame,event,arg):
     if name=='__init__' and frame.f_globals.get('__name__')=='subprocess' and frame.f_locals.get('self').__class__.__name__=='Popen':kind='subprocess'
     if kind:
         trace[kind+'_calls']+=1
-        if len(trace['events'])<trace['event_budget']:trace['events'].append({'kind':kind,'function':name,'source':frame.f_code.co_filename})
+        if len(trace['events'])<trace['event_budget']:
+            observed={'kind':kind,'function':name,'source':frame.f_code.co_filename}
+            if kind=='subprocess':observed['process']=process_details(frame)
+            trace['events'].append(observed)
         else:trace['truncated']=True
         save()
 result={'execution':'STARTED','argument_overrides':'NONE','native_internal_operations':'NOT_EXHAUSTIVELY_INSTRUMENTED'}

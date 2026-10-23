@@ -171,3 +171,82 @@ def test_explicit_observer_sources_keep_existing_proof_guards(tmp_path,monkeypat
     with pytest.raises((ValueError,OSError)):
         api.audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
     assert not (tmp_path/'control/readyset/consumption_result.json').exists()
+
+
+def test_import_time_child_records_literal_command_and_callers_without_environment(tmp_path,monkeypatch):
+    from nasolve.cif_postmr_readyset import audit_readyset_consumption
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch)
+    ready=installation.root/'lib/python3.11/site-packages/elbow/command_line/ready_set.py'
+    command=[str(sys.executable),'-c','pass','argument with spaces']
+    ready.write_text(ready.read_text().replace("import sys\n", "import sys,os,subprocess\nsubprocess.run("+repr(command)+",cwd=str(Path.cwd()),env=dict(os.environ,PRIVATE_OBSERVER_TEST='DO_NOT_CAPTURE_ENVIRONMENT'))\n"))
+    r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    assert r['status']=='REVIEW' and r['checks']['readyset_completed']
+    assert r['trace']['builder_calls']==0 and r['trace']['subprocess_calls']==1
+    event=next(v for v in r['trace']['events'] if v['kind']=='subprocess')
+    observed=event['process']
+    assert observed['args']==command and observed['shell'] is False and observed['executable'] is None
+    assert observed['cwd']==str(tmp_path/'control/readyset') and observed['parameters_complete']
+    assert any(v['source']==str(ready) and v['function']=='<module>' for v in observed['callers'])
+    assert observed['environment']=='NOT_CAPTURED' and 'DO_NOT_CAPTURE_ENVIRONMENT' not in json.dumps(r['trace'])
+    assert r['trace']['argument_overrides']=='NONE'
+
+
+def test_shell_child_keeps_command_and_executable_distinct_and_still_requires_review(tmp_path,monkeypatch):
+    from nasolve.cif_postmr_readyset import audit_readyset_consumption
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch)
+    ready=installation.root/'lib/python3.11/site-packages/elbow/command_line/ready_set.py'
+    ready.write_text(ready.read_text().replace("print('No unknown residues')", "import subprocess; subprocess.run(':',shell=True,executable='/bin/sh'); print('No unknown residues')"))
+    r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    observed=next(v['process'] for v in r['trace']['events'] if v['kind']=='subprocess')
+    assert observed['args']==':' and observed['executable']=='/bin/sh' and observed['shell'] is True
+    assert observed['parameters_complete'] and r['checks']['no_observed_subprocess_calls'] is False and r['status']=='REVIEW'
+
+
+@pytest.mark.parametrize('large',['string','items'])
+def test_large_child_command_is_bounded_without_changing_native_arguments(tmp_path,monkeypatch,large):
+    from nasolve.cif_postmr_readyset import audit_readyset_consumption
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch)
+    ready=installation.root/'lib/python3.11/site-packages/elbow/command_line/ready_set.py'
+    arguments=[sys.executable,'-c','pass',*(['x'*9000] if large=='string' else ['x']*90)]
+    ready.write_text(ready.read_text().replace("print('No unknown residues')", "import subprocess; subprocess.run("+repr(arguments)+"); print('No unknown residues')"))
+    r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    observed=next(v['process'] for v in r['trace']['events'] if v['kind']=='subprocess')
+    assert r['checks']['readyset_completed'] and r['status']=='REVIEW'
+    assert observed['parameters_complete'] is False and observed['truncated']
+    assert len(observed['args'])<=64 and len(json.dumps(observed['args']))<10000
+
+
+def test_observer_does_not_coerce_custom_child_argument_objects(tmp_path,monkeypatch):
+    from nasolve.cif_postmr_readyset import audit_readyset_consumption
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch)
+    ready=installation.root/'lib/python3.11/site-packages/elbow/command_line/ready_set.py'
+    definition="class Argument:\n    def __repr__(self):raise AssertionError('OBSERVER_MUST_NOT_CALL_REPR')\n    def __str__(self):raise AssertionError('OBSERVER_MUST_NOT_CALL_STR')\n    def __fspath__(self):return 'native argument'\n"
+    ready.write_text(ready.read_text().replace('def run(args):',definition+'def run(args):').replace("print('No unknown residues')", "import subprocess; subprocess.run([sys.executable,'-c','pass',Argument()]); print('No unknown residues')"))
+    r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    observed=next(v['process'] for v in r['trace']['events'] if v['kind']=='subprocess')
+    assert r['checks']['readyset_completed'] and r['status']=='REVIEW'
+    assert observed['args'][-1]=={'unsupported_type':'Argument'} and observed['parameters_complete'] is False
+
+
+def test_byte_child_arguments_are_recorded_losslessly_without_decoding(tmp_path,monkeypatch):
+    from nasolve.cif_postmr_readyset import audit_readyset_consumption
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch)
+    ready=installation.root/'lib/python3.11/site-packages/elbow/command_line/ready_set.py'
+    command=[str(sys.executable).encode(),b'-c',b'pass',b'non_utf8_\xff']
+    ready.write_text(ready.read_text().replace("print('No unknown residues')", "import subprocess; subprocess.run("+repr(command)+"); print('No unknown residues')"))
+    r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    observed=next(v['process'] for v in r['trace']['events'] if v['kind']=='subprocess')
+    assert r['checks']['readyset_completed'] and r['status']=='REVIEW' and observed['parameters_complete']
+    assert observed['args']==[{'encoding':'hex','value':v.hex()} for v in command]
+
+
+def test_deep_child_callers_are_bounded_and_marked_separately(tmp_path,monkeypatch):
+    from nasolve.cif_postmr_readyset import audit_readyset_consumption
+    s,c,model,installation,consumer=setup(tmp_path,monkeypatch)
+    ready=installation.root/'lib/python3.11/site-packages/elbow/command_line/ready_set.py'
+    helper="def child(depth):\n    if depth:return child(depth-1)\n    import subprocess\n    return subprocess.run([sys.executable,'-c','pass'])\n"
+    ready.write_text(ready.read_text().replace('def run(args):',helper+'def run(args):').replace("print('No unknown residues')", "child(40); print('No unknown residues')"))
+    r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
+    observed=next(v['process'] for v in r['trace']['events'] if v['kind']=='subprocess')
+    assert r['checks']['readyset_completed'] and r['status']=='REVIEW' and observed['parameters_complete']
+    assert len(observed['callers'])==16 and observed['callers_truncated'] is True

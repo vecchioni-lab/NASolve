@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Identify observed ReadySet subprocess calls without changing acceptance
+
+- Verify returned C73: 4,830 payloads, exact C72 parent, pinned runtime inventory
+  and reported runner SHA. All three ReadySet controls complete with exact cached
+  numerics and unchanged heavy sites. Each has seven true checks and one false
+  no-subprocess check; no fixed native readback runs. Child commands remain unknown.
+- Add bounded literal args, executable/shell/cwd and caller frames to observed
+  Popen constructor events, without capturing the environment or coercing opaque
+  objects. Keep every child at review and preserve all eight acceptance checks.
+- Add C74 on exact C73 with preserved prior evidence and no install, chemistry,
+  native-mechanics, cache, ordinary-argument or NARestraints change. Distinguish
+  new ReadySet-only receipts from fixed native readbacks; old receipts remain exact.
+- Validation: 317 focused / 4,223 full tests pass (two skips, 276 subtests),
+  including 27 new tests and five fail-before cases. Cold relocated inspect-only
+  transport preserves all 4,830 C73 payloads and reads three independent controls
+  with original build-source reads and all subprocesses forbidden.
+
 ### Capture indirect ReadySet observer sources before retry
 
 - Verify the returned C72 prelaunch failure: 4,482 payloads, unchanged C71

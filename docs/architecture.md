@@ -1827,12 +1827,32 @@ snapshots reproduces a 25-file source inventory without executing captured code.
 A generic indirect-import fixture now covers both no-builder and observed-builder
 paths; missing, escaped, oversized and changed sources remain blocked.
 
-The default C73 retry consumes the exact failed C72 capsule and preserves all
-its evidence while recovering only verified C71 numerical inputs. Existing C71
-input support remains. ReadySet arguments, observation gates, target mechanics,
-cache identity, original stopping notes and NARestraints are unchanged. No new
-install or optimization is requested. Actual consumption and whole-model/full-run
-qualification remain pending; students do not inspect or approve CIF tables.
+Returned C73 verifies 4,830 payloads, the unchanged C72 parent and reported
+runner SHA; only recorded NAR dirty-state metadata differs from the clean build.
+Three Phenix 2.2.1-6174 ReadySet controls complete with all 25 source proofs,
+exact cached effective numerics, unchanged heavy sites and requested effective
+actions. Maintained replay reproduces all 24 checks: 21 true and three false
+no-subprocess checks. Each untruncated trace records one Popen constructor call,
+zero builder/template calls, and no command or caller. The child activity remains
+unclassified; no fixed native readback runs. Preserve the original receipt's
+generic native_execution label while reading its explicit zero native counter.
+
+C74 methods: observe literal subprocess arguments, executable, shell and cwd
+separately, with bounded caller source/function/line metadata. Do not capture the
+environment or call conversion methods on opaque values. Preserve bytes as hex
+metadata; mark truncated or unsupported parameters explicitly. Cap 64 arguments,
+2,048 characters/bytes each, 8,192 total before encoding and 16 caller frames;
+retain the 128-event cap. These are constructor-call observations, not a child
+completion or exhaustive native-internals proof. No native function or argument
+is replaced, and the existing no-child acceptance rule remains unchanged.
+
+The C74 retry preserves exact C73 and all prior evidence, recovers verified C71
+inputs and uses the same bounded three controls. Earlier explicit C71/C72 inputs
+remain supported. New receipts distinguish ReadySet-only execution from fixed
+native readback. Cache bytes/keys, original stopping notes, chemistry, target
+mechanics and NARestraints remain unchanged. No install or optimization is
+requested. Actual C74 child observation and whole-model/full-run qualification
+remain open; students do not inspect or approve CIF tables.
 
 
 
