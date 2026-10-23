@@ -1965,11 +1965,64 @@ preserved. This uses no synthetic DC and provides no fresh SDK qualification.
 Maintained C76 and all prior-lineage checks also pass under the current code,
 with subprocesses forbidden and original reviews/fallbacks preserved. The full
 suite passes 4,491 tests, two skips and 276 subtests in 424.25 seconds. All fifteen
-new cases are collected before launch; no supplement is needed. Fresh Mac C81
-construction,
-active native dictionary/link/triple-target/pair/stack membership, ordinary
-end-to-end execution, observations/refinement, solution PDF and scientific
-qualification remain separate. Students do not inspect or approve CIF tables.
+new cases are collected before launch; no supplement is needed. These original
+local checks remain separate from the subsequent Mac return.
+
+Returned C81 verifies all 175 payloads and completes Coot 1.3.3. Independent
+trusted-source replay reproduces nine OP3 deletions, 267 selected serial repairs,
+ten graph transports and both curated rules, with no raw fallback. All forty-two
+site identities and the twenty-pair/thirty-eight-stack policy match the declared
+fixture; all sixteen plane-order controls remain separate from the active policy.
+The final model matches the private saved-data prediction exactly. No ReadySet or
+native interpretation ran in C81. Active native dictionary/link/triple-target and
+pair/stack membership, ordinary end-to-end execution, observations/refinement,
+solution PDF and scientific qualification remain separate. Students do not inspect
+or approve CIF tables.
+
+C82 connects that exact construction to the ordinary numerical handoff. Its
+independent `build_mixed_native_probe.py` ferry reads the exact verified C81 ZIP
+as data, preserves it through indexed transport and materializes a shallow
+scientific view. It freezes the constructed model, all sixteen source components
+and the active NARestraints PHIL without another Coot process. `--inspect-only`
+stages and checks these inputs without discovering or running an external SDK.
+
+Methods: call the existing ordinary ReadySet helper once with separate component
+CIF arguments and its unchanged hydrogen/ligand actions. Preserve parameterized
+input precedence through the ordinary effective-dictionary selector; source-only
+CCD graphs may require native numerical generation. All sixteen still enter
+ReadySet; omit only exact single-component, unparameterized canonical CCD graphs
+from native dictionary arguments so the installed canonical numerical library
+remains authoritative. Never rewrite a mixed container. Retain raw generated output
+and per-component source comparisons, including chemical-state differences.
+Compare actual native site definitions to the effective inputs; context mismatches
+remain review findings, without a site-modifier or DNA-header repair in this slice.
+Require unchanged named heavy coordinates and complete modified-component numerics
+before at most two fixed native reads: secondary-structure guessing disabled,
+then the same inputs plus the exact explicit NAR policy. Resolve that policy's
+selections against fresh native atoms; compiler PDB-order indices are never reused.
+The existing membership qualifier requires the exact added requests, every
+unaffected proxy and no competing native secondary-structure terms. Separate
+checks cover the declared backbone links, effective site inventory, finite
+parameters/repeated evaluations and PDU/5PC triple targets. The sixteen separate
+plane-order controls do not enter the active policy.
+
+ReadySet has a maximum 600-second deadline; each fixed interpretation has at most
+60 seconds. This test may generate dictionaries but requests no model optimization,
+refinement or checkpoint. Chemical-source changes cannot be hidden by a native
+membership pass, and the original constructed model remains available with notes
+without a student CIF gate. Native internal operations are not exhaustively
+instrumented. Final local validation on code checkpoint
+`3aabb468ee668e12db3fa0ef2fd14448ad868f20` passes 188 focused tests and the complete
+4,519-test suite (two skips, 276 subtests, 406.52 seconds), with all twenty-eight
+new cases collected before launch. Source-removed cold preparation preserves all
+sixteen actual C81 sources, the exact constructed model and declared policy;
+all 175 parent payloads and its manifest survive, with no captured program
+materialized into the scientific view. The prepared reader still passes after
+original sources, fixture, session and runtime are removed. Configuration, everyday
+edits and component storage remain untouched; simulated macOS path checks pass.
+These are packaging/prepared-input and fake-tool regression checks, with no local
+Phenix or Coot. Fresh Mac C82, scientific qualification and an ordinary diffraction
+run remain open.
 
 
 

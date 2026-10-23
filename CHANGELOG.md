@@ -8,6 +8,29 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read back the exact mixed-pair construction through ordinary numerical inputs
+
+- Verify returned C81: all 175 payloads and the exact runtime/source bindings;
+  fresh Coot 1.3.3 construction passes nine OP3 removals, ten graph transports,
+  both curated rules and the complete twenty-pair policy with no raw fallback.
+  Preserve original C80/C81 local evidence and historical review outcomes.
+- Add an explicit C82 diagnostic using the exact C81 ZIP, fixed constructed model,
+  sixteen separate original component sources and active NARestraints PHIL.
+  Use one bounded ordinary ReadySet call and the existing effective selector;
+  keep generated-state differences and raw output visible. Do not rerun Coot.
+- When numerical coverage is complete, compare at most two fixed native managers
+  with guessing disabled. Resolve PHIL selections against actual native atoms,
+  require exact NAR additions and unaffected proxies, and check backbone links,
+  site inventories, finite parameters/repeats and PDU/5PC triple targets.
+- Keep the preserved construction available with notes. No student CIF approval,
+  chemical-state repair, native-kernel change, model optimization, refinement,
+  automatic adoption or production checkpoint is added. Final local validation
+  passes 188 focused / 4,519 full tests (two skips, 276 subtests, 406.52 s), with
+  all twenty-eight new cases collected before launch. Source-removed cold
+  preparation/readback passes with exact C81 sources and no SDK process.
+  Fresh Mac C82 and scientific qualification remain pending.
+
+
 ### Include source-validated curated DNA in phosphate context proof
 
 - Verify returned C80 Coot 1.3.3 construction and its preserved context REVIEW:

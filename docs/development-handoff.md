@@ -13,11 +13,28 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Next delivery is C81:** `81_Cedar_probe_mixed_pairs.py`, the same independent
-eight-pair fixture built with `scripts/build_mixed_pair_probe.py --delivery-prefix
-81_Cedar`. Fetch from the existing build 80 into a new detached build 81. No
-review ZIP or donor observations are inputs. Run one fresh ordinary Coot
-construction with at most 600 seconds; version/API probes are recorded separately.
+**Returned C81 closes fresh construction of the exact eight-pair fixture.** All
+175 payloads, runtime hashes and source bindings verify. Coot 1.3.3 completes;
+independent trusted-source replay reproduces nine OP3 deletions, 267 selected
+serial repairs, ten graph transports and two unchanged curated rules, with no
+raw fallback. All forty-two site identities, twenty declared pairs, thirty-eight
+chain-adjacency stacks and sixteen separate plane-order controls verify. The final
+model matches the private saved-data prediction exactly. C81 runs no ReadySet or
+native interpretation; it is construction and selector evidence, not a full solve.
+
+**Next delivery is C82:** `82_Cedar_probe_mixed_native.py`, built with
+`scripts/build_mixed_native_probe.py`. Fetch from build 81 into a new detached
+build 82 and supply the exact C81 ZIP. Preserve the successful construction;
+no new Coot run is required. The bounded ReadySet/native check uses its exact
+fixed model, individually frozen component sources and declared NAR policy.
+Local C82 validation on `3aabb468ee668e12db3fa0ef2fd14448ad868f20` passes 188
+focused tests and all 4,519 full-suite tests (two skips, 276 subtests, 406.52 s).
+All twenty-eight new cases are collected before final full-suite launch.
+Source-removed cold preparation preserves the exact C81 model, sixteen sources,
+active policy and complete parent capsule; standalone readback passes after
+original scientific inputs, session and runtime removal. No local SDK runs.
+Fresh Mac C82 qualification remains pending. The exact receipt, schema, method
+and validation scopes are in `mixed_pair_native_membership_2026_10_23`.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.
@@ -54,8 +71,9 @@ ambient import, temporary alias and macOS byte-budget checks pass. Maintained
 C76 and all prior-lineage replay pass under the current code, with subprocesses
 forbidden and original reviews/fallbacks preserved. The full suite passes 4,491
 tests, two skips and 276 subtests in 424.25 seconds, with all fifteen new cases
-collected before launch and no supplement. Fresh C81 Coot and active native
-results remain pending on the Mac.
+collected before launch and no supplement. These original local checks remain
+unchanged. The subsequent fresh C81 return passes construction; active native
+membership remains unassessed.
 The record is `curated_phosphate_context_2026_10_23`; C80 original local validation
 and its separate returned outcome remain in `mixed_eight_pair_construction_2026_10_23`.
 

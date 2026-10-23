@@ -164,8 +164,17 @@ curated DNA join the same discarded phosphate-context proof while retaining its
 existing final placement rule and sanitizer. It repeats one fresh ordinary Coot
 construction on the unchanged eight-pair map, with no historical ZIP input.
 Local regression, exact saved-data, source-removed cold and prior-lineage checks
-pass. Fresh Mac C81 construction, active native membership and the diffraction
-run remain open. ATL stays independent.
+pass. Returned C81 verifies all 175 payloads and completes Coot 1.3.3: nine OP3
+deletions, ten graph transports and two curated rules pass with no raw fallback.
+All twenty declared pairs and thirty-eight stacks compile; active native membership
+and the diffraction run remain open. ATL stays independent.
+
+C82 preserves that successful construction and tests the ordinary numerical handoff:
+one bounded ReadySet call with separate component inputs, followed by fixed native
+baseline/explicit-policy comparisons when numerical coverage is complete. It
+records source-state differences, verifies actual native atom selections and
+keeps Phenix secondary-structure guessing disabled. No new Coot run or automatic
+adoption is requested; fresh Mac C82 results remain pending.
 
 
 

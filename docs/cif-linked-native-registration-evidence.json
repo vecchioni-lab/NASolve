@@ -25017,7 +25017,7 @@
     "validation_record_scope": "ORIGINAL_PRE_RETURN_LOCAL_VALIDATION_PRESERVED; MAC_OUTCOME_RECORDED_SEPARATELY_IN_RETURNED_C80"
   },
   "curated_phosphate_context_2026_10_23": {
-    "status": "IMPLEMENTED; LOCAL_REGRESSION_SAVED_DATA_COLD_AND_PRIOR_LINEAGE_PASS; FRESH_MAC_C81_PENDING",
+    "status": "IMPLEMENTED; FRESH_MAC_C81_CONSTRUCTION_AND_PDB_SELECTOR_POLICY_VERIFIED_PASS; ACTIVE_NATIVE_MEMBERSHIP_OPEN",
     "recorded_date": "2026-10-23",
     "delivery_prefix": "81_Cedar",
     "runner_filename": "81_Cedar_probe_mixed_pairs.py",
@@ -25261,9 +25261,9 @@
     "refinement": "NOT_RUN",
     "scientific_qualification": "NOT_ASSESSED",
     "remaining_limits": [
-      "The private saved-C80 context/placement/selector replay is not a fresh Coot or native result.",
-      "Fresh C81 construction and its independent context, ten graph-site and two curated-rule audits remain pending on the user Mac.",
-      "Active native dictionary/link/triple-target and full NARestraints pair/stack membership, ordinary end-to-end execution with observations, refinement, solution PDF and scientific qualification remain separate."
+      "The separate original C80 REVIEW and all original local C81 validation evidence remain immutable.",
+      "Fresh C81 verifies construction and PDB-selector compilation only; active native dictionary/link/triple-target and full NARestraints pair/stack membership remain unassessed.",
+      "Ordinary end-to-end execution with observations, refinement, solution PDF and scientific qualification remain separate."
     ],
     "compatibility": "ADDITIVE_CONTEXT_RECEIPT; ORDINARY_CONTEXT_ELIGIBILITY_EXPANDED_ONLY_AFTER_EXISTING_SOURCE_GRAPH_PROOFS; NO_NEW_PUBLIC_API_SIGNATURE_OR_NAR_RELEASE",
     "generated_artifacts": "PRIVATE_SOURCE_COPIES_MODELS_LOGS_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
@@ -25273,6 +25273,319 @@
       "receipt_tampering_guards": "MISSING_SCOPE_CHANGED_SOURCE_CHANGED_PARENT_WRONG_SITE_WRONG_CANDIDATE_AND_CHANGED_SCOPE_REJECTED",
       "final_mixed_fixture_check": "EXISTING_audit_phosphates_ON_ALL_PROVED_REMOVAL_SITES_AFTER_UNCHANGED_RESTORATION",
       "scaffold_guard": "UNCHANGED; NO_UNMATCHED_PARENT_OP3_WAIVER"
+    },
+    "returned_C81": {
+      "archive_sha256": "ab023d3df1269d83634b764e6ce12b711e49e22f485c4d61db51b45af0aecca7",
+      "archive_bytes": 970858,
+      "verified_payloads": 175,
+      "all_payload_crc_hash_size_and_safe_names": "PASS",
+      "nested_history_members": 0,
+      "source_commit": "185791f18eef4ed0c824fc6c11a6f88a76bd6505",
+      "reported_runner_sha256": "dfe12152a2bd0d65c779cc0c68baac959108e8c87f38859b4c2042dc2445e209",
+      "runtime_members": 162,
+      "runtime_archive_sha256": "5dd4ae5b099672be14bc3dff24e5698cbeecbed62963bb43793bc81eec562b62",
+      "build_difference": "NAR_DIRTY_STATE_METADATA_ONLY; RUNTIME_BYTES_EXACT",
+      "opaque_backup_normalization": "PASS; 37_EXACT_HASH_BOUND_BACKUPS; NEVER_DECOMPRESSED",
+      "maintained_portable_fixture_reader": "PASS",
+      "frame_assets_plan_free_5oh_and_all_42_final_site_identities": "PASS",
+      "maintained_source_selection_and_eight_pair_sixteen_orientation_compiler_replay": "PASS; ALL_39_NONREPORT_FILES_EXACT",
+      "all_twelve_source_graph_eligibility_replays": "PASS",
+      "maintained_context_and_all_twelve_restoration_rules": "PASS; EXACT_RECEIPTS_AND_MODEL_BYTES; NO_COOT_PROCESS",
+      "independent_context_and_mixed_scaffold_and_fragment_audit": "PASS; EXACT_ALL_SCIENTIFIC_DATUMS",
+      "maintained_complete_explicit_policy_reconstruction": "PASS; ALL_PAYLOAD_BYTES_EXACT",
+      "curated_scaffold_guard_observations": {
+        "C:9": {
+          "component": "S6G",
+          "missing_parent_scaffold_atoms": [],
+          "differing_common_scaffold_xyz": [],
+          "scaffold_atoms": [
+            "C1'",
+            "C2'",
+            "C3'",
+            "C4'",
+            "C5'",
+            "O3'",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ],
+          "curated_receipt_atoms": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C8",
+            "N1",
+            "N2",
+            "N3",
+            "N7",
+            "N9",
+            "O3'",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ]
+        },
+        "A:19": {
+          "component": "DF",
+          "missing_parent_scaffold_atoms": [],
+          "differing_common_scaffold_xyz": [],
+          "scaffold_atoms": [
+            "C1'",
+            "C2'",
+            "C3'",
+            "C4'",
+            "C5'",
+            "O3'",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ],
+          "curated_receipt_atoms": [
+            "C1'",
+            "C2",
+            "C2'",
+            "C3'",
+            "C4",
+            "C4'",
+            "C5",
+            "C5'",
+            "C6",
+            "C7",
+            "N1",
+            "N3",
+            "O3'",
+            "O4",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ]
+        }
+      },
+      "coot_version": "1.3.3",
+      "coot_execution": "COMPLETED",
+      "construction_audit": "CONSTRUCTION_CONTROLS_PASS",
+      "context_status": "CONTEXT_PREPARED",
+      "restoration_counts": {
+        "GRAPH_FRAGMENT_RESTORED": 10,
+        "CURATED_DECLARED_PLACEMENT": 2
+      },
+      "op3_removals": 9,
+      "selected_serial_repairs": 267,
+      "compiled_policy_counts": {
+        "pair_count": 20,
+        "requested_pair_count": 8,
+        "background_pair_count": 12,
+        "stack_count": 38,
+        "orientation_control_count": 16
+      },
+      "candidate_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+      "active_native_membership": "NOT_ASSESSED",
+      "readyset": "NOT_RUN",
+      "model_optimization": "NOT_REQUESTED; COOT_INTERNALS_NOT_EXHAUSTIVELY_OBSERVED",
+      "decision": {
+        "automatic_adoption": false,
+        "notes": [
+          "Construction and compiler evidence only; native proxy membership and the diffraction run remain separate."
+        ],
+        "requires_cif_review": false,
+        "selected": "constructed_mixed_model",
+        "status": "CONTINUE_WITH_NOTES"
+      },
+      "captured_python_execution": "NOT_RUN",
+      "new_verification_subprocesses": 0,
+      "status": "VERIFIED_C81_CONSTRUCTION_AND_PDB_SELECTOR_POLICY_PASS",
+      "archive_filename": "81_Cedar_edjdbj9m_mixed_pair_review.zip",
+      "maintained_replay_baseline": {
+        "nasolve_commit": "185791f18eef4ed0c824fc6c11a6f88a76bd6505",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "source": "TRUSTED_LOCAL_GIT_ARCHIVE; NOT_RETURNED_ZIP_CODE",
+        "runtime_source_files_hash_checked": 152,
+        "ambient_current_project_source_paths": "REMOVED; FRESH_BASELINE_MODULE_IMPORTS_REQUIRED",
+        "all_imported_project_modules_from_owned_baseline": true,
+        "frozen_source_hashes_unchanged_after_replay": true,
+        "temporary_baseline_removed_after_replay": true,
+        "trusted_git_archive_preparation_calls": 2
+      },
+      "original_C80_REVIEW": "PRESERVED; NO_RETROSPECTIVE_ADOPTION",
+      "raw_fallback_sites": []
     }
+  },
+  "mixed_pair_native_membership_2026_10_23": {
+    "status": "IMPLEMENTED; FINAL_FOCUSED_FULL_SUITE_AND_SOURCE_REMOVED_COLD_PASS; FRESH_MAC_C82_PENDING",
+    "recorded_date": "2026-10-23",
+    "delivery_prefix": "82_Cedar",
+    "runner_filename": "82_Cedar_probe_mixed_native.py",
+    "builder": "scripts/build_mixed_native_probe.py",
+    "template": "scripts/mixed_native_probe_template.py",
+    "runtime_API": "nasolve.cif_mixed_native.audit_mixed_native",
+    "reader_API": "nasolve.cif_mixed_native.read_mixed_native",
+    "qualifier_API": "nasolve.cif_mixed_native.qualify_mixed_native",
+    "policy_id": "cif-mixed-pair-native-membership-v1",
+    "before": "C81 verifies fresh eight-pair construction and PDB-selector compilation. It supplies source chemistry, not complete numerical dictionaries or active native restraint membership.",
+    "after": "Freeze the exact C81 constructed model, sixteen original component sources and active explicit NARestraints PHIL; invoke one bounded ordinary ReadySet, retain explicit parameterized-source precedence, then compare fixed native baseline and active-policy managers when effective numerical coverage is complete.",
+    "prerequisite": {
+      "archive_filename": "81_Cedar_edjdbj9m_mixed_pair_review.zip",
+      "sha256": "ab023d3df1269d83634b764e6ce12b711e49e22f485c4d61db51b45af0aecca7",
+      "bytes": 970858,
+      "payloads_verified": 175,
+      "source_commit": "185791f18eef4ed0c824fc6c11a6f88a76bd6505",
+      "model_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+      "record": "docs/cif-linked-native-registration-evidence.json#curated_phosphate_context_2026_10_23",
+      "captured_programs": "DATA_ONLY; NEVER_IMPORTED_OR_EXECUTED",
+      "history": "ONE_EXACT_COMPACT_C81_CAPSULE; INDEXED_TRANSPORT_AND_SHALLOW_SCIENTIFIC_VIEW; NO_RECURSIVE_EXTRACTION"
+    },
+    "method": {
+      "ordinary_readyset": "nasolve.postmr._run_readyset; SIXTEEN_SEPARATE_SOURCE_COMPONENT_ARGUMENTS; hydrogens=False; ligands=True; optimise_ligand_geometry=False",
+      "effective_dictionary_selection": "EXISTING_effective_restraints_WITH_NORMALIZATION_AND_prefer_parameterized_inputs=True; SOURCE_ONLY_CCD_GRAPHS_DEFER_TO_READYSET",
+      "chemical_state": "RETAIN_RAW_GENERATED_DICTIONARY_AND_PER_COMPONENT_SOURCE_COMPARISONS; NO_STATE_OR_HEADER_REPAIR_OR_FORCED_QUALIFICATION",
+      "coordinates": "REQUIRE_EXACT_NAMED_HEAVY_COORDINATES_BEFORE_NATIVE_READS; RETAIN_C81_MODEL_ON_OPTIONAL_FAILURE",
+      "native_baseline": "EXISTING_FIXED_NATIVE_WORKER_WITH_SECONDARY_STRUCTURE_GUESSING_DISABLED",
+      "native_active": "SAME_FIXED_MODEL_DICTIONARIES_AND_DISABLED_GUESSING_PLUS_EXACT_COMPILED_NAR_POLICY",
+      "request_indices": "RE_RESOLVE_EXACT_FROZEN_PHIL_AGAINST_FRESH_BASELINE_NATIVE_ATOMS; NEVER_REUSE_COMPILER_PDB_RECORD_ORDER_INDICES",
+      "membership": "EXISTING_qualify_na_policy_EXACT_CUSTOM_REQUESTS_AND_COMPLETE_UNAFFECTED_PROXY_DELTA; NO_COMPETING_NATIVE_SS_TERMS",
+      "additional_readback": "DECLARED_BACKBONE_LINK_MEMBERSHIP_AND_UNCHANGED_PARAMETERS; EXACT_MONOMER_SITES_DNA_CLASSIFICATION_HEAVY_INVENTORY_FINITE_PARAMETERS_AND_REPEAT_EVALUATIONS; SOURCE_DECLARED_PDU_5PC_TRIPLE_TARGET_SCREENS",
+      "chemical_reviews": "RETAINED_SEPARATELY_FROM_NATIVE_MEMBERSHIP; A_NATIVE_PROXY_PASS_DOES_NOT_CONCEAL_SOURCE_STATE_DIFFERENCES",
+      "canonical_native_authority": "ALL_SIXTEEN_SOURCES_STILL_ENTER_READYSET; OMIT_ONLY_EXACT_SINGLE_COMPONENT_UNPARAMETERIZED_DA_DC_DG_DT_CCD_GRAPHS_FROM_NATIVE_DICTIONARY_ARGUMENTS_TO_RETAIN_INSTALLED_CANONICAL_NUMERICS; NEVER_REWRITE_MIXED_CONTAINERS",
+      "effective_definitions": "COMPARE_ACTUAL_NATIVE_SITE_DEFINITIONS_TO_EFFECTIVE_DICTIONARIES; CONTEXT_MISMATCHES_REMAIN_REVIEW; NO_SITE_MODIFIER_OR_DNA_HEADER_REPAIR"
+    },
+    "fixture_scope": {
+      "polymer_sites": 42,
+      "source_components": 16,
+      "requested_pairs": 8,
+      "background_pairs": 12,
+      "active_pairs": 20,
+      "chain_adjacency_stacks": 38,
+      "active_parallelity_requests": 58,
+      "separate_plane_order_controls": 16,
+      "separate_controls_in_active_policy": false,
+      "ATL": "INDEPENDENT_C81_SOURCE_GRAPH_CONTROL; NOT_A_NINTH_PAIR"
+    },
+    "execution_bounds": {
+      "readyset_calls_max": 1,
+      "readyset_deadline_seconds_max": 600,
+      "native_calls_max": 2,
+      "each_native_deadline_seconds_max": 60,
+      "Coot_calls": 0,
+      "inspect_only": "FREEZE_AND_VERIFY_INPUTS_WITHOUT_DISCOVERING_OR_EXECUTING_PHENIX_READYSET_OR_COOT",
+      "native_internal_operations": "NOT_EXHAUSTIVELY_INSTRUMENTED; READYSET_MAY_GENERATE_NUMERICAL_DICTIONARIES"
+    },
+    "report_contract": {
+      "schema_version": 1,
+      "report": "mixed_native.json",
+      "anchor": "mixed_native_directory",
+      "statuses": [
+        "PREPARED_ONLY",
+        "MIXED_NATIVE_MEMBERSHIP_PASS",
+        "REVIEW"
+      ],
+      "student_cif_approval": false,
+      "automatic_adoption": false,
+      "fallback": "PRESERVED_VERIFIED_CONSTRUCTED_MODEL; NATIVE_USABILITY_NOT_IMPLIED",
+      "failure": "KEEP_FIRST_FAILURE_AND_CHECKED_CAPSULE; RECEIPT_ONLY_CAPSULE_IF_COLLECTION_FAILS",
+      "relocated_reader": "VERIFY_FROZEN_INPUT_ROLES_AND_BYTES; REPLAY_SOURCE_CHEMICAL_COMPARISONS_NATIVE_WORKER_SPEC_AND_QUALIFICATION; HISTORICAL_HOST_PATHS_ARE_PROVENANCE_ONLY"
+    },
+    "unchanged": [
+      "Original C81 return, raw construction, sources and prior native results.",
+      "Ordinary source/cache authority, native kernels, dictionary chemistry and targets.",
+      "NARestraints workbook, pair recipes and stacking policy; Phenix SS guessing remains disabled.",
+      "Existing Coot placement, source-graph transport and phosphate guards."
+    ],
+    "validation": {
+      "status": "FINAL_FOCUSED_FULL_SUITE_AND_SOURCE_REMOVED_COLD_PASS; FRESH_MAC_C82_PENDING",
+      "code_checkpoint": "3aabb468ee668e12db3fa0ef2fd14448ad868f20",
+      "external_scope": "NO_LOCAL_PHENIX_OR_COOT; FRESH_MAC_C82_PENDING",
+      "new_cases_total": 28,
+      "ferry_fail_before": {
+        "test_file": "tests/test_mixed_native_probe.py",
+        "before": "8_FAILED_BEFORE_SOURCE_TEMPLATE_EXISTED",
+        "scope": "SEVEN_ARCHIVE_MANIFEST_SAFETY_CASES_PLUS_SCIENTIFIC_DATA_MATERIALIZATION; NINTH_BUILT_RELOCATION_CASE_INCLUDED_IN_FINAL_COLLECTION"
+      },
+      "module_fail_before": {
+        "test_file": "tests/test_cif_mixed_native.py",
+        "new_cases": 19,
+        "native_guard_before": "1_FAILED_18_DESELECTED_ON_PRE_GUARD_CODE",
+        "scope": "MALFORMED_NATIVE_PROXY_IDENTITY_AND_INCOMPLETE_SOURCE_EVIDENCE_GUARDS; NEW_API_WAS_ABSENT_BEFORE_THIS_SLICE"
+      },
+      "focused": {
+        "passed": 188,
+        "seconds": 30.85,
+        "scope": "FINAL_NINE_FILE_FOCUSED_RUN_ON_3aabb468; ALL_TWENTY_EIGHT_NEW_CASES_INCLUDED; NO_ADDITION_OF_OVERLAPPING_EARLIER_RUNS",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /workspace/scratch/79ec83ded5fa/c69-venv/bin/python -B -m pytest -q tests/test_mixed_native_probe.py tests/test_cif_mixed_native.py tests/test_mixed_pair_probe.py tests/test_cif_mixed_pair_fixture.py tests/test_cif_explicit_na_policy.py tests/test_cif_na_policy.py tests/test_cif_native_validation.py tests/test_cif_postmr_cached_model.py tests/test_postmr.py"
+      },
+      "full_suite": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /workspace/scratch/79ec83ded5fa/c69-venv/bin/python -B -m pytest -q",
+        "passed": 4519,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 406.52,
+        "production_code_checkpoint": "3aabb468ee668e12db3fa0ef2fd14448ad868f20",
+        "collection_scope": "ALL_TWENTY_EIGHT_NEW_CASES_COLLECTED_BEFORE_FINAL_FULL_SUITE_LAUNCH; NO_POST_COLLECTION_SUPPLEMENT"
+      },
+      "source_removed_cold": {
+        "status": "PASS",
+        "source_commit": "3aabb468ee668e12db3fa0ef2fd14448ad868f20",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runtime_members": 162,
+        "runtime_archive_sha256": "9d709880758f4edc532d60bb6571fd35eeb137a05fd3fd8f3d6afd18462e11ac",
+        "runner_sha256": "74cacc6a3ea6d9a42ca4290f62dcdf5fb1a8f70e376d6fafe1cd41ed68590845",
+        "source_archive_sha256": "ab023d3df1269d83634b764e6ce12b711e49e22f485c4d61db51b45af0aecca7",
+        "source_clones_removed_before_launch": true,
+        "original_repositories_and_archive_reads_forbidden": true,
+        "ambient_poison": "NOT_IMPORTED",
+        "aliased_TMPDIR": true,
+        "macos_path_budget": {
+          "max_absolute_path_bytes": 208,
+          "max_component_bytes": 68,
+          "checked_operations": 34838,
+          "subprocess_calls": 0
+        },
+        "everyday_authorized_edit": "OWNED_TEST_FIXTURE_PRESERVED",
+        "original_user_config": "OWNED_TEST_FIXTURE_UNCHANGED",
+        "component_store": "ABSENT_AND_UNTOUCHED",
+        "review_payloads": 334,
+        "preserved_C81_payloads": 175,
+        "prepared_input_model_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+        "source_components": 16,
+        "declared_pairs": 20,
+        "declared_chain_adjacency_stacks": 38,
+        "standalone_prepared_reader_after_source_fixture_session_runtime_removal": "PASS",
+        "frozen_runtime_preserved": true,
+        "captured_programs_materialized_in_fixture": false,
+        "scope": "PACKAGING_AND_PREPARED_INPUT_QA_ONLY; NO_NEW_SDK_OR_NATIVE_QUALIFICATION",
+        "actual_C82_Mac_native": "PENDING",
+        "private_artifacts": "EXCLUDED_FROM_GIT"
+      },
+      "collection": "ALL_TWENTY_EIGHT_NEW_CASES_WRITTEN_BEFORE_FINAL_FULL_SUITE_LAUNCH; NINETEEN_MODULE_AND_NINE_FERRY_CASES"
+    },
+    "requires_cif_review": false,
+    "automatic_adoption": false,
+    "coot_execution": "NOT_RUN",
+    "model_optimization_requested": false,
+    "refinement": "NOT_RUN",
+    "production_checkpoint": "NOT_CREATED",
+    "mtz_used": false,
+    "scientific_qualification": "NOT_ASSESSED",
+    "compatibility": "NEW_EXPLICIT_DIAGNOSTIC_API_AND_SHUTTLE; NO_PRODUCTION_POSTMR_BEHAVIOR_OR_HISTORICAL_RECEIPT_MIGRATION",
+    "generated_artifacts": "PRIVATE_MODELS_SOURCES_LOGS_NATIVE_CAPTURES_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "remaining_limits": [
+      "Fresh Mac ReadySet/effective-dictionary and native results are pending; local prepared/fake-tool tests are not SDK qualification.",
+      "Generated-source chemical differences remain explicit; this diagnostic does not select a chemical state or adopt a repaired dictionary.",
+      "Native membership does not establish attained geometry, convergence, crystallographic fit or scientific approval.",
+      "Ordinary end-to-end observations, refinement, solution PDF and production integration remain separate."
+    ]
   }
 }
