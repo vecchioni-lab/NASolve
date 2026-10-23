@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Finish source reuse from completed native qualification
+
+- Verify all 3,849 returned C69 payloads, complete C68 lineage and 158 runtime
+  members. Reproduce all 63 passing native usability checks and six fixed repeat
+  evaluations. The fallback occurs after qualification in a reporting caller.
+- Separate mutually exclusive dictionary/native triple reports; preserve active
+  targets, torsion/bending findings and unchanged scientific mechanics.
+- Add C70 saved replay: verify exact native worker/spec/input/output and consumer
+  bindings, then publish/reuse exact C69 source-bound numerics with original
+  producer/stopping notes. No new native, generator, optimizer or ReadySet call.
+- All 201 focused / 4097 full tests pass (two skips, 276 subtests; 374.02 s),
+  including the strengthened original caller regression. Reject 14 actual-return
+  mutations. Cold relocated delivery publishes three entries and reuses all three
+  with every subprocess forbidden; six independent copies survive cache/source
+  removal. Preserve all 3,849 parent payloads in 4,008 output payloads.
+  Source selection replays captured ordinary bytes/authority; current installation,
+  site/model and full-run integration remain separate. No dependency, store
+  migration, NAR release or student CIF approval change.
+
 ### Correct ordinary-source reuse probe layout and retry C68
 
 - Verify all 3,766 returned payloads, preserved C67 parent and 158 runtime
@@ -24,7 +43,8 @@ entries are reconstructed from repository history.
   276 subtests; 363.99 s). Relocated inspect-only transport preserves all 3,766
   parent payloads, replays three exact-source projections/failures and resolves
   standalone fallbacks, with every subprocess forbidden. Mac qualification is
-  pending. No dependency, migration, NAR release, student gate or adoption change.
+  complete in returned C69; a later reporting call requires the C70 saved replay.
+  No dependency, migration, NAR release, student gate or adoption change.
 
 ### Requalify saved numerics against ordinary selected sources
 

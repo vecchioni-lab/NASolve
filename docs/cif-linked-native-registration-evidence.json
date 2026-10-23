@@ -21171,7 +21171,7 @@
     }
   },
   "ordinary_source_reuse_2026_10_22": {
-    "status": "RETURNED_C68_SOURCE_PROJECTIONS_PASS; NATIVE_PREFLIGHT_LAYOUT_REFUSED_ALL_THREE; C69_RETRY_PENDING",
+    "status": "C68_PRELAUNCH_FAILURE_PRESERVED; C69_ALL_63_NATIVE_CHECKS_PASS; C70_STORE_COMPLETION_PENDING",
     "recorded_date": "2026-10-22",
     "delivery_prefix": "68_Cedar",
     "runner_filename": "68_Cedar_probe_cif_source_reuse.py",
@@ -21390,7 +21390,7 @@
     "returned_scope": "Source comparisons pass; native qualification NOT_RUN. Historical new_native_calls=3 is adapter attempts, not launched workers."
   },
   "source_reuse_qualification_retry_2026_10_23": {
-    "status": "IMPLEMENTED_LOCAL_REGRESSIONS_FULL_SUITE_AND_COLD_TRANSPORT_PASS; MAC_C69_CURRENT_NATIVE_QUALIFICATION_PENDING",
+    "status": "RETURNED_C69_ALL_63_NATIVE_CHECKS_PASS; REPORTING_CALL_FAILED_AFTER_QUALIFICATION; C70_SAVED_COMPLETION_PENDING",
     "recorded_date": "2026-10-23",
     "delivery_prefix": "69_Cedar",
     "runner_filename": "69_Cedar_probe_cif_source_reuse.py",
@@ -21513,6 +21513,427 @@
       "Native energy-library resource files are not inventoried; current site checks remain required.",
       "ATL remains an independent public graph/compiler control."
     ],
-    "generated_artifacts": "PRIVATE_RETURN_ZIP_MODELS_LOGS_AND_NATIVE_SNAPSHOTS_EXCLUDED_FROM_GIT"
+    "generated_artifacts": "PRIVATE_RETURN_ZIP_MODELS_LOGS_AND_NATIVE_SNAPSHOTS_EXCLUDED_FROM_GIT",
+    "returned_2026_10_23": {
+      "all_parent_payloads_and_manifest_preserved": true,
+      "archive_sha256": "199a795df9d3d782192c459d0c754bb6ad68d22e7d5712c3eb6d2cf3248850e2",
+      "build_sha256": "4fc588e617fdd4c7e12cff3f779a6b02fd7fff53e1ec75447a3bc647d9dd3517",
+      "bytes": 99589040,
+      "captured_code_execution": "NOT_RUN",
+      "finite_fixed_repeat_evaluations": 6,
+      "maintained_C68_and_earlier_replay": "PASS",
+      "native_workers_completed": 3,
+      "new_verification_subprocesses": 0,
+      "reported_runner_sha256": "5566aa86db583aad1734d9fa7cedf7a6c721da0f395cfe93bb07e50866c9372d",
+      "returned_reporting_failure": "Require exactly one dictionary or native inventory",
+      "runner_difference": "NAR dirty-state metadata only",
+      "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+      "runtime_members": 158,
+      "saved_native_checks_reproduced": 63,
+      "verified_payloads": 3849,
+      "cases": {
+        "5PC": {
+          "checks": {
+            "effective_declared_bond_orders": true,
+            "energy_inventory": true,
+            "exact_active_angles": true,
+            "exact_active_bonds": true,
+            "exact_active_planes": true,
+            "exact_active_torsions": true,
+            "exact_effective_definitions": true,
+            "exact_fixed_chirality_membership": true,
+            "exact_model_and_component": true,
+            "finite_active_proxy_parameters": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true,
+            "native_completed": true,
+            "native_coordinate_roundtrip": true,
+            "no_competing_native_ss": true,
+            "no_contradictory_native_formal_charges": true,
+            "no_native_fatal_or_unused": true,
+            "omitted_unoriented_volume_coverage": true,
+            "one_complete_monomer": true,
+            "proxy_counts_complete": true,
+            "source_chemistry_and_configuration": true
+          },
+          "converged": null,
+          "native_elapsed_seconds": 0.845445,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "stopping": "NOT_REPORTED",
+          "target": 2550.9924579049425,
+          "triple_screens": {
+            "dictionary": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            },
+            "native": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            }
+          }
+        },
+        "DP": {
+          "checks": {
+            "effective_declared_bond_orders": true,
+            "energy_inventory": true,
+            "exact_active_angles": true,
+            "exact_active_bonds": true,
+            "exact_active_planes": true,
+            "exact_active_torsions": true,
+            "exact_effective_definitions": true,
+            "exact_fixed_chirality_membership": true,
+            "exact_model_and_component": true,
+            "finite_active_proxy_parameters": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true,
+            "native_completed": true,
+            "native_coordinate_roundtrip": true,
+            "no_competing_native_ss": true,
+            "no_contradictory_native_formal_charges": true,
+            "no_native_fatal_or_unused": true,
+            "omitted_unoriented_volume_coverage": true,
+            "one_complete_monomer": true,
+            "proxy_counts_complete": true,
+            "source_chemistry_and_configuration": true
+          },
+          "converged": null,
+          "native_elapsed_seconds": 4.385241,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "stopping": "NOT_REPORTED",
+          "target": 1286.9413175632278,
+          "triple_screens": {
+            "dictionary": {
+              "status": "UNASSESSED",
+              "target_screen": "NOT_APPLICABLE",
+              "coordinate_screen": "NOT_APPLICABLE",
+              "linear_axis_torsions": 0
+            },
+            "native": {
+              "status": "UNASSESSED",
+              "target_screen": "NOT_APPLICABLE",
+              "coordinate_screen": "NOT_APPLICABLE",
+              "linear_axis_torsions": 0
+            }
+          }
+        },
+        "PDU": {
+          "checks": {
+            "effective_declared_bond_orders": true,
+            "energy_inventory": true,
+            "exact_active_angles": true,
+            "exact_active_bonds": true,
+            "exact_active_planes": true,
+            "exact_active_torsions": true,
+            "exact_effective_definitions": true,
+            "exact_fixed_chirality_membership": true,
+            "exact_model_and_component": true,
+            "finite_active_proxy_parameters": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true,
+            "native_completed": true,
+            "native_coordinate_roundtrip": true,
+            "no_competing_native_ss": true,
+            "no_contradictory_native_formal_charges": true,
+            "no_native_fatal_or_unused": true,
+            "omitted_unoriented_volume_coverage": true,
+            "one_complete_monomer": true,
+            "proxy_counts_complete": true,
+            "source_chemistry_and_configuration": true
+          },
+          "converged": false,
+          "native_elapsed_seconds": 0.865054,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "stopping": "NOT_CONVERGED_REPORTED",
+          "target": 25.23601926618162,
+          "triple_screens": {
+            "dictionary": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            },
+            "native": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            }
+          }
+        }
+      }
+    }
+  },
+  "source_reuse_saved_completion_2026_10_23": {
+    "status": "IMPLEMENTED_FULL_FOCUSED_AND_COLD_SAVED_COMPLETION_PASS; MAC_C70_CACHE_COMPLETION_PENDING",
+    "recorded_date": "2026-10-23",
+    "delivery_prefix": "70_Cedar",
+    "runner_filename": "70_Cedar_probe_cif_saved_source_reuse.py",
+    "cli_action": "--saved-source-reuse-only",
+    "requested_action": "SAVED_ORDINARY_SOURCE_REUSE",
+    "policy_id": "cif-saved-source-reuse-v1",
+    "review_input": {
+      "delivery_prefix": "69_Cedar",
+      "filename": "69_Cedar_fb360gqw_cif_numerical_recovery_review.zip",
+      "sha256": "199a795df9d3d782192c459d0c754bb6ad68d22e7d5712c3eb6d2cf3248850e2",
+      "bytes": 99589040,
+      "verified_payloads": 3849
+    },
+    "verified_return": {
+      "all_parent_payloads_and_manifest_preserved": true,
+      "archive_sha256": "199a795df9d3d782192c459d0c754bb6ad68d22e7d5712c3eb6d2cf3248850e2",
+      "build_sha256": "4fc588e617fdd4c7e12cff3f779a6b02fd7fff53e1ec75447a3bc647d9dd3517",
+      "bytes": 99589040,
+      "captured_code_execution": "NOT_RUN",
+      "finite_fixed_repeat_evaluations": 6,
+      "maintained_C68_and_earlier_replay": "PASS",
+      "native_workers_completed": 3,
+      "new_verification_subprocesses": 0,
+      "reported_runner_sha256": "5566aa86db583aad1734d9fa7cedf7a6c721da0f395cfe93bb07e50866c9372d",
+      "returned_reporting_failure": "Require exactly one dictionary or native inventory",
+      "runner_difference": "NAR dirty-state metadata only",
+      "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+      "runtime_members": 158,
+      "saved_native_checks_reproduced": 63,
+      "verified_payloads": 3849,
+      "cases": {
+        "5PC": {
+          "checks": {
+            "effective_declared_bond_orders": true,
+            "energy_inventory": true,
+            "exact_active_angles": true,
+            "exact_active_bonds": true,
+            "exact_active_planes": true,
+            "exact_active_torsions": true,
+            "exact_effective_definitions": true,
+            "exact_fixed_chirality_membership": true,
+            "exact_model_and_component": true,
+            "finite_active_proxy_parameters": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true,
+            "native_completed": true,
+            "native_coordinate_roundtrip": true,
+            "no_competing_native_ss": true,
+            "no_contradictory_native_formal_charges": true,
+            "no_native_fatal_or_unused": true,
+            "omitted_unoriented_volume_coverage": true,
+            "one_complete_monomer": true,
+            "proxy_counts_complete": true,
+            "source_chemistry_and_configuration": true
+          },
+          "converged": null,
+          "native_elapsed_seconds": 0.845445,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "stopping": "NOT_REPORTED",
+          "target": 2550.9924579049425,
+          "triple_screens": {
+            "dictionary": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            },
+            "native": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            }
+          }
+        },
+        "DP": {
+          "checks": {
+            "effective_declared_bond_orders": true,
+            "energy_inventory": true,
+            "exact_active_angles": true,
+            "exact_active_bonds": true,
+            "exact_active_planes": true,
+            "exact_active_torsions": true,
+            "exact_effective_definitions": true,
+            "exact_fixed_chirality_membership": true,
+            "exact_model_and_component": true,
+            "finite_active_proxy_parameters": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true,
+            "native_completed": true,
+            "native_coordinate_roundtrip": true,
+            "no_competing_native_ss": true,
+            "no_contradictory_native_formal_charges": true,
+            "no_native_fatal_or_unused": true,
+            "omitted_unoriented_volume_coverage": true,
+            "one_complete_monomer": true,
+            "proxy_counts_complete": true,
+            "source_chemistry_and_configuration": true
+          },
+          "converged": null,
+          "native_elapsed_seconds": 4.385241,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "stopping": "NOT_REPORTED",
+          "target": 1286.9413175632278,
+          "triple_screens": {
+            "dictionary": {
+              "status": "UNASSESSED",
+              "target_screen": "NOT_APPLICABLE",
+              "coordinate_screen": "NOT_APPLICABLE",
+              "linear_axis_torsions": 0
+            },
+            "native": {
+              "status": "UNASSESSED",
+              "target_screen": "NOT_APPLICABLE",
+              "coordinate_screen": "NOT_APPLICABLE",
+              "linear_axis_torsions": 0
+            }
+          }
+        },
+        "PDU": {
+          "checks": {
+            "effective_declared_bond_orders": true,
+            "energy_inventory": true,
+            "exact_active_angles": true,
+            "exact_active_bonds": true,
+            "exact_active_planes": true,
+            "exact_active_torsions": true,
+            "exact_effective_definitions": true,
+            "exact_fixed_chirality_membership": true,
+            "exact_model_and_component": true,
+            "finite_active_proxy_parameters": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true,
+            "native_completed": true,
+            "native_coordinate_roundtrip": true,
+            "no_competing_native_ss": true,
+            "no_contradictory_native_formal_charges": true,
+            "no_native_fatal_or_unused": true,
+            "omitted_unoriented_volume_coverage": true,
+            "one_complete_monomer": true,
+            "proxy_counts_complete": true,
+            "source_chemistry_and_configuration": true
+          },
+          "converged": false,
+          "native_elapsed_seconds": 0.865054,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "stopping": "NOT_CONVERGED_REPORTED",
+          "target": 25.23601926618162,
+          "triple_screens": {
+            "dictionary": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            },
+            "native": {
+              "status": "REVIEW",
+              "target_screen": "PASS",
+              "coordinate_screen": "REVIEW",
+              "linear_axis_torsions": 6
+            }
+          }
+        }
+      }
+    },
+    "before": "All three C69 native reads complete and pass the 21-check qualifier, then the reporting caller incorrectly supplies both mutually exclusive audit inputs. No new source-bound entry/repeat is selected.",
+    "after": "Separate dictionary/native triple reports. Verify complete C69 native inputs/specs/worker/output/consumer hashes and recompute all 63 checks; finish source-bound publication and immediate reuse with the saved consumer evidence.",
+    "source_selection": "OWNED_REPLAY_OF_EXACT_C69_ORDINARY_SOURCE_BYTES_AND_AUTHORITY; NOT_A_NEW_LIVE_INSTALLATION_SELECTION",
+    "consumer": "EXACT_C69_CAPTURED_PHENIX_CCTBX_IDENTITY; CHANGED_CONSUMER_REQUALIFICATION_POLICY_UNCHANGED",
+    "scope": "SOURCE_BOUND_ISOLATED_NUMERICS; CURRENT_INSTALLATION_LINKS_AND_MODEL_REMAIN_SEPARATE",
+    "triple_reports": "DESCRIPTIVE; NO_DICTIONARY_OR_NATIVE_RESTRAINT_CHANGE; LINEAR_AXIS_TORSIONS_AND_SEED_BENDING_RETAINED_AS_FINDINGS",
+    "store": "UNCHANGED_V1_EXACT_KEYS; NEW_SELECTED_SOURCE_BINDING; OLD_ENTRIES_NUMERICAL_BYTES_ORIGINAL_PRODUCER_STOPPING_NOTES_PRESERVED",
+    "new_native_calls": 0,
+    "dictionary_generation": "NOT_RUN",
+    "model_optimization": "NOT_RUN",
+    "readyset_execution": "NOT_RUN",
+    "captured_code_execution": "NOT_RUN",
+    "production_adoption": "NOT_RUN",
+    "requires_cif_review": false,
+    "expected_result": "SAVED_SOURCE_REUSE_PASS; THREE_FIRST_SOURCE_REQUALIFIED_OR_EXISTING_HITS_AND_THREE_EXACT_REUSED_REPEATS",
+    "validation": {
+      "new_regressions": 18,
+      "fail_before": {
+        "failed": 16,
+        "already_passed": 2,
+        "seconds": 2.21
+      },
+      "strengthened_original_caller_regression": {
+        "failed_before": 1,
+        "seconds": 0.62,
+        "basis": "PUBLISHED_C69_SOURCE; XOR_ENFORCING_AUDITOR_STUB"
+      },
+      "focused": {
+        "passed": 201,
+        "seconds": 18.9,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q tests/test_cedar70_delivery.py tests/test_cedar69_delivery.py tests/test_cedar68_delivery.py tests/test_cif_source_reuse.py tests/test_cif_triple_bond_audit.py tests/test_cif_dictionary_store.py"
+      },
+      "full_suite": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q",
+        "passed": 4097,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 374.02
+      },
+      "cold_transport": {
+        "aliased_TMPDIR": "PASS",
+        "all_input_payloads_and_manifest_preserved": true,
+        "all_subprocesses_forbidden": "PASS",
+        "ambient_import_poison": "PASS",
+        "build_source_files_removed": true,
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "immediate_exact_repeats": 3,
+        "independent_qualified_readbacks": 6,
+        "input_payloads": 3849,
+        "new_native_calls": 0,
+        "original_producer_stopping_notes": "PRESERVED",
+        "output_payloads": 4008,
+        "relocated_delivery": true,
+        "runner_sha256": "c96e18c5408aa6c1f96992f024312a0b5a1fdb7d398cbe7dde8f2d0b15b33845",
+        "runtime_archive_sha256": "60320ab84512b23139e7aa876565ab0eeeec3d027694741938c54858235af08e",
+        "runtime_members": 158,
+        "source_commit": "c75a5cadb45c82b386c3e1307bca743483e8ed84",
+        "source_qualified_entries": 3,
+        "status": "PASS"
+      },
+      "actual_return_saved_replay": "ALL_63_NATIVE_CHECKS_AND_SEPARATE_TRIPLE_REPORTS_REPRODUCED; NO_SUBPROCESS",
+      "actual_return_mutations": {
+        "status": "PASS",
+        "rejected_mutations": [
+          "worker",
+          "spec",
+          "native_json",
+          "model",
+          "dictionary",
+          "phil",
+          "source",
+          "qualification",
+          "consumer",
+          "directory",
+          "projection",
+          "preservation",
+          "energy_source",
+          "duplicate_api"
+        ],
+        "count": 14,
+        "all_subprocesses": "FORBIDDEN",
+        "private_input": "C69; EXCLUDED_FROM_GIT"
+      },
+      "docs": {
+        "mirrored_records": 15,
+        "relative_links": 162,
+        "protected_mechanics_workbook_and_eight_pair_plan": "UNCHANGED",
+        "figure": "DETERMINISTIC; VISIBLE_94ababa_BASELINE_UNCHANGED; SCOPE_METADATA_UPDATED"
+      }
+    },
+    "compatibility": "Additive diagnostic action/report and verified C69 reader; no dependency/store migration or NAR release.",
+    "protected_mechanics": "NATIVE_WORKER_ENERGY_KERNELS_QUALIFIER_V2_STORE_AND_SOURCE_PRIORITY_UNCHANGED; NARestraints_PAIRING_STACKING_AND_WORKBOOK_UNCHANGED",
+    "remaining_limits": [
+      "C70 Mac cache completion pending.",
+      "Ordinary prepare_postmr adoption is not wired by this diagnostic.",
+      "Current installation/site/model and scientific geometry qualification, production checkpoints/refinement, exact eight-pair full run and solution PDF remain separate.",
+      "Energy-library resource files are not fingerprinted; current native checks remain required for new contexts.",
+      "ATL remains independent public graph/compiler control."
+    ],
+    "generated_artifacts": "PRIVATE_CAPSULES_NATIVE_LOGS_MODELS_AND_RUNNERS_EXCLUDED_FROM_GIT"
   }
 }

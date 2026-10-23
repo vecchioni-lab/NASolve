@@ -91,7 +91,10 @@ def test_current_native_evidence_has_a_relocatable_directory(monkeypatch,tmp_pat
     def write_model(source,code,path):
         path.parent.mkdir(parents=True,exist_ok=True);path.write_text('EXPLICIT_FAKE_MODEL')
     monkeypatch.setattr(triple,'write_component_control_model',write_model)
-    monkeypatch.setattr(triple,'audit_triple_bonds',lambda *a,**k:{'scope':'EXPLICIT_FAKE'})
+    def triple_report(*a,dictionary=None,native=None):
+        if (dictionary is None)==(native is None):raise ValueError('Require exactly one dictionary or native inventory')
+        return {'scope':'EXPLICIT_FAKE'}
+    monkeypatch.setattr(triple,'audit_triple_bonds',triple_report)
     monkeypatch.setattr(usability,'qualify_candidate_native',lambda *a:{
         'status':'EXPLICIT_FAKE_PASS','checks':{'EXPLICIT_FAKE':True}})
     launches=[]
@@ -136,6 +139,7 @@ def test_current_native_evidence_has_a_relocatable_directory(monkeypatch,tmp_pat
     assert report['new_native_calls']==3
     for code,row in report['cases'].items():
         ref=row['native']['directory']
+        if native_status=='REVIEW':assert set(row['triple_screens'])=={'dictionary','native'}
         if not real_preflight:assert ref=={'anchor':'probe_directory','path':'source_reuse_native/'+code+'/readback/native-test'}
         assert (session/ref['path']).is_dir() and row['native']['native_directory']==str(session/ref['path'])
     if real_preflight:

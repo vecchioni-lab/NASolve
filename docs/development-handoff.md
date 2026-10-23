@@ -13,46 +13,51 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Next delivery is C69:** `69_Cedar_probe_cif_source_reuse.py` on exact
-C68 with `--source-reuse-qualification-only`. Retain/replay the failed capsule
-and its complete C67 lineage. Put temporary model/PHIL inputs in an `inputs/`
-directory beside `readback/`; keep the native preservation guard unchanged.
-Retry at most three fixed readbacks (60 seconds each), then repeat the exact
-requests without another adapter call. Expected SOURCE_REUSE_QUALIFICATION_PASS
-with immediate repeats REUSED. No generation, optimizer, ReadySet or scaffold edit.
+**Next delivery is C70:** `70_Cedar_probe_cif_saved_source_reuse.py` on exact
+C69 with `--saved-source-reuse-only`. Recompute saved native qualifications,
+record separate dictionary/native triple screens, finish exact source-bound
+publication and verify three immediate REUSED requests. Expected
+SAVED_SOURCE_REUSE_PASS. This action needs no Phenix root or new native,
+ReadySet, generator, optimizer or refinement process.
 
-**Returned C68 is verified, but native qualification did not run.** All 3,766
-payloads, complete C67 parent/manifest and 158 runtime members verify. The
-reported runner differs from the clean build only in NAR dirty-state metadata.
-All three source projections reproduce. Every adapter stops with
-`Native output parent must be outside every source input directory`: the model/PHIL
-input folder also contained the requested readback directory. Real guard replay
-reproduces all three refusals without a subprocess. Historical `new_native_calls=3`
-counts attempts; actual native workers launched: **zero**. Preserve that original
-receipt. This is a diagnostic layout bug, not a chemical rejection.
+**Returned C69 passes native usability.** All 3,849 payloads, the complete C68
+parent/manifest and 158 runtime members verify. Only NAR dirty-state metadata
+differs from the clean runner. Phenix 2.2.1-6174 completes all three workers;
+all 63 unchanged v2 usability checks and six finite repeated evaluations pass.
+The remaining fallback is a later diagnostic caller error: it passes both
+`dictionary` and `native` to an auditor requiring exactly one. Keep that
+original failure receipt; it is not a failed native qualification.
 
-The real native transport now has a regression using an explicit failed worker,
-in addition to mocked success/failure receipts. Reports separately count attempts
-and receipts with an execution return code; an unlaunched attempt claims no native
-proxy validation. The three source-bound fallbacks retain exact sources/notes;
-they still require ordinary preparation and are not native-usability verdicts.
+C70 separates the two read-only reports and validates native worker/spec/input/
+output hashes, exact consumer identity and all 63 checks before using saved
+qualification. Source selection is an owned replay of exact C69 ordinary bytes
+and authority, not a new live installation selection. Cache keys, source priority,
+old entries, numerical bytes, original producer and stopping notes are unchanged.
+A changed consumer still requires requalification. No student CIF gate is added.
 
-Validation: **22 new regressions, 183 focused / 4079 full tests pass** (two
-skips, 276 subtests; 363.99 s). Cold inspect-only delivery after source deletion
-and relocation passes all three exact-source projections, full failed-return
-replay, poisoned imports and aliased TMPDIR with every subprocess forbidden.
-All 3,766 parent payloads/manifest survive in the 3,786-payload output; three
-standalone fallback copies resolve after fixture removal. This is transport
-and saved-data evidence, not fresh Phenix qualification. Both machine ledgers
-record `source_reuse_qualification_retry_2026_10_23`.
+PDU and 5PC retain active triple/180-degree targets and pass both target screens.
+Each complete-H native manager has six linear-axis torsions; seed bending also
+remains a descriptive finding. DP has no declared triple and is UNASSESSED by
+that screen. These findings do not replace numerical targets or assert scientific
+geometry approval. PDU's original nonconvergence remains a continuation note.
 
-The reuse API keeps exact keys/source priority, immutable entries and unchanged
-numerics, original producer and stopping notes. Current isolated native usability
-is required before rebinding to the ordinary raw source/authority. It is not yet
-wired into ordinary `prepare_postmr` adoption. Current linked/model qualification,
-production checkpoints/refinement, the exact eight-pair full run and solution PDF
-remain separate. Energy-library resource files are not fingerprinted. ATL stays
-independent; no student CIF review gate is added.
+Validation: **18 new regressions, 201 focused / 4097 full tests pass** (two
+skips, 276 subtests; 374.02 s). The original fresh-caller regression now enforces
+the real mutually exclusive auditor contract and fails against published C69.
+Fourteen actual-return mutations are rejected. The cold runner, after build-source
+deletion and relocation with poisoned imports/aliased TMPDIR and every subprocess
+forbidden, publishes three qualified entries and passes three immediate reuses.
+All 3,849 parent payloads/manifest survive in 4,008 output payloads. Six independent
+qualified/reused copies resolve after deleting the original cache/layout/evidence;
+producer/stopping notes survive. Both ledgers record
+`source_reuse_saved_completion_2026_10_23`. This is saved qualification/store
+completion, not a fresh live-installation or full-run verdict.
+
+Ordinary `prepare_postmr` adoption, current installation/site/model qualification,
+production checkpoints/refinement, the exact eight-pair full live run and solution
+PDF remain separate. Energy-library resource files are not fingerprinted; ATL
+stays independent. The C68 prelaunch failure and C69 reporting failure remain
+immutable inside the lineage.
 
 **C67 source/compiler gate is closed.** All 3,713 returned payloads and
 the complete C66 parent verify. Ordinary selection passes 15 sources (six

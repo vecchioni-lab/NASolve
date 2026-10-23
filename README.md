@@ -289,9 +289,12 @@ Returned C68 preserves all 3,766 payloads and the complete C67 parent.
 All three source projections pass, but native input/output placement triggers
 the preservation guard before any worker launches. Its historical call count
 of three records attempts; it supplies no fresh native qualification.
-C69 keeps that failure, puts inputs and readback in sibling directories and
-retries the same checks. Reports now separate attempts from launched workers.
-Current Mac native qualification and full-run integration remain open.
+Returned C69 completes all three native reads: 63/63 usability checks and
+six fixed repeat evaluations pass. A later reporting call supplies two mutually
+exclusive auditor inputs, so source-bound publication/repeats are not selected.
+C70 separates those reports and finishes publication/reuse from the verified
+saved native evidence, with zero new Phenix calls. Current installation/site/model
+checks and full-run integration remain separate.
 
 See the [current handoff](docs/development-handoff.md) for the exact scope.
 

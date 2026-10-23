@@ -1723,9 +1723,12 @@ Returned C68 preserves all 3,766 payloads and the complete C67 parent.
 All three source projections pass, but native input/output placement triggers
 the preservation guard before any worker launches. Its historical call count
 of three records attempts; it supplies no fresh native qualification.
-C69 keeps that failure, puts inputs and readback in sibling directories and
-retries the same checks. Reports now separate attempts from launched workers.
-Current Mac native qualification and full-run integration remain open.
+Returned C69 completes all three native reads: 63/63 usability checks and
+six fixed repeat evaluations pass. A later reporting call supplies two mutually
+exclusive auditor inputs, so source-bound publication/repeats are not selected.
+C70 separates those reports and finishes publication/reuse from the verified
+saved native evidence, with zero new Phenix calls. Current installation/site/model
+checks and full-run integration remain separate.
 
 Methods: compare all seven inventoried named chemical fields and the repair
 recipe/backend; reassess completed source-relative configuration; require
@@ -1740,9 +1743,12 @@ requires ordinary preparation; it is not a native-usability verdict.
 Local integration uses actual returned source bytes and saved native data:
 all 63 checks pass and six qualified/reused results survive source/cache removal
 and relocation, with external scientific reads forbidden. This does not claim
-fresh Phenix execution. The returned C68 attempt stops before launch; C69
-retries up to three fixed readbacks and immediate repeat reuse after correcting
-only the temporary layout. Inspect-only instead retains
-ordinary-source fallback without native calls or persistent-store writes.
+fresh Phenix execution. C68 stops before launch; C69 corrects that layout and
+completes all three native reads. C70 replays their exact inputs, worker/specs,
+outputs and consumer bindings, recomputes the unchanged usability checks and
+finishes the source-bound store/repeat stage. Owned source-layout replay uses
+the captured C69 bytes/authority, not a new live installation selection. Separate
+dictionary/native triple reports preserve torsion and seed-bending findings.
+No captured Python or new native process is executed.
 Native guessing stays disabled. Native energy resource files are not inventoried;
 current linked/model qualification and production PostMR adoption remain open.
