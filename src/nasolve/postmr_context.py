@@ -16,6 +16,7 @@ from .phosphate import sanitize_phosphates, validate_op3_sites
 from .postmr_restoration import canonical_name, restore_graph_site, source_graph_fragment
 
 POLICY_ID = 'postmr-source-graph-internal-phosphate-context-v1'
+CURATED_CONTEXT_POLICY_ID = 'postmr-source-graph-curated-phosphate-context-v1'
 _COORDINATE = {'ATOM  ', 'HETATM'}
 _ASSOCIATED = {'ANISOU', 'SIGATM', 'SIGUIJ'}
 
@@ -107,10 +108,11 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
 
     Source-graph and proper-transport preflight must succeed before any proposed
     deletion. A failed authority or phosphate proof authorizes no deletion or
-    serial change. Curated special placements do not become OP3 candidates, but
-    their explicitly mutated sites share serial authority when a mixed context
-    needs collision repair. Frozen passthrough sites remain excluded. The
-    ordinary final model must still pass the same sanitizer.
+    serial change. Explicit curated placements retain their existing final
+    coordinate rule. A curated site may join the discarded shadow and proved
+    OP3 context only through the same source-graph and proper-transport preflight
+    as other sites. Frozen passthrough sites remain excluded. The ordinary final
+    model must still pass the same sanitizer.
     """
     raw_model,reference_model,output_model = map(Path,(raw_model,reference_model,output_model))
     allow_op3_sites = validate_op3_sites(allow_op3_sites)
@@ -133,14 +135,18 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
         'serial_repairs': [], 'removed_atoms': [], 'eligible_sites': [], 'skipped_sites': [],
         'original_raw_coordinates_preserved': True, 'dictionaries_preserved': True,
         'requires_cif_review': False, 'notes': []}
-    graphs = {}; candidates = {}; parent_lines_by_site = {}
+    graphs = {}; candidates = {}; parent_lines_by_site = {}; curated_graphs = {}
     for action in actions:
         ligand = CURATED_LIGANDS.get(action.after)
-        if ligand and (ligand.atom_substitutions or ligand.ring_substituents):
-            report['skipped_sites'].append({'site':action.site,'reason':'Explicit curated placement is unchanged.'});continue
+        curated_placement = bool(ligand and (ligand.atom_substitutions or ligand.ring_substituents))
         if action.site in passthrough_sites:
-            report['skipped_sites'].append({'site':action.site,'reason':'Frozen experimental backbone passthrough is preserved.'});continue
-        if action.method != 'coot-parent-overlap': continue
+            reason = ('Explicit curated placement is unchanged.' if curated_placement
+                      else 'Frozen experimental backbone passthrough is preserved.')
+            report['skipped_sites'].append({'site':action.site,'reason':reason});continue
+        if action.method != 'coot-parent-overlap':
+            if curated_placement:
+                report['skipped_sites'].append({'site':action.site,'reason':'Explicit curated placement is unchanged.'})
+            continue
         try:
             graph = source_graph_fragment(dictionary_paths[action.after],action.after)
             selected = [l for l in raw_lines if l[:6] in _COORDINATE and _site(l)==action.site]
@@ -156,23 +162,40 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
             graphs[action.site] = graph; parent_lines_by_site[action.site] = parent_lines
             if missing:
                 candidates[action.site] = next(l for l in selected if canonical_name(l[12:16].strip())=='OP3')
+            if curated_placement:
+                curated_graphs[action.site] = {'component': action.after,
+                    'source_sha256': graph['source_sha256'],
+                    'parent_model_sha256': sha256(Path(parent_models[action.site]).read_bytes()).hexdigest(),
+                    'scaffold_atoms': graph['scaffold_atoms'],
+                    'missing_parent_atoms': sorted(missing),
+                    'preflight': 'SOURCE_GRAPH_AND_PROPER_TRANSPORT_PASS; NO_FINAL_GRAPH_TRANSPORT_REQUESTED'}
         except (OSError,ValueError,KeyError,StopIteration) as exc:
-            report['skipped_sites'].append({'site':action.site,'reason':str(exc)})
+            # An unsupported curated graph keeps the older placement/serial
+            # authority only. In particular, no curated name authorizes a
+            # phosphate edit, and legacy unsupported receipts remain stable.
+            reason = 'Explicit curated placement is unchanged.' if curated_placement else str(exc)
+            report['skipped_sites'].append({'site':action.site,'reason':reason})
+    if curated_graphs:
+        report['curated_context'] = {'policy_id': CURATED_CONTEXT_POLICY_ID,
+            'scope': 'SOURCE_GRAPH_AND_DISCARDED_PARENT_SCAFFOLD_SHADOW_ONLY; FINAL_CURATED_PLACEMENT_UNCHANGED',
+            'sites': sorted(curated_graphs),
+            'candidate_sites': sorted(set(curated_graphs) & set(candidates)),
+            'source_graphs': dict(sorted(curated_graphs.items()))}
     rendered = raw_lines
     if candidates:
         try:
             raw_inventory,reference_inventory = _pdb_inventory(raw_model),_pdb_inventory(reference_model)
             # Curated sites have also been changed by the declared Coot plan.
             # Calling them unchanged input would falsely reject a mixed batch.
-            # This authorizes serial fields only; graph eligibility, shadow XYZ
-            # and phosphate deletions remain scoped to the original graph sites.
+            # Unsupported curated graphs retain serial authority only. Eligible
+            # curated graphs independently passed the same chemical preflight.
             curated = {action.site for action in actions
                        if action.method == 'coot-parent-overlap' and action.site not in passthrough_sites
                        and (ligand := CURATED_LIGANDS.get(action.after)) is not None
                        and (ligand.atom_substitutions or ligand.ring_substituents)}
             selected = set(graphs) | curated
             normalized,repairs,authority = _serial_context(raw_lines,_rows(reference_model),raw_inventory,reference_inventory,selected)
-            # The shadow receives only exact graph-scaffold parent coordinates.
+            # The shadow receives only exact eligible scaffold parent coordinates.
             # Its base geometry is intentionally ignored and never propagated.
             targets = {}
             for site,lines in parent_lines_by_site.items():

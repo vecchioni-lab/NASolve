@@ -13,44 +13,57 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Next delivery is C80:** `80_Cedar_probe_mixed_pairs.py`, an independent
-MTZ-free eight-pair construction and PDB-selector policy test. No review ZIP is
-an input. Freeze the public C_G frame and its 17+3 declared pairs, then place all
-eight requested families at sixteen explicit internal sites (twelve Coot
-mutations, four already-canonical partners). Read ordinary selected sources for
-fifteen requested components plus background DC; run the ordinary construction
-entrypoint with at most 600 seconds. Global/context checks precede ten independent
-graph-fragment/raw-site audits and two exact existing curated-rule replays (S6G
-C:9 and DF A:19), including bond intent and parent occupancy/B transfer. No rigid
-raw-fragment claim applies to these curated placements. Check all sixteen target
-identities separately.
+**Next delivery is C81:** `81_Cedar_probe_mixed_pairs.py`, the same independent
+eight-pair fixture built with `scripts/build_mixed_pair_probe.py --delivery-prefix
+81_Cedar`. Fetch from the existing build 80 into a new detached build 81. No
+review ZIP or donor observations are inputs. Run one fresh ordinary Coot
+construction with at most 600 seconds; version/API probes are recorded separately.
 
-Fix the mixed-batch serial-authority error by including explicitly mutated
-curated sites for serial fields only. Frozen passthrough exclusions, graph/OP3
-eligibility, shadow-coordinate scope and phosphate proof are unchanged. The new
-regression fails before this fix; 53 combined context/construction tests pass in
-2.05 seconds afterward. Combined focused validation passes 154 tests in 30.71
-seconds, plus one subsequent fixture integration test. The four new files contain
-68 cases (21 fixture, 31 compiler, 12 delivery, four mixed context); groups overlap.
+**Returned C80 completes Coot but retains context review.** All 138 payloads,
+the exact runtime, forty-two site identities and source/preflight artifacts verify.
+The curated DF A:19 raw backbone invalidates the discarded phosphate shadow with
+an implausibly short incoming O3'-P link. Eight generic sites retain their raw
+coordinates, two graph transports pass, and two curated rules complete. DF still
+has OP3 absent from its frozen parent, so the independent scaffold guard correctly
+stops before the constructed twenty-pair compiler. Do not relax that guard or
+call the canonical input a qualified mixed model. The original REVIEW, raw model,
+sources and completed Coot output remain immutable.
 
-Compile the eight requested and twelve canonical background pairs plus 38
-unique declared chain-adjacency stacks through NARestraints. The sixteen
-bidirectional plane-order files stay separate compiler controls, not physical
-stack edges and not duplicate active restraints. Indices bind PDB record order;
-active native membership is unassessed. C80 requests no ReadySet, model optimizer
-or native worker; Coot internals are not exhaustively instrumented. There are no
-observations, MR result or checkpoint. ATL stays independent and students
-do not inspect CIFs. Source-removed inspect-only validation passes at code checkpoint
-`0dcc738f688dc6328d19512165deb5148f0fff22`: 162 runtime members and fifty capsule
-payloads, no subprocesses, standalone reader/ambient/temporary-alias/macOS-path
-controls passed. Fifteen C67 ordinary sources are exact; DC is explicitly synthetic
-and nonnative, so this is no chemical or SDK qualification. The full suite passes
-4,475 tests, two skips and 276 subtests in 420.39 seconds. One integration test
-added after collection passes separately in 1.99 seconds with no production-code
-change, covering all current cases across both runs. Maintained C76 and prior
-lineage replay pass with all subprocesses forbidden and no captured Python
-executed. Actual Mac C80 construction remains pending. The technical record is
-`mixed_eight_pair_construction_2026_10_23`.
+C81 admits source-graph-valid curated DNA to the same discarded frame preflight
+and parent-scaffold shadow. Only existing-sanitizer-proved internal OP3 deletions
+and authorized selected serial repairs reach the original raw coordinates. The
+existing curated final placement, graph transport, phosphate sanitizer, source
+authority, NAR policy, passthrough and inherited-CONECT guards stay intact.
+An additive `curated_context` receipt binds eligible/candidate sites to source and
+parent hashes. Private exact-C80 saved-data replay is local evidence only; there
+is no new public replay API, captured-Python execution or new local native call.
+Final combined focused validation passes 132 cases in 26.45 seconds across seven
+files, including eight new context and seven source/parent/site/candidate/scope
+binding cases. All fifteen new cases enter full-suite collection before launch. Exact
+saved-C80 replay proves nine OP3 deletions and 267 selected serial repairs, ten
+graph transports plus two unchanged curated rules with no raw fallback, the
+independent mixed/context audit and unchanged final phosphate recheck at all
+nine sites. All twenty declared pairs/thirty-eight stacks/sixteen separate controls
+compile and pass portable policy readback. Every original source/raw/parent input
+is preserved; subprocesses are forbidden. Source-removed cold replay also passes
+on `b568129b639aba400680b61b90378f7486f70d8c` with all sixteen exact C80 sources,
+including captured real DC; no synthetic DC or fresh SDK qualification is used.
+The standalone policy survives removal of original scientific inputs, candidate
+and runtime paths. Configuration, everyday edit and storage are preserved;
+ambient import, temporary alias and macOS byte-budget checks pass. Maintained
+C76 and all prior-lineage replay pass under the current code, with subprocesses
+forbidden and original reviews/fallbacks preserved. The full suite passes 4,491
+tests, two skips and 276 subtests in 424.25 seconds, with all fifteen new cases
+collected before launch and no supplement. Fresh C81 Coot and active native
+results remain pending on the Mac.
+The record is `curated_phosphate_context_2026_10_23`; C80 original local validation
+and its separate returned outcome remain in `mixed_eight_pair_construction_2026_10_23`.
+
+Keep the exact eight requested pairs at sixteen sites, twelve canonical background
+pairs, thirty-eight declared chain-adjacency stacks and sixteen separate
+plane-order controls. The latter are compiler controls, not sixteen physical
+stacking edges or doubled active restraints. ATL remains independent, active
+native membership is unassessed, and students do not approve CIF tables.
 
 **Returned C78 closes whole-model cached ReadySet readback.** All 8,741 payloads,
 the exact C76 parent and its manifest verify. Phenix 2.2.1-6174 completes one
@@ -69,7 +82,7 @@ including five fail-before cases and source-removed cold ordinary-route checks. 
 already-qualified C78 argument representation.
 
 **Following scientific boundary:** native dictionary/link/triple-target and
-full declared NARestraints membership on the C80 fixture, then an ordinary
+full declared NARestraints membership on the qualified eight-pair fixture, then an ordinary
 end-to-end report with observations. The old DP A:6 versus C C:10 control is not
 pair intent; C80 explicitly places DZ:DP at A:12/B:4. The legacy Saenger-only
 compiler is unchanged. Preserve all historical runs and do not fabricate MR

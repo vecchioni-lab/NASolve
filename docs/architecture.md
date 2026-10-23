@@ -2025,11 +2025,12 @@ claimed. A separate identity check covers all sixteen requested sites. Audited
 whole-raw-site fallback retains notes, while a failed mixed fixture cannot select
 its canonical template as though the requested chemistry were built.
 
-The mixed-batch context regression fixes a narrow ordinary-path serial-authority
-error: explicitly mutated curated sites join serial collision repair without
-becoming graph or OP3 candidates. Frozen passthrough sites stay excluded. Graph
-eligibility, shadow coordinates, phosphate-deletion proof and the final sanitizer
-are unchanged; the fix authorizes serial fields only.
+The original C80 mixed-batch regression fixes an ordinary-path serial-authority
+error: explicitly mutated curated sites join serial collision repair. That
+delivery still excludes them from graph/OP3 context candidates; C81's separately
+recorded extension below applies only after the existing source-graph proofs.
+Frozen passthrough sites remain excluded and final placement/sanitizer mechanics
+are unchanged.
 
 The new explicit-site compiler uses the pinned NARestraints role table and pair
 recipes on the actual constructed PDB. It preserves twelve canonical background
@@ -2072,10 +2073,77 @@ suite passes 4,475 tests, with two skips and 276 subtests, in 420.39 seconds. On
 integration test added after collection passes separately in 1.99 seconds, with
 no production-code change; these two runs cover all current test cases. Maintained
 C76 and prior-lineage replay also pass with every subprocess forbidden and no
-captured Python executed. Actual Mac C80 construction, native dictionary/link/
-triple-target/pair/stack membership, ordinary end-to-end execution, observations/
-refinement, solution PDF and scientific qualification remain separate. Students
-do not inspect or approve CIF tables.
+captured Python executed. These are the original local-delivery checks. Returned
+Mac C80 completes Coot 1.3.3 and verifies all 138 capsule payloads, its frozen
+runtime, source/preflight artifacts and all forty-two final site identities.
+Maintained replay reproduces the original context receipt and all twelve
+restoration-rule outcomes exactly without executing captured Python or a new
+external process. The original REVIEW receipt remains unchanged.
+
+The context transaction retains raw coordinates because curated DF A:19 has an
+implausibly short raw incoming O3'-P distance in the proof shadow. Eight generic
+sites therefore retain their whole raw site; only 5PC A:4 and IGU A:6 exercise
+graph transport. Both curated placement rules complete, but DF retains OP3,
+which has no frozen-parent counterpart. The independent scaffold guard correctly
+stops here. Common DF scaffold coordinates and the entire S6G C:9 scaffold match
+their frozen parents exactly. This is an unproved polymer context, not permission
+to relax the guard. Constructed twenty-pair policy compilation does not run;
+the separate source-only eight-pair/sixteen-orientation preflight does pass.
+
+C81 extends the ordinary context eligibility check to explicit source-validated
+curated DNA. Methods: run the same source-connectivity and discarded proper-frame
+transport preflight used for supported DNA sites; build a discarded shadow with
+only exact frozen-parent scaffold coordinates; let the existing phosphate
+sanitizer prove selected internal OP3 removals. Transfer only those exact deletions
+and independently authorized selected serial fields to the original raw records.
+Retained raw coordinates and metadata stay exact. The unchanged graph transport
+and explicit curated final placement rules then run, followed by the unchanged
+final sanitizer recheck. Source graph, parent correspondence, inherited CONECT,
+unselected identity/coordinates, frozen passthrough and phosphate-intent guards
+remain active. A failed proof retains the complete raw context transaction.
+
+The additive `curated_context` receipt uses
+`postmr-source-graph-curated-phosphate-context-v1` and binds eligible/candidate
+sites to exact source and parent hashes, scaffold atoms and discarded preflight.
+It records context scope only; it does not turn curated final placements into
+generic rigid-fragment transport. Generic-only and invalid-curated source
+receipts keep their existing scope. No component-specific oxygen exception,
+source dictionary edit, target change or native-mechanics change is introduced.
+
+The C81 delivery uses the same builder and independent source runtime with
+`--delivery-prefix 81_Cedar`, no historical review ZIP and one fresh Coot
+construction. Exact saved-C80 replay is private local evidence, not a new public
+replay API or fresh native result. Final combined focused validation passes 132
+cases in 26.45 seconds, including eight new curated-context cases and seven new
+receipt-binding cases. The source/parent/site/candidate/scope checks are independently
+audited; tampered declarations are rejected. Original fail-before evidence is
+preserved separately from overlapping focused totals.
+
+Current maintained replay on exact saved-C80 bytes proves nine internal OP3
+deletions and 267 selected serial repairs, with original sources, raw coordinates
+and parent snapshots preserved. All ten graph transports and both existing curated
+rules pass the independent mixed audit, with no whole-raw-site fallback. The same
+phosphate auditor rechecks all nine final sites and changes no candidate bytes.
+All twenty declared pairs, thirty-eight chain-adjacency stacks and sixteen separate
+orientation controls compile and pass portable readback. This uses no captured
+Python or new Coot/Phenix/ReadySet process and establishes no active native
+membership. Source-removed cold replay passes on code checkpoint
+`b568129b639aba400680b61b90378f7486f70d8c` using all sixteen exact C80 source
+files, including captured background DC. Both build clones are removed before
+launch; original repository/archive reads and subprocesses are forbidden, ambient
+imports are poisoned, and an aliased temporary path passes macOS byte budgets.
+The complete context/restoration/audit/compiler result reproduces, and standalone
+policy readback passes after original scientific inputs, candidate and runtime
+paths are removed. Everyday edits, configuration and component storage are
+preserved. This uses no synthetic DC and provides no fresh SDK qualification.
+Maintained C76 and all prior-lineage checks also pass under the current code,
+with subprocesses forbidden and original reviews/fallbacks preserved. The full
+suite passes 4,491 tests, two skips and 276 subtests in 424.25 seconds. All fifteen
+new cases are collected before launch; no supplement is needed. Fresh Mac C81
+construction,
+active native dictionary/link/triple-target/pair/stack membership, ordinary
+end-to-end execution, observations/refinement, solution PDF and scientific
+qualification remain separate. Students do not inspect or approve CIF tables.
 
 
 

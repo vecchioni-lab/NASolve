@@ -150,6 +150,55 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
     context_lines, context_other = _records(context_model)
     selected = {a.site: a for a in actions}
     removed = raw.keys() - context.keys()
+    # Curated chemistry authorizes its existing placement rule, not a phosphate
+    # edit. Bind the new, separate context scope to the actual source graph and
+    # frozen parent; the full shadow/delta checks below still apply unchanged.
+    from .curated_ligands import CURATED_LIGANDS
+    from .postmr_context import CURATED_CONTEXT_POLICY_ID
+    curated_sites = {a.site for a in actions
+                     if (ligand := CURATED_LIGANDS.get(a.after)) is not None
+                     and (ligand.atom_substitutions or ligand.ring_substituents)}
+    curated_removed = {_site(key) for key in removed} & curated_sites
+    declaration = context_receipt.get("curated_context")
+    curated_binding = None
+    if declaration is None:
+        if curated_removed:
+            raise ValueError("Curated OP3 deletion lacks its source-bound context scope")
+    else:
+        scope = "SOURCE_GRAPH_AND_DISCARDED_PARENT_SCAFFOLD_SHADOW_ONLY; FINAL_CURATED_PLACEMENT_UNCHANGED"
+        if (not isinstance(declaration, dict) or declaration.get("policy_id") != CURATED_CONTEXT_POLICY_ID
+                or declaration.get("scope") != scope or parent_models is None):
+            raise ValueError("Invalid curated construction context scope")
+        sites = declaration.get("sites")
+        rows = declaration.get("source_graphs")
+        if (not isinstance(sites, list) or not sites or any(not isinstance(s, str) for s in sites)
+                or sites != sorted(set(sites)) or not isinstance(rows, dict) or set(rows) != set(sites)
+                or not set(sites) <= curated_sites):
+            raise ValueError("Curated construction context site binding differs")
+        candidates = []
+        for site in sites:
+            action = selected[site]
+            if (action.method != "coot-parent-overlap" or site in context_receipt.get("passthrough_sites", ())
+                    or site not in parent_models):
+                raise ValueError("Curated construction context lacks eligible parent authority")
+            graph = source_graph_fragment(dictionary_paths[action.after], action.after)
+            parent = _atoms(_pdb_inventory(parent_models[site]), site)
+            missing = (set(graph["scaffold_atoms"]) & _atoms(raw, site).keys()) - parent.keys()
+            if missing and missing != {"OP3"}:
+                raise ValueError("Curated construction context has an unmatched scaffold atom")
+            expected = {"component": action.after, "source_sha256": graph["source_sha256"],
+                        "parent_model_sha256": sha256(Path(parent_models[site]).read_bytes()).hexdigest(),
+                        "scaffold_atoms": graph["scaffold_atoms"], "missing_parent_atoms": sorted(missing),
+                        "preflight": "SOURCE_GRAPH_AND_PROPER_TRANSPORT_PASS; NO_FINAL_GRAPH_TRANSPORT_REQUESTED"}
+            if rows[site] != expected:
+                raise ValueError("Curated construction context source or parent binding differs")
+            if missing:
+                candidates.append(site)
+        if (declaration.get("candidate_sites") != candidates
+                or status == "CONTEXT_PREPARED" and curated_removed != set(candidates)):
+            raise ValueError("Curated construction context deletion scope differs")
+        curated_binding = {"status": "CURATED_CONTEXT_BINDING_PASS", "sites": sites,
+                           "candidate_sites": candidates, "source_and_parent_bindings": "EXACT"}
     if context.keys() - raw.keys():
         raise ValueError("Construction context added an atom")
     if raw_other != context_other:
@@ -184,9 +233,12 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
             raise ValueError("Unchanged construction context did not retain the complete raw file")
         if context_receipt.get("removed_atoms") or context_receipt.get("serial_repairs"):
             raise ValueError("Unchanged construction receipt declares a coordinate delta")
-        return {"status": status, "raw_coordinates_preserved": True, "removed_atoms": [],
+        report = {"status": status, "raw_coordinates_preserved": True, "removed_atoms": [],
                 "serial_repairs": [], "unique_context_serials": unique_serials,
                 "raw_composition_preserved": True, "inherited_connections_rebound": False}
+        if curated_binding is not None:
+            report["curated_context"] = curated_binding
+        return report
     if not unique_serials:
         raise ValueError("Prepared construction context still contains duplicate atom serials")
     if context_shadow is None or parent_models is None:
@@ -218,6 +270,9 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
             expected = parents[site][name]["xyz"]
         if shadow[key]["xyz"] != expected:
             raise ValueError("Construction proof shadow changed coordinates outside its exact parent scaffold")
+        if (site in curated_sites and shadow[key]["xyz"] != raw[key]["xyz"]
+                and (curated_binding is None or site not in curated_binding["sites"])):
+            raise ValueError("Curated proof shadow lacks its source-bound context scope")
         if before[6:11] != after[6:11]:
             if site not in selected:
                 raise ValueError("Construction proof shadow changed an unselected serial")
@@ -260,11 +315,14 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
             raise ValueError("Construction context receipt delta identity differs")
     if context_receipt.get("shadow_sha256") != sha256(Path(context_shadow).read_bytes()).hexdigest():
         raise ValueError("Construction context receipt file binding differs")
-    return {"status": "CONSTRUCTION_CONTEXT_DELTA_PASS", "ordinary_context_status": status,
+    report = {"status": "CONSTRUCTION_CONTEXT_DELTA_PASS", "ordinary_context_status": status,
             "removed_atoms": removals, "serial_repairs": repairs,
             "retained_atom_serial_repairs": retained_repairs, "raw_coordinates_preserved": True,
             "raw_composition_preserved": not removals, "unselected_records_preserved": True,
             "unique_context_serials": True, "inherited_connections_rebound": bool(repairs)}
+    if curated_binding is not None:
+        report["curated_context"] = curated_binding
+    return report
 
 
 def audit_postmr_construction(initial_model: Path, raw_model: Path, final_model: Path,

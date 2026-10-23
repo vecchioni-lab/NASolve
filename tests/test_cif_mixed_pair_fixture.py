@@ -234,7 +234,8 @@ def test_mixed_context_serial_repair_remains_independently_auditable(tmp_path, m
     context = report["context_receipt"]
     assert context["status"] == "CONTEXT_PREPARED"
     assert {(row["site"], row["atom"]) for row in context["removed_atoms"]} == {("D:5", "OP3")}
-    assert context["serial_scope_extension"]["sites"] == ["A:19", "C:9"]
+    assert context["curated_context"]["sites"] == ["A:19", "C:9"]
+    assert context["curated_context"]["candidate_sites"] == []
     assert {row["site"] for row in context["serial_repairs"]} == {
         row["site"] for row in report["plan"]["mutation_actions"] if row["method"] == "coot-parent-overlap"}
     assert report["construction_audit"]["context_audit"]["status"] == "CONSTRUCTION_CONTEXT_DELTA_PASS"

@@ -295,6 +295,11 @@ def audit_mixed_construction(initial_model, result, actions, sources, directory)
                      "raw_fragment_geometry_preservation": "NOT_CLAIMED_FOR_DECLARED_CURATED_PLACEMENT",
                      "scaffold_matches_frozen_parent": True, "declared_bonds": bonds})
     fallbacks = [row["site"] for row in rows if row["status"] == "RAW_SITE_RETAINED"]
+    if context is not None and context["status"] == "CONSTRUCTION_CONTEXT_DELTA_PASS":
+        from .phosphate import audit_phosphates
+        context["final_phosphate_audit"] = audit_phosphates(final,
+            check_sites=tuple(sorted({row["site"] for row in context["removed_atoms"]})),
+            reference_model=initial_model)
     refs = [_artifact(path, directory.parent) for path in sorted(directory.rglob("*")) if path.is_file()]
     return {"status": "CONSTRUCTION_CONTROLS_PASS_WITH_NOTES" if fallbacks else "CONSTRUCTION_CONTROLS_PASS",
             "sites": rows, "raw_fallback_sites": fallbacks, "context_audit": context,

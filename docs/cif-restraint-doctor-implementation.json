@@ -2652,8 +2652,8 @@
         "interpretation": {
           "native_mechanics": "17/17 exact checks PASS; identities, definitions, all static proxies, inputs and fixed NARestraints policy survive actual optimization and native PDB readback.",
           "optimizer_stop": "905 iterations / 970 calls; line search reports rounding errors preventing progress, before PDB serialization. Native criterion false; retain NOT_CONVERGED_ERROR.",
-          "geometry": "Full-precision nominal deviations >=5: distance terms 4 to 3; angle terms 10 to 10; no recorded chirality sign conflicts among 158 proxies. Remaining distance outliers are all three declared CGY\u2013DX hydrogen bonds, 4.3379\u20135.5804 A versus 2.8 A targets; the longest contact worsens slightly.",
-          "localized_angle_reviews": "Nine of the ten remaining angle outliers involve CGY A:20/DX D:3; DP B:4 C6\u2013N5\u2013C7 remains 127.8714 degrees versus 109.471 target (nominal 6.1335). This is evidence for review, not a new target assignment.",
+          "geometry": "Full-precision nominal deviations >=5: distance terms 4 to 3; angle terms 10 to 10; no recorded chirality sign conflicts among 158 proxies. Remaining distance outliers are all three declared CGY–DX hydrogen bonds, 4.3379–5.5804 A versus 2.8 A targets; the longest contact worsens slightly.",
+          "localized_angle_reviews": "Nine of the ten remaining angle outliers involve CGY A:20/DX D:3; DP B:4 C6–N5–C7 remains 127.8714 degrees versus 109.471 target (nominal 6.1335). This is evidence for review, not a new target assignment.",
           "parallelity": "Combined pair/stack plane residual decreases 593.5432 to 151.2764; this category contains pair-plane and stack terms and is not a stacking-only metric.",
           "rounding": "The separately PDB-rounded vector changes the fixed-manager target from 2866.5556 to 2870.0305 and gradient norm from 91.2772 to 907.0440. Preserve full precision for future numerical review; the earlier optimizer error is a separate event.",
           "scientific_gate": "REVIEW; mechanics success and objective decrease do not establish convergence or chemical/crystallographic approval."
@@ -7115,7 +7115,7 @@
           "dictionary_generation": "NOT_RUN",
           "installed_component_native_execution": "PENDING_USER_MAC"
         },
-        "native": "Returned selected Phenix 2.2.1-6174 (dispatcher 2.2.1) default monomer lookups supply neither PDU nor 5PC; native cases stop on unknown energy types. The explicitly supplied saved PDU candidate installs active 1.174 \u00c5 / 180\u00b0 restraints and six flagged torsions. Source-seed geometry is not a repaired generated model or scientific qualification.",
+        "native": "Returned selected Phenix 2.2.1-6174 (dispatcher 2.2.1) default monomer lookups supply neither PDU nor 5PC; native cases stop on unknown energy types. The explicitly supplied saved PDU candidate installs active 1.174 Å / 180° restraints and six flagged torsions. Source-seed geometry is not a repaired generated model or scientific qualification.",
         "full": {
           "passed": 2295,
           "skipped": 2,
@@ -9501,7 +9501,7 @@
           "native_numerical_impact": "PENDING_USER_MAC",
           "generation_optimization_adoption": "NOT_RUN"
         },
-        "native": "RETURNED_USER_MAC: both native jobs complete at 1620/2000 evaluations. All 246 derivative arithmetic directions, omitted-term deltas, unrelated-family values and additivity pass. PDU passes all strict cases. Two 5PC cases retain count-only baseline/sample/final review (71\u219275 and 70\u219267), with repeated targets and gradients exactly unchanged. Pair identities/contributions were not captured; cache explanation remains to be proved.",
+        "native": "RETURNED_USER_MAC: both native jobs complete at 1620/2000 evaluations. All 246 derivative arithmetic directions, omitted-term deltas, unrelated-family values and additivity pass. PDU passes all strict cases. Two 5PC cases retain count-only baseline/sample/final review (71→75 and 70→67), with repeated targets and gradients exactly unchanged. Pair identities/contributions were not captured; cache explanation remains to be proved.",
         "documentation": {
           "mirror_equality": "PASS",
           "relative_links": 149,
@@ -10044,8 +10044,8 @@
       "limitations": [
         "C45 arithmetic agreement is separate from raw count/membership qualification; no old failed gate is erased.",
         "A settled-cache pass remains sampled numerical evidence, not geometry convergence, historical causation or chemical/scientific approval.",
-        "Phosphate 0\u2192\u22122/HOP2/HOP3 changes, omitted R/S metadata, 5PC plane review and whole-scaffold qualification stay open.",
-        "The native cache proof closes this fixed-coordinate count question; source/generated phosphate 0\u2192\u22122 and HOP2/HOP3 differences, absent R/S labels, absolute CIP, 5PC plane/angle review and whole-scaffold qualification remain separate."
+        "Phosphate 0→−2/HOP2/HOP3 changes, omitted R/S metadata, 5PC plane review and whole-scaffold qualification stay open.",
+        "The native cache proof closes this fixed-coordinate count question; source/generated phosphate 0→−2 and HOP2/HOP3 differences, absent R/S labels, absolute CIP, 5PC plane/angle review and whole-scaffold qualification remain separate."
       ],
       "execution": {
         "generator": "NOT_RUN",
@@ -10794,7 +10794,7 @@
         "The native Chiralise implementation calls local chiral-template optimization; those internal operations are not instrumented. Whole-molecule optimization and full builder generation are not requested.",
         "Source-relative handedness and preserved input R/S labels do not independently assign or validate absolute CIP.",
         "No generated numerical dictionary, effective linked-manager qualification, model improvement, convergence, refinement or adoption is claimed.",
-        "PDU/5PC source/generated phosphate 0\u2192\u22122/HOP2/HOP3 differences and the 5PC plane/angle review remain open; this audit does not choose between those states.",
+        "PDU/5PC source/generated phosphate 0→−2/HOP2/HOP3 differences and the 5PC plane/angle review remain open; this audit does not choose between those states.",
         "The requested eight-pair ordinary live test remains planned after current building, with explicit sequence/site staging still required."
       ],
       "execution": {
@@ -10874,7 +10874,7 @@
           "scope": "Diagnostic preparation omission, not a demonstrated failure of source chemistry.",
           "native_reference": "elbow/utilities/Utilities.py::get_elbow_molecule_from_chemical_components",
           "native_source_sha256": "74c6c8713e8c7f6aa30e6cea06e24fffa6399497c37e05dc5a33300f45199108",
-          "preparation": "Lines 605\u2013606 select molecule.SetCCTBX(True) immediately before molecule.Chiralise().",
+          "preparation": "Lines 605–606 select molecule.SetCCTBX(True) immediately before molecule.Chiralise().",
           "omission": "C47 promoted the source-exact component but never selected CCTBX; MoleculeClass defaults it to False.",
           "observed_paths": "DP/PDU stop in ChiralClass.Chiralise with not chiralised; 5PC reaches the non-CCTBX OptimiseBFGS call, absent from the installed class.",
           "fix_scope": "Use the captured native preparation policy explicitly in an opt-in retry; preserve graph, state, signatures and stereo gates. Do not patch installed Phenix."
@@ -11011,7 +11011,7 @@
       "limitations": [
         "Native backend selection is a preparation correction, not a proven successful constructor until the new Mac return is inspected.",
         "Native internal local optimization remains uninstrumented. A handoff pass does not independently assign absolute CIP or qualify a full dictionary/builder.",
-        "PDU/5PC neutral-source versus generated \u22122 phosphate/H changes, omitted labels and the 5PC plane/angle finding remain open.",
+        "PDU/5PC neutral-source versus generated −2 phosphate/H changes, omitted labels and the 5PC plane/angle finding remain open.",
         "Whole-scaffold integration, bounded geometry, refinement and human review remain separate. The requested eight-pair live test is still planned after building."
       ],
       "artifact_boundary": "Git contains code/tests/docs/hashes only. Private sources, snapshots, logs, models, runners and returned capsules remain external.",
@@ -11035,7 +11035,7 @@
         "phenix_version": "2.2.1-6174",
         "dispatcher_version": "2.2.1",
         "native_execution": "THREE_WORKERS_AND_CONSTRUCTORS_COMPLETED",
-        "backend": "All four preparation gates PASS in every component; False\u2192True flags and exact unchanged inventories/format before original construction.",
+        "backend": "All four preparation gates PASS in every component; False→True flags and exact unchanged inventories/format before original construction.",
         "backend_source": {
           "path": "elbow/cctbx_api/CCTBXMixins.py",
           "sha256": "219938312d5c9c8c0a3cc27b1a225ff9ecb71bec1c2128d39ebf70918f298f96",
@@ -18552,13 +18552,13 @@
         "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
       },
       "next_boundary": {
-        "work": "Run the explicitly mapped C80 eight-pair construction and PDB-role policy compiler, then qualify native dictionary/link/pair/stack membership before an ordinary diffraction/full NASolve claim.",
+        "work": "Run the fresh C81 eight-pair construction with source-validated curated phosphate context, then qualify active native dictionary/link/triple/pair/stack membership before an ordinary diffraction/full NASolve claim.",
         "cache_gate": "C71_RETURN_VERIFIED; DO_NOT_REPEAT_COMPLETED_ISOLATED_CACHE_HANDOFF",
         "required_evidence": "An explicitly bounded integration delivery or ordinary PostMR report; observations/MTZ required before claiming a diffraction/full NASolve run.",
         "user_flow": "Automatic usable selection/fallback and solution notes; no CIF inspection or student approval.",
         "live_scope": "Eight requested pairs, twelve canonical background pairs and thirty-eight declared chain-adjacency stacks; sixteen separate plane-order compiler controls; ATL independent.",
-        "status": "C78_AND_C79_COMPLETE; C80_MAPPED_EIGHT_PAIR_CONSTRUCTION_DELIVERY_PENDING_NATIVE_RETURN",
-        "delivery_record": "mixed_eight_pair_construction_2026_10_23"
+        "status": "C80_COOT_COMPLETED_WITH_CONTEXT_AUDIT_REVIEW; C81_SOURCE_VALIDATED_CURATED_CONTEXT_FRESH_CHECK_PENDING",
+        "delivery_record": "curated_phosphate_context_2026_10_23"
       },
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_postmr_cache_acquisition_2026_10_23"
     },
@@ -20790,7 +20790,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#ordinary_component_input_handoff_2026_10_23"
     },
     "mixed_eight_pair_construction_2026_10_23": {
-      "status": "IMPLEMENTED; LOCAL_VALIDATION_PASS; FRESH_MAC_C80_PENDING",
+      "status": "RETURNED_C80_COOT_COMPLETED; CURATED_PHOSPHATE_CONTEXT_AND_SCAFFOLD_AUDIT_REVIEW",
       "recorded_date": "2026-10-23",
       "delivery_prefix": "80_Cedar",
       "runner_filename": "80_Cedar_probe_mixed_pairs.py",
@@ -20992,7 +20992,7 @@
       "ATL": "INDEPENDENT_PINNED_PUBLIC_SOURCE_GRAPH_CONTROL; NO_COOT_CONSTRUCTION; NOT_A_NINTH_PAIR",
       "modes": {
         "inspect_only": "FREEZE_PLAN_AND_ORDINARY_SOURCES; NO_COOT_CONSTRUCTION_OR_NATIVE_PROCESS",
-        "fresh": "ONE_BOUNDED_COOT_CONSTRUCTION_THEN_PDB_SELECTOR_POLICY_COMPILATION; ACTUAL_MAC_RESULT_PENDING"
+        "fresh": "ONE_BOUNDED_COOT_CONSTRUCTION; RETURNED_C80_CONTEXT_REVIEW_BEFORE_CONSTRUCTED_POLICY_COMPILATION"
       },
       "portability": "FROZEN_HASH_BOUND_RELATIVE_INPUT_OUTPUT_REFERENCES; SOURCE_REMOVED_REPLAY_READER; EXISTING_OPAQUE_BACKUP_TRANSPORT",
       "failure_diagnostics": "PRESERVE_FIRST_ERROR_AND_AVAILABLE_SESSION_EVIDENCE; RECEIPT_ONLY_FAILURE_CAPSULE_IF_COMPLETE_COLLECTION_IS_UNAVAILABLE",
@@ -21083,12 +21083,340 @@
       },
       "compatibility": "NEW_EXPLICIT_DIAGNOSTIC_AND_COMPILER_API; NAR_AND_LEGACY_SAENGER_COMPILER_UNCHANGED; NARROW_ORDINARY_MIXED_CURATED_SERIAL_AUTHORITY_FIX_ONLY; OP3_CHEMICAL_SCOPE_AND_PASSTHROUGH_GUARDS_UNCHANGED; NO_PACKAGE_OR_NAR_WORKBOOK_RELEASE",
       "remaining_limits": [
-        "PDB role/selection compilation does not establish active native proxy membership or achieved geometry.",
-        "Fresh Mac Coot construction and its global/context, ten graph-site and two curated-rule audits remain pending.",
+        "Returned C80 completes Coot construction but retains unproved internal DF OP3 and eight whole-raw-site fallbacks; its construction audit correctly remains REVIEW.",
+        "Constructed twenty-pair/thirty-eight-stack policy compilation has not run on the C80 result; source-only preflight is a separate completed stage.",
         "Native dictionary/link/triple-target and full declared pairing/stacking membership, ordinary end-to-end execution with observations, refinement, solution PDF and scientific qualification remain separate."
       ],
       "generated_artifacts": "PRIVATE_SOURCE_COPIES_MODELS_LOGS_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+      "returned_c80": {
+        "archive": "80_Cedar_9r_jb4ml_mixed_pair_review.zip",
+        "archive_sha256": "ea32cb403f88bbbc33c62a425f125d703e9a94e148a59faa79660d65bbf5faba",
+        "archive_bytes": 694829,
+        "verified_payloads": 138,
+        "all_payload_crc_hash_size_and_safe_names": "PASS",
+        "nested_history_members": 0,
+        "source_commit": "eb23f2f5a59b88341f994abe7a8594c9140c3056",
+        "reported_runner_sha256": "3571d493fca2fbd8de3245cec5e5f257a7d34f116a3168b33531eb18ee7558ac",
+        "runtime_members": 162,
+        "runtime_archive_sha256": "1543d453f8eade991cc1e6d315ace222a67d27daa26c48c76e002812b9a8548b",
+        "build_difference": "NAR_DIRTY_STATE_METADATA_ONLY; RUNTIME_BYTES_EXACT",
+        "opaque_backup_normalization": "PASS; 37_EXACT_HASH_BOUND_BACKUPS; NEVER_DECOMPRESSED",
+        "maintained_portable_fixture_reader": "PASS",
+        "frame_assets_plan_free_5oh_and_all_42_final_site_identities": "PASS",
+        "maintained_source_selection_and_eight_pair_sixteen_orientation_compiler_replay": "PASS; ALL_39_NONREPORT_FILES_EXACT",
+        "all_twelve_source_graph_eligibility_replays": "PASS",
+        "maintained_context_and_all_twelve_restoration_rules": "PASS; EXACT_RECEIPTS_AND_MODEL_BYTES; NO_COOT_PROCESS",
+        "coot_version": "1.3.3",
+        "coot_execution": "COMPLETED",
+        "construction_audit": "STOPPED_WITH_FIRST_ERROR_RETAINED",
+        "first_error": "Curated scaffold differs from its frozen parent",
+        "context_status": "RAW_CONTEXT_RETAINED",
+        "context_reason": "Phosphate A:19: implausibly short incoming O3'-P link",
+        "restoration_counts": {
+          "RAW_SITE_RETAINED": 8,
+          "CURATED_DECLARED_PLACEMENT": 2,
+          "GRAPH_FRAGMENT_RESTORED": 2
+        },
+        "compiled_constructed_policy": "NOT_RUN",
+        "active_native_membership": "NOT_ASSESSED",
+        "readyset": "NOT_RUN",
+        "model_optimization": "NOT_REQUESTED; COOT_INTERNALS_NOT_EXHAUSTIVELY_OBSERVED",
+        "decision": {
+          "notes": [
+            "The preserved canonical template is an unqualified construction input, not the requested mixed chemistry."
+          ],
+          "original_template_retained": true,
+          "requires_cif_review": false,
+          "selected": null,
+          "status": "NO_QUALIFIED_MIXED_MODEL"
+        },
+        "captured_python_execution": "NOT_RUN",
+        "new_verification_subprocesses": 0,
+        "guard_finding": {
+          "site": "A:19",
+          "component": "DF",
+          "missing_frozen_parent_scaffold_atom": "OP3",
+          "differing_common_scaffold_xyz": [],
+          "other_curated_site": "S6G_C:9_HAS_EXACT_FROZEN_PARENT_SCAFFOLD",
+          "interpretation": "REAL_UNPROVED_INTERNAL_PHOSPHATE_CONTEXT; DO_NOT_RELAX_THE_SCAFFOLD_GUARD"
+        },
+        "original_receipt_and_unqualified_fallback": "PRESERVED; NO_RETROSPECTIVE_SUCCESS_OR_ADOPTION",
+        "full_constructed_policy_not_to_confuse_with_source_preflight": "SOURCE_ONLY_EIGHT_PAIR_AND_SIXTEEN_ORIENTATION_PREFLIGHT_PASS; CONSTRUCTED_TWENTY_PAIR_POLICY_NOT_RUN",
+        "maintained_replay_baseline": {
+          "nasolve_commit": "eb23f2f5a59b88341f994abe7a8594c9140c3056",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "source": "TRUSTED_LOCAL_GIT_ARCHIVE; NOT_RETURNED_ZIP_CODE",
+          "runtime_source_files_hash_checked": 152,
+          "ambient_current_project_source_paths": "REMOVED; FRESH_BASELINE_MODULE_IMPORTS_REQUIRED",
+          "all_imported_project_modules_from_owned_baseline": true,
+          "frozen_source_hashes_unchanged_after_replay": true,
+          "temporary_baseline_removed_after_replay": true,
+          "trusted_git_archive_preparation_calls": 2
+        }
+      },
+      "next_boundary": "SOURCE_VALIDATED_CURATED_DNA_PHOSPHATE_CONTEXT_AND_FRESH_C81_CONSTRUCTION; THEN_ACTIVE_NATIVE_MEMBERSHIP",
+      "validation_record_scope": "ORIGINAL_PRE_RETURN_LOCAL_VALIDATION_PRESERVED; MAC_OUTCOME_RECORDED_SEPARATELY_IN_RETURNED_C80",
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#mixed_eight_pair_construction_2026_10_23"
+    },
+    "curated_phosphate_context_2026_10_23": {
+      "status": "IMPLEMENTED; LOCAL_REGRESSION_SAVED_DATA_COLD_AND_PRIOR_LINEAGE_PASS; FRESH_MAC_C81_PENDING",
+      "recorded_date": "2026-10-23",
+      "delivery_prefix": "81_Cedar",
+      "runner_filename": "81_Cedar_probe_mixed_pairs.py",
+      "builder": "scripts/build_mixed_pair_probe.py",
+      "builder_delivery_argument": "--delivery-prefix 81_Cedar",
+      "template": "scripts/mixed_pair_probe_template.py",
+      "prior_capsule_required": false,
+      "C80_record": "docs/cif-linked-native-registration-evidence.json#mixed_eight_pair_construction_2026_10_23",
+      "before": "C80 excludes explicit curated placements from source-graph phosphate context. Raw DF A:19 backbone geometry invalidates the whole discarded-shadow proof, retaining eight generic raw sites and an internal DF OP3. The independent curated-scaffold guard correctly stops before policy compilation.",
+      "after": "Any explicit supported DNA parent-overlap site, including a curated placement, must pass the same source graph and discarded proper-transport preflight before joining the parent-scaffold shadow. The existing sanitizer authorizes only proved selected internal OP3 deletions and selected serial normalization in the original raw records; final curated placement remains its existing rule.",
+      "scope": "SOURCE_GRAPH_VALIDATED_DNA_CONTEXT; NO_COMPONENT_ID_EXCEPTION_OR_SCAFFOLD_GUARD_RELAXATION",
+      "ordinary_API": "nasolve.postmr_context.prepare_construction_context",
+      "construction_entrypoint": "nasolve.postmr.construct_postmr_model",
+      "context_policy_id": "postmr-source-graph-internal-phosphate-context-v1",
+      "additive_receipt": {
+        "field": "curated_context",
+        "policy_id": "postmr-source-graph-curated-phosphate-context-v1",
+        "scope": "SOURCE_GRAPH_AND_DISCARDED_PARENT_SCAFFOLD_SHADOW_ONLY; FINAL_CURATED_PLACEMENT_UNCHANGED",
+        "site_fields": [
+          "sites",
+          "candidate_sites"
+        ],
+        "source_graphs_site_fields": [
+          "component",
+          "source_sha256",
+          "parent_model_sha256",
+          "scaffold_atoms",
+          "missing_parent_atoms",
+          "preflight"
+        ],
+        "legacy_scope": "GENERIC_ONLY_AND_INVALID_CURATED_SOURCE_RECEIPTS_UNCHANGED"
+      },
+      "method": {
+        "eligibility": "EXPLICIT_DNA_SOURCE_GRAPH_AND_COMPLETE_PARENT_CORRESPONDENCE; SAME_DISCARDED_restore_graph_site_PREFLIGHT",
+        "shadow": "ONLY_SOURCE_GRAPH_SCAFFOLD_COORDINATES_WITH_EXACT_FROZEN_PARENT_COUNTERPARTS; DISCARDED_AFTER_EXISTING_PHOSPHATE_PROOF",
+        "transfer_to_raw": "ONLY_EXACT_PROVED_SELECTED_INTERNAL_OP3_DELETIONS_AND_AUTHORIZED_SELECTED_SERIAL_FIELDS; RETAINED_RAW_XYZ_AND_METADATA_EXACT",
+        "rollback": "EXISTING_WHOLE_CONTEXT_RAW_FALLBACK_AND_FINAL_SANITIZER_RECHECK; FAILED_AUTHORITY_OR_CHEMISTRY_PROOF_AUTHORIZES_NO_CONTEXT_DELTA",
+        "guards": "SOURCE_GRAPH_PARENT_FRAME_AND_ATOM_CORRESPONDENCE; INHERITED_CONECT; UNSELECTED_IDENTITY_COORDINATES_AND_SERIALS; FROZEN_PASSTHROUGH_AND_PHOSPHATE_INTENT; NO_UNPROVED_OXYGEN_DELETION"
+      },
+      "unchanged": {
+        "source_dictionaries_charge_orders_and_targets": true,
+        "graph_fragment_transport": true,
+        "curated_final_placement_rules": true,
+        "phosphate_sanitizer_and_chemical_thresholds": true,
+        "native_mechanics_and_secondary_structure_guessing_policy": true,
+        "NAR_role_workbook_recipes_and_stacking_policy": true,
+        "cache_identity_and_existing_qualified_entries": true,
+        "legacy_Saenger_compiler": true
+      },
+      "fixture": {
+        "site_map": "UNCHANGED_C80_EIGHT_REQUESTED_PAIRS_AT_SIXTEEN_SITES",
+        "actual_coot_mutations": 12,
+        "background_pairs": 12,
+        "full_declared_pairs": 20,
+        "chain_adjacency_stacks": 38,
+        "separate_plane_order_controls": 16,
+        "ATL": "INDEPENDENT_SOURCE_GRAPH_CONTROL; NOT_A_NINTH_PAIR",
+        "source_authority_and_bytes": "SAME_ORDINARY_SELECTION_AND_FROZEN_SOURCE_BINDINGS",
+        "compiler_index_basis": "PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES"
+      },
+      "delivery": {
+        "mode": "FRESH_ORDINARY_COOT_CONSTRUCTION; NOT_A_PUBLIC_SAVED_REPLAY_API",
+        "construction_calls_max": 1,
+        "construction_timeout_seconds_max": 600,
+        "Coot_validation": "ORDINARY_VERSION_AND_EMBEDDED_PYTHON_PROBES_RECORDED_SEPARATELY",
+        "input_history": "NONE; SAME_INDEPENDENT_FROZEN_RUNTIME_AND_PUBLIC_FRAME; NO_HISTORICAL_ZIP_ARGUMENT",
+        "ferry": "EXISTING_BUILD_80_TO_NEW_DETACHED_BUILD_81; FULL_REVIEWED_SHA; FOUR_DEPENDENT_COMMANDS_JOINED_BY_AND_AND",
+        "local_saved_C80_replay": "PRIVATE_MAINTAINED_API_EVIDENCE_ONLY; NO_CAPTURED_PYTHON_OR_NEW_SDK_EXECUTION"
+      },
+      "validation": {
+        "status": "FOCUSED_FULL_SUITE_SAVED_DATA_COLD_AND_MAINTAINED_LINEAGE_PASS; FRESH_MAC_C81_PENDING",
+        "early_context_regression": {
+          "test_file": "tests/test_postmr_context_mixed.py",
+          "new_cases": 8,
+          "before": "2_FAILED_10_PASSED_IN_1.37_SECONDS; TWO_CURATED_AND_MIXED_POSITIVES_FAIL_ON_PRE_FIX_CODE",
+          "after": "28_CONTEXT_CASES_PASSED_IN_0.48_SECONDS; OVERLAPPING_EXISTING_AND_MIXED_CONTEXT_GROUPS"
+        },
+        "external_scope": "NO_LOCAL_PHENIX_OR_COOT; FRESH_MAC_C81_CONSTRUCTION_PENDING",
+        "new_cases_total": 15,
+        "receipt_binding_regression": {
+          "test_file": "tests/test_cif_curated_context_audit.py",
+          "new_cases": 7,
+          "before": "7_FAILED_ON_PRE_FIX_AUDITOR_AND_CONTEXT; POSITIVE_PLUS_SIX_TAMPERING_CASES",
+          "scope": "SOURCE_PARENT_SITE_CANDIDATE_AND_SCOPE_BOUND; NOT_A_RECEIPT_ONLY_SUCCESS_CHECK"
+        },
+        "focused": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /workspace/scratch/79ec83ded5fa/c69-venv/bin/python -B -m pytest -q tests/test_cif_curated_context_audit.py tests/test_postmr_context_mixed.py tests/test_postmr_context.py tests/test_cif_mixed_pair_fixture.py tests/test_cif_postmr_construction.py tests/test_cif_explicit_na_policy.py tests/test_mixed_pair_probe.py",
+          "passed": 132,
+          "seconds": 26.45,
+          "scope": "FINAL_COMBINED_SEVEN_FILE_FOCUSED_RUN; OVERLAPS_EARLY_GROUPS; ALL_FIFTEEN_NEW_CASES_COLLECTED_BEFORE_FULL_SUITE"
+        },
+        "saved_C80_replay": {
+          "status": "SAVED_C80_CONTEXT_AND_CONSTRUCTION_AND_EXPLICIT_POLICY_PASS",
+          "scope": "PRIVATE_CURRENT_MAINTAINED_CONTEXT_RESTORATION_INDEPENDENT_AUDIT_AND_EXPLICIT_SELECTOR_COMPILER; NO_PUBLIC_REPLAY_API_OR_FRESH_COOT_RESULT",
+          "input_archive_sha256": "ea32cb403f88bbbc33c62a425f125d703e9a94e148a59faa79660d65bbf5faba",
+          "original_C80_review": "PRESERVED; NO_RETROSPECTIVE_ADOPTION",
+          "context_status": "CONTEXT_PREPARED",
+          "removed_OP3_sites": [
+            "A:5",
+            "A:7",
+            "A:12",
+            "A:19",
+            "A:20",
+            "B:4",
+            "C:10",
+            "D:3",
+            "D:5"
+          ],
+          "removed_OP3_count": 9,
+          "selected_serial_repairs": 267,
+          "curated_context_sites": [
+            "A:19",
+            "C:9"
+          ],
+          "curated_OP3_candidate_sites": [
+            "A:19"
+          ],
+          "curated_source_parent_binding_audit": "CURATED_CONTEXT_BINDING_PASS",
+          "context_delta_audit": "CONSTRUCTION_CONTEXT_DELTA_PASS",
+          "retained_raw_coordinates_and_unselected_records_preserved": true,
+          "unique_context_serials": true,
+          "restoration_counts": {
+            "CURATED_DECLARED_PLACEMENT": 2,
+            "GRAPH_FRAGMENT_RESTORED": 10
+          },
+          "raw_fallback_sites": [],
+          "mixed_construction_audit": "CONSTRUCTION_CONTROLS_PASS",
+          "final_phosphate_audit": {
+            "checked_sites": 9,
+            "removed_atoms": 0,
+            "input_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+            "output_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+            "same_candidate_bytes": true
+          },
+          "policy_counts": {
+            "pair_count": 20,
+            "requested_pair_count": 8,
+            "background_pair_count": 12,
+            "stack_count": 38,
+            "orientation_control_count": 16
+          },
+          "portable_compiled_policy_readback": "PASS; EXACT_CURRENT_MAINTAINED_RECONSTRUCTION",
+          "candidate_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+          "immutable_source_raw_and_parent_inputs_preserved": true,
+          "all_subprocesses_forbidden": true,
+          "new_Coot_Phenix_ReadySet_processes": 0,
+          "captured_python_execution": "NOT_RUN",
+          "source_Coot_version": "1.3.3; SAVED_C80_ONLY",
+          "active_native_membership": "NOT_ASSESSED",
+          "fresh_Mac_C81_construction": "PENDING"
+        },
+        "code_checkpoint": "b568129b639aba400680b61b90378f7486f70d8c",
+        "all_new_cases_collected_before_full_suite": true,
+        "cold_saved_data": {
+          "status": "PASS",
+          "context": "CONTEXT_PREPARED",
+          "removed_sites": [
+            "A:12",
+            "A:19",
+            "A:20",
+            "A:5",
+            "A:7",
+            "B:4",
+            "C:10",
+            "D:3",
+            "D:5"
+          ],
+          "serial_repairs": 267,
+          "restoration_counts": {
+            "CURATED_DECLARED_PLACEMENT": 2,
+            "GRAPH_FRAGMENT_RESTORED": 10
+          },
+          "construction_audit": "CONSTRUCTION_CONTROLS_PASS",
+          "context_audit": "CONSTRUCTION_CONTEXT_DELTA_PASS",
+          "final_sanitizer_recheck": "EXACT_BYTES; NO_ADDITIONAL_DELETION",
+          "compiled_policy": "EXPLICIT_NA_POLICY_COMPILED",
+          "declared_pairs": 20,
+          "requested_pairs": 8,
+          "background_pairs": 12,
+          "chain_adjacency_stacks": 38,
+          "orientation_controls": 16,
+          "source_components": 16,
+          "source_bytes_preserved": true,
+          "actual_coot_phenix_readyset_calls": 0,
+          "active_native_membership": "NOT_ASSESSED",
+          "source_commit": "b568129b639aba400680b61b90378f7486f70d8c",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runtime_members": 162,
+          "runtime_archive_sha256": "5dd4ae5b099672be14bc3dff24e5698cbeecbed62963bb43793bc81eec562b62",
+          "runner_sha256": "6aa641f2d969366f567c25b4de20ca90c37b8cb3945a164cad6f8e88001243ef",
+          "source_archive_sha256": "ea32cb403f88bbbc33c62a425f125d703e9a94e148a59faa79660d65bbf5faba",
+          "original_payloads_verified": 138,
+          "scope": "SAVED_EXACT_C80_DATA_REPLAY; NO_FRESH_COOT_PHENIX_READYSET_OR_NATIVE_QUALIFICATION",
+          "source_clones_removed_before_launch": true,
+          "original_repository_and_archive_reads_forbidden": true,
+          "ambient_poison": "NOT_IMPORTED",
+          "aliased_TMPDIR": true,
+          "macos_path_budget": {
+            "max_absolute_path_bytes": 159,
+            "max_component_bytes": 43,
+            "checked_operations": 4374
+          },
+          "standalone_policy_after_source_input_runtime_removal": "PASS",
+          "everyday_authorized_edit": "OWNED_TEST_FIXTURE_PRESERVED",
+          "original_user_config": "OWNED_TEST_FIXTURE_UNCHANGED",
+          "component_store": "ABSENT_AND_UNTOUCHED",
+          "actual_C81_Mac_construction": "PENDING",
+          "private_artifacts": "EXCLUDED_FROM_GIT",
+          "frozen_runtime_preserved": true,
+          "candidate_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+          "all_subprocesses_forbidden_during_scientific_replay": true,
+          "actual_source_scope": "ALL_SIXTEEN_EXACT_C80_SOURCES_INCLUDING_CAPTURED_REAL_BACKGROUND_DC; NO_SYNTHETIC_DC_FIXTURE"
+        },
+        "maintained_prior_lineage": {
+          "status": "PASS",
+          "source_commit": "b568129b639aba400680b61b90378f7486f70d8c",
+          "scope": "MAINTAINED_C76_AND_ALL_PRIOR_LINEAGE_REPLAY_UNDER_CURRENT_CODE",
+          "all_subprocesses_forbidden": true,
+          "captured_python_execution": "NOT_RUN",
+          "historical_reviews_and_fallbacks": "PRESERVED; NO_RETROSPECTIVE_ADOPTION",
+          "fresh_native_or_full_run": "NOT_ASSESSED"
+        },
+        "full_suite": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /workspace/scratch/79ec83ded5fa/c69-venv/bin/python -B -m pytest -q",
+          "passed": 4491,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 424.25,
+          "collection_scope": "ALL_FIFTEEN_NEW_TEST_CASES_COLLECTED_BEFORE_LAUNCH; NO_POST_COLLECTION_SUPPLEMENT",
+          "production_code_checkpoint": "b568129b639aba400680b61b90378f7486f70d8c"
+        }
+      },
+      "requires_cif_review": false,
+      "automatic_adoption": false,
+      "production_checkpoint": "NOT_CREATED",
+      "mtz_used": false,
+      "mr_execution": "NOT_RUN",
+      "readyset_execution": "NOT_RUN",
+      "native_proxy_membership": "NOT_ASSESSED",
+      "model_optimization": "NOT_REQUESTED; COOT_INTERNALS_NOT_EXHAUSTIVELY_INSTRUMENTED",
+      "refinement": "NOT_RUN",
+      "scientific_qualification": "NOT_ASSESSED",
+      "remaining_limits": [
+        "The private saved-C80 context/placement/selector replay is not a fresh Coot or native result.",
+        "Fresh C81 construction and its independent context, ten graph-site and two curated-rule audits remain pending on the user Mac.",
+        "Active native dictionary/link/triple-target and full NARestraints pair/stack membership, ordinary end-to-end execution with observations, refinement, solution PDF and scientific qualification remain separate."
+      ],
+      "compatibility": "ADDITIVE_CONTEXT_RECEIPT; ORDINARY_CONTEXT_ELIGIBILITY_EXPANDED_ONLY_AFTER_EXISTING_SOURCE_GRAPH_PROOFS; NO_NEW_PUBLIC_API_SIGNATURE_OR_NAR_RELEASE",
+      "generated_artifacts": "PRIVATE_SOURCE_COPIES_MODELS_LOGS_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+      "independent_auditor": {
+        "API": "nasolve.cif_postmr_construction.audit_construction_context",
+        "scope": "INDEPENDENT_SOURCE_AND_PARENT_HASH_SITE_AND_DELETION_BINDINGS_PLUS_EXISTING_FULL_RAW_SHADOW_DELTA_AND_AUTHORITY_CHECKS",
+        "receipt_tampering_guards": "MISSING_SCOPE_CHANGED_SOURCE_CHANGED_PARENT_WRONG_SITE_WRONG_CANDIDATE_AND_CHANGED_SCOPE_REJECTED",
+        "final_mixed_fixture_check": "EXISTING_audit_phosphates_ON_ALL_PROVED_REMOVAL_SITES_AFTER_UNCHANGED_RESTORATION",
+        "scaffold_guard": "UNCHANGED; NO_UNMATCHED_PARENT_OP3_WAIVER"
+      },
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#curated_phosphate_context_2026_10_23"
     }
   },
   "audience": [
@@ -21781,7 +22109,7 @@
     "essential_corrections_to_shorthand": [
       {
         "shorthand": "C5 / C5prime bonds swapped; iodine bonds built badly",
-        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 \u00c5; sugar C5prime-I5 coordinate separation is 8.843030419488558 \u00c5 and is not an iodine bond.",
+        "supported_evidence": "5IU coordinate-reader normalization stripped a meaningful trailing prime and conflated sugar C5prime with base C5. Supplier CIF coordinates and bond graph were unchanged. The correct ring C5-I5 coordinate distance is 2.0951107369301507 Å; sugar C5prime-I5 coordinate separation is 8.843030419488558 Å and is not an iodine bond.",
         "must_not_claim": "A general supplier C5/C5prime bond swap, a chemically incorrect 5IU iodine bond, or an edited source dictionary."
       },
       {
@@ -21812,7 +22140,7 @@
           "sugar_C5prime_I5_nonbonded_coordinate_distance_A": 8.843030419488558
         },
         "lesson": "Preserve exact atom identifiers. Remove only an enclosing matching quote pair; a prime inside or at the end of an atom ID is chemical identity data. Distinguish coordinate-derived distance from numerical bond target and establish adjacency first.",
-        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 \u00c5, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
+        "control": "Bundled C38 ring C5-I coordinate distance 2.094074 Å, source hash 852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5.",
         "generalizable_rules": [
           "GRAPH-01",
           "NUM-01",
@@ -21896,8 +22224,8 @@
           "sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
           "findings": [
             "Aromatic sugar typing/bonds",
-            "C4-O4 single bond target 1.384 \u00c5",
-            "C2-S1 single bond target 1.812 \u00c5",
+            "C4-O4 single bond target 1.384 Å",
+            "C2-S1 single bond target 1.812 Å",
             "No active DF sugar chirality restraints"
           ]
         },
@@ -22183,7 +22511,7 @@
           "Current DE eLBOW dictionary has not changed since addition at b8317b0.",
           "Current file is byte-equivalent to historical repository-root generated 8RO.cif after component-label substitution.",
           "That generated artifact is not proof that official CCD 8RO equals intended laboratory DE.",
-          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 \u00c5 target.",
+          "Current file group is rna, lacks OP3, and declares C4-S4 SINGLE with 1.816 Å target.",
           "September replacement candidate remained unapproved; later committed approved replacement not found."
         ],
         "required_recovery": [
@@ -22766,7 +23094,7 @@
         "alternate_degrees": 2.8,
         "alternate_original_sigma_degrees": 6.1,
         "wrong_active_native_residual_approx": 481,
-        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7\u00b0, alternate 2.8\u00b0, primary sigma 6.3\u00b0.",
+        "reviewed_derivation": "Change one sugar atom reference in a disposable derivative, then use the existing alternate adapter: primary 340.7°, alternate 2.8°, primary sigma 6.3°.",
         "adopted_diagnostic_derivative_sha256": "61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562",
         "native_diagnostic": "Native diagnostic PASS; source unchanged; broad production repair is not qualified."
       },
@@ -22792,8 +23120,8 @@
         "bad_effective_readyset_sha256": "b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20",
         "bad_definition": [
           "aromatic sugar typing and bonds",
-          "single C4\u2013O4 target 1.384 \u00c5",
-          "single C2\u2013S1 target 1.812 \u00c5",
+          "single C4–O4 target 1.384 Å",
+          "single C2–S1 target 1.812 Å",
           "no active sugar chirality restraints"
         ],
         "source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
@@ -22832,7 +23160,7 @@
           "native_verified_heavy_bonds": 21,
           "native_signed_sugar_centres": 3
         },
-        "charge_caution": "Old effective OP1 formal charge \u22121 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
+        "charge_caution": "Old effective OP1 formal charge −1 versus new source charge 0 is recorded; this is not a pH correction. Native charge remains null where unavailable.",
         "generator": {
           "AceDRG": "334",
           "database": "12",
@@ -22902,8 +23230,8 @@
           "zero_sigma_torsions": 6,
           "plane_groups": 5
         },
-        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y\u2192N flags changed only for C4\u2013N9, C8\u2013N9, C7\u2013C8 and C7\u2013N5. Twelve H attachments, formal charge \u22122 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
-        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of \u22121 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
+        "candidate_chemistry": "All 37 bond endpoints/orders were unchanged. Aromatic Y→N flags changed only for C4–N9, C8–N9, C7–C8 and C7–N5. Twelve H attachments, formal charge −2 and stereo were retained. Alias metadata dropped by generation remains preserved in the original/seed.",
+        "source_descriptor_conflict": "Neutral-phosphate descriptors disagree with explicit OP2/OP3 atom charges of −1 each. Preserve the explicit selected graph in the seed, exclude stale descriptors with field-level derivation, and do not select another protonation state from the descriptor.",
         "candidate_angles": {
           "target_degrees": [
             108.817,
@@ -22981,7 +23309,7 @@
             180,
             128
           ],
-          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2\u20135 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
+          "stopping": "Cycle 1 reached the 500-iteration cap; cycles 2–5 retained native-tolerated rounding/line-search errors; convergence is not claimed.",
           "N5_achieved_degrees": [
             108.115293,
             119.720831,
@@ -23091,9 +23419,9 @@
           }
         ],
         "nonobvious_attachments": [
-          "CGY HO3\u2032 attaches to OP3",
+          "CGY HO3′ attaches to OP3",
           "DX H1 attaches to OP3",
-          "DX H6 attaches to O3\u2032"
+          "DX H6 attaches to O3′"
         ],
         "status": "Linkage mechanics PASS; source-specific OP2 H retained; no uniform protonation policy or qualification of all contexts follows."
       },
@@ -23108,8 +23436,8 @@
       },
       "1AP_challenge": {
         "curated_source_git_blob": "1be06d4bb0848891fd3e7dca22d217dd2ad1b69b",
-        "adaptation": "NON-POLYMER\u2192DNA only; numerical rows, atoms, types, chirality and planes retained.",
-        "failed_generator_connectivity": "Spurious O4\u2032\u2013N1 connection; correct reviewed graph has C1\u2032\u2013N9.",
+        "adaptation": "NON-POLYMER→DNA only; numerical rows, atoms, types, chirality and planes retained.",
+        "failed_generator_connectivity": "Spurious O4′–N1 connection; correct reviewed graph has C1′–N9.",
         "fixture_policy": "Recover the failed artifact or label a synthetic reproduction. The current curated source is a preservation/control case, not presumed defective."
       }
     },

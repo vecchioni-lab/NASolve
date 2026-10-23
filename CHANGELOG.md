@@ -8,6 +8,32 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Include source-validated curated DNA in phosphate context proof
+
+- Verify returned C80 Coot 1.3.3 construction and its preserved context REVIEW:
+  DF retains unproved internal OP3, eight generic sites retain raw coordinates,
+  and the independent scaffold guard stops before constructed-policy compilation.
+- Admit curated DNA only after the same source-graph and discarded frame preflight
+  used for supported parent-overlap sites. Extend the discarded parent-scaffold
+  shadow, then transfer only existing-sanitizer-proved OP3 deletions and authorized
+  selected serial repairs to raw coordinates. Record additive `curated_context`
+  source/parent bindings; preserve all passthrough, CONECT and chemical guards.
+- Keep final curated placement, graph transport, source dictionaries, sanitizer,
+  native mechanics and NARestraints unchanged. C81 repeats the fresh eight-pair
+  construction using the existing builder/template and no historical ZIP input.
+- Independently bind curated context source/parent hashes, sites and candidates;
+  retain the scaffold guard and recheck all final removal sites with the existing
+  phosphate auditor. Local evidence: 132 focused tests and exact saved-C80 replay
+  pass (nine OP3 deletions, 267 serial repairs, ten graph/two curated outcomes,
+  zero raw fallback and complete twenty-pair policy compilation). Source-removed
+  cold replay with all sixteen real C80 sources passes; no synthetic DC or fresh
+  SDK qualification. Maintained prior-lineage replay passes under current code.
+  Full-suite validation passes 4,491 tests (two skips, 276 subtests, 424.25 s),
+  with all fifteen new cases collected before launch. Fresh Mac C81 remains
+  pending. No new public replay API, ReadySet, optimizer, refinement, checkpoint
+  or NAR release.
+
+
 ### Construct the explicitly mapped eight-pair fixture
 
 - Add independent C80 construction and PDB-selector compilation on the public W
@@ -27,9 +53,10 @@ entries are reconstructed from repository history.
   covered. Source-removed inspect-only checks pass with 162 runtime members/fifty
   payloads and an explicit nonnative DC fixture. Maintained prior-lineage replay
   also passes without subprocesses or captured-code execution.
-- Fresh Mac C80 construction remains pending. No donor data, ReadySet, native
-  worker, requested model optimizer, refinement, checkpoint or NAR release is
-  added; Coot internals are not exhaustively observed.
+- Returned Mac C80 completes Coot but retains context/audit REVIEW before
+  constructed-policy compilation. No donor data, ReadySet, native worker,
+  requested model optimizer, refinement, checkpoint or NAR release is added;
+  Coot internals are not exhaustively observed.
 
 
 ### Use per-component ReadySet inputs in ordinary PostMR

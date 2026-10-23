@@ -156,14 +156,16 @@ and ordinary fallback inputs; local ordinary-route and complete-suite validation
 explicit eight-pair live model, ordinary end-to-end run and scientific qualification
 remain separate.
 
-C80 now binds the eight requested pairs to sixteen explicit sites on the public
-W frame and retains twelve canonical background pairs. One bounded ordinary
-Coot construction precedes NARestraints compilation against actual PDB atoms:
-twenty declared pairs and thirty-eight chain-adjacency stacks, each included once.
-The sixteen bidirectional plane-order files remain separate compiler controls.
-This fresh diagnostic needs no historical review ZIP or donor observations.
-Local tests, source-removed inspect-only checks and maintained lineage replay pass.
-Mac construction and active native membership remain pending; ATL stays independent.
+Returned C80 verifies 138 payloads and completes Coot 1.3.3 for the exact eight-pair
+model. Its phosphate context falls back when raw curated DF backbone geometry
+invalidates the mixed shadow proof; the scaffold guard correctly catches retained
+internal OP3 before constructed-policy compilation. C81 lets source-validated
+curated DNA join the same discarded phosphate-context proof while retaining its
+existing final placement rule and sanitizer. It repeats one fresh ordinary Coot
+construction on the unchanged eight-pair map, with no historical ZIP input.
+Local regression, exact saved-data, source-removed cold and prior-lineage checks
+pass. Fresh Mac C81 construction, active native membership and the diffraction
+run remain open. ATL stays independent.
 
 
 
