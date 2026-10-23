@@ -199,7 +199,7 @@ def test_shell_child_keeps_command_and_executable_distinct_and_still_requires_re
     r=audit_readyset_consumption(s,c,model,'Q17',installation,consumer,tmp_path/'control')
     observed=next(v['process'] for v in r['trace']['events'] if v['kind']=='subprocess')
     assert observed['args']==':' and observed['executable']=='/bin/sh' and observed['shell'] is True
-    assert observed['parameters_complete'] and r['checks']['no_observed_subprocess_calls'] is False and r['status']=='REVIEW'
+    assert observed['parameters_complete'] and r['checks']['no_unclassified_subprocess_calls'] is False and r['status']=='REVIEW'
 
 
 @pytest.mark.parametrize('large',['string','items'])

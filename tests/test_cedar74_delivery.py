@@ -8,7 +8,7 @@ from tests.test_cedar66_delivery import template
 @pytest.mark.parametrize('delivery,action,ok',[
     ('73_Cedar','postmr_readyset_consumption_only',True),
     ('73_Cedar','postmr_dictionary_reuse_only',False),
-    ('74_Cedar','postmr_readyset_consumption_only',False)])
+    ('75_Cedar','postmr_readyset_consumption_only',False)])
 def test_subprocess_trace_uses_explicit_consumption_input(delivery,action,ok):
     m=template();args=SimpleNamespace(**{action:True})
     if ok:m._check_constructor_input_mode(args,delivery)

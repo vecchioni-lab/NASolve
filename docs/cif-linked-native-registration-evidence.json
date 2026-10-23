@@ -22425,8 +22425,8 @@
       "required_evidence": "An explicitly bounded integration delivery or ordinary PostMR report; observations/MTZ required before claiming a diffraction/full NASolve run.",
       "user_flow": "Automatic usable selection/fallback and solution notes; no CIF inspection or student approval.",
       "live_scope": "Keep the exact eight intended pairs and sixteen stacking orientations; ATL is independent.",
-      "status": "C73_COMPLETED_READYSET_WITH_EXACT_CACHED_INPUTS; UNCLASSIFIED_CHILD_CALLS_REMAIN; C74_OBSERVATION_PENDING",
-      "delivery_record": "readyset_subprocess_trace_2026_10_23"
+      "status": "C74_MAC_RESOURCE_QUERY_IDENTIFIED; C75_SOURCE_CHECKED_PROCESS_CLASSIFICATION_AND_EFFECTIVE_NATIVE_PENDING",
+      "delivery_record": "readyset_resource_query_policy_2026_10_23"
     }
   },
   "ordinary_readyset_consumption_2026_10_23": {
@@ -22851,7 +22851,7 @@
     }
   },
   "readyset_subprocess_trace_2026_10_23": {
-    "status": "IMPLEMENTED_317_FOCUSED_4223_FULL_COLD_TRANSPORT_PASS; MAC_C74_TRACE_PENDING",
+    "status": "RETURNED_C74_MEMORY_QUERY_IDENTIFIED; ORIGINAL_STRICT_REVIEW_PRESERVED; C75_FRESH_SOURCE_AND_NATIVE_PENDING",
     "recorded_date": "2026-10-23",
     "delivery_prefix": "74_Cedar",
     "runner_filename": "74_Cedar_probe_postmr_readyset_subprocess.py",
@@ -23053,8 +23053,360 @@
       "diff_check": "PASS"
     },
     "remaining_limits": [
-      "Actual Mac C74 command/caller observation pending; C73 child activity remains unclassified.",
+      "All three controls complete with exact cached numerics and heavy sites; their sole child call is the literal macOS hardware query through libtbx memory introspection during scitbx neighbor-grid initialization. C74 does not capture these three caller sources. Its v1 no-child review remains unchanged; C75 requires fresh caller source proof before v2 classification and native follow-up.",
       "Current effective native consumption, whole-model links and exact NARestraints pairing/stacking remain separate.",
+      "Exact eight-pair/16-stacking full live run, observations/refinement/checkpoints, solution PDF and scientific qualification remain separate.",
+      "ATL remains independent public/compiler control."
+    ],
+    "generated_artifacts": "PRIVATE_CAPSULES_SOURCES_MODELS_LOGS_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "returned_2026_10_23": {
+      "status": "VERIFIED_C74_COMPLETED_READYSET_MAC_MEMORY_QUERY_REVIEW",
+      "archive_sha256": "a4f03f72c77041a28577557593f68c710f6ed0139f7b0346ae20fdd49047d166",
+      "bytes": 108688269,
+      "verified_payloads": 5304,
+      "parent_payloads_preserved": 4830,
+      "all_parent_payloads_and_manifest_preserved": true,
+      "build_sha256": "c6e69ac754c4868669b88f9c7f7dd8e915da87cf4affad77042a6509a110720d",
+      "runtime_members": 160,
+      "runtime_archive_sha256": "14139544d5b2ba7c3ce15df9af334d9bd75c5d9f16d727a87dbf0a37e1685e29",
+      "reported_runner_sha256": "c03dbb68985c818509f5c34dccb40ee2b024394e144ac09901fcca3aedbe929b",
+      "build_difference": "NAR dirty-state metadata only; source/runtime unchanged",
+      "source_commit": "eeada21797ddccbec4b3c6ae015f0a66d096dc04",
+      "phenix_version": "2.2.1",
+      "phenix_installation_label": "phenix-2.2.1-6174",
+      "actual_readyset_calls": 3,
+      "actual_fixed_native_readbacks": 0,
+      "cases": {
+        "5PC": {
+          "status": "REVIEW",
+          "execution": "COMPLETED",
+          "checks": {
+            "effective_actions": true,
+            "effective_numerics_exact": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_observed_subprocess_calls": false,
+            "observer_complete": true,
+            "readyset_completed": true,
+            "single_effective_dictionary": true,
+            "unchanged_heavy_sites": true
+          },
+          "observed_builder_calls": 0,
+          "observed_template_calls": 0,
+          "observed_subprocess_constructor_calls": 1,
+          "captured_sources": 25,
+          "observed_command": "DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType",
+          "observed_caller": "libtbx.introspection.get_mac_os_x_memory_total; scitbx.cubicle_neighbors initialization",
+          "caller_sources": "NOT_CAPTURED_IN_C74; FRESH_SOURCE_PROOF_REQUIRED"
+        },
+        "DP": {
+          "status": "REVIEW",
+          "execution": "COMPLETED",
+          "checks": {
+            "effective_actions": true,
+            "effective_numerics_exact": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_observed_subprocess_calls": false,
+            "observer_complete": true,
+            "readyset_completed": true,
+            "single_effective_dictionary": true,
+            "unchanged_heavy_sites": true
+          },
+          "observed_builder_calls": 0,
+          "observed_template_calls": 0,
+          "observed_subprocess_constructor_calls": 1,
+          "captured_sources": 25,
+          "observed_command": "DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType",
+          "observed_caller": "libtbx.introspection.get_mac_os_x_memory_total; scitbx.cubicle_neighbors initialization",
+          "caller_sources": "NOT_CAPTURED_IN_C74; FRESH_SOURCE_PROOF_REQUIRED"
+        },
+        "PDU": {
+          "status": "REVIEW",
+          "execution": "COMPLETED",
+          "checks": {
+            "effective_actions": true,
+            "effective_numerics_exact": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_observed_subprocess_calls": false,
+            "observer_complete": true,
+            "readyset_completed": true,
+            "single_effective_dictionary": true,
+            "unchanged_heavy_sites": true
+          },
+          "observed_builder_calls": 0,
+          "observed_template_calls": 0,
+          "observed_subprocess_constructor_calls": 1,
+          "captured_sources": 25,
+          "observed_command": "DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType",
+          "observed_caller": "libtbx.introspection.get_mac_os_x_memory_total; scitbx.cubicle_neighbors initialization",
+          "caller_sources": "NOT_CAPTURED_IN_C74; FRESH_SOURCE_PROOF_REQUIRED"
+        }
+      },
+      "checks_recomputed": 24,
+      "true_checks": 21,
+      "false_checks": 3,
+      "maintained_complete_C73_C72_C71_and_earlier_replay": "PASS",
+      "new_verification_subprocesses": 0,
+      "captured_python_execution": "NOT_RUN",
+      "original_strict_no_child_policy": "PRESERVED_REVIEW; NOT_RETROACTIVELY_RECLASSIFIED",
+      "current_effective_native_and_full_run": "NOT_ASSESSED"
+    },
+    "returned_capsule": {
+      "filename": "74_Cedar_vkqu5gzq_cif_numerical_recovery_review.zip",
+      "sha256": "a4f03f72c77041a28577557593f68c710f6ed0139f7b0346ae20fdd49047d166",
+      "bytes": 108688269,
+      "verified_payloads": 5304,
+      "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
+    },
+    "next_delivery": {
+      "delivery_prefix": "75_Cedar",
+      "record": "readyset_resource_query_policy_2026_10_23",
+      "work": "Classify the exact native memory query using fresh captured source/caller spans; keep unknown children blocked and then qualify effective inputs with the unchanged native checks."
+    }
+  },
+  "readyset_resource_query_policy_2026_10_23": {
+    "status": "IMPLEMENTED_365_FOCUSED_4271_FULL_COLD_TRANSPORT_PASS; MAC_C75_SOURCE_AND_NATIVE_PENDING",
+    "recorded_date": "2026-10-23",
+    "delivery_prefix": "75_Cedar",
+    "runner_filename": "75_Cedar_probe_postmr_resource_queries.py",
+    "cli_action": "--postmr-readyset-consumption-only",
+    "policy_id": "cif-ordinary-readyset-cached-input-consumption-v2",
+    "diagnostic_policy_id": "cif-postmr-readyset-consumption-controls-v2",
+    "process_classification_policy_id": "cif-readyset-native-resource-query-v1",
+    "requested_action": "ORDINARY_POSTMR_READYSET_CONSUMPTION",
+    "review_input": {
+      "filename": "74_Cedar_vkqu5gzq_cif_numerical_recovery_review.zip",
+      "sha256": "a4f03f72c77041a28577557593f68c710f6ed0139f7b0346ae20fdd49047d166",
+      "bytes": 108688269,
+      "verified_payloads": 5304,
+      "generated_contents": "PRIVATE; EXCLUDED_FROM_GIT"
+    },
+    "before": "C74 preserves exact cached dictionaries/heavy sites and identifies one macOS hardware-query Popen constructor per control. The v1 blanket no-child guard still reviews every child and launches no fixed native readback. These historic verdicts remain exact.",
+    "after": "V2 preserves the seven other consumption checks and requires no unclassified subprocess calls. Recognize only the exact literal hardware query with matching captured native source and a complete five-frame caller prefix. Keep raw events/counters, separate recognized resource-query counts, and retain review for every other child or incomplete proof.",
+    "modules": [
+      "nasolve.cif_postmr_readyset",
+      "nasolve.cif_readyset_process_policy"
+    ],
+    "recognized_query": {
+      "classification": "CCTBX_MAC_MEMORY_QUERY",
+      "literal_command": "DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType",
+      "shell": true,
+      "executable": null,
+      "cwd": null,
+      "parameters_complete": true,
+      "purpose": "Read native machine memory for scitbx neighbor-grid allocation; not a chemical dictionary or coordinate generator.",
+      "semantics": "CALL_CLASSIFICATION_ONLY; NO_CHILD_COMPLETION_OR_EXHAUSTIVE_NATIVE_INTERNALS_PROOF",
+      "caller_prefix": [
+        "libtbx.easy_run.fully_buffered_subprocess.__init__",
+        "libtbx.introspection.get_mac_os_x_memory_total",
+        "libtbx.introspection.machine_memory_info.__init__",
+        "scitbx.cubicle_neighbors.__cubicles_max_memory_allocation_set",
+        "scitbx.cubicle_neighbors module invocation"
+      ],
+      "prefix_policy": "All five paths/functions/current call-line spans must match. Deeper import-frame truncation is recorded and permitted only after the complete verified prefix; truncated events or parameters remain unqualified."
+    },
+    "source_proof": {
+      "additional_modules": [
+        "libtbx/easy_run.py",
+        "libtbx/introspection.py",
+        "scitbx/cubicle_neighbors.py"
+      ],
+      "capture": "Same selected installation/library anchor, containment/file/byte budgets and before/after hash verification; optional missing modules cannot qualify a child.",
+      "expected_captured_sources_for_returned_layout": 28,
+      "max_files": 32,
+      "max_each_bytes": 1048576,
+      "max_total_bytes": 8388608,
+      "ast_contract": "Parse captured bytes without execution. Require the literal system_profiler command producer and hardware argument, the named machine-memory constructor, the native fully_buffered_subprocess Popen argument/shell variables, and the neighbor-grid constructor/module invocation. Verify each observed call line is inside the matching AST call span.",
+      "failure_policy": "Missing, unsafe, changed, malformed or unsupported caller sources cannot classify the call; original verified inputs remain available.",
+      "upstream_context": {
+        "repository": "cctbx/cctbx_project",
+        "references": [
+          {
+            "path": "libtbx/introspection.py",
+            "git_blob": "7a50606627c2708def5739a2b6879f637f3bccd5",
+            "url": "https://github.com/cctbx/cctbx_project/blob/master/libtbx/introspection.py"
+          },
+          {
+            "path": "libtbx/easy_run.py",
+            "git_blob": "3380bca7a3c24dc9c322fa68b37d28677ccd4b84",
+            "url": "https://github.com/cctbx/cctbx_project/blob/master/libtbx/easy_run.py"
+          },
+          {
+            "path": "scitbx/cubicle_neighbors.py",
+            "git_blob": "e4ce1b23df3d164c10a119de2dc833c83e643145",
+            "url": "https://github.com/cctbx/cctbx_project/blob/master/scitbx/cubicle_neighbors.py"
+          }
+        ],
+        "scope": "DESCRIPTIVE_PUBLIC_SOURCE_CONTEXT_ONLY; NOT_EQUIVALENCE_TO_INSTALLED_PHENIX. Runtime acceptance requires fresh installed snapshots and observed caller spans."
+      }
+    },
+    "artifact_changes": {
+      "control_policy": "V2; no_unclassified_subprocess_calls replaces the v1 strict no_observed_subprocess_calls check.",
+      "control_metadata": "Add process_classification with source fingerprints, per-event classifications, recognized/unclassified counts and completeness. Raw trace and its counters remain unchanged.",
+      "source_metadata": "Add resource_query_source_roots; explicit source additions remain in the source inventory and existing relative/hash anchors.",
+      "compatibility": "Read both v1/v2 frozen reports. Historical C73/C74 readers pin original workers, traces and v1 checks; do not retrospectively adopt or rewrite them."
+    },
+    "execution": "Same three bounded ordinary ReadySet controls. Only passing v2 controls receive unchanged fixed native usability/consumer/triple checks on unchanged C71 full-H seeds. No generation, model optimization, Coot, refinement or adoption is requested.",
+    "bounds": {
+      "readyset_calls": 3,
+      "readyset_timeout_seconds_each_max": 180,
+      "conditional_fixed_native_readbacks": 3,
+      "native_timeout_seconds_each_max": 60,
+      "retries": 0
+    },
+    "requires_cif_review": false,
+    "automatic_adoption": false,
+    "protected_mechanics": "SEVEN_OTHER_CONSUMPTION_CHECKS_SOURCE_PRIORITY_CHEMISTRY_CACHE_KEYS_NUMERICAL_BYTES_ORDINARY_ARGUMENTS_NATIVE_WORKER_QUALIFIER_KERNELS_PLANE_CORRECTION_NAR_WORKBOOK_PAIRING_AND_STACKING_UNCHANGED",
+    "compatibility": "Internal stdlib AST helper only; no install/dependency, NARestraints release or store migration. Cache consumer fingerprint semantics are unchanged; query source proofs belong to this fresh execution.",
+    "validation": {
+      "fail_before": {
+        "failed": 2,
+        "deselected": 20,
+        "seconds": 1.18
+      },
+      "new_permanent_tests": 48,
+      "focused": {
+        "passed": 365,
+        "seconds": 50.43,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q tests/test_cif_readyset_process_policy.py tests/test_cif_postmr_readyset.py tests/test_cedar75_delivery.py tests/test_cedar74_delivery.py tests/test_cedar73_delivery.py tests/test_cedar72_delivery.py tests/test_cif_postmr_cache.py tests/test_cedar71_delivery.py tests/test_cedar70_delivery.py tests/test_cedar69_delivery.py tests/test_cedar68_delivery.py tests/test_cif_source_reuse.py tests/test_cif_dictionary_store.py tests/test_postmr.py tests/test_postmr_restoration.py"
+      },
+      "actual_C74_return": {
+        "status": "VERIFIED_C74_COMPLETED_READYSET_MAC_MEMORY_QUERY_REVIEW",
+        "archive_sha256": "a4f03f72c77041a28577557593f68c710f6ed0139f7b0346ae20fdd49047d166",
+        "bytes": 108688269,
+        "verified_payloads": 5304,
+        "parent_payloads_preserved": 4830,
+        "all_parent_payloads_and_manifest_preserved": true,
+        "build_sha256": "c6e69ac754c4868669b88f9c7f7dd8e915da87cf4affad77042a6509a110720d",
+        "runtime_members": 160,
+        "runtime_archive_sha256": "14139544d5b2ba7c3ce15df9af334d9bd75c5d9f16d727a87dbf0a37e1685e29",
+        "reported_runner_sha256": "c03dbb68985c818509f5c34dccb40ee2b024394e144ac09901fcca3aedbe929b",
+        "build_difference": "NAR dirty-state metadata only; source/runtime unchanged",
+        "source_commit": "eeada21797ddccbec4b3c6ae015f0a66d096dc04",
+        "phenix_version": "2.2.1",
+        "phenix_installation_label": "phenix-2.2.1-6174",
+        "actual_readyset_calls": 3,
+        "actual_fixed_native_readbacks": 0,
+        "cases": {
+          "5PC": {
+            "status": "REVIEW",
+            "execution": "COMPLETED",
+            "checks": {
+              "effective_actions": true,
+              "effective_numerics_exact": true,
+              "no_observed_builder_or_template_calls": true,
+              "no_observed_subprocess_calls": false,
+              "observer_complete": true,
+              "readyset_completed": true,
+              "single_effective_dictionary": true,
+              "unchanged_heavy_sites": true
+            },
+            "observed_builder_calls": 0,
+            "observed_template_calls": 0,
+            "observed_subprocess_constructor_calls": 1,
+            "captured_sources": 25,
+            "observed_command": "DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType",
+            "observed_caller": "libtbx.introspection.get_mac_os_x_memory_total; scitbx.cubicle_neighbors initialization",
+            "caller_sources": "NOT_CAPTURED_IN_C74; FRESH_SOURCE_PROOF_REQUIRED"
+          },
+          "DP": {
+            "status": "REVIEW",
+            "execution": "COMPLETED",
+            "checks": {
+              "effective_actions": true,
+              "effective_numerics_exact": true,
+              "no_observed_builder_or_template_calls": true,
+              "no_observed_subprocess_calls": false,
+              "observer_complete": true,
+              "readyset_completed": true,
+              "single_effective_dictionary": true,
+              "unchanged_heavy_sites": true
+            },
+            "observed_builder_calls": 0,
+            "observed_template_calls": 0,
+            "observed_subprocess_constructor_calls": 1,
+            "captured_sources": 25,
+            "observed_command": "DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType",
+            "observed_caller": "libtbx.introspection.get_mac_os_x_memory_total; scitbx.cubicle_neighbors initialization",
+            "caller_sources": "NOT_CAPTURED_IN_C74; FRESH_SOURCE_PROOF_REQUIRED"
+          },
+          "PDU": {
+            "status": "REVIEW",
+            "execution": "COMPLETED",
+            "checks": {
+              "effective_actions": true,
+              "effective_numerics_exact": true,
+              "no_observed_builder_or_template_calls": true,
+              "no_observed_subprocess_calls": false,
+              "observer_complete": true,
+              "readyset_completed": true,
+              "single_effective_dictionary": true,
+              "unchanged_heavy_sites": true
+            },
+            "observed_builder_calls": 0,
+            "observed_template_calls": 0,
+            "observed_subprocess_constructor_calls": 1,
+            "captured_sources": 25,
+            "observed_command": "DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType",
+            "observed_caller": "libtbx.introspection.get_mac_os_x_memory_total; scitbx.cubicle_neighbors initialization",
+            "caller_sources": "NOT_CAPTURED_IN_C74; FRESH_SOURCE_PROOF_REQUIRED"
+          }
+        },
+        "checks_recomputed": 24,
+        "true_checks": 21,
+        "false_checks": 3,
+        "maintained_complete_C73_C72_C71_and_earlier_replay": "PASS",
+        "new_verification_subprocesses": 0,
+        "captured_python_execution": "NOT_RUN",
+        "original_strict_no_child_policy": "PRESERVED_REVIEW; NOT_RETROACTIVELY_RECLASSIFIED",
+        "current_effective_native_and_full_run": "NOT_ASSESSED"
+      },
+      "fixture_scope": "Explicit fake SDK reproduces native source structure/caller chain and an attempted literal hardware query. Tests reject command, program, argument, environment-prefix, shell/cwd, caller, source, count and truncation changes. Rehashed but incompatible ASTs remain unclassified. Legacy reports retain their original v1 review. No installed Phenix or OS hardware-query success is claimed by the fake tests.",
+      "full": {
+        "passed": 4271,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 450.86,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c69-venv/bin/python -m pytest -q"
+      },
+      "cold_transport": {
+        "status": "PASS",
+        "mode": "INSPECT_ONLY; FROZEN_READYSET_INPUTS; LIVE_MAC_CONSUMPTION_PENDING",
+        "runtime_members": 161,
+        "runtime_archive_sha256": "e9a58bb1fa55698e6828fae16343f2b43f12aa884a5cd29529e0de378601ab3c",
+        "runner_sha256": "0123a591ed0774378a60418f0064bba66fe248656156df10b05e2ce21e0f6c38",
+        "build_source_files_removed_before_launch": true,
+        "all_original_build_source_access_forbidden": "PASS",
+        "build_source_paths_absent_at_completion": true,
+        "relocated_delivery": true,
+        "ambient_import_poison": "PASS",
+        "aliased_TMPDIR": "PASS",
+        "all_subprocesses_forbidden": "PASS",
+        "new_native_calls": 0,
+        "input_payloads": 5304,
+        "all_input_payloads_and_manifest_preserved": true,
+        "output_payloads": 5796,
+        "independent_relocated_readyset_inputs": 3,
+        "original_store": "NOT_READ_OR_WRITTEN",
+        "original_producer_stopping_notes": "VERIFIED_IN_C74_C73_C72_AND_C71_LINEAGE",
+        "everyday_edit": "PRESERVED",
+        "ignored_runner": "PASS",
+        "code_checkpoint": "8f7828301505f12d407265bdc72a32a5f4707fdb",
+        "publication_scope": "Owned clean code checkpoint; final publication may change source-commit metadata only. Frozen runtime/body equivalence is checked separately."
+      },
+      "documentation": {
+        "relative_links": 165,
+        "mirrored_records": 20,
+        "protected_mechanics": "UNCHANGED",
+        "NAR_workbook": "UNCHANGED",
+        "eight_pair_plan": "UNCHANGED",
+        "SVG_determinism": "PASS",
+        "visible_SVG": "TWO_CACHE_SCOPE_LABELS_UPDATED; TOPOLOGY_UNCHANGED; RENDER_VISUALLY_VERIFIED"
+      },
+      "diff_check": "PASS"
+    },
+    "remaining_limits": [
+      "Actual Mac C75 caller-source proof, v2 classification and effective native consumption pending.",
+      "Current whole-model links and exact NARestraints pairing/stacking remain separate.",
       "Exact eight-pair/16-stacking full live run, observations/refinement/checkpoints, solution PDF and scientific qualification remain separate.",
       "ATL remains independent public/compiler control."
     ],

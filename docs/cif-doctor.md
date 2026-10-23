@@ -299,13 +299,38 @@ retain the 128-event cap. These are constructor-call observations, not a child
 completion or exhaustive native-internals proof. No native function or argument
 is replaced, and the existing no-child acceptance rule remains unchanged.
 
-The C74 retry preserves exact C73 and all prior evidence, recovers verified C71
-inputs and uses the same bounded three controls. Earlier explicit C71/C72 inputs
-remain supported. New receipts distinguish ReadySet-only execution from fixed
-native readback. Cache bytes/keys, original stopping notes, chemistry, target
-mechanics and NARestraints remain unchanged. No install or optimization is
-requested. Actual C74 child observation and whole-model/full-run qualification
-remain open; students do not inspect or approve CIF tables.
+Returned C74 verifies all 5,304 payloads, the exact C73 parent, runtime inventory
+and reported runner checksum. Each completed control preserves cached numerics
+and heavy sites and records the same literal system_profiler hardware query.
+The five nearest caller frames lead through libtbx machine-memory introspection
+to scitbx neighbor-grid initialization. The remaining import frames are truncated,
+but the trace/event/parameter budgets are complete. C74 captures no source for
+these three caller modules; its v1 no-child review and zero native-readback count
+remain unchanged. Current upstream CCTBX source supports the memory-query purpose,
+but does not establish identity with this installed Phenix version.
+
+C75 methods: capture libtbx easy_run/introspection and scitbx cubicle_neighbors
+with the same selected-root, 32-file/1 MiB each/8 MiB total and before/after hash
+guards. Parse those frozen bytes without executing them. Require the literal
+system_profiler program/hardware argument and the native producer, process-wrapper,
+memory-constructor and neighbor-grid call structure. Match all five observed
+caller paths/functions and call-line spans against this source. Require the exact
+recorded shell command and complete literal parameters; deeper import-frame
+truncation is permitted only after the complete checked prefix.
+
+V2 keeps the seven other consumption checks and replaces the blanket no-child
+guard with no unclassified subprocesses. Preserve every raw event/count; record
+known resource queries separately. Extra commands, different programs/arguments,
+nonempty loader prefixes, changed callers/sources or incomplete evidence retain
+review. Old v1 reports remain readable and retain their original verdicts. No
+native function, ordinary argument, numerical dictionary or target changes.
+
+The C75 retry preserves exact C74 and all prior evidence, reuses verified C71
+inputs and performs the same three bounded controls. Only passing controls receive
+the unchanged fixed native checks on the unchanged full-H seeds. No installation,
+generation, optimization or student CIF approval is requested. Actual C75 source
+proof/effective native consumption and whole-model/full-run qualification remain
+open; cache identity, original stopping notes and NARestraints stay unchanged.
 
 
 

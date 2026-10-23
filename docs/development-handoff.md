@@ -13,6 +13,41 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
+**Returned C74 identifies a native memory query.** All 5,304 payloads, exact
+C73 parent, pinned runtime inventory and reported `c03dbb68...` runner SHA verify;
+only NAR dirty-state metadata differs from the clean build. DP/PDU/5PC each keep
+exact cached numerics/heavy sites and complete Phenix 2.2.1-6174 ReadySet. Their
+one Popen call is `DYLD_LIBRARY_PATH=  exec /usr/sbin/system_profiler SPHardwareDataType`.
+The complete nearest five-frame prefix identifies libtbx memory introspection
+from scitbx neighbor-grid initialization; deeper import frames are truncated.
+Caller source files are not in C74, so keep all original v1 reviews and the
+explicit zero fixed-native count. Maintained replay reproduces all 24 checks
+and the exact recorded trace without executing captured Python.
+
+**Next delivery is C75:** `75_Cedar_probe_postmr_resource_queries.py`, same
+explicit action on exact C74. V2 adds fresh captured easy_run/introspection/
+cubicle_neighbors source, AST call-span checks and the exact literal command
+matcher. Keep raw events and distinguish known resource queries from unknown
+children. A full checked five-frame prefix is required even if deeper import
+frames are truncated. The seven other consumption checks and every scientific
+kernel/parameter remain unchanged. Only passing controls receive the unchanged
+native/consumer/triple qualification on original C71 full-H seeds. Old v1 reports
+remain readable with their original verdicts; no student CIF approval, package,
+NAR release or cache migration is introduced. Actual Mac v2 classification and
+effective native/whole-model/full-run qualification remain pending.
+
+C75 validation: **365 focused / 4,271 full tests pass** (two skips, 276 subtests;
+450.86 s), including 48 new permanent tests and two fail-before cases. The
+161-member runtime passes cold inspect-only replay of exact C74 after original
+build-source removal and relocation, with original build reads and all subprocesses
+forbidden, poisoned imports and aliased TMPDIR. All 5,304 original payloads/manifest
+survive in 5,796 output payloads; three independent control copies resolve after
+owned evidence removal. The store is untouched and the everyday edit survives.
+All 165 relative document links, 20 mirrored records, protected mechanics, NAR
+workbook and exact eight-pair plan verify; the deterministic editable figure is
+rendered and visually checked. Fake SDK query tests and public upstream context
+are distinct from the still-pending fresh Mac source/native qualification.
+
 **Returned C73 completes ReadySet but retains unclassified child calls.** All
 4,830 payloads, the exact C72 parent, pinned runtime inventory and reported
 `bac78b5e...` runner SHA verify. Only NAR dirty-state metadata differs from the
@@ -24,7 +59,7 @@ builder/template calls; it records no child command or caller. No fixed native
 readback runs. Keep the generic legacy native_execution label in the old receipt
 and rely on its explicit counters. No captured Python executes during replay.
 
-**Next delivery is C74:** `74_Cedar_probe_postmr_readyset_subprocess.py`, same
+**C74 delivery and original validation:** `74_Cedar_probe_postmr_readyset_subprocess.py`, same
 explicit action on exact C73. Record bounded literal args, executable, shell and
 cwd plus caller source/function/line fields. Never capture the environment or
 coerce opaque values; mark truncation and retain bytes losslessly within bounds.
@@ -46,7 +81,7 @@ three independent input copies resolve after owned evidence removal. The store
 is untouched and the everyday edit survives. All 165 relative document links,
 19 mirrored records, protected mechanics, NAR workbook and exact eight-pair plan
 verify; the deterministic editable figure is rendered and visually checked.
-No actual Mac C74 subprocess parameters or effective native result are claimed.
+These local checks preceded the actual C74 process trace above; effective native qualification remains open.
 
 **Returned C72 is a source-coverage prelaunch failure.** All 4,482 payloads,
 unchanged C71 parent, pinned 160-member runtime and reported `0ecda735...` runner

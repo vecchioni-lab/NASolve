@@ -19,8 +19,10 @@ from .cif_postmr_cache import verify_current_consumer
 from .cif_readyset_source_audit import capture_readyset_sources, verify_readyset_sources
 from .cif_elbow_chirality import _library_anchor
 from .cif_elbow_contract import _inside, MAX_SOURCE_BYTES
+from .cif_readyset_process_policy import RESOURCE_MODULES,classify_subprocesses
 
-POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v1'
+LEGACY_POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v1'
+POLICY_ID = 'cif-ordinary-readyset-cached-input-consumption-v2'
 EXPECTED_ACTIONS = {'hydrogens':False,'ligands':True,'optimise_ligand_geometry':False,
                     'optimise_final_geometry_of_hydrogens':False}
 OBSERVED_MODULES = ('elbow/command_line/ready_set.py','elbow/command_line/builder.py',
@@ -36,9 +38,10 @@ def _capture_consumption_sources(root,site,dispatcher,output):
     report=capture_readyset_sources(root,site,dispatcher,output)
     seen={r['path'] for r in report['sources']};added=[]
     total=sum(r['size'] for r in report['sources'])
-    for module in OBSERVED_MODULES:
+    for module in (*OBSERVED_MODULES,*RESOURCE_MODULES):
         relative=(site/module).as_posix()
         if relative in seen:continue
+        if module in RESOURCE_MODULES and not (root/relative).exists():continue
         path=_inside(root,relative);data=path.read_bytes()
         if (len(report['sources'])>=report['source_file_budget'] or len(data)>MAX_SOURCE_BYTES
                 or total+len(data)>8*MAX_SOURCE_BYTES):raise ValueError('Observed ReadySet source budget exceeded')
@@ -49,6 +52,7 @@ def _capture_consumption_sources(root,site,dispatcher,output):
         seen.add(relative);added.append(relative);total+=len(data)
     report['observed_module_roots']=[(site/module).as_posix() for module in OBSERVED_MODULES]
     report['explicit_observer_sources']=added
+    report['resource_query_source_roots']=[(site/module).as_posix() for module in RESOURCE_MODULES if (site/module).as_posix() in seen]
     report['observer_coverage']='EXACT_NAMED_OBSERVER_ROOTS; TRANSITIVE_IMPORT_COVERAGE_UNCHANGED'
     verify_readyset_sources(root,report,output)
     return report
@@ -193,7 +197,7 @@ def read_readyset_consumption(directory):
     report_path=root/'readyset_consumption.json'
     if report_path.is_symlink():raise ValueError('Unsafe ReadySet control report')
     r=json.loads(report_path.read_bytes())
-    if r['policy_id']!=POLICY_ID or r['requires_cif_review'] is not False:raise ValueError('ReadySet control policy differs')
+    if r['policy_id'] not in {LEGACY_POLICY_ID,POLICY_ID} or r['requires_cif_review'] is not False:raise ValueError('ReadySet control policy differs')
     def resolve(ref):
         name=ref['path']
         if (ref.get('anchor')!='postmr_readyset_directory' or not isinstance(name,str)
@@ -280,12 +284,14 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
             report['checks']['unchanged_heavy_sites']=_atoms(checked)==_atoms(heavy)
         except PostMRPreparationError as exc:report['error']=str(exc)
         trace=report['trace'];result=report.get('worker_result',{})
+        classified=classify_subprocesses(trace,sources,output/'source_evidence',root,site)
+        report['process_classification']=classified
         report['checks'].update(
             readyset_completed=report['execution']['status']=='COMPLETED' and result.get('execution')=='COMPLETED',
             observer_complete=result.get('observer_retained') is True and trace.get('truncated') is False,
             effective_actions=trace.get('effective_actions')==EXPECTED_ACTIONS,
             no_observed_builder_or_template_calls=trace.get('builder_calls')==trace.get('template_calls')==0,
-            no_observed_subprocess_calls=trace.get('subprocess_calls')==0)
+            no_unclassified_subprocess_calls=classified['accepted'])
         report['status']='READYSET_CACHED_INPUT_PASS' if len(report['checks'])==8 and all(report['checks'].values()) else 'REVIEW'
         if not verify_current_consumer(phenix,ready,consumer):raise ValueError('ReadySet consumer changed')
         if sha256(ready.read_bytes()).hexdigest()!=proof['sha256']:raise ValueError('ReadySet dispatcher changed')

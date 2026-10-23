@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish a checked native hardware query from chemistry subprocesses
+
+- Verify returned C74: 5,304 payloads, exact C73 parent, runtime inventory and
+  reported runner SHA. The sole child call in all three controls queries macOS
+  memory during CCTBX neighbor-grid setup; original v1 reviews remain preserved.
+- Add a v2 execution guard: classify only that exact command with fresh captured
+  native source and a complete caller prefix whose call lines match AST spans.
+  Keep raw counts, seven other checks and all scientific mechanics unchanged;
+  unknown, modified or incompletely proven children retain review.
+- Add C75 on exact C74 and retain v1 frozen-report compatibility. Passing controls
+  receive unchanged fixed native checks. No dependency, NAR, cache, dictionary,
+  coordinate or ordinary-argument change; current Mac v2 qualification is pending.
+- Validation: 365 focused / 4,271 full tests pass (two skips, 276 subtests),
+  including 48 new tests and two fail-before cases. Cold relocated inspect-only
+  transport preserves every C74 payload and resolves three control copies with
+  original build-source reads and all subprocesses forbidden.
+
 ### Identify observed ReadySet subprocess calls without changing acceptance
 
 - Verify returned C73: 4,830 payloads, exact C72 parent, pinned runtime inventory
