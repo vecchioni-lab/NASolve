@@ -357,11 +357,14 @@ Returned C83 verifies all 445 payloads and its exact C82 parent. Source-native
 IGU generation preserves the neutral source graph and sugar configuration;
 both fixed isolated native cases pass all twenty-one usability checks. NASolve
 continues with notes while retaining unreported convergence and other findings.
-C84 prepares source-qualified linked contexts and tests the recovered definitions
-in the fixed mixed model with the unchanged NARestraints policy. Local validation
-passes 343 focused / 4,598 full tests plus source-removed cold preparation/readback
-with no SDK process. Fresh Mac C84, production adoption and scientific
-qualification remain pending.
+Returned C84 completes both fixed native reads and passes the declared NAR,
+backbone-link, selected projection and triple-target subsets. Four coverage/written-
+group gates retain REVIEW despite DNA native classification at all forty-two sites. A separate formal-charge evidence-row
+ordering mismatch stops report replay; C85 makes that evidence deterministic
+and replays the exact saved result without a new SDK process or chemistry change.
+Local validation passes 395 focused / 4,636 full tests and source-removed saved
+replay without an SDK process. Returned Mac replay, production adoption and
+scientific qualification remain pending.
 
 
 

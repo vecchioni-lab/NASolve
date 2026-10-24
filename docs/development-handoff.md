@@ -49,29 +49,49 @@ remain intact. Original C83 local validation (242 focused / 4,553 full and cold
 readback) is unchanged; the return is appended separately in
 `mixed_component_recovery_2026_10_24`.
 
-**Next delivery is C84**, built with
-`scripts/build_mixed_linked_recovery_probe.py` from a new detached worktree.
-Consume the exact C83 capsule as data. Prepare generic recovered-component linked
-contexts with the existing source-qualified API, preserve all unselected parsed
-rows and unrelated bytes, and interpret the same fixed model/bundle twice:
-declared NA additions disabled baseline, then the exact original active
-NARestraints pairing/stacking policy and declared contexts; native secondary-
-structure guessing stays disabled in both, at most sixty seconds per read. Only recovered components get metadata/context projection; unrelated
-groups and the existing full-model DNA-classification gate remain unchanged.
-Overall REVIEW may coexist with passing link/NAR subsets. No Coot/ReadySet,
-generation, coordinate optimization, cache-store write, adoption or refinement
-is requested. Local focused validation passes 343 tests in 45.73 seconds across
-sixteen files on `2ba5f388405196f550bd98cde7bf64c8ff45748c`; all forty-five new
-cases are frozen before full collection. Source-removed cold preparation and
-standalone readback pass with 164 runtime members and all 445 C83 payloads
-preserved. All subprocesses are forbidden; original sources/model/policy and
-configuration/edit/store fixtures remain intact. Owned temporary views are
-explicitly retired before deny-read proof; guarded automatic cleanup is not
-qualified. The full suite passes 4,598 tests, two skips and 276 subtests in
-637.71 seconds, with no source/script/test changes after the checkpoint and no
-post-collection supplement. Fresh Mac C84 results remain pending. Linked mechanical qualification stays separate from
-chemical-state/scientific findings. The new
-record is `mixed_linked_recovery_2026_10_24`.
+**Returned C84 completes both native reads but retains full native-mechanics
+REVIEW; scientific qualification remains unassessed.** All 580 payloads, the 164-member runtime and the exact 445-payload C83
+parent verify. Both Phenix 2.2.1-6174 workers exit zero (4.35 / 1.52 seconds),
+with 863 atoms, forty-two sites and two fixed evaluations each. All thirty-eight
+backbone links, exact declared NARestraints additions, selected linked
+projections and PDU/5PC triple targets pass. Full membership retains four
+baseline/active heavy-coverage/DNA-group gates. All forty-two actual native
+classifications are DNA, with exact site membership and no unexpected atoms;
+seven written groups differ, ten sites record only OP3 coverage notes, and
+selected IGU A:6 has complete heavy inventory. Those gate verdicts stay intact.
+Original C84 local validation (343 focused / 4,598 full and cold) is unchanged and its failed receipt
+is retained.
+
+Its reader exception is an evidence-order defect: only two UNSUPPORTED formal-
+charge `unavailable` lists reorder their thirty-four unique complete atom rows
+after JSON sorts the preparation dictionary's keys. All other fields and the
+REVIEW verdict match. Repair that exact serialization boundary without relaxing
+any classification, coverage, native or source-state gate. The actual return is
+appended in `mixed_linked_recovery_2026_10_24`.
+
+**Next delivery is C85**, using the existing
+`scripts/build_mixed_linked_recovery_probe.py --delivery-prefix 85_Cedar` and
+`--saved-native-only` on the exact C84 archive. Deterministically order only the
+mixed-linked qualification writer, leaving the shared helper/other legacy
+consumers unchanged. Accept legacy formal-charge `unavailable`/`contradictions`
+row permutations only with unique IDs and exact types/values/status/other order;
+valid insertion-coded sites use the same rule. The actual C84 difference affects
+only two UNSUPPORTED unavailable lists.
+The maintained reader checks the preserved native work; a compact
+`saved_linked_recovery.json` summary references the indexed parent rather than
+copying another scientific subtree. Historical native calls remain two; new SDK,
+native, generation and optimizer calls remain zero. No PDU/5PC/state correction,
+store write, adoption or refinement is requested. Final focused validation
+passes 395 tests in 26.83 seconds on `919cd7a96f0609e76e91afaeacba1af24b5e66f6`;
+all thirty-eight new cases are frozen before full collection. Actual-C84 replay
+preserves all 132 scientific files and the REVIEW/four gates without a process.
+Source-removed cold ferry/readback passes with all 580 parent payloads exact and
+zero SDK discovery/processes; explicit owned-view retirement precedes standalone
+readback, with no guarded automatic-cleanup claim. The full suite passes 4,636
+tests, two skips and 276 subtests in 627.18 seconds, with no source/script/test
+changes after the checkpoint or post-collection supplement. Returned Mac saved-
+replay remains pending; full coverage/written-group gates remain separate.
+The new record is `saved_mixed_linked_recovery_2026_10_24`.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.

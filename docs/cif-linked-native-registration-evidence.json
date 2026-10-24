@@ -26484,6 +26484,517 @@
       "requires_cif_review": false,
       "automatic_adoption": false,
       "native_evidence": "ACTUAL_NATIVE_RESULT_JSON_REQUIRED; EXACT_MAINTAINED_WORKER_SPEC_INPUT_OUTPUT_INVENTORY_AND_SAME_SELECTED_INTERPRETER; TWO_COMPLETED_CAPTURES_REQUIRED_FOR_PASS"
-    }
+    },
+    "returned_C84": {
+      "all_16_source_bytes_preserved": true,
+      "all_imported_project_modules_from_trusted_Git_snapshots": true,
+      "all_payload_crc_hash_size_safe_names": "PASS",
+      "archive_bytes": 7816678,
+      "archive_sha256": "a3d2a63edb33a3da76fa55ea785349fc3191638a2b39815b73663b7b7205ef54",
+      "build_difference": "NAR_DIRTY_METADATA_ONLY; RUNTIME_BYTES_EXACT",
+      "canonicalizing_only_two_unavailable_lists_reproduces_entire_qualification": true,
+      "captured_code_execution": "NOT_RUN",
+      "coordinate_decision": {
+        "automatic_adoption": false,
+        "native_usable": "NOT_YET_QUALIFIED",
+        "requires_cif_review": false,
+        "selected": "verified_constructed_model",
+        "status": "CONTINUE_WITH_NOTES"
+      },
+      "exact_C83_manifest": "PRESERVED_BYTE_FOR_BYTE",
+      "exact_C83_parent_payloads": 445,
+      "formal_charge_row_order_only_differences": [
+        {
+          "check": "baseline:effective-site-formal-charges:A:6",
+          "row_count": 34,
+          "identical_full_row_multiset": true,
+          "observed_difference": "UNAVAILABLE_EVIDENCE_ROW_ORDER_ONLY"
+        },
+        {
+          "check": "active:effective-site-formal-charges:A:6",
+          "row_count": 34,
+          "identical_full_row_multiset": true,
+          "observed_difference": "UNAVAILABLE_EVIDENCE_ROW_ORDER_ONLY"
+        }
+      ],
+      "fresh_qualification_status": "REVIEW",
+      "json_normalized_difference_count": 66,
+      "maintained_C83_reader": "PASS",
+      "maintained_C84_reader_error": "Linked native qualification does not reproduce",
+      "membership_failures": {
+        "active:complete_heavy_sites": false,
+        "active:dna_classification": false,
+        "baseline:complete_heavy_sites": false,
+        "baseline:dna_classification": false
+      },
+      "model_exact_parent_bytes_preserved": true,
+      "model_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "new_native_calls_recorded": 2,
+      "new_verification_subprocesses": 0,
+      "original_archives_preserved": true,
+      "preparation_replay": "PASS",
+      "qualification_difference_count": 66,
+      "qualification_digest": "ffeb3eaf433a1036d59a3c2eed465531b9496a96b8bfa28fe9ee61250d8fc430",
+      "reconstructed_runner_sha256": "03be2b2c066f71a94ae5b03da99988d8c90a1912ba90489c32117d89c1dd4564",
+      "replay_root_cause": "FORMAL_CHARGE_UNAVAILABLE_ROW_ORDER_FROM_SORTED_PREPARATION_DICTIONARY; NO_SCIENTIFIC_OR_NATIVE_DIFFERENCE",
+      "runtime_archive_sha256": "1791d2c63badebe14da4cf8f84407304cdd21afce8b624ec2cdae2c7369cd81d",
+      "runtime_members": 164,
+      "same_installed_api_sources": true,
+      "same_selected_interpreter": true,
+      "saved_and_fresh_all_other_fields_exact": true,
+      "saved_qualification_status": "REVIEW",
+      "selected_contexts": {
+        "IGU": [
+          {
+            "five_prime_state": "linked",
+            "incoming_site": "A:5",
+            "outgoing_site": "A:7",
+            "site": "A:6",
+            "three_prime_state": "linked"
+          }
+        ]
+      },
+      "source_commit": "915684d2ce94964fb83559505250ee33b67a4249",
+      "trusted_git_preparation_calls": 2,
+      "trusted_temporary_sources_removed_after_replay": true,
+      "uncompressed_bytes": 97176132,
+      "verification_outcome": "AUTHENTIC_C84_DATA; NATIVE_READS_COMPLETED; FORMAL_CHARGE_ROW_ORDER_ONLY_REPLAY_DEFECT; ORIGINAL_REVIEW_PRESERVED",
+      "verified_payloads": 580,
+      "archive_filename": "84_Cedar_8z_o2awr_mixed_linked_recovery_review.zip",
+      "phenix_version": "2.2.1-6174",
+      "native_site_count": 42,
+      "full_model_mechanics_checks_pass": false,
+      "original_C84_local_validation": "UNCHANGED; RETURN_RECORDED_SEPARATELY",
+      "passed_subsets": {
+        "all_38_backbone_links": true,
+        "exact_declared_custom_NARestraints_additions": true,
+        "selected_linked_source_projections": true,
+        "active_PDU_and_5PC_triple_targets": true
+      },
+      "failed_original_receipt": {
+        "analysis_completed": false,
+        "error_type": "ValueError",
+        "error": "Linked native qualification does not reproduce",
+        "preserved": true
+      },
+      "verification_scope": "TRUSTED_SOURCE_SAVED_DATA_REPLAY; NO_CAPTURED_PYTHON_OR_NEW_NATIVE_PROCESS",
+      "qualification_diff_sha256": "23186acc39b2199994d9222e79ffa64e729f733ab7ee0c4eb708f1413056fb6e",
+      "native_reads": {
+        "native_active": {
+          "execution": {
+            "elapsed_seconds": 1.515574,
+            "finished_at": "2026-10-24T12:27:22.580738+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-24T12:27:21.065187+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "fixed_energy_calls": 2,
+          "frozen_inputs_preserved": true,
+          "secondary_structure_enabled": false
+        },
+        "native_baseline": {
+          "execution": {
+            "elapsed_seconds": 4.345291,
+            "finished_at": "2026-10-24T12:27:20.910090+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-24T12:27:16.564828+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 60
+          },
+          "fixed_energy_calls": 2,
+          "frozen_inputs_preserved": true,
+          "secondary_structure_enabled": false
+        }
+      },
+      "compact_native_inventory": {
+        "atoms": 863,
+        "sites": 42,
+        "group_counts": {
+          "DNA": 35,
+          "ligand": 1,
+          "non-polymer": 6
+        },
+        "native_classification_counts": {
+          "DNA": 42
+        },
+        "unexpected_site_count": 0,
+        "written_non_DNA_groups": [
+          {
+            "site": "A:4",
+            "component": "5PC",
+            "group": "non-polymer"
+          },
+          {
+            "site": "A:19",
+            "component": "DF",
+            "group": "ligand"
+          },
+          {
+            "site": "A:20",
+            "component": "CGY",
+            "group": "non-polymer"
+          },
+          {
+            "site": "C:9",
+            "component": "S6G",
+            "group": "non-polymer"
+          },
+          {
+            "site": "C:10",
+            "component": "IMC",
+            "group": "non-polymer"
+          },
+          {
+            "site": "D:3",
+            "component": "DX",
+            "group": "non-polymer"
+          },
+          {
+            "site": "D:5",
+            "component": "PDU",
+            "group": "non-polymer"
+          }
+        ],
+        "OP3_only_missing_heavy_sites": [
+          {
+            "site": "A:4",
+            "component": "5PC",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "A:5",
+            "component": "1AP",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "A:7",
+            "component": "5CM",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "A:12",
+            "component": "DZ",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "A:20",
+            "component": "CGY",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "B:4",
+            "component": "DP",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "C:9",
+            "component": "S6G",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "C:10",
+            "component": "IMC",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "D:3",
+            "component": "DX",
+            "atom_ids": [
+              "OP3"
+            ]
+          },
+          {
+            "site": "D:5",
+            "component": "PDU",
+            "atom_ids": [
+              "OP3"
+            ]
+          }
+        ],
+        "IGU_A6": {
+          "group": "DNA",
+          "native_classification": "DNA",
+          "heavy_inventory_complete": true,
+          "unexpected_atoms": [],
+          "effective_definition_sha256": "419e73f695de87274db07e9f1ae5cf3b5797c219d0797a7e06a1b6cebd9e1f18"
+        },
+        "same_in_both_reads": true,
+        "comparison": {
+          "all_42_effective_definitions_identical": true,
+          "complete_monomer_mappings_identical": true,
+          "literal_atom_identities_and_coordinates_identical": true,
+          "model_and_dictionary_input_bindings_identical": true,
+          "same_installed_api_sources": true
+        },
+        "native_validation_artifacts": {
+          "native_active": {
+            "path": "mixed_linked_recovery/native/native_active/cif-native-k_ankl3q/native_validation.json",
+            "sha256": "3ef9ef07b4616741b5fb8446b384ed5581d6c4dd4bdc39075a5f7ccb7b41b945",
+            "size": 5401403
+          },
+          "native_baseline": {
+            "path": "mixed_linked_recovery/native/native_baseline/cif-native-b3cqz6v7/native_validation.json",
+            "sha256": "4c5f67496f40cbb126880a670105b5f7cb0f528a7f2b0688691853bdaf0371e5",
+            "size": 4720100
+          }
+        },
+        "exact_NAR_proxy_additions": {
+          "bond_simple": 53,
+          "angle": 90,
+          "parallelity": 58
+        },
+        "interpretation": "ALL_42_NATIVE_CLASSIFICATIONS_ARE_DNA; SEVEN_WRITTEN_GROUPS_DIFFER_AND_TEN_EFFECTIVE_DEFINITIONS_LIST_OP3_ABSENT_AT_THE_NATIVE_SITE; FOUR_EXISTING_GATES_REMAIN_FALSE_WITHOUT_REINTERPRETATION",
+        "full_inventory_sha256": "b58aaf9b4e3cdcbce12e2a0a11d49f23d6ef57d0e87b658efcaa0652289c6678"
+      }
+    },
+    "current_boundary": "RETURNED_C84_NATIVE_READS_COMPLETED; EVIDENCE_ORDER_REPLAY_DEFECT_SEPARATE_FROM_FOUR_UNCHANGED_HEAVY_COVERAGE_DNA_GATES; SAVED_C85_REPLAY_NEXT"
+  },
+  "saved_mixed_linked_recovery_2026_10_24": {
+    "status": "LOCAL_VALIDATION_PASS; RETURNED_MAC_SAVED_REPLAY_PENDING",
+    "recorded_date": "2026-10-24",
+    "delivery_prefix": "85_Cedar",
+    "builder": "scripts/build_mixed_linked_recovery_probe.py",
+    "template": "scripts/mixed_linked_recovery_probe_template.py",
+    "runner_filename": "85_Cedar_probe_mixed_linked_replay.py",
+    "runtime_reader": "nasolve.cif_mixed_linked_recovery.read_mixed_linked_recovery",
+    "new_public_replay_API": false,
+    "before": "C84 completes both native reads but report replay fails only because two unavailable-formal-charge evidence lists use insertion order before JSON and sorted dictionary-key order after reload. Full model qualification independently remains REVIEW.",
+    "after": "Deterministically order only mixed-linked qualification formal-charge evidence; accept old atom-keyed evidence row permutations with unique IDs, exact complete typed rows/status and every other field/order unchanged. Replay exact C84 saved evidence with zero new SDK work and retain all hard gates.",
+    "prerequisite": {
+      "archive_filename": "84_Cedar_8z_o2awr_mixed_linked_recovery_review.zip",
+      "sha256": "a3d2a63edb33a3da76fa55ea785349fc3191638a2b39815b73663b7b7205ef54",
+      "bytes": 7816678,
+      "uncompressed_bytes": 97176132,
+      "payloads_verified": 580,
+      "source_commit": "915684d2ce94964fb83559505250ee33b67a4249",
+      "model_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+      "captured_code": "DATA_ONLY; NEVER_IMPORTED_OR_EXECUTED",
+      "failed_original_receipt": "PRESERVED_BYTE_FOR_BYTE_IN_FULL_PARENT"
+    },
+    "method": {
+      "new_producer_order": "DETERMINISTIC_ATOM_ID_ORDER_ONLY_IN_MIXED_LINKED_QUALIFICATION_WRITER; SHARED_site_definition_checks_HELPER_AND_OTHER_LEGACY_CONSUMERS_UNCHANGED; NO_NATIVE_ATOM_OR_PROXY_REORDERING",
+      "legacy_compatibility": "ONLY_NAMED_EFFECTIVE_SITE_FORMAL_CHARGE_unavailable_AND_contradictions_EVIDENCE_LISTS_WITH_UNIQUE_ATOM_IDS; EXACT_COMPLETE_ROW_TYPES_VALUES_STATUS_AND_EVERY_OTHER_FIELD_ORDER; NO_PASS_PROMOTION",
+      "generality": "EXACT_FORMAL_CHARGE_CHECK_TYPE_AND_VALID_SITE_IDENTIFIERS_INCLUDING_INSERTION_CODES; ATOM_ID_KEYED_ROWS; NO_IGU_OR_A6_EXCEPTION",
+      "saved_replay": "EXISTING_MAINTAINED_LINKED_READER_ON_EXACT_HASH_BOUND_C84_NATIVE_CAPTURES; NO_NEW_REPLAY_MODULE_OR_PUBLIC_API",
+      "summary": "COMPACT_SAVED_REPORT_AND_QUALIFICATION_REFERENCES_TO_PRESERVED_REVIEW_LOGICAL_NAMES; ORIGINAL_FAILED_RECEIPT_AND_ALL_PARENT_PAYLOADS_RETAINED",
+      "transport": "INDEXED_PARENT_ONLY; EXTERNAL_SHALLOW_SCIENTIFIC_VIEW_REMOVED; NO_COPIED_SCIENTIFIC_SUBTREE",
+      "hard_gates": "EXISTING_COMPLETE_HEAVY_SITES_AND_WRITTEN_GROUP_DNA_CHECKS_REMAIN_FALSE_IN_BOTH_READS; FULL_MEMBERSHIP_AND_MECHANICS_REMAIN_REVIEW_DESPITE_ALL_42_NATIVE_CLASSIFICATIONS_RECORDED_DNA",
+      "scientific_scope": "NO_PDU_5PC_HEADER_STATE_REPAIR_OR_CHEMICAL_CHANGE; CLASSIFICATION_COVERAGE_AND_SCIENTIFIC_QUALIFICATION_REMAIN_SEPARATE"
+    },
+    "summary_contract": {
+      "schema_version": 1,
+      "policy_id": "cif-saved-mixed-linked-recovery-v1",
+      "file": "saved_linked_recovery.json",
+      "report_and_qualification_anchor": "preserved_review",
+      "receipt_artifact_anchor": "probe_directory",
+      "original_report_status": "REVIEW",
+      "new_native_calls": 0,
+      "receipt_field": "saved_linked_recovery.artifact_PLUS_STATUS_AND_COUNTERS",
+      "status_values": "ORIGINAL_LINKED_REPORT_STATUS_RETAINED; EXACT_C84_STATUS_IS_REVIEW",
+      "saved_native_calls": 2,
+      "qualification_mechanics_checks_pass": false,
+      "check_content": "ORIGINAL_QUALIFICATION_CHECKS_AND_MEMBERSHIP_VERDICTS_RETAINED_WITH_ARTIFACT_REFERENCES"
+    },
+    "ferry_contract": {
+      "build_kind": "mixed-linked-recovery-shuttle",
+      "receipt_kind": "mixed-linked-recovery-probe",
+      "CLI_mode": "--saved-native-only",
+      "delivery_prefix_override": "--delivery-prefix 85_Cedar",
+      "input_archive": "EXACT_VERIFIED_C84_ONLY",
+      "SDK_discovery": "NOT_REQUESTED_IN_SAVED_NATIVE_MODE",
+      "original_builder_default": "84_Cedar_UNCHANGED; EXPLICIT_85_Cedar_DELIVERY_PREFIX_REQUIRED"
+    },
+    "execution_bounds": {
+      "new_SDK_processes": 0,
+      "new_native_calls": 0,
+      "historical_native_calls": 2,
+      "Coot_calls": 0,
+      "ReadySet_calls": 0,
+      "generator_calls": 0,
+      "model_optimizer_calls": 0,
+      "refinement_calls": 0,
+      "component_store_writes": 0
+    },
+    "transport_bounds": {
+      "archive_uncompressed_bytes_max": 134217728,
+      "member_bytes_max": 33554432,
+      "old_scientific_paths": "HISTORICAL_PROVENANCE_ONLY; INDEXED_LOGICAL_REFERENCES_OPERATIONAL"
+    },
+    "validation": {
+      "status": "LOCAL_VALIDATION_PASS",
+      "code_checkpoint": "919cd7a96f0609e76e91afaeacba1af24b5e66f6",
+      "focused": {
+        "status": "PASS",
+        "passed": 395,
+        "seconds": 26.83,
+        "test_files": 16,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c83-venv/bin/python -m pytest -q tests/test_cif_linked_replay_order.py tests/test_mixed_linked_recovery_saved_probe.py tests/test_cif_mixed_linked_recovery.py tests/test_mixed_linked_recovery_probe.py tests/test_cif_linked_qualification.py tests/test_cif_mixed_recovery.py tests/test_mixed_recovery_probe.py tests/test_cif_mixed_native.py tests/test_mixed_native_probe.py tests/test_cif_linked_preparation.py tests/test_cif_linked_usability_bridge.py tests/test_cif_source_candidate.py tests/test_cif_candidate_usability.py tests/test_cif_construction_native.py tests/test_cif_na_policy.py tests/test_cif_review_transport.py"
+      },
+      "full_suite": {
+        "status": "PASS",
+        "passed": 4636,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 627.18,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c83-venv/bin/python -m pytest -q",
+        "frozen_code_checkpoint": "919cd7a96f0609e76e91afaeacba1af24b5e66f6",
+        "final_new_module_cases": 20,
+        "final_new_ferry_cases": 18,
+        "final_new_cases": 38,
+        "all_final_new_cases_frozen_before_full_collection": true,
+        "source_script_test_changes_after_checkpoint": false,
+        "coverage": "ALL_FINAL_CASES_INCLUDED_IN_FROZEN_FULL_SUITE; NO_POST_COLLECTION_SUPPLEMENT"
+      },
+      "source_removed_cold": {
+        "status": "PASS",
+        "source_commit": "919cd7a96f0609e76e91afaeacba1af24b5e66f6",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runtime_members": 164,
+        "runtime_archive_sha256": "81700623108a35800c681d577c7fb67e37e34c1b2fa1ceacaa8924488be33e4a",
+        "runner_sha256": "0d99a87b97ddb1c528b3b73bda9db0b24baf8e61e05918e5067fe5ff3d770dbb",
+        "source_archive_sha256": "a3d2a63edb33a3da76fa55ea785349fc3191638a2b39815b73663b7b7205ef54",
+        "source_clones_removed_before_launch": true,
+        "original_repositories_and_archive_reads_forbidden": true,
+        "ambient_poison": "NOT_IMPORTED",
+        "aliased_TMPDIR": true,
+        "macos_path_budget": {
+          "max_absolute_path_bytes": 220,
+          "max_component_bytes": 68,
+          "checked_operations": 78013,
+          "subprocess_calls": 0
+        },
+        "everyday_authorized_edit": "OWNED_TEST_FIXTURE_PRESERVED",
+        "original_user_config": "OWNED_TEST_FIXTURE_UNCHANGED",
+        "component_store": "EXISTING_OWNED_STORE_FIXTURE_UNTOUCHED",
+        "review_payloads": 584,
+        "review_uncompressed_bytes": 97343511,
+        "largest_review_member_bytes": 20829148,
+        "preserved_C84_payloads": 580,
+        "selected_components": [
+          "IGU"
+        ],
+        "source_components": 16,
+        "prepared_input_model_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+        "original_effective_dictionary_files_preserved": 9,
+        "IGU_projected_atoms": 34,
+        "IGU_projected_heavy_atoms": 22,
+        "saved_native_calls": 2,
+        "new_native_calls": 0,
+        "no_Phenix_argument": true,
+        "no_SDK_discovery": "PASS",
+        "saved_mechanics_status": "REVIEW",
+        "remaining_membership_checks": [
+          "active:complete_heavy_sites",
+          "active:dna_classification",
+          "baseline:complete_heavy_sites",
+          "baseline:dna_classification"
+        ],
+        "exact_declared_NAR_custom_membership": "PASS_FROM_PRESERVED_NATIVE_CAPTURES",
+        "standalone_saved_reader_after_parent_session_runtime_removal": "PASS",
+        "guarded_temporary_auto_cleanup": "NOT_CLAIMED",
+        "owned_temporary_views_retired_before_standalone_reader": [
+          {
+            "owned_view": "nasolve-saved-linked-native-j_3zs1l3",
+            "before_nodes": 41,
+            "retired": true
+          }
+        ],
+        "frozen_runtime_preserved": true,
+        "guarded_relocated_help": "PASS",
+        "builder_help": "PASS",
+        "scope": "SOURCE_REMOVED_SAVED_NATIVE_REPLAY_QA_ONLY; ZERO_NEW_SDK_PROCESSES; EXISTING_REVIEW_REMAINS",
+        "private_artifacts": "EXCLUDED_FROM_GIT"
+      },
+      "independent_actual_C84_replay": {
+        "all_original_files_preserved": 132,
+        "coordinate_decision": {
+          "automatic_adoption": false,
+          "native_usable": "NOT_YET_QUALIFIED",
+          "requires_cif_review": false,
+          "selected": "verified_constructed_model",
+          "status": "CONTINUE_WITH_NOTES"
+        },
+        "membership_failures": {
+          "active:complete_heavy_sites": false,
+          "active:dna_classification": false,
+          "baseline:complete_heavy_sites": false,
+          "baseline:dna_classification": false
+        },
+        "model_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+        "new_native_or_other_subprocesses": 0,
+        "original_qualification_sha256": "ffeb3eaf433a1036d59a3c2eed465531b9496a96b8bfa28fe9ee61250d8fc430",
+        "reviewed_module_sha256": "4ecd4e3a76e4d398260cefe3c4af527e3c67aa4d43e06ed06bb8652394514f6d",
+        "saved_native_calls": 2,
+        "scientific_verdict_unchanged": true,
+        "status": "SAVED_C84_REPLAY_PASS_WITH_ORIGINAL_REVIEW"
+      },
+      "initial_fail_before": [
+        {
+          "scope": "INITIAL_LINKED_REPLAY_TESTS_ON_C84_BASE",
+          "failed": 16,
+          "seconds": 0.14
+        },
+        {
+          "scope": "INITIAL_SAVED_FERRY_TESTS_ON_C84_BASE",
+          "failed": 16,
+          "seconds": 0.29
+        }
+      ],
+      "shared_legacy_helper": {
+        "status": "BYTE_IDENTICAL_TO_C84_BASE",
+        "git_blob": "9e1410a14e0ae1da56abb5a1a3e36ee388c46559"
+      },
+      "prototype_runs_excluded_from_final_validation": true,
+      "guarded_automatic_temporary_cleanup": "NOT_CLAIMED; OWNED_TEMPORARY_VIEW_EXPLICITLY_RETIRED_BEFORE_STANDALONE_DENY_READ_PROOF",
+      "returned_Mac_saved_replay": "PENDING",
+      "external_scope": "SAVED_EVIDENCE_ONLY; ZERO_NEW_SDK_PROCESSES; NO_NEW_NATIVE_QUALIFICATION_REQUESTED",
+      "documentation": {
+        "original_C84_local_validation": "UNCHANGED",
+        "all_earlier_ledger_values": "UNCHANGED",
+        "strict_JSON_duplicate_keys": "NONE",
+        "runtime_progress_mirrors": "EXACT_EXCEPT_EVIDENCE_POINTER",
+        "relative_links_checked": 161,
+        "shared_helper_generation_PostMR_native_kernels_and_NA_policy": "BYTE_UNCHANGED",
+        "compact_native_inventory": "7_GROUP_SITES;10_OP3_SITES;42_NATIVE_DNA;4_GATES_REMAIN_FALSE;NO_HOST_SCRATCH_PATH_OR_FULL_INVENTORY_COPY",
+        "editable_SVG": "DETERMINISTIC_REGENERATION; RENDERED_AND_VISUALLY_CHECKED",
+        "private_QA_artifacts": "EXCLUDED_FROM_GIT"
+      }
+    },
+    "requires_cif_review": false,
+    "automatic_adoption": false,
+    "coot_execution": "NOT_RUN",
+    "readyset_execution": "NOT_RUN",
+    "generation": "NOT_RUN",
+    "model_optimization_requested": false,
+    "refinement": "NOT_RUN",
+    "production_checkpoint": "NOT_CREATED",
+    "mtz_used": false,
+    "component_store_write": "NOT_REQUESTED",
+    "scientific_qualification": "NOT_ASSESSED",
+    "compatibility": "EXISTING_C84_REPORT_SCHEMA_AND_PAYLOAD_BYTES_RETAINED; NARROW_EVIDENCE_ORDER_COMPATIBILITY_PLUS_NEW_EXPLICIT_SAVED_SUMMARY",
+    "generated_artifacts": "PRIVATE_MODELS_DICTIONARIES_LOGS_CAPTURES_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "remaining_limits": [
+      "Returned Mac C85 saved-replay verification remains pending; local replay and source-removed packaging checks request no new SDK/native qualification.",
+      "Successful replay does not turn C84 into a mechanics PASS: ten OP3 coverage notes and seven non-DNA written groups remain under existing hard gates, despite all 42 actual native classifications recorded DNA.",
+      "No chemical-state correction, convergence verdict, independent absolute CIP, cache publication, production adoption or scientific qualification is added."
+    ]
   }
 }

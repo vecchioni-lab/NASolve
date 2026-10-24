@@ -6,15 +6,63 @@ native baseline. Source-state findings stay separate from mechanical checks.
 """
 from __future__ import annotations
 from collections import Counter
+from copy import deepcopy
 from hashlib import sha256
 import json
+import math
 from pathlib import Path
+import re
 from tempfile import TemporaryDirectory
 
 POLICY_ID='cif-mixed-linked-component-recovery-v1'
 ANCHOR='mixed_linked_recovery_directory'
 REPORT='mixed_linked_recovery.json'
 BASELINE_SCOPE='SAME_REPAIRED_BUNDLE_WITH_DECLARED_NA_POLICY_DISABLED; NOT_THE_INVALID_ORIGINAL'
+QUALIFICATION_REPLAY_POLICY='EXACT_WITH_ATOM_KEYED_FORMAL_CHARGE_EVIDENCE_ORDER_ONLY'
+
+
+def _canonical_qualification(value):
+    """Canonicalize atom-keyed charge notes only in this new audit's scope.
+
+    The shared legacy qualifier retains its existing serialization contract.
+    """
+    if not isinstance(value,dict) or not isinstance(value.get('checks'),list) or not value['checks']:
+        raise ValueError('Missing qualification checks')
+    result=deepcopy(value)
+    for check in result['checks']:
+        if not isinstance(check,dict):raise ValueError('Invalid qualification check')
+        name=check.get('check')
+        if not isinstance(name,str) or not re.fullmatch(
+                r'(?:baseline:|active:)?effective-site-formal-charges:[^:\s]+:[^:\s]+',name):continue
+        for field in ['unavailable','contradictions']:
+            rows=check[field]
+            if not isinstance(rows,list):raise ValueError('Invalid formal-charge evidence')
+            names=[]
+            for row in rows:
+                if (not isinstance(row,dict) or set(row)!={'atom_id','expected','observed'}
+                        or not isinstance(row['atom_id'],str) or not row['atom_id']):
+                    raise ValueError('Unbound formal-charge evidence row')
+                names.append(row['atom_id'])
+            if len(names)!=len(set(names)):raise ValueError('Duplicate formal-charge atom identity')
+            check[field]=sorted(rows,key=lambda row:row['atom_id'])
+    return result
+
+
+def qualification_replays(recorded,fresh):
+    """Replay legacy charge evidence without assigning meaning to atom order.
+
+    Only unavailable/contradiction rows emitted by the named formal-charge
+    checks are keyed by atom identity. Every row, type, value, status, other
+    list order and qualification field remains exact; nothing is rounded.
+    """
+    def exact(a,b):
+        if type(a) is not type(b):return False
+        if isinstance(a,dict):return a.keys()==b.keys() and all(exact(v,b[k]) for k,v in a.items())
+        if isinstance(a,(list,tuple)):return len(a)==len(b) and all(exact(v,w) for v,w in zip(a,b))
+        if isinstance(a,float):return math.isfinite(a) and math.isfinite(b) and a==b
+        return a==b
+    try:return exact(_canonical_qualification(recorded),_canonical_qualification(fresh))
+    except (ValueError,KeyError,TypeError):return False
 
 
 def _coordinate_decision(usable):
@@ -208,9 +256,9 @@ def _qualify(before,after,model,active,plan,sources,dictionaries,bundle,root):
     # Keep the existing unavailable-formal-charge API allowance local and exact.
     normalized={'checks':[dict(c,check=c['check'].split(':',1)[1]) if c['check'].startswith(('baseline:effective-site-formal-charges:','active:effective-site-formal-charges:')) else c for c in checks]}
     usable=mechanics_can_continue(normalized)
-    return {'policy_id':POLICY_ID,'status':'MIXED_LINKED_RECOVERY_MECHANICS_PASS' if usable else 'REVIEW',
+    return _canonical_qualification({'policy_id':POLICY_ID,'status':'MIXED_LINKED_RECOVERY_MECHANICS_PASS' if usable else 'REVIEW',
         'mechanics_checks_pass':usable,'membership':membership,'checks':checks,'scientific_qualification':'NOT_ASSESSED',
-        'source_chemical_findings':'PRESERVED_SEPARATELY; NOT_PROMOTED_BY_NATIVE_MEMBERSHIP','automatic_adoption':False}
+        'source_chemical_findings':'PRESERVED_SEPARATELY; NOT_PROMOTED_BY_NATIVE_MEMBERSHIP','automatic_adoption':False})
 
 
 def _capture(root,ref,model,dictionaries,phils):
@@ -380,7 +428,7 @@ def read_mixed_linked_recovery(directory):
         if len(captures)!=2 or not all(_native_ok(c) for c in captures):raise ValueError('Qualification lacks two completed native captures')
         qualification=json.loads(_resolve(root,report['qualification']['artifact']).read_bytes())
         fresh=_qualify(*(c['native_validation'] for c in captures),model,active,plan,sources,dictionaries,bundle,root)
-        if fresh!=qualification:raise ValueError('Linked native qualification does not reproduce')
+        if not qualification_replays(qualification,fresh):raise ValueError('Linked native qualification does not reproduce')
     else:
         if report['qualification']!={'status':'NOT_RUN'}:raise ValueError('Unexplained linked qualification')
         qualification=None

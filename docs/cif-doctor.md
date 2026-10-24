@@ -778,14 +778,80 @@ simulated macOS path operations stay within 237 absolute/68 component bytes.
 Standalone readback succeeds after parent/archive/session/runtime removal and
 explicit retirement of owned temporary views. Private OS instrumentation
 disturbed temporary cleanup, so guarded automatic cleanup is not qualified;
-no product cleanup defect is inferred. Fresh Mac C84 native results remain
-pending; these prepared-input/fake-tool checks are not SDK qualification. The report contract is
+no product cleanup defect is inferred. These original prepared-input/fake-tool
+checks are not SDK qualification; the actual C84 return and next replay boundary
+are recorded below.
+
+The original C84 report contract is
 `cif-mixed-linked-component-recovery-v1`, stored in `mixed_linked_recovery.json`
-under the `mixed_linked_recovery_directory` anchor. `read_mixed_linked_recovery`
-reconstructs frozen selection, context preparation, bundle and exact native
-input/specification/output/qualification evidence for portable readback. Status
-is `PREPARED_ONLY`, `MIXED_LINKED_RECOVERY_MECHANICS_PASS` or `REVIEW`; a mechanics
-pass does not adopt the bundle or resolve chemical-state/scientific findings.
+under the `mixed_linked_recovery_directory` anchor. Its portable reader verifies
+exact frozen selection, preparation, native input/specification/output and
+qualification; a mechanics pass does not adopt the bundle.
+
+Returned C84 verifies all 580 payloads, the exact 164-member runtime and the
+complete C83 parent (445 payloads plus its manifest). Both Phenix 2.2.1-6174
+fixed reads complete with exit zero in 4.35 and 1.52 seconds, each recording 863
+atoms, forty-two sites and two fixed evaluations. The same prepared bundle
+preserves the model and sixteen source files. All thirty-eight backbone links,
+exact declared NARestraints additions, selected linked projections and active
+PDU/5PC triple targets pass. Full membership still records REVIEW on four
+baseline/active heavy-coverage and DNA-group gates. Actual native classification
+is DNA at all forty-two sites, with no unexpected atoms. The recorded group fields retain six non-polymer
+components and one ligand, and ten sites record only OP3 missing against their
+effective definitions. Selected IGU A:6 has DNA group/classification and complete
+heavy inventory. Keep those existing four verdicts unchanged pending separate
+group/context coverage work. The automatic coordinate decision retains the
+verified constructed model with notes; no bundle is adopted.
+
+The subsequent report-reader exception is separate. Two UNSUPPORTED
+formal-charge evidence lists contain identical complete rows for thirty-four
+unique atoms each, but their order changes from the preparation dictionary's
+insertion order to JSON's sorted keys. Sixty-six positional differences are
+confined to those two `unavailable` lists; all other qualification fields and
+verdicts match exactly. Formal-charge readback remains unsupported, with no new
+contradiction. Preserve the failed receipt and original REVIEW; do not relax
+coverage or DNA-classification gates to repair evidence ordering.
+
+C85 makes that evidence deterministic and replays the saved native work. The
+mixed-linked qualification writer orders atom-keyed formal-charge evidence
+by atom ID. The shared `site_definition_checks` helper and its other legacy
+consumers stay unchanged. A narrow legacy comparison accepts permutations only
+in the named formal-charge `unavailable` and `contradictions` evidence lists,
+with unique atom IDs and exact complete row types, values, statuses and every
+other field/list order. This rule supports valid site identities, including
+insertion codes, independently of residue code; it does not sort native proxies,
+promote a verdict or make chemistry changes.
+
+Methods: build the existing linked-recovery ferry with `--delivery-prefix
+85_Cedar` and run `--saved-native-only` against the exact verified C84 archive.
+Preserve the complete parent, including its failed receipt, through indexed
+transport. The maintained reader verifies saved preparation, native inputs,
+worker/specification/output bindings and qualification using a temporary shallow
+view outside the returned session. Emit only a compact `saved_linked_recovery.json`
+summary with hash-bound logical report/qualification references under
+`preserved_review`; the probe receipt points to that summary under
+`probe_directory`. The schema-1 policy is `cif-saved-mixed-linked-recovery-v1`.
+Historical native calls remain two and new calls remain zero. No scientific
+subtree is copied into the new result, and no new public replay API is added.
+
+C85 requests no SDK discovery, native process, Coot, ReadySet, generation,
+coordinate optimization, store write, adoption or refinement. It preserves the
+C84 REVIEW and all four hard failures, without a PDU/5PC or broader state/header
+fix. Final focused validation passes 395 tests in 26.83 seconds across sixteen
+files on `919cd7a96f0609e76e91afaeacba1af24b5e66f6`. All thirty-eight new cases
+(twenty module, eighteen ferry) are frozen before full-suite collection. The full
+suite passes 4,636 tests, two skips and 276 subtests in 627.18 seconds, with no
+source/script/test changes after the checkpoint or post-collection supplement. Independent actual-C84 replay preserves all 132 scientific files,
+the original REVIEW and all four gates with zero processes. Source-removed cold
+ferry/readback also passes with 164 runtime members and a 584-payload capsule
+preserving all 580 C84 payloads plus its manifest exactly. Both historical native
+captures remain exact; no SDK is discovered and no process starts. Configuration,
+everyday edits and the store remain intact; 78,013 simulated macOS path operations
+stay within 220 absolute/68 component bytes. Standalone readback passes after
+parent/archive/session/runtime removal and explicit owned-view retirement; guarded
+automatic temporary cleanup is not claimed. Returned Mac saved-replay, scientific
+qualification and ordinary end-to-end solving remain separate.
+
 
 
 

@@ -8,6 +8,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Replay saved linked-native evidence with deterministic formal-charge rows
+
+- Verify returned C84: both native workers complete, and declared NAR, all
+  thirty-eight backbone links, selected projections and triple targets pass.
+  Preserve four coverage/written-group gate failures and the original REVIEW;
+  actual native classification is DNA at all forty-two sites.
+- Deterministically order formal-charge evidence only in the mixed-linked writer;
+  keep the shared helper/other legacy consumers unchanged. Accept atom-keyed
+  unavailable/contradiction-row permutations only with unique IDs and exact typed
+  rows/statuses/other order, including valid insertion-coded sites.
+- Add `--saved-native-only` to the existing linked-recovery ferry for the exact
+  C84 archive. Preserve its failed receipt and all payloads; emit compact logical
+  references to saved report/qualification instead of a copied scientific subtree.
+  Historical native calls stay two, new calls zero. No chemistry, SDK execution,
+  generation, optimization or adoption is added. Final checks pass 395 focused /
+  4,636 full tests (two skips, 276 subtests, 627.18 s), including all thirty-eight
+  final cases frozen before collection. Actual-C84 and source-removed replay
+  preserve the REVIEW with zero processes. Returned Mac saved replay is pending.
+
+
 ### Test recovered component dictionaries in the fixed mixed-model context
 
 - Verify returned C83: all 445 payloads and the exact C82 parent; source-native
