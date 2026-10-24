@@ -173,13 +173,18 @@ Returned C82 completes one Phenix 2.2.1-6174 ReadySet call in 65.95 seconds and
 preserves the exact constructed heavy coordinates, but correctly stops before
 native interpretation: generated IGU C2 and N3 coincide, giving a 0.000 Å bond
 target. The source and constructed bond are about 1.36 Å. Other source-state
-reviews remain separate. C83 supplies an isolated source-preserving recovery
-trial selected from actual hard numerical failures independently of residue code,
-followed conditionally by native usability checks. Local validation passes 242
-focused / 4,553 full tests and source-removed cold preparation/readback without
-an SDK process; actual Mac recovery/native results remain pending. Original
-sources, dictionaries and construction stay preserved; linked/full-model adoption
-and scientific qualification remain separate.
+reviews remain separate. Original sources, dictionaries and construction stay
+preserved.
+
+Returned C83 verifies all 445 payloads and its exact C82 parent. Source-native
+IGU generation preserves the neutral source graph and sugar configuration;
+both fixed isolated native cases pass all twenty-one usability checks. NASolve
+continues with notes while retaining unreported convergence and other findings.
+C84 prepares source-qualified linked contexts and tests the recovered definitions
+in the fixed mixed model with the unchanged NARestraints policy. Local validation
+passes 343 focused / 4,598 full tests plus source-removed cold preparation/readback
+with no SDK process. Fresh Mac C84, production adoption and scientific
+qualification remain pending.
 
 
 

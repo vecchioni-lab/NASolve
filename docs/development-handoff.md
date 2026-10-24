@@ -34,25 +34,44 @@ changes remain recorded. Zero fixed native interpretations run. Preserve this
 REVIEW and its correctly triggered guard; do not add an IGU coverage exception.
 The exact native causal boundary and any SMILES/seed cause are unobserved.
 
-**Next delivery is C83:** `83_Cedar_probe_mixed_recovery.py`, built with
-`scripts/build_mixed_recovery_probe.py`. Fetch from build 82 into a new detached
-build 83 and supply the exact C82 ZIP. Select numerically deficient components
-by recomputing hard capability failures from actual frozen rows, independent of
-residue code; IGU is the current single selection. Renamed-component, multiple-
-failure and valid-bystander regressions protect this rule. Prepare a
-separate source-native complete dictionary through the existing CCTBX builder
-adapter, fresh installed API/source pins and bounded optimization. Preserve written
-output and stopping evidence. Conditional isolated source-seed/generated-output
-native usability uses existing qualifiers and decisions. No Coot/ReadySet repeat,
-full-scaffold substitution, cache-store write or production adoption is requested.
-Local focused validation passes 242 tests in 28.86 seconds on code checkpoint
-`6b941bcc37a6603ca24ecc3b4245eeeef8c3f7f0`. Source-removed cold preparation and
-standalone readback pass, preserving all parent inputs without an SDK process;
-the frozen full suite passes 4,553 tests, two skips and 276 subtests in 520.98
-seconds, including all thirty-four final new recovery/ferry cases. Fresh Mac
-recovery, linked/full NAR mechanics and scientific qualification remain pending. The record
-is `mixed_component_recovery_2026_10_24`. Original C82 local validation remains
-unchanged under `mixed_pair_native_membership_2026_10_23`, with its separate return.
+**Returned C83 passes source-bound isolated recovery.** All 445 payloads, the
+163-member runtime and the exact C82 parent verify. The source-native complete
+IGU builder finishes in 20.95 seconds with exit zero and `NOT_REPORTED` stopping.
+Its separate candidate preserves the neutral source's 37 atoms/39 bonds, charges
+and finished source-relative sugar configuration, replacing the zero C2–N3 target
+with 1.397 Å / 0.030 Å ESD. Both fixed native cases pass all twenty-one usability
+checks, two finite repeated evaluations each and exact covalent/API comparison.
+Formal-charge readback is unsupported. The automatic isolated choice is
+`source_native_generated` with `CONTINUE_WITH_NOTES`; no CIF approval is required.
+Written non-polymer metadata and internal A:6 still require explicit source-bound
+DNA/link context. The original C82 REVIEW and all separate source-state findings
+remain intact. Original C83 local validation (242 focused / 4,553 full and cold
+readback) is unchanged; the return is appended separately in
+`mixed_component_recovery_2026_10_24`.
+
+**Next delivery is C84**, built with
+`scripts/build_mixed_linked_recovery_probe.py` from a new detached worktree.
+Consume the exact C83 capsule as data. Prepare generic recovered-component linked
+contexts with the existing source-qualified API, preserve all unselected parsed
+rows and unrelated bytes, and interpret the same fixed model/bundle twice:
+declared NA additions disabled baseline, then the exact original active
+NARestraints pairing/stacking policy and declared contexts; native secondary-
+structure guessing stays disabled in both, at most sixty seconds per read. Only recovered components get metadata/context projection; unrelated
+groups and the existing full-model DNA-classification gate remain unchanged.
+Overall REVIEW may coexist with passing link/NAR subsets. No Coot/ReadySet,
+generation, coordinate optimization, cache-store write, adoption or refinement
+is requested. Local focused validation passes 343 tests in 45.73 seconds across
+sixteen files on `2ba5f388405196f550bd98cde7bf64c8ff45748c`; all forty-five new
+cases are frozen before full collection. Source-removed cold preparation and
+standalone readback pass with 164 runtime members and all 445 C83 payloads
+preserved. All subprocesses are forbidden; original sources/model/policy and
+configuration/edit/store fixtures remain intact. Owned temporary views are
+explicitly retired before deny-read proof; guarded automatic cleanup is not
+qualified. The full suite passes 4,598 tests, two skips and 276 subtests in
+637.71 seconds, with no source/script/test changes after the checkpoint and no
+post-collection supplement. Fresh Mac C84 results remain pending. Linked mechanical qualification stays separate from
+chemical-state/scientific findings. The new
+record is `mixed_linked_recovery_2026_10_24`.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.

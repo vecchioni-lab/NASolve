@@ -72,7 +72,7 @@ def _native_ok(capture):
         and native.get('unsupported_fields') == [] and native.get('inventory_detail') == 'linked')
 
 
-def qualify_mixed_native(before, after, model, active_phil, plan, sources, dictionaries=()):
+def qualify_mixed_native(before, after, model, active_phil, plan, sources, dictionaries=(), *, site_projections=None):
     """Compare active NAR membership using freshly resolved native atom indices.
 
     PDB-order request indices from the compiler are never native indices. The
@@ -143,6 +143,15 @@ def qualify_mixed_native(before, after, model, active_phil, plan, sources, dicti
         projections = {site: (projection_files[code], code) for site, code in plan['target_site_components'].items()
             if code in projection_files}
         checks['explicit_effective_dictionary_coverage'] = set(projection_files) >= set(sources) - CANONICAL
+        if site_projections is not None:
+            valid = (isinstance(site_projections, dict) and bool(site_projections)
+                and all(site in projections and isinstance(item, (list, tuple)) and len(item) == 2
+                    and item[1] == plan['target_site_components'][site]
+                    and dictionary_component_codes(Path(item[0])) == {item[1]}
+                    for site, item in site_projections.items()))
+            checks['explicit_site_projection_scope'] = valid
+            if not valid: raise ValueError('Explicit site projection differs from the declared component/site')
+            projections.update({site: (Path(path), code) for site, (path, code) in site_projections.items()})
         projection_checks = definition_projection_checks(after, projections)
         checks['exact_explicit_effective_definitions'] = bool(projection_checks) and all(r['status'] == 'PASS' for r in projection_checks)
         for code in ['PDU', '5PC']:

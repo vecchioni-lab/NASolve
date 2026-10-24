@@ -706,8 +706,87 @@ subprocesses are forbidden; the standalone reader survives parent/session/runtim
 removal.
 Configuration, everyday edits and storage are preserved, with 52,410 simulated
 macOS path operations bounded at 210 absolute/68 component bytes. These are
-packaging and prepared-input checks; fresh Mac C83 recovery/native results remain
-pending.
+packaging and prepared-input checks; the subsequent fresh C83 result and C84
+linked-mechanics boundary are recorded below.
+
+Returned C83 verifies all 445 payloads, the exact 163-member runtime and the
+complete C82 parent: all 364 payloads plus its manifest remain byte-identical.
+Maintained trusted-source replay reproduces the source pins, prepared-object
+worker, candidate and isolated decision without executing captured Python.
+The Phenix 2.2.1-6174 source-native complete builder finishes in 20.95 seconds
+with exit zero and stopping `NOT_REPORTED`. It preserves the neutral source's
+37 atoms, 39 bonds, formal charges and finished source-relative sugar
+configuration. The recovered C2–N3 target is 1.397 Å / 0.030 Å ESD; the original
+zero target remains immutable in C82. Source-seed and generated-output native
+reads each pass all twenty-one usability checks and two finite repeated fixed
+energy/gradient evaluations, with the same covalent proxies and installed API
+sources. Native formal-charge readback remains unsupported. NASolve selects
+`source_native_generated` with `CONTINUE_WITH_NOTES`, without student CIF review.
+This is isolated usability: the written group is still non-polymer despite native
+DNA classification, and A:6 requires explicit source-qualified internal context.
+Convergence, independent absolute CIP, other source-state findings and linked
+mixed-model membership remain separate.
+
+C84 tests that remaining linked mechanics boundary in a separate bundle. Select
+recovered components from the verified isolated choices and actual model sites,
+independently of residue name; IGU is the current observed case. Reuse existing
+`prepare_linked_component` source-qualified DNA metadata and site-context
+preparation. Replace only the selected component definitions in copied mixed
+containers, preserving every unselected parsed row and unrelated resource byte.
+The exact constructed coordinates, frozen plan and declared NARestraints
+pairing/stacking policy remain unchanged. Only recovered-component metadata is
+projected; unrelated non-polymer/ligand groups and the existing full-model DNA
+classification gate are retained. Overall REVIEW may therefore coexist with
+passing specific link/NAR checks. No general header or source-state repair is
+claimed. An additive optional `site_projections` argument binds the existing
+mixed native qualifier to exact declared site/component projections; calls
+without it retain their original behavior. Retained parsed block text is exact
+after the existing reader's newline normalization and trailing CR/LF separator
+trimming; unselected parsed rows are exact.
+Parent report/source hashes bind preserved findings without using derived
+floating geometry as a content identity.
+
+Methods: `audit_mixed_linked_recovery` reads the same prepared bundle twice at
+fixed coordinates: the baseline disables declared NA additions, and the active
+read uses the original NARestraints policy and declared contexts. Native
+secondary-structure guessing stays disabled in both. Supported nonbranched
+contexts follow frozen declared incoming/outgoing topology and exact terminal
+inventory; ambiguous or branched contexts require a wider explicit adapter.
+Require exact named native membership/link checks, finite fixed evaluations,
+selected modifiers/heavy proxies and linked-phosphate neighbor/angle coverage.
+Each interpretation has at most sixty seconds. The existing unsupported-formal-charge allowance is
+retained without claiming native charge confirmation. Chemical-state findings
+remain visible separately from mechanics. The ferry accepts the exact C83 ZIP,
+explicit Phenix root, native deadline and inspect-only mode, with no generation/step flags. Parent transport
+retains 128 MiB total / 32 MiB member limits and all original payloads; compact
+report references avoid another large receipt copy. Keep the original model and
+resources available with notes. This diagnostic requests no Coot, ReadySet, generation,
+model optimization, component-store publication, production adoption,
+refinement or diffraction input. Local focused validation passes 343 tests in
+45.73 seconds across sixteen files on code checkpoint
+`2ba5f388405196f550bd98cde7bf64c8ff45748c`. All forty-five new cases (thirty-two
+module, thirteen ferry) are frozen before full-suite collection. The full suite
+passes 4,598 tests, two skips and 276 subtests in 637.71 seconds, with no source,
+script or test changes after the checkpoint and no post-collection supplement. Source-removed cold preparation and standalone readback pass with
+164 frozen runtime members and a 543-payload capsule preserving all 445 C83
+payloads plus its manifest exactly. The original sixteen sources, nine effective
+dictionary files, model, plan and active/disabled policy remain intact. The IGU
+internal A:6 projection has 34 atoms/22 heavy atoms, removes only `OP3`, `HOP3`
+and `HO3'`, and retains `HOP2`. Source clones are absent and all subprocesses are forbidden.
+Configuration, everyday edits and the component store remain unchanged; 88,707
+simulated macOS path operations stay within 237 absolute/68 component bytes.
+Standalone readback succeeds after parent/archive/session/runtime removal and
+explicit retirement of owned temporary views. Private OS instrumentation
+disturbed temporary cleanup, so guarded automatic cleanup is not qualified;
+no product cleanup defect is inferred. Fresh Mac C84 native results remain
+pending; these prepared-input/fake-tool checks are not SDK qualification. The report contract is
+`cif-mixed-linked-component-recovery-v1`, stored in `mixed_linked_recovery.json`
+under the `mixed_linked_recovery_directory` anchor. `read_mixed_linked_recovery`
+reconstructs frozen selection, context preparation, bundle and exact native
+input/specification/output/qualification evidence for portable readback. Status
+is `PREPARED_ONLY`, `MIXED_LINKED_RECOVERY_MECHANICS_PASS` or `REVIEW`; a mechanics
+pass does not adopt the bundle or resolve chemical-state/scientific findings.
+
 
 
 

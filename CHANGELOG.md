@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Test recovered component dictionaries in the fixed mixed-model context
+
+- Verify returned C83: all 445 payloads and the exact C82 parent; source-native
+  IGU generation preserves source graph, charges and finished sugar configuration.
+  Both fixed isolated native cases pass twenty-one checks and repeat evaluations;
+  select automatic continuation with notes while retaining unreported convergence.
+- Add a generic C84 linked-context diagnostic using existing source-qualified
+  preparation, selective component replacement and the unchanged mixed model
+  and NARestraints policy. Keep unselected parsed rows and unrelated bytes intact;
+  retain unrelated group/state findings and the existing full-model DNA gate.
+- Compare the same prepared bundle with declared NA additions disabled and with
+  the exact active policy; native secondary-structure guessing stays disabled.
+  No Coot/ReadySet, generation, model optimization, cache publication, adoption or
+  refinement is requested. Local validation passes 343 focused / 4,598 full tests
+  (two skips, 276 subtests, 637.71 s), including all forty-five final new cases
+  frozen before collection. Source-removed cold preparation/readback passes with
+  every C83 payload preserved and no SDK process. Fresh Mac C84 remains pending. Source-state findings and scientific qualification stay separate.
+
+
 ### Recover hard-invalid generated component numerics from the frozen source
 
 - Verify returned C82: one Phenix 2.2.1-6174 ReadySet call preserves constructed
