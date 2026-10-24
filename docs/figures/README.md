@@ -282,7 +282,14 @@ pass. Near-linear propynyl torsion conditioning is a hypothesis, not a proved
 native defect. C91 adds fixed-endpoint torsion isolation without another optimizer;
 1,133 focused / 5,162 full tests, actual-parent SDK-free preparation/readback and
 source-removed inspect/standalone replay pass with zero new native processes.
-Actual Mac C91 fixed-torsion execution remains pending.
+Returned C91 completes the fixed audit with all group comparisons passing.
+Its six remaining local flags are three directions in both orders of one
+near-linear torsion; all agree at 1e-9 Å but lack an adjacent passing pair.
+Guarded C92 endpoint qualification adds evidence-selected finer samples and
+conditional unchanged native PDB readback, with automatic usable fallback and
+no new optimization. All 149 final new cases, 1,282 broader focused and 5,311
+complete-suite tests pass on frozen source; source-removed and actual Mac results
+remain pending.
 Source-state findings, scientific qualification, adoption and the ordinary full
 run remain separate.
 

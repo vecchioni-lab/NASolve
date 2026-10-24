@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify saved endpoint derivatives with guarded finer samples
+
+- Verify returned C91: all group attribution and finer group checks pass, while
+  three local directions in both torsion orders lack an adjacent passing pair.
+  Their smallest-step agreement and approximately quadratic error reduction
+  support near-linear finite-step conditioning, without proving a native bug.
+  Preserve the original local validation and actual C90/C91 verdicts separately.
+- Add an evidence-selected fixed-coordinate recheck with unchanged tolerances,
+  two adjacent passing new samples, actual displacement and floating-point
+  resolution guards. Preserve all earlier positive proofs and recheck exact
+  original failed whole-objective/family directions under the same manager.
+- Require unchanged serialization, conditional native PDB identity/definition/
+  proxy readback and a nonworse fixed objective before selecting the separate
+  saved endpoint. Any optional failure retains the usable constructed model
+  with notes. No optimizer, chemistry/mechanics edit, adoption, cache write,
+  refinement or student CIF approval is added. All 149 final new cases are frozen
+  before full collection: 61 module / 88 ferry cases and 1,282 broader focused
+  tests across thirty-seven files pass. The same frozen checkpoint passes 5,311
+  complete-suite tests (two skips, 276 subtests, 1,027.37 s), with no later source
+  edits or test supplement. Source-removed and actual Mac results remain pending.
+
+
 ### Isolate saved-endpoint torsion conditioning without optimization
 
 - Verify returned C90 and retain its original local evidence. The fixed target
@@ -28,7 +50,7 @@ entries are reconstructed from repository history.
   checkpoint, with no later source/script/test/figure changes or supplement.
   Source-removed inspect/standalone replay passes with zero SDK/subprocess launches,
   exact opaque C90 and embedded C89 archives preserved once, and unchanged outer
-  archive bounds. Actual Mac C91 fixed-torsion execution remains pending.
+  archive bounds. Its actual Mac return is recorded separately in the next entry.
 
 
 ### Trial geometry from the freshly qualified mixed manager

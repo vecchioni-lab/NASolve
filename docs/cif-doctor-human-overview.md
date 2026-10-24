@@ -1,20 +1,22 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-24:** offline component/restraint assessment,
-report-only PostMR integration, explicit source/candidate comparison and two
-bounded preparation recipes, dictionary coordinate-degeneracy checks, and
-explicit whole-component numerical candidate generation and a separate native
-bundle diagnostic, explicit per-site linked-state preparation and native
-qualification checks, and bounded source-declared aromatic representation
-comparison. Cedar 06 completed native candidate generation and stopped at its
-CGY representation gate. Cedar 08 completed linked/shared-code native
-interpretation with matching site and proxy evidence. Cedar 09 recovers native
-DNA metadata at all four linked sites; 29 checks pass and four formal-charge
-checks remain unsupported, preserving the REVIEW verdict. Terminal chemistry
-and numerical/stereochemical review remain open. The [command guide](cif-doctor.md) owns operational
-details; the [implementation map](cif-restraint-doctor-implementation.json)
-separates the deployed software from proposed extensions. Update this overview
-and its figure whenever the feature's behavior, dependencies or claims change.
+**Implemented scope, updated 2026-10-24:** CIF Doctor assesses component graphs
+and numerical restraints, records source-preserving PostMR audits, and provides
+explicit preparation, native interpretation and bounded geometry diagnostics.
+Supported ordinary construction preserves whole connected modified bases;
+source-bound qualified dictionaries can be saved locally and reused by ordinary
+PostMR before ReadySet. The diagnostic APIs compare component/linked chemistry,
+exact native restraint membership, numerical derivatives and saved coordinate
+candidates under declared NARestraints pairing/stacking policy.
+
+The ordinary assessment hooks remain report-only. Explicit diagnostic recovery
+and qualification are implemented separately from automatic repair on a cache
+miss, ordinary end-to-end candidate adoption and solution-PDF integration.
+No individual mechanics or numerical test establishes scientific correctness.
+The [command guide](cif-doctor.md) owns operational contracts; the
+[implementation map](cif-restraint-doctor-implementation.json) distinguishes
+implemented APIs from planned orchestration. This overview and its editable
+figure describe the current capabilities and their limits.
 
 ## What it does
 
@@ -44,32 +46,39 @@ stereochemical inversion is a distinct chemical change, including for ATL.
 
 The implemented decision core preserves source authority, excludes demonstrated
 unusable candidates and compares energy only for the same fixed objective.
-Unknown stereo remains unknown. PostMR now stores a concise solution-report
-summary alongside its detailed assessment. C55 adds an opt-in isolated native
-usability-to-decision adapter; corrected replay now passes its six returned
-native cases. Returned C56 verifies that replay. C57 adds source-declared DNA
-metadata restoration with automatic fallback to the verified original if its
-isolated native comparison fails. All six C57 native comparisons pass and all
-three components select the restored header with notes. Returned C58 passes
-all three separate short-chain linkage controls. Returned C59 qualifies DP in
-the actual full scaffold and selects it with notes. Returned C60 retains a
-usable geometry endpoint after fresh derivatives and exact native readback pass,
-while reporting nonconvergence. Returned C61 passes all 15 native staged-bundle
-checks for that model and its exact restraints. Returned C62 completes Coot
-construction but retains three whole raw sites
-because of unmatched OP3; rigid base transport is not exercised. C63 prepares
-source-proven internal-phosphate context before ordinary connected-base
-restoration and tests it through the same API. Unsupported raw sites remain
-usable with notes. Automatic production recovery/adoption, generic NAR
-compilation, production checkpoints/refinement and PDF rendering remain planned.
-Development
-diagnostics can retain REVIEW without asking students to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
+Unknown stereochemistry remains unknown. PostMR stores a concise solution-report
+summary alongside its detailed assessment. Explicit native diagnostics test
+isolated components, declared DNA metadata, linked sites and full-model bundles;
+bounded geometry trials can select a separately checked endpoint or retain the
+verified original automatically. Nonconvergence and pucker changes are notes;
+contradictory chemistry, missing identities or failed fixed-mechanics evidence
+exclude the optional candidate. Scientific qualification remains a separate task.
 
-The planned automatic workflow must save usable repairs locally and reuse them
-for later matching chemistry. The repaired component dictionary is independent
-of a new crystal's coordinates; site modifiers and native compatibility still
-need their own checks. Each run retains exact selected bytes and inherited
-notes. This persistent store is required integration work, not yet deployed.
+Ordinary construction and cache acquisition are implemented: Coot construction
+uses source-qualified phosphate contexts and whole connected-base restoration,
+and PostMR can reuse an eligible saved dictionary before ReadySet. Explicit
+NARestraints compilation and fresh native membership/derivative controls are
+available through diagnostics. Automatic recovery on a cache miss, integration
+of newly qualified candidate bundles into the complete ordinary diffraction
+run, production checkpoint adoption and automatic solution-PDF rendering remain
+planned. Development diagnostics may retain `REVIEW` without asking students
+to inspect CIFs. See the [continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions).
+
+### Reuse qualified dictionaries locally
+
+The persistent component store saves qualified numerical dictionaries and
+reuses their exact bytes for later matching source chemistry. Entries are bound
+to source hashes and authority, preparation recipe, check policy and consumer
+identity; a residue label alone is not a cache key. Original producer and
+nonconvergence notes survive reuse. Each run freezes independent selected copies,
+so a later cache update cannot rewrite an earlier result.
+
+Ordinary PostMR consults this store before ReadySet. A missing, changed,
+unsupported or corrupt entry retains ordinary source preparation with notes.
+Changed consumers need requalification; current site modifiers and linked/model
+compatibility remain separate checks. The stored component numerics describe
+chemistry, not a transferable set of crystal coordinates. See
+[persistent local reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
 
 ## How it works
 
@@ -134,7 +143,7 @@ the native geometry-restraint proxies constructed by Phenix.
 | Phenix ReadySet and Coot | External PostMR preparation/construction programs surrounding the audit hooks; neither is required for a standalone dictionary assessment. |
 | Phenix eLBOW, explicitly requested | Generates a separate numerical candidate from frozen chemical input and independent source ideal coordinates; never adopts it automatically. |
 | Installation-bound `phenix.python`, explicitly requested | Uses installed iotbx/libtbx/mmtbx readers and monomer libraries to interpret a copied model/effective dictionary/parameter bundle and inventory the resulting atom/proxy evidence. |
-| wwPDB CCD and NARestraints | CCD supplies separate source definitions; the NARestraints workbook supplies pairing roles and test-case selection. Neither is automatically promoted to authority for every chemical state. |
+| wwPDB CCD and NARestraints | CCD supplies source chemical definitions. NARestraints supplies declared pairing roles and stacking policy; explicit native diagnostics disable competing secondary-structure guessing. Neither selects an experimental protonation or tautomer state. |
 
 Standalone assessment runs locally and offline. It uses no language model,
 chemical-restraint generator or new cheminformatics package. Public CCD
@@ -2692,8 +2701,105 @@ guard checks 186,255 operations at maximum path/component lengths of 231/45 byte
 configuration, authorized edits, the component store and ambient import isolation
 remain intact. Five owned temporary views are explicitly retired; guarded
 automatic cleanup is not claimed. The report stays `PREPARED_ONLY`. Actual Mac
-C91 fixed-endpoint execution remains pending; scientific qualification and the
+C91 fixed-endpoint execution was pending at that original validation checkpoint;
+its actual return is recorded separately below. Scientific qualification and the
 ordinary full run remain separate.
+
+### Returned fixed-endpoint torsion evidence
+
+Returned C91 completes one Phenix 2.2.1-6174 worker in 6.156328 seconds. All 68
+payloads and their manifest verify; the exact compressed C90 archive and its
+embedded C89 archive remain byte-identical. The 168-member runtime and reported
+runner hash reproduce exactly. All 9,504 paired single/container and 528 group
+evaluations complete within their separate limits. Full/selected/remainder
+attribution, saved-family agreement and finer group derivatives pass at all
+three saved coordinate cases. Initial and PDB-rounded local derivatives pass.
+
+Six full-precision local direction/order pairs remain under review: three unique
+directions in both orders of one PDU D:5 C5-C5A-C5B-C5M torsion. Every smallest
+1e-9 Å sample agrees within the original tolerance, but 1e-8 Å does not, so the
+required adjacent passing pair is absent. The roughly hundredfold error decrease
+for a tenfold step reduction supports second-order finite-step conditioning near
+collinearity; it does not establish a native analytical-gradient defect. This
+returned component/site is an observation, not a selection exception.
+
+Maintained SDK-free replay reproduces the report in 52.203912 seconds, preserving
+all 500 staged scientific files with zero subprocess, native or pickle calls.
+Original C90/C91 records and C91 local validation remain unchanged. C91 does not
+requalify the endpoint: `verified_constructed_model` remains selected with
+`CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
+
+### Guarded qualification of a saved endpoint (C92)
+
+C92 qualifies the already saved endpoint through a separate evidence policy;
+it does not rerun optimization or relabel the original C90/C91 verdicts. Its
+inputs are five explicit torsion, geometry, gradient, context and linked-parent
+views, bound to the exact original C91 archive. The bound C91 report supplies
+the C90 checksum required by the unchanged earlier reader. All source chemistry,
+NARestraints pairing/stacking authority, native kernels and previous run artifacts
+remain unchanged.
+
+Methods: select unresolved local direction/order pairs from verified C91 evidence
+and reconstruct the exact failed original C90 whole-objective/family directions,
+without residue-name or proxy-index exceptions. Retain every original positive
+sampled proof. At fixed coordinates evaluate a six-step resolution window,
+1e-7, 1e-8, 3e-9, 1e-9, 3e-10 and 1e-10 Å, using the same absolute/relative 1e-4
+tolerances. These are fresh observations, not six steps all smaller than C91's;
+the wider window is needed when the tiniest displacements become quantized.
+Require two adjacent passing new samples, actual representable central
+displacement, central symmetry and derivative floating-point resolution.
+Representation and target-ULP resolution screens each consume at most ten percent
+of the unchanged comparison bound; they do not rigorously bound every internal
+native-kernel error. Fresh repeated baselines for all eight
+families at the initial, full-precision and PDB-rounded coordinates must match
+the pinned sources, exact manager and saved objective. Failed, unresolved or
+unsupported numerical evidence cannot qualify a new endpoint.
+
+Only positive complete sampled derivative evidence permits serialization of the
+saved endpoint and a conditional fresh native PDB readback. The unchanged atom-
+identity serializer and native definition/proxy validators must pass, and the
+same fixed objective must not worsen, before the separate endpoint can be
+selected as `qualified_geometry_endpoint`. Any failed or missing optional gate
+retains `verified_constructed_model` automatically, with notes. Native stopping,
+sugar pucker, source-state limitations and scientific qualification stay distinct
+from this selection; students do not inspect or approve CIF tables.
+
+The additive schema-1 report is `mixed_endpoint_qualification.json`, policy
+`cif-mixed-saved-endpoint-qualification-v1`, anchored at
+`mixed_endpoint_directory`. The API is `qualify_saved_mixed_endpoint` with
+`read_saved_mixed_endpoint` for independent saved arithmetic replay. A fresh
+adaptive worker and at most one conditional native readback are allowed, with a
+120-second default and 600-second maximum deadline. The shared adaptive budget
+is 2,000 calls and 128 selected direction/order or family-direction rows; its
+maximum schedule needs 1,840 calls including 48 fresh family snapshots. The
+actual verified parent selects six local and six family rows, scheduling 204
+calls including those 48 snapshots. Two initial raw full-manager bootstrap
+snapshots are recorded separately and are not part of the adaptive-call counter.
+`PREPARED_ONLY` means no SDK execution. `ADAPTIVE_ENDPOINT_DERIVATIVES_PASS` describes the new sampled proof;
+`MIXED_ENDPOINT_QUALIFIED` additionally requires serialized native readback and
+selection gates. Neither status proves convergence or scientific correctness.
+
+`scripts/build_mixed_endpoint_probe.py` and
+`scripts/mixed_endpoint_probe_template.py` build `92_Cedar_probe_mixed_endpoint.py`.
+The ferry preserves the exact original C91 ZIP once; C90 and C89 stay nested and
+byte-exact, with only five declared temporary views materialized. Existing
+128 MiB total, 32 MiB member and 1,024-entry bounds remain. Captured programs stay
+data. No optimizer, generator, Coot, ReadySet, chemical/mechanical edit, cache
+publication, refinement or production adoption is added.
+
+All 149 final new cases are frozen before complete-suite collection at
+`514db13083e50ac75d53cbf325b7e242dabb7443`: 61 module cases pass in 116.41 seconds
+and 88 ferry cases pass in 5.13 seconds. The module suite executes the actual new
+adaptive worker and conditional native PDB readback through a pinned fake SDK;
+no installed Phenix execution is claimed. Initial fail-before subsets record
+four core API, seven core integration and four ferry failures, separately from
+the final case totals. Broader focused validation passes 1,282 tests across
+thirty-seven files in 446.93 seconds on the same frozen checkpoint. The complete
+suite passes 5,311 tests, two skips and 276 subtests in 1,027.37 seconds. All eight
+source, script, test and figure hashes remain frozen after collection, with no
+later supplement. Final source-removed validation is still running. Actual Mac
+C92 endpoint qualification remains pending.
+
 
 
 

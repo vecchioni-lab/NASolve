@@ -29238,6 +29238,388 @@
     ],
     "builder": "scripts/build_mixed_torsion_probe.py",
     "template": "scripts/mixed_torsion_probe_template.py",
-    "compatibility": "ADDITIVE_DIAGNOSTIC_AND_SCHEMA_1_REPORT; EXISTING_READERS_PRODUCTION_PATHS_NATIVE_KERNELS_AND_EARLIER_RUNS_UNCHANGED; NO_OLD_ARTIFACT_MIGRATION"
+    "compatibility": "ADDITIVE_DIAGNOSTIC_AND_SCHEMA_1_REPORT; EXISTING_READERS_PRODUCTION_PATHS_NATIVE_KERNELS_AND_EARLIER_RUNS_UNCHANGED; NO_OLD_ARTIFACT_MIGRATION",
+    "returned_C91": {
+      "recorded_date": "2026-10-24",
+      "status": "MIXED_TORSION_AUDIT_COMPLETE; LOCAL_FULL_PRECISION_FINE_REVIEW_RETAINED",
+      "archive": {
+        "filename": "91_Cedar_bf8c95c0_mixed_torsion_review.zip",
+        "sha256": "8821ab450211aab992dd764e5c8eb08afde8eaff6caf943d853eb342e22319d8",
+        "bytes": 15023841,
+        "payloads": 68,
+        "uncompressed_bytes": 28884382,
+        "CRC_manifest_hashes": "PASS",
+        "exact_opaque_C90_sha256": "b9d100bf2366fc524921f053b91262a26a848910c3ddf581d49be865f004f44e",
+        "exact_C90_payloads": 76,
+        "exact_embedded_C89_payloads": 937
+      },
+      "source_commit": "e1438e4db05cf6f0fc5db51129fedeb35fcea3e2",
+      "runner_sha256": "0661d2218c631b852e77165a5591e686a26c2479a1dfc6c5d731f9165a126794",
+      "runtime_members": 168,
+      "runtime_archive_sha256": "ab0db15dbad16c84278e0f423fee84a8caa985727c509d9ec9fb0613cbd1c3a0",
+      "runtime_and_template_match": "EXACT_RECONSTRUCTION; NAR_DIRTY_METADATA_ONLY; SOURCE_BYTES_UNCHANGED",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "phenix_version": "2.2.1-6174",
+      "execution": {
+        "elapsed_seconds": 6.156328,
+        "returncode": 0,
+        "status": "COMPLETED"
+      },
+      "new_native_calls": 1,
+      "paired_single_container_evaluations": 9504,
+      "group_evaluations": 528,
+      "diagnostic_counters": "SEPARATE_CAPS; ADDITIONAL_INITIAL_RAW_MANAGER_BINDING_SNAPSHOTS_NOT_INCLUDED",
+      "summary": {
+        "cases": {
+          "full_precision": {
+            "group_attribution_consistent": true,
+            "group_fine_only_directions": 8,
+            "group_sampled_agreement": true,
+            "local_coarse_review_directions": 22,
+            "local_fine_only_directions": 16,
+            "local_fine_review_directions": 6,
+            "local_sampled_agreement": false,
+            "selected_proxy_count": 8
+          },
+          "initial": {
+            "group_attribution_consistent": true,
+            "group_fine_only_directions": 0,
+            "group_sampled_agreement": true,
+            "local_coarse_review_directions": 0,
+            "local_fine_only_directions": 0,
+            "local_fine_review_directions": 0,
+            "local_sampled_agreement": true,
+            "selected_proxy_count": 8
+          },
+          "pdb_rounded": {
+            "group_attribution_consistent": true,
+            "group_fine_only_directions": 0,
+            "group_sampled_agreement": true,
+            "local_coarse_review_directions": 2,
+            "local_fine_only_directions": 2,
+            "local_fine_review_directions": 0,
+            "local_sampled_agreement": true,
+            "selected_proxy_count": 8
+          }
+        },
+        "endpoint_requalification": "NOT_RUN",
+        "full_native_family_coverage": "CHECKED_BY_INDEPENDENT_GROUP_COMPARISON",
+        "positive_constant_count": 0,
+        "saved_family_matches": {
+          "full_precision": true,
+          "initial": true,
+          "pdb_rounded": true
+        },
+        "selected_proxy_count": 8
+      },
+      "remaining_local_fine_review": {
+        "direction_order_pairs": 6,
+        "unique_directions": 3,
+        "distinct_proxies": 1,
+        "component": "PDU",
+        "site": "D:5",
+        "atom_path": [
+          "C5",
+          "C5A",
+          "C5B",
+          "C5M"
+        ],
+        "native_index": 584,
+        "minimum_sine": 3.314055611181453e-06,
+        "smallest_step_angstrom": 1e-09,
+        "all_six_smallest_step_samples_consistent": true,
+        "adjacent_fine_pair": "NOT_ESTABLISHED",
+        "directional_tolerance": {
+          "absolute": 0.0001,
+          "relative": 0.0001
+        },
+        "forward_direction_errors": [
+          {
+            "direction": "C5B_X",
+            "analytical": 18063.21483073091,
+            "error_at_1e_minus_7": 546.6978715876248,
+            "error_at_1e_minus_8": 5.4454757132261875,
+            "error_at_1e_minus_9": 0.05297024884202983,
+            "bound_at_1e_minus_9": 1.8064214830730911
+          },
+          {
+            "direction": "C5B_Y",
+            "analytical": -59293.86589196445,
+            "error_at_1e_minus_7": 1379.5755136475927,
+            "error_at_1e_minus_8": 13.826000165354344,
+            "error_at_1e_minus_9": 0.14211852277367143,
+            "bound_at_1e_minus_9": 5.9295008010487225
+          },
+          {
+            "direction": "ALTERNATING_LOCAL",
+            "analytical": -66347.81692151092,
+            "error_at_1e_minus_7": 2959.8181936490873,
+            "error_at_1e_minus_8": 29.641642865230097,
+            "error_at_1e_minus_9": 0.20411447987135034,
+            "bound_at_1e_minus_9": 6.634881692151092
+          }
+        ],
+        "single_container_and_reversed_orders": "CONSISTENT_AT_ALL_SELECTED_PROXIES_IN_ALL_THREE_CASES",
+        "interpretation": "SEVERE_NEAR_LINEAR_FINITE_STEP_CONDITIONING; APPROXIMATELY_SECOND_ORDER_ERROR_REDUCTION; NATIVE_ANALYTICAL_GRADIENT_BUG_NOT_ESTABLISHED",
+        "selection_exception": "NONE; COMPONENT_AND_NATIVE_INDEX_ARE_RETURNED_EVIDENCE_ONLY"
+      },
+      "maintained_saved_replay": {
+        "status": "PASS",
+        "seconds": 52.203912,
+        "protected_scientific_files": 500,
+        "all_bytes_unchanged": true,
+        "new_SDK_subprocess_pickle_calls": 0,
+        "captured_code_execution": "NOT_RUN"
+      },
+      "coordinate_decision": {
+        "automatic_adoption": false,
+        "checks": {
+          "qualified_endpoint_derivatives": false
+        },
+        "continue_solving": true,
+        "endpoint_usable": false,
+        "native_usable": true,
+        "notes": [
+          "Stopping, pucker, chirality and residual findings are recorded separately from fixed native mechanics.",
+          "The optional separate endpoint is selected only when its fixed objective and native checks qualify; otherwise the usable starting model is retained."
+        ],
+        "requires_cif_review": false,
+        "scientific_qualification": "NOT_ASSESSED",
+        "selected": "verified_constructed_model",
+        "status": "CONTINUE_WITH_NOTES",
+        "stopping": {
+          "calls": 311,
+          "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+          "iterations": 257,
+          "max_iterations": 1000,
+          "native_criterion_met": false,
+          "reason": "unreported"
+        }
+      },
+      "endpoint_requalification": "NOT_RUN",
+      "model_optimization": "NOT_RUN",
+      "restraint_changes": "NONE",
+      "source_state_findings": "PRESERVED",
+      "scientific_qualification": "NOT_ASSESSED",
+      "automatic_adoption": false,
+      "requires_cif_review": false,
+      "original_C90_and_C91_local_validation": "UNCHANGED; ACTUAL_RETURN_APPENDED_SEPARATELY",
+      "limits": [
+        "Completed arithmetic replay is not endpoint approval or a convergence claim.",
+        "The smallest-step agreement does not satisfy the existing adjacent-passing-step rule.",
+        "No new native gradient defect, automatic production adoption or ordinary full-run qualification is established."
+      ]
+    }
+  },
+  "mixed_saved_endpoint_qualification_2026_10_24": {
+    "status": "FOCUSED_AND_FULL_VALIDATION_PASS; COLD_AND_FRESH_MAC_QUALIFICATION_PENDING",
+    "recorded_date": "2026-10-24",
+    "delivery_prefix": "92_Cedar",
+    "runner_filename": "92_Cedar_probe_mixed_endpoint.py",
+    "module": "src/nasolve/cif_mixed_endpoint.py",
+    "builder": "scripts/build_mixed_endpoint_probe.py",
+    "template": "scripts/mixed_endpoint_probe_template.py",
+    "report": "mixed_endpoint_qualification.json",
+    "report_schema_version": 1,
+    "policy_id": "cif-mixed-saved-endpoint-qualification-v1",
+    "report_anchor": "mixed_endpoint_directory",
+    "prerequisite": {
+      "archive_filename": "91_Cedar_bf8c95c0_mixed_torsion_review.zip",
+      "sha256": "8821ab450211aab992dd764e5c8eb08afde8eaff6caf943d853eb342e22319d8",
+      "source_commit": "e1438e4db05cf6f0fc5db51129fedeb35fcea3e2",
+      "parent_payloads": 68,
+      "parent_bytes": 15023841
+    },
+    "before": "C91 reproduces fixed torsion arithmetic; three directions in both atom orders pass the smallest step but lack adjacent agreement, while C90 retains its usable original-model fallback.",
+    "after": "Recheck evidence-selected boundary directions and the exact original failed whole-model directions with finer guarded samples; qualify a separate saved endpoint only after positive sampled derivatives, unchanged serialization/native readback and a nonworse fixed objective.",
+    "manager": {
+      "atoms": 863,
+      "sites": 42,
+      "parallelity_restraints": 58,
+      "coordinate_cases": [
+        "QUALIFIED_INITIAL_REFERENCE",
+        "SAVED_C90_FULL_PRECISION_ENDPOINT",
+        "SAVED_C90_PDB_ROUNDED_ENDPOINT"
+      ]
+    },
+    "method": {
+      "API": [
+        "qualify_saved_mixed_endpoint",
+        "read_saved_mixed_endpoint"
+      ],
+      "operational_anchors": [
+        "torsion_directory",
+        "geometry_directory",
+        "gradient_directory",
+        "context_directory",
+        "linked_parent_directory"
+      ],
+      "original_C91_archive_sha256": "REQUIRED; OLD_C90_CHECKSUM_TAKEN_FROM_BOUND_C91_REPORT",
+      "selection": "VERIFIED_UNRESOLVED_C91_LOCAL_DIRECTION_EVIDENCE_AND_EXACT_ORIGINAL_FAILED_C90_DIRECTION_NAMES; NO_COMPONENT_NAME_OR_NATIVE_INDEX_EXCEPTION",
+      "new_finite_difference_steps_angstrom": [
+        1e-07,
+        1e-08,
+        3e-09,
+        1e-09,
+        3e-10,
+        1e-10
+      ],
+      "directional_tolerance": {
+        "absolute": 0.0001,
+        "relative": 0.0001
+      },
+      "adjacent_step_agreement": "TWO_ADJACENT_PASSING_NEW_SAMPLES; ORIGINAL_FAILURES_RETAINED",
+      "sample_guards": [
+        "ACTUAL_REPRESENTABLE_CENTRAL_DISPLACEMENT",
+        "CENTRAL_SYMMETRY",
+        "REPRESENTATION_DERIVATIVE_UNCERTAINTY_AT_MOST_10_PERCENT_OF_ORIGINAL_BOUND",
+        "TARGET_ULP_DERIVATIVE_RESOLUTION_AT_MOST_10_PERCENT_OF_ORIGINAL_BOUND"
+      ],
+      "existing_positive_evidence": "BOUND_AND_PRESERVED; NEVER_SYNTHESIZED_OR_RELABELLED",
+      "fresh_baselines": "ALL_EIGHT_FAMILIES_AND_REPEATS_AT_INITIAL_FULL_PRECISION_AND_PDB_ROUNDED_COORDINATES",
+      "source_and_manager_binding": "EXACT_NATIVE_API_SOURCE_FINGERPRINTS_ATOMS_DEFINITIONS_FIXED_PROXIES_AND_OBJECTIVE",
+      "native_torsion_and_global_evaluators": "UNCHANGED",
+      "serializer_and_native_readback": "UNCHANGED_EXISTING_IDENTITY_DEFINITION_AND_PROXY_VALIDATORS",
+      "pairing_and_stacking_authority": "NARestraints; NATIVE_SECONDARY_STRUCTURE_GUESSING_DISABLED",
+      "captured_programs": "DATA_ONLY; NEVER_IMPORTED_OR_EXECUTED",
+      "step_window": "SIX_FRESH_OBSERVATIONS; BROADER_RESOLVED_WINDOW_NOT_ALL_SMALLER_THAN_C91",
+      "floating_point_screen_scope": "RESOLUTION_SCREEN; NOT_A_RIGOROUS_BOUND_ON_EVERY_NATIVE_KERNEL_OPERATION; NO_QUANTIZATION_CORRECTION_TO_ANALYTIC_DERIVATIVE"
+    },
+    "execution_bounds": {
+      "adaptive_native_workers_max": 1,
+      "conditional_native_PDB_readbacks_max": 1,
+      "native_calls_max": 2,
+      "default_timeout_seconds": 120,
+      "timeout_seconds_max": 600,
+      "inspect_SDK_calls": 0,
+      "adaptive_calls_max": 2000,
+      "selected_direction_rows_max": 128,
+      "maximum_expected_adaptive_schedule_calls": 1840,
+      "fresh_family_baseline_and_repeat_snapshots": 48,
+      "actual_saved_parent_local_rows": 6,
+      "actual_saved_parent_family_rows": 6,
+      "actual_saved_parent_expected_adaptive_calls": 204,
+      "additional_raw_bootstrap_manager_snapshots": 2,
+      "adaptive_counter_scope": "SEPARATE_FROM_TWO_INITIAL_RAW_FULL_MANAGER_BOOTSTRAP_SNAPSHOTS"
+    },
+    "statuses": {
+      "PREPARED_ONLY": "NO_SDK_EXECUTION",
+      "REVIEW": "MISSING_OR_UNQUALIFIED_OPTIONAL_ENDPOINT_EVIDENCE; USABLE_ORIGINAL_CONTINUES",
+      "MIXED_ENDPOINT_QUALIFIED": "NEW_SAMPLED_DERIVATIVE_AND_SERIALIZED_NATIVE_ENDPOINT_GATES_PASS; NOT_SCIENTIFIC_APPROVAL"
+    },
+    "derivative_statuses": [
+      "NOT_RUN",
+      "REVIEW",
+      "ADAPTIVE_ENDPOINT_DERIVATIVES_PASS"
+    ],
+    "coordinate_selection": {
+      "success": "qualified_geometry_endpoint",
+      "otherwise": "verified_constructed_model",
+      "status": "CONTINUE_WITH_NOTES",
+      "student_CIF_decision": "NOT_REQUIRED"
+    },
+    "transport": {
+      "mode": "EXACT_ORIGINAL_C91_ZIP_OPAQUE_ONCE",
+      "C90_and_C89_archives": "NESTED_BYTE_EXACT_WITHIN_ORIGINAL_PARENT",
+      "flattened_ancestry": "NOT_COPIED",
+      "temporary_views": "FIVE_EXPLICIT_DECLARED_TORSION_GEOMETRY_GRADIENT_CONTEXT_LINKED_PARENT"
+    },
+    "transport_bounds": {
+      "archive_uncompressed_bytes_max": 134217728,
+      "member_bytes_max": 33554432,
+      "archive_entries_max": 1024
+    },
+    "validation": {
+      "status": "FOCUSED_AND_FULL_VALIDATION_PASS; COLD_VALIDATION_PENDING",
+      "focused": {
+        "status": "PASS",
+        "passed": 1282,
+        "test_files": 37,
+        "seconds": 446.93,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q tests/test_cif_candidate_usability.py tests/test_cif_corrected_geometry.py tests/test_cif_corrected_geometry_probe.py tests/test_cif_dihedral_conditioning.py tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_gradient_audit.py tests/test_cif_gradient_audit_probe.py tests/test_cif_linear_torsion_candidate.py tests/test_cif_linear_torsion_impact.py tests/test_cif_mixed_context.py tests/test_cif_mixed_endpoint.py tests/test_cif_mixed_geometry.py tests/test_cif_mixed_gradient.py tests/test_cif_mixed_linked_recovery.py tests/test_cif_mixed_torsion.py tests/test_cif_native_validation.py tests/test_cif_parallelity_audit.py tests/test_cif_parallelity_audit_probe.py tests/test_cif_parallelity_correction.py tests/test_cif_plane_order_correction.py tests/test_cif_plane_order_probe.py tests/test_cif_replacement_geometry.py tests/test_cif_review_transport.py tests/test_cif_scaffold_candidate.py tests/test_cif_scaffold_return.py tests/test_mixed_context_probe.py tests/test_mixed_context_retry_probe.py tests/test_mixed_context_saved_probe.py tests/test_mixed_endpoint_probe.py tests/test_mixed_geometry_probe.py tests/test_mixed_gradient_probe.py tests/test_mixed_linked_recovery_probe.py tests/test_mixed_linked_recovery_saved_probe.py tests/test_mixed_torsion_probe.py tests/test_phenix_runtime.py tests/test_synthetic_dna_shuttle.py",
+        "code_checkpoint": "514db13083e50ac75d53cbf325b7e242dabb7443"
+      },
+      "complete_suite": {
+        "status": "PASS",
+        "passed": 5311,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 1027.37,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q",
+        "code_checkpoint": "514db13083e50ac75d53cbf325b7e242dabb7443"
+      },
+      "source_removed_portability": "PENDING",
+      "fresh_Mac_endpoint_qualification": "PENDING",
+      "all_final_new_cases_frozen_before_full_collection": 149,
+      "new_cases": {
+        "module": 61,
+        "ferry": 88
+      },
+      "module_final": {
+        "status": "PASS",
+        "passed": 61,
+        "seconds": 116.41,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q tests/test_cif_mixed_endpoint.py",
+        "native_scope": "PINNED_FAKE_SDK_EXECUTES_NEW_ADAPTIVE_WORKER_AND_CONDITIONAL_NATIVE_PDB_READBACK; NO_INSTALLED_PHENIX"
+      },
+      "ferry_final": {
+        "status": "PASS",
+        "passed": 88,
+        "seconds": 5.13,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q tests/test_mixed_endpoint_probe.py"
+      },
+      "initial_fail_before": [
+        {
+          "scope": "INITIAL_CORE_API_CASES_ON_C91_BASE",
+          "failed": 4,
+          "seconds": 0.07
+        },
+        {
+          "scope": "INITIAL_CORE_SDK_INTEGRATION_CASES_ON_C91_BASE",
+          "failed": 7,
+          "seconds": 4.92
+        },
+        {
+          "scope": "INITIAL_FERRY_CASES_ON_C91_BASE",
+          "failed": 4,
+          "seconds": 0.31
+        }
+      ],
+      "frozen_source_script_test_and_figure_sha256": {
+        "src/nasolve/cif_mixed_endpoint.py": "14a478000556a3c2efe0950092c8d63775f30175dcf0e5ffe4018e773969937a",
+        "tests/test_cif_mixed_endpoint.py": "9395641b8d14f95ac7784e5c91ad7232b90f90c2754e243b93b98e91605d0435",
+        "scripts/mixed_endpoint_probe_template.py": "7f84b5313a769290c332177293f4541eefbdf9047fd0690050a210ad37f25cc3",
+        "scripts/build_mixed_endpoint_probe.py": "3a79ae8fb82c5633beb3bccbe9a4a38fb9eea33b8a9953280ca247e55e65a13e",
+        "scripts/build_synthetic_dna_shuttle.py": "abcba5008756343fb7d16e1bb721ff2ece3a40f8766bff4e7550155b73252eae",
+        "tests/test_mixed_endpoint_probe.py": "b485093195361fe312a903c072e77d4c79af38f704bb90f2ffc3455b39b00e39",
+        "docs/figures/build_cif_doctor_overview.py": "267a4ac2f7557475805b5a563114a5c059d847cc57fcbbf66e8b2834ce0ee36d",
+        "docs/figures/cif-doctor-overview.svg": "29c67bd30d4b34286253cab0333543c663b70a98f25d24628871b665d8af8e2e"
+      },
+      "code_checkpoint": "514db13083e50ac75d53cbf325b7e242dabb7443",
+      "full_collection_started_from_frozen_checkpoint": true,
+      "source_scripts_tests_and_figure_unchanged_after_full_collection": true,
+      "post_collection_test_supplement": "NONE"
+    },
+    "compatibility": "ADDITIVE_SCHEMA_1_DIAGNOSTIC_AND_NEW_POLICY; C90_C91_RECORDS_OLD_VALIDATORS_WORKERS_KERNELS_AND_PRIOR_ARTIFACTS_UNCHANGED; NO_MIGRATION",
+    "model_optimization": "NOT_REQUESTED",
+    "chemical_edit": "NOT_REQUESTED",
+    "mechanics_change": "NOT_REQUESTED",
+    "dictionary_generation": "NOT_REQUESTED",
+    "coot_execution": "NOT_REQUESTED",
+    "readyset_execution": "NOT_REQUESTED",
+    "refinement": "NOT_REQUESTED",
+    "component_store_write": "NOT_REQUESTED",
+    "automatic_adoption": false,
+    "requires_cif_review": false,
+    "mtz_used": false,
+    "scientific_qualification": "NOT_ASSESSED",
+    "source_state_findings": "UNCHANGED",
+    "generated_artifacts": "PRIVATE_MODELS_DICTIONARIES_LOGS_CAPTURES_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "remaining_limits": [
+      "All 149 final new cases, 1,282 broader focused tests and 5,311 complete-suite tests pass on the frozen checkpoint. Final source-removed validation is still running; actual Mac C92 native execution remains pending.",
+      "Finite-difference evidence is sampled and floating-point limited; no analytic kernel, convergence or chemical-state guarantee follows.",
+      "Native readback and nonworse fixed-objective gates remain necessary before selecting the separate saved endpoint; the usable original remains automatic fallback.",
+      "Ordinary end-to-end integration, production adoption and scientific qualification remain separate."
+    ]
   }
 }
