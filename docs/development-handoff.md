@@ -89,35 +89,49 @@ all 110 context files and the fallback with zero verification processes. The
 failed worker runs 4.000682 seconds, interprets no model atoms and evaluates no
 energy; all ten OP3-only modifiers use the same scalar shape.
 
-**Next delivery is C87:** `87_Cedar_probe_mixed_context_loops.py`, built with the
-existing `scripts/build_mixed_context_probe.py --delivery-prefix 87_Cedar`.
-Builder default 86 stays compatible. Force an explicit `loop_` for every nonempty
-modifier atom category, independent of row count; change no parsed rows, IDs,
-source/numerical chemistry, native kernels or strict qualification gates.
-Context policy v2 writes the new grammar. The maintained reader regenerates v1
-with exact original scalar bytes and failed report, and v2 with explicit loops.
-Shared `_emit` and old linked preparation remain unchanged.
+**Returned C87 passes native context mechanics.** All 865 payloads and the exact
+C86 parent/manifest verify. Both Phenix 2.2.1-6174 workers exit zero, with 863 atoms,
+forty-two complete DNA sites and two fixed energy snapshots each. All thirty-four
+membership and both sets of twenty saved-parent equivalence checks pass. The
+qualification has 291 PASS / 24 unsupported formal-charge checks, no contradiction,
+and `MIXED_CONTEXT_MECHANICS_PASS`. Source/scientific findings remain separate.
+Original local C87 validation (451 focused / 4,748 full and cold) is unchanged.
 
-Consume the exact C86 capsule as data, verify its saved failure with the legacy
-reader and preserve every payload once through indexed transport. Prepare a
-separate retry with at most two fixed Phenix reads, sixty seconds each, and all
-existing structured atom/proxy, target/category/gradient and full-qualification
-checks. Source-state findings and verified fallback are retained. Final focused
-validation passes 451 tests in 32.33 seconds across eighteen files on
-`b8da8cb21b69087248ddcd9e4c5d0ff40b422ef1`. All thirty-eight new cases
-(seven module, thirty-one ferry) are frozen before full collection. The full
-suite passes 4,748 tests, two skips and 276 subtests in 641.54 seconds,
-with no source/script/test changes after the checkpoint or later supplement.
-Source-removed cold preparation/readback preserves all 697 C86 payloads plus its
-manifest exactly, including the failed attempt. New v2 data are 452,195 bytes;
-all ten OP3-only modifiers use explicit loops, with base/projected/PHIL bytes
-unchanged. Standalone v1/v2 readers pass from the copied new capsule after
+The envelope fails only because 132 positions among 315 unique check rows reorder
+after JSON sorts site-projection keys. All typed complete rows, nested lists,
+other fields and the PASS verdict match exactly. Preserve original failed receipt,
+report and qualification; this is an evidence-order defect.
+
+**Next delivery is C88:** `88_Cedar_probe_mixed_context_replay.py`, using
+`scripts/build_mixed_context_probe.py --delivery-prefix 88_Cedar` and
+`--saved-native-only` on exact C87. Context-local check IDs get deterministic
+writer order and strict legacy row-permutation replay. Only this top-level order
+changes; the existing formal-charge compatibility rule, other nested order,
+shared C85 helpers, chemistry, native kernels and hard gates stay unchanged.
+Context schema 1 and policies v1/v2 remain; no old payload is rewritten.
+
+The maintained reader uses temporary external context/linked-parent views and
+emits compact `saved_mixed_context.json` references under `parent_review`, with
+its receipt pointer under `probe_directory`. Preserve every original C87 payload
+once through indexed transport; do not copy the old scientific subtree. Historical
+native calls are two; new SDK discovery/native/generator/optimizer calls are zero.
+Original continuation notes and native usability are retained automatically,
+without student CIF approval. Final focused validation passes 512 tests in
+25.61 seconds across nineteen files on `aaed1955b166c507ba94be8157bf1bc89c69fd6e`.
+All sixty-one new cases (twenty-eight module, thirty-three ferry) are frozen
+before full collection. The full suite passes 4,809 tests, two skips and
+276 subtests in 599.28 seconds, with no source/script/test changes after the
+checkpoint or later supplement. Source-removed cold saved replay preserves all
+865 C87 payloads plus its manifest and all 297 scientific/context/parent files
+exactly, emitting only a 1,088-byte summary. The standalone reader reproduces
+315 checks and the original mechanics PASS from the copied new capsule after
 original ZIP/session/runtime removal and explicit owned-view retirement; guarded
-automatic cleanup is not claimed. SDK/native/other process calls stay zero;
-configuration, everyday edits and the store are unchanged. Actual Mac C87 parsing
-and fixed-native context results remain pending. No optimizer, Coot/ReadySet,
-generation, cache write, adoption or scientific approval is added.
-The new record is `mixed_context_modifier_grammar_2026_10_24`.
+automatic cleanup is not claimed. SDK discovery, context audit and process calls
+are forbidden; configuration, everyday edits and store fixtures remain intact.
+Returned Mac C88 saved replay remains pending. Source-state findings, scientific
+qualification, cache publication, production adoption and the ordinary full run
+remain separate.
+The new record is `saved_mixed_context_2026_10_24`.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.

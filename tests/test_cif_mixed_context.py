@@ -464,3 +464,80 @@ def test_c87_no_atom_modification_keeps_the_existing_noop_bytes_for_both_policie
             normalize_group=True,policy_id=policy)
         payloads.append((out/receipt['outputs']['modifications']['path']).read_bytes())
     assert payloads==[b'data_mod_context_sites\n# No atom modifications required.\n']*2
+
+
+def context_qualification_evidence():
+    """Generic diagnostic rows, with one existing atom-keyed charge allowance."""
+    from nasolve.cif_mixed_context import POLICY_ID
+    return {'schema_version':1,'policy_id':POLICY_ID,'status':'MIXED_CONTEXT_MECHANICS_PASS',
+        'mechanics_checks_pass':True,'automatic_adoption':False,'scientific_qualification':'NOT_ASSESSED',
+        'checks':[
+            {'check':'active:projected-native-bonds:R:4','status':'PASS','expected_rows':37,'observed_rows':37,
+                'target':1.5,'ordered_atoms':['P','OP1','OP2']},
+            {'check':'baseline:effective-site-formal-charges:R:4','status':'UNSUPPORTED',
+                'unavailable':[{'atom_id':'P','expected':'0','observed':None},
+                    {'atom_id':'OP2','expected':'0','observed':None}],'contradictions':[]},
+            {'check':'baseline:projected-native-angles:X:19','status':'PASS','expected_rows':12,'observed_rows':12}],
+        'membership':{'checks':[{'check':'native-policy','status':'PASS'},{'check':'all-links','status':'PASS'}]},
+        'saved_parent_equivalence':{'baseline':{'mechanics_unchanged':True},'active':{'mechanics_unchanged':True}}}
+
+
+@pytest.mark.parametrize('legacy',[False,True])
+def test_c88_check_identity_replay_preserves_complete_rows_and_existing_charge_allowance(legacy):
+    from nasolve.cif_mixed_context import (_canonical_context_qualification,context_qualification_replays,
+        LEGACY_POLICY_ID)
+    recorded=context_qualification_evidence()
+    if legacy:recorded['policy_id']=LEGACY_POLICY_ID
+    fresh=deepcopy(recorded);fresh['checks'].reverse()
+    next(r for r in fresh['checks'] if 'formal-charges' in r['check'])['unavailable'].reverse()
+    snapshots=deepcopy(recorded),deepcopy(fresh)
+    canonical=_canonical_context_qualification(recorded)
+    assert [r['check'] for r in canonical['checks']]==sorted(r['check'] for r in recorded['checks'])
+    assert context_qualification_replays(recorded,fresh)
+    assert _canonical_context_qualification(fresh)==canonical
+    assert (recorded,fresh)==snapshots
+
+
+@pytest.mark.parametrize('defect',['policy','empty_checks','missing_checks','duplicate_id','missing_id','empty_id',
+    'nonstring_id','invalid_status','missing_status','row_not_dict','tuple_checks','missing_verdict',
+    'integer_verdict','bad_global_status','duplicate_charge_atom'])
+def test_c88_malformed_context_check_identity_or_verdict_cannot_replay_even_against_itself(defect):
+    from nasolve.cif_mixed_context import context_qualification_replays
+    value=context_qualification_evidence()
+    if defect=='policy':value['policy_id']='UNRELATED_DIAGNOSTIC_POLICY'
+    elif defect=='empty_checks':value['checks']=[]
+    elif defect=='missing_checks':del value['checks']
+    elif defect=='duplicate_id':value['checks'][1]['check']=value['checks'][0]['check']
+    elif defect=='missing_id':del value['checks'][0]['check']
+    elif defect=='empty_id':value['checks'][0]['check']=''
+    elif defect=='nonstring_id':value['checks'][0]['check']=17
+    elif defect=='invalid_status':value['checks'][0]['status']='CLOSE_ENOUGH'
+    elif defect=='missing_status':del value['checks'][0]['status']
+    elif defect=='row_not_dict':value['checks'][0]='PASS'
+    elif defect=='tuple_checks':value['checks']=tuple(value['checks'])
+    elif defect=='missing_verdict':del value['mechanics_checks_pass']
+    elif defect=='integer_verdict':value['mechanics_checks_pass']=1
+    elif defect=='bad_global_status':value['status']='SCIENTIFICALLY_QUALIFIED'
+    else:value['checks'][1]['unavailable'].append(deepcopy(value['checks'][1]['unavailable'][0]))
+    assert not context_qualification_replays(value,deepcopy(value))
+
+
+@pytest.mark.parametrize('defect',['row_status','count','target','tiny_target','nested_atom_order','count_type',
+    'global_status','verdict','nested_membership_order','charge_value','charge_status'])
+def test_c88_only_top_level_check_order_is_compatible_every_other_row_value_stays_exact(defect):
+    from nasolve.cif_mixed_context import context_qualification_replays
+    recorded=context_qualification_evidence();fresh=deepcopy(recorded)
+    row=fresh['checks'][0]
+    if defect=='row_status':row['status']='REVIEW'
+    elif defect=='count':row['expected_rows']+=1
+    elif defect=='target':row['target']=1.6
+    elif defect=='tiny_target':row['target']+=1e-15
+    elif defect=='nested_atom_order':row['ordered_atoms'].reverse()
+    elif defect=='count_type':row['expected_rows']=37.0
+    elif defect=='global_status':fresh['status']='REVIEW'
+    elif defect=='verdict':fresh['mechanics_checks_pass']=False
+    elif defect=='nested_membership_order':fresh['membership']['checks'].reverse()
+    elif defect=='charge_value':fresh['checks'][1]['unavailable'][0]['expected']='1'
+    else:fresh['checks'][1]['status']='PASS'
+    fresh['checks'].reverse()
+    assert not context_qualification_replays(recorded,fresh)

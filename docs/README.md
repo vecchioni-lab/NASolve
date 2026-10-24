@@ -192,8 +192,14 @@ as scalar items where the native reader expects a loop. Its original local
 validation remains unchanged. C87 writes explicit modifier loops for every row
 count and retains exact v1 replay, chemistry and mechanics gates. Local checks
 pass 451 focused / 4,748 full tests and source-removed grammar/replay QA with
-zero SDK processes. Fresh Mac retry results, adoption and scientific
-qualification remain pending.
+zero SDK processes. Returned C87 passes both native context reads: all 315 checks
+are PASS or unsupported formal-charge evidence, with full membership and saved-
+parent equivalence passing. A check-row ordering defect then stops report replay.
+C88 fixes only that context-local ordering and replays saved evidence with zero
+new SDK/native calls. Local C88 validation passes 512 focused / 4,809 full
+tests and source-removed saved replay with zero processes. Returned Mac C88 replay
+remains pending; source-state findings, scientific qualification, adoption and
+the ordinary full run remain separate.
 
 
 

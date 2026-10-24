@@ -25,6 +25,39 @@ _SCOPE_FIELDS=('coot_execution','readyset_execution','dictionary_generation','mo
     'refinement','cache_writes','captured_code_execution')
 
 
+def _canonical_context_qualification(value):
+    """Give this context diagnostic's uniquely named checks a stable order.
+
+    The checklist is a conjunction keyed by its complete check identities.
+    Its rows and all nested lists remain exact, apart from the existing
+    atom-keyed unavailable/contradictory formal-charge evidence allowance.
+    """
+    from .cif_mixed_linked_recovery import _canonical_qualification
+    if (not isinstance(value,dict) or type(value.get('schema_version')) is not int or value['schema_version']!=1
+            or value.get('policy_id') not in {POLICY_ID,LEGACY_POLICY_ID}
+            or type(value.get('mechanics_checks_pass')) is not bool
+            or value.get('status')!=('MIXED_CONTEXT_MECHANICS_PASS' if value['mechanics_checks_pass'] else 'REVIEW')
+            or not isinstance(value.get('checks'),list) or not value['checks']):
+        raise ValueError('Require a complete context qualification verdict')
+    names=[]
+    for row in value['checks']:
+        if (not isinstance(row,dict) or not isinstance(row.get('check'),str) or not row['check'].strip()
+                or row.get('status') not in {'PASS','REVIEW','UNSUPPORTED'}):
+            raise ValueError('Require an identified context check and exact status')
+        names.append(row['check'])
+    if len(names)!=len(set(names)):raise ValueError('Duplicate context check identity')
+    result=_canonical_qualification(value)
+    result['checks'].sort(key=lambda row:row['check'])
+    return result
+
+
+def context_qualification_replays(recorded,fresh):
+    """Compare complete typed context check rows by unique identity only."""
+    from .cif_mixed_linked_recovery import qualification_replays
+    try:return qualification_replays(_canonical_context_qualification(recorded),_canonical_context_qualification(fresh))
+    except (ValueError,KeyError,TypeError):return False
+
+
 def _ref(path,root,*,parent=False):
     from .cif_mixed_recovery import _safe
     path,root=Path(path),Path(root)
@@ -351,7 +384,6 @@ def _qualify(before,after,parent_captures,model,active,plan,sources,dictionaries
     from .cif_mixed_native import qualify_mixed_native
     from .cif_linked_qualification import site_definition_checks
     from .cif_terminal_qualification import definition_projection_checks
-    from .cif_mixed_linked_recovery import _canonical_qualification
     from .cif_effective_source_recovery import mechanics_can_continue
     if policy_id not in {POLICY_ID,LEGACY_POLICY_ID}:raise ValueError('Unsupported context qualification policy')
     projections={s:(_resolve(root,parent_root,v['dictionary']),v['component']) for s,v in bundle['site_projections'].items()}
@@ -372,7 +404,7 @@ def _qualify(before,after,parent_captures,model,active,plan,sources,dictionaries
                 check(label+':exact-context-modifier:'+site['site'],mappings[site['site']].get('chem_mod_ids')==expected)
     normalized={'checks':[dict(c,check=c['check'].split(':',1)[1]) if c['check'].startswith(('baseline:effective-site-formal-charges:','active:effective-site-formal-charges:')) else c for c in checks]}
     usable=mechanics_can_continue(normalized)
-    return _canonical_qualification({'schema_version':1,'policy_id':policy_id,'status':'MIXED_CONTEXT_MECHANICS_PASS' if usable else 'REVIEW',
+    return _canonical_context_qualification({'schema_version':1,'policy_id':policy_id,'status':'MIXED_CONTEXT_MECHANICS_PASS' if usable else 'REVIEW',
         'mechanics_checks_pass':usable,'membership':membership,'saved_parent_equivalence':equivalence,'checks':checks,
         'source_chemical_findings':'PRESERVED_SEPARATELY; NOT_PROMOTED_BY_CONTEXT_OR_NATIVE_MEMBERSHIP',
         'scientific_qualification':'NOT_ASSESSED','automatic_adoption':False})
@@ -434,7 +466,7 @@ def audit_mixed_context(linked_parent_directory,phenix,output,*,timeout_seconds=
 
 
 def read_mixed_context(directory,*,linked_parent_directory):
-    from .cif_mixed_linked_recovery import _capture,qualification_replays
+    from .cif_mixed_linked_recovery import _capture
     from .cif_mixed_native import _native_ok
     root,parent_root=Path(directory),Path(linked_parent_directory)
     if any(p.is_symlink() for p in [root,*root.parents]):raise ValueError('Unsafe context directory')
@@ -491,7 +523,7 @@ def read_mixed_context(directory,*,linked_parent_directory):
         if len(captures)!=2 or not all(_native_ok(c) for c in captures):raise ValueError('Context qualification lacks two complete captures')
         q=json.loads(_resolve(root,parent_root,report['qualification']['artifact']).read_bytes())
         fresh=_qualify(*(c['native_validation'] for c in captures),old_captures,model,active,plan,sources,native,bundle,root,parent_root,parent,policy_id=report['policy_id'])
-        if not qualification_replays(q,fresh):raise ValueError('Context qualification does not reproduce')
+        if not context_qualification_replays(q,fresh):raise ValueError('Context qualification does not reproduce')
     elif report['qualification']!={'status':'NOT_RUN'}:raise ValueError('Unexplained context qualification')
     if report['status']=='PREPARED_ONLY' and (count or q is not None):raise ValueError('Prepared context claims execution')
     usable=q is not None and q['mechanics_checks_pass'] is True

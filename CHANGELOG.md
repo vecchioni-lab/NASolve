@@ -8,6 +8,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Replay completed native context checks by stable check identity
+
+- Verify returned C87: both native context reads pass all membership and saved-
+  parent equivalence checks. Preserve 291 PASS / 24 unsupported formal-charge
+  checks, original report/qualification and failed envelope; only top-level
+  check-row ordering differs after JSON key sorting.
+- Deterministically order context checks by unique complete ID and accept only
+  identical typed named rows under the unchanged formal-charge compatibility
+  rule. Keep other nested order, statuses, shared C85 helpers, context policies,
+  chemistry, native kernels and all scientific gates unchanged.
+- Add `--saved-native-only` to the existing ferry for the exact C87 capsule.
+  Preserve all payloads once; emit a compact hash-bound `saved_mixed_context.json`
+  summary with two historical / zero new native calls. No SDK discovery,
+  generation, optimization, adoption or scientific qualification is added.
+  Local validation passes 512 focused / 4,809 full tests (two skips, 276 subtests,
+  599.28 s), including all sixty-one new cases frozen before collection. Source-
+  removed saved replay preserves the mechanics PASS with zero SDK processes.
+  Returned Mac C88 saved replay remains pending.
+
+
 ### Preserve explicit native modifier loops at every row count
 
 - Record C86's first worker stopping before model interpretation while loading

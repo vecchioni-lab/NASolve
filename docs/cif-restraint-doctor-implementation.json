@@ -23728,7 +23728,338 @@
         "The original C86 local checks remain valid in their recorded prepared-input/fake-tool scope; they did not exercise this installed native grammar boundary.",
         "No chemical-state repair, convergence verdict, independent absolute CIP, cache publication, production adoption or scientific qualification is added."
       ],
+      "returned_C87": {
+        "status": "VERIFIED_C87_FIXED_CONTEXT_MECHANICS_WITH_CHECK_ORDER_REPLAY_DEFECT",
+        "all_20_saved_parent_equivalence_checks_per_case_pass": true,
+        "all_315_unique_rows_exact_by_id_including_types_and_nested_order": true,
+        "all_34_membership_checks_pass": true,
+        "all_imported_project_modules_from_trusted_Git_snapshots": true,
+        "all_other_qualification_fields_exact_including_types": true,
+        "all_payload_crc_hash_size_safe_names": "PASS",
+        "archive_bytes": 9856373,
+        "archive_sha256": "8e7b32c6a7652f1d035e4a1d2ab48fe3bd941268b349b23d862f39a1166459cc",
+        "automatic_adoption": false,
+        "build_difference": "NAR_DIRTY_METADATA_ONLY; ALL_RUNTIME_BYTES_EXACT",
+        "captured_code_execution": "NOT_RUN",
+        "checks": {
+          "PASS": 291,
+          "UNSUPPORTED_FORMAL_CHARGES": 24,
+          "contradictions": 0
+        },
+        "coordinate_decision": {
+          "automatic_adoption": false,
+          "native_usable": true,
+          "requires_cif_review": false,
+          "selected": "verified_constructed_model",
+          "status": "CONTINUE_WITH_NOTES"
+        },
+        "exact_C86_manifest": "PRESERVED_BYTE_FOR_BYTE",
+        "exact_C86_parent_payloads": 697,
+        "limits": [
+          "Fixed-coordinate mechanics and source-state findings remain separate; no optimization/refinement/adoption was run.",
+          "Formal-charge native API remains unsupported; no contradictions observed, not an independent native charge proof.",
+          "The failing envelope is a report-row ordering defect; saved scientific evidence is preserved, no data rewriting needed."
+        ],
+        "maintained_reader_error": "Context qualification does not reproduce",
+        "model_sha256": "d053e741a66c96c11a389a9f3c611711cb5b627213d32ef683cf96a5383a43cf",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "new_verification_subprocesses": 0,
+        "ordering_defect_scope": "ONLY_BASELINE_AND_ACTIVE_PROJECTED_NATIVE_DEFINITION_CHECK_ROWS",
+        "original_archives_preserved": true,
+        "out_of_position_checks": 132,
+        "reported_and_reconstructed_runner_sha256": "ebcacdea9626fadecb87204beb117ef2bbddef069775fd9723cce7279ed8a505",
+        "runtime_archive_sha256": "8213539951f8c04ccf98bc6966b8f9ad69dab9adb86da4d59214b90a37d8291f",
+        "runtime_members": 165,
+        "saved_and_recomputed_qualification_status": "MIXED_CONTEXT_MECHANICS_PASS",
+        "scientific_qualification": "NOT_ASSESSED",
+        "source_chemical_findings": "UNCHANGED",
+        "source_commit": "23f3ee5ac3f09a1da7d49b57c8e8934c21d00cf2",
+        "source_state_repair": "NOT_PERFORMED",
+        "stored_mechanics_checks_pass": true,
+        "total_entries": 866,
+        "trusted_git_preparation_calls": 2,
+        "trusted_temporary_sources_removed_after_replay": true,
+        "uncompressed_bytes": 121293563,
+        "verified_payloads": 865,
+        "archive_filename": "87_Cedar_gwe16qo5_mixed_context_review.zip",
+        "native_version": "Phenix 2.2.1-6174",
+        "native_captures": {
+          "native_active": {
+            "returncode": 0,
+            "seconds": 1.460846,
+            "atoms": 863,
+            "DNA_sites": 42,
+            "heavy_atoms_complete": true,
+            "fixed_energy_calls": 2
+          },
+          "native_baseline": {
+            "returncode": 0,
+            "seconds": 3.962889,
+            "atoms": 863,
+            "DNA_sites": 42,
+            "heavy_atoms_complete": true,
+            "fixed_energy_calls": 2
+          }
+        },
+        "original_qualification_sha256": "b27b55a5123449b07682b70d6ec2d0dae1ea47c1c85ae9bd84037a3333463062",
+        "original_report_sha256": "94934c61591aa51503c1a5c06781760d059f9693b877cf73eb7fe8fe056d071e",
+        "original_C87_local_validation": "UNCHANGED; RETURN_RECORDED_SEPARATELY"
+      },
+      "current_boundary": "RETURNED_C87_FIXED_CONTEXT_MECHANICS_PASS; ORIGINAL_ENVELOPE_FAILS_ONLY_UNIQUE_CHECK_ROW_ORDER; ZERO_SDK_SAVED_REPLAY_C88_NEXT",
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#mixed_context_modifier_grammar_2026_10_24"
+    },
+    "saved_mixed_context_2026_10_24": {
+      "status": "LOCAL_VALIDATION_PASS; RETURNED_MAC_SAVED_REPLAY_PENDING; ORIGINAL_NATIVE_MECHANICS_PASS_RETAINED",
+      "recorded_date": "2026-10-24",
+      "delivery_prefix": "88_Cedar",
+      "runner_filename": "88_Cedar_probe_mixed_context_replay.py",
+      "builder": "scripts/build_mixed_context_probe.py",
+      "template": "scripts/mixed_context_probe_template.py",
+      "builder_default_delivery_prefix": "86_Cedar; EXPLICIT_88_Cedar_REQUIRED",
+      "CLI_mode": "--saved-native-only",
+      "before": "C87 completes both native reads with MIXED_CONTEXT_MECHANICS_PASS, but report replay fails because 132 positions among 315 unique complete check rows differ after site-projection map JSON key sorting. Every typed named row, nested list and other qualification field is identical.",
+      "after": "Write context checklists deterministically by unique full check ID and accept legacy top-level row permutations only with the same unique IDs, typed complete rows and verdicts. Preserve the original report, qualification and failed receipt; replay saved evidence without a new SDK process.",
+      "prerequisite": {
+        "archive_filename": "87_Cedar_gwe16qo5_mixed_context_review.zip",
+        "sha256": "8e7b32c6a7652f1d035e4a1d2ab48fe3bd941268b349b23d862f39a1166459cc",
+        "bytes": 9856373,
+        "uncompressed_bytes": 121293563,
+        "payloads_verified": 865,
+        "source_commit": "23f3ee5ac3f09a1da7d49b57c8e8934c21d00cf2",
+        "original_report_sha256": "94934c61591aa51503c1a5c06781760d059f9693b877cf73eb7fe8fe056d071e",
+        "original_qualification_sha256": "b27b55a5123449b07682b70d6ec2d0dae1ea47c1c85ae9bd84037a3333463062",
+        "captured_programs": "DATA_ONLY; NEVER_IMPORTED_OR_EXECUTED"
+      },
+      "method": {
+        "writer": "CONTEXT_LOCAL_DETERMINISTIC_UNIQUE_COMPLETE_CHECK_ID_ORDER; NO_NATIVE_PROXY_OR_CHEMICAL_ROW_SORTING",
+        "legacy_comparison": "SAME_COMPLETE_UNIQUE_CHECK_IDS; EXACT_TYPED_VALUES_STATUSES_ALL_OTHER_FIELDS_AND_NESTED_ORDER; ONLY_NEW_ALLOWANCE_IS_TOP_LEVEL_CHECK_ROW_ORDER",
+        "existing_formal_charge_rule": "UNCHANGED_C85_UNIQUE_ATOM_EVIDENCE_COMPATIBILITY_REMAINS_SEPARATE; NO_NEW_NESTED_LIST_ALLOWANCE",
+        "preserved": "ORIGINAL_C87_REPORT_QUALIFICATION_FAILED_ENVELOPE_ALL_PAYLOADS_AND_NATIVE_CAPTURES_BYTE_EXACT",
+        "shared_helpers": "C85_COMPARATOR_OLD_LINKED_QUALIFICATION_PREPARATION_GENERATION_NA_POLICY_AND_NATIVE_KERNELS_UNCHANGED",
+        "policies": "CONTEXT_SCHEMA_1_AND_POLICIES_cif-mixed-linked-context-v1_v2_UNCHANGED",
+        "transport": "COMPLETE_C87_PARENT_INDEXED_ONCE; TEMPORARY_EXTERNAL_CONTEXT_AND_C84_PARENT_VIEWS; COMPACT_LOGICAL_HASH_REFERENCES_ONLY; NO_OLD_SCIENTIFIC_SUBTREE_COPY",
+        "scope": "SAVED_FIXED_NATIVE_EVIDENCE_ONLY; ZERO_NEW_SDK_DISCOVERY_NATIVE_GENERATOR_OPTIMIZER_OR_OTHER_SCIENTIFIC_PROCESSES"
+      },
+      "summary_contract": {
+        "schema_version": 1,
+        "policy_id": "cif-saved-mixed-context-v1",
+        "report": "saved_mixed_context.json",
+        "status": "MIXED_CONTEXT_MECHANICS_PASS",
+        "context_policy_id": "cif-mixed-linked-context-v2",
+        "original_report": {
+          "anchor": "parent_review",
+          "path": "mixed_context/mixed_context.json",
+          "sha256": "94934c61591aa51503c1a5c06781760d059f9693b877cf73eb7fe8fe056d071e",
+          "size": 191625
+        },
+        "qualification": {
+          "anchor": "parent_review",
+          "path": "mixed_context/qualification.json",
+          "sha256": "b27b55a5123449b07682b70d6ec2d0dae1ea47c1c85ae9bd84037a3333463062",
+          "size": 185363
+        },
+        "receipt_summary_anchor": "probe_directory",
+        "saved_native_calls": 2,
+        "new_native_calls": 0,
+        "requires_cif_review": false,
+        "automatic_adoption": false,
+        "scientific_qualification": "NOT_ASSESSED",
+        "coordinate_decision": {
+          "automatic_adoption": false,
+          "native_usable": true,
+          "requires_cif_review": false,
+          "selected": "verified_constructed_model",
+          "status": "CONTINUE_WITH_NOTES"
+        },
+        "targets": [
+          "1AP",
+          "5CM",
+          "5PC",
+          "CGY",
+          "DF",
+          "DP",
+          "DX",
+          "DZ",
+          "IMC",
+          "PDU",
+          "S6G"
+        ]
+      },
+      "execution_bounds": {
+        "new_SDK_discovery": 0,
+        "new_native_calls": 0,
+        "saved_native_calls": 2,
+        "Coot_calls": 0,
+        "ReadySet_calls": 0,
+        "generator_calls": 0,
+        "model_optimizer_calls": 0,
+        "refinement_calls": 0,
+        "component_store_writes": 0
+      },
+      "transport_bounds": {
+        "archive_uncompressed_bytes_max": 134217728,
+        "member_bytes_max": 33554432,
+        "parent_preservation": "ALL_865_C87_PAYLOADS_PLUS_MANIFEST; FAILED_RECEIPT_AND_ORIGINAL_PASS_QUALIFICATION_RETAINED"
+      },
+      "validation": {
+        "status": "LOCAL_VALIDATION_PASS",
+        "focused": {
+          "status": "PASS",
+          "passed": 512,
+          "seconds": 25.61,
+          "test_files": 19,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c83-venv/bin/python -m pytest -q tests/test_cif_mixed_context.py tests/test_mixed_context_probe.py tests/test_mixed_context_retry_probe.py tests/test_mixed_context_saved_probe.py tests/test_cif_mixed_linked_recovery.py tests/test_mixed_linked_recovery_probe.py tests/test_mixed_linked_recovery_saved_probe.py tests/test_cif_linked_replay_order.py tests/test_cif_mixed_native.py tests/test_mixed_native_probe.py tests/test_cif_source_classification.py tests/test_cif_linked_preparation.py tests/test_cif_linked_usability_bridge.py tests/test_cif_linked_qualification.py tests/test_cif_terminal_qualification.py tests/test_cif_construction_native.py tests/test_cif_na_policy.py tests/test_cif_review_transport.py tests/test_synthetic_dna_shuttle.py"
+        },
+        "full_suite": {
+          "status": "PASS",
+          "passed": 4809,
+          "skipped": 2,
+          "subtests_passed": 276,
+          "seconds": 599.28,
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../c83-venv/bin/python -m pytest -q",
+          "frozen_code_checkpoint": "aaed1955b166c507ba94be8157bf1bc89c69fd6e",
+          "final_new_module_cases": 28,
+          "final_new_ferry_cases": 33,
+          "final_new_cases": 61,
+          "all_final_new_cases_frozen_before_full_collection": true,
+          "source_script_test_changes_after_checkpoint": false,
+          "coverage": "ALL_FINAL_CASES_INCLUDED_IN_FROZEN_FULL_SUITE; NO_POST_COLLECTION_SUPPLEMENT"
+        },
+        "source_removed_cold": {
+          "status": "PASS",
+          "source_commit": "aaed1955b166c507ba94be8157bf1bc89c69fd6e",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runtime_members": 165,
+          "runtime_archive_sha256": "1526066bdc9cbdbba37092e0f0144f156a5387df45e611aab64c059264bbad59",
+          "runner_sha256": "7bae0f82d2d48b5f37c0093e0d8c8fa77f00e2a286b13bebdfe05a02e21046a8",
+          "source_archive_sha256": "8e7b32c6a7652f1d035e4a1d2ab48fe3bd941268b349b23d862f39a1166459cc",
+          "source_clones_removed_before_launch": true,
+          "original_repositories_and_archive_reads_forbidden": true,
+          "ambient_poison": "NOT_IMPORTED",
+          "aliased_TMPDIR": true,
+          "macos_path_budget": {
+            "max_absolute_path_bytes": 217,
+            "max_component_bytes": 68,
+            "checked_operations": 119864,
+            "subprocess_calls": 0,
+            "forbidden_calls": []
+          },
+          "everyday_authorized_edit": "PRESERVED",
+          "original_user_config": "UNCHANGED",
+          "component_store": "UNTOUCHED",
+          "review_payloads": 869,
+          "review_uncompressed_bytes": 121526594,
+          "largest_review_member_bytes": 20829148,
+          "preserved_C87_payloads": 865,
+          "source_components": 16,
+          "saved_native_calls": 2,
+          "new_native_calls": 0,
+          "no_Phenix_argument": true,
+          "no_context_audit_or_native_discovery": "PROFILE_GUARDED",
+          "saved_mechanics_status": "MIXED_CONTEXT_MECHANICS_PASS",
+          "qualification_checks": 315,
+          "qualification_PASS": 291,
+          "qualification_UNSUPPORTED_formal_charge_only": 24,
+          "forced_loop_blocks": 10,
+          "native_report_and_qualification_refs": "BYTE_EXACT",
+          "new_summary_bytes": 1088,
+          "old_scientific_subtree_duplicated": false,
+          "standalone_explicit_parent_reader_from_new_capsule_after_original_removal": "PASS",
+          "guarded_temporary_auto_cleanup": "NOT_CLAIMED",
+          "frozen_runtime_preserved": true,
+          "guarded_relocated_help": "PASS",
+          "builder_help": "PASS",
+          "scope": "SOURCE_REMOVED_SAVED_CONTEXT_REPLAY_QA; QUALIFIED_MAC_NATIVE_CAPTURE_PRESERVED; ZERO_NEW_SDK_PROCESSES",
+          "private_artifacts": "EXCLUDED_FROM_GIT",
+          "C85_shared_reader_blobs_unchanged": {
+            "cif_linked_qualification.py": "9e1410a14e0ae1da56abb5a1a3e36ee388c46559",
+            "cif_mixed_linked_recovery.py": "8a814f7d174d9b182409812ef9ce57237f19a5de"
+          },
+          "owned_temporary_views_explicitly_retired_before_standalone_reader": true,
+          "new_SDK_or_other_subprocesses": 0
+        },
+        "returned_Mac_saved_replay": "PENDING",
+        "external_scope": "SAVED_EVIDENCE_ONLY; ZERO_NEW_SDK_PROCESSES; NO_NEW_NATIVE_QUALIFICATION_REQUESTED",
+        "code_checkpoint": "aaed1955b166c507ba94be8157bf1bc89c69fd6e",
+        "independent_actual_C87_saved_replay": {
+          "automatic_adoption": false,
+          "changed_row_numeric_type": "REJECTED",
+          "changed_row_status": "REJECTED",
+          "context_check_row_permutation": "PASS; UNIQUE_COMPLETE_IDENTITIES",
+          "coordinate_decision": {
+            "automatic_adoption": false,
+            "native_usable": true,
+            "requires_cif_review": false,
+            "selected": "verified_constructed_model",
+            "status": "CONTINUE_WITH_NOTES"
+          },
+          "frozen_module_sha256": "d65e64cc13ea8f5cd664194ddeb1df1d771652de098d43e5079abbc051ea2dc2",
+          "linked_parent_files_preserved": 132,
+          "new_native_or_other_subprocesses": 0,
+          "original_fixed_native_calls": 2,
+          "original_qualification_rows": 315,
+          "original_qualification_sha256": "b27b55a5123449b07682b70d6ec2d0dae1ea47c1c85ae9bd84037a3333463062",
+          "original_report_sha256": "94934c61591aa51503c1a5c06781760d059f9693b877cf73eb7fe8fe056d071e",
+          "scientific_files_preserved": 165,
+          "scientific_qualification": "NOT_ASSESSED",
+          "source_state_findings": "UNCHANGED",
+          "status": "ACTUAL_C87_SAVED_REPLAY_PASS",
+          "verdict": "MIXED_CONTEXT_MECHANICS_PASS",
+          "scope": "SAVED_DATA_REPLAY_ONLY; ZERO_NEW_NATIVE_QUALIFICATION; ORIGINAL_SCIENTIFIC_FILES_RETAINED"
+        },
+        "initial_fail_before": [
+          {
+            "scope": "INITIAL_NAMED_CHECK_IDENTITY_CASES_ON_C87_BASE",
+            "failed": 28,
+            "deselected": 54,
+            "seconds": 0.62
+          },
+          {
+            "scope": "INITIAL_SAVED_CONTEXT_FERRY_SUBSET_ON_C87_BASE",
+            "failed": 4,
+            "seconds": 0.36
+          }
+        ],
+        "independent_ferry_summary": {
+          "status": "PASS",
+          "preserved_original_members": 866,
+          "preserved_original_failed_receipt": true,
+          "materialized_parent_files": 132,
+          "new_native_calls": 0,
+          "summary_refs": "EXACT_ORIGINAL_REPORT_AND_QUALIFICATION; parent_review_LOGICAL_ANCHORS",
+          "summary_policy": "cif-saved-mixed-context-v1"
+        },
+        "documentation": {
+          "original_C87_local_validation": "UNCHANGED",
+          "all_earlier_ledger_and_implementation_values": "TYPE_AND_VALUE_IDENTICAL",
+          "strict_JSON_duplicate_keys": "NONE",
+          "runtime_progress_mirrors": "EXACT_EXCEPT_EVIDENCE_POINTER",
+          "relative_links_checked": 161,
+          "shared_C85_comparator_generation_PostMR_preparation_native_qualification_and_NA_policy": "BYTE_UNCHANGED",
+          "compact_C87_return": "865_PAYLOADS;697_EXACT_PARENT;291_PASS_24_UNSUPPORTED_0_CONTRADICTIONS;34_MEMBERSHIP_AND_20_EQUIVALENCE_PER_CASE_PASS;132_POSITIONS_ONLY;NO_HOST_PATHS",
+          "editable_SVG": "DETERMINISTIC_REGENERATION; RENDERED_AND_VISUALLY_CHECKED",
+          "private_QA_artifacts": "EXCLUDED_FROM_GIT"
+        }
+      },
+      "requires_cif_review": false,
+      "automatic_adoption": false,
+      "coot_execution": "NOT_RUN",
+      "readyset_execution": "NOT_RUN",
+      "generation": "NOT_RUN",
+      "model_optimization_requested": false,
+      "refinement": "NOT_RUN",
+      "production_checkpoint": "NOT_CREATED",
+      "mtz_used": false,
+      "component_store_write": "NOT_REQUESTED",
+      "scientific_qualification": "NOT_ASSESSED",
+      "compatibility": "EXISTING_CONTEXT_REPORT_POLICIES_AND_BYTES_RETAINED; CONTEXT_LOCAL_NAMED_CHECK_ORDER_COMPATIBILITY_PLUS_NEW_EXPLICIT_SAVED_SUMMARY",
+      "generated_artifacts": "PRIVATE_MODELS_DICTIONARIES_LOGS_CAPTURES_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+      "remaining_limits": [
+        "Local focused, complete-suite and source-removed saved replay pass; returned Mac C88 saved replay remains pending, with no new native qualification requested.",
+        "The observed native-mechanics PASS is at fixed coordinates; nonbonded pair identity, source-state findings, unsupported formal-charge readback, independent absolute CIP and scientific qualification remain separate.",
+        "No source-state repair, optimization, cache publication, production adoption, refinement or ordinary diffraction full-run claim is added."
+      ],
+      "evidence_record": "docs/cif-linked-native-registration-evidence.json#saved_mixed_context_2026_10_24"
     }
   },
   "audience": [

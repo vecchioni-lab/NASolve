@@ -23,6 +23,7 @@ BUNDLE = None  # @bundle-metadata@
 RUNTIME_BASE64 = None  # @runtime-base64@
 REVIEW_SHA256 = '8e665aef19f2c0f47d6668944a0b60c95dfe2a608f04c2ada74aa171d1030661'
 RETRY_REVIEW_SHA256 = '7b8fa0ee11065b58795937cdc7a2087bdad24002046508159a2d99ffac27426f'
+SAVED_REVIEW_SHA256 = '8e7b32c6a7652f1d035e4a1d2ab48fe3bd941268b349b23d862f39a1166459cc'
 NATIVE_OVERRIDES = {'PYTHONPATH', 'PYTHONHOME', 'PHENIX', 'PHENIX_ROOT', 'PHENIX_VERSION',
                     'LIBTBX_BUILD', 'LIBTBX_DIST', 'BOOST_ADAPTBX_FPE_DEFAULT'}
 
@@ -143,12 +144,12 @@ def _report_failure(session, receipt, exc):
 
 
 def _read_capsule(path):
-    """Verify a pinned C85 replay or C86 context return; programs stay data."""
+    """Verify a pinned C85/C86/C87 return; captured programs stay data."""
     from nasolve.cif_review_transport import is_safe_review_member, _parse_json
     original = path.read_bytes()
     digest = _sha(original)
-    if digest not in {REVIEW_SHA256, RETRY_REVIEW_SHA256}:
-        raise ValueError('Require the exact verified C85 or C86 review ZIP')
+    if digest not in {REVIEW_SHA256, RETRY_REVIEW_SHA256, SAVED_REVIEW_SHA256}:
+        raise ValueError('Require the exact verified C85, C86 or C87 review ZIP')
     with zipfile.ZipFile(io.BytesIO(original)) as archive:
         entries = archive.infolist()
         if (len(entries) > 1024 or len(entries) != len({e.filename for e in entries})
@@ -166,6 +167,33 @@ def _read_capsule(path):
                 or ref != {'sha256': _sha(members[name]), 'bytes': len(members[name])}):
             raise ValueError('Review member checksum differs')
     receipt = _parse_json(members['probe_receipt.json'])
+    if digest == SAVED_REVIEW_SHA256:
+        data = members['mixed_context/mixed_context.json']
+        report = _parse_json(data)
+        qualification = report.get('qualification', {}).get('artifact', {})
+        if (qualification.get('anchor') != 'mixed_context_directory' or not _safe(qualification.get('path'))
+                or type(qualification.get('size')) is not int):
+            raise ValueError('Unbound saved context qualification')
+        qdata = members.get('mixed_context/'+qualification['path'])
+        if not isinstance(qdata, bytes) or qualification != {'anchor': 'mixed_context_directory',
+                'path': qualification['path'], 'sha256': _sha(qdata), 'size': len(qdata)}:
+            raise ValueError('Saved context qualification bytes differ')
+        q = _parse_json(qdata)
+        if (receipt.get('kind') != 'mixed-context-probe' or receipt.get('delivery_prefix') != '87_Cedar'
+                or receipt.get('analysis_completed') is not False
+                or receipt.get('error_type') != 'ValueError' or receipt.get('error') != 'Context qualification does not reproduce'
+                or receipt.get('automatic_adoption') is not False or receipt.get('requires_cif_review') is not False
+                or report.get('schema_version') != 1 or report.get('policy_id') != 'cif-mixed-linked-context-v2'
+                or report.get('status') != 'MIXED_CONTEXT_MECHANICS_PASS'
+                or type(report.get('new_native_calls')) is not int or report['new_native_calls'] != 2
+                or type(report.get('saved_native_calls')) is not int or report['saved_native_calls'] != 2
+                or report.get('automatic_adoption') is not False or report.get('requires_cif_review') is not False
+                or q.get('policy_id') != report['policy_id'] or q.get('status') != report['status']
+                or q.get('mechanics_checks_pass') is not True):
+            raise ValueError('Require the exact saved C87 native context evidence')
+        if path.read_bytes() != original:
+            raise ValueError('Review archive changed while reading')
+        return members
     if digest == RETRY_REVIEW_SHA256:
         data = members['mixed_context/mixed_context.json']
         report = _parse_json(data)
@@ -210,6 +238,8 @@ def _capsule_identity(members):
     """Choose an explicit lineage anchor, never a basename search."""
     from nasolve.cif_review_transport import _parse_json
     receipt = _parse_json(members['probe_receipt.json'])
+    if receipt.get('kind') == 'mixed-context-probe' and receipt.get('delivery_prefix') == '87_Cedar':
+        return 'C87', SAVED_REVIEW_SHA256, 'inputs/review/inputs/review/inputs/review/mixed_linked_recovery/'
     if receipt.get('kind') == 'mixed-context-probe' and receipt.get('delivery_prefix') == '86_Cedar':
         return 'C86', RETRY_REVIEW_SHA256, 'inputs/review/inputs/review/mixed_linked_recovery/'
     if receipt.get('kind') == 'mixed-linked-recovery-probe' and receipt.get('delivery_prefix') == '85_Cedar':
@@ -261,12 +291,54 @@ def _verify_previous_context(members, linked_parent, destination):
         'new_native_calls': 0, 'scope': 'SAVED_C86_FAILURE_REPLAY; CAPTURED_PROGRAMS_NOT_EXECUTED'}
 
 
+def _replay_saved_context(members, linked_parent, destination):
+    """Verify both completed C87 captures without a new native process."""
+    from nasolve.cif_mixed_context import read_mixed_context
+    if _capsule_identity(members)[0] != 'C87':
+        raise ValueError('Saved context replay requires the declared C87 return')
+    destination = Path(destination)
+    if destination.exists() or destination.is_symlink():
+        raise FileExistsError('Saved context destination already exists')
+    prefix = 'mixed_context/'
+    for name, data in members.items():
+        if name.startswith(prefix):
+            if not _safe(name):
+                raise ValueError('Unsafe saved context member')
+            _write(destination/name[len(prefix):], data)
+    if not (destination/'mixed_context.json').is_file():
+        raise ValueError('Missing declared C87 context report')
+    result = read_mixed_context(destination, linked_parent_directory=linked_parent)
+    if (result.get('policy_id') != 'cif-mixed-linked-context-v2'
+            or result.get('status') != 'MIXED_CONTEXT_MECHANICS_PASS' or result.get('new_native_calls') != 2
+            or 'artifact' not in result.get('qualification', {})):
+        raise ValueError('Saved context verdict or execution differs')
+    return result
+
+
+def _saved_context_summary(members, result):
+    """Use logical parent references instead of another scientific file tree."""
+    data = members['mixed_context/mixed_context.json']
+    qref = result['qualification']['artifact']
+    qdata = members['mixed_context/'+qref['path']]
+    return {'schema_version': 1, 'policy_id': 'cif-saved-mixed-context-v1',
+        'status': result['status'], 'context_policy_id': result['policy_id'], 'targets': result['targets'],
+        'original_report': {'anchor': 'parent_review', 'path': 'mixed_context/mixed_context.json',
+            'sha256': _sha(data), 'size': len(data)},
+        'qualification': {'anchor': 'parent_review', 'path': 'mixed_context/'+qref['path'],
+            'sha256': _sha(qdata), 'size': len(qdata)},
+        'saved_native_calls': result['new_native_calls'], 'new_native_calls': 0,
+        'coordinate_decision': result['coordinate_decision'],
+        'scientific_qualification': 'NOT_ASSESSED', 'automatic_adoption': False, 'requires_cif_review': False}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--review-zip', type=Path, required=True, help='Exact verified C85 or C86 ZIP; captured programs stay data')
+    parser.add_argument('--review-zip', type=Path, required=True, help='Exact verified C85, C86 or C87 ZIP; captured programs stay data')
     parser.add_argument('--phenix-root', type=Path, default=Path.home()/'Applications/phenix-2.2.1-6174')
     parser.add_argument('--output-parent', type=Path, default=Path.home()/'NASolve-live-tests')
-    parser.add_argument('--inspect-only', action='store_true', help='Prepare explicit context candidates without an SDK process')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--inspect-only', action='store_true', help='Prepare explicit context candidates without an SDK process')
+    mode.add_argument('--saved-native-only', action='store_true', help='Replay the completed C87 native captures without an SDK process')
     parser.add_argument('--timeout-seconds', type=int, default=60, help='Deadline 1–60 seconds for each fixed native read')
     args = parser.parse_args()
     if not 1 <= args.timeout_seconds <= 60:
@@ -296,11 +368,13 @@ def main():
         from nasolve.cif_review_transport import stage_review_members, staged_review_members_match
         stage_review_members(members, session/'inputs/review', indexed=True)
         lineage, digest, _ = _capsule_identity(members)
+        if args.saved_native_only != (lineage == 'C87'):
+            raise ValueError('Use --saved-native-only with the exact C87 return; fresh context reads use C85 or C86')
         receipt['parent_review'] = {'historical_path': str(args.review_zip), 'sha256': digest,
             'payload_count': len(members)-1, 'preserved': True,
             'scope': 'EXACT_'+lineage+'_PARENT; INDEXED_OPAQUE_TRANSPORT; CAPTURED_CODE_NOT_EXECUTED'}
         phenix = None
-        if not args.inspect_only:
+        if not args.inspect_only and not args.saved_native_only:
             from nasolve.config import load_config
             from nasolve.phenix_runtime import discover_phenix
             environment = {k: v for k, v in os.environ.items() if k not in NATIVE_OVERRIDES}
@@ -313,17 +387,28 @@ def main():
         print('Preserving coordinates, numerical targets and the declared NARestraints policy.', flush=True)
         with tempfile.TemporaryDirectory(prefix='nasolve-mixed-context-parent-') as temporary:
             linked_parent = _materialize_parent(members, Path(temporary).resolve()/'data')
-            if lineage == 'C86':
+            if args.saved_native_only:
+                result = _replay_saved_context(members, linked_parent, Path(temporary).resolve()/'saved_context')
+                summary = _saved_context_summary(members, result)
+                _write(session/'saved_mixed_context.json', summary)
+            elif lineage == 'C86':
                 receipt['previous_context'] = _verify_previous_context(
                     members, linked_parent, Path(temporary).resolve()/'previous_context')
-            result = audit_mixed_context(linked_parent, phenix, session/'mixed_context',
-                timeout_seconds=args.timeout_seconds)
-            if read_mixed_context(session/'mixed_context', linked_parent_directory=linked_parent) != result:
-                raise ValueError('Portable context report differs')
-        report_bytes = (session/'mixed_context/mixed_context.json').read_bytes()
-        receipt['mixed_context'] = {'directory': {'anchor': 'probe_directory', 'path': 'mixed_context'},
-            'report_sha256': _sha(report_bytes), 'report_size': len(report_bytes), 'status': result['status'],
-            'targets': result['targets'], 'new_native_calls': result['new_native_calls']}
+            if not args.saved_native_only:
+                result = audit_mixed_context(linked_parent, phenix, session/'mixed_context',
+                    timeout_seconds=args.timeout_seconds)
+                if read_mixed_context(session/'mixed_context', linked_parent_directory=linked_parent) != result:
+                    raise ValueError('Portable context report differs')
+        if args.saved_native_only:
+            data = (session/'saved_mixed_context.json').read_bytes()
+            receipt['saved_mixed_context'] = {'artifact': {'anchor': 'probe_directory',
+                'path': 'saved_mixed_context.json', 'sha256': _sha(data), 'size': len(data)},
+                'status': result['status'], 'saved_native_calls': summary['saved_native_calls'], 'new_native_calls': 0}
+        else:
+            report_bytes = (session/'mixed_context/mixed_context.json').read_bytes()
+            receipt['mixed_context'] = {'directory': {'anchor': 'probe_directory', 'path': 'mixed_context'},
+                'report_sha256': _sha(report_bytes), 'report_size': len(report_bytes), 'status': result['status'],
+                'targets': result['targets'], 'new_native_calls': result['new_native_calls']}
         if not staged_review_members_match(members, session/'inputs/review'):
             raise ValueError('Preserved parent review differs')
         for name, data in runtime_members.items():
@@ -332,7 +417,7 @@ def main():
         receipt.update(analysis_completed=True, frozen_runtime_preserved=True, parent_review_preserved=True)
         _save_receipt(session, receipt)
         print('Selected components:', ', '.join(result.get('targets', [])), flush=True)
-        print('Mixed context:', result['status'], '; new native calls:', result['new_native_calls'], flush=True)
+        print('Mixed context:', result['status'], '; new native calls:', 0 if args.saved_native_only else result['new_native_calls'], flush=True)
         if result.get('error'):
             print('Follow-up:', result['error'], flush=True)
         print('Diagnostic: REVIEW (explicit context mechanics; source-state findings and full-run qualification remain separate)', flush=True)

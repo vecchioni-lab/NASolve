@@ -2364,7 +2364,76 @@ survive; 141,546 simulated macOS path operations stay within 217 absolute/68
 component bytes. Standalone legacy v1 and new v2 readers pass from the copied
 new capsule after original ZIP/session/runtime removal and explicit owned-view
 retirement; guarded automatic temporary cleanup is not claimed. These are local
-grammar/preparation/replay checks, not fresh installed native qualification.
+grammar/preparation/replay checks, not fresh installed native qualification. These
+original local checks remain preserved; the actual C87 return is below.
+
+Returned C87 completes both Phenix 2.2.1-6174 reads with
+`MIXED_CONTEXT_MECHANICS_PASS`. All 865 payloads and the complete 697-payload C86
+parent plus its manifest verify. The workers exit zero in 3.962889 / 1.460846
+seconds, each with 863 atoms, forty-two complete DNA sites and two fixed energy
+snapshots. All thirty-four membership checks and all twenty saved-parent
+equivalence checks on each side pass. The qualification contains 291 PASS and
+24 unsupported formal-charge checks, with no contradiction. Source-state
+findings and scientific qualification remain separate; no optimization,
+refinement or adoption occurs.
+
+The envelope fails later on check-row order: site-projection insertion order
+changes when JSON sorts map keys, moving 132 positions among 315 unique complete
+check rows. Every row matches recursively by full check ID, including value
+types and nested list order; every other qualification field and the PASS verdict
+are identical. Preserve the failed receipt and original report/qualification
+bytes. The native-mechanics PASS precedes this replay error. Original C87 local
+validation remains unchanged, with the actual return recorded separately.
+
+C88 deterministically orders only the context qualification's top-level check
+rows by unique complete ID. The legacy reader accepts a row permutation only
+with exactly the same unique IDs, complete typed rows, statuses and other fields.
+Nested order remains exact under the existing unchanged C85 atom-keyed formal-
+charge evidence rule; C88 adds no nested-list allowance. Duplicate or missing IDs
+and changed values/statuses remain rejected; no verdict is promoted. Shared C85 comparison,
+other qualification helpers, context policies v1/v2, source chemistry, native
+kernels and all scientific gates remain unchanged.
+
+Methods: build the existing `scripts/build_mixed_context_probe.py` with explicit
+`--delivery-prefix 88_Cedar` and run `--saved-native-only` on the exact C87
+capsule. Builder default 86 remains compatible. The maintained reader reconstructs
+temporary external context/linked-parent views and verifies the saved native
+inputs, captures, preparation and qualification without SDK discovery or a native
+process. Preserve every parent payload once through indexed transport; do not
+copy another scientific subtree. Emit only `saved_mixed_context.json`, schema 1,
+policy `cif-saved-mixed-context-v1`, with hash-bound logical report/qualification
+references under `parent_review`. The receipt references this compact summary
+under `probe_directory`; original scientific files remain byte-exact.
+
+The saved summary retains `MIXED_CONTEXT_MECHANICS_PASS`, two historical and zero
+new native calls, and the original `CONTINUE_WITH_NOTES` coordinate decision with
+`native_usable: true`. Students do not approve CIF tables. Scientific qualification,
+source-state findings, formal-charge API limits, ordinary full-run integration
+and production adoption remain separate. No Coot, ReadySet, generation,
+optimization, store write, refinement or new native qualification is requested.
+Returned Mac C88 saved replay remains pending; no new native qualification is
+requested.
+
+Final local validation passes 512 focused tests in 25.61 seconds and 4,809 full
+tests (two skips, 276 subtests) in 599.28 seconds on
+`aaed1955b166c507ba94be8157bf1bc89c69fd6e`. All sixty-one final new cases are
+frozen before full collection, with no later source/script/test changes or
+supplement. Generic unique-ID order, complete typed rows, missing/duplicate IDs,
+nested order, statuses, legacy replay, input binding and failure preservation
+are covered. Initial fail-before subsets remain separate from final case counts.
+
+Source-removed cold saved replay passes with 165 runtime members and an
+869-payload capsule preserving all 865 C87 payloads plus its manifest exactly.
+Its compact summary is 1,088 bytes, with no duplicated scientific subtree.
+All 297 scientific/context/parent files remain exact; 315 checks reproduce the
+original 291 PASS / 24 unsupported-formal-charge result and mechanics PASS.
+SDK discovery, context audit and process calls are forbidden. Configuration,
+everyday edits and store fixtures survive; 119,864 simulated macOS path operations
+stay within 217 absolute/68 component bytes. The standalone reader reconstructs
+its explicit parent from the copied new capsule after original ZIP/session/
+runtime removal and explicit owned-view retirement; guarded automatic temporary
+cleanup is not claimed. Shared C85 readers remain byte-exact. This validates
+saved evidence and packaging, with zero new native qualification.
 
 
 
