@@ -102,7 +102,7 @@ after JSON sorts site-projection keys. All typed complete rows, nested lists,
 other fields and the PASS verdict match exactly. Preserve original failed receipt,
 report and qualification; this is an evidence-order defect.
 
-**Next delivery is C88:** `88_Cedar_probe_mixed_context_replay.py`, using
+**Completed C88 delivery:** `88_Cedar_probe_mixed_context_replay.py`, using
 `scripts/build_mixed_context_probe.py --delivery-prefix 88_Cedar` and
 `--saved-native-only` on exact C87. Context-local check IDs get deterministic
 writer order and strict legacy row-permutation replay. Only this top-level order
@@ -128,10 +128,45 @@ exactly, emitting only a 1,088-byte summary. The standalone reader reproduces
 original ZIP/session/runtime removal and explicit owned-view retirement; guarded
 automatic cleanup is not claimed. SDK discovery, context audit and process calls
 are forbidden; configuration, everyday edits and store fixtures remain intact.
-Returned Mac C88 saved replay remains pending. Source-state findings, scientific
-qualification, cache publication, production adoption and the ordinary full run
-remain separate.
-The new record is `saved_mixed_context_2026_10_24`.
+Returned Mac C88 saved replay is now verified: all 869 payloads and all 866 C87
+members remain exact. The 1,088-byte summary, all 315 original checks and all 297
+scientific files reproduce unchanged, with two saved and zero new native calls.
+The original mechanics PASS and `CONTINUE_WITH_NOTES` decision remain intact.
+The actual return is appended to `saved_mixed_context_2026_10_24` without changing
+its original local validation or historical pending-at-publication record.
+
+**Next delivery is C89:** `89_Cedar_probe_mixed_initial_gradients.py`, built by
+`scripts/build_mixed_gradient_probe.py` from the exact C88 capsule. Run one fresh
+initial-only corrected-gradient audit of the exact active mixed manager before
+geometry optimization. This 863-atom/forty-two-site manager has fifty-eight plane
+restraints; the old 877-atom/forty-three-site geometry proof cannot substitute for
+its own fresh qualification. Match saved native identities, definitions, policy
+and raw evaluations first; then use the unchanged corrected fixed evaluator,
+sampled global/category derivatives, both plane orders and tilted/rotated controls.
+The report is `mixed_initial_gradients.json`, policy
+`cif-mixed-initial-native-gradient-v1`, with explicit context/linked-parent anchors
+and independently replayed numerical evidence. `--inspect-only` makes no SDK call.
+One bounded fresh native worker is allowed; no optimizer is requested. Preserve
+C88 ancestry once with the existing archive bounds and no scientific-tree copy.
+Focused validation passes 600 tests across twenty-two files in 83.01 seconds on
+`cad81fb394433767d270577cfbc923792672c01f`. All 106 final new cases (61 module /
+45 ferry) are frozen before full collection. Actual-parent inspect passes with
+zero SDK calls, 455,931 prepared bytes, 3,328 plane pairs and all 297 scientific
+files exact. Source-removed cold inspect also passes: 166 runtime members and
+918 payloads plus manifest preserve C88 once, with the standalone explicit-parent
+reader passing after source clones/original input/session/runtime removal. All
+165 context, 132 parent and 46 new files stay exact, with zero SDK/subprocesses.
+The capsule is 122,235,229 uncompressed bytes, leaving 11,982,499 bytes below the
+unchanged cap. Configuration, everyday edits and store fixtures remain intact;
+164,380 guarded path operations stay within 232 absolute/68 component bytes.
+Temporary views are explicitly retired; automatic cleanup is not claimed.
+The full suite passes 4,915 tests, two skips and 276 subtests in 694.66 seconds
+on the same frozen checkpoint. No source, script, test or figure edits follow
+full collection and there is no supplement. Actual Mac C89 derivatives remain
+pending. Keep fallback and solution notes automatic, with no student CIF approval. Source-state findings,
+scientific qualification, cache publication, production adoption and the ordinary
+full diffraction run remain separate. The new record is
+`mixed_initial_gradient_audit_2026_10_24`.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.

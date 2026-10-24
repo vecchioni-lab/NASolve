@@ -2585,8 +2585,8 @@ new native calls, and the original `CONTINUE_WITH_NOTES` coordinate decision wit
 source-state findings, formal-charge API limits, ordinary full-run integration
 and production adoption remain separate. No Coot, ReadySet, generation,
 optimization, store write, refinement or new native qualification is requested.
-Returned Mac C88 saved replay remains pending; no new native qualification is
-requested.
+The actual Mac C88 saved replay is verified below; it requests no new native
+qualification.
 
 Final local validation passes 512 focused tests in 25.61 seconds and 4,809 full
 tests (two skips, 276 subtests) in 599.28 seconds on
@@ -2608,6 +2608,75 @@ its explicit parent from the copied new capsule after original ZIP/session/
 runtime removal and explicit owned-view retirement; guarded automatic temporary
 cleanup is not claimed. Shared C85 readers remain byte-exact. This validates
 saved evidence and packaging, with zero new native qualification.
+
+Returned C88 verifies all 869 payloads plus the outer manifest, including all
+866 original C87 members byte-exact. The archive has 870 entries and 121,527,577
+uncompressed bytes. Its 1,088-byte summary reproduces exactly, retaining all 315
+checks (291 PASS / 24 unsupported formal-charge readbacks), all 297 scientific
+context/parent files and the original mechanics PASS. The saved native-call count
+is two; new native calls are zero. The maintained explicit-parent reader preserves
+`CONTINUE_WITH_NOTES`, native usability and the original failed C87 envelope.
+No scientific verdict or student CIF approval is added.
+
+### Fresh initial-only gradients of the exact mixed manager (C89)
+
+The exact mixed manager has 863 atoms, forty-two sites and fifty-eight parallelity
+restraints. Earlier geometry/plane qualifications belong to a different
+877-atom/forty-three-site manager and cannot be relabeled as proof for this model.
+C89 therefore supplies one fresh initial-only audit before a geometry trial;
+it does not invent historical endpoints or optimize coordinates.
+
+Methods: verify the exact C88 capsule and its explicit context/linked-parent
+anchors, then rebuild and match the saved active C87 manager. Captured programs remain
+data and are never imported or executed. Bind the fresh job's native API/source
+pins and unchanged correction core before applying the existing
+`native-parallelity-both-first-planes-v1` correction with unchanged native energy
+and fixed chemical definitions and NARestraints pairing/stacking policy. Use the
+existing fixed evaluator, finite-difference category/global gradient audit and
+per-plane order audit on all fifty-eight actual restraints, with six fresh
+tilted/rotated controls. The single coordinate case is the saved initial state.
+Selection of sampled atoms follows numerical/outlier evidence rather than a
+component-name exception. Bind the trusted worker, correction core, inputs and
+saved numerical evidence in `mixed_initial_gradients.json`, policy
+`cif-mixed-initial-native-gradient-v1`; its reader recomputes qualification from
+the saved records. Keep external parent references explicit and preserve the
+complete parent once through indexed transport, without another scientific-tree
+copy or a larger archive bound.
+
+The new `scripts/build_mixed_gradient_probe.py` creates
+`89_Cedar_probe_mixed_initial_gradients.py`; `--inspect-only` prepares inputs
+without SDK execution, while the fresh audit uses one native worker bounded at
+600 seconds. With six sampled atoms, the expected algorithm uses 1,367 whole-
+energy evaluations within a 2,000 maximum and 3,328 plane/control evaluation
+pairs within a 5,000 maximum; actual Mac counts and qualification remain pending.
+No Coot, ReadySet, dictionary generation, optimizer, store publication, production
+adoption, refinement or diffraction run is added. A failed derivative check
+retains usable input and notes for the next bounded step; students do not approve
+CIF tables. Local focused validation passes 600 tests across twenty-two files
+in 83.01 seconds on `cad81fb394433767d270577cfbc923792672c01f`; all 106 final
+new cases (61 module / 45 ferry) are frozen before full collection. Initial
+fail-before subsets contain four module and four ferry cases, separate from the
+final case count. Actual-parent inspect prepares 455,931 bytes and 3,328 plane
+pairs with zero SDK calls and all 297 parent scientific files exact. The complete
+suite passes 4,915 tests, two skips and 276 subtests in 694.66 seconds at that
+checkpoint. No source, script, test or figure changes follow full collection and
+there is no later test supplement. Actual Mac C89 derivative qualification remains
+pending; source-state findings and scientific qualification remain separate.
+
+Source-removed cold inspect passes at the same checkpoint with 166 runtime members.
+The 918-payload capsule preserves every C88 payload and its manifest byte-exact
+once, totaling 122,235,229 uncompressed bytes; the largest member is 20,829,148
+bytes. Its 484,997 bytes of new data leave 11,982,499 bytes below the unchanged
+128 MiB limit. The standalone explicitly anchored reader passes after the owned
+source clones, original input copy, session and runtime are removed; all 165
+context, 132 linked-parent and 46 new files remain exact. Inspect stays
+`PREPARED_ONLY` with zero SDK/discovery/subprocess/captured-code calls. Configuration,
+everyday edits and store fixtures remain intact; 164,380 guarded path operations
+stay within 232 absolute/68 component bytes. Temporary views are explicitly
+retired; guarded automatic cleanup is not claimed. This is preparation/portability
+evidence, not a fresh installed derivative result.
+
+
 
 
 

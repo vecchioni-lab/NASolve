@@ -263,9 +263,14 @@ are PASS or unsupported formal-charge evidence, with full membership and saved-
 parent equivalence passing. A check-row ordering defect then stops report replay.
 C88 fixes only that context-local ordering and replays saved evidence with zero
 new SDK/native calls. Local C88 validation passes 512 focused / 4,809 full
-tests and source-removed saved replay with zero processes. Returned Mac C88 replay
-remains pending; source-state findings, scientific qualification, adoption and
-the ordinary full run remain separate.
+tests and source-removed saved replay with zero processes. Returned Mac C88
+verifies all 869 payloads and reproduces the original mechanics PASS, all 315
+checks and all 297 scientific files, with two saved and zero new native calls.
+C89 supplies a fresh initial-only corrected-gradient audit of the exact mixed
+manager before any geometry trial. Local validation passes 600 focused / 4,915
+full tests and source-removed inspect/readback; actual Mac C89 derivatives remain
+pending. Source-state findings, scientific qualification, adoption and the ordinary
+full run remain separate.
 
 
 

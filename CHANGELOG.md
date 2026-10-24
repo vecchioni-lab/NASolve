@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Audit fresh initial gradients in the exact qualified mixed model
+
+- Verify returned C88 saved replay: all 869 payloads and 866 C87 members remain
+  exact; all 315 checks, 297 scientific files and the original mechanics PASS
+  reproduce with two saved and zero new native calls. Preserve previous local
+  validation and the original failed C87 envelope.
+- Add a separate initial-only corrected-gradient diagnostic for the exact active
+  mixed manager, retaining coordinates, definitions, source authority and the
+  NARestraints policy. Fresh global/category differences, both plane orders and
+  tilted/rotated controls use the existing correction and native evaluator;
+  the previous different manager's qualification is not reused as proof.
+- Bind saved numerical evidence through explicit context/linked-parent anchors
+  and preserve parent transport limits. No optimization, generation, adoption,
+  refinement or student CIF approval is added. Focused validation passes 600
+  tests across twenty-two files; all 106 final new cases are frozen before full
+  collection. The full suite passes 4,915 tests (two skips, 276 subtests,
+  694.66 s) with no later source/script/test/figure changes or test supplement.
+  Source-removed cold inspect/readback passes with C88 preserved once, no new
+  SDK process and unchanged archive limits. Fresh Mac derivative qualification
+  remains pending.
+
+
 ### Replay completed native context checks by stable check identity
 
 - Verify returned C87: both native context reads pass all membership and saved-
@@ -25,7 +47,7 @@ entries are reconstructed from repository history.
   Local validation passes 512 focused / 4,809 full tests (two skips, 276 subtests,
   599.28 s), including all sixty-one new cases frozen before collection. Source-
   removed saved replay preserves the mechanics PASS with zero SDK processes.
-  Returned Mac C88 saved replay remains pending.
+  The actual C88 return is appended separately below its original local evidence.
 
 
 ### Preserve explicit native modifier loops at every row count

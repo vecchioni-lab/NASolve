@@ -27909,6 +27909,255 @@
       "Local focused, complete-suite and source-removed saved replay pass; returned Mac C88 saved replay remains pending, with no new native qualification requested.",
       "The observed native-mechanics PASS is at fixed coordinates; nonbonded pair identity, source-state findings, unsupported formal-charge readback, independent absolute CIP and scientific qualification remain separate.",
       "No source-state repair, optimization, cache publication, production adoption, refinement or ordinary diffraction full-run claim is added."
-    ]
+    ],
+    "returned_C88": {
+      "status": "RETURNED_MAC_SAVED_REPLAY_PASS",
+      "recorded_date": "2026-10-24",
+      "archive_filename": "88_Cedar_y3sljlw3_mixed_context_review.zip",
+      "archive_sha256": "4ebc4cc10ce2115426c4ab8cf95d75375d8c018548bde53922749b28b120246b",
+      "archive_bytes": 9918792,
+      "archive_entries": 870,
+      "payloads_verified": 869,
+      "uncompressed_bytes": 121527577,
+      "source_commit": "e97ee0faece94934354fa1ccdf648338f0614ec6",
+      "runner_sha256": "e95c84864a406583edd6b2d50cc17c43b0664b0df7c4bf3ab3cdf97510ac0dee",
+      "original_C87_members_byte_exact": 866,
+      "summary_bytes": 1088,
+      "summary_sha256": "a905987f9507c6a7fd4327d75a2db943d7511a4db8671b4d7553d6292d271688",
+      "original_report_sha256": "94934c61591aa51503c1a5c06781760d059f9693b877cf73eb7fe8fe056d071e",
+      "original_qualification_sha256": "b27b55a5123449b07682b70d6ec2d0dae1ea47c1c85ae9bd84037a3333463062",
+      "scientific_files_byte_exact": 297,
+      "checks": 315,
+      "PASS": 291,
+      "UNSUPPORTED_formal_charge": 24,
+      "contradictions": 0,
+      "status_reproduced": "MIXED_CONTEXT_MECHANICS_PASS",
+      "saved_native_calls": 2,
+      "new_native_calls": 0,
+      "coordinate_decision": {
+        "status": "CONTINUE_WITH_NOTES",
+        "selected": "verified_constructed_model",
+        "native_usable": true,
+        "requires_cif_review": false,
+        "automatic_adoption": false
+      },
+      "original_failed_C87_envelope": "BYTE_EXACT_PRESERVED",
+      "original_local_validation": "UNCHANGED",
+      "source_state_findings": "UNCHANGED",
+      "scientific_qualification": "NOT_ASSESSED",
+      "captured_programs": "DATA_ONLY; NEVER_IMPORTED_OR_EXECUTED",
+      "independent_replay": "EXPLICIT_CONTEXT_AND_LINKED_PARENT_ANCHORS; ALL_REFERENCES_AND_SCIENTIFIC_FILES_VERIFY; ZERO_NEW_SDK_PROCESSES"
+    }
+  },
+  "mixed_initial_gradient_audit_2026_10_24": {
+    "status": "LOCAL_VALIDATION_PASS; FRESH_MAC_DERIVATIVE_QUALIFICATION_PENDING",
+    "recorded_date": "2026-10-24",
+    "delivery_prefix": "89_Cedar",
+    "runner_filename": "89_Cedar_probe_mixed_initial_gradients.py",
+    "builder": "scripts/build_mixed_gradient_probe.py",
+    "template": "scripts/mixed_gradient_probe_template.py",
+    "module": "src/nasolve/cif_mixed_gradient.py",
+    "report": "mixed_initial_gradients.json",
+    "policy_id": "cif-mixed-initial-native-gradient-v1",
+    "prerequisite": {
+      "archive_filename": "88_Cedar_y3sljlw3_mixed_context_review.zip",
+      "sha256": "4ebc4cc10ce2115426c4ab8cf95d75375d8c018548bde53922749b28b120246b",
+      "source_commit": "e97ee0faece94934354fa1ccdf648338f0614ec6",
+      "verification": "RETURNED_C88_SAVED_REPLAY_PASS"
+    },
+    "before": "The exact mixed manager passes native mechanics, but earlier geometry/plane qualifications belong to a different 877-atom/43-site manager and cannot qualify this initial state.",
+    "after": "Audit fresh INITIAL-only global/category derivatives and current-manager plane orders with tilted/rotated controls before a geometry trial. Do not relabel historical endpoints or alter coordinates.",
+    "manager": {
+      "atoms": 863,
+      "sites": 42,
+      "parallelity_restraints": 58,
+      "coordinate_case": "INITIAL_ONLY"
+    },
+    "correction_policy": "native-parallelity-both-first-planes-v1",
+    "method": {
+      "manager_match": "EXACT_SAVED_C87_ACTIVE_NATIVE_IDENTITIES_DEFINITIONS_POLICY_AND_RAW_EVALUATIONS",
+      "kernels": "EXISTING_UNCHANGED_evaluate_fixed_native_audit_gradients_audit_plane_orders",
+      "sample_selection": "NUMERICAL_OUTLIER_EVIDENCE; NO_COMPONENT_NAME_EXCEPTION",
+      "reader": "RECOMPUTE_QUALIFICATION_FROM_HASH_BOUND_SAVED_NUMERICAL_RECORDS",
+      "operational_anchors": [
+        "context_directory",
+        "linked_parent_directory"
+      ],
+      "transport": "COMPLETE_C88_PARENT_INDEXED_ONCE; EXPLICIT_TEMPORARY_VIEWS; NO_OLD_SCIENTIFIC_TREE_COPY; EXISTING_BOUNDS_RETAINED",
+      "captured_programs": "DATA_ONLY; NEVER_IMPORTED_OR_EXECUTED",
+      "fresh_native_binding": "PINNED_FRESH_NATIVE_API_AND_SOURCE; UNCHANGED_CORRECTION_CORE_SHA256_BOUND",
+      "energy": "RAW_NATIVE_TARGET_UNCHANGED_BY_GRADIENT_CORRECTION",
+      "plane_controls": {
+        "actual_manager_restraints": 58,
+        "fresh_tilted_rotated_controls": 6,
+        "coordinate_case": "INITIAL_ONLY",
+        "old_manager_proof": "NOT_REUSED_AS_CURRENT_MANAGER_QUALIFICATION"
+      }
+    },
+    "validation": {
+      "status": "LOCAL_VALIDATION_PASS",
+      "code_checkpoint": "cad81fb394433767d270577cfbc923792672c01f",
+      "all_final_new_cases_frozen_before_full_collection": 106,
+      "new_cases": {
+        "module": 61,
+        "ferry": 45
+      },
+      "focused": {
+        "status": "PASS",
+        "passed": 600,
+        "seconds": 83.01,
+        "test_files": 22,
+        "command_environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q tests/test_mixed_context_probe.py tests/test_mixed_context_retry_probe.py tests/test_cif_mixed_gradient.py tests/test_synthetic_dna_shuttle.py tests/test_mixed_gradient_probe.py tests/test_mixed_linked_recovery_probe.py tests/test_cif_corrected_geometry.py tests/test_mixed_context_saved_probe.py tests/test_cif_corrected_geometry_probe.py tests/test_cif_replacement_geometry.py tests/test_cif_mixed_linked_recovery.py tests/test_mixed_linked_recovery_saved_probe.py tests/test_cif_parallelity_audit.py tests/test_cif_gradient_audit.py tests/test_cif_parallelity_audit_probe.py tests/test_phenix_runtime.py tests/test_cif_mixed_context.py tests/test_cif_review_transport.py tests/test_cif_plane_order_probe.py tests/test_cif_parallelity_correction.py tests/test_cif_plane_order_correction.py tests/test_cif_gradient_audit_probe.py"
+      },
+      "initial_fail_before": [
+        {
+          "scope": "INITIAL_MODULE_CASES_ON_C88_BASE",
+          "failed": 4,
+          "seconds": 2.52
+        },
+        {
+          "scope": "INITIAL_FERRY_CASES_ON_C88_BASE",
+          "failed": 4,
+          "seconds": 0.28
+        }
+      ],
+      "module_final": {
+        "status": "PASS",
+        "passed": 61,
+        "seconds": 10.34
+      },
+      "ferry_final": {
+        "status": "PASS",
+        "passed": 45,
+        "seconds": 2.23
+      },
+      "actual_C88_prepared_inspect": {
+        "status": "PASS",
+        "SDK_processes": 0,
+        "prepared_bytes": 455931,
+        "required_plane_pairs": 3328,
+        "parent_scientific_files_byte_exact": 297,
+        "scope": "PREPARATION_AND_SAVED_PARENT_REPLAY_ONLY; NOT_FRESH_SDK_DERIVATIVE_QUALIFICATION"
+      },
+      "complete_suite": {
+        "status": "PASS",
+        "passed": 4915,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 694.66,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q",
+        "code_checkpoint": "cad81fb394433767d270577cfbc923792672c01f"
+      },
+      "source_removed_portability": {
+        "status": "PASS",
+        "source_commit": "cad81fb394433767d270577cfbc923792672c01f",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runtime_members": 166,
+        "runtime_archive_sha256": "76f43883e50d54d8c9f11ddf180cc0c8f7d2d3f83631fa13613abf18634095d7",
+        "runner_sha256": "c84248b9a728b69ff61fe5026ccb20d7e676580bf46ee11391247a0c2bd3cfbc",
+        "source_archive_sha256": "4ebc4cc10ce2115426c4ab8cf95d75375d8c018548bde53922749b28b120246b",
+        "source_clones_removed_before_launch": true,
+        "original_repositories_and_archive_reads_forbidden": true,
+        "ambient_poison": "NOT_IMPORTED",
+        "aliased_TMPDIR": true,
+        "macos_path_budget": {
+          "max_absolute_path_bytes": 232,
+          "max_component_bytes": 68,
+          "checked_operations": 164380,
+          "subprocess_calls": 0,
+          "forbidden_calls": []
+        },
+        "everyday_authorized_edit": "PRESERVED",
+        "original_user_config": "UNCHANGED",
+        "component_store": "UNTOUCHED",
+        "review_payloads": 918,
+        "review_uncompressed_bytes": 122235229,
+        "largest_review_member_bytes": 20829148,
+        "preserved_C88_payloads": 869,
+        "new_native_calls": 0,
+        "no_Phenix_argument": true,
+        "no_native_discovery": "PROFILE_GUARDED",
+        "new_data_bytes": 484997,
+        "required_plane_pairs": 3328,
+        "remaining_128MiB_budget_after_inspect": 11982499,
+        "old_scientific_subtree_duplicated": false,
+        "standalone_explicit_parent_reader_from_new_capsule_after_original_removal": "PASS",
+        "standalone_reader": {
+          "status": "PASS",
+          "inspect_status": "PREPARED_ONLY",
+          "new_native_calls": 0,
+          "reader_from_new_capsule": true,
+          "context_files": 165,
+          "parent_files": 132,
+          "new_files": 46,
+          "all_scientific_files_unchanged": true
+        },
+        "guarded_temporary_auto_cleanup": "NOT_CLAIMED",
+        "frozen_runtime_preserved": true,
+        "guarded_relocated_help": "PASS",
+        "builder_help": "PASS",
+        "scope": "SOURCE_REMOVED_INITIAL_ONLY_INSPECT_QA; QUALIFIED_MAC_NATIVE_CAPTURE_PRESERVED; ZERO_NEW_SDK_PROCESSES",
+        "private_artifacts": "EXCLUDED_FROM_GIT",
+        "preserved_C88_manifest": "BYTE_EXACT",
+        "owned_temporary_views_explicitly_retired_before_standalone_reader": true
+      },
+      "fresh_Mac_native_derivatives": "PENDING",
+      "source_scripts_tests_and_figure_unchanged_after_full_collection": true,
+      "post_collection_test_supplement": "NONE",
+      "documentation": {
+        "original_C88_local_validation": "UNCHANGED",
+        "all_earlier_ledger_and_implementation_values": "TYPE_AND_VALUE_IDENTICAL",
+        "strict_JSON_duplicate_keys": "NONE",
+        "runtime_progress_mirrors": "EXACT_EXCEPT_EVIDENCE_POINTER",
+        "relative_links_checked": 161,
+        "prior_native_kernels_generation_PostMR_preparation_source_graph_qualification_and_NA_policy": "BYTE_UNCHANGED",
+        "editable_SVG": "DETERMINISTIC_REGENERATION; RENDERED_AND_VISUALLY_CHECKED; FROZEN_BEFORE_FULL_COLLECTION",
+        "figure_builder_sha256": "4578fe57aaf30f2966bb777c9bd13012e2f7423a67f4010f082fbeb9863e0bef",
+        "figure_SVG_sha256": "8a891882170c674af9b5f66657e1c32e7bf7ecc94e920228cc319e5b8242f379",
+        "private_QA_artifacts": "EXCLUDED_FROM_GIT"
+      }
+    },
+    "requires_cif_review": false,
+    "automatic_adoption": false,
+    "model_optimization_requested": false,
+    "coot_execution": "NOT_REQUESTED",
+    "readyset_execution": "NOT_REQUESTED",
+    "generation": "NOT_REQUESTED",
+    "refinement": "NOT_REQUESTED",
+    "production_checkpoint": "NOT_CREATED",
+    "mtz_used": false,
+    "component_store_write": "NOT_REQUESTED",
+    "scientific_qualification": "NOT_ASSESSED",
+    "source_state_findings": "UNCHANGED",
+    "generated_artifacts": "PRIVATE_MODELS_DICTIONARIES_LOGS_CAPTURES_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "remaining_limits": [
+      "Local focused, complete-suite and source-removed preparation/readback pass; fresh Mac C89 derivative qualification remains pending.",
+      "Initial sampled numerical checks are not proof of convergence, absolute stereochemistry, full scientific qualification or an ordinary diffraction solve.",
+      "No optimizer, state repair, cache publication, production adoption or student CIF gate is added."
+    ],
+    "execution_bounds": {
+      "native_workers_max": 1,
+      "timeout_seconds_max": 600,
+      "selected_atoms_max": 6,
+      "whole_energy_evaluations_expected": 1367,
+      "whole_energy_evaluations_max": 2000,
+      "plane_control_evaluation_pairs_expected": 3328,
+      "plane_control_evaluation_pairs_max": 5000,
+      "counts_scope": "EXPECTED_ALGORITHM_BUDGET; ACTUAL_MAC_COUNTS_PENDING",
+      "coordinate_cases": [
+        "initial"
+      ],
+      "Coot_calls": 0,
+      "ReadySet_calls": 0,
+      "generator_calls": 0,
+      "optimizer_calls": 0
+    },
+    "transport_bounds": {
+      "archive_uncompressed_bytes_max": 134217728,
+      "member_bytes_max": 33554432,
+      "archive_entries_max": 1024
+    },
+    "compatibility": "ADDITIVE_INITIAL_ONLY_REPORT_AND_FERRY; PRIOR_DIAGNOSTICS_KERNELS_NATIVE_CHEMISTRY_AND_NA_POLICY_UNCHANGED"
   }
 }
