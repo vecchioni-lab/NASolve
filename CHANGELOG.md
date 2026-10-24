@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve explicit native modifier loops at every row count
+
+- Record C86's first worker stopping before model interpretation while loading
+  a one-row OP3 modification serialized as scalar CIF items. Preserve its failed
+  report, old parent/fallback and original local validation. All 697 payloads and
+  exact C85 parent verify; maintained replay preserves all 110 context files.
+- Write every nonempty modifier atom category as an explicit `loop_`, preserving
+  parsed rows, IDs, chemistry and strict mechanics gates. Record context policy v2;
+  the maintained reader replays legacy v1 with exact original scalar bytes.
+- Retry the exact C86 capsule through the existing ferry with explicit
+  `--delivery-prefix 87_Cedar`; retain builder default 86. Keep shared `_emit`,
+  prior linked preparation and native kernels unchanged. At most two fixed native
+  reads; no Coot/ReadySet, generation, optimization, store write or adoption.
+  Local validation passes 451 focused / 4,748 full tests (two skips, 276 subtests,
+  641.54 s), with all thirty-eight new cases frozen before collection. Source-
+  removed grammar and exact legacy replay pass without SDK processes. Fresh Mac
+  v2 modifier parsing/native qualification remains pending.
+
+
 ### Test source-declared DNA groups and explicit incoming OP3 contexts
 
 - Verify returned C85 saved replay: all 584 payloads and exact C84 parent,

@@ -211,11 +211,15 @@ def test_op3_deletion_cannot_remove_an_oxygen_with_an_unrelated_heavy_neighbor(t
             code='Q17',normalize_group=True)
 
 
-def anchored_parent(tmp_path,monkeypatch):
+def anchored_parent(tmp_path,monkeypatch,*,single_op3=False):
     """Mock only previously verified parent captures; real preparation stays live."""
     from nasolve.cif_mixed_linked_recovery import _ref,_resolve
     root=tmp_path/'linked_parent';root.mkdir()
     model,plan,sources,dictionaries,before,after,_=context_fixture(root)
+    if single_op3:
+        from nasolve.cif_linked_preparation import component_values,_prune,_render
+        provider=dictionaries[0];values=component_values(provider,'Q17')
+        provider.write_text(_render(_prune(values,{'HOP3'},outgoing=False),'Q17'))
     active=root/'inputs/active.phil';active.write_text('refinement {\n pdb_interpretation.secondary_structure {\n enabled = False\n }\n}\n')
     disabled=root/'inputs/disabled.phil';disabled.write_bytes(active.read_bytes())
     plan_path=root/'inputs/plan.json';plan_path.write_text(json.dumps(plan))
@@ -352,3 +356,111 @@ def test_mechanical_equivalence_refuses_an_unbound_literal_atom_name(tmp_path):
         for atom in native['atoms']:atom.update(atom_name_field=f'{atom["atom_id"]:>4}',occupancy=1.0)
     after['atoms'][0]['atom_name_field']='DIFF'
     with pytest.raises(ValueError,match='structured native atom'):_mechanical_equivalence(before,after)
+
+
+def modification_values(names):
+    values={'data_':'mod_NASCtest'}
+    for field,data in {'mod_id':['NASCtest']*len(names),'function':['delete']*len(names),'atom_id':list(names),
+        'new_atom_id':['.']*len(names),'new_type_symbol':['.']*len(names),
+        'new_type_energy':['.']*len(names),'new_partial_charge':['.']*len(names)}.items():
+        values['_chem_mod_atom.'+field]=data
+    return values
+
+
+@pytest.mark.parametrize('names',[['OP3'],['O\'P "3'],['OP3','HOP3']])
+def test_c87_atom_modification_grammar_keeps_one_or_many_rows_in_an_explicit_loop(tmp_path,names):
+    from nasolve.cif_mixed_context import _render_atom_modification
+    from nasolve.ligand_profiles import _blocks
+    values=modification_values(names);text=_render_atom_modification(values)
+    path=tmp_path/'modification.cif';path.write_text(text)
+    assert '\nloop_\n_chem_mod_atom.mod_id\n' in text
+    assert _blocks(path)[0].values==values
+
+
+def single_op3_fixture(tmp_path):
+    from nasolve.cif_mixed_context import _select_context
+    from nasolve.cif_linked_preparation import component_values,_prune,_render
+    model,plan,sources,dictionaries,before,after,numerical=context_fixture(tmp_path)
+    provider=numerical['Q17'];values=component_values(provider,'Q17')
+    provider.write_text(_render(_prune(values,{'HOP3'},outgoing=False),'Q17'))
+    selected=_select_context(model,plan,sources,dictionaries,before,after)
+    return model,sources['Q17'],provider,selected['contexts']['Q17']
+
+
+def test_c87_single_op3_preparation_uses_a_native_modification_loop(tmp_path):
+    from nasolve.cif_mixed_context import _prepare_component
+    from nasolve.ligand_profiles import _blocks
+    model,source,provider,contexts=single_op3_fixture(tmp_path)
+    out=tmp_path/'prepared';receipt=_prepare_component(source,provider,model,contexts,out,code='Q17',normalize_group=True)
+    path=out/receipt['outputs']['modifications']['path'];text=path.read_text();blocks=_blocks(path)
+    assert '\nloop_\n_chem_mod_atom.mod_id\n' in text
+    assert len(blocks)==1 and blocks[0].values['_chem_mod_atom.atom_id']==['OP3']
+    assert blocks[0].values['data_']=='mod_'+next(v['modification_id'] for v in receipt['sites'] if v['modification_id'])
+
+
+def test_c87_explicit_legacy_policy_preserves_the_old_scalar_bytes(tmp_path):
+    from nasolve.cif_mixed_context import _prepare_component,LEGACY_POLICY_ID,POLICY_ID
+    from nasolve.ligand_profiles import _blocks,_emit
+    model,source,provider,contexts=single_op3_fixture(tmp_path)
+    legacy=tmp_path/'legacy';modern=tmp_path/'modern'
+    a=_prepare_component(source,provider,model,contexts,legacy,code='Q17',normalize_group=True,policy_id=LEGACY_POLICY_ID)
+    b=_prepare_component(source,provider,model,contexts,modern,code='Q17',normalize_group=True,policy_id=POLICY_ID)
+    old=legacy/a['outputs']['modifications']['path'];new=modern/b['outputs']['modifications']['path']
+    assert a['policy_id']==LEGACY_POLICY_ID and b['policy_id']==POLICY_ID
+    assert old.read_text()==_emit(_blocks(old)[0].values)
+    assert '\nloop_\n_chem_mod_atom.mod_id\n' not in old.read_text()
+    assert '\nloop_\n_chem_mod_atom.mod_id\n' in new.read_text()
+    assert _blocks(old)[0].values==_blocks(new)[0].values
+    for key in ['dictionary','parameters']:
+        assert (legacy/a['outputs'][key]['path']).read_bytes()==(modern/b['outputs'][key]['path']).read_bytes()
+
+
+def test_c87_new_audit_defaults_to_loop_policy_and_reader_keeps_legacy_dispatch(tmp_path,monkeypatch):
+    from nasolve.cif_mixed_context import (audit_mixed_context,read_mixed_context,_prepare_bundle,
+        _ref,REPORT,POLICY_ID,LEGACY_POLICY_ID)
+    parent_root,_=anchored_parent(tmp_path,monkeypatch,single_op3=True)
+    from nasolve.cif_mixed_context import _parent_inputs
+    out=tmp_path/'context';report=audit_mixed_context(parent_root,None,out)
+    assert report['policy_id']==POLICY_ID and POLICY_ID!=LEGACY_POLICY_ID
+    assert all(v['receipt']['policy_id']==POLICY_ID for v in report['bundle']['preparations'].values())
+    preparation=report['bundle']['preparations']['Q17']
+    mod=out/preparation['directory']['path']/preparation['receipt']['outputs']['modifications']['path']
+    assert '\nloop_\n_chem_mod_atom.mod_id\n' in mod.read_text()
+    # Changing only a stored version is insufficient: the version chooses an
+    # immutable grammar and preparation receipt, both replayed by the reader.
+    changed=deepcopy(report);changed['policy_id']=LEGACY_POLICY_ID
+    (out/REPORT).write_text(json.dumps(changed))
+    with pytest.raises(ValueError):read_mixed_context(out,linked_parent_directory=parent_root)
+    (out/REPORT).write_text(json.dumps(report))
+    # Build the historical output with its explicit policy and keep all parent
+    # file references identical. This exercises actual v1 bundle generation,
+    # rather than bypassing the maintained preparation during reader replay.
+    parent,model,active,disabled,plan,sources,dictionaries,captures=_parent_inputs(parent_root)
+    legacy=tmp_path/'legacy_materialization';legacy.mkdir()
+    bundle=_prepare_bundle(legacy,parent_root,parent,model,plan,sources,dictionaries,captures,policy_id=LEGACY_POLICY_ID)
+    for path in legacy.rglob('*'):
+        if path.is_file():
+            target=out/path.relative_to(legacy);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(path.read_bytes())
+    historical=deepcopy(report);historical['policy_id']=LEGACY_POLICY_ID;historical['bundle']=bundle
+    historical['outputs']=[_ref(p,out) for p in sorted(out.rglob('*')) if p.is_file() and p!=out/REPORT]
+    (out/REPORT).write_text(json.dumps(historical))
+    assert read_mixed_context(out,linked_parent_directory=parent_root)==historical
+    assert '\nloop_\n_chem_mod_atom.mod_id\n' not in mod.read_text()
+    historical['policy_id']=POLICY_ID;(out/REPORT).write_text(json.dumps(historical))
+    with pytest.raises(ValueError):read_mixed_context(out,linked_parent_directory=parent_root)
+
+
+def test_c87_no_atom_modification_keeps_the_existing_noop_bytes_for_both_policies(tmp_path):
+    from nasolve.cif_mixed_context import _prepare_component,POLICY_ID,LEGACY_POLICY_ID
+    model,plan,sources,dictionaries,before,after,numerical=context_fixture(tmp_path)
+    model.write_text(''.join(line for line in model.read_text().splitlines(keepends=True)
+        if not (line.startswith('HETATM') and line[21]=='A' and line[22:26].strip()=='2')))
+    contexts=[{'site':'A:1','incoming_site':None,'outgoing_site':None,
+        'five_prime_state':'phosphate','three_prime_state':'free_OH'}]
+    payloads=[]
+    for number,policy in enumerate([LEGACY_POLICY_ID,POLICY_ID]):
+        out=tmp_path/f'prepared_{number}'
+        receipt=_prepare_component(sources['Q17'],numerical['Q17'],model,contexts,out,code='Q17',
+            normalize_group=True,policy_id=policy)
+        payloads.append((out/receipt['outputs']['modifications']['path']).read_bytes())
+    assert payloads==[b'data_mod_context_sites\n# No atom modifications required.\n']*2

@@ -187,10 +187,13 @@ ordering mismatch is repaired by C85; its returned saved replay verifies all
 584 payloads, preserves the original REVIEW and runs no SDK process. C86 now
 prepares only source-declared DNA group metadata and explicit incoming OP3/
 attached-H contexts, preserving all surviving targets, charges and outgoing state.
-Two fresh fixed native reads must retain the old mechanics and pass the strict
-full qualifier. Local validation passes 413 focused / 4,710 full tests and
-source-removed preparation/readback with zero SDK processes. Actual Mac C86
-native checks, production adoption and scientific qualification remain pending.
+Returned C86 stops before model interpretation on a single-row modifier written
+as scalar items where the native reader expects a loop. Its original local
+validation remains unchanged. C87 writes explicit modifier loops for every row
+count and retains exact v1 replay, chemistry and mechanics gates. Local checks
+pass 451 focused / 4,748 full tests and source-removed grammar/replay QA with
+zero SDK processes. Fresh Mac retry results, adoption and scientific
+qualification remain pending.
 
 
 

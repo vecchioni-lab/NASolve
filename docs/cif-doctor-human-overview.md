@@ -2298,7 +2298,73 @@ simulated macOS path operations stay within 217 absolute/68 component bytes.
 Standalone readback reconstructs its explicit parent from the copied new capsule
 after original ZIP/session/runtime removal and explicit owned-view retirement;
 guarded automatic temporary cleanup is not claimed. Prepared-input and fake-tool
-QA remain separate from the pending installed Mac native context check.
+QA remain separate from installed native execution. These original C86 local
+checks are preserved; the subsequent return and C87 boundary are below.
+
+Returned C86 stops at a native modifier grammar boundary before model
+interpretation. Its first Phenix 2.2.1-6174 worker exits two while loading the
+1AP OP3-only modification; the active read and full qualification do not run.
+Biopython's `MMCIFIO` serializes a category containing one row as scalar items.
+The native modification reader expects a loop table, so its conversion returns
+no table object before `atom_list` access. This is a serialization failure;
+it supplies no new verdict on the model's coordinates or restraint parameters.
+All 697 payloads and the exact 584-payload C85 parent plus its manifest verify.
+The context and parent readers reproduce exactly with zero verification
+processes; all 110 context files and the fallback remain unchanged. All ten new
+OP3-only modifiers have the same scalar shape. Original C86 local validation
+remains unchanged, and the return supplies no new model/energy qualification.
+
+C87 makes the modifier grammar independent of row count. Every nonempty
+`_chem_mod_atom` category is written as an explicit `loop_` table, for both
+single-row and multiple-row deletions. Keep the same MMCIF value formatter and
+require one nonempty rectangular atom-modification category. Parsed rows and
+modifier IDs are unchanged.
+The shared `_emit`, previous linked preparation, native kernels, source selection,
+chemical state and all strict mechanics/qualification gates stay unchanged.
+Existing DF source-state findings and the verified fallback remain separate.
+
+Methods: the context writer records `cif-mixed-linked-context-v2` in the existing
+schema-1 `mixed_context.json`. The maintained reader accepts v1 and v2 and
+regenerates each using its recorded policy. Legacy
+`cif-mixed-linked-context-v1` retains its exact scalar serialization and original
+failed report bytes; replaying it does not relabel the old attempt as successful.
+V2 artifacts require the updated reader; legacy files are not migrated.
+The public audit/reader signatures, `mixed_context_directory` local anchor and
+required hash-bound `linked_parent_directory` anchor remain unchanged.
+
+Build the existing `scripts/build_mixed_context_probe.py` with explicit
+`--delivery-prefix 87_Cedar`; the builder default remains `86_Cedar` for
+compatibility. The ferry verifies the exact failed C86 capsule as data through
+the v1 reader, preserves every payload once with indexed transport, and prepares
+a separate v2 retry. A temporary external C84 view avoids copying the old
+scientific subtree. At most two fresh fixed native reads, sixty seconds each,
+use the same disabled/original active NARestraints policy and existing native
+secondary-structure settings. Require unchanged structured atom/proxy inventories,
+fixed-coordinate total/category targets, named gradients and strict full
+qualification. Nonbonded pair identities are not independently compared.
+No Coot, ReadySet, generation, optimization, cache write, adoption, refinement
+or scientific qualification is requested. Actual Mac C87 modifier parsing and
+native context qualification remain pending.
+
+Final local validation passes 451 focused tests in 32.33 seconds and 4,748 full
+tests (two skips, 276 subtests) in 641.54 seconds on
+`b8da8cb21b69087248ddcd9e4c5d0ff40b422ef1`. All thirty-eight final new cases
+are frozen before full collection, with no later source/script/test changes or
+supplement. Generic single/multiple-row grammar, token formatting, exact legacy
+replay, input binding, failure preservation and strict unchanged mechanics are
+covered. Initial fail-before subsets remain separate from the final case count.
+
+Source-removed cold preparation/readback passes with 165 runtime members and a
+756-payload capsule preserving all 697 C86 payloads plus its manifest exactly.
+Its 452,195 bytes of new context data contain ten explicit one-row modifier loops;
+base dictionaries, projected definitions, site PHIL, canonical/IGU resources and
+the one no-op remain unchanged. No old scientific subtree is duplicated and no
+SDK/native/other process starts. Configuration, everyday edits and store fixtures
+survive; 141,546 simulated macOS path operations stay within 217 absolute/68
+component bytes. Standalone legacy v1 and new v2 readers pass from the copied
+new capsule after original ZIP/session/runtime removal and explicit owned-view
+retirement; guarded automatic temporary cleanup is not claimed. These are local
+grammar/preparation/replay checks, not fresh installed native qualification.
 
 
 

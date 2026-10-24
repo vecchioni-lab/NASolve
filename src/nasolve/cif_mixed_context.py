@@ -12,9 +12,11 @@ from hashlib import sha256
 import json
 import math
 from pathlib import Path
+import re
 from tempfile import TemporaryDirectory
 
-POLICY_ID='cif-mixed-linked-context-v1'
+LEGACY_POLICY_ID='cif-mixed-linked-context-v1'
+POLICY_ID='cif-mixed-linked-context-v2'
 ANCHOR='mixed_context_directory'
 PARENT_ANCHOR='linked_parent_directory'
 REPORT='mixed_context.json'
@@ -46,6 +48,28 @@ def _resolve(root,parent,ref):
 def _dump(path,value):
     path.parent.mkdir(parents=True,exist_ok=True)
     with path.open('x') as handle:json.dump(value,handle,indent=2,sort_keys=True,allow_nan=False);handle.write('\n')
+
+
+def _render_atom_modification(values):
+    """Keep native modification categories as loops, including one atom row.
+
+    MMCIFIO's ordinary dictionary writer uses scalar items for a single row.
+    The installed native modification reader initializes its outer object in
+    the loop branch, so a nonempty atom category needs an explicit loop. CIF
+    value quoting still uses the same maintained formatter as the writer.
+    """
+    from Bio.PDB.mmcifio import MMCIFIO
+    name=values.get('data_');fields=[k for k in values if k!='data_']
+    if (not isinstance(name,str) or not re.fullmatch(r'mod_[A-Za-z0-9_]+',name) or not fields
+            or any(not isinstance(k,str) or not re.fullmatch(r'_chem_mod_atom\.[A-Za-z0-9_]+',k) for k in fields)):
+        raise ValueError('Require one explicit native atom-modification block')
+    if any(not isinstance(values[k],list) for k in fields):raise ValueError('Require atom-modification columns')
+    sizes={len(values[k]) for k in fields}
+    if len(sizes)!=1 or not next(iter(sizes)) or any(not isinstance(v,str) for k in fields for v in values[k]):
+        raise ValueError('Require nonempty rectangular atom-modification rows')
+    writer=MMCIFIO()
+    tokens=[writer._format_mmcif_col(values[k][i],0) for i in range(next(iter(sizes))) for k in fields]
+    return 'data_'+name+'\n#\nloop_\n'+'\n'.join(fields)+'\n'+'\n'.join(tokens)+'\n#\n'
 
 
 def _external(root,ref):
@@ -156,11 +180,12 @@ def _select_context(model,plan,sources,dictionaries,baseline,active):
     return {'components':codes,'contexts':contexts,'site_reasons':{s:selected[s] for s in sorted(selected)},'source_eligibility':eligibility}
 
 
-def _prepare_component(source,numerical,model,contexts,output,*,code,normalize_group):
+def _prepare_component(source,numerical,model,contexts,output,*,code,normalize_group,policy_id=POLICY_ID):
     from .cif_linked_preparation import (component_values,atom_rows,hydrogen_neighbors,_model_inventory,
         _selection,_prune,_render)
     from .cif_terminal_qualification import projection_site_plan
     from .ligand_profiles import _emit
+    if policy_id not in {POLICY_ID,LEGACY_POLICY_ID}:raise ValueError('Unsupported context preparation policy')
     source,numerical,model,output=map(Path,(source,numerical,model,output))
     if (output.exists() or any(p.is_symlink() for p in [output,*output.parents])
             or any(output.resolve().is_relative_to(p.parent.resolve()) for p in [source,numerical,model])):
@@ -200,7 +225,7 @@ def _prepare_component(source,numerical,model,contexts,output,*,code,normalize_g
             mod={'data_':'mod_'+identifier}
             for i,field in enumerate(['mod_id','function','atom_id','new_atom_id','new_type_symbol','new_type_energy','new_partial_charge']):
                 mod['_chem_mod_atom.'+field]=[[identifier,'delete',name,'.','.','.','.'][i] for name in sorted(removed)]
-            mod_blocks.append(_emit(mod));phils.append('refinement.pdb_interpretation.apply_cif_modification {\n'
+            mod_blocks.append(_emit(mod) if policy_id==LEGACY_POLICY_ID else _render_atom_modification(mod));phils.append('refinement.pdb_interpretation.apply_cif_modification {\n'
                 f'  data_mod = {identifier}\n  residue_selection = {selection}\n}}\n')
         path=output/('projected_'+site.replace(':','_')+'.cif');path.write_text(_render(derivative,code))
         if component_values(path,code)!=derivative:raise ValueError('Context projection serialization changed parsed rows')
@@ -208,7 +233,7 @@ def _prepare_component(source,numerical,model,contexts,output,*,code,normalize_g
         sites.append(row);projected.append(path)
     modifications=output/'site_modifications.cif';modifications.write_text('\n'.join(mod_blocks) if mod_blocks else 'data_mod_context_sites\n# No atom modifications required.\n')
     parameters=output/'site_modifications.phil';parameters.write_text(''.join(phils))
-    receipt={'schema_version':1,'policy_id':POLICY_ID,'component':code,'status':'PREPARED_ONLY','source_eligibility':eligibility,
+    receipt={'schema_version':1,'policy_id':policy_id,'component':code,'status':'PREPARED_ONLY','source_eligibility':eligibility,
         'source_sha256':sha256(source.read_bytes()).hexdigest(),'numerical_sha256':sha256(numerical.read_bytes()).hexdigest(),
         'model_sha256':sha256(model.read_bytes()).hexdigest(),'metadata_change':{'field':'_chem_comp.group','before':original.get('_chem_comp.group'),'after':values.get('_chem_comp.group')},
         'sites':sites,'other_parsed_rows_preserved':True,'outgoing_hydrogens_and_energy_types':'UNCHANGED',
@@ -219,7 +244,7 @@ def _prepare_component(source,numerical,model,contexts,output,*,code,normalize_g
     return receipt
 
 
-def _prepare_bundle(root,parent_root,parent,model,plan,sources,dictionaries,captures):
+def _prepare_bundle(root,parent_root,parent,model,plan,sources,dictionaries,captures,*,policy_id=POLICY_ID):
     from .cif_linked_preparation import component_values
     from .ligand_profiles import _exclude_components,_blocks,dictionary_component_codes
     from .cif_mixed_native import select_native_dictionaries
@@ -231,7 +256,7 @@ def _prepare_bundle(root,parent_root,parent,model,plan,sources,dictionaries,capt
     for code in selection['components']:
         out=root/'bundle/prepared'/code
         receipt=_prepare_component(sources[code],providers[code],model,selection['contexts'][code],out,code=code,
-            normalize_group=any(r['group'] for s,r in selection['site_reasons'].items() if plan['target_site_components'][s]==code))
+            normalize_group=any(r['group'] for s,r in selection['site_reasons'].items() if plan['target_site_components'][s]==code),policy_id=policy_id)
         preparations[code]={'directory':{'anchor':ANCHOR,'path':out.relative_to(root).as_posix()},'receipt':receipt}
         files.append(out/receipt['outputs']['dictionary']['path'])
         if any(s['modification_id'] for s in receipt['sites']):
@@ -322,12 +347,13 @@ def _mechanical_equivalence(old,new):
         'scope':'FIXED_COORDINATES_ONLY','nonbonded_pair_identity':'NOT_ASSESSED'}
 
 
-def _qualify(before,after,parent_captures,model,active,plan,sources,dictionaries,bundle,root,parent_root,parent):
+def _qualify(before,after,parent_captures,model,active,plan,sources,dictionaries,bundle,root,parent_root,parent,*,policy_id=POLICY_ID):
     from .cif_mixed_native import qualify_mixed_native
     from .cif_linked_qualification import site_definition_checks
     from .cif_terminal_qualification import definition_projection_checks
     from .cif_mixed_linked_recovery import _canonical_qualification
     from .cif_effective_source_recovery import mechanics_can_continue
+    if policy_id not in {POLICY_ID,LEGACY_POLICY_ID}:raise ValueError('Unsupported context qualification policy')
     projections={s:(_resolve(root,parent_root,v['dictionary']),v['component']) for s,v in bundle['site_projections'].items()}
     membership=qualify_mixed_native(before,after,model,active,plan,sources,dictionaries,site_projections=projections)
     equivalence={label:_mechanical_equivalence(old['native_validation'],new) for label,old,new in zip(['baseline','active'],parent_captures,[before,after])}
@@ -346,7 +372,7 @@ def _qualify(before,after,parent_captures,model,active,plan,sources,dictionaries
                 check(label+':exact-context-modifier:'+site['site'],mappings[site['site']].get('chem_mod_ids')==expected)
     normalized={'checks':[dict(c,check=c['check'].split(':',1)[1]) if c['check'].startswith(('baseline:effective-site-formal-charges:','active:effective-site-formal-charges:')) else c for c in checks]}
     usable=mechanics_can_continue(normalized)
-    return _canonical_qualification({'schema_version':1,'policy_id':POLICY_ID,'status':'MIXED_CONTEXT_MECHANICS_PASS' if usable else 'REVIEW',
+    return _canonical_qualification({'schema_version':1,'policy_id':policy_id,'status':'MIXED_CONTEXT_MECHANICS_PASS' if usable else 'REVIEW',
         'mechanics_checks_pass':usable,'membership':membership,'saved_parent_equivalence':equivalence,'checks':checks,
         'source_chemical_findings':'PRESERVED_SEPARATELY; NOT_PROMOTED_BY_CONTEXT_OR_NATIVE_MEMBERSHIP',
         'scientific_qualification':'NOT_ASSESSED','automatic_adoption':False})
@@ -415,7 +441,7 @@ def read_mixed_context(directory,*,linked_parent_directory):
     record=root/REPORT
     if record.is_symlink():raise ValueError('Unsafe context report')
     report=json.loads(record.read_bytes())
-    if (report.get('schema_version')!=1 or report.get('policy_id')!=POLICY_ID or report.get('status') not in {'PREPARED_ONLY','REVIEW','MIXED_CONTEXT_MECHANICS_PASS'}
+    if (report.get('schema_version')!=1 or report.get('policy_id') not in {POLICY_ID,LEGACY_POLICY_ID} or report.get('status') not in {'PREPARED_ONLY','REVIEW','MIXED_CONTEXT_MECHANICS_PASS'}
             or any(report.get(k)!='NOT_RUN' for k in _SCOPE_FIELDS) or report.get('source_state_repair')!='NOT_PERFORMED'
             or report.get('production_checkpoint')!='NOT_CREATED' or report.get('scientific_qualification')!='NOT_ASSESSED'
             or report.get('automatic_adoption') is not False or report.get('requires_cif_review') is not False or report.get('mtz_used') is not False
@@ -437,7 +463,7 @@ def read_mixed_context(directory,*,linked_parent_directory):
         'sources':{c:_external(parent_root,r) for c,r in parent_refs['sources'].items()}}
     if report['inputs']!=expected:raise ValueError('Context parent bindings differ')
     with TemporaryDirectory(prefix='cif-context-reader-') as temporary:
-        replay=Path(temporary).resolve();bundle=_prepare_bundle(replay,parent_root,parent,model,plan,sources,dictionaries,old_captures)
+        replay=Path(temporary).resolve();bundle=_prepare_bundle(replay,parent_root,parent,model,plan,sources,dictionaries,old_captures,policy_id=report['policy_id'])
         if report['bundle']!=bundle or report['targets']!=bundle['selection']['components']:raise ValueError('Context preparation does not reproduce')
         for p in replay.rglob('*'):
             if p.is_file() and (root/p.relative_to(replay)).read_bytes()!=p.read_bytes():raise ValueError('Context preparation bytes differ')
@@ -464,7 +490,7 @@ def read_mixed_context(directory,*,linked_parent_directory):
     if 'artifact' in report['qualification']:
         if len(captures)!=2 or not all(_native_ok(c) for c in captures):raise ValueError('Context qualification lacks two complete captures')
         q=json.loads(_resolve(root,parent_root,report['qualification']['artifact']).read_bytes())
-        fresh=_qualify(*(c['native_validation'] for c in captures),old_captures,model,active,plan,sources,native,bundle,root,parent_root,parent)
+        fresh=_qualify(*(c['native_validation'] for c in captures),old_captures,model,active,plan,sources,native,bundle,root,parent_root,parent,policy_id=report['policy_id'])
         if not qualification_replays(q,fresh):raise ValueError('Context qualification does not reproduce')
     elif report['qualification']!={'status':'NOT_RUN'}:raise ValueError('Unexplained context qualification')
     if report['status']=='PREPARED_ONLY' and (count or q is not None):raise ValueError('Prepared context claims execution')
