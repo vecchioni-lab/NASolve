@@ -102,6 +102,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "mixed_linked_recovery_probe_template.py": "84_Cedar",
         "mixed_context_probe_template.py": "86_Cedar",
         "mixed_gradient_probe_template.py": "89_Cedar",
+        "mixed_geometry_probe_template.py": "90_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -263,6 +264,12 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         if controls:
             metadata['component_controls'] = controls
             metadata['dependencies'].append('openpyxl for bundled NARestraints role controls')
+    if template_name == "mixed_geometry_probe_template.py":
+        metadata.update(kind="mixed-geometry-shuttle", delivery_prefix=delivery_prefix,
+                        native_validation="qualified-mixed-model-fixed-geometry-and-native-readback",
+                        automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
+                                    "tomli on Python 3.10", "Phenix for native execution"]
     if template_name == "mixed_gradient_probe_template.py":
         metadata.update(kind="mixed-gradient-shuttle", delivery_prefix=delivery_prefix,
                         native_validation="initial-only-fixed-mixed-model-native-gradient-audit",

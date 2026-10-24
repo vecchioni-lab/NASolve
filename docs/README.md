@@ -202,9 +202,16 @@ verifies all 869 payloads and reproduces the original mechanics PASS, all 315
 checks and all 297 scientific files, with two saved and zero new native calls.
 C89 supplies a fresh initial-only corrected-gradient audit of the exact mixed
 manager before any geometry trial. Local validation passes 600 focused / 4,915
-full tests and source-removed inspect/readback; actual Mac C89 derivatives remain
-pending. Source-state findings, scientific qualification, adoption and the ordinary
-full run remain separate.
+full tests and source-removed inspect/readback. Returned Mac C89 now passes the
+fresh initial-only audit: 1,367 energy evaluations, all eight gradient families,
+all fifty-eight plane restraints in both orders and tilted/rotated controls.
+Native targets, coordinates and definitions stay unchanged. C90 supplies a bounded
+geometry trial under that exact qualified policy, with a separate endpoint,
+fresh native readback and automatic usable fallback. C90 validation passes 917
+focused / 5,031 full tests. Real-parent SDK-free preparation, adapter checks and
+source-removed inspect/readback pass with zero new native processes. Actual Mac
+C90 geometry remains pending. Source-state findings, scientific qualification,
+adoption and the ordinary full run remain separate.
 
 
 

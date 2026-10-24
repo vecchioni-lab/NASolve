@@ -8,6 +8,29 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Trial geometry from the freshly qualified mixed manager
+
+- Verify returned C89: all eight sampled gradient families and both orders of
+  all fifty-eight planes pass, including tilted/rotated controls. Preserve the
+  native energy, coordinates, definitions, source fingerprints and exact C88
+  parent; append the actual return without changing original local evidence.
+- Add one bounded geometry-only trial through the unchanged native worker,
+  corrected evaluator, optimizer and atom-identity serializer. A separate adapter
+  binds genuine C89 initial-only evidence, then endpoint derivatives and fresh
+  native PDB readback qualify a separate usable coordinate result automatically.
+  Keep the verified initial model as fallback; nonconvergence becomes notes.
+- Preserve the exact compressed parent ZIP once with declared temporary views,
+  rather than expanding ancestry repeatedly. Keep archive bounds, NARestraints
+  authority, source findings and existing mechanics unchanged. No student CIF
+  gate, dictionary generation, adoption, cache publication or refinement is added.
+  C90 validation passes 917 focused / 5,031 full tests (two skips, 276 subtests,
+  718.58 s), with all 116 new cases frozen before full collection and no later
+  source/script/test/figure changes or supplement. Real-parent SDK-free preparation
+  and precondition-adapter checks pass. Source-removed inspect/standalone readback
+  passes with zero SDK/subprocess launches and the exact opaque C89 ZIP preserved
+  once; actual Mac C90 geometry remains pending.
+
+
 ### Audit fresh initial gradients in the exact qualified mixed model
 
 - Verify returned C88 saved replay: all 869 payloads and 866 C87 members remain
@@ -26,8 +49,8 @@ entries are reconstructed from repository history.
   collection. The full suite passes 4,915 tests (two skips, 276 subtests,
   694.66 s) with no later source/script/test/figure changes or test supplement.
   Source-removed cold inspect/readback passes with C88 preserved once, no new
-  SDK process and unchanged archive limits. Fresh Mac derivative qualification
-  remains pending.
+  SDK process and unchanged archive limits. The actual Mac C89 derivative PASS
+  is appended separately without changing this original local evidence.
 
 
 ### Replay completed native context checks by stable check identity

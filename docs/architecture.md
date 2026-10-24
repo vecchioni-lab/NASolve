@@ -2648,7 +2648,7 @@ The new `scripts/build_mixed_gradient_probe.py` creates
 without SDK execution, while the fresh audit uses one native worker bounded at
 600 seconds. With six sampled atoms, the expected algorithm uses 1,367 whole-
 energy evaluations within a 2,000 maximum and 3,328 plane/control evaluation
-pairs within a 5,000 maximum; actual Mac counts and qualification remain pending.
+pairs within a 5,000 maximum; the actual Mac counts and qualification are verified below.
 No Coot, ReadySet, dictionary generation, optimizer, store publication, production
 adoption, refinement or diffraction run is added. A failed derivative check
 retains usable input and notes for the next bounded step; students do not approve
@@ -2660,8 +2660,8 @@ final case count. Actual-parent inspect prepares 455,931 bytes and 3,328 plane
 pairs with zero SDK calls and all 297 parent scientific files exact. The complete
 suite passes 4,915 tests, two skips and 276 subtests in 694.66 seconds at that
 checkpoint. No source, script, test or figure changes follow full collection and
-there is no later test supplement. Actual Mac C89 derivative qualification remains
-pending; source-state findings and scientific qualification remain separate.
+there is no later test supplement. Actual Mac C89 derivative qualification passes
+as recorded below; source-state findings and scientific qualification remain separate.
 
 Source-removed cold inspect passes at the same checkpoint with 166 runtime members.
 The 918-payload capsule preserves every C88 payload and its manifest byte-exact
@@ -2675,6 +2675,86 @@ everyday edits and store fixtures remain intact; 164,380 guarded path operations
 stay within 232 absolute/68 component bytes. Temporary views are explicitly
 retired; guarded automatic cleanup is not claimed. This is preparation/portability
 evidence, not a fresh installed derivative result.
+
+Returned C89 passes the fresh installed audit in one Phenix 2.2.1-6174 job
+(24.122224 seconds, exit zero). The exact 863-atom/forty-two-site manager matches
+the saved inputs. All eight sampled gradient families, repeats, target/gradient
+additivity and the captured snapshot pass in 1,367 of 2,000 energy evaluations.
+All fifty-eight actual planes pass in both orders, together with six tilted/
+rotated controls and three rotation checks, in 3,328 of 5,000 evaluation pairs.
+The original native complete-gradient controls retain twelve actual and six toy
+review orders; the order-safe correction has none. This verifies the correction
+rather than changing targets: native energy remains 27,518.185419949943, with
+coordinates, source definitions, source pins and static constraints unchanged.
+All 937 payloads and the exact C88 parent verify. The maintained reader replays
+qualification with zero new SDK processes; captured programs remain data. These
+are sampled numerical results, not convergence, source-state repair or scientific
+qualification. Original C89 local validation remains unchanged.
+
+### Bounded geometry from the qualified mixed manager (C90)
+
+C90 supplies one optional geometry-only trial from the exact C89 initial state.
+The existing geometry worker, native corrected evaluator, optimizer settings and
+atom-identity serializer remain unchanged. A separate precondition adapter verifies
+the genuine C89 initial-only proof, source fingerprints, static constraints and
+corrected initial target/gradient before optimization; it does not relabel an old
+three-coordinate-case qualification. Chemical definitions, weights and the
+NARestraints pairing/stacking policy remain fixed, with native secondary-structure
+guessing disabled.
+
+Methods: bind C89 through explicit gradient/context/linked-parent anchors; stage
+trusted current Git sources and a fresh optimizer history; run one trial bounded
+at 1,000 iterations and 600 seconds, with at most 20,000 optimizer calls and the
+existing 1e-5 convergence tolerance. Check full-precision and PDB-rounded endpoint
+derivatives, serialize by exact atom identity, then interpret the separate PDB
+with the same dictionary/PHIL bundle and exact fixed-policy proxy checks. Select
+a usable endpoint only when its fixed objective does not worsen and its mechanics
+and derivative evidence qualify.
+Retain the verified usable initial model automatically when the optional phase
+cannot qualify an endpoint. Usable nonconvergence, iteration limits and descriptive
+pucker/chirality findings become notes, with no student CIF inspection or approval.
+Fixed definitions and mechanically unusable evidence remain strict.
+
+The report is `mixed_geometry_trial.json`, schema 1, policy
+`cif-mixed-qualified-geometry-trial-v1`. The builder
+`scripts/build_mixed_geometry_probe.py` creates `90_Cedar_probe_mixed_geometry.py`.
+`--inspect-only` prepares the trial without SDK execution; a complete diagnostic
+allows at most two SDK jobs including native candidate readback, bounded at the
+smaller of the requested timeout and sixty seconds. Preserve the
+original C89 ZIP byte-exact once as opaque `inputs/parent_review.zip`, rather than
+flattening its 128,249,071-byte ancestry again. The exact 10,963,258-byte parent
+archive and all its payloads remain available. Only three declared scientific
+views are materialized temporarily; captured programs are never executed. The
+128 MiB total, 32 MiB member and 1,024-entry outer limits stay unchanged.
+
+Focused local validation passes 917 tests across thirty files in 149.00 seconds
+on `f759d4c9561d0af1a82d5f9336eb1fa8496f2fb4`. All 116 final new cases (64
+module / 52 ferry) are frozen before complete-suite collection. The original
+four-case fail-before subsets remain distinct from final counts. The real C89
+prepared trial and maintained reader pass with zero SDK processes, 53 prepared
+files and 7,256,286 bytes. The genuine 863-atom precondition adapter passes and
+rejects a tampered proof without SDK execution. The complete suite passes 5,031
+tests, two skips and 276 subtests in 718.58 seconds at the same frozen checkpoint.
+No source, script, test or figure changes follow full collection, and there is no
+later test supplement.
+
+Source-removed inspect and standalone readback also pass after removing the
+original session, runtime and input archive, with zero SDK/subprocess launches.
+The portable runtime has 167 members; the new outer archive has 57 payloads plus
+its manifest and 18,257,745 uncompressed bytes. Its largest member is the exact
+10,963,258-byte original C89 ZIP, preserved once with all 937 payloads and its
+original manifest. New data occupies 7,285,687 bytes, leaving 115,959,983 bytes
+under the unchanged 128 MiB limit without duplicating the old scientific tree.
+The standalone reader reproduces all 65 gradient, 165 context, 132 parent and 54
+new files unchanged. The path guard checks 125,071 operations, with maximum path
+and component lengths of 232 and 45 bytes. Authorized edits, user configuration,
+the component store and ambient import isolation remain intact. Owned temporary
+views are explicitly retired; guarded automatic cleanup is not claimed.
+
+Actual Mac C90 geometry remains pending. No Coot, ReadySet, dictionary generation,
+cache publication, production adoption, refinement or ordinary diffraction solve
+is added. Source-state findings and scientific qualification remain separate
+from optional coordinate usability.
 
 
 

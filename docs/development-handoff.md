@@ -135,7 +135,7 @@ The original mechanics PASS and `CONTINUE_WITH_NOTES` decision remain intact.
 The actual return is appended to `saved_mixed_context_2026_10_24` without changing
 its original local validation or historical pending-at-publication record.
 
-**Next delivery is C89:** `89_Cedar_probe_mixed_initial_gradients.py`, built by
+**Completed C89 delivery:** `89_Cedar_probe_mixed_initial_gradients.py`, built by
 `scripts/build_mixed_gradient_probe.py` from the exact C88 capsule. Run one fresh
 initial-only corrected-gradient audit of the exact active mixed manager before
 geometry optimization. This 863-atom/forty-two-site manager has fifty-eight plane
@@ -162,11 +162,61 @@ unchanged cap. Configuration, everyday edits and store fixtures remain intact;
 Temporary views are explicitly retired; automatic cleanup is not claimed.
 The full suite passes 4,915 tests, two skips and 276 subtests in 694.66 seconds
 on the same frozen checkpoint. No source, script, test or figure edits follow
-full collection and there is no supplement. Actual Mac C89 derivatives remain
-pending. Keep fallback and solution notes automatic, with no student CIF approval. Source-state findings,
-scientific qualification, cache publication, production adoption and the ordinary
-full diffraction run remain separate. The new record is
-`mixed_initial_gradient_audit_2026_10_24`.
+full collection and there is no supplement. Returned Mac C89 now fully verifies:
+one Phenix 2.2.1-6174 job completes in 24.122224 seconds; all eight gradient families,
+all fifty-eight planes in both orders and six tilted/rotated controls pass. Native
+energy, coordinates, definitions and static constraints remain fixed. The actual
+return is appended separately to `mixed_initial_gradient_audit_2026_10_24`; the
+original local evidence and historical pending-at-publication values stay exact.
+
+**Next delivery is C90:** `90_Cedar_probe_mixed_geometry.py`, built by
+`scripts/build_mixed_geometry_probe.py` from the exact C89 ZIP. Run one optional
+1,000-iteration/600-second geometry trial from the qualified initial state, using
+the unchanged geometry worker, corrected evaluator, optimizer and atom-identity
+serializer. A new adapter checks the actual C89 proof rather than borrowing old
+three-case evidence. Check full/rounded endpoint derivatives and one fresh native
+PDB readback with all fixed NARestraints proxies and source authority unchanged.
+Select a qualified separate endpoint whose fixed objective does not worsen, or
+retain the usable initial model with notes; usable nonconvergence is not student
+CIF review. Descriptive pucker and chirality findings remain separate from exact
+restraint definitions and mechanically unusable evidence.
+
+Preserve the exact 10,963,258-byte original C89 ZIP once as opaque
+`inputs/parent_review.zip`. Its complete 937 payloads and manifest remain intact;
+do not flatten 128,249,071 bytes of ancestry into the next capsule. Materialize
+only the three explicitly anchored scientific views temporarily, never execute
+captured programs, and retain the existing 128 MiB/32 MiB/1,024 outer bounds.
+The report is `mixed_geometry_trial.json`, schema 1, policy
+`cif-mixed-qualified-geometry-trial-v1`. Inspect is SDK-free; a full diagnostic
+uses at most two native jobs including candidate readback. Focused C90 validation
+passes 917 tests across thirty files in 149.00 seconds on
+`f759d4c9561d0af1a82d5f9336eb1fa8496f2fb4`; all 116 final new cases (64 module /
+52 ferry) are frozen before full collection. The real C89 prepared trial and
+reader pass with zero SDK processes, 53 files and 7,256,286 bytes. The genuine
+863-atom adapter passes and rejects a tampered proof without SDK calls. The full
+suite passes 5,031 tests, two skips and 276 subtests in 718.58 seconds at that same
+checkpoint. Source, script, test and figure bytes remain frozen after full
+collection, with no later supplement. Source-removed inspect and standalone
+readback pass after removing the original session, runtime and input archive:
+zero SDK/subprocess launches, 167 runtime members, 57 outer payloads plus manifest
+and 18,257,745 uncompressed bytes. The original 10,963,258-byte C89 ZIP remains
+byte-exact once, with its 937 payloads and original manifest. The new data uses
+7,285,687 bytes and leaves 115,959,983 bytes under the unchanged 128 MiB bound.
+All 65 gradient, 165 context, 132 parent and 54 new scientific files reproduce
+unchanged. The path guard checks 125,071 operations at maximum path/component
+lengths of 232/45 bytes; user config, authorized edits, the component store and
+ambient import isolation remain intact. Owned temporary views are explicitly
+retired; guarded automatic cleanup is not claimed. Actual Mac C90 geometry
+remains pending. Scientific/source-state findings, ordinary full-run qualification,
+refinement, cache publication and production adoption remain separate. The new
+record is `mixed_qualified_geometry_trial_2026_10_24`.
+
+The unchanged candidate-readback helper retains a narrow diagnostic counter
+limit: if `wait` raises `OSError` after launch, its receipt can omit `returncode`.
+`new_native_calls` follows completed/stopped receipt evidence and may undercount
+that launch. The maximum two requested SDK workers and the verified usable
+starting-model fallback remain enforced. This is recorded for maintainers,
+without changing the shared helper or adding a student decision.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.
