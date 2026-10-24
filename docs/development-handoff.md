@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-23** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-24** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -22,19 +22,37 @@ chain-adjacency stacks and sixteen separate plane-order controls verify. The fin
 model matches the private saved-data prediction exactly. C81 runs no ReadySet or
 native interpretation; it is construction and selector evidence, not a full solve.
 
-**Next delivery is C82:** `82_Cedar_probe_mixed_native.py`, built with
-`scripts/build_mixed_native_probe.py`. Fetch from build 81 into a new detached
-build 82 and supply the exact C81 ZIP. Preserve the successful construction;
-no new Coot run is required. The bounded ReadySet/native check uses its exact
-fixed model, individually frozen component sources and declared NAR policy.
-Local C82 validation on `3aabb468ee668e12db3fa0ef2fd14448ad868f20` passes 188
-focused tests and all 4,519 full-suite tests (two skips, 276 subtests, 406.52 s).
-All twenty-eight new cases are collected before final full-suite launch.
-Source-removed cold preparation preserves the exact C81 model, sixteen sources,
-active policy and complete parent capsule; standalone readback passes after
-original scientific inputs, session and runtime removal. No local SDK runs.
-Fresh Mac C82 qualification remains pending. The exact receipt, schema, method
-and validation scopes are in `mixed_pair_native_membership_2026_10_23`.
+**Returned C82 stops correctly on invalid generated IGU numerics.** All 364
+payloads, the exact 162-member runtime and maintained numerical-authority replay
+verify. The nested C81 manifest covers all 175 parent payloads; the original C81
+ZIP is absent from this verification snapshot, so no direct original-archive byte
+comparison is claimed. Phenix 2.2.1-6174 completes one ReadySet call in 65.95 seconds
+with unchanged named heavy coordinates. The generated IGU C2/N3 coordinates
+coincide and its bond target is 0.000 Å / 0.020 Å ESD. Source/constructed distances
+remain about 1.36 Å. Other long generated IGU bonds and phosphate hydrogen/charge
+changes remain recorded. Zero fixed native interpretations run. Preserve this
+REVIEW and its correctly triggered guard; do not add an IGU coverage exception.
+The exact native causal boundary and any SMILES/seed cause are unobserved.
+
+**Next delivery is C83:** `83_Cedar_probe_mixed_recovery.py`, built with
+`scripts/build_mixed_recovery_probe.py`. Fetch from build 82 into a new detached
+build 83 and supply the exact C82 ZIP. Select numerically deficient components
+by recomputing hard capability failures from actual frozen rows, independent of
+residue code; IGU is the current single selection. Renamed-component, multiple-
+failure and valid-bystander regressions protect this rule. Prepare a
+separate source-native complete dictionary through the existing CCTBX builder
+adapter, fresh installed API/source pins and bounded optimization. Preserve written
+output and stopping evidence. Conditional isolated source-seed/generated-output
+native usability uses existing qualifiers and decisions. No Coot/ReadySet repeat,
+full-scaffold substitution, cache-store write or production adoption is requested.
+Local focused validation passes 242 tests in 28.86 seconds on code checkpoint
+`6b941bcc37a6603ca24ecc3b4245eeeef8c3f7f0`. Source-removed cold preparation and
+standalone readback pass, preserving all parent inputs without an SDK process;
+the frozen full suite passes 4,553 tests, two skips and 276 subtests in 520.98
+seconds, including all thirty-four final new recovery/ferry cases. Fresh Mac
+recovery, linked/full NAR mechanics and scientific qualification remain pending. The record
+is `mixed_component_recovery_2026_10_24`. Original C82 local validation remains
+unchanged under `mixed_pair_native_membership_2026_10_23`, with its separate return.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.

@@ -647,9 +647,68 @@ all 175 parent payloads and its manifest survive, with no captured program
 materialized into the scientific view. The prepared reader still passes after
 original sources, fixture, session and runtime are removed. Configuration, everyday
 edits and component storage remain untouched; simulated macOS path checks pass.
-These are packaging/prepared-input and fake-tool regression checks, with no local
-Phenix or Coot. Fresh Mac C82, scientific qualification and an ordinary diffraction
-run remain open.
+These original packaging/prepared-input and fake-tool checks use no local Phenix
+or Coot. The subsequent C82 return and C83 recovery boundary are recorded below.
+Returned C82 verifies all 364 payloads and the exact runtime, with ordinary
+effective-authority replay matching the saved bytes. Its single Phenix 2.2.1-6174
+ReadySet call completes in 65.95 seconds with unchanged named heavy coordinates.
+The nested C81 manifest verifies all 175 parent payloads; the original C81 ZIP is
+absent from this verification snapshot, so direct original-archive comparison is
+not claimed. IGU alone fails numerical capability: its generated C2/N3 coordinates
+coincide and the written C2–N3 target is 0.000 Å with 0.020 Å ESD. Source ideal,
+source model and constructed distances are 1.327, 1.361 and 1.362 Å respectively.
+Other generated IGU bonds stretch to 1.9–2.5 Å. The guard correctly prevents every
+fixed native interpretation; the original REVIEW remains immutable. Phosphate
+hydrogen/charge changes in generated definitions are separate source-state
+findings. The saved evidence does not identify a specific native causal step or
+prove a SMILES/seed defect.
+
+C83 tests a separate source-preserving recovery for the saved numerically deficient
+component set, currently IGU, through `audit_mixed_recovery` and its source-bundled
+`build_mixed_recovery_probe.py` ferry. Read the exact C82 capsule as data, preserve
+its full logical members through indexed transport, and use a temporary shallow
+scientific view outside the new returned session. Explicit 128 MiB total and
+32 MiB member limits accommodate the verified 52.9 MB parent and 20.8 MB receipt;
+checksums, safe names and the exact input archive pin remain required.
+Selection recomputes hard capability failures from the actual frozen numerical
+rows, independent of residue code. Renamed-component, multiple-failure and valid-
+bystander regressions protect the same general rule; at most four components
+may enter a single bounded recovery. IGU is the observed case, with no exception.
+
+Methods: freshly probe the selected installed Python-library anchor and capture
+four complete-builder source modules as hash-bound text. This supplies new
+installation evidence, not borrowed historical qualification. Reuse the existing
+source-native complete-candidate adapter: the explicit source reader, declared
+charge handoff and prepared-object CCTBX route feed the native complete builder
+with original source ideal geometry. The source graph, names, charge, protonation
+and stereo declarations remain authoritative. The default bounded block is 180
+steps with at most 600 seconds per selected component. Retain regular written
+outputs and stopping evidence across nonconvergence and worker failure. A usable
+candidate is tested at source-seed and generated-output coordinates through the
+existing isolated native qualifier, finite repeated evaluations, exact fixed
+covalent-proxy comparison and automatic decision-with-notes. Each read has at most
+60 seconds; secondary-structure guessing stays disabled. The resource-anchor
+probe and generator help/version checks are separate from these fixed reads.
+
+The mixed constructed model and all original dictionaries remain unchanged.
+This slice requests no new Coot or ReadySet run, model optimization, linked/full
+scaffold substitution, component-store publication, refinement or production
+checkpoint. Isolated usability is not full NAR membership or scientific approval;
+other C82 source-state reviews remain open. Local focused validation passes 242
+tests in 28.86 seconds on code checkpoint
+`6b941bcc37a6603ca24ecc3b4245eeeef8c3f7f0`. The frozen full suite passes
+4,553 tests, two skips and 276 subtests in 520.98 seconds, including all thirty-four
+new recovery/ferry cases. Earlier fail-before runs record eighteen recovery and
+ten ferry failures on C82; those are distinct from the expanded final case set.
+Source-removed cold preparation/readback passes with 163 frozen runtime members
+and a 398-payload capsule preserving all 364 parent payloads exactly. All
+subprocesses are forbidden; the standalone reader survives parent/session/runtime
+removal.
+Configuration, everyday edits and storage are preserved, with 52,410 simulated
+macOS path operations bounded at 210 absolute/68 component bytes. These are
+packaging and prepared-input checks; fresh Mac C83 recovery/native results remain
+pending.
+
 
 
 

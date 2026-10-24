@@ -235,12 +235,17 @@ deletions, ten graph transports and two curated rules pass with no raw fallback.
 All twenty declared pairs and thirty-eight stacks compile; active native membership
 and the diffraction run remain open. ATL stays independent.
 
-C82 preserves that successful construction and tests the ordinary numerical handoff:
-one bounded ReadySet call with separate component inputs, followed by fixed native
-baseline/explicit-policy comparisons when numerical coverage is complete. It
-records source-state differences, verifies actual native atom selections and
-keeps Phenix secondary-structure guessing disabled. No new Coot run or automatic
-adoption is requested; fresh Mac C82 results remain pending.
+Returned C82 completes one Phenix 2.2.1-6174 ReadySet call in 65.95 seconds and
+preserves the exact constructed heavy coordinates, but correctly stops before
+native interpretation: generated IGU C2 and N3 coincide, giving a 0.000 Å bond
+target. The source and constructed bond are about 1.36 Å. Other source-state
+reviews remain separate. C83 supplies an isolated source-preserving recovery
+trial selected from actual hard numerical failures independently of residue code,
+followed conditionally by native usability checks. Local validation passes 242
+focused / 4,553 full tests and source-removed cold preparation/readback without
+an SDK process; actual Mac recovery/native results remain pending. Original
+sources, dictionaries and construction stay preserved; linked/full-model adoption
+and scientific qualification remain separate.
 
 
 

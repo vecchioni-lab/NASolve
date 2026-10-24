@@ -8,6 +8,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recover hard-invalid generated component numerics from the frozen source
+
+- Verify returned C82: one Phenix 2.2.1-6174 ReadySet call preserves constructed
+  heavy coordinates but writes coincident IGU C2/N3 atoms and a 0.000 Å bond target.
+  The existing numerical guard correctly stops before every fixed native read.
+  Preserve the original REVIEW, all dictionaries and separate source-state findings.
+- Add the C83 isolated recovery diagnostic for the saved numerically deficient
+  component set, selected from actual hard capability failures independent of
+  residue code. Renamed-component, multiple-failure and valid-bystander regressions
+  protect the general rule. Reuse the source-native complete CCTBX builder with
+  fresh installed source pins, bounded steps/time and retained written output
+  and stopping evidence; conditionally apply existing isolated native usability
+  and automatic decisions. No new Coot/ReadySet run or full-model substitution.
+- Preserve source authority, native kernels, NARestraints and all previous local
+  validation. Local C83 checks pass 242 focused / 4,553 full tests (two skips,
+  276 subtests, 520.98 s), including all thirty-four final new cases. Source-removed
+  cold preparation/readback passes with no SDK process. Fresh Mac recovery/native
+  results remain pending.
+
+
 ### Read back the exact mixed-pair construction through ordinary numerical inputs
 
 - Verify returned C81: all 175 payloads and the exact runtime/source bindings;
