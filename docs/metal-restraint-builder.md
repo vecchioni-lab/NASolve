@@ -113,5 +113,6 @@ occupancy or experimental support. Future application reports should expose
 those facts without silently converting a geometric hypothesis into evidence.
 
 See [GUI contract](gui.md), [GUI live checks](gui-live-checks.md), and the
-[development handoff](development-handoff.md). Pine/full-auto validation comes
-first; operational Scout remains the next main development priority afterward.
+[development handoff](development-handoff.md) for the current development order.
+This design remains a separate later scope; it does not add a gate to the
+combined geometry trial or Cedar/Pine close-out.

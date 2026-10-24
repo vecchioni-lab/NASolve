@@ -71,6 +71,50 @@ not reselect the automatic candidate after a user's override. The receipt keeps
 the original proposal/decision even when the user later chooses a different
 current checkpoint. Model edits remain new immutable children, not overwrites.
 
+## Explicitly omit AutoSol
+
+A synthetic modified-DNA model can exercise construction, restraints and
+refinement against donor diffraction that does not represent the model's heavy
+atoms. A new schema-2 recipe may explicitly omit the phase stage:
+
+```toml
+[autosol]
+policy = "disabled"
+reason = "Synthetic modified DNA mechanics test against donor observations"
+```
+
+The reason is mandatory and frozen with the recipe. This policy is available
+in guarded or full-auto mode. Do not supply `on_unaccepted` with `disabled`:
+there is no AutoSol result to accept. The default remains `when-anomalous`, and
+schema-1 recipes retain their existing behavior and configuration hashes.
+
+NASolve records `SKIPPED` and the reason without discovering a Phenix runtime
+for that stage or calling AutoSol. It retains PostMR's nucleotide-candidate
+classification, iodine warnings, observation arrays and frozen Free-R flags.
+AutoRefine explicitly excludes experimental phase inputs and uses the prepared
+PostMR model. Its new checkpoints have no phase input, so subsequent bounded
+Doctor trials cannot select a phase-based recipe. An existing AutoSol execution
+or accepted-phase report is refused; use a fresh campaign rather than rewriting
+historical phase evidence. Native refinement still decides whether the supplied
+observations support anomalous refinement. Omitting AutoSol does not switch
+anomalous observations off or imply that model heavy atoms are present in the
+experimental crystal.
+
+For a methods description: *Campaign phase-stage execution was controlled by
+an explicit frozen recipe. In synthetic model tests, AutoSol was disabled with
+a recorded reason while preserving anomalous-atom classification and the
+original diffraction observations. NASolve's Python coordinator recorded the
+skip and invoked Phenix refinement from the PostMR model with experimental
+phase use disabled. Optional bounded Refine Doctor trials inherited phase-free
+checkpoints. These tests assess workflow and restraint mechanics rather than
+validate the synthetic chemistry against the donor diffraction.*
+
+Regression fixtures cover candidate preservation, no AutoSol invocation,
+phase-free refinement and Doctor checkpoints, refusal of previous AutoSol
+evidence, and execution after relocating the campaign and deleting its original
+path. These are offline fixtures, not a native Phenix/Coot validation of this
+new policy; the native synthetic challenge remains a separate live check.
+
 ## DiU iodine and 5CM
 
 The observed **8.843 A C5-I5** failure was a NASolve atom-name parsing bug:
@@ -122,6 +166,10 @@ New tests cover policy/schema/defaults, original MR evidence, explicit endpoints
 phase rejection without phase reuse, dependency propagation, provisional choice,
 non-selection of unusable outcomes, user veto surviving resume, iodine detection
 and selected-branch diagnostics, exact primed atom parsing, 5CM resource identity,
-installed workbook semantics and linked-phosphate scope. Full-checkout/native
-results must be recorded when returned. Do not repeat GZ11 merely to prove a
-separate new policy. P2 1W5->DZ / 1WA->DP conversions remain separate work.
+installed workbook semantics and linked-phosphate scope. Returned full-checkout
+and four-member native full-auto results are preserved in the
+[published checkpoint](full-auto-patch-handoff.md). Rejected-AutoSol continuation
+was not exercised by that native cohort; its members either accepted or skipped
+AutoSol. The [development handoff](development-handoff.md) owns remaining gates.
+Do not repeat GZ11 merely to prove a separate new policy. Source-native P2
+1W5->DZ / 1WA->DP conversion validation remains separate work.

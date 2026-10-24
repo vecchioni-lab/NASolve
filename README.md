@@ -6,15 +6,17 @@ inputs, selects and validates an approved search model, runs Phenix Phaser with
 reproducible settings, preserves modified residues and other heteroatoms, and
 classifies the solution by TFZ.
 
-The current release provides **AutoMR**, **PostMR**, a conditional
+The current workflow provides **AutoMR**, **PostMR**, a conditional
 **AutoSol** branch, checkpointed **AutoRefine**, bounded **Refine Doctor**
 triage, and sequential campaign execution from frozen plans with per-dataset
 review isolation. PostMR constructs
-supported modified nucleotides through Coot, restores trusted parent
-coordinates, can apply complete chain sequences, generates either the 5W6W
-restraint stack or modification-scoped pair restraints, supplies curated or
-supported local ligand dictionaries, and runs ReadySet without hydrogens. When
-PostMR finds iodine, bromine, or selenium in a nucleotide, AutoSol performs guarded MR-SAD phasing
+supported modified nucleotides through Coot, restores the parent DNA scaffold
+while moving each supported connected modified base rigidly, can apply complete
+chain sequences, generates either the 5W6W
+restraint stack or modification-scoped pair restraints, supplies curated,
+supported local or configured-Phenix CCD dictionaries, and runs ReadySet without
+hydrogens. When PostMR finds iodine, bromine, or selenium in a nucleotide,
+AutoSol performs guarded MR-SAD phasing
 and verifies a corresponding anomalous site. AutoRefine runs Phenix quietly,
 surfaces the crystallographic statistics normally shown by the GUI, and
 preserves successful, review, failed, and manually imported models as
@@ -22,6 +24,385 @@ branchable checkpoints. Refine Doctor audits the frozen Free-R set, preserves
 an anomalous-strength benchmark, and compares a small number of controlled
 refinement branches without silently selecting one. Final structural
 validation remains a user gate.
+
+CIF Doctor adds offline, read-only dictionary assessment and report-only PostMR
+receipts before mutations and on both sides of ReadySet. To inspect an existing
+run without changing it, use `./nasolve cif-doctor assess --run RUN --json`.
+[The CIF Doctor guide](docs/cif-doctor.md) describes the implemented checks and
+explicit source-preserving preparation recipes.
+The [human/manuscript overview](docs/cif-doctor-human-overview.md) explains the
+algorithm, tools and pipeline placement and supplies an editable figure.
+
+CIF Doctor now has an explicit automatic-continuation contract: students do
+not inspect or approve CIF tables. A tested decision core retains usable
+nonconverged results or selects a usable fallback while preserving chemistry,
+source authority and fixed mechanics. PostMR records a plain-language summary;
+ordinary cache acquisition is implemented. Automatic recovery on misses, full
+model/bundle qualification and solution PDF rendering remain separate.
+See [automatic continuation](docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions).
+
+The current diagnostic trial has reproduced coordinate damage from legacy
+parent restoration for some modified bases. A separate graph-selected fragment
+candidate and source-recovered DF definitions pass native mechanics, with
+formal-charge readback unavailable. A separate fixed-definition geometry trial
+reached its iteration limit. Native PDB readback preserves atom/component
+identities and exposes distance-dependent hydrogen-bond additions. Achieved
+geometry and scientific approval remain under review.
+A separate explicit NARestraints membership diagnostic now compiles declared
+pairs/stacks and passes both installed native membership checks at two saved
+coordinate sets. Cedar 22 now provides a separate bounded geometry trial under
+that verified policy, with strict manager matching, stopping/gradient evidence
+and native PDB readback. The returned trial passes all 17 native mechanics
+checks, decreases the objective and stops with a line-search error. Geometry
+qualification remains open and ordinary PostMR is unchanged.
+A separate Cedar 23 diagnostic now checks native gradients against finite
+energy differences at the saved endpoints and repeats dictionary assessment.
+The returned audit localizes a stable sampled gradient mismatch to native
+parallelity terms in both coordinate cases. An independent plane calculation
+points to gradient accumulation. Returned Cedar 24 confirms that defect in
+the installed native path: individual plane gradients pass the sampled checks,
+while accumulation omits second-plane contributions in both saved cases and
+tilted controls. Restoring those contributions in the saved numerical data
+explains all earlier sampled mismatches. Cedar 25 adds an explicit NASolve-local
+correction that replaces only the accumulated plane gradient with complete
+individual-restraint sums. Its separate audit freshly checks the fixed native
+objective at the initial coordinates and both saved endpoints. The returned
+audit passes both endpoints but retains six failed directions at the initial
+coordinates. An independent normal-orientation sign model reproduces the
+remaining gradient. Cedar 26 therefore uses each plane's first-plane derivative
+in both native orders, with fresh per-plane, rotated-control and full-objective
+checks. Returned Cedar 26 passes all 504 global/category and 1,080 corrected
+per-plane directions, including rotated controls, with unchanged native energy.
+Cedar 27 now supplies a separate bounded geometry trial from the original
+initial coordinates, using that qualified correction. Exact source/snapshot
+gates, fresh endpoint derivatives and native PDB readback accompany the trial.
+Returned Cedar 27 passes all 17 native mechanics checks and all 336 sampled
+endpoint derivative directions. The fixed objective falls 28.72%, but the
+trial reaches its 1,000-iteration limit with the native criterion false. A
+bounded continuation is supplied by Cedar 28, using the saved full-precision
+endpoint and a fresh optimizer with the same policy and endpoint checks.
+Returned Cedar 28 passes the same 17 mechanics and 336 sampled derivative
+checks. Its target falls another 3.64%, with stopping still at the iteration
+limit after 2,000 cumulative iterations. Three distance and ten angle outliers
+persist. Cedar 29 supplies a separate graph-selected base-orientation audit:
+temporary rotations measure category responses and numerical slopes under
+the same fixed objective. Source/endpoint preflight, periodic controls and
+explicit internal-angle context accompany the scan. Returned Cedar 29 passes
+all 96 sampled rotation directions; every coarse-grid minimum is the starting
+angle. This does not establish a local/global minimum. Cedar 30 prepares a
+separate source-graph numerical dictionary candidate for the retained DP
+angle/plane conflict, with exact chemical comparisons. Its return stops in
+the installed eLBOW input parser before producing a candidate: external
+coordinate-tag case was lost during export. Cedar 31 restores canonical tag
+spelling and adds an explicit PDU public control. PDU source graph and existing
+NARestraints pairing/stacking compiler checks pass offline. Returned Cedar 31
+separates DP missing-alias metadata from a PDU optimizer/restart crash; neither
+produces a dictionary. Cedar 32 adds a general missing-alias export and an
+explicit installed-source/read-only input diagnostic. Its return passes the
+PDU reader and exposes DP's broader dictionary-dialect mismatch. Cedar 33
+adds a checked consumer projection and an opt-in bounded single-block trial,
+with installed option/source proof and explicit nonconvergence evidence.
+Returned Cedar 33 passes both input readers. DP stops in preparatory chirality
+handling before optimization; PDU writes a nonconverged dictionary. PDU's three
+signed sugar volumes preserve source-coordinate handedness, but its R/S labels
+are omitted. Cedar 34 separately audits these stereo boundaries through saved
+candidate comparisons and bounded installed-reader controls, without generation.
+Returned Cedar 34 reproduces DP's unknown-marker constructor failure and passes
+PDU's known-marker control. Its captured code also shows local chiral-template
+minimization inside the constructor; no full dictionary trial ran. Cedar 35
+preserves the source dictionary's reader dialect and checks native parsed
+inventory before another generation. Its return stops in the temporary graph
+preflight before native parsing. Cedar 36 resolves the tool-owned temporary
+directory and retries the same audit while preserving that failure. Native
+parsing now completes for both sources. PDU passes raw route/inventory checks;
+DP preserves names, elements, coordinates and signed markers but loses double
+orders and declared charges. Cedar 37 translates monomer order tokens and
+separately tests explicit source-charge population on a temporary parsed
+component, retaining the raw reader evidence. Returned Cedar 37 preserves all
+declared orders; its isolated charge control passes for DP and leaves PDU
+unchanged. Cedar 38 audits graph-selected triple bonds in public PDU and 5PC
+controls: installed monomer lookup, explicit installed-CIF replay and the saved
+PDU candidate are compared at fixed isolated source-seed coordinates. Active
+length/linearity targets, ESDs, membership and linear-axis torsions are recorded.
+5PC's two NARestraints records remain ambiguous; no role record is selected.
+Returned Cedar 38 finds no component through either default monomer lookup;
+those models stop on unknown energy types. The supplied PDU candidate loads
+with active 1.174 Å / 180° terms and six linear-axis torsion reviews at fixed
+source-seed coordinates. Cedar 39 separately inventories installed CCD chemistry
+and direct/canonical monomer lookups, comparing declarations and SMILES text
+with the public controls. It records route-helper source without running
+ReadySet. Its return confirms both installed CCD graphs and raw reader inventories;
+all four direct/wrapped numerical monomer lookups remain missing. Cedar 40
+captures the dispatcher-selected ReadySet implementation as text and records
+the installed CCD SMILES accessor selection. This does not execute ReadySet
+or independently validate a mapped SMILES graph. Its return records both CACTVS
+canonical selections and 24 static source files. Returned Cedar 41 exposes
+an invocation bug: ReadySet PHIL arguments reached the nested eLBOW options
+parser, stopping both controls before numerical generation. Its two surviving
+CIFs are byte-identical source copies; native triple checks did not run.
+Returned Cedar 42 completes both isolated ReadySet controls. Generated and
+native triple targets pass: PDU 1.203 Å, 5PC 1.186 Å (both 0.020 Å ESD), with
+180° / 3° linear-angle terms. Each dictionary retains six linear-axis torsions,
+three active in the heavy-only manager, and changes neutral source phosphate
+to charge −2 by losing HOP2/HOP3. These remain review findings. Returned Cedar 43 passes all sampled torsion derivatives while exposing large
+near-linear forces and undefined exact-collinear controls. Cedar 44 prepares
+separate candidates omitting only torsions containing graph-declared triple-bond
+angles targeted at 180°. Fresh native comparisons require exactly the planned
+omissions and every unrelated term intact. Returned C44 passes both exact
+comparisons and triple screens. C45 compares original/candidate energies and
+gradients at identical saved coordinates and samples candidate derivatives.
+Returned C45 passes all derivative arithmetic and omitted-term deltas; two 5PC
+cases retain changing nonbonded-count reviews. C46 records native pair identities
+and contributions, requiring zero changed-pair energy/gradient before a separate
+settled-cache retry of the same strict checks. Returned C46 verifies all
+1,983 payloads: every changed pair contributes exactly zero and all six strict
+numerical cases pass. Chemical-state and whole-scaffold qualification remain
+open; no optimizer, state selection, scaffold change or adoption occurs.
+Returned C47 preserves the source graphs and charges but records three
+constructor exceptions: the diagnostic omitted the native CCTBX backend
+prerequisite. C48 explicitly selects that backend using the installed reader's
+own policy and passes backend/completion gates in all three returned cases.
+Source-relative sugar-hand warnings remain despite preserved labels. C49
+observes native local template/optimizer boundaries and compares fresh
+unobserved/observed runs before any correction. Returned C49 completes all six
+constructors with exact fresh/previous endpoint matches. Source-hand reviews
+and DP native-marker continuity remain open. C50 observes local coordinate
+order, actual native chirality proxy bases and post-optimizer index transfers
+before a repair. Returned C50 passes all getter/setter checks and exact repeats;
+proxy-index interpretation remains reviewed. C51 records native dictionary atom
+keys/returned arrays to distinguish restraint order from local coordinate order.
+ATL adds a separate public bridged-sugar/NARestraints compiler control.
+C51 returns nine empty key captures: the observer expected atom objects but
+native keys are integers. Returned C52 proves all nine integer-key bindings and
+eight source target signs; DP C1-prime and temporary hand warnings remain.
+Returned C54 completes all three native builders, preserves explicit formal
+charges and all nine finished source-relative configurations, and retains
+nonconvergence/unknown stopping evidence. DP's legacy rejection concerns one
+omitted phosphate `both` volume term, rather than a lost fixed sugar hand.
+Returned C55 supplies six completed native interpretations and twelve finite,
+repeatable energy/gradient evaluations. The v1 auditor rejected floating-point
+roundoff and native period-zero constant torsions. Corrected v2 replay passes
+all six cases and selects all three isolated candidates with notes. Returned
+C56 verifies that replay without new native calls. Returned C57 passes all six
+source-DNA metadata/native equivalence checks and selects all three restored
+headers with notes. Existing native classifications already said DNA despite
+generic written headers. Returned C58 passes all three separate DP/PDU/5PC
+linked controls: both canonical links, projected heavy-atom restraints and
+phosphate tetrahedral coverage survive. Returned C59 qualifies the new DP
+B:4 dictionary in the full 877-atom model, preserving all 38 links and the
+NARestraints pairing/stacking policy; the automatic diagnostic choice retains
+that candidate with notes. Returned C60 passes the new initial and both
+endpoint derivative checks plus exact native readback, and automatically retains
+a usable endpoint while reporting its iteration limit. Returned C61 passes all
+15 native staged-bundle checks for that exact model/19 CIFs/14 PHILs; the ordinary
+`assess --bundle` reader preserves its selection and stopping notes. Returned
+C62 completes Coot 1.3.3 construction, but all three DP/PDU/5PC sites
+retain the entire raw site because OP3 lacks a parent scaffold match; no rigid
+base transport is exercised. C63 adds ordinary internal-phosphate context
+preparation: prove selected internal OP3 removal with the existing sanitizer on
+a discarded parent-scaffold shadow, transfer only proved deletions to raw
+coordinates, then transport the complete base. Unsupported or bridged sites
+retain raw coordinates with notes. Fresh controls use the same ordinary API;
+automatic acquisition/repair adoption, generic NAR compilation, production
+checkpoints/refinement, PDF rendering and scientific qualification remain
+separate. Equivalent operational mapping aliases now compile once while
+conflicting roles remain blocked. 5PC was already present twice on the C sheet;
+NARestraints needs no table edit or release for this audit correction.
+NARestraints policy and source-resource defaults stay fixed; ordinary construction
+now preserves connected-base geometry. Scientific qualification, convergence
+and general resource adoption remain open.
+Returned C63 verifies all **3,489 payloads**, preserves the complete C62 parent,
+and completes Coot 1.3.3 through the ordinary construction API. All three
+DP/PDU/5PC sites use proper whole-base restoration, with three proved internal
+OP3 deletions, 69 selected serial normalizations and no raw fallback. The final
+unchanged phosphate recheck removes nothing. Base geometry changes by at most
+0.001041 A, consistent with PDB rounding; this is construction evidence, not a
+native-restraint or scientific-geometry verdict.
+
+C64 connects that exact constructed model to native Phenix readback: a
+canonical reference and the constructed model, using existing source-qualified
+site modifiers, explicit backbone contexts and disabled native secondary
+structure. Two fixed interpretations check effective definitions, all backbone
+links, heavy-atom restraints, triple targets and finite repeated evaluations.
+ReadySet, optimization, generic NAR compilation and production adoption remain
+separate; the eventual eight-pair full run remains unchanged.
+
+Returned C64 verifies all **3,552 payloads** and preserves the complete C63
+parent. Both Phenix 2.2.1-6174 workers complete with four finite repeatable fixed
+evaluations. Active PDU/5PC triple length and linear-angle targets pass at A:9
+and A:7. The original qualifier records 87 PASS, six REVIEW and three unsupported
+formal-charge checks. All six REVIEW findings compare display labels containing
+different residue-name padding (`DG ` versus ` DG`), not changed parameters.
+
+C65 uses the shared cif-native-named-proxy-comparison-v1 comparator: bind each
+label to its own manager index, replace it with the complete structured atom
+identity, normalize field padding only, and retain endpoint order, every
+parameter, symmetry, origin and multiplicity exactly. Reject missing/ambiguous
+identities and unbound labels. All **3,148 unaffected restraints** match exactly
+by named identity; numerical tolerances, native kernels and source chemistry
+are unchanged. Historical C64 receipts remain immutable.
+C65 replays the exact saved native evidence with zero new Coot/Phenix calls.
+It preserves the original REVIEW receipt and exposes the corrected mechanics
+verdict separately; full-run integration and scientific qualification remain open.
+
+Returned C65 verifies all **3,587 payloads**, preserves the entire C64
+parent and manifest, and reproduces the maintained qualification: **93 PASS,
+zero REVIEW, three unsupported formal-charge readbacks**. All eight unaffected
+proxy families compare exactly, covering 3,148 restraints. Both active triple
+screens pass; three linear-axis torsions per site remain recorded. Independent
+replay reproduces the report and prepared scientific bytes with subprocesses
+forbidden. No repeat of this construction-native gate is needed.
+
+C66 adds a persistent component store and shared acquisition resolver. It
+automatically reuses qualified numerical dictionaries before another builder
+call, preserves nonconvergence notes and freezes independent run copies.
+Changed consumers or check policies requalify saved numerics first; site and
+model checks stay separate. The explicit DP/PDU/5PC reuse diagnostic exercises
+this API; ordinary PostMR acquisition/adoption orchestration remains planned.
+
+Returned C66 verifies all **3,659 payloads** and the byte-identical C65
+parent and manifest. DP, PDU and 5PC each pass ten reuse controls: their
+first qualified dictionaries are saved and repeated requests reuse the exact
+bytes without acquisition. Source/authority mismatches are excluded and a
+changed consumer requires requalification before generation. Independent
+replay reproduces all 30 controls and nine frozen snapshots, including original
+stopping/limitation notes, with every subprocess forbidden. Ordinary PostMR
+orchestration and the requested eight-pair live run remain separate work.
+
+Returned C67 verifies all **3,713 payloads**, including the unchanged C66
+parent and manifest. The ordinary source selector passes **15/15 sources**
+(six curated, nine installed CCD), and NARestraints compiles **8/8 declared
+pairs and 16/16 stacking orientations**. Independent maintained replay
+reproduces all 39 source/PHIL files exactly; report differences are limited
+to historical source paths. DP/PDU/5PC saved repairs correctly miss because
+their raw source bytes/authority differ; all inventoried chemical declarations
+match. No repair is substituted by component name.
+No native process or adoption occurs; full-run integration remains open.
+
+C68 adds an ordinary-source reuse API without weakening exact cache keys.
+It selects the ordinary source first, verifies a saved projection against its
+named chemistry and configuration, then requires current isolated native
+usability before publishing a new source/authority-bound entry. Numerical bytes,
+original producer and stopping notes are retained; repeats reuse them. Failed
+candidates retain the selected source for standard preparation. No student
+CIF inspection, generation, optimizer or production adoption is introduced.
+Returned C68 preserves all 3,766 payloads and the complete C67 parent.
+All three source projections pass, but native input/output placement triggers
+the preservation guard before any worker launches. Its historical call count
+of three records attempts; it supplies no fresh native qualification.
+Returned C69 completes all three native reads: 63/63 usability checks and
+six fixed repeat evaluations pass. A later reporting call supplies two mutually
+exclusive auditor inputs, so source-bound publication/repeats are not selected.
+Returned C70 verifies all 4,008 payloads and the complete C69 parent. DP,
+PDU and 5PC each publish a qualified source-bound entry and immediately REUSE
+the exact numerical bytes. Maintained code reproduces all 63 native checks,
+both triple reports and 72 result artifacts; only explicitly nonoperational
+source paths rebase. All six frozen copies resolve after original source/cache/
+evidence removal with external scientific reads forbidden. Original producer
+and stopping notes survive, including PDU nonconvergence. No new native process
+runs. Current installation/site/model checks and ordinary PostMR/full-run
+integration remain separate; no repeat of this saved cache gate is needed.
+
+C71 wires ordinary PostMR cache acquisition before ReadySet. Coot retains the
+original sources; eligible cached numerics require exact source/authority,
+supported recipe/backend and current recorded Phenix identity. Misses,
+corruption and changed consumers retain ordinary preparation with notes. Cache
+entries, original producer/stopping evidence and independent run copies survive.
+
+Returned C71 verifies three ordinary cache reuses with exact saved numerical
+bytes and all 63 checks in three fresh Phenix 2.2.1-6174 readbacks. All 4,231
+payloads, the complete C70 parent and the reported runner SHA verify. Original
+producer/stopping notes survive, and all three run copies resolve independently
+after source/cache/evidence removal. ReadySet behavior and current linked/model/
+full-run qualification remain separate; this cache gate needs no repeat.
+
+C72 tests the next boundary with `--postmr-readyset-consumption-only` on exact
+C71. It uses the ordinary ReadySet arguments through an observed selected
+Python entrypoint, checks retained cached numerics and unchanged heavy sites,
+then reads back effective native terms. Up to three bounded isolated controls;
+ReadySet consumption qualification and whole-model checks remain open.
+
+Returned C78 verifies all 8,741 payloads and the exact C76 parent. Short indexed
+staging succeeds on macOS. ReadySet consumes the three separately supplied cached
+dictionaries with all eight checks passing and zero observed builder/template calls.
+Both native readbacks pass 93 checks (three formal-charge readbacks remain unsupported),
+and all 28 roundtrip comparisons preserve 38 backbone links and 3,148 unaffected
+restraints. NASolve selects `readyset_checked_model` with notes automatically.
+C79 carries that separate-file handoff into ordinary PostMR for cached, curated
+and ordinary fallback inputs; local ordinary-route and complete-suite validation pass. The
+explicit eight-pair live model, ordinary end-to-end run and scientific qualification
+remain separate.
+
+Returned C80 verifies 138 payloads and completes Coot 1.3.3 for the exact eight-pair
+model. Its phosphate context falls back when raw curated DF backbone geometry
+invalidates the mixed shadow proof; the scaffold guard correctly catches retained
+internal OP3 before constructed-policy compilation. C81 lets source-validated
+curated DNA join the same discarded phosphate-context proof while retaining its
+existing final placement rule and sanitizer. It repeats one fresh ordinary Coot
+construction on the unchanged eight-pair map, with no historical ZIP input.
+Local regression, exact saved-data, source-removed cold and prior-lineage checks
+pass. Returned C81 verifies all 175 payloads and completes Coot 1.3.3: nine OP3
+deletions, ten graph transports and two curated rules pass with no raw fallback.
+All twenty declared pairs and thirty-eight stacks compile; active native membership
+and the diffraction run remain open. ATL stays independent.
+
+Returned C82 completes one Phenix 2.2.1-6174 ReadySet call in 65.95 seconds and
+preserves the exact constructed heavy coordinates, but correctly stops before
+native interpretation: generated IGU C2 and N3 coincide, giving a 0.000 Å bond
+target. The source and constructed bond are about 1.36 Å. Other source-state
+reviews remain separate. Original sources, dictionaries and construction stay
+preserved.
+
+Returned C83 verifies all 445 payloads and its exact C82 parent. Source-native
+IGU generation preserves the neutral source graph and sugar configuration;
+both fixed isolated native cases pass all twenty-one usability checks. NASolve
+continues with notes while retaining unreported convergence and other findings.
+Returned C84 completes both fixed native reads and passes the declared NAR,
+backbone-link, selected projection and triple-target subsets. Four coverage/written-
+group gates retain REVIEW despite DNA native classification at all forty-two sites. A separate formal-charge evidence-row
+ordering mismatch is repaired by C85; its returned saved replay verifies all
+584 payloads, preserves the original REVIEW and runs no SDK process. C86 now
+prepares only source-declared DNA group metadata and explicit incoming OP3/
+attached-H contexts, preserving all surviving targets, charges and outgoing state.
+Returned C86 stops before model interpretation on a single-row modifier written
+as scalar items where the native reader expects a loop. Its original local
+validation remains unchanged. C87 writes explicit modifier loops for every row
+count and retains exact v1 replay, chemistry and mechanics gates. Local checks
+pass 451 focused / 4,748 full tests and source-removed grammar/replay QA with
+zero SDK processes. Returned C87 passes both native context reads: all 315 checks
+are PASS or unsupported formal-charge evidence, with full membership and saved-
+parent equivalence passing. A check-row ordering defect then stops report replay.
+C88 fixes only that context-local ordering and replays saved evidence with zero
+new SDK/native calls. Local C88 validation passes 512 focused / 4,809 full
+tests and source-removed saved replay with zero processes. Returned Mac C88
+verifies all 869 payloads and reproduces the original mechanics PASS, all 315
+checks and all 297 scientific files, with two saved and zero new native calls.
+C89 supplies a fresh initial-only corrected-gradient audit of the exact mixed
+manager before any geometry trial. Local validation passes 600 focused / 4,915
+full tests and source-removed inspect/readback. Returned Mac C89 now passes the
+fresh initial-only audit: 1,367 energy evaluations, all eight gradient families,
+all fifty-eight plane restraints in both orders and tilted/rotated controls.
+Native targets, coordinates and definitions stay unchanged. C90 supplies a bounded
+geometry trial under that exact qualified policy, with a separate endpoint,
+fresh native readback and automatic usable fallback. C90 validation passes 917
+focused / 5,031 full tests. Real-parent SDK-free preparation, adapter checks and
+source-removed inspect/readback pass with zero new native processes. Returned C90
+lowers the target 84.394% but correctly retains the initial model: three sampled
+full-precision global/dihedral directions need review, while rounded directions
+pass. Near-linear propynyl torsion conditioning is a hypothesis, not a proved
+native defect. C91 adds fixed-endpoint torsion isolation without another optimizer;
+1,133 focused / 5,162 full tests, actual-parent SDK-free preparation/readback and
+source-removed inspect/standalone replay pass with zero new native processes.
+Actual Mac C91 fixed-torsion execution remains pending.
+Source-state findings, scientific qualification, adoption and the ordinary full
+run remain separate.
+
+
+
+See the [ordinary cache contract](docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs) for methods and limits.
+
+
+See the [current handoff](docs/development-handoff.md) for the exact scope.
 
 ## Quick start
 
@@ -785,17 +1166,25 @@ sequence application cannot curl or rotate the inherited backbone.
 Modified-residue mutations can also use a local component dictionary without
 adding a new curated registry entry. NASolve requires one unambiguous
 NARestraints residue record, a supported construction parent derived from its
-`Sugar Type` and `Base Analog`, and a matching local `ligands/CODE.cif` under
-the NASolve data directory. The included `OHU.cif` enables DNA `D:OHU`
+`Sugar Type` and recognized `Source sheet` (falling back to `Base Analog`),
+and a matching component dictionary. A local `ligands/CODE.cif` takes
+precedence; otherwise Cedar resolves a unique CCD source in the configured
+Phenix installation. Symlink aliases of one file are deduplicated; distinct
+competing files remain an error. The included `OHU.cif` enables DNA `D:OHU`
 preparation; OHU uses `DT` as its Coot construction parent according to the
 NARestraints mapping. Curated overrides remain authoritative, and their
 dictionaries are retained even when the residue needs no mutation.
 
-This fallback does not download dictionaries. Generic dictionary validation
-checks the component identity; it does not infer arbitrary atom mappings or
+This fallback does not download dictionaries or automatically parameterize every
+arbitrary component. Raw CCD graphs require usable numerical restraints from
+ReadySet; there is no automatic alternate-generator fallback. Generic dictionary
+validation checks the component identity; it does not infer arbitrary atom mappings or
 establish that every component topology is correct. New chemistry still needs
 model inspection, and an absent or ambiguous definition gives a specific
-preparation error.
+preparation error. Resolution follows mutation actions; unchanged non-curated
+residues are not all acquired automatically. The
+[component preparation contract](docs/modified-component-preparation.md)
+separates current behavior from the fresh full-auto acceptance target.
 
 PostMR checks nucleotide phosphates before generating restraints and again
 after ReadySet. It removes `OP3` (or legacy `O3P`) only where an incoming
@@ -867,6 +1256,9 @@ The 5W6W restraint stack contains:
 
 The scaffold template contains no stacking pairs and omits the two base pairs
 already supplied by `Std_padd.txt`, preventing duplicate restraints.
+For modified W pairs, PostMR replaces incompatible template Saenger blocks
+with explicit NARestraints pair restraints using the reviewed atom-role
+mapping. Unaffected scaffold pairs and the normal stacking source are retained.
 
 For a standard or nonstandard run that should restrain only modified chemistry,
 use:
@@ -886,11 +1278,14 @@ PHIL is authoritative: PostMR removes matching base-pair blocks from the EFF
 and retains the non-overlapping project scaffold rather than failing or
 double-restraining the pair.
 
-Known problematic Phenix residues use reviewed dictionaries from NASolve's
-local ligand library. The `E` token resolves to `DE`; legacy `E` reports frozen
+NASolve's bundled registry contains source adaptations, construction recipes
+and identity bridges; membership does not mean the supplier CIF was defective.
+The [source audit](docs/modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
+records their separate roles and the still-unresolved DE numerical geometry.
+The `E` token resolves to `DE`; legacy `E` reports frozen
 as `8RO` are migrated to `DE` because official CCD `8RO` is a different
 compound with an unwanted sulfur-ring topology. `DF` is tied explicitly to
-CCD `A1AAZ`. The reviewed dictionaries enforce `DE C4-S4` without `N3-S4`,
+CCD `A1AAZ`. The topology checks require `DE C4-S4` without `N3-S4`,
 `DF C2-S1` without `N3-S1`, and `S6G C6-S6` without `N1-S6`. ReadySet is launched in its own directory with
 `hydrogens=False` and its output is rejected if hydrogens appear or atom counts
 change unexpectedly.
@@ -902,13 +1297,13 @@ directly, NASolve still uses ReadySet as the uniform final preparation and
 validation gate. ReadySet is not trusted to invent the modification, and it
 does not replace the NARestraints inter-residue geometry.
 
-NARestraints v1.1.1 records the `DF` canonical `O2` mapping as the nonexistent
+The legacy NARestraints `DF` canonical `O2` mapping names the nonexistent
 atom `S2`. PostMR corrects this to `S1` only in memory for the current builder
 call, records the correction in `report.json`, and never edits the installed
 NARestraints workbook.
 
 The `Q` token resolves to official CCD `S6G` and uses `DG` as its canonical
-construction parent. NARestraints v1.1.1 also stores its `C5` mapping as `C5 `;
+construction parent. The legacy NARestraints `C5` mapping is `C5 `;
 PostMR trims that exact trailing space in the same process-local adapter.
 
 After ReadySet, PostMR scans nucleotide-like residues for configurable
@@ -921,8 +1316,10 @@ candidate sites and whether AutoSol is required are written to `report.json`.
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It
 uses the current checkpoint model, the original STARANISO observations and
-unchanged Free-R flags, the ReadySet-generated ligand dictionary when present,
-and the PostMR PHIL/EFF restraint stack. A validated AutoSol MTZ contributes
+unchanged Free-R flags, the frozen effective PostMR dictionaries, and the
+PostMR PHIL/EFF restraint stack. Explicit parameterized component inputs take
+precedence over generated copies; graph-only inputs defer to usable generated
+numerical definitions. A validated AutoSol MTZ contributes
 only its Hendrickson-Lattman coefficients; its HA coordinates never replace
 known model atoms.
 
@@ -1070,8 +1467,8 @@ a PDB and MTZ output. Input, discovery, and preflight errors exit with code 2.
 
 AutoMR currently supports PDB search models and Phenix Phaser MR_AUTO. PostMR
 implements W/5W6W sites, canonical Coot mutations, curated overrides, supported
-local dictionary mutations, complete sequence application, modification-scoped
-NARestraints, phosphate connectivity checks, and hydrogen-free ReadySet.
+local/configured-Phenix dictionary mutations, complete sequence application,
+modification-scoped NARestraints, phosphate connectivity checks, and hydrogen-free ReadySet.
 Guarded AutoSol, checkpointed five-cycle Phenix refinement, bounded Refine
 Doctor comparisons, and views of the current checkpoint are available. The
 [historical DOHU validation record](docs/history/validation-dohu.md)
@@ -1079,8 +1476,12 @@ documents an earlier complete Phenix 2.2.1 execution and user inspection.
 Current validation state is summarized in
 [`docs/development-handoff.md`](docs/development-handoff.md). NASolve does not yet:
 
-- fetch missing ligand dictionaries or construct arbitrary modified residues
-  without a supported mapping and local dictionary;
+- fetch missing ligand dictionaries over the network, construct arbitrary
+  modified residues without a supported mapping and source, or complete the
+  generic generation/linkage workflow from every valid code automatically;
+- accept coordinate mmCIF search models or explicitly trust a model without a
+  sequence file in prepared-nonstandard campaigns; these are
+  [proposed input modes](docs/architecture.md#proposed-model-input-contract);
 - perform mirror-side sequence changes through an unmirror/Coot/remirror cycle;
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
 - search unbounded refinement recipes or run several campaign jobs concurrently;
@@ -1140,14 +1541,14 @@ A scientific review or technical failure stops only that dataset while other
 selected datasets continue. AutoSol is conditional: when PostMR finds no
 supported anomalous candidate, the campaign records an accepted `SKIPPED`
 AutoSol stage and does not launch `phenix.autosol`; when anomalous evidence
-requires it, AutoSol runs under the frozen policy. Unaccepted phasing stops for
-inspection. Numerical refinement success retains the selected checkpoint and
+requires it, AutoSol runs under the frozen policy. Under guarded policy,
+unaccepted phasing stops for inspection. Numerical refinement success retains the selected checkpoint and
 still requires model/map inspection.
 
-This sequential campaign path has been exercised end-to-end with real
-Phenix/Coot across four W datasets: three reached numerical refinement success,
-while one dataset that used the anomalous AutoSol path was correctly retained as
-a refinement-review case without stopping the other three.
+The guarded sequential path has been exercised end-to-end with real Phenix/Coot.
+A separate fresh [full-auto campaign](docs/full-auto-patch-handoff.md) reached
+four numerical SOLVED results, including a provisionally selected Doctor
+recommendation; all retain model/map inspection requirements.
 
 A campaign refinement-review case can be continued explicitly through the
 campaign-owned bounded Refine Doctor stage:
@@ -1156,9 +1557,11 @@ campaign-owned bounded Refine Doctor stage:
 ./nasolve campaign run CAMPAIGN_ROOT --dataset DATASET --through refine-doctor
 ```
 
-Doctor preserves campaign provenance and does not automatically select its
-recommended checkpoint; inspect the recommended model/maps before deliberately
-making it current.
+Under guarded policy, Doctor preserves campaign provenance and leaves its
+recommendation unselected. An explicitly frozen
+[full-auto recipe](docs/campaign-full-auto.md) may run bounded Doctor and
+provisionally select its verified passing recommendation. This does not record
+user approval; inspect the model/maps and retained decision history.
 
 Use `campaign pause examples` from another terminal to stop after the active
 stage finishes. Keep the execution terminal open; this first executor runs in

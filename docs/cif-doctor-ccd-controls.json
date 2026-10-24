@@ -1,0 +1,479 @@
+{
+  "components": [
+    {
+      "atom_count": 34,
+      "bond_count": 35,
+      "code": "5BU",
+      "control_intent": "RNA brominated base, C5-BR plus O2-prime; contrasting workbook Sugar Type says DNA.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 8439,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/5BU.cif",
+        "retrieved_utc": "2026-10-11T18:42:47.555028+00:00",
+        "sha256": "3599af77d7ae2dce4eed308c7d3470497cfca5b2b69e4b83a321142ccd6e9402"
+      },
+      "workbook_rows": [
+        {
+          "row": 27,
+          "sheet": "thymine"
+        }
+      ]
+    },
+    {
+      "atom_count": 33,
+      "bond_count": 34,
+      "code": "BRU",
+      "control_intent": "DNA brominated base, C5-BR and no O2-prime; contrasting workbook Sugar Type says RNA.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 8272,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/BRU.cif",
+        "retrieved_utc": "2026-10-11T18:42:47.568944+00:00",
+        "sha256": "0f8e6f09421dd289801eab0f254b1767e0140a1c1b0052cd60e671e369ffda43"
+      },
+      "workbook_rows": [
+        {
+          "row": 62,
+          "sheet": "thymine"
+        }
+      ]
+    },
+    {
+      "atom_count": 35,
+      "bond_count": 36,
+      "code": "5IC",
+      "control_intent": "RNA iodine attachment at base C5; preserve atom-name primes and retain source formal/H state.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 8586,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/5IC.cif",
+        "retrieved_utc": "2026-10-11T18:42:47.597118+00:00",
+        "sha256": "ddb5cf72a6cbedfe68e177402883edd900482065de7c4608ffe0c9f40798c35a"
+      },
+      "workbook_rows": [
+        {
+          "row": 24,
+          "sheet": "cytosine"
+        }
+      ]
+    },
+    {
+      "atom_count": 36,
+      "bond_count": 38,
+      "code": "0DA",
+      "control_intent": "L-DNA with N9A/C8A/etc mapped base names; C1-prime S/C3-prime R/C4-prime S must not be recast as D sugar.",
+      "declared_formal_charge": "0",
+      "declared_type": "L-DNA LINKING",
+      "source": {
+        "bytes": 8832,
+        "ccd_modified_date": "2015-05-01",
+        "requested_url": "https://files.rcsb.org/ligands/download/0DA.cif",
+        "retrieved_utc": "2026-10-11T18:42:47.630285+00:00",
+        "sha256": "8f2dd27183a89a5fbc7272fa4d339c66aeac6dc2cd02a6ef04ba4c0aa788227a"
+      },
+      "workbook_rows": [
+        {
+          "row": 6,
+          "sheet": "adenine"
+        }
+      ]
+    },
+    {
+      "atom_count": 34,
+      "bond_count": 35,
+      "code": "PSU",
+      "control_intent": "C-glycoside C5-C1-prime, not N1-C1-prime; RNA has four specified centres, C1-prime S.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 8467,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/PSU.cif",
+        "retrieved_utc": "2026-10-11T18:42:52.875998+00:00",
+        "sha256": "297308d5c29e331d4099cb99e4871e01adf4f8c2ebb68f3e8fcff94d5e557af5"
+      },
+      "workbook_rows": [
+        {
+          "row": 117,
+          "sheet": "thymine"
+        }
+      ]
+    },
+    {
+      "atom_count": 41,
+      "bond_count": 43,
+      "code": "2MG",
+      "control_intent": "N2 methylation differs from N7 methylation; retain explicit hydrogen attachment and aromatic graph.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 9412,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/2MG.cif",
+        "retrieved_utc": "2026-10-11T18:42:53.012256+00:00",
+        "sha256": "4350fd6d8e69e76ecf5484979c305acc965d51389c9be1aa4029b8c76e748b37"
+      },
+      "workbook_rows": [
+        {
+          "row": 12,
+          "sheet": "guanine"
+        }
+      ]
+    },
+    {
+      "atom_count": 41,
+      "bond_count": 43,
+      "code": "OMG",
+      "control_intent": "O2-prime methylation and sugar C3-prime R declaration; CIP labels change with graph substituents.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 10654,
+        "ccd_modified_date": "2024-09-27",
+        "requested_url": "https://files.rcsb.org/ligands/download/OMG.cif",
+        "retrieved_utc": "2026-10-11T18:42:52.949084+00:00",
+        "sha256": "106bf64e03c4416b67700139823fc36130d5df39a20c828f27ae880c7ac5d3f8"
+      },
+      "workbook_rows": [
+        {
+          "row": 108,
+          "sheet": "guanine"
+        }
+      ]
+    },
+    {
+      "atom_count": 43,
+      "bond_count": 45,
+      "code": "7MG",
+      "control_intent": "Current neutral 7N-methyl-8-hydroguanine declaration (2024 revision); do not invent charge from a shorthand name.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 10856,
+        "ccd_modified_date": "2024-09-27",
+        "requested_url": "https://files.rcsb.org/ligands/download/7MG.cif",
+        "retrieved_utc": "2026-10-11T18:42:53.121253+00:00",
+        "sha256": "7759dc6830572aac3f12827936c5e78a7e04da9bff820ad5e8b0a340168c2af1"
+      },
+      "workbook_rows": [
+        {
+          "row": 26,
+          "sheet": "guanine"
+        }
+      ]
+    },
+    {
+      "atom_count": 34,
+      "bond_count": 35,
+      "code": "4SU",
+      "control_intent": "C4-S4 DOUB source graph, RNA; a sulfur analogue control without declaring lab DE identity.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 8467,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/4SU.cif",
+        "retrieved_utc": "2026-10-11T18:42:57.269898+00:00",
+        "sha256": "55c885b7909f444eafb129a4f3a9ebcf2b3deeb6e5d4ee76abd4ed0a483211ce"
+      },
+      "workbook_rows": [
+        {
+          "row": 25,
+          "sheet": "thymine"
+        }
+      ]
+    },
+    {
+      "atom_count": 35,
+      "bond_count": 37,
+      "code": "2DA",
+      "control_intent": "Dideoxy: no O2-prime or O3-prime and C4-prime S; DNA LINKING type does not justify building a standard outgoing O3-prime link.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 9648,
+        "ccd_modified_date": "2024-09-27",
+        "requested_url": "https://files.rcsb.org/ligands/download/2DA.cif",
+        "retrieved_utc": "2026-10-11T18:42:57.306149+00:00",
+        "sha256": "fd0f886dd8abf9da3d955eb8c6dca6431853ad7873d8d2a2d443708ad005fa7a"
+      },
+      "workbook_rows": [
+        {
+          "row": 11,
+          "sheet": "adenine"
+        }
+      ]
+    },
+    {
+      "atom_count": 39,
+      "bond_count": 40,
+      "code": "0AP",
+      "control_intent": "Explicit 3-prime and 5-prime phosphates; P and P1 plus O3-prime-P1 bond, requires a reviewed nonstandard site recipe.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 9148,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/0AP.cif",
+        "retrieved_utc": "2026-10-11T18:42:57.488351+00:00",
+        "sha256": "2ac90561ba428a4a798084088c36f326afd1159cb5b24e56e7f0761d0b294ff5"
+      },
+      "workbook_rows": [
+        {
+          "row": 2,
+          "sheet": "cytosine"
+        }
+      ]
+    },
+    {
+      "atom_count": 46,
+      "bond_count": 48,
+      "code": "18M",
+      "control_intent": "O2-prime methyl plus 3-prime/5-prime bisphosphate; OP2, not OP1, is declared phosphate double bond in this input.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA linking",
+      "source": {
+        "bytes": 10269,
+        "ccd_modified_date": "2012-11-16",
+        "requested_url": "https://files.rcsb.org/ligands/download/18M.cif",
+        "retrieved_utc": "2026-10-11T18:42:57.355012+00:00",
+        "sha256": "483828c439217b102e11d7907f0d7dfc886973d49c00cd15979e223e16788a61"
+      },
+      "workbook_rows": [
+        {
+          "row": 6,
+          "sheet": "guanine"
+        }
+      ]
+    },
+    {
+      "atom_count": 36,
+      "bond_count": 38,
+      "code": "2PR",
+      "control_intent": "Mapped role records empty: do not assume universal canonical mapping exists for recognized workbook codes.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 9377,
+        "ccd_modified_date": "2020-06-17",
+        "requested_url": "https://files.rcsb.org/ligands/download/2PR.cif",
+        "retrieved_utc": "2026-10-11T18:43:02.674158+00:00",
+        "sha256": "322aa4ec1b3f2909a0d13158f0e2f91a1e586488bee77547878c361630bac79e"
+      },
+      "workbook_rows": [
+        {
+          "row": 2,
+          "sheet": "unique"
+        }
+      ]
+    },
+    {
+      "atom_count": 35,
+      "bond_count": 37,
+      "code": "8RO",
+      "control_intent": "Official phosphite graph with N3-S4-C4 three-membered sulfur ring and no OP3; not intended lab 4-thiothymidine DE.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA linking",
+      "source": {
+        "bytes": 8214,
+        "ccd_modified_date": "2017-09-15",
+        "requested_url": "https://files.rcsb.org/ligands/download/8RO.cif",
+        "retrieved_utc": "2026-10-11T18:43:02.763246+00:00",
+        "sha256": "a73fe0b6cdccc8bb13a559ae11dd0d6e8029f9fc4e436135ef9f018be7e8fb4c"
+      },
+      "workbook_rows": [
+        {
+          "row": 46,
+          "sheet": "thymine"
+        }
+      ]
+    },
+    {
+      "atom_count": 38,
+      "bond_count": 40,
+      "code": "1AP",
+      "control_intent": "Official DNA LINKING graph with N9-C1-prime edge; graph-only numerical UNASSESSED. Distinct from historical failed eLBOW output and current curated parameterized Monomer Library adaptation.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 8805,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/1AP.cif",
+        "retrieved_utc": "2026-10-11T18:45:50.207953+00:00",
+        "sha256": "a3504169321624458d4aee175fe0f9f029668ed94dee3605127cdf06d7c5a7e8"
+      },
+      "workbook_rows": [
+        {
+          "row": 4,
+          "sheet": "D"
+        }
+      ]
+    },
+    {
+      "atom_count": 41,
+      "bond_count": 43,
+      "code": "FMG",
+      "control_intent": "FANA plus methylguanine-7-ium graph, component and summed atom formal charge +1; do not normalize charge to zero; C2-prime S/C3-prime R as declared.",
+      "declared_formal_charge": "1",
+      "declared_type": "DNA linking",
+      "source": {
+        "bytes": 9736,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/FMG.cif",
+        "retrieved_utc": "2026-10-11T18:45:50.389063+00:00",
+        "sha256": "cd8ee2d6c60033c725731ad1ac75e976c31f42a8e60e7e2e4a8ebe79677eb28b"
+      },
+      "workbook_rows": [
+        {
+          "row": 64,
+          "sheet": "guanine"
+        }
+      ]
+    },
+    {
+      "atom_count": 36,
+      "bond_count": 38,
+      "code": "A3A",
+      "control_intent": "Alpha anomer DNA with C1-prime S while C3-prime S/C4-prime R; no blanket beta inversion repair.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 8598,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/A3A.cif",
+        "retrieved_utc": "2026-10-11T18:45:50.285497+00:00",
+        "sha256": "d4fbd7b45be7699ba000791c41e1216328ad4eb1944b342424c961738655877b"
+      },
+      "workbook_rows": [
+        {
+          "row": 46,
+          "sheet": "adenine"
+        }
+      ]
+    },
+    {
+      "atom_count": 40,
+      "bond_count": 42,
+      "code": "2SG",
+      "control_intent": "Phosphorodithioate declared graph includes P-SP1, P-SP2, P-OP3, P-O5-prime and P-H15 single bonds; preserve exact graph and treat unsupported site chemistry as review.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 9233,
+        "ccd_modified_date": "2015-09-11",
+        "requested_url": "https://files.rcsb.org/ligands/download/2SG.cif",
+        "retrieved_utc": "2026-10-11T18:45:50.355959+00:00",
+        "sha256": "03ac641616f17ececed8cb41eccfa73d42c7a8f0935209e6ab2fd00d6c740c13"
+      },
+      "workbook_rows": [
+        {
+          "row": 13,
+          "sheet": "guanine"
+        }
+      ]
+    },
+    {
+      "atom_count": 38,
+      "bond_count": 39,
+      "code": "PDU",
+      "control_intent": "T-like 5-propynyl-dU: preserve C5-C5A-C5B-C5M with a C5A-C5B triple bond, all source H/formal charges and D-sugar declarations. Exercise existing NARestraints A:T and bidirectional stacking role controls separately from the frozen model.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "source": {
+        "bytes": 9033,
+        "ccd_modified_date": "2021-07-21",
+        "requested_url": "https://files.rcsb.org/ligands/download/PDU.cif",
+        "retrieved_utc": "2026-10-19T20:05:22.337109+00:00",
+        "sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292"
+      },
+      "workbook_rows": [
+        {
+          "row": 114,
+          "sheet": "thymine"
+        }
+      ],
+      "current_workbook": {
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+      },
+      "test_fixture": "tests/fixtures/public_ccd/PDU.cif",
+      "scope": "EXPLICIT_PUBLIC_COMPONENT_CONTROL_NOT_A_PRODUCTION_CURATED_DICTIONARY"
+    },
+    {
+      "atom_count": 39,
+      "bond_count": 40,
+      "code": "5PC",
+      "control_intent": "Independent cytosine propynyl triple-bond control C7-C8. Two NARestraints records remain ambiguous; graph/native component checks do not choose a role record.",
+      "declared_formal_charge": "0",
+      "declared_type": "DNA LINKING",
+      "test_fixture": "tests/fixtures/public_ccd/5PC.cif",
+      "source": {
+        "bytes": 9080,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/5PC.cif",
+        "retrieved_utc": "2026-10-20T14:04:29.960227+00:00",
+        "sha256": "cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650"
+      },
+      "workbook_rows": [
+        {
+          "sheet": "cytosine",
+          "ambiguity": "two matching records; neither selected"
+        }
+      ]
+    },
+    {
+      "atom_count": 38,
+      "bond_count": 40,
+      "code": "ATL",
+      "control_intent": "Independent alpha-LNA-T bridged-sugar graph with four declared source stereocentres. Preserve C4-prime-C6-prime-O2-prime bridge, original charge/H and source configuration; no standard-DNA pucker substitution or native/scaffold approval.",
+      "declared_formal_charge": "0",
+      "declared_type": "RNA LINKING",
+      "source": {
+        "bytes": 9245,
+        "ccd_modified_date": "2011-06-04",
+        "requested_url": "https://files.rcsb.org/ligands/download/ATL.cif",
+        "retrieved_utc": "2026-10-21T19:48:13.818581+00:00",
+        "sha256": "2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b"
+      },
+      "test_fixture": "tests/fixtures/public_ccd/ATL.cif",
+      "workbook_rows": [
+        {
+          "row": 54,
+          "sheet": "thymine"
+        }
+      ]
+    }
+  ],
+  "document_kind": "cif-doctor-public-ccd-control-provenance",
+  "license": "CC0 1.0 Universal for PDB archive data files; no third-party DrugBank enrichment downloaded",
+  "licensing_source": "https://www.wwpdb.org/about/usage-policies",
+  "limits": [
+    "Source CCD graph descriptions and generated ideal coordinates are not complete numerical refinement dictionaries.",
+    "Declared graph consistency is not independent proof of intended chemical state.",
+    "8RO is an official challenge identity only, not an alias for lab DE.",
+    "Workbook cell values are frozen as evidence, not repaired.",
+    "No native Phenix interpretation or achieved-geometry qualification performed here.",
+    "The original 18 downloaded controls remain local. The explicitly requested PDU and 5PC controls are unmodified, hash-pinned public test fixtures; they are not installed into the production curated library.",
+    "CCDs change: explicit future acquisition must verify the pinned hash or record a new revision."
+  ],
+  "recorded_date": "2026-10-11",
+  "runtime_contract": "docs/cif-doctor.md",
+  "schema_version": 1,
+  "source_description": "https://www.wwpdb.org/data/ccd",
+  "workbook": {
+    "anchor": "narestraints-repository",
+    "repository": "https://github.com/vecchioni-lab/NARestraints",
+    "relative_path": "restraints/data/Ligands.xlsx",
+    "authority": "curated base roles and atom mapping; not numerical geometry, bond-order, protonation, or universal glycosidic-bond truth",
+    "repository_path": "restraints/data/Ligands.xlsx",
+    "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+  },
+  "source_collection_updated_date": "2026-10-20",
+  "historical_control_zip_component_count": 18
+}

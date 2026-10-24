@@ -1,0 +1,669 @@
+{
+  "schema_version": 1,
+  "kind": "nasolve-returned-generation-evidence",
+  "updated_date": "2026-10-11",
+  "scientific_scope": "Synthetic modified DNA on real donor diffraction: software mechanics only; no experimental chemical identity or deposition claim.",
+  "evidence": {
+    "archive": {
+      "name": "NASolve_IGU_ReadySet_review_c00a25c1.zip",
+      "sha256": "06896394ef173df67e066a469c34510d90bddb5c247df1163be98cc67888f6dd"
+    },
+    "manifest": {
+      "relative_path": "manifest.json",
+      "sha256": "aaa3b4fa1dec426d6a07503c0c4e8a2fecb82989a494d61758cca63cc3a5a257",
+      "entry_count": 16,
+      "all_entries_sha256_verified": true
+    },
+    "files": {
+      "report.json": {
+        "sha256": "24686a54e315235ade0c038488c0220fc6ca9a353b0d4fdc621154971043037a",
+        "bytes": 14110
+      },
+      "PostMR/ReadySet/ready_set.log": {
+        "sha256": "79055cca80651365c3cce1376aa8e619da533e0f6169b1a643fe0e265794ecfa",
+        "bytes": 4403
+      },
+      "PostMR/ReadySet/prepared_model.eff": {
+        "sha256": "826d13731b5bc4c3f01983ac5f384e69bbdcfe41f967418529d710bbc41130bb",
+        "bytes": 1182
+      },
+      "PostMR/ReadySet/prepared_model.ligands.cif": {
+        "sha256": "1533ec9cf52fabc212f9ea59163f5a0db289311e38de0ef149762dc07db5da2e",
+        "bytes": 90493
+      },
+      "PostMR/Restraints/curated_ligands.cif": {
+        "sha256": "007970f2fec26e445f6ad56fa0f6704371bbee2288d81b4c7cbe768659fdb509",
+        "bytes": 86476
+      },
+      "PostMR/Restraints/cif_doctor_source.json": {
+        "sha256": "31ff002a4794a011c4470b6dd294a4cfea5f29bdc5f280742eb20cbfa71b6fb1",
+        "bytes": 1370223
+      },
+      "PostMR/Restraints/source_dictionaries/1AP.cif": {
+        "sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "bytes": 11138
+      },
+      "PostMR/Restraints/source_dictionaries/IGU.cif": {
+        "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+        "bytes": 8191
+      },
+      "PostMR/Restraints/source_dictionaries/5CM.cif": {
+        "sha256": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "bytes": 16108
+      },
+      "PostMR/Restraints/source_dictionaries/DZ.cif": {
+        "sha256": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "bytes": 10620
+      },
+      "PostMR/Restraints/source_dictionaries/DF.cif": {
+        "sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "bytes": 8941
+      },
+      "PostMR/Restraints/source_dictionaries/CGY.cif": {
+        "sha256": "14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d",
+        "bytes": 8772
+      },
+      "PostMR/Restraints/source_dictionaries/DP.cif": {
+        "sha256": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "bytes": 10766
+      },
+      "PostMR/Restraints/source_dictionaries/IMC.cif": {
+        "sha256": "c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c",
+        "bytes": 8049
+      },
+      "PostMR/Restraints/source_dictionaries/DX.cif": {
+        "sha256": "6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0",
+        "bytes": 7597
+      },
+      "shuttle_receipt.json": {
+        "sha256": "bc6be90f39aba6ecb46122e4e20ef07fd9822aff76d6bc95a4e2314e724eed65",
+        "bytes": 38182
+      }
+    },
+    "payloads_committed": false,
+    "analysis_native_tools_run": false
+  },
+  "historical_anchors": {
+    "live": "User NASolve-live-tests directory",
+    "session": {
+      "anchor": "live",
+      "relative_path": "synthetic-dna-mechanics-om4jv7qq"
+    },
+    "campaign": {
+      "anchor": "session",
+      "relative_path": "synthetic-dna-combined-2n4kszi5"
+    },
+    "run": {
+      "anchor": "campaign",
+      "relative_path": "dataset/AutoMR/run_001"
+    },
+    "operational_configuration": false
+  },
+  "runtime": {
+    "nasolve_source_commit": "edcc84a2979a065c15fdaf09347ddaa730800a05",
+    "narestraints_source_commit": "a1fdaa8561f0889834283174d42bdcbbfd2fc5db",
+    "runtime_archive_sha256": "c73dc6c7c7fed7ced8a3f05e3c30440c6bccf02350cba5f4bbdb61ff744b992c",
+    "phenix_reported_version": "2.2.1",
+    "phenix_installation_version": "2.2.1-6174",
+    "installation_version_evidence": "Phaser executable installation path in returned report.json",
+    "coot_version_receipt": null,
+    "frozen_laptop_checkout_changed_by_shuttle": false
+  },
+  "staged_input": {
+    "polymer": "DNA",
+    "synthetic": true,
+    "target_count": 42,
+    "chain_counts": {
+      "A": 21,
+      "B": 7,
+      "C": 7,
+      "D": 7
+    },
+    "five_prime_state": "OH",
+    "five_prime_sites": [
+      "A:1",
+      "B:1",
+      "C:8",
+      "D:1"
+    ],
+    "terminal_phosphate_sites": [],
+    "internal_phosphates": "PRESERVED",
+    "pair_sites": [
+      {
+        "codes": [
+          "1AP",
+          "DT"
+        ],
+        "family": "D:T",
+        "sites": [
+          "A:5",
+          "C:11"
+        ]
+      },
+      {
+        "codes": [
+          "IGU",
+          "IMC"
+        ],
+        "family": "B:S",
+        "sites": [
+          "A:6",
+          "C:10"
+        ]
+      },
+      {
+        "codes": [
+          "DZ",
+          "DP"
+        ],
+        "family": "Z:P",
+        "sites": [
+          "A:12",
+          "B:4"
+        ]
+      },
+      {
+        "codes": [
+          "CGY",
+          "DX"
+        ],
+        "family": "K:X",
+        "sites": [
+          "A:20",
+          "D:3"
+        ]
+      },
+      {
+        "codes": [
+          "5CM",
+          "DG"
+        ],
+        "family": "5CM:G",
+        "sites": [
+          "A:7",
+          "C:9"
+        ]
+      },
+      {
+        "codes": [
+          "DF",
+          "DA"
+        ],
+        "family": "DF:A",
+        "sites": [
+          "A:19",
+          "D:4"
+        ]
+      }
+    ],
+    "targets": [
+      {
+        "site": "A:1",
+        "component": "DG"
+      },
+      {
+        "site": "A:2",
+        "component": "DA"
+      },
+      {
+        "site": "A:3",
+        "component": "DG"
+      },
+      {
+        "site": "A:4",
+        "component": "DC"
+      },
+      {
+        "site": "A:5",
+        "component": "1AP"
+      },
+      {
+        "site": "A:6",
+        "component": "IGU"
+      },
+      {
+        "site": "A:7",
+        "component": "5CM"
+      },
+      {
+        "site": "A:8",
+        "component": "DC"
+      },
+      {
+        "site": "A:9",
+        "component": "DT"
+      },
+      {
+        "site": "A:10",
+        "component": "DG"
+      },
+      {
+        "site": "A:11",
+        "component": "DT"
+      },
+      {
+        "site": "A:12",
+        "component": "DZ"
+      },
+      {
+        "site": "A:13",
+        "component": "DT"
+      },
+      {
+        "site": "A:14",
+        "component": "DG"
+      },
+      {
+        "site": "A:15",
+        "component": "DG"
+      },
+      {
+        "site": "A:16",
+        "component": "DA"
+      },
+      {
+        "site": "A:17",
+        "component": "DC"
+      },
+      {
+        "site": "A:18",
+        "component": "DA"
+      },
+      {
+        "site": "A:19",
+        "component": "DF"
+      },
+      {
+        "site": "A:20",
+        "component": "CGY"
+      },
+      {
+        "site": "A:21",
+        "component": "DA"
+      },
+      {
+        "site": "B:1",
+        "component": "DC"
+      },
+      {
+        "site": "B:2",
+        "component": "DC"
+      },
+      {
+        "site": "B:3",
+        "component": "DA"
+      },
+      {
+        "site": "B:4",
+        "component": "DP"
+      },
+      {
+        "site": "B:5",
+        "component": "DA"
+      },
+      {
+        "site": "B:6",
+        "component": "DC"
+      },
+      {
+        "site": "B:7",
+        "component": "DA"
+      },
+      {
+        "site": "C:8",
+        "component": "DG"
+      },
+      {
+        "site": "C:9",
+        "component": "DG"
+      },
+      {
+        "site": "C:10",
+        "component": "IMC"
+      },
+      {
+        "site": "C:11",
+        "component": "DT"
+      },
+      {
+        "site": "C:12",
+        "component": "DG"
+      },
+      {
+        "site": "C:13",
+        "component": "DC"
+      },
+      {
+        "site": "C:14",
+        "component": "DT"
+      },
+      {
+        "site": "D:1",
+        "component": "DC"
+      },
+      {
+        "site": "D:2",
+        "component": "DT"
+      },
+      {
+        "site": "D:3",
+        "component": "DX"
+      },
+      {
+        "site": "D:4",
+        "component": "DA"
+      },
+      {
+        "site": "D:5",
+        "component": "DT"
+      },
+      {
+        "site": "D:6",
+        "component": "DG"
+      },
+      {
+        "site": "D:7",
+        "component": "DT"
+      }
+    ],
+    "artifact_hashes": {
+      "configuration": {
+        "anchor": "output",
+        "relative_path": "dataset/nasolve.txt",
+        "sha256": "7a29dec902172d6370296151ce765c5265af584f6531d94dbf650e012b48d6c1",
+        "size": 266
+      },
+      "donor_cif": {
+        "anchor": "output",
+        "relative_path": "dataset/Data_1_autoPROC_STARANISO_all.cif",
+        "sha256": "ee3bae9d621c54d97bcbcb44c0726acca366bb512b485b1b2985a40d5ef21c12",
+        "size": 2393881
+      },
+      "donor_summary": {
+        "anchor": "output",
+        "relative_path": "dataset/summary.html",
+        "sha256": "fa2ae5b8ae7cdda2c28c4ea723d2460038485260fa24344a68197e203a74b696",
+        "size": 170097
+      },
+      "model": {
+        "anchor": "output",
+        "relative_path": "dataset/synthetic_search_W_free5OH.pdb",
+        "sha256": "8a3cedc61ba47955bb97c716d49f55c986dea90b971abb1e950f093353ca371c",
+        "size": 98728
+      },
+      "mtz": {
+        "anchor": "output",
+        "relative_path": "dataset/staraniso_alldata-unique.mtz",
+        "sha256": "0c79e521fdd898282e9fccab4236f9f070d8d39458aefaee3513b1b8fdebd266",
+        "size": 240640
+      },
+      "recipe": {
+        "anchor": "output",
+        "relative_path": "synthetic-dna-combined.toml",
+        "sha256": "576d32a3317a78cbfd4bbce381622e581ccae4a53bfdd3ddf607e85fd0112b16",
+        "size": 509
+      },
+      "sequence_reference": {
+        "anchor": "output",
+        "relative_path": "dataset/sequence_reference.json",
+        "sha256": "1961f116ed2c0d5079ca8fbdb6b1ff374301d2aef89441bbe95b50aef7ab8f66",
+        "size": 1183
+      },
+      "source_model": {
+        "anchor": "output",
+        "relative_path": "provenance/canonical_search_W.pdb",
+        "sha256": "61dfb0f46571eda7fa5b5c5375a4602f04ffb6721e60ed188efa2dc1b3b3a637",
+        "size": 99202
+      }
+    },
+    "prior_postmr_coordinates_or_numerical_bundle_used": false
+  },
+  "observed_execution": {
+    "phaser": {
+      "status": "MR_SUCCESS",
+      "native_exit": 0,
+      "tfz": 13.1,
+      "llg": 196.0,
+      "score_evidence": {
+        "llg": 196.0,
+        "method": "selected-pdb-remark",
+        "raw_annotations": [
+          "REMARK  RFZ=4.7 TFZ=9.2 PAK=1 LLG=196 TFZ==13.0 LLG=197 TFZ==13.1 PAK=1 LLG=196 TFZ==13.1"
+        ],
+        "schema_version": 1,
+        "score_kind": "tfz-equivalent",
+        "selection_rule": "selected-output-final-annotation",
+        "source": {
+          "anchor": "run",
+          "relative_path": "Phaser/PHASER.1.pdb",
+          "sha256": "611ed25c72f2af09b5b43490bfdc1435ffbfd0a254f665b554f2f9ce650e0d1c"
+        },
+        "status": "PARSED",
+        "tfz": 13.1
+      }
+    },
+    "symmetry": {
+      "input_space_group": "H 3",
+      "mtz_number": 146,
+      "mtz_matrix_setting": "R 3 :H",
+      "model_space_group": null
+    },
+    "postmr": {
+      "status": "BLOCKED",
+      "selected_prepared_checkpoint": null,
+      "component": "IGU",
+      "failure": "Generated numerical dictionary did not pass parameterized-component qualification."
+    },
+    "autosol": {
+      "policy": "disabled",
+      "executed": false
+    },
+    "experimental_phases": {
+      "requested": false,
+      "used": false
+    },
+    "autorefine": {
+      "status": "NOT_REACHED"
+    },
+    "refine_doctor": {
+      "status": "NOT_REACHED"
+    },
+    "assembly_stitching": {
+      "status": "NOT_RUN"
+    }
+  },
+  "igu_source": {
+    "artifact": "PostMR/Restraints/source_dictionaries/IGU.cif",
+    "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+    "atom_count": 37,
+    "bond_count": 39,
+    "energy_types_present": false,
+    "numerical_bond_targets_present": false,
+    "formal_charge_sum": 0,
+    "supplier_ideal_coordinates": {
+      "C2_N3_distinct": true,
+      "C2_N3_distance_angstrom": 1.3268161138605457,
+      "authority": "Coordinate consistency evidence only; not an approved replacement bond target."
+    }
+  },
+  "igu_generated_observation": {
+    "artifact": "PostMR/ReadySet/prepared_model.ligands.cif",
+    "sha256": "1533ec9cf52fabc212f9ea59163f5a0db289311e38de0ef149762dc07db5da2e",
+    "component": "IGU",
+    "atom_count": 35,
+    "energy_type_count": 35,
+    "missing_energy_types": [],
+    "numerical_bond_terms": 37,
+    "angle_terms": 65,
+    "torsion_terms": 53,
+    "chirality_terms": 3,
+    "plane_atom_terms": 16,
+    "invalid_bond_targets": [
+      {
+        "atoms": [
+          "C2",
+          "N3"
+        ],
+        "value_dist_angstrom": 0.0,
+        "value_dist_esd_angstrom": 0.02,
+        "bond_order": "single"
+      }
+    ],
+    "coincident_bonded_coordinates": [
+      {
+        "atoms": [
+          "C2",
+          "N3"
+        ],
+        "coordinates_angstrom": [
+          -3.066,
+          3.0937,
+          -0.1804
+        ],
+        "distance_angstrom": 0.0
+      }
+    ],
+    "collapsed_bond_neighbor_angle_targets": [
+      {
+        "atoms": [
+          "N3",
+          "C2",
+          "O2"
+        ],
+        "angle_degrees": 83.13,
+        "sigma_degrees": 3.0
+      },
+      {
+        "atoms": [
+          "N3",
+          "C2",
+          "N1"
+        ],
+        "angle_degrees": 109.78,
+        "sigma_degrees": 3.0
+      },
+      {
+        "atoms": [
+          "C4",
+          "N3",
+          "C2"
+        ],
+        "angle_degrees": 78.1,
+        "sigma_degrees": 3.0
+      }
+    ],
+    "formal_charge_sum": -2,
+    "source_state_changes": {
+      "removed_atoms": [
+        "HOP2",
+        "HOP3"
+      ],
+      "removed_bonds": [
+        [
+          "HOP2",
+          "OP2"
+        ],
+        [
+          "HOP3",
+          "OP3"
+        ]
+      ],
+      "added_atoms": [],
+      "added_bonds": [],
+      "formal_charge_changes": [
+        {
+          "atom": "OP2",
+          "before": 0,
+          "after": -1
+        },
+        {
+          "atom": "OP3",
+          "before": 0,
+          "after": -1
+        }
+      ],
+      "bond_order_changes": [
+        {
+          "atoms": [
+            "OP1",
+            "P"
+          ],
+          "before": "DOUBLE",
+          "after": "DELOC"
+        },
+        {
+          "atoms": [
+            "OP2",
+            "P"
+          ],
+          "before": "SINGLE",
+          "after": "DELOC"
+        },
+        {
+          "atoms": [
+            "OP3",
+            "P"
+          ],
+          "before": "SINGLE",
+          "after": "DELOC"
+        }
+      ],
+      "other_retained_bond_order_changes_after_spelling_normalization": [],
+      "chemical_state_change_approved": false,
+      "verified_polymer_linkage_edit": false
+    },
+    "numerical_adoption": false
+  },
+  "interpretation": {
+    "confirmed": "ReadySet/eLBOW generated numerical IGU terms with a collapsed bonded atom pair and separately changed phosphate protonation/charge/order declarations.",
+    "rejected_hypothesis": "The output is merely the unchanged raw graph-only CCD copied in place of numerical targets.",
+    "source_numeric_precedence": "Preserve explicitly supplied parameterized dictionaries; ReadySet output is not automatically authoritative.",
+    "single_bond_patch": "Do not substitute a guessed numerical target or supplier-coordinate distance for the zero target; regenerate and assess the whole candidate.",
+    "generator_success": "An exit-zero or populated numerical table does not certify candidate chemistry, numerics, linkage or achieved geometry.",
+    "earlier_native_passes": "Earlier hand-selected combined candidates and linked diagnostics do not transfer to this fresh generation."
+  },
+  "general_recovery_contract": {
+    "module": "src/nasolve/cif_generation.py",
+    "interfaces": [
+      "inspect_component_generation",
+      "generate_elbow_candidate"
+    ],
+    "cli": "cif-doctor generate-candidate SOURCE --code CODE --output-parent PATH --timeout-seconds 600 --json",
+    "scope": "Explicit candidate generation and evidence; no automatic production adoption.",
+    "generator": "Phenix eLBOW with --opt",
+    "seed_authority": "Frozen explicit chemical graph plus complete supplier ideal coordinates; not a distorted generated candidate or diffraction-refined model.",
+    "selected_fields": [
+      "atom IDs",
+      "elements",
+      "explicit bond endpoints and orders",
+      "formal charges",
+      "explicit hydrogen inventory and attachment",
+      "stereochemical declarations"
+    ],
+    "candidate_quarantine_triggers": [
+      "nonpositive numerical bond targets",
+      "coincident bonded heavy-atom coordinates",
+      "generator failure or missing candidate",
+      "source graph or chemical-state differences requiring review"
+    ],
+    "supplied_numeric_precedence_preserved": true,
+    "automatic_adoption": false,
+    "automatic_linkage_approval": false,
+    "old_run_mutation": false,
+    "fresh_native_generation_status": "NOT_RUN"
+  },
+  "open_checks": [
+    "Run the new source-preserving native candidate probe on the laptop and inspect actual generator/version receipts.",
+    "Compare frozen source, ReadySet generated component and actually selected effective dictionary; preserve supplied numerical-source precedence.",
+    "Review source/candidate graph, hydrogen, charge, bond-order and stereochemical differences independently of numerical completeness.",
+    "Confirm installed consumer interpretation of exact atom naming, sugar stereochemistry and active/constant restraints.",
+    "Prepare and verify site-specific internal linkage versus free-5-prime-OH chemistry without a global protonation guess.",
+    "Verify PostMR before/after ReadySet hook evidence and fresh candidate selection before any refinement.",
+    "Run later geometry/refinement diagnostics and human review on the exact new checkpoint; donor mismatch remains an experimental limitation."
+  ],
+  "human_documents": [
+    "docs/synthetic-dna-mechanics-test.md",
+    "docs/native-modified-pair-live-validation.md",
+    "docs/cif-doctor-human-overview.md"
+  ]
+}
