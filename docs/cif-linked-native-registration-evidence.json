@@ -28530,6 +28530,714 @@
       "The unchanged candidate-readback helper may omit returncode when wait raises OSError after launching a worker. Returned new_native_calls follows completed/stopped receipt evidence and may undercount that launch; the two-request SDK limit and usable starting-model fallback remain intact."
     ],
     "execution_counter_limit": "The unchanged candidate-readback helper may omit returncode when wait raises OSError after launching a worker. Returned new_native_calls follows completed/stopped receipt evidence and may undercount that launch; the two-request SDK limit and usable starting-model fallback remain intact.",
-    "report_schema_version": 1
+    "report_schema_version": 1,
+    "returned_C90": {
+      "status": "VERIFIED_COMPLETED_TRIAL; FULL_PRECISION_DERIVATIVE_REVIEW; AUTOMATIC_INITIAL_FALLBACK",
+      "archive_filename": "90_Cedar_l8vjk6m7_mixed_geometry_review.zip",
+      "archive_verification": {
+        "status": "PASS",
+        "archive_sha256": "b9d100bf2366fc524921f053b91262a26a848910c3ddf581d49be865f004f44e",
+        "compressed_bytes": 12504004,
+        "archive_entries": 77,
+        "payloads": 76,
+        "uncompressed_bytes": 28828804,
+        "largest_member_bytes": 10963258,
+        "remaining_128MiB_bytes": 105388924,
+        "remaining_1024_entry_budget": 947,
+        "safe_paths_and_strict_manifest": true,
+        "all_outer_and_parent_CRCs_verified": true,
+        "outer_manifest_verified": true,
+        "parent_manifest_verified": true,
+        "exact_opaque_C89_archive_preserved": true,
+        "exact_C89_payloads_preserved": 937,
+        "exact_C89_manifest_preserved": true,
+        "C89_archive_sha256": "19299c870e48f907097879e37735b972c9da7a7597aa08dc633238ebdfb0c654",
+        "C89_compressed_bytes": 10963258,
+        "C89_uncompressed_bytes": 128249071,
+        "C89_entries": 938,
+        "no_flattened_ancestor_tree": true,
+        "new_outer_payloads": 75,
+        "trusted_runtime_members": 167,
+        "trusted_runtime_archive_sha256": "1812a054c8aa607f295352d3d1afc307543ec47660770c0363fb687322848ce7",
+        "all_runtime_files_exact_to_trusted_Git": true,
+        "published_NASolve_commit": "19638d3bd46360b06971d837bc398350310dba25",
+        "NARestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "NARestraints_dirty_metadata": true,
+        "NARestraints_payload_matches_committed_tree": true,
+        "reported_runner_sha256_reconstructed": "2dac3e376969b18ff4bd48e2016ebb72c216354fdc682a690b3c4e34b1af8bbd",
+        "report_sha256": "15f3ad669bbf4974288cf9b382301581205d0a76ee9a92a7dfc2d695f4f93083",
+        "report_size": 29536,
+        "report_status": "REVIEW",
+        "recorded_native_calls": 1,
+        "coordinate_decision": "verified_constructed_model",
+        "continue_solving": true,
+        "automatic_adoption": false,
+        "requires_cif_review": false,
+        "verification_native_processes": 0,
+        "captured_program_execution": "NOT_RUN",
+        "scope": "ARCHIVE_ENVELOPE_RUNTIME_AND_RUNNER; SCIENTIFIC_READER_VERIFIED_SEPARATELY"
+      },
+      "native_version": "Phenix 2.2.1-6174",
+      "execution": {
+        "elapsed_seconds": 53.99432,
+        "returncode": 0,
+        "status": "COMPLETED"
+      },
+      "native_executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+      "initial_target": 27518.185419949943,
+      "final_full_precision_target": 4294.46458796323,
+      "PDB_rounded_target": 4310.624801122878,
+      "target_decrease_percent": 84.39408513887744,
+      "initial_gradient_norm": 18503.168103471973,
+      "final_full_precision_gradient_norm": 88852.6173130985,
+      "PDB_rounded_gradient_norm": 14419.934751481616,
+      "stopping": {
+        "calls": 311,
+        "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+        "iterations": 257,
+        "max_iterations": 1000,
+        "native_criterion_met": false,
+        "reason": "unreported"
+      },
+      "endpoint_derivative_qualification": "DERIVATIVE_REVIEW",
+      "endpoint_audit": {
+        "energy_evaluations": 2734,
+        "max_energy_evaluations": 4000,
+        "step_sizes": [
+          0.001,
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "families": {
+          "full_precision": {
+            "all": {
+              "sampled_directions_consistent": false,
+              "directions": 21,
+              "statuses": {
+                "REVIEW": 3,
+                "CONSISTENT": 18
+              }
+            },
+            "angle": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "bond": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "chirality": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "dihedral": {
+              "sampled_directions_consistent": false,
+              "directions": 21,
+              "statuses": {
+                "REVIEW": 3,
+                "CONSISTENT": 18
+              }
+            },
+            "nonbonded": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "parallelity": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "planarity": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            }
+          },
+          "pdb_rounded": {
+            "all": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "angle": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "bond": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "chirality": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "dihedral": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "nonbonded": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "parallelity": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            },
+            "planarity": {
+              "sampled_directions_consistent": true,
+              "directions": 21,
+              "statuses": {
+                "CONSISTENT": 21
+              }
+            }
+          }
+        },
+        "baseline_repeats_consistent": true,
+        "captured_snapshot_match": true,
+        "target_additivity": true,
+        "gradient_additivity": true
+      },
+      "captured_inventory_matches": true,
+      "qualified_initial_snapshot_matches": true,
+      "static_constraint_signature_before": "06113b5354a74b9ced46512c9695e13630dea216216d508ddca24c5aecee160e",
+      "static_constraint_signature_after": "06113b5354a74b9ced46512c9695e13630dea216216d508ddca24c5aecee160e",
+      "native_candidate_readback": "NOT_RUN",
+      "optional_trial_finding": "ValueError: Mixed geometry evidence does not reproduce",
+      "coordinate_decision": {
+        "automatic_adoption": false,
+        "checks": {
+          "qualified_endpoint_derivatives": false
+        },
+        "continue_solving": true,
+        "endpoint_usable": false,
+        "native_usable": true,
+        "notes": [
+          "Stopping, pucker, chirality and residual findings are recorded separately from fixed native mechanics.",
+          "The optional separate endpoint is selected only when its fixed objective and native checks qualify; otherwise the usable starting model is retained."
+        ],
+        "requires_cif_review": false,
+        "scientific_qualification": "NOT_ASSESSED",
+        "selected": "verified_constructed_model",
+        "status": "CONTINUE_WITH_NOTES",
+        "stopping": {
+          "calls": 311,
+          "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+          "iterations": 257,
+          "max_iterations": 1000,
+          "native_criterion_met": false,
+          "reason": "unreported"
+        }
+      },
+      "endpoint_observation": {
+        "leading_force_site": "D:5",
+        "component": "PDU",
+        "leading_force_atoms": [
+          "C5A",
+          "C5B",
+          "C5M"
+        ],
+        "triple_distance_angstrom": 1.19673559,
+        "triple_target_angstrom": 1.203,
+        "adjacent_angle_degrees": 179.99981,
+        "interpretation": "SEVERE_NEAR_LINEAR_TORSION_CONDITIONING; NATIVE_GRADIENT_BUG_NOT_ESTABLISHED"
+      },
+      "original_local_validation": "UNCHANGED",
+      "new_verification_native_processes": 0,
+      "captured_program_execution": "NOT_RUN",
+      "scientific_qualification": "NOT_ASSESSED",
+      "source_state_findings": "UNCHANGED",
+      "production_adoption": "NOT_RUN",
+      "student_CIF_approval": "NOT_REQUIRED",
+      "maintained_scientific_replay": {
+        "status": "ACTUAL_C90_MAINTAINED_READ_ONLY_REPLAY_PASS",
+        "reader": "nasolve.cif_mixed_geometry.read_mixed_geometry_trial",
+        "elapsed_seconds": 38.733295745998475,
+        "protected_files": 435,
+        "protected_bytes_unchanged": true,
+        "blocked_sdk_discovery_pickle_calls": [],
+        "new_native_calls": 0,
+        "captured_code_execution": "NOT_RUN",
+        "historical_native_calls": 1,
+        "historical_execution": {
+          "elapsed_seconds": 53.99432,
+          "returncode": 0,
+          "status": "COMPLETED"
+        },
+        "historical_status": "REVIEW",
+        "historical_coordinate_decision": "verified_constructed_model",
+        "historical_derivative_qualification": {
+          "finding": "OPTIONAL_ENDPOINT_UNQUALIFIED",
+          "finding_type": "ValueError",
+          "sampled_derivatives_pass": false,
+          "status": "REVIEW"
+        },
+        "c89_parent_archive_sha256": "19299c870e48f907097879e37735b972c9da7a7597aa08dc633238ebdfb0c654"
+      }
+    }
+  },
+  "mixed_fixed_torsion_audit_2026_10_24": {
+    "status": "LOCAL_VALIDATION_PASS; FRESH_MAC_FIXED_TORSION_AUDIT_PENDING",
+    "recorded_date": "2026-10-24",
+    "delivery_prefix": "91_Cedar",
+    "runner_filename": "91_Cedar_probe_mixed_torsions.py",
+    "module": "src/nasolve/cif_mixed_torsion.py",
+    "report": "mixed_torsion_audit.json",
+    "report_schema_version": 1,
+    "policy_id": "cif-mixed-fixed-torsion-audit-v1",
+    "report_anchor": "mixed_torsion_directory",
+    "prerequisite": {
+      "archive_filename": "90_Cedar_l8vjk6m7_mixed_geometry_review.zip",
+      "sha256": "b9d100bf2366fc524921f053b91262a26a848910c3ddf581d49be865f004f44e",
+      "source_commit": "19638d3bd46360b06971d837bc398350310dba25",
+      "parent_payloads": 76,
+      "parent_bytes": 12504004
+    },
+    "before": "C90 reduces the fixed objective but its full-precision global/dihedral sampled derivatives retain review; the verified usable initial model remains selected automatically.",
+    "after": "Isolate selected ordinary native dihedral proxies at the exact saved endpoint and PDB-rounded coordinates, with both orders, finer steps, native single/container and full/selected/remainder arithmetic evidence; do not optimize or change mechanics.",
+    "manager": {
+      "atoms": 863,
+      "sites": 42,
+      "parallelity_restraints": 58,
+      "coordinate_cases": [
+        "QUALIFIED_INITIAL_REFERENCE",
+        "SAVED_C90_FULL_PRECISION_ENDPOINT",
+        "SAVED_C90_PDB_ROUNDED_ENDPOINT"
+      ]
+    },
+    "method": {
+      "API": [
+        "audit_mixed_torsions",
+        "read_mixed_torsions"
+      ],
+      "operational_anchors": [
+        "geometry_directory",
+        "gradient_directory",
+        "context_directory",
+        "linked_parent_directory"
+      ],
+      "original_C90_archive_sha256": "REQUIRED",
+      "selection": "GENERIC_NEAR_COLLINEAR_GEOMETRY_AND_ATOM_GRADIENT_EVIDENCE_ACROSS_THREE_CASES; BOND_PATH_SUPPORT_RECORDED; NO_COMPONENT_NAME_EXCEPTION",
+      "near_linear_proxies_max": 6,
+      "non_near_linear_high_gradient_controls_max": 2,
+      "selected_proxies_max": 8,
+      "ranking_truncation_and_graph_support": "RECORDED",
+      "zero_weight_constant_torsions": "INVENTORIED_SEPARATELY",
+      "single_and_container": "NATIVE; BOTH_ENDPOINT_ORDERS",
+      "directions": [
+        "CARTESIAN",
+        "LOCAL_GRADIENT",
+        "ALTERNATING"
+      ],
+      "finite_difference_steps_angstrom": [
+        0.001,
+        0.0001,
+        1e-05,
+        1e-06,
+        1e-07,
+        1e-08,
+        1e-09
+      ],
+      "groups": [
+        "FULL_DIHEDRAL",
+        "SELECTED",
+        "REMAINDER"
+      ],
+      "native_kernels": "UNCHANGED",
+      "plane_gradient_correction": "UNCHANGED",
+      "chemical_definitions": "UNCHANGED",
+      "pairing_and_stacking_authority": "NARestraints",
+      "captured_programs": "DATA_ONLY; NEVER_IMPORTED_OR_EXECUTED",
+      "non_near_linear_controls": "ATOM_DISJOINT_FROM_SELECTED_NEAR_PROXIES_AND_EACH_OTHER",
+      "near_collinear_screen": "MINIMUM_SINE_AT_MOST_SIN_5_DEGREES",
+      "directions_per_proxy_max": 14,
+      "native_torsion_evaluator": "UNCHANGED_C43_native_evaluator",
+      "finite_difference_step_groups_angstrom": {
+        "original_coarse": [
+          0.001,
+          0.0001,
+          1e-05,
+          1e-06
+        ],
+        "finer": [
+          1e-07,
+          1e-08,
+          1e-09
+        ]
+      },
+      "adjacent_step_agreement": "DIAGNOSTIC_ONLY; NO_ENDPOINT_REQUALIFICATION",
+      "raw_manager_binding_evidence": "UNCHANGED_NATIVE_ENERGY_WORKER; native_validation.energy_inventory"
+    },
+    "execution_bounds": {
+      "native_workers_max": 1,
+      "default_timeout_seconds": 120,
+      "timeout_seconds_max": 600,
+      "paired_single_container_evaluations_max": 10000,
+      "group_evaluations_max": 600,
+      "inspect_SDK_calls": 0,
+      "maximum_expected_pairs_for_three_cases_eight_proxies": 9504,
+      "maximum_expected_group_calls_for_three_cases": 528,
+      "diagnostic_counters": "SEPARATE_LOCAL_PAIR_AND_GROUP_CAPS; NOT_TOTAL_JOB_KERNEL_COUNT",
+      "additional_initial_raw_manager_binding_snapshots": 2
+    },
+    "statuses": {
+      "PREPARED_ONLY": "NO_SDK_EXECUTION",
+      "MIXED_TORSION_AUDIT_COMPLETE": "BOUNDED_NUMERICAL_EVIDENCE_AND_ARITHMETIC_REPLAY_COMPLETED; NOT_DERIVATIVE_APPROVAL_OR_CAUSAL_BUG_PROOF",
+      "REVIEW": "MISSING_UNREPRODUCIBLE_OR_INCOMPLETE_EVIDENCE"
+    },
+    "transport": {
+      "mode": "EXACT_ORIGINAL_C90_ZIP_OPAQUE_ONCE",
+      "C89_archive": "NESTED_BYTE_EXACT_WITHIN_ORIGINAL_C90",
+      "flattened_ancestry": "NOT_COPIED",
+      "temporary_views": "EXPLICIT_DECLARED_GEOMETRY_GRADIENT_CONTEXT_LINKED_PARENT"
+    },
+    "transport_bounds": {
+      "archive_uncompressed_bytes_max": 134217728,
+      "member_bytes_max": 33554432,
+      "archive_entries_max": 1024
+    },
+    "validation": {
+      "status": "LOCAL_VALIDATION_PASS",
+      "focused": {
+        "status": "PASS",
+        "passed": 1133,
+        "seconds": 229.9,
+        "test_files": 35,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q tests/test_mixed_context_probe.py tests/test_mixed_context_retry_probe.py tests/test_cif_mixed_gradient.py tests/test_synthetic_dna_shuttle.py tests/test_mixed_gradient_probe.py tests/test_mixed_linked_recovery_probe.py tests/test_cif_corrected_geometry.py tests/test_mixed_context_saved_probe.py tests/test_cif_corrected_geometry_probe.py tests/test_cif_replacement_geometry.py tests/test_cif_mixed_linked_recovery.py tests/test_mixed_linked_recovery_saved_probe.py tests/test_cif_parallelity_audit.py tests/test_cif_gradient_audit.py tests/test_cif_parallelity_audit_probe.py tests/test_phenix_runtime.py tests/test_cif_mixed_context.py tests/test_cif_review_transport.py tests/test_cif_plane_order_probe.py tests/test_cif_parallelity_correction.py tests/test_cif_plane_order_correction.py tests/test_cif_gradient_audit_probe.py tests/test_cif_mixed_geometry.py tests/test_mixed_geometry_probe.py tests/test_cif_fixed_geometry.py tests/test_cif_fixed_geometry_probe.py tests/test_cif_native_validation.py tests/test_cif_candidate_usability.py tests/test_cif_scaffold_return.py tests/test_cif_scaffold_candidate.py tests/test_cif_mixed_torsion.py tests/test_mixed_torsion_probe.py tests/test_cif_dihedral_conditioning.py tests/test_cif_linear_torsion_candidate.py tests/test_cif_linear_torsion_impact.py",
+        "code_checkpoint": "c6a3743f4294a7cce4b87d9053a7952a95799b13"
+      },
+      "complete_suite": {
+        "status": "PASS",
+        "passed": 5162,
+        "skipped": 2,
+        "subtests_passed": 276,
+        "seconds": 862.21,
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q",
+        "code_checkpoint": "c6a3743f4294a7cce4b87d9053a7952a95799b13"
+      },
+      "source_removed_portability": {
+        "status": "PASS",
+        "source_commit": "c6a3743f4294a7cce4b87d9053a7952a95799b13",
+        "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+        "runtime_members": 168,
+        "runtime_archive_sha256": "ab0db15dbad16c84278e0f423fee84a8caa985727c509d9ec9fb0613cbd1c3a0",
+        "runner_sha256": "e06870ba21332857444db40ab0e9832366c0e2d1d43cb1f254aef3339da28e44",
+        "source_archive_sha256": "b9d100bf2366fc524921f053b91262a26a848910c3ddf581d49be865f004f44e",
+        "source_clones_removed_before_launch": true,
+        "original_repositories_and_archive_reads_forbidden": true,
+        "ambient_poison": "NOT_IMPORTED",
+        "aliased_TMPDIR": true,
+        "macos_path_budget": {
+          "max_absolute_path_bytes": 231,
+          "max_component_bytes": 45,
+          "checked_operations": 186255,
+          "subprocess_calls": 0,
+          "forbidden_calls": []
+        },
+        "everyday_authorized_edit": "PRESERVED",
+        "original_user_config": "UNCHANGED",
+        "component_store": "UNTOUCHED",
+        "review_payloads": 50,
+        "review_uncompressed_bytes": 18366235,
+        "largest_review_member_bytes": 12504004,
+        "preserved_C90_payloads": 76,
+        "exact_opaque_parent_archive_bytes": 12504004,
+        "new_native_calls": 0,
+        "no_Phenix_argument": true,
+        "no_native_discovery": "PROFILE_GUARDED",
+        "new_data_bytes": 5854629,
+        "remaining_128MiB_budget_after_inspect": 115851493,
+        "old_scientific_subtree_duplicated": false,
+        "standalone_explicit_parent_reader_from_new_capsule_after_original_removal": "PASS",
+        "standalone_reader": {
+          "status": "PASS",
+          "inspect_status": "PREPARED_ONLY",
+          "new_native_calls": 0,
+          "reader_from_new_capsule": true,
+          "geometry_files": 73,
+          "gradient_files": 65,
+          "context_files": 165,
+          "parent_files": 132,
+          "new_files": 47,
+          "all_scientific_files_unchanged": true,
+          "opaque_parent_bytes_exact": true,
+          "opaque_embedded_C89_bytes_exact": true,
+          "preserved_parent_payloads": 76,
+          "preserved_embedded_C89_payloads": 937
+        },
+        "guarded_temporary_auto_cleanup": "NOT_CLAIMED",
+        "frozen_runtime_preserved": true,
+        "guarded_relocated_help": "PASS",
+        "builder_help": "PASS",
+        "scope": "SOURCE_REMOVED_FIXED_TORSION_INSPECT_QA; EXACT_OPAQUE_C90_AND_EMBEDDED_C89_ARCHIVES_PRESERVED; ZERO_NEW_SDK_PROCESSES",
+        "private_artifacts": "EXCLUDED_FROM_GIT",
+        "explicitly_retired_owned_temporary_views": 5,
+        "preserved_C90_manifest": "BYTE_EXACT_WITHIN_ORIGINAL_OPAQUE_ARCHIVE",
+        "preserved_embedded_C89_manifest": "BYTE_EXACT_WITHIN_ORIGINAL_EMBEDDED_ARCHIVE"
+      },
+      "fresh_Mac_fixed_torsion_audit": "PENDING",
+      "actual_saved_parent_selection": {
+        "status": "PASS",
+        "selected": [
+          {
+            "kind": "dihedral",
+            "native_index": 584,
+            "selection_reason": "NEAR_COLLINEAR",
+            "minimum_sine": 3.314055611181453e-06,
+            "atom_gradient_score": 88858.00428674699,
+            "bond_path_supported": true
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 57,
+            "selection_reason": "NEAR_COLLINEAR",
+            "minimum_sine": 0.0211759192160292,
+            "atom_gradient_score": 240.91105436905823,
+            "bond_path_supported": true
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 580,
+            "selection_reason": "NEAR_COLLINEAR",
+            "minimum_sine": 0.04151499579364646,
+            "atom_gradient_score": 83010.99786165982,
+            "bond_path_supported": true
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 582,
+            "selection_reason": "NEAR_COLLINEAR",
+            "minimum_sine": 0.04151499579364646,
+            "atom_gradient_score": 83010.99805249243,
+            "bond_path_supported": true
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 53,
+            "selection_reason": "NEAR_COLLINEAR",
+            "minimum_sine": 0.08302717764905176,
+            "atom_gradient_score": 225.08940955839856,
+            "bond_path_supported": true
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 55,
+            "selection_reason": "NEAR_COLLINEAR",
+            "minimum_sine": 0.08302717764905176,
+            "atom_gradient_score": 225.0739305824985,
+            "bond_path_supported": true
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 167,
+            "selection_reason": "GRADIENT_CONTROL",
+            "minimum_sine": 0.959014155398818,
+            "atom_gradient_score": 934.8714654037261,
+            "bond_path_supported": true
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 112,
+            "selection_reason": "GRADIENT_CONTROL",
+            "minimum_sine": 0.9555613293548176,
+            "atom_gradient_score": 840.4979606027855,
+            "bond_path_supported": true
+          }
+        ],
+        "active_ordinary_count": 607,
+        "near_eligible_count": 6,
+        "truncated_near_count": 0,
+        "excluded_count": 368,
+        "positive_constant_count": 0,
+        "SDK_processes": 0,
+        "inventoried_torsions": 975,
+        "source_scope": "ACTUAL_SAVED_C90_PARENT_DATA; SELECTION_ONLY; NO_NATIVE_KERNEL_EVALUATION",
+        "selected_bond_paths_supported": 8
+      },
+      "all_final_new_cases_frozen_before_full_collection": 131,
+      "new_cases": {
+        "module": 66,
+        "ferry": 65
+      },
+      "module_final": {
+        "status": "PASS",
+        "passed": 66,
+        "seconds": 67.57
+      },
+      "ferry_final": {
+        "status": "PASS",
+        "passed": 65,
+        "seconds": 3.09
+      },
+      "initial_fail_before": [
+        {
+          "scope": "INITIAL_MODULE_API_CASES_ON_C90_BASE",
+          "failed": 9,
+          "seconds": 3.12
+        },
+        {
+          "scope": "INITIAL_FERRY_CASES_ON_C90_BASE",
+          "failed": 4,
+          "seconds": 0.24
+        }
+      ],
+      "frozen_source_script_test_and_figure_sha256": {
+        "src/nasolve/cif_mixed_torsion.py": "a26623fc77c987cf8cf0245ac435d57152269535e9742cef30f510927b06fa5c",
+        "scripts/mixed_torsion_probe_template.py": "67cace3d4f4496aa0d10c16558b6c7ad2332f2b1382d01e42aa913629c5a5404",
+        "scripts/build_mixed_torsion_probe.py": "1debaae3796b08c73ae9c2dfecbb8284d20a1bcb4f65c365edfe6ffcb62c9288",
+        "scripts/build_synthetic_dna_shuttle.py": "a28ae8d7234657ae42b861ce36af4a5d3fa08bad44538510f7a1b1c7acddda53",
+        "tests/test_cif_mixed_torsion.py": "5937964d80b65918020ac1919d3493c31fb5489bcc73c4a6997fba7fc1fe39fc",
+        "tests/test_mixed_torsion_probe.py": "c32faa49ccd57f6d8b580d0cf8823be0d2ec8085fd1b2eadbf9cff344c26a8f9",
+        "docs/figures/build_cif_doctor_overview.py": "a00ddd9a1d3395876a6deba371c17a3023e14923ebb00b9e5106733a2c7246b4",
+        "docs/figures/cif-doctor-overview.svg": "d620571644e0811d0f97fb3363517d8a134094707c00f6c6052028547676eb3c"
+      },
+      "code_checkpoint": "c6a3743f4294a7cce4b87d9053a7952a95799b13",
+      "actual_C90_parent_preparation_and_read": {
+        "status": "ACTUAL_C91_SDK_FREE_PREPARATION_AND_STANDALONE_READ_PASS",
+        "source_sha256": "a26623fc77c987cf8cf0245ac435d57152269535e9742cef30f510927b06fa5c",
+        "prepare_including_publish_replay_seconds": 105.75115642400124,
+        "total_seconds": 152.49328767599945,
+        "protected_files": 435,
+        "protected_bytes_unchanged": true,
+        "blocked_sdk_discovery_pickle_calls": [],
+        "new_native_calls": 0,
+        "captured_or_staged_code_execution": "NOT_RUN",
+        "report_status": "PREPARED_ONLY",
+        "original_geometry_status": "REVIEW",
+        "original_geometry_qualification": {
+          "finding": "OPTIONAL_ENDPOINT_UNQUALIFIED",
+          "finding_type": "ValueError",
+          "sampled_derivatives_pass": false,
+          "status": "REVIEW"
+        },
+        "coordinate_decision": "verified_constructed_model",
+        "standalone_exact_replay": true,
+        "selector": {
+          "active_ordinary_count": 607,
+          "near_eligible_count": 6,
+          "truncated_near_count": 0,
+          "excluded_count": 368,
+          "positive_constant_count": 0
+        },
+        "selected_rows": [
+          {
+            "kind": "dihedral",
+            "native_index": 584,
+            "selection_reason": "NEAR_COLLINEAR"
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 57,
+            "selection_reason": "NEAR_COLLINEAR"
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 580,
+            "selection_reason": "NEAR_COLLINEAR"
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 582,
+            "selection_reason": "NEAR_COLLINEAR"
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 53,
+            "selection_reason": "NEAR_COLLINEAR"
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 55,
+            "selection_reason": "NEAR_COLLINEAR"
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 167,
+            "selection_reason": "GRADIENT_CONTROL"
+          },
+          {
+            "kind": "dihedral",
+            "native_index": 112,
+            "selection_reason": "GRADIENT_CONTROL"
+          }
+        ],
+        "parent_archive_sha256": "b9d100bf2366fc524921f053b91262a26a848910c3ddf581d49be865f004f44e"
+      },
+      "full_collection_started_from_frozen_checkpoint": true,
+      "source_scripts_tests_and_figure_unchanged_after_full_collection": true,
+      "post_collection_test_supplement": "NONE",
+      "documentation": {
+        "original_C90_local_validation": "UNCHANGED",
+        "all_earlier_ledger_and_implementation_values": "TYPE_AND_VALUE_IDENTICAL",
+        "strict_JSON_duplicate_keys": "NONE",
+        "runtime_progress_mirrors": "EXACT_EXCEPT_EVIDENCE_POINTER",
+        "relative_links_checked": 161,
+        "prior_native_kernels_workers_serializer_and_NA_policy": "BYTE_UNCHANGED",
+        "editable_SVG": "DETERMINISTIC_REGENERATION; RENDERED_AND_VISUALLY_CHECKED; FROZEN_BEFORE_FULL_COLLECTION",
+        "figure_builder_sha256": "a00ddd9a1d3395876a6deba371c17a3023e14923ebb00b9e5106733a2c7246b4",
+        "figure_SVG_sha256": "d620571644e0811d0f97fb3363517d8a134094707c00f6c6052028547676eb3c",
+        "private_QA_artifacts": "EXCLUDED_FROM_GIT"
+      }
+    },
+    "coordinate_selection": "UNCHANGED_VERIFIED_USABLE_INITIAL_FALLBACK",
+    "model_optimization": "NOT_REQUESTED",
+    "mechanics_change": "NOT_REQUESTED",
+    "chemical_edit": "NOT_REQUESTED",
+    "dictionary_generation": "NOT_REQUESTED",
+    "readyset_execution": "NOT_REQUESTED",
+    "coot_execution": "NOT_REQUESTED",
+    "refinement": "NOT_REQUESTED",
+    "component_store_write": "NOT_REQUESTED",
+    "automatic_adoption": false,
+    "requires_cif_review": false,
+    "mtz_used": false,
+    "scientific_qualification": "NOT_ASSESSED",
+    "source_state_findings": "UNCHANGED",
+    "native_gradient_bug": "NOT_ESTABLISHED",
+    "generated_artifacts": "PRIVATE_MODELS_DICTIONARIES_LOGS_CAPTURES_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
+    "remaining_limits": [
+      "All 1,133 focused tests, 5,162 complete-suite tests, real-parent SDK-free preparation/read and source-removed inspect/standalone replay pass; actual Mac C91 fixed-torsion execution remains pending.",
+      "A completed fixed-coordinate audit does not qualify derivatives, prove a native defect, converge a model or establish scientific correctness.",
+      "C90 source-state findings and verified usable initial fallback remain unchanged; no student CIF approval is added."
+    ],
+    "builder": "scripts/build_mixed_torsion_probe.py",
+    "template": "scripts/mixed_torsion_probe_template.py",
+    "compatibility": "ADDITIVE_DIAGNOSTIC_AND_SCHEMA_1_REPORT; EXISTING_READERS_PRODUCTION_PATHS_NATIVE_KERNELS_AND_EARLIER_RUNS_UNCHANGED; NO_OLD_ARTIFACT_MIGRATION"
   }
 }

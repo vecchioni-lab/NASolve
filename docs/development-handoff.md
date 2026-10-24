@@ -169,7 +169,7 @@ energy, coordinates, definitions and static constraints remain fixed. The actual
 return is appended separately to `mixed_initial_gradient_audit_2026_10_24`; the
 original local evidence and historical pending-at-publication values stay exact.
 
-**Next delivery is C90:** `90_Cedar_probe_mixed_geometry.py`, built by
+**Completed C90 delivery:** `90_Cedar_probe_mixed_geometry.py`, built by
 `scripts/build_mixed_geometry_probe.py` from the exact C89 ZIP. Run one optional
 1,000-iteration/600-second geometry trial from the qualified initial state, using
 the unchanged geometry worker, corrected evaluator, optimizer and atom-identity
@@ -206,10 +206,38 @@ All 65 gradient, 165 context, 132 parent and 54 new scientific files reproduce
 unchanged. The path guard checks 125,071 operations at maximum path/component
 lengths of 232/45 bytes; user config, authorized edits, the component store and
 ambient import isolation remain intact. Owned temporary views are explicitly
-retired; guarded automatic cleanup is not claimed. Actual Mac C90 geometry
-remains pending. Scientific/source-state findings, ordinary full-run qualification,
-refinement, cache publication and production adoption remain separate. The new
-record is `mixed_qualified_geometry_trial_2026_10_24`.
+retired; guarded automatic cleanup is not claimed. These original local checks
+precede the actual C90 return below. Scientific/source-state findings, ordinary
+full-run qualification, refinement, cache publication and production adoption
+remain separate. The record is `mixed_qualified_geometry_trial_2026_10_24`.
+
+Returned C90 completes one Phenix 2.2.1-6174 geometry worker in 53.99432 seconds.
+The fixed target falls from 27,518.185419949943 to 4,294.46458796323 (84.394%)
+over 257 iterations and 311 calls, then stops on a line-search rounding error.
+This objective decrease does not qualify the endpoint: the full-precision global
+and dihedral audits each retain three REVIEW directions out of twenty-one;
+the other six families pass, while all eight PDB-rounded families pass. Repeats,
+snapshot matching and target/gradient additivity remain consistent. The saved
+full-precision gradient norm is 88,852.6173130985, versus 14,419.934751481616 after
+PDB rounding. Native candidate readback does not run. The report retains its
+`Mixed geometry evidence does not reproduce` finding and automatically keeps the
+verified usable initial model with `CONTINUE_WITH_NOTES`; no student CIF approval
+or production adoption occurs.
+
+The strongest endpoint forces involve the PDU propynyl atoms C5A/C5B/C5M at D:5.
+Its triple-bond distance is about 1.196736 Å against a 1.203 Å target, with an
+adjacent angle about 179.999810°. These observations motivate a fixed-coordinate
+torsion-conditioning test; they do not establish a native gradient defect.
+All 76 returned payloads, the trusted 167-member runtime and exact opaque C89
+archive verify; all 937 C89 payloads and its original manifest remain byte-exact.
+Independent maintained read-only replay reproduces the original `REVIEW`, one
+historical native call and the same initial-model selection in 38.73 seconds.
+All 435 scientific-view files remain unchanged, with SDK discovery, new native
+calls, pickle loading and captured-program execution forbidden. The actual return
+is appended separately to `mixed_qualified_geometry_trial_2026_10_24` without
+changing its original local validation. Source chemistry, static
+constraints, scientific qualification and ordinary full-run scope remain separate.
+
 
 The unchanged candidate-readback helper retains a narrow diagnostic counter
 limit: if `wait` raises `OSError` after launch, its receipt can omit `returncode`.
@@ -217,6 +245,81 @@ limit: if `wait` raises `OSError` after launch, its receipt can omit `returncode
 that launch. The maximum two requested SDK workers and the verified usable
 starting-model fallback remain enforced. This is recorded for maintainers,
 without changing the shared helper or adding a student decision.
+
+**Next delivery is C91:** `91_Cedar_probe_mixed_torsions.py`, built with
+`scripts/build_mixed_torsion_probe.py` and `scripts/mixed_torsion_probe_template.py`
+from the exact returned C90 capsule. Audit the saved endpoint's ordinary dihedral proxies and
+near-linear conditioning without another optimizer. Rebuild from explicit
+geometry/gradient/context/linked-parent views and bind the C90 archive checksum;
+use the unchanged native numerical kernels, chemical definitions and NARestraints
+policy. Generic geometry/gradient ranking across the initial and both endpoint
+precisions selects up to six near-linear proxies and two atom-disjoint non-near-
+linear high-gradient controls, capped at eight. Record bond-path support, the
+five-degree sine screen and any truncation; preserve zero-weight constant torsions
+as separate inventory. All three cases, both endpoint orders, single/container
+comparisons, up to fourteen local directions and seven steps from 1e-3 through
+1e-9 Å separate scale-sensitive
+conditioning from reproducible arithmetic disagreement. Keep the original four
+coarse steps and three finer steps distinct; adjacent-step agreement is diagnostic
+and cannot requalify the endpoint. Use the unchanged native torsion evaluator.
+Check full/selected/remainder energy and gradient sums without omitting any
+active restraint.
+
+Use `cif_mixed_torsion.py`, schema-1 `mixed_torsion_audit.json`, policy
+`cif-mixed-fixed-torsion-audit-v1` and local anchor `mixed_torsion_directory`.
+The audit/reader take four explicit parent views plus the original C90 SHA-256.
+At most one native worker runs: 120 seconds by default, 600 seconds maximum,
+10,000 paired kernels and 600 group evaluations as separate diagnostic caps. The
+unchanged native energy worker additionally records two initial raw full-manager
+snapshots for source/manager binding in `native_validation.energy_inventory`;
+the diagnostic pair/group counts are not a total of every kernel in the job.
+SDK-free inspect remains separate.
+`MIXED_TORSION_AUDIT_COMPLETE` describes completed bounded evidence/arithmetic
+replay, not a derivative approval or proved bug. Keep disagreement as findings;
+missing/unreproducible evidence stays `REVIEW`. The module/report are additive;
+existing readers, production paths and earlier run schemas are unchanged, with
+no migration of saved artifacts.
+
+Preserve the exact 12,504,004-byte C90 ZIP once, including all 76 parent payloads
+and manifest and its nested original C89 ZIP. Retain existing archive limits,
+explicit temporary views, captured-code-as-data rules and verified usable initial
+fallback. No optimization, mechanics/chemistry change, generation, adoption,
+cache publication, refinement or student CIF approval is requested. SDK-free
+selection on the actual parent inventories 975 terms (607 positive ordinary /
+368 zero-weight constants), selecting six near-linear rows without truncation
+and two disjoint controls; all eight have native bond-path support. No native
+kernel runs. The maximum schedule is 9,504 paired kernels and 528 group calls,
+within 10,000/600. All 131 final new cases are frozen before full collection:
+66 module cases pass in 67.57 seconds and 65 ferry cases pass in 3.09 seconds.
+The initial fail-before subsets are nine module failures in 3.12 seconds and
+four ferry failures in 0.24 seconds, distinct from final counts. Frozen checkpoint
+`c6a3743f4294a7cce4b87d9053a7952a95799b13` contains all source, scripts, tests and
+figure changes. Actual-parent SDK-free preparation and standalone exact replay
+pass in 152.49 seconds (105.75 seconds for preparation including publish replay),
+with 435 protected files unchanged and zero SDK calls. `PREPARED_ONLY` retains
+the original C90 REVIEW and usable initial selection. Combined focused validation
+passes 1,133 tests across thirty-five files in 229.90 seconds on the same frozen
+checkpoint. All 131 final new cases enter complete-suite collection before
+launch. The complete suite passes 5,162 tests, two skips and 276 subtests in
+862.21 seconds on that same checkpoint, with source, script, test and figure
+bytes frozen after collection and no later supplement.
+
+Source-removed inspect and standalone readback pass after removing the original
+session, runtime and input archive, with zero SDK/subprocess launches. The frozen
+runtime has 168 members. The new outer capsule has 50 payloads plus manifest and
+18,366,235 uncompressed bytes; its largest member is the exact 12,504,004-byte C90
+ZIP, preserved once with all 76 payloads and its manifest. The embedded original
+C89 archive also remains byte-exact, with all 937 payloads and its manifest.
+New data occupies 5,854,629 bytes, leaving 115,851,493 bytes under the unchanged
+128 MiB cap without duplicating old scientific trees. All 73 geometry, 65
+gradient, 165 context, 132 parent and 47 new files replay unchanged. The path
+guard checks 186,255 operations at maximum path/component lengths of 231/45 bytes;
+configuration, authorized edits, the component store and ambient import isolation
+remain intact. Five owned temporary views are explicitly retired; guarded
+automatic cleanup is not claimed. The report stays `PREPARED_ONLY`. Actual Mac
+C91 fixed-endpoint execution remains pending; scientific qualification and the
+ordinary full run remain separate.
+The new record is `mixed_fixed_torsion_audit_2026_10_24`.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.

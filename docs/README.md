@@ -209,9 +209,16 @@ Native targets, coordinates and definitions stay unchanged. C90 supplies a bound
 geometry trial under that exact qualified policy, with a separate endpoint,
 fresh native readback and automatic usable fallback. C90 validation passes 917
 focused / 5,031 full tests. Real-parent SDK-free preparation, adapter checks and
-source-removed inspect/readback pass with zero new native processes. Actual Mac
-C90 geometry remains pending. Source-state findings, scientific qualification,
-adoption and the ordinary full run remain separate.
+source-removed inspect/readback pass with zero new native processes. Returned C90
+lowers the target 84.394% but correctly retains the initial model: three sampled
+full-precision global/dihedral directions need review, while rounded directions
+pass. Near-linear propynyl torsion conditioning is a hypothesis, not a proved
+native defect. C91 adds fixed-endpoint torsion isolation without another optimizer;
+1,133 focused / 5,162 full tests, actual-parent SDK-free preparation/readback and
+source-removed inspect/standalone replay pass with zero new native processes.
+Actual Mac C91 fixed-torsion execution remains pending.
+Source-state findings, scientific qualification, adoption and the ordinary full
+run remain separate.
 
 
 

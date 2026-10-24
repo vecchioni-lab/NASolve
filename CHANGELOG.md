@@ -8,6 +8,29 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Isolate saved-endpoint torsion conditioning without optimization
+
+- Verify returned C90 and retain its original local evidence. The fixed target
+  falls 84.394% before a line-search rounding error; three full-precision global
+  and dihedral directions retain review while rounded directions pass. Preserve
+  the correct automatic usable-initial fallback and all separate source findings.
+- Add a fixed-endpoint dihedral audit using generic geometry/gradient selection
+  with recorded bond-path support; compare both orders, native single/container terms,
+  finer finite-difference steps and full/selected/remainder arithmetic. Completed
+  replay is evidence, not derivative approval or proof of a native bug.
+- Bind four explicit parent views to the exact original C90 archive and preserve
+  that compressed archive once. Keep native kernels, definitions and NARestraints
+  policy unchanged. No optimizer, chemistry/mechanics edit, adoption, cache write,
+  refinement or student CIF inspection is added. All 131 final new module/ferry
+  cases are frozen before complete-suite collection; 1,133 focused tests across
+  thirty-five files and actual-parent SDK-free preparation/readback pass. The full
+  suite passes 5,162 tests (two skips, 276 subtests, 862.21 s) on the same frozen
+  checkpoint, with no later source/script/test/figure changes or supplement.
+  Source-removed inspect/standalone replay passes with zero SDK/subprocess launches,
+  exact opaque C90 and embedded C89 archives preserved once, and unchanged outer
+  archive bounds. Actual Mac C91 fixed-torsion execution remains pending.
+
+
 ### Trial geometry from the freshly qualified mixed manager
 
 - Verify returned C89: all eight sampled gradient families and both orders of
@@ -28,7 +51,8 @@ entries are reconstructed from repository history.
   source/script/test/figure changes or supplement. Real-parent SDK-free preparation
   and precondition-adapter checks pass. Source-removed inspect/standalone readback
   passes with zero SDK/subprocess launches and the exact opaque C89 ZIP preserved
-  once; actual Mac C90 geometry remains pending.
+  once. The actual C90 return and its usable fallback are recorded separately
+  above, without changing the original local evidence.
 
 
 ### Audit fresh initial gradients in the exact qualified mixed model
