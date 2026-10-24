@@ -69,29 +69,46 @@ REVIEW verdict match. Repair that exact serialization boundary without relaxing
 any classification, coverage, native or source-state gate. The actual return is
 appended in `mixed_linked_recovery_2026_10_24`.
 
-**Next delivery is C85**, using the existing
-`scripts/build_mixed_linked_recovery_probe.py --delivery-prefix 85_Cedar` and
-`--saved-native-only` on the exact C84 archive. Deterministically order only the
-mixed-linked qualification writer, leaving the shared helper/other legacy
-consumers unchanged. Accept legacy formal-charge `unavailable`/`contradictions`
-row permutations only with unique IDs and exact types/values/status/other order;
-valid insertion-coded sites use the same rule. The actual C84 difference affects
-only two UNSUPPORTED unavailable lists.
-The maintained reader checks the preserved native work; a compact
-`saved_linked_recovery.json` summary references the indexed parent rather than
-copying another scientific subtree. Historical native calls remain two; new SDK,
-native, generation and optimizer calls remain zero. No PDU/5PC/state correction,
-store write, adoption or refinement is requested. Final focused validation
-passes 395 tests in 26.83 seconds on `919cd7a96f0609e76e91afaeacba1af24b5e66f6`;
-all thirty-eight new cases are frozen before full collection. Actual-C84 replay
-preserves all 132 scientific files and the REVIEW/four gates without a process.
-Source-removed cold ferry/readback passes with all 580 parent payloads exact and
-zero SDK discovery/processes; explicit owned-view retirement precedes standalone
-readback, with no guarded automatic-cleanup claim. The full suite passes 4,636
-tests, two skips and 276 subtests in 627.18 seconds, with no source/script/test
-changes after the checkpoint or post-collection supplement. Returned Mac saved-
-replay remains pending; full coverage/written-group gates remain separate.
-The new record is `saved_mixed_linked_recovery_2026_10_24`.
+**Returned C85 closes saved-native replay.** All 584 payloads and the complete
+580-payload C84 parent verify. The summary and scientific reader reproduce exactly
+with zero new / two historical native calls. All 132 scientific files, original
+qualification/model hashes and the fallback decision remain unchanged. The same
+four coverage/written-group gates retain REVIEW; no scientific qualification or
+chemistry change is implied. Original local C85 validation (395 focused / 4,636
+full and cold replay) remains unchanged, with the actual return appended in
+`saved_mixed_linked_recovery_2026_10_24`.
+
+**Next delivery is C86:** `86_Cedar_probe_mixed_context.py`, built with
+`scripts/build_mixed_context_probe.py`. Consume the exact C85 capsule as data and
+use `audit_mixed_context` / `read_mixed_context` with an explicit hash-bound
+`linked_parent_directory` anchor. Select actual native group/OP3 findings rather
+than residue codes, requiring explicit source DNA declarations and strict
+unbridged deoxy/source-graph eligibility. The fixture currently selects eleven
+components: ten incoming OP3 site modifications and seven group changes; four
+canonical components and IGU remain unchanged.
+
+Change group metadata only and delete only incoming OP3 plus its attached H at
+proved sites. Preserve `_chem_comp.type`, outgoing O3′ H/energy type, surviving
+charges, orders, numerical rows, all other state and bystanders. Existing DF
+aromatic-sugar/six-delocalized-phosphate findings remain recorded. The parent is
+indexed once with a temporary external C84 view, without another old-science copy.
+At most two fresh fixed Phenix reads (sixty seconds each) must preserve every
+named proxy family and same-policy targets/named gradients against the old reads,
+then pass the existing strict full qualifier with unchanged NAR and links.
+Final local validation passes 413 focused tests in 31.60 seconds across seventeen
+files on `ffeb6e9f7d7c180985743baf64e99df94284d887`. All seventy-four new cases
+(forty-seven module, twenty-seven ferry) are frozen before full collection. The
+full suite passes 4,710 tests, two skips and 276 subtests in 555.57 seconds,
+with no source/script/test changes after the checkpoint or later supplement.
+Source-removed cold preparation/readback preserves all 584 C85 payloads plus its
+manifest exactly, uses 452,735 bytes of new context data and launches no SDK or
+other process. The explicit-parent reader passes from the copied new capsule
+after original ZIP/session/runtime removal and explicit owned-view retirement;
+guarded automatic cleanup is not claimed. Configuration, everyday edits and the
+store are unchanged. No local SDK is installed: actual Mac C86 native results
+remain pending. No optimization, cache write, adoption, refinement or scientific
+approval is added.
+The new record is `mixed_linked_context_2026_10_24`.
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
 the exact runtime, forty-two site identities and source/preflight artifacts verify.

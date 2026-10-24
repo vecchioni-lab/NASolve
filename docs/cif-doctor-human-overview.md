@@ -2222,8 +2222,84 @@ captures remain exact; no SDK is discovered and no process starts. Configuration
 everyday edits and the store remain intact; 78,013 simulated macOS path operations
 stay within 220 absolute/68 component bytes. Standalone readback passes after
 parent/archive/session/runtime removal and explicit owned-view retirement; guarded
-automatic temporary cleanup is not claimed. Returned Mac saved-replay, scientific
-qualification and ordinary end-to-end solving remain separate.
+automatic temporary cleanup is not claimed. These original local checks are
+preserved; the actual C85 return and source-bound context boundary are below.
+
+Returned C85 verifies all 584 payloads and the exact 580-payload C84 parent plus
+its manifest. Saved-summary and scientific-reader replay match exactly with zero
+new native calls and two historical calls. All 132 scientific files, original
+qualification hash, model and fallback decision remain unchanged. The same four
+coverage/written-group gates retain REVIEW; source-state findings and scientific
+qualification are not promoted. The saved replay path is now observed on the
+user's Mac without SDK execution.
+
+C86 tests only source-declared group metadata and incoming-phosphate context.
+Selection follows the exact old native findings and frozen model topology,
+independently of residue code: the current fixture selects eleven components,
+ten incoming OP3 site modifications and seven group changes. Four canonical
+components and the already-qualified IGU context remain unchanged. Require
+explicit source DNA declarations and the original strict `source_graph_fragment`
+for a complete unbridged deoxy sugar, one base at C1 and ordinary phosphate.
+Bind the effective heavy atom names/elements, heavy-atom adjacency and relevant
+phosphate endpoints, allowing only the already-recorded source OP3 omission.
+These are context-eligibility checks; existing DF aromatic-sugar/six-delocalized-
+phosphate findings and all other chemical-state reviews remain recorded.
+
+The separate preparation changes only group metadata to source-declared DNA and
+applies site-specific deletion of incoming OP3 plus hydrogens attached to that
+atom. `_chem_comp.type`, outgoing O3′ hydrogen/energy type, surviving charges,
+bond orders, stereo and all surviving numerical rows remain unchanged. No
+whole-component OP3 deletion or broader source-state recipe is introduced.
+Preserve all surviving parsed rows and bystanders, the exact constructed
+coordinates, plan and original NARestraints policy.
+
+Methods: `audit_mixed_context(linked_parent_directory, phenix, output, *,
+timeout_seconds=60)` prepares a new result bound to the exact C84 native/effective
+inputs retained inside C85. At most two fresh Phenix reads use the same prepared
+bundle with declared NA additions disabled or the original active policy, keeping
+native secondary-structure guessing disabled. Compare each new read with its
+corresponding saved C84 read: all eight structured named-proxy families must be
+exact, with exact structured atom inventories and energy proxy counts. Fixed
+same-policy total/category targets and named gradients must satisfy the
+established energy-repeat tolerance. These comparisons are at fixed coordinates;
+nonbonded pair identities are not independently compared. Apply the existing
+strict full qualifier, including backbone links, NAR additions, definitions,
+group and coverage gates, without relaxation. Local SDK execution is unavailable;
+actual Mac equivalence and mechanics remain unassessed until their native return.
+
+The report is `mixed_context.json`, policy `cif-mixed-linked-context-v1`, under
+`mixed_context_directory`. `read_mixed_context(directory, *,
+linked_parent_directory)` requires its explicit hash-bound external parent anchor.
+The ferry preserves the complete C85 parent once through indexed transport and
+materializes only a temporary external C84 view; it does not copy the old 31 MB
+scientific subtree into the new result. Status is `PREPARED_ONLY`, `REVIEW` or
+`MIXED_CONTEXT_MECHANICS_PASS`. No Coot, ReadySet, generation, optimization, store
+write, adoption, refinement or diffraction input is requested. Actual Mac C86
+fixed-native checks remain pending; scientific qualification and ordinary
+end-to-end solving remain separate.
+
+Final local validation passes 413 focused tests in 31.60 seconds and 4,710 full
+tests (two skips, 276 subtests) in 555.57 seconds on
+`ffeb6e9f7d7c180985743baf64e99df94284d887`. All seventy-four final new cases
+are frozen before full collection, with no later source/script/test changes or
+supplement. Generic selection, source/adjacency binding, terminal preservation,
+unchanged bystanders, exact row scope and anchored reader controls are covered.
+Copied saved-native-record controls accept consistent reindexing/padding and
+reject coordinate, target, canceling-category and count changes; these checks
+provide no fresh SDK qualification.
+
+Source-removed cold preparation/readback passes with 165 runtime members and a
+643-payload capsule preserving all 584 C85 payloads plus its manifest exactly.
+The new context data are 452,735 bytes, without a second old scientific subtree;
+eleven selected components, seven group changes and ten OP3 site modifications
+reproduce with canonical/IGU resources unchanged. SDK/native/other process calls
+remain zero. Configuration, everyday edits and store fixtures survive; 112,812
+simulated macOS path operations stay within 217 absolute/68 component bytes.
+Standalone readback reconstructs its explicit parent from the copied new capsule
+after original ZIP/session/runtime removal and explicit owned-view retirement;
+guarded automatic temporary cleanup is not claimed. Prepared-input and fake-tool
+QA remain separate from the pending installed Mac native context check.
+
 
 
 

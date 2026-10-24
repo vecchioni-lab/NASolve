@@ -360,11 +360,14 @@ continues with notes while retaining unreported convergence and other findings.
 Returned C84 completes both fixed native reads and passes the declared NAR,
 backbone-link, selected projection and triple-target subsets. Four coverage/written-
 group gates retain REVIEW despite DNA native classification at all forty-two sites. A separate formal-charge evidence-row
-ordering mismatch stops report replay; C85 makes that evidence deterministic
-and replays the exact saved result without a new SDK process or chemistry change.
-Local validation passes 395 focused / 4,636 full tests and source-removed saved
-replay without an SDK process. Returned Mac replay, production adoption and
-scientific qualification remain pending.
+ordering mismatch is repaired by C85; its returned saved replay verifies all
+584 payloads, preserves the original REVIEW and runs no SDK process. C86 now
+prepares only source-declared DNA group metadata and explicit incoming OP3/
+attached-H contexts, preserving all surviving targets, charges and outgoing state.
+Two fresh fixed native reads must retain the old mechanics and pass the strict
+full qualifier. Local validation passes 413 focused / 4,710 full tests and
+source-removed preparation/readback with zero SDK processes. Actual Mac C86
+native checks, production adoption and scientific qualification remain pending.
 
 
 

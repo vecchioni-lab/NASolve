@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Test source-declared DNA groups and explicit incoming OP3 contexts
+
+- Verify returned C85 saved replay: all 584 payloads and exact C84 parent,
+  zero new / two historical native calls, with all 132 scientific files and the
+  same REVIEW/four coverage/group gates preserved.
+- Select actual native findings generically, requiring explicit source DNA and
+  strict graph eligibility. Prepare only DNA group metadata and site-specific
+  incoming OP3/attached-H deletion; retain types, outgoing H/type, charges,
+  surviving numerical/order/state fields, bystanders and source-state findings.
+- Add the C86 explicit-parent-anchored context diagnostic and ferry. Two fresh
+  fixed native reads must preserve all eight named-proxy families and old
+  same-policy target/gradient values, then pass the unchanged full qualifier.
+  No optimizer, generation, adoption or scientific approval is added. Final local
+  checks pass 413 focused / 4,710 full tests (two skips, 276 subtests, 555.57 s),
+  with all seventy-four final new cases frozen before collection. Source-removed
+  preparation/readback preserves every parent payload without SDK processes.
+  Actual Mac C86 fixed-native qualification remains pending.
+
+
 ### Replay saved linked-native evidence with deterministic formal-charge rows
 
 - Verify returned C84: both native workers complete, and declared NAR, all

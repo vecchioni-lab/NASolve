@@ -100,6 +100,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "mixed_native_probe_template.py": "82_Cedar",
         "mixed_recovery_probe_template.py": "83_Cedar",
         "mixed_linked_recovery_probe_template.py": "84_Cedar",
+        "mixed_context_probe_template.py": "86_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -261,6 +262,12 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         if controls:
             metadata['component_controls'] = controls
             metadata['dependencies'].append('openpyxl for bundled NARestraints role controls')
+    if template_name == "mixed_context_probe_template.py":
+        metadata.update(kind="mixed-context-shuttle", delivery_prefix=delivery_prefix,
+                        native_validation="fixed-mixed-model-source-declared-context-readback",
+                        automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
+                                    "tomli on Python 3.10", "Phenix for native execution"]
     if template_name == "mixed_linked_recovery_probe_template.py":
         metadata.update(kind="mixed-linked-recovery-shuttle", delivery_prefix=delivery_prefix,
                         native_validation="fixed-mixed-linked-recovery-explicit-policy-readback",
