@@ -25565,7 +25565,7 @@
       "evidence_record": "docs/cif-linked-native-registration-evidence.json#mixed_fixed_torsion_audit_2026_10_24"
     },
     "mixed_saved_endpoint_qualification_2026_10_24": {
-      "status": "FOCUSED_AND_FULL_VALIDATION_PASS; COLD_AND_FRESH_MAC_QUALIFICATION_PENDING",
+      "status": "LOCAL_VALIDATION_PASS; FRESH_MAC_ENDPOINT_QUALIFICATION_PENDING",
       "recorded_date": "2026-10-24",
       "delivery_prefix": "92_Cedar",
       "runner_filename": "92_Cedar_probe_mixed_endpoint.py",
@@ -25683,7 +25683,7 @@
         "archive_entries_max": 1024
       },
       "validation": {
-        "status": "FOCUSED_AND_FULL_VALIDATION_PASS; COLD_VALIDATION_PENDING",
+        "status": "LOCAL_VALIDATION_PASS",
         "focused": {
           "status": "PASS",
           "passed": 1282,
@@ -25701,7 +25701,167 @@
           "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q",
           "code_checkpoint": "514db13083e50ac75d53cbf325b7e242dabb7443"
         },
-        "source_removed_portability": "PENDING",
+        "source_removed_portability": {
+          "status": "PASS",
+          "source_commit": "514db13083e50ac75d53cbf325b7e242dabb7443",
+          "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+          "runtime_members": 169,
+          "runtime_archive_sha256": "e39da0223f275466b64eee5ec768a8a5955779a313ccc53720f2c3b71592ea3b",
+          "runner_sha256": "5a1aee402dc65578d416591cff6d51536621f15a943ca8336809c350467ede91",
+          "source_archive_sha256": "8821ab450211aab992dd764e5c8eb08afde8eaff6caf943d853eb342e22319d8",
+          "source_clones_removed_before_launch": true,
+          "original_repositories_and_archive_reads_forbidden": true,
+          "ambient_poison": "NOT_IMPORTED",
+          "aliased_TMPDIR": true,
+          "everyday_authorized_edit": "PRESERVED",
+          "original_user_config": "UNCHANGED",
+          "component_store": "UNTOUCHED",
+          "review_payloads": 54,
+          "review_uncompressed_bytes": 23571221,
+          "largest_review_member_bytes": 15023841,
+          "preserved_C91_payloads": 68,
+          "exact_opaque_parent_archive_bytes": 15023841,
+          "new_native_calls": 0,
+          "no_Phenix_argument": true,
+          "no_native_discovery": "TARGETED_FROZEN_ENTRYPOINT_GUARDS; IMPORT_ONLY_PROFILE",
+          "new_data_bytes": 8539119,
+          "remaining_128MiB_budget_after_inspect": 110646507,
+          "old_scientific_subtree_duplicated": false,
+          "standalone_explicit_parent_reader_from_new_capsule_after_original_removal": "PASS",
+          "standalone_reader": {
+            "status": "PASS",
+            "inspect_status": "PREPARED_ONLY",
+            "new_native_calls": 0,
+            "reader_from_new_capsule": true,
+            "torsion_files": 65,
+            "geometry_files": 73,
+            "gradient_files": 65,
+            "context_files": 165,
+            "parent_files": 132,
+            "new_files": 51,
+            "all_scientific_files_unchanged": true,
+            "opaque_C91_bytes_exact": true,
+            "opaque_embedded_C90_bytes_exact": true,
+            "opaque_embedded_C89_bytes_exact": true,
+            "preserved_parent_payloads": 68,
+            "preserved_embedded_C90_payloads": 76,
+            "preserved_embedded_C89_payloads": 937,
+            "entrypoint_guarded_targets": [
+              "audit_mixed_context",
+              "audit_mixed_initial_gradients",
+              "audit_mixed_torsions",
+              "inspect_native_bundle",
+              "qualify_saved_mixed_endpoint",
+              "run_fixed_geometry",
+              "trial_mixed_geometry"
+            ],
+            "entrypoint_forbidden_calls": [],
+            "entrypoint_guard_method": "QA_ONLY_IN_PLACE_FORBIDDEN_CODE_GUARDS; BOTH_IMPORT_APIS; IMPORT_ONLY_PROFILE"
+          },
+          "guarded_temporary_auto_cleanup": "NOT_CLAIMED",
+          "frozen_runtime_preserved": true,
+          "guarded_relocated_help": "PASS",
+          "builder_help": "PASS",
+          "scope": "SOURCE_REMOVED_SAVED_ENDPOINT_INSPECT_QA; EXACT_OPAQUE_C91_AND_EMBEDDED_C90_C89_ARCHIVES_PRESERVED; ZERO_NEW_SDK_PROCESSES",
+          "private_artifacts": "EXCLUDED_FROM_GIT",
+          "QA_guard_scope": "FROZEN_RUNTIME_ONLY; QA_MEMORY_PATCH_OF_FORBIDDEN_ENTRYPOINTS; SOURCE_AND_NATIVE_MECHANICS_UNCHANGED",
+          "QA_guard_source_sha256": "69f9f441a4d7e413e3278b5395d52c017bc47b40bf95cdfd488f840bdf327e88",
+          "guard_canaries": "105_DIRECT_FROMIMPORT_IMPORTLIB_AND_PREEXISTING_ALIAS_CALLS_BLOCKED;8_FROZEN_AST_DEFS;0_PROCESSES",
+          "macos_path_budget": {
+            "max_absolute_path_bytes": 237,
+            "max_component_bytes": 45,
+            "checked_operations": 370241,
+            "subprocess_calls": 0,
+            "forbidden_calls": []
+          },
+          "explicitly_retired_owned_temporary_views": 32,
+          "guarded_entrypoints": {
+            "inspect_native_bundle": {
+              "module": "nasolve.cif_native_validation",
+              "source_sha256": "a80014965b04e224f0ac9b62ed5065c090fb2814893ef823855ef982f4ee34ce",
+              "freevars": 0,
+              "object_identity_preserved": true
+            },
+            "run_fixed_geometry": {
+              "module": "nasolve.cif_fixed_geometry",
+              "source_sha256": "6b87732f1ab9165531d297e633edc13f755c70a5cc350ff8ff51f75e4053db14",
+              "freevars": 0,
+              "object_identity_preserved": true
+            },
+            "audit_mixed_torsions": {
+              "module": "nasolve.cif_mixed_torsion",
+              "source_sha256": "a26623fc77c987cf8cf0245ac435d57152269535e9742cef30f510927b06fa5c",
+              "freevars": 0,
+              "object_identity_preserved": true
+            },
+            "trial_mixed_geometry": {
+              "module": "nasolve.cif_mixed_geometry",
+              "source_sha256": "3a48d6647367866101b6628b8ef1c22fa86e70c355f1c31a8da08d34008d5787",
+              "freevars": 0,
+              "object_identity_preserved": true
+            },
+            "audit_mixed_initial_gradients": {
+              "module": "nasolve.cif_mixed_gradient",
+              "source_sha256": "1bf8a4ce86a4eca5ca77228648dd891844338acf6d17cb68d4481440eaf523c6",
+              "freevars": 0,
+              "object_identity_preserved": true
+            },
+            "audit_mixed_context": {
+              "module": "nasolve.cif_mixed_context",
+              "source_sha256": "d65e64cc13ea8f5cd664194ddeb1df1d771652de098d43e5079abbc051ea2dc2",
+              "freevars": 0,
+              "object_identity_preserved": true
+            }
+          },
+          "independent_QA_guard_review": {
+            "status": "QA_ONLY_FAST_GUARD_EQUIVALENCE_REVIEW_PASS",
+            "frozen_checkpoint": "514db13083e50ac75d53cbf325b7e242dabb7443",
+            "source_script_test_figure_hashes": "8/8_EXACT_MATCH",
+            "guard_source_sha256": "69f9f441a4d7e413e3278b5395d52c017bc47b40bf95cdfd488f840bdf327e88",
+            "canary_calls_blocked": 105,
+            "independent_canary_processes": [
+              {
+                "phase": "inspect",
+                "mode": "fresh",
+                "blocked": 21
+              },
+              {
+                "phase": "inspect",
+                "mode": "preloaded",
+                "blocked": 28
+              },
+              {
+                "phase": "reader",
+                "mode": "fresh",
+                "blocked": 24
+              },
+              {
+                "phase": "reader",
+                "mode": "preloaded",
+                "blocked": 32
+              }
+            ],
+            "source_files_unchanged": 129,
+            "canary_native_processes": 0,
+            "entrypoint_guard": "IN_PLACE_CODE_OBJECT_PATCH_PRESERVES_ALL_EXISTING_FUNCTION_ALIASES; IMPORT_PROFILE_DURING_BOTH_IMPORT_APIS_RESTORES_PREVIOUS_PROFILE",
+            "unchanged_guards": [
+              "subprocess_and_osprocess_audit",
+              "captured_code_execution_audit",
+              "original_repository_archive_store_read_forbid",
+              "Mac_absolute_and_component_path_bounds",
+              "ambient_import_poison",
+              "config_edit_store_preservation",
+              "manifest_SHA_CRC_archive_limits",
+              "ownedtemporaryviewretirement",
+              "opaque_C91_C90_C89_preservation_and_relocated_reader"
+            ],
+            "semantic_scope": "FROZEN_TRUSTED_QA_RUNTIME_ONLY; NO_APPLICATION_SOURCE_OR_KERNEL_CHANGE; inspect7entries_strongerthanold5;reader8matchesoldactualdefs",
+            "reviewer_repository_edits": false
+          },
+          "superseded_QA_scope": "PREVIOUS_GLOBAL_PROFILE_QA_SUPERSEDED_FOR_INSTRUMENTATION_COST; APPLICATION_NOT_FAILED; ORIGINAL_QA_EVIDENCE_PRESERVED_PRIVATELY",
+          "preserved_C90_manifest": "BYTE_EXACT_WITHIN_ORIGINAL_OPAQUE_C91_ARCHIVE",
+          "preserved_C89_manifest": "BYTE_EXACT_WITHIN_ORIGINAL_EMBEDDED_C90_ARCHIVE"
+        },
         "fresh_Mac_endpoint_qualification": "PENDING",
         "all_final_new_cases_frozen_before_full_collection": 149,
         "new_cases": {
@@ -25751,7 +25911,22 @@
         "code_checkpoint": "514db13083e50ac75d53cbf325b7e242dabb7443",
         "full_collection_started_from_frozen_checkpoint": true,
         "source_scripts_tests_and_figure_unchanged_after_full_collection": true,
-        "post_collection_test_supplement": "NONE"
+        "post_collection_test_supplement": "NONE",
+        "delivery_code_commit": "3f604b3ec4b1295ca3067d1fc5a4ddaa08d7031a",
+        "after_delivery_documentation_update": "FINAL_SOURCE_REMOVED_RESULTS_APPENDED_WITHOUT_CODE_CHANGE; ORIGINAL_PINNED_C92_DELIVERY_PRESERVED",
+        "documentation": {
+          "original_C91_local_validation": "UNCHANGED",
+          "all_earlier_ledger_and_implementation_values": "TYPE_AND_VALUE_IDENTICAL",
+          "strict_JSON_duplicate_keys": "NONE",
+          "runtime_progress_mirrors": "EXACT_EXCEPT_EVIDENCE_POINTER",
+          "relative_links_checked": 162,
+          "prior_kernels_workers_serializer_PostMR_and_NA_policy": "BYTE_UNCHANGED",
+          "all_eight_C92_frozen_source_script_test_and_figure_hashes": "MATCH_CHECKPOINT_514db13083e50ac75d53cbf325b7e242dabb7443",
+          "editable_SVG": "DETERMINISTIC_REGENERATION; RENDERED_AND_VISUALLY_CHECKED; FROZEN_BEFORE_FULL_COLLECTION",
+          "figure_builder_sha256": "267a4ac2f7557475805b5a563114a5c059d847cc57fcbbf66e8b2834ce0ee36d",
+          "figure_SVG_sha256": "29c67bd30d4b34286253cab0333543c663b70a98f25d24628871b665d8af8e2e",
+          "private_QA_artifacts": "EXCLUDED_FROM_GIT"
+        }
       },
       "compatibility": "ADDITIVE_SCHEMA_1_DIAGNOSTIC_AND_NEW_POLICY; C90_C91_RECORDS_OLD_VALIDATORS_WORKERS_KERNELS_AND_PRIOR_ARTIFACTS_UNCHANGED; NO_MIGRATION",
       "model_optimization": "NOT_REQUESTED",
@@ -25769,7 +25944,7 @@
       "source_state_findings": "UNCHANGED",
       "generated_artifacts": "PRIVATE_MODELS_DICTIONARIES_LOGS_CAPTURES_CAPSULES_AND_RUNNERS_EXCLUDED_FROM_GIT",
       "remaining_limits": [
-        "All 149 final new cases, 1,282 broader focused tests and 5,311 complete-suite tests pass on the frozen checkpoint. Final source-removed validation is still running; actual Mac C92 native execution remains pending.",
+        "All 149 final new cases, 1,282 broader focused tests, 5,311 complete-suite tests and final source-removed inspect/standalone replay pass on frozen source. Actual Mac C92 native endpoint qualification remains pending.",
         "Finite-difference evidence is sampled and floating-point limited; no analytic kernel, convergence or chemical-state guarantee follows.",
         "Native readback and nonworse fixed-objective gates remain necessary before selecting the separate saved endpoint; the usable original remains automatic fallback.",
         "Ordinary end-to-end integration, production adoption and scientific qualification remain separate."

@@ -414,12 +414,37 @@ the final case totals. Broader focused validation passes 1,282 tests across
 thirty-seven files in 446.93 seconds on the same frozen checkpoint. The complete
 suite passes 5,311 tests, two skips and 276 subtests in 1,027.37 seconds. All eight
 source, script, test and figure hashes remain frozen after collection, with no
-later supplement. Final source-removed validation is still running. Actual Mac
-C92 endpoint qualification remains pending.
+later supplement. Final source-removed inspect and independent replay also pass;
+actual Mac C92 endpoint qualification remains pending.
+
+Source-removed inspect and standalone replay pass at the same frozen checkpoint.
+Both original source clones are gone before launch; the original session, runtime
+and input archive are removed before independent readback from the new capsule.
+The 169-member runtime is fixed by SHA-256. The outer archive contains 54 payloads
+plus manifest and 23,571,221 uncompressed bytes. Its largest member is the exact
+15,023,841-byte C91 archive, preserving all 68 parent payloads and its manifest;
+C90 and C89 remain nested and byte-exact, with 76 and 937 payloads respectively.
+New data occupies 8,539,119 bytes, leaving 110,646,507 bytes beneath the unchanged
+128 MiB bound. No ancestor scientific tree is duplicated.
+
+All 65 torsion, 73 geometry, 65 gradient, 165 context, 132 linked-parent and 51 new
+files replay unchanged, with zero SDK, native-discovery or subprocess calls.
+The Mac path guard checks 370,241 operations at maximum path/component lengths
+of 237/45 bytes. Configuration, the authorized everyday edit, the component
+store and ambient import isolation remain intact. Thirty-two owned temporary
+views are explicitly retired; guarded automatic cleanup is not claimed.
+QA-only in-place forbidden-entrypoint guards and import-only profiling preserve
+existing function aliases. Independent review blocks all 105 canary calls and
+preserves 129 source files; process, captured-code, original-path, archive and
+preservation guards remain unchanged. No application source or native kernel is
+changed by this QA instrumentation. The inspect report remains `PREPARED_ONLY`;
+actual Mac C92 native endpoint qualification and scientific approval remain pending.
 
 The next live delivery is C92, using the exact returned C91 capsule and the
-same one-block Git/worktree/build/run contract. Source-removed and actual native
-C92 results remain pending until recorded after execution. The methods/evidence key
+same one-block Git/worktree/build/run contract. Its delivered code remains pinned
+at `3f604b3ec4b1295ca3067d1fc5a4ddaa08d7031a`. Final source-removed results are
+appended by a documentation-only update; source, scripts, tests and the figure
+remain unchanged. Actual native C92 results remain pending until execution. The methods/evidence key
 is `mixed_saved_endpoint_qualification_2026_10_24`.
 
 

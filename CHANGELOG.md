@@ -27,7 +27,11 @@ entries are reconstructed from repository history.
   before full collection: 61 module / 88 ferry cases and 1,282 broader focused
   tests across thirty-seven files pass. The same frozen checkpoint passes 5,311
   complete-suite tests (two skips, 276 subtests, 1,027.37 s), with no later source
-  edits or test supplement. Source-removed and actual Mac results remain pending.
+  edits or test supplement. Source-removed inspect/standalone replay also passes
+  with zero SDK/subprocess calls, exact C91/C90/C89 ancestry and unchanged source,
+  path, configuration, edit and store checks. A documentation-only update records
+  these final results without changing the delivered code. Actual Mac C92 native
+  endpoint qualification remains pending.
 
 
 ### Isolate saved-endpoint torsion conditioning without optimization

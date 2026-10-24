@@ -223,8 +223,9 @@ near-linear torsion; all agree at 1e-9 Å but lack an adjacent passing pair.
 Guarded C92 endpoint qualification adds evidence-selected finer samples and
 conditional unchanged native PDB readback, with automatic usable fallback and
 no new optimization. All 149 final new cases, 1,282 broader focused and 5,311
-complete-suite tests pass on frozen source; source-removed and actual Mac results
-remain pending.
+complete-suite tests pass on frozen source. Source-removed inspect and standalone
+replay pass with zero SDK/subprocess calls and exact nested ancestry; actual Mac
+C92 endpoint qualification remains pending.
 Source-state findings, scientific qualification, adoption and the ordinary full
 run remain separate.
 
