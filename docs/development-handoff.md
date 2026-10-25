@@ -13,12 +13,13 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current next native action: C93 uniform saved-endpoint window.** The C92
-archive is exact and its fallback remains correct. The new test fills a sampling
-gap, without another optimizer or altered acceptance tolerance. Local validation:
-**PASS: 75 new cases; 1,357 focused tests; 5,386 full-suite tests; source-removed replay**. Return the console and the new C93 review ZIP after
-running the pinned fetch/worktree/build/run block. Keep the everyday checkout,
-authorized Phaser edit, prior worktrees, runners and local component store intact.
+**Current next action: C94 saved-endpoint replay, with zero new native calls.**
+The returned C93 endpoint passes numerical and native mechanics qualification.
+The original strict reader is not portable across last-bit Cartesian-report
+rounding; C94 uses a separate bounded replay adapter and preserves C93 bytes.
+Local validation is in progress; see the [C94 contract](cif-doctor.md#portable-saved-endpoint-report-replay-c94).
+Keep the everyday checkout, authorized Phaser edit, prior worktrees, runners
+and local component store intact. No new optimization or merge is requested.
 
 **Returned C81 closes fresh construction of the exact eight-pair fixture.** All
 175 payloads, runtime hashes and source bindings verify. Coot 1.3.3 completes;
@@ -353,6 +354,26 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Portable saved-endpoint report replay (C94)
+
+Returned C93 qualifies its saved endpoint on Phenix 2.2.1-6174: six local and
+six broader rechecks pass in 228 evaluations, retaining 330 earlier passing
+directions. All seventeen native PDB mechanics checks pass and the endpoint is
+selected with notes; C90 nonconvergence and scientific boundaries remain.
+Independent Linux replay reproduces derivatives, serialized PDB bytes and
+native mechanics. The original strict reader fails only on descriptive angle
+roundoff, with a maximum difference of 5.684341886080802e-14.
+
+C94 retains the exact C93 producer/worker/reader and adds a separate saved-data
+adapter. Its generic comparator propagates a small roundoff allowance only
+through three calculated scalar fields. Chemical parameters, identities,
+warning/sign/rank classes, recipe bytes and derivative checks stay exact.
+The complete C93 ZIP remains opaque and byte-identical, with nested ancestors
+preserved once. The new test requests zero native processes and no optimization.
+The [C94 contract](cif-doctor.md#portable-saved-endpoint-report-replay-c94) owns
+schemas, bounds, methods and validation; ordinary pipeline handoff is the next
+integration gate after this replay. No merge is authorized.
+
 ### Uniform saved-endpoint resolution window (C93)
 
 Returned C92 completes one Phenix 2.2.1-6174 audit in 9.307028 seconds,
@@ -366,13 +387,15 @@ run. This is a numerical-window limitation, not evidence of a new native
 analytic-gradient defect. The exact C92 archive SHA-256 is
 `5171aa1ba972b5b3fea0a377e5c91e07a798d963162e89c486334743ce4c0371`.
 
-Returned C92 passes all six local and five of six broader derivative rows;
-one floating-resolution window retains the usable constructed fallback. C93
-fills the missing intermediate scale in a separate seven-step policy, with the
-same tolerances, adjacent-sample requirement and conditional native readback.
-It replays the exact C92 parent before testing the saved endpoint. No new model
-optimization or student CIF inspection is requested. Actual Mac C93 evidence
-and scientific qualification remain pending.
+Returned C93 qualifies all six local and six broader derivative rechecks,
+retains 330 earlier passing directions, and passes all seventeen native PDB
+mechanics checks. It selects the saved endpoint automatically without another
+optimizer. Independent Linux replay reproduces derivatives, PDB bytes and
+native mechanics, but the original reader rejects last-bit differences in
+calculated angle summaries. C94 adds bounded descriptive-report replay while
+keeping chemistry, derivative evidence, native proxies and warning classes
+exact. No new native process or student CIF inspection is requested; ordinary
+full-run integration and scientific qualification remain separate.
 
 See the [C93 contract](cif-doctor.md#uniform-saved-endpoint-resolution-window-c93) for
 exact schemas, bounds and the distinction between diagnostic selection and

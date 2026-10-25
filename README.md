@@ -405,13 +405,15 @@ C92 result is recorded separately under C93.
 Source-state findings, scientific qualification, adoption and the ordinary full
 run remain separate.
 
-Returned C92 passes all six local and five of six broader derivative rows;
-one floating-resolution window retains the usable constructed fallback. C93
-fills the missing intermediate scale in a separate seven-step policy, with the
-same tolerances, adjacent-sample requirement and conditional native readback.
-It replays the exact C92 parent before testing the saved endpoint. No new model
-optimization or student CIF inspection is requested. Actual Mac C93 evidence
-and scientific qualification remain pending.
+Returned C93 qualifies all six local and six broader derivative rechecks,
+retains 330 earlier passing directions, and passes all seventeen native PDB
+mechanics checks. It selects the saved endpoint automatically without another
+optimizer. Independent Linux replay reproduces derivatives, PDB bytes and
+native mechanics, but the original reader rejects last-bit differences in
+calculated angle summaries. C94 adds bounded descriptive-report replay while
+keeping chemistry, derivative evidence, native proxies and warning classes
+exact. No new native process or student CIF inspection is requested; ordinary
+full-run integration and scientific qualification remain separate.
 See the [C93 contract](docs/cif-doctor.md#uniform-saved-endpoint-resolution-window-c93).
 
 

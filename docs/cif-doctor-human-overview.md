@@ -2729,6 +2729,29 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Portable saved-endpoint replay (C94)
+
+C93 qualifies the existing saved model automatically after its derivative and
+native PDB checks pass. C94 verifies that evidence on another computer without
+running Phenix or optimizing again. Some mathematical library calculations
+produce slightly different final floating-point bits; demanding identical text
+for those calculated distances, angles or volumes would incorrectly reject a
+portable report.
+
+The shared comparator therefore permits a small, propagated 64-ULP allowance
+only in calculated scalar measurements. Identities, targets, weights, signs,
+warning classes, ranked atoms and native proxies still match exactly. This does
+not widen chemical restraints or lower a geometry acceptance threshold. The
+original C93 code, reports and negative earlier results remain intact; students
+continue without a CIF-table approval step.
+
+Methods: reconstruct the original recipe and scientific inputs, replay native
+response arithmetic, regenerate the PDB, and verify native mechanics and the
+automatic decision. A separate report records any descriptive rounding
+differences and zero new native calls. See the
+[C94 contract](cif-doctor.md#portable-saved-endpoint-report-replay-c94) for bounds
+and evidence. Ordinary full-run adoption and scientific approval remain open.
+
 ### Uniform saved-endpoint resolution window (C93)
 
 The tool works on two coordinate layers. Source-native dictionary generation
@@ -2755,7 +2778,8 @@ identity serialization, native definitions/proxies and nonworse-objective gates.
 Any optional failure continues with the verified constructed model and plain
 notes. No student CIF-table decision is requested. See the
 [authoritative resolution-window contract](cif-doctor.md#uniform-saved-endpoint-resolution-window-c93)
-for bounds, schemas and validation. Actual C93 native evidence remains pending.
+for bounds, schemas and original software validation. Returned C93 qualifies
+the saved endpoint; the portable C94 replay is described below.
 
 ### Guarded qualification of a saved endpoint (C92)
 

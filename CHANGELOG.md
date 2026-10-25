@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Replay saved endpoint reports across mathematical libraries
+
+- Record returned C93 derivative and seventeen native mechanics passes, with
+  automatic saved-endpoint selection and original nonconvergence preserved.
+- Add a separate portable replay adapter without changing the C93 producer,
+  worker, original reader or artifacts. A shared propagated roundoff comparison
+  applies only to derived Cartesian measurements; captured chemistry, native
+  proxies, derivative evidence, warning classes, signs and ranks remain exact.
+- Add a saved-only C94 delivery that preserves the exact C93 ZIP once and
+  verifies bounded opaque ancestry. It requests no native process, optimization,
+  cache write, production adoption or student CIF review. Original local C93
+  validation and all historical diagnostic results stay unchanged.
+
 ### Fill the saved-endpoint resolution window without relaxing qualification
 
 - Record the exact returned C92 audit: all six local and five of six broader

@@ -106,6 +106,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
         "mixed_torsion_probe_template.py": "91_Cedar",
         "mixed_endpoint_probe_template.py": "92_Cedar",
         "mixed_endpoint_window_probe_template.py": "93_Cedar",
+        "mixed_endpoint_replay_probe_template.py": "94_Cedar",
     }
     if template_name in probe_templates:
         delivery_prefix = delivery_prefix or probe_templates[template_name]
@@ -128,6 +129,8 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
             members[prefix + "/" + relative.as_posix()] = path.read_bytes()
     recipe = "docs/recipes/synthetic-dna-combined.toml"
     members[recipe] = (root / recipe).read_bytes()
+    if template_name == 'mixed_endpoint_replay_probe_template.py':
+        members['support/c93_endpoint_ferry.py'] = (root/'scripts/mixed_endpoint_window_probe_template.py').read_bytes()
     controls = []
     if component_controls:
         if (template_name not in {'cif_numerical_recovery_probe_template.py', 'mixed_pair_probe_template.py'}
@@ -273,6 +276,10 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
                         automatic_adoption=False)
         metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl",
                                     "tomli on Python 3.10", "Phenix for native execution"]
+    if template_name == "mixed_endpoint_replay_probe_template.py":
+        metadata.update(kind="mixed-endpoint-saved-replay-shuttle", delivery_prefix=delivery_prefix,
+                        native_validation="NOT_RUN_SAVED_EVIDENCE_ONLY", automatic_adoption=False)
+        metadata["dependencies"] = ["Python >=3.10", "Biopython", "numpy", "openpyxl", "tomli on Python 3.10"]
     if template_name == "mixed_endpoint_probe_template.py":
         metadata.update(kind="mixed-endpoint-shuttle", delivery_prefix=delivery_prefix,
                         native_validation="adaptive-saved-mixed-endpoint-and-conditional-native-readback",

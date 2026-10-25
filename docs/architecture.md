@@ -2894,15 +2894,34 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Portable saved-endpoint report replay (C94)
+
+C94 uses a separate `cif_mixed_endpoint_replay` adapter over the unchanged C93
+recipe and evidence readers. It retains source hashes, native-response and
+derivative replay, exact PDB serialization, proxy mechanics and the original
+coordinate decision. The shared `cif_geometry_report_replay` policy permits
+only bounded derived-scalar roundoff in Cartesian reports; all chemical fields,
+types, warning classes, ranks and signs remain exact. Its allowance is unrelated
+to native ESDs or derivative qualification. See the
+[C94 contract](cif-doctor.md#portable-saved-endpoint-report-replay-c94).
+
+The saved-only ferry accepts the exact completed C93 ZIP, preserves it once and
+records zero new native calls. Trusted current C93 ferry support is checksummed
+inside the build runtime; captured code remains data. It verifies opaque nested
+ancestry and stages bounded temporary views. Ordinary pipeline behavior, cache
+publication, checkpoints and scientific qualification do not change.
+
 ### Uniform saved-endpoint resolution window (C93)
 
-Returned C92 passes all six local and five of six broader derivative rows;
-one floating-resolution window retains the usable constructed fallback. C93
-fills the missing intermediate scale in a separate seven-step policy, with the
-same tolerances, adjacent-sample requirement and conditional native readback.
-It replays the exact C92 parent before testing the saved endpoint. No new model
-optimization or student CIF inspection is requested. Actual Mac C93 evidence
-and scientific qualification remain pending.
+Returned C93 qualifies all six local and six broader derivative rechecks,
+retains 330 earlier passing directions, and passes all seventeen native PDB
+mechanics checks. It selects the saved endpoint automatically without another
+optimizer. Independent Linux replay reproduces derivatives, PDB bytes and
+native mechanics, but the original reader rejects last-bit differences in
+calculated angle summaries. C94 adds bounded descriptive-report replay while
+keeping chemistry, derivative evidence, native proxies and warning classes
+exact. No new native process or student CIF inspection is requested; ordinary
+full-run integration and scientific qualification remain separate.
 
 The separately versioned module `cif_mixed_endpoint_window.py` preserves the old
 C92 worker bytes and reader. It adds 3e-8 A to a fixed 1-3-10 grid, requires exact

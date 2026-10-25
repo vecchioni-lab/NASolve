@@ -26195,7 +26195,106 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "mixed_saved_endpoint_window_2026_10_25"
+    "current_diagnostic_record": "mixed_saved_endpoint_portable_replay_2026_10_25",
+    "mixed_saved_endpoint_portable_replay_2026_10_25": {
+      "status": "IMPLEMENTED;FOCUSED_AND_COMPLETE_AND_COLD_VALIDATION_IN_PROGRESS",
+      "recorded_date": "2026-10-25",
+      "delivery_prefix": "94_Cedar",
+      "runner_filename": "94_Cedar_probe_mixed_endpoint_replay.py",
+      "module": "src/nasolve/cif_mixed_endpoint_replay.py",
+      "shared_comparator": "src/nasolve/cif_geometry_report_replay.py",
+      "builder": "scripts/build_mixed_endpoint_replay_probe.py",
+      "template": "scripts/mixed_endpoint_replay_probe_template.py",
+      "policy_id": "cif-saved-endpoint-portable-replay-v1",
+      "comparison_policy_id": "cif-derived-cartesian-report-replay-v1",
+      "report_schema_version": 1,
+      "report": "mixed_endpoint_saved_replay.json",
+      "previous_C93_return": {
+        "archive_filename": "93_Cedar_zc48dx3j_mixed_endpoint_window_review.zip",
+        "archive_sha256": "78ced78169afd096b5fa835c82036cd8d27b841f98153cf84cac2092e762b10f",
+        "archive_bytes": 27494939,
+        "manifest_payloads": 129,
+        "Phenix": "2.2.1-6174",
+        "native_calls": 2,
+        "orchestration_and_readback_seconds": 10.772404,
+        "readback_own_seconds": 1.96658,
+        "native_returncode": 0,
+        "adaptive_evaluation_calls": 228,
+        "local_rows_pass": 6,
+        "local_rows_total": 6,
+        "family_rows_pass": 6,
+        "family_rows_total": 6,
+        "retained_original_passing_directions": 330,
+        "original_direction_count": 336,
+        "native_mechanics_checks_pass": 17,
+        "native_mechanics_checks_total": 17,
+        "automatic_coordinate_choice": "qualified_geometry_endpoint",
+        "decision": "CONTINUE_WITH_NOTES",
+        "new_model_optimization": "NOT_RUN",
+        "original_C90_stopping": "LINE_SEARCH_ROUNDING_ERROR;257_ITERATIONS;311_CALLS;NATIVE_CRITERION_FALSE",
+        "strict_Linux_replay": "REVIEW_EXACT_DERIVED_FLOAT_EQUALITY",
+        "derivative_qualification_reproduced_exactly": true,
+        "PDB_bytes_reproduced_exactly": true,
+        "serialization_metadata_reproduced_exactly": true,
+        "native_mechanics_reproduced_exactly": true,
+        "maximum_derived_scalar_difference": 5.684341886080802e-14,
+        "structural_or_discrete_report_differences": 0
+      },
+      "method": {
+        "observed_roundoff_ulps": 64,
+        "minimum_rebuilt_magnitude_scale": 1,
+        "allowed_fields": [
+          "observed",
+          "difference",
+          "nominal_deviation"
+        ],
+        "allowed_kinds": [
+          "bond_simple",
+          "angle",
+          "chirality"
+        ],
+        "difference_bound": "OBSERVED_BOUND_PLUS_64_ULPS_AT_REBUILT_OBSERVED_TARGET_SCALE",
+        "nominal_deviation_bound": "SQRT_POSITIVE_WEIGHT_TIMES_DIFFERENCE_BOUND_PLUS_64_ULPS_AT_REBUILT_DEVIATION_SCALE",
+        "exact_fields": "ALL_OTHER_TYPES_AND_FIELDS;CHEMISTRY;TARGETS;WEIGHTS;IDENTITIES;SIGNS;DEGENERACY;WARNING_CLASSES;COUNTS;RANKS;NATIVE_PROXIES;DERIVATIVES;RECIPE_BYTES",
+        "captured_code_execution": "NOT_RUN",
+        "old_C93_producer_worker_reader": "UNCHANGED",
+        "new_native_calls": 0,
+        "saved_native_calls": 2
+      },
+      "bounds": {
+        "outer_archive_input_bytes": 33554432,
+        "member_bytes": 33554432,
+        "total_uncompressed_bytes": 134217728,
+        "archive_entries": 1024,
+        "runtime_members_maximum": 512,
+        "runtime_uncompressed_bytes": 33554432
+      },
+      "transport": {
+        "exact_C93_ZIP_preserved_once": true,
+        "nested_C92_C91_C90_C89": "EXACT;OPAQUE;ORIGINAL_MANIFESTS_VERIFIED",
+        "trusted_build_support": "support/c93_endpoint_ferry.py;FROM_CURRENT_GIT_BUILDER;NOT_FROM_REVIEW_ARCHIVE",
+        "shallow_temporary_views": 7,
+        "scientific_parent_sha256": "8821ab450211aab992dd764e5c8eb08afde8eaff6caf943d853eb342e22319d8"
+      },
+      "validation": {
+        "new_cases": 79,
+        "fail_before": "9_FAILED_ON_EXACT_DERIVED_COMPARISON;22_DESELECTED",
+        "new_tests": "79_PASS_IN_51.03_SECONDS",
+        "actual_C93_Linux_replay": "SAVED_ENDPOINT_REPLAY_PASS;0_NEW_NATIVE_CALLS;133.804885_SECONDS",
+        "focused": "PENDING",
+        "full": "PENDING",
+        "cold": "PENDING",
+        "fresh_Mac_C94": "PENDING"
+      },
+      "compatibility": "ADDITIVE_SAVED_READER_AND_FERRY;NO_MIGRATION_OR_REWRITE_OF_C93_EVIDENCE;NO_PRODUCTION_PIPELINE_CHANGE",
+      "generated_artifacts": "RUNNER_AND_REVIEW_ARCHIVES_AND_NATIVE_COORDINATES_EXCLUDED_FROM_GIT",
+      "remaining_limits": [
+        "Scientific qualification and original optimizer nonconvergence stay separate.",
+        "Ordinary pipeline handoff, full diffraction run and production adoption remain open.",
+        "The automatic solution PDF adapter remains planned.",
+        "No student CIF approval, new native cycle, optimization or local store write is requested."
+      ]
+    }
   },
   "audience": [
     "NASolve contributors"

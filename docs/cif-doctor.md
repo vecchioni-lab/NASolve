@@ -1347,6 +1347,77 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Portable saved-endpoint report replay (C94)
+
+Returned C93 completes its Phenix 2.2.1-6174 audit and conditional native PDB
+readback. All six local and six broader selected rows pass, retaining 330
+earlier passing directions out of the original 336. The 228 adaptive callback
+evaluations are fresh rechecks of the selected scope, not 336 fresh directions
+or independent chemical systems. All seventeen native mechanics checks pass;
+the automatic diagnostic choice is `qualified_geometry_endpoint` with
+`CONTINUE_WITH_NOTES`. C93 performs no new optimization. Its orchestration and
+readback complete in 10.772404 seconds; the readback's own time is 1.96658
+seconds. The original C90 line-search rounding error and unassessed scientific
+qualification remain explicit.
+
+The exact C93 ZIP is 27,494,939 bytes, SHA-256
+`78ced78169afd096b5fa835c82036cd8d27b841f98153cf84cac2092e762b10f`,
+with 129 payloads plus its manifest. Independent Linux replay reproduces the
+derivative qualification, serialization metadata, PDB bytes and native mechanics
+exactly. The old reader nonetheless rejects descriptive angle values differing
+by at most 5.684341886080802e-14; it compares those calculated JSON values by
+exact equality. No discrete classification or captured input differs.
+
+C94 supplies a separate saved-data adapter and shared comparison policy;
+the C93 producer, worker, original reader and archived reports stay unchanged.
+`cif_geometry_report_replay.compare_geometry_reports` permits roundoff only in
+`observed`, `difference` and `nominal_deviation` for recorded simple bonds,
+angles and ordered volumes. The observed bound is 64 ULPs at the freshly rebuilt
+value's magnitude, with a minimum unit scale of one. The difference bound adds
+64 ULPs at the rebuilt observed/target scale. Positive square-root weighting
+propagates that allowance into nominal deviation, with an additional 64-ULP
+allowance at the rebuilt deviation scale. Every compared value and bound must
+be finite. These are report-reproduction allowances, not restraint ESDs,
+derivative tolerances, or scientific geometry cutoffs.
+
+Report schema and scope, field types, atom identities/order, targets, weights,
+origin IDs, symmetry, signs, unavailable states, warning counts and ranked
+identities remain exact. Ordered volumes cannot change sign or degeneracy;
+the descriptive 3/5 deviation classes cannot change. Each ranked row must be an
+exact copy of its own measurement. One-ULP changes to targets or weights remain
+rejections. The policy is independent of residue code, atom name and bond type.
+
+Methods: verify the unchanged C93 envelope and every referenced payload; use
+the original maintained C93 code to reconstruct the five scientific parents,
+recipe, worker bytes, manager and constraints. Replay every saved native response
+and derivative decision. Regenerate the identical PDB, compare every fixed
+native mechanic and the rounded target, and apply the bounded comparison only
+to the two recomputed Cartesian descriptive reports. Require the original
+qualification, summary and automatic coordinate choice to reproduce. Captured
+Python and pickle are never executed, and source evidence is never rewritten.
+
+The API is `cif_mixed_endpoint_replay.replay_saved_endpoint_window`. Schema-1
+`mixed_endpoint_saved_replay.json` records policy
+`cif-saved-endpoint-portable-replay-v1`, the bound original report, comparison
+counts/bounds and the unchanged decision. `SAVED_ENDPOINT_REPLAY_PASS` verifies
+reproduction; its original status can still be a usable fallback or preparation.
+The C94 ferry specifically requires this completed qualified C93 return. It
+records two saved native calls and zero new calls, performs no native discovery
+and exposes no optimizer/native-run flags.
+
+The builder is `scripts/build_mixed_endpoint_replay_probe.py`, with
+`mixed_endpoint_replay_probe_template.py`. The current checksummed build bundles
+the maintained C93 ferry as explicit support to verify exact C92/C91/C90/C89
+ancestry; support never comes from the review ZIP. Seven shallow temporary data
+views remain outside the new review capsule. The exact C93 ZIP is preserved once;
+the 32 MiB member/input, 128 MiB total and 1,024-entry archive bounds remain.
+Existing runs, checkpoints, configuration and local dictionaries are preserved.
+
+Local validation and the source-removed real-parent replay are being completed.
+No new local installed-Phenix claim is made. Ordinary pipeline handoff, a full
+diffraction run, production adoption, scientific qualification and the automatic
+solution-PDF adapter remain separate.
+
 ### Uniform saved-endpoint resolution window (C93)
 
 Returned C92 completes one Phenix 2.2.1-6174 audit in 9.307028 seconds,
@@ -1399,9 +1470,10 @@ add only that earlier endpoint report/job. The exact C92 ZIP is preserved once;
 C91, C90 and C89 stay nested and byte-exact. Existing 128 MiB total, 32 MiB member
 and 1,024-entry bounds are unchanged, and captured Python stays data.
 
-Local validation: **PASS: 75 new cases; 1,357 focused tests; 5,386 full-suite tests; source-removed replay**. Actual installed C93 derivative and
-conditional native-readback results remain pending; scientific structure
-qualification and ordinary full-run integration remain separate.
+Local validation: **PASS: 75 new cases; 1,357 focused tests; 5,386 full-suite tests; source-removed replay**. At that software checkpoint, installed C93 derivative and conditional native
+readback were pending. Its returned qualification and cross-platform replay
+are recorded under C94; scientific structure qualification and ordinary full-run
+integration remain separate.
 
 #### C93 software validation
 
