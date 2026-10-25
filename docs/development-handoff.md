@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-24** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-25** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -12,6 +12,13 @@ not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
 ## Current CIF Doctor continuation boundary
+
+**Current next native action: C93 uniform saved-endpoint window.** The C92
+archive is exact and its fallback remains correct. The new test fills a sampling
+gap, without another optimizer or altered acceptance tolerance. Local validation:
+**PASS: 75 new cases; 1,357 focused tests; 5,386 full-suite tests; source-removed replay**. Return the console and the new C93 review ZIP after
+running the pinned fetch/worktree/build/run block. Keep the everyday checkout,
+authorized Phaser edit, prior worktrees, runners and local component store intact.
 
 **Returned C81 closes fresh construction of the exact eight-pair fixture.** All
 175 payloads, runtime hashes and source bindings verify. Coot 1.3.3 completes;
@@ -346,6 +353,32 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Uniform saved-endpoint resolution window (C93)
+
+Returned C92 completes one Phenix 2.2.1-6174 audit in 9.307028 seconds,
+using 204 recorded adaptive calls. All six flagged local direction/order rows
+and five of six failed original whole-objective/family directions now qualify.
+The full-precision `all/alternating_global` row passes at 1e-8 A, but smaller
+steps fail the conservative representation-resolution screen. It lacks two
+adjacent resolved passing steps. The original usable constructed model remains
+selected automatically with `CONTINUE_WITH_NOTES`; native PDB readback does not
+run. This is a numerical-window limitation, not evidence of a new native
+analytic-gradient defect. The exact C92 archive SHA-256 is
+`5171aa1ba972b5b3fea0a377e5c91e07a798d963162e89c486334743ce4c0371`.
+
+Returned C92 passes all six local and five of six broader derivative rows;
+one floating-resolution window retains the usable constructed fallback. C93
+fills the missing intermediate scale in a separate seven-step policy, with the
+same tolerances, adjacent-sample requirement and conditional native readback.
+It replays the exact C92 parent before testing the saved endpoint. No new model
+optimization or student CIF inspection is requested. Actual Mac C93 evidence
+and scientific qualification remain pending.
+
+See the [C93 contract](cif-doctor.md#uniform-saved-endpoint-resolution-window-c93) for
+exact schemas, bounds and the distinction between diagnostic selection and
+production adoption. No merge, full diffraction run or new optimization is
+authorized by this delivery.
+
 ### Guarded qualification of a saved endpoint (C92)
 
 C92 qualifies the already saved endpoint through a separate evidence policy;
@@ -415,7 +448,7 @@ thirty-seven files in 446.93 seconds on the same frozen checkpoint. The complete
 suite passes 5,311 tests, two skips and 276 subtests in 1,027.37 seconds. All eight
 source, script, test and figure hashes remain frozen after collection, with no
 later supplement. Final source-removed inspect and independent replay also pass;
-actual Mac C92 endpoint qualification remains pending.
+the actual Mac C92 result is recorded separately under C93.
 
 Source-removed inspect and standalone replay pass at the same frozen checkpoint.
 Both original source clones are gone before launch; the original session, runtime
@@ -438,14 +471,15 @@ existing function aliases. Independent review blocks all 105 canary calls and
 preserves 129 source files; process, captured-code, original-path, archive and
 preservation guards remain unchanged. No application source or native kernel is
 changed by this QA instrumentation. The inspect report remains `PREPARED_ONLY`;
-actual Mac C92 native endpoint qualification and scientific approval remain pending.
+the actual Mac C92 native return is recorded separately under C93; scientific approval remains open.
 
-The next live delivery is C92, using the exact returned C91 capsule and the
-same one-block Git/worktree/build/run contract. Its delivered code remains pinned
-at `3f604b3ec4b1295ca3067d1fc5a4ddaa08d7031a`. Final source-removed results are
-appended by a documentation-only update; source, scripts, tests and the figure
-remain unchanged. Actual native C92 results remain pending until execution. The methods/evidence key
-is `mixed_saved_endpoint_qualification_2026_10_24`.
+The C92 delivery remains pinned at
+`3f604b3ec4b1295ca3067d1fc5a4ddaa08d7031a`; its original local validation and
+returned REVIEW are preserved separately. The current next delivery is C93,
+using the exact returned C92 capsule and the same one-block
+Git/worktree/build/run contract. Its methods/evidence key is
+`mixed_saved_endpoint_window_2026_10_25`; actual native C93 qualification remains
+pending until the user returns that new diagnostic.
 
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,

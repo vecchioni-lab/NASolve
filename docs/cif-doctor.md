@@ -1347,6 +1347,90 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Uniform saved-endpoint resolution window (C93)
+
+Returned C92 completes one Phenix 2.2.1-6174 audit in 9.307028 seconds,
+using 204 recorded adaptive calls. All six flagged local direction/order rows
+and five of six failed original whole-objective/family directions now qualify.
+The full-precision `all/alternating_global` row passes at 1e-8 A, but smaller
+steps fail the conservative representation-resolution screen. It lacks two
+adjacent resolved passing steps. The original usable constructed model remains
+selected automatically with `CONTINUE_WITH_NOTES`; native PDB readback does not
+run. This is a numerical-window limitation, not evidence of a new native
+analytic-gradient defect. The exact C92 archive SHA-256 is
+`5171aa1ba972b5b3fea0a377e5c91e07a798d963162e89c486334743ce4c0371`.
+
+C93 adds a separate policy, `cif-mixed-saved-endpoint-resolution-window-v1`,
+without changing the C92 evaluator or reader. It fills the missing 3e-8 A scale
+in the predeclared grid: 1e-7, 3e-8, 1e-8, 3e-9, 1e-9, 3e-10 and 1e-10 A.
+The absolute/relative tolerances remain 1e-4. Two adjacent fresh passing samples,
+representable symmetric displacements and both ten-percent floating-resolution
+screens remain required. These screens are not rigorous bounds on every native
+kernel operation. Step sizes and tolerance metadata are compared exactly by
+the new saved-data reader; numerical-value roundoff does not authorize a changed
+recipe. There are no residue-name, site or proxy-index exceptions.
+
+Methods: reconstruct the same unresolved C91 local directions and exact failed
+original C90 family directions, retain every earlier positive sampled proof,
+and recheck all selected rows over the uniform window. Fresh repeated snapshots
+for eight families at all three coordinate cases must match the exact saved
+manager, objective and installed source fingerprints. At most 120 selected rows
+fit within the unchanged 2,000-call budget: the worst schedule is 1,968 calls,
+and the actual six-local/six-family parent schedules 228, including 48 fresh
+family snapshots. Two raw native bootstrap snapshots remain a separate counter.
+One fresh audit and at most one conditional PDB readback use a 120-second default
+per native process, with a 600-second maximum. Saved-data verification has its
+own elapsed time and may take several minutes.
+
+Only complete sampled-derivative qualification allows the unchanged identity
+serializer and fresh native definition/proxy/rounded-target checks to test the
+already saved C90 endpoint. Selection also requires a nonworse fixed objective.
+Any optional failure retains `verified_constructed_model` with notes. No new
+optimization, native-kernel or restraint change, store write, refinement,
+production checkpoint or student CIF approval is introduced.
+
+The new module is `src/nasolve/cif_mixed_endpoint_window.py`; its explicit APIs
+are `qualify_saved_mixed_endpoint` and `read_saved_mixed_endpoint`. Schema 1 uses
+`mixed_endpoint_window_qualification.json` at `mixed_endpoint_window_directory`.
+The core scientific inputs remain five declared C91-derived views, bound to the
+exact original C91 checksum. The C93 ferry first independently replays the exact
+C92 report, then prepares the separate window policy. Its six temporary views
+add only that earlier endpoint report/job. The exact C92 ZIP is preserved once;
+C91, C90 and C89 stay nested and byte-exact. Existing 128 MiB total, 32 MiB member
+and 1,024-entry bounds are unchanged, and captured Python stays data.
+
+Local validation: **PASS: 75 new cases; 1,357 focused tests; 5,386 full-suite tests; source-removed replay**. Actual installed C93 derivative and
+conditional native-readback results remain pending; scientific structure
+qualification and ordinary full-run integration remain separate.
+
+#### C93 software validation
+
+All 75 final new cases were frozen before complete-suite collection: 31 module
+and 44 ferry cases. The broader focused suite passes 1,357 cases across 39 files
+in 500.82 seconds; the complete suite passes 5,386 tests, two skips
+and 276 subtests in 1174.82 seconds. The eight source/script/test/figure
+hashes remain unchanged after collection. Four contrast regressions fail on the
+frozen predecessor policy, and the new window/readback tests pass. Actual new
+workers and conditional native readback use a pinned simulated SDK locally;
+there is no local installed-Phenix claim.
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q tests/test_cif_mixed_endpoint_window.py tests/test_mixed_endpoint_window_probe.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q
+```
+
+Source-removed inspect and independent capsule-only replay pass with the exact
+returned C92 data and a 170-member pinned runtime. Both source clones are gone
+before launch; the original input/session/runtime are gone before independent
+readback. All 618 staged files remain unchanged with zero native processes.
+The 54-payload capsule plus manifest uses 29,083,512 uncompressed bytes, with the
+exact 20,533,765-byte C92 ZIP as its largest member. Ancestors remain nested once.
+Configuration, everyday-edit and dictionary-store fixtures stay intact, and
+Mac path checks stay within 232 absolute / 50 component bytes. This is software
+portability and saved-evidence validation, not a fresh C93 native qualification.
+See `mixed_saved_endpoint_window_2026_10_25` in the evidence ledger for exact
+commands, hashes, scope and the full prior C92 return.
+
 ### Guarded qualification of a saved endpoint (C92)
 
 C92 qualifies the already saved endpoint through a separate evidence policy;
@@ -1416,7 +1500,7 @@ thirty-seven files in 446.93 seconds on the same frozen checkpoint. The complete
 suite passes 5,311 tests, two skips and 276 subtests in 1,027.37 seconds. All eight
 source, script, test and figure hashes remain frozen after collection, with no
 later supplement. Final source-removed inspect and independent replay also pass;
-actual Mac C92 endpoint qualification remains pending.
+the actual Mac C92 result is recorded separately under C93.
 
 Source-removed inspect and standalone replay pass at the same frozen checkpoint.
 Both original source clones are gone before launch; the original session, runtime
@@ -1439,7 +1523,7 @@ existing function aliases. Independent review blocks all 105 canary calls and
 preserves 129 source files; process, captured-code, original-path, archive and
 preservation guards remain unchanged. No application source or native kernel is
 changed by this QA instrumentation. The inspect report remains `PREPARED_ONLY`;
-actual Mac C92 native endpoint qualification and scientific approval remain pending.
+the actual Mac C92 native return is recorded separately under C93; scientific approval remains open.
 
 
 

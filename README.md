@@ -400,10 +400,19 @@ Guarded C92 endpoint qualification adds evidence-selected finer samples and
 conditional unchanged native PDB readback, with automatic usable fallback and
 no new optimization. All 149 final new cases, 1,282 broader focused and 5,311
 complete-suite tests pass on frozen source. Source-removed inspect and standalone
-replay pass with zero SDK/subprocess calls and exact nested ancestry; actual Mac
-C92 endpoint qualification remains pending.
+replay pass with zero SDK/subprocess calls and exact nested ancestry; the actual Mac
+C92 result is recorded separately under C93.
 Source-state findings, scientific qualification, adoption and the ordinary full
 run remain separate.
+
+Returned C92 passes all six local and five of six broader derivative rows;
+one floating-resolution window retains the usable constructed fallback. C93
+fills the missing intermediate scale in a separate seven-step policy, with the
+same tolerances, adjacent-sample requirement and conditional native readback.
+It replays the exact C92 parent before testing the saved endpoint. No new model
+optimization or student CIF inspection is requested. Actual Mac C93 evidence
+and scientific qualification remain pending.
+See the [C93 contract](docs/cif-doctor.md#uniform-saved-endpoint-resolution-window-c93).
 
 
 

@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Fill the saved-endpoint resolution window without relaxing qualification
+
+- Record the exact returned C92 audit: all six local and five of six broader
+  derivative rows pass. One global direction lacks adjacent resolved samples;
+  the usable constructed fallback and original negative evidence remain intact.
+- Add a separately versioned uniform 1-3-10 sampling grid with the missing
+  3e-8 A step. Keep 1e-4 absolute/relative tolerances, two adjacent passing
+  samples, floating-resolution screens, native kernels and optimizer fixed.
+  Enforce exact recipe step/tolerance metadata in the new independent reader.
+- Bound 120 rows within the unchanged 2,000-call budget; retain conditional
+  identity/native-proxy readback and automatic usable fallback. The C93 ferry
+  independently replays the exact C92 parent and preserves nested archives once.
+  No new model optimization, cache write, production adoption or student CIF
+  approval is added. Local validation: **PASS: 75 new cases; 1,357 focused tests; 5,386 full-suite tests; source-removed replay**. Actual Mac
+  C93 native qualification and full scientific structure approval remain open.
+
+
 ### Qualify saved endpoint derivatives with guarded finer samples
 
 - Verify returned C91: all group attribution and finer group checks pass, while

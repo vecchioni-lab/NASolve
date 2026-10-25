@@ -2729,6 +2729,34 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Uniform saved-endpoint resolution window (C93)
+
+The tool works on two coordinate layers. Source-native dictionary generation
+can optimize isolated component coordinates to prepare numerical definitions.
+Ordinary supported Coot construction moves connected modified-base fragments
+through a preserved sugar frame; optional geometry trials move a separate model
+candidate under fixed definitions and NARestraints targets. Existing models and
+checkpoints are preserved. Routine report-only assessment moves no atoms.
+
+C93 itself performs fixed-coordinate numerical tests: temporary perturbations
+measure slopes and are discarded. If all derivative and native-readback gates
+pass, its diagnostic decision can select the existing saved C90 endpoint. It
+does not run another optimizer or adopt a production checkpoint.
+
+C92 resolved all six local rows and five of six broader rows, retaining the
+usable original for one unresolved global sampling window. C93 supplies the
+missing intermediate 3e-8 A step in a uniform 1-3-10 grid. Both tolerances stay
+1e-4, two adjacent fresh passing samples are required, and floating-resolution
+guards remain active. The earlier policy and negative evidence stay immutable.
+
+Methods: bind exact C92/C91 evidence, recheck the same generically selected
+original directions and all fresh family snapshots, then apply unchanged atom-
+identity serialization, native definitions/proxies and nonworse-objective gates.
+Any optional failure continues with the verified constructed model and plain
+notes. No student CIF-table decision is requested. See the
+[authoritative resolution-window contract](cif-doctor.md#uniform-saved-endpoint-resolution-window-c93)
+for bounds, schemas and validation. Actual C93 native evidence remains pending.
+
 ### Guarded qualification of a saved endpoint (C92)
 
 C92 qualifies the already saved endpoint through a separate evidence policy;
@@ -2798,7 +2826,7 @@ thirty-seven files in 446.93 seconds on the same frozen checkpoint. The complete
 suite passes 5,311 tests, two skips and 276 subtests in 1,027.37 seconds. All eight
 source, script, test and figure hashes remain frozen after collection, with no
 later supplement. Final source-removed inspect and independent replay also pass;
-actual Mac C92 endpoint qualification remains pending.
+the actual Mac C92 result is recorded separately under C93.
 
 Source-removed inspect and standalone replay pass at the same frozen checkpoint.
 Both original source clones are gone before launch; the original session, runtime
@@ -2821,7 +2849,7 @@ existing function aliases. Independent review blocks all 105 canary calls and
 preserves 129 source files; process, captured-code, original-path, archive and
 preservation guards remain unchanged. No application source or native kernel is
 changed by this QA instrumentation. The inspect report remains `PREPARED_ONLY`;
-actual Mac C92 native endpoint qualification and scientific approval remain pending.
+the actual Mac C92 native return is recorded separately under C93; scientific approval remains open.
 
 
 
