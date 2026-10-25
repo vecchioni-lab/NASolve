@@ -19,7 +19,11 @@ entries are reconstructed from repository history.
 - Add a saved-only C94 delivery that preserves the exact C93 ZIP once and
   verifies bounded opaque ancestry. It requests no native process, optimization,
   cache write, production adoption or student CIF review. Original local C93
-  validation and all historical diagnostic results stay unchanged.
+  validation and all historical diagnostic results stay unchanged. All 79 new
+  cases, 1,436 focused and 5,465 complete-suite tests pass (two skips, 276
+  subtests), with frozen code/test/figure bytes and no later supplement.
+  Source-removed real-parent execution and independent capsule-only replay pass
+  with zero native calls and all 693 scientific files unchanged.
 
 ### Fill the saved-endpoint resolution window without relaxing qualification
 
@@ -35,7 +39,8 @@ entries are reconstructed from repository history.
   independently replays the exact C92 parent and preserves nested archives once.
   No new model optimization, cache write, production adoption or student CIF
   approval is added. Local validation: **PASS: 75 new cases; 1,357 focused tests; 5,386 full-suite tests; source-removed replay**. Actual Mac
-  C93 native qualification and full scientific structure approval remain open.
+  C93 native qualification was pending at that publication checkpoint; its
+  returned result is recorded above. Full scientific structure approval remains open.
 
 
 ### Qualify saved endpoint derivatives with guarded finer samples

@@ -1413,7 +1413,25 @@ views remain outside the new review capsule. The exact C93 ZIP is preserved once
 the 32 MiB member/input, 128 MiB total and 1,024-entry archive bounds remain.
 Existing runs, checkpoints, configuration and local dictionaries are preserved.
 
-Local validation and the source-removed real-parent replay are being completed.
+All 79 final new cases pass (33 scalar-comparison, nine adapter and 37 ferry
+cases), frozen before complete-suite collection. Nine roundoff regressions fail
+under the previous exact comparison. The broader focused suite passes 1,436
+tests across 42 files in 669.21 seconds. The complete suite passes 5,465 tests,
+two skips and 276 subtests in 1,286.87 seconds on the same frozen source. All
+ten source/script/test/figure hashes remain unchanged after collection; no
+source edits or additional tests were appended afterward.
+
+Source-removed real-C93 execution and independent capsule-only readback pass in
+617.47 seconds with 173 pinned runtime members. The source clones are removed
+before launch; the original input, session and runtime are removed before the
+second reader. All 693 staged scientific files and the selected endpoint remain
+exact. Both guarded processes launch no SDK/native/optimizer process or captured
+code. Configuration, everyday-edit and dictionary-store fixtures stay intact.
+The four-payload capsule plus manifest uses 27,529,838 uncompressed bytes; its
+largest member is the exact 27,494,939-byte C93 ZIP, preserved once. Mac path
+checks remain within 233 absolute and 50 component bytes. This is saved-evidence
+and software portability validation; automatic temporary cleanup is not claimed.
+
 No new local installed-Phenix claim is made. Ordinary pipeline handoff, a full
 diffraction run, production adoption, scientific qualification and the automatic
 solution-PDF adapter remain separate.

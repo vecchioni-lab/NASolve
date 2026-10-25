@@ -17,7 +17,8 @@ not general production support. Earlier wording remains in Git and the
 The returned C93 endpoint passes numerical and native mechanics qualification.
 The original strict reader is not portable across last-bit Cartesian-report
 rounding; C94 uses a separate bounded replay adapter and preserves C93 bytes.
-Local validation is in progress; see the [C94 contract](cif-doctor.md#portable-saved-endpoint-report-replay-c94).
+79 new cases, 1,436 focused tests, 5,465 complete-suite tests and
+source-removed capsule-only replay pass. See the [C94 contract](cif-doctor.md#portable-saved-endpoint-report-replay-c94).
 Keep the everyday checkout, authorized Phaser edit, prior worktrees, runners
 and local component store intact. No new optimization or merge is requested.
 
@@ -498,11 +499,11 @@ the actual Mac C92 native return is recorded separately under C93; scientific ap
 
 The C92 delivery remains pinned at
 `3f604b3ec4b1295ca3067d1fc5a4ddaa08d7031a`; its original local validation and
-returned REVIEW are preserved separately. The current next delivery is C93,
-using the exact returned C92 capsule and the same one-block
-Git/worktree/build/run contract. Its methods/evidence key is
-`mixed_saved_endpoint_window_2026_10_25`; actual native C93 qualification remains
-pending until the user returns that new diagnostic.
+returned REVIEW are preserved separately. C93 was delivered at
+`1833b41424c958aee9d5c477edf1df723e532804` and has now returned qualified native
+endpoint evidence. The current C94 saved-only replay uses that exact C93 capsule
+and the same one-block Git/worktree/build/run contract. Its methods/evidence key
+is `mixed_saved_endpoint_portable_replay_2026_10_25`; C94 adds no native cycle.
 
 
 **Returned C80 completes Coot but retains context review.** All 138 payloads,
