@@ -5,6 +5,13 @@ Updated **2026-10-25**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
+The current [mixed runtime handoff](cif-doctor.md#qualified-mixed-runtime-handoff-c95)
+activates the saved qualified endpoint for the public bundle reader, including
+its exact model, ordered restraints, preserved source capsule and solution
+notes. Returned C94 and independent Linux replay pass; C95 tests this ordinary
+reader after relocation without native tools. Full diffraction runs and
+scientific qualification remain separate.
+
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 keeps student CIF approval out of the product flow. A tested decision core and
 PostMR report summaries and ordinary source-bound dictionary reuse are

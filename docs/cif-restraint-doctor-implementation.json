@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "mixed_saved_endpoint_portable_replay_2026_10_25",
+    "current_diagnostic_record": "mixed_runtime_bundle_handoff_2026_10_25",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26457,6 +26457,205 @@
         "tests/test_mixed_endpoint_replay_probe.py"
       ],
       "follow_up": "Return C94 saved-only replay; then ordinary pipeline handoff. Preserve the nonconvergence and separate scientific/full-run gates."
+    },
+    "mixed_runtime_bundle_handoff_2026_10_25": {
+      "status": "IMPLEMENTED;FINAL_FROZEN_VALIDATION_PENDING",
+      "recorded_date": "2026-10-25",
+      "delivery_prefix": "95_Cedar",
+      "policy_id": "cif-qualified-mixed-runtime-bundle-v1",
+      "source_policy_id": "cif-mixed-endpoint-capsule-source-v1",
+      "builder": "scripts/build_mixed_runtime_probe.py",
+      "template": "scripts/mixed_runtime_probe_template.py",
+      "modules": [
+        "src/nasolve/cif_mixed_runtime_bundle.py",
+        "src/nasolve/cif_mixed_runtime_source.py",
+        "src/nasolve/cif_runtime_bundle.py"
+      ],
+      "runner_filename": "95_Cedar_probe_mixed_runtime.py",
+      "manifest": "runtime_bundle.json",
+      "manifest_schema_version": 1,
+      "ordinary_reader": "resolve_runtime_bundle",
+      "ordinary_cli": "nasolve cif-doctor assess --bundle PATH --json",
+      "returned_C94": {
+        "status": "C94_RETURN_INDEPENDENTLY_VERIFIED",
+        "archive_sha256": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+        "archive_bytes": 27412323,
+        "payloads": 4,
+        "uncompressed_archive_bytes": 27529843,
+        "parent_C93_sha256": "78ced78169afd096b5fa835c82036cd8d27b841f98153cf84cac2092e762b10f",
+        "parent_C93_bytes": 27494939,
+        "runtime_members": 173,
+        "runtime_archive_sha256": "c757744f7bd627827253053427b59cafa82c44143eb67e8dbdf4a280af574c44",
+        "reported_runner_sha256": "6aa2e220f0fb213f82d5d3d33e752d2b47068da1e23484b0059c0b52eee010a7",
+        "trusted_runner_reconstruction": "EXACT;ONLY_NAR_SOURCE_CHECKOUT_METADATA_DIFFERS",
+        "elapsed_replay_seconds": 119.78687710400118,
+        "scientific_files_unchanged": 693,
+        "new_native_or_subprocess_calls": 0,
+        "saved_native_calls": 2,
+        "captured_code_execution": "NOT_RUN",
+        "qualification_and_coordinate_decision": "EXACT_CROSS_PLATFORM_REPRODUCTION",
+        "local_comparison_statistics": "PLATFORM_LOCAL;BOTH_RECIPES_AND_PASS_VERDICTS_VERIFIED",
+        "Mac_comparisons": {
+          "full_precision": {
+            "changed_derived_values": 0,
+            "consistent": true,
+            "derived_fields": [
+              "observed",
+              "difference",
+              "nominal_deviation"
+            ],
+            "issue_count": 0,
+            "issues": [],
+            "maximum_absolute_difference": 0.0,
+            "maximum_allowed_difference": 7.290168468898628e-12,
+            "mechanics_changes": "NONE",
+            "policy_id": "cif-derived-cartesian-report-replay-v1",
+            "rounding_ulps": 64,
+            "schema_version": 1,
+            "scientific_qualification": "NOT_ASSESSED",
+            "status": "DERIVED_REPORT_REPLAY_PASS"
+          },
+          "pdb_rounded": {
+            "changed_derived_values": 0,
+            "consistent": true,
+            "derived_fields": [
+              "observed",
+              "difference",
+              "nominal_deviation"
+            ],
+            "issue_count": 0,
+            "issues": [],
+            "maximum_absolute_difference": 0.0,
+            "maximum_allowed_difference": 7.290168468898628e-12,
+            "mechanics_changes": "NONE",
+            "policy_id": "cif-derived-cartesian-report-replay-v1",
+            "rounding_ulps": 64,
+            "schema_version": 1,
+            "scientific_qualification": "NOT_ASSESSED",
+            "status": "DERIVED_REPORT_REPLAY_PASS"
+          }
+        },
+        "Linux_comparisons": {
+          "full_precision": {
+            "schema_version": 1,
+            "policy_id": "cif-derived-cartesian-report-replay-v1",
+            "status": "DERIVED_REPORT_REPLAY_PASS",
+            "consistent": true,
+            "rounding_ulps": 64,
+            "derived_fields": [
+              "observed",
+              "difference",
+              "nominal_deviation"
+            ],
+            "changed_derived_values": 669,
+            "maximum_absolute_difference": 5.684341886080802e-14,
+            "maximum_allowed_difference": 7.290168468898628e-12,
+            "issue_count": 0,
+            "issues": [],
+            "scientific_qualification": "NOT_ASSESSED",
+            "mechanics_changes": "NONE"
+          },
+          "pdb_rounded": {
+            "schema_version": 1,
+            "policy_id": "cif-derived-cartesian-report-replay-v1",
+            "status": "DERIVED_REPORT_REPLAY_PASS",
+            "consistent": true,
+            "rounding_ulps": 64,
+            "derived_fields": [
+              "observed",
+              "difference",
+              "nominal_deviation"
+            ],
+            "changed_derived_values": 681,
+            "maximum_absolute_difference": 5.684341886080802e-14,
+            "maximum_allowed_difference": 7.290168468898628e-12,
+            "issue_count": 0,
+            "issues": [],
+            "scientific_qualification": "NOT_ASSESSED",
+            "mechanics_changes": "NONE"
+          }
+        },
+        "coordinate_decision": {
+          "automatic_adoption": false,
+          "checks": {
+            "exact_identity_serialization": true,
+            "fixed_native_mechanics": true,
+            "fresh_rounded_target": true,
+            "nonworse_fixed_objective": true,
+            "qualified_endpoint_derivatives": true
+          },
+          "continue_solving": true,
+          "endpoint_usable": true,
+          "native_usable": true,
+          "notes": [
+            "Stopping, pucker, chirality and residual findings are recorded separately from fixed native mechanics.",
+            "The optional separate endpoint is selected only when its fixed objective and native checks qualify; otherwise the usable starting model is retained."
+          ],
+          "requires_cif_review": false,
+          "scientific_qualification": "NOT_ASSESSED",
+          "selected": "qualified_geometry_endpoint",
+          "status": "CONTINUE_WITH_NOTES",
+          "stopping": {
+            "calls": 311,
+            "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+            "iterations": 257,
+            "max_iterations": 1000,
+            "native_criterion_met": false,
+            "reason": "unreported"
+          }
+        },
+        "scientific_qualification": "NOT_ASSESSED",
+        "new_test_prepared": false,
+        "source_repository_changes": "NONE"
+      },
+      "method": {
+        "selection": "REPLAY_EXISTING_QUALIFIED_ENDPOINT;FIVE_EXACT_GATES;NO_NEW_NATIVE_OBSERVATIONS",
+        "resources": "EXACT_ORDERED_SAVED_NATIVE_INPUTS;MODEL_AND_EVERY_DICTIONARY_PHIL",
+        "lineage": "C94_C93_C92_C91_C90_C89;EXPLICIT_BOUND_PARENT_REFERENCES;CAPTURED_CODE_DATA_ONLY",
+        "source_preservation": "ONE_EXACT_C94_ZIP_IN_BUNDLE;NO_DUPLICATED_PARENT_OUTSIDE_BUNDLE",
+        "reader": "SIX_SHALLOW_TEMPORARY_DATA_VIEWS;MAINTAINED_PORTABLE_REPLAY;EXACT_RESOURCE_BYTES",
+        "roundoff": "ONLY_TWO_PLATFORM_LOCAL_COMPARISON_STATISTICS_MAY_DIFFER;RECIPE_BOUND_AND_VERDICT_EXACT",
+        "post_assessment": "HASH_AND_MANIFEST_INTEGRITY;NO_DUPLICATE_NUMERICAL_REPLAY",
+        "student_flow": "CONTINUE_WITH_NOTES;NO_CIF_APPROVAL;ORIGINAL_STOPPING_AND_SOURCE_CHEMISTRY_RETAINED"
+      },
+      "bounds": {
+        "archive_and_member_bytes": 33554432,
+        "expanded_bytes_per_archive": 134217728,
+        "entries_per_archive": 1024,
+        "capsule_layers": 6,
+        "temporary_scientific_views": 6,
+        "review_archive_bounds": "UNCHANGED"
+      },
+      "actual_source": {
+        "archive_sha256": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+        "model_sha256": "ac9579220ea6c506a916137c283dfc2c9e32a1f88aaf39e00c0f9d6ae725e259",
+        "atoms": 863,
+        "dictionaries": 23,
+        "phils": 12
+      },
+      "validation": {
+        "status": "FROZEN_FINAL_CHECKS_PENDING",
+        "regression_before": "1_FAILED_24_DESELECTED;PRIOR_ORDINARY_READER_REJECTS_SUPPORTED_NEW_BUNDLE",
+        "new_tests": 59,
+        "local_real_activation": "PASS_121.1361_SECONDS;ZERO_SUBPROCESSES",
+        "local_real_relocated_public_assessment": "PASS_140.2829_SECONDS;REVIEW_NOTES_AND_QUALIFIED_ENDPOINT_RETAINED;ZERO_SUBPROCESSES",
+        "fresh_Mac_C95": "PENDING"
+      },
+      "compatibility": [
+        "EARLIER_SINGLE_COMPONENT_RUNTIME_POLICY_SUPPORTED",
+        "C90_C94_PRODUCERS_CORES_AND_TEMPLATES_UNCHANGED",
+        "NO_NATIVE_MECHANICS_CHEMISTRY_TOLERANCE_OR_NARESTRAINTS_POLICY_CHANGES",
+        "NO_WORKBOOK_CHANGE_OR_RELEASE"
+      ],
+      "generated_artifacts": "LOCAL_ONLY;NO_MODELS_NATIVE_DATA_REVIEW_ZIPS_OR_GENERATED_RUNNERS_COMMITTED",
+      "remaining_limits": [
+        "FULL_ORDINARY_DIFFRACTION_RUN_NOT_PERFORMED",
+        "NO_MTZ_IN_MIXED_FIXTURE",
+        "NO_CHECKPOINT_OR_PRODUCTION_ADOPTION",
+        "INDEPENDENT_SCIENTIFIC_QUALIFICATION_NOT_ASSESSED",
+        "SOLUTION_PDF_RENDERING_PLANNED",
+        "NO_MERGE_AUTHORIZED"
+      ]
     }
   },
   "audience": [

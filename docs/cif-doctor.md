@@ -1347,6 +1347,64 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Qualified mixed runtime handoff (C95)
+
+The ordinary `nasolve cif-doctor assess --bundle PATH --json` reader accepts
+the qualified mixed endpoint through `cif-qualified-mixed-runtime-bundle-v1`.
+This extends the earlier single-component activation policy without changing
+its schema or selection algorithm. Students do not inspect or approve CIFs.
+
+`prepare_mixed_runtime_bundle` verifies the explicitly hash-bound source
+capsule and its declared C94/C93/C92/C91/C90/C89 lineage, then reconstructs six
+shallow temporary scientific views. The maintained portable saved-endpoint
+reader must reproduce the original qualification, serializer, fixed native
+proxies and all five coordinate-selection gates. No new derivative observations
+are requested. The native readback's ordered input inventory supplies the exact
+selected PDB, dictionaries, modifiers and NARestraints PHIL files. No resource
+is discovered by basename, residue code, a historical absolute path or the
+current installation.
+
+The exclusive output contains `runtime_bundle.json`, `model/`, `dictionaries/`,
+`parameters/` and one unchanged `evidence/source_review.zip`. Manifest schema 1
+uses the existing `runtime_bundle` anchor, relative paths, SHA-256 and sizes.
+Its distinct policy ID dispatches to the mixed verifier. The source archive
+is operational evidence and remains inside the bundle; original paths are not
+needed. Intermediate diagnostic archives remain opaque rather than becoming
+recursive filesystem paths. Archive bounds remain 32 MiB compressed/per member,
+128 MiB expanded per archive and 1,024 entries; six explicitly declared capsule
+layers and six shallow data views are supported. Captured Python/pickle data
+are never imported or run. The unused C92 view is not staged during consumption.
+
+Every public resolution replays the saved source, requires exact ordered
+resource bytes and reproduces the manifest decision and qualification summary.
+Assessment uses these verified paths through the existing ordinary dictionary
+assessor, then rechecks all hashes and manifest bytes. This last integrity check
+does not repeat the numerical replay. Source-platform roundoff counts and
+maximum observed differences may differ between mathematical libraries; the
+comparison recipe, bounds, pass verdict and every other replay field stay exact.
+
+The solution summary records `selected_candidate`, original stopping details,
+source-chemistry findings and `scientific_qualification=NOT_ASSESSED`. Native
+selection is `VERIFIED_SOURCE_CAPTURE`, with `native_selection_executed=false`.
+PDF rendering remains planned. Dictionary warnings do not add a student CIF
+gate or erase the usable selection. Failed input verification stops this
+explicit handoff and leaves existing models, runs and checkpoints intact.
+
+Returned C94 is independently verified: the Mac and Linux verdicts agree,
+all five selection gates pass and all 693 scientific files are unchanged.
+C95's explicit runner prepares the separate bundle, renames its owned output
+before public assessment and records `MIXED_RUNTIME_HANDOFF_PASS` only if exact
+model and ordered restraint hashes reach that reader. It requests zero native,
+generator, optimizer, Coot or ReadySet calls, reads no MTZ, writes no cache or
+production checkpoint, and does not adopt or refine a structure. Ordinary
+end-to-end execution and independent scientific qualification remain separate.
+
+Methods: explicit archive manifests bind the saved lineage; bounded temporary
+views feed unchanged numerical-evidence readers. Exact native input inventories
+are copied into a declared runtime layout and re-bound by checksums and order
+on consumption. Source authority, fixed mechanics, observed coordinates,
+stopping evidence and scientific approval retain their separate meanings.
+
 ### Portable saved-endpoint report replay (C94)
 
 Returned C93 completes its Phenix 2.2.1-6174 audit and conditional native PDB

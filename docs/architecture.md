@@ -2894,6 +2894,20 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Qualified mixed runtime handoff (C95)
+
+`cif-qualified-mixed-runtime-bundle-v1` extends the public ordinary bundle
+reader to the qualified mixed endpoint. Its manifest binds one exact source
+capsule, the selected PDB and every dictionary/PHIL in native input order.
+Six bounded shallow views feed the maintained saved-evidence replay at each
+resolution; captured programs remain data. The ordinary assessor consumes the
+resolved paths and follows with a hash-only integrity check. Nonconvergence,
+source-state findings and scientific limits remain in solution notes. C95
+tests this handoff after relocation with no new native process or optimizer;
+no observation, AutoMR checkpoint or production adoption is fabricated.
+The [C95 contract](cif-doctor.md#qualified-mixed-runtime-handoff-c95) owns schemas
+and bounds. The existing single-component runtime policy remains supported.
+
 ### Portable saved-endpoint report replay (C94)
 
 C94 uses a separate `cif_mixed_endpoint_replay` adapter over the unchanged C93

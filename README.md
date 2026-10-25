@@ -30,6 +30,11 @@ receipts before mutations and on both sides of ReadySet. To inspect an existing
 run without changing it, use `./nasolve cif-doctor assess --run RUN --json`.
 [The CIF Doctor guide](docs/cif-doctor.md) describes the implemented checks and
 explicit source-preserving preparation recipes.
+C95 adds a portable handoff of the qualified mixed endpoint to the ordinary
+`cif-doctor assess --bundle` reader. Exact selected resources and saved native
+evidence travel together; the reader preserves nonconvergence and chemistry
+notes. This is input activation and read-only assessment; diffraction-run
+integration, checkpoints and scientific qualification remain separate.
 The [human/manuscript overview](docs/cif-doctor-human-overview.md) explains the
 algorithm, tools and pipeline placement and supplies an editable figure.
 

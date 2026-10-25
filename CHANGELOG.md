@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Hand the qualified mixed endpoint to the ordinary bundle reader
+
+- Add `cif-qualified-mixed-runtime-bundle-v1`: the exact selected PDB,
+  ordered dictionaries and PHIL files are frozen with the complete source
+  capsule once. The existing `cif-doctor assess --bundle` entry point resolves
+  this policy as well as the earlier single-component runtime bundle.
+- Reconstruct six bounded temporary data views and replay the maintained
+  saved-evidence reader before consumption. Resource hashes and ordered bytes,
+  selection, nonconvergence and source-chemistry notes must reproduce. A final
+  hash check follows assessment without repeating the numerical replay.
+- C95 supplies a source-bundled, saved-only handoff/relocation test. No new
+  native process, optimization, diffraction data, checkpoint or scientific
+  approval is introduced. Historical C90-C94 producers and evidence stay intact.
+- Returned C94 and independent Linux replay both select the qualified endpoint:
+  all five gates and all 693 staged scientific files reproduce with zero new
+  native calls. Platform-local comparison counts remain observations, not gates.
+
 ### Replay saved endpoint reports across mathematical libraries
 
 - Record returned C93 derivative and seventeen native mechanics passes, with

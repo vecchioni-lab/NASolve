@@ -355,6 +355,25 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Qualified mixed runtime handoff (C95)
+
+Returned C94 is verified independently on Linux: exact qualification and all
+five selection gates reproduce; all 693 scientific files are preserved and no
+new process runs. The original nonconvergence remains recorded. Comparison
+counts and maximum observed roundoff are platform-local observations; both
+recipes and passing verdicts reproduce. The C94 publication-time validation
+record remains unchanged; its returned evidence is recorded separately.
+
+C95 supplies a separate portable mixed-runtime activation test through the
+existing public `cif-doctor assess --bundle` reader. It freezes the exact
+selected PDB, dictionaries and PHIL order alongside one opaque C94 capsule,
+then relocates the owned bundle before public assessment. Resolution uses six
+bounded temporary data views and the maintained saved reader; no fresh native
+or derivative evaluations run. The legacy single-component policy remains
+supported. No merge, checkpoint, diffraction run or scientific approval is
+authorized by this handoff. See the
+[C95 contract](cif-doctor.md#qualified-mixed-runtime-handoff-c95).
+
 ### Portable saved-endpoint report replay (C94)
 
 Returned C93 qualifies its saved endpoint on Phenix 2.2.1-6174: six local and

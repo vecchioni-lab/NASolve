@@ -206,6 +206,9 @@ def resolve_runtime_bundle(manifest):
     root = path.parent
     try:
         value = _load_json(path); before = path.read_bytes()
+        from .cif_mixed_runtime_bundle import POLICY_ID as MIXED_POLICY, resolve_mixed_runtime_bundle
+        if value.get('policy_id') == MIXED_POLICY:
+            return resolve_mixed_runtime_bundle(path, value)
         if (value.get('schema_version') != 1 or value.get('policy_id') != POLICY_ID
                 or value.get('manifest_file') != path.name or value.get('scope') != 'PORTABLE_QUALIFIED_RUNTIME_BUNDLE'
                 or value.get('status') != 'ACTIVATED_WITH_NOTES' or value.get('requires_cif_review') is not False
@@ -254,9 +257,13 @@ def assess_runtime_bundle(manifest):
         raise ValueError('Ordinary assessor did not consume the exact activated runtime bundle')
     for descriptor, reference in zip(assessment['inputs'], references): descriptor['frozen_reference'] = deepcopy(reference)
     assessment['model']['frozen_reference'] = deepcopy(value['resources']['model'])
-    after = resolve_runtime_bundle(resolved['manifest_path'])
-    if after['manifest'] != value: raise ValueError('Runtime bundle changed during read-only assessment')
-    assessment['bundle_context'] = {'schema_version': 1, 'policy_id': POLICY_ID,
+    from .cif_mixed_runtime_bundle import POLICY_ID as MIXED_POLICY, verify_mixed_runtime_resources
+    if value['policy_id'] == MIXED_POLICY:
+        verify_mixed_runtime_resources(resolved['manifest_path'], value)
+    else:
+        after = resolve_runtime_bundle(resolved['manifest_path'])
+        if after['manifest'] != value: raise ValueError('Runtime bundle changed during read-only assessment')
+    assessment['bundle_context'] = {'schema_version': 1, 'policy_id': value['policy_id'],
         'manifest': {'anchor': ANCHOR, 'relative_path': value['manifest_file'], 'sha256': _digest(resolved['manifest_path']),
             'size': resolved['manifest_path'].stat().st_size},
         'model': deepcopy(value['resources']['model']), 'effective_restraints': deepcopy(references),
@@ -266,7 +273,8 @@ def assess_runtime_bundle(manifest):
     from .cif_doctor_selection import assessment_report_summary
     summary = assessment_report_summary(assessment)
     selection = value['decision']; stopping = selection.get('stopping') or {}
-    selected = ('the verified geometry endpoint' if selection['selected_candidate'] == 'qualified_geometry_endpoint'
+    selected_name = selection.get('selected_candidate', selection.get('selected'))
+    selected = ('the verified geometry endpoint' if selected_name == 'qualified_geometry_endpoint'
                 else 'the verified starting model')
     text = f'NASolve activated {selected} with its exact verified restraint bundle. '
     if stopping.get('native_criterion_met') is True:
@@ -277,8 +285,10 @@ def assess_runtime_bundle(manifest):
         text += 'The bounded geometry trial stopped before convergence; its usable selection was retained. '
     text += 'Dictionary findings and unresolved chemistry or geometry notes remain recorded. CIF inspection is not required.'
     summary.update(text=text, native_selection='VERIFIED_SOURCE_CAPTURE', native_selection_executed=False,
-        selected_candidate=selection['selected_candidate'], stopping=deepcopy(selection.get('stopping')),
+        selected_candidate=selected_name, stopping=deepcopy(selection.get('stopping')),
         notes=deepcopy(selection['notes']), native_evidence=value['native_evidence'], checkpoint_adoption='NOT_RUN')
+    if value['policy_id'] == MIXED_POLICY:
+        summary.update(scientific_qualification='NOT_ASSESSED', source_chemical_findings=value['qualification']['source_chemical_findings'])
     assessment['requires_cif_review'] = False
     assessment['solution_report'] = summary
     return assessment

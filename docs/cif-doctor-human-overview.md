@@ -2729,6 +2729,24 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Qualified mixed runtime handoff (C95)
+
+The qualified mixed model can now travel as an ordinary CIF Doctor runtime
+bundle. Its selected coordinates, ordered component dictionaries, site
+modifiers and NARestraints policy are copied exactly. One preserved source
+capsule supplies the complete saved proof; no historical machine path is needed.
+The public bundle reader rebuilds bounded temporary data views and reproduces
+the saved qualification before accepting the inputs, then performs ordinary
+read-only dictionary assessment. The original line-search stop and chemistry
+findings remain plain-language solution notes. Students do not inspect CIFs.
+
+This step packages already qualified evidence; it does not move atoms or run
+another optimizer. The explicit C95 test relocates its owned output before
+public assessment, preserving user runs, caches and checkpoints. The ordinary
+diffraction pipeline and final scientific validation remain separate. See the
+[C95 contract](cif-doctor.md#qualified-mixed-runtime-handoff-c95) for schemas,
+methods and validation boundaries.
+
 ### Portable saved-endpoint replay (C94)
 
 C93 qualifies the existing saved model automatically after its derivative and
