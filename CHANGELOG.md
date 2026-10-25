@@ -25,6 +25,10 @@ entries are reconstructed from repository history.
   all five gates and all 693 staged scientific files reproduce with zero new
   native calls. Platform-local comparison counts remain observations, not gates.
 
+- Frozen validation passes: 59 new cases, 1,577 focused tests, 5,524 full-suite
+  tests (two skips, 276 subtests), and source-removed capsule-only public CLI
+  readback. All selected inputs and original notes reproduce with zero processes.
+
 ### Replay saved endpoint reports across mathematical libraries
 
 - Record returned C93 derivative and seventeen native mechanics passes, with

@@ -1405,6 +1405,24 @@ are copied into a declared runtime layout and re-bound by checksums and order
 on consumption. Source authority, fixed mechanics, observed coordinates,
 stopping evidence and scientific approval retain their separate meanings.
 
+All 59 new cases pass, including a public-reader regression that fails under
+the previous runtime policy. The focused suite passes 1,577 tests across 47
+files in 626.34 seconds. The complete suite passes 5,524 tests, two skips and
+276 subtests in 1,209.53 seconds. All eleven code/test/figure files were frozen
+before full-suite collection and remain unchanged; no tests were added later.
+
+Source-removed real-C94 activation and independent capsule-only public CLI
+readback pass in 517.98 seconds. The first output session, runtime and input
+copy are removed before the second reader. All 38 bundle files and exact
+model/ordered restraint bytes remain unchanged. Both processes forbid native
+execution, SDK imports, discovery and captured code, with fifteen entrypoint
+canaries checked. Configuration, everyday-edit and local-store fixtures stay
+intact. The 41-payload capsule plus manifest uses 28,917,648 uncompressed bytes;
+its largest member is the one exact 27,412,323-byte C94 ZIP. Mac path checks
+remain within 217 absolute and 45 component bytes. Automatic temporary cleanup
+is not claimed. This is software and saved-evidence validation; no new local
+installed-Phenix execution or scientific approval is claimed.
+
 ### Portable saved-endpoint report replay (C94)
 
 Returned C93 completes its Phenix 2.2.1-6174 audit and conditional native PDB

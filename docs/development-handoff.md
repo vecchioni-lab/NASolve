@@ -13,12 +13,16 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current next action: C94 saved-endpoint replay, with zero new native calls.**
-The returned C93 endpoint passes numerical and native mechanics qualification.
-The original strict reader is not portable across last-bit Cartesian-report
-rounding; C94 uses a separate bounded replay adapter and preserves C93 bytes.
-79 new cases, 1,436 focused tests, 5,465 complete-suite tests and
-source-removed capsule-only replay pass. See the [C94 contract](cif-doctor.md#portable-saved-endpoint-report-replay-c94).
+**Current delivery: C95 qualified mixed-runtime handoff, with zero new native calls.**
+Returned C94 and independent Linux replay reproduce the qualified C93 endpoint
+and all five selection gates, preserving 693 scientific files. C95 freezes its
+exact model and ordered restraints for the public ordinary bundle reader.
+Source-removed activation and independent capsule-only public CLI readback pass,
+retaining the original nonconvergence and scientific limits. See the
+[C95 contract](cif-doctor.md#qualified-mixed-runtime-handoff-c95).
+Local validation passes: 59 new, 1,577 focused and 5,524 complete-suite tests
+(two skips, 276 subtests), plus source-removed capsule-only public CLI readback.
+All eleven code/test/figure files remain frozen. Fresh Mac C95 is pending.
 Keep the everyday checkout, authorized Phaser edit, prior worktrees, runners
 and local component store intact. No new optimization or merge is requested.
 
