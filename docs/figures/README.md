@@ -22,6 +22,9 @@ the editable master. Raster previews and PDF exports can be regenerated and
 need not be source-controlled. Update the caption and overview whenever the
 feature, figure or interpretation changes.
 
+The C96 scope line explicitly separates saved endpoint selection from chemical
+approval and ordinary refinement qualification. It adds no production arrow.
+
 The accompanying caption now distinguishes explicit generator input-state
 retention from experimental protonation, and numerical REVIEW from chemical
 approval. The existing candidate branch still ends at review; source-state

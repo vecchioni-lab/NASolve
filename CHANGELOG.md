@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Make mixed-bundle qualification explicit (C96)
+
+- Show the solution summary in plain-text CIF Doctor assessment, including the
+  selected endpoint and original stopping note. Mixed-bundle text and additive
+  JSON `qualification_scope` distinguish preserved source-chemistry findings,
+  the explicit corrected evaluator and unqualified ordinary refinement.
+- Record the actual Mac C95 handoff and consolidate the current capability map.
+  Keep ATL independent and record future chemical-reference-to-restraints inputs,
+  including possible ChemDraw exports, separately from drawing-to-model work.
+- Canonicalize owned temporary paths in two test fixtures on macOS, avoiding
+  `/var` versus `/private/var` false failures while retaining symlink guards.
+  Give the fake optimizer timeout test a realistic interpreter/help startup
+  window while retaining its descendant-cleanup assertions and production limits.
+- Preserve bundle schemas, selection, exit codes, chemical/numerical policy,
+  historical receipts and all scientific artifacts. No migration is required.
+
 ### Hand the qualified mixed endpoint to the ordinary bundle reader
 
 - Add `cif-qualified-mixed-runtime-bundle-v1`: the exact selected PDB,

@@ -1,16 +1,15 @@
 # NASolve documentation map
 
-Updated **2026-10-25**. Start with the
+Updated **2026-10-26**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
-The current [mixed runtime handoff](cif-doctor.md#qualified-mixed-runtime-handoff-c95)
-activates the saved qualified endpoint for the public bundle reader, including
-its exact model, ordered restraints, preserved source capsule and solution
-notes. Returned C94 and independent Linux replay pass; C95 tests this ordinary
-reader after relocation without native tools. Full diffraction runs and
-scientific qualification remain separate.
+The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c96)
+separates qualified implementation, open chemistry, consumer qualification and
+the next integration step. The actual Mac C95 handoff passed with zero native
+calls; C96 exposes those limits in text and JSON reports. ATL stays independent,
+and ChemDraw-derived chemical references are explicit future scope.
 
 The [automatic continuation contract](cif-doctor.md#automatic-continuation-and-student-facing-decisions)
 keeps student CIF approval out of the product flow. A tested decision core and

@@ -1539,6 +1539,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            if payload.get("solution_report", {}).get("text"):
+                print(payload["solution_report"]["text"])
             assessments = [("", payload)]
             if args.cif_action == "compare":
                 assessments.extend((label, payload[key]) for label, key in

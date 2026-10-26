@@ -30041,7 +30041,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "mixed_runtime_bundle_handoff_2026_10_25",
+  "current_diagnostic_record": "mixed_runtime_reporting_2026_10_26",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -30661,6 +30661,72 @@
       "tests/test_cif_mixed_runtime_source.py",
       "tests/test_mixed_runtime_probe.py"
     ],
-    "follow_up": "Return C95 ordinary-bundle handoff; preserve original stopping/source-state notes. Full diffraction-run integration and scientific qualification remain separate; no duplicate native or derivative audit is needed for unchanged inputs."
+    "follow_up": "Mac C95 handoff verified; C96 exposes qualification boundaries. Reconcile source chemistry and qualify the actual ordinary consumer before production adoption. No duplicate unchanged native audit.",
+    "returned_Mac_C95": {
+      "recorded_date": "2026-10-26",
+      "recorded_by": "Rowan, Codex desktop",
+      "status": "MIXED_RUNTIME_HANDOFF_PASS",
+      "diagnostic_exit_code": 2,
+      "nasolve_commit": "3fcedf5bb18f7e482d94b5827478c6b4f26b80e3",
+      "narestraints_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "python_version": "3.12.14",
+      "platform": "macOS arm64",
+      "runner_sha256": "2c4e04f1cc785a83eb3575a3a6a91c284f29c4ccd2f2386a7c418a48014738e7",
+      "archive": {
+        "anchor": "local_live_tests",
+        "path": "95_Cedar_mixed-runtime-hgew939z/95_Cedar_hgew939z_mixed_runtime_review.zip",
+        "sha256": "dbd2317d9093a105217b058a0b13709fce7fd208570419ce187b0301eaafb46d",
+        "bytes": 27584803,
+        "verified_payloads": 41
+      },
+      "receipt_sha256": "9bb8017a26ac3629d5a03804236a6ed7c3a75c2ccdddcf13d664f3f7765e74ab",
+      "runtime_manifest_sha256": "efe86ed77349e8ed5264cae0395ac2a2bd72a44a0c7f6eeb2320f0c272ae2e9f",
+      "atom_count": 863,
+      "dictionary_count": 23,
+      "parameter_count": 12,
+      "selection_gates_passed": 5,
+      "selected_candidate": "qualified_geometry_endpoint",
+      "original_nonconvergence_preserved": true,
+      "relocated_before_ordinary_assessment": true,
+      "new_native_calls": 0,
+      "execution_kind": "COMPLETE_SAVED_EVIDENCE_REPLAY;NOT_A_NATIVE_RUN",
+      "phenix": "2.2.1-6174 historical capture; NOT_RUN in C95",
+      "coot": "1.3.3 historical construction; NOT_RUN in C95",
+      "scientific_qualification": "NOT_ASSESSED",
+      "production_checkpoint": "NOT_CREATED",
+      "generated_artifacts": "LOCAL_ONLY;NOT_COMMITTED_OR_UPLOADED"
+    }
+  },
+  "mixed_runtime_reporting_2026_10_26": {
+    "status": "VALIDATION_IN_PROGRESS",
+    "recorded_by": "Rowan, Codex desktop",
+    "delivery_prefix": "96_Cedar",
+    "base_commit": "3fcedf5bb18f7e482d94b5827478c6b4f26b80e3",
+    "scope": "REPORTING_AND_CURRENT_STATE_CONSOLIDATION",
+    "behavior_before": "Plain-text assessment omitted solution summary; mixed JSON retained source findings but lacked explicit evaluator/refinement scope.",
+    "behavior_after": "Text prints solution summary; mixed text and additive qualification_scope state chemistry/evaluator/refinement limits without changing verdicts.",
+    "schemas": "Manifest schema 1 and both runtime policies unchanged; additive solution_report.qualification_scope only.",
+    "validation": {
+      "regression_before": "2 failed on missing plain-text summary and qualification_scope",
+      "focused": "114 passed in 10.58s",
+      "real_C95_readback": {
+        "status": "PASS",
+        "seconds": 49.04,
+        "files_unchanged": 38,
+        "process_or_sdk_attempts": 0,
+        "exit_code": 2
+      },
+      "full_suite": "PENDING"
+    },
+    "compatibility": "No migration; old bundles accepted; selection, exit codes, scientific qualification and NAR policy unchanged.",
+    "generated_artifacts": "LOCAL_ONLY;NO_SCIENTIFIC_DATA_OR_GENERATED_RUNNERS_COMMITTED",
+    "remaining_limits": [
+      "SOURCE_CHEMISTRY_NOT_CLEARED",
+      "ORDINARY_REFINEMENT_NOT_QUALIFIED",
+      "SCIENTIFIC_QUALIFICATION_NOT_ASSESSED",
+      "ATL_NATIVE_CONSTRUCTION_NOT_RUN",
+      "CHEMDRAW_INPUT_FUTURE_ONLY",
+      "NO_MERGE"
+    ]
   }
 }

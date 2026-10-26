@@ -58,6 +58,15 @@ does, the expected result and which output or review capsule to return.
 Deliver repository-backed code through Git and place generated runners in the
 intended project directory.
 
+When an authorized local agent can execute the test and inspect its output,
+perform those steps directly and push reviewed source changes through Git.
+Do not require the operator to upload/download runners or review ZIPs between
+portals. Keep raw evidence local and publish only the bounded technical receipt
+and hashes authorized by the project. A generated runner may live outside the
+product checkout under an explicit live-test root: pass that path to the builder
+with `--output`, omitting `--local-artifact-checkout`. The ignored checkout
+layout below remains supported for existing handoffs.
+
 Use this sequence for source-bundled probes:
 
 1. Fetch the named remote branch from an existing build checkout.
@@ -122,9 +131,10 @@ local Git exclude file, without changing tracked files. Verify the rule with
 inventory the earlier root-level numbered runners and the ignored branch
 directory, including each file's original relative path, byte count, SHA-256,
 delivery prefix and available build commit/runner receipt. Preserve the
-manifest locally with the archive. Copy verified historical runners into
-`branch-artifacts/cedar/archive/` without overwriting collisions; compare bytes
-and hashes before removing a redundant root-level copy. Keep the original
+manifest locally with the archive. Archive verified historical runners outside the product checkout, under an
+explicit local live-test/archive root. Retain original relative paths in the
+manifest, refuse collisions, and verify all copied bytes and hashes before
+removing only those redundant runner copies from the checkout. Keep the original
 review ZIPs, run directories and checkpoint lineage accessible at their
 recorded locations. Do not relocate an artifact still referenced by an active
 job or an operational receipt without updating and checking that reference.

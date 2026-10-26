@@ -178,6 +178,16 @@ remain authoritative when provided under the corresponding sequence-driven
 mode. Implementation and blind-test ordering belong in the
 [development handoff](development-handoff.md).
 
+### Future chemical references and restraints
+
+A user-declared chemical reference must be able to seed a qualified restraints
+bundle, with exact source/conversion provenance, chemical-state preservation,
+explicit polymer context and NARestraints ownership. ChemDraw documents and
+exported chemical representations are future input candidates; no format is
+selected or implemented. Drawing-to-model construction is a separate workflow.
+The [CIF Doctor scope](cif-doctor.md#future-chemical-reference-input) owns the
+requirements and qualification boundary.
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants

@@ -18,6 +18,21 @@ The [command guide](cif-doctor.md) owns operational contracts; the
 implemented APIs from planned orchestration. This overview and its editable
 figure describe the current capabilities and their limits.
 
+## Current result and interpretation
+
+The actual Mac C95 test passes: a relocated 863-atom model, 23 dictionaries and
+12 parameter files reach the ordinary reader unchanged, with zero new native
+calls. C96 displays the selected model and original stopping note in ordinary
+text output, alongside explicit limits already represented by the saved proof.
+Endpoint selection does not clear source-chemistry findings, and derivative
+qualification of the NASolve-local corrected evaluator does not qualify
+ordinary Phenix refinement. Scientific qualification remains unassessed.
+ATL remains an independent source/compiler control. Future chemical-reference
+input, potentially from ChemDraw exports, belongs to restraints preparation;
+drawing-to-model construction is outside CIF Doctor. The
+[current capability map](cif-doctor.md#current-capability-boundary-c96) is the
+concise authority for these distinctions and next steps.
+
 ## What it does
 
 CIF Doctor checks the instructions that tell crystallographic software how a

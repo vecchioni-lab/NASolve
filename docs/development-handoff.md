@@ -13,18 +13,32 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C95 qualified mixed-runtime handoff, with zero new native calls.**
-Returned C94 and independent Linux replay reproduce the qualified C93 endpoint
-and all five selection gates, preserving 693 scientific files. C95 freezes its
-exact model and ordered restraints for the public ordinary bundle reader.
-Source-removed activation and independent capsule-only public CLI readback pass,
-retaining the original nonconvergence and scientific limits. See the
-[C95 contract](cif-doctor.md#qualified-mixed-runtime-handoff-c95).
-Local validation passes: 59 new, 1,577 focused and 5,524 complete-suite tests
-(two skips, 276 subtests), plus source-removed capsule-only public CLI readback.
-All eleven code/test/figure files remain frozen. Fresh Mac C95 is pending.
-Keep the everyday checkout, authorized Phaser edit, prior worktrees, runners
-and local component store intact. No new optimization or merge is requested.
+**Current delivery: C96 reporting and consolidation after a verified Mac C95 handoff.**
+See the [current capability map](cif-doctor.md#current-capability-boundary-c96)
+for established contracts, open science and future chemical-reference scope.
+C95 ran locally from `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3` and passed:
+863 atoms, 23 dictionaries, 12 PHIL files, all five saved selection gates,
+relocation before ordinary assessment and zero new native calls. Exit 2 retains
+the original `REVIEW` and scientific limits. The exact return is appended to
+`mixed_runtime_bundle_handoff_2026_10_25` in the existing evidence ledger;
+publication-time validation and earlier receipts remain intact.
+
+C96 changes reporting only: text-mode assessment now displays its solution
+summary; mixed-bundle reports distinguish saved corrected-evaluator evidence,
+unresolved source chemistry and unqualified ordinary refinement. Existing
+selection, thresholds, chemistry, schemas, stopping and NAR policy are retained.
+ATL remains an independent source/compiler control. Future ChemDraw-derived
+reference-to-restraints support is recorded without claiming an importer or
+including drawing-to-model construction in CIF Doctor.
+
+Development branch `codex/cedar-c96-handoff` targets `cedar` for review. Its
+isolated checkout preserves the everyday Pine tree and older diagnostic Cedar
+checkout/Phaser edit. Retire this development worktree after review and
+integration into Cedar, subject to the lifecycle audit. Cedar-to-Pine (#26) and
+Pine-to-main (#23) remain later integrations; no merge is performed here.
+The 89 loose generated runners have a verified external local archive and
+manifest; historical scientific runs and build worktrees retain their paths.
+No repeated native optimization or unchanged derivative audit is requested.
 
 **Returned C81 closes fresh construction of the exact eight-pair fixture.** All
 175 payloads, runtime hashes and source bindings verify. Coot 1.3.3 completes;

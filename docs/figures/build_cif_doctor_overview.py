@@ -148,7 +148,7 @@ def build():
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
         text(70, 1082, "Usable nonconvergence: continue with notes; no student CIF approval.", size=24),
-        text(70, 1116, "C95 hands the qualified mixed endpoint to the ordinary bundle reader.", size=24),
+        text(70, 1116, "Saved endpoint selection does not qualify chemistry or ordinary refinement.", size=24),
         '</g>',
         '</svg>'])
     return "\n".join(parts) + "\n"

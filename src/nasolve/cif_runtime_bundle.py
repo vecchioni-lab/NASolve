@@ -284,11 +284,22 @@ def assess_runtime_bundle(manifest):
     elif stopping:
         text += 'The bounded geometry trial stopped before convergence; its usable selection was retained. '
     text += 'Dictionary findings and unresolved chemistry or geometry notes remain recorded. CIF inspection is not required.'
+    if value['policy_id'] == MIXED_POLICY:
+        text += (' Selection does not clear the preserved source-chemistry findings. '
+                 'The saved derivative proof uses the NASolve-local corrected gradient evaluator; '
+                 'ordinary Phenix refinement remains unqualified by this bundle assessment. '
+                 'Scientific qualification remains unassessed.')
     summary.update(text=text, native_selection='VERIFIED_SOURCE_CAPTURE', native_selection_executed=False,
         selected_candidate=selected_name, stopping=deepcopy(selection.get('stopping')),
         notes=deepcopy(selection['notes']), native_evidence=value['native_evidence'], checkpoint_adoption='NOT_RUN')
     if value['policy_id'] == MIXED_POLICY:
-        summary.update(scientific_qualification='NOT_ASSESSED', source_chemical_findings=value['qualification']['source_chemical_findings'])
+        summary.update(scientific_qualification='NOT_ASSESSED',
+            source_chemical_findings=value['qualification']['source_chemical_findings'],
+            qualification_scope={
+                'source_chemistry': 'NOT_CLEARED_BY_ENDPOINT_QUALIFICATION',
+                'gradient_evaluator': 'NASOLVE_LOCAL_CORRECTED_FIXED_OBJECTIVE',
+                'ordinary_refinement': 'NOT_QUALIFIED',
+            })
     assessment['requires_cif_review'] = False
     assessment['solution_report'] = summary
     return assessment

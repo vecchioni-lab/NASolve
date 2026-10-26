@@ -114,3 +114,35 @@ def test_destination_and_source_are_preserved_on_refusal(tmp_path, monkeypatch):
     alias = tmp_path/'alias'; alias.symlink_to(output, target_is_directory=True)
     with pytest.raises(ValueError): mixed.prepare_mixed_runtime_bundle(source, alias/'child', source_sha256=sha256(original).hexdigest())
     assert not (output/'child').exists()
+
+
+@pytest.mark.parametrize('json_output', [False, True])
+def test_public_report_distinguishes_selection_from_chemical_and_refinement_qualification(tmp_path, monkeypatch, capsys, json_output):
+    from nasolve.cli import main
+    _, output, manifest, _, replay, _, _ = activate(tmp_path, monkeypatch)
+    before = {p.relative_to(output).as_posix(): p.read_bytes() for p in output.rglob('*') if p.is_file()}
+    monkeypatch.setattr('nasolve.cli.discover_phenix', lambda *a, **k: pytest.fail('Saved assessment discovered Phenix'))
+    args = ['cif-doctor', 'assess', '--bundle', str(output)]
+    assert main(args + (['--json'] if json_output else [])) == 0
+    printed = capsys.readouterr().out
+    if json_output:
+        payload = json.loads(printed)
+        report = payload['solution_report']
+        assert report['qualification_scope'] == {
+            'source_chemistry': 'NOT_CLEARED_BY_ENDPOINT_QUALIFICATION',
+            'gradient_evaluator': 'NASOLVE_LOCAL_CORRECTED_FIXED_OBJECTIVE',
+            'ordinary_refinement': 'NOT_QUALIFIED',
+        }
+        assert payload['bundle_context']['decision'] == manifest['decision']
+        assert report['stopping'] == replay['coordinate_decision']['stopping']
+        assert report['source_chemical_findings'] == manifest['qualification']['source_chemical_findings']
+        assert report['scientific_qualification'] == 'NOT_ASSESSED'
+        assert report['requires_cif_review'] is False
+        printed = report['text']
+    assert 'verified geometry endpoint' in printed
+    assert 'stopped before convergence' in printed or 'recorded limit' in printed
+    assert 'does not clear the preserved source-chemistry findings' in printed
+    assert 'NASolve-local corrected gradient evaluator' in printed
+    assert 'ordinary Phenix refinement remains unqualified' in printed
+    assert 'Scientific qualification remains unassessed' in printed
+    assert before == {p.relative_to(output).as_posix(): p.read_bytes() for p in output.rglob('*') if p.is_file()}

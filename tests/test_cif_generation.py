@@ -274,16 +274,19 @@ def test_timeout_kills_optimizer_descendants_and_retains_raw_evidence(tmp_path):
     sentinel = tmp_path / "descendant-survived"
     body = """
 import os, subprocess, sys, time
-child = 'import os,time; from pathlib import Path; time.sleep(0.4); Path(os.environ["SENTINEL"]).write_text("survived")'
+child = 'import os,time; from pathlib import Path; time.sleep(4); Path(os.environ["SENTINEL"]).write_text("survived")'
 subprocess.Popen([sys.executable, '-c', child])
 print('optimizer launched', flush=True)
-time.sleep(5)
+time.sleep(10)
 """
     receipt = generate_elbow_candidate(source, "ZZZ", tmp_path / "out", program(tmp_path, body),
-        environment={**os.environ, "SENTINEL": str(sentinel)}, phenix_version="test", timeout_seconds=0.15)
+        environment={**os.environ, "SENTINEL": str(sentinel)}, phenix_version="test", timeout_seconds=2)
+    # Allow interpreter/help startup before exercising optimizer timeout.
+    # The delayed descendant must still be killed before its write.
+    assert receipt["generator_capabilities"]["status"] == "SUPPORTED"
     assert receipt["status"] == "FAILED"
     assert receipt["execution"]["status"] == "TIMED_OUT"
-    time.sleep(0.4)
+    time.sleep(4)
     assert not sentinel.exists()
     assert "optimizer launched" in (Path(receipt["candidate_directory"]) / "elbow.log").read_text()
     assert receipt["source_preserved"]

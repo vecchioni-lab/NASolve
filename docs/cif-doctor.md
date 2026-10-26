@@ -1,5 +1,55 @@
 # CIF Doctor
 
+## Current capability boundary (C96)
+
+C95 now passes on macOS with Python 3.12.14 from commit
+`3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
+the relocated 863-atom endpoint, 23 dictionaries and 12 parameter files, with
+all five saved selection gates intact and zero new native calls. The receipt
+is `MIXED_RUNTIME_HANDOFF_PASS`; the diagnostic still returns `REVIEW`/exit 2.
+The [evidence ledger](cif-linked-native-registration-evidence.json) records the
+exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95`.
+
+| Question | Established result | Remaining boundary |
+| --- | --- | --- |
+| Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
+| Is the endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
+| Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
+| Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
+| Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
+
+C96 prints the existing solution summary in ordinary text-mode assessment.
+For mixed bundles, JSON also adds `solution_report.qualification_scope`:
+`source_chemistry=NOT_CLEARED_BY_ENDPOINT_QUALIFICATION`,
+`gradient_evaluator=NASOLVE_LOCAL_CORRECTED_FIXED_OBJECTIVE`, and
+`ordinary_refinement=NOT_QUALIFIED`. These describe the saved proof's scope;
+they do not change assessment status, automatic selection, stopping evidence,
+restraint policy, source findings or the no-student-CIF-approval contract.
+Manifest schema 1 and both runtime-bundle policies remain unchanged; old bundles
+need no migration. Scientific qualification remains `NOT_ASSESSED`.
+
+The next integration step must specify how ordinary execution preserves the
+qualified evaluator or separately qualifies its actual consumer, and how source
+chemistry findings are resolved without conflating them with optimizer stopping.
+Reuse the C43-C46 propynyl-torsion evidence for unchanged isolated controls;
+repeat native or derivative checks only for a changed manager, consumer or
+specific unresolved question. Full-run validation precedes Cedar integration
+through Pine into main. This report change does not authorize a merge.
+
+### Future chemical-reference input
+
+Future CIF Doctor work must accept an explicit chemical reference associated
+with a component and produce a source-bound, qualified restraints bundle from
+it. A ChemDraw document or an explicitly exported chemical interchange form
+(for example a structure file or stereochemically explicit SMILES) is a future
+input candidate; no format or importer is implemented or selected here.
+Preserve the original bytes/hash, conversion tool/version/options, atom mapping,
+connectivity, bond order, hydrogens, formal charge and declared stereochemistry.
+Record unsupported or lossy information rather than inventing it. Linkage and
+terminal-phosphate contexts still need explicit qualification, and NARestraints
+retains pairing/stacking ownership. Direct model building from a drawing belongs
+to a separate future model-construction workflow, outside CIF Doctor's scope.
+
 ## Automatic continuation and student-facing decisions
 
 Students are not asked to inspect CIF bond tables or approve candidate

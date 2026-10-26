@@ -67,7 +67,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_uninitialized_run_assessment_does_not_write_or_initialize(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            root = Path(directory).resolve()
             run = make_checkpoint_run(root)
             before = _snapshot(root)
             result = assess_run(run)
@@ -83,7 +83,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_current_checkpoint_full_effective_bundle_and_model_are_used(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            root = Path(directory).resolve()
             run = make_checkpoint_run(root)
             _child(run)
             before = _snapshot(root)
@@ -101,7 +101,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_explicit_checkpoint_and_bookmark_never_change_selection(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            root = Path(directory).resolve()
             run = make_checkpoint_run(root)
             _child(run)
             before = _snapshot(root)
@@ -116,7 +116,7 @@ class CifDoctorRunTests(unittest.TestCase):
     def test_frozen_input_checksum_changes_block_without_assessment(self, assessor):
         for relative in ("AutoRefine/refine_001/refined.pdb", "AutoRefine/refine_001/effective.cif", "../staraniso.mtz"):
             with self.subTest(path=relative), tempfile.TemporaryDirectory() as directory:
-                root = Path(directory)
+                root = Path(directory).resolve()
                 run = make_checkpoint_run(root)
                 _child(run)
                 path = run.parent.parent / "staraniso.mtz" if relative == "../staraniso.mtz" else run / relative
@@ -130,7 +130,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_missing_declared_dictionary_does_not_search_by_basename(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            root = Path(directory).resolve()
             run = make_checkpoint_run(root)
             _child(run)
             cif = run / "AutoRefine/refine_001/effective.cif"
@@ -146,7 +146,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_malformed_bundle_is_not_silently_partially_assessed(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            run = make_checkpoint_run(Path(directory))
+            run = make_checkpoint_run(Path(directory).resolve())
             child = _child(run)
             path = run / "AutoRefine/checkpoints.json"
             registry = json.loads(path.read_text())
@@ -159,7 +159,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_relocated_checkpoint_assesses_after_original_path_is_gone(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            root = Path(directory).resolve()
             source = make_checkpoint_run(root / "original")
             _child(source)
             destination = root / "relocated/dataset"
@@ -177,7 +177,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_legacy_external_input_is_visible_as_nonportable_provenance(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            root = Path(directory).resolve()
             run = make_checkpoint_run(root)
             _child(run)
             external = root / "external.cif"
@@ -200,7 +200,7 @@ class CifDoctorRunTests(unittest.TestCase):
     def test_changed_registry_or_report_during_selection_is_rejected(self, assessor):
         for relative in ("AutoRefine/checkpoints.json", "report.json"):
             with self.subTest(path=relative), tempfile.TemporaryDirectory() as directory:
-                run = make_checkpoint_run(Path(directory))
+                run = make_checkpoint_run(Path(directory).resolve())
                 _child(run)
 
                 def read_then_change(selected_run):
@@ -222,7 +222,7 @@ class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries")
     def test_input_change_during_assessment_is_not_receipted_as_frozen(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
-            run = make_checkpoint_run(Path(directory))
+            run = make_checkpoint_run(Path(directory).resolve())
             _child(run)
 
             def change_input(paths, *, stage, model):
@@ -238,7 +238,7 @@ class CifDoctorRunTests(unittest.TestCase):
     def test_change_after_resolver_before_snapshot_still_fails_frozen_hash(self, assessor):
         for key in ("model", "restraints"):
             with self.subTest(input=key), tempfile.TemporaryDirectory() as directory:
-                run = make_checkpoint_run(Path(directory))
+                run = make_checkpoint_run(Path(directory).resolve())
                 _child(run)
                 calls = 0
 

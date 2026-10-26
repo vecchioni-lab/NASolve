@@ -35,7 +35,9 @@ def native_qualifier(source,candidate,consumer):
     # source assessment must still bind the new selected source, not patched q.
     import tempfile
     with tempfile.TemporaryDirectory() as d:
-        s,c,m,native=native_case(Path(d))
+        # macOS temporary paths may use /var, a symlink to /private/var.
+        # Supply the canonical owned path without relaxing production guards.
+        s,c,m,native=native_case(Path(d).resolve())
         assert c.read_bytes()==candidate.read_bytes()
         return qualify_candidate_native(source,candidate,m,'Q17',native)
 
