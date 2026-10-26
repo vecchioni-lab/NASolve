@@ -13,7 +13,53 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C100 bounded geometry for the repaired objective.**
+**Current delivery: C101 fixed-coordinate recovered-endpoint torsion audit.**
+One complete Phenix 2.2.1-6174 job (dispatcher 2.2.1) completes in 5.393327s,
+with 9,504 local paired-kernel evaluations and 528 group calls. The unchanged
+selector chooses six near-collinear torsions and two disjoint controls.
+Initial and rounded local/group derivatives pass at finer existing steps.
+At full precision, all 22 remaining local reviews belong to PDU D:5
+C5–C5A–C5B–C5M, eleven in each atom order; the other seven selections pass.
+The selected group retains four reviews, the full group three, the remainder
+none. Native/saved-family, repeat and attribution controls pass. The same PDU
+torsion retains a strict atom-order reversal review at full precision: maximum
+gradient-component difference 4.6062e-5; the other 23 proxy/case reversals pass.
+See the [C101 contract](cif-doctor.md#recovered-endpoint-torsions-c101).
+
+Before C101 there was only a saved geometry screen for the recovered endpoint.
+The new `cif_recovered_torsion.py` adapter and `test_cif_recovered_torsion.py`
+connect maintained C100/C99/C98 readers to the unchanged torsion worker and
+numerical replay. The additive schema-1 receipt is `recovered_torsion_audit.json`;
+historical reports and CLI/runtime manifests need no migration. Completion of
+the diagnostic does not mean derivative qualification. C100 remains unqualified
+and `verified_recovered_model` remains selected with `CONTINUE_WITH_NOTES`.
+
+Validation: **5680 passed, 276 subtests passed in 927.68s (0:15:27)**; **39 focused regressions** pass. Cold relocated replay preserves all 425 parent/audit files and timestamps, retains the selected start and rejects three rebound forgeries with zero processes. Compilation, whitespace, 192 document links and rendered-figure inspection pass.
+
+All 38 C95, 213 C98, 68 C99 and 76 C100 files retain their bytes and timestamps.
+Generated coordinates, observations, dictionaries, installed-source captures
+and logs remain local; Git includes source, synthetic tests, documentation and
+compact technical evidence. Exact commands, hashes and results are in ledger
+entry `recovered_mixed_torsions_2026_10_26`.
+
+**Next boundary:** a resolution-aware fixed-coordinate audit of the retained
+local and broader total/dihedral directions, including the independent strict
+atom-order reversal finding. Keep the existing tolerances,
+coarse failures and representability/midpoint/target-resolution controls. The
+very small PDU plane normal is a conditioning lead, not proof of wrong chemistry
+or permission to remove a restraint. Do not optimize again or transfer old
+C91–C93 qualification. Source chemistry, ordinary refinement, runtime adoption
+and scientific approval remain separate.
+
+Continue directly on **`cedar`**, with no per-fix branch or Pine/main merge.
+The independent metal-base-pair GUI work can proceed; this delivery changes no
+GUI, metal recipe, NARestraints workbook or shared compiler.
+
+— Rowan · Codex desktop
+
+### Previous C100 delivery
+
+**C100 delivery: bounded geometry for the repaired objective.**
 One complete Phenix 2.2.1-6174 job (dispatcher 2.2.1) lowers the fixed target
 12.5367%, from 4900.147192055969 to 4285.828848323326. The native line search
 stops after 58 iterations/108 calls with rounding errors and its convergence

@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Diagnose recovered endpoints without changing their selection (C101)
+
+- Add a fixed-coordinate torsion adapter bound to replayed C100/C99/C98 evidence.
+  Reuse the existing geometry/force selector, native worker and numerical replay;
+  preserve the prior coordinate decision even when finer samples agree.
+- Save a separate schema-1 `recovered_torsion_audit.json` with anchored parent
+  references, one bounded native call and read-only, SDK-free replay.
+- The complete Mac audit localizes all 22 remaining local full-precision
+  derivative reviews to one near-collinear PDU D:5 torsion. Other sampled local
+  torsions and the remainder group pass; the same PDU torsion retains strict
+  atom-order reversal review. Initial and rounded local/group checks pass at
+  existing finer steps. This diagnoses evidence, not endpoint usability.
+- Keep C100 unqualified and the verified recovered model selected. No numerical
+  tolerances, source chemistry, NARestraints targets, runtime or CLI changes;
+  historical reports need no migration.
+
 ### Bound geometry trials for recovered objectives (C100)
 
 - Add an explicit geometry adapter bound to replayed C98 source/native evidence

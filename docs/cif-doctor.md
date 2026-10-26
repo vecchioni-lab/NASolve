@@ -7,7 +7,9 @@
 
 <a id="current-capability-boundary-c99"></a>
 
-## Current capability boundary (C100)
+<a id="current-capability-boundary-c100"></a>
+
+## Current capability boundary (C101)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -23,6 +25,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
 | Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | C100 tests bounded geometry but retains the verified recovered start because endpoint derivatives fail qualification. The C95 bundle is not overwritten or reclassified. |
+| Why does the repaired endpoint retain derivative review? | C101 localizes all 22 remaining sampled local full-precision failures to PDU D:5 C5–C5A–C5B–C5M; seven other sampled torsions and the remainder group pass. Native attribution and saved-family controls agree. | Fixed-coordinate diagnosis does not requalify C100 or establish a native bug. A resolution-aware derivative check is next; the verified recovered model stays selected. |
 | Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
 | Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
 
@@ -92,6 +95,94 @@ assessment with all 38 bundle files unchanged and zero SDK/process attempts.
 The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
 The existing evidence ledger records commands, frozen hashes, the exact current
 source summary and a preserved C18 DF recovery candidate for subsequent qualification.
+
+### Recovered-endpoint torsions (C101)
+
+`cif_recovered_torsion.audit_recovered_torsions(geometry_directory,
+gradient_directory, recovery_directory, phenix, output, timeout_seconds=120)`
+replays the C100 geometry receipt and its C99/C98 lineage before preparing a
+fresh diagnostic. It requires a completed geometry worker with saved finite
+endpoint coordinates, not an endpoint pass. `phenix=None` prepares only.
+`read_recovered_torsions(directory, geometry_directory=...,
+gradient_directory=..., recovery_directory=...)` regenerates preparation and
+replays every numerical observation without launching an SDK or captured code.
+These are diagnostic Python APIs; CLI and ordinary runtime selection are unchanged.
+
+The adapter reuses the established C91 selector and worker unchanged. Selection
+uses native geometry and atomic gradients, with no component allowlist: up to
+six near-collinear positive-weight ordinary torsions and two disjoint controls.
+At initial, full-precision and PDB-rounded coordinates, it tests each selected
+torsion in both atom orders using single-restraint and container kernels.
+Separate full, selected and remainder groups check attribution against the
+native torsion family and exact saved baselines. Central-difference steps remain
+1e-3 through 1e-9 Å by decades, with unchanged 1e-4 absolute/relative tolerances
+and two adjacent passing samples. Every coarse failure remains in the record.
+There is one native call, at most 10,000 local paired-kernel evaluations and 600
+group calls; the worker deadline is configurable from 1 to 600 seconds. There
+is no model optimization, restraint change or endpoint requalification.
+
+The additive schema-1 receipt is `recovered_torsion_audit.json`, policy
+`cif-recovered-mixed-fixed-torsion-v1`. C98 resources retain the
+`mixed_source_recovery_directory` anchor; C99 reports/results retain
+`recovered_gradient_directory`; C100 inputs use `recovered_geometry_directory`;
+the owned job uses `mixed_torsion_directory`. All references carry byte counts
+and SHA-256. The old archive field remains the exact C94 capsule verified by
+C98; independently bound current reports establish the repaired objective.
+The reader verifies every output, regenerates the maintained recipe, recomputes
+selection and numerical replay, and preserves C100's exact coordinate decision.
+Historical workers/reports and runtime manifests need no migration.
+
+The complete Mac execution on **Phenix 2.2.1-6174** (dispatcher 2.2.1) completes
+one native job in **5.393327 seconds**, with **9,504 local paired-kernel evaluations
+and 528 group calls**. All observed values are finite. All three cases pass
+repeat, single/container, selected-sum, selected-plus-remainder,
+full/native-family and exact saved-family controls. Atom-order reversal passes
+23 of 24 proxy/case comparisons; the same full-precision PDU torsion fails its
+strict reversal comparison. There are no positive constant torsions requiring
+an unsupported-family exception.
+
+| Saved coordinates | Local directions | Group directions | Interpretation |
+| --- | --- | --- | --- |
+| Initial | 224/224 pass; 2 require finer samples | 12/12 pass | The initial sampled evidence reproduces. |
+| Full precision | 202/224 pass; 22 remain under review | 5/12 pass; all four remainder directions pass | The remaining local failures are one PDU torsion in both orders. |
+| PDB rounded | 224/224 pass; 8 require finer samples | 12/12 pass; 4 require finer samples | Rounded torsion evidence agrees without selecting the endpoint. |
+
+All 22 remaining local failures belong to PDU D:5 **C5–C5A–C5B–C5M**, native
+proxy 587: eleven directions per atom order. Its minimum plane-normal sine is
+**2.946479419326827e-7**, compared with 0.0012865368366159256 initially and
+0.0010338991217958512 after rounding. The other five near-collinear selections
+and two controls pass all sampled local derivatives. At full precision the
+selected group retains four reviews, the complete group three, and the remainder
+none. The same torsion's reversed target differs by about 1.18e-15, but its
+largest gradient-component difference is **4.606198899637093e-5** against a
+local gradient norm of 7064.7553790623715. This exceeds the unchanged reversal
+comparison (1e-8 absolute, 1e-10 relative). Both individual/container kernels
+reproduce that discrepancy, and within-order repeats agree. Retain it as an
+independent finding: finite-difference sampling alone does not explain away
+order sensitivity. These observations localize a numerical conditioning
+question; they do not prove a native derivative defect or justify deleting a
+chemically intended restraint.
+
+`RECOVERED_MIXED_TORSION_AUDIT_COMPLETE` means the diagnostic and replay
+completed, **not** that derivatives or endpoint usability pass. The copied
+C100 decision still selects `verified_recovered_model`, with the endpoint
+unqualified and `CONTINUE_WITH_NOTES`. All 38 C95, 213 C98, 68 C99 and 76 C100
+files retain their bytes and timestamps. No new model, runtime activation,
+checkpoint, ordinary refinement or scientific approval is produced. The
+NARestraints workbook, terminal-phosphate policy and metal GUI remain unchanged.
+
+**Next boundary:** a bounded resolution-aware audit of this exact saved
+full-precision endpoint, using the established representability, midpoint,
+target-resolution and adjacent-sample controls with unchanged tolerances. It
+must cover the retained local failures, the stricter atom-order reversal
+finding and the broader total/dihedral endpoint directions; rounded agreement
+alone cannot qualify the full-precision endpoint.
+Do not inherit C91–C93's old-objective qualification or rerun optimization merely
+to escape this finding. Source chemistry and any eventual policy change require
+separate evidence. Exact commands and hashes are in evidence-ledger entry
+`recovered_mixed_torsions_2026_10_26`.
+
+Validation: **5680 passed, 276 subtests passed in 927.68s (0:15:27)**; **39 focused regressions** pass. Cold relocated replay preserves all 425 parent/audit files and timestamps, retains the selected start and rejects three rebound forgeries with zero processes. Compilation, whitespace, 192 document links and rendered-figure inspection pass.
 
 ### Recovered-objective geometry (C100)
 

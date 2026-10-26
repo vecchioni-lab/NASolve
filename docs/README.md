@@ -5,7 +5,7 @@ Updated **2026-10-26**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
-The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c100)
+The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c101)
 separates qualified implementation, open chemistry, consumer qualification and
 the next integration step. The actual Mac C95 handoff passed with zero native
 calls; C96 exposes those limits in text and JSON reports. C97 adds the
@@ -15,7 +15,9 @@ C98 separately [requalifies the preserved DF candidate](cif-doctor.md#preserved-
 in the current linked model. C99 supplies [fresh fixed-coordinate derivative evidence](cif-doctor.md#recovered-manager-derivatives-c99)
 for that repaired manager. C100 [tests bounded geometry](cif-doctor.md#recovered-objective-geometry-c100)
 and retains the verified start because endpoint derivatives remain under review.
-Runtime activation and scientific qualification remain separate.
+C101 [audits the saved torsions](cif-doctor.md#recovered-endpoint-torsions-c101)
+at fixed coordinates and localizes the remaining local failures to one nearly
+collinear PDU torsion. Runtime activation and scientific qualification remain separate.
 
 ATL stays independent,
 and ChemDraw-derived chemical references are explicit future scope.

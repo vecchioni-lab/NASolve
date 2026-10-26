@@ -3170,3 +3170,31 @@ exclude a usable endpoint. Every attempt requires fresh storage, preserves
 failed outputs and remains separate from runtime/checkpoint adoption. Native
 reread is never launched for an unqualified derivative endpoint. This adapter
 does not alter the independent metal-authoring backend or NAR role/target logic.
+
+
+### Fixed-coordinate diagnosis after source recovery (C101)
+
+`cif_recovered_torsion` binds the unchanged mixed-torsion selector, worker and
+replay validator to the current C100/C99/C98 lineage. The completed geometry
+worker supplies exact initial/full/rounded coordinates and saved torsion-family
+references even when its endpoint remains unqualified. Parent readers establish
+the repaired objective once; anchored references retain ordered dictionaries,
+parameters, installed-source pins and the exact native manager. The current
+consumer must match C100 before a fresh output directory is created.
+
+The one-job diagnostic separates individual single/container kernels in both
+orders from full/selected/remainder attribution. It never optimizes or changes
+a definition. A completed diagnostic can contain derivative reviews; its outer
+status cannot promote C100's coordinate decision. The additive receipt and
+read-only reconstruction contract are documented in the
+[C101 contract](cif-doctor.md#recovered-endpoint-torsions-c101).
+
+The complete native trial localizes 22 remaining local full-precision reviews
+to PDU D:5 C5–C5A–C5B–C5M while seven other sampled torsions and the remainder pass.
+Initial/rounded sampled checks agree at finer steps, and native/saved-family
+attribution passes for all representations. The same full-precision PDU torsion
+also retains strict atom-order reversal review; within-order repeats and
+single/container comparisons agree. This supports a resolution-aware
+investigation without claiming a derivative defect, chemical correction or
+endpoint qualification. No NAR workbook/shared compiler, GUI, runtime manifest,
+CLI, source-state or terminal-phosphate policy changes are involved.
