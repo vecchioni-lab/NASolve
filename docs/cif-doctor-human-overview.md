@@ -54,13 +54,17 @@ C102 resolution-aware audit passes only two local and four rounded broader
 rechecks; all six full-precision broader checks still fail. Some apparently
 close derivatives are rejected because the requested coordinate displacement
 is not represented accurately enough. The order discrepancy reproduces.
-Independent higher-precision arithmetic and the existing declared-linear-axis
-evidence are the next checks; smaller steps alone are not an established remedy.
+C103 independently evaluates the periodic torsion function with exact binary
+inputs and high-precision arithmetic. Its supported reference checks pass in both
+orders, while the full-precision PDU torsion remains highly sensitive to a single
+floating-point coordinate step. Current PDU declarations match the earlier
+triple/180° prerequisites. A separate candidate and exact current-model native
+comparison are next; no restraint change or endpoint approval follows yet.
 Neither native mechanics nor initial derivatives confer the old endpoint proof.
 ATL remains an independent source/compiler control. Future chemical-reference
 input, potentially from ChemDraw exports, belongs to restraints preparation;
 drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c102) is the
+[current capability map](cif-doctor.md#current-capability-boundary-c103) is the
 concise authority for these distinctions and next steps.
 
 ## What it does
@@ -652,6 +656,8 @@ sampled local full-precision failures belong to one nearly collinear PDU
 torsion. C102 tests finer resolution and retains review; both displacement
 uncertainty and strict atom-order sensitivity remain visible. Numerical
 agreement, useful conditioning and scientific chemistry are separate questions.
+C103 supplies independent decimal arithmetic and input-sensitivity evidence;
+current declaration matches precede a separate candidate/native comparison.
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native

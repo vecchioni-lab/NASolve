@@ -33041,5 +33041,595 @@
       "No optimizer retry, relaxed threshold, runtime/checkpoint adoption, ordinary refinement qualification or scientific approval.",
       "Metal GUI/shared-restraint work, ATL and future ChemDraw-reference support remain independent. Continue directly on Cedar; no new branch or Pine/main merge."
     ]
+  },
+  "recovered_torsion_precision_2026_10_26": {
+    "author": "Rowan · Codex desktop",
+    "status": "IMPLEMENTED_AND_SAVED_DATA_EXECUTED; ENDPOINT_REMAINS_UNQUALIFIED",
+    "branch": "cedar",
+    "parent_commit": "bbd00798b3937182ab3d3d16eb3991b79937695f",
+    "before": "C102 retained resolution/reversal findings without an independent mathematical reference or current-row declaration comparison.",
+    "after": "Independent decimal calculations pass their supported controls, isolate strict native/reference disagreement to full-precision PDU and quantify one-ULP input sensitivity. Row declarations match prior prerequisites without preparing a candidate or changing selection.",
+    "changed_runtime_files": [
+      "src/nasolve/cif_torsion_precision.py",
+      "src/nasolve/cif_recovered_precision.py"
+    ],
+    "changed_tests": [
+      "tests/test_cif_torsion_precision.py",
+      "tests/test_cif_recovered_precision.py"
+    ],
+    "schemas": {
+      "schema_version": 1,
+      "policy_id": "cif-recovered-independent-torsion-precision-v1",
+      "report": "recovered_precision_audit.json",
+      "result": "precision_result.json",
+      "output_anchor": "recovered_precision_directory",
+      "new_parent_anchor": "recovered_resolution_directory"
+    },
+    "compatibility_and_migration": "Additive offline diagnostic APIs. No new dependency, migration, CLI/runtime schema, historical worker, native threshold, chemistry, NAR target or model-selection change.",
+    "methods": {
+      "energy": "9600 * weight / n^2 * (1 - cos(n * (model - ideal)))",
+      "gradient": "FORWARD_AUTOMATIC_DIFFERENTIATION_OF_NORMALIZED_PLANE_NORMAL_EXPRESSION",
+      "historical_native_sources": [
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/scitbx/lbfgs/__init__.py",
+          "module": "scitbx.lbfgs",
+          "sha256": "c7504ffe029b75a064932c7b8201cccd52d4f98b9f1310025e407445e548053e"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/flags.py",
+          "module": "cctbx.geometry_restraints.flags",
+          "sha256": "81038310190507529bef66a3073db6f347a794a7f01a66ac047e8bd613d8603e"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/manager.py",
+          "module": "cctbx.geometry_restraints.manager",
+          "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/energies.py",
+          "module": "cctbx.geometry_restraints.energies",
+          "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/scitbx_lbfgs_ext.so",
+          "module": "scitbx_lbfgs_ext",
+          "sha256": "24bbb8db7137b8cd27bbc25c32a87a4fa04b12e1549f6220eeae849a592b8df0"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/cctbx_geometry_restraints_ext.so",
+          "module": "cctbx_geometry_restraints_ext",
+          "sha256": "496677a82712ef7e8488ef675b98d0bb4f06741c12489f8a3d5fc15058b7612c"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/geometry_restraints/__init__.py",
+          "module": "cctbx.geometry_restraints",
+          "sha256": "49b1a2f97978b74e416f763417d6a76f2ce6e00c1496afb7b24fe51072120950"
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/cctbx/array_family/flex.py",
+          "module": "cctbx.array_family.flex",
+          "sha256": "2344b006d5e9cc096b45e2e38da82d3c1fc6fbfc8626f59349887d46652da2fb"
+        }
+      ],
+      "input_values": "EXACT_BINARY64_VALUES; DECIMAL_FROM_FLOAT",
+      "native_header_records": [
+        {
+          "bytes": 22165,
+          "path": "dihedral.h",
+          "sha256": "4f006d773127bb1fb4134bc5ce6aec6a7038f5fd0ef7466dc7ebd9d1e9683c48",
+          "status": "RECORDED"
+        },
+        {
+          "bytes": 8708,
+          "path": "dihedral_bpl.cpp",
+          "sha256": "09ed3628408754b63d0df07045730505121b92c3653e6fac4689e8443c97c93d",
+          "status": "RECORDED"
+        }
+      ],
+      "native_header_sha256": "4f006d773127bb1fb4134bc5ce6aec6a7038f5fd0ef7466dc7ebd9d1e9683c48",
+      "pi": "MACHIN_IDENTITY_AT_WORKING_PRECISION; NOT_BINARY64_OPERATION_EMULATION",
+      "precisions": [
+        60,
+        90
+      ],
+      "reference_policy": "cif-independent-decimal-periodic-torsion-v1",
+      "steps": [
+        "1e-24",
+        "1e-26"
+      ]
+    },
+    "parent_bindings": {
+      "resolution_report": {
+        "anchor": "recovered_resolution_directory",
+        "path": "recovered_resolution_audit.json",
+        "sha256": "80900153937d843584aab75527731723c18392636898ebf45ddd566d051602a9",
+        "size": 34082
+      },
+      "torsion_report": {
+        "anchor": "recovered_torsion_directory",
+        "path": "recovered_torsion_audit.json",
+        "sha256": "ba774a2873ca83a20c0485458e867de026dcc4dd373a052650a7414c7f645531",
+        "size": 32722
+      },
+      "torsion_result": {
+        "anchor": "recovered_torsion_directory",
+        "path": "job/torsion_result.json",
+        "sha256": "eb602c6f7c808471dcaa6483bacfac36a76f53ef7ff63c0aba5544580cbd4464",
+        "size": 7561628
+      },
+      "torsion_spec": {
+        "anchor": "recovered_torsion_directory",
+        "path": "job/torsion_spec.json",
+        "sha256": "0a5d040ce19662bd0a55a15966a9c440a7fa4a467713750c47775feaf9684bbf",
+        "size": 1449562
+      },
+      "geometry_report": {
+        "anchor": "recovered_geometry_directory",
+        "path": "recovered_geometry_trial.json",
+        "sha256": "e10602a313d9c9370257ead66dbd33d8174db9f8375ac9aecd14cfa80eb9e5c4",
+        "size": 30962
+      },
+      "gradient_report": {
+        "anchor": "recovered_gradient_directory",
+        "path": "recovered_mixed_gradients.json",
+        "sha256": "6f19448d2a9d2cdeccc116465faad694630656715c6e62084b86613a99da9f89",
+        "size": 29717
+      },
+      "recovery_report": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "mixed_source_recovery.json",
+        "sha256": "bf1454717b00d7e6f6ad45aff173f931afc2bb7fcd584acab74fccbf46fb0b94",
+        "size": 3427467
+      },
+      "endpoint_capsule": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "capsules/endpoint.zip",
+        "sha256": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+        "size": 27412323
+      }
+    },
+    "ordered_input_bindings_sha256": "d96b4f78a181e9cd49699946077ee2a5ec124222236b261f7a997537ab78bba0",
+    "execution": {
+      "mode": "COMPLETE_SAVED_DATA_EXECUTION; NOT_DRY_RUN",
+      "seconds": 66.15,
+      "new_native_calls": 0,
+      "historical_native_installation": "Phenix 2.2.1-6174",
+      "installed_source_access": "TEXT_INSPECTION_ONLY",
+      "python": "3.12.14",
+      "libmpdec": "4.0.1",
+      "reference_energy_evaluations": 2604,
+      "maximum_selected_proxies": 8,
+      "maximum_coordinate_cases": 3,
+      "optimization": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "generation": "NOT_RUN",
+      "candidate_preparation": "NOT_RUN",
+      "endpoint_native_readback": "NOT_RUN"
+    },
+    "numerical_evidence": {
+      "summary": {
+        "automatic_adoption": false,
+        "case_proxy_rows": 24,
+        "decimal_audited_rows": 21,
+        "declared_linear_row_matches": 6,
+        "endpoint_requalification": "NOT_RUN",
+        "native_strict_gradient_disagreements": [
+          {
+            "case": "full_precision",
+            "kernel": "single",
+            "maximum_absolute_difference": "0.00022369349242340121495450693724878117722941371797499983390326631315497426477074217717",
+            "order": "forward",
+            "selection_index": 0
+          },
+          {
+            "case": "full_precision",
+            "kernel": "accumulated",
+            "maximum_absolute_difference": "0.00022369349242340121495450693724878117722941371797499983390326631315497426477074217717",
+            "order": "forward",
+            "selection_index": 0
+          },
+          {
+            "case": "full_precision",
+            "kernel": "single",
+            "maximum_absolute_difference": "0.00026975548141977214331651884673364445847941371797499983390326631315497426477074217717",
+            "order": "reversed",
+            "selection_index": 0
+          },
+          {
+            "case": "full_precision",
+            "kernel": "accumulated",
+            "maximum_absolute_difference": "0.00026975548141977214331651884673364445847941371797499983390326631315497426477074217717",
+            "order": "reversed",
+            "selection_index": 0
+          }
+        ],
+        "selected_proxies": 8,
+        "supported_reference_controls_pass": true,
+        "unassessed_rows": 3,
+        "undefined_rows": 0
+      },
+      "decimal_stability_reversal_tolerance": {
+        "absolute": "1e-30",
+        "relative": "1e-30"
+      },
+      "decimal_finite_difference_tolerance": {
+        "absolute": "1e-20",
+        "relative": "1e-20"
+      },
+      "native_strict_comparison_tolerance": {
+        "absolute": "1e-8",
+        "relative": "1e-10"
+      },
+      "comparison_bound_rule": "MAXIMUM_OF_ABSOLUTE_AND_RELATIVE_ALLOWANCES",
+      "native_original_derivative_tolerance": "UNCHANGED; ALL ORIGINAL FAILURES PRESERVED",
+      "direction_order_checks": 504,
+      "paired_decimal_steps": 1008,
+      "one_ulp_samples": 504,
+      "native_targets_pass": 84,
+      "native_gradient_arrays_pass": 80,
+      "native_gradient_arrays_review": 4,
+      "PDU_central_torsion": [
+        {
+          "case": "initial",
+          "reference": {
+            "angle_degrees": -117.09643915032798,
+            "gradient_norm": 14401.584158970594,
+            "minimum_plane_sine": 0.0012865368366159445,
+            "target": 13.584679612414341
+          },
+          "maximum_native_gradient_component_difference": {
+            "forward": 1.2281408608513161e-11,
+            "reversed": 1.4869915360529514e-10
+          },
+          "reference_reversal_consistent": true,
+          "one_ulp_maximum_gradient_component_difference": 2.6295485789336498e-08
+        },
+        {
+          "case": "full_precision",
+          "reference": {
+            "angle_degrees": -11.226146413078617,
+            "gradient_norm": 7064.7549801213445,
+            "minimum_plane_sine": 2.946479419296002e-07,
+            "target": 6.137576966181551e-08
+          },
+          "maximum_native_gradient_component_difference": {
+            "forward": 0.00022369349242340122,
+            "reversed": 0.00026975548141977215
+          },
+          "reference_reversal_consistent": true,
+          "one_ulp_maximum_gradient_component_difference": 0.22708635428803364
+        },
+        {
+          "case": "pdb_rounded",
+          "reference": {
+            "angle_degrees": 150.15963220885052,
+            "gradient_norm": 5800.8441068146485,
+            "minimum_plane_sine": 0.0010338991217958321,
+            "target": 20.774986291967537
+          },
+          "maximum_native_gradient_component_difference": {
+            "forward": 3.0133419965799765e-11,
+            "reversed": 1.0947401675634472e-10
+          },
+          "reference_reversal_consistent": true,
+          "one_ulp_maximum_gradient_component_difference": 3.519433347000366e-08
+        }
+      ],
+      "interpretation": "The independent periodic function itself remains highly sensitive near collinearity. Stable high-precision derivatives do not establish useful optimization conditioning, a native coding defect, whole-objective qualification or chemical approval."
+    },
+    "declaration_evidence": [
+      {
+        "atom_names": [
+          "C5",
+          "C5A",
+          "C5B",
+          "C5M"
+        ],
+        "checks": {
+          "linear_angle_0": true,
+          "linear_angle_1": true,
+          "torsion_esd": true,
+          "torsion_period": true,
+          "torsion_target": true,
+          "triple_bond_0": true
+        },
+        "component": "PDU",
+        "finding": null,
+        "site": "D:5",
+        "status": "DECLARED_LINEAR_ROW_MATCH"
+      },
+      {
+        "atom_names": [
+          "C5",
+          "C7",
+          "C8",
+          "C9"
+        ],
+        "checks": {
+          "linear_angle_0": true,
+          "linear_angle_1": true,
+          "torsion_esd": true,
+          "torsion_period": true,
+          "torsion_target": true,
+          "triple_bond_0": true
+        },
+        "component": "5PC",
+        "finding": null,
+        "site": "A:4",
+        "status": "DECLARED_LINEAR_ROW_MATCH"
+      },
+      {
+        "atom_names": [
+          "C4",
+          "C5",
+          "C5A",
+          "C5B"
+        ],
+        "checks": {
+          "linear_angle_0": true,
+          "torsion_esd": true,
+          "torsion_period": true,
+          "torsion_target": true,
+          "triple_bond_0": true
+        },
+        "component": "PDU",
+        "finding": null,
+        "site": "D:5",
+        "status": "DECLARED_LINEAR_ROW_MATCH"
+      },
+      {
+        "atom_names": [
+          "C6",
+          "C5",
+          "C5A",
+          "C5B"
+        ],
+        "checks": {
+          "linear_angle_0": true,
+          "torsion_esd": true,
+          "torsion_period": true,
+          "torsion_target": true,
+          "triple_bond_0": true
+        },
+        "component": "PDU",
+        "finding": null,
+        "site": "D:5",
+        "status": "DECLARED_LINEAR_ROW_MATCH"
+      },
+      {
+        "atom_names": [
+          "C4",
+          "C5",
+          "C7",
+          "C8"
+        ],
+        "checks": {
+          "linear_angle_0": true,
+          "torsion_esd": true,
+          "torsion_period": true,
+          "torsion_target": true,
+          "triple_bond_0": true
+        },
+        "component": "5PC",
+        "finding": null,
+        "site": "A:4",
+        "status": "DECLARED_LINEAR_ROW_MATCH"
+      },
+      {
+        "atom_names": [
+          "C6",
+          "C5",
+          "C7",
+          "C8"
+        ],
+        "checks": {
+          "linear_angle_0": true,
+          "torsion_esd": true,
+          "torsion_period": true,
+          "torsion_target": true,
+          "triple_bond_0": true
+        },
+        "component": "5PC",
+        "finding": null,
+        "site": "A:4",
+        "status": "DECLARED_LINEAR_ROW_MATCH"
+      },
+      {
+        "atom_names": [
+          "C4'",
+          "O4'",
+          "C1'",
+          "C2'"
+        ],
+        "checks": null,
+        "component": "5CM",
+        "finding": null,
+        "site": "A:7",
+        "status": "NOT_SELECTED_BY_DECLARATIONS"
+      },
+      {
+        "atom_names": [
+          "C1'",
+          "C2'",
+          "C3'",
+          "C4'"
+        ],
+        "checks": null,
+        "component": "DZ",
+        "finding": null,
+        "site": "A:12",
+        "status": "NOT_SELECTED_BY_DECLARATIONS"
+      }
+    ],
+    "coordinate_decision": {
+      "automatic_adoption": false,
+      "checks": {
+        "qualified_endpoint_derivatives": false
+      },
+      "continue_solving": true,
+      "endpoint_usable": false,
+      "native_usable": true,
+      "notes": [
+        "Stopping, pucker, chirality and residual findings are recorded separately from fixed native mechanics.",
+        "The optional separate endpoint is selected only when its fixed objective and native checks qualify; otherwise the usable starting model is retained."
+      ],
+      "requires_cif_review": false,
+      "scientific_qualification": "NOT_ASSESSED",
+      "selected": "verified_recovered_model",
+      "status": "CONTINUE_WITH_NOTES",
+      "stopping": {
+        "calls": 108,
+        "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+        "iterations": 58,
+        "max_iterations": 1000,
+        "native_criterion_met": false,
+        "reason": "unreported"
+      }
+    },
+    "source_chemical_scope": "PRESERVED_IN_BOUND_RECOVERY; NOT_PROMOTED_BY_DIAGNOSTIC",
+    "receipts": {
+      "precision/recovered_precision_audit.json": {
+        "anchor": "live_tests_directory",
+        "path": "103_Cedar_PDU-precision-tc2jmhfw/precision/recovered_precision_audit.json",
+        "sha256": "32608e4940afbeb8fc657cec05123331fb8b2e688019a4b1d38611b2331ab11e",
+        "size": 11824
+      },
+      "precision/precision_result.json": {
+        "anchor": "live_tests_directory",
+        "path": "103_Cedar_PDU-precision-tc2jmhfw/precision/precision_result.json",
+        "sha256": "a20513a790f1dc96c5eb3a2f3c62546aa9c5bbdcf1faf486b49d97dabce78d9d",
+        "size": 987892
+      },
+      "execution_summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "103_Cedar_PDU-precision-tc2jmhfw/execution_summary.json",
+        "sha256": "67e26fab58d5a3994b41dc97489dbaa42341c57e65b8649a1da1ae0a8a024c3d",
+        "size": 17097
+      },
+      "inspected-source.json": {
+        "anchor": "live_tests_directory",
+        "path": "103_Cedar_PDU-precision-tc2jmhfw/inspected-source.json",
+        "sha256": "301bba6ff70f004fbdcecca384bbcf0f25bc5f8409922d8c29840d8f14754b81",
+        "size": 839
+      },
+      "before.json": {
+        "anchor": "live_tests_directory",
+        "path": "103_Cedar_PDU-precision-tc2jmhfw/before.json",
+        "sha256": "0826a73d0e83f0be8e6a896fadf45832fce12f11b292107d855f5e8486deedd7",
+        "size": 148226
+      },
+      "execute.py": {
+        "anchor": "live_tests_directory",
+        "path": "103_Cedar_PDU-precision-tc2jmhfw/execute.py",
+        "sha256": "e916c374830231675924427a93cd4f5daa41d0d7c5c9edc69328e38b81fcde48",
+        "size": 3842
+      }
+    },
+    "validation": {
+      "before_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_torsion_precision.py",
+      "before_result": "Expected ModuleNotFoundError before implementation; 1 collection error in 0.10s.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_torsion_precision.py tests/test_cif_recovered_precision.py",
+      "focused_result": "49 passed in 67.38s (0:01:07)",
+      "new_regression_cases": 49,
+      "strict_tolerance_regression_before": "The comparator boundary regression failed before using max(absolute, relative allowance): 1 failed in 0.04s; final focused suite includes the passing regression.",
+      "subnormal_regression_before": "Exact one-ULP displacement reporting at zero failed before correction: 1 failed in 0.08s; final focused suite includes the passing regression.",
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q",
+      "saved_data_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/103_Cedar_PDU_precision_r3.py",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c103_cold.py",
+      "relocation": {
+        "bytes_and_timestamps_preserved_by_read": true,
+        "coordinate_selection": "verified_recovered_model",
+        "endpoint_requalification": "NOT_RUN",
+        "files_unchanged_by_read": 497,
+        "original_live_and_code_paths_blocked": true,
+        "original_temporary_paths_absent": true,
+        "process_discovery_pickle_calls": 0,
+        "read_seconds": 59.626,
+        "rebound_forgeries_rejected": [
+          "forged_selection",
+          "rebound_reference",
+          "rebound_declaration",
+          "schema_type"
+        ],
+        "status": "PRECISION_REPLAY_PASS",
+        "total_seconds": 308.082
+      },
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c103-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "compile_result": "PASS",
+      "integrity_command": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c103_verify.py",
+      "integrity": {
+        "prepublication_real_audit_result_bytes_unchanged": true,
+        "status": "PASS",
+        "frozen_source_and_test_files": 416,
+        "all_execution_source_and_test_hashes_unchanged": true,
+        "parent_file_bytes_and_mtimes_preserved": {
+          "C95": 38,
+          "C98": 213,
+          "C99": 68,
+          "C100": 76,
+          "C101": 68,
+          "C102": 70
+        },
+        "python": "3.12.14",
+        "libmpdec": "4.0.1",
+        "document_links": 198,
+        "supported_case_proxy_rows": 21,
+        "unassessed_case_proxy_rows": 3,
+        "precision_and_reversal_controls": "PASS",
+        "decimal_direction_order_checks": 504,
+        "decimal_paired_step_samples": 1008,
+        "one_ulp_samples": 504,
+        "reference_energy_evaluations_per_analysis": 2604,
+        "native_target_comparisons_pass": 84,
+        "native_gradient_comparisons_pass": 80,
+        "native_gradient_comparisons_review": 4,
+        "new_native_calls": 0,
+        "source_hashes": {
+          "src/nasolve/cif_torsion_precision.py": "5fe577346291fead12a995d12bb9cada5fe1f55bf7b958eb5cebae09c99f486c",
+          "src/nasolve/cif_recovered_precision.py": "5989a9e3ae8b6a032c159456ce5a361c77f1dde554acfc46102c103f8afe54a0",
+          "tests/test_cif_torsion_precision.py": "0e5d86007e0c3b819e955f648922f357df8b453b5b2ebb4988767451c4782e46",
+          "tests/test_cif_recovered_precision.py": "0a7c2796b6ce4c614072afb1ad54a015b3c87cc255702c3d4f768c7f897318a0"
+        }
+      },
+      "whitespace_command": "git diff --check",
+      "figure_command": "/opt/homebrew/bin/rsvg-convert -w 1400 -o /private/tmp/c103-overview.png docs/figures/cif-doctor-overview.svg",
+      "figure_result": "Rendered and visually inspected; text and bounds pass.",
+      "full_result": "5772 passed, 276 subtests passed in 1034.42s (0:17:14)",
+      "archive_manifest": {
+        "anchor": "live_tests_directory",
+        "path": "103_Cedar_PDU-precision-tc2jmhfw/validation/manifest.json",
+        "sha256": "9501d9615e80bde566b3f0c9a721e67d805714becbb2494be52ddd4a50f5e435",
+        "size": 2939
+      },
+      "archive_payload_count": 19,
+      "publication_whitespace_check": {
+        "status": "PASS",
+        "file": "tests/test_cif_recovered_precision.py",
+        "change": "Removed one trailing blank line after the complete suite; no other byte changed.",
+        "tested_sha256": "0a7c2796b6ce4c614072afb1ad54a015b3c87cc255702c3d4f768c7f897318a0",
+        "published_sha256": "9c06bb776dc22ebfb9a69bebde3af2f819e486087e4fe423cd2bc5b97c0729fb",
+        "python_ast_including_locations_identical": true,
+        "other_source_and_test_files_byte_identical": 415,
+        "runtime_source_byte_identical": true,
+        "full_suite_repeated": false,
+        "reason": "A trailing blank line cannot alter execution; the exact tested snapshot is preserved in execution-code and the final Python AST, including locations, is identical.",
+        "receipt": {
+          "anchor": "live_tests_directory",
+          "path": "103_Cedar_PDU-precision-tc2jmhfw/publication-validation/whitespace.json",
+          "sha256": "fabac5a0232e6bbcc5aacf2c5c4d90bd74a984082e29e39d4a93062255841fc5",
+          "size": 704
+        }
+      }
+    },
+    "generated_artifacts": "All scientific inputs, coordinates, native/decimal observations, inspected installed-source text and logs remain local. Git includes source, synthetic tests, maintained documentation and compact technical evidence. The ignored local runner is archived beside the run.",
+    "limitations_and_followup": [
+      "All C100/C101/C102 failed checks and the verified starting-model selection remain unchanged.",
+      "Three DZ alternate-ideal cases are explicitly unassessed; the supported positive-period reference is not a general native evaluator replacement.",
+      "Current declaration checks cover individual rows, not a complete candidate or native omission delta. Six PDU/5PC rows match; no candidate has been prepared.",
+      "Next prepare a separate PDU candidate with the existing declaration-based omission policy. Check exact current linked/native original-candidate inventories, preserving every other field, phosphate state, NAR target and 5PC bystander. Fixed-coordinate energy/gradient delta and derivative checks precede another optimizer.",
+      "No relaxed native threshold, production/checkpoint adoption, ordinary refinement or scientific approval.",
+      "Continue directly on Cedar without a new branch or Pine/main merge. Metal GUI/shared-restraint work, ATL and future ChemDraw reference support remain separate."
+    ]
   }
 }

@@ -2,7 +2,7 @@
 
 Updated **2026-10-26** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
-then `main` (draft PR #23).** The current laptop Cedar checkout remains at
+then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
 authorized `src/nasolve/phaser.py` fix modified after the GeoTest rerun.
 Its other 45 frozen source hashes, including the distinct curated source,
@@ -13,7 +13,59 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C102 fixed-coordinate resolution diagnostic.**
+**Current delivery: C103 independent PDU precision and declaration audit.**
+The complete saved-data execution takes 66.15s with zero new native calls.
+All 21 supported proxy/case rows pass independent 60/90-digit, reversed-order
+and 504 Cartesian direction/order checks at both decimal steps. Three DZ
+alternate-ideal cases are explicitly unassessed. Only the full-precision PDU
+central torsion disagrees with the saved native gradients at the existing strict
+comparison: maximum component differences 2.236935e-4 forward and 2.697555e-4
+reversed. Both high-precision orders agree. A one-ULP coordinate change produces
+up to 0.227086 gradient-component change there, versus about 3e-8 at initial and
+rounded coordinates. See the [C103 contract](cif-doctor.md#independent-recovered-torsion-precision-c103).
+
+Before C103, C102 had resolution/reversal findings without an independent
+mathematical reference. New `cif_torsion_precision.py` uses exact binary inputs,
+standard-library Decimal arithmetic and automatic differentiation of a plane-normal
+energy expression. New `cif_recovered_precision.py` binds that calculation and
+read-only declaration checks to maintained C102/C101/C100/C99/C98 readers.
+The additive schema-1 `recovered_precision_audit.json` and `precision_result.json`
+have explicit anchors/checksums and complete replay. No dependency, CLI/runtime
+schema, historical worker or migration changes are required.
+
+Validation: **5772 passed, 276 subtests passed in 1034.42s (0:17:14)**; **49 focused regressions** pass. Cold relocated replay preserves all 497 parent/audit files and timestamps, retains the selected start and rejects four rebound forgeries with zero processes. Compilation, whitespace, 198 document links and rendered-figure inspection pass.
+
+Phenix 2.2.1-6174 supplied the preserved native observations; this step performs
+text inspection and mathematical computation only. No fresh Phenix/Coot job,
+generation, optimizer, candidate preparation or model edit runs. All C95 and
+C98–C102 parent bytes/timestamps are preserved. Inputs, coordinates, native and
+decimal observations, inspected installed sources and logs stay local; Git
+contains source, synthetic tests, maintained docs and compact technical evidence.
+Exact commands/hashes are in `recovered_torsion_precision_2026_10_26`.
+
+The three sampled PDU torsions and three 5PC controls match the existing
+triple/180° declaration prerequisites against both current dictionaries and
+native effective definitions. This is a row-level finding, not a complete
+candidate plan or scientific approval. The independent calculation supports
+numerical sensitivity near collinearity; it does not establish a native coding
+defect. C100 remains unqualified and the verified recovered start stays selected.
+
+**Next boundary:** prepare a separate PDU candidate with the existing complete
+declaration-based omission policy. Check exact original/candidate native
+inventories in the current linked model, deriving the planned omission set and
+preserving every other term, phosphate state, NARestraints target and 5PC bystander.
+Then compare fixed-coordinate energy/gradient deltas and recheck derivatives
+before any optimizer. Do not overwrite evidence, relax thresholds or promote
+the endpoint based on the independent reference.
+
+Continue directly on **`cedar`**; no new per-fix branch or Pine/main merge.
+The separate metal GUI/shared-restraint work is untouched.
+
+— Rowan · Codex desktop
+
+### Previous C102 delivery
+
+**C102 delivery: fixed-coordinate resolution diagnostic.**
 One complete Phenix 2.2.1-6174 job (dispatcher 2.2.1) completes in 8.843132s,
 with 540 evaluations: 22 local direction/order rows and 10 broader total/dihedral
 rows, retaining 326 original passing directions. Only the two local-gradient

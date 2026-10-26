@@ -11,7 +11,9 @@
 
 <a id="current-capability-boundary-c101"></a>
 
-## Current capability boundary (C102)
+<a id="current-capability-boundary-c102"></a>
+
+## Current capability boundary (C103)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -27,7 +29,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
 | Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | C100 tests bounded geometry but retains the verified recovered start because endpoint derivatives fail qualification. The C95 bundle is not overwritten or reclassified. |
-| Why does the repaired endpoint retain derivative review? | C101 localizes all 22 remaining sampled local full-precision failures to PDU D:5 C5–C5A–C5B–C5M; seven other sampled torsions and the remainder group pass. Native attribution and saved-family controls agree. | Fixed-coordinate diagnosis does not requalify C100 or establish a native bug. C102 passes only 2/22 local and 4/10 broader rechecks; resolution guards and reversal review retain the verified recovered model. Independent arithmetic and declared-linear-axis evidence are next. |
+| Why does the repaired endpoint retain derivative review? | C101 localizes all 22 remaining sampled local full-precision failures to PDU D:5 C5–C5A–C5B–C5M; seven other sampled torsions and the remainder group pass. Native attribution and saved-family controls agree. | Fixed-coordinate diagnosis does not requalify C100 or establish a native bug. C102 passes only 2/22 local and 4/10 broader rechecks; resolution guards and reversal review retain the verified recovered model. C103 confirms independent reference agreement and strong PDU input sensitivity; a separate current-model declaration-based candidate comparison is next. |
 | Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
 | Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
 
@@ -97,6 +99,99 @@ assessment with all 38 bundle files unchanged and zero SDK/process attempts.
 The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
 The existing evidence ledger records commands, frozen hashes, the exact current
 source summary and a preserved C18 DF recovery candidate for subsequent qualification.
+
+### Independent recovered-torsion precision (C103)
+
+`cif_recovered_precision.audit_recovered_precision(resolution_directory,
+torsion_directory, geometry_directory, gradient_directory, recovery_directory,
+output)` consumes the validated C102/C101/C100/C99/C98 lineage without launching
+Phenix. `read_recovered_precision(directory, resolution_directory=...,
+torsion_directory=..., geometry_directory=..., gradient_directory=...,
+recovery_directory=...)` recomputes the complete mathematical result and its
+declaration comparisons. Both preserve the selected model and every earlier
+failure. A fresh output is required; no candidate dictionary or coordinate model
+is written.
+
+The additive schema-1 receipt is `recovered_precision_audit.json`, policy
+`cif-recovered-independent-torsion-precision-v1`, with `precision_result.json`
+under `recovered_precision_directory`. C102's receipt has the independent parent
+anchor `recovered_resolution_directory`; all earlier anchors keep their meaning.
+References bind relative paths, SHA-256 and byte counts. Readback verifies the
+complete two-file output inventory and type-sensitive reconstructed JSON.
+No historical worker, CLI/runtime schema, dependency or migration changes.
+
+Methods: express the positive-period energy directly through normalized plane
+normals as **9600 × weight / n² × (1 − cos(n × (model − ideal)))**. Compute the
+cosine through integer complex powers, and obtain Cartesian derivatives by
+forward automatic differentiation. This avoids the native `acos` and copied
+native gradient formula. Standard-library `Decimal.from_float` preserves the
+exact binary input coordinates and parameters; private 60- and 90-digit contexts
+use a Machin-identity pi and convergent trigonometric series. This is the
+mathematical function, not an emulation of native floating-point operation order.
+The supported native header SHA is explicitly pinned to the inspected C101
+implementation; unfamiliar implementations refuse comparison.
+
+At both atom orders, compare the two precisions and use independent central
+differences along all 12 Cartesian axes at decimal steps **1e-24 and 1e-26 Å**.
+Precision/reversal comparisons use 1e-30 absolute/relative bounds; decimal
+differences use 1e-20. Each comparison uses the maximum of its absolute and
+relative allowances, matching the established strict comparison rule.
+These are separate mathematical controls, not changes to
+the native derivative thresholds or a retry of C102's binary64 step grid.
+Compare saved single/container gradients using the existing strict 1e-8
+absolute/1e-10 relative comparison. Separately move each original coordinate one
+binary64 step in either direction and re-evaluate at 90 digits, retaining the
+exact hex values and displacement. Those 24 artificial perturbations describe
+input sensitivity; they are not proposed coordinate edits.
+
+The complete saved-data execution takes **66.15 seconds**, including parent
+replay, with **zero new native calls**. The saved observations come from
+Phenix **2.2.1-6174**; this computation uses Python **3.12.14** and libmpdec
+**4.0.1**. Coot, generation and optimization are not run. All 21
+supported proxy/case rows pass precision stability, both-order agreement and
+all **504 Cartesian direction/order checks**, each at both decimal steps.
+The three alternate-ideal DZ cases remain explicitly unassessed. Positive
+periods 1–12 with ordinary, non-symmetry functions are supported; nonpositive
+periods, alternate ideals and nondefault function parameters are not covered.
+
+Energy and gradient use the existing restraint-target units.
+
+| PDU D:5 central torsion evidence | Initial | Full-precision endpoint | PDB-rounded endpoint |
+| --- | ---: | ---: | ---: |
+| Independent torsion energy | 13.58468 | 6.137577e-8 | 20.77499 |
+| Independent gradient norm | 14,401.584 | 7,064.755 | 5,800.844 |
+| Minimum defining-plane sine | 0.001287 | 2.946479e-7 | 0.001034 |
+| Maximum gradient-component change after one coordinate ULP | 2.62955e-8 | 0.227086 | 3.51943e-8 |
+
+Only the full-precision PDU C5–C5A–C5B–C5M row fails the strict native/reference
+gradient comparison: maximum differences are **2.236935e-4 forward** and
+**2.697555e-4 reversed**, for both single and container kernels. The high-precision
+orders agree. The native/reference differences are small compared with the
+roughly 7,065 gradient norm. A small residual therefore coexists with a large, highly sensitive
+gradient in the independent mathematical reference. This supports numerical
+sensitivity near collinearity; it does not establish a native coding defect,
+explain every old failed sample, or prove useful optimization conditioning.
+
+Read-only declaration checks reuse the existing C44 triple/180° prerequisites
+and compare current dictionary rows with the exact native effective definition
+and proxy parameters. All three selected PDU rows and three 5PC control rows
+match. The two sugar-control rows are not selected by those declarations.
+No coordinates or component-name allowlist select a row. These are **individual
+row matches**, not a complete candidate plan, a native omission comparison,
+chemical-state approval or authority to modify the original dictionary.
+
+**Next boundary:** prepare a separate PDU candidate using the existing complete
+declaration-based omission policy, then check the original/candidate managers
+in the current linked model. Derive the exact omitted rows/proxies from that
+plan and require every other definition/proxy, phosphate state and NARestraints
+target to remain unchanged, including 5PC as a bystander. Fixed-coordinate
+energy/gradient delta and fresh derivative checks must precede another optimizer.
+C100 stays unqualified and `verified_recovered_model` remains selected. No runtime
+activation, ordinary refinement or scientific approval follows from C103.
+Exact commands and evidence hashes are in
+`recovered_torsion_precision_2026_10_26`.
+
+Validation: **5772 passed, 276 subtests passed in 1034.42s (0:17:14)**; **49 focused regressions** pass. Cold relocated replay preserves all 497 parent/audit files and timestamps, retains the selected start and rejects four rebound forgeries with zero processes. Compilation, whitespace, 198 document links and rendered-figure inspection pass.
 
 ### Recovered-endpoint resolution (C102)
 

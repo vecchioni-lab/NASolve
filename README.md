@@ -41,8 +41,10 @@ NASolve-local corrected evaluator. C100 tests bounded geometry for that repaired
 objective; endpoint derivative review automatically retains the verified start.
 C101 localizes the remaining sampled torsion failures at fixed coordinates.
 C102 probes their numerical resolution: full-precision evidence remains under
-review, preserving the selected start and unqualified endpoint.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c102)
+review, preserving the selected start and unqualified endpoint. C103 independently
+checks the periodic torsion arithmetic and confirms strong PDU coordinate sensitivity;
+a separate declaration-based candidate comparison is next.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c103)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.

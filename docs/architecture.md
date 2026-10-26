@@ -3221,3 +3221,28 @@ central torsion. This motivates independent arithmetic and source-declaration
 comparison with prior linear-axis evidence; it does not authorize chemical or
 numerical policy changes. Historical workers, NAR targets, phosphate behavior,
 ordinary refinement and the parallel metal GUI remain unchanged.
+
+
+### Independent torsion arithmetic after source recovery (C103)
+
+`cif_torsion_precision` expresses ordinary positive-period torsion energy through
+normalized plane normals and integer complex powers. Forward automatic
+differentiation, two private Decimal precisions and independent Cartesian
+differences separate a mathematical reference from the native floating-point
+kernel. Exact binary inputs, mathematical pi, unsupported alternate functions,
+one-ULP sensitivity and native comparison limits remain explicit.
+
+`cif_recovered_precision` replays C102's maintained reader before consuming the
+bound C101 selection, coordinate cases and native observations. It reinspects
+individual dictionary/native rows through the existing triple/180° declaration
+prerequisites. The [C103 contract](cif-doctor.md#independent-recovered-torsion-precision-c103)
+defines the additive report/parent anchors and type-sensitive complete replay.
+No scientific inputs are searched by basename, captured code executed, native
+process launched or model/dictionary selected or changed.
+
+All 21 supported cases pass the independent controls; the full-precision PDU
+torsion retains strict native/reference differences and much greater one-ULP
+sensitivity. Six selected PDU/5PC rows match declaration prerequisites without
+creating a complete candidate plan. C100 qualification and source chemistry
+remain unchanged; native omission/delta checks in the current linked manager
+are required before optimization of a separate candidate.

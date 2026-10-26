@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Independently inspect recovered PDU torsion arithmetic (C103)
+
+- Add a standard-library Decimal reference using exact binary coordinates,
+  60/90-digit checks, automatic differentiation, independent finite differences
+  and one-ULP input-sensitivity controls, without replacing a native evaluator.
+- Bind the saved-data diagnostic to validated C102/C101/C100/C99/C98 lineage in
+  schema-1 `recovered_precision_audit.json`; replay all arithmetic/declarations
+  without Phenix, captured code, model changes or endpoint adoption.
+- All 21 supported cases pass independent reference controls. The full-precision
+  PDU row retains strict native/reference differences and pronounced input
+  sensitivity. Three alternate-ideal cases remain unassessed. Six PDU/5PC rows
+  match the existing triple/180° declaration prerequisites; no candidate is made.
+- Preserve native thresholds, phosphate chemistry, NAR targets, selected models,
+  historical artifacts and runtime behavior. No added dependency or migration.
+
 ### Audit numerical resolution without promoting a recovered endpoint (C102)
 
 - Add a diagnostic adapter for the exact C101/C100/C99/C98 lineage, reusing the

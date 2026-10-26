@@ -5,7 +5,7 @@ Updated **2026-10-26**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
-The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c102)
+The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c103)
 separates qualified implementation, open chemistry, consumer qualification and
 the next integration step. The actual Mac C95 handoff passed with zero native
 calls; C96 exposes those limits in text and JSON reports. C97 adds the
@@ -18,8 +18,10 @@ and retains the verified start because endpoint derivatives remain under review.
 C101 [audits the saved torsions](cif-doctor.md#recovered-endpoint-torsions-c101)
 at fixed coordinates and localizes the remaining local failures to one nearly
 collinear PDU torsion. C102 [probes numerical resolution](cif-doctor.md#recovered-endpoint-resolution-c102)
-and retains full-precision review despite some finer-step agreement. Runtime
-activation and scientific qualification remain separate.
+and retains full-precision review despite some finer-step agreement. C103
+[independently checks torsion arithmetic](cif-doctor.md#independent-recovered-torsion-precision-c103)
+and confirms strong PDU input sensitivity plus current declaration matches.
+Runtime activation and scientific qualification remain separate.
 
 ATL stays independent,
 and ChemDraw-derived chemical references are explicit future scope.
