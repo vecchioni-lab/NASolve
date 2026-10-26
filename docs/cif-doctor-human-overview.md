@@ -33,10 +33,16 @@ site modifications. For example, internal OP3 deletion is a recorded linkage
 operation, not permission to change an OP2 proton or a sugar bond. Missing
 metadata, partial charge and formal charge remain distinct. This is evidence
 for choosing recovery work; no chemical state or numerical target is repaired.
+C98 tests one concrete recovery: the preserved DF candidate now passes fresh
+isolated and full-model native checks in the current 863-atom fixture. Its source
+sugar bonds and OP2 hydrogen are retained; explicit linkage preparation removes
+incoming OP3/HOP3 and outgoing HO3′. The old bundle remains intact. This changes
+the restraint objective, so a new derivative check is required before another
+geometry trial; native mechanics alone do not confer the old endpoint proof.
 ATL remains an independent source/compiler control. Future chemical-reference
 input, potentially from ChemDraw exports, belongs to restraints preparation;
 drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c97) is the
+[current capability map](cif-doctor.md#current-capability-boundary-c98) is the
 concise authority for these distinctions and next steps.
 
 ## What it does
@@ -618,6 +624,9 @@ without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,
 declared site modifications and historical generation findings; equality does
 not establish chemical validity or qualify installed canonical numerics.
+A separately tested preserved DF recovery passes current linked/native mechanics;
+changed restraints require fresh derivative qualification before optimization
+or runtime activation. Original runtime selections remain intact.
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native

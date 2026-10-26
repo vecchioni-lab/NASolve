@@ -5,12 +5,15 @@ Updated **2026-10-26**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
-The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c97)
+The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c98)
 separates qualified implementation, open chemistry, consumer qualification and
 the next integration step. The actual Mac C95 handoff passed with zero native
 calls; C96 exposes those limits in text and JSON reports. C97 adds the
 [current source-declaration inventory](cif-doctor.md#current-source-declaration-inventory-c97),
 separating current differences from site modifications and historical findings.
+C98 separately [requalifies the preserved DF candidate](cif-doctor.md#preserved-candidate-source-recovery-c98)
+in the current linked model; a changed objective requires new derivative evidence.
+
 ATL stays independent,
 and ChemDraw-derived chemical references are explicit future scope.
 

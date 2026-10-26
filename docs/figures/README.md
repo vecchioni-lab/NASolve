@@ -27,6 +27,9 @@ approval and ordinary refinement qualification. It adds no production arrow.
 C97 labels the receipt layers as source/current/context/history and updates the
 caption to distinguish current declaration differences from declared site
 modifications and historical generation findings. This adds no repair arrow.
+C98 adds a separate preserved-candidate native recovery result to the caption and
+changes the scope line to require new derivatives when restraints change. The
+figure still makes no ordinary activation, optimization or scientific claim.
 
 The accompanying caption now distinguishes explicit generator input-state
 retention from experimental protonation, and numerical REVIEW from chemical

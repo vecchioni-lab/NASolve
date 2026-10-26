@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Requalify preserved source candidates in the current mixed model (C98)
+
+- Add an explicit diagnostic that binds a preserved candidate and its source
+  to exact manifest-owned archive members, replays the current endpoint lineage,
+  and repeats isolated and full-model native checks at fixed coordinates.
+- Recover DF in the current 863-atom fixture using the unchanged C18 candidate.
+  Preserve source bond orders, hydrogens and formal declarations; apply explicit
+  incoming/outgoing site preparation while retaining the OP2 hydrogen.
+- Save a separate schema-1 recovery receipt with read-only, relocatable replay.
+  Refuse prior selected-site modifiers and shared component containers in this
+  bounded policy. Preserve unrelated resources, NAR policy and old runs.
+- Do not transfer the prior objective's derivative or endpoint qualification,
+  activate a runtime bundle, optimize coordinates or adopt a checkpoint.
+  Existing runtime manifests, CLI behavior and C95 selections need no migration.
+
 ### Trace current component declarations to their sources (C97)
 
 - Add a read-only source-to-current declaration inventory to mixed runtime

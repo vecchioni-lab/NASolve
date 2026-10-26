@@ -31026,5 +31026,319 @@
         "size": 9484
       }
     }
+  },
+  "mixed_preserved_source_recovery_2026_10_26": {
+    "author": "Rowan · Codex desktop",
+    "status": "IMPLEMENTED_AND_MAC_VALIDATED; FIXED_COORDINATE_SOURCE_RECOVERY_MECHANICS_PASS",
+    "branch": "cedar",
+    "parent_commit": "71a0afd5e9eca014b0c2b7042dbd69ce90e2f06c",
+    "branch_consolidation": "C96-C98 continue as ordinary Cedar commits; per-fix branches retired after remote reachability verification. No Pine/main merge.",
+    "before": "Current C95 DF base differs from its original graph, including three single sugar bonds recorded as aromatic; source inventory exposes the differences but does not repair them.",
+    "after": "An explicit separately owned diagnostic reuses the exact source-preserving C18 candidate, requires fresh isolated usability, prepares all declared current DF site contexts and checks fixed full-model mechanics. Original C95 remains unchanged.",
+    "changed_runtime_files": [
+      "src/nasolve/cif_mixed_source_recovery.py",
+      "src/nasolve/cif_mixed_runtime_source.py"
+    ],
+    "changed_tests": [
+      "tests/test_cif_mixed_source_recovery.py"
+    ],
+    "schemas": {
+      "policy_id": "cif-mixed-preserved-source-recovery-v1",
+      "schema_version": 1,
+      "report": "mixed_source_recovery.json",
+      "runtime_manifest": "UNCHANGED"
+    },
+    "compatibility_and_migration": "Additive explicit diagnostic API; no CLI change, runtime selection change, threshold change or migration. Optional context view on maintained endpoint reader defaults off.",
+    "methods": "Exact bounded archive manifests and explicit source/candidate members; current source equality; maintained complete-candidate checks; source/candidate seed isolated controls; explicit full shared-code linkage contexts; unchanged-coordinate baseline/active full-model native controls; named unaffected-proxy comparison; read-only owned-capsule replay.",
+    "candidate_provenance": {
+      "candidate_archive_sha256": "8c049215a46f3f1fe0c628b7e2552e6aa59f4149853285edf5e208d72e813146",
+      "candidate_member": "generation/cif-generation-684a_u56/candidate.cif",
+      "component": "DF",
+      "endpoint_sha256": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+      "phenix_version": "2.2.1",
+      "source_member": "generation/cif-generation-684a_u56/source.cif",
+      "timeout_seconds": 60
+    },
+    "selected_candidate": {
+      "anchor": "mixed_source_recovery_directory",
+      "path": "inputs/candidate.cif",
+      "sha256": "8daa21379bba32f1abc91fafda59379ca811561dfe9b245644597943fa655a70",
+      "size": 12563
+    },
+    "selected_source": {
+      "anchor": "mixed_source_recovery_directory",
+      "path": "inputs/sources/DF.cif",
+      "sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+      "size": 8941
+    },
+    "model": {
+      "anchor": "mixed_source_recovery_directory",
+      "path": "inputs/runtime/000_model.pdb",
+      "sha256": "ac9579220ea6c506a916137c283dfc2c9e32a1f88aaf39e00c0f9d6ae725e259",
+      "size": 99310
+    },
+    "selected_sites": [
+      "A:19"
+    ],
+    "linked_preparation": [
+      {
+        "site": "A:19",
+        "incoming_site": "A:18",
+        "outgoing_site": "A:20",
+        "five_prime_state": "linked",
+        "three_prime_state": "linked",
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "HOP2"
+        ],
+        "modification_id": "NASLf51d8f8672"
+      }
+    ],
+    "qualification": {
+      "status": "MIXED_SOURCE_RECOVERY_MECHANICS_PASS",
+      "linked_checks": {
+        "PASS": 25,
+        "UNSUPPORTED": 2
+      },
+      "full_membership_checks": {
+        "active:complete_heavy_sites": true,
+        "active:complete_interpretation": true,
+        "active:complete_proxy_inventory": true,
+        "active:dna_classification": true,
+        "active:energy_inventory": true,
+        "active:exact_monomer_sites": true,
+        "active:finite_energy_and_gradient": true,
+        "active:finite_positive_parameters": true,
+        "active:fixed_coordinate_repeats": true,
+        "active:named_proxy_identity_binding": true,
+        "active:native_coordinate_roundtrip": true,
+        "active_requests_present": true,
+        "all_declared_backbone_links_exact": true,
+        "baseline:complete_heavy_sites": true,
+        "baseline:complete_interpretation": true,
+        "baseline:complete_proxy_inventory": true,
+        "baseline:dna_classification": true,
+        "baseline:energy_inventory": true,
+        "baseline:exact_monomer_sites": true,
+        "baseline:finite_energy_and_gradient": true,
+        "baseline:finite_positive_parameters": true,
+        "baseline:fixed_coordinate_repeats": true,
+        "baseline:named_proxy_identity_binding": true,
+        "baseline:native_coordinate_roundtrip": true,
+        "declared_pair_stack_parallelity_count": true,
+        "declared_triple_targets:A:4": true,
+        "declared_triple_targets:D:5": true,
+        "exact_explicit_effective_definitions": true,
+        "exact_narestraints_membership_and_unaffected_proxies": true,
+        "exact_native_models": true,
+        "explicit_effective_dictionary_coverage": true,
+        "explicit_site_projection_scope": true,
+        "same_installed_api_sources": true,
+        "secondary_structure_guessing_disabled": true
+      },
+      "unaffected_proxy_families": {
+        "angle": true,
+        "bond_asu": true,
+        "bond_simple": true,
+        "chirality": true,
+        "const_dihedral": true,
+        "dihedral": true,
+        "parallelity": true,
+        "planarity": true
+      },
+      "native_formal_charge_readback": "UNSUPPORTED; NO CONTRADICTIONS; SOURCE FORMAL DECLARATIONS PRESERVED",
+      "derivatives": "NOT_RUN_FOR_CHANGED_OBJECTIVE",
+      "endpoint": "NOT_INHERITED_FROM_PREVIOUS_OBJECTIVE",
+      "science": "NOT_ASSESSED"
+    },
+    "native_execution": {
+      "mode": "COMPLETE_EXECUTION; FOUR_FIXED_NATIVE_CONTROLS; NOT_DRY_RUN",
+      "installation": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "python": "3.12.14",
+      "coot": "NOT_RUN",
+      "dictionary_generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "new_native_calls": 4,
+      "captures": {
+        "isolated": {
+          "candidate_seed": {
+            "receipt": {
+              "anchor": "mixed_source_recovery_directory",
+              "path": "native/candidate_seed/cif-native-nogveoye/native_receipt.json",
+              "sha256": "ed9bb87ccb67b99e94210f231bb38a0e710daa4f476315049ccc484e05a900d0",
+              "size": 233494
+            },
+            "execution": {
+              "elapsed_seconds": 1.020907,
+              "finished_at": "2026-10-26T14:43:44.978013+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-26T14:43:43.957133+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "atom_count": 36,
+            "phenix_version": "2.2.1",
+            "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+            "executable_provenance": "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python"
+          },
+          "source_seed": {
+            "receipt": {
+              "anchor": "mixed_source_recovery_directory",
+              "path": "native/source_seed/cif-native-1wfi3lnj/native_receipt.json",
+              "sha256": "b4cae6b327b07b2c3447bca59bcf2fb5e53706b5a88d3b8eb3877269ce04093e",
+              "size": 233093
+            },
+            "execution": {
+              "elapsed_seconds": 2.751974,
+              "finished_at": "2026-10-26T14:43:43.936083+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-26T14:43:41.184129+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "atom_count": 36,
+            "phenix_version": "2.2.1",
+            "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+            "executable_provenance": "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python"
+          }
+        },
+        "linked": {
+          "active": {
+            "receipt": {
+              "anchor": "mixed_source_recovery_directory",
+              "path": "native/active/cif-native-kv9awhao/native_receipt.json",
+              "sha256": "3896beded08ff2642d0053b118d097d59b91233998e58c16b6224bf6b8d87119",
+              "size": 5885303
+            },
+            "execution": {
+              "elapsed_seconds": 1.83309,
+              "finished_at": "2026-10-26T14:43:48.862810+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-26T14:43:47.029740+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "atom_count": 863,
+            "phenix_version": "2.2.1",
+            "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+            "executable_provenance": "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python"
+          },
+          "baseline": {
+            "receipt": {
+              "anchor": "mixed_source_recovery_directory",
+              "path": "native/baseline/cif-native-9_dhdbjm/native_receipt.json",
+              "sha256": "fe27ecc60db3a2ca52a1cff715c07dcd3bedaf5a953a4dbe5775f1bc0fee545c",
+              "size": 5151824
+            },
+            "execution": {
+              "elapsed_seconds": 1.547592,
+              "finished_at": "2026-10-26T14:43:46.833703+00:00",
+              "returncode": 0,
+              "started_at": "2026-10-26T14:43:45.286134+00:00",
+              "status": "COMPLETED",
+              "timeout_seconds": 60
+            },
+            "atom_count": 863,
+            "phenix_version": "2.2.1",
+            "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+            "executable_provenance": "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python"
+          }
+        }
+      },
+      "elapsed_seconds": 94.31941154098604
+    },
+    "local_artifacts": {
+      "recovery_report": {
+        "historical_path": "/Users/svecchio/NASolve-live-tests/98_Cedar_df-source-recovery-29jul13e/recovery/mixed_source_recovery.json",
+        "sha256": "bf1454717b00d7e6f6ad45aff173f931afc2bb7fcd584acab74fccbf46fb0b94",
+        "size": 3427467
+      },
+      "cold_result": {
+        "historical_path": "/Users/svecchio/NASolve-live-tests/98_Cedar_df-source-recovery-29jul13e/validation/cold_result.json",
+        "sha256": "844eed015fc00cca07e1fdc534c3df80b3d94dc6c7f95ab034a0310e214729c0",
+        "size": 455
+      }
+    },
+    "cold_replay": {
+      "status": "PASS",
+      "relocated_replay_seconds": 43.2548777909833,
+      "preserved_file_count": 213,
+      "read_only_bytes_and_mtimes": true,
+      "original_temporary_path_absent": true,
+      "original_science_and_code_paths_forbidden": true,
+      "native_process_calls": 0,
+      "rejected_rebound_claims": [
+        "claimed_derivatives",
+        "forged_isolated_pass",
+        "rebound_prepared_dictionary"
+      ],
+      "qualification_status": "MIXED_SOURCE_RECOVERY_MECHANICS_PASS"
+    },
+    "validation": {
+      "before": {
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q tests/test_cif_mixed_source_recovery.py",
+        "result": "Collection fails before implementation: ModuleNotFoundError for the required recovery API."
+      },
+      "focused": {
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q tests/test_cif_mixed_source_recovery.py tests/test_cif_mixed_runtime_source.py tests/test_cif_mixed_linked_recovery.py tests/test_cif_candidate_usability.py tests/test_cif_linked_preparation.py tests/test_cif_mixed_source_review.py",
+        "result": "154 passed in 14.61s"
+      },
+      "full": {
+        "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q",
+        "result": "5562 passed, 276 subtests passed in 770.65s (0:12:50)"
+      },
+      "compile": {
+        "command": "env PYTHONPYCACHEPREFIX=/private/tmp/c98-bytecode /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+        "result": "PASS"
+      },
+      "cold": {
+        "command": "env PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c98_cold.py",
+        "result": "PASS; original temporary checkout absent; original science/code reads and native/discovery calls forbidden; three rebound forgeries rejected"
+      },
+      "figure": "SVG regenerated, rendered with rsvg-convert and visually inspected; text fits and scope is explicit.",
+      "source_test_hashes": {
+        "src/nasolve/cif_mixed_source_recovery.py": "edb2edc2c8bacdd629dafdd7e992cc1e5f4646e1ba22aeeb503d1b97c07cbe70",
+        "src/nasolve/cif_mixed_runtime_source.py": "5f382696503fc3312f6e040d5fc7f304834bdf214d74fdf5a22329b384765eec",
+        "tests/test_cif_mixed_source_recovery.py": "91668df773c4b9cd15f3d20b60e9d630f07fefb96dc6831ae9ecbe8d5ec55c01"
+      },
+      "frozen_source_and_tests_unchanged_after_full_suite": true,
+      "integrity": {
+        "status": "PASS",
+        "original_C95_files_verified": 38,
+        "original_C95_manifest_sha256": "efe86ed77349e8ed5264cae0395ac2a2bd72a44a0c7f6eeb2320f0c272ae2e9f",
+        "model_matches_original_C95": true,
+        "original_capsules_preserved": {
+          "endpoint": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+          "candidate": "8c049215a46f3f1fe0c628b7e2552e6aa59f4149853285edf5e208d72e813146"
+        },
+        "document_local_links_checked": 186,
+        "missing_links": [],
+        "source_and_tests_unchanged_during_full_suite": true
+      },
+      "whitespace": "git diff --check: PASS",
+      "native_capture_code_note": "Native captures used the archived initial C98 implementation; the final maintained reader adds order-independent control iteration, interpreter and filesystem guards and reproduces the same result without new native calls.",
+      "initial_native_execution_module_sha256": "0556c8609533e8165d679033ba4b57a048c6964ee2418cdc998d0e5340edf54e"
+    },
+    "generated_artifacts_included": "None: no model, dictionary, native log, capsule or raw scientific data in Git.",
+    "generated_artifacts_excluded": "All 213 recovery files, controls, historical capsules and native logs remain in the external local run; validation scripts/logs/manifest are archived alongside it.",
+    "limitations": [
+      "Dedicated component file and zero prior selected-site modifiers only; no shared-container or modifier-composition policy.",
+      "Source-relative configuration is retained; experimental protonation and independent absolute CIP assignment are not established.",
+      "Native formal-charge API is unavailable; this does not infer or clear charge state.",
+      "Changed restraint objective requires current-manager derivative qualification before optimization or runtime activation.",
+      "No production checkpoint, C95 replacement, ordinary Phenix refinement qualification, scientific approval, or Pine/main merge."
+    ],
+    "recommended_follow_up": "Qualify the exact new manager with the NASolve-local corrected derivative evaluator; retain other source-state findings and unchanged C95 selection.",
+    "validation_artifacts": {
+      "historical_directory": "/Users/svecchio/NASolve-live-tests/98_Cedar_df-source-recovery-29jul13e/validation",
+      "manifest_sha256": "10ad8513a9dc8aa4e9e645d113ed6cb5d120f35fb47219360b7b5d9bfca8f64f",
+      "payload_count": 17
+    }
   }
 }

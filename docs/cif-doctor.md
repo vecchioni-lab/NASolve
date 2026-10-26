@@ -1,8 +1,9 @@
 # CIF Doctor
 
 <a id="current-capability-boundary-c96"></a>
+<a id="current-capability-boundary-c97"></a>
 
-## Current capability boundary (C97)
+## Current capability boundary (C98)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -17,6 +18,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
 | Is the endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
+| Can the preserved DF source be recovered? | C98 separately passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate. | The changed objective needs fresh derivative qualification; the C95 bundle is not overwritten or reclassified. |
 | Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
 | Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
 
@@ -86,6 +88,60 @@ assessment with all 38 bundle files unchanged and zero SDK/process attempts.
 The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
 The existing evidence ledger records commands, frozen hashes, the exact current
 source summary and a preserved C18 DF recovery candidate for subsequent qualification.
+
+### Preserved-candidate source recovery (C98)
+
+The explicit `cif_mixed_source_recovery.audit_mixed_source_recovery()` API accepts
+an endpoint capsule, a candidate archive, their SHA-256 digests, a component ID,
+and exact source/candidate member paths. It first replays the existing endpoint
+lineage and requires the archived source to match the current source byte for
+byte. Captured programs and historical absolute paths are never executed or
+used for discovery. This is a diagnostic API, not an ordinary assessment repair.
+
+Two fresh isolated controls use source and candidate CIF coordinate seeds. The
+maintained complete-candidate and native-usability checks must pass both, with
+the same named covalent proxies, before linked preparation can proceed. Every
+model site sharing the component ID must be covered by explicit plan edges and
+terminal states. This first reuse policy requires one dedicated component file
+and no prior modifiers on selected sites; shared containers or modifier
+composition remain blocked rather than silently discarded.
+
+The repaired bundle then receives two fresh full-model native reads, with the
+same bundle and the declared NARestraints policy disabled/enabled. Existing
+qualifiers check definitions, selected heavy proxies, phosphate coverage,
+backbone links, triple-bond targets and exact NAR membership. A separate check
+requires every proxy wholly outside the replaced sites to match the previous
+current manager. Coordinates and unrelated dictionary/parameter bytes remain
+fixed. One selected interpreter hash/version binds all four native calls.
+
+`mixed_source_recovery.json` uses schema 1 and policy
+`cif-mixed-preserved-source-recovery-v1`. Its directory owns both source capsules,
+prepared inputs, controls and native captures. `read_mixed_source_recovery()`
+rebuilds preparation and qualification from those inputs without discovery or a
+native process; updated checksums alone cannot legitimize altered prepared
+bytes or claimed derivative qualification. Failed/partial directories are
+preserved and cannot be retried in place.
+
+The complete Mac C98 execution uses Phenix **2.2.1-6174** (dispatcher reports
+**2.2.1**), with four native calls and no generator, Coot, ReadySet or optimizer.
+The exact C18 DF candidate passes in the current **863-atom** model at **A:19**:
+25 linked checks pass, two native formal-charge readbacks remain explicitly
+unsupported, all 33 full-model membership checks pass, and all eight unaffected
+proxy families match. All **38** backbone links and the frozen **20-pair /
+38-stack** policy remain intact. DF's source sugar bond orders are retained;
+incoming OP3/HOP3 and outgoing HO3′ are removed while HOP2 is retained.
+This validates source-relative declarations and mechanics, not experimental
+protonation or an independent absolute stereochemical assignment.
+
+The old C95 runtime bundle remains unchanged. The new diagnostic reports
+`derivative_qualification=NOT_RUN_FOR_CHANGED_OBJECTIVE` and
+`endpoint_qualification=NOT_INHERITED_FROM_PREVIOUS_OBJECTIVE`. Changing DF's
+restraints changes the objective, so its current-manager derivatives must be
+qualified before another geometry trial or runtime activation. Other source
+findings and ordinary Phenix refinement qualification remain open. No scientific
+approval, production checkpoint or Cedar-to-Pine/main integration is implied.
+
+C98 validation: **5562 passed, 276 subtests passed in 770.65s (0:12:50)**, 154 focused tests, compilation, whitespace, 186 local document links and rendered-figure inspection pass. A cold relocated checkout replays the complete result with zero processes and all 213 file bytes/timestamps unchanged; three altered or forged evidence cases are rejected. Original C18/C94 archives and all 38 C95 runtime files retain their hashes.
 
 ### Future chemical-reference input
 

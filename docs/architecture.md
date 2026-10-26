@@ -3109,3 +3109,22 @@ dictionary/native triple reports preserve torsion and seed-bending findings.
 No captured Python or new native process is executed.
 Native guessing stays disabled. Native energy resource files are not inventoried;
 current linked/model qualification and production PostMR adoption remain open.
+
+
+### Preserved candidate recovery in a current mixed context (C98)
+
+The [C98 diagnostic contract](cif-doctor.md#preserved-candidate-source-recovery-c98)
+adds a source-bound reuse path alongside generation. The existing endpoint
+reader optionally exposes its verified temporary context/native view to a
+caller that freezes the declared resources into a new owned directory. Ordinary
+callers retain the same default reader result and runtime manifest behavior.
+
+`cif_mixed_source_recovery` reuses the maintained complete-candidate, isolated
+native, linked preparation and full-model membership qualifiers. A candidate
+archive source must equal the current source; code identity alone is insufficient.
+The bounded replacement policy rejects existing selected-site modifiers and
+shared component containers. All four controls bind one native interpreter;
+unchanged current proxies are compared by structured atom identity. Readback
+reproduces input selection, preparation and qualifications from owned capsules,
+with anchored paths/checksums and no process launch. Native mechanics success
+cannot transfer derivative or endpoint qualification across the changed objective.

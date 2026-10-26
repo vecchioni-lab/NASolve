@@ -13,52 +13,50 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C97 current source-declaration inventory.**
-The ordinary mixed-bundle assessment now derives current source/base differences
-from the verified capsule instead of leaving their detail in nested historical
-reports. Site modifications and historical generation findings remain separate;
-see the [C97 contract](cif-doctor.md#current-source-declaration-inventory-c97).
-This is a read-only diagnostic improvement. It changes no source state,
-numerical target, selection, manifest, exit code, NAR policy or checkpoint.
+**Current delivery: C98 preserved DF source recovery.**
+The exact C18 candidate `8daa21379bba…` and its source `27f83c85e896…`
+are bound to verified archive members and requalified against the current C95
+endpoint lineage. Two isolated and two full-model native controls pass with
+Phenix 2.2.1-6174 (dispatcher 2.2.1). DF A:19 now uses the source-preserving
+candidate with explicit A:18/A:20 linkage preparation. All 863 coordinates,
+38 backbone links, 20 pairs, 38 stacks and proxies wholly outside DF are
+preserved. Linked checks: 25 PASS / 2 explicit unavailable formal-charge
+readbacks; full-model membership: 33 PASS. OP3/HOP3 and outgoing HO3′ are
+removed at this linked site, while HOP2 is retained. No generation or coordinate
+optimization was needed. See the [C98 contract](cif-doctor.md#preserved-candidate-source-recovery-c98).
 
-Development branch `codex/cedar-c97-source-state` builds on C96 commit
-`8ab18186551a0a3b8e474eea93125f42622fb689` in the same isolated development
-checkout. Review/integrate C96 and then C97 into Cedar; no branch merge is
-performed by this delivery. Everyday Pine and the older diagnostic Cedar
-checkout/Phaser edit remain preserved. Retire this worktree only after its
-active development line is integrated and the lifecycle audit passes.
+The new schema-1 `mixed_source_recovery.json` is a separate diagnostic artifact.
+Its maintained reader rebuilds preparation and qualification from owned inputs;
+current runtime manifests, CLI behavior, C95 selection and historical runs do
+not change. Only a dedicated component file with no prior selected-site
+modifiers is supported by this bounded reuse policy. Shared containers and
+modifier composition require their own explicit adapter.
 
-C97 validation passes **5541 passed, 276 subtests passed in 766.90s (0:12:46)** and **250 focused tests**. Compilation,
-whitespace, 183 local document links and the rendered figure pass. The cold
-relocated C95 public assessment passes in 42.23 seconds with all 38 files and
-five selection gates unchanged, no SDK/process attempts and the expected exit 2.
-The original temporary code/bundle path is absent during that readback.
-Commands, frozen hashes and results are recorded under
-`mixed_current_source_review_2026_10_26` in the existing evidence ledger.
+C98 builds on C97 commit `71a0afd5e9eca014b0c2b7042dbd69ce90e2f06c`.
+C96–C98 are consolidated as ordinary commits on **`cedar`**, the continuing
+development line. Per-fix branches are retired only after remote Cedar contains
+their commits. Everyday Pine, the older detached diagnostic Cedar checkout and
+its Phaser edit remain preserved. No Cedar-to-Pine/main merge is performed.
 
-The current source comparison records seven explicit component inputs with
-atom/bond/hydrogen differences (5PC, CGY, DF, DX, IMC, PDU, S6G); IGU retains
-other declaration differences. Four other explicit components match the compared
-chemical fields; four canonical inputs have graph-only scope. DF's three sugar
-bonds still differ single-to-aromatic. IGU's historical rejection must not be
-mistaken for its recovered current atom/bond/hydrogen inventory; stereo/aromatic
-metadata and partial-charge differences still need their own interpretation.
+Validation: **5562 passed, 276 subtests passed in 770.65s (0:12:50)**; **154 focused tests**, compilation, whitespace, 186 local document links and the rendered figure pass. Cold relocated replay takes 43.25s, preserves all 213 files byte-for-byte with timestamps intact, launches no native processes and rejects three rebound evidence forgeries. Exact commands, source/test hashes, native
+receipt bindings, relocation and preserved-artifact checks are recorded under
+`mixed_preserved_source_recovery_2026_10_26` in the existing evidence ledger.
+Generated models, dictionaries, controls, capsules and logs remain in the local
+live-test root and are excluded from Git; code, tests and concise technical
+evidence are included.
 
-A concrete next recovery lead is the exact C18 DF candidate `8daa21379bba…`,
-from verified capsule `8c049215a46f…`. Its source is byte-identical to the current
-DF source `27f83c85e896…`; current read-only generation inspection returns
-`CANDIDATE_REVIEW`, no rejection reasons and no atom/bond/hydrogen differences.
-The current complete-candidate reassessor also passes its gate: formal charges
-and finished source-relative configuration are preserved, with independent
-absolute CIP and current native usability still unassessed.
-Try this preserved candidate before regenerating. Requalify the current linked
-863-atom manager and downstream evaluator; the old 877-atom result does not
-establish their behavior. No candidate is adopted by C97.
+**Next boundary:** the repaired DF dictionary changes the full-model restraint
+objective. Requalify that exact manager's derivatives with the NASolve-local
+corrected evaluator before another geometry trial or runtime activation.
+C93's old objective proof cannot be inherited. Other current source findings
+(5PC, CGY, DX, IMC, PDU, S6G), IGU declaration metadata, experimental chemical
+state and ordinary refinement qualification remain separate. Do not hand-edit
+chemical state or numerical targets merely to erase comparison findings.
 
-Remaining work is source-preserving recovery of demonstrated incompatibilities,
-then qualification of the actual downstream refinement consumer. Keep raw
-declaration differences distinct from chemical-state decisions and metadata
-unknowns; do not hand-edit a state merely to make this inventory empty.
+C97's ordinary read-only inventory remains available and continues to describe
+the original C95 resources accurately. Its historical generation findings,
+current declarations and site contexts remain separate. C98 does not silently
+promote the repaired diagnostic into that runtime bundle.
 
 — Rowan · Codex desktop
 

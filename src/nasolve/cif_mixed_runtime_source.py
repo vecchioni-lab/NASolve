@@ -131,7 +131,7 @@ def _same_replay(recorded, rebuilt):
 
 
 @contextmanager
-def verified_endpoint_source(path, digest):
+def verified_endpoint_source(path, digest, *, include_context=False):
     """Replay existing native observations and yield their exact ordered inputs."""
     path = Path(path)
     _need(not any(p.is_symlink() for p in [path, *path.parents]) and path.is_file()
@@ -173,7 +173,9 @@ def verified_endpoint_source(path, digest):
             from .cif_mixed_source_review import review_verified_context
             context = _parse_json((root/'context/mixed_context.json').read_bytes())
             source_review = review_verified_context(root/'context', root/'linked_parent', context)
-            yield {'replay': replay, 'resources': resources, 'atom_count': capture['native_validation']['atom_count'],
+            extra = ({'context_view': (root/'context', root/'linked_parent', context),
+                      'native_readback': capture['native_validation']} if include_context else {})
+            yield {**extra, 'replay': replay, 'resources': resources, 'atom_count': capture['native_validation']['atom_count'],
                    'source_state_review': source_review,
                    'source_chemical_findings': report['source_chemical_findings']}
             _need(before == {p.relative_to(root).as_posix(): sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
