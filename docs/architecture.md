@@ -1317,6 +1317,22 @@ Automatic readiness requires a successful Phenix exit, a compatible model,
 `Rwork < Rfree`, and `Rwork < 0.30`. These numerical tests permit continued
 automation but do not replace visual inspection or user approval.
 
+## Planned metal-design and anomalous diagnostics
+
+The [metal builder](metal-restraint-builder.md) defines reusable donor/metal
+graphs, exact atom-role binding and restraint export. The separate
+[anomalous diagnostic contract](metal-anomalous-doctor.md) defines geometry
+preparation followed by bounded independent fixed-q/f'' trials and linked
+comparisons. Core graph types accommodate clusters; each native policy needs
+explicit qualification. CLI and GUI will share planning, execution and reports.
+
+Existing AutoRefine switches are a foundation, not proof of the frozen protocol.
+In particular, `RefineDoctor/ML-fdp-only` still defaults to coordinate refinement
+and group ADPs; it does not freeze all atomic parameters. A qualified diagnostic
+must verify effective parameters and output atoms, including nuisance-induced
+ADP changes. The design changes no runtime schema, current checkpoint, existing
+Doctor strategy or Cedar/Pine acceptance gate.
+
 ## Refine Doctor contract
 
 **Planned coordinated Doctor scope:** the October 11 GeoTest follow-up bundles

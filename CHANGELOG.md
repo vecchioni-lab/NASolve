@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Plan metal recipes and frozen anomalous comparisons
+
+- Expand the planned authoring contract to one-, two- and three-metal recipes,
+  mixed species and extensible clusters with explicit atom-role bindings.
+- Define a separate fixed-occupancy f'' diagnostic protocol, verified atomic
+  freezes, bounded trial plans, retained ambiguity and linked per-site tables.
+- Specify Design/Experiment/Compare views with distinct proposed-restraint and
+  selection overlays. Extend the non-runtime development intent and its checks.
+- This is design documentation only: no native execution, runtime schema,
+  existing refinement strategy or checkpoint migration changes.
+
 ### Bound geometry trials for recovered objectives (C100)
 
 - Add an explicit geometry adapter bound to replayed C98 source/native evidence

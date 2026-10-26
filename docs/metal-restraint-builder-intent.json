@@ -5,8 +5,7 @@
   "status": "PLANNED_NOT_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/metal-restraint-builder.md",
-  "examples_owner": "Simon",
-  "examples_received": false,
+  "examples_received": true,
   "pine_merge_prerequisite": false,
   "views": [
     "toggleable NASolve GUI workspace",
@@ -41,7 +40,10 @@
     "one metal",
     "two metals",
     "homometal",
-    "heterometal"
+    "heterometal",
+    "three metals",
+    "metal clusters",
+    "same-site element alternatives"
   ],
   "parameters": [
     "metal-donor distances",
@@ -64,7 +66,10 @@
     "preview constraints",
     "materialize missing metal if explicitly requested",
     "refine child",
-    "select or reject checkpoint"
+    "select or reject checkpoint",
+    "freeze diagnostic endpoint",
+    "run bounded anomalous trials",
+    "inspect linked comparisons"
   ],
   "implementation_choices_pending": [
     "recipe serialization",
@@ -79,6 +84,58 @@
     "existing checkpoint choice",
     "development order recorded in docs/development-handoff.md"
   ],
-  "last_reconciled": "2026-10-10",
-  "development_order": "docs/development-handoff.md#roadmap-after-the-combined-geometry-test"
+  "last_reconciled": "2026-10-26",
+  "development_order": "docs/development-handoff.md#parallel-metal-workflow-design",
+  "numerical_targets_approved": false,
+  "metal_counts": [
+    1,
+    2,
+    3
+  ],
+  "zero_metal_control": true,
+  "cluster_graph": {
+    "representation": "stable donor and metal slots with explicit interaction edges",
+    "three_metal_limit": false,
+    "native_support_requires_qualification": true,
+    "shared_occupancy_is_explicit_hypothesis": true,
+    "formal_charge_is_not_occupancy": true,
+    "aggregate_fdp_requires_weighting_and_group_scope": true
+  },
+  "molecular_view": {
+    "background": "dark grey",
+    "proposed_restraints": "blue dotted edges",
+    "selection": "blue highlight with selection marker",
+    "views": [
+      "Design",
+      "Experiment",
+      "Compare"
+    ]
+  },
+  "anomalous_diagnostics": {
+    "contract": "docs/metal-anomalous-doctor.md",
+    "fitted_parameters": [
+      "f_double_prime"
+    ],
+    "fixed_atomic_parameters": [
+      "xyz",
+      "adp",
+      "occupancy",
+      "f_prime"
+    ],
+    "occupancy_changes_between_trials_only": true,
+    "verify_effective_parameters_and_output_atoms": true,
+    "independent_siblings": true,
+    "requires_anomalous_observations": true,
+    "preserve_free_r": true,
+    "fdp_response_proves_identity": false,
+    "fdp_is_atom_count": false,
+    "allow_unresolved_result": true,
+    "automatic_checkpoint_selection": false,
+    "same_site_mixture_occupancy_sum_max": 1,
+    "independent_sites_share_occupancy_budget": false,
+    "native_job_budget_required": true,
+    "table_rows_bind_exact_trial_and_artifacts": true,
+    "zero_occupancy_fdp": "not identifiable; omitted-site control",
+    "nuisance_parameters": "explicit freeze or common profiling policy"
+  }
 }

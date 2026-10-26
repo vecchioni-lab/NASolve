@@ -110,10 +110,25 @@ workspace or a small standalone/detached companion. Clickable atom spheres and
 metal selectors create visible distance/angle restraint overlays, not immediate
 coordinate edits. Save/load/select recipes by canonical NARestraints atom-role
 columns (O4/N3), bind them to actual atoms for a run, and refine explicit variants
-as ordinary checkpoint children. One-/two-metal and heterometal examples will be
-supplied by Simon. The builder reuses the same backend in both views; numerical
-targets and recipe format are not frozen yet. This is future design, not Pine
-implementation or a prerequisite for operational Scout.
+as ordinary checkpoint children. Supplied examples motivate one-, two- and
+three-metal, mixed-species and extensible cluster hypotheses. Numerical targets
+and recipe format remain under review. This is future design, not implemented
+runtime behavior or a prerequisite for operational Scout.
+
+Use three connected views: **Design** for graph/role/constraint authoring;
+**Experiment** for explicit geometry endpoints, occupancy vectors, fixed atomic
+parameters and bounded trial plans; **Compare** for linked trial and per-site
+tables, response plots and exact model/map inspection. The
+[anomalous contract](metal-anomalous-doctor.md) defines freeze verification,
+grouping, count/occupancy distinctions and unresolved outcomes. No fitted values
+are shown for unrun trials, and row focus never changes the current checkpoint.
+
+The molecular canvas uses dark grey, blue dotted proposed interactions and blue
+selection highlights. Existing bonds, proposed constraints and selected sites
+also differ by line style and labels. Atom roles resolve to explicit selections;
+the same identity links the canvas, restraint editor and comparison row. Cluster
+aggregate rows expand to per-site values and state their weighting/group scope.
+Both window modes share one backend, recipe history and scientific policy.
 
 ## Root/workspace selection
 
@@ -220,7 +235,10 @@ Recommended default semantics:
 - **currently viewed but not current** — a separate focus halo around whatever
   semantic node style it already has.
 
-Do not reuse blue/green/red to mean unrelated concepts in another workspace.
+Preserve these checkpoint meanings across workspaces. In the molecular canvas,
+blue focus and dotted proposal overlays use separate theme tokens, explicit
+labels and line styles; they never use the current-checkpoint target marker or
+imply scientific acceptance. A proposed restraint is not a checkpoint edge.
 
 ### Edges
 

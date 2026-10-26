@@ -171,10 +171,20 @@ with terminal output.
 
 ## Future metal-restraint builder checks
 
-See [the builder contract](metal-restraint-builder.md). Once Simon supplies
-examples: verify docked/small-window parity; clickable atoms/metals and visible
-restraint overlays without coordinate movement; role-to-renamed-atom resolution;
-save/load/reapply across supported bases; one-/two-metal and heterometal recipes;
-and a separately launched refinement child receiving the exact emitted targets
-and uncertainties. Confirm unresolved donor selection is local to that recipe,
-not a global workflow veto. No GUI test is claimed run by this note.
+See [the builder contract](metal-restraint-builder.md) and
+[anomalous diagnostics](metal-anomalous-doctor.md). Supplied contexts still need
+explicit native fixtures and reviewed targets. Verify docked/small-window parity;
+clickable atoms/metals and proposed overlays without coordinate movement;
+role-to-renamed-atom resolution; save/load/reapply across supported bases;
+one-/two-/three-metal, heterometal and larger cluster graph recipes; and a
+separately launched child receiving exact targets and uncertainties. Confirm
+unresolved donor selection is local to that recipe, not a global workflow veto.
+
+Check dark grey canvas contrast, dotted blue proposals versus ordinary bonds,
+keyboard/site selection, and linked trial/per-site row focus. Unrun, failed and
+scientifically unresolved outcomes must remain distinct. Show all frozen atomic
+parameters, q-vector, anomalous grouping and exact job count before execution;
+show effective-parameter/output-atom audit results afterward. Changing a row,
+recipe, pin or display overlay never selects a current checkpoint. Cluster totals
+state weighting and site scope; formal charge and occupancy have different labels.
+No native refinement or production GUI test is claimed by this design note.

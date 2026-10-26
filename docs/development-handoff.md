@@ -11,6 +11,55 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Parallel metal workflow design
+
+The user-authorized `codex/alder` worktree isolates metal-design documentation
+from active CIF/numerical development. Its base is `2801d78` (C100); integrate
+into `cedar` or its explicitly designated successor after reconciling newer
+changes. Retire the feature branch/worktree after reviewed integration and an
+audit of its local artifacts, not while native results remain unaccounted for.
+This parallel scope adds no Cedar/Pine scientific gate.
+
+Before this change, the planned builder covered one/two metals and examples were
+pending. The [updated builder](metal-restraint-builder.md) now covers one to
+three metals and cluster graphs; the [anomalous contract](metal-anomalous-doctor.md)
+separates geometry preparation from verified frozen-q/f'' experiments, with
+bounded plans, ambiguity and linked tables. GUI contracts, architecture and
+the documentation index agree. The expanded schema-1 development intent remains
+`runtime_authority: false`; no runtime schema or migration changes.
+
+Validation on the C100-based feature worktree, Python 3.12.14: **46 focused
+tests and 13 subtests passed in 14.51s**; the complete suite passed **5645 tests
+and 276 subtests in 798.79s**. The four new intent checks first failed against
+the old document, then passed with the revised contract. Exact execution
+commands (the interpreter path records local validation provenance):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_workflow_intent.py tests/test_autorefine.py tests/test_refine_doctor.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider > /private/tmp/alder-full-suite.log 2>&1
+git diff --check
+```
+
+Whitespace checks pass; 11 local targets in the builder, anomalous contract and
+two GUI documents resolve. Changed files are those four contracts,
+`metal-restraint-builder-intent.json`, `architecture.md`, `docs/README.md`, this
+handoff, `CHANGELOG.md` and `tests/test_metal_workflow_intent.py`. No runtime
+module changed. The development-intent JSON remains schema 1 and does not
+authorize runtime behavior; existing runs and users need no migration.
+
+The separate local interface concept demonstrates site/role editing, draft
+save/load, occupancy-plan counts and linked table/site selection, including a
+four-node cluster graph. Browser checks cover desktop and narrow layouts; this
+is not a production GUI or scientific validation. No native Phenix/Coot dry-run
+or complete refinement was performed for this delivery. Source PDFs,
+unpublished cluster results, crystallographic inputs, screenshots and GUI
+exploration state remain outside Git.
+
+Next: review the interface concept, then implement graph/role serialization and
+restraint preview before choosing a bounded native fixture. Recipe targets,
+native freeze tolerances, anomalous grouping and output eligibility remain
+implementation work; current `ML-fdp-only` is not a fully frozen experiment.
+
 ## Current CIF Doctor continuation boundary
 
 **Current delivery: C100 bounded geometry for the repaired objective.**
