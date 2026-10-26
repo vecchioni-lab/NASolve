@@ -41,12 +41,16 @@ the restraint objective, so C99 repeats the sampled derivative audit for the
 exact repaired manager. All 168 directions and both orders of 58 planes plus
 six controls pass with unchanged native energies and coordinates. Five
 directions need the two smallest existing step sizes; tolerances are unchanged.
-A fresh bounded geometry trial and endpoint checks are the next boundary;
-neither native mechanics nor initial derivatives confer the old endpoint proof.
+C100 then tests bounded geometry: its target falls 12.54%, but a line-search
+rounding error and six full-precision/four rounded derivative reviews retain
+the verified starting model. Native reread is skipped, and all endpoint evidence
+is preserved. A saved-data screen highlights a nearly collinear PDU torsion;
+fixed-coordinate isolation is needed before claiming a cause or retrying geometry.
+Neither native mechanics nor initial derivatives confer the old endpoint proof.
 ATL remains an independent source/compiler control. Future chemical-reference
 input, potentially from ChemDraw exports, belongs to restraints preparation;
 drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c99) is the
+[current capability map](cif-doctor.md#current-capability-boundary-c100) is the
 concise authority for these distinctions and next steps.
 
 ## What it does
@@ -630,8 +634,9 @@ declared site modifications and historical generation findings; equality does
 not establish chemical validity or qualify installed canonical numerics.
 A separately tested preserved DF recovery passes current linked/native mechanics;
 C99 separately passes fresh sampled derivatives for the repaired manager with
-the explicit corrected evaluator. Optimization, endpoint qualification and
-runtime activation remain separate. Original runtime selections remain intact.
+the explicit corrected evaluator. C100 tests bounded geometry and retains the
+verified start when the endpoint derivatives remain under review. Target
+improvement alone does not select the endpoint; runtime selections remain intact.
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native

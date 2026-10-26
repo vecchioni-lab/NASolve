@@ -13,7 +13,51 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C99 repaired-manager derivative qualification.**
+**Current delivery: C100 bounded geometry for the repaired objective.**
+One complete Phenix 2.2.1-6174 job (dispatcher 2.2.1) lowers the fixed target
+12.5367%, from 4900.147192055969 to 4285.828848323326. The native line search
+stops after 58 iterations/108 calls with rounding errors and its convergence
+criterion false. Six of 168 full-precision and four of 168 rounded directions
+remain under derivative review, all in global total/dihedral directions.
+Repeat, snapshot and additivity controls pass. No tolerance changes.
+
+The saved result is **REVIEW**, selecting **`verified_recovered_model`** with
+`CONTINUE_WITH_NOTES`. Conditional native reread is skipped; no endpoint PDB,
+runtime selection or checkpoint is adopted. Full-precision coordinates and
+all failed samples/stopping evidence are retained. The 46.001752-second job
+preserves all 38 C95, 213 C98 and 68 C99 files. See the
+[C100 contract](cif-doctor.md#recovered-objective-geometry-c100).
+
+Before C100, the repaired objective had native and initial derivative proof but
+no geometry trial. The new `cif_recovered_geometry.py` adapter binds that proof
+to the unchanged worker, optimizer, serializer and endpoint/native qualifiers.
+Tests are in `test_cif_recovered_geometry.py`. Its additive schema-1 receipt is
+`recovered_geometry_trial.json`; historical reports, CLI and runtime manifests
+need no migration. No GUI, metal recipe, NAR workbook or shared compiler changes.
+The user-authorized metal-base-pair branch can proceed independently.
+
+Validation: **5641 passed, 276 subtests passed in 820.32s (0:13:40)**; **143 focused tests** pass, including 38 new cases. Cold relocated replay preserves all 357 parent/trial files and timestamps, reproduces the retained start and rejects three rebound forgeries with zero processes. Compilation, whitespace, 189 document links and rendered-figure inspection pass.
+
+Exact validation commands, frozen hashes and compact results are recorded under
+`recovered_mixed_geometry_2026_10_26` in the existing evidence ledger. Generated
+models, input dictionaries, captured sources, raw observations and logs remain
+local; Git includes source, synthetic tests, documentation and concise receipts.
+
+**Next boundary:** a fixed-coordinate torsion/conditioning audit of this saved
+endpoint before another optimization. The existing saved-data selector flags
+six near-collinear torsions plus two controls; the most severe PDU D:5 minimum
+plane-normal sine is 2.95e-7, versus 1.29e-3 initially. That is a diagnostic lead,
+not proof of a derivative bug or authority to remove a restraint. Reuse the
+established local/group and resolution-window controls with this exact current
+objective; old C91-C93 qualification cannot transfer. Source chemistry,
+ordinary refinement, runtime adoption and scientific approval remain separate.
+Continue directly on **`cedar`**; no new per-fix branch or Pine/main merge.
+
+— Rowan · Codex desktop
+
+### Previous C99 delivery
+
+**C99 delivery: repaired-manager derivative qualification.**
 The exact C98 DF recovery now passes a fresh fixed-coordinate audit on Phenix
 2.2.1-6174 (dispatcher 2.2.1): 168 sampled directions, both orders of all 58
 planes and six tilted/rotated controls. Native energies, all 863 coordinates

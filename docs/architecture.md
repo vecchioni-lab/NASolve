@@ -3150,3 +3150,23 @@ Coot, ReadySet, dictionary generator, runtime selection or checkpoint is invoked
 Readback reconstructs the preparation in temporary storage and never executes
 captured code. The qualified object is this fixed manager and local evaluator,
 not ordinary refinement or a scientifically approved structure.
+
+
+### Geometry after source recovery (C100)
+
+`cif_recovered_geometry` connects replayed C98/C99 bindings to the unchanged
+`cif_mixed_geometry` preparation, endpoint and native-mechanics validators.
+It supplies the real initial proof and expected manager; historical packages
+and optimizer kernels remain byte-identical. A verified C98-owned endpoint
+capsule supplies the legacy worker's archive field, while independent C98/C99
+references bind the actual repaired objective. The [C100 contract](cif-doctor.md#recovered-objective-geometry-c100)
+defines the additive schema and explicit diagnostic APIs.
+
+An endpoint is eligible only after derivative, identity serialization, native
+mechanics, rounded-target and nonworse-objective checks. Failure retains the
+verified recovered starting model, not an old-objective endpoint. Process
+success does not imply numerical qualification, and stopping does not itself
+exclude a usable endpoint. Every attempt requires fresh storage, preserves
+failed outputs and remains separate from runtime/checkpoint adoption. Native
+reread is never launched for an unqualified derivative endpoint. This adapter
+does not alter the independent metal-authoring backend or NAR role/target logic.

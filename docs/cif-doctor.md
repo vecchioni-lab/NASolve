@@ -5,7 +5,9 @@
 
 <a id="current-capability-boundary-c98"></a>
 
-## Current capability boundary (C99)
+<a id="current-capability-boundary-c99"></a>
+
+## Current capability boundary (C100)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -18,9 +20,9 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
-| Is the endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
+| Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
-| Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | No geometry trial or runtime activation follows automatically; the C95 bundle is not overwritten or reclassified. |
+| Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | C100 tests bounded geometry but retains the verified recovered start because endpoint derivatives fail qualification. The C95 bundle is not overwritten or reclassified. |
 | Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
 | Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
 
@@ -90,6 +92,75 @@ assessment with all 38 bundle files unchanged and zero SDK/process attempts.
 The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
 The existing evidence ledger records commands, frozen hashes, the exact current
 source summary and a preserved C18 DF recovery candidate for subsequent qualification.
+
+### Recovered-objective geometry (C100)
+
+`cif_recovered_geometry.trial_recovered_geometry(gradient_directory,
+recovery_directory, phenix, output, max_iterations=1000, timeout_seconds=600)`
+accepts a replayed C99 derivative pass and its exact C98 recovery. It requires a
+fresh separate output directory and the same recorded Phenix consumer.
+`phenix=None` prepares only. `read_recovered_geometry(directory,
+gradient_directory=..., recovery_directory=...)` reconstructs the preparation
+and decision without executing an SDK or captured code. These are diagnostic
+Python APIs; ordinary CLI/runtime selection is unchanged.
+
+The adapter preserves the established geometry worker, optimizer, numerical
+kernels, endpoint derivative checks, serializer and native-mechanics qualifiers.
+It stages the actual C99 result and exact expected manager, so a receipt from a
+different objective cannot authorize the optimizer. The maximum is 1,000
+iterations, 20,000 optimizer calls and a 600-second worker deadline, including
+full/rounded endpoint audits. Native reread is conditional on successful
+endpoint derivative qualification and has its own maximum 60-second deadline;
+there are at most two native calls. A target decrease or optimizer stop alone
+cannot select the endpoint. Native nonconvergence remains a note when all
+other endpoint checks pass.
+
+The new schema-1 receipt is `recovered_geometry_trial.json`, policy
+`cif-recovered-mixed-geometry-trial-v1`. C98 resources retain their
+`mixed_source_recovery_directory` anchor; C99 reports/results use
+`recovered_gradient_directory`; the embedded job keeps the existing
+`mixed_geometry_directory` anchor rooted in this new attempt. The legacy
+worker field `parent_archive_sha256` refers to the exact C94 endpoint capsule
+owned and verified by C98. It is derived from that verified receipt, not supplied
+as an arbitrary caller assertion. Current repaired-objective authority comes
+from the separately bound C98/C99 reports and exact initial proof. No historical
+endpoint qualification is transferred.
+
+The complete Mac C100 trial on **Phenix 2.2.1-6174** (dispatcher 2.2.1) completes
+one native job in **46.001752 seconds**. Its fixed target decreases from
+**4900.147192055969 to 4285.828848323326 (12.5367%)**; the rounded target is
+4309.716696399963. After 58 iterations and 108 optimizer calls, the native
+line search reports rounding errors and the convergence criterion is false.
+Of 168 sampled directions per representation, **162 full-precision and 164
+PDB-rounded directions pass**. The remaining six/four are global directions
+in the total/dihedral families. Repeat, snapshot and additivity checks pass;
+no numerical tolerance is relaxed.
+
+The saved decision is therefore `REVIEW`, `CONTINUE_WITH_NOTES`, selecting
+`verified_recovered_model`. No endpoint PDB is selected or materialized, and
+conditional native reread is not launched. Full-precision coordinates, both
+endpoint audits, original stopping and partial outputs remain available in the
+immutable diagnostic. All 38 C95, 213 C98 and 68 C99 parent files remain unchanged.
+
+A separate saved-data screen reuses the existing generic torsion selector,
+without a native call or residue allowlist. It identifies six near-collinear
+positive-weight torsions plus two controls. The most severe is a PDU D:5
+propynyl torsion whose minimum plane-normal sine falls from about 1.29e-3 to
+2.95e-7 at full precision (about 1.03e-3 after rounding). This supports a
+conditioning investigation; it does not establish a native derivative defect,
+a wrong chemical target or permission to remove the restraint.
+
+**Next boundary:** localize the saved endpoint's torsion contributions and
+finite-difference resolution using fixed coordinates before another optimizer
+run. Any finer-step qualification must retain raw coarse failures, unchanged
+tolerances and the existing resolution/adjacency controls. Do not inherit the
+old C91-C93 objective's pass. Scientific chemistry, ordinary refinement,
+runtime/checkpoint adoption and Pine/main integration remain separate.
+The metal-restraint GUI branch can develop independently; C100 changes no GUI,
+metal recipe, NARestraints workbook or shared restraint compiler. The evidence
+ledger entry `recovered_mixed_geometry_2026_10_26` records commands and hashes.
+
+Validation: **5641 passed, 276 subtests passed in 820.32s (0:13:40)**; **143 focused tests** pass, including 38 new cases. Cold relocated replay preserves all 357 parent/trial files and timestamps, reproduces the retained start and rejects three rebound forgeries with zero processes. Compilation, whitespace, 189 document links and rendered-figure inspection pass.
 
 ### Recovered-manager derivatives (C99)
 

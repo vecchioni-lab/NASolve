@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bound geometry trials for recovered objectives (C100)
+
+- Add an explicit geometry adapter bound to replayed C98 source/native evidence
+  and C99's exact initial derivative proof. Reuse the unchanged geometry worker,
+  optimizer, endpoint derivative thresholds, serializer and native qualifiers.
+- Save a separate schema-1 `recovered_geometry_trial.json` with anchored parent
+  references, a maximum of two native calls and a read-only decision replay.
+  Keep the verified recovered model when optional endpoint checks fail.
+- The complete Mac trial lowers the fixed target 12.54% but stops after 58
+  iterations with a line-search rounding error. Six full-precision and four
+  rounded sampled directions retain review; the endpoint is not selected and
+  conditional native reread is skipped. Preserve all evidence and prior runs.
+- Do not activate a runtime bundle, adopt a checkpoint, alter NARestraints or
+  qualify ordinary refinement. Existing manifests and CLI need no migration.
+
 ### Qualify derivatives after source recovery (C99)
 
 - Add a separate fixed-coordinate derivative audit bound to a fully replayed

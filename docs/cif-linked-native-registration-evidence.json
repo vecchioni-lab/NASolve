@@ -31802,5 +31802,363 @@
       "Ordinary refinement consumer and experimental chemistry remain unqualified; other source findings, ATL and future ChemDraw-reference support remain separate.",
       "Continue on Cedar without extra per-fix branches; Pine/main integration is later."
     ]
+  },
+  "recovered_mixed_geometry_2026_10_26": {
+    "author": "Rowan · Codex desktop",
+    "status": "IMPLEMENTED_AND_MAC_EXECUTED; ENDPOINT_UNQUALIFIED_START_RETAINED",
+    "branch": "cedar",
+    "parent_commit": "1f6b1a90c7cde2be6734ffcc4b44f107efa0ccba",
+    "before": "C98/C99 qualify the source-recovered native manager and initial sampled derivatives, with no geometry trial for that changed objective.",
+    "after": "A new bounded trial uses the exact current proof and unchanged worker/optimizer. Its endpoint derivative failure retains the verified recovered start automatically; all stopping and endpoint data remain available.",
+    "changed_runtime_files": [
+      "src/nasolve/cif_recovered_geometry.py"
+    ],
+    "changed_tests": [
+      "tests/test_cif_recovered_geometry.py"
+    ],
+    "schemas": {
+      "schema_version": 1,
+      "policy_id": "cif-recovered-mixed-geometry-trial-v1",
+      "report": "recovered_geometry_trial.json",
+      "recovery_anchor": "mixed_source_recovery_directory",
+      "gradient_anchor": "recovered_gradient_directory",
+      "embedded_job_anchor": "mixed_geometry_directory",
+      "legacy_worker_policy": "cif-mixed-qualified-geometry-trial-v1",
+      "historical_reports_and_runtime_manifests": "UNCHANGED"
+    },
+    "compatibility_and_migration": "Additive diagnostic Python APIs; no CLI/runtime manifest, optimizer, kernel, numerical tolerance, NAR target/role, source chemistry or migration change. Old workers remain byte-identical.",
+    "parallel_work_boundary": "Independent user-authorized metal-restraint GUI work; no GUI, metal recipe, NARestraints workbook or shared compiler edits in C100.",
+    "methods": "C99 read-only proof replay includes exact C98 source/native lineage. Bind exact ordered resources, actual initial observations and current manager; pin Phenix consumer; reuse unchanged C90 preparation/optimizer/endpoint and native-mechanics gates. Native reread is conditional on endpoint derivatives. Reader rebuilds preparation and decision without executing captured code.",
+    "parent_bindings": {
+      "recovery_report": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "mixed_source_recovery.json",
+        "sha256": "bf1454717b00d7e6f6ad45aff173f931afc2bb7fcd584acab74fccbf46fb0b94",
+        "size": 3427467
+      },
+      "active_capture": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "native/active/cif-native-kv9awhao/native_receipt.json",
+        "sha256": "3896beded08ff2642d0053b118d097d59b91233998e58c16b6224bf6b8d87119",
+        "size": 5885303
+      },
+      "model": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "inputs/runtime/000_model.pdb",
+        "sha256": "ac9579220ea6c506a916137c283dfc2c9e32a1f88aaf39e00c0f9d6ae725e259",
+        "size": 99310
+      },
+      "gradient_report": {
+        "anchor": "recovered_gradient_directory",
+        "path": "recovered_mixed_gradients.json",
+        "sha256": "6f19448d2a9d2cdeccc116465faad694630656715c6e62084b86613a99da9f89",
+        "size": 29717
+      },
+      "gradient_result": {
+        "anchor": "recovered_gradient_directory",
+        "path": "job/gradient_result.json",
+        "sha256": "6818ef55e4a0a368a64e9216b4f95ac7e0dae7512c54b18bb33b7a42626864f1",
+        "size": 3065574
+      },
+      "endpoint_capsule": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "capsules/endpoint.zip",
+        "sha256": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+        "size": 27412323
+      }
+    },
+    "ordered_input_bindings_sha256": "eace4ef8ceff14b7a8e0d1ad4dd628096cd0a6dd27bf1fb035f17fae3dfe5b03",
+    "parent_archive_field": "Legacy worker field refers to the exact C94 endpoint capsule verified and owned by C98; current repaired-objective authority is separately bound to C98/C99, not inherited from that old objective.",
+    "native_execution": {
+      "mode": "COMPLETE_EXECUTION; NOT_DRY_RUN",
+      "installation": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "python": "3.12.14",
+      "new_native_calls": 1,
+      "execution": {
+        "elapsed_seconds": 46.001752,
+        "returncode": 0,
+        "status": "COMPLETED"
+      },
+      "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+      "max_iterations": 1000,
+      "max_optimizer_calls": 20000,
+      "worker_deadline_seconds": 600,
+      "maximum_conditional_readback_seconds": 60,
+      "native_readback": "NOT_RUN; ENDPOINT_DERIVATIVES_UNQUALIFIED",
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "generation": "NOT_RUN"
+    },
+    "qualification": {
+      "finding": "OPTIONAL_ENDPOINT_UNQUALIFIED",
+      "finding_type": "ValueError",
+      "sampled_derivatives_pass": false,
+      "status": "REVIEW"
+    },
+    "coordinate_decision": {
+      "automatic_adoption": false,
+      "checks": {
+        "qualified_endpoint_derivatives": false
+      },
+      "continue_solving": true,
+      "endpoint_usable": false,
+      "native_usable": true,
+      "notes": [
+        "Stopping, pucker, chirality and residual findings are recorded separately from fixed native mechanics.",
+        "The optional separate endpoint is selected only when its fixed objective and native checks qualify; otherwise the usable starting model is retained."
+      ],
+      "requires_cif_review": false,
+      "scientific_qualification": "NOT_ASSESSED",
+      "selected": "verified_recovered_model",
+      "status": "CONTINUE_WITH_NOTES",
+      "stopping": {
+        "calls": 108,
+        "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+        "iterations": 58,
+        "max_iterations": 1000,
+        "native_criterion_met": false,
+        "reason": "unreported"
+      }
+    },
+    "stopping": {
+      "calls": 108,
+      "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+      "iterations": 58,
+      "max_iterations": 1000,
+      "native_criterion_met": false,
+      "reason": "unreported"
+    },
+    "numerical_results": {
+      "initial_target": 4900.147192055969,
+      "initial_gradient_norm": 15066.264980054835,
+      "fixed_objective_decrease_percent": 12.536732462415912,
+      "endpoints": {
+        "full_precision": {
+          "target": 4285.828848323326,
+          "gradient_norm": 6907.530970237608,
+          "review": [
+            [
+              "all",
+              "full_gradient"
+            ],
+            [
+              "all",
+              "alternating_global"
+            ],
+            [
+              "all",
+              "family_gradient"
+            ],
+            [
+              "dihedral",
+              "full_gradient"
+            ],
+            [
+              "dihedral",
+              "alternating_global"
+            ],
+            [
+              "dihedral",
+              "family_gradient"
+            ]
+          ],
+          "total": 168
+        },
+        "pdb_rounded": {
+          "target": 4309.716696399963,
+          "gradient_norm": 5733.740857306694,
+          "review": [
+            [
+              "all",
+              "full_gradient"
+            ],
+            [
+              "all",
+              "family_gradient"
+            ],
+            [
+              "dihedral",
+              "full_gradient"
+            ],
+            [
+              "dihedral",
+              "family_gradient"
+            ]
+          ],
+          "total": 168
+        }
+      },
+      "endpoint_audit_evaluations": 2734,
+      "repeat_snapshot_additivity_checks": "PASS_BOTH_REPRESENTATIONS",
+      "endpoint_pdb": "NOT_MATERIALIZED_OR_SELECTED",
+      "tolerances": "UNCHANGED"
+    },
+    "saved_screen": {
+      "status": "SAVED_GEOMETRY_SCREEN_ONLY",
+      "native_calls": 0,
+      "policy": "SAVED_GEOMETRY_AND_ATOM_GRADIENT; NO_COMPONENT_ALLOWLIST",
+      "near_eligible_count": 6,
+      "selected_count": 8,
+      "most_severe": {
+        "atom_gradient_score": 14381.942977618062,
+        "atoms": [
+          "pdb=\" C5  PDU D   5 \"",
+          "pdb=\" C5A PDU D   5 \"",
+          "pdb=\" C5B PDU D   5 \"",
+          "pdb=\" C5M PDU D   5 \""
+        ],
+        "geometry": {
+          "full_precision": {
+            "geometry_defined": true,
+            "inverse_minimum_sine": 3393880.8241479825,
+            "minimum_sine": 2.946479419326827e-07,
+            "near_collinear_review": true,
+            "near_collinear_sine_screen": 0.001,
+            "plane_normal_norms_angstrom2": [
+              0.035704052652478946,
+              5.456329187150499e-07
+            ],
+            "plane_normal_sines": [
+              0.019263957502703367,
+              2.946479419326827e-07
+            ]
+          },
+          "initial": {
+            "geometry_defined": true,
+            "inverse_minimum_sine": 777.2805033941935,
+            "minimum_sine": 0.0012865368366159256,
+            "near_collinear_review": false,
+            "near_collinear_sine_screen": 0.001,
+            "plane_normal_norms_angstrom2": [
+              0.0768213961146269,
+              0.0023688507762219474
+            ],
+            "plane_normal_sines": [
+              0.04184015084582582,
+              0.0012865368366159256
+            ]
+          },
+          "pdb_rounded": {
+            "geometry_defined": true,
+            "inverse_minimum_sine": 967.2123507204751,
+            "minimum_sine": 0.0010338991217958512,
+            "near_collinear_review": false,
+            "near_collinear_sine_screen": 0.001,
+            "plane_normal_norms_angstrom2": [
+              0.038023614202226996,
+              0.0019152422823220112
+            ],
+            "plane_normal_sines": [
+              0.020517138151217994,
+              0.0010338991217958512
+            ]
+          }
+        },
+        "kind": "dihedral",
+        "native_index": 587,
+        "selection_reason": "NEAR_COLLINEAR"
+      },
+      "interpretation": "Near-collinear PDU geometry is a conditioning lead, not proof of a native derivative defect, chemical error or permission to delete restraints. No endpoint qualification changes."
+    },
+    "receipts": {
+      "geometry/recovered_geometry_trial.json": {
+        "anchor": "live_tests_directory",
+        "path": "100_Cedar_recovered-geometry-4xnwm6qk/geometry/recovered_geometry_trial.json",
+        "sha256": "e10602a313d9c9370257ead66dbd33d8174db9f8375ac9aecd14cfa80eb9e5c4",
+        "size": 30962
+      },
+      "geometry/job/geometry_result.json": {
+        "anchor": "live_tests_directory",
+        "path": "100_Cedar_recovered-geometry-4xnwm6qk/geometry/job/geometry_result.json",
+        "sha256": "8cedc92e3212812b9dbcd2a1a56ec2266259ffe220c13138d7851791202bde49",
+        "size": 4981584
+      },
+      "geometry/job/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "100_Cedar_recovered-geometry-4xnwm6qk/geometry/job/native_validation.json",
+        "sha256": "6d2461a5395ff4ba96565d3151e87567a6077b3fbd944157c7939823fb0a7daf",
+        "size": 5279353
+      },
+      "execution_summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "100_Cedar_recovered-geometry-4xnwm6qk/execution_summary.json",
+        "sha256": "5a0cef869eb28cc14987d82fe7fad7d300607e93f086f4349760967cdf92999d",
+        "size": 7540
+      },
+      "saved_torsion_screen.json": {
+        "anchor": "live_tests_directory",
+        "path": "100_Cedar_recovered-geometry-4xnwm6qk/saved_torsion_screen.json",
+        "sha256": "d35bb30d043c71de57c6e8f9638aa6b464869577f43b42ba3748e5758408da56",
+        "size": 1959674
+      },
+      "saved_torsion_screen_summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "100_Cedar_recovered-geometry-4xnwm6qk/saved_torsion_screen_summary.json",
+        "sha256": "1350cd84c5dcae8a2425875925ec6a21e04671dc16cab83d81675cea9643975c",
+        "size": 14881
+      }
+    },
+    "validation": {
+      "before_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_recovered_geometry.py",
+      "before_result": "Expected collection failure before implementation: ModuleNotFoundError for nasolve.cif_recovered_geometry; 1 error in 0.08s.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_recovered_geometry.py tests/test_cif_mixed_geometry.py tests/test_cif_recovered_gradient.py",
+      "focused_result": "143 passed in 89.36s (0:01:29)",
+      "new_regression_cases": 38,
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c100_live.py",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c100_cold.py",
+      "screen_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c100_screen.py",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c100-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "compile_result": "PASS",
+      "integrity_command": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c100_verify.py",
+      "integrity": {
+        "status": "PASS",
+        "frozen_source_and_test_files": 408,
+        "all_execution_source_and_test_hashes_unchanged": true,
+        "parent_file_bytes_and_mtimes_preserved": {
+          "C95": 38,
+          "C98": 213,
+          "C99": 68
+        },
+        "document_links": 189,
+        "adapter_sha256": "3f0d6d9231a94945ded89f6f7b88901d560f790ad77cb73834de60274df80cd0",
+        "test_sha256": "bef1e1260f5a4beebb682ee70d2c163dc59b7b172b5d5e8dbf2fe09a0bc9a3bd"
+      },
+      "relocation": {
+        "bytes_and_timestamps_preserved_by_read": true,
+        "coordinate_selection": "verified_recovered_model",
+        "files_unchanged_by_read": 357,
+        "original_live_and_code_paths_blocked": true,
+        "original_temporary_paths_absent": true,
+        "process_discovery_pickle_calls": 0,
+        "read_seconds": 56.351,
+        "rebound_forgeries_rejected": [
+          "forged_selection",
+          "rebound_dictionary",
+          "rebound_precondition"
+        ],
+        "status": "REVIEW_REPLAY_PASS",
+        "total_seconds": 233.853
+      },
+      "whitespace_command": "git diff --check",
+      "figure_command": "/opt/homebrew/bin/rsvg-convert -w 1400 -o /private/tmp/c100-overview.png docs/figures/cif-doctor-overview.svg",
+      "figure_result": "Rendered and visually inspected; text and bounds pass.",
+      "full_result": "5641 passed, 276 subtests passed in 820.32s (0:13:40)",
+      "archive_manifest": {
+        "anchor": "live_tests_directory",
+        "path": "100_Cedar_recovered-geometry-4xnwm6qk/validation/manifest.json",
+        "sha256": "14121014345eeb29d2d7252b598de13a3184fec1bf983525032c34aecc3563cc",
+        "size": 3280
+      },
+      "archive_payload_count": 21
+    },
+    "generated_artifacts": "Scientific inputs, all endpoint coordinates/observations, native captures, source snapshots and logs remain local; no generated science is committed. Git contains code, synthetic tests, documentation and compact technical evidence.",
+    "limitations_and_followup": [
+      "Fixed-coordinate local/group torsion and resolution-window audit of this exact saved endpoint before another optimization; retain coarse failures and unchanged tolerances.",
+      "No old C91-C93 qualification inheritance, endpoint selection, runtime activation, checkpoint adoption, ordinary refinement or scientific approval.",
+      "Source chemistry, ATL and future ChemDraw-reference support remain separate; metal GUI can proceed independently.",
+      "Cedar remains the sole branch for this work; no new per-fix branch or Pine/main merge."
+    ]
   }
 }
