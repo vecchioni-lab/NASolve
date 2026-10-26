@@ -16,6 +16,11 @@ entries are reconstructed from repository history.
   freezes, bounded trial plans, retained ambiguity and linked per-site tables.
 - Specify Design/Experiment/Compare views with distinct proposed-restraint and
   selection overlays. Extend the non-runtime development intent and its checks.
+- Extend the design with 3D camera controls, explicit atom-pair draft restraints,
+  broad/focused per-metal occupancy rounds and locks, a separate conditional
+  occupancy fit, and checksum-verified reuse of identical complete experiments.
+- Plan a local chemistry-aware target library using qualified CIF provenance,
+  explicit donor states, source/uncertainty display and recorded overrides.
 - This is design documentation only: no native execution, runtime schema,
   existing refinement strategy or checkpoint migration changes.
 

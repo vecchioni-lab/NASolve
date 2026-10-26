@@ -49,3 +49,35 @@ def test_development_contracts_resolve_in_this_checkout():
     for path in [spec["contract"], spec["anomalous_diagnostics"]["contract"]]:
         assert not Path(path).is_absolute()
         assert (ROOT / path).is_file()
+
+
+def test_camera_and_draft_edges_do_not_edit_scientific_coordinates():
+    view = intent()["molecular_view"]
+    assert set(view["camera_controls"]) >= {"zoom", "rotate_3d", "fit"}
+    assert view["camera_changes_coordinates"] is False
+    assert view["draft_edge_requires_explicit_add"] is True
+    assert view["depth_preserved_for_six_site_cluster"] is True
+
+
+def test_occupancy_iteration_retains_per_site_locks_and_parameter_roles():
+    iteration = intent()["anomalous_diagnostics"]["iteration"]
+    assert iteration["stages"] == ["broad_fdp_profile", "focused_fdp_profile", "conditional_occupancy_refinement"]
+    assert iteration["default_local_step"] == 0.1
+    assert iteration["per_site_centers_and_locks"] is True
+    assert iteration["requires_explicit_seed_trial"] is True
+    assert iteration["automatically_selects_next_center"] is False
+    assert iteration["occupancy_refinement_fixes_fdp"] is True
+    assert iteration["iteration_budget_required"] is True
+
+
+def test_reuse_depends_on_the_complete_experiment_not_only_the_metal_tuple():
+    reuse = intent()["anomalous_diagnostics"]["result_reuse"]
+    assert reuse["complete_verified_results_only"] is True
+    assert reuse["validate_artifact_checksums"] is True
+    assert reuse["retain_original_execution_and_iteration_lineage"] is True
+    assert reuse["metal_position_occ_fdp_alone_is_sufficient"] is False
+    assert set(reuse["identity_inputs"]) >= {
+        "full_model", "observations", "free_r", "wavelength_and_references",
+        "restraints_and_dictionaries", "resolved_selections_and_groups",
+        "effective_parameters_and_starts", "software_and_protocol_versions",
+    }

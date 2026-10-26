@@ -32,6 +32,25 @@ proposed interactions never inherit an accepted-checkpoint marker. Design,
 Experiment and Compare are connected views of the same hypothesis and atom
 identities, not independent copies of the model.
 
+## Camera and interactive restraint sets
+
+Provide a zoom slider, genuine three-dimensional rotation, pan/recenter and fit
+controls. Camera transformations change only the view; stored coordinates,
+restraint targets, atom identities and checkpoint selection remain unchanged.
+Preserve depth for nonplanar six-site clusters and show surrounding nucleotides
+or explicit symmetry mates when requested. A flat graph layout is not a geometry
+model. The public [8VH6 deposition](https://www.rcsb.org/structure/8VH6) is a
+useful spread-out three-Au viewing case; it is not a universal geometry target.
+
+Make donor atoms as well as metal sites selectable. In an explicit add-restraint
+mode, choosing two atoms creates an orange draft edge; a third selection can
+define an angle. Display endpoint identities and let the scientist add, cancel
+or remove the draft. Confirmed recipe proposals retain blue dotted styling.
+Orange denotes a draft interaction, not bad chemistry; green retains its
+accepted-checkpoint meaning. Use labels and distinct line styles with color.
+Keep named restraint sets independently visible and editable, with targets,
+uncertainties and sources attached to the set's individual constraints.
+
 ## Portable atom roles, not fixed PDB atom names
 
 A reusable donor selector uses a logical residue slot plus a canonical atom-role
@@ -102,6 +121,39 @@ defines these comparisons and their identifiability limits.
 Record source chemistry, protonation and oxidation-state assumptions without
 silently rewriting component dictionaries. A restraint graph and an element
 label alone do not establish those chemical properties.
+
+## Local chemistry-aware target suggestions
+
+Maintain a versioned local library of suggested metal-donor distances and
+uncertainties. Use reviewed recipes/reference data and, where the exact chemical
+context is supported, targets from the existing PostMR/CIF generation and
+qualified dictionary store. Reuse its source/graph/producer/consumer provenance
+through an adapter; do not fork the CIF chemistry engine. Ordinary component
+bond numerics do not automatically qualify a metal-coordination target.
+
+Match more than element pairs: metal identity and declared oxidation state,
+donor element, donor bond-order environment, formal charge, explicit hydrogen
+state/tautomer and applicable coordination geometry belong in the lookup.
+C=S, C-SH, thiolate, -OH and -O-minus represent distinct stated contexts; do
+not silently infer a protonation or redox change from pH or a drawn edge.
+Offer a suggested target and uncertainty with its source, applicability and
+qualification status. The scientist may edit either value, with the override
+retained alongside the original suggestion. No matching supported source means
+an unset target or an explicitly unreviewed draft, not an invented default.
+
+Changing a declared donor state invalidates the prior match and offers a fresh
+lookup. It does not mutate component bond orders, hydrogens, charge or fitted
+coordinates. An actual chemical variant needs an explicit derived dictionary
+and native qualification under the existing source-preserving workflow.
+Keep measured model distances separate from restraint targets; a distance from
+the same refinement is not an independent reference validating its own target.
+
+Store user recipes and optional suggestions outside Git. Each applied recipe
+freezes the exact library entry/version/hash, chemistry selector, target, sigma,
+source and override into its run artifacts. Later library updates do not alter
+past recipes or satisfy an old full-experiment reuse key. See the existing
+[qualified dictionary store](cif-doctor.md#persistent-local-reuse-of-qualified-repairs)
+for the reusable provenance and native-consumer boundary.
 
 ## Template, application, and refinement remain separate
 

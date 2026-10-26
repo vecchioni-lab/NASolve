@@ -187,4 +187,16 @@ parameters, q-vector, anomalous grouping and exact job count before execution;
 show effective-parameter/output-atom audit results afterward. Changing a row,
 recipe, pin or display overlay never selects a current checkpoint. Cluster totals
 state weighting and site scope; formal charge and occupancy have different labels.
-No native refinement or production GUI test is claimed by this design note.
+Check camera fit/zoom/rotation on a nonplanar six-site cluster and a spread-out
+three-metal case, preserving input coordinates and selected identities. Verify
+two-atom draft/add/cancel/remove behavior and visible restraint-set membership.
+Exercise unequal per-site q centers, high/low locks, clipped 0.1 neighborhoods,
+explicit iteration seeds, separate fixed-f'' occupancy fitting and full-input
+cache invalidation. Reused rows must open the original verified artifacts and
+show their original execution and current round IDs. Plot selection must agree
+with table/model selection. No native refinement or production GUI test is
+claimed by this design note.
+For future target-library integration, test chemically distinct donors with the
+same element, unsupported contexts, invalidated stale suggestions, explicit
+overrides and unchanged source chemistry. Applied recipes must survive a later
+library update with their original target/sigma and provenance intact.

@@ -28,7 +28,7 @@ bounded plans, ambiguity and linked tables. GUI contracts, architecture and
 the documentation index agree. The expanded schema-1 development intent remains
 `runtime_authority: false`; no runtime schema or migration changes.
 
-Validation on the C100-based feature worktree, Python 3.12.14: **46 focused
+Initial design validation (`619f1cc`) on the C100-based feature worktree, Python 3.12.14: **46 focused
 tests and 13 subtests passed in 14.51s**; the complete suite passed **5645 tests
 and 276 subtests in 798.79s**. The four new intent checks first failed against
 the old document, then passed with the revised contract. Exact execution
@@ -54,6 +54,37 @@ is not a production GUI or scientific validation. No native Phenix/Coot dry-run
 or complete refinement was performed for this delivery. Source PDFs,
 unpublished cluster results, crystallographic inputs, screenshots and GUI
 exploration state remain outside Git.
+
+Follow-up design incorporates 3D camera navigation, nonplanar six-site clusters,
+atom-pair draft restraints, broad/focused per-site occupancy rounds and locks,
+separate conditional occupancy fitting, and reuse of verified identical full
+experiments. A local target-library design reuses existing qualified CIF
+provenance with chemical-state-specific lookup and explicit overrides; no new
+metal target or native chemistry support is claimed. The public 8VH6 coordinates
+were inspected locally for viewing
+context; no coordinates or experimental data were added to Git. Three new
+intent checks failed against the previous contract, then all seven focused
+checks passed in 0.03s. Follow-up full validation passes **5648 tests and 276
+subtests in 765.67s**. Exact commands, from this feature checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_workflow_intent.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider > /private/tmp/alder-feedback-full-suite.log 2>&1
+git diff --check
+```
+
+Follow-up changed files are `metal-restraint-builder.md`, its development intent,
+`metal-anomalous-doctor.md`, `gui.md`, `gui-live-checks.md`, this handoff,
+`CHANGELOG.md` and `tests/test_metal_workflow_intent.py`. The expanded development
+intent is still non-runtime schema 1; no user migration or native behavior changes.
+The local sketch passes browser checks for true 3D rotation/zoom/reset, six
+metal sites, donor/metal pair drafting, draft save/load, independent q centers
+and locks, bounded focused vectors, row-seeded planning, separate fixed-f''
+occupancy fitting, table/site linkage and narrow layouts. Library controls show
+an unconnected source and unset suggestions. Cache labels describe the planned
+contract, not an implemented native cache. The sketch, downloaded public CIF,
+screenshots and test logs remain local and excluded from Git. No native Phenix
+or Coot execution is claimed for this follow-up.
 
 Next: review the interface concept, then implement graph/role serialization and
 restraint preview before choosing a bounded native fixture. Recipe targets,

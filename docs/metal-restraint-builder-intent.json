@@ -109,7 +109,18 @@
       "Design",
       "Experiment",
       "Compare"
-    ]
+    ],
+    "camera_controls": [
+      "zoom",
+      "rotate_3d",
+      "pan",
+      "fit"
+    ],
+    "camera_changes_coordinates": false,
+    "draft_edge_requires_explicit_add": true,
+    "draft_restraints": "orange draft edges with endpoint labels",
+    "depth_preserved_for_six_site_cluster": true,
+    "public_viewing_example": "8VH6"
   },
   "anomalous_diagnostics": {
     "contract": "docs/metal-anomalous-doctor.md",
@@ -136,6 +147,57 @@
     "native_job_budget_required": true,
     "table_rows_bind_exact_trial_and_artifacts": true,
     "zero_occupancy_fdp": "not identifiable; omitted-site control",
-    "nuisance_parameters": "explicit freeze or common profiling policy"
+    "nuisance_parameters": "explicit freeze or common profiling policy",
+    "iteration": {
+      "stages": [
+        "broad_fdp_profile",
+        "focused_fdp_profile",
+        "conditional_occupancy_refinement"
+      ],
+      "default_local_step": 0.1,
+      "per_site_centers_and_locks": true,
+      "requires_explicit_seed_trial": true,
+      "automatically_selects_next_center": false,
+      "occupancy_refinement_fixes_fdp": true,
+      "iteration_budget_required": true,
+      "plot_role": "optional matched per-site response slices linked to table rows"
+    },
+    "result_reuse": {
+      "complete_verified_results_only": true,
+      "validate_artifact_checksums": true,
+      "retain_original_execution_and_iteration_lineage": true,
+      "metal_position_occ_fdp_alone_is_sufficient": false,
+      "identity_inputs": [
+        "full_model",
+        "observations",
+        "free_r",
+        "wavelength_and_references",
+        "restraints_and_dictionaries",
+        "resolved_selections_and_groups",
+        "effective_parameters_and_starts",
+        "software_and_protocol_versions"
+      ]
+    }
+  },
+  "target_library": {
+    "status": "PLANNED_NOT_IMPLEMENTED",
+    "storage": "user-local, outside tracked source",
+    "reuse_existing_cif_store_provenance": true,
+    "requires_supported_coordination_context": true,
+    "match": [
+      "metal_species",
+      "metal_oxidation_state",
+      "donor_element",
+      "donor_bond_orders",
+      "donor_formal_charge",
+      "explicit_hydrogens_and_tautomer",
+      "coordination_context"
+    ],
+    "show_source_and_uncertainty": true,
+    "allow_recorded_overrides": true,
+    "state_change_invalidates_suggestion": true,
+    "state_picker_mutates_dictionary": false,
+    "unmatched_target": "unset or explicitly unreviewed draft",
+    "application_freezes_entry_and_override": true
   }
 }

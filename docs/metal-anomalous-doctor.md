@@ -189,6 +189,68 @@ Common geometry/occupancy must be a tested assumption, especially across
 different crystals, reactions or radiation damage. Multi-dataset joint fitting
 is a later explicit protocol, not implicit merging of independently refined rows.
 
+## Broad scans, focused iteration and occupancy refinement
+
+Support a scientist-directed sequence rather than one exhaustive search:
+
+1. **Broad f'' profile:** evaluate a sparse declared occupancy range and the
+   competing identity/count hypotheses. Every trial has fixed atomic XYZ, ADPs,
+   q and f', with only its declared f'' groups fitted.
+2. **Focused f'' profile:** select one or more exact result rows as centers.
+   Each metal has its own q center, bounds and lock; a shared q is optional.
+   A local step of 0.1 occupancy is a useful editable default, not an accuracy
+   claim. Vary unlocked sites around the selected vector, retaining locked
+   values exactly. Preview which sites change in every row. One-at-a-time
+   perturbations limit the initial budget; explicit joint grids can diagnose
+   coupling when needed. Neither implies that interactions are absent.
+3. **Conditional occupancy refinement:** optionally allow all selected unlocked
+   metal occupancies to refine independently in a separate child. Fix XYZ, ADPs
+   and declared f'/f'' references, preserve any physical mixture constraints,
+   and explicitly exclude locked metals and unrelated partial-occupancy atoms
+   from automatic native selections. A selected fitted f'' may instead be used
+   as a conditional fixed value if its provenance is retained; this is not
+   independent evidence validating the same selected occupancy.
+4. **Recheck:** a later fixed-q/f'' pass can probe the new occupancy endpoint.
+   Record each stage, frozen values and interpretation separately. Do not free
+   q and f'' together by default and label the result uniquely identified.
+
+The user chooses the next center and which parameters may move. An Iterate
+action freezes the seed row/artifacts, per-site locks, local grid and round/job
+budget; it does not automatically chase the lowest Rfree. Clip to declared
+physical bounds, deduplicate coincident vectors and show boundary truncation.
+For same-site mixtures also validate the shared physical occupancy budget.
+Zero occupancy remains an omitted-site control, not an identifiable f'' fit.
+Preserve broad and focused rounds, failures, discarded alternatives and the
+history of manual selections. Finalize creates an explicitly selected child;
+the label is not proof that identity/count is resolved.
+
+## Reusing completed experiments
+
+Reuse an already completed identical experiment, even when native execution
+takes only seconds. Metal identity, coordinates, occupancy and f'' alone are
+insufficient to identify it. Build a versioned fingerprint from the full input
+model (including all atoms, ADPs, occupancies and scattering parameters), exact
+observations/labels/Free-R, resolution and phase policy, wavelength/reference
+provenance, dictionaries/restraints, resolved selections/anomalous groups,
+effective parameter and nuisance policies, starts/seeds, native software and
+protocol versions. Resolve inputs through declared anchors and content hashes;
+cache identity must not depend on the checkout's absolute location.
+
+A reusable result must be complete, qualified for that protocol and supported
+by checksum-valid model/map/report artifacts and its required freeze audit.
+Scientific ambiguity can remain a reusable completed outcome when the protocol
+executed correctly; reuse preserves its unresolved status, not a success claim.
+Do not use a partial/interrupted attempt as a successful cache hit, accept a
+missing artifact, or treat a different parameter-freeing strategy as equivalent.
+Deduplicate pending identical jobs too, preserving all plan references to them.
+
+Each iteration row records **reused** versus **new execution**, the original
+execution ID and a separate current-round association. Reuse references the
+immutable evidence; it does not copy a result into a new run and imply Phenix
+ran again. Preview total requested rows, unique experiments, verified reusable
+results and remaining native jobs. Revalidation of stale or incompatible
+receipts requires an explicit new attempt; previous evidence remains retained.
+
 ## Tables, plots and GUI selection
 
 Use an overview row per hypothesis/trial plus an expandable per-site table.
@@ -200,6 +262,15 @@ and diagnostic status. Unavailable values remain unavailable, not zero.
 Plot f'' versus q and q*f'' versus q for matched trials, with reference lines
 and explicit fixed parameters. Multi-site vectors must be labeled; points from
 different hypotheses or nuisance policies must not become one response curve.
+The linked table and molecular view remain primary. Optional per-metal response
+plots make flat, unstable or compensating responses easier to spot. A plot of
+f'' versus one site's q must hold the other coordinates of the occupancy vector
+fixed, or label separate slices explicitly; a connected line through arbitrary
+multi-site vectors implies an experiment that was never performed. A two-site
+heatmap is appropriate only for an actually sampled grid with the remaining
+sites fixed. Plot selection resolves the exact table row and artifacts. Never
+draw synthetic scientific trends to fill an unrun view.
+
 Cluster summary rows expand to their per-site evidence. Keep rejected and failed
 alternatives discoverable, with scientific uncertainty separate from execution
 failure and from an unrun plan.

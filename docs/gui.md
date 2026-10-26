@@ -129,6 +129,22 @@ also differ by line style and labels. Atom roles resolve to explicit selections;
 the same identity links the canvas, restraint editor and comparison row. Cluster
 aggregate rows expand to per-site values and state their weighting/group scope.
 Both window modes share one backend, recipe history and scientific policy.
+Camera zoom, 3D rotation and fit preserve depth and scientific coordinates.
+Clickable donor/metal atoms form orange draft restraints before explicit add;
+recipe proposals remain dotted blue. Include nucleotide/symmetry context with
+exact selection identities. Six-site nonplanar clusters and the public 8VH6
+three-metal arrangement are useful viewing controls.
+
+Experiment supports broad scans, focused 0.1-step neighborhoods and a separate
+conditional occupancy fit. Each site has its own center, bounds and lock.
+Compare offers Iterate around explicitly selected rows, with visible job budgets,
+round lineage and reused-result badges. Verified identical experiments reuse
+their original artifacts. Optional per-site response plots link back to rows;
+the table and molecular view remain the main selection surface.
+The restraint inspector includes donor chemical-state selection and a local
+target-library suggestion with target/sigma, source and an editable override.
+No matching entry leaves the suggestion unset. State selection requests a
+different lookup; changing model chemistry remains a separate derived action.
 
 ## Root/workspace selection
 
