@@ -13,7 +13,47 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C98 preserved DF source recovery.**
+**Current delivery: C99 repaired-manager derivative qualification.**
+The exact C98 DF recovery now passes a fresh fixed-coordinate audit on Phenix
+2.2.1-6174 (dispatcher 2.2.1): 168 sampled directions, both orders of all 58
+planes and six tilted/rotated controls. Native energies, all 863 coordinates
+and static definitions remain unchanged. Five global/dihedral directions need
+the two smallest existing step sizes; no tolerance or scientific policy changes.
+One native job completes in 27.315 seconds, using 1,367 energy evaluations and
+3,328 plane-evaluation pairs. See the [C99 contract](cif-doctor.md#recovered-manager-derivatives-c99).
+
+Before C99, C98 supplied source/link/native mechanics but explicitly withheld
+proof for the changed objective. The new `cif_recovered_gradient.py` adapter
+binds that recovery to the unchanged C89 worker and replay validators. Tests are
+in `test_cif_recovered_gradient.py`. The additive schema-1 outer receipt is
+`recovered_mixed_gradients.json`; old runtime manifests, numerical policies,
+CLI behavior and C95 selection remain unchanged, with no migration required.
+
+Validation: **5603 passed, 276 subtests passed in 758.63s (0:12:38)**; **149 focused tests** pass, including 41 new cases. Cold relocated replay preserves all 281 parent/audit files and timestamps, rejects three rebound forgeries and launches no processes. Compilation, whitespace, 186 document links and rendered-figure inspection pass.
+
+Validation results and exact commands are recorded under
+`recovered_mixed_derivatives_2026_10_26` in the existing evidence ledger.
+Generated inputs, dictionaries, observations, source captures and logs remain
+local in the C99 live-test directory. Only code, tests, documentation and concise
+technical hashes/receipts are committed. All 213 C98 and 38 C95 files are
+preserved. The initial execution adapter and final verified reader are archived
+with distinct hashes; only preflight/receipt guards changed after execution,
+and all numerical worker/core bytes remain identical.
+
+**Next boundary:** a bounded geometry trial of this repaired objective using
+the qualified local evaluator, with fresh full-precision/serialized endpoint
+derivatives, exact native reread and automatic usable fallback. Initial sampled
+derivatives do not qualify an endpoint, ordinary Phenix refinement or scientific
+chemistry. Other source findings, ATL and future chemical-reference work remain
+separate. No runtime activation, checkpoint adoption or Pine/main merge occurs.
+Continue directly on **`cedar`** in the existing isolated development worktree;
+no new per-fix branch. Preserve the everyday Pine checkout and old diagnostics.
+
+— Rowan · Codex desktop
+
+### Previous C98 delivery
+
+**C98 delivery: preserved DF source recovery.**
 The exact C18 candidate `8daa21379bba…` and its source `27f83c85e896…`
 are bound to verified archive members and requalified against the current C95
 endpoint lineage. Two isolated and two full-model native controls pass with

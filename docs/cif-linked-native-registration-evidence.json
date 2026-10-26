@@ -31340,5 +31340,467 @@
       "manifest_sha256": "10ad8513a9dc8aa4e9e645d113ed6cb5d120f35fb47219360b7b5d9bfca8f64f",
       "payload_count": 17
     }
+  },
+  "recovered_mixed_derivatives_2026_10_26": {
+    "author": "Rowan · Codex desktop",
+    "status": "IMPLEMENTED_AND_MAC_VALIDATED; FRESH_RECOVERED_MANAGER_SAMPLED_DERIVATIVES_PASS",
+    "branch": "cedar",
+    "parent_commit": "d5e6de3a9a3fb792d8f8d949a44af2fd1736a5d0",
+    "before": "C98 requalifies the source-preserving DF candidate and full-model native mechanics but explicitly withholds derivatives for the changed objective.",
+    "after": "One fresh fixed-coordinate SDK audit rebuilds the exact repaired manager and passes unchanged sampled derivative and plane-order policies; no optimization or runtime activation.",
+    "changed_runtime_files": [
+      "src/nasolve/cif_recovered_gradient.py"
+    ],
+    "changed_tests": [
+      "tests/test_cif_recovered_gradient.py"
+    ],
+    "schemas": {
+      "schema_version": 1,
+      "policy_id": "cif-recovered-mixed-fixed-gradient-v1",
+      "report": "recovered_mixed_gradients.json",
+      "parent_anchor": "mixed_source_recovery_directory",
+      "embedded_job_anchor": "mixed_initial_gradient_directory",
+      "numerical_worker_policy": "cif-mixed-initial-native-gradient-v1",
+      "historical_reports_and_runtime_manifests": "UNCHANGED"
+    },
+    "compatibility_and_migration": "Additive explicit diagnostic Python APIs. No CLI, historical worker/core, numerical tolerance, chemistry, NAR workbook, consumer selection or migration change.",
+    "methods": "Replayed C98 source and linked/full-model evidence; exact ordered model/dictionaries/phils; same recorded Phenix executable/version; unchanged C89 preparation, worker and raw-observation replay; exact manager/energy sources, both plane orders, rotated controls, repeated vectors, additivity and static constraints. Reader executes only maintained replay logic, never captured programs.",
+    "scope": {
+      "atoms": 863,
+      "dictionaries": 24,
+      "active_and_context_phils": 13,
+      "coordinate_selection": "UNCHANGED_C98_SOURCE_RECOVERY_INPUT",
+      "optimization": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "dictionary_generation": "NOT_RUN",
+      "runtime_activation": "NOT_RUN",
+      "scientific_qualification": "NOT_ASSESSED",
+      "ordinary_phenix_refinement": "NOT_QUALIFIED"
+    },
+    "parent_bindings": {
+      "active_capture": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "native/active/cif-native-kv9awhao/native_receipt.json",
+        "sha256": "3896beded08ff2642d0053b118d097d59b91233998e58c16b6224bf6b8d87119",
+        "size": 5885303
+      },
+      "dictionaries": [
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/001_dictionary.cif",
+          "sha256": "4b9403cafd7d11ab4e52b4889a49a5d696b337fa5d27689e95f5d245a9661ab6",
+          "size": 10792
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/002_dictionary.cif",
+          "sha256": "ad0049638e330752b1002a2312106532ea4d11a245bafc0ff4813419620ec52e",
+          "size": 386
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/003_dictionary.cif",
+          "sha256": "3efe268c6f77209e1dc77a2b01609d5222d0fd1daf2ec77199e52efd809178e9",
+          "size": 11714
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/004_dictionary.cif",
+          "sha256": "e9e2dffc9eec021bf95025b1eed1ddfa987e998c7b387f3359f352dde52bb6a2",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/005_dictionary.cif",
+          "sha256": "0cb1335fac541e50bf0afb8a518b37338e377ef9cd8ae893417693f6318435ec",
+          "size": 11141
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/006_dictionary.cif",
+          "sha256": "183c0e48e21e69f1d768a249bb4869531e1ac535645fdfbb27135b23accac285",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/007_dictionary.cif",
+          "sha256": "8d444dad891bf247b8c0536675657dcb274fe7e4789c66991491cdafe608da0c",
+          "size": 10072
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/008_dictionary.cif",
+          "sha256": "8f0464b8fcfaf45b6fd1ddf192c68ce80bc4eaf3992f73050ef7d09b708b5f6c",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/009_dictionary.cif",
+          "sha256": "d9cb5256d5817267c0d2c31038faa352d4fa0b402164935e0ecee15dfbd0bcec",
+          "size": 10555
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/010_dictionary.cif",
+          "sha256": "f957a13a82bd11d6e9a38b12086742423c74d2e8a74267fe8ec35683cac65990",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "bundle/prepared/base_dictionary.cif",
+          "sha256": "11bbe89831ad762573bd220b7b05679c7bdecaafcd0f401808c28c673fb96f81",
+          "size": 9825
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/012_dictionary.cif",
+          "sha256": "c6e852e42760383e7c3b5574252ebe4a2da08353e542074c47b66b2a92a7a1e2",
+          "size": 11362
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/013_dictionary.cif",
+          "sha256": "763e80a442c69f0795854d711bbed3cea4b3a7bc2a10cd51c14d3fd2e3e7abe7",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/014_dictionary.cif",
+          "sha256": "821e178e8e0e9b5542e27443362a82f57bac9ee96bf04ca41632707da1a3a4d2",
+          "size": 9857
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/015_dictionary.cif",
+          "sha256": "8af638a8eead6cca554d8afa3a9482f83b541571dd75889856d376ecbe598643",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/016_dictionary.cif",
+          "sha256": "0d0457a04d05ca79d0b79df2b90fe5cec89d297160fbefa81d9fa5ff8a4e8385",
+          "size": 11026
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/017_dictionary.cif",
+          "sha256": "b55292c31cabb02bd117c4085df8e1161855086e331645bc7f8c3bb5cb2421c7",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/018_dictionary.cif",
+          "sha256": "e9e2c4aff3345ab37cdd1668d37593ddc280aa26f4aafd97eb78fe5f7d7781ab",
+          "size": 9984
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/019_dictionary.cif",
+          "sha256": "f4b0535c7fea659b30fbae83c83008d2e9952ccf958f7b5e62cf255610c0efbb",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/020_dictionary.cif",
+          "sha256": "889540841e5885610b612aa457d2337fa8d30e877539344da9b3e90234b9d422",
+          "size": 9937
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/021_dictionary.cif",
+          "sha256": "ba29c15cd2ce476affbdc91ecc3675dad96c3e97ab92a33fc92a1d6d0edd0203",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/022_dictionary.cif",
+          "sha256": "0afbebe59d53e2c89d592cbf5fd43922b4aef0e926e1441c044ac52676d77f31",
+          "size": 10018
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/023_dictionary.cif",
+          "sha256": "d7ac78c60a5856349c078ce671ad67a45478bfa206b63a5024441bc6ad75252d",
+          "size": 260
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "bundle/prepared/site_modifications.cif",
+          "sha256": "0f4f5eecafd8563a826032942dff6541db5989b00a5c97f0242466d6117b2d1f",
+          "size": 386
+        }
+      ],
+      "model": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "inputs/runtime/000_model.pdb",
+        "sha256": "ac9579220ea6c506a916137c283dfc2c9e32a1f88aaf39e00c0f9d6ae725e259",
+        "size": 99310
+      },
+      "phils": [
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/active_policy.phil",
+          "sha256": "79053e8e22fbde8424b219cac4e00d0220ec2f0a97b807c001ea2d409fd0fbd2",
+          "size": 56365
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/025_phil.phil",
+          "sha256": "b851a769001e76d60212ba6d07de1caef562547e091c080296bbce35d29bc598",
+          "size": 145
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/026_phil.phil",
+          "sha256": "205f84905016223e91a3cb35f318e028088413613f8a7d53b0a5873523dd35f6",
+          "size": 145
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/027_phil.phil",
+          "sha256": "e6e6394dc2ea9f6e31eb3dbb10af47290e5397ebd28e313fa00df51a8c364a8b",
+          "size": 145
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/028_phil.phil",
+          "sha256": "390b72069b3c6669e902d0126ca9866cac38aa91323c7010ebd5e5064ac514af",
+          "size": 145
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/029_phil.phil",
+          "sha256": "7e69855b099acade8239394cda9b20d87890d06e13ae24d6e7d70792bfcf6f71",
+          "size": 146
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/030_phil.phil",
+          "sha256": "41266eaa54f1ac78044e1acdcb6c63c0c4b393be6ba36869478fce9598c9ff25",
+          "size": 144
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/031_phil.phil",
+          "sha256": "68ed563a60e0e3d9e0a3cfaebd80f244a316ceb1674f9de44b85a1f613e79cf9",
+          "size": 144
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/032_phil.phil",
+          "sha256": "f3f00ae1c2437efc36e98189454394237dd2af1ee3fb69c4907bc01dba9a9a05",
+          "size": 145
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/033_phil.phil",
+          "sha256": "95e35f510b38d42d722358e865df37a5794e187b86bd016e3f68e4c95c180ae0",
+          "size": 146
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/034_phil.phil",
+          "sha256": "1e99eeeb1bb18e2ff8a58fcf95a310b9b03a79ff426984b53bb31d078a3009b5",
+          "size": 145
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/035_phil.phil",
+          "sha256": "67a9f49a36bf0fb7159a105d85180221ca41de46e9d68f36fab653c08e876e49",
+          "size": 145
+        },
+        {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "bundle/prepared/site_modifications.phil",
+          "sha256": "2bdd7dd33e7aabb2004a1058f8fd1a3d3bb012e8f8ea8d39304ed67bc22a2b71",
+          "size": 145
+        }
+      ],
+      "recovery_report": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "mixed_source_recovery.json",
+        "sha256": "bf1454717b00d7e6f6ad45aff173f931afc2bb7fcd584acab74fccbf46fb0b94",
+        "size": 3427467
+      }
+    },
+    "native_execution": {
+      "mode": "COMPLETE_EXECUTION; NOT_DRY_RUN",
+      "installation": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "python": "3.12.14",
+      "new_native_calls": 1,
+      "execution": {
+        "elapsed_seconds": 27.315,
+        "returncode": 0,
+        "status": "COMPLETED"
+      },
+      "deadline_seconds": 600,
+      "max_energy_calls": 2000,
+      "max_plane_pairs": 5000,
+      "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6"
+    },
+    "qualification": {
+      "automatic_adoption": false,
+      "checks": {
+        "captured_raw_snapshot": true,
+        "complete_both_order_plane_derivatives_and_controls": true,
+        "complete_initial_sampled_derivatives": true,
+        "unchanged_native_energy": true,
+        "unchanged_static_constraint_signature": true
+      },
+      "policy_id": "cif-mixed-initial-native-gradient-v1",
+      "sampled_derivatives_pass": true,
+      "scientific_qualification": "NOT_ASSESSED",
+      "status": "MIXED_INITIAL_DERIVATIVES_PASS"
+    },
+    "numerical_metrics": {
+      "directions": 168,
+      "consistent": 168,
+      "need_two_smallest_only": [
+        [
+          "all",
+          "full_gradient"
+        ],
+        [
+          "all",
+          "alternating_global"
+        ],
+        [
+          "all",
+          "family_gradient"
+        ],
+        [
+          "dihedral",
+          "full_gradient"
+        ],
+        [
+          "dihedral",
+          "family_gradient"
+        ]
+      ],
+      "target": 4900.147192055969,
+      "gradient_norm": 15066.26498005484,
+      "manager_sha256": "170bde8a0ecf44b4139e34082d4ffc2f79455af40cae3248ae68639a9d9cd32a",
+      "corrected_core_sha256": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+      "energy_evaluations": 1367,
+      "plane_evaluation_pairs": 3328,
+      "plane_restraints": 58,
+      "plane_summary": {
+        "baseline_repeats_consistent": true,
+        "native_complete_derivative_review_orders": 0,
+        "native_complete_derivatives_consistent": true,
+        "native_complete_swapped_gradients_consistent": true,
+        "order_safe_derivative_review_orders": 0,
+        "order_safe_derivatives_consistent": true,
+        "order_safe_swapped_gradients_consistent": true,
+        "orders": 116,
+        "proxy_count": 58,
+        "swapped_energies_consistent": true
+      },
+      "toy_controls": 6,
+      "selected_indices": [
+        766,
+        757,
+        770,
+        379,
+        388,
+        406
+      ],
+      "correction_statistics": {
+        "correction_evaluations": 1367,
+        "max_energy_change": 0.0,
+        "max_plane_residual_difference": 8.526512829121202e-14
+      }
+    },
+    "conditioning_note": "Five global/dihedral directions require the adjacent 1e-5 and 1e-6 A samples on the unchanged grid; all raw failures at larger steps are retained. This does not assert unsampled derivative accuracy or compare energies across old/new objectives.",
+    "receipts": {
+      "recovered_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "99_Cedar_recovered-gradients-vk860v7e/gradient/recovered_mixed_gradients.json",
+        "sha256": "6f19448d2a9d2cdeccc116465faad694630656715c6e62084b86613a99da9f89",
+        "size": 29717
+      },
+      "qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "99_Cedar_recovered-gradients-vk860v7e/gradient/qualification.json",
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1",
+        "size": 414
+      },
+      "job/gradient_result.json": {
+        "anchor": "live_tests_directory",
+        "path": "99_Cedar_recovered-gradients-vk860v7e/gradient/job/gradient_result.json",
+        "sha256": "6818ef55e4a0a368a64e9216b4f95ac7e0dae7512c54b18bb33b7a42626864f1",
+        "size": 3065574
+      },
+      "job/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "99_Cedar_recovered-gradients-vk860v7e/gradient/job/native_validation.json",
+        "sha256": "dff392f64379fd32f927350685851d3cbe86f279ad25608c5cc3bd70f9f18131",
+        "size": 2696584
+      }
+    },
+    "validation": {
+      "before_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q tests/test_cif_recovered_gradient.py",
+      "before_result": "Expected collection failure before implementation: ModuleNotFoundError for nasolve.cif_recovered_gradient; 1 error in 0.17s.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_recovered_gradient.py tests/test_cif_mixed_gradient.py tests/test_cif_mixed_source_recovery.py tests/test_cif_plane_order_correction.py tests/test_cif_gradient_audit.py",
+      "focused_result": "149 passed in 21.57s",
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c99_live.py",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c99_cold.py",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c99-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "compile_result": "PASS",
+      "integrity_command": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c99_verify.py",
+      "integrity": {
+        "status": "PASS",
+        "frozen_source_and_test_files": 406,
+        "source_and_test_changes_after_native_execution": [
+          "src/nasolve/cif_recovered_gradient.py",
+          "tests/test_cif_recovered_gradient.py"
+        ],
+        "parent_file_bytes_and_mtimes_preserved": {
+          "C98": 213,
+          "C95": 38
+        },
+        "document_links": 186,
+        "execution_adapter_sha256": "0be944d624f0fba3de38f3d79fa518c86bbc6b8f0cb6190437bbd92d0d6c7b44",
+        "final_adapter_sha256": "3ba28805b7ffbf158965dbf03c87804a259abaed408c05bac357c85be27caaf0",
+        "final_test_sha256": "cba256a17f83c422bd6e90716a8cccaa8f42f461aadfb2b6edff8bd140a9b4fe"
+      },
+      "relocation": {
+        "bytes_and_timestamps_preserved_by_read": true,
+        "files_unchanged_by_read": 281,
+        "original_live_and_code_paths_blocked": true,
+        "original_temporary_paths_absent": true,
+        "process_discovery_pickle_calls": 0,
+        "read_seconds": 52.035,
+        "rebound_forgeries_rejected": [
+          "qualification",
+          "sample",
+          "prepared_input"
+        ],
+        "status": "RECOVERED_MIXED_DERIVATIVES_PASS",
+        "total_seconds": 200.544
+      },
+      "whitespace_command": "git diff --check",
+      "figure_command": "/opt/homebrew/bin/rsvg-convert -w 1400 -o /private/tmp/c99-overview.png docs/figures/cif-doctor-overview.svg",
+      "figure_result": "Rendered and visually inspected; text and bounds pass.",
+      "full_result": "5603 passed, 276 subtests passed in 758.63s (0:12:38)",
+      "new_regression_cases": 41,
+      "archive_manifest": {
+        "anchor": "live_tests_directory",
+        "path": "99_Cedar_recovered-gradients-vk860v7e/validation/manifest.json",
+        "sha256": "2d9295a23d4991dabb6124c783601168094af490978eadbe684d8586d118b7c7",
+        "size": 3572
+      },
+      "archive_payload_count": 23
+    },
+    "generated_artifacts": "Exact input models/dictionaries/phils, native source captures, observations, worker programs and logs remain in the local live-test directory; none are committed. Code, synthetic regression tests, documentation and compact technical evidence are committed.",
+    "limitations_and_followup": [
+      "Sampled initial-coordinate qualification only; run a separately bounded geometry trial with full/serialized endpoint derivatives and exact native reread.",
+      "No inheritance of old endpoint selection; C95 and C98 artifacts preserved.",
+      "Ordinary refinement consumer and experimental chemistry remain unqualified; other source findings, ATL and future ChemDraw-reference support remain separate.",
+      "Continue on Cedar without extra per-fix branches; Pine/main integration is later."
+    ]
   }
 }

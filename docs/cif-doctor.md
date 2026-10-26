@@ -3,7 +3,9 @@
 <a id="current-capability-boundary-c96"></a>
 <a id="current-capability-boundary-c97"></a>
 
-## Current capability boundary (C98)
+<a id="current-capability-boundary-c98"></a>
+
+## Current capability boundary (C99)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -18,7 +20,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
 | Is the endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
-| Can the preserved DF source be recovered? | C98 separately passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate. | The changed objective needs fresh derivative qualification; the C95 bundle is not overwritten or reclassified. |
+| Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | No geometry trial or runtime activation follows automatically; the C95 bundle is not overwritten or reclassified. |
 | Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
 | Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
 
@@ -88,6 +90,67 @@ assessment with all 38 bundle files unchanged and zero SDK/process attempts.
 The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
 The existing evidence ledger records commands, frozen hashes, the exact current
 source summary and a preserved C18 DF recovery candidate for subsequent qualification.
+
+### Recovered-manager derivatives (C99)
+
+`cif_recovered_gradient.audit_recovered_gradients(recovery_directory, phenix,
+output, timeout_seconds=600)` accepts a fully replayed C98 recovery and a fresh,
+separate output directory. Passing `phenix=None` prepares only; this cannot claim
+qualification. `read_recovered_gradients(directory,
+recovery_directory=...)` replays saved evidence without Phenix or a process.
+These are explicit diagnostic Python APIs, not ordinary CLI/runtime activation.
+
+The adapter selects the recovery's unchanged model, all 24 ordered dictionaries
+and 13 active/context PHIL files in the Mac fixture. It binds the recovery report
+and active native receipt through `mixed_source_recovery_directory` references
+with relative paths, sizes and SHA-256 checksums. It requires the same recorded
+Phenix executable bytes and version. The new schema-1 outer report is
+`recovered_mixed_gradients.json`, policy
+`cif-recovered-mixed-fixed-gradient-v1`. Embedded job artifacts retain
+`mixed_initial_gradient_directory` and the unchanged C89 worker policy; they
+are rooted in the new audit directory, not a historical C89 directory.
+
+One bounded SDK process rebuilds and verifies the exact native manager, then
+uses the maintained NASolve-local both-plane correction. No coordinates,
+restraint targets, chemistry, NAR workbook or numerical thresholds change.
+The unchanged policy samples eight restraint families, six automatically
+selected atom probes and global/family directions; it requires two adjacent
+consistent central differences on the existing 1e-3, 1e-4, 1e-5, 1e-6 Å grid,
+with unchanged 1e-4 absolute/relative tolerances. All current plane restraints
+are checked in both orders, with six independent tilted/rotated controls.
+Energy repetition/additivity, static constraints, captured native energies,
+installed-source fingerprints and input hashes are replayed as well. The limits
+remain 600 seconds, 2,000 energy evaluations and 5,000 plane-evaluation pairs.
+
+The complete Mac C99 execution on **Phenix 2.2.1-6174** (dispatcher 2.2.1)
+passes all **168 sampled directions**, **116 orders across 58 planes**, and all
+six controls. It uses 1,367 energy evaluations and 3,328 plane-evaluation pairs;
+the single native job takes 27.315 seconds. Five global/dihedral directions pass
+only at the two smallest existing steps. This is retained conditioning evidence,
+not a reason to relax tolerances or claim unsampled derivative correctness.
+The fixed target is 4900.147192055969 in the native objective's units; it is not
+compared to the old dictionary objective. All 863 coordinates, native energies,
+static definitions, 213 C98 files and 38 C95 runtime files remain unchanged.
+
+A successful report is `RECOVERED_MIXED_DERIVATIVES_PASS`; numerical disagreement
+or native failure retains `REVIEW` with evidence. Preparation alone is
+`PREPARED_ONLY`. Launch failures and timed-out/failed jobs retain their owned
+files and require a fresh output for another attempt. The reader reproduces
+preparation from maintained sources and validates saved raw observations;
+rebound hashes cannot legitimize changed inputs, numerical samples or a forged
+qualification. Historical code is evidence and is never executed by readback.
+
+**Next boundary:** a separately bounded geometry trial for this repaired
+objective, followed by full-precision/serialized endpoint derivatives and exact
+native reread. C99 establishes sampled initial derivatives only; it does not
+inherit the old endpoint selection or qualify ordinary Phenix refinement.
+Scientific assessment, other source findings, runtime/checkpoint adoption and
+Cedar integration through Pine into main remain separate. Existing manifests,
+CLI behavior and historical reports require no migration. Generated scientific
+files remain local; the evidence ledger entry
+`recovered_mixed_derivatives_2026_10_26` records hashes, commands and validation.
+
+Validation: **5603 passed, 276 subtests passed in 758.63s (0:12:38)**; **149 focused tests** pass, including 41 new cases. Cold relocated replay preserves all 281 parent/audit files and timestamps, rejects three rebound forgeries and launches no processes. Compilation, whitespace, 186 document links and rendered-figure inspection pass.
 
 ### Preserved-candidate source recovery (C98)
 

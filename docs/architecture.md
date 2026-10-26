@@ -3128,3 +3128,25 @@ unchanged current proxies are compared by structured atom identity. Readback
 reproduces input selection, preparation and qualifications from owned capsules,
 with anchored paths/checksums and no process launch. Native mechanics success
 cannot transfer derivative or endpoint qualification across the changed objective.
+
+
+### Derivative qualification after source recovery (C99)
+
+`cif_recovered_gradient` adapts the verified recovery schema to the unchanged
+C89 preparation, numerical worker and numerical replay functions. The parent
+reader must reproduce C98 source chemistry, linkage and full-model mechanics
+before its exact resources and active manager can be used. Parent and job
+references have explicit independent directory anchors; host paths are only
+historical provenance. The outer receipt validates the recovery-specific scope,
+complete output inventory, exact maintained preparation, source fingerprints,
+process outcome and numerical qualification. Historical worker/core bytes are
+not refactored, so prior evidence remains replayable.
+
+The [C99 contract](cif-doctor.md#recovered-manager-derivatives-c99) defines the
+additive schema and diagnostic API. One bounded native process samples the
+initial coordinates only. A changed parent, manager, executable or saved sample
+cannot inherit qualification. A failed attempt remains immutable; no optimizer,
+Coot, ReadySet, dictionary generator, runtime selection or checkpoint is invoked.
+Readback reconstructs the preparation in temporary storage and never executes
+captured code. The qualified object is this fixed manager and local evaluator,
+not ordinary refinement or a scientifically approved structure.

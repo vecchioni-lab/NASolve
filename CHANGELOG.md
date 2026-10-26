@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify derivatives after source recovery (C99)
+
+- Add a separate fixed-coordinate derivative audit bound to a fully replayed
+  C98 recovery, its exact native manager, ordered resources and Phenix consumer.
+  Reuse the unchanged corrected evaluator, numerical worker, tolerances and
+  both-order plane controls; never inherit the previous objective's proof.
+- Save schema-1 `recovered_mixed_gradients.json` with checksummed parent anchors,
+  one bounded native process and read-only numerical replay after relocation.
+  Failed and timed-out attempts retain their preparation and partial outputs.
+- The complete Mac test passes all 168 sampled directions and both orders of
+  58 planes plus six controls, preserving native energies and coordinates.
+  This qualifies the explicit local evaluator at these inputs; no optimization,
+  runtime activation, ordinary refinement qualification or migration is added.
+
 ### Requalify preserved source candidates in the current mixed model (C98)
 
 - Add an explicit diagnostic that binds a preserved candidate and its source

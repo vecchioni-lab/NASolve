@@ -35,8 +35,10 @@ selected model, stopping note and qualification boundaries in ordinary text
 output as well as JSON. C97 compares current component declarations with their
 original sources, keeping historical findings and declared site modifications
 separate. C98 requalifies the preserved DF candidate in the current linked model
-without changing C95 or inheriting its derivative proof. Read the
-[current capability map](docs/cif-doctor.md#current-capability-boundary-c98)
+without changing C95 or inheriting its derivative proof. C99 now passes a fresh
+fixed-coordinate derivative audit for that repaired manager, using the explicit
+NASolve-local corrected evaluator. Read the
+[current capability map](docs/cif-doctor.md#current-capability-boundary-c99)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.
