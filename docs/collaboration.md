@@ -131,7 +131,8 @@ local Git exclude file, without changing tracked files. Verify the rule with
 inventory the earlier root-level numbered runners and the ignored branch
 directory, including each file's original relative path, byte count, SHA-256,
 delivery prefix and available build commit/runner receipt. Preserve the
-manifest locally with the archive. Archive verified historical runners outside the product checkout, under an
+manifest locally with the archive. Archive verified historical runners outside
+the product checkout, under an
 explicit local live-test/archive root. Retain original relative paths in the
 manifest, refuse collisions, and verify all copied bytes and hashes before
 removing only those redundant runner copies from the checkout. Keep the original

@@ -30694,11 +30694,17 @@
       "coot": "1.3.3 historical construction; NOT_RUN in C95",
       "scientific_qualification": "NOT_ASSESSED",
       "production_checkpoint": "NOT_CREATED",
-      "generated_artifacts": "LOCAL_ONLY;NOT_COMMITTED_OR_UPLOADED"
+      "generated_artifacts": "LOCAL_ONLY;NOT_COMMITTED_OR_UPLOADED",
+      "narestraints_workbook_sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+      "narestraints_working_tree_note": "Receipt records dirty source checkout; git status shows only .DS_Store. Source/workbook runtime bytes remain hash-bound.",
+      "commands": [
+        "<existing-venv>/bin/python scripts/build_mixed_runtime_probe.py --narestraints-root <pinned-NAR-checkout> --output <new-runner-path>",
+        "<existing-venv>/bin/python -B -u <new-runner-path> --review-zip <exact-C94-capsule> --output-parent <local-live-tests-root>"
+      ]
     }
   },
   "mixed_runtime_reporting_2026_10_26": {
-    "status": "VALIDATION_IN_PROGRESS",
+    "status": "VALIDATION_PASS",
     "recorded_by": "Rowan, Codex desktop",
     "delivery_prefix": "96_Cedar",
     "base_commit": "3fcedf5bb18f7e482d94b5827478c6b4f26b80e3",
@@ -30708,7 +30714,7 @@
     "schemas": "Manifest schema 1 and both runtime policies unchanged; additive solution_report.qualification_scope only.",
     "validation": {
       "regression_before": "2 failed on missing plain-text summary and qualification_scope",
-      "focused": "114 passed in 10.58s",
+      "focused": "215 passed, 7 subtests passed in 33.46s",
       "real_C95_readback": {
         "status": "PASS",
         "seconds": 49.04,
@@ -30716,7 +30722,30 @@
         "process_or_sdk_attempts": 0,
         "exit_code": 2
       },
-      "full_suite": "PENDING"
+      "full_suite": "5528 passed, 276 subtests passed in 766.84s (0:12:46)",
+      "macos_fixture_regression": "10 existing failures reproduced with default macOS temporary paths; 39 affected tests and 7 subtests pass with canonical paths. Production symlink guards unchanged.",
+      "first_complete_run": "10 failed, 5518 passed, 276 subtests passed in 761.14s; temporary-path fixture errors corrected before final complete rerun.",
+      "timeout_fixture_regression": "A subsequent complete run had 1 failed, 5527 passed, 276 subtests passed in 763.15s. The fake backend exceeded its 0.15s help/startup window, never reaching optimizer execution. Test-only timeout=2s and descendant write delay=4s retain actual timeout/process-group assertions; production limits unchanged.",
+      "sandbox_attempt": "INTERRUPTED_AFTER_PROCESS_GROUP_PERMISSION_FAILURE;UNRESTRICTED_COMPLETE_RERUN_REQUIRED_AND_PASSED",
+      "compileall": "PASS; temporary external bytecode cache",
+      "diff_check": "PASS",
+      "figure": "Rendered SVG with rsvg-convert; visually checked without clipping",
+      "frozen_code_test_figure_sha256": {
+        "src/nasolve/cli.py": "94c9c2900105b9c9c906ba40f792dbaed222c4f60c95feaa29594cd748021494",
+        "src/nasolve/cif_runtime_bundle.py": "e3ebc03c28c1823b898c28ee3d72218c276844b70afb3c49603821ada65c0d84",
+        "tests/test_cif_mixed_runtime_bundle.py": "b77669d4f3b9b3ac56dd81b5b71c1ea683f0ccba1571caab15de292467a01d31",
+        "docs/figures/build_cif_doctor_overview.py": "4b9dbb7527992c66feba965d9aad68222a686d0120a6bf12f6e89445017d02e5",
+        "docs/figures/cif-doctor-overview.svg": "4e3f486329ab255d4bd38bec0861fccdd467332240b53efade31cd2ddc3bd2df",
+        "tests/test_cif_doctor_run.py": "9a3acb306c7cd437458c9c4d71b5e5c499d9707dd4fd0e34a264e2b24009601b",
+        "tests/test_cif_source_reuse.py": "9035f8eee8ef284b4664d129c35e9d0a9992d6a4206d22494e578b410e84d87b",
+        "tests/test_cif_generation.py": "ad263dee211e0010eef07d80c0b6daa2f46ccd337cd4d190588b9e203aa604c0"
+      },
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <existing-venv>/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_generation.py tests/test_cif_runtime_bundle.py tests/test_cif_mixed_runtime_bundle.py tests/test_cif_mixed_runtime_source.py tests/test_mixed_runtime_probe.py tests/test_cif_doctor_cli.py tests/test_cif_source_reuse.py tests/test_cif_doctor_run.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <existing-venv>/bin/python -m pytest -q -p no:cacheprovider",
+        "PYTHONPYCACHEPREFIX=<temporary-cache> <existing-venv>/bin/python -m compileall -q src tests",
+        "git diff --check"
+      ]
     },
     "compatibility": "No migration; old bundles accepted; selection, exit codes, scientific qualification and NAR policy unchanged.",
     "generated_artifacts": "LOCAL_ONLY;NO_SCIENTIFIC_DATA_OR_GENERATED_RUNNERS_COMMITTED",
@@ -30727,6 +30756,27 @@
       "ATL_NATIVE_CONSTRUCTION_NOT_RUN",
       "CHEMDRAW_INPUT_FUTURE_ONLY",
       "NO_MERGE"
-    ]
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/collaboration.md",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "src/nasolve/cif_runtime_bundle.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_doctor_run.py",
+      "tests/test_cif_generation.py",
+      "tests/test_cif_mixed_runtime_bundle.py",
+      "tests/test_cif_source_reuse.py"
+    ],
+    "tested_code_commit": "69fb18607a567e7ba230cadbb603c073170f3315"
   }
 }

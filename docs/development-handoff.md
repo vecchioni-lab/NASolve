@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-25** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-26** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -39,6 +39,15 @@ Pine-to-main (#23) remain later integrations; no merge is performed here.
 The 89 loose generated runners have a verified external local archive and
 manifest; historical scientific runs and build worktrees retain their paths.
 No repeated native optimization or unchanged derivative audit is requested.
+
+C96 validation: **5528 passed, 276 subtests passed in 766.84s (0:12:46)**; 215 focused tests and seven subtests
+pass, including both new report regressions. Two existing test fixtures now
+canonicalize owned macOS temporary paths; a fake optimizer timeout test allows
+interpreter/help startup before testing descendant cleanup. Production symlink
+guards and timeout limits are unchanged. Real C95 public CLI readback passes
+with all 38 bundle files unchanged and zero SDK/process attempts. Compilation,
+whitespace and rendered figure checks pass. Commands and frozen hashes are in
+the evidence ledger.
 
 **Returned C81 closes fresh construction of the exact eight-pair fixture.** All
 175 payloads, runtime hashes and source bindings verify. Coot 1.3.3 completes;

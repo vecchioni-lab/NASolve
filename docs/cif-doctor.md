@@ -36,6 +36,13 @@ repeat native or derivative checks only for a changed manager, consumer or
 specific unresolved question. Full-run validation precedes Cedar integration
 through Pine into main. This report change does not authorize a merge.
 
+C96 validation passes 5528 passed, 276 subtests passed in 766.84s (0:12:46), 215 focused tests (seven subtests)
+and real C95 public CLI readback with all 38 bundle files unchanged and zero
+SDK/process attempts. New text/JSON regressions fail on C95 and pass on C96.
+Test fixtures canonicalize owned macOS paths and allow fake-backend startup
+before checking optimizer descendant cleanup. Production guards and limits
+remain unchanged.
+
 ### Future chemical-reference input
 
 Future CIF Doctor work must accept an explicit chemical reference associated
