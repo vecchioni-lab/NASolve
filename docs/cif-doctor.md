@@ -1,6 +1,8 @@
 # CIF Doctor
 
-## Current capability boundary (C96)
+<a id="current-capability-boundary-c96"></a>
+
+## Current capability boundary (C97)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -42,6 +44,48 @@ SDK/process attempts. New text/JSON regressions fail on C95 and pass on C96.
 Test fixtures canonicalize owned macOS paths and allow fake-backend startup
 before checking optimizer descendant cleanup. Production guards and limits
 remain unchanged.
+
+### Current source-declaration inventory (C97)
+
+`cif-doctor assess --bundle BUNDLE --json` now adds
+`solution_report.source_state_review` for mixed runtime bundles. Its separate
+schema-1 policy is `cif-mixed-current-source-declarations-v1`. The original
+manifest/qualification fields are unchanged. Text mode gives component counts
+and the names with current atom/bond/hydrogen or other declaration differences.
+
+After the maintained reader reproduces the complete saved context and endpoint
+selection, `cif_mixed_source_review` compares the original declared sources with
+**the current base dictionaries before site modifications**. It reuses the
+ordinary same-ID dictionary comparison, retaining changed atom elements, bond
+orders, hydrogen attachments, charge namespaces, aromatic/stereo metadata and
+signed chirality declarations. Changed entries retain presence separately from
+unknown values. Numerical targets and energy types are outside this inventory.
+No new aromatic equivalence, protonation, charge or stereo policy is inferred.
+
+Each component records three distinct layers: its current declaration changes,
+its declared site modifications/projection references, and the preserved earlier
+generation findings. A historical rejection may describe a resource that has
+since been replaced. A declaration difference is not itself a repair decision;
+source intent, permitted representations and linkage context still matter.
+Conversely, a context OP3 deletion does not authorize changing an OP2 proton or
+a sugar bond. Terminal OP3 and incoming/outgoing contexts remain explicit.
+Canonical source-graph inputs are labelled as such: this comparison does not
+compare their installed library numerics or native effective definitions.
+
+All references resolve through the owned `source_capsule` and the existing
+`context`/`linked_parent` shallow views; no temporary or host-absolute paths enter
+this review. The new report is freshly derived, not accepted from a mutable
+manifest field. Original findings, native usability, stopping, scientific status,
+exit code and the no-student-CIF-approval contract are retained. No dictionaries,
+models, thresholds, NAR workbook data, native tools or checkpoint choices change.
+The report helps select a bounded source-preserving recovery task; it neither
+implements that recovery nor clears the bundle for ordinary refinement.
+
+C97 validation: **5541 passed, 276 subtests passed in 766.90s (0:12:46)**, 250 focused tests, and a cold relocated C95
+assessment with all 38 bundle files unchanged and zero SDK/process attempts.
+The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
+The existing evidence ledger records commands, frozen hashes, the exact current
+source summary and a preserved C18 DF recovery candidate for subsequent qualification.
 
 ### Future chemical-reference input
 

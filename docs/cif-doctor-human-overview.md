@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-24:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-10-26:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -27,10 +27,16 @@ text output, alongside explicit limits already represented by the saved proof.
 Endpoint selection does not clear source-chemistry findings, and derivative
 qualification of the NASolve-local corrected evaluator does not qualify
 ordinary Phenix refinement. Scientific qualification remains unassessed.
+C97 makes the source comparison inspectable: it lists current component
+changes separately from earlier rejected generation outputs and the declared
+site modifications. For example, internal OP3 deletion is a recorded linkage
+operation, not permission to change an OP2 proton or a sugar bond. Missing
+metadata, partial charge and formal charge remain distinct. This is evidence
+for choosing recovery work; no chemical state or numerical target is repaired.
 ATL remains an independent source/compiler control. Future chemical-reference
 input, potentially from ChemDraw exports, belongs to restraints preparation;
 drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c96) is the
+[current capability map](cif-doctor.md#current-capability-boundary-c97) is the
 concise authority for these distinctions and next steps.
 
 ## What it does
@@ -609,6 +615,9 @@ indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
+The mixed-bundle source inventory distinguishes current base declarations,
+declared site modifications and historical generation findings; equality does
+not establish chemical validity or qualify installed canonical numerics.
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native

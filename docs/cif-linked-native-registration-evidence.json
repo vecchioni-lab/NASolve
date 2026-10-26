@@ -30778,5 +30778,253 @@
       "tests/test_cif_source_reuse.py"
     ],
     "tested_code_commit": "69fb18607a567e7ba230cadbb603c073170f3315"
+  },
+  "mixed_current_source_review_2026_10_26": {
+    "author": "Rowan · Codex desktop",
+    "status": "IMPLEMENTED_AND_MAC_VALIDATED; READ_ONLY_DECLARATION_INVENTORY",
+    "branch": "codex/cedar-c97-source-state",
+    "parent_commit": "8ab18186551a0a3b8e474eea93125f42622fb689",
+    "integration_target": "cedar after C96 review; no Cedar/Pine/main merge performed",
+    "before": "Ordinary mixed-bundle assessment retained a source-findings scope string; current component differences, site modifications and historical generation findings required separate nested inspection.",
+    "after": "The existing saved-evidence reader derives an explicit source/current declaration inventory and separates it from recorded site modifications and historical findings. Text gives compact component counts; JSON retains bound changed entries and contexts.",
+    "changed_runtime_files": [
+      "src/nasolve/cif_mixed_source_review.py",
+      "src/nasolve/cif_mixed_runtime_source.py",
+      "src/nasolve/cif_mixed_runtime_bundle.py",
+      "src/nasolve/cif_runtime_bundle.py"
+    ],
+    "changed_tests": [
+      "tests/test_cif_mixed_source_review.py",
+      "tests/test_cif_mixed_runtime_source.py",
+      "tests/test_cif_mixed_runtime_bundle.py"
+    ],
+    "schemas": {
+      "new_derived_report_policy": "cif-mixed-current-source-declarations-v1",
+      "report_schema_version": 1,
+      "public_field": "solution_report.source_state_review",
+      "manifest": "UNCHANGED; original schema 1 and both existing bundle policies",
+      "original_qualification_and_decision": "UNCHANGED"
+    },
+    "compatibility_and_migration": "Existing C95 bundles are read without rewriting. The report is freshly derived from owned verified evidence, not trusted from an added manifest claim. Additive report/reader output only; no migration, new CLI flag or changed exit code.",
+    "methods": "After the maintained six-view capsule/context/endpoint replay, reuse the ordinary same-ID dictionary comparison on original sources and current base dictionaries before site modifications. Retain changed chemical declarations and presence/unknown semantics, distinct partial/formal-charge namespaces, declared projected-site contexts and historical compact findings. Canonical graph inputs do not claim installed numerical comparison. Recheck all bound inputs and complete staged views/capsule after use.",
+    "regression_before": {
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q tests/test_cif_mixed_runtime_source.py::test_real_maintained_replay_is_required_before_resources_are_yielded",
+      "result": "1 failed in 6.92s; missing source_state_review raises KeyError, wrapped by the existing source-reader boundary",
+      "log": "c97-before.log"
+    },
+    "focused": {
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q tests/test_cif_mixed_source_review.py tests/test_cif_mixed_runtime_bundle.py tests/test_cif_mixed_runtime_source.py tests/test_mixed_runtime_probe.py tests/test_cif_runtime_bundle.py tests/test_cif_doctor.py tests/test_cif_mixed_context.py",
+      "result": "250 passed in 11.45s",
+      "new_cases": 13,
+      "log": "c97-focused.log"
+    },
+    "initial_focused_fixture_adjustment": {
+      "result": "66 passed, 1 failed in 20.48s",
+      "reason": "The existing numerical-worker fixture deliberately stubs prior chemical context. Keep that seam explicit while separate tests exercise real dictionary/context rows; production validation is unchanged.",
+      "log": "c97-focused-first.log"
+    },
+    "full_suite": {
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q",
+      "result": "5541 passed, 276 subtests passed in 766.90s (0:12:46)",
+      "log": "c97-full.log",
+      "runtime_tests_and_figure_unchanged_since_freeze": true
+    },
+    "other_validation": {
+      "compileall": {
+        "command": "env PYTHONPYCACHEPREFIX=/private/tmp/c97-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+        "result": "PASS; external bytecode cache"
+      },
+      "whitespace": {
+        "command": "git diff --check",
+        "result": "PASS"
+      },
+      "documentation_links": {
+        "checked": 183,
+        "missing_targets": 0
+      },
+      "figure": {
+        "command": "/opt/homebrew/bin/rsvg-convert -o /private/tmp/c97-overview.png docs/figures/cif-doctor-overview.svg",
+        "result": "PASS; rendered and visually inspected, no clipping"
+      }
+    },
+    "real_C95_readback": {
+      "command": "env PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c97_real_readback.py",
+      "source_bundle": {
+        "anchor": "local_live_tests",
+        "path": "95_Cedar_mixed-runtime-hgew939z/activated_bundle"
+      },
+      "source_capsule_sha256": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+      "runtime_manifest_sha256": "efe86ed77349e8ed5264cae0395ac2a2bd72a44a0c7f6eeb2320f0c272ae2e9f",
+      "status": "PASS",
+      "exit_code": 2,
+      "elapsed_seconds": 42.23,
+      "bundle_files_unchanged": 38,
+      "sdk_imports_or_process_attempts": [],
+      "original_temporary_path_absent": true,
+      "selected": "qualified_geometry_endpoint",
+      "selection_checks": {
+        "exact_identity_serialization": true,
+        "fixed_native_mechanics": true,
+        "fresh_rounded_target": true,
+        "nonworse_fixed_objective": true,
+        "qualified_endpoint_derivatives": true
+      },
+      "summary": {
+        "atom_bond_or_hydrogen_difference_components": [
+          "5PC",
+          "CGY",
+          "DF",
+          "DX",
+          "IMC",
+          "PDU",
+          "S6G"
+        ],
+        "canonical_graph_only_components": [
+          "DA",
+          "DC",
+          "DG",
+          "DT"
+        ],
+        "explicit_components_compared": 12,
+        "no_declaration_difference_components": [
+          "1AP",
+          "5CM",
+          "DP",
+          "DZ"
+        ],
+        "other_declaration_difference_components": [
+          "IGU"
+        ]
+      },
+      "IGU_current_changed_fields": [
+        "atom_stereo_declarations",
+        "bond_aromatic_declarations",
+        "bond_stereo_declarations",
+        "declared_charge_fields",
+        "signed_chirality"
+      ],
+      "scientific_qualification": "NOT_ASSESSED",
+      "source_state_repair": "NOT_PERFORMED",
+      "report_sha256": "9edcce53f534e4f21faf6af402588defe50d810559664d29db4e0aa1a037b2ea",
+      "relocation": "Copy code and bundle, rename the staging directory, assert its original path absent, then use the cold relocated public CLI; original scientific run remains untouched.",
+      "DF_observation": "Current DF C1-prime/C2-prime, C2-prime/C3-prime and C3-prime/C4-prime bonds remain aromatic versus single in the exact declared source. These are separate from the site OP3 context.",
+      "IGU_observation": "The historical REJECTED record refers to earlier generation. Current base input has no atom-element, bond-order or hydrogen-attachment changes; partial-charge and stereo/aromatic declaration differences remain explicit, not chemical approval."
+    },
+    "prior_DF_reuse_lead": {
+      "scope": "READ_ONLY_CURRENT_INSPECTION_OF_EXACT_C18_CANDIDATE; NO_CURRENT_NATIVE_QUALIFICATION",
+      "capsule_sha256": "8c049215a46f3f1fe0c628b7e2552e6aa59f4149853285edf5e208d72e813146",
+      "candidate_reference": {
+        "anchor": "c18_capsule",
+        "path": "generation/cif-generation-684a_u56/candidate.cif",
+        "sha256": "8daa21379bba32f1abc91fafda59379ca811561dfe9b245644597943fa655a70",
+        "size": 12563
+      },
+      "current_source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+      "status": "CANDIDATE_REVIEW",
+      "rejection_reasons": [],
+      "changed_chemical_fields": [
+        "atom_stereo_declarations",
+        "bond_aromatic_declarations",
+        "bond_stereo_declarations",
+        "declared_charge_fields",
+        "signed_chirality"
+      ],
+      "native_validation": "NOT_RUN",
+      "current_linked_qualification": "NOT_RUN",
+      "current_complete_candidate_reassessment": {
+        "candidate_status": "CANDIDATE_REVIEW",
+        "rejection_reasons": [],
+        "formal_charges_preserved": true,
+        "requires_native_tetrahedral_coverage": false,
+        "native_usability": "NOT_RUN",
+        "absolute_cip_assignment": "NOT_RUN",
+        "finished_stereo": "PRESERVED"
+      }
+    },
+    "next_bounded_work": "Evaluate reuse of exact C18 DF candidate 8daa2137... against the same 27f83c85... source before generating again. Reproduce required current chemistry/stereo qualification and prepare explicit current linkage context; then qualify the changed 863-atom manager and actual downstream evaluator. The old 877-atom native result is not current qualification. No candidate is adopted here.",
+    "generated_artifacts": {
+      "included_in_Git": "Source, tests, durable contracts, editable figure and this bounded technical receipt/hashes only.",
+      "excluded_from_Git": "Assessment JSON, copied capsule/bundle, source/current CIFs, C18 candidate, scientific data, run receipts, test logs, rendered PNG and temporary code copies.",
+      "local_archive": {
+        "anchor": "local_live_tests",
+        "path": "97_Cedar_source-review-validation-2026-10-26"
+      }
+    },
+    "remaining_limits": [
+      "Raw declaration difference is not an equivalence judgement or automatic corruption/repair classification.",
+      "No source-state repair, native execution, optimizer, diffraction use, checkpoint adoption or ordinary refinement qualification.",
+      "Canonical installed numerics, coordinate stereochemistry and numerical-target validation are outside this inventory.",
+      "ATL remains independent; future chemical-reference/ChemDraw work remains as previously scoped."
+    ],
+    "frozen_before_full_sha256": {
+      "CHANGELOG.md": {
+        "sha256": "1c26687a6b8c3fbe9e7063d368223e7867cec2fd65d52d0655e80971fb1fdc4e",
+        "size": 194220
+      },
+      "README.md": {
+        "sha256": "992023220e94e34b57d9c0e52c9c7104bff9f5f59f325b28c6a80819fe913f45",
+        "size": 84031
+      },
+      "docs/README.md": {
+        "sha256": "9bb189df410c8439659b4d31c5a4aad3f93ea16c9339eac256cb6db846227520",
+        "size": 40151
+      },
+      "docs/architecture.md": {
+        "sha256": "a235c4ed87a9d520bfe9c572e87f61e08305ec1bc27552db1487e434df3158eb",
+        "size": 204609
+      },
+      "docs/cif-doctor-human-overview.md": {
+        "sha256": "b5a3b6e3ccc2ba59eaea2025bd67bb26d22d9ab6391988b2f9cb7aaa6ef6067d",
+        "size": 203349
+      },
+      "docs/cif-doctor.md": {
+        "sha256": "bef1fe3fb20f792e7569c50bf33c1c96aa2164481b336d49d4cbb894df5adbd4",
+        "size": 309297
+      },
+      "docs/development-handoff.md": {
+        "sha256": "bf5e331dc27ac0e53d7815b0192fee2236df9fc8299dc1dec362e961a067a02d",
+        "size": 277069
+      },
+      "docs/figures/README.md": {
+        "sha256": "49512df6a49805218365843c952ed214b1eeeaf0f0e6b5588cdcce38a631b094",
+        "size": 21784
+      },
+      "docs/figures/build_cif_doctor_overview.py": {
+        "sha256": "c4ea3eb9a7b3e5cb2092e4ff6dc85e1c0a4e3642bee629fa6f11d8dda2ceb41c",
+        "size": 51007
+      },
+      "docs/figures/cif-doctor-overview.svg": {
+        "sha256": "156dcbec3009e52df40cf86adc4e1698c53a11d1e67931591e3f3c17d59f58f4",
+        "size": 58231
+      },
+      "src/nasolve/cif_mixed_runtime_bundle.py": {
+        "sha256": "0c018e704ceaf496d74b02012b0ae6cf58fd8f39e10f2a9d7904c3d4fe631265",
+        "size": 6332
+      },
+      "src/nasolve/cif_mixed_runtime_source.py": {
+        "sha256": "12278c02f3c4ade0796e34edbb45e1f7e303b0885db47089f268a057e49997e8",
+        "size": 11679
+      },
+      "src/nasolve/cif_runtime_bundle.py": {
+        "sha256": "8f34d162208ed82860177e2dfaf7fd6997ba4613ecaceda258f6657b5b664968",
+        "size": 21802
+      },
+      "tests/test_cif_mixed_runtime_bundle.py": {
+        "sha256": "a8df1743196c5c57fa18c7c118211073eac34aaecfb30adbba854ba4a9ec98a9",
+        "size": 10172
+      },
+      "tests/test_cif_mixed_runtime_source.py": {
+        "sha256": "65a561171010d25be791ef4e2e53523813ba58b71cb4fea83562e68076f23298",
+        "size": 8709
+      },
+      "src/nasolve/cif_mixed_source_review.py": {
+        "sha256": "75700e07242e519f3ee09940c1958b1c05d4ab314c55f08ac2cbf1d668ee01fb",
+        "size": 8336
+      },
+      "tests/test_cif_mixed_source_review.py": {
+        "sha256": "46cc4040d5cb7769674223aca5f4acf49a429dd2c26246f5ed3333d71833a7f7",
+        "size": 9484
+      }
+    }
   }
 }

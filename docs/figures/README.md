@@ -24,6 +24,9 @@ feature, figure or interpretation changes.
 
 The C96 scope line explicitly separates saved endpoint selection from chemical
 approval and ordinary refinement qualification. It adds no production arrow.
+C97 labels the receipt layers as source/current/context/history and updates the
+caption to distinguish current declaration differences from declared site
+modifications and historical generation findings. This adds no repair arrow.
 
 The accompanying caption now distinguishes explicit generator input-state
 retention from experimental protonation, and numerical REVIEW from chemical

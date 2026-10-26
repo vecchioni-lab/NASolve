@@ -111,9 +111,23 @@ def test_real_maintained_replay_is_required_before_resources_are_yielded(tmp_pat
         views.append(({p.relative_to(folder).as_posix(): p.read_bytes() for p in folder.rglob('*') if p.is_file()}, '', name))
     # The transport envelope and complete scientific replay have independent tests.
     monkeypatch.setattr(source, '_lineage', lambda members: (saved, views))
+    # This numerical-worker fixture stubs its older chemical context. The
+    # context audit has separate real dictionary tests; keep this seam explicit.
+    def source_review(context, parent, report):
+        assert context.name == 'context' and parent.name == 'linked_parent'
+        assert report['status'] == 'MIXED_CONTEXT_MECHANICS_PASS'
+        return {'policy_id': 'cif-mixed-current-source-declarations-v1',
+                'input_integrity': 'UNCHANGED', 'automatic_adoption': False,
+                'components': [{'component': 'EXPLICIT_SYNTHETIC_CONTEXT'}]}
+    monkeypatch.setattr('nasolve.cif_mixed_source_review.review_verified_context', source_review)
     raw = pack({'probe_receipt.json': b'{}'}); path = tmp_path/'data.zip'; path.write_bytes(raw)
     monkeypatch.setattr(subprocess, 'Popen', lambda *a, **k: pytest.fail('Saved source reader launched process'))
     with source.verified_endpoint_source(path, sha256(raw).hexdigest()) as verified:
         assert verified['replay']['coordinate_decision']['endpoint_usable'] is True
         assert verified['resources'][0][2] == (window/'candidate/saved_mixed_endpoint.pdb').read_bytes()
         assert verified['resources'][0][0] == 'model'
+        review = verified['source_state_review']
+        assert review['policy_id'] == 'cif-mixed-current-source-declarations-v1'
+        assert review['input_integrity'] == 'UNCHANGED'
+        assert review['automatic_adoption'] is False
+        assert review['components']

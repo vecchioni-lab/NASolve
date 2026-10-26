@@ -94,6 +94,8 @@ def resolve_mixed_runtime_bundle(path, value=None):
             _need(actual == expected)
         verify_mixed_runtime_resources(path, value)
         return {'model': resolved[0], 'dictionaries': resolved[1:1+len(refs['dictionaries'])],
-            'phils': resolved[1+len(refs['dictionaries']):-1], 'manifest': value, 'manifest_path': path}
+            'phils': resolved[1+len(refs['dictionaries']):-1], 'manifest': value, 'manifest_path': path,
+            'source_state_review': {**deepcopy(verified['source_state_review']),
+                                    'source_capsule': deepcopy(value['source_capsule'])}}
     except (KeyError, TypeError, IndexError, OSError) as exc:
         raise ValueError('Incomplete or changed qualified mixed runtime bundle') from exc

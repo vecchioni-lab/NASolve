@@ -2904,6 +2904,26 @@ Original C90/C91 records and C91 local validation remain unchanged. C91 does not
 requalify the endpoint: `verified_constructed_model` remains selected with
 `CONTINUE_WITH_NOTES`, source-state findings and scientific qualification intact.
 
+### Current source declarations in mixed assessment (C97)
+
+After saved endpoint/context replay, `cif_mixed_source_review` derives a read-only
+same-ID comparison of hash-bound original sources and current base dictionaries.
+The existing dictionary assessor owns parsing and declaration normalization;
+this adapter retains chemical-field differences, source/current graph statuses,
+declared site contexts and historical generation findings as separate evidence.
+Canonical graph inputs explicitly exclude installed-library numerics. Neither
+field equality nor a historical rejection is promoted to current chemical
+approval or current candidate rejection.
+
+The public bundle resolver returns this derived inventory separately from its
+unchanged schema-1 manifest. Ordinary assessment includes it under
+`solution_report.source_state_review`, with an owned-capsule reference; temporary
+view paths never become operational provenance. Complete staged-view and capsule
+hash checks follow use. No new native execution, source repair, selection policy,
+checkpoint adoption or migration is introduced. The
+[C97 contract](cif-doctor.md#current-source-declaration-inventory-c97) defines scope
+and the distinction between base declarations and site modifications.
+
 ### Qualified mixed runtime handoff (C95)
 
 `cif-qualified-mixed-runtime-bundle-v1` extends the public ordinary bundle

@@ -170,7 +170,11 @@ def verified_endpoint_source(path, digest):
                 resources.append((row['role'], resource.name, data))
             _need([r for r, _, _ in resources].count('model') == 1 and resources[0][0] == 'model'
                   and (root/'window/candidate/saved_mixed_endpoint.pdb').read_bytes() == resources[0][2])
+            from .cif_mixed_source_review import review_verified_context
+            context = _parse_json((root/'context/mixed_context.json').read_bytes())
+            source_review = review_verified_context(root/'context', root/'linked_parent', context)
             yield {'replay': replay, 'resources': resources, 'atom_count': capture['native_validation']['atom_count'],
+                   'source_state_review': source_review,
                    'source_chemical_findings': report['source_chemical_findings']}
             _need(before == {p.relative_to(root).as_posix(): sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
                   and path.read_bytes() == original, 'Source or staged evidence changed during mixed handoff')

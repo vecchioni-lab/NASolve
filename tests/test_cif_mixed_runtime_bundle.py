@@ -32,7 +32,9 @@ def fixture(tmp_path, monkeypatch):
         calls.append((Path(path), digest))
         assert sha256(Path(path).read_bytes()).hexdigest() == digest
         yield {'replay': deepcopy(replay), 'resources': [(role, f'{i:03d}_{role}', data) for i, (role, data) in enumerate(rows)],
-               'atom_count': native['atom_count'], 'source_chemical_findings': 'PRESERVED_IN_BOUND_CONTEXT; NOT_PROMOTED_BY_ENDPOINT_QUALIFICATION'}
+               'atom_count': native['atom_count'], 'source_state_review': {'policy_id': 'synthetic-source-review',
+                   'summary': {'explicit_components_compared': 1, 'atom_bond_or_hydrogen_difference_components': ['Q17'],
+                               'other_declaration_difference_components': []}}, 'source_chemical_findings': 'PRESERVED_IN_BOUND_CONTEXT; NOT_PROMOTED_BY_ENDPOINT_QUALIFICATION'}
     monkeypatch.setattr(mixed, 'verified_endpoint_source', verified)
     monkeypatch.setattr(subprocess, 'Popen', lambda *a, **k: pytest.fail('Bundle handoff launched process'))
     return mixed, source, replay, rows, calls
@@ -137,9 +139,13 @@ def test_public_report_distinguishes_selection_from_chemical_and_refinement_qual
         assert report['stopping'] == replay['coordinate_decision']['stopping']
         assert report['source_chemical_findings'] == manifest['qualification']['source_chemical_findings']
         assert report['scientific_qualification'] == 'NOT_ASSESSED'
+        assert report['source_state_review']['policy_id'] == 'synthetic-source-review'
+        assert report['source_state_review']['source_capsule'] == manifest['source_capsule']
         assert report['requires_cif_review'] is False
         printed = report['text']
     assert 'verified geometry endpoint' in printed
+    assert '1 with atom, bond or hydrogen differences (Q17)' in printed
+    assert 'historical generation findings are recorded separately' in printed
     assert 'stopped before convergence' in printed or 'recorded limit' in printed
     assert 'does not clear the preserved source-chemistry findings' in printed
     assert 'NASolve-local corrected gradient evaluator' in printed

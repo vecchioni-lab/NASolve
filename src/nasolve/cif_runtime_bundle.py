@@ -285,6 +285,13 @@ def assess_runtime_bundle(manifest):
         text += 'The bounded geometry trial stopped before convergence; its usable selection was retained. '
     text += 'Dictionary findings and unresolved chemistry or geometry notes remain recorded. CIF inspection is not required.'
     if value['policy_id'] == MIXED_POLICY:
+        review = resolved['source_state_review']; counts = review['summary']
+        structural = counts['atom_bond_or_hydrogen_difference_components']
+        other = counts['other_declaration_difference_components']
+        text += (f" Current source comparison covers {counts['explicit_components_compared']} explicit component inputs: "
+                 f"{len(structural)} with atom, bond or hydrogen differences ({', '.join(structural) or 'none'}); "
+                 f"{len(other)} with other declaration differences ({', '.join(other) or 'none'}). "
+                 'Declared site modifications and historical generation findings are recorded separately. ')
         text += (' Selection does not clear the preserved source-chemistry findings. '
                  'The saved derivative proof uses the NASolve-local corrected gradient evaluator; '
                  'ordinary Phenix refinement remains unqualified by this bundle assessment. '
@@ -293,7 +300,7 @@ def assess_runtime_bundle(manifest):
         selected_candidate=selected_name, stopping=deepcopy(selection.get('stopping')),
         notes=deepcopy(selection['notes']), native_evidence=value['native_evidence'], checkpoint_adoption='NOT_RUN')
     if value['policy_id'] == MIXED_POLICY:
-        summary.update(scientific_qualification='NOT_ASSESSED',
+        summary.update(scientific_qualification='NOT_ASSESSED', source_state_review=deepcopy(review),
             source_chemical_findings=value['qualification']['source_chemical_findings'],
             qualification_scope={
                 'source_chemistry': 'NOT_CLEARED_BY_ENDPOINT_QUALIFICATION',

@@ -13,7 +13,58 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C96 reporting and consolidation after a verified Mac C95 handoff.**
+**Current delivery: C97 current source-declaration inventory.**
+The ordinary mixed-bundle assessment now derives current source/base differences
+from the verified capsule instead of leaving their detail in nested historical
+reports. Site modifications and historical generation findings remain separate;
+see the [C97 contract](cif-doctor.md#current-source-declaration-inventory-c97).
+This is a read-only diagnostic improvement. It changes no source state,
+numerical target, selection, manifest, exit code, NAR policy or checkpoint.
+
+Development branch `codex/cedar-c97-source-state` builds on C96 commit
+`8ab18186551a0a3b8e474eea93125f42622fb689` in the same isolated development
+checkout. Review/integrate C96 and then C97 into Cedar; no branch merge is
+performed by this delivery. Everyday Pine and the older diagnostic Cedar
+checkout/Phaser edit remain preserved. Retire this worktree only after its
+active development line is integrated and the lifecycle audit passes.
+
+C97 validation passes **5541 passed, 276 subtests passed in 766.90s (0:12:46)** and **250 focused tests**. Compilation,
+whitespace, 183 local document links and the rendered figure pass. The cold
+relocated C95 public assessment passes in 42.23 seconds with all 38 files and
+five selection gates unchanged, no SDK/process attempts and the expected exit 2.
+The original temporary code/bundle path is absent during that readback.
+Commands, frozen hashes and results are recorded under
+`mixed_current_source_review_2026_10_26` in the existing evidence ledger.
+
+The current source comparison records seven explicit component inputs with
+atom/bond/hydrogen differences (5PC, CGY, DF, DX, IMC, PDU, S6G); IGU retains
+other declaration differences. Four other explicit components match the compared
+chemical fields; four canonical inputs have graph-only scope. DF's three sugar
+bonds still differ single-to-aromatic. IGU's historical rejection must not be
+mistaken for its recovered current atom/bond/hydrogen inventory; stereo/aromatic
+metadata and partial-charge differences still need their own interpretation.
+
+A concrete next recovery lead is the exact C18 DF candidate `8daa21379bba…`,
+from verified capsule `8c049215a46f…`. Its source is byte-identical to the current
+DF source `27f83c85e896…`; current read-only generation inspection returns
+`CANDIDATE_REVIEW`, no rejection reasons and no atom/bond/hydrogen differences.
+The current complete-candidate reassessor also passes its gate: formal charges
+and finished source-relative configuration are preserved, with independent
+absolute CIP and current native usability still unassessed.
+Try this preserved candidate before regenerating. Requalify the current linked
+863-atom manager and downstream evaluator; the old 877-atom result does not
+establish their behavior. No candidate is adopted by C97.
+
+Remaining work is source-preserving recovery of demonstrated incompatibilities,
+then qualification of the actual downstream refinement consumer. Keep raw
+declaration differences distinct from chemical-state decisions and metadata
+unknowns; do not hand-edit a state merely to make this inventory empty.
+
+— Rowan · Codex desktop
+
+### Previous C96 delivery
+
+**C96 delivery: reporting and consolidation after a verified Mac C95 handoff.**
 See the [current capability map](cif-doctor.md#current-capability-boundary-c96)
 for established contracts, open science and future chemical-reference scope.
 C95 ran locally from `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3` and passed:

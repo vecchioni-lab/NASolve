@@ -32,7 +32,9 @@ run without changing it, use `./nasolve cif-doctor assess --run RUN --json`.
 explicit source-preserving preparation recipes.
 C95's portable mixed-bundle handoff now passes on macOS. C96 exposes the
 selected model, stopping note and qualification boundaries in ordinary text
-output as well as JSON. Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c96)
+output as well as JSON. C97 compares current component declarations with their
+original sources, keeping historical findings and declared site modifications
+separate. Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c97)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.

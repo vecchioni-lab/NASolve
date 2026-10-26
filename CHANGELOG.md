@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Trace current component declarations to their sources (C97)
+
+- Add a read-only source-to-current declaration inventory to mixed runtime
+  bundle assessment. Report exact component references, changed declarations,
+  declared site modifications and historical generation findings separately.
+- Preserve unknown metadata and distinguish partial from formal charge. An
+  internal OP3 deletion does not excuse OP2, hydrogen or sugar-bond changes;
+  canonical graph-input agreement makes no claim about installed numerics.
+- Add `solution_report.source_state_review` and a compact text summary after
+  the existing saved-evidence replay. Original manifests and qualification,
+  selection, stopping, exit codes and chemical/numerical policy remain unchanged.
+  Existing C95 bundles need no migration; no repair or native execution is added.
+
 ### Make mixed-bundle qualification explicit (C96)
 
 - Show the solution summary in plain-text CIF Doctor assessment, including the
