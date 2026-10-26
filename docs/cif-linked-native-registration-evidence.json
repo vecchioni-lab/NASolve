@@ -32652,5 +32652,394 @@
       "Source chemistry, ATL, future ChemDraw-reference support and the independent metal GUI remain separate.",
       "Continue directly on Cedar; no per-fix branch or Pine/main merge."
     ]
+  },
+  "recovered_resolution_diagnostic_2026_10_26": {
+    "author": "Rowan · Codex desktop",
+    "status": "IMPLEMENTED_AND_MAC_EXECUTED; RESOLUTION_DIAGNOSTIC_COMPLETE_ENDPOINT_UNQUALIFIED",
+    "branch": "cedar",
+    "parent_commit": "325f833ad6048e325e010ef484afda6cc811f458",
+    "before": "C101 localized the retained endpoint failures but lacked guarded resolution-window evidence for the recovered objective.",
+    "after": "The exact saved endpoint receives fresh local and broader finite differences and strict atom-order comparisons. Partial sampled agreement leaves original prerequisites and coordinate selection unchanged.",
+    "changed_runtime_files": [
+      "src/nasolve/cif_recovered_resolution.py"
+    ],
+    "changed_tests": [
+      "tests/test_cif_recovered_resolution.py"
+    ],
+    "schemas": {
+      "schema_version": 1,
+      "policy_id": "cif-recovered-fixed-resolution-diagnostic-v1",
+      "report": "recovered_resolution_audit.json",
+      "new_parent_anchor": "recovered_torsion_directory",
+      "output_anchor": "mixed_endpoint_window_directory",
+      "native_preparation_anchor": "mixed_torsion_directory",
+      "legacy_worker_policy": "cif-mixed-saved-endpoint-resolution-window-v1"
+    },
+    "compatibility_and_migration": "Additive diagnostic Python APIs; unchanged CLI/runtime schemas, numerical worker bytes, thresholds, chemistry, NAR targets and model selection. No migration.",
+    "methods": "Replay C101/C100/C99/C98 once, bind exact manager/resources/sources and saved stopping metadata, reconstruct all unresolved directions, reuse C93 plan and worker, replay every raw observation. Summarize fresh reversal comparisons with atom-block permutation. Diagnostic completion never triggers serialization, native endpoint reread or adoption.",
+    "parent_bindings": {
+      "recovery_report": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "mixed_source_recovery.json",
+        "sha256": "bf1454717b00d7e6f6ad45aff173f931afc2bb7fcd584acab74fccbf46fb0b94",
+        "size": 3427467
+      },
+      "gradient_report": {
+        "anchor": "recovered_gradient_directory",
+        "path": "recovered_mixed_gradients.json",
+        "sha256": "6f19448d2a9d2cdeccc116465faad694630656715c6e62084b86613a99da9f89",
+        "size": 29717
+      },
+      "geometry_report": {
+        "anchor": "recovered_geometry_directory",
+        "path": "recovered_geometry_trial.json",
+        "sha256": "e10602a313d9c9370257ead66dbd33d8174db9f8375ac9aecd14cfa80eb9e5c4",
+        "size": 30962
+      },
+      "torsion_report": {
+        "anchor": "recovered_torsion_directory",
+        "path": "recovered_torsion_audit.json",
+        "sha256": "ba774a2873ca83a20c0485458e867de026dcc4dd373a052650a7414c7f645531",
+        "size": 32722
+      },
+      "torsion_result": {
+        "anchor": "recovered_torsion_directory",
+        "path": "job/torsion_result.json",
+        "sha256": "eb602c6f7c808471dcaa6483bacfac36a76f53ef7ff63c0aba5544580cbd4464",
+        "size": 7561628
+      },
+      "endpoint_capsule": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "capsules/endpoint.zip",
+        "sha256": "570ebe89210def4a420c155b60f7ddf998d152c133edc4d5ff955713f77a6e94",
+        "size": 27412323
+      }
+    },
+    "ordered_input_bindings_sha256": "0975721a227232d4f78da5a87591946abce271b8eb6670900d0de11fd459b45e",
+    "archive_field": "Exact C94 capsule owned and verified by C98; current objective authority is the independently bound C101/C100/C99/C98 lineage.",
+    "native_execution": {
+      "mode": "COMPLETE_EXECUTION; NOT_DRY_RUN",
+      "installation": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "python": "3.12.14",
+      "new_native_calls": 1,
+      "execution": {
+        "elapsed_seconds": 8.843132,
+        "returncode": 0,
+        "status": "COMPLETED"
+      },
+      "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+      "worker_deadline_seconds": 600,
+      "maximum_native_calls": 1,
+      "maximum_evaluations": 2000,
+      "actual_evaluations": 540,
+      "maximum_directions": 120,
+      "optimization": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "generation": "NOT_RUN",
+      "endpoint_native_readback": "NOT_RUN"
+    },
+    "numerical_evidence": {
+      "qualification_status": "REVIEW",
+      "summary": {
+        "automatic_adoption": false,
+        "endpoint_native_readback": "NOT_RUN",
+        "endpoint_requalification": "NOT_RUN",
+        "evaluation_calls": 540,
+        "failed_checks": [
+          "full_precision:0:forward",
+          "full_precision:0:reversed",
+          "full_precision:group_samples"
+        ],
+        "failed_prerequisites": [
+          "full_precision:0:forward",
+          "full_precision:0:reversed",
+          "full_precision:group_samples"
+        ],
+        "fresh_local_reversals": [
+          {
+            "case": "full_precision",
+            "comparison_tolerance": {
+              "absolute": 1e-08,
+              "relative": 1e-10
+            },
+            "comparisons": {
+              "accumulated": {
+                "consistent": false,
+                "forward_gradient_norm": 7064.7553790623715,
+                "maximum_gradient_component_difference": 4.606198899637093e-05,
+                "reversed_gradient_norm": 7064.755461227617,
+                "target_difference": 1.1842379017567602e-15
+              },
+              "single": {
+                "consistent": false,
+                "forward_gradient_norm": 7064.7553790623715,
+                "maximum_gradient_component_difference": 4.606198899637093e-05,
+                "reversed_gradient_norm": 7064.755461227617,
+                "target_difference": 1.1842379017567602e-15
+              }
+            },
+            "orders_observed": [
+              "forward",
+              "reversed"
+            ],
+            "proxy": {
+              "alt_angle_ideals": null,
+              "angle_ideal": -11.22,
+              "i_seqs": [
+                816,
+                818,
+                819,
+                820
+              ],
+              "origin_id": 0,
+              "periodicity": 1,
+              "weight": 0.0011111111111111111
+            },
+            "status": "REVIEW"
+          }
+        ],
+        "original_direction_count": 336,
+        "passing_family_directions": 4,
+        "passing_local_directions": 2,
+        "refined_family_directions": 10,
+        "refined_local_directions": 22,
+        "retained_original_passing_directions": 326,
+        "sampled_derivatives_pass": false
+      },
+      "step_grid_angstrom": [
+        1e-07,
+        3e-08,
+        1e-08,
+        3e-09,
+        1e-09,
+        3e-10,
+        1e-10
+      ],
+      "derivative_tolerance": {
+        "absolute": 0.0001,
+        "relative": 0.0001
+      },
+      "resolution_guard_allowance_fraction": 0.1,
+      "fresh_family_snapshot_pairs": 24,
+      "local_repeat_single_container_checks": "PASS",
+      "arithmetic_passing_full_precision_samples_rejected_by_displacement_guard": 8,
+      "full_gradient_example": {
+        "step": 1e-10,
+        "absolute_error": 0.20861898603197915,
+        "comparison_bound": 0.6908739589223638,
+        "representation_derivative_uncertainty": 0.13616283431843396,
+        "allowed_representation_uncertainty": 0.06908739589223638,
+        "outcome": "REVIEW"
+      },
+      "interpretation": "Passing a subset of derivatives does not establish useful conditioning. Apparent arithmetic agreement cannot bypass displacement resolution or strict reversal prerequisites. No higher-precision proof has yet been run."
+    },
+    "coordinate_decision": {
+      "automatic_adoption": false,
+      "checks": {
+        "qualified_endpoint_derivatives": false
+      },
+      "continue_solving": true,
+      "endpoint_usable": false,
+      "native_usable": true,
+      "notes": [
+        "Stopping, pucker, chirality and residual findings are recorded separately from fixed native mechanics.",
+        "The optional separate endpoint is selected only when its fixed objective and native checks qualify; otherwise the usable starting model is retained."
+      ],
+      "requires_cif_review": false,
+      "scientific_qualification": "NOT_ASSESSED",
+      "selected": "verified_recovered_model",
+      "status": "CONTINUE_WITH_NOTES",
+      "stopping": {
+        "calls": 108,
+        "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+        "iterations": 58,
+        "max_iterations": 1000,
+        "native_criterion_met": false,
+        "reason": "unreported"
+      }
+    },
+    "source_chemical_scope": "PRESERVED_IN_BOUND_RECOVERY; NOT_PROMOTED_BY_DIAGNOSTIC",
+    "declared_axis_observation": {
+      "active_torsion_definition": [
+        {
+          "alt_value_angle": "",
+          "atom_id_1": "C5M",
+          "atom_id_2": "C5B",
+          "atom_id_3": "C5A",
+          "atom_id_4": "C5",
+          "id": "Var_34",
+          "period": 1,
+          "value_angle": -11.22,
+          "value_angle_esd": 30.0
+        }
+      ],
+      "candidate_preparation": "NOT_RUN",
+      "central_bond": [
+        {
+          "atom_id_1": "C5B",
+          "atom_id_2": "C5A",
+          "type": "triple",
+          "value_dist": 1.203,
+          "value_dist_esd": 0.02,
+          "value_dist_neutron": null
+        }
+      ],
+      "component": "PDU",
+      "defining_angles": [
+        {
+          "atom_id_1": "C5B",
+          "atom_id_2": "C5A",
+          "atom_id_3": "C5",
+          "value_angle": 180.0,
+          "value_angle_esd": 3.0
+        },
+        {
+          "atom_id_1": "C5M",
+          "atom_id_2": "C5B",
+          "atom_id_3": "C5A",
+          "value_angle": 180.0,
+          "value_angle_esd": 3.0
+        }
+      ],
+      "interpretation": "Relate current captured native definitions to prior C43-C46 declaration-based evidence before any candidate change; achieved near-collinearity alone is not a removal rule.",
+      "new_native_calls": 0,
+      "restraint_changes": "NONE",
+      "site": "D:5",
+      "source": "resolution/job/expected_inventory.json",
+      "source_sha256": "dff392f64379fd32f927350685851d3cbe86f279ad25608c5cc3bd70f9f18131",
+      "status": "SAVED_NATIVE_DEFINITION_OBSERVATION"
+    },
+    "receipts": {
+      "resolution/recovered_resolution_audit.json": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/resolution/recovered_resolution_audit.json",
+        "sha256": "80900153937d843584aab75527731723c18392636898ebf45ddd566d051602a9",
+        "size": 34082
+      },
+      "resolution/job/endpoint_result.json": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/resolution/job/endpoint_result.json",
+        "sha256": "d7508cb6a9c33bd0cf48fa366db563bf9ac3c2be09ec033f135dfffe7e66ce92",
+        "size": 15514005
+      },
+      "resolution/refinement_plan.json": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/resolution/refinement_plan.json",
+        "sha256": "68607aa5bc4fc3fc378287a30e4850dc207e363bc3261d51b350b81eeb01421c",
+        "size": 1501470
+      },
+      "resolution/job/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/resolution/job/native_validation.json",
+        "sha256": "dff392f64379fd32f927350685851d3cbe86f279ad25608c5cc3bd70f9f18131",
+        "size": 2696584
+      },
+      "execution_summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/execution_summary.json",
+        "sha256": "4cb108034f0fdebeaec264b24a51b034baf77fd051df400d882472c06ab3df9b",
+        "size": 4012
+      },
+      "interpretation.json": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/interpretation.json",
+        "sha256": "8d4b265679f03e82c34a2590957ebb37fc67ccdc7e044d69eca641591f49b951",
+        "size": 228033
+      },
+      "declared_axis_context.json": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/declared_axis_context.json",
+        "sha256": "92fedd4a798c23822e2a6dfddc6133a9fedf86784691a8192438fd9a6fa820eb",
+        "size": 1330
+      },
+      "execute.py": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/execute.py",
+        "sha256": "9de4a30291fc9a8772b0e39d386a0b03136f77a14d013886d631a504fff661ec",
+        "size": 2871
+      }
+    },
+    "validation": {
+      "before_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_recovered_resolution.py",
+      "before_result": "Expected ModuleNotFoundError before implementation; 1 collection error in 0.13s.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_recovered_resolution.py",
+      "focused_result": "43 passed in 139.93s (0:02:19)",
+      "new_regression_cases": 43,
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/102_Cedar_recovered_resolution.py",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c102_cold.py",
+      "relocation": {
+        "bytes_and_timestamps_preserved_by_read": true,
+        "coordinate_selection": "verified_recovered_model",
+        "endpoint_requalification": "NOT_RUN",
+        "files_unchanged_by_read": 495,
+        "original_live_and_code_paths_blocked": true,
+        "original_temporary_paths_absent": true,
+        "process_discovery_pickle_calls": 0,
+        "read_seconds": 58.755,
+        "rebound_forgeries_rejected": [
+          "forged_selection",
+          "forged_reversal",
+          "rebound_dictionary",
+          "rebound_observation"
+        ],
+        "status": "DIAGNOSTIC_REPLAY_PASS",
+        "total_seconds": 305.988
+      },
+      "interpretation_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c102_interpret.py",
+      "declarations_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c102_declarations.py",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c102-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "compile_result": "PASS",
+      "integrity_command": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c102_verify.py",
+      "integrity": {
+        "status": "PASS",
+        "frozen_source_and_test_files": 412,
+        "all_execution_source_and_test_hashes_unchanged": true,
+        "parent_file_bytes_and_mtimes_preserved": {
+          "C95": 38,
+          "C98": 213,
+          "C99": 68,
+          "C100": 76,
+          "C101": 68
+        },
+        "document_links": 195,
+        "passing_local_directions": 2,
+        "local_directions": 22,
+        "passing_broader_full_precision": 0,
+        "broader_full_precision_directions": 6,
+        "passing_broader_rounded": 4,
+        "broader_rounded_directions": 4,
+        "arithmetic_passing_full_precision_samples_rejected_by_displacement_guard": 8,
+        "fresh_family_snapshot_pairs": 24,
+        "unchanged_failed_prerequisites": [
+          "full_precision:0:forward",
+          "full_precision:0:reversed",
+          "full_precision:group_samples"
+        ],
+        "adapter_sha256": "7832f8caf416463b5ecdfb4b2958b3a0267822e78161c81d80496b01e0a5215f",
+        "test_sha256": "a87f1e937fe1ba44585c6e0bfb782d4dfb5f9e232ce4f4f4681f6a4f46347ba1"
+      },
+      "whitespace_command": "git diff --check",
+      "figure_command": "/opt/homebrew/bin/rsvg-convert -w 1400 -o /private/tmp/c102-overview.png docs/figures/cif-doctor-overview.svg",
+      "figure_result": "Rendered and visually inspected; text and bounds pass.",
+      "full_result": "5723 passed, 276 subtests passed in 1006.53s (0:16:46)",
+      "archive_manifest": {
+        "anchor": "live_tests_directory",
+        "path": "102_Cedar_recovered-resolution-usqsq5qh/validation/manifest.json",
+        "sha256": "a7ff92c229c982b12cbf74f8fa5eb6b20e096029a27d961ebbf8e0660a42ffed",
+        "size": 2617
+      },
+      "archive_payload_count": 17
+    },
+    "generated_artifacts": "All scientific inputs, coordinates, native observations, installed-source captures and logs remain local. Git includes source, synthetic tests, maintained docs and compact technical evidence. The local runner lives in the ignored Cedar runners directory and is archived beside the run.",
+    "limitations_and_followup": [
+      "C100 stays unqualified; retain verified_recovered_model and all original failed samples and prerequisites.",
+      "Next independently test the same four-atom function in both orders at higher arithmetic precision, preserving exact binary input values. This has not yet been implemented or executed.",
+      "Relate current triple/180-degree native declarations to C43-C46 source-declared linear-axis evidence. Achieved geometry alone cannot authorize an omission; any candidate needs fresh current-manager comparisons and unchanged bystanders, phosphate chemistry and NAR targets.",
+      "No optimizer retry, relaxed threshold, runtime/checkpoint adoption, ordinary refinement qualification or scientific approval.",
+      "Metal GUI/shared-restraint work, ATL and future ChemDraw-reference support remain independent. Continue directly on Cedar; no new branch or Pine/main merge."
+    ]
   }
 }

@@ -39,9 +39,10 @@ without changing C95 or inheriting its derivative proof. C99 now passes a fresh
 fixed-coordinate derivative audit for that repaired manager, using the explicit
 NASolve-local corrected evaluator. C100 tests bounded geometry for that repaired
 objective; endpoint derivative review automatically retains the verified start.
-C101 localizes the remaining sampled torsion failures at fixed coordinates,
-while preserving that selection and the unqualified endpoint.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c101)
+C101 localizes the remaining sampled torsion failures at fixed coordinates.
+C102 probes their numerical resolution: full-precision evidence remains under
+review, preserving the selected start and unqualified endpoint.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c102)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.

@@ -3198,3 +3198,26 @@ single/container comparisons agree. This supports a resolution-aware
 investigation without claiming a derivative defect, chemical correction or
 endpoint qualification. No NAR workbook/shared compiler, GUI, runtime manifest,
 CLI, source-state or terminal-phosphate policy changes are involved.
+
+
+### Resolution diagnostics after source recovery (C102)
+
+`cif_recovered_resolution` uses C101's maintained reader to establish current
+C100/C99/C98 lineage once, then connects the same inputs to the unchanged C93
+plan, worker and numerical replay. The strict original optimizer/precondition
+metadata, installed sources and native manager bind every new evaluation.
+A new outer diagnostic receipt preserves selection independently of numerical
+qualification; no serialization, conditional native reread or adoption exists
+in this adapter. Fresh atom-order comparisons are reconstructed from recorded
+local baselines, with absent-order coverage stated explicitly. See the
+[C102 contract](cif-doctor.md#recovered-endpoint-resolution-c102).
+
+The live audit passes 2/22 local and 4/10 broader rechecks, reproduces all 24
+family snapshots and the strict PDU reversal discrepancy, and retains the three
+failed original prerequisites. Displacement-resolution guards reject some
+otherwise close full-precision derivatives. The captured native definition
+contains an explicit triple bond, two 180-degree flank targets and the active
+central torsion. This motivates independent arithmetic and source-declaration
+comparison with prior linear-axis evidence; it does not authorize chemical or
+numerical policy changes. Historical workers, NAR targets, phosphate behavior,
+ordinary refinement and the parallel metal GUI remain unchanged.

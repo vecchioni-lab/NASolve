@@ -50,12 +50,17 @@ that one PDU D:5 torsion; seven other selected torsions and the remainder group
 pass. Native group sums reproduce the saved values. Initial and rounded
 local/group checks pass at finer steps. The same full-precision PDU torsion also
 retains a strict atom-order reversal finding. C100 stays unqualified. A separate
-resolution-aware audit is needed before another optimization or endpoint claim.
+C102 resolution-aware audit passes only two local and four rounded broader
+rechecks; all six full-precision broader checks still fail. Some apparently
+close derivatives are rejected because the requested coordinate displacement
+is not represented accurately enough. The order discrepancy reproduces.
+Independent higher-precision arithmetic and the existing declared-linear-axis
+evidence are the next checks; smaller steps alone are not an established remedy.
 Neither native mechanics nor initial derivatives confer the old endpoint proof.
 ATL remains an independent source/compiler control. Future chemical-reference
 input, potentially from ChemDraw exports, belongs to restraints preparation;
 drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c101) is the
+[current capability map](cif-doctor.md#current-capability-boundary-c102) is the
 concise authority for these distinctions and next steps.
 
 ## What it does
@@ -644,7 +649,9 @@ verified start when the endpoint derivatives remain under review. Target
 improvement alone does not select the endpoint. C101 diagnoses the saved
 torsions at fixed coordinates and leaves that decision intact. All remaining
 sampled local full-precision failures belong to one nearly collinear PDU
-torsion; numerical resolution and scientific chemistry remain separate questions.
+torsion. C102 tests finer resolution and retains review; both displacement
+uncertainty and strict atom-order sensitivity remain visible. Numerical
+agreement, useful conditioning and scientific chemistry are separate questions.
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native

@@ -13,7 +13,51 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C101 fixed-coordinate recovered-endpoint torsion audit.**
+**Current delivery: C102 fixed-coordinate resolution diagnostic.**
+One complete Phenix 2.2.1-6174 job (dispatcher 2.2.1) completes in 8.843132s,
+with 540 evaluations: 22 local direction/order rows and 10 broader total/dihedral
+rows, retaining 326 original passing directions. Only the two local-gradient
+rows and four rounded broader rows pass. All six full-precision broader rows
+remain under review; displacement-resolution guards reject some arithmetic
+agreements. All 24 repeated family snapshots match. The PDU reversal discrepancy
+reproduces exactly (maximum component difference 4.606198899637093e-5).
+See the [C102 contract](cif-doctor.md#recovered-endpoint-resolution-c102).
+
+Before C102, the recovered endpoint had a coarse torsion audit but no guarded
+resolution-window evidence. `cif_recovered_resolution.py` and its regression
+tests add the current-parent adapter and fresh reversal summary, reusing the
+unchanged C93 plan, worker and replay. The additive schema-1 receipt is
+`recovered_resolution_audit.json`; CLI/runtime and historical receipts need no
+migration. Three failed prerequisites remain false. Diagnostic completion does
+not imply numerical qualification; C100 remains unqualified and the verified
+recovered model stays selected. No endpoint serialization or native reread runs.
+
+Validation: **5723 passed, 276 subtests passed in 1006.53s (0:16:46)**; **43 focused regressions** pass. Cold relocated replay preserves all 495 parent/audit files and timestamps, retains the selected start and rejects four rebound forgeries with zero processes. Compilation, whitespace, 195 document links and rendered-figure inspection pass.
+
+All audited C95, C98, C99, C100 and C101 parent bytes/timestamps are preserved. Generated coordinates,
+dictionaries, observations, installed-source snapshots and logs stay local;
+Git contains code, synthetic tests, maintained docs and concise technical evidence.
+Exact commands/hashes are in `recovered_resolution_diagnostic_2026_10_26`.
+
+The captured current PDU definition has a C5A–C5B triple bond (1.203 Å), two
+180° flank targets and central torsion Var_34 at -11.22°/30° ESD, period 1.
+**Next boundary:** independent higher-precision calculation of this exact
+four-atom function in both orders, plus comparison with C43–C46's explicit
+linear-axis declarations and candidate policy. Preserve exact binary input
+coordinates and every current failure. Do not blindly shrink steps, relax
+thresholds, remove a term or retry optimization. Any candidate change needs
+separate source authority and current-manager proof that all other terms,
+phosphate chemistry and NAR targets survive. Scientific approval and ordinary
+refinement remain separate.
+
+Continue directly on **`cedar`**; no new per-fix branch or Pine/main merge.
+The independent metal GUI/shared restraint work is untouched.
+
+— Rowan · Codex desktop
+
+### Previous C101 delivery
+
+**C101 delivery: fixed-coordinate recovered-endpoint torsion audit.**
 One complete Phenix 2.2.1-6174 job (dispatcher 2.2.1) completes in 5.393327s,
 with 9,504 local paired-kernel evaluations and 528 group calls. The unchanged
 selector chooses six near-collinear torsions and two disjoint controls.

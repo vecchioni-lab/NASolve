@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Audit numerical resolution without promoting a recovered endpoint (C102)
+
+- Add a diagnostic adapter for the exact C101/C100/C99/C98 lineage, reusing the
+  unchanged resolution-window worker, step grid, tolerances and prerequisites.
+  Record fresh atom-order comparisons separately from individual sample passes.
+- Save schema-1 `recovered_resolution_audit.json` with anchored resources,
+  one bounded native job, read-only numerical replay and unchanged selection.
+- The complete Mac audit passes 2/22 local and 4/10 broader direction rechecks.
+  All six full-precision broader checks retain review, including apparent
+  arithmetic agreements rejected by displacement-resolution guards. The PDU
+  reversal discrepancy reproduces. C100 remains unqualified.
+- Preserve previous evidence, scientific policies, CLI/runtime behavior and
+  historical worker bytes. No optimizer, endpoint adoption or migration occurs.
+
 ### Diagnose recovered endpoints without changing their selection (C101)
 
 - Add a fixed-coordinate torsion adapter bound to replayed C100/C99/C98 evidence.
