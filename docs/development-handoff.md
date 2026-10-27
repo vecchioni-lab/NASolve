@@ -13,7 +13,7 @@ not general production support. Earlier wording remains in Git and the
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-27; C108 validated, publication pending.** Every ligand in the selected
+**Scope revised 2026-10-27; C108 published and validated.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -38,13 +38,13 @@ only when available evidence and safe usable fallbacks cannot settle it.
 ChemDraw-derived source references/restraint bundles remain future input scope;
 building a model from a drawing stays outside CIF Doctor.
 
-### C108 validated interruption boundary
+### C108 published interruption boundary
 
-**Validation is complete; commit/push is pending.** Last published head:
-`76d994565873222c94e1488db365e6ab422f3048` (C107 continuity).
+**Safe resume point:** C108 tested implementation commit
+`e2c86b8a1c71bd60f6d12d4bed424c4f2a256057` is published and verified on GitHub `cedar`.
+This continuity follow-up changes documentation only. No job is active.
 Continue on existing `cedar`; preserve other branches, shared-restraint work
-and every scientific run. No job is active. Next: commit/push these reviewed
-files and record the verified implementation commit.
+and every scientific run. The next implementation boundary is recorded below.
 
 Before C108, C107 checked a partner's identity/element without qualifying its
 attachment port or requiring a reverse declaration. C108 adds

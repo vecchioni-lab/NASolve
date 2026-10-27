@@ -26900,7 +26900,8 @@
         "Automatic preparation/adoption"
       ],
       "automatic_adoption": false,
-      "validation": "5940 passed, 276 subtests passed in 915.04s (0:15:15); 176 focused tests and eight cold API/CLI cases pass."
+      "validation": "5940 passed, 276 subtests passed in 915.04s (0:15:15); 176 focused tests and eight cold API/CLI cases pass.",
+      "tested_implementation_commit": "e2c86b8a1c71bd60f6d12d4bed424c4f2a256057"
     }
   },
   "audience": [

@@ -35481,6 +35481,7 @@
       "No automatic preparation/adoption or Pine/main merge",
       "PDU C104 energy/gradient and derivative gate remains open"
     ],
-    "publication": "Validation complete; tested-file hashes recorded. Commit/push pending."
+    "publication": "Tested implementation published and remote verified; this follow-up records continuity only.",
+    "tested_implementation_commit": "e2c86b8a1c71bd60f6d12d4bed424c4f2a256057"
   }
 }
