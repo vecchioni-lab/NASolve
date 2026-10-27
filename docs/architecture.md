@@ -3314,3 +3314,22 @@ workbook anchors and hashes allow exact cold replay; schema 1 is additive.
 The [command contract](cif-doctor.md#source-attachment-topology-and-ports-c106)
 records search limits, actual coverage and the remaining site-context/permitted-
 delta boundary. No ordinary runtime hook or native execution is added.
+
+
+## Explicit site source-projection contracts (C107)
+
+`cif_attachment_sites.inspect_attachment_site` reuses the C106 profile and adds
+an explicit source/workbook/model/context binding for one PDB site. Complete
+port declarations and a strict PDB identity subset prevent implicit adjacency,
+conformer/model collapse and accidental coverage of other sites. Source-state
+retention or bounded neutral furanose deletions produce a proposed source-table
+projection; missing chemical-state authority prevents any partial plan.
+
+Optional candidate comparison preserves every retained column/row, ignoring
+row order only, and rejects unselected components/blocks. External bonds remain
+caller-declared intent. Neither a plan nor an exact match qualifies partner
+chemistry, native numerical types or final linkage. PNA state and free-OH
+reconstruction remain unresolved. The source/model and existing DNA preparation
+are unchanged. Additive schema 1 uses explicit per-input directory anchors and
+hashes and replays after cold relocation. See the
+[C107 contract](cif-doctor.md#explicit-single-site-source-projections-c107).

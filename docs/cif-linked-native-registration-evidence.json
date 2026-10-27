@@ -34858,5 +34858,261 @@
     ],
     "publication": "Tested implementation commit verified on origin/cedar; following continuity update changes documentation only.",
     "tested_implementation_commit": "402c68cc0c5b79b8fcda8f3972265025cec0543e"
+  },
+  "explicit_attachment_sites_2026_10_27": {
+    "delivery": "C107",
+    "status": "READ_ONLY_SITE_CONTRACT_FULL_REGRESSION_AND_COLD_REPLAY_PASS",
+    "policy_id": "cif-explicit-attachment-site-v1",
+    "schema_version": 1,
+    "before": "Source topology/ports are bound, but no explicit model-site context or exact permitted source-table projection is available.",
+    "after": "One declared PDB site can propose source retention or graph-checked neutral furanose deletions, and compare an optional candidate against all retained source tables; every result stays REVIEW.",
+    "starting_commit": "b92e3f1d1f0967c6520235f955243e80cef47e22",
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "src/nasolve/cif_attachment_sites.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_attachment_sites.py"
+    ],
+    "schemas": "Additive context/report schema 1 only; runtime/checkpoint/chemistry/NAR schemas unchanged.",
+    "source_authority": {
+      "workbook_sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+      "loader": {
+        "module": "restraints.residue_library",
+        "openpyxl_version": "3.1.5",
+        "sha256": "85105ec37fb251fe61eb5bf0eaa6039632ef8bab88d2d4e657f1d88b657a1786",
+        "size": 3027
+      },
+      "narestraints_snapshot_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "workbook_scope": "Explicit pinned local workbook; not asserted to be the released v1.1.3 workbook.",
+      "ccd": "Exact C105 snapshots from Phenix 2.2.1-6174; no network discovery or native execution."
+    },
+    "results": {
+      "cases": 12,
+      "linked_deletions": {
+        "ATL": [
+          "HA",
+          "HXT",
+          "OXT"
+        ],
+        "DA": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "LCC": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "PDU": [
+          "H2",
+          "HOP3",
+          "OP3"
+        ]
+      },
+      "pna_link_state_boundaries": 2,
+      "proposed": 10,
+      "source_codes": [
+        "PDU",
+        "ATL",
+        "DA",
+        "LCC",
+        "APN",
+        "40A"
+      ],
+      "sugar_link_cases": 4,
+      "terminal_retention_cases": 6,
+      "unresolved": 2,
+      "validation_design": "Predeclared synthetic site contexts over frozen CCD sources; exploratory transfer, not a blinded/native experiment"
+    },
+    "validation": {
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_attachment_sites.py tests/test_cif_attachment_profiles.py tests/test_cif_catalogue.py tests/test_cif_linked_preparation.py",
+      "focused_result": "119 passed in 3.96s",
+      "new_regressions": 49,
+      "failing_before": [
+        "Public site-plan command absent",
+        "Three unselected CIF-block changes accepted",
+        "Three ambiguous PDB record-boundary changes accepted"
+      ],
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider",
+      "full_result": "5902 passed, 276 subtests passed in 947.36s (0:15:47)",
+      "python_executable_historical_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "python_version": "3.12.14",
+      "live_command": "PYTHONDONTWRITEBYTECODE=1 python LIVE_TESTS_DIRECTORY/107_Cedar_site-contract-866er_pp/validate_live.py",
+      "live_validation": {
+        "all_bytes_and_mtimes_preserved": true,
+        "cold_process_exact_api_and_cli_replay": true,
+        "coot_execution": "NOT_RUN",
+        "forbidden_historical_and_sdk_reads": true,
+        "frozen_files": 206,
+        "original_temporary_source_and_input_path_absent": true,
+        "parent_input_files": 38,
+        "phenix_execution": "NOT_RUN",
+        "phenix_version_for_captured_ccd": "2.2.1-6174",
+        "status": "PASS",
+        "summary": {
+          "cases": 12,
+          "linked_deletions": {
+            "ATL": [
+              "HA",
+              "HXT",
+              "OXT"
+            ],
+            "DA": [
+              "HO3'",
+              "HOP3",
+              "OP3"
+            ],
+            "LCC": [
+              "HO3'",
+              "HOP3",
+              "OP3"
+            ],
+            "PDU": [
+              "H2",
+              "HOP3",
+              "OP3"
+            ]
+          },
+          "pna_link_state_boundaries": 2,
+          "proposed": 10,
+          "source_codes": [
+            "PDU",
+            "ATL",
+            "DA",
+            "LCC",
+            "APN",
+            "40A"
+          ],
+          "sugar_link_cases": 4,
+          "terminal_retention_cases": 6,
+          "unresolved": 2,
+          "validation_design": "Predeclared synthetic site contexts over frozen CCD sources; exploratory transfer, not a blinded/native experiment"
+        }
+      },
+      "compilation_command": "PYTHONPYCACHEPREFIX=/private/tmp/c107-compile-cache python -m compileall -q src tests",
+      "code_hashes": {
+        "src/nasolve/cif_attachment_sites.py": "1988d488f1d7180e5f68c7c3520605ae16c8ced6ce7e5ce4d2c0186ae6da9fbf",
+        "src/nasolve/cli.py": "1515d7434510f79327febfd9cbbe3589950b886cdac4d31cb215c50e20d1120e",
+        "tests/test_cif_attachment_sites.py": "bb533d473ecc73b9744ee53a2b63a1f893bd5d528e77c96c422ef6f68e3b6a45"
+      },
+      "reports": {
+        "cases.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/cases.json",
+          "sha256": "2002d6f806d56d21908573e3b9d97845b8e6062b1d69eadf1525ea5eeeb58e5f",
+          "size": 1992
+        },
+        "summary.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/summary.json",
+          "sha256": "f51a6387d6193e565485c4159e4ac36e0cb0fc6e345e28388a87b087ea0478ef",
+          "size": 639
+        },
+        "validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validation.json",
+          "sha256": "a80189dc90ad3e4ac1dfb3bdd251267a647e59a6d9bb79b1bd34483eb42a5622",
+          "size": 1114
+        },
+        "cold-validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/cold-validation.json",
+          "sha256": "a56e513da9e86ec0116d2ef402775e7f6776c59f1f8e1a39803baa2a6cb8ed63",
+          "size": 2625
+        },
+        "input-and-source-manifest.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/input-and-source-manifest.json",
+          "sha256": "56fe81dc451468d193bf2a6e6767913bea25e279efd3645082f30f28066354e3",
+          "size": 37821
+        },
+        "warm-reports.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/warm-reports.json",
+          "sha256": "1461832083100ad20ef3f67046a0fecab3c4456a862c12e8453e38673be30e9f",
+          "size": 296477
+        },
+        "cold-reports.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/cold-reports.json",
+          "sha256": "1461832083100ad20ef3f67046a0fecab3c4456a862c12e8453e38673be30e9f",
+          "size": 296477
+        },
+        "validate_live.py": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validate_live.py",
+          "sha256": "d5beac88851b6591fdbbb4a811f7fb5e77d66fb5dda86a07a9b80106c12c1577",
+          "size": 9229
+        },
+        "validation/focused-final.log": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validation/focused-final.log",
+          "sha256": "fde5db6ee4714f3c1de7f25d2428cffec713ec0472426acb34a5f765969aafa0",
+          "size": 180
+        },
+        "validation/before-test.log": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validation/before-test.log",
+          "sha256": "20b9881b0eb33b1e04dca30cce97eb7dfa09b774c2b757a42c7e50a4973de963",
+          "size": 8953
+        },
+        "validation/projection-before.log": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validation/projection-before.log",
+          "sha256": "711dfd45dbfbd84950bf9c78889bdba5631d5fcf281a7720a3133f27394a9bb3",
+          "size": 5328
+        },
+        "validation/model-before.log": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validation/model-before.log",
+          "sha256": "aab2792ded6c09ab1833244fd25228c0336976f7edb0ac1201457a5d3bf25406",
+          "size": 3358
+        },
+        "validation/full-suite.log": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validation/full-suite.log",
+          "sha256": "5b957a5ebb271c084d4faef79c2fe6b4d4239dab5ddae13440fac0dd34b043a5",
+          "size": 6602
+        },
+        "validation/full-suite-state.json": {
+          "anchor": "live_tests_directory",
+          "path": "107_Cedar_site-contract-866er_pp/validation/full-suite-state.json",
+          "sha256": "cfc8d26914124e4303fb0084dc0994c878a858a626eb8bbdc65c4e769870fba0",
+          "size": 349
+        }
+      },
+      "full_elapsed_seconds": 947.7743877909961,
+      "compilation": "PASS",
+      "whitespace": "PASS",
+      "figure": "Editable SVG regenerated, rendered and visually checked; PASS",
+      "document_links": {
+        "relative_links_checked": 224,
+        "missing": [],
+        "json_parse": "PASS"
+      }
+    },
+    "compatibility": "No migration/dependency/threshold change; existing DNA preparation, numbered runs and checkpoints remain unchanged.",
+    "included_artifacts": "Source, synthetic regression tests, maintained docs, editable figure and compact receipts only.",
+    "excluded_artifacts": "Workbooks, CCD snapshots, synthetic model/context/candidate files, generated validation runner and raw logs remain local.",
+    "remaining_limits": [
+      "One PDB site; no MODEL/altloc/insertion/symmetry support",
+      "Partner chemistry and complete linkage not assessed",
+      "Native numerical types, final stereochemistry and adoption not assessed",
+      "PNA protonation and free-OH reconstruction unresolved",
+      "No native execution; synthetic operation checks are not experimental linkage qualification",
+      "PDU C104 energy/gradient and derivative gate remains open"
+    ],
+    "publication": "Validation complete; tested-file hashes recorded. Commit/push pending."
   }
 }

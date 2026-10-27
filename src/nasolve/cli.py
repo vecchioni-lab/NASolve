@@ -235,6 +235,14 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    cif_site = cif_sub.add_parser("site-plan", help="read-only explicit single-site source projection contract")
+    cif_site.add_argument("dictionary", type=Path, help="explicit source component dictionary")
+    cif_site.add_argument("--code", required=True, help="exact source and model component code")
+    cif_site.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_site.add_argument("--model", required=True, type=Path, help="explicit single-model PDB without alternate conformers")
+    cif_site.add_argument("--context", required=True, type=Path, help="explicit schema-1 site/port context JSON")
+    cif_site.add_argument("--candidate", type=Path, help="optional projected source CIF for exact retained-table comparison")
+    cif_site.add_argument("--json", action="store_true", help="print the complete source/site contract")
     cif_profile = cif_sub.add_parser("profile", help="read-only source topology and attachment-port evidence")
     cif_profile.add_argument("dictionary", type=Path, help="explicit source component dictionary")
     cif_profile.add_argument("--code", required=True, help="exact component and NARestraints code")
@@ -1508,8 +1516,30 @@ def _cif_profile(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_site_plan(args: argparse.Namespace) -> int:
+    from .cif_attachment_sites import inspect_attachment_site
+
+    try:
+        report = inspect_attachment_site(args.dictionary, args.code, workbook=args.workbook,
+                                         model=args.model, context=args.context, candidate=args.candidate)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Site {report['site']}: {report['plan_status']}; source projection: {report['projection_check']['status']}")
+            if report['review_reasons']:
+                print("Review: " + ", ".join(report['review_reasons']))
+            print("Read-only proposal; partner chemistry, native linkage and adoption remain unqualified.")
+            print("Use --json for exact source/model/context hashes and permitted source-table deletions.")
+        return 2
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "site-plan":
+        return _cif_site_plan(args)
     if args.cif_action == "profile":
         return _cif_profile(args)
     if args.cif_action == "catalogue":

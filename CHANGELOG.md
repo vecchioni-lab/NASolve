@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind explicit sites to exact source projections (C107)
+
+- Add read-only `cif-doctor site-plan` with explicit source, workbook, PDB model
+  and context inputs, plus optional projected-source comparison. Bind one site
+  and report other occurrences without implying coverage of them.
+- Require graph-checked leaving-oxygen selection and exact model inventories;
+  retain terminal phosphate, other phosphate H/D, charge and stereo declarations.
+  Reject hidden candidate blocks and ambiguous PDB identities/record boundaries.
+- Keep PNA linkage/protonation, free-OH reconstruction, native typing/linkage and
+  adoption unqualified. Exact retained-table matches remain review evidence.
+  Additive schema-1 diagnostics introduce no runtime migration or dependency
+  change. Existing preparation and scientific thresholds are unchanged.
+
 ### Inspect graph-bound attachment ports without changing chemistry (C106)
 
 - Add read-only `cif-doctor profile SOURCE --code CODE --workbook FILE` with

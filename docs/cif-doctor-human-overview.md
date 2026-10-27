@@ -40,11 +40,18 @@ atoms give the same structural bindings, and exact cold replay preserves evidenc
 This distinguishes topology from a chemical operation: an ammonium group and a
 neutral amine can share a core without sharing a protonation state. Likewise,
 ATL's phosphate oxygen named OXT cannot be deleted merely by analogy with OP3.
-The next G2 slice must bind proposed operations to actual model/site context and
-verify their permitted changes. Further milestones cover bounded recovery,
+C107 now binds an explicit PDB site to a proposed source projection and checks
+an optional candidate for exactly those table changes. A retained terminal
+phosphate stays intact; an internal leaving O must be explicitly selected,
+graph-checked and absent from the model. The other phosphate O–H remains.
+PDU/ATL and DA/LCC transfer checks pass; APN/40A link states remain unresolved
+without a protonation policy. These are synthetic context checks, not native
+linkage proof. Both-endpoint chemistry, native numerical typing and terminal
+reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
 checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
-the [attachment contract](cif-doctor.md#source-attachment-topology-and-ports-c106)
+the [attachment contract](cif-doctor.md#source-attachment-topology-and-ports-c106),
+[site-projection contract](cif-doctor.md#explicit-single-site-source-projections-c107)
 and [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
 
 ## Current result and interpretation
@@ -675,8 +682,9 @@ Solid arrows indicate the existing model-preparation path; dashed arrows
 indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Separate catalogue/core inspection binds source
-attachment ports without selecting terminal state, leaving groups or native
-linkage. Hash-bound JSON receipts preserve audit findings
+ports; explicit one-site contracts propose bounded source-table deletions and
+check their exact projection while leaving native linkage unqualified.
+Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,
 declared site modifications and historical generation findings; equality does

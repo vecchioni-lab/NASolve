@@ -31,6 +31,9 @@ and [generalizer milestones](development-handoff.md#generalizer-milestones-and-i
 C106 adds [graph-bound topology and source-state ports](cif-doctor.md#source-attachment-topology-and-ports-c106),
 with 26/37 selected cases matching three initial core profiles. Site operations
 and native qualification remain separate.
+C107 adds [one-site source projection contracts](cif-doctor.md#explicit-single-site-source-projections-c107),
+with explicit graph-checked leaving atoms, exact candidate comparisons and
+unresolved PNA linkage-state boundaries. Native linkage remains separate.
 ATL retains its separate validation fixture, and joins PNA/other backbones inside
 the programme. ChemDraw-derived chemical references remain future input scope.
 

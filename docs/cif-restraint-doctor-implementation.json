@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "source_attachment_profiles_2026_10_27",
+    "current_diagnostic_record": "explicit_attachment_sites_2026_10_27",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26863,6 +26863,25 @@
       "automatic_adoption": false,
       "tested_implementation_commit": "402c68cc0c5b79b8fcda8f3972265025cec0543e",
       "validation": "Full suite and 84 focused tests pass; 37 exact cold API/CLI replays preserve all inputs."
+    },
+    "explicit_attachment_sites": {
+      "delivery": "C107",
+      "status": "IMPLEMENTED_FULL_REGRESSION_AND_COLD_REPLAY_PASS",
+      "policy": "cif-explicit-attachment-site-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_sites.inspect_attachment_site",
+      "command": "nasolve cif-doctor site-plan SOURCE --code CODE --workbook FILE --model PDB --context JSON [--candidate CIF] [--json]",
+      "contract": "docs/cif-doctor.md#explicit-single-site-source-projections-c107",
+      "validation_scope": "12 predeclared synthetic contexts over six frozen sources; ten exact source projections and two unresolved PNA link states; exact cold API/CLI replay.",
+      "not_implemented_here": [
+        "Native typing and both-endpoint linkage qualification",
+        "PNA link protonation policy",
+        "Free-OH reconstruction",
+        "Richer model identities",
+        "Automatic preparation/adoption"
+      ],
+      "automatic_adoption": false,
+      "validation": "5902 passed, 276 subtests passed in 947.36s (0:15:47); 119 focused tests and twelve cold API/CLI contexts pass."
     }
   },
   "audience": [

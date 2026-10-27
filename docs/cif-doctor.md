@@ -19,7 +19,9 @@
 
 <a id="current-capability-boundary-c105"></a>
 
-## Current capability boundary (C106)
+<a id="current-capability-boundary-c106"></a>
+
+## Current capability boundary (C107)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -32,7 +34,8 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
-| Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. Site context, permitted deltas, additional cores and native consumers remain open. |
+| Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention or neutral furanose deletions, and compares exact projected tables. | Partner chemistry, PNA link states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
+| Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. C107 covers bounded one-site source projections; additional cores, complete linkage and native consumers remain open. |
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
 | Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
@@ -231,6 +234,99 @@ native linkage/energy qualification, general coverage or PDU's separate numerica
 gate. Existing runtime manifests, checkpoints and chemistry remain unchanged;
 no migration or dependency change is needed.
 
+### Explicit single-site source projections (C107)
+
+```bash
+nasolve cif-doctor site-plan /path/to/source.cif --code PDU \
+  --workbook /path/to/Ligands.xlsx --model /path/to/model.pdb \
+  --context /path/to/context.json --candidate /path/to/projected-source.cif --json
+```
+
+This developer-facing, read-only command binds the C106 evidence to **one
+explicit model site**. It neither writes a candidate nor changes ordinary
+preparation. `--candidate` is optional. Exit **2** means a completed review,
+including a projection mismatch or unresolved operation; exit **1** means an
+input, selector, model-inventory or integrity failure. All reports remain
+`REVIEW`; `automatic_adoption` is false.
+
+The context is schema 1. Every port of the matched profile must have an explicit
+state; unknown fields and duplicate JSON keys are rejected. For example:
+
+```json
+{
+  "schema_version": 1,
+  "site": "A:2",
+  "ports": {
+    "phosphate": {
+      "state": "linked",
+      "leaving_atom": "OP3",
+      "partner": {"site": "A:1", "component": "DA", "atom_id": "O3'"},
+      "symmetry_operation": "x,y,z"
+    },
+    "alcohol": {"state": "source"}
+  }
+}
+```
+
+`source` retains the actual source state, including terminal phosphate oxygens,
+H/D and charge declarations. It does not mean that this is the biologically
+correct protonation state. `linked` requires an exact partner site/component/
+atom and explicitly declared identity symmetry. Partner atoms must have the
+expected element (O for phosphate, P for alcohol, C for amine, N for carboxyl).
+This binds intended adjacency; **partner chemistry remains unassessed**. No
+sequence/distance search, PDB LINK/CONECT record or missing-atom heuristic chooses
+a link. Other sites sharing the code are listed, not silently covered.
+
+For the two matched furanose cores, a phosphate linkage requires an explicitly
+chosen terminal O with P as its sole heavy neighbor and a source single bond.
+The chosen O must be neutral with exactly one explicitly attached neutral H/D;
+the H/D must be singly bonded only to that O. Its O and H/D become the proposed
+deletions. A linked alcohol similarly loses only its explicit neutral H/D.
+A missing H declaration or changed/unknown reactive charge leaves the whole
+plan unresolved. Equivalent phosphate oxygens are never assigned by spelling:
+OP3, ATL OXT, or a renamed source atom must pass the same graph and model checks.
+The other phosphate oxygen and its H/D remain protected.
+
+The selected PDB site must contain **all and only** the projected heavy atoms,
+with matching elements. Coordinate H/D may be absent; any present coordinate
+atom must be retained by the projection. A would-be deleted coordinate atom,
+missing retained heavy atom or unrecognized addition fails explicitly. The
+initial selector supports canonical `chain:integer` PDB addresses (`_` means a
+blank chain). MODEL records, alternate conformers, insertion codes, literal
+underscore chains, repeated noncontiguous/TER-separated sites and coordinates
+after END are rejected. mmCIF, symmetry and richer identity support remain open.
+
+A resolved plan reports `PROPOSED` and `permitted_source_projection`; unresolved
+plans provide no partial permitted delta. PNA linkage stays unresolved for both
+APN (+1, three N–H) and 40A (neutral, two N–H): neither is silently neutralized.
+Phosphate `free_OH` reconstruction also stays unresolved because its new
+hydrogen state needs authority. Source-state retention is available for all
+three matched cores. This is a bounded operation policy, not a per-code list.
+
+The optional candidate check compares **all selected source-table columns and
+retained rows**, ignoring only row order. Permitted changes are deletion of rows
+referencing removed atoms and updates to existing atom-count metadata. Extra
+components, unbound blocks, charge/stereo/bond/H changes, new numeric typing or
+other added fields give `MISMATCH`. `MATCH` proves this source-table projection
+only. Source formula/descriptors and coordinate columns are preserved rather
+than recomputed; this diagnostic projection is not a complete chemical identity
+for the linked product. Declared external bonds are recorded intent, not bonds
+validated by this comparison. Native OC2 typing, numerical-restraint generation, final stereo and
+both-endpoint/native linkage qualification remain separate gates. The existing
+DNA preparation contract and its native checks are unchanged.
+
+Schema-1 reports use policy `cif-explicit-attachment-site-v1`. Every explicit
+input has its own directory anchor, relative filename, SHA-256 and size. The
+nested C106 profile retains source/workbook/loader evidence. Bytes are checked
+again before returning. Twelve predeclared synthetic contexts over frozen
+PDU/ATL/DA/LCC/APN/40A sources pass exact API and CLI replay in a fresh process
+after both source snapshot and inputs move and the original owned paths vanish.
+Six source-state projections match, four furanose deletion projections match,
+and two PNA linkage states stay unresolved. These are exploratory operation
+checks, not blinded experiments or native/scientific support claims. No Phenix
+or Coot executes. The [evidence ledger](cif-linked-native-registration-evidence.json)
+record `explicit_attachment_sites_2026_10_27` owns commands, hashes and results.
+
 <a id="next-attachment-profile-milestone-g2-planned"></a>
 
 ### Remaining attachment-profile milestone (G2)
@@ -242,18 +338,19 @@ roles; a reviewed linkage profile specifies permissible attachment/terminal
 operations; the actual site context states which connections and ends exist.
 A workbook sugar label alone must not answer any of the latter three questions.
 
-C106 binds source cores and ports without choosing operations. The next
-implementation should add explicit attachment bonds, leaving atoms, retained
-charge/stereo intent, and allowed incoming/outgoing or terminal contexts. Profile
-selection must explain which graph constraints matched. Preserve original and
-candidate definitions separately and test the exact permitted delta. Conflicting
+C106 binds source cores; C107 adds explicit single-site furanose source
+projections and exact permitted-table checks. Next, qualify both endpoints and
+native numerical types against independent source-state authority, then extend
+terminal reconstruction and PNA protonation/link operations. Preserve original
+and candidate definitions separately and test every newly permitted delta. Conflicting
 profile matches stay unresolved instead of choosing the first matching name.
 No universal phosphorus field or unconditional OP3 deletion is required of an
 alternative backbone. Literal terminal oxygen names can differ, as ATL shows.
 
-Start operation-level validation with the established DNA contract, then
-demonstrate a distinct LNA/ATL case and a PNA case. Continue using held-out
-components from the census to test transfer. These are validation families, not a per-code allowlist.
+C107 uses predeclared PDU/ATL and DA/LCC source-projection controls plus APN/40A
+state boundaries; these synthetic cases do not establish native operations.
+Continue with independent operation-level controls and held-out components
+from the census to test transfer. These are validation families, not a per-code allowlist.
 Base-role repairs must preserve donor/acceptor intent as well as atom identity;
 reuse existing reviewed aliases/corrections where applicable. Do not resolve a
 carbon-for-nitrogen substitution by treating the two atoms as chemically equal.

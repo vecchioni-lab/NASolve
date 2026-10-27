@@ -55,7 +55,10 @@ track that work separately from the current PDU proof.
 C106 adds `nasolve cif-doctor profile SOURCE --code CODE --workbook FILE`:
 read-only source topology and attachment-port evidence, including distinct PNA
 chemistry. It selects no terminal state, leaving atoms or native linkage.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c106)
+C107 adds [explicit site contracts](docs/cif-doctor.md#explicit-single-site-source-projections-c107):
+it checks a declared site and exact source-table deletions while protecting
+terminal phosphates and keeping PNA protonation/native linkage unqualified.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c107)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.
