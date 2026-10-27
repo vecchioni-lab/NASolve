@@ -235,6 +235,9 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    cif_links = cif_sub.add_parser("link-plan", help="read-only reciprocal source-port contracts for declared sites")
+    cif_links.add_argument("manifest", type=Path, help="schema-1 manifest with explicit hashed relative source/model/context inputs")
+    cif_links.add_argument("--json", action="store_true", help="print complete both-end source-link evidence")
     cif_site = cif_sub.add_parser("site-plan", help="read-only explicit single-site source projection contract")
     cif_site.add_argument("dictionary", type=Path, help="explicit source component dictionary")
     cif_site.add_argument("--code", required=True, help="exact source and model component code")
@@ -1536,8 +1539,29 @@ def _cif_site_plan(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_link_plan(args: argparse.Namespace) -> int:
+    from .cif_attachment_links import inspect_attachment_links
+
+    try:
+        report = inspect_attachment_links(args.manifest)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Source links: {report['binding_status']}; plan: {report['plan_status']}; projections: {report['projection_status']}")
+            print(f"Selected sites: {len(report['covered_sites'])}; reciprocal links: {len(report['links'])}; other model sites: {len(report['unselected_model_sites'])}")
+            if report['review_reasons']:
+                print("Review: " + ", ".join(report['review_reasons']))
+            print("Read-only source contract; native linkage remains unqualified. No preparation or adoption occurs.")
+        return 2
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "link-plan":
+        return _cif_link_plan(args)
     if args.cif_action == "site-plan":
         return _cif_site_plan(args)
     if args.cif_action == "profile":

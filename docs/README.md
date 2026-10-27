@@ -5,7 +5,7 @@ Updated **2026-10-27**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
-The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c106)
+The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c108)
 separates qualified implementation, open chemistry, consumer qualification and
 the next integration step. The actual Mac C95 handoff passed with zero native
 calls; C96 exposes those limits in text and JSON reports. C97 adds the
@@ -34,6 +34,10 @@ and native qualification remain separate.
 C107 adds [one-site source projection contracts](cif-doctor.md#explicit-single-site-source-projections-c107),
 with explicit graph-checked leaving atoms, exact candidate comparisons and
 unresolved PNA linkage-state boundaries. Native linkage remains separate.
+C108 [requires reciprocal source-bound ports](cif-doctor.md#reciprocal-source-link-contracts-c108)
+for every declared link, with explicit whole-set evidence and candidate coverage.
+Five sugar pair projections pass; PNA ports bind without granting protonation or
+native-linkage authority.
 ATL retains its separate validation fixture, and joins PNA/other backbones inside
 the programme. ChemDraw-derived chemical references remain future input scope.
 

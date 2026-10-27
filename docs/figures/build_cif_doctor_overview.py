@@ -107,7 +107,7 @@ def build():
              'C97 separately inventories current source-to-base declaration differences, declared site modifications and historical generation findings; no chemical repair or new native execution is performed. '
              'C98 separately requalifies an exact preserved DF candidate in the current 863-atom linked model, with four fresh native controls and unchanged unrelated proxies. C99 passes fresh sampled derivatives for this repaired manager, including both plane orders and rotated controls, with unchanged energies and coordinates. C100 completes a bounded geometry trial with a 12.54 percent target reduction, but full/rounded derivative review retains the verified start and skips native reread. C101 localizes all 22 remaining local full-precision torsion reviews to one near-collinear PDU restraint while native attribution, seven other selections and the remainder pass. Initial and rounded sampled checks agree at finer steps. The same full-precision PDU torsion retains strict atom-order reversal review. C102 passes only two local and four rounded broader resolution rechecks, while full-precision displacement-resolution and atom-order reviews remain. C103 passes independent Decimal reference controls for all 21 supported cases and confirms strong full-precision PDU input sensitivity. Six PDU/5PC rows match declaration prerequisites without preparing a candidate. C104 passes the exact current-model inventory comparison for six PDU definition omissions and three active torsion removals. All other categories, including 5PC, phosphate state and NAR terms, remain exact. Energy/gradient and derivative qualification are next; the endpoint stays unqualified and runtime activation remains separate. '
              'C105 adds a separate complete selected-workbook/CCD census with exact source and row provenance, mapping gaps and no native-support claim. '
-             'C106 binds source cores and ports; C107 binds explicit single-site source projections and verifies exact permitted table changes. PNA protonation and native linkage remain open. '
+             'C106 binds source cores and ports; C107 binds explicit single-site source projections and verifies exact permitted table changes. C108 requires reciprocal source-bound ports across every declared link. PNA protonation and native linkage remain open. '
              'JSON receipts preserve findings; no coordinate repair or stitching '
              'is performed by this audit layer.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
@@ -140,7 +140,7 @@ def build():
         parts.append(path(f"audit-branch-{identifier}", f"M 590 {y + 50} H 682", audit=True))
 
     parts.append(box("catalogue-census", right, 300, right_width, 100,
-                     "D  Source + site contracts", ["Catalogue / ports / exact projections"], audit=True))
+                     "D  Source + link contracts", ["Catalogue / ports / reciprocal links"], audit=True))
     parts.append(path("catalogue-to-receipts", "M 1150 350 H 1176", audit=True, arrow=False))
 
     parts.append(box("json-receipts", right, 840, right_width, 120,

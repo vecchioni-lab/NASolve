@@ -35115,5 +35115,372 @@
     ],
     "publication": "Tested implementation published and remote verified; this follow-up records continuity only.",
     "tested_implementation_commit": "363f200d4ba9fec3ac2eb90792bc443ef3aff907"
+  },
+  "reciprocal_attachment_links_2026_10_27": {
+    "delivery": "C108",
+    "status": "SOURCE_LINK_CONTRACT_FULL_REGRESSION_AND_COLD_REPLAY_PASS",
+    "policy_id": "cif-reciprocal-source-links-v1",
+    "schema_version": 1,
+    "before": "C107 binds one site and checks partner identity/element, but does not require the partner to be its own source-defined complementary port or declare the reverse bond.",
+    "after": "Fresh site inspections bind both source ports, require closed reciprocal declarations and consistent source authority, and withhold a joint projection for unresolved operations or mismatching candidates.",
+    "starting_commit": "76d994565873222c94e1488db365e6ab422f3048",
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "src/nasolve/cif_attachment_links.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_attachment_links.py"
+    ],
+    "schemas": "Additive manifest/report schema 1; existing site, runtime, checkpoint, chemistry and workbook schemas unchanged.",
+    "source_authority": {
+      "workbook_sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+      "loader": {
+        "module": "restraints.residue_library",
+        "openpyxl_version": "3.1.5",
+        "sha256": "85105ec37fb251fe61eb5bf0eaa6039632ef8bab88d2d4e657f1d88b657a1786",
+        "size": 3027
+      },
+      "narestraints_snapshot_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "workbook_scope": "Explicit pinned local workbook; not asserted to be the released v1.1.3 workbook.",
+      "ccd": "Exact C105 snapshots from Phenix 2.2.1-6174; no network discovery or native execution."
+    },
+    "results": {
+      "cases": 8,
+      "expected_rejections": 2,
+      "pairs": [
+        [
+          "DA",
+          "DT"
+        ],
+        [
+          "DA",
+          "PDU"
+        ],
+        [
+          "DA",
+          "ATL"
+        ],
+        [
+          "ATL",
+          "DA"
+        ],
+        [
+          "DA",
+          "LCC"
+        ],
+        [
+          "APN",
+          "40A"
+        ]
+      ],
+      "planned_deleted_atoms": {
+        "ATL_DA": {
+          "A:1": [
+            "HA"
+          ],
+          "A:2": [
+            "HOP3",
+            "OP3"
+          ]
+        },
+        "DA_ATL": {
+          "A:1": [
+            "HO3'"
+          ],
+          "A:2": [
+            "HXT",
+            "OXT"
+          ]
+        },
+        "DA_DT": {
+          "A:1": [
+            "HO3'"
+          ],
+          "A:2": [
+            "HOP3",
+            "OP3"
+          ]
+        },
+        "DA_LCC": {
+          "A:1": [
+            "HO3'"
+          ],
+          "A:2": [
+            "HOP3",
+            "OP3"
+          ]
+        },
+        "DA_PDU": {
+          "A:1": [
+            "HO3'"
+          ],
+          "A:2": [
+            "HOP3",
+            "OP3"
+          ]
+        }
+      },
+      "predeclared_pair_cases": 6,
+      "proposed_source_networks": 5,
+      "unresolved_pna_operations": 1,
+      "unresolved_state_evidence": {
+        "40A_amine_charge": 0,
+        "40A_amine_hydrogens": 2,
+        "APN_amine_charge": 1,
+        "APN_amine_hydrogens": 3
+      },
+      "validation_design": "Predeclared synthetic pair contexts over frozen CCD sources, plus explicit adversarial variants; exploratory transfer, not blinded or native qualification"
+    },
+    "validation": {
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_attachment_links.py tests/test_cif_attachment_sites.py tests/test_cif_attachment_profiles.py tests/test_cif_catalogue.py tests/test_cif_linked_preparation.py tests/test_cif_outgoing_preparation.py",
+      "focused_result": "176 passed in 5.86s",
+      "new_regressions": 38,
+      "failing_before": "Public link-plan command absent. A separate regression confirms C107 can propose the element-compatible O5prime case while the new reciprocal layer rejects it.",
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider --durations=20",
+      "full_result": "5940 passed, 276 subtests passed in 915.04s (0:15:15)",
+      "python_executable_historical_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "python_version": "3.12.14",
+      "live_command": "PYTHONDONTWRITEBYTECODE=1 python LIVE_TESTS_DIRECTORY/108_Cedar_reciprocal-links-q9_ey4g1/validate_live.py",
+      "live_validation": {
+        "all_bytes_and_mtimes_preserved": true,
+        "cold_process_exact_api_and_cli_replay": true,
+        "coot_execution": "NOT_RUN",
+        "forbidden_historical_and_sdk_reads": true,
+        "frozen_files": 236,
+        "original_temporary_source_and_input_path_absent": true,
+        "parent_input_files": 38,
+        "phenix_execution": "NOT_RUN",
+        "phenix_version_for_captured_ccd": "2.2.1-6174",
+        "status": "PASS",
+        "summary": {
+          "cases": 8,
+          "expected_rejections": 2,
+          "pairs": [
+            [
+              "DA",
+              "DT"
+            ],
+            [
+              "DA",
+              "PDU"
+            ],
+            [
+              "DA",
+              "ATL"
+            ],
+            [
+              "ATL",
+              "DA"
+            ],
+            [
+              "DA",
+              "LCC"
+            ],
+            [
+              "APN",
+              "40A"
+            ]
+          ],
+          "planned_deleted_atoms": {
+            "ATL_DA": {
+              "A:1": [
+                "HA"
+              ],
+              "A:2": [
+                "HOP3",
+                "OP3"
+              ]
+            },
+            "DA_ATL": {
+              "A:1": [
+                "HO3'"
+              ],
+              "A:2": [
+                "HXT",
+                "OXT"
+              ]
+            },
+            "DA_DT": {
+              "A:1": [
+                "HO3'"
+              ],
+              "A:2": [
+                "HOP3",
+                "OP3"
+              ]
+            },
+            "DA_LCC": {
+              "A:1": [
+                "HO3'"
+              ],
+              "A:2": [
+                "HOP3",
+                "OP3"
+              ]
+            },
+            "DA_PDU": {
+              "A:1": [
+                "HO3'"
+              ],
+              "A:2": [
+                "HOP3",
+                "OP3"
+              ]
+            }
+          },
+          "predeclared_pair_cases": 6,
+          "proposed_source_networks": 5,
+          "unresolved_pna_operations": 1,
+          "unresolved_state_evidence": {
+            "40A_amine_charge": 0,
+            "40A_amine_hydrogens": 2,
+            "APN_amine_charge": 1,
+            "APN_amine_hydrogens": 3
+          },
+          "validation_design": "Predeclared synthetic pair contexts over frozen CCD sources, plus explicit adversarial variants; exploratory transfer, not blinded or native qualification"
+        }
+      },
+      "preserved_attempt": {
+        "anchor": "live_tests_directory",
+        "path": "108_Cedar_reciprocal-links-joyc47n0/attempt-state.json",
+        "reason": "Correct rejection occurred on reciprocal-atom mismatch before the harness-expected direct port message. No implementation change and no full suite/native execution in that attempt."
+      },
+      "compilation_command": "PYTHONPYCACHEPREFIX=/private/tmp/c108-compile-cache python -m compileall -q src tests",
+      "code_hashes": {
+        "src/nasolve/cif_attachment_links.py": "b4119d4173c51b8aa72c48b57b0c56417279503c054479fbf8b12963f569ca27",
+        "src/nasolve/cli.py": "52c9440a0056ba2b997c7ddd8f725abeb15ac9685a25b23a4a629ac12b7da841",
+        "tests/test_cif_attachment_links.py": "e58d9c9181318dfcc5c4c9b27417a1ada77569608fdcf76d91fd01638640f156"
+      },
+      "reports": {
+        "cases.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/cases.json",
+          "sha256": "28239a95de168c2eefbd5d3879ceff66a5039ee8d5153f7c5be86c5772646225",
+          "size": 1738
+        },
+        "summary.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/summary.json",
+          "sha256": "fa0fce59a929a65f2911de4df8736ba4b4a3bb5f06cb4081a71c7b77fa907e6c",
+          "size": 1318
+        },
+        "validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/validation.json",
+          "sha256": "2a5992c9d09d6e5ede103966f9eaf3edc0cf68f4cda23542c8de23d9beadd2d9",
+          "size": 1889
+        },
+        "cold-validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/cold-validation.json",
+          "sha256": "b74fda26e4c6e096ec09c5674bcc520547e0dfdbe5f9baa3420799859e70ee98",
+          "size": 2699
+        },
+        "input-and-source-manifest.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/input-and-source-manifest.json",
+          "sha256": "6d5e7d246f863628fd485f16ed710be5e11305638f8620c39da158a23bd806bc",
+          "size": 43097
+        },
+        "warm-reports.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/warm-reports.json",
+          "sha256": "3a0c682a3def765b43e6664f3fef47cfdf343b13a2cd7a349b08658039d6eae9",
+          "size": 396620
+        },
+        "cold-reports.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/cold-reports.json",
+          "sha256": "3a0c682a3def765b43e6664f3fef47cfdf343b13a2cd7a349b08658039d6eae9",
+          "size": 396620
+        },
+        "validate_live.py": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/validate_live.py",
+          "sha256": "9e9b5c2c4fa2e7b083f7bff659a650264def4f2ab23577c0dd12a7b7bb105c72",
+          "size": 10712
+        },
+        "validation/focused-final.log": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/validation/focused-final.log",
+          "sha256": "e2519243a0d3caeb8b98fc903f93c12f4aa51244eafec877609a011023c01fc3",
+          "size": 260
+        },
+        "validation/before-test.log": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/validation/before-test.log",
+          "sha256": "c359c0ead132350e17387107ca327b06be17b8f6a314a3f582e13b872139842c",
+          "size": 8845
+        },
+        "validation/full-suite.log": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/validation/full-suite.log",
+          "sha256": "2fa1681601fbc31fbe565a1ad6e8eeb747e6c05e3674bac4bf6a4c1a72407c1e",
+          "size": 9237
+        },
+        "validation/full-suite-state.json": {
+          "anchor": "live_tests_directory",
+          "path": "108_Cedar_reciprocal-links-q9_ey4g1/validation/full-suite-state.json",
+          "sha256": "7153486967d093f4d68c12c0d8175b7ff185db207c59a359868ef13823ac07cd",
+          "size": 371
+        }
+      },
+      "full_elapsed_seconds": 915.4478487920132,
+      "full_run_count": 1,
+      "slowest_test_timings": [
+        "6.19s call     tests/test_cif_generation.py::test_timeout_kills_optimizer_descendants_and_retains_raw_evidence",
+        "4.93s call     tests/test_cif_mixed_runtime_source.py::test_real_maintained_replay_is_required_before_resources_are_yielded",
+        "4.76s call     tests/test_cif_recovered_resolution.py::test_fixed_worker_preserves_selection_and_replays_after_relocation[timeout]",
+        "4.59s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[new_calls_bool]",
+        "4.53s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[parent_bytes]",
+        "4.52s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[reference]",
+        "4.52s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[declaration]",
+        "4.52s call     tests/test_cif_recovered_precision.py::test_saved_diagnostic_relocates_without_sdk_or_parent_mutation",
+        "4.49s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[schema_bool]",
+        "4.45s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[summary]",
+        "4.45s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[selection]",
+        "4.41s call     tests/test_cif_mixed_endpoint.py::test_actual_endpoint_worker_refines_both_orders_of_local_boundary_evidence",
+        "4.41s call     tests/test_cif_recovered_torsion.py::test_diagnostic_preserves_failed_endpoint_and_replays_without_sdk[timeout]",
+        "4.36s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[header]",
+        "4.27s call     tests/test_cif_recovered_resolution.py::test_reader_rejects_rebound_recipe_and_authority_changes[archive]",
+        "4.26s call     tests/test_cif_recovered_resolution.py::test_native_resolution_worker_revisits_both_orders_but_never_adopts",
+        "4.22s call     tests/test_cif_mixed_endpoint_window.py::test_window_worker_refines_both_native_orders_of_local_boundary_evidence",
+        "4.21s call     tests/test_cif_recovered_resolution.py::test_completed_receipt_rejects_forged_numerics_and_summary[qualification]",
+        "4.15s call     tests/test_cif_recovered_resolution.py::test_completed_receipt_rejects_forged_numerics_and_summary[observation]",
+        "4.12s call     tests/test_cif_mixed_endpoint.py::test_saved_endpoint_actual_new_worker_and_conditional_native_readback[timeout]"
+      ],
+      "source_authority_check": "All twelve successful site inspections match the recorded workbook hash and active NAR loader.",
+      "compilation": "PASS",
+      "whitespace": "PASS",
+      "figure": "Editable SVG regenerated, rendered and visually checked; PASS",
+      "document_check_command": "python /private/tmp/cedar-c105-build/check_docs.py",
+      "figure_render_command": "rsvg-convert -w 1400 -o /private/tmp/cedar-c108-build/overview.png docs/figures/cif-doctor-overview.svg",
+      "document_links": {
+        "relative_links_checked": 229,
+        "missing": [],
+        "json_parse": "PASS"
+      }
+    },
+    "compatibility": "No migration/dependency/threshold change; existing single-site and DNA/outgoing preparation paths remain unchanged.",
+    "included_artifacts": "Source, synthetic regressions, maintained docs, editable figure and compact receipts only.",
+    "excluded_artifacts": "Frozen workbooks/CCD copies, synthetic models/contexts/candidates, generated runner and raw logs remain local.",
+    "remaining_limits": [
+      "Closed declared subset, not all experimental connectivity",
+      "No native atom-type, effective-definition, geometry or proxy qualification",
+      "PNA state operations and terminal reconstruction remain unresolved",
+      "Source descriptors are parent provenance, not a final linked identity",
+      "No automatic preparation/adoption or Pine/main merge",
+      "PDU C104 energy/gradient and derivative gate remains open"
+    ],
+    "publication": "Validation complete; tested-file hashes recorded. Commit/push pending."
   }
 }

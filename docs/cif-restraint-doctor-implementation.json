@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "explicit_attachment_sites_2026_10_27",
+    "current_diagnostic_record": "reciprocal_attachment_links_2026_10_27",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26883,6 +26883,24 @@
       "automatic_adoption": false,
       "validation": "5902 passed, 276 subtests passed in 947.36s (0:15:47); 119 focused tests and twelve cold API/CLI contexts pass.",
       "tested_implementation_commit": "363f200d4ba9fec3ac2eb90792bc443ef3aff907"
+    },
+    "reciprocal_attachment_links": {
+      "delivery": "C108",
+      "status": "IMPLEMENTED_FULL_REGRESSION_AND_COLD_REPLAY_PASS",
+      "policy": "cif-reciprocal-source-links-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_links.inspect_attachment_links",
+      "command": "nasolve cif-doctor link-plan MANIFEST [--json]",
+      "contract": "docs/cif-doctor.md#reciprocal-source-link-contracts-c108",
+      "validation_scope": "Six predeclared source pairs and two rejection variants; five sugar projections match, PNA operations remain unresolved; exact cold API/CLI replay.",
+      "not_implemented_here": [
+        "Native atom types, effective definitions and exact linkage qualification",
+        "PNA protonation/amide and free-OH state operations",
+        "Complete linked chemical descriptors",
+        "Automatic preparation/adoption"
+      ],
+      "automatic_adoption": false,
+      "validation": "5940 passed, 276 subtests passed in 915.04s (0:15:15); 176 focused tests and eight cold API/CLI cases pass."
     }
   },
   "audience": [

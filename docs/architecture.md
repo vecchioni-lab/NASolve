@@ -3333,3 +3333,22 @@ reconstruction remain unresolved. The source/model and existing DNA preparation
 are unchanged. Additive schema 1 uses explicit per-input directory anchors and
 hashes and replays after cold relocation. See the
 [C107 contract](cif-doctor.md#explicit-single-site-source-projections-c107).
+
+
+## Reciprocal source-link composition (C108)
+
+`cif_attachment_links.inspect_attachment_links` consumes an explicitly anchored,
+hash-bound manifest and reruns C107 for each selected site. Every source code
+has one exact authority; every declared partner belongs to the selected set.
+The partner atom must be the complementary source-bound port and must declare
+the same bond back. Edges are deduplicated and oriented by chemical role rather
+than names, sequence order or proximity. No cached site-report file is trusted.
+
+Source binding, site-operation resolution and candidate coverage are distinct.
+Any unresolved operation or mismatching candidate withholds the complete joint
+proposal; unselected model sites remain outside its claim. Strict path, size,
+identity and before/after byte checks preserve exact cold replay. The additive
+schema does not change native preparation, runtime manifests or checkpoints.
+Existing DNA OC2 authority cannot silently transfer to ATL/PNA. The next layer
+must bind these endpoint identities to authenticated native effective definitions
+and inter-site proxies. See the [C108 contract](cif-doctor.md#reciprocal-source-link-contracts-c108).

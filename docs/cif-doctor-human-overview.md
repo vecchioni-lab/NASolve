@@ -46,12 +46,19 @@ phosphate stays intact; an internal leaving O must be explicitly selected,
 graph-checked and absent from the model. The other phosphate O–H remains.
 PDU/ATL and DA/LCC transfer checks pass; APN/40A link states remain unresolved
 without a protonation policy. These are synthetic context checks, not native
-linkage proof. Both-endpoint chemistry, native numerical typing and terminal
+linkage proof. C108 composes these inspections so both sites must declare the
+same bond between their source-defined ports. An O5′ oxygen cannot substitute
+for the required alcohol port merely because both are oxygen. The whole declared
+set remains unresolved if any operation lacks authority or any supplied source
+projection mismatches; unselected sites and partial candidate coverage stay
+explicit. Five sugar pair controls pass; PNA source ports bind while chemical
+state changes remain open. Native numerical typing/linkage and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
 checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
 the [attachment contract](cif-doctor.md#source-attachment-topology-and-ports-c106),
-[site-projection contract](cif-doctor.md#explicit-single-site-source-projections-c107)
+[site-projection contract](cif-doctor.md#explicit-single-site-source-projections-c107),
+[reciprocal-link contract](cif-doctor.md#reciprocal-source-link-contracts-c108)
 and [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
 
 ## Current result and interpretation
@@ -682,8 +689,9 @@ Solid arrows indicate the existing model-preparation path; dashed arrows
 indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Separate catalogue/core inspection binds source
-ports; explicit one-site contracts propose bounded source-table deletions and
-check their exact projection while leaving native linkage unqualified.
+ports; explicit site contracts propose bounded source-table deletions and
+require reciprocal source ports across the declared link set. Exact projections
+and source binding leave native linkage unqualified.
 Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,

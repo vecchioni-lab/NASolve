@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Require reciprocal source-bound attachment ports (C108)
+
+- Add read-only `cif-doctor link-plan MANIFEST` to compose fresh site inspections
+  into a closed declared link set. Both ends must identify complementary source
+  ports and declare the same bond; element-only partner checks are insufficient.
+- Bind relative source/model/workbook/context/candidate inputs by hash and size;
+  reject ambiguous sources, escaping paths, contradictory or incomplete links,
+  and changed evidence. Report unselected sites and partial candidate coverage.
+- Withhold the joint proposal if any operation is unresolved or any supplied
+  candidate mismatches. PNA protonation and native typing/linkage remain open.
+  Additive schema-1 diagnostics leave existing preparation, chemistry thresholds,
+  runtime schemas, checkpoints and dependencies unchanged; no migration.
+
 ### Bind explicit sites to exact source projections (C107)
 
 - Add read-only `cif-doctor site-plan` with explicit source, workbook, PDB model

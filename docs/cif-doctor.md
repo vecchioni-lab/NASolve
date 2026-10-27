@@ -21,7 +21,9 @@
 
 <a id="current-capability-boundary-c106"></a>
 
-## Current capability boundary (C107)
+<a id="current-capability-boundary-c107"></a>
+
+## Current capability boundary (C108)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -34,6 +36,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
+| Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; PNA operations stay unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
 | Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention or neutral furanose deletions, and compares exact projected tables. | Partner chemistry, PNA link states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
 | Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. C107 covers bounded one-site source projections; additional cores, complete linkage and native consumers remain open. |
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
@@ -327,6 +330,92 @@ checks, not blinded experiments or native/scientific support claims. No Phenix
 or Coot executes. The [evidence ledger](cif-linked-native-registration-evidence.json)
 record `explicit_attachment_sites_2026_10_27` owns commands, hashes and results.
 
+### Reciprocal source-link contracts (C108)
+
+```bash
+nasolve cif-doctor link-plan /path/to/links.json --json
+```
+
+C108 composes **fresh C107 inspections** for an explicitly selected set of sites.
+It verifies that each declared partner atom is the complementary graph-bound
+port of its own source, and that the partner declares the same bond in reverse.
+An oxygen element alone cannot establish that the partner is the appropriate
+alcohol oxygen. Neither residue numbering, spatial proximity nor an unselected
+model atom supplies a missing declaration.
+
+The schema-1 manifest contains `schema_version`, `model`, `workbook` and `sites`.
+Each site entry has `component`, `source`, `context` and optional `candidate`.
+The context is the existing C107 JSON document; its site identity is not repeated
+in the manifest. Every file reference uses the same structure:
+
+```json
+{
+  "anchor": "manifest_directory",
+  "path": "inputs/source.cif",
+  "sha256": "<actual 64 lowercase hexadecimal digits>",
+  "size": 12345
+}
+```
+
+The displayed digest/size are placeholders for actual file evidence. Paths must
+be relative to the manifest directory, with no parent traversal, absolute path,
+backslash, colon, empty/dot component or symlink at any level. All referenced
+files must exist and match their recorded bytes/size. Unknown fields, duplicate
+JSON keys, duplicate selected sites and conflicting source hashes for one
+component code are rejected. Byte-identical source copies may share an authority;
+different same-code sources require explicit consolidation before this check.
+The initial limits are 256 selected sites, 4 MiB of manifest and 128 MiB of total
+unique input bytes. At least two sites and one declared reciprocal link are
+required.
+
+One model and one explicit NAR workbook bind the entire inspection. The new
+layer rechecks every site's returned input hashes against the manifest and checks
+all input bytes again before returning. It accepts no cached site-report file as
+proof. Source profiles, terminal states and optional candidate comparisons use
+the existing C106/C107 paths rather than a weaker network-specific substitute.
+
+The declared site set must be **closed under its links**: every named partner
+must also be selected. Every port has one explicit state/partner, so a second
+site cannot claim an already committed port without a contradictory reverse
+declaration. Reciprocal pairs become one reported edge, ordered by chemical
+role. The current complementary pairs are alcohol–phosphate and carboxyl–amine.
+Graph-bound atom IDs, including renamed ports, are retained. Three-site chains
+compose the middle site's two operations without duplicating edges. Unselected
+model sites are listed and remain outside this scope; the check does not prove
+that the declared set describes all experimental connectivity.
+
+The report policy is `cif-reciprocal-source-links-v1`, schema 1. `binding_status`
+means `BOUND` only when every source port binds and every declared link is
+reciprocal. This is source binding, not native or full chemical qualification.
+`plan_status` is `PROPOSED` only when all site operations resolve and no supplied
+candidate mismatches. Otherwise `permitted_source_projections` is null: a valid
+site cannot conceal another site's unresolved operation or mismatching candidate.
+
+Candidate coverage is separately `NOT_REQUESTED`, `PARTIAL_MATCH`, `MATCH`,
+`MISMATCH` or `NOT_ASSESSED`. Partial matches never stand for complete candidate
+coverage. Even complete matches prove source-table projections only. Parent
+formula/descriptors, final linked chemical identity, numerical restraints and
+native atom types keep the C107 boundary. PNA ports can bind while their
+protonation/amide operations remain unresolved. The existing canonical outgoing
+OC2 loader requires captured DNA authority; this command does not copy that type
+to ATL or PNA or alter any preparation path.
+
+All reports remain `REVIEW`, with no transformations or automatic adoption.
+Exit **2** is completed review, including unresolved operations or candidate
+mismatch; exit **1** is invalid input, inconsistent declarations or integrity
+failure. The command writes nothing and executes no native tools. Existing
+explicit-path commands and all runtime/checkpoint schemas remain unchanged.
+
+Six predeclared synthetic pair controls use frozen DA–DT, DA–PDU, DA–ATL,
+ATL–DA, DA–LCC and APN–40A sources. Five sugar source networks/projections pass;
+the PNA ports bind while both operation plans remain unresolved. Wrong-O5prime
+and nonreciprocal variants are rejected. All eight API/CLI outcomes replay
+exactly in a new process after relocating source code and inputs, with the
+original owned paths absent and historical/SDK reads and subprocesses blocked.
+These are exploratory source-contract checks, not blinded or experimental/native
+linkage proof. The [evidence ledger](cif-linked-native-registration-evidence.json)
+record `reciprocal_attachment_links_2026_10_27` owns hashes and validation results.
+
 <a id="next-attachment-profile-milestone-g2-planned"></a>
 
 ### Remaining attachment-profile milestone (G2)
@@ -338,10 +427,12 @@ roles; a reviewed linkage profile specifies permissible attachment/terminal
 operations; the actual site context states which connections and ends exist.
 A workbook sugar label alone must not answer any of the latter three questions.
 
-C106 binds source cores; C107 adds explicit single-site furanose source
-projections and exact permitted-table checks. Next, qualify both endpoints and
-native numerical types against independent source-state authority, then extend
-terminal reconstruction and PNA protonation/link operations. Preserve original
+C106 binds source cores; C107 adds single-site source projections; C108 requires
+reciprocal source-bound ports and complete declared-link scope. Next, consume
+those literal endpoint identities in authenticated native captures and qualify
+native numerical types, effective definitions and exact inter-site proxies.
+Use the existing DNA controls before ATL transfer, keeping unsupported native
+readback explicit. Then extend terminal reconstruction and PNA state operations. Preserve original
 and candidate definitions separately and test every newly permitted delta. Conflicting
 profile matches stay unresolved instead of choosing the first matching name.
 No universal phosphorus field or unconditional OP3 deletion is required of an

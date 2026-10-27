@@ -58,7 +58,11 @@ chemistry. It selects no terminal state, leaving atoms or native linkage.
 C107 adds [explicit site contracts](docs/cif-doctor.md#explicit-single-site-source-projections-c107):
 it checks a declared site and exact source-table deletions while protecting
 terminal phosphates and keeping PNA protonation/native linkage unqualified.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c107)
+C108 adds [reciprocal source-link checks](docs/cif-doctor.md#reciprocal-source-link-contracts-c108):
+both sites must agree on a bond between their source-defined ports. Missing or
+contradictory declarations cannot become a joint proposal; native typing and
+linkage remain unqualified.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c108)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.
