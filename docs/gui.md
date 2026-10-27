@@ -117,6 +117,12 @@ clusters and other evidence for future bounded proposals; these are visible
 hypotheses, not additional diffraction observations or automatic acceptance.
 The implemented `metal inspect`/`metal preview` backend is the initial adapter;
 this campaign GUI and automatic proposal stage are not yet implemented.
+The shared `prepare_geometry` backend accepts a verified hypothesis, selected
+mobile metal nodes and explicit movement/iteration bounds. Its before/after
+rows, stopping notes and local unconstrained dimensions can feed independent
+GUI panels. It creates a separate review artifact; camera actions and dataset
+switching never launch optimization or select that artifact. This recipe-only
+step leaves whole-model chemical and diffraction assessment separate.
 The shared `build_hypothesis` backend now accepts explicit site positions,
 occupancies, B values and separate formal-charge declarations. A future Apply
 action must submit a source/recipe-bound placement plan and display the returned

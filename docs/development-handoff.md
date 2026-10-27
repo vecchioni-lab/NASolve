@@ -22,6 +22,103 @@ changes. Retire the feature branch/worktree after reviewed integration and an
 audit of its local artifacts, not while native results remain unaccounted for.
 This parallel scope adds no Cedar/Pine scientific gate.
 
+### Current M2b bounded recipe preparation (2026-10-27)
+
+`Alder` now adds an optional metal-only preparation step after verified M2a
+construction. This is partial M2b: source-qualified chemistry and whole-model
+native optimization remain separate. The latest read-only Cedar observation is
+`76d9945` (C107 native attachment boundary); no Cedar changes were adopted, and
+the PDU slip case remains deferred. This patch changes crystallographic
+coordinate proposals, adds an artifact schema and extends reproducibility
+checks. It does not change existing checkpoint or run formats.
+
+Before, explicit hypotheses could be constructed and checked but not prepared
+against their targets. `metal geometry` now moves selected restrained metals
+against enabled recipe distance/angle targets, holds all other XYZ and all
+q/ADPs fixed, and writes a new numbered review model. It reports before/after
+measurements, normalized residuals, stopping, movement and local unconstrained
+dimensions. The default cap is 100 iterations and 1 angstrom total displacement
+per metal. A rounded candidate must not worsen the objective or exceed the
+bound; otherwise the review bundle retains the starting coordinates.
+`metal verify-geometry` reproduces the saved calculation without native jobs.
+
+Changed runtime files: new `metal/geometry.py` and `metal/geometry_solver.py`,
+plus additive commands in `metal/cli.py`. Regression controls are in
+`tests/test_metal_geometry.py`. Updated documentation: builder descriptor and
+editable Mermaid figure, nonruntime intent, anomalous workflow, GUI/architecture, root/index,
+changelog and this handoff. New manifest kind `metal-geometry-trial`, schema 1,
+protocol `metal-recipe-geometry-v1`; no migration of earlier recipes, contexts,
+hypotheses, checkpoints or runs is required.
+
+The initial regression failed with the absent geometry module; the final
+focused set passes **242 tests and 33 subtests in 12.62 seconds** on
+Python 3.12.14. Thirty new controls cover known distance/angle recovery,
+nonplanar six-metal clusters, expected rank deficiency, fixed and floating
+sites, explicit movement/iteration limits, PDB readback fallback, retained
+failed publications, altered/rehashed artifacts, q/B/ANISOU/formal-charge
+preservation, CLI output and source-removed relocation. The relocation test
+starts a fresh interpreter importing the moved source tree and forbids
+subprocess execution while replaying the exact manifest.
+
+Exact validation commands from the feature worktree:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_geometry.py tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_checkpoints.py tests/test_run_context.py tests/test_autorefine.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider > /private/tmp/alder-geometry-full-suite-20261027.log 2>&1
+git diff --check
+```
+
+The complete suite passes **5807 tests and 276 subtests in 662.46 seconds
+(11m02s)**, exit zero. All seventeen source/test/intent hashes frozen before
+the run remain unchanged. All eleven metal modules parse with Python
+3.10 grammar, and 122 local documentation targets resolve.
+
+The final local native runner, executed from the everyday checkout, is:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A11_final_metal_geometry_controls.py
+```
+
+All three controls complete on **Phenix 2.2.1-6174**: FT_Hg with one Hg and
+FF_AuAg with Au/Ag and swapped Ag/Au. Starting sites are deliberately displaced
+from the earlier numerical seed coordinates while retaining the seed-derived
+targets. NASolve completes its recipe-only optimization; the prepared objective
+falls from 16.9616 to 0.000005598 for Hg and from 13.2854 to 0.000054888 for both
+mixed assignments. No solved geometry or recommended chemical target is inferred.
+All three complete native interpretations pass the fifteen exact custom-proxy
+membership/target/weight controls and preserve XYZ/q/B/element readback. Three
+`phenix.refine --dry-run` calls return zero; no native refinement cycles run.
+Six additional native kernel checks compare recipe measurements/objectives and
+sampled mobile-coordinate derivatives at the initial and prepared coordinates.
+They pass declared objective tolerance 1e-8 absolute/1e-9 relative and derivative
+tolerance 1e-5 absolute/1e-6 relative; the largest derivative difference is
+4.65e-9. Kernel binary hashes are saved. This is evidence for the recipe terms,
+not inherited full-model derivatives. Coot was not rerun; M1 parent generation
+used Coot 1.3.3. All parent scientific files and the frozen implementation hashes
+remain unchanged, and exact replay passes after native execution.
+
+Evidence stays local under ignored `branch-artifacts/Alder/live-20261027-05/`:
+`native-summary.json`, six `*-kernel.json` receipts, `native/`,
+`refine-dry-runs/`, copied runs with their hypothesis/geometry bundles and
+`tested-source-hashes.json`. The earlier complete A10 checks remain under
+`live-20261027-04/`; no historical result was overwritten. Native argv and
+individual output paths are retained in the local receipts. Source/docs/tests
+are the only publication scope; no models, MTZs, native logs, runners, user
+workspace state or supplied manuscript material are committed.
+
+Remaining limits: this objective includes only explicit recipe distances and
+angles. Inherited covalent/nonbonded/pairing/stacking restraints remain verified
+inputs but are not optimized; steric clashes, source chemistry and diffraction
+fit are not assessed. Local rank does not prove uniqueness or global convergence.
+The current adapter supports at most twelve mobile metals and 256 active terms,
+with the M2a single-model PDB/identity-symmetry boundary. Exact source-removed
+replay is tested on this platform; cross-platform bitwise numerics are not claimed.
+There is no automatic checkpoint selection, GUI wiring, occupancy fit or f-double-prime
+fit. Next: connect separately qualified whole-model coordinate preparation and
+then M3's audited frozen XYZ/ADP/q, fixed-f-prime anomalous diagnostic. The
+prepared result and residual table are already available through a shared API
+for future independent GUI panels.
+
 ### Current M2a explicit hypothesis construction (2026-10-27)
 
 Branch `Alder` continues the isolated metal workflow; integration target remains

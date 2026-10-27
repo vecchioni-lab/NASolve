@@ -539,7 +539,7 @@ for the implemented API, schema and remaining integration boundary.
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
 | Future GUI | [GUI contract](gui.md), [GUI live checks](gui-live-checks.md) |
-| Metal-coordination authoring core | [Metal restraint builder](metal-restraint-builder.md), [development intent](metal-restraint-builder-intent.json) — one to three metals and extensible cluster graphs; **recipe/binding/preview, generated-W integration and explicit metal-model construction/replay implemented; GUI/optimization planned** |
+| Metal-coordination authoring core | [Metal restraint builder](metal-restraint-builder.md), [development intent](metal-restraint-builder-intent.json) — one to three metals and extensible cluster graphs; **recipe/binding/preview, generated-W integration and explicit metal-model construction/replay and bounded recipe-only preparation implemented; GUI/whole-model optimization planned** |
 | Proposed anomalous metal diagnostics | [Metal anomalous workflow](metal-anomalous-doctor.md) — frozen occupancy profiles and linked comparisons planned; **explicit model construction implemented, anomalous fits planned** |
 
 Implementation-intent JSON is **not** runtime registration authority. The

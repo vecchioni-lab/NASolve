@@ -20,9 +20,11 @@ def configure(subparsers):
     preview = actions.add_parser('preview', help='bind a recipe to an explicit generated W checkpoint')
     build = actions.add_parser('build', help='add explicitly placed metal sites in a new review bundle')
     verify = actions.add_parser('verify', help='replay a saved hypothesis without native execution')
-    for parser in (inspect, preview, build, verify):
+    geometry = actions.add_parser('geometry', help='prepare bounded metal-only coordinates against explicit recipe targets')
+    verify_geometry = actions.add_parser('verify-geometry', help='replay a saved geometry trial without native execution')
+    for parser in (inspect, preview, build, verify, geometry, verify_geometry):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
-        if parser is not verify:
+        if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
             parser.add_argument('--dataset-id', help='explicit campaign dataset identifier for linked views')
         parser.add_argument('--json', action='store_true')
@@ -35,6 +37,11 @@ def configure(subparsers):
     build.add_argument('--recipe', type=Path, required=True)
     build.add_argument('--placement', type=Path, required=True, help='explicit source-bound metal-placement-plan JSON')
     verify.add_argument('--hypothesis', type=Path, required=True, help='exact directory, absolute or relative to run')
+    geometry.add_argument('--hypothesis', type=Path, required=True, help='exact source hypothesis, absolute or relative to run')
+    geometry.add_argument('--mobile', action='append', help='restrained metal node to move; repeat to lock all other sites')
+    geometry.add_argument('--max-iterations', type=int, default=100)
+    geometry.add_argument('--max-shift', type=float, default=1., help='maximum displacement per metal in angstrom (default: 1)')
+    verify_geometry.add_argument('--geometry', type=Path, required=True, help='exact geometry directory, absolute or relative to run')
 
 
 def _json(path):
@@ -55,6 +62,8 @@ def execute(args):
             raise RecipeError('Outputs must be distinct new files')
         if args.metal_action in {'build', 'verify'}:
             return _hypothesis(args)
+        if args.metal_action in {'geometry', 'verify-geometry'}:
+            return _geometry(args)
         context = load_run_context(args.run, checkpoint=args.checkpoint, dataset_id=args.dataset_id)
         export = None
         if args.metal_action == 'inspect':
@@ -136,4 +145,34 @@ def _hypothesis(args):
         if result['unrestrained_metal_nodes']:
             print('Unrestrained metal nodes: ' + ', '.join(result['unrestrained_metal_nodes']))
         print('Review model only; no optimization, anomalous fit or checkpoint selection.')
+    return 0
+
+
+def _geometry(args):
+    from .geometry import prepare_geometry, verify_geometry
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'geometry':
+        result = prepare_geometry(args.run, args.hypothesis, mobile_nodes=args.mobile,
+                                  max_iterations=args.max_iterations, max_shift_A=args.max_shift)
+    else:
+        result = verify_geometry(args.run, args.geometry)
+    serialized = json.dumps(result, indent=2, allow_nan=False) + '\n'
+    if args.output:
+        with args.output.open('x') as handle:
+            handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    else:
+        directory = Path(result['files']['model']['relative_path']).parent
+        evidence = _json(args.run.expanduser().resolve()/result['files']['result']['relative_path'])
+        print(f'Metal geometry review: {directory}; {evidence["selection"]}')
+        print(f'Recipe objective: {evidence["initial"]["objective"]:.6g} -> {evidence["selected"]["objective"]:.6g}')
+        print(f'Stopping: {evidence["optimization"]["stopping"]}; local unconstrained dimensions: {evidence["selected"]["local_unconstrained_dimensions"]}')
+        if evidence['retained_parent_reason']:
+            print('Parent retained: ' + evidence['retained_parent_reason'])
+        print('Restraint                 Start        Prepared       Target     Residual (sigma)')
+        for initial, final in zip(evidence['initial']['restraints'], evidence['selected']['restraints']):
+            print(f'{final["restraint_id"]:<24} {initial["measured"]:>10.4f} {final["measured"]:>13.4f} {final["target"]:>12.4f} {final["z"]:>12.4f} {final["unit"]}')
+        print('Recipe-only metal preparation; chemical/clash assessment and diffraction refinement remain separate.')
     return 0

@@ -1,6 +1,6 @@
 # Metal-coordination restraint builder
 
-Status: **recipe core, generated-run integration, explicit metal model construction and PHIL proposal export implemented; GUI and scientific optimization planned**.
+Status: **recipe core, generated-run integration, explicit metal construction, bounded recipe-only metal preparation and PHIL export implemented; GUI and whole-model scientific optimization planned**.
 User request recorded 2026-10-06. This independent authoring feature is not a Pine
 merge prerequisite.
 Published examples and private cluster context have been supplied. The scope
@@ -22,7 +22,7 @@ hypothesis on the generated scaffold.
 | M0: authoring core | Stable graph/revision IDs, exact role binding, numerical preview | Implemented and tested |
 | M1: generated-model integration | Read a generated W checkpoint; preserve identities, q/B, dictionaries and original observations; export exact proposed restraints | Implemented; current native checks and test counts in the handoff |
 | M2a: hypothesis materialization | Explicit coordinates/count/species/q/B, preserved parent atoms, immutable derived models and native consumption controls | Implemented; one Hg and mixed Au/Ag controls, including swapped identities |
-| M2b: geometry preparation | Qualified targets/chemistry, declared optimization protocol, audited derived endpoints | Planned; no optimization or solved geometry is implied by materialization |
+| M2b: geometry preparation | Qualified targets/chemistry, declared optimization protocol, audited derived endpoints | Partial: bounded metal-only recipe preparation implemented; chemical qualification and whole-model native optimization remain separate |
 | M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Planned |
 | M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables and selection | Planned |
 | M5: campaign workbench | Switch datasets/structures/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
@@ -113,7 +113,10 @@ flowchart LR
     M --> H[Numbered metal hypothesis and exact replay]
     R --> H
     H --> E
-    E -. planned .-> G[Qualified geometry preparation]
+    H --> B[Bounded metal-only recipe preparation]
+    B --> Q[Residual table and separate review model]
+    Q -. planned .-> G[Qualified whole-model geometry]
+    E -. planned .-> G
     G -. planned .-> F[Fixed f-prime and audited f-double-prime trials]
     F -. planned .-> T[Campaign tables and molecular views]
 ```
@@ -194,8 +197,80 @@ edits. Native controls test one Hg and two mixed Au/Ag assignments, including
 reversed species at the same positions, under Phenix 2.2.1-6174. They establish
 input consumption and exact selections/weights, not chemical targets or fitted
 geometry. The [current handoff](development-handoff.md) records commands,
-receipts and validation counts. Geometry optimization, native qualification of
+receipts and validation counts. Whole-model geometry optimization, native qualification of
 general recipes, checkpoint adoption and f-double-prime fits remain separate.
+
+### Bounded metal-only recipe preparation
+
+`metal.geometry.prepare_geometry(run, hypothesis, mobile_nodes=None,
+max_iterations=100, max_shift_A=1.0)` verifies a specific saved hypothesis and
+creates a new `Metal/geometry_NNN/` review bundle. `verify_geometry(run,
+directory)` replays the saved calculation with trusted current code and no
+native process. The CLI uses the same backend:
+
+```sh
+nasolve metal geometry /path/to/dataset/AutoMR/run_001 --hypothesis Metal/hypothesis_001 --max-shift 1
+nasolve metal verify-geometry /path/to/dataset/AutoMR/run_001 --geometry Metal/geometry_001
+```
+
+All restrained metal sites move by default. Repeat `--mobile NODE_ID` to move
+only named sites and keep the others fixed. Floating sites remain fixed; a
+hypothesis with no restrained metals cannot run this action. The current bound
+is 12 mobile sites, 256 active restraints, 1–300 iterations and a total per-site
+displacement of 0.001–5 angstrom. This supports six-site nonplanar clusters
+without implying that a restraint graph determines their position or identity.
+
+The objective is the sum of squared `(measured - target) / sigma` residuals for
+enabled recipe distances and angles. Units remain angstrom and degrees.
+Inherited covalent, nonbonded, pairing/stacking and other PHIL restraints remain
+bound inputs but **do not enter this objective**. There is no steric-clash,
+chemical-state, experimental-map or diffraction assessment. Targets and sigmas
+retain their explicit source declarations; the program supplies no new chemical
+defaults. Metal identities, all occupancies and ADPs, and every other atom's XYZ
+remain fixed. A smaller objective measures agreement with the chosen recipe,
+not a solved or physically validated coordination geometry.
+
+The text report and `result.json` provide initial and prepared measurements,
+targets, normalized residuals, per-site movement, stopping reason, full-precision
+and rounded objectives, and a local Jacobian rank diagnostic. Missing local
+rank is reported as unconstrained dimensions. Full rank does not establish
+uniqueness, global convergence, or chemical validity. In particular, a cluster
+held only by internal distances retains rigid-body freedom. A small local
+gradient or an iteration limit is a numerical stopping note, never scientific
+acceptance. The saved model retains the parent coordinates if PDB rounding
+worsens the objective, exceeds the movement bound, introduces a coincident
+site, leaves undefined geometry, or changes no serialized coordinates.
+
+**Methods.** A deterministic damped least-squares search estimates the residual
+Jacobian with centered Cartesian differences of 1e-5 angstrom and solves a
+small damped normal system by partial-pivot elimination. Each step is capped
+at 0.25 angstrom per site and projected into the declared displacement sphere
+around its starting position. Only objective-decreasing steps are accepted.
+The serializer replaces only the selected metal XYZ fields, reads the PDB back,
+and checks the objective and movement again. All other records and atomic state
+remain unchanged. An exact replay checks model, preview, proposed PHIL, numeric
+trace and typed metadata against the verified parent hypothesis. Failed writes
+retain their number and diagnostic files. Checkpoint and workspace selections
+are unchanged.
+
+Artifacts are `parameters.json`, `result.json`, `model.pdb`, `preview.json`,
+`restraints.phil` and `manifest.json`. The manifest kind is
+`metal-geometry-trial`, schema 1, protocol `metal-recipe-geometry-v1`, status
+`GEOMETRY_REVIEW` and `native_ready: false`. Parent hypothesis and inherited
+scientific inputs use declared anchors and checksums. Existing hypothesis,
+recipe, context, checkpoint and run schemas need no migration. Replay uses the
+maintained protocol implementation; captured executable code is never run.
+Relocation is tested with the original source/run root removed; cross-platform
+bitwise numerical equivalence is not claimed.
+
+Synthetic known-geometry and six-site controls exercise recovery, locks,
+nonplanarity and underdetermination. Local FT_Hg and both mixed Au/Ag assignment
+controls deliberately displace numerical seed positions while retaining the
+seed-derived targets. Native interpretation and parser dry-runs test the
+prepared files separately. These targets are numerical controls, not a chemical
+recommendation. Exact test counts, software versions and local evidence are in
+the [current handoff](development-handoff.md#parallel-metal-workflow).
+Cedar's qualified whole-model geometry and derivative gates remain unchanged.
 
 ## Implemented authoring core
 
@@ -205,8 +280,9 @@ It is the shared model beneath a future editor, detached window and scripting
 adapter. The current interactive sketch is still separate and is not connected
 to this API. The generated-run adapter now imports a single-model PDB, resolves the fixed W
 pair, reads observation-associated wavelengths and exports proposed PHIL edits.
-A separate materializer now adds explicit metal sites in review bundles. A
-production renderer and scientific optimization remain separate milestones.
+A separate materializer adds explicit metal sites in review bundles. Bounded
+recipe-only preparation can then move selected metals against those targets.
+A production renderer and qualified whole-model optimization remain separate milestones.
 
 The core has three small modules:
 

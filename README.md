@@ -1367,7 +1367,17 @@ nasolve metal verify /path/to/dataset/AutoMR/run_001 --hypothesis Metal/hypothes
 Each build preserves the parent model and saves a numbered review hypothesis
 with exact inputs, metal positions, occupancy/B values and proposed restraints.
 Verification replays the saved derivation. Neither command optimizes geometry,
-fits anomalous scattering or selects a checkpoint. See the [metal integration guide](docs/metal-restraint-builder.md#generated-run-api-and-commands)
+fits anomalous scattering or selects a checkpoint. A separate bounded step can
+prepare selected metal coordinates against the explicit recipe:
+
+```sh
+nasolve metal geometry /path/to/dataset/AutoMR/run_001 --hypothesis Metal/hypothesis_001 --max-shift 1
+nasolve metal verify-geometry /path/to/dataset/AutoMR/run_001 --geometry Metal/geometry_001
+```
+
+This holds all other atoms, q and ADPs fixed, saves a separate review model and
+reports residuals and unconstrained motion. It does not assess chemistry, steric
+clashes or diffraction fit. See the [metal integration guide](docs/metal-restraint-builder.md#generated-run-api-and-commands)
 for exact inputs, limitations and campaign objectives.
 
 ## AutoRefine and checkpoints

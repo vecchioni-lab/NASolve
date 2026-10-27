@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepare bounded metal geometry from explicit recipe targets
+
+- Add `metal geometry` and `metal verify-geometry` over a shared deterministic
+  backend. Move selected restrained metal sites while preserving all other XYZ,
+  occupancies, ADPs, identities, inherited inputs and checkpoint selections.
+- Bound iterations and displacement; report before/after residuals, stopping,
+  and local unconstrained dimensions. Retain parent coordinates when serialized
+  candidates violate the bounds, worsen the objective or have undefined geometry.
+- Store new numbered schema-1 `metal-geometry-trial` review bundles with anchored
+  parent lineage and exact calculation replay after relocation. Existing artifact
+  schemas and commands need no migration.
+- Scope this objective to enabled recipe distances and angles. Whole-model
+  chemistry, clashes, native optimization and anomalous fitting remain separate.
+
 ### Construct explicit metal hypotheses without changing the parent model
 
 - Add `metal build` and `metal verify` over a shared source-bound materializer.

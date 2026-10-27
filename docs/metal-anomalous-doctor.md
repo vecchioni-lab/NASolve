@@ -1,7 +1,7 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **anomalous fits planned; explicit hypothesis construction implemented**.
-Design expanded 2026-10-26; materialization added 2026-10-27. This contract
+Status: **anomalous fits planned; explicit hypothesis construction and bounded recipe-only preparation implemented**.
+Design expanded 2026-10-26; construction and local preparation added 2026-10-27. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
@@ -39,8 +39,15 @@ now creates source-bound numbered review models with explicit metal identities,
 positions, q, B and separate formal-charge declarations. It preserves all parent
 atoms and observations and supports unrestrained floating sites. Exact saved
 derivation replay is available through `metal verify`. Its native controls prove
-consumption, not geometry optimization or chemistry qualification. The f-double-prime diagnostic
-workflow below still requires a separate audited geometry/experiment adapter.
+consumption, not chemistry qualification. A separate
+[bounded recipe-only preparation step](metal-restraint-builder.md#bounded-metal-only-recipe-preparation)
+now moves selected metals against explicit targets, preserves the scaffold and
+all q/ADPs, and reports residuals and unconstrained motion. It does not optimize
+the inherited whole-model objective or qualify chemistry/clashes. The
+f-double-prime workflow below still requires a separate audited
+geometry/experiment adapter. Identical targets and coordinates produce identical
+prepared geometry under an Au/Ag identity swap; element discrimination remains
+a task for experimental evidence.
 
 In this metal workflow f-prime is fixed at the declared element/wavelength
 reference throughout diagnostic fits. It is not offered as a freely fitted

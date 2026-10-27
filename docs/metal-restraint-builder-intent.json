@@ -283,7 +283,26 @@
       "unrestrained_sites_reported": true,
       "automatic_checkpoint_selection": false,
       "native_ready": false,
-      "geometry_optimization": "planned"
+      "geometry_optimization": "separate bounded recipe-only preparation implemented; whole-model qualification planned"
+    },
+    "geometry_preparation": {
+      "status": "recipe-only implemented; whole-model planned",
+      "schema_version": 1,
+      "protocol": "metal-recipe-geometry-v1",
+      "mobile": "explicit restrained metal nodes",
+      "fixed": [
+        "all other XYZ",
+        "all occupancy",
+        "all ADPs",
+        "identities",
+        "elements"
+      ],
+      "objective": "enabled recipe distances and angles only",
+      "inherited_objective_included": false,
+      "chemical_qualification": false,
+      "automatic_checkpoint_selection": false,
+      "native_ready": false,
+      "report_local_underdetermination": true
     }
   }
 }

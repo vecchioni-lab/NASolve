@@ -1332,7 +1332,16 @@ and atomic state, binds the preview to serialized coordinates, and retains
 anchored observations/resources. `metal verify` replays the exact derivation
 using captured roles and a frozen parent report. Placement and hypothesis
 schemas are version 1; neither creates/selects a checkpoint or runs refinement.
-The hypothesis manifest is the future geometry adapter's input boundary.
+The hypothesis manifest is the input boundary for bounded `metal geometry`.
+This separate adapter moves only explicitly selected restrained metals against
+enabled recipe distances/angles, with all other atomic state fixed. Inherited
+restraints remain bound but do not enter this local objective. A finite-difference
+damped least-squares solver records residuals, stopping and local rank; PDB
+readback must preserve fixed state, satisfy the movement bound and not worsen
+the objective. Schema-1 `metal-geometry-trial` bundles use protocol
+`metal-recipe-geometry-v1`; `metal verify-geometry` replays them after relocation.
+These numerical review proposals neither qualify chemistry nor substitute for
+Cedar's whole-model derivative/geometry checks or diffraction refinement.
 See the [implementation and milestone contract](metal-restraint-builder.md#integration-objectives-and-milestones).
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
