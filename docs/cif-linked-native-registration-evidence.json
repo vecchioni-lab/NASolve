@@ -35113,6 +35113,7 @@
       "No native execution; synthetic operation checks are not experimental linkage qualification",
       "PDU C104 energy/gradient and derivative gate remains open"
     ],
-    "publication": "Validation complete; tested-file hashes recorded. Commit/push pending."
+    "publication": "Tested implementation published and remote verified; this follow-up records continuity only.",
+    "tested_implementation_commit": "363f200d4ba9fec3ac2eb90792bc443ef3aff907"
   }
 }

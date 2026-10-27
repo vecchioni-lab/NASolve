@@ -13,7 +13,7 @@ not general production support. Earlier wording remains in Git and the
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-27; C107 validated, publication pending.** Every ligand in the selected
+**Scope revised 2026-10-27; C107 published and validated.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -38,13 +38,13 @@ only when available evidence and safe usable fallbacks cannot settle it.
 ChemDraw-derived source references/restraint bundles remain future input scope;
 building a model from a drawing stays outside CIF Doctor.
 
-### C107 validated interruption boundary
+### C107 published interruption boundary
 
-**Validation is complete; commit/push is pending.** Last published head:
-`b92e3f1d1f0967c6520235f955243e80cef47e22` (C106 continuity).
+**Safe resume point:** C107 tested implementation commit
+`363f200d4ba9fec3ac2eb90792bc443ef3aff907` is published and verified on GitHub `cedar`.
+This continuity follow-up changes documentation only. No job is active.
 Continue on existing `cedar`; preserve other branches, shared-restraint work
-and every scientific run. No job is active. Next: commit/push these reviewed
-files and record the verified implementation commit.
+and every scientific run. The next implementation boundary is recorded below.
 
 Before C107, C106 bound source topology/ports without model-site operations.
 C107 adds `src/nasolve/cif_attachment_sites.py`, public `cif-doctor site-plan`
