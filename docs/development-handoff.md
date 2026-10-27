@@ -13,7 +13,7 @@ not general production support. Earlier wording remains in Git and the
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-27; C106 validated, publication pending.** Every ligand in the selected
+**Scope revised 2026-10-27; C106 published and validated.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -38,13 +38,13 @@ only when available evidence and safe usable fallbacks cannot settle it.
 ChemDraw-derived source references/restraint bundles remain future input scope;
 building a model from a drawing stays outside CIF Doctor.
 
-### C106 validated interruption boundary
+### C106 published interruption boundary
 
-**Validation is complete; commit/push is pending.** The last published head is
-`15105f40dd6c6f018f86e00c43985f6c171a5b77` (C105). Continue on existing `cedar`;
-preserve the separate metal GUI/shared-restraint work and every scientific run.
-No job remains active. Publication must verify the remote head and update this
-boundary with the tested implementation commit.
+**Safe resume point:** C106 tested implementation commit
+`402c68cc0c5b79b8fcda8f3972265025cec0543e` is published and verified on GitHub `cedar`.
+The following continuity update changes documentation only. Continue on existing
+`cedar`; preserve the separate metal GUI/shared-restraint work and every scientific
+run. No job remains active.
 
 Before C106, the catalogue recorded graphs and mapped names without general
 attachment-core bindings. C106 adds `src/nasolve/cif_attachment_profiles.py`,

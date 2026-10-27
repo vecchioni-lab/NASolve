@@ -26860,7 +26860,9 @@
         "Native qualification",
         "Automatic repair or adoption"
       ],
-      "automatic_adoption": false
+      "automatic_adoption": false,
+      "tested_implementation_commit": "402c68cc0c5b79b8fcda8f3972265025cec0543e",
+      "validation": "Full suite and 84 focused tests pass; 37 exact cold API/CLI replays preserve all inputs."
     }
   },
   "audience": [
