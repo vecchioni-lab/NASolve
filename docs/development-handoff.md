@@ -22,6 +22,86 @@ changes. Retire the feature branch/worktree after reviewed integration and an
 audit of its local artifacts, not while native results remain unaccounted for.
 This parallel scope adds no Cedar/Pine scientific gate.
 
+### Current search and storage intent update (2026-10-27)
+
+This is the user-authorized documentation/continual-handoff follow-up to M2b.
+Before, the contract emphasized individual occupancy scans and fixed W contexts.
+It now records staged many-job exploration, branchable structural alternatives,
+provisional auto choices, distinct evidence for count/identity/occupancy/geometry
+and promising candidate families for final user validation. About 75 jobs is an
+illustrative workload, not a limit. Known solved cases must validate decision
+quality separately from successful construction or native completion.
+
+The latest user corrections are explicit: chi candidate search is off by default
+and enabled per group; A:12/B:4 is the current W mapping, not a universal site
+address; groups may overlap or span pairs, groove sites and adjacent metals.
+View expansion changes visibility only. Adding interactions requires explicit
+binding/recipe edits. Inherited ligand chemistry remains authoritative unless
+an advanced chemical-state branch is declared. Planned plots normalize to each
+element/wavelength reference; optional map evidence and iodine controls retain
+their limitations and matched-comparison policy.
+
+Storage is part of the future executor design: budget peak campaign disk usage,
+protect exact inputs and selected/pinned/referenced outputs, retain compact
+per-site results/audits and append pruning receipts. Removed model/map payloads
+are visibly unavailable and cannot produce a full-artifact cache hit. Recovery
+creates a new linked attempt and needs native/relocation validation before
+compaction is enabled. Existing immutable numbered artifacts are not cleanup
+targets. This turn deletes no data and launches no scientific trials.
+
+Changed files: `AGENTS.md`, `docs/metal-restraint-builder.md`,
+`docs/metal-anomalous-doctor.md`, `docs/metal-restraint-builder-intent.json`,
+`docs/gui.md`, `docs/architecture.md`, `docs/README.md`, this handoff,
+`CHANGELOG.md` and `tests/test_metal_workflow_intent.py`. The additive development
+intent remains schema 1 with `runtime_authority: false`; no runtime source,
+operational schema, checkpoint, compatibility or migration changes occur.
+Editable Mermaid diagrams record the intended workflow. No generated scientific
+inputs, models, maps or private manuscript content are included in Git.
+
+The user explicitly changed the validation policy during this update.
+`AGENTS.md` now requires relevant checks for documentation and focused regression
+coverage plus affected-dependency tests for features. A complete suite is reserved
+for broad integration/shared-behavior risk or an explicit request. External-tool
+version reporting and source-removed portability controls remain unchanged.
+
+Validation used Python 3.12.14. All ten new intent guards failed against the
+previous contract at `dd97365` (**10 failed, 9 passed in 0.05 s**), using a
+temporary copy of the new tests with that commit's three metal contract files:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider /private/tmp/alder-search-intent-red/tests/test_metal_workflow_intent.py
+```
+
+The focused run passed **190 tests and 14 subtests in 21.96 s**, exit 0:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_workflow_intent.py tests/test_metal_geometry.py tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_cli.py
+```
+
+A full run had been started under the previous policy:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider
+```
+
+It was intentionally interrupted at the user's request after **945 tests and
+105 subtests passed in 119.96 s**, exit 2 (`KeyboardInterrupt`); this is not a
+complete-suite pass. No full rerun is required for this documentation update.
+The focused scope exceeds the revised documentation requirement and also checks
+the existing metal/CLI boundary. These guards establish intent consistency, not
+scientific search, pruning or recovery behavior. Final checks verify local links,
+whitespace and unchanged source/test/intent hashes; local test evidence stays
+under the ignored `branch-artifacts/Alder/` archive.
+
+No Phenix/Coot invocation was added or rerun for this documentation change.
+The M2b native evidence below remains historical: Phenix 2.2.1-6174 complete
+interpretation/geometry-kernel checks and parser dry-runs, not frozen anomalous
+fits; Coot 1.3.3 belongs to earlier M1 generation. No new native qualification
+is implied. Next work remains an audited fixed-q/f-double-prime control, with
+general site contexts, whole-base chi candidates, linked GUI, storage recovery
+and decision logic separately qualified under the milestone plan. No production
+75-job campaign is scheduled by this design update.
+
 ### Current M2b bounded recipe preparation (2026-10-27)
 
 `Alder` now adds an optional metal-only preparation step after verified M2a

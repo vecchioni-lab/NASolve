@@ -159,7 +159,8 @@
       "automatically_selects_next_center": false,
       "occupancy_refinement_fixes_fdp": true,
       "iteration_budget_required": true,
-      "plot_role": "optional matched per-site response slices linked to table rows"
+      "plot_role": "optional matched per-site response slices linked to table rows",
+      "selection_policy_scope": "guided_default"
     },
     "result_reuse": {
       "complete_verified_results_only": true,
@@ -220,7 +221,9 @@
       "explicit metal-site materialization",
       "numbered immutable review bundles",
       "source-bound placement and serialized-coordinate preview",
-      "exact hypothesis derivation replay"
+      "exact hypothesis derivation replay",
+      "bounded recipe-only metal-coordinate preparation",
+      "exact geometry-trial replay and residual tables"
     ],
     "gui_connected": false,
     "native_ready": false,
@@ -261,12 +264,13 @@
     "milestones": [
       "M0 authoring core",
       "M1 generated-run integration",
+      "M1b explicit multiple-site contexts beyond W",
       "M2a explicit metal materialization",
       "M2b geometry and chemical qualification",
       "M3 audited anomalous diagnostics",
       "M4 interactive iteration",
       "M5 campaign workbench",
-      "M6 bounded automatic proposals"
+      "M6 bounded solution-space search and decision-logic validation"
     ],
     "pending_intake": [
       "STARANISO PDF summary fallback",
@@ -303,6 +307,181 @@
       "automatic_checkpoint_selection": false,
       "native_ready": false,
       "report_local_underdetermination": true
+    },
+    "ordered_pair_scope": "current_W_importer_only"
+  },
+  "solution_search": {
+    "status": "PLANNED_NOT_IMPLEMENTED",
+    "contract": "docs/metal-anomalous-doctor.md#solution-space-search-and-provisional-decisions",
+    "purpose": "Explore many controlled experiments and present promising candidate families for user validation",
+    "ligand_state": {
+      "default": "inherit_NARestraints_CIF_Doctor_PostMR",
+      "ordinary_search_changes_chemistry": false,
+      "state_changes_require_explicit_advanced_branch": true,
+      "redox_or_pH_prior_forces_state_or_count": false
+    },
+    "conformation": {
+      "chi_search_enabled_by_default": false,
+      "user_toggle_scoped_to_site_group": true,
+      "disabled_preserves_current_conformation": true,
+      "chi_states": [
+        "anti-anti",
+        "anti-syn",
+        "syn-anti",
+        "syn-syn"
+      ],
+      "w_template_default": [
+        "A:12",
+        "B:4"
+      ],
+      "explicit_group_residue_mapping_required": true,
+      "move_connected_base_and_substituents": true,
+      "rebuild_applicable_pairing_and_coordination_restraints": true,
+      "toggle_controls_discrete_candidate_generation": true
+    },
+    "site_groups": {
+      "status": "PLANNED_NOT_IMPLEMENTED",
+      "arbitrary_explicit_atom_and_residue_mapping": true,
+      "supports_multiple_groups_per_structure": true,
+      "global_pair_is_fixed_to_W_positions": false,
+      "view_switch_changes_scientific_selection": false,
+      "other_anomalous_sites_retained_with_explicit_policy": true,
+      "joint_or_separate_fit_scope_is_declared": true,
+      "reuse_key_includes_complete_model_and_groups": true,
+      "overlapping_members_use_canonical_atom_identity": true
+    },
+    "lineage": {
+      "branch_from_any_saved_node": true,
+      "overwrite_parent": false,
+      "compare_distinct_structures_within_dataset": true,
+      "branch_records_changes_and_evidence": true,
+      "different_datasets_are_independent": true
+    },
+    "budget": {
+      "illustrative_jobs_per_case": 75,
+      "illustration_is_default_or_cap": false,
+      "declared_jobs_cycles_time_and_processors": true,
+      "count_unique_new_jobs_separately_from_reused_rows": true,
+      "staged_adaptive_search_within_declared_budget": true,
+      "unbounded_cartesian_product": false,
+      "declared_disk_budget_and_free_space_reserve": true
+    },
+    "decisions": {
+      "auto_mode_provisional_choice": true,
+      "auto_mode_can_choose_exact_next_seed": true,
+      "final_structure_requires_user_validation": true,
+      "automatic_checkpoint_selection": false,
+      "retain_multiple_promising_families": true,
+      "family_trial_count_is_confidence": false,
+      "support_axes": [
+        "count",
+        "identity",
+        "occupancy",
+        "coordination_geometry"
+      ],
+      "unresolved_is_valid_outcome": true,
+      "selection_and_pruning_reasons_recorded": true,
+      "budget_exhaustion_is_not_rejection": true
+    },
+    "map_evidence": {
+      "layers": [
+        "2mFo-DFc",
+        "mFo-DFc",
+        "anomalous_difference_or_LLG",
+        "optional_omit"
+      ],
+      "display_toggle_changes_ranking": false,
+      "ranking_use_is_explicit": true,
+      "matched_region_resolution_phase_and_normalization_policy": true,
+      "independent_vote_from_fdp": false,
+      "positive_peak_automatically_adds_metal": false,
+      "unreliable_evidence_state": "uninformative"
+    },
+    "response_plot": {
+      "reference_scope": "element_and_dataset_wavelength",
+      "percent_deviation": "100 * (f_double_prime_fit / f_double_prime_reference - 1)",
+      "ratio_at_twice_expected": 2,
+      "percent_deviation_at_twice_expected": 100,
+      "candidate_encoding": "soft_color",
+      "candidate_palette": [
+        "soft_pink_red",
+        "green",
+        "blue",
+        "grey",
+        "lilac"
+      ],
+      "site_encoding": "line_width_with_labels_or_markers",
+      "other_occupancies_fixed_or_separate_slices": true,
+      "site_correspondence_requires_explicit_mapping": true,
+      "raw_values_remain_available": true,
+      "zero_occupancy_fdp_is_identifiable": false,
+      "near_zero_reference_uses_raw_difference": true
+    },
+    "iodine_control": {
+      "independent_recovery_before_optional_constrained_reference": true,
+      "forced_reference_agreement_is_validation": false,
+      "individual_and_joint_omission_controls": true,
+      "retain_occupancy_adp_and_wavelength_assumptions": true,
+      "I_Ag_recovery_guarantees_Ag_Ag_separation": false
+    },
+    "logic_validation": {
+      "status": "PLANNED_NOT_IMPLEMENTED",
+      "construction_success_proves_decision_quality": false,
+      "solved_answers_hidden_from_decision_engine": true,
+      "held_out_cases_for_threshold_evaluation": true,
+      "outcomes": [
+        "correct_provisional_choice",
+        "appropriate_deferral",
+        "confident_wrong_choice",
+        "budget_and_resume_correctness"
+      ],
+      "cases": [
+        "one_Hg",
+        "two_Hg_slip_geometry",
+        "mixed_identity",
+        "wrong_count_or_species",
+        "optional_chi_alternatives",
+        "multiple_site_groups",
+        "iodine_and_metal_separation",
+        "noise_or_degraded_data",
+        "third_site_overfit",
+        "cross_group_coordination",
+        "disk_budget_and_pruned_output_recovery"
+      ],
+      "hardcoded_winner_by_dataset_name": false
+    },
+    "context_expansion": {
+      "status": "PLANNED_NOT_IMPLEMENTED",
+      "neighbor_bases_groove_atoms_and_metals": true,
+      "radius_residue_and_connected_cluster_views": true,
+      "view_expansion_changes_parameters": false,
+      "view_expansion_changes_recipe_or_experiment_key": false,
+      "cross_group_edge_requires_explicit_recipe_revision": true,
+      "shared_atom_and_edge_deduplication": true,
+      "concrete_only_binding_when_no_reusable_role": true,
+      "symmetry_context_requires_exact_operator_and_qualification": true
+    },
+    "storage_retention": {
+      "status": "PLANNED_NOT_IMPLEMENTED",
+      "automatic_compaction_under_declared_policy": true,
+      "disk_budget_applies_across_campaign": true,
+      "reserve_peak_space_before_launch": true,
+      "stop_scheduling_if_safe_space_unavailable": true,
+      "tree_pruning_deletes_lineage": false,
+      "existing_numbered_runs_are_cleanup_targets": false,
+      "retained_inputs_must_be_self_contained_or_in_protected_verified_store": true,
+      "retain_resolved_parameters_commands_versions_and_seeds": true,
+      "retain_structured_values_freeze_audit_and_failures": true,
+      "retention_receipts_are_append_only": true,
+      "protect_active_selected_pinned_and_referenced_outputs": true,
+      "summary_reuse_distinct_from_full_artifact_reuse": true,
+      "missing_maps_or_models_are_complete_cache_hit": false,
+      "regeneration_creates_new_attempt": true,
+      "native_regeneration_guarantees_identical_bytes": false,
+      "validate_recovery_before_enabling_destructive_compaction": true,
+      "relocation_and_shared_reference_tests_required": true,
+      "all_compaction_capabilities_are_planned": true
     }
-  }
+  },
+  "updated": "2026-10-27"
 }

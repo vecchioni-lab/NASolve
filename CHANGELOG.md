@@ -8,6 +8,29 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Scope validation to the affected change
+
+- Update the collaboration contract: documentation-only changes use relevant
+  checks; feature changes use focused regression and affected-dependency tests.
+  Run the full suite when broad integration/shared behavior warrants it or when
+  requested, and report the validation scope and remaining gaps.
+
+### Clarify planned metal search, site contexts and storage policy
+
+- Document staged many-job exploration and branchable structural alternatives,
+  with separate count/identity/occupancy/geometry support, provisional auto
+  decisions and final user validation. About 75 jobs is an example, not a cap.
+- Keep inherited ligand chemistry by default; make chi candidate generation an
+  opt-in per-group toggle. Plan arbitrary overlapping site groups beyond the
+  current W mapping and view expansion without implicit parameter changes.
+- Specify optional matched map evidence, wavelength-normalized response plots,
+  iodine controls and independent future validation of decision quality.
+- Plan campaign disk budgets, protected shared inputs, compact result records,
+  reference-aware output pruning and explicit recovery. Existing immutable runs
+  remain unchanged; missing outputs cannot qualify as full-artifact cache hits.
+- Add documentation-contract regressions. These are nonruntime intent changes;
+  no search, GUI, pruning tool or new operational schema is implemented here.
+
 ### Prepare bounded metal geometry from explicit recipe targets
 
 - Add `metal geometry` and `metal verify-geometry` over a shared deterministic

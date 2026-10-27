@@ -175,6 +175,41 @@ target-library suggestion with target/sigma, source and an editable override.
 No matching entry leaves the suggestion unset. State selection requests a
 different lookup; changing model chemistry remains a separate derived action.
 
+### Site groups, solution branches and retained evidence
+
+**Planned.** Add named coordination-group navigation inside each dataset and
+structure. Groups explicitly map actual atoms/residues and may overlap; A:12/B:4
+is only the current W importer default. A per-group chi-search toggle starts off.
+When enabled, it exposes declared residues and anti/syn candidate choices.
+Ordinary ligand chemistry comes from inherited qualified resources; advanced
+chemical changes create explicit branches. Navigation preserves other scatterers
+and never substitutes a local group for the complete model's experiment identity.
+
+An **Expand context** control shows neighboring bases, groove donors, adjacent
+metals and connected cluster segments, with radius/residue/graph options. It
+changes visibility only. Adding a visible interaction is a separate recipe edit
+with an explicit atom binding and restraint preview. Shared atoms and edges are
+shown consistently across overlapping groups; imported symmetry context retains
+its exact operator and support status. See the
+[neighborhood contract](metal-restraint-builder.md#expanded-neighborhoods-and-shared-interactions).
+
+The solution tree supports returning to saved ancestors and comparing distinct
+structural branches. Show promising candidate families, exact branch differences,
+separate count/identity/occupancy/geometry support and unresolved outcomes. Guided
+mode uses selected seeds; declared auto mode can propose a best candidate and
+choose further work within budget. Final validation remains a user action.
+Map-layer display toggles are distinct from opting into map evidence in ranking.
+Normalized response plots use candidate colours and site widths plus labels,
+with exact table/structure links and explicit multi-site slices. See the
+[solution-search contract](metal-anomalous-doctor.md#solution-space-search-and-provisional-decisions).
+
+Show new versus reused jobs, remaining compute/disk budgets and retained output
+size. Pins protect exact comparison artifacts. A compacted row retains its
+values/history and marks missing model/map detail with a regeneration action;
+never silently substitute another candidate's files. Tree pruning preserves
+lineage. The [retention contract](metal-anomalous-doctor.md#disk-budgets-and-recoverable-trial-retention)
+defines protected inputs, append-only receipts and recovery validation.
+
 ### Movable panels and stable scientific state
 
 The viewer, restraint-set list, inspector and experiment/comparison panels must

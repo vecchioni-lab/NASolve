@@ -1361,6 +1361,29 @@ preparation followed by bounded independent fixed-q/f'' trials and linked
 comparisons. Core graph types accommodate clusters; each native policy needs
 explicit qualification. CLI and GUI will share planning, execution and reports.
 
+The planned general-context adapter replaces the W-only assumption with explicit
+named atom/residue groups over one complete model. Groups may overlap; canonical
+atom identities and unique restraint terms prevent duplication. A view expander
+can show adjacent pairs, groove sites and cluster segments without changing
+scientific inputs. Cross-group restraints require explicit recipe revisions and
+qualified bindings. Optional chi search is off by default per group and needs a
+separate whole-base transformation/preparation path; the current metal-only
+solver cannot provide it. Ligand-state inheritance remains the default.
+
+The planned [solution-search policy](metal-anomalous-doctor.md#solution-space-search-and-provisional-decisions)
+adds immutable branch lineage, staged compute/disk budgets and provisional
+evidence-led choices with retained alternatives and final user validation. Full
+model state, shared groups and coupled-site policies enter experiment identity;
+view scope never does. Map metrics and normalized response plots preserve matched
+comparison conditions and distinct support axes. Decision quality needs blinded
+controls beyond construction success. A future versioned disposable-output
+contract will separate retained inputs/results from bulky trial payloads and
+append retention receipts without modifying existing immutable runs. Summary
+reuse cannot impersonate a complete-artifact cache hit, and regeneration creates
+a new attempt. General contexts, automatic search, compaction/recovery and their
+native qualification remain unimplemented; the development-intent additions do
+not change current artifact schemas or operational behavior.
+
 Existing AutoRefine switches are a foundation, not proof of the frozen protocol.
 In particular, `RefineDoctor/ML-fdp-only` still defaults to coordinate refinement
 and group ADPs; it does not freeze all atomic parameters. A qualified diagnostic

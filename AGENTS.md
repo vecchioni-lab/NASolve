@@ -49,9 +49,17 @@ in this repository.
 
 ## Required validation
 
-- Add a regression test that fails before the change and passes afterward.
-- Run the focused tests and the complete suite with
+- Match validation to the affected behavior. Documentation-only updates need
+  relevant contract, link or formatting checks; they do not require the complete
+  suite or a new test for every prose edit.
+- For functional or schema changes, add meaningful regression coverage that
+  fails before the change and passes afterward. Run focused tests for the feature
+  and its affected shared dependencies with
   `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`.
+- Use the complete suite when broad integration or shared-behavior risk warrants
+  it, or when explicitly requested. An isolated feature change does not require
+  all unrelated subsystem tests. Expand testing when failures or unresolved
+  concerns justify it; record the chosen scope and any remaining gaps.
 - For external-tool changes, record the exact Phenix/Coot version and whether
   the check was a dry-run or a complete execution.
 - For portability changes, test from a relocated temporary checkout after the

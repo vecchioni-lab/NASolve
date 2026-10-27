@@ -1,7 +1,8 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
 Status: **anomalous fits planned; explicit hypothesis construction and bounded recipe-only preparation implemented**.
-Design expanded 2026-10-26; construction and local preparation added 2026-10-27. This contract
+Design expanded through 2026-10-27; construction and local preparation are implemented.
+Solution-space search, decision logic, maps and GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
@@ -31,6 +32,84 @@ Different geometric hypotheses need their own preparation. Comparing their
 frozen endpoints is distinct from a matched-coordinate identity substitution
 control; record which experiment was performed. Final joint refinement, if
 requested, creates another child and does not retroactively validate the scan.
+
+## Solution-space search and provisional decisions
+
+**Planned intent.** The automation should explore many small, controlled Phenix
+experiments and expose the most promising regions of the evaluated solution
+space for user validation. A case may reasonably need about 75 jobs across
+geometry, scattering and map questions. This is a workload example, not a
+minimum, default or ceiling. A bounded search has declared resource limits and
+traceable decisions; it need not contain only a handful of trials.
+
+Campaigns organize independent datasets. Within each dataset, retain a solution
+tree of whole-structure hypotheses and experiments, with explicit site-group
+scope. Named coordination groups may map to arbitrary declared residues and
+atoms and may contain several metals. A:12/B:4 remains only the current W
+importer's mapping. Group navigation never discards other scatterers or implies
+that their fits are independent. Shared atoms, phase/scale policies and nearby
+signal require explicit joint or separate experiment definitions.
+
+Inherit ligand chemistry from the attached NARestraints/CIF Doctor/PostMR state.
+Advanced chemical variants require explicit declarations and derived resources.
+Chi exploration is an optional user toggle per group, off by default; an enabled
+pair search can explore declared anti/syn combinations in explicit residue
+order. Coordinate preparation, count/species, coordination graph, occupancy/B
+assumptions and scattering trials form further branches. No universal ordering
+or exhaustive Cartesian product is required. Record the parent, changed
+assumptions, reason for branching and exact resources at every node.
+
+Return to any saved node and create another child without rewriting its history.
+A prepared anti-syn/two-metal/mixed-species candidate can be compared with a
+syn-syn/one-metal candidate from the same dataset under a matched diagnostic
+protocol. Switching the displayed dataset, structure or group does not choose
+a scientific result. Every leaf retains its exact artifact identity and retention status. Protected
+comparison candidates keep their models/maps; compacted trials retain audited
+results and recovery inputs under the storage policy below.
+
+Report support separately for count, identity, occupancy and coordination
+geometry. For example, two Hg sites may be well supported while the competing
+N3-O4/O2-N3 slip arrangements still require visual inspection. Auto mode may
+choose a provisional best candidate or exact next seed under a declared policy
+and budget. Preserve alternatives and the evidence for selection/pruning; close
+competitors lead to a focused GUI comparison. An unresolved result is valid.
+Provisional choices do not silently change the current checkpoint or establish
+a final structure: final structural validation remains with the user.
+
+Present multiple promising candidate families when the evidence warrants them.
+These are the user's solution-space "islands": groups of evaluated candidates
+with related structures/coordination and useful, stable evidence. Define and
+display the grouping criteria and representative rows; there is no implemented
+clustering or confidence formula yet. More sampled trials in a family do not
+make it more probable, repeated cache hits add no evidence, and nearby points
+are not independent confirmations. Retain meaningful tradeoffs instead of
+concealing them inside one arbitrary score. Distinguish rejected, unrun,
+budget-limited, technically failed and scientifically ambiguous alternatives.
+
+**Planned methods.** Generate eligible candidates from inherited components,
+explicit group mappings and user-enabled conformational/chemical options;
+freeze compatible comparison plans; evaluate broad samples; use recorded
+evidence to allocate focused work within the remaining budget; reuse verified
+identical experiments; then present representative candidates with their local
+alternatives and limitations. Audit the decision logic separately from successful
+model construction and native job completion.
+
+```mermaid
+flowchart TD
+    D[Dataset and complete source structure] --> G[Explicit site groups and inherited chemistry]
+    G --> A[Current conformation]
+    G -. user enables chi search .-> B[Declared anti and syn alternatives]
+    G -. explicit advanced variant .-> C[Qualified chemical-state branch]
+    A --> H[Count species and coordination hypotheses]
+    B --> H
+    C --> H
+    H --> P[Prepare each structural candidate]
+    P --> T[Budgeted scattering and map experiments]
+    T --> E[Separate support for count identity occupancy and geometry]
+    E --> R[Promising families or provisional best choice]
+    E -. focused work within budget .-> T
+    R --> U[Linked GUI comparison and user validation]
+```
 
 ## Fixed dispersive term and campaign scope
 
@@ -66,7 +145,8 @@ All seven known-positive test cases should eventually be staged together, with
 independent status/lineage and linked per-site tables in the same GUI. The PDU
 two-metal slip case waits for integrated qualified PDU restraints.
 
-Automatic proposals are a later bounded stage. Declared metal identities,
+Automatic proposals and provisional choices follow the planned solution-space
+policy above. Declared metal identities,
 iodine/bromine sites, possible clusters and experimental evidence can define
 priors and constrain geometry alternatives. Focused anomalous phasing and local
 map/geometry evidence can evaluate those alternatives. Record the origin and
@@ -104,6 +184,26 @@ remain recorded assumptions. A B sensitivity check is a separate experiment.
 Use `occupancy`/`q` and `formal_charge` explicitly; a cluster charge Q is not q.
 
 ## Inputs and comparison groups
+
+### Iodinated bases as internal experimental controls
+
+Known iodinated bases provide identifiable anomalous sites alongside candidate
+metals. Use the actual wavelength reference and explicit occupancy/ADP assumptions;
+comparable atomic f-double-prime values do not guarantee equal effective signal.
+First evaluate iodine independently as a recovery/control site. An optional
+constrained-reference experiment is separate: agreement forced by fixing iodine
+to its reference is not an independent validation result or a reason to silently
+renormalize every metal estimate.
+
+Plan individual and joint omission controls for iodine and nearby metals. Inspect
+whether signal returns at omitted positions and whether another site's fitted
+response changes as hypotheses vary. Recovering nearby I/Ag sites can support
+separability at similar effective strength, separation and disorder. It does not
+guarantee separation of a closer or more disordered Ag/Ag pair. Chi variants must
+carry attached iodine with the base; an iodine control is bound to that exact
+structural hypothesis and complete anomalous-group policy.
+
+### Matched experimental inputs
 
 Freeze the source checkpoint/model, observations, original Free-R flags and test
 value, symmetry, dictionaries, active restraints, source recipe and atom mapping.
@@ -210,16 +310,23 @@ or automatic proof of atom count/charge.
 
 Freeze a finite plan containing hypothesis IDs, occupancy vectors/grouping,
 starts, controls, resources, parameter policies and maximum jobs/cycles/time.
-Preview the exact job count before execution. Start with small declared grids
-and allow an explicit bounded refinement of that grid; do not enumerate an
-unbounded Cartesian product of every geometry, identity, occupancy and B value.
+Preview known job counts and the adaptive allowance before execution. Support
+tens to hundreds of jobs when that budget is declared. Start with broad samples
+and allocate focused trials where they can discriminate candidates. Report
+requested rows, unique experiments, reused results, queued/running/completed
+jobs and remaining budget separately. Do not enumerate an unbounded Cartesian
+product of every geometry, identity, occupancy and B value. No-data or exhausted
+budget status is not evidence against a candidate.
 
 Each job has a stable ID, independent input/output directory and checksummed
-parent. Resume validates completed jobs and preserves failed/interrupted attempts.
+parent. Resume validates completed jobs and preserves failed/interrupted attempt
+identities and diagnostics; payload retention follows the declared policy below.
 Share the planner, executor and report reader between CLI and GUI. Scheduling
 must respect a total processor budget, including other active NASolve work.
-The future Doctor may recommend a discriminating next experiment from diagnosed
-limitations; it does not silently expand the search or choose a chemical model.
+Guided mode lets the user choose the next exact seed. Authorized auto mode may
+choose that seed and further tests under the declared decision policy, preserving
+the rationale and lineage. Neither mode silently expands its resource budget,
+enables chi/chemical search options or validates a final chemical model.
 
 Use Rwork/Rfree as context and comparable diagnostics, not a repeated Rfree
 optimization objective. Adding sites/parameters can improve fit without being
@@ -233,9 +340,42 @@ Common geometry/occupancy must be a tested assumption, especially across
 different crystals, reactions or radiation damage. Multi-dataset joint fitting
 is a later explicit protocol, not implicit merging of independently refined rows.
 
+## Optional local map evidence
+
+**Planned.** Offer ordinary 2mFo-DFc, signed mFo-DFc, anomalous difference/LLG
+and optional omit-map layers. Display toggles affect visualization only;
+including a map metric in ranking is a separate explicit experiment policy.
+Use matched local regions, resolution, phase treatment, bulk-solvent treatment
+and normalization for comparisons. Preserve provenance and limitations of
+model-dependent maps, including whether held-out reflections enter them; map
+selection must not be represented as independent Rfree validation.
+
+Map patterns suggest controlled tests, not automatic atom editing:
+
+| Observation | Candidate experiment |
+| --- | --- |
+| Negative residual near a metal | Test declared occupancy, ADP, scattering identity or positional alternatives |
+| Positive residual nearby | Compare an existing-site displacement, alternate arrangement or extra-site hypothesis |
+| Adjacent positive and negative lobes | Test relocation before interpreting the feature as another atom |
+| Weak, unstable or diffuse residuals | Record map evidence as uninformative |
+
+Begin with interpretable local measurements: positive/negative residual magnitude
+and extent, position relative to donors/metals, and stability across controlled
+starts. No universal sigma cutoff or automatic weighting is established. Noisy
+or missing map evidence is not a rejection. More sites can reduce residuals
+without being supported; retain complexity and alternative explanations.
+Map and f-double-prime metrics use overlapping diffraction evidence, so do not
+count them as independent votes. Omit/LLG controls are additional diagnostics
+with their own assumptions, not a guarantee of unbiased truth. See the
+[Phenix refinement FAQ](https://www.phenix-online.org/documentation/faqs/refine.html),
+[anomalous refinement reference](https://www.phenix-online.org/documentation/reference/refinement.html)
+and [polder-map methods](https://journals.iucr.org/d/issues/2017/02/00/ba5254/ba5254.pdf).
+
 ## Broad scans, focused iteration and occupancy refinement
 
-Support a scientist-directed sequence rather than one exhaustive search:
+The guided sequence below retains explicit user-selected centers. Future auto
+mode may choose exact saved centers under the solution-space policy and budget;
+both modes preserve the same parameter separation and per-site controls:
 
 1. **Broad f'' profile:** evaluate a sparse declared occupancy range and the
    competing identity/count hypotheses. Every trial has fixed atomic XYZ, ADPs,
@@ -258,8 +398,8 @@ Support a scientist-directed sequence rather than one exhaustive search:
    Record each stage, frozen values and interpretation separately. Do not free
    q and f'' together by default and label the result uniquely identified.
 
-The user chooses the next center and which parameters may move. An Iterate
-action freezes the seed row/artifacts, per-site locks, local grid and round/job
+In guided mode the user chooses the next center and which parameters may move.
+An Iterate action freezes the seed row/artifacts, per-site locks, local grid and round/job
 budget; it does not automatically chase the lowest Rfree. Clip to declared
 physical bounds, deduplicate coincident vectors and show boundary truncation.
 For same-site mixtures also validate the shared physical occupancy budget.
@@ -293,7 +433,77 @@ execution ID and a separate current-round association. Reuse references the
 immutable evidence; it does not copy a result into a new run and imply Phenix
 ran again. Preview total requested rows, unique experiments, verified reusable
 results and remaining native jobs. Revalidation of stale or incompatible
-receipts requires an explicit new attempt; previous evidence remains retained.
+receipts requires an explicit new attempt; previous provenance remains retained.
+A compacted result can supply its preserved table values, but cannot satisfy a
+request for an absent model/map or a complete-artifact cache hit.
+
+## Disk budgets and recoverable trial retention
+
+**Planned, with no cleanup of existing runs in this change.** Hundreds of jobs
+across thousands of datasets require a campaign-wide disk budget as well as
+job/time/processor limits. Estimate peak scratch/output space, reserve space
+across concurrent jobs and retain a free-space margin before launching work.
+Measure actual usage and stop scheduling when the budget cannot be met safely;
+pruning after a large campaign has finished is too late.
+
+Pruning a search branch removes it from active exploration, not from history.
+Keep compact, versioned rows containing exact atom/group IDs, species, XYZ,
+occupancy, all ADPs, fixed f-prime, fitted/reference f-double-prime, geometry and
+restraint metrics, map summaries, convergence, failures, freeze audit, selection
+reasons and provenance. Preserve sufficient evidence to audit a claim after its
+bulky visualization output is removed. A compact value table alone is not a
+recoverable experiment.
+
+Retain the exact starting model, observations and Free-R flags, dictionaries,
+restraints, recipes/bindings, resolved effective parameters, commands, seeds,
+software/protocol versions and reference data. Store repeated immutable inputs
+once in a protected, checksummed dataset/campaign store with declared anchors
+and tracked references. A link into disposable scratch or an external original
+that can disappear does not preserve inputs. Effective parameter files are often
+small and essential: keep their complete resolved content, deduplicated or
+compressed where useful, rather than deleting every `.eff` by extension.
+
+The proposed retention tiers are:
+
+| Tier | Retained payload and behavior |
+| --- | --- |
+| Active or recovery-critical | Inputs, working payload and restart requirements; no pruning during execution |
+| Selected, pinned or representative comparison | Complete validated models/maps and evidence required for viewing, continuation and export |
+| Completed, compacted trial | Audited structured results, recovery inputs and explicit inventory of removed disposable outputs; detailed view may require regeneration |
+| Failed or interrupted | Attempt identity, failure/restart diagnostics and required inputs; disposable payload only after its recovery role is resolved |
+
+Under a declared retention policy, compaction may automatically remove eligible
+heavy maps, redundant output models and scratch from pruned trials. Protect
+selected checkpoints, pinned results, representative alternatives, active jobs
+and any payload required by another retained child or consumer. A trial may be
+pruned from one plan while still referenced by another. Garbage collection must
+check all references, including shared inputs and cross-group experiments.
+Never infer disposability from a basename or file extension alone.
+
+This requires a future versioned trial-storage contract. Existing immutable
+numbered runs, hypothesis/geometry bundles and their checksum manifests remain
+untouched. Future disposable payloads must be declared separately from the
+immutable scientific record. Append retention receipts with object IDs, original
+hashes, removed byte counts, reason/policy and time; do not rewrite history or
+make an absent file appear checksum-valid. Distinguish verified result-summary
+reuse from full-artifact reuse. The GUI must show retained, compacted, unavailable
+and regenerated states and offer explicit regeneration for missing detail.
+
+Recovery resolves and verifies the retained inputs and qualified software before
+launching a new attempt linked to the original execution. Preserve old results
+and report differences. A native rerun is not guaranteed to reproduce identical
+bytes or a previous fit across versions, platforms or stochastic paths. Record
+whether recovery is exact replay, qualified numerical reproduction, or currently
+unavailable. A rehydrated input bundle alone does not establish recoverability.
+
+Before enabling destructive compaction, validate recovery on representative
+native trials after disposable outputs and original source paths are removed.
+Check retained parameter/atom/freeze results with declared tolerances, linked
+views, shared references, pin protection, interrupted cleanup/resume and disk
+reservation under concurrency. Measure realistic peak and retained bytes for
+large simulated campaigns, then check native examples; no arbitrary per-PDB size
+promise is established. These checks are future work, not claims made by the
+current documentation regression tests.
 
 ## Tables, plots and GUI selection
 
@@ -315,13 +525,31 @@ heatmap is appropriate only for an actually sampled grid with the remaining
 sites fixed. Plot selection resolves the exact table row and artifacts. Never
 draw synthetic scientific trends to fill an unrun view.
 
+An additional normalized view plots
+`100 * (f_double_prime_fit / f_double_prime_reference - 1)` against occupancy,
+using each site's element and actual dataset wavelength. Label raw values and
+ratios alongside it: twice the reference is 200% **of** the reference, or +100%
+**deviation**, not +200% deviation. This enables comparison of departures on
+unequal element reference scales without making deviation a calibrated
+probability or a universal ranking score. At q=0 fitted f-double-prime is not
+identifiable; near-zero references require raw differences instead of unstable
+division. Keep reference uncertainty and calibration assumptions visible.
+
+Use soft pink/red, green, blue, grey and lilac to distinguish candidates and
+line widths with labels/markers to distinguish sites. Use explicit atom/group
+correspondence across candidates; a two-metal candidate and a three-metal
+candidate do not acquire equivalent site identities from their row order.
+Keep unsampled regions empty and link every plotted point to its exact trial.
+
 Cluster summary rows expand to their per-site evidence. Keep rejected and failed
 alternatives discoverable, with scientific uncertainty separate from execution
 failure and from an unrun plan.
 
 Every row resolves the exact model, maps, recipe and checkpoint/diagnostic
-artifact. Selecting a row focuses the same sites in the molecular view and can
-open the exact model/maps in Coot. Preview, pin, compare and select-as-current
+artifact identities and their retention state. A compacted row displays its
+retained evidence and requires regeneration for missing detailed artifacts.
+Selecting a row focuses the same sites in the molecular view and can open the
+exact retained or regenerated model/maps in Coot with their attempt provenance. Preview, pin, compare and select-as-current
 are distinct actions. A diagnostic without an eligible checkpoint cannot be
 selected as current. CSV/TSV and JSON exports retain IDs, units and provenance.
 
@@ -336,12 +564,20 @@ it does **not** mean all other atomic parameters are frozen.
 
 Implement in bounded stages:
 
-1. Recipe graph, atom-role binding and serialization with synthetic controls.
-2. Interactive preview and restraint export, without launching refinement.
-3. Explicit derived models and native restraint-consumption checks.
-4. One complete, audited fixed-q/f'' control; then a small independent q grid.
-5. Linked comparison tables and user selection, including unresolved controls.
-6. Multiple identities/counts, mixtures and larger cluster qualification.
+1. Preserve the implemented recipe, W-context, construction and bounded
+   metal-only preparation boundaries; qualify whole-model preparation separately.
+2. Add explicit general site groups and overlapping neighborhood bindings;
+   optional chi candidates need their own whole-base and restraint validation.
+3. Complete one audited fixed-q/f'' control, then a small independent q grid.
+4. Add linked comparison tables, verified reuse, disk-budgeted retention/recovery
+   and user selection, including unresolved controls.
+5. Connect the campaign/site-group GUI, optional maps and linked response plots.
+6. Qualify staged many-job search and decision logic separately, including
+   multiple identities/counts, mixtures and larger clusters.
+
+These dependencies follow the [M1b–M6 milestones](metal-restraint-builder.md#integration-objectives-and-milestones).
+A narrow W-based f-double-prime control need not wait for a general importer,
+but broader workflows must not inherit its A:12/B:4 assumption.
 
 Core graph types should allow clusters now; native support is earned per tested
 policy rather than implied by drawing additional nodes. Keep upstream CIF
@@ -357,6 +593,19 @@ shared versus independent groups; charge-versus-occupancy labels; special-positi
 counting; missing wavelength; failed/restarted jobs; and relocation with original
 paths removed. A complete native test must verify emitted restraints, all frozen
 parameters and row-to-artifact linkage, not only subprocess completion.
+
+Decision quality requires a separate evaluation from model construction, native
+completion and intent-file checks. Use solved controls with the answers hidden
+from the decision engine and reserve held-out cases for threshold evaluation.
+Do not hardcode a winner from a dataset name. Include one-Hg, two-Hg slip,
+mixed-species and swapped-species controls, wrong counts, third-site overfit,
+optional chi alternatives, multiple overlapping groups, iodine/metal separation
+and degraded/noisy evidence. Track correct provisional choices, appropriate
+deferral and confident wrong choices separately. Evaluate whether alternatives
+remain visible and whether budget exhaustion is reported without a false
+scientific rejection. Test resume/deduplication and retention/recovery at the
+many-job scale. Numerical acceptance thresholds and automatic family grouping
+remain unqualified until these tests establish their behavior.
 
 Published precedents inform those tests, not universal acceptance thresholds:
 

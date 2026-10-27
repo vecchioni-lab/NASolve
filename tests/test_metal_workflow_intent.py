@@ -99,3 +99,134 @@ def test_campaign_switching_is_a_view_action_and_retains_distinct_inputs():
     assert campaign['independent_dataset_observations'] is True
     assert set(campaign['identities']) >= {'campaign','dataset','run','checkpoint','context','hypothesis','round','trial'}
     assert campaign['retain_prior_and_phase_provenance'] is True
+
+
+def test_search_inherits_chemistry_and_treats_chi_as_a_structural_branch():
+    search = intent()['solution_search']
+    assert search['status'] == 'PLANNED_NOT_IMPLEMENTED'
+    chemistry = search['ligand_state']
+    assert chemistry['default'] == 'inherit_NARestraints_CIF_Doctor_PostMR'
+    assert chemistry['ordinary_search_changes_chemistry'] is False
+    assert chemistry['state_changes_require_explicit_advanced_branch'] is True
+    conformation = search['conformation']
+    assert conformation['chi_search_enabled_by_default'] is False
+    assert conformation['user_toggle_scoped_to_site_group'] is True
+    assert conformation['disabled_preserves_current_conformation'] is True
+    assert conformation['w_template_default'] == ['A:12', 'B:4']
+    assert conformation['explicit_group_residue_mapping_required'] is True
+    assert conformation['chi_states'] == ['anti-anti', 'anti-syn', 'syn-anti', 'syn-syn']
+    assert conformation['move_connected_base_and_substituents'] is True
+    assert conformation['rebuild_applicable_pairing_and_coordination_restraints'] is True
+
+
+def test_many_job_search_preserves_branches_and_unique_experiment_accounting():
+    search = intent()['solution_search']
+    assert search['lineage']['branch_from_any_saved_node'] is True
+    assert search['lineage']['overwrite_parent'] is False
+    assert search['lineage']['compare_distinct_structures_within_dataset'] is True
+    budget = search['budget']
+    assert budget['illustrative_jobs_per_case'] == 75
+    assert budget['illustration_is_default_or_cap'] is False
+    assert budget['declared_jobs_cycles_time_and_processors'] is True
+    assert budget['count_unique_new_jobs_separately_from_reused_rows'] is True
+    assert budget['staged_adaptive_search_within_declared_budget'] is True
+
+
+def test_auto_search_can_choose_provisional_work_without_final_acceptance():
+    policy = intent()['solution_search']['decisions']
+    assert policy['auto_mode_provisional_choice'] is True
+    assert policy['auto_mode_can_choose_exact_next_seed'] is True
+    assert policy['final_structure_requires_user_validation'] is True
+    assert policy['automatic_checkpoint_selection'] is False
+    assert policy['retain_multiple_promising_families'] is True
+    assert policy['family_trial_count_is_confidence'] is False
+    assert policy['support_axes'] == ['count', 'identity', 'occupancy', 'coordination_geometry']
+    assert policy['unresolved_is_valid_outcome'] is True
+    assert intent()['anomalous_diagnostics']['iteration']['selection_policy_scope'] == 'guided_default'
+
+
+def test_map_evidence_is_optional_correlated_and_never_adds_a_site_by_color():
+    maps = intent()['solution_search']['map_evidence']
+    assert maps['display_toggle_changes_ranking'] is False
+    assert maps['ranking_use_is_explicit'] is True
+    assert maps['matched_region_resolution_phase_and_normalization_policy'] is True
+    assert maps['independent_vote_from_fdp'] is False
+    assert maps['positive_peak_automatically_adds_metal'] is False
+    assert maps['unreliable_evidence_state'] == 'uninformative'
+    assert set(maps['layers']) == {'2mFo-DFc', 'mFo-DFc', 'anomalous_difference_or_LLG', 'optional_omit'}
+
+
+def test_normalized_plot_keeps_reference_and_site_identity_explicit():
+    plot = intent()['solution_search']['response_plot']
+    assert plot['reference_scope'] == 'element_and_dataset_wavelength'
+    assert plot['percent_deviation'] == '100 * (f_double_prime_fit / f_double_prime_reference - 1)'
+    assert plot['ratio_at_twice_expected'] == 2
+    assert plot['percent_deviation_at_twice_expected'] == 100
+    assert plot['candidate_encoding'] == 'soft_color'
+    assert plot['site_encoding'] == 'line_width_with_labels_or_markers'
+    assert plot['other_occupancies_fixed_or_separate_slices'] is True
+    assert plot['site_correspondence_requires_explicit_mapping'] is True
+    assert plot['raw_values_remain_available'] is True
+
+
+def test_iodine_is_an_independent_control_before_optional_calibration():
+    iodine = intent()['solution_search']['iodine_control']
+    assert iodine['independent_recovery_before_optional_constrained_reference'] is True
+    assert iodine['forced_reference_agreement_is_validation'] is False
+    assert iodine['individual_and_joint_omission_controls'] is True
+    assert iodine['retain_occupancy_adp_and_wavelength_assumptions'] is True
+    assert iodine['I_Ag_recovery_guarantees_Ag_Ag_separation'] is False
+
+
+def test_decision_logic_has_a_distinct_future_validation_milestone():
+    validation = intent()['solution_search']['logic_validation']
+    assert validation['status'] == 'PLANNED_NOT_IMPLEMENTED'
+    assert validation['construction_success_proves_decision_quality'] is False
+    assert validation['solved_answers_hidden_from_decision_engine'] is True
+    assert validation['held_out_cases_for_threshold_evaluation'] is True
+    assert set(validation['outcomes']) == {'correct_provisional_choice', 'appropriate_deferral', 'confident_wrong_choice', 'budget_and_resume_correctness'}
+
+
+def test_multiple_site_groups_are_views_over_a_complete_structural_hypothesis():
+    groups = intent()['solution_search']['site_groups']
+    assert groups['status'] == 'PLANNED_NOT_IMPLEMENTED'
+    assert groups['arbitrary_explicit_atom_and_residue_mapping'] is True
+    assert groups['supports_multiple_groups_per_structure'] is True
+    assert groups['global_pair_is_fixed_to_W_positions'] is False
+    assert groups['view_switch_changes_scientific_selection'] is False
+    assert groups['other_anomalous_sites_retained_with_explicit_policy'] is True
+    assert groups['joint_or_separate_fit_scope_is_declared'] is True
+    assert groups['reuse_key_includes_complete_model_and_groups'] is True
+
+
+def test_context_expansion_does_not_change_scientific_inputs():
+    context = intent()['solution_search']['context_expansion']
+    assert context['status'] == 'PLANNED_NOT_IMPLEMENTED'
+    assert context['neighbor_bases_groove_atoms_and_metals'] is True
+    assert context['view_expansion_changes_parameters'] is False
+    assert context['view_expansion_changes_recipe_or_experiment_key'] is False
+    assert context['cross_group_edge_requires_explicit_recipe_revision'] is True
+    assert context['shared_atom_and_edge_deduplication'] is True
+    assert context['concrete_only_binding_when_no_reusable_role'] is True
+    assert context['symmetry_context_requires_exact_operator_and_qualification'] is True
+
+
+def test_storage_policy_preserves_recovery_without_faking_complete_cache_hits():
+    storage = intent()['solution_search']['storage_retention']
+    assert storage['status'] == 'PLANNED_NOT_IMPLEMENTED'
+    assert storage['disk_budget_applies_across_campaign'] is True
+    assert storage['reserve_peak_space_before_launch'] is True
+    assert storage['stop_scheduling_if_safe_space_unavailable'] is True
+    assert storage['tree_pruning_deletes_lineage'] is False
+    assert storage['existing_numbered_runs_are_cleanup_targets'] is False
+    assert storage['retained_inputs_must_be_self_contained_or_in_protected_verified_store'] is True
+    assert storage['retain_resolved_parameters_commands_versions_and_seeds'] is True
+    assert storage['retain_structured_values_freeze_audit_and_failures'] is True
+    assert storage['retention_receipts_are_append_only'] is True
+    assert storage['protect_active_selected_pinned_and_referenced_outputs'] is True
+    assert storage['summary_reuse_distinct_from_full_artifact_reuse'] is True
+    assert storage['missing_maps_or_models_are_complete_cache_hit'] is False
+    assert storage['regeneration_creates_new_attempt'] is True
+    assert storage['native_regeneration_guarantees_identical_bytes'] is False
+    assert storage['validate_recovery_before_enabling_destructive_compaction'] is True
+    assert storage['relocation_and_shared_reference_tests_required'] is True

@@ -11,9 +11,11 @@ published structures do not automatically define reusable restraint defaults.
 ## Integration objectives and milestones
 
 The metal workspace is a consumer of NASolve's generated models and immutable
-checkpoint lineage. It uses the standard W/5W6W route: the first requested
-nucleotide is A:12 and the second B:4. A supplied solved model is not a
-prerequisite. This is existing frame-based MR/PostMR preparation, distinct from
+checkpoint lineage. The current importer uses the standard W/5W6W route: the
+first requested nucleotide is A:12 and the second B:4. These are template defaults, not a global
+restriction on the planned workspace. General contexts will explicitly map
+multiple named coordination-site groups to their own residues and atoms.
+A supplied solved model is not a prerequisite. This is existing frame-based MR/PostMR preparation, distinct from
 external de novo model providers. Metal placement is a separate explicit
 hypothesis on the generated scaffold.
 
@@ -21,12 +23,13 @@ hypothesis on the generated scaffold.
 | --- | --- | --- |
 | M0: authoring core | Stable graph/revision IDs, exact role binding, numerical preview | Implemented and tested |
 | M1: generated-model integration | Read a generated W checkpoint; preserve identities, q/B, dictionaries and original observations; export exact proposed restraints | Implemented; current native checks and test counts in the handoff |
+| M1b: general site contexts | Explicit residue/atom mappings and multiple named metal-site groups per structure; view switching preserves scientific state | Planned; current W importer remains unchanged |
 | M2a: hypothesis materialization | Explicit coordinates/count/species/q/B, preserved parent atoms, immutable derived models and native consumption controls | Implemented; one Hg and mixed Au/Ag controls, including swapped identities |
 | M2b: geometry preparation | Qualified targets/chemistry, declared optimization protocol, audited derived endpoints | Partial: bounded metal-only recipe preparation implemented; chemical qualification and whole-model native optimization remain separate |
 | M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Planned |
-| M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables and selection | Planned |
-| M5: campaign workbench | Switch datasets/structures/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
-| M6: bounded automatic proposals | Use declared chemistry/geometry/experimental priors and focused phasing to propose alternatives; retain ambiguity and rejected cases | Planned |
+| M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables, disk-budgeted retention/recovery and selection | Planned |
+| M5: campaign workbench | Switch datasets/structures/site groups/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
+| M6: solution-space search and decision logic | Explore budgeted structural/scattering alternatives; retain promising families and provisional choices; separately validate correct choices and appropriate deferral | Planned; construction controls do not validate selection logic |
 
 The two-metal PDU slip-geometry case waits for qualified upstream PDU
 restraints and their integration. Do not fall back to ordinary saturated-chain
@@ -118,7 +121,9 @@ flowchart LR
     Q -. planned .-> G[Qualified whole-model geometry]
     E -. planned .-> G
     G -. planned .-> F[Fixed f-prime and audited f-double-prime trials]
-    F -. planned .-> T[Campaign tables and molecular views]
+    F -. planned .-> T[Campaign and site-group tables with molecular views]
+    T -. planned .-> S[Budgeted solution tree and promising candidate families]
+    S -. planned .-> U[User validation]
 ```
 
 ### Explicit metal model construction
@@ -385,7 +390,7 @@ bind canonical JSON inputs. Synthetic controls cover 0–3 metal graphs, mixed
 species, a nonplanar six-site cluster, renamed donors, exact alternate/model/site
 identity, ambiguity, draft/edit round-trips and source-removed relocation replay.
 These tests establish software behavior, not native chemical or diffraction
-qualification. See the [current validation handoff](development-handoff.md#parallel-metal-workflow-design).
+qualification. See the [current validation handoff](development-handoff.md#parallel-metal-workflow).
 
 ## Purpose and interaction
 
@@ -504,6 +509,14 @@ label alone do not establish those chemical properties.
 
 ## Local chemistry-aware target suggestions
 
+The default ligand state comes from the effective NARestraints, CIF Doctor and
+PostMR definitions already attached to the model. Ordinary metal searches do
+not reopen every component's protonation, tautomer or bond-order assignment.
+Advanced mode may create an explicit chemical-state branch for a declared pH,
+tautomer or other experiment, preserving the source state and qualifying any
+derived dictionary. A pH/redox prior does not itself select a new state or metal
+count. Unresolved upstream chemistry remains a recorded limitation.
+
 Maintain a versioned local library of suggested metal-donor distances and
 uncertainties. Use reviewed recipes/reference data and, where the exact chemical
 context is supported, targets from the existing PostMR/CIF generation and
@@ -536,6 +549,72 @@ past recipes or satisfy an old full-experiment reuse key. See the existing
 for the reusable provenance and native-consumer boundary.
 
 ## Template, application, and refinement remain separate
+
+### General site groups and optional base conformations
+
+**Planned.** A structure may contain several independently named coordination
+regions, each with a stable group ID and explicit member atom/residue identities.
+A group can contain a base pair, multiple metals or a larger cluster and donor
+neighborhood; it is distinct from a single atomic site. Map logical recipe slots
+to that group's concrete residues, including required alternate/symmetry context.
+The W pair A:12/B:4 is the currently supported import example. General mappings
+are future adapters and do not imply current non-W or nonidentity-symmetry support.
+
+Chi-conformation exploration is a **user toggle, off by default**, scoped to a
+selected group and explicit movable residues. With it off, preserve the current
+conformation. When enabled for a pair, permit anti-anti, anti-syn, syn-anti and
+syn-syn hypotheses in the declared residue order, with a user-selected subset.
+Do not run four alternatives automatically for every pair. For an A/G example,
+alternative base orientations and accessible donors such as N7 may motivate
+different coordination proposals; geometry and data determine their support.
+
+A chi candidate moves the complete connected base and substituents, including
+attached iodine, while preserving sugar stereochemistry and chemical identity.
+It needs separate coordinate preparation and appropriate relaxation, not merely
+metal repositioning. Rebuild applicable coordination and pairing/stacking
+restraints for the branch so a prior conformation does not predetermine its
+outcome. The current metal-only solver does not perform these transformations.
+
+Switching the visible site group changes the view only. Experiments explicitly
+declare which groups move or fit and how all remaining anomalous scatterers are
+handled. Shared donors, nearby sites and common scale parameters can couple
+groups; retain the complete model and group policies in experiment/cache keys.
+See the [solution-space contract](metal-anomalous-doctor.md#solution-space-search-and-provisional-decisions)
+for branching, provisional choices and final user validation.
+
+The chi toggle controls discrete conformational candidate generation. Leaving
+it off preserves the starting conformational choice; it does not silently alter
+the declared coordinate-refinement strategy or freeze otherwise movable atoms.
+
+### Expanded neighborhoods and shared interactions
+
+The planned view expander can reveal neighboring bases, major-groove atoms,
+adjacent metal groups and connected cluster segments by radius, explicit residue
+selection or graph expansion. This supports a metal spanning two base pairs,
+side-by-side metal pairs and extended clusters without treating one pair as the
+entire physical system. Context expansion changes only visibility/camera state;
+it does not add donors, restraint terms, fitted groups or parameters, and it
+does not change a recipe or experiment fingerprint.
+
+Named groups are overlapping views over one canonical atom inventory, not
+independent copies. A shared metal retains one atom identity and each active
+restraint term is emitted once. Conflicting targets or transformations for a
+shared atom require an explicit resolution; overlapping groups must not silently
+combine incompatible chi choices or average restraint targets.
+Adding a cross-group interaction is an explicit
+scientific edit: create a recipe/instance revision, bind exact atoms and preview
+its effect before preparing a new hypothesis. Joint fitting scope and shared
+occupancy constraints remain separate explicit choices.
+
+Reusable templates can declare additional donor/residue slots and metal-metal
+edges. Bind slots explicitly to the expanded neighborhood; never infer chemical
+equivalence from proximity or a neighboring residue number. If a role or topology
+cannot be transferred safely, retain a concrete-only instance and report the
+unresolved reusable mapping. Donors in symmetry mates need exact operators and
+qualified native selectors; displaying a mate does not establish export support.
+Existing input parameters are unchanged by merely expanding the view.
+
+### Recipe application
 
 A saved recipe retains its name/version, logical donor slots/roles, metal slots,
 coordination pattern, target values/uncertainties, applicability notes and source
