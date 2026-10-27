@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-26:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-10-27:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -58,13 +58,16 @@ C103 independently evaluates the periodic torsion function with exact binary
 inputs and high-precision arithmetic. Its supported reference checks pass in both
 orders, while the full-precision PDU torsion remains highly sensitive to a single
 floating-point coordinate step. Current PDU declarations match the earlier
-triple/180° prerequisites. A separate candidate and exact current-model native
-comparison are next; no restraint change or endpoint approval follows yet.
+triple/180° prerequisites. C104 now prepares a separate complete candidate:
+six PDU dictionary torsions and three active native torsion restraints are
+omitted, while the rest of the current linked inventory matches exactly.
+Phosphate state, NAR terms and the 5PC bystander are preserved. Fixed-coordinate
+energy/gradient attribution and derivative checks are next; no endpoint approval follows.
 Neither native mechanics nor initial derivatives confer the old endpoint proof.
 ATL remains an independent source/compiler control. Future chemical-reference
 input, potentially from ChemDraw exports, belongs to restraints preparation;
 drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c103) is the
+[current capability map](cif-doctor.md#current-capability-boundary-c104) is the
 concise authority for these distinctions and next steps.
 
 ## What it does
@@ -657,7 +660,9 @@ torsion. C102 tests finer resolution and retains review; both displacement
 uncertainty and strict atom-order sensitivity remain visible. Numerical
 agreement, useful conditioning and scientific chemistry are separate questions.
 C103 supplies independent decimal arithmetic and input-sensitivity evidence;
-current declaration matches precede a separate candidate/native comparison.
+C104 separately verifies the complete declaration-based omission candidate
+against native inventories. This preserves the bystander, phosphate and NAR
+terms; energy/gradient and derivative qualification remain separate.
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native

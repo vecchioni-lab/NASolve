@@ -33631,5 +33631,455 @@
       "No relaxed native threshold, production/checkpoint adoption, ordinary refinement or scientific approval.",
       "Continue directly on Cedar without a new branch or Pine/main merge. Metal GUI/shared-restraint work, ATL and future ChemDraw reference support remain separate."
     ]
+  },
+  "linked_pdu_omission_inventory_2026_10_27": {
+    "author": "Rowan · Codex desktop",
+    "status": "LINKED_PDU_OMISSION_INVENTORY_PASS; ENERGY_AND_DERIVATIVES_PENDING",
+    "branch": "cedar",
+    "parent_commit": "b2cb1611425a84c35947026ee5ab40b24692b154",
+    "before": "C103 row-level declaration agreement; no complete current-model omission candidate.",
+    "after": "Complete candidate plan and fresh original/candidate linked inventory comparison pass; no candidate adoption.",
+    "changed_runtime_files": [
+      "src/nasolve/cif_linked_linear_torsion.py"
+    ],
+    "changed_tests": [
+      "tests/test_cif_linked_linear_torsion.py"
+    ],
+    "schemas": {
+      "schema_version": 1,
+      "policy_id": "cif-linked-linear-torsion-inventory-v1",
+      "kind": "DIAGNOSTIC_COMPARISON_RESULT; NOT_A_RUNTIME_BUNDLE_READER"
+    },
+    "compatibility_and_migration": "Additive Python diagnostic only; existing receipts, CLI/runtime schemas, thresholds and workers unchanged. No migration or dependency.",
+    "execution": {
+      "candidate": {
+        "anchor": "mixed_linked_recovery_directory",
+        "path": "candidate/PDU.cif",
+        "sha256": "7f9d72951d0f83b4007e16a214b3b3a2e3ce7cc4ea619e26340b9f56b36c6956",
+        "size": 9613
+      },
+      "coordinate_decision": {
+        "automatic_adoption": false,
+        "checks": {
+          "qualified_endpoint_derivatives": false
+        },
+        "continue_solving": true,
+        "endpoint_usable": false,
+        "native_usable": true,
+        "notes": [
+          "Stopping, pucker, chirality and residual findings are recorded separately from fixed native mechanics.",
+          "The optional separate endpoint is selected only when its fixed objective and native checks qualify; otherwise the usable starting model is retained."
+        ],
+        "requires_cif_review": false,
+        "scientific_qualification": "NOT_ASSESSED",
+        "selected": "verified_recovered_model",
+        "status": "CONTINUE_WITH_NOTES",
+        "stopping": {
+          "calls": 108,
+          "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+          "iterations": 58,
+          "max_iterations": 1000,
+          "native_criterion_met": false,
+          "reason": "unreported"
+        }
+      },
+      "mode": "COMPLETE_NATIVE_INTERPRETATIONS; NO_OPTIMIZATION",
+      "native_calls": 2,
+      "native_captures": {
+        "candidate": {
+          "anchor": "mixed_linked_recovery_directory",
+          "path": "native/candidate/cif-native-zl8dlzq1/native_receipt.json",
+          "sha256": "e2406e335a4074bd4fcbfa1b086bae2ba3a5e7b415616fbb822ed49cadef6694",
+          "size": 5879204
+        },
+        "original": {
+          "anchor": "mixed_linked_recovery_directory",
+          "path": "native/original/cif-native-yskf23f0/native_receipt.json",
+          "sha256": "402f72746d806cd0aa859f37de28fa4cdbeee1bdcc3a84fc57f7f7ef04e21ca6",
+          "size": 5885293
+        }
+      },
+      "native_version": "Phenix 2.2.1-6174; dispatcher 2.2.1",
+      "parent_artifacts_preserved": {
+        "C100": 76,
+        "C101": 68,
+        "C102": 70,
+        "C103": 2,
+        "C98": 213,
+        "C99": 68
+      },
+      "parent_bindings": {
+        "active_capture": {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "native/active/cif-native-kv9awhao/native_receipt.json",
+          "sha256": "3896beded08ff2642d0053b118d097d59b91233998e58c16b6224bf6b8d87119",
+          "size": 5885303
+        },
+        "dictionaries": [
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/001_dictionary.cif",
+            "sha256": "4b9403cafd7d11ab4e52b4889a49a5d696b337fa5d27689e95f5d245a9661ab6",
+            "size": 10792
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/002_dictionary.cif",
+            "sha256": "ad0049638e330752b1002a2312106532ea4d11a245bafc0ff4813419620ec52e",
+            "size": 386
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/003_dictionary.cif",
+            "sha256": "3efe268c6f77209e1dc77a2b01609d5222d0fd1daf2ec77199e52efd809178e9",
+            "size": 11714
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/004_dictionary.cif",
+            "sha256": "e9e2dffc9eec021bf95025b1eed1ddfa987e998c7b387f3359f352dde52bb6a2",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/005_dictionary.cif",
+            "sha256": "0cb1335fac541e50bf0afb8a518b37338e377ef9cd8ae893417693f6318435ec",
+            "size": 11141
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/006_dictionary.cif",
+            "sha256": "183c0e48e21e69f1d768a249bb4869531e1ac535645fdfbb27135b23accac285",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/007_dictionary.cif",
+            "sha256": "8d444dad891bf247b8c0536675657dcb274fe7e4789c66991491cdafe608da0c",
+            "size": 10072
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/008_dictionary.cif",
+            "sha256": "8f0464b8fcfaf45b6fd1ddf192c68ce80bc4eaf3992f73050ef7d09b708b5f6c",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/009_dictionary.cif",
+            "sha256": "d9cb5256d5817267c0d2c31038faa352d4fa0b402164935e0ecee15dfbd0bcec",
+            "size": 10555
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/010_dictionary.cif",
+            "sha256": "f957a13a82bd11d6e9a38b12086742423c74d2e8a74267fe8ec35683cac65990",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "bundle/prepared/base_dictionary.cif",
+            "sha256": "11bbe89831ad762573bd220b7b05679c7bdecaafcd0f401808c28c673fb96f81",
+            "size": 9825
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/012_dictionary.cif",
+            "sha256": "c6e852e42760383e7c3b5574252ebe4a2da08353e542074c47b66b2a92a7a1e2",
+            "size": 11362
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/013_dictionary.cif",
+            "sha256": "763e80a442c69f0795854d711bbed3cea4b3a7bc2a10cd51c14d3fd2e3e7abe7",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/014_dictionary.cif",
+            "sha256": "821e178e8e0e9b5542e27443362a82f57bac9ee96bf04ca41632707da1a3a4d2",
+            "size": 9857
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/015_dictionary.cif",
+            "sha256": "8af638a8eead6cca554d8afa3a9482f83b541571dd75889856d376ecbe598643",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/016_dictionary.cif",
+            "sha256": "0d0457a04d05ca79d0b79df2b90fe5cec89d297160fbefa81d9fa5ff8a4e8385",
+            "size": 11026
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/017_dictionary.cif",
+            "sha256": "b55292c31cabb02bd117c4085df8e1161855086e331645bc7f8c3bb5cb2421c7",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/018_dictionary.cif",
+            "sha256": "e9e2c4aff3345ab37cdd1668d37593ddc280aa26f4aafd97eb78fe5f7d7781ab",
+            "size": 9984
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/019_dictionary.cif",
+            "sha256": "f4b0535c7fea659b30fbae83c83008d2e9952ccf958f7b5e62cf255610c0efbb",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/020_dictionary.cif",
+            "sha256": "889540841e5885610b612aa457d2337fa8d30e877539344da9b3e90234b9d422",
+            "size": 9937
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/021_dictionary.cif",
+            "sha256": "ba29c15cd2ce476affbdc91ecc3675dad96c3e97ab92a33fc92a1d6d0edd0203",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/022_dictionary.cif",
+            "sha256": "0afbebe59d53e2c89d592cbf5fd43922b4aef0e926e1441c044ac52676d77f31",
+            "size": 10018
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/023_dictionary.cif",
+            "sha256": "d7ac78c60a5856349c078ce671ad67a45478bfa206b63a5024441bc6ad75252d",
+            "size": 260
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "bundle/prepared/site_modifications.cif",
+            "sha256": "0f4f5eecafd8563a826032942dff6541db5989b00a5c97f0242466d6117b2d1f",
+            "size": 386
+          }
+        ],
+        "model": {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "inputs/runtime/000_model.pdb",
+          "sha256": "ac9579220ea6c506a916137c283dfc2c9e32a1f88aaf39e00c0f9d6ae725e259",
+          "size": 99310
+        },
+        "phils": [
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/active_policy.phil",
+            "sha256": "79053e8e22fbde8424b219cac4e00d0220ec2f0a97b807c001ea2d409fd0fbd2",
+            "size": 56365
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/025_phil.phil",
+            "sha256": "b851a769001e76d60212ba6d07de1caef562547e091c080296bbce35d29bc598",
+            "size": 145
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/026_phil.phil",
+            "sha256": "205f84905016223e91a3cb35f318e028088413613f8a7d53b0a5873523dd35f6",
+            "size": 145
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/027_phil.phil",
+            "sha256": "e6e6394dc2ea9f6e31eb3dbb10af47290e5397ebd28e313fa00df51a8c364a8b",
+            "size": 145
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/028_phil.phil",
+            "sha256": "390b72069b3c6669e902d0126ca9866cac38aa91323c7010ebd5e5064ac514af",
+            "size": 145
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/029_phil.phil",
+            "sha256": "7e69855b099acade8239394cda9b20d87890d06e13ae24d6e7d70792bfcf6f71",
+            "size": 146
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/030_phil.phil",
+            "sha256": "41266eaa54f1ac78044e1acdcb6c63c0c4b393be6ba36869478fce9598c9ff25",
+            "size": 144
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/031_phil.phil",
+            "sha256": "68ed563a60e0e3d9e0a3cfaebd80f244a316ceb1674f9de44b85a1f613e79cf9",
+            "size": 144
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/032_phil.phil",
+            "sha256": "f3f00ae1c2437efc36e98189454394237dd2af1ee3fb69c4907bc01dba9a9a05",
+            "size": 145
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/033_phil.phil",
+            "sha256": "95e35f510b38d42d722358e865df37a5794e187b86bd016e3f68e4c95c180ae0",
+            "size": 146
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/034_phil.phil",
+            "sha256": "1e99eeeb1bb18e2ff8a58fcf95a310b9b03a79ff426984b53bb31d078a3009b5",
+            "size": 145
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "inputs/runtime/035_phil.phil",
+            "sha256": "67a9f49a36bf0fb7159a105d85180221ca41de46e9d68f36fab653c08e876e49",
+            "size": 145
+          },
+          {
+            "anchor": "mixed_source_recovery_directory",
+            "path": "bundle/prepared/site_modifications.phil",
+            "sha256": "2bdd7dd33e7aabb2004a1058f8fd1a3d3bb012e8f8ea8d39304ed67bc22a2b71",
+            "size": 145
+          }
+        ],
+        "recovery_report": {
+          "anchor": "mixed_source_recovery_directory",
+          "path": "mixed_source_recovery.json",
+          "sha256": "bf1454717b00d7e6f6ad45aff173f931afc2bb7fcd584acab74fccbf46fb0b94",
+          "size": 3427467
+        }
+      },
+      "qualification": {
+        "anchor": "mixed_linked_recovery_directory",
+        "path": "qualification.json",
+        "sha256": "5e84c6cae15c9f873c9f522fc58bfeb1d3cf314f7783bbfcb280a1d72ac5e270",
+        "size": 5366
+      },
+      "schema_version": 1,
+      "seconds": 116.697,
+      "source": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "inputs/runtime/020_dictionary.cif",
+        "sha256": "889540841e5885610b612aa457d2337fa8d30e877539344da9b3e90234b9d422",
+        "size": 9937
+      }
+    },
+    "qualification": {
+      "automatic_adoption": false,
+      "checks": {
+        "atom_count": true,
+        "atoms": true,
+        "automatic_adoption": true,
+        "dictionary_loading": true,
+        "fatal_problems": true,
+        "geometry": true,
+        "installed_api_sources": true,
+        "inventory_detail": true,
+        "model_editing": true,
+        "monomer_mappings": true,
+        "optimization": true,
+        "parameter_consumers": true,
+        "phil_adaptations": true,
+        "policy_id": true,
+        "readyset_retry": true,
+        "restraint_policy": true,
+        "schema_version": true,
+        "scientific_approval": true,
+        "status": true,
+        "unsupported_fields": true,
+        "unused_definitions": true
+      },
+      "component": "PDU",
+      "derivative_qualification": "NOT_RUN",
+      "energy_delta_qualification": "NOT_RUN",
+      "inventory_checks_pass": true,
+      "model_editing": "NOT_RUN",
+      "modeled_occurrences": 1,
+      "optimization": "NOT_RUN",
+      "policy_id": "cif-linked-linear-torsion-inventory-v1",
+      "removed_effective_torsions": 6,
+      "removed_native_proxy_counts": {
+        "const_dihedral": 0,
+        "dihedral": 3
+      },
+      "schema_version": 1,
+      "scientific_approval": "NOT_RUN",
+      "status": "REVIEW"
+    },
+    "candidate_hashes": {
+      "source_sha256": "889540841e5885610b612aa457d2337fa8d30e877539344da9b3e90234b9d422",
+      "candidate_sha256": "7f9d72951d0f83b4007e16a214b3b3a2e3ce7cc4ea619e26340b9f56b36c6956"
+    },
+    "validation": {
+      "before_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linked_linear_torsion.py",
+      "before_result": "21 failures from missing new module before implementation.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linked_linear_torsion.py tests/test_cif_linear_torsion_candidate.py",
+      "focused_result": "57 passed in 1.15s",
+      "new_regressions": 26,
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider",
+      "full_result": "5798 passed, 276 subtests passed in 1033.68s (0:17:13)",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/NASolve-live-tests/104_Cedar_PDU-inventory-wqvlqfu8/execute.py",
+      "final_replay_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/NASolve-live-tests/104_Cedar_PDU-inventory-wqvlqfu8/validation/verify.py",
+      "cold_replay": {
+        "files_preserved": 126,
+        "final_code_sha256": "c26314e8226b92640fdaf39c8af758580484d8b096587552a559fd7845cc453d",
+        "forgeries_rejected": [
+          "bystander",
+          "phosphate",
+          "nar",
+          "coordinate"
+        ],
+        "new_processes": 0,
+        "original_copy_removed": true,
+        "original_live_and_sdk_reads_blocked": true,
+        "status": "PASS"
+      },
+      "early_suite": "Interrupted owned preliminary suite after 1303 passing tests to include native declaration prerequisite checks; final complete suite rerun.",
+      "integrity": {
+        "status": "PASS",
+        "parent_file_bytes_and_mtimes_preserved": {
+          "C98": 213,
+          "C99": 68,
+          "C100": 76,
+          "C101": 68,
+          "C102": 70,
+          "C103": 2
+        },
+        "document_links": 203,
+        "python": "3.12.14",
+        "source_and_test_files": 418,
+        "final_source_matches_cold_replay": true,
+        "source_hashes": {
+          "src/nasolve/cif_linked_linear_torsion.py": "c26314e8226b92640fdaf39c8af758580484d8b096587552a559fd7845cc453d",
+          "tests/test_cif_linked_linear_torsion.py": "4a431352bc341bfa07a9db9b9b7a0b12cc63b4ba7ee826fdc5614ba1a097b0f8"
+        }
+      },
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c104-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "compile_result": "PASS",
+      "whitespace_command": "git diff --cached --check",
+      "whitespace_result": "PASS",
+      "figure_command": "/opt/homebrew/bin/rsvg-convert -w 1400 -o /private/tmp/c104-overview.png docs/figures/cif-doctor-overview.svg",
+      "figure_result": "Rendered and visually inspected; all labels fit.",
+      "capture_and_final_qualifier": "Fresh captures use the unchanged native worker; the final stricter comparison and exact source hashes are archived in validation/final-code and replayed against both captures.",
+      "archive_manifest": {
+        "anchor": "live_tests_directory",
+        "path": "104_Cedar_PDU-inventory-wqvlqfu8/validation/completion/manifest.json",
+        "sha256": "8347a6e0e8395d3733e325f280e17d2a55fc16f6831151158fd310571408c232",
+        "size": 2463
+      },
+      "archive_payload_count": 16
+    },
+    "generated_artifacts": "Scientific inputs, candidate CIFs, full native observations, logs and live runners remain local and excluded from Git. Code, synthetic tests, maintained public contracts and compact technical evidence are committed.",
+    "limitations_and_followup": [
+      "Inventory agreement is not energy/gradient, derivative or scientific qualification.",
+      "Caller must validate native execution and ordered input provenance.",
+      "The complete candidate applies to every occurrence of its component, not selected individual sites.",
+      "Preserve C100 as unqualified and the selected verified recovered start; test fixed-coordinate energy/gradient attribution and derivatives before any separate optimizer."
+    ]
   }
 }

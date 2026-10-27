@@ -21,6 +21,9 @@ collinear PDU torsion. C102 [probes numerical resolution](cif-doctor.md#recovere
 and retains full-precision review despite some finer-step agreement. C103
 [independently checks torsion arithmetic](cif-doctor.md#independent-recovered-torsion-precision-c103)
 and confirms strong PDU input sensitivity plus current declaration matches.
+C104 [checks the complete linked omission candidate](cif-doctor.md#linked-pdu-omission-inventory-c104):
+six PDU definition rows and three active torsions disappear, with every other
+native inventory category preserved. Energy and derivative gates remain separate.
 Runtime activation and scientific qualification remain separate.
 
 ATL stays independent,

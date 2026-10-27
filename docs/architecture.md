@@ -3246,3 +3246,25 @@ sensitivity. Six selected PDU/5PC rows match declaration prerequisites without
 creating a complete candidate plan. C100 qualification and source chemistry
 remain unchanged; native omission/delta checks in the current linked manager
 are required before optimization of a separate candidate.
+
+
+## Linked declaration-based omission inventory (C104)
+
+`cif_linked_linear_torsion.py` adds a pure inventory comparison around the
+existing C44 preparation policy and C103 declaration inspector. It rebuilds the
+complete candidate and requires identical bytes, then checks each native
+provider/site definition before deriving active omissions from full literal
+residue identities. It compares every remaining native inventory field with
+JSON type sensitivity. Only `energy_inventory` is excluded, explicitly leaving
+energy, derivative and scientific qualification unperformed. The caller owns
+native capture/input authentication through the maintained reader; this is not
+a new runtime bundle or automatic selection path.
+
+The local Phenix 2.2.1-6174 test captures the original and candidate current C98
+manager. Exactly six PDU definition rows and three active torsion proxies are
+removed; all 21 other/exact inventory checks pass. The original native inventory
+reproduces C98. 5PC, linkage/phosphate definitions, NAR targets and coordinates
+remain unchanged. C103 lineage and selected-start decisions are preserved.
+The new schema-1 diagnostic result uses
+`cif-linked-linear-torsion-inventory-v1`; no existing schema needs migration.
+See the [C104 contract](cif-doctor.md#linked-pdu-omission-inventory-c104).

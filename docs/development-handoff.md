@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-26** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-27** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -13,7 +13,53 @@ not general production support. Earlier wording remains in Git and the
 
 ## Current CIF Doctor continuation boundary
 
-**Current delivery: C103 independent PDU precision and declaration audit.**
+**Current delivery: C104 complete PDU omission inventory.**
+A separate candidate applies the existing declaration-based policy to all PDU
+rows. Two complete Phenix 2.2.1-6174 native interpretations of the current C98
+863-atom model pass: the original reproduces C98 exactly, and the candidate
+removes six PDU definition rows and three active dihedral proxies (610 → 607).
+All 21 remaining inventory-category comparisons pass, including the 5PC
+bystander, phosphate/linkage state, NAR terms and model coordinates.
+
+Before C104, C103 established row-level declaration and numerical-sensitivity
+evidence. New `cif_linked_linear_torsion.py` rebuilds the complete candidate plan,
+checks native triple/180° prerequisites at every modeled occurrence, and permits
+only the planned omissions. New synthetic tests cover complete-plan binding,
+bystanders, multiple occurrences, reversed proxies, chemistry/policy changes,
+ambiguity, type changes and relocation. The schema-1 result remains `REVIEW`
+with `inventory_checks_pass`; energy/derivative/scientific gates remain `NOT_RUN`.
+No CLI/runtime schema, dependency, threshold or migration changes.
+
+Validation: **5798 passed, 276 subtests passed in 1033.68s (0:17:13)**; **57 focused regressions pass**. Cold replay preserves 126 relocated files
+and timestamps with the original temporary path gone and historical live/SDK
+reads and processes blocked. Four scientific-inventory alterations fail.
+All 497 C98–C103 parent files retain bytes/timestamps. The C103 maintained reader
+replays the complete prior lineage. Candidate preparation and two native
+interpretations are complete executions, not dry-runs; no Coot, ReadySet,
+optimizer or model edit runs. Inputs, candidate CIFs, captures and logs stay
+local. Git contains source, synthetic tests, maintained docs and compact evidence.
+Exact commands and hashes: `linked_pdu_omission_inventory_2026_10_27` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+**Next boundary:** fixed-coordinate original/candidate energy and gradient
+attribution, then derivative checks at relevant initial/saved endpoint coordinates.
+The native captures contain energy observations but this inventory gate does not
+qualify their deltas. Do not inherit C99 derivatives for the changed objective,
+retry optimization, adopt the candidate or requalify C100 from inventory alone.
+`verified_recovered_model` remains selected. The old isolated impact worker
+explicitly rejects parallelity managers; reuse its attribution concepts through
+the current mixed-model corrected evaluator, preserving the NAR stacking terms.
+Callers must authenticate native
+capture/input provenance; this helper is not a standalone artifact reader.
+
+Continue directly on **`cedar`**; no new branch, Pine/main merge, or changes to
+the separate metal GUI/shared-restraint work. See the [C104 contract](cif-doctor.md#linked-pdu-omission-inventory-c104).
+
+— Rowan · Codex desktop
+
+### Previous C103 delivery
+
+**C103 delivery: independent PDU precision and declaration audit.**
 The complete saved-data execution takes 66.15s with zero new native calls.
 All 21 supported proxy/case rows pass independent 60/90-digit, reversed-order
 and 504 Cartesian direction/order checks at both decimal steps. Three DZ

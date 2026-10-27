@@ -43,8 +43,10 @@ C101 localizes the remaining sampled torsion failures at fixed coordinates.
 C102 probes their numerical resolution: full-precision evidence remains under
 review, preserving the selected start and unqualified endpoint. C103 independently
 checks the periodic torsion arithmetic and confirms strong PDU coordinate sensitivity;
-a separate declaration-based candidate comparison is next.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c103)
+C104 prepares that separate candidate and confirms exactly six PDU definition
+omissions and three active torsion removals, preserving the rest of the current
+linked inventory. Energy/gradient attribution and derivative checks are next.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c104)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.

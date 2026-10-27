@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "mixed_runtime_bundle_handoff_2026_10_25",
+    "current_diagnostic_record": "linked_pdu_omission_inventory_2026_10_27",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26816,6 +26816,18 @@
         "tests/test_mixed_runtime_probe.py"
       ],
       "follow_up": "Return C95 ordinary-bundle handoff; preserve original stopping/source-state notes. Full diffraction-run integration and scientific qualification remain separate; no duplicate native or derivative audit is needed for unchanged inputs."
+    },
+    "linked_pdu_omission_inventory_2026_10_27": {
+      "status": "IMPLEMENTED_INVENTORY_GATE; COMPLETE_NATIVE_MAC_VALIDATION_PASS",
+      "module": "src/nasolve/cif_linked_linear_torsion.py",
+      "contract": "docs/cif-doctor.md#linked-pdu-omission-inventory-c104",
+      "removed_definition_rows": 6,
+      "removed_active_dihedrals": 3,
+      "all_other_inventory_categories": "EXACT",
+      "energy_gradient_qualification": "NOT_RUN",
+      "derivative_qualification": "NOT_RUN",
+      "automatic_adoption": false,
+      "caller_requirement": "Authenticate native captures and exact ordered inputs with maintained readers before comparison."
     }
   },
   "audience": [

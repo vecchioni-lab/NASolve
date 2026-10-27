@@ -13,7 +13,9 @@
 
 <a id="current-capability-boundary-c102"></a>
 
-## Current capability boundary (C103)
+<a id="current-capability-boundary-c103"></a>
+
+## Current capability boundary (C104)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -29,7 +31,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
 | Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | C100 tests bounded geometry but retains the verified recovered start because endpoint derivatives fail qualification. The C95 bundle is not overwritten or reclassified. |
-| Why does the repaired endpoint retain derivative review? | C101 localizes all 22 remaining sampled local full-precision failures to PDU D:5 C5–C5A–C5B–C5M; seven other sampled torsions and the remainder group pass. Native attribution and saved-family controls agree. | Fixed-coordinate diagnosis does not requalify C100 or establish a native bug. C102 passes only 2/22 local and 4/10 broader rechecks; resolution guards and reversal review retain the verified recovered model. C103 confirms independent reference agreement and strong PDU input sensitivity; a separate current-model declaration-based candidate comparison is next. |
+| Why does the repaired endpoint retain derivative review? | C101 localizes all 22 remaining sampled local full-precision failures to PDU D:5 C5–C5A–C5B–C5M; seven other sampled torsions and the remainder group pass. Native attribution and saved-family controls agree. | Fixed-coordinate diagnosis does not requalify C100 or establish a native bug. C102 passes only 2/22 local and 4/10 broader rechecks; resolution guards and reversal review retain the verified recovered model. C103 confirms independent reference agreement and strong PDU input sensitivity; C104 now passes that candidate inventory comparison; fixed-coordinate energy/gradient and derivative qualification are next. |
 | Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
 | Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
 
@@ -99,6 +101,59 @@ assessment with all 38 bundle files unchanged and zero SDK/process attempts.
 The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
 The existing evidence ledger records commands, frozen hashes, the exact current
 source summary and a preserved C18 DF recovery candidate for subsequent qualification.
+
+### Linked PDU omission inventory (C104)
+
+`qualify_linked_linear_torsion_candidate(before, after, source, component,
+candidate)` adds a deliberately narrow diagnostic inventory gate. It rebuilds
+C44's complete graph/declaration-based plan in temporary scratch space and
+requires the exact candidate bytes. It reuses C103's declaration checks for
+every planned row in the native dictionary and every modeled occurrence:
+explicit triple bonds, declared 180° angles and unchanged target/ESD/period.
+Coordinates and sampled C103 rows do not select the omissions.
+
+The qualifier binds atoms through full literal residue identities, verifies
+active proxy membership and parameters, and subtracts only planned torsion
+rows/proxies from a copy of the original inventory. Every remaining native
+category compares exactly, including dictionary readback, site modifications,
+charges, atom coordinates, links, all other proxies, NARestraints policy,
+parameter adaptation and installed API sources. Unknown categories also compare;
+JSON types are significant. `energy_inventory` is explicitly outside this gate.
+Callers must validate native execution and ordered input provenance with the
+maintained capture reader before supplying inventories; this utility alone does
+not authenticate a native process or provide a new standalone bundle reader.
+
+The complete Phenix **2.2.1-6174** local test uses the unchanged C98 recovered
+863-atom starting model, 24 dictionaries and 13 PHIL files, after replaying the
+C103/C102/C101/C100/C99/C98 lineage. Two fresh native interpretations complete.
+The original reproduces C98 exactly. The candidate removes **six PDU definition
+rows and three active dihedral proxies** at D:5 (610 → 607 total dihedrals).
+All 21 inventory categories pass, including the 5PC bystander, phosphate/linkage
+state and NAR terms. Both native captures record energies, but their differences
+and derivatives have not yet been qualified.
+
+The schema-1 result uses `cif-linked-linear-torsion-inventory-v1`, remains
+`REVIEW`, and exposes `inventory_checks_pass` separately from explicit
+`NOT_RUN` energy, derivative and scientific gates. No CLI/runtime schema,
+threshold, dependency, historical worker, checkpoint or migration changes.
+No optimizer, ReadySet, Coot or model edit runs; automatic adoption is false.
+The selected model remains `verified_recovered_model`; C100 stays unqualified.
+
+Local replay preserves 126 relocated evidence files and timestamps after the
+original temporary location is removed, with historical live/SDK reads and
+processes blocked. Four altered bystander/phosphate/NAR/coordinate cases fail.
+All 497 C98–C103 parent files retain bytes and timestamps. Exact commands and
+results are recorded in `linked_pdu_omission_inventory_2026_10_27` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Generated
+models, dictionaries, native observations and logs remain local.
+
+**Next:** bind this candidate to fixed-coordinate energy/gradient attribution
+and fresh derivative checks at the relevant saved coordinates. Preserve the
+original objective and endpoint evidence. Only afterward consider a separate
+bounded geometry attempt; inventory agreement does not select a candidate. The
+historical isolated `cif_linear_torsion_impact` worker rejects parallelity
+managers; the linked follow-up must retain the current mixed-model corrected
+evaluator and NAR stacking terms rather than disable them to reuse that worker.
 
 ### Independent recovered-torsion precision (C103)
 

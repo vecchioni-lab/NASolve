@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify a complete linked PDU omission inventory (C104)
+
+- Add a diagnostic gate that rebuilds the existing declaration-based candidate,
+  verifies native triple/180° prerequisites and requires exactly its planned
+  definition/proxy omissions across every modeled component occurrence.
+- Two complete native interpretations remove six PDU definition rows and three
+  active torsions while preserving all other inventory categories, including
+  5PC, phosphate state, NAR targets, coordinates and parameter adaptations.
+- Keep energy/gradient, derivative and scientific qualification separate. The
+  result remains review-only; no optimizer, endpoint selection, runtime/CLI
+  schema change, dependency or migration is introduced.
+
 ### Independently inspect recovered PDU torsion arithmetic (C103)
 
 - Add a standard-library Decimal reference using exact binary coordinates,
