@@ -1326,6 +1326,13 @@ pair slots to A:12/B:4 and reuses PostMR's effective donor-role corrections.
 and optionally obtains offline reference scattering; `metal preview` replays
 bindings and can export proposed PHIL edits. Both preserve checkpoint selection.
 Context schema 1 is distinct from immutable recipes and future experiment keys.
+`metal build` consumes a source-bound placement plan and creates a separate
+numbered `Metal/hypothesis_NNN` review bundle. It preserves parent atom records
+and atomic state, binds the preview to serialized coordinates, and retains
+anchored observations/resources. `metal verify` replays the exact derivation
+using captured roles and a frozen parent report. Placement and hypothesis
+schemas are version 1; neither creates/selects a checkpoint or runs refinement.
+The hypothesis manifest is the future geometry adapter's input boundary.
 See the [implementation and milestone contract](metal-restraint-builder.md#integration-objectives-and-milestones).
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain

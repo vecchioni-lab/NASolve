@@ -35,8 +35,16 @@ def read_pdb(path: Path, *, checkpoint_id=None) -> ImportedModel:
     """
     try:
         raw = Path(path).read_bytes()
+    except OSError as exc:
+        raise RecipeError(f'Cannot read PDB: {exc}') from exc
+    return parse_pdb(raw, checkpoint_id=checkpoint_id)
+
+
+def parse_pdb(raw: bytes, *, checkpoint_id=None) -> ImportedModel:
+    """Import serialized PDB bytes using the same exact rules as file import."""
+    try:
         lines = raw.decode('ascii').splitlines()
-    except (OSError, UnicodeError) as exc:
+    except (AttributeError, UnicodeError) as exc:
         raise RecipeError(f'Cannot read PDB: {exc}') from exc
     atoms, states, identities, anisou = [], [], set(), {}
     model_id, model_count, ended = '1', 0, False

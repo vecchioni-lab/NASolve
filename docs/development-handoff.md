@@ -13,7 +13,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## Parallel metal workflow design
+## Parallel metal workflow
 
 The user-authorized `Alder` worktree isolates metal authoring/preview
 development from active CIF/numerical development. Its base is `2801d78` (C100); integrate
@@ -22,7 +22,100 @@ changes. Retire the feature branch/worktree after reviewed integration and an
 audit of its local artifacts, not while native results remain unaccounted for.
 This parallel scope adds no Cedar/Pine scientific gate.
 
-### Current M1 generated-model integration (2026-10-27)
+### Current M2a explicit hypothesis construction (2026-10-27)
+
+Branch `Alder` continues the isolated metal workflow; integration target remains
+Cedar or its designated successor. Cedar was observed at `b92e3f1` (C106
+attachment topology/source-state inspection). No upstream adoption or PDU
+qualification is implied. The two-metal PDU slip case remains deferred.
+
+Before this patch, metal recipes could inspect a generated model and export
+proposed restraints but could not create missing metal sites. `metal build`
+now constructs a separate numbered review model from explicit, source-bound
+positions, occupancies, B values and formal-charge declarations. Parent PDB
+records and atomic state remain unchanged, including other anomalous atoms and
+ANISOU. Serialized coordinates own the preview and PHIL; rounding deltas and
+unrestrained sites are visible. `metal verify` replays saved artifacts without
+native execution or a live role-workbook lookup. Neither command selects a
+checkpoint, optimizes coordinates or fits f-double-prime.
+
+Changed source: new `src/nasolve/metal/materialize.py`, shared byte parsing in
+`metal/context.py`, and additive build/verify routes in `metal/cli.py`. New tests:
+`tests/test_metal_materialize.py`. Updated contracts: builder/intent, anomalous
+workflow, GUI, architecture, README/index, changelog and this handoff. New kinds
+`metal-placement-plan` and `metal-hypothesis` are schema 1; the materialization
+protocol is `metal-materialization-v1`. Existing context, recipe, preview,
+checkpoint and run schemas remain unchanged; no migration is required.
+
+The new materialization regressions first failed because the implementation was
+absent. A further fail-before/pass-after regression covers legal bare `TER`
+records found in the real ReadySet output. Python 3.12.14 focused validation:
+**212 tests and 33 subtests pass in 11.11s**, including 36 new controls. Checks
+cover atomic-state/ANISOU preservation, source/recipe mismatch, collision and
+PDB limits, saved-file and rehashed-derivative tampering, typed manifest fields,
+failed publication retention, concurrent numbering, parent-report updates,
+CLI use and relocation. Exact commands from the feature worktree:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_checkpoints.py tests/test_run_context.py tests/test_autorefine.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider > /private/tmp/alder-materialize-full-suite-20261027.log 2>&1
+git diff --check
+```
+
+The complete suite passes **5777 tests and 276 subtests in 714.64s (11m54s)**,
+exit 0, against unchanged frozen source/test/intent hashes. All nine metal modules
+parse with Python 3.10 grammar, 49 linked local files resolve, and whitespace
+checks pass.
+Relocation replay runs in a fresh interpreter importing a copied source tree
+with the original source/run root removed, preserving the exact manifest.
+
+Native validation uses **Phenix 2.2.1-6174** on copies of the previously generated
+M1 models: one Hg in FT_Hg and two FF_AuAg alternatives with Au/Ag and Ag/Au at
+the same explicit seed positions. All three complete native interpretations and
+all three **`phenix.refine --dry-run` checks pass**. Fifteen proposed distance/
+angle terms have verified exact atom membership, targets and weights. Independent
+native PDB readback preserves elements, XYZ, q and B. Native interpretation's
+Cartesian conversion is checked within 1e-10 angstrom, with maximum observed
+delta 1.42e-14 angstrom. Parent model records remain byte-exact. Coot was not
+rerun; the parent M1 preparations used Coot 1.3.3.
+
+The seed coordinates and targets are explicit numerical controls derived from
+donor coordinates, not inferred solutions or recommended coordination lengths.
+These checks establish input construction/consumption only. No optimization,
+refinement cycles, f-double-prime/occupancy fit, new reference table or automatic
+checkpoint adoption ran. The first native probe's exact-float comparison failed
+on the mixed case; its evidence is retained separately from the corrected
+1e-10-angstrom comparison. Product model replay remains byte-exact.
+
+Native evidence is local under the everyday checkout's ignored
+`branch-artifacts/Alder/live-20261027-03/`: `native-summary.json`, `native/`,
+`refine-dry-runs/`, each copied run's `Metal/hypothesis_NNN/`, and
+`tested-source-hashes.json`. The earlier probe remains under
+`live-20261027-02/`. The final local runner was executed from the everyday
+checkout with:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -u branch-artifacts/Alder/runners/A09_materialized_metal_controls.py
+```
+
+The runner refuses its existing root; this command records completed local
+validation, not a portable rerun instruction. Full native commands are in its
+receipt. Only source, synthetic tests and documentation enter Git. Raw data,
+models, native output, runners and GUI state remain local. The native runner
+verifies every pre-existing parent-run file remains unchanged.
+Post-native exact replay passes for all three hypotheses; six original
+scientific input files and their copies also retain their recorded hashes.
+
+The [milestone table](metal-restraint-builder.md#integration-objectives-and-milestones)
+now distinguishes completed M2a input construction from M2b geometry preparation.
+Next: consume verified manifests through a bounded geometry adapter with
+explicit target provenance and native checks, then implement the audited frozen
+XYZ/ADP/q, fixed-f-prime, fitted-f-double-prime protocol. New-site alternates,
+nonidentity symmetry, mmCIF/hybrid-36 serialization, GUI placement and checkpoint
+adoption remain planned. Campaign dataset/structure/hypothesis identities remain
+explicit; all-case staging and bounded automatic proposals are later milestones.
+
+### Previous M1 generated-model integration (2026-10-27)
 
 Active metal branch: `Alder` (renamed from `codex/alder` without replacing the
 worktree). Integration target remains Cedar or its designated successor;

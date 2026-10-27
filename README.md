@@ -1356,8 +1356,18 @@ nasolve metal inspect /path/to/dataset/AutoMR/run_001 --element Hg
 This reads the explicit PostMR checkpoint and local reference f-prime/f-double-prime
 values without changing the current checkpoint. `metal preview` binds a saved
 recipe to that model and can export proposed distance/angle PHIL edits. Missing
-metal sites remain explicit draft bindings; placement and scientific refinement
-are later milestones. See the [metal integration guide](docs/metal-restraint-builder.md#generated-run-api-and-commands)
+metal sites remain explicit draft bindings during preview. To construct a separate
+model from an explicit source-bound placement plan, use:
+
+```sh
+nasolve metal build /path/to/dataset/AutoMR/run_001 --recipe recipe.json --placement placement.json
+nasolve metal verify /path/to/dataset/AutoMR/run_001 --hypothesis Metal/hypothesis_001
+```
+
+Each build preserves the parent model and saves a numbered review hypothesis
+with exact inputs, metal positions, occupancy/B values and proposed restraints.
+Verification replays the saved derivation. Neither command optimizes geometry,
+fits anomalous scattering or selects a checkpoint. See the [metal integration guide](docs/metal-restraint-builder.md#generated-run-api-and-commands)
 for exact inputs, limitations and campaign objectives.
 
 ## AutoRefine and checkpoints

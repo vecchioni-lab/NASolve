@@ -1,6 +1,6 @@
 # Metal-coordination restraint builder
 
-Status: **recipe core, generated-run integration and PHIL proposal export implemented; GUI and scientific execution planned**.
+Status: **recipe core, generated-run integration, explicit metal model construction and PHIL proposal export implemented; GUI and scientific optimization planned**.
 User request recorded 2026-10-06. This independent authoring feature is not a Pine
 merge prerequisite.
 Published examples and private cluster context have been supplied. The scope
@@ -21,7 +21,8 @@ hypothesis on the generated scaffold.
 | --- | --- | --- |
 | M0: authoring core | Stable graph/revision IDs, exact role binding, numerical preview | Implemented and tested |
 | M1: generated-model integration | Read a generated W checkpoint; preserve identities, q/B, dictionaries and original observations; export exact proposed restraints | Implemented; current native checks and test counts in the handoff |
-| M2: hypothesis materialization and geometry | Explicit metal coordinates/count/species, complete native restraint consumption, immutable derived models, inspected geometry | Planned; begin with one Hg and then a mixed Au/Ag pair |
+| M2a: hypothesis materialization | Explicit coordinates/count/species/q/B, preserved parent atoms, immutable derived models and native consumption controls | Implemented; one Hg and mixed Au/Ag controls, including swapped identities |
+| M2b: geometry preparation | Qualified targets/chemistry, declared optimization protocol, audited derived endpoints | Planned; no optimization or solved geometry is implied by materialization |
 | M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Planned |
 | M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables and selection | Planned |
 | M5: campaign workbench | Switch datasets/structures/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
@@ -108,10 +109,93 @@ flowchart LR
     R[Reusable recipe] --> P[Geometry preview]
     I --> P
     P --> E[Proposed PHIL export]
-    E -. planned .-> G[Derived metal hypotheses and geometry]
+    I --> M[Explicit placement plan]
+    M --> H[Numbered metal hypothesis and exact replay]
+    R --> H
+    H --> E
+    E -. planned .-> G[Qualified geometry preparation]
     G -. planned .-> F[Fixed f-prime and audited f-double-prime trials]
     F -. planned .-> T[Campaign tables and molecular views]
 ```
+
+### Explicit metal model construction
+
+`metal.materialize.build_hypothesis(context, recipe, placement)` adds explicitly
+specified metal sites to a separate review model. `verify_hypothesis(run,
+directory)` independently replays its derivation from the captured inputs.
+The same functions serve future GUI placement and campaign controllers.
+
+```sh
+nasolve metal build /path/to/dataset/AutoMR/run_001 --recipe recipe.json --placement placement.json
+nasolve metal verify /path/to/dataset/AutoMR/run_001 --hypothesis Metal/hypothesis_001
+```
+
+The schema-1 `metal-placement-plan` binds `context_id` and `recipe_sha256` to
+the selected source and recipe. Its `sites` list supplies every recipe metal
+node exactly once. Each site declares `node_id`, an exact `key`, Cartesian
+`xyz` in angstrom, `occupancy`, `b_iso` in square angstrom, `formal_charge` and `source_note`.
+`atoms` supplies exact bindings for any concrete-only atom nodes; donor nodes
+continue to use captured roles. For example, a site within a source-bound plan
+can be represented as follows; the numbers are illustrative, not defaults:
+
+```json
+{
+  "node_id": "m1",
+  "key": {"model_id": "1", "chain_id": "M", "residue_id": "1", "component_id": "HG", "atom_name": "HG"},
+  "xyz": [12.3, 14.5, 16.7],
+  "occupancy": 0.6,
+  "b_iso": 25.0,
+  "formal_charge": null,
+  "source_note": "Explicit proposed position; geometry requires evaluation"
+}
+```
+
+No position, q, B or formal charge is inferred. Null formal charge leaves the
+PDB charge field blank; it does not assert neutral chemistry or determine the
+native library's ionic interpretation. Formal charge and occupancy remain
+different fields. Current construction uses canonical monatomic PDB component
+and atom names, one atom per new residue, one-character alphanumeric chains,
+decimal residue/serial identifiers and the source's single model. New alternate,
+insertion, segment and nonidentity-symmetry sites are unsupported. Existing
+atoms retain all original records, including other anomalous scatterers,
+ANISOU, CONECT and bare ReadySet TER records. MASTER and hybrid-36 output
+handling require a later serializer.
+
+Coordinates are rounded once to PDB precision (0.001 angstrom) and every rounding
+delta is reported. q and B must already be representable to two decimal places;
+occupancy must be in [0,1] and B in [0,999.99]. Preview and exported targets bind
+the serialized readback. Identity collisions, coincident serialized sites,
+stale context/recipe bindings, unresolved nodes and incomplete enabled restraints
+are rejected before an output directory is allocated. A floating metal may have
+no recipe restraints; `unrestrained_metal_nodes` makes that state explicit.
+
+Each successful build creates a new `Metal/hypothesis_NNN/` directory containing
+the parent-context/report snapshots, recipe, placement plan, model, preview,
+PHIL proposal and schema-1 `metal-hypothesis` manifest. Status is `BUILT_REVIEW`
+and `native_ready` remains false. Original observations, phases and inherited
+resources remain checksum-bound through declared run/dataset/repository anchors.
+The parent report is frozen separately so later stage-status updates do not
+invalidate the hypothesis. No checkpoint registry, selected model or workspace
+pointer changes. Failed publications retain their numbered directory and failure
+record; later builds never reuse that number.
+
+Verification checks all paths and hashes, reconstructs the captured role map,
+rebuilds the model/preview/PHIL and requires exact artifact bytes and typed
+manifest equality. It consults no live role workbook and launches no native job.
+Relocation tests reproduce the same hypothesis after the original source/run
+root is removed. These IDs identify saved hypotheses, not complete refinement
+experiments or fitted-result cache entries.
+
+**Methods and evidence.** Materialization appends only declared HETATM records
+before the original terminal records, rereads the serialized model using the
+same importer, and audits the entire retained parent inventory and atomic state.
+The complete source-bound recipe then supplies explicit proposed restraint
+edits. Native controls test one Hg and two mixed Au/Ag assignments, including
+reversed species at the same positions, under Phenix 2.2.1-6174. They establish
+input consumption and exact selections/weights, not chemical targets or fitted
+geometry. The [current handoff](development-handoff.md) records commands,
+receipts and validation counts. Geometry optimization, native qualification of
+general recipes, checkpoint adoption and f-double-prime fits remain separate.
 
 ## Implemented authoring core
 
@@ -121,7 +205,8 @@ It is the shared model beneath a future editor, detached window and scripting
 adapter. The current interactive sketch is still separate and is not connected
 to this API. The generated-run adapter now imports a single-model PDB, resolves the fixed W
 pair, reads observation-associated wavelengths and exports proposed PHIL edits.
-A production renderer and scientific execution remain separate milestones.
+A separate materializer now adds explicit metal sites in review bundles. A
+production renderer and scientific optimization remain separate milestones.
 
 The core has three small modules:
 

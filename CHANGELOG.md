@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Construct explicit metal hypotheses without changing the parent model
+
+- Add `metal build` and `metal verify` over a shared source-bound materializer.
+  A schema-1 placement plan supplies positions, q, B and separate formal charge;
+  new numbered review bundles retain exact parent atoms and inherited inputs.
+- Record PDB coordinate rounding and use serialized readback for previews and
+  PHIL proposals. Reject collisions, stale bindings and unsupported PDB identities.
+  Report floating/unrestrained sites without inventing coordination targets.
+- Add schema-1 hypothesis manifests with anchored checksums, captured roles,
+  frozen parent reports and exact derivation replay after relocation. Preserve
+  failed publications and existing checkpoint/workspace selections.
+- Qualify numerical native consumption controls separately from future geometry
+  optimization, scientific acceptance and anomalous fitting. Existing recipes,
+  contexts, run/checkpoint schemas and commands require no migration.
+
 ### Connect generated W models to metal recipe inspection and export
 
 - Add read-only `metal inspect` and `metal preview` commands over the existing

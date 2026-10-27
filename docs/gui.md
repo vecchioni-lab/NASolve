@@ -117,6 +117,12 @@ clusters and other evidence for future bounded proposals; these are visible
 hypotheses, not additional diffraction observations or automatic acceptance.
 The implemented `metal inspect`/`metal preview` backend is the initial adapter;
 this campaign GUI and automatic proposal stage are not yet implemented.
+The shared `build_hypothesis` backend now accepts explicit site positions,
+occupancies, B values and separate formal-charge declarations. A future Apply
+action must submit a source/recipe-bound placement plan and display the returned
+review hypothesis, rounding deltas and any unrestrained sites. Camera movement,
+hover and dataset switching must never invoke construction. The existing
+interactive sketch remains disconnected from this backend.
 
 
 The planned [metal-restraint builder](metal-restraint-builder.md) may toggle as a

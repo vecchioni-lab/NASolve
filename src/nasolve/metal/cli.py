@@ -18,10 +18,13 @@ def configure(subparsers):
     actions = metal.add_subparsers(dest='metal_action', required=True)
     inspect = actions.add_parser('inspect', help='read one generated W checkpoint and its observation wavelength')
     preview = actions.add_parser('preview', help='bind a recipe to an explicit generated W checkpoint')
-    for parser in (inspect, preview):
+    build = actions.add_parser('build', help='add explicitly placed metal sites in a new review bundle')
+    verify = actions.add_parser('verify', help='replay a saved hypothesis without native execution')
+    for parser in (inspect, preview, build, verify):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
-        parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
-        parser.add_argument('--dataset-id', help='explicit campaign dataset identifier for linked views')
+        if parser is not verify:
+            parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
+            parser.add_argument('--dataset-id', help='explicit campaign dataset identifier for linked views')
         parser.add_argument('--json', action='store_true')
         parser.add_argument('--output', type=Path, help='save JSON to a new file; never overwrite')
     inspect.add_argument('--element', action='append', default=[], help='reference scattering element; repeat as needed')
@@ -29,6 +32,9 @@ def configure(subparsers):
     preview.add_argument('--recipe', type=Path, required=True)
     preview.add_argument('--bindings', type=Path, help='exact non-donor atom bindings with source_model_sha256')
     preview.add_argument('--export', type=Path, help='write proposed PHIL restraints to a new file; no refinement')
+    build.add_argument('--recipe', type=Path, required=True)
+    build.add_argument('--placement', type=Path, required=True, help='explicit source-bound metal-placement-plan JSON')
+    verify.add_argument('--hypothesis', type=Path, required=True, help='exact directory, absolute or relative to run')
 
 
 def _json(path):
@@ -47,6 +53,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action in {'build', 'verify'}:
+            return _hypothesis(args)
         context = load_run_context(args.run, checkpoint=args.checkpoint, dataset_id=args.dataset_id)
         export = None
         if args.metal_action == 'inspect':
@@ -104,3 +112,28 @@ def execute(args):
     except (RecipeError, ConfigError, PhenixDiscoveryError, OSError, ValueError, TypeError, KeyError) as exc:
         print(f'Metal integration error: {exc}', file=sys.stderr)
         return 2
+
+
+def _hypothesis(args):
+    from .materialize import build_hypothesis, verify_hypothesis
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'build':
+        context = load_run_context(args.run, checkpoint=args.checkpoint, dataset_id=args.dataset_id)
+        result = build_hypothesis(context, Recipe.from_json(args.recipe.read_text()), _json(args.placement))
+    else:
+        result = verify_hypothesis(args.run, args.hypothesis)
+    serialized = json.dumps(result, indent=2, allow_nan=False) + '\n'
+    if args.output:
+        with args.output.open('x') as handle:
+            handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    else:
+        directory = str(Path(result['files']['model']['relative_path']).parent)
+        print(f'Metal hypothesis {args.metal_action}: {directory}')
+        print(f'{len(result["sites"])} explicit sites; status {result["status"]}')
+        if result['unrestrained_metal_nodes']:
+            print('Unrestrained metal nodes: ' + ', '.join(result['unrestrained_metal_nodes']))
+        print('Review model only; no optimization, anomalous fit or checkpoint selection.')
+    return 0

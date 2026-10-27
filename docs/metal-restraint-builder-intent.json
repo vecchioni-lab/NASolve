@@ -216,7 +216,11 @@
       "PostMR effective role-map snapshot",
       "observation-associated MTZ wavelength",
       "offline reference scattering with fixed f-prime",
-      "replayed PHIL proposal export"
+      "replayed PHIL proposal export",
+      "explicit metal-site materialization",
+      "numbered immutable review bundles",
+      "source-bound placement and serialized-coordinate preview",
+      "exact hypothesis derivation replay"
     ],
     "gui_connected": false,
     "native_ready": false,
@@ -257,7 +261,8 @@
     "milestones": [
       "M0 authoring core",
       "M1 generated-run integration",
-      "M2 metal materialization and geometry",
+      "M2a explicit metal materialization",
+      "M2b geometry and chemical qualification",
       "M3 audited anomalous diagnostics",
       "M4 interactive iteration",
       "M5 campaign workbench",
@@ -266,6 +271,19 @@
     "pending_intake": [
       "STARANISO PDF summary fallback",
       "MTZ-capability intake without processing CIF"
-    ]
+    ],
+    "placement_schema_version": 1,
+    "hypothesis_schema_version": 1,
+    "materialization": {
+      "status": "implemented",
+      "parent_atom_records_preserved": true,
+      "coordinates_explicit": true,
+      "occupancy_and_b_explicit": true,
+      "formal_charge_distinct_from_occupancy": true,
+      "unrestrained_sites_reported": true,
+      "automatic_checkpoint_selection": false,
+      "native_ready": false,
+      "geometry_optimization": "planned"
+    }
   }
 }
