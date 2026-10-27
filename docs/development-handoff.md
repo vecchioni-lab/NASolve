@@ -28,6 +28,11 @@ Branch `Alder` continues the isolated metal workflow; integration target remains
 Cedar or its designated successor. Cedar was observed at `b92e3f1` (C106
 attachment topology/source-state inspection). No upstream adoption or PDU
 qualification is implied. The two-metal PDU slip case remains deferred.
+Tested implementation: **`50e19649926d0c7eb1c0b750686f122f31d35022`**.
+The read-only `git merge-tree 2801d78 50e1964 b92e3f1` preview has textual
+conflicts only in the shared changelog and handoff. Source/test changes merge
+without textual conflicts; the eventual combined tree still needs validation.
+No merge or change to the Cedar checkout was performed.
 
 Before this patch, metal recipes could inspect a generated model and export
 proposed restraints but could not create missing metal sites. `metal build`
