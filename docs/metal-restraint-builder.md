@@ -1,11 +1,124 @@
 # Metal-coordination restraint builder
 
-Status: **planned; not implemented**. User request recorded 2026-10-06.
-This is a future metal-recipe authoring tool, not a Pine merge prerequisite.
+Status: **recipe/binding/preview core implemented; GUI and native application planned**.
+User request recorded 2026-10-06. This independent authoring feature is not a Pine
+merge prerequisite.
 Published examples and private cluster context have been supplied. The scope
 now includes one-, two- and three-metal base pairs and an extensible cluster
 graph. Numerical targets and uncertainties still require scientific review;
 published structures do not automatically define reusable restraint defaults.
+
+## Implemented authoring core
+
+The `nasolve.metal` Python API now stores a reusable coordination hypothesis and
+previews its distances/angles against an explicitly supplied coordinate inventory.
+It is the shared model beneath a future editor, detached window and scripting
+adapter. The current interactive sketch is still separate and is not connected
+to this API. No production renderer, file importer or native restraint export is
+implemented by this delivery.
+
+The core has three small modules:
+
+| Module | Responsibility |
+| --- | --- |
+| `metal/recipe.py` | Immutable graph, stable IDs, named restraint sets, validation, revisions and JSON round-trip |
+| `metal/binding.py` | Exact coordinate identities and a frozen effective NARestraints role-map snapshot |
+| `metal/preview.py` | Read-only binding diagnostics, measured distances/angles and explicit requested targets |
+
+`Recipe` takes a schema-1 `metal-restraint-recipe` document. Nodes are logical
+`donor` slots (`residue_slot`, `role`), `metal` slots (explicit element), or
+concrete-only `atom` slots. There is no three-metal limit. Sets have stable IDs,
+names and an explicit scientific `enabled` flag. A distance has two node IDs;
+an angle has three, with its vertex in the middle. Each restraint records its
+set ID, target, sigma, unit (`angstrom` or `degree`), enabled state and source.
+Target, sigma and source may be null in saved drafts; no numerical default is
+inferred. A non-null source records `kind` (`user`, `reference` or `library`) and
+an explanatory `note`; optional provenance belongs in its preserved `extensions`.
+A source label is a declaration, not independent scientific qualification.
+
+`Recipe.to_json()` / `Recipe.from_json()` preserve supported optional metadata in
+`extensions`. Unknown required fields, future schema versions, duplicate JSON
+keys, duplicate IDs, dangling endpoints and nonfinite/invalid numerics are
+rejected. Returned dictionaries are independent copies. `with_node`, `with_set`
+and `with_restraint` return new revisions; the corresponding `without_*` methods
+refuse removal of a node/set still referenced by a restraint. They never silently
+cascade deletion. An unchanged row leaves the revision unchanged. The caller
+owns explicit saving and version/history retention; this API performs no file I/O.
+
+`AtomKey` retains model, chain, residue, insertion code, component, atom name,
+altloc, segment and symmetry identifiers. Blank altloc matches only blank;
+prime marks are preserved. `ModelSnapshot` freezes supplied Cartesian coordinates
+in angstroms and an input-source digest/checkpoint label. `RoleMap` freezes an
+explicit effective workbook-record set and source digest, reusing NASolve's
+existing `resolve_component_record` semantics. Equivalent descriptive aliases
+may agree; conflicting operational records are reported. A logical O4 role can
+therefore map to a differently named sulfur atom without being relabeled oxygen.
+No installed-workbook discovery, correction or model-file interpretation occurs
+here. Import adapters must verify the source bytes and capture any effective
+role-map corrections before constructing these objects. Source digests in this
+API are caller-supplied provenance; the separate inventory/role-map fingerprints
+are calculated from the complete supplied objects.
+
+`preview(...)` returns a schema-1 `metal-restraint-preview` with stable node and
+restraint IDs, exact selections, source/recipe/input fingerprints, frozen inputs,
+measured geometry, requested targets and per-row diagnostic codes. Its protocol
+is `metal-coordinate-preview-v1`. Missing or ambiguous bindings, changed metal
+species, repeated concrete endpoints and undefined angles remain explicit.
+An incomplete draft can still be saved and unrelated rows inspected. Disabled
+sets/constraints are retained with diagnostics but do not block enabled rows.
+A preview with no enabled constraints is `draft`; `resolved` means that enabled
+rows are bound and numerically specified in this inventory. `native_ready` is
+always false. Nonidentity symmetry is explicitly unsupported in this first
+preview; it is never silently treated as the ASU identity operator.
+
+A recipe hash identifies the complete document, including revision and metadata.
+A preview input hash also includes the supplied inventory, role map, bindings and
+protocol. Neither is a complete native-experiment cache key. Neither proves that
+a source model file was parsed correctly or that a target is chemically suitable.
+There are no native selection strings, PHIL bundles, checkpoint adoption,
+coordinate/chemistry edits, occupancy scans, anomalous fits or target-library
+lookups in this implementation.
+
+### Modular interface boundary
+
+Keep camera, panel order/size, collapse state, overlay visibility and temporary
+selection in a separate user-local view state. None is a recipe field or a
+scientific result. Hiding an overlay does not set a restraint's scientific
+`enabled` flag. Panels address objects by stable ID, never by their screen
+position, rendered label or list index. All panels use the same current recipe
+snapshot and the same preview; docked/detached modes must share the controller.
+A panel may submit an explicit node/set/restraint edit, then render the resulting
+new revision. Temporary orange drafts enter the recipe only through explicit add.
+
+```mermaid
+flowchart LR
+    V[Viewer and selection] --> C[Shared editor controller]
+    I[Restraint inspector] --> C
+    S[Recipe and set panels] --> C
+    C --> R[Immutable recipe revision]
+    R --> P[Read-only binding and geometry preview]
+    M[Explicit atom inventory and role map] --> P
+    P --> V
+    P --> I
+    L[Local camera and layout state] -.-> V
+    L -.-> I
+    L -.-> S
+```
+
+The controller and rendered panels in this figure are integration boundaries,
+not delivered GUI code. Reordering panels or replacing the rendering toolkit
+requires no change to the scientific graph, binding or geometry calculations.
+
+**Methods.** The implementation validates a JSON graph, resolves logical donor
+roles using the existing component-record resolver, and matches full atom keys
+against an immutable caller-supplied inventory. It calculates Euclidean distances
+and three-dimensional angles (normalized vectors and `atan2` of cross/dot terms),
+retaining measured and requested quantities separately. SHA-256 fingerprints
+bind canonical JSON inputs. Synthetic controls cover 0–3 metal graphs, mixed
+species, a nonplanar six-site cluster, renamed donors, exact alternate/model/site
+identity, ambiguity, draft/edit round-trips and source-removed relocation replay.
+These tests establish software behavior, not native chemical or diffraction
+qualification. See the [current validation handoff](development-handoff.md#parallel-metal-workflow-design).
 
 ## Purpose and interaction
 
@@ -159,9 +272,9 @@ for the reusable provenance and native-consumer boundary.
 
 A saved recipe retains its name/version, logical donor slots/roles, metal slots,
 coordination pattern, target values/uncertainties, applicability notes and source
-examples. Use a human-readable recipe representation; the serialization format,
-final field names, and backend ownership are implementation decisions still open.
-This document and the adjacent intent JSON are not a runtime recipe schema.
+examples. The implemented authoring core uses the versioned JSON representation described
+above; its validator is the runtime schema authority. This design document and
+the adjacent development-intent JSON are not runtime registration authority.
 
 Each application freezes the recipe/version/hash, source checkpoint/model hash,
 role-map source/version or fingerprint, resolved atom selections, explicit
@@ -205,5 +318,5 @@ those facts without silently converting a geometric hypothesis into evidence.
 
 See [GUI contract](gui.md), [GUI live checks](gui-live-checks.md), and the
 [development handoff](development-handoff.md) for the current development order.
-This design remains a separate later scope; it does not add a gate to the
+GUI and native integration remain separate later scopes; it does not add a gate to the
 combined geometry trial or Cedar/Pine close-out.

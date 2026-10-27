@@ -14,7 +14,7 @@ def intent():
 def test_design_supports_three_metals_without_claiming_runtime_authority():
     spec = intent()
     assert spec["runtime_authority"] is False
-    assert spec["status"] == "PLANNED_NOT_IMPLEMENTED"
+    assert spec["status"] == "AUTHORING_CORE_IMPLEMENTED_GUI_PLANNED"
     assert spec["metal_counts"] == [1, 2, 3]
     assert spec["zero_metal_control"] is True
     assert spec["preview_changes_coordinates"] is False

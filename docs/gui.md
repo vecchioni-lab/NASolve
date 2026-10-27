@@ -112,8 +112,10 @@ coordinate edits. Save/load/select recipes by canonical NARestraints atom-role
 columns (O4/N3), bind them to actual atoms for a run, and refine explicit variants
 as ordinary checkpoint children. Supplied examples motivate one-, two- and
 three-metal, mixed-species and extensible cluster hypotheses. Numerical targets
-and recipe format remain under review. This is future design, not implemented
-runtime behavior or a prerequisite for operational Scout.
+remain under review. The UI-independent recipe, exact binding and geometry-preview core is implemented in `nasolve.metal`; its schema-1 JSON
+is separate from development intent. The renderer, production file import,
+native export/refinement and integration with the local sketch remain planned.
+This feature is not a prerequisite for operational Scout.
 
 Use three connected views: **Design** for graph/role/constraint authoring;
 **Experiment** for explicit geometry endpoints, occupancy vectors, fixed atomic
@@ -145,6 +147,18 @@ The restraint inspector includes donor chemical-state selection and a local
 target-library suggestion with target/sigma, source and an editable override.
 No matching entry leaves the suggestion unset. State selection requests a
 different lookup; changing model chemistry remains a separate derived action.
+
+### Movable panels and stable scientific state
+
+The viewer, restraint-set list, inspector and experiment/comparison panels must
+consume one shared recipe/controller and address entities by stable IDs. Their
+order, dimensions and docked/detached placement are user-local view state. Camera,
+selection, collapsed panels and overlay visibility never enter recipe hashes or
+native execution inputs. Hiding an overlay does not disable its scientific
+restraints. Explicit graph edits use the immutable core API and yield a new
+recipe revision; controls must not privately copy or recalculate scientific
+rules. The [implemented boundary](metal-restraint-builder.md#modular-interface-boundary)
+defines the current API and the still-planned controller/rendering layer.
 
 ## Root/workspace selection
 

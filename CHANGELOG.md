@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Add the modular metal-recipe model and geometry preview
+
+- Add `nasolve.metal`: immutable stable-ID donor/metal graphs and named restraint
+  sets, schema-1 JSON save/load, explicit revisions and validated graph edits.
+- Reuse the existing component-record resolver for logical roles; bind exact
+  model/chain/residue/component/atom/alternate/segment identities to a supplied
+  immutable coordinate inventory. Keep actual donor elements and prime marks.
+- Preview measured distances/3D angles separately from requested targets, with
+  per-row missing/ambiguous diagnostics and complete supplied-input fingerprints.
+- Keep panel arrangement, camera and overlay visibility outside recipe state.
+  GUI integration, file import, nonidentity symmetry, native export/refinement,
+  anomalous workflows and chemistry-aware target lookup remain planned.
+- Existing runs, commands and checkpoints require no migration; no scientific
+  input, native process or current-checkpoint pointer is changed.
+
 ### Plan metal recipes and frozen anomalous comparisons
 
 - Expand the planned authoring contract to one-, two- and three-metal recipes,

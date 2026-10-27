@@ -1317,10 +1317,15 @@ Automatic readiness requires a successful Phenix exit, a compatible model,
 `Rwork < Rfree`, and `Rwork < 0.30`. These numerical tests permit continued
 automation but do not replace visual inspection or user approval.
 
-## Planned metal-design and anomalous diagnostics
+## Metal authoring core and planned anomalous diagnostics
 
 The [metal builder](metal-restraint-builder.md) defines reusable donor/metal
-graphs, exact atom-role binding and restraint export. The separate
+graphs, exact atom-role binding and eventual native restraint export. The new
+`nasolve.metal` package implements immutable schema-1 recipe JSON, explicit
+caller-supplied coordinate/role snapshots and schema-1 read-only geometry previews.
+It reuses `component_records.resolve_component_record`; native selectors, file
+import, target libraries, PHIL export and production GUI remain separate. Panel
+layout/camera/visibility state is outside the scientific graph. The separate
 [anomalous diagnostic contract](metal-anomalous-doctor.md) defines geometry
 preparation followed by bounded independent fixed-q/f'' trials and linked
 comparisons. Core graph types accommodate clusters; each native policy needs
@@ -1330,8 +1335,8 @@ Existing AutoRefine switches are a foundation, not proof of the frozen protocol.
 In particular, `RefineDoctor/ML-fdp-only` still defaults to coordinate refinement
 and group ADPs; it does not freeze all atomic parameters. A qualified diagnostic
 must verify effective parameters and output atoms, including nuisance-induced
-ADP changes. The design changes no runtime schema, current checkpoint, existing
-Doctor strategy or Cedar/Pine acceptance gate.
+ADP changes. The additive recipe/preview schemas change no existing run schema,
+current checkpoint, Doctor strategy or Cedar/Pine acceptance gate.
 
 ## Refine Doctor contract
 

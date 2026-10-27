@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "metal-restraint-builder-development-intent",
   "date": "2026-10-06",
-  "status": "PLANNED_NOT_IMPLEMENTED",
+  "status": "AUTHORING_CORE_IMPLEMENTED_GUI_PLANNED",
   "runtime_authority": false,
   "contract": "docs/metal-restraint-builder.md",
   "examples_received": true,
@@ -72,9 +72,8 @@
     "inspect linked comparisons"
   ],
   "implementation_choices_pending": [
-    "recipe serialization",
     "renderer/toolkit",
-    "backend module ownership",
+    "model importer and native export adapters",
     "metal placement UI"
   ],
   "does_not_change": [
@@ -84,7 +83,7 @@
     "existing checkpoint choice",
     "development order recorded in docs/development-handoff.md"
   ],
-  "last_reconciled": "2026-10-26",
+  "last_reconciled": "2026-10-27",
   "development_order": "docs/development-handoff.md#parallel-metal-workflow-design",
   "numerical_targets_approved": false,
   "metal_counts": [
@@ -199,5 +198,23 @@
     "state_picker_mutates_dictionary": false,
     "unmatched_target": "unset or explicitly unreviewed draft",
     "application_freezes_entry_and_override": true
+  },
+  "implemented_core": {
+    "module": "nasolve.metal",
+    "recipe_kind": "metal-restraint-recipe",
+    "recipe_schema_version": 1,
+    "preview_kind": "metal-restraint-preview",
+    "preview_schema_version": 1,
+    "capabilities": [
+      "immutable graph revisions",
+      "JSON round-trip",
+      "exact supplied-inventory binding",
+      "shared component-role resolution",
+      "read-only distance and angle preview"
+    ],
+    "gui_connected": false,
+    "native_ready": false,
+    "source_importer_implemented": false,
+    "layout_and_camera_outside_recipe": true
   }
 }

@@ -13,8 +13,8 @@ not general production support. Earlier wording remains in Git and the
 
 ## Parallel metal workflow design
 
-The user-authorized `codex/alder` worktree isolates metal-design documentation
-from active CIF/numerical development. Its base is `2801d78` (C100); integrate
+The user-authorized `codex/alder` worktree isolates metal authoring/preview
+development from active CIF/numerical development. Its base is `2801d78` (C100); integrate
 into `cedar` or its explicitly designated successor after reconciling newer
 changes. Retire the feature branch/worktree after reviewed integration and an
 audit of its local artifacts, not while native results remain unaccounted for.
@@ -86,10 +86,70 @@ contract, not an implemented native cache. The sketch, downloaded public CIF,
 screenshots and test logs remain local and excluded from Git. No native Phenix
 or Coot execution is claimed for this follow-up.
 
-Next: review the interface concept, then implement graph/role serialization and
-restraint preview before choosing a bounded native fixture. Recipe targets,
-native freeze tolerances, anomalous grouping and output eligibility remain
-implementation work; current `ML-fdp-only` is not a fully frozen experiment.
+### Implemented recipe model and modular interface boundary (2026-10-27)
+
+Before this delivery, metal functionality was design documentation plus a separate
+interactive sketch. `nasolve.metal` now implements a validated immutable recipe
+model, stable node/set/restraint IDs, revisions and JSON serialization, exact
+caller-supplied atom/role binding and read-only distance/angle previews. The
+existing component-record resolver is reused. Every panel can consume these
+same IDs and snapshots; camera/layout/selection/overlay state remains separate.
+The local sketch is not yet wired to this API.
+
+Changed source files: `src/nasolve/metal/{__init__,recipe,binding,preview}.py`.
+Tests: `tests/test_metal_model.py` plus the updated development-intent status in
+`tests/test_metal_workflow_intent.py`. Contracts: builder, intent, GUI, architecture,
+documentation index, changelog and this handoff. Additive schema-1 kinds are
+`metal-restraint-recipe` and `metal-restraint-preview`; the preview protocol is
+`metal-coordinate-preview-v1`. The development intent remains non-authoritative.
+Existing commands, run schemas, checkpoints and saved scientific artifacts need
+no migration. The recipe/core is Python API only, without a CLI command.
+
+The regression file first failed collection against the previous tree with
+`ModuleNotFoundError: nasolve.metal`. Review then added three regressions that
+failed against the first implementation: bool/int equality could bypass edit
+validation or hide a metadata-type revision. These pass after validating and
+canonically comparing the candidate document before treating an edit as unchanged.
+An earlier full-suite attempt was deliberately interrupted after 945 passes and
+105 subtests in 147.60s; it is not the final validation. Its local log is retained
+as `/private/tmp/alder-model-full-suite-interrupted.log`.
+Validation uses Python 3.12.14:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_component_records.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider > /private/tmp/alder-model-full-suite.log 2>&1
+git diff --check
+```
+
+Final focused validation passes **76 tests in 1.37s**, including 58 new model
+cases. The complete suite passes **5706 tests and 276 subtests in
+764.36s**, exit 0. Source-removed synthetic replay passes in a fresh
+interpreter. `git diff --check` and staged whitespace checks pass; six linked
+local documents resolve. All four new source modules parse with Python 3.10
+grammar; the execution environment for the test results is Python 3.12.14.
+No runtime source was changed during the final complete-suite execution.
+
+All scientific controls are synthetic. The relocation check copies the bounded
+source implementation and synthetic preview into a temporary checkout, moves it,
+verifies the old path is absent, and reproduces the complete preview in a fresh
+interpreter importing only the relocated implementation. No source PDF, public
+structure download, unpublished data, native output, local sketch or UI state is
+included. No Phenix/Coot version or qualification is newly claimed: neither a
+native dry-run nor a complete native job was performed.
+
+Limitations: source-model/role-map hashes are caller-supplied provenance; this
+layer separately fingerprints the supplied inventory but has no file importer.
+It does not verify correspondence with an on-disk crystallographic model.
+Nonidentity symmetry is explicitly unsupported; missing/ambiguous atoms and
+species mismatches stay diagnostic. Numerical source labels do not approve
+chemistry. `native_ready` is always false, including a `resolved` preview.
+Recipe/preview hashes are not full-experiment reuse keys.
+
+Next: connect the GUI panels to this shared model through an explicit importer
+and controller, then qualify native selections/restraint export on a bounded
+fixture. Review targets before native geometry runs. Frozen f'' protocols,
+occupancy iteration, cache keys and target-library adapters remain independent
+future steps; current `ML-fdp-only` is not a fully frozen experiment.
 
 ## Current CIF Doctor continuation boundary
 
