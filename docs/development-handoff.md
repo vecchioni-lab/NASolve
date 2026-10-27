@@ -28,7 +28,12 @@ This parallel scope adds no Cedar/Pine scientific gate.
 construction. This is partial M2b: source-qualified chemistry and whole-model
 native optimization remain separate. The latest read-only Cedar observation is
 `76d9945` (C107 native attachment boundary); no Cedar changes were adopted, and
-the PDU slip case remains deferred. This patch changes crystallographic
+the PDU slip case remains deferred. Tested implementation:
+**`a112b48ae4ee799f532f77dd7f2b3a7b32858076`**.
+A read-only `git merge-tree 2801d78 a112b48 76d9945` preview shows textual
+conflicts only in the shared changelog and handoff. Source/test changes merge
+textually; the combined tree has not been executed or adopted. No other
+checkout was changed. This patch changes crystallographic
 coordinate proposals, adds an artifact schema and extends reproducibility
 checks. It does not change existing checkpoint or run formats.
 
