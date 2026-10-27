@@ -29,9 +29,13 @@ worktree). Integration target remains Cedar or its designated successor;
 upstream PDU changes are not imported or qualified by this feature branch.
 At this review, Cedar was `15105f4` (C105 catalogue census). Metal implementation
 lives in its own package; shared source edits are additive CLI registration in
-different sections from Cedar's catalogue command. Documentation needs
-reconciliation when integrating. No merge or change to the Cedar checkout is
-performed by this delivery.
+different sections from Cedar's catalogue command. Tested implementation commit:
+**`512c95d157cd4161db508b6ea3d9174cb16a7f24`**. A read-only
+`git merge-tree 2801d78 512c95d 15105f4` preview finds conflict markers only in
+`CHANGELOG.md` and this handoff; source/test changes merge without textual
+conflicts. Reconcile both documentation histories and validate the combined
+tree during integration. This preview is not a merged-tree test or chemical
+qualification. No merge or change to the Cedar checkout is performed here.
 
 The bounded first pass is M1 in the [integration milestones](metal-restraint-builder.md#integration-objectives-and-milestones):
 connect generated W checkpoints to the recipe core, inspect observation-linked
