@@ -34504,6 +34504,8 @@
       "Resolve absent names and genuinely conflicting NAR roles with source authority before automatic compilation; distinguish descriptive spelling conflicts.",
       "PDU C104 inventory remains qualified only at that layer; complete fixed-coordinate energy/gradient attribution and derivatives before any optimizer.",
       "No automatic repair, native generation, model adoption or Cedar/Pine/main merge occurs in C105."
-    ]
+    ],
+    "tested_implementation_commit": "972a822244ad269067f76c2d2ed2f1746aa3196b",
+    "publication": "Tested implementation commit verified on origin/cedar; subsequent continuity update is documentation-only."
   }
 }

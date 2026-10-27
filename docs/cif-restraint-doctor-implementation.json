@@ -26842,7 +26842,8 @@
         "recipe compilation",
         "automatic repair"
       ],
-      "pdu_next_boundary": "C104 inventory passes; fixed-coordinate energy/gradient attribution and derivatives remain open."
+      "pdu_next_boundary": "C104 inventory passes; fixed-coordinate energy/gradient attribution and derivatives remain open.",
+      "tested_implementation_commit": "972a822244ad269067f76c2d2ed2f1746aa3196b"
     }
   },
   "audience": [

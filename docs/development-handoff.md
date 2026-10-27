@@ -13,7 +13,7 @@ not general production support. Earlier wording remains in Git and the
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-27; C105 validated, publication pending.** Every ligand in the selected
+**Scope revised 2026-10-27; C105 published and validated.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -38,9 +38,10 @@ only when available evidence and safe usable fallbacks cannot settle it.
 ChemDraw-derived source references/restraint bundles remain future input scope;
 building a model from a drawing stays outside CIF Doctor.
 
-**Safe resume point:** C105 implementation is complete and validated; publication
-is the remaining delivery step. C104 `c064ed7f7178afcc7a1d5699fadd5c15f1cdd3bf`
-is the last published baseline. Continue on existing `cedar`; preserve the
+**Safe resume point:** C105 tested implementation commit
+`972a822244ad269067f76c2d2ed2f1746aa3196b` is published on GitHub `cedar`.
+The following continuity update changes documentation only. Continue on existing
+`cedar`; preserve the
 separate metal GUI/shared-restraint work and all scientific runs.
 
 C105 adds `src/nasolve/cif_catalogue.py`, public `cif-doctor catalogue` dispatch
