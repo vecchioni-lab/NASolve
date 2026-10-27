@@ -5,7 +5,7 @@ Updated **2026-10-27**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
-The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c105)
+The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c106)
 separates qualified implementation, open chemistry, consumer qualification and
 the next integration step. The actual Mac C95 handoff passed with zero native
 calls; C96 exposes those limits in text and JSON reports. C97 adds the
@@ -28,6 +28,9 @@ Runtime activation and scientific qualification remain separate.
 
 C105 adds the [complete selected catalogue census](cif-doctor.md#catalogue-coverage-census-c105)
 and [generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
+C106 adds [graph-bound topology and source-state ports](cif-doctor.md#source-attachment-topology-and-ports-c106),
+with 26/37 selected cases matching three initial core profiles. Site operations
+and native qualification remain separate.
 ATL retains its separate validation fixture, and joins PNA/other backbones inside
 the programme. ChemDraw-derived chemical references remain future input scope.
 

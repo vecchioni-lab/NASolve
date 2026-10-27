@@ -34507,5 +34507,355 @@
     ],
     "tested_implementation_commit": "972a822244ad269067f76c2d2ed2f1746aa3196b",
     "publication": "Tested implementation commit verified on origin/cedar; subsequent continuity update is documentation-only."
+  },
+  "source_attachment_profiles_2026_10_27": {
+    "delivery": "C106",
+    "status": "READ_ONLY_TOPOLOGY_AND_PORT_EVIDENCE_VALIDATED",
+    "policy_id": "cif-source-attachment-topology-v1",
+    "schema_version": 1,
+    "before": "The catalogue records source graphs and mapped names, but no general core binding or source-state attachment ports.",
+    "after": "An explicit read-only command binds three core topologies through source element/bond structure and unambiguous NAR base membership, preserving port state and leaving all site operations unassigned.",
+    "starting_commit": "15105f40dd6c6f018f86e00c43985f6c171a5b77",
+    "changed_code": [
+      "src/nasolve/cif_attachment_profiles.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_attachment_profiles.py"
+    ],
+    "schemas": "Additive diagnostic schema 1; no runtime manifest, run/checkpoint, source dictionary or NAR workbook schema changes.",
+    "source_authority": {
+      "workbook_sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+      "loader": {
+        "module": "restraints.residue_library",
+        "openpyxl_version": "3.1.5",
+        "sha256": "85105ec37fb251fe61eb5bf0eaa6039632ef8bab88d2d4e657f1d88b657a1786",
+        "size": 3027
+      },
+      "narestraints_snapshot_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "workbook_scope": "Explicit pinned local workbook; not asserted to be the released v1.1.3 workbook.",
+      "ccd": "Exact C105 snapshots from Phenix 2.2.1-6174; no network discovery or native execution."
+    },
+    "results": {
+      "additional_transfer_cases": [
+        "0DA",
+        "0DC",
+        "0DG",
+        "0DT",
+        "10C",
+        "40A",
+        "40C",
+        "40G",
+        "40T",
+        "5PC",
+        "9V9",
+        "A66",
+        "C66",
+        "CP1",
+        "CPN",
+        "DA",
+        "DC",
+        "DG",
+        "DT",
+        "GNP",
+        "LCA",
+        "LCC",
+        "LCG",
+        "LKC",
+        "OFC",
+        "OPN",
+        "T66",
+        "TLN",
+        "TP1",
+        "TPN",
+        "ULF",
+        "UMX",
+        "URX",
+        "UVX"
+      ],
+      "cases": 37,
+      "label_groups": {
+        "L-DNA": [
+          "0DA",
+          "0DC",
+          "0DG",
+          "0DT",
+          "OFC"
+        ],
+        "LNA": [
+          "10C",
+          "9V9",
+          "ATL",
+          "LCA",
+          "LCC",
+          "LCG",
+          "LKC",
+          "TLN",
+          "ULF",
+          "UMX",
+          "URX",
+          "UVX"
+        ],
+        "PNA": [
+          "40A",
+          "40C",
+          "40G",
+          "40T",
+          "A66",
+          "APN",
+          "C66",
+          "CP1",
+          "CPN",
+          "GNP",
+          "OPN",
+          "T66",
+          "TP1",
+          "TPN"
+        ]
+      },
+      "matched_codes": {
+        "0DA": "unbridged-furanose-phosphate-v1",
+        "0DC": "unbridged-furanose-phosphate-v1",
+        "0DG": "unbridged-furanose-phosphate-v1",
+        "0DT": "unbridged-furanose-phosphate-v1",
+        "10C": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "40A": "uncapped-aminoethylglycine-pna-core-v1",
+        "40C": "uncapped-aminoethylglycine-pna-core-v1",
+        "40G": "uncapped-aminoethylglycine-pna-core-v1",
+        "40T": "uncapped-aminoethylglycine-pna-core-v1",
+        "5PC": "unbridged-furanose-phosphate-v1",
+        "9V9": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "APN": "uncapped-aminoethylglycine-pna-core-v1",
+        "ATL": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "CPN": "uncapped-aminoethylglycine-pna-core-v1",
+        "DA": "unbridged-furanose-phosphate-v1",
+        "DC": "unbridged-furanose-phosphate-v1",
+        "DG": "unbridged-furanose-phosphate-v1",
+        "DT": "unbridged-furanose-phosphate-v1",
+        "LCA": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "LCC": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "LCG": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "OFC": "unbridged-furanose-phosphate-v1",
+        "OPN": "uncapped-aminoethylglycine-pna-core-v1",
+        "PDU": "unbridged-furanose-phosphate-v1",
+        "TLN": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "TPN": "uncapped-aminoethylglycine-pna-core-v1"
+      },
+      "profiles": {
+        "UNASSIGNED": 11,
+        "two-o-four-c-methylene-furanose-phosphate-v1": 7,
+        "unbridged-furanose-phosphate-v1": 11,
+        "uncapped-aminoethylglycine-pna-core-v1": 8
+      },
+      "prototype_examples": [
+        "PDU",
+        "ATL",
+        "APN"
+      ],
+      "topology_status": {
+        "MATCH": 26,
+        "NOT_ASSESSED": 1,
+        "NO_MATCH": 10
+      },
+      "unassigned": {
+        "A66": {
+          "reasons": [
+            "NAR_RECORD_ABSENT_OR_CONFLICTING"
+          ],
+          "status": "NOT_ASSESSED"
+        },
+        "C66": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "CP1": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "GNP": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "LKC": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "T66": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "TP1": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "ULF": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "UMX": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "URX": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        },
+        "UVX": {
+          "reasons": [
+            "TOPOLOGY_NO_MATCH"
+          ],
+          "status": "NO_MATCH"
+        }
+      },
+      "validation_design": "Exploratory transfer screen, not a blinded hold-out cohort"
+    },
+    "source_state_controls": {
+      "APN": {
+        "amine_charge": 1,
+        "attached_hydrogens": 3
+      },
+      "40A": {
+        "amine_charge": 0,
+        "attached_hydrogens": 2
+      },
+      "neighbor_state": "Port and neighbor H/D inventories are retained, including terminal phosphate O-H.",
+      "phosphate_oxygens": "All source oxygens retained, including PDU OP3 and ATL OXT. Equivalent oxygen roles are not inferred.",
+      "labels": "CP1/TP1 CCD DNA LINKING and workbook GNP PNA are descriptive declarations, never selectors.",
+      "remaining_cases": "LKC has no phosphate; ULF/UMX/URX/UVX have different carbon bridges; C66/T66 have lysine-derived backbones; CP1/TP1 have N-methyl termini; GNP has a ribose/polyphosphate graph; A66 has conflicting records."
+    },
+    "validation": {
+      "live_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/cedar-c106-build/validate_live.py",
+      "maintained_cli": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m nasolve cif-doctor profile SOURCE_DIRECTORY/source.cif --code CODE --workbook WORKBOOK_DIRECTORY/Ligands.xlsx --json",
+      "execution": "Complete read-only inspection, cold API replay and public CLI replay for 37 cases; not a native dry-run or native execution.",
+      "elapsed_seconds": 15.929157333972398,
+      "source_files_bytes_and_mtimes_preserved": 597,
+      "relocated_files_bytes_and_mtimes_preserved": 38,
+      "replay_exact": true,
+      "original_temporary_input_path_gone": true,
+      "historical_and_sdk_reads_blocked": true,
+      "native_processes": 0,
+      "public_cli_exit": 2,
+      "exact_element_membership": "Tuple membership rejects Cn/Cl/Ca at a C-or-N slot; atom renaming still preserves bindings.",
+      "failing_before": "Public profile command fails on C105 with argparse invalid choice; one failed test in 11.44s. Added neighbor-H assertions fail on the initial implementation, and a synthetic Cn control exposes inexact element membership; final regressions pass.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_attachment_profiles.py tests/test_cif_catalogue.py tests/test_cif_atl_control.py tests/test_cif_stereochemistry_audit.py",
+      "focused_result": "84 passed in 4.49s",
+      "new_regressions": 30,
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider",
+      "full_result": "5853 passed, 276 subtests passed in 1028.17s (0:17:08)",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c106-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "compile_result": "PASS",
+      "figure_command": "/opt/homebrew/bin/rsvg-convert -w 1400 -o /private/tmp/cedar-c106-build/overview.png docs/figures/cif-doctor-overview.svg",
+      "figure_result": "PASS; rendered and visually inspected, labels fit.",
+      "document_links": 219,
+      "whitespace_command": "git diff --check",
+      "whitespace_result": "PASS",
+      "code_hashes": {
+        "src/nasolve/cif_attachment_profiles.py": "f4e3e83873891394cb3ce949512abc45cf5cd078d80791e2a52224f94c80eb34",
+        "src/nasolve/cli.py": "c3f3daede253da8450728139072a1796a5fdf9cb0f75ff7affeb9651728302bc",
+        "tests/test_cif_attachment_profiles.py": "0b1f808d5987602240f98729803c41709b0c560880da65dda9f7add1ab30d39a"
+      },
+      "reports": {
+        "summary.json": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/summary.json",
+          "sha256": "fe887e32cb4f00309e692f4c999c8c3774997fb91e60a130bc37f89a33be6822",
+          "size": 3873
+        },
+        "validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validation.json",
+          "sha256": "074338244e85cb2efd766effe10ed35b13c76456061484f56a73d87b8806e0a3",
+          "size": 4983
+        },
+        "input-manifest.json": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/input-manifest.json",
+          "sha256": "025cacc5ed91495fd88b1fd28ad20fcd516de43b4345c18644a26a57533ba375",
+          "size": 6353
+        },
+        "validate_live.py": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validate_live.py",
+          "sha256": "4c424a5c461eb1184aadc696df4b8df763780de5180d545a6e7ddca6e1782f4f",
+          "size": 6247
+        },
+        "validation/before-test.log": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validation/before-test.log",
+          "sha256": "aa964fc15988584b8f11f452dca179d639fd1fafd987543c4fcf6845559a1824",
+          "size": 8874
+        },
+        "validation/focused-v3.log": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validation/focused-v3.log",
+          "sha256": "56caf03d480ad06478f8d26012c54a01c8427c6b4b60537408c54adc091bc1fa",
+          "size": 179
+        },
+        "validation/element-before.log": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validation/element-before.log",
+          "sha256": "ed9f41dafd0555e3ec6cd037fead808abdd9ac225c1cdcb6d8f44820c790d268",
+          "size": 113
+        },
+        "validation/full-suite.log": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validation/full-suite.log",
+          "sha256": "eaf507d7cbad962bfabe3d4ca38f7720e0382092dcc9fcbc54cae4c2e94706d1",
+          "size": 6627
+        },
+        "validation/full-suite-state.json": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validation/full-suite-state.json",
+          "sha256": "13ebed5f2961d89d8633c27b2eee8cdeed76c7eb38dab1c4beb59805e206d53d",
+          "size": 349
+        },
+        "validation/focused-final.log": {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-m0dbk_bw/validation/focused-final.log",
+          "sha256": "643c0858ff2865974b0483de7b7816e686765b5e2f859a79cc129e11f6e13b0c",
+          "size": 3321
+        }
+      },
+      "preserved_interrupted_attempts": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-qmppn38z/validation",
+          "reason": "Owned full suite deliberately interrupted to expose neighbor O-H inventories before publication; partial log and original state preserved."
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "106_Cedar_attachment-profiles-5l0dm16w/validation",
+          "reason": "Owned full suite deliberately interrupted after the exact-element regression reproduced a false match; partial log and state preserved."
+        }
+      ],
+      "full_elapsed_seconds": 1028.558665999968
+    },
+    "compatibility": "Additive CLI and diagnostic report; no dependency, production chemistry, threshold, runtime/checkpoint or migration changes.",
+    "generated_artifacts": "Workbook, CCD snapshots, detailed reports, local runner and raw logs remain outside Git. Source/tests and compact maintained evidence are committed.",
+    "limitations_and_followup": [
+      "G2 is partial: implement explicit model/site contexts and source-bound permitted operations before any chemical delta.",
+      "A core match does not establish complete chemistry, valid NAR recipes, terminal state, charge selection, native linkage or numerical quality.",
+      "Extend topology families using concrete unmatched evidence and held-out cases; never convert a label mismatch to an automatic source repair.",
+      "Keep NAR base-role semantics separate from backbone assignments; reconcile genuine conflicts before selecting a record.",
+      "PDU C104 inventory remains qualified only at that layer; fixed-coordinate energy/gradient attribution and derivatives are still required.",
+      "No model generation, optimization, adoption or Cedar/Pine/main merge occurs."
+    ],
+    "publication": "Validation complete; tested-file hashes recorded. Commit/push pending; update after remote verification."
   }
 }

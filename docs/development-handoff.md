@@ -13,7 +13,7 @@ not general production support. Earlier wording remains in Git and the
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-27; C105 published and validated.** Every ligand in the selected
+**Scope revised 2026-10-27; C106 validated, publication pending.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -23,7 +23,7 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | Planned; DNA phosphate rules must not be applied to PNA by analogy. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C106 topology/port evidence complete. G2 remains partial.** Explicit site operations and permitted deltas remain open; DNA phosphate rules must not be applied to PNA by analogy. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | Partial ordinary hooks; no general end-to-end claim. |
@@ -38,44 +38,68 @@ only when available evidence and safe usable fallbacks cannot settle it.
 ChemDraw-derived source references/restraint bundles remain future input scope;
 building a model from a drawing stays outside CIF Doctor.
 
-**Safe resume point:** C105 tested implementation commit
-`972a822244ad269067f76c2d2ed2f1746aa3196b` is published on GitHub `cedar`.
-The following continuity update changes documentation only. Continue on existing
-`cedar`; preserve the
-separate metal GUI/shared-restraint work and all scientific runs.
+### C106 validated interruption boundary
 
-C105 adds `src/nasolve/cif_catalogue.py`, public `cif-doctor catalogue` dispatch
-and `tests/test_cif_catalogue.py`. Its additive schema-1 census records every
-selected NAR row/code, exact source hashes and mapping gaps. It does not change
-runtime manifests, chemical definitions, checkpoints, dependencies or thresholds;
-no migration is required. Maintained contracts, overview and editable figure
-now describe the broader programme and this implemented boundary.
+**Validation is complete; commit/push is pending.** The last published head is
+`15105f40dd6c6f018f86e00c43985f6c171a5b77` (C105). Continue on existing `cedar`;
+preserve the separate metal GUI/shared-restraint work and every scientific run.
+No job remains active. Publication must verify the remote head and update this
+boundary with the tested implementation commit.
 
-Validation: **5823 passed, 276 subtests passed in 928.93s (0:15:28)**; **45 focused regressions pass**, including
-one demonstrated failing-before public-command regression. Complete real census:
-618 records / 599 codes, 596 sources in the selected CCD root, 11 conflicting
-record groups, five missing-name mappings and three empty-role records. The
-absent-role marker `/` is preserved without false missing-atom reports. Exact
-cold relocation and public CLI replay preserve all 597 input bytes/timestamps,
-with historical/SDK reads blocked and zero native processes. Compilation,
-relative documentation links, whitespace and rendered figure checks pass.
-Commands and hashes: `narestraints_catalogue_census_2026_10_27` in the existing
+Before C106, the catalogue recorded graphs and mapped names without general
+attachment-core bindings. C106 adds `src/nasolve/cif_attachment_profiles.py`,
+public `cif-doctor profile SOURCE --code CODE --workbook FILE` dispatch and
+`tests/test_cif_attachment_profiles.py`. Three bounded graph patterns bind
+single-phosphate furanose, O/C-bridged furanose and primary-amine
+aminoethylglycine PNA cores. NAR supplies unambiguous base membership; codes,
+atom names and class labels do not select profiles. Ambiguous/incomplete
+searches cannot select a result. Port and neighbor inventories preserve source
+charges, H/D and stereo declarations, including phosphate O–H.
+
+The additive schema-1 report remains `REVIEW`. Actual site context, terminal
+state, leaving atoms and permitted deltas are unassigned. No chemistry,
+threshold, runtime manifest, checkpoint or dependency changes; no migration.
+Source definitions and models are never rewritten. Maintained contracts, human
+overview, caption and editable SVG describe this implemented boundary.
+
+Validation: **5853 passed, 276 subtests passed in 1028.17s (0:17:08)**. **84 focused tests pass**, including 30 new profile
+regressions and demonstrated failing-before CLI/neighbor-H/exact-element checks. The complete
+37-case exploratory screen gives 26 unique core matches, ten unmatched graphs
+and one conflicting NAR group. It is transfer evidence, not a blinded validation
+cohort or qualified-support count. API and public CLI replay all 37 reports
+exactly after relocation with original/SDK reads blocked. All 597 earlier source
+files and 38 copied inputs retain bytes and timestamps. Compilation, 219 relative
+doc links, JSON syntax, whitespace and rendered figure checks pass. Exact
+commands/hashes: `source_attachment_profiles_2026_10_27` in the
 [evidence ledger](cif-linked-native-registration-evidence.json).
 
-No job remains active. Local evidence stays under the explicit live-test anchor
-`105_Cedar_catalogue-x3qy4prp`: `catalogue.json`, `validation.json`, captured
-inputs and validation logs. No workbook, CCD snapshot, scientific model, generated
-runner or raw log is included in Git. Native Phenix/Coot were not executed;
-Phenix 2.2.1-6174 supplied the read-only CCD source tree.
+Final local evidence: `live_tests_directory/106_Cedar_attachment-profiles-m0dbk_bw`, including reports,
+input manifest, validation logs and execution-code snapshot.
+The earlier `106_Cedar_attachment-profiles-qmppn38z` and
+`106_Cedar_attachment-profiles-5l0dm16w` attempts and deliberately interrupted
+full suites remain preserved; the completed suite uses final code.
+No workbook, CCD snapshot, scientific model, generated runner or raw log is in
+Git. Phenix 2.2.1-6174 supplied the previously captured CCD sources; Phenix/Coot
+were **not executed** in C106. This was a complete read-only inspection, not a
+native dry-run.
 
-**Next generalizer step:** implement the [G2 attachment-profile contract](cif-doctor.md#next-attachment-profile-milestone-g2-planned),
-separating source graph, NAR base roles, linkage operations and actual site/end
-context. Use existing reviewed aliases/corrections before inventing new repairs;
-validate transfer to held-out LNA/ATL and PNA cases. Nine duplicate conflicts are
-metadata-only; A40 and ZBC additionally differ in base class/atom roles.
-**Open PDU gate:** C104 inventory agreement still needs fixed-coordinate
-energy/gradient attribution and fresh derivatives before any optimizer. Preserve
-C100 as unqualified and `verified_recovered_model` as selected. No merge occurs.
+**Next G2 step:** bind explicit model/site context to source-defined operations
+and verify exact permitted changes. Use the existing reviewed DNA rules as a
+control, then address ATL and PNA without importing phosphate rules into peptide
+backbones. Predeclare independent operation-level transfer cases. A primary
+amine with +1/three H and one with 0/two H need explicit state decisions; a graph
+match cannot silently select either. Likewise, equivalent phosphate oxygens do
+not acquire leaving roles by name. Extend profiles for no-phosphate sugars,
+other bridges, secondary amines and lysine-derived backbones using concrete
+evidence. GNP is labelled PNA but has a ribose/polyphosphate source; reconcile
+label meaning and source intent before any correction. A66's record conflict remains.
+
+**Preserved G1 baseline:** C105 audited 618 rows/599 codes, with 596 selected CCD
+sources, eleven conflicting groups, five missing-name mappings and three empty
+role records. Reviewed aliases/corrections remain separate source authority.
+**Open PDU gate:** C104 inventory still needs fixed-coordinate energy/gradient
+attribution and fresh derivatives before any optimizer. Preserve C100 as
+unqualified and `verified_recovered_model` as selected. No merge occurs.
 
 — Rowan · Codex desktop
 

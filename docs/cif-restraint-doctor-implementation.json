@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "narestraints_catalogue_census_2026_10_27",
+    "current_diagnostic_record": "source_attachment_profiles_2026_10_27",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26844,6 +26844,23 @@
       ],
       "pdu_next_boundary": "C104 inventory passes; fixed-coordinate energy/gradient attribution and derivatives remain open.",
       "tested_implementation_commit": "972a822244ad269067f76c2d2ed2f1746aa3196b"
+    },
+    "source_attachment_profiles": {
+      "delivery": "C106",
+      "status": "IMPLEMENTED_READ_ONLY_TOPOLOGY_PORT_EVIDENCE",
+      "policy": "cif-source-attachment-topology-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_profiles.inspect_attachment_profile",
+      "command": "nasolve cif-doctor profile SOURCE --code CODE --workbook FILE [--json]",
+      "contract": "docs/cif-doctor.md#source-attachment-topology-and-ports-c106",
+      "validation_scope": "37 selected sources; 26 unique matches, 10 no match, one conflicting NAR record group; exact cold replay.",
+      "not_implemented_here": [
+        "Site/end-state and permitted-delta planning",
+        "Additional topology profiles",
+        "Native qualification",
+        "Automatic repair or adoption"
+      ],
+      "automatic_adoption": false
     }
   },
   "audience": [

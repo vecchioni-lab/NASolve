@@ -31,9 +31,20 @@ phosphate rules on other backbones.
 
 The census preserves source hashes and worksheet locations, and reproduces after
 relocation without native tools. It does not repair the workbook or chemistry.
-Subsequent milestones establish attachment/terminal contracts, bounded recovery,
+C106 adds graph-based source attachment evidence. It recognizes three initial
+cores and reports their actual ports, charges, hydrogens and stereo declarations,
+without choosing terminal chemistry or forming bonds. Twenty-six of 37 selected
+DNA, LNA and PNA-labelled sources match; the other cases remain visible. Renamed
+atoms give the same structural bindings, and exact cold replay preserves evidence.
+
+This distinguishes topology from a chemical operation: an ammonium group and a
+neutral amine can share a core without sharing a protonation state. Likewise,
+ATL's phosphate oxygen named OXT cannot be deleted merely by analogy with OP3.
+The next G2 slice must bind proposed operations to actual model/site context and
+verify their permitted changes. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
-checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105)
+checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
+the [attachment contract](cif-doctor.md#source-attachment-topology-and-ports-c106)
 and [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
 
 ## Current result and interpretation
@@ -82,10 +93,11 @@ omitted, while the rest of the current linked inventory matches exactly.
 Phosphate state, NAR terms and the 5PC bystander are preserved. Fixed-coordinate
 energy/gradient attribution and derivative checks are next; no endpoint approval follows.
 Neither native mechanics nor initial derivatives confer the old endpoint proof.
-ATL remains an independent source/compiler control. Future chemical-reference
+ATL remains an independent source/compiler and attachment-topology control.
+Future chemical-reference
 input, potentially from ChemDraw exports, belongs to restraints preparation;
 drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c104) is the
+[current capability map](cif-doctor.md#current-capability-boundary-c106) is the
 concise authority for these distinctions and next steps.
 
 ## What it does
@@ -662,7 +674,9 @@ explain export and maintenance.
 Solid arrows indicate the existing model-preparation path; dashed arrows
 indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
-external preparation program. Hash-bound JSON receipts preserve audit findings
+external preparation program. Separate catalogue/core inspection binds source
+attachment ports without selecting terminal state, leaving groups or native
+linkage. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,
 declared site modifications and historical generation findings; equality does

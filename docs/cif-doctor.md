@@ -17,7 +17,9 @@
 
 <a id="current-capability-boundary-c104"></a>
 
-## Current capability boundary (C105)
+<a id="current-capability-boundary-c105"></a>
+
+## Current capability boundary (C106)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -30,6 +32,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
+| Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. Site context, permitted deltas, additional cores and native consumers remain open. |
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
 | Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
@@ -142,7 +145,96 @@ this census did not perform qualification, not that earlier specific proofs
 ceased to exist. The current PDU inventory proof and open energy/derivative
 boundary remain unchanged. Existing manifests/receipts need no migration.
 
-### Next attachment-profile milestone (G2; planned)
+### Source attachment topology and ports (C106)
+
+```bash
+nasolve cif-doctor profile /path/to/source.cif --code ATL \
+  --workbook /path/to/Ligands.xlsx --json
+```
+
+This read-only command binds an explicit source dictionary to an unambiguous
+operational NAR record. Text output summarizes the topology and source-state
+ports; JSON includes the complete evidence. Exit **2** means a completed review,
+including a match; exit **1** means input/integrity failure. It writes no output
+file and performs no discovery, native execution, generation or model editing.
+No existing source-preparation path or ordinary runtime selection calls it yet.
+
+The schema-1 report uses policy `cif-source-attachment-topology-v1`. Explicit
+`source_directory` and `workbook_directory` references carry relative filenames,
+SHA-256 and size. The active NAR loader is hashed; workbook rows, operational
+signature, source-assessor findings and search limits remain inspectable.
+Inputs are checked unchanged before a report is returned. Cold relocation must
+reproduce the report exactly without the original input directory or SDK tree.
+
+The initial profiles describe three **core topologies**, not full chemical
+families or approved linkage recipes:
+
+| Identifier | Required graph | Reported ports |
+| --- | --- | --- |
+| `unbridged-furanose-phosphate-v1` | Five-member C/O sugar ring, one source-declared base attachment, C–O–P side chain and terminal ring alcohol; phosphate has three other terminal O neighbors with double/single/single orders. | Phosphate P and alcohol O |
+| `two-o-four-c-methylene-furanose-phosphate-v1` | The same required core plus a C–O bridge from the four-position carbon to the two-position carbon. | Phosphate P and alcohol O |
+| `uncapped-aminoethylglycine-pna-core-v1` | Base–methylene–carbonyl–N connection; N branches to a glycine carboxyl group and two-carbon primary-amine arm. One extra branch at the amine-bearing carbon is allowed and reported. | Primary amine N and carboxyl C |
+
+Selection is an injective, induced heavy-atom graph match against element,
+normalized declared bond order and heavy-neighbor constraints. The NAR record
+supplies mapped base membership; the matched attachment is separately compared
+with the loader's declared glycosidic atom. Codes, atom spellings, sugar labels
+and CCD type strings do not choose profiles. Renaming all atoms preserves the
+binding structure; changing a declared bond order or required neighborhood can
+prevent a match. Hydrogen/deuterium remain source-state evidence rather than
+heavy-graph matching nodes. No absolute stereochemistry is inferred.
+
+Search is bounded at 128 heavy atoms, 20,000 candidate visits per profile and
+64 embeddings per profile. A unique match is selected only after **all** profile
+searches complete. A limit, multiple embeddings, absent/incompatible records,
+missing mapped atoms or failed source assessment cannot select a profile. Every
+unmatched case remains explicit. External branches are listed but not chemically
+classified. The first PNA pattern requires a primary terminal amine: a secondary
+N-methyl amine is outside that pattern, not proven chemically unusable.
+
+Port evidence retains actual atom IDs, formal-charge declarations, source H/D,
+neighbor bond orders and stereo declarations. Each neighbor also records its
+source H/D inventory, so phosphate O–H remains visible even though P has no H. Full source stereo markers are
+also reported. `terminal_state_selection` and `leaving_atoms` remain
+`NOT_ASSIGNED`; `site_context` is `NOT_ASSESSED`; `permitted_delta` is
+`NOT_ASSIGNED`. All reports remain `REVIEW`, with no transformations or automatic
+adoption. In particular, equivalent terminal phosphate oxygens are not assigned
+to an OP2/OP3 role by graph symmetry. Neither literal `OP3` nor ATL's `OXT`
+justifies deletion without an explicit site operation and its source authority.
+A protonated primary amine is not silently deprotonated to make an amide.
+
+The pinned C105 sources supplied **37 cases**: all 12 LNA-labelled, 14 PNA-labelled
+and five L-DNA-labelled codes, plus PDU, 5PC and four canonical DNA sources.
+PDU/ATL/APN were named development examples; 34 additional cases test transfer.
+This is an exploratory screen, not a blinded hold-out cohort: some source
+declarations were inspected during design. **26 match**:
+11 unbridged, seven O/C-bridged and eight PNA cores. Ten remain `NO_MATCH` and
+A66 remains unassessed because its NAR records conflict. All 37 reports replay
+exactly through both API and public CLI after relocation. All 597 C105 input
+files and all 38 copied C106 files retain bytes and timestamps; no native process
+runs. The [evidence ledger](cif-linked-native-registration-evidence.json) record
+`source_attachment_profiles_2026_10_27` owns the exact commands and hashes.
+
+These gaps are chemically informative. LKC has no source phosphate; ULF, UMX,
+URX and UVX have a different carbon bridge; C66/T66 have lysine-derived backbones;
+CP1/TP1 have N-methyl termini. GNP is labelled PNA in this selected workbook,
+but its source declares a guanylate polyphosphate analogue with phosphorus atoms
+and a ribose ring. The label therefore cannot establish peptide-backbone
+chemistry. These are findings against the captured workbook/source pair, not
+automatic corrections or a judgment about intended experimental identity.
+APN records a +1 terminal N with three hydrogens; 40A records a neutral N with
+two. Both fit the core while keeping their different states unchanged.
+
+This completes the topology/port-evidence slice of G2. It does **not** complete
+site/end-state selection, permitted chemical deltas, pair/stack compilation,
+native linkage/energy qualification, general coverage or PDU's separate numerical
+gate. Existing runtime manifests, checkpoints and chemistry remain unchanged;
+no migration or dependency change is needed.
+
+<a id="next-attachment-profile-milestone-g2-planned"></a>
+
+### Remaining attachment-profile milestone (G2)
+
 
 Use separate authorities for four questions: the source graph declares the
 component's atoms/connectivity/stereo; NARestraints declares base-pair/stack
@@ -150,18 +242,18 @@ roles; a reviewed linkage profile specifies permissible attachment/terminal
 operations; the actual site context states which connections and ends exist.
 A workbook sugar label alone must not answer any of the latter three questions.
 
-The next implementation should bind a profile to exact source evidence and
-named atom roles, with explicit attachment bonds, leaving atoms, retained charge/
-stereo intent, and allowed incoming/outgoing or terminal contexts. Profile
+C106 binds source cores and ports without choosing operations. The next
+implementation should add explicit attachment bonds, leaving atoms, retained
+charge/stereo intent, and allowed incoming/outgoing or terminal contexts. Profile
 selection must explain which graph constraints matched. Preserve original and
 candidate definitions separately and test the exact permitted delta. Conflicting
 profile matches stay unresolved instead of choosing the first matching name.
 No universal phosphorus field or unconditional OP3 deletion is required of an
 alternative backbone. Literal terminal oxygen names can differ, as ATL shows.
 
-Begin with the established DNA contract, then demonstrate a distinct LNA/ATL
-case and a PNA case, using held-out components from the census to test whether
-the rules transfer. These are validation families, not a per-code allowlist.
+Start operation-level validation with the established DNA contract, then
+demonstrate a distinct LNA/ATL case and a PNA case. Continue using held-out
+components from the census to test transfer. These are validation families, not a per-code allowlist.
 Base-role repairs must preserve donor/acceptor intent as well as atom identity;
 reuse existing reviewed aliases/corrections where applicable. Do not resolve a
 carbon-for-nitrogen substitution by treating the two atoms as chemically equal.

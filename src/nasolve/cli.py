@@ -235,6 +235,11 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    cif_profile = cif_sub.add_parser("profile", help="read-only source topology and attachment-port evidence")
+    cif_profile.add_argument("dictionary", type=Path, help="explicit source component dictionary")
+    cif_profile.add_argument("--code", required=True, help="exact component and NARestraints code")
+    cif_profile.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_profile.add_argument("--json", action="store_true", help="print complete topology and source-state evidence")
     cif_assess = cif_sub.add_parser("assess", help="read-only dictionary/effective-bundle assessment")
     cif_assess.add_argument("dictionaries", nargs="*", type=Path)
     cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
@@ -1482,8 +1487,31 @@ def _cif_catalogue(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_profile(args: argparse.Namespace) -> int:
+    from .cif_attachment_profiles import inspect_attachment_profile
+
+    try:
+        report = inspect_attachment_profile(args.dictionary, args.code, workbook=args.workbook)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Source topology: {report['topology_status']}; profile: {report['matched_profile'] or 'unassigned'}")
+            for name, port in report["ports"].items():
+                print(f"  {name}: {port['atom_id']} ({port['element']}); declared charge={port['formal_charge']}")
+            if report["review_reasons"]:
+                print("Review: " + ", ".join(report["review_reasons"]))
+            print("No linkage, leaving atoms or terminal state selected; native qualification not assessed.")
+            print("Use --json for source hashes, NAR roles, stereo and bounded-search evidence.")
+        return 2  # A topology match remains review evidence, not permission to edit chemistry.
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "profile":
+        return _cif_profile(args)
     if args.cif_action == "catalogue":
         return _cif_catalogue(args)
     if args.cif_action == "generate-candidate":

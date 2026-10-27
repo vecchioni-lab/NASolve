@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect graph-bound attachment ports without changing chemistry (C106)
+
+- Add read-only `cif-doctor profile SOURCE --code CODE --workbook FILE` with
+  text/JSON evidence for single-phosphate furanose, O/C-bridged furanose and
+  uncapped aminoethylglycine PNA cores. Select through explicit source topology
+  and unambiguous NAR base membership, independent of codes and family labels.
+- Preserve source charges, H/D, stereo declarations, phosphate oxygens and
+  unclassified branches. Ambiguous/incomplete bounded searches cannot select a
+  profile. Site context, leaving atoms and permitted chemical deltas remain open.
+- Add schema-1 diagnostic reports with source/workbook/loader hashes and cold
+  relocation checks. Existing chemistry, runtime schemas and checkpoints are
+  unchanged; no migration, native execution or new dependency is introduced.
+
 ### Census the complete selected NARestraints catalogue (C105)
 
 - Add read-only `cif-doctor catalogue --workbook FILE --ccd-root DIRECTORY`

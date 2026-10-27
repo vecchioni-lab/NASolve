@@ -3294,3 +3294,23 @@ and bounded recovery must preserve source identity, charge/stereo intent and
 NAR ownership. A component alias can isolate definitions, never justify changing
 chemistry for convergence. See the [C105 contract](cif-doctor.md#catalogue-coverage-census-c105)
 and maintained [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
+
+
+## Source attachment topology and state evidence (C106)
+
+`cif_attachment_profiles.inspect_attachment_profile` is a read-only layer between
+explicit source/NAR records and future site-operation planning. It reuses the
+ordinary source assessment and operational-record resolver. Immutable graph
+patterns bind source atoms by element, normalized order, induced connectivity
+and heavy degree, using NAR mappings only for base membership. A completed unique
+embedding across all patterns is required; bounded or ambiguous searches do not
+choose a result. Codes, labels and naming conventions do not choose a pattern.
+
+The initial single-phosphate furanose, O/C-bridged furanose and primary-amine PNA
+core patterns expose source charge/H/D/stereo and neighbors at their ports.
+They do not infer protonation, assign equivalent terminal phosphate oxygens to
+leaving roles, compile NAR recipes or alter existing DNA preparation. Source and
+workbook anchors and hashes allow exact cold replay; schema 1 is additive.
+The [command contract](cif-doctor.md#source-attachment-topology-and-ports-c106)
+records search limits, actual coverage and the remaining site-context/permitted-
+delta boundary. No ordinary runtime hook or native execution is added.

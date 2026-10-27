@@ -52,7 +52,10 @@ source hashes, mapping conflicts and family-label gaps without asserting native
 support or assigning linkage chemistry. The broader generalizer includes ATL
 and alternative backbones; [milestones](docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
 track that work separately from the current PDU proof.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c105)
+C106 adds `nasolve cif-doctor profile SOURCE --code CODE --workbook FILE`:
+read-only source topology and attachment-port evidence, including distinct PNA
+chemistry. It selects no terminal state, leaving atoms or native linkage.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c106)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.
