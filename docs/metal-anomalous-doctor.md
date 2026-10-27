@@ -31,6 +31,34 @@ frozen endpoints is distinct from a matched-coordinate identity substitution
 control; record which experiment was performed. Final joint refinement, if
 requested, creates another child and does not retroactively validate the scan.
 
+## Fixed dispersive term and campaign scope
+
+In this metal workflow f-prime is fixed at the declared element/wavelength
+reference throughout diagnostic fits. It is not offered as a freely fitted
+parameter at the working resolutions. Geometry preparation and the later
+conditional occupancy fit retain an explicit fixed f-prime policy too. This
+contract does not silently change the existing ordinary AutoRefine default.
+The generated-run inspector reports reference f-prime/f-double-prime separately
+from future fitted values; it starts no refinement.
+
+The future campaign workbench must retain explicit campaign, dataset, run,
+checkpoint, hypothesis, round and trial identities. Switching the viewed dataset
+or structure only changes the view; it never changes a checkpoint, reuses a
+selection from another model or launches jobs. Different crystals remain
+separate observations even when they share a recipe or chemical design.
+All seven known-positive test cases should eventually be staged together, with
+independent status/lineage and linked per-site tables in the same GUI. The PDU
+two-metal slip case waits for integrated qualified PDU restraints.
+
+Automatic proposals are a later bounded stage. Declared metal identities,
+iodine/bromine sites, possible clusters and experimental evidence can define
+priors and constrain geometry alternatives. Focused anomalous phasing and local
+map/geometry evidence can evaluate those alternatives. Record the origin and
+strength of each prior, avoid counting prior information as another diffraction
+observation, and retain phase-model dependence and unresolved alternatives.
+Joint multi-wavelength fitting requires explicitly related datasets; campaign
+membership alone does not establish a MAD experiment or common occupancy.
+
 ## What occupancy and f'' can establish
 
 For an isotropic atom its anomalous contribution contains the factor

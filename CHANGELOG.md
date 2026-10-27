@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Connect generated W models to metal recipe inspection and export
+
+- Add read-only `metal inspect` and `metal preview` commands over the existing
+  checkpoint and anchored-input mechanisms, preserving current selection.
+- Import exact single-model PDB identity and atomic state, reuse effective
+  PostMR donor mappings, and bind ordered W sites A:12/B:4.
+- Read wavelength from the selected anomalous observation dataset and obtain
+  explicit local Sasaki/Henke reference values with fixed f-prime policy.
+- Replay resolved previews before proposed PHIL distance/angle export. Preserve
+  incomplete drafts; require new output files and explicit source-bound bindings.
+- Add context schema 1 without migrating recipes, previews or checkpoints.
+  Metal placement, native geometry/f-double-prime execution, PDF input fallback,
+  campaign GUI and automatic proposals remain explicit later milestones.
+
+
 ### Add the modular metal-recipe model and geometry preview
 
 - Add `nasolve.metal`: immutable stable-ID donor/metal graphs and named restraint

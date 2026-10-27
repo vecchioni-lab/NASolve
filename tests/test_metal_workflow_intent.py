@@ -81,3 +81,21 @@ def test_reuse_depends_on_the_complete_experiment_not_only_the_metal_tuple():
         "restraints_and_dictionaries", "resolved_selections_and_groups",
         "effective_parameters_and_starts", "software_and_protocol_versions",
     }
+
+
+def test_generated_model_integration_keeps_pair_order_and_fixed_fprime():
+    contract=intent()['integration']
+    assert contract['ordered_pair']=={'first':'A:12','second':'B:4'}
+    assert contract['supplied_solved_model_required'] is False
+    assert contract['f_prime_policy']=='fixed-reference'
+    assert contract['first_control']=='one Hg'
+    assert contract['second_control']=='mixed Au/Ag'
+
+
+def test_campaign_switching_is_a_view_action_and_retains_distinct_inputs():
+    campaign=intent()['integration']['campaign']
+    assert campaign['switch_datasets_and_structures'] is True
+    assert campaign['switch_changes_scientific_selection'] is False
+    assert campaign['independent_dataset_observations'] is True
+    assert set(campaign['identities']) >= {'campaign','dataset','run','checkpoint','context','hypothesis','round','trial'}
+    assert campaign['retain_prior_and_phase_provenance'] is True

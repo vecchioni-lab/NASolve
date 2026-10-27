@@ -1344,6 +1344,22 @@ it is element-driven rather than restricted to known residue codes. Element
 columns are preferred, with atom-name inference recorded when required. The
 candidate sites and whether AutoSol is required are written to `report.json`.
 
+## Inspect generated models for metal recipes
+
+After the W AutoMR/PostMR stages generate a model, inspect its fixed A:12/B:4
+pair and observation-associated wavelength with:
+
+```sh
+nasolve metal inspect /path/to/dataset/AutoMR/run_001 --element Hg
+```
+
+This reads the explicit PostMR checkpoint and local reference f-prime/f-double-prime
+values without changing the current checkpoint. `metal preview` binds a saved
+recipe to that model and can export proposed distance/angle PHIL edits. Missing
+metal sites remain explicit draft bindings; placement and scientific refinement
+are later milestones. See the [metal integration guide](docs/metal-restraint-builder.md#generated-run-api-and-commands)
+for exact inputs, limitations and campaign objectives.
+
 ## AutoRefine and checkpoints
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It

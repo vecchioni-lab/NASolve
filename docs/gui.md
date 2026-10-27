@@ -105,6 +105,20 @@ workspace rather than creating a second application.
 
 ## Metal-coordination recipe workspace
 
+The later campaign metal workspace must switch between datasets, generated
+structures/checkpoints and competing hypotheses without changing scientific
+selection. Use the backend's dataset/run/checkpoint/context IDs, never atom
+labels or row positions as global identities. Preserve per-context camera,
+drafts and selection; invalidate stale bindings when the model hash changes.
+All case families should eventually coexist in one campaign view with separate
+jobs, observation wavelengths, resource provenance and unresolved outcomes.
+An experimental-prior panel may declare elements, iodine/bromine sites, possible
+clusters and other evidence for future bounded proposals; these are visible
+hypotheses, not additional diffraction observations or automatic acceptance.
+The implemented `metal inspect`/`metal preview` backend is the initial adapter;
+this campaign GUI and automatic proposal stage are not yet implemented.
+
+
 The planned [metal-restraint builder](metal-restraint-builder.md) may toggle as a
 workspace or a small standalone/detached companion. Clickable atom spheres and
 metal selectors create visible distance/angle restraint overlays, not immediate
@@ -113,8 +127,9 @@ columns (O4/N3), bind them to actual atoms for a run, and refine explicit varian
 as ordinary checkpoint children. Supplied examples motivate one-, two- and
 three-metal, mixed-species and extensible cluster hypotheses. Numerical targets
 remain under review. The UI-independent recipe, exact binding and geometry-preview core is implemented in `nasolve.metal`; its schema-1 JSON
-is separate from development intent. The renderer, production file import,
-native export/refinement and integration with the local sketch remain planned.
+is separate from development intent. Generated W PDB import and proposed PHIL
+export are now available through the shared backend. The renderer, scientific
+refinement and integration with the local sketch remain planned.
 This feature is not a prerequisite for operational Scout.
 
 Use three connected views: **Design** for graph/role/constraint authoring;

@@ -73,7 +73,7 @@
   ],
   "implementation_choices_pending": [
     "renderer/toolkit",
-    "model importer and native export adapters",
+    "mmCIF and nonidentity-symmetry import/export qualification",
     "metal placement UI"
   ],
   "does_not_change": [
@@ -210,11 +210,62 @@
       "JSON round-trip",
       "exact supplied-inventory binding",
       "shared component-role resolution",
-      "read-only distance and angle preview"
+      "read-only distance and angle preview",
+      "generated W checkpoint context",
+      "single-model PDB atomic state import",
+      "PostMR effective role-map snapshot",
+      "observation-associated MTZ wavelength",
+      "offline reference scattering with fixed f-prime",
+      "replayed PHIL proposal export"
     ],
     "gui_connected": false,
     "native_ready": false,
-    "source_importer_implemented": false,
+    "source_importer_implemented": true,
     "layout_and_camera_outside_recipe": true
+  },
+  "integration": {
+    "contract": "docs/metal-restraint-builder.md#integration-objectives-and-milestones",
+    "model_source": "NASolve-generated W AutoMR/PostMR",
+    "ordered_pair": {
+      "first": "A:12",
+      "second": "B:4"
+    },
+    "context_schema_version": 1,
+    "supplied_solved_model_required": false,
+    "f_prime_policy": "fixed-reference",
+    "first_control": "one Hg",
+    "second_control": "mixed Au/Ag",
+    "deferred_control": "two-Hg PDU slip geometry pending qualified upstream PDU restraints",
+    "campaign": {
+      "status": "planned",
+      "switch_datasets_and_structures": true,
+      "switch_changes_scientific_selection": false,
+      "independent_dataset_observations": true,
+      "identities": [
+        "campaign",
+        "dataset",
+        "run",
+        "checkpoint",
+        "context",
+        "hypothesis",
+        "round",
+        "trial"
+      ],
+      "bounded_automatic_proposals": true,
+      "retain_prior_and_phase_provenance": true
+    },
+    "milestones": [
+      "M0 authoring core",
+      "M1 generated-run integration",
+      "M2 metal materialization and geometry",
+      "M3 audited anomalous diagnostics",
+      "M4 interactive iteration",
+      "M5 campaign workbench",
+      "M6 bounded automatic proposals"
+    ],
+    "pending_intake": [
+      "STARANISO PDF summary fallback",
+      "MTZ-capability intake without processing CIF"
+    ]
   }
 }

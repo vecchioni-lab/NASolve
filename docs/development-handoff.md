@@ -1,7 +1,9 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-26** from native receipts, user visual review and verified geometry/DF
-bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
+Metal integration updated **2026-10-27** in the section below. The following
+Cedar boundary is the retained **2026-10-26 snapshot**, not a new statement of
+the separate checkout's current status. It records native receipts, user visual
+review and verified geometry/DF bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The current laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
 authorized `src/nasolve/phaser.py` fix modified after the GeoTest rerun.
@@ -13,12 +15,121 @@ not general production support. Earlier wording remains in Git and the
 
 ## Parallel metal workflow design
 
-The user-authorized `codex/alder` worktree isolates metal authoring/preview
+The user-authorized `Alder` worktree isolates metal authoring/preview
 development from active CIF/numerical development. Its base is `2801d78` (C100); integrate
 into `cedar` or its explicitly designated successor after reconciling newer
 changes. Retire the feature branch/worktree after reviewed integration and an
 audit of its local artifacts, not while native results remain unaccounted for.
 This parallel scope adds no Cedar/Pine scientific gate.
+
+### Current M1 generated-model integration (2026-10-27)
+
+Active metal branch: `Alder` (renamed from `codex/alder` without replacing the
+worktree). Integration target remains Cedar or its designated successor;
+upstream PDU changes are not imported or qualified by this feature branch.
+At this review, Cedar was `15105f4` (C105 catalogue census). Metal implementation
+lives in its own package; shared source edits are additive CLI registration in
+different sections from Cedar's catalogue command. Documentation needs
+reconciliation when integrating. No merge or change to the Cedar checkout is
+performed by this delivery.
+
+The bounded first pass is M1 in the [integration milestones](metal-restraint-builder.md#integration-objectives-and-milestones):
+connect generated W checkpoints to the recipe core, inspect observation-linked
+wavelengths/local reference scattering, and export proposed PHIL constraints.
+Native runs generate the first and second nucleotide models through existing
+AutoMR/PostMR. Missing model files are intentional, not an input blocker.
+The first control is one Hg; the second is mixed Au/Ag. The two-Hg PDU slip case
+waits for qualified upstream restraints. Campaign dataset/structure switching,
+all-case staging and evidence-informed automatic proposals are explicit later
+milestones, with independent dataset lineage and ambiguity retained.
+
+Before M1, the recipe core required caller-supplied atom inventories and could
+not read a generated run, inspect its wavelength or export restraints. It now
+imports an explicit W checkpoint, exact atom identities and q/B/ANISOU state,
+anchored observations/resources and the effective PostMR role map. The adapter
+checks observation-owned anomalous columns and wavelength, queries local
+reference f-prime/f-double-prime tables, and replays the preview before emitting
+exact PHIL distance/angle edits. Outputs are proposals; the adapter neither
+places missing metals nor changes a checkpoint or workspace selection.
+
+New source files are `src/nasolve/metal/{context,scattering,export,cli}.py`, with
+additive registration in `src/nasolve/cli.py`. Tests are
+`tests/test_metal_integration.py` and two new intent checks. Updated contracts
+are the builder/intent, anomalous workflow, GUI, architecture, README/index,
+changelog and this handoff. The new `metal-run-context` schema/protocol is 1;
+recipe/preview schemas remain 1, and no existing run/checkpoint migration is
+needed. Commands are `metal inspect` and `metal preview` with explicit run paths.
+
+Validation uses Python 3.12.14. Initial regression collection failed before the
+context module existed. A native `phenix.refine --dry-run` then exposed a PHIL
+namespace mismatch; the final exporter uses `refinement.geometry_restraints.edits`,
+with an assertion that failed before the correction and passes afterward.
+The final focused command passes **176 tests and 33 subtests in 13.68s**:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_checkpoints.py tests/test_run_context.py tests/test_autorefine.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider > /private/tmp/alder-integrator-final-suite-20261027.log 2>&1
+git diff --check
+```
+
+The final complete suite passes **5741 tests and 276 subtests in 837.01s
+(13m57s)**. Earlier interrupted suite attempts are retained locally and are not
+the final validation: one encountered sandbox
+process-group termination restrictions in an existing campaign test; another
+was stopped to correct the export namespace before restarting validation.
+The final suite runs with normal local process permissions. Source/test/intent
+hashes were frozen at its start and remain unchanged. Synthetic tests cover a relocated run and a
+fresh interpreter importing a relocated source checkout after the original path
+is gone. All eight metal modules also parse with Python 3.10 grammar; 49 linked
+local files resolve. Working and staged whitespace checks pass.
+
+Native checks use **Phenix 2.2.1-6174** and **Coot 1.3.3**. Existing W AutoMR and
+PostMR completed for both controls: the single-Hg dataset reached
+`POSTMR_READY` with TFZ 10.6; the mixed Au/Ag dataset reached `POSTMR_READY` with
+TFZ 11.9. These are generated nucleotide scaffolds, not solved metal geometries.
+The ordered sites are A:12/B:4. Observation wavelengths are 0.92009 and 0.92012
+angstrom, respectively. Reference scattering receipts retain provider, exact
+native version and table-binary hash; these values are not fitted results.
+
+Final native interpretation consumes both generated models with inherited
+dictionaries/restraints and proposed numerical distance/angle controls. Exact
+atom membership, targets and weights pass. Both **`phenix.refine --dry-run`
+checks return 0**. A separate synthetic Hg/water three-atom control also passes
+exact native distance/angle membership, targets and weights. Real-model control
+targets equal their measured donor geometry; synthetic targets are numerical
+controls. Neither establishes chemically appropriate metal geometry. No
+optimization, frozen f-double-prime experiment or occupancy fit ran.
+
+Local evidence is retained under the everyday checkout's ignored
+`branch-artifacts/Alder/live-20261027-01/`: `generation-receipt.json`,
+`FT_Hg-reference-provenance.json`, `final-consumer-summary.json`,
+`final-native-membership/`, `synthetic-metal-control-v2/receipt.json` and
+`tested-source-hashes.json`. Earlier failed consumer checks remain alongside
+the final receipts. Exact native commands are recorded in those receipts. The
+local runners were executed from the everyday checkout with:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -u branch-artifacts/Alder/runners/A01_generate_metal_controls.py
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -u branch-artifacts/Alder/runners/A06_final_metal_consumer_checks.py
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -u branch-artifacts/Alder/runners/A07_final_synthetic_metal_control.py
+```
+
+These commands document completed local validation; the runners refuse their
+existing output directories and are not portable product commands. Raw inputs,
+models, MTZs, native outputs, runners and GUI state remain local and excluded
+from Git. Six original input files and their copies retain the captured hashes.
+Only source, synthetic regression tests and documentation are delivered.
+
+Remaining milestones: explicit metal placement and derived geometry; native
+consumption/chemistry qualification; fully audited frozen-q/f-double-prime jobs;
+iteration/cache/table integration; campaign GUI and bounded automatic proposals.
+PDF-summary and missing-CIF input adapters remain planned dependencies for the
+other cases; the first two controls use complete current inputs. Single-model
+PDB, identity symmetry and unambiguous W sites are current limits. Native
+consumption is proven only for the controls above; duplicate inherited terms
+and chemical suitability still require qualification for each future geometry.
+
+### Previous design-contract delivery
 
 Before this change, the planned builder covered one/two metals and examples were
 pending. The [updated builder](metal-restraint-builder.md) now covers one to
@@ -86,7 +197,7 @@ contract, not an implemented native cache. The sketch, downloaded public CIF,
 screenshots and test logs remain local and excluded from Git. No native Phenix
 or Coot execution is claimed for this follow-up.
 
-### Implemented recipe model and modular interface boundary (2026-10-27)
+### Previous M0 recipe-model delivery (2026-10-27)
 
 Before this delivery, metal functionality was design documentation plus a separate
 interactive sketch. `nasolve.metal` now implements a validated immutable recipe
@@ -137,17 +248,17 @@ structure download, unpublished data, native output, local sketch or UI state is
 included. No Phenix/Coot version or qualification is newly claimed: neither a
 native dry-run nor a complete native job was performed.
 
-Limitations: source-model/role-map hashes are caller-supplied provenance; this
-layer separately fingerprints the supplied inventory but has no file importer.
+At the M0 delivery, source-model/role-map hashes were caller-supplied provenance;
+the pure layer separately fingerprinted the supplied inventory without a file importer.
 It does not verify correspondence with an on-disk crystallographic model.
 Nonidentity symmetry is explicitly unsupported; missing/ambiguous atoms and
 species mismatches stay diagnostic. Numerical source labels do not approve
 chemistry. `native_ready` is always false, including a `resolved` preview.
 Recipe/preview hashes are not full-experiment reuse keys.
 
-Next: connect the GUI panels to this shared model through an explicit importer
-and controller, then qualify native selections/restraint export on a bounded
-fixture. Review targets before native geometry runs. Frozen f'' protocols,
+The current M1 section above supersedes the M0 importer/export next-step note.
+The GUI controller and rendered panels remain planned. Review targets before
+native geometry runs. Frozen f'' protocols,
 occupancy iteration, cache keys and target-library adapters remain independent
 future steps; current `ML-fdp-only` is not a fully frozen experiment.
 

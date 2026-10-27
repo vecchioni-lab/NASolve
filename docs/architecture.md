@@ -1319,12 +1319,26 @@ automation but do not replace visual inspection or user approval.
 
 ## Metal authoring core and planned anomalous diagnostics
 
+The run integration adapter now consumes an explicit generated W checkpoint,
+its inherited resources and source-bound PDB inventory. It maps first/second
+pair slots to A:12/B:4 and reuses PostMR's effective donor-role corrections.
+`metal inspect` associates an anomalous quartet with its MTZ dataset wavelength
+and optionally obtains offline reference scattering; `metal preview` replays
+bindings and can export proposed PHIL edits. Both preserve checkpoint selection.
+Context schema 1 is distinct from immutable recipes and future experiment keys.
+See the [implementation and milestone contract](metal-restraint-builder.md#integration-objectives-and-milestones).
+Campaign switching must use dataset/run/checkpoint/context identities; later
+hypotheses and rounds are children of that scope. Member datasets remain
+independent, with no implicit joint fitting or inherited chemical qualification.
+
+
 The [metal builder](metal-restraint-builder.md) defines reusable donor/metal
-graphs, exact atom-role binding and eventual native restraint export. The new
+graphs, exact atom-role binding and proposed native restraint export. The
 `nasolve.metal` package implements immutable schema-1 recipe JSON, explicit
 caller-supplied coordinate/role snapshots and schema-1 read-only geometry previews.
-It reuses `component_records.resolve_component_record`; native selectors, file
-import, target libraries, PHIL export and production GUI remain separate. Panel
+It reuses `component_records.resolve_component_record`; the separate run-context
+and export adapters now supply PDB import and proposed PHIL/native selectors.
+Target libraries and the production GUI remain planned. Panel
 layout/camera/visibility state is outside the scientific graph. The separate
 [anomalous diagnostic contract](metal-anomalous-doctor.md) defines geometry
 preparation followed by bounded independent fixed-q/f'' trials and linked

@@ -46,6 +46,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="nasolve", description="Guarded nucleic-acid structure solution")
     parser.add_argument("--phenix-root", help="one-run Phenix root, phenix_env.sh, or executable override")
     subparsers = parser.add_subparsers(dest="command", required=True)
+    from .metal.cli import configure as configure_metal
+    configure_metal(subparsers)
     configure = subparsers.add_parser("configure", help="save external-tool configuration")
     configure_sub = configure.add_subparsers(dest="configure_target", required=True)
     phenix = configure_sub.add_parser("phenix", help="discover, validate, and remember Phenix")
@@ -1571,6 +1573,9 @@ def _cif_doctor(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.command == "metal":
+        from .metal.cli import execute as execute_metal
+        return execute_metal(args)
     if args.command == "configure" and args.configure_target == "phenix":
         return _configure_phenix(args.path)
     if args.command == "configure" and args.configure_target == "coot":

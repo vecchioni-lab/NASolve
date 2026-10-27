@@ -1,6 +1,6 @@
 # Metal-coordination restraint builder
 
-Status: **recipe/binding/preview core implemented; GUI and native application planned**.
+Status: **recipe core, generated-run integration and PHIL proposal export implemented; GUI and scientific execution planned**.
 User request recorded 2026-10-06. This independent authoring feature is not a Pine
 merge prerequisite.
 Published examples and private cluster context have been supplied. The scope
@@ -8,14 +8,120 @@ now includes one-, two- and three-metal base pairs and an extensible cluster
 graph. Numerical targets and uncertainties still require scientific review;
 published structures do not automatically define reusable restraint defaults.
 
+## Integration objectives and milestones
+
+The metal workspace is a consumer of NASolve's generated models and immutable
+checkpoint lineage. It uses the standard W/5W6W route: the first requested
+nucleotide is A:12 and the second B:4. A supplied solved model is not a
+prerequisite. This is existing frame-based MR/PostMR preparation, distinct from
+external de novo model providers. Metal placement is a separate explicit
+hypothesis on the generated scaffold.
+
+| Milestone | Acceptance criterion | Current state |
+| --- | --- | --- |
+| M0: authoring core | Stable graph/revision IDs, exact role binding, numerical preview | Implemented and tested |
+| M1: generated-model integration | Read a generated W checkpoint; preserve identities, q/B, dictionaries and original observations; export exact proposed restraints | Implemented; current native checks and test counts in the handoff |
+| M2: hypothesis materialization and geometry | Explicit metal coordinates/count/species, complete native restraint consumption, immutable derived models, inspected geometry | Planned; begin with one Hg and then a mixed Au/Ag pair |
+| M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Planned |
+| M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables and selection | Planned |
+| M5: campaign workbench | Switch datasets/structures/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
+| M6: bounded automatic proposals | Use declared chemistry/geometry/experimental priors and focused phasing to propose alternatives; retain ambiguity and rejected cases | Planned |
+
+The two-metal PDU slip-geometry case waits for qualified upstream PDU
+restraints and their integration. Do not fall back to ordinary saturated-chain
+targets for its triple-bond chemistry. The first two controls use the single-Hg
+and mixed Au/Ag cases. Later controls include three Ag, four-/six-atom clusters,
+and iodine-bearing bases with an additional Ag site. All supplied cases are
+known positive examples; processing anomalous-summary statistics are metadata,
+not acceptance gates or a ranking of these structures.
+
+The missing-HTML input adapter remains a named dependency: accept the
+STARANISO PDF (`report_staraniso.pdf` or `staraniso_report.pdf`) for report
+metadata, with explicit field provenance. A missing processing CIF must not
+invalidate capabilities that are available from the authoritative MTZ. These
+fallbacks are planned; ordinary AutoMR discovery still requires its current
+companions. The first two controls contain those companions.
+
+### Generated-run API and commands
+
+`metal.context.load_run_context` reads the existing checkpoint registry (or its
+validated in-memory PostMR root), inherits checksummed observations and active
+dictionaries/restraints, and imports the selected model without creating a new
+checkpoint or changing the current pointer. The adapter currently supports only
+single-model PDB and the unambiguous W A:12/B:4 pair. It preserves prime marks,
+insertion/alternate/segment identities, occupancy, isotropic B and ANISOU values;
+ambiguous W alternates or insertions require a future explicit policy. Raw source
+bytes are hashed; no atom-name, element or numeric defaults are invented.
+
+Effective role records reuse PostMR's reviewed process-local corrections,
+including DF O2-role to S1. The selected raw/effective records and correction
+receipt accompany the context. Context schema 1 binds dataset/run/checkpoint,
+model, observations, inherited resources and the imported inventory. Its ID is
+independent of the checkout location. It is a view/input identity, not a complete
+native-experiment cache key or a chemistry qualification.
+
+```sh
+nasolve metal inspect /path/to/dataset/AutoMR/run_001 --element Hg --json
+nasolve metal preview /path/to/dataset/AutoMR/run_001 --recipe recipe.json --bindings bindings.json --export proposed.phil --output preview.json
+```
+
+`--checkpoint` defaults explicitly to `postmr`; `--dataset-id` can bind the
+campaign's identifier. Neither command changes the local workspace selection.
+Donor slots are named `first` and `second`; concrete atom bindings supply an
+`atoms` object keyed by recipe node ID and `source_model_sha256` matching this
+exact source. Outputs must be new files. An incomplete preview remains viewable
+and returns exit 2; only fully resolved enabled constraints can be exported.
+No missing metal is silently placed by a preview.
+
+The observation adapter selects one populated F+/F- amplitude quartet within
+one MTZ dataset and takes that dataset's wavelength, excluding the HKL_base
+placeholder. Multiple complete quartets, empty arrays, invalid wavelengths or
+missing integer Free-R columns are explicit errors. This is header/column
+inspection, not a reflection-level consistency audit. Optional reference
+f-prime/f-double-prime values come from the configured Phenix CCTBX Sasaki or
+Henke tables with provider/version/wavelength and the native table-binary SHA-256 recorded. Reference values are
+estimates, not fitted results; out-of-range lookup is an error. No unvalidated
+interpolation table is generated.
+
+PHIL export replays the complete preview inputs before writing distance/angle
+edits and preserves restraint/set IDs in comments. Native selectors retain exact
+supported residue/component/atom/alternate/segment scope. Export is limited to
+one model and identity symmetry; unsupported selector characters and
+case-normalized ambiguities are rejected. Native consumption, duplicate terms
+against inherited restraints and chemical suitability must be checked before
+geometry refinement. Existing recipe/preview schemas remain unchanged.
+
+**Methods.** The integration resolves a declared NASolve checkpoint through the
+existing anchored-path and checksum mechanisms, snapshots its PDB atom inventory
+and effective NARestraints records, and binds the recipe to those exact inputs.
+A separate Phenix header inspection associates observations with wavelength;
+local CCTBX tables supply explicitly sourced reference scattering values. Pure
+preview replay generates PHIL edit proposals without launching scientific jobs.
+Synthetic malformed-input and relocation controls establish software behavior;
+native receipts establish only the specific checks reported in the handoff.
+
+```mermaid
+flowchart LR
+    C[Existing campaign member] --> W[W AutoMR and PostMR]
+    W --> K[Explicit checkpoint and inherited resources]
+    K --> I[Metal context and exact role binding]
+    R[Reusable recipe] --> P[Geometry preview]
+    I --> P
+    P --> E[Proposed PHIL export]
+    E -. planned .-> G[Derived metal hypotheses and geometry]
+    G -. planned .-> F[Fixed f-prime and audited f-double-prime trials]
+    F -. planned .-> T[Campaign tables and molecular views]
+```
+
 ## Implemented authoring core
 
 The `nasolve.metal` Python API now stores a reusable coordination hypothesis and
 previews its distances/angles against an explicitly supplied coordinate inventory.
 It is the shared model beneath a future editor, detached window and scripting
 adapter. The current interactive sketch is still separate and is not connected
-to this API. No production renderer, file importer or native restraint export is
-implemented by this delivery.
+to this API. The generated-run adapter now imports a single-model PDB, resolves the fixed W
+pair, reads observation-associated wavelengths and exports proposed PHIL edits.
+A production renderer and scientific execution remain separate milestones.
 
 The core has three small modules:
 
@@ -54,7 +160,7 @@ existing `resolve_component_record` semantics. Equivalent descriptive aliases
 may agree; conflicting operational records are reported. A logical O4 role can
 therefore map to a differently named sulfur atom without being relabeled oxygen.
 No installed-workbook discovery, correction or model-file interpretation occurs
-here. Import adapters must verify the source bytes and capture any effective
+in the pure binding layer; the separate context adapter supplies those inputs. Import adapters must verify the source bytes and capture any effective
 role-map corrections before constructing these objects. Source digests in this
 API are caller-supplied provenance; the separate inventory/role-map fingerprints
 are calculated from the complete supplied objects.
@@ -75,9 +181,9 @@ A recipe hash identifies the complete document, including revision and metadata.
 A preview input hash also includes the supplied inventory, role map, bindings and
 protocol. Neither is a complete native-experiment cache key. Neither proves that
 a source model file was parsed correctly or that a target is chemically suitable.
-There are no native selection strings, PHIL bundles, checkpoint adoption,
-coordinate/chemistry edits, occupancy scans, anomalous fits or target-library
-lookups in this implementation.
+The separate export adapter supplies proposed native selection strings/PHIL.
+Checkpoint adoption, coordinate/chemistry edits, occupancy scans, anomalous fits
+and target-library lookups remain unimplemented.
 
 ### Modular interface boundary
 
@@ -318,5 +424,5 @@ those facts without silently converting a geometric hypothesis into evidence.
 
 See [GUI contract](gui.md), [GUI live checks](gui-live-checks.md), and the
 [development handoff](development-handoff.md) for the current development order.
-GUI and native integration remain separate later scopes; it does not add a gate to the
+GUI and native scientific execution remain separate later scopes; this adds no gate to the
 combined geometry trial or Cedar/Pine close-out.
