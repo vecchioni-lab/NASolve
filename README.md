@@ -46,7 +46,13 @@ checks the periodic torsion arithmetic and confirms strong PDU coordinate sensit
 C104 prepares that separate candidate and confirms exactly six PDU definition
 omissions and three active torsion removals, preserving the rest of the current
 linked inventory. Energy/gradient attribution and derivative checks are next.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c104)
+C105 adds `nasolve cif-doctor catalogue --workbook FILE --ccd-root DIRECTORY`
+for a read-only, complete selected-catalogue census. It preserves worksheet rows,
+source hashes, mapping conflicts and family-label gaps without asserting native
+support or assigning linkage chemistry. The broader generalizer includes ATL
+and alternative backbones; [milestones](docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
+track that work separately from the current PDU proof.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c105)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.

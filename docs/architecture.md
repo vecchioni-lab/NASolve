@@ -3268,3 +3268,29 @@ remain unchanged. C103 lineage and selected-start decisions are preserved.
 The new schema-1 diagnostic result uses
 `cif-linked-linear-torsion-inventory-v1`; no existing schema needs migration.
 See the [C104 contract](cif-doctor.md#linked-pdu-omission-inventory-c104).
+
+
+## Catalogue coverage before generalization (C105)
+
+The read-only catalogue command consumes two explicit anchors: a selected
+NARestraints workbook and a CCD source directory. It uses NAR's loader, verifies
+its sheet/row correspondence, and applies the shared operational-role resolver.
+It never substitutes the bundled workbook for an explicit one. Each exact code
+maps to the declared CCD layout; no basename search, native discovery, generation
+or network acquisition occurs. Available resources are assessed through the
+ordinary source checker; hashes are checked across the complete census.
+
+The additive schema-1 report preserves raw context/roles, duplicate conflicts,
+missing sources, unassessed checks and exact sugar-label groups. Graph validity,
+mapped-name presence and native qualification are distinct. NAR's `/` marker is
+retained as evidence, not treated as an atom. Phosphorus neighbors and boundary
+bonds are descriptive; they do not establish attachment sites, leaving groups or
+terminal state. No profile, chemistry repair, numerical qualification or fallback
+is selected by the census. Repeating with relocated explicit anchors must return
+the identical report. Existing runtime schemas and receipts remain unchanged.
+
+All catalogue families belong in the generalizer programme. Family/site contracts
+and bounded recovery must preserve source identity, charge/stereo intent and
+NAR ownership. A component alias can isolate definitions, never justify changing
+chemistry for convergence. See the [C105 contract](cif-doctor.md#catalogue-coverage-census-c105)
+and maintained [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).

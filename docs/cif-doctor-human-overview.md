@@ -18,6 +18,24 @@ The [command guide](cif-doctor.md) owns operational contracts; the
 implemented APIs from planned orchestration. This overview and its editable
 figure describe the current capabilities and their limits.
 
+## Catalogue scope and progression
+
+The generalizer programme includes every ligand in the selected NARestraints
+catalogue, including ATL and alternative backbones such as PNA. C105 supplies
+a read-only baseline: it joins the exact workbook rows to exact CCD source files,
+checks graphs and mapped atom names, and records missing sources and conflicting
+mappings. All 618 rows / 599 codes of the pinned local workbook are represented.
+This is inspection coverage, not a claim that all 599 ligands can be built or
+refined. Exact sugar labels help organize further work without imposing DNA
+phosphate rules on other backbones.
+
+The census preserves source hashes and worksheet locations, and reproduces after
+relocation without native tools. It does not repair the workbook or chemistry.
+Subsequent milestones establish attachment/terminal contracts, bounded recovery,
+qualified usable fallback and ordinary workflow integration. PDU's open numerical
+checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105)
+and [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
+
 ## Current result and interpretation
 
 The actual Mac C95 test passes: a relocated 863-atom model, 23 dictionaries and

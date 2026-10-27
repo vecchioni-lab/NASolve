@@ -230,6 +230,11 @@ def build_parser() -> argparse.ArgumentParser:
         "cif-doctor", help="assess component restraints or create explicit review candidates",
     )
     cif_sub = cif_doctor.add_subparsers(dest="cif_action", required=True)
+    cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
+    cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
+                               help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
+    cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
     cif_assess = cif_sub.add_parser("assess", help="read-only dictionary/effective-bundle assessment")
     cif_assess.add_argument("dictionaries", nargs="*", type=Path)
     cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
@@ -1456,8 +1461,31 @@ def _cif_generate_candidate(args: argparse.Namespace) -> int:
     return 0 if payload.get("status") == "CANDIDATE_REVIEW" else 2
 
 
+def _cif_catalogue(args: argparse.Namespace) -> int:
+    from .cif_catalogue import audit_catalogue
+
+    try:
+        report = audit_catalogue(args.workbook, args.ccd_root)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            summary = report["summary"]
+            print(f"Catalogue census: {summary['records']} records; {summary['distinct_codes']} distinct codes")
+            for label, key in (("Source availability", "source_status"), ("Graph checks", "graph_status"),
+                               ("NAR records", "record_resolution"), ("Mapped atom names", "mapped_roles")):
+                print(label + ": " + ", ".join(f"{name}={count}" for name, count in summary[key].items()))
+            print("Native qualification: not assessed; no linkage profile assigned or chemistry changed.")
+            print("Use --json for exact worksheet rows, source hashes, findings and next actions.")
+        return 2  # A completed census is review evidence, never a support certificate.
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "catalogue":
+        return _cif_catalogue(args)
     if args.cif_action == "generate-candidate":
         return _cif_generate_candidate(args)
     from .cif_doctor import assess_dictionaries

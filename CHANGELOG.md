@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Census the complete selected NARestraints catalogue (C105)
+
+- Add read-only `cif-doctor catalogue --workbook FILE --ccd-root DIRECTORY`
+  with text/JSON output. Audit every loader row and exact code against explicitly
+  anchored CCD sources, preserving hashes, worksheet locations, duplicate-role
+  conflicts, absent-role markers, source findings and exact sugar-label groups.
+- Record graph checks and mapped-name coverage separately from chemical intent,
+  linkage profiles and native qualification. Blank phosphate cells never imply
+  phosphate absence; no OP3 removal, source repair, NAR edit or adoption occurs.
+- Add schema-1 census evidence and the maintained generalizer milestones,
+  including ATL and alternative backbones. Existing receipts and runtime schemas
+  are unchanged; no migration or additional dependency is required.
+
 ### Qualify a complete linked PDU omission inventory (C104)
 
 - Add a diagnostic gate that rebuilds the existing declaration-based candidate,

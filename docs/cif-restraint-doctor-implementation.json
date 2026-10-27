@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-24",
+    "updated_date": "2026-10-27",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "linked_pdu_omission_inventory_2026_10_27",
+    "current_diagnostic_record": "narestraints_catalogue_census_2026_10_27",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26828,6 +26828,21 @@
       "derivative_qualification": "NOT_RUN",
       "automatic_adoption": false,
       "caller_requirement": "Authenticate native captures and exact ordered inputs with maintained readers before comparison."
+    },
+    "narestraints_catalogue_census_2026_10_27": {
+      "status": "IMPLEMENTED_CENSUS_FULL_REGRESSION_AND_RELOCATION_PASS",
+      "contract": "docs/cif-doctor.md#catalogue-coverage-census-c105",
+      "milestones": "docs/development-handoff.md#generalizer-milestones-and-interruption-boundary",
+      "scope": "Every selected NAR catalogue ligand is a generalizer target; ATL and alternative backbones included.",
+      "implemented": "Explicit workbook/CCD census, exact row/source provenance, duplicate conflicts, graph/name checks and exact-label groups.",
+      "not_inferred": [
+        "chemical correctness",
+        "linkage profile",
+        "native support",
+        "recipe compilation",
+        "automatic repair"
+      ],
+      "pdu_next_boundary": "C104 inventory passes; fixed-coordinate energy/gradient attribution and derivatives remain open."
     }
   },
   "audience": [

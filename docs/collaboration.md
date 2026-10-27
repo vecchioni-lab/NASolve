@@ -37,6 +37,22 @@ Use professional, attributable manuscript language and exact software versions;
 private collaboration/personality notes stay outside repository documentation.
 The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
 
+## Continual handoff during active work
+
+At the start of a substantive push, record the current scope, ordered acceptance
+milestones, last tested/pushed commit and immediate next action in the maintained
+development handoff. Update that same boundary when implementation becomes
+reviewable, validation starts or finishes, and publication completes. Record any
+active job and its owned output location while it runs; preserve partial evidence
+and distinguish implementation complete, tests passing and published.
+
+An interruption must leave enough information to resume from files and Git
+without reconstructing intent from chat. Keep scientific evidence and exact
+validation commands in the existing evidence ledger, and keep local absolute
+paths out of portable operational references. Do not accumulate chat transcripts
+or a second competing status document. Open scientific gates remain visible
+when priorities change; diagnostic progress never silently closes them.
+
 ## Diagnostic evidence and student workflow
 
 CIF Doctor diagnostic review receipts are developer-facing evidence. They do

@@ -15,7 +15,9 @@
 
 <a id="current-capability-boundary-c103"></a>
 
-## Current capability boundary (C104)
+<a id="current-capability-boundary-c104"></a>
+
+## Current capability boundary (C105)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -27,6 +29,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
+| Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
 | Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
 | Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
@@ -59,6 +62,112 @@ SDK/process attempts. New text/JSON regressions fail on C95 and pass on C96.
 Test fixtures canonicalize owned macOS paths and allow fake-backend startup
 before checking optimizer descendant cleanup. Production guards and limits
 remain unchanged.
+
+### Catalogue coverage census (C105)
+
+The generalizer targets **every ligand in the selected NARestraints catalogue**,
+including ATL, PNA and other backbone families. The [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
+separate catalogue inspection, chemical/site profiles, bounded recovery, native
+qualification, ordinary integration and release coverage. Returning unsupported
+for an entire family is a recorded gap, not completion of that programme.
+
+```bash
+nasolve cif-doctor catalogue --workbook /path/to/Ligands.xlsx \
+  --ccd-root /path/to/chemical_components --json
+```
+
+Both paths are explicit. The command reads only the chosen workbook and exact
+`{first_character_lower}/data_{exact_code}.cif` resources. It performs no discovery,
+network request, native execution, generation, mutation or output-file write.
+JSON goes to stdout; omit `--json` for a short summary. Exit **2** means a completed
+review census, **1** means an input/integrity failure. Source names of up to five
+uppercase alphanumeric characters remain exact, including long deposition IDs;
+unsafe/unhandled codes remain visible without becoming paths.
+
+`cif_catalogue.audit_catalogue` uses the active NAR loader and binds every returned
+record to its physical sheet/row. It reuses the shared operational-record resolver
+and ordinary CIF Doctor source assessment. Descriptive aliases collapse only
+when all operational roles/context agree. Conflicts retain each value and its
+location; no spelling normalization or choice between incompatible records runs.
+The NAR `/` absent-role marker remains in the raw signature but is excluded from
+missing-name counts. This follows NAR's validator/mirroring convention; it neither
+adds a missing atom nor proves a pair/stack recipe can compile.
+
+Schema **1**, policy `cif-narestraints-catalogue-census-v1`, binds the workbook,
+loader and available source bytes. Operational references use explicit
+`workbook_directory` and `ccd_directory` anchors; no host-absolute source path is
+required. Repeating the audit with relocated inputs must reproduce the report.
+All rows and codes remain represented, including missing resources, malformed
+sources, ambiguous mappings and empty role records. A changed input aborts the
+census rather than reporting a coherent snapshot. Source status means availability
+in **this CCD root**, not availability in all curated/recovered NASolve resources.
+
+The report inventories declared component type, formal-charge metadata, stereo
+markers, phosphorus neighborhoods and literal OP3 presence. It lists bonds from
+mapped base atoms to other heavy atoms without deciding which is a sugar/backbone
+attachment: substituents also cross that boundary. Blank phosphate metadata does
+not mean phosphate absence; ATL's captured phosphate uses `OXT`, not literal
+`OP3`. No generic terminal-atom deletion follows from either name. Sugar-label
+coverage uses exact workbook strings, not inferred chemical families; conflicting
+records can place one code in more than one label group.
+
+The pinned local NAR workbook (SHA-256
+`afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5`)
+has **618 records / 599 codes**. Its selected Phenix 2.2.1-6174 CCD source tree
+provides **596** exact graph-assessed sources; `DB`, `DE`, `DF` are absent from that
+particular tree. This does not invalidate existing curated/recovered definitions.
+There are 580 unique records, eight equivalent alias groups and eleven conflicting
+groups. Among unambiguous source-backed records, 577 have the mapped names present,
+five name absent atoms (`1DP`, `8YN`, `A1AAZ`, `DX`, `US3`), and three have no
+mapped base roles (`2PR`, `5PY`, `MTU`). Fourteen code-level name checks remain
+unassessed because of missing sources or conflicting records. Fifty-four codes
+retain explicit `/` markers without false missing-atom claims. The workbook has
+494 blank phosphate cells. These are findings against the selected source bytes,
+not assertions that any molecule is chemically wrong.
+The census compares raw workbook mappings with the exact CCD codes. Existing
+reviewed preparation aliases (including `A1AAZ` → `DF`) and process-local NAR
+corrections remain separate evidence to reuse before proposing a new repair.
+For example, source `1DP` declares an N1-deaza component and contains `C1` where
+its workbook record asks for `N1`; correcting a name alone would not establish
+the intended donor/acceptor role. Generalization must reconcile source topology
+and NAR chemical roles together.
+
+The local pinned workbook is explicitly selected; it must not be described as
+the released v1.1.3 workbook merely because that is NASolve's dependency pin.
+The complete read-only execution and cold relocation preserve all 597 captured
+input files with zero SDK processes. Exact commands/hashes and test results live
+in `narestraints_catalogue_census_2026_10_27` in the [evidence ledger](cif-linked-native-registration-evidence.json).
+No native-support count is inferred. `native_qualification=NOT_ASSESSED` means
+this census did not perform qualification, not that earlier specific proofs
+ceased to exist. The current PDU inventory proof and open energy/derivative
+boundary remain unchanged. Existing manifests/receipts need no migration.
+
+### Next attachment-profile milestone (G2; planned)
+
+Use separate authorities for four questions: the source graph declares the
+component's atoms/connectivity/stereo; NARestraints declares base-pair/stack
+roles; a reviewed linkage profile specifies permissible attachment/terminal
+operations; the actual site context states which connections and ends exist.
+A workbook sugar label alone must not answer any of the latter three questions.
+
+The next implementation should bind a profile to exact source evidence and
+named atom roles, with explicit attachment bonds, leaving atoms, retained charge/
+stereo intent, and allowed incoming/outgoing or terminal contexts. Profile
+selection must explain which graph constraints matched. Preserve original and
+candidate definitions separately and test the exact permitted delta. Conflicting
+profile matches stay unresolved instead of choosing the first matching name.
+No universal phosphorus field or unconditional OP3 deletion is required of an
+alternative backbone. Literal terminal oxygen names can differ, as ATL shows.
+
+Begin with the established DNA contract, then demonstrate a distinct LNA/ATL
+case and a PNA case, using held-out components from the census to test whether
+the rules transfer. These are validation families, not a per-code allowlist.
+Base-role repairs must preserve donor/acceptor intent as well as atom identity;
+reuse existing reviewed aliases/corrections where applicable. Do not resolve a
+carbon-for-nitrogen substitution by treating the two atoms as chemically equal.
+The acceptance gate is a reproducible source/profile/site explanation and a
+permitted-delta check. Native link/energy/derivative qualification and automatic
+adoption belong to later gates and cannot be claimed from profile matching.
 
 ### Current source-declaration inventory (C97)
 

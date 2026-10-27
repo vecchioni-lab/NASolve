@@ -34081,5 +34081,429 @@
       "The complete candidate applies to every occurrence of its component, not selected individual sites.",
       "Preserve C100 as unqualified and the selected verified recovered start; test fixed-coordinate energy/gradient attribution and derivatives before any separate optimizer."
     ]
+  },
+  "narestraints_catalogue_census_2026_10_27": {
+    "delivery": "C105",
+    "status": "COMPLETE_READ_ONLY_CENSUS_VALIDATION_PASS",
+    "base_commit": "c064ed7f7178afcc7a1d5699fadd5c15f1cdd3bf",
+    "policy_id": "cif-narestraints-catalogue-census-v1",
+    "schema_version": 1,
+    "before": "No complete selected-workbook census connected every NAR row/code to exact CCD resources and mapping coverage.",
+    "after": "Public read-only catalogue command binds every row and source, preserves duplicate conflicts and missing-name evidence, and distinguishes coverage from native support.",
+    "scope": "All selected NAR ligands are generalizer targets, including ATL, PNA and other backbone families. Census completion is milestone G1 only.",
+    "source_authority": {
+      "workbook": {
+        "anchor": "workbook_directory",
+        "path": "Ligands.xlsx",
+        "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+        "size": 164458
+      },
+      "narestraints_source_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "workbook_scope": "Explicit local pinned workbook; not a claim about the released v1.1.3 workbook.",
+      "loader": {
+        "module": "restraints.residue_library",
+        "openpyxl_version": "3.1.5",
+        "sha256": "85105ec37fb251fe61eb5bf0eaa6039632ef8bab88d2d4e657f1d88b657a1786",
+        "size": 3027
+      },
+      "ccd_installation": "Phenix 2.2.1-6174",
+      "source_layout": "ccd_directory/{first_character_lower}/data_{exact_code}.cif",
+      "native_execution": "NOT_RUN",
+      "coot_execution": "NOT_RUN",
+      "pinned_and_installed_loader_bytes_identical": true
+    },
+    "summary": {
+      "records": 618,
+      "distinct_codes": 599,
+      "records_by_sheet": {
+        "B": 4,
+        "D": 4,
+        "I": 3,
+        "K": 2,
+        "P": 3,
+        "S": 4,
+        "X": 7,
+        "Z": 3,
+        "adenine": 118,
+        "cytosine": 128,
+        "guanine": 132,
+        "thymine": 207,
+        "unique": 3
+      },
+      "record_resolution": {
+        "CONFLICTING_OPERATIONAL_RECORDS": 11,
+        "EQUIVALENT_ROLE_RECORDS": 8,
+        "UNIQUE_RECORD": 580
+      },
+      "source_status": {
+        "MISSING": 3,
+        "RECORDED": 596
+      },
+      "graph_status": {
+        "NOT_ASSESSED": 3,
+        "PASS": 596
+      },
+      "mapped_roles": {
+        "ATOM_NAMES_PRESENT": 577,
+        "MISSING_ATOMS": 5,
+        "NOT_ASSESSED": 14,
+        "NO_MAPPED_ROLES": 3
+      },
+      "native_qualification": {
+        "NOT_ASSESSED": 599
+      }
+    },
+    "findings": {
+      "blank_phosphate_records": 494,
+      "codes_with_absent_role_markers": 54,
+      "missing_selected_ccd_codes": [
+        "DB",
+        "DE",
+        "DF"
+      ],
+      "missing_name_codes": {
+        "1DP": {
+          "N1": "N1"
+        },
+        "8YN": {
+          "N1": "N1"
+        },
+        "A1AAZ": {
+          "C7": "C5M",
+          "O2": "S2"
+        },
+        "DX": {
+          "C5": "C5"
+        },
+        "US3": {
+          "O2": "O2"
+        }
+      },
+      "no_mapped_role_codes": [
+        "2PR",
+        "5PY",
+        "MTU"
+      ],
+      "conflicting_records": {
+        "2GT": [
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "2'mod",
+              "2'-mod"
+            ]
+          }
+        ],
+        "2MU": [
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "OMe",
+              "2'-mod"
+            ]
+          }
+        ],
+        "8MG": [
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "DNA",
+              "GNA"
+            ]
+          }
+        ],
+        "A40": [
+          {
+            "field": "Base Analog",
+            "section": "context",
+            "values_in_workbook_order": [
+              "A",
+              "D"
+            ]
+          },
+          {
+            "field": "Source sheet",
+            "section": "context",
+            "values_in_workbook_order": [
+              "adenine",
+              "D"
+            ]
+          },
+          {
+            "field": "N2",
+            "section": "atom_roles",
+            "values_in_workbook_order": [
+              null,
+              "N2"
+            ]
+          }
+        ],
+        "A66": [
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "PNA",
+              null
+            ]
+          }
+        ],
+        "C2L": [
+          {
+            "field": "Phosphate",
+            "section": "context",
+            "values_in_workbook_order": [
+              null,
+              "2'-mod"
+            ]
+          },
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "3'-OMethoxyEthyl",
+              "RNA"
+            ]
+          }
+        ],
+        "EAN": [
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "other",
+              "tcDNA"
+            ]
+          }
+        ],
+        "F4H": [
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "HNA",
+              "Ara-FHNA"
+            ]
+          }
+        ],
+        "OKN": [
+          {
+            "field": "Phosphate",
+            "section": "context",
+            "values_in_workbook_order": [
+              "phosphorothioate",
+              "thiophosphate"
+            ]
+          },
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "DNA",
+              "2'-mod"
+            ]
+          }
+        ],
+        "T39": [
+          {
+            "field": "Sugar Type",
+            "section": "context",
+            "values_in_workbook_order": [
+              "2'OMethoxyEthyl",
+              "2'-mod"
+            ]
+          }
+        ],
+        "ZBC": [
+          {
+            "field": "Base Analog",
+            "section": "context",
+            "values_in_workbook_order": [
+              "T",
+              "C"
+            ]
+          },
+          {
+            "field": "Source sheet",
+            "section": "context",
+            "values_in_workbook_order": [
+              "thymine",
+              "cytosine"
+            ]
+          },
+          {
+            "field": "C7",
+            "section": "atom_roles",
+            "values_in_workbook_order": [
+              "BR5",
+              null
+            ]
+          },
+          {
+            "field": "N4",
+            "section": "atom_roles",
+            "values_in_workbook_order": [
+              null,
+              "N4"
+            ]
+          },
+          {
+            "field": "O4",
+            "section": "atom_roles",
+            "values_in_workbook_order": [
+              "N4",
+              null
+            ]
+          }
+        ]
+      },
+      "example_label_groups": [
+        {
+          "distinct_codes": 5,
+          "mapped_roles": {
+            "ATOM_NAMES_PRESENT": 5
+          },
+          "record_resolution": {
+            "UNIQUE_RECORD": 5
+          },
+          "records": 5,
+          "source_status": {
+            "RECORDED": 5
+          },
+          "value": "L-DNA"
+        },
+        {
+          "distinct_codes": 12,
+          "mapped_roles": {
+            "ATOM_NAMES_PRESENT": 12
+          },
+          "record_resolution": {
+            "UNIQUE_RECORD": 12
+          },
+          "records": 12,
+          "source_status": {
+            "RECORDED": 12
+          },
+          "value": "LNA"
+        },
+        {
+          "distinct_codes": 14,
+          "mapped_roles": {
+            "ATOM_NAMES_PRESENT": 13,
+            "NOT_ASSESSED": 1
+          },
+          "record_resolution": {
+            "CONFLICTING_OPERATIONAL_RECORDS": 1,
+            "UNIQUE_RECORD": 13
+          },
+          "records": 14,
+          "source_status": {
+            "RECORDED": 14
+          },
+          "value": "PNA"
+        }
+      ],
+      "interpretation": "Missing names are relative to these source files, not proof that chemistry is wrong. Missing selected-CCD resources do not invalidate curated/recovered resources. Metadata conflicts are not normalized automatically."
+    },
+    "validation": {
+      "live_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/cedar-c105-build/validate_live.py",
+      "maintained_cli": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m nasolve cif-doctor catalogue --workbook WORKBOOK_DIRECTORY/Ligands.xlsx --ccd-root CCD_DIRECTORY --json",
+      "execution": "Complete read-only census, repeated with relocated snapshots and public CLI; not a native dry-run or execution.",
+      "elapsed_seconds": 9.449940750026144,
+      "source_files_bytes_and_mtimes_preserved": 597,
+      "relocated_files_bytes_and_mtimes_preserved": 597,
+      "replay_exact": true,
+      "original_temporary_input_path_gone": true,
+      "historical_and_sdk_reads_blocked": true,
+      "native_processes": 0,
+      "public_cli_exit": 2,
+      "failing_before": "New public-command regression fails on C104: catalogue is an invalid subcommand (pytest exit 1).",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q tests/test_cif_catalogue.py tests/test_component_records.py tests/test_cif_doctor_cli.py",
+      "focused_result": "45 passed in 17.43s",
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q",
+      "full_result": "5823 passed, 276 subtests passed in 928.93s (0:15:28)",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c105-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "compile_result": "PASS",
+      "figure_command": "/opt/homebrew/bin/rsvg-convert -w 1400 -o /private/tmp/cedar-c105-build/overview.png docs/figures/cif-doctor-overview.svg",
+      "figure_result": "PASS; rendered and visually inspected, labels fit.",
+      "code_hashes": {
+        "src/nasolve/cif_catalogue.py": "de2ae56b05c18c42dc57a803581bdddc4e4e8376bd9c599b9b80325909740b69",
+        "src/nasolve/cli.py": "3b33f08b202a11034166ad670cc274329c0e5936933c57a75655b16240d3a7dc",
+        "tests/test_cif_catalogue.py": "d6d1ed6b2277993efb60b56c320cfec79d5939d8e8f1fe42f153814fed2b53fb"
+      },
+      "reports": {
+        "catalogue.json": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/catalogue.json",
+          "sha256": "74854595fbe6f59a91621cb68db99e7f1296ff34566cd0b719acf4b3c7722915",
+          "size": 10931308
+        },
+        "cli.json": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/cli.json",
+          "sha256": "74854595fbe6f59a91621cb68db99e7f1296ff34566cd0b719acf4b3c7722915",
+          "size": 10931308
+        },
+        "input-manifest.json": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/input-manifest.json",
+          "sha256": "58e0006ed0d40b59145d3ca5829991264c1b9f42b32d6296128f409270df921c",
+          "size": 99773
+        },
+        "validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/validation.json",
+          "sha256": "553fd78c5a23d0d92cf8974a41bb2381d451db736bf2e81ead5733c9906c2256",
+          "size": 6721
+        },
+        "validate_live.py": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/validate_live.py",
+          "sha256": "03cd88e7e4b7f49a94af043b904b71c30adb7d908b47d61b06a732fd7ed80ae2",
+          "size": 4320
+        },
+        "full-suite.log": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/validation/full-suite.log",
+          "sha256": "fd9d1ec18e5f521d935e4ea2d5f85db61bb8e8ab592df737682160679e93662e",
+          "size": 6522
+        },
+        "full-suite-state.json": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/validation/full-suite-state.json",
+          "sha256": "5fe446e7552ac1e46f6a4d07279a7d0094336c369f37dabc06239003ece78c1c",
+          "size": 315
+        },
+        "before-test.log": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/validation/before-test.log",
+          "sha256": "f5748ba3d1af38247d8fba71217b43061fcfdfc484dd8347388fe50d9f6a3834",
+          "size": 8772
+        },
+        "focused-v2.log": {
+          "anchor": "live_tests_directory",
+          "path": "105_Cedar_catalogue-x3qy4prp/validation/focused-v2.log",
+          "sha256": "f19b5a23715ebb8f6ececebab4259b2dd7ba66dbe535cd11fa3f55bcba50944b",
+          "size": 100
+        }
+      },
+      "full_elapsed_seconds": 929.2601990000112,
+      "document_links": 216,
+      "whitespace_command": "git diff --cached --check",
+      "whitespace_result": "PASS",
+      "new_regressions": 25
+    },
+    "compatibility": "Additive CLI subcommand and schema-1 diagnostic report. No dependency, runtime receipt, checkpoint, scientific threshold or migration changes.",
+    "generated_artifacts": "Full workbook/CCD snapshots, census, runner and validation logs remain local. Git contains code, tests, maintained docs, figure and compact evidence only.",
+    "limitations_and_followup": [
+      "Census graph/name checks are not chemical, recipe, linkage, native or numerical qualification.",
+      "G2 should specify graph-bound attachment/terminal profiles with held-out DNA, LNA/ATL and PNA cases; do not infer phosphate behavior from workbook labels.",
+      "Resolve absent names and genuinely conflicting NAR roles with source authority before automatic compilation; distinguish descriptive spelling conflicts.",
+      "PDU C104 inventory remains qualified only at that layer; complete fixed-coordinate energy/gradient attribution and derivatives before any optimizer.",
+      "No automatic repair, native generation, model adoption or Cedar/Pine/main merge occurs in C105."
+    ]
   }
 }

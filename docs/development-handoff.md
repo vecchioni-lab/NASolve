@@ -11,9 +11,76 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## Current CIF Doctor continuation boundary
+## Generalizer milestones and interruption boundary
 
-**Current delivery: C104 complete PDU omission inventory.**
+**Scope revised 2026-10-27; C105 validated, publication pending.** Every ligand in the selected
+NARestraints catalogue is a target for automatic source inspection, bounded
+repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
+families are included in this programme. Catalogue membership is not evidence
+that a ligand already works. The earlier narrow Cedar integration estimate is
+not an estimate for complete catalogue support.
+
+| Milestone | Completion evidence | State |
+| --- | --- | --- |
+| G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | Planned; DNA phosphate rules must not be applied to PNA by analogy. |
+| G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
+| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
+| G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | Partial ordinary hooks; no general end-to-end claim. |
+| G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
+
+These are acceptance milestones, not a fixed count of coding pushes. G2–G5
+iterate by chemically meaningful family; a catalogue full of `UNSUPPORTED`
+results does not complete the generalizer. A fresh temporary component alias
+may isolate definitions, but never authorizes changing connectivity, charge,
+protonation or stereochemistry to obtain convergence. Ask for scientific intent
+only when available evidence and safe usable fallbacks cannot settle it.
+ChemDraw-derived source references/restraint bundles remain future input scope;
+building a model from a drawing stays outside CIF Doctor.
+
+**Safe resume point:** C105 implementation is complete and validated; publication
+is the remaining delivery step. C104 `c064ed7f7178afcc7a1d5699fadd5c15f1cdd3bf`
+is the last published baseline. Continue on existing `cedar`; preserve the
+separate metal GUI/shared-restraint work and all scientific runs.
+
+C105 adds `src/nasolve/cif_catalogue.py`, public `cif-doctor catalogue` dispatch
+and `tests/test_cif_catalogue.py`. Its additive schema-1 census records every
+selected NAR row/code, exact source hashes and mapping gaps. It does not change
+runtime manifests, chemical definitions, checkpoints, dependencies or thresholds;
+no migration is required. Maintained contracts, overview and editable figure
+now describe the broader programme and this implemented boundary.
+
+Validation: **5823 passed, 276 subtests passed in 928.93s (0:15:28)**; **45 focused regressions pass**, including
+one demonstrated failing-before public-command regression. Complete real census:
+618 records / 599 codes, 596 sources in the selected CCD root, 11 conflicting
+record groups, five missing-name mappings and three empty-role records. The
+absent-role marker `/` is preserved without false missing-atom reports. Exact
+cold relocation and public CLI replay preserve all 597 input bytes/timestamps,
+with historical/SDK reads blocked and zero native processes. Compilation,
+relative documentation links, whitespace and rendered figure checks pass.
+Commands and hashes: `narestraints_catalogue_census_2026_10_27` in the existing
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+No job remains active. Local evidence stays under the explicit live-test anchor
+`105_Cedar_catalogue-x3qy4prp`: `catalogue.json`, `validation.json`, captured
+inputs and validation logs. No workbook, CCD snapshot, scientific model, generated
+runner or raw log is included in Git. Native Phenix/Coot were not executed;
+Phenix 2.2.1-6174 supplied the read-only CCD source tree.
+
+**Next generalizer step:** implement the [G2 attachment-profile contract](cif-doctor.md#next-attachment-profile-milestone-g2-planned),
+separating source graph, NAR base roles, linkage operations and actual site/end
+context. Use existing reviewed aliases/corrections before inventing new repairs;
+validate transfer to held-out LNA/ATL and PNA cases. Nine duplicate conflicts are
+metadata-only; A40 and ZBC additionally differ in base class/atom roles.
+**Open PDU gate:** C104 inventory agreement still needs fixed-coordinate
+energy/gradient attribution and fresh derivatives before any optimizer. Preserve
+C100 as unqualified and `verified_recovered_model` as selected. No merge occurs.
+
+— Rowan · Codex desktop
+
+## Preserved PDU continuation boundary (C104)
+
+**C104 remains the current PDU omission-inventory proof.**
 A separate candidate applies the existing declaration-based policy to all PDU
 rows. Two complete Phenix 2.2.1-6174 native interpretations of the current C98
 863-atom model pass: the original reproduces C98 exactly, and the candidate
