@@ -235,6 +235,10 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    cif_link_native = cif_sub.add_parser("link-native", help="read-only comparison of source links with a preserved native capture")
+    cif_link_native.add_argument("manifest", type=Path, help="explicit source-link manifest")
+    cif_link_native.add_argument("--native-receipt", required=True, type=Path, help="exact preserved native_receipt.json; no native execution")
+    cif_link_native.add_argument("--json", action="store_true", help="print complete source/native link evidence")
     cif_links = cif_sub.add_parser("link-plan", help="read-only reciprocal source-port contracts for declared sites")
     cif_links.add_argument("manifest", type=Path, help="schema-1 manifest with explicit hashed relative source/model/context inputs")
     cif_links.add_argument("--json", action="store_true", help="print complete both-end source-link evidence")
@@ -1539,6 +1543,27 @@ def _cif_site_plan(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_link_native(args: argparse.Namespace) -> int:
+    from .cif_attachment_native import inspect_native_attachment_links
+
+    try:
+        report = inspect_native_attachment_links(args.manifest, args.native_receipt)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Captured native interpretation: {report['native_status']}; links: {report['link_status']}; source definitions: {report['definition_status']}")
+            if report['native_error']:
+                print("Captured error: " + report['native_error'])
+            unavailable = [site for site,row in report['definitions'].items() if row['formal_charge_status'] == 'UNSUPPORTED']
+            if unavailable:
+                print("Formal charge readback unavailable at: " + ", ".join(unavailable))
+            print("Read-only comparison. Observed native types and link targets remain chemically/numerically unqualified.")
+        return 2
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def _cif_link_plan(args: argparse.Namespace) -> int:
     from .cif_attachment_links import inspect_attachment_links
 
@@ -1560,6 +1585,8 @@ def _cif_link_plan(args: argparse.Namespace) -> int:
 
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "link-native":
+        return _cif_link_native(args)
     if args.cif_action == "link-plan":
         return _cif_link_plan(args)
     if args.cif_action == "site-plan":

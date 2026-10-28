@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-27:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-10-28:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -52,13 +52,19 @@ for the required alcohol port merely because both are oxygen. The whole declared
 set remains unresolved if any operation lacks authority or any supplied source
 projection mismatches; unselected sites and partial candidate coverage stay
 explicit. Five sugar pair controls pass; PNA source ports bind while chemical
-state changes remain open. Native numerical typing/linkage and terminal
+state changes remain open. C109 then checks preserved native captures against
+those literal endpoints. A fresh DNA control has the declared bond, while its
+native atom names/hydrogen states still differ from the source. Both installed-
+library ATL directions fail because usable energy types are missing. These
+outcomes guide recovery; they do not authorize deleting atoms or copying DNA
+types to ATL. Native numerical typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
 checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
 the [attachment contract](cif-doctor.md#source-attachment-topology-and-ports-c106),
 [site-projection contract](cif-doctor.md#explicit-single-site-source-projections-c107),
-[reciprocal-link contract](cif-doctor.md#reciprocal-source-link-contracts-c108)
+[reciprocal-link contract](cif-doctor.md#reciprocal-source-link-contracts-c108),
+[native-link audit](cif-doctor.md#native-attachment-link-audit-c109)
 and [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
 
 ## Current result and interpretation
@@ -691,7 +697,9 @@ inputs and the selected effective restraint bundle. ReadySet remains the
 external preparation program. Separate catalogue/core inspection binds source
 ports; explicit site contracts propose bounded source-table deletions and
 require reciprocal source ports across the declared link set. Exact projections
-and source binding leave native linkage unqualified.
+and source binding leave native linkage unqualified. Saved native captures then
+supply literal bond membership and effective-definition observations, with failed
+interpretations, naming differences and missing charge readback kept explicit.
 Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,

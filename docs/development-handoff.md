@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-27** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-28** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -13,7 +13,7 @@ not general production support. Earlier wording remains in Git and the
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-27; C108 published and validated.** Every ligand in the selected
+**Scope revised 2026-10-28; C109 validated, publication pending.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -23,7 +23,7 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C108 reciprocal source-port contracts validated. G2 remains partial.** Native types/effective definitions/link proxies, PNA protonation and terminal reconstruction remain open; DNA phosphate rules must not be applied to PNA by analogy. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit validated. G2 remains partial.** DNA naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; PNA and terminal reconstruction remain open. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | Partial ordinary hooks; no general end-to-end claim. |
@@ -38,75 +38,89 @@ only when available evidence and safe usable fallbacks cannot settle it.
 ChemDraw-derived source references/restraint bundles remain future input scope;
 building a model from a drawing stays outside CIF Doctor.
 
-### C108 published interruption boundary
+### C109 validated interruption boundary
 
-**Safe resume point:** C108 tested implementation commit
-`e2c86b8a1c71bd60f6d12d4bed424c4f2a256057` is published and verified on GitHub `cedar`.
-This continuity follow-up changes documentation only. No job is active.
+**Validation is complete; commit/push is pending.** Last published head:
+`6951b7a79868b8b70977a80af8c139c1bb7f1d93` (C108 continuity).
 Continue on existing `cedar`; preserve other branches, shared-restraint work
-and every scientific run. The next implementation boundary is recorded below.
+and every scientific run. No job is active. Next: commit/push the reviewed
+files and record the verified implementation commit.
 
-Before C108, C107 checked a partner's identity/element without qualifying its
-attachment port or requiring a reverse declaration. C108 adds
-`src/nasolve/cif_attachment_links.py`, public `cif-doctor link-plan MANIFEST`
-and `tests/test_cif_attachment_links.py`. Fresh site inspections now require
-complementary source-bound ports and exactly reciprocal declarations throughout
-the selected set. The same-element wrong-oxygen case is rejected. One explicit
-source authority per component code, relative hashed inputs and full selected-site
-evidence prevent ambiguous source substitution or silent partner discovery.
+Before C109, C108 required reciprocal source ports but did not compare those
+literal endpoints with native captures. C109 adds
+`src/nasolve/cif_attachment_native.py`, public `cif-doctor link-native MANIFEST
+--native-receipt FILE` and `tests/test_cif_attachment_native.py`. The read-only
+reader checks native input/output hashes, exact model bytes, maintained worker,
+requested/consumed dictionary/PHIL order, spec/report agreement and unique
+atom identity. It handles native reordering with only 1e-9 A coordinate roundoff;
+occupancy remains exact. All inter-site bonds touching selected sites must match
+the literal declared endpoints once. Wrong/extra/duplicate/symmetry links cannot
+hide behind counts. Source atom names/elements, retained adjacency and available
+formal charges are compared separately from bond membership.
 
-The additive manifest/report schema 1 remains `REVIEW`. Source binding, operation
-resolution and candidate coverage are distinct; any unresolved operation or
-supplied candidate mismatch withholds the joint projection. Partial candidate
-matches remain partial. Terminal phosphates, source protonation and the explicit
-leaving-oxygen policy are preserved. No native type transfer, numerical dictionary,
-final chemical identity, runtime preparation or adoption is added. Existing
-single-site/DNA paths, thresholds, dependencies, workbook and checkpoint schemas
-are unchanged; no migration. Maintained contracts, human overview, caption and
-editable SVG describe this implemented boundary. The evidence ledger lists all
-14 changed files.
+Three complete interpretation attempts ran in **Phenix 2.2.1-6174** (dispatcher
+reports 2.2.1; setup-script version and dispatcher/API hashes are recorded).
+Synthetic CCD-ideal pairs were translated to a declared 1.607 A link; this tests
+representation, not experimental geometry or numerical quality. DA–DT built the
+exact O3prime–P bond (target 1.607 A, weight 6944.444444444444), with observed OC2/P
+types. Its definitions still require review: DA source OP3/HOP2 differs from
+native O3T/no HOP2; DT source C7/H71/H72/H73 differs from C5M/H5M1/H5M2/H5M3,
+and source HO3prime/HOP2 are absent from the effective definition. These findings
+do not imply coordinate deletion of terminal phosphate. Formal-charge readback
+is unavailable and partial charge is not substituted. DA–ATL and ATL–DA fail
+explicitly with 22/23 unknown nonbonded energy types. All failures are preserved;
+no native retry, optimizer, Coot, ReadySet or refinement ran.
 
-Validation: **5940 passed, 276 subtests passed in 915.04s (0:15:15)**; **176 focused tests pass**, including **38 new reciprocal-link
-regressions**. The failing-before CLI check demonstrates the missing command;
-a separate regression shows C107's element-compatible O5prime case is rejected
-by C108. Six predeclared synthetic source pairs and two rejection variants replay
-exactly through API and CLI in a new process after both source snapshot and inputs
-move and the original owned paths vanish. Five sugar pairs pass, including ATL
-in both directions; APN–40A ports bind but both chemical operations stay unresolved.
-Unselected model sites remain outside the claim. These are exploratory source
-checks, not blinded experiments, experimental models or native linkage proof.
-Compilation, doc links/JSON, whitespace and rendered SVG pass. Exact commands,
-input/code hashes and the one full run's slow-test timings:
-`reciprocal_attachment_links_2026_10_27` in the
-[evidence ledger](cif-linked-native-registration-evidence.json).
+The additive report schema 1 remains overall `REVIEW`, with distinct native,
+link and definition outcomes. Observed types/targets are not chemical/numerical
+authority. Captured worker code is data and never executed by the reader; the
+initial reader accepts the exact maintained base worker, not augmented energy
+workers or unrelated historic versions. Existing capture/runtime/checkpoint
+schemas, preparation, NAR ownership, dependencies and thresholds are unchanged;
+no migration or automatic adoption. The evidence ledger lists all 14 changed
+files; maintained contracts, human overview and editable figure are updated.
 
-Local evidence: `live_tests_directory/108_Cedar_reciprocal-links-q9_ey4g1` contains the frozen source/input
-snapshot, reports, public CLI replay, validation logs and tested-file manifest.
-All source/input bytes and timestamps remain unchanged. The earlier
-`108_Cedar_reciprocal-links-joyc47n0` attempt is preserved: the harness expected a
-later rejection message, but the implementation correctly rejected the inconsistent
-reverse declaration first. Only the generated harness expectation changed before
-the fresh attempt; no native/full-regression job started in that earlier capsule.
-No workbook, CCD snapshot, synthetic model/candidate, generated runner or raw log
-is in Git. Captured CCD provenance is Phenix 2.2.1-6174; **Phenix and Coot were not
-executed**. This was completed read-only inspection, not a native dry-run.
+Validation: **5989 passed, 276 subtests passed in 931.90s (0:15:31)**; **183 focused tests pass**, including **49 new native-link
+regressions**. Before/after logs cover the absent CLI, measured roundoff,
+JSON replay and contradictory consumed-input records. The three real captures
+plus three adversarial variants replay exactly through API/CLI in a new process
+after moving source/input copies, with original owned paths absent and SDK/
+historical reads and subprocesses blocked. All original bytes/timestamps remain
+preserved. Compilation, doc links/JSON, whitespace and rendered SVG pass. Exact
+commands, hashes, version evidence and timings: `native_attachment_link_audit_2026_10_28`
+in the [evidence ledger](cif-linked-native-registration-evidence.json).
 
-**Next G2 boundary:** consume the literal C108 endpoint identities in authenticated
-native captures. Verify effective definitions, native atom types and exact inter-site
-proxies against canonical DNA controls, then ATL transfer. The existing outgoing
-OC2 loader is restricted to captured canonical DNA authority; do not copy that type
-to ATL/PNA or infer support from O3prime/P names. Keep source projections distinct
-from complete numerical dictionaries and final descriptors. PNA amine/carboxyl
-operations and free-OH reconstruction need separate explicit state policies; APN
-(+1/three H) and 40A (0/two H) must not share implicit neutralization. Broader cores,
-GNP source/label reconciliation and A66 record conflict remain open.
+Primary local evidence: `live_tests_directory/109_Cedar_native-link-confirm-9m1r807r`. Its parent capture
+record points to `109_Cedar_native-links-theuy88j`, which owns the three original
+native attempts. The initial full-suite run was intentionally stopped after
+383.55 seconds for the consumed-input-order fix; its partial log/reason remain
+preserved. The final full suite completed in a fresh attempt after the old PID
+was confirmed dead. Frozen workbooks/CCD files, models, candidates, native
+captures/logs and generated runners remain local; only source, synthetic tests,
+maintained documentation and compact technical evidence enter Git.
+
+**Next G2 boundary:** establish explicit native atom-name mappings and separate
+protonation policies using DNA controls. The hash-matched installed source exposes
+`monomer_mapping.atom_names_mappings`, `expected_atoms` and `mon_lib_names`;
+capture their actual per-site/index bindings before accepting aliases. These
+fields have only been inspected in source, not yet captured/qualified. Preserve
+C109's worker-version compatibility when extending native captures.
+Names alone must not silently reconcile
+OP3/O3T or C7/C5M, and protonation differences must not become automatic deletions.
+Recover/generate a source-preserving numerical ATL candidate through existing
+bounded machinery, validate its graph/stereo/NAR identities, then qualify both
+native link directions. Installed-library failure is not a blanket ATL exclusion.
+Keep native types, full numerical definitions and scientific qualification
+separate from membership. PNA amine/carboxyl operations and free-OH reconstruction
+remain open; APN (+1/three H) and 40A (0/two H) cannot share implicit neutralization.
+Further cores, GNP source/label reconciliation and A66 record conflict remain open.
 
 **Preserved baselines:** C105 covers 618 rows/599 codes; C106 covers 37 source
-profiles (26 unique core matches, ten unmatched, one conflicting record group).
-C107 contributes explicit site operations and exact source-table projections.
-C104 PDU inventory still needs fixed-coordinate energy/gradient attribution and
-fresh derivatives before any optimizer. C100 remains unqualified and
-`verified_recovered_model` remains selected. No Pine/main merge occurs.
+profiles (26 unique matches, ten unmatched, one conflicting record group).
+C107 supplies site projections; C108 supplies reciprocal source ports. C104 PDU
+inventory still needs energy/gradient attribution and fresh derivatives before
+any optimizer. C100 remains unqualified and `verified_recovered_model` stays
+selected. No Pine/main merge occurs.
 
 — Rowan · Codex desktop
 

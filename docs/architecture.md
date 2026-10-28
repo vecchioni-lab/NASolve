@@ -3352,3 +3352,23 @@ schema does not change native preparation, runtime manifests or checkpoints.
 Existing DNA OC2 authority cannot silently transfer to ATL/PNA. The next layer
 must bind these endpoint identities to authenticated native effective definitions
 and inter-site proxies. See the [C108 contract](cif-doctor.md#reciprocal-source-link-contracts-c108).
+
+
+## Source/native attachment-link audit (C109)
+
+`cif_attachment_native.inspect_native_attachment_links` reruns the C108 plan and
+reads a hash-bound capture from the maintained base native worker. Exact model
+bytes, input/output records, spec, worker and report agreement bind the evidence.
+Native indices map through literal atom identities; 1e-9 A coordinate roundoff
+is allowed, while changed elements, occupancy or larger movements fail. All
+inter-site bonds touching selected sites participate in the exact comparison;
+extra, duplicate and symmetry connections cannot disappear behind counts.
+
+Native failure, link membership and source-definition comparison are separate
+results. The latter compares exact atom names/elements, bond adjacency and
+available formal charges, not all numerical/stereochemical fields. Aliases are
+not guessed, partial charge never replaces formal charge, and observed types
+carry no new chemical authority. Overall REVIEW persists. This additive reader
+changes no capture/runtime/checkpoint schema or preparation path and never
+executes saved code. The three fresh DNA/ATL interpretations and cold replay
+are documented in the [C109 contract](cif-doctor.md#native-attachment-link-audit-c109).

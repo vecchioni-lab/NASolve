@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "reciprocal_attachment_links_2026_10_27",
+    "current_diagnostic_record": "native_attachment_link_audit_2026_10_28",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26902,6 +26902,24 @@
       "automatic_adoption": false,
       "validation": "5940 passed, 276 subtests passed in 915.04s (0:15:15); 176 focused tests and eight cold API/CLI cases pass.",
       "tested_implementation_commit": "e2c86b8a1c71bd60f6d12d4bed424c4f2a256057"
+    },
+    "native_attachment_link_audit": {
+      "delivery": "C109",
+      "status": "IMPLEMENTED_NATIVE_CONTROLS_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+      "policy": "cif-source-native-link-audit-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_native.inspect_native_attachment_links",
+      "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+      "contract": "docs/cif-doctor.md#native-attachment-link-audit-c109",
+      "validation_scope": "Three fresh installed-library DNA/ATL controls; three adversarial controls; six exact cold API/CLI outcomes. DNA link matches with source-definition review; both ATL controls fail explicitly.",
+      "not_implemented_here": [
+        "Native alias reconciliation or protonation changes",
+        "Numerical ATL dictionary generation/qualification",
+        "Native energy-type or numerical-target authority",
+        "Automatic preparation/adoption"
+      ],
+      "automatic_adoption": false,
+      "validation": "5989 passed, 276 subtests passed in 931.90s (0:15:31); 183 focused tests and six cold API/CLI cases pass. Three native interpretations, no native retry."
     }
   },
   "audience": [

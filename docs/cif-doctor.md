@@ -23,7 +23,9 @@
 
 <a id="current-capability-boundary-c107"></a>
 
-## Current capability boundary (C108)
+<a id="current-capability-boundary-c108"></a>
+
+## Current capability boundary (C109)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -36,6 +38,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
+| Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. | DNA aliases/hydrogen-state differences need explicit reconciliation; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; PNA operations stay unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
 | Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention or neutral furanose deletions, and compares exact projected tables. | Partner chemistry, PNA link states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
 | Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. C107 covers bounded one-site source projections; additional cores, complete linkage and native consumers remain open. |
@@ -416,6 +419,101 @@ These are exploratory source-contract checks, not blinded or experimental/native
 linkage proof. The [evidence ledger](cif-linked-native-registration-evidence.json)
 record `reciprocal_attachment_links_2026_10_27` owns hashes and validation results.
 
+### Native attachment-link audit (C109)
+
+```bash
+nasolve cif-doctor link-native /path/to/links.json \
+  --native-receipt /path/to/capture/native_receipt.json --json
+```
+
+`inspect_native_attachment_links(manifest, native_receipt)` reruns the C108
+source inspection and reads an existing capture as data. It launches no program,
+changes no dictionary/model and grants no typing or adoption authority. The
+capture must come from the maintained **base** `inspect_native_bundle` worker
+with `inventory_detail="linked"`; augmented energy workers and unrelated historic
+worker versions are outside this initial reader contract. Both explicitly loaded
+dictionaries and explicit installed-library-only captures are representable.
+
+The reader validates all recorded input/output paths, hashes and sizes, the exact
+model bytes, input roles, requested and consumed dictionary/PHIL order, worker bytes, native spec and
+embedded/external report agreement. References stay under the receipt directory;
+absolute paths, parent traversal and symlinks are rejected. Captured historical
+source/executable paths are never followed. A receipt is limited to 16 MiB and
+the capture uses the C108 128 MiB aggregate input limit. All evidence bytes are
+checked again before return. This verifies the integrity of the supplied capture;
+it is not cryptographic proof that an attacker could not fabricate and rehash one.
+
+A completed capture with a failed/unsupported native result is a valid diagnostic
+outcome: it retains the error and returns `NOT_ASSESSED` for links/definitions.
+Incomplete execution or inconsistent evidence is an input error. No failed
+interpretation can turn into an empty successful bond inventory.
+
+For a successful interpretation, every native atom must map uniquely to the exact
+model site/component/atom and element. Native ordering may differ; index and label
+references must remain internally consistent. Occupancies remain exact. Captured
+atom and manager coordinates allow only **1e-9 Å absolute roundoff**, with zero
+relative tolerance, to accommodate native floating-point coordinate conversion.
+This is far below the PDB 0.001 Å grid and is not a chemical acceptance threshold;
+a 1e-7 Å movement is explicitly rejected by regression.
+
+`link_status=MATCH` means precisely the declared inter-site bonds occur once,
+using the literal graph-bound endpoints from C108. All inter-site bonds touching
+a selected site are included, so wrong-oxygen, duplicate, extra and out-of-scope
+connections cannot hide behind aggregate counts. Symmetry bonds touching those
+sites prevent a match. Bonds wholly outside the selected scope are not qualified.
+Targets and weights must be finite and positive; their actual values and origin
+IDs are reported, **not approved**. Simple/ASU proxy lists, detailed lists and
+counts must agree. No literal O3prime/P-name heuristic determines membership.
+
+`definition_status` compares exact source atom names/elements and retained bond
+adjacency against each selected effective native definition, plus available
+formal charges and model-mapping completeness. It is not equality of every
+numerical restraint, bond-order, stereochemical or descriptor field. Missing/extra
+names, element changes and adjacency differences remain visible. No alias is
+silently normalized. A missing charge field is `UNSUPPORTED`, a conflicting value
+is `CONTRADICTION`, and partial charge never substitutes for formal charge.
+Structural `MATCH` with unavailable charges is consequently still overall
+`REVIEW`. Native group/classification and energy types are observations only;
+`energy_type_authority` remains `NOT_QUALIFIED`.
+
+The additive report is schema 1, policy `cif-source-native-link-audit-v1`. Overall
+status remains `REVIEW`, automatic adoption is false and native qualification is
+`NOT_ASSESSED`. Exit **2** means completed inspection, including a preserved native
+failure; exit **1** means invalid or inconsistent evidence. The text command
+shows captured execution, link/definition outcomes and unavailable charge sites.
+Runtime preparation, native capture schemas, checkpoints and dependencies are
+unchanged; no migration or source rewrite occurs.
+
+**Fresh controls and limits.** Three installed-library interpretations used the
+Phenix 2.2.1-6174 installation (dispatcher reports `2.2.1`). Frozen CCD ideal
+coordinates were translated to place the declared endpoints 1.607 Å apart.
+These synthetic pairs test representation, not experimental geometry, pucker or
+numerical quality. No optimizer, Coot, ReadySet or refinement ran.
+
+DA–DT produced the exact O3prime–P bond, target 1.607 Å and weight
+6944.444444444444; its endpoint types were recorded as OC2 and P. Source/native
+definitions still require review. DA's source has OP3/HOP2 where the effective
+native names include O3T and omit HOP2. DT's source C7/H71/H72/H73 names differ
+from native C5M/H5M1/H5M2/H5M3, and source HO3prime/HOP2 are absent from the effective
+definition. This is a definition comparison: it does **not** claim that the
+coordinate model lost terminal phosphate atoms. Formal-charge readback is
+unavailable. Native naming and chemical-state reconciliation need distinct,
+explicit policies before these differences can be accepted.
+
+DA–ATL and ATL–DA both failed with unknown native nonbonded energy types (22 and
+23 atoms respectively), so no ATL link qualification was obtained. This diagnoses
+the installed-library path; it does not establish that a source-preserving
+numerical ATL dictionary cannot work. Generate and qualify such a candidate
+through the existing bounded recovery machinery before attempting transfer.
+
+The three real captures plus wrong-endpoint, moved-coordinate and corrupted-log
+controls replay exactly through API and CLI in a fresh process after relocating
+source code and inputs. Original owned paths are gone and historical/SDK reads
+and subprocesses are blocked. All original capture/source bytes and timestamps
+remain preserved. Commands, hashes and results belong to
+`native_attachment_link_audit_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
 <a id="next-attachment-profile-milestone-g2-planned"></a>
 
 ### Remaining attachment-profile milestone (G2)
@@ -428,11 +526,14 @@ operations; the actual site context states which connections and ends exist.
 A workbook sugar label alone must not answer any of the latter three questions.
 
 C106 binds source cores; C107 adds single-site source projections; C108 requires
-reciprocal source-bound ports and complete declared-link scope. Next, consume
-those literal endpoint identities in authenticated native captures and qualify
-native numerical types, effective definitions and exact inter-site proxies.
-Use the existing DNA controls before ATL transfer, keeping unsupported native
-readback explicit. Then extend terminal reconstruction and PNA state operations. Preserve original
+reciprocal source-bound ports and complete declared-link scope. C109 compares
+literal endpoints with preserved native captures. Next, bind native alias mappings
+explicitly and establish source/native protonation policies using DNA controls.
+Keep missing formal-charge readback distinct from contradictions. Generate and
+qualify a source-preserving numerical ATL candidate before repeating native
+transfer; installed-library failure is not a blanket ATL exclusion. Numerical
+types, complete effective definitions and proxies still need qualification.
+Then extend terminal reconstruction and PNA state operations. Preserve original
 and candidate definitions separately and test every newly permitted delta. Conflicting
 profile matches stay unresolved instead of choosing the first matching name.
 No universal phosphorus field or unconditional OP3 deletion is required of an

@@ -1,11 +1,11 @@
 # NASolve documentation map
 
-Updated **2026-10-27**. Start with the
+Updated **2026-10-28**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
-The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c108)
+The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c109)
 separates qualified implementation, open chemistry, consumer qualification and
 the next integration step. The actual Mac C95 handoff passed with zero native
 calls; C96 exposes those limits in text and JSON reports. C97 adds the
@@ -38,6 +38,10 @@ C108 [requires reciprocal source-bound ports](cif-doctor.md#reciprocal-source-li
 for every declared link, with explicit whole-set evidence and candidate coverage.
 Five sugar pair projections pass; PNA ports bind without granting protonation or
 native-linkage authority.
+C109 [compares exact native captures](cif-doctor.md#native-attachment-link-audit-c109):
+DNA's declared bond matches while source/native definition differences remain;
+both installed-library ATL directions fail explicitly on unavailable energy types.
+Cold replay performs no native execution and grants no chemical qualification.
 ATL retains its separate validation fixture, and joins PNA/other backbones inside
 the programme. ChemDraw-derived chemical references remain future input scope.
 

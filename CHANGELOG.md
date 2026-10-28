@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare declared source links with native captures (C109)
+
+- Add read-only `cif-doctor link-native MANIFEST --native-receipt FILE` to
+  verify preserved capture inputs/outputs and compare exact source-defined
+  endpoints with native bond membership, independent of native atom ordering.
+- Separate link membership, effective source names/adjacency, unavailable formal
+  charge readback and observed native types. Failed captures stay unassessed;
+  wrong atoms, duplicate/extra links and altered evidence cannot become success.
+- Record fresh DNA/ATL controls: DNA's bond matches but naming/hydrogen states
+  require review; both installed-library ATL orientations fail on missing energy
+  types. No automatic chemistry change or native type transfer follows.
+- Additive diagnostic schema 1 leaves native capture/runtime/checkpoint schemas,
+  preparation, dependencies and crystallographic thresholds unchanged.
+
 ### Require reciprocal source-bound attachment ports (C108)
 
 - Add read-only `cif-doctor link-plan MANIFEST` to compose fresh site inspections

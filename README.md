@@ -62,7 +62,10 @@ C108 adds [reciprocal source-link checks](docs/cif-doctor.md#reciprocal-source-l
 both sites must agree on a bond between their source-defined ports. Missing or
 contradictory declarations cannot become a joint proposal; native typing and
 linkage remain unqualified.
-Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c108)
+C109 [compares those links with preserved native captures](docs/cif-doctor.md#native-attachment-link-audit-c109).
+It separates exact bond membership from source/native definition differences and
+failed interpretations; native atom types remain observations, not new authority.
+Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c109)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
 scientific qualification remain separate.

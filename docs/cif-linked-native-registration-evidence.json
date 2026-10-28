@@ -35483,5 +35483,377 @@
     ],
     "publication": "Tested implementation published and remote verified; this follow-up records continuity only.",
     "tested_implementation_commit": "e2c86b8a1c71bd60f6d12d4bed424c4f2a256057"
+  },
+  "native_attachment_link_audit_2026_10_28": {
+    "delivery": "C109",
+    "status": "NATIVE_CONTROLS_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+    "policy_id": "cif-source-native-link-audit-v1",
+    "schema_version": 1,
+    "before": "C108 bound reciprocal source ports but did not compare those literal endpoints with native captures. Existing DNA qualification uses name-specific linkage rules.",
+    "after": "Fresh source plans bind preserved capture model/inputs; literal endpoints drive exact native bond checks, with separate effective source-definition and failed-interpretation outcomes. No native type transfer or chemical repair is inferred.",
+    "starting_commit": "6951b7a79868b8b70977a80af8c139c1bb7f1d93",
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "src/nasolve/cif_attachment_native.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_attachment_native.py"
+    ],
+    "schemas": "Additive report schema 1; C108 input and existing native capture/runtime/checkpoint schemas unchanged.",
+    "source_authority": {
+      "workbook_sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+      "loader": {
+        "module": "restraints.residue_library",
+        "openpyxl_version": "3.1.5",
+        "sha256": "85105ec37fb251fe61eb5bf0eaa6039632ef8bab88d2d4e657f1d88b657a1786",
+        "size": 3027
+      },
+      "narestraints_snapshot_commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+      "workbook_scope": "Explicit pinned local workbook; not asserted to be the released v1.1.3 workbook.",
+      "ccd": "Exact C105 snapshots from Phenix 2.2.1-6174; no network discovery or native execution."
+    },
+    "results": {
+      "adversarial_controls": 3,
+      "all_bytes_and_mtimes_preserved": true,
+      "captured_phenix_version": "2.2.1",
+      "cold_cases": 6,
+      "coot_execution": "NOT_RUN",
+      "dna_definition_findings": {
+        "A:1": {
+          "extra_atoms": [
+            "O3T"
+          ],
+          "formal_charge_status": "UNSUPPORTED",
+          "missing_atoms": [
+            "HOP2",
+            "OP3"
+          ],
+          "source_bond_adjacency_matches": false
+        },
+        "A:2": {
+          "extra_atoms": [
+            "C5M",
+            "H5M1",
+            "H5M2",
+            "H5M3"
+          ],
+          "formal_charge_status": "UNSUPPORTED",
+          "missing_atoms": [
+            "C7",
+            "H71",
+            "H72",
+            "H73",
+            "HO3'",
+            "HOP2"
+          ],
+          "source_bond_adjacency_matches": false
+        }
+      },
+      "dna_endpoint_types": {
+        "A:1": {
+          "O3'": "OC2",
+          "P": "P"
+        },
+        "A:2": {
+          "O3'": "OC2",
+          "P": "P"
+        }
+      },
+      "dna_link": [
+        {
+          "distance_ideal": 1.607,
+          "endpoints": [
+            [
+              "A:1",
+              "DA",
+              "O3'"
+            ],
+            [
+              "A:2",
+              "DT",
+              "P"
+            ]
+          ],
+          "origin_id": 0,
+          "weight": 6944.444444444444
+        }
+      ],
+      "installation_build_historical_provenance": "phenix-2.2.1-6174",
+      "native_controls": {
+        "ATL_DA": {
+          "definition_status": "NOT_ASSESSED",
+          "link_status": "NOT_ASSESSED",
+          "native_status": "FAILED"
+        },
+        "DA_ATL": {
+          "definition_status": "NOT_ASSESSED",
+          "link_status": "NOT_ASSESSED",
+          "native_status": "FAILED"
+        },
+        "DA_DT": {
+          "definition_status": "REVIEW",
+          "link_status": "MATCH",
+          "native_status": "REVIEW"
+        }
+      },
+      "native_design": "Synthetic source-ideal pairs translated to a 1.607 A declared link; no optimization or experimental geometry claim.",
+      "native_execution": "COMPLETE_INTERPRETATIONS",
+      "native_interpretations": 3,
+      "native_qualification": "NOT_ASSESSED",
+      "original_owned_source_input_path_absent": true,
+      "status": "PASS"
+    },
+    "validation": {
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_attachment_native.py tests/test_cif_attachment_links.py tests/test_cif_attachment_sites.py tests/test_cif_native_validation.py tests/test_cif_linked_qualification.py",
+      "focused_result": "183 passed in 13.51s",
+      "new_regressions": 49,
+      "failing_before": "Absent public CLI; native atom/geometry coordinate roundoff rejected by the first reader; tuple endpoints failed exact JSON replay. Each failing log is preserved; regressions now pass. Two additional tests showed inconsistent consumed dictionary/PHIL records were initially accepted; the final reader rejects both.",
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider --durations=20",
+      "full_result": "5989 passed, 276 subtests passed in 931.90s (0:15:31)",
+      "python_executable_historical_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "python_version": "3.12.14",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python /private/tmp/cedar-c109-build/capture.py",
+      "cold_validation_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python /private/tmp/cedar-c109-build/validate.py",
+      "generated_runner_archive": "Exact capture.py and validate.py are preserved under the live-tests capsule; native receipts record installation dispatcher, input hashes and API source fingerprints.",
+      "compilation_command": "PYTHONPYCACHEPREFIX=/private/tmp/c109-final-compile-cache python -m compileall -q src tests",
+      "code_hashes": {
+        "src/nasolve/cif_attachment_native.py": "5a48ddfc9cf513eec3a7757f37e7d325601aff885e0af1e366abd7bc359eaa9f",
+        "src/nasolve/cli.py": "1407973ec38ad6d858269b95c0305ddfafd9e03f98ba991225f6c1750bb70be0",
+        "tests/test_cif_attachment_native.py": "97c1f083df67fa0552946c3685d3ebd3c6221afefaa3df5c39e97be1acd74936"
+      },
+      "reports": {
+        "capture-state.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/capture-state.json",
+          "sha256": "d13275f69ed9cc7f2efcf03c60ca07025dbdcdfda8526146941a66ddbd4af69b",
+          "size": 1309
+        },
+        "parent-capture.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/parent-capture.json",
+          "sha256": "dbd595a6778a261f0f43e5650264fcc008d9574a2508e28452d1bcccc2315ed4",
+          "size": 518
+        },
+        "cases.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/cases.json",
+          "sha256": "bb6230f92cf7dd949dbaf8aff3e1c1481fb7213840003b7278ceba52f519f7a2",
+          "size": 1999
+        },
+        "validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation.json",
+          "sha256": "4f7c361cba473aff84e4b91fcf741055d2ed8ec8ddfb5e2548037197ea2835d4",
+          "size": 1989
+        },
+        "cold-validation.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/cold-validation.json",
+          "sha256": "1e198b1e900cba642b6608e5bb2e8c9d70af6b7fa009f5c91af78a00baef77bf",
+          "size": 203
+        },
+        "input-and-source-manifest.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/input-and-source-manifest.json",
+          "sha256": "5d9b35249633696cf009422c9ed3576360140e45cbd76767c97ef6a71f6fd2a0",
+          "size": 46727
+        },
+        "warm-reports.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/warm-reports.json",
+          "sha256": "b088c329f1a27a8b8bcff468d5866d317204a9e3f75d66e3f8d5ac8c63b37a36",
+          "size": 305819
+        },
+        "cold-reports.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/cold-reports.json",
+          "sha256": "b088c329f1a27a8b8bcff468d5866d317204a9e3f75d66e3f8d5ac8c63b37a36",
+          "size": 305819
+        },
+        "capture.py": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/capture.py",
+          "sha256": "6ddb4b375cb5ec37e1afcd43b2904b98fd43ecb618d4db7a328e2136652f3f07",
+          "size": 3249
+        },
+        "validate.py": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validate.py",
+          "sha256": "a82365ce7da10d06fa8a6a50c2dc31fd86aa98a9e931a572d5f04d8aadc3fddb",
+          "size": 7130
+        },
+        "validation/focused-final-3.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/focused-final-3.log",
+          "sha256": "21ef27ae3a9d2cbfb009ca3bb2a53679b362785687d61a07cd7d066b5a8a0d16",
+          "size": 261
+        },
+        "validation/before.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/before.log",
+          "sha256": "5aecdabc11aae057acb6264ee41e2e227f0ac15a13b9753a34232362628ee5c2",
+          "size": 9018
+        },
+        "validation/roundoff-before.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/roundoff-before.log",
+          "sha256": "88475cbc2246395805d6cb4405962836339e3d18fe6a616e23e00b81f3a1420a",
+          "size": 3740
+        },
+        "validation/geometry-before.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/geometry-before.log",
+          "sha256": "c59b9e7666dc427aaece6b69fe869c01d45270b72e6eb15298b3170dda9c4521",
+          "size": 2493
+        },
+        "validation/json-before.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/json-before.log",
+          "sha256": "309a1c733e10b6ddf04b18070171262caf264f62962ffacc91ccf9b7e9f73317",
+          "size": 1282
+        },
+        "validation/order-before.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/order-before.log",
+          "sha256": "6119918da4734f70596ebbbf25cab4ce57978adb23e0eed6994828ce1d854181",
+          "size": 3872
+        },
+        "native/DA_DT/cif-native-qf77s_wm/native_receipt.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/native/DA_DT/cif-native-qf77s_wm/native_receipt.json",
+          "sha256": "2e2e91849ea960f4802a15f214d6988e01027d0f89ea530175f55b601076579d",
+          "size": 207598
+        },
+        "native/DA_ATL/cif-native-ek4jzs2o/native_receipt.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/native/DA_ATL/cif-native-ek4jzs2o/native_receipt.json",
+          "sha256": "7a12a5a3d1b9c32c0156c66095c0de72a1cf06f4a07fec0c1f1ac1b6807a9ef0",
+          "size": 81761
+        },
+        "native/ATL_DA/cif-native-h4z12nbd/native_receipt.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/native/ATL_DA/cif-native-h4z12nbd/native_receipt.json",
+          "sha256": "f812c9e2d8a691a11c7ebda3f3cdcd3cd09eb597f8afb6f1b4499e33b742273e",
+          "size": 79780
+        },
+        "preserved_first_attempt/validation/full-suite-state.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-links-theuy88j/validation/full-suite-state.json",
+          "sha256": "432aed5c5f1afa4cd06645fed4d44d15113a2da73f8ecfb1c194c0184f34c20d",
+          "size": 374
+        },
+        "preserved_first_attempt/validation/full-suite.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-links-theuy88j/validation/full-suite.log",
+          "sha256": "1550eca6a0b7270daa72de6a15c8c7966afe3ee35d9f6df19dfb2df98602fa22",
+          "size": 3266
+        },
+        "preserved_first_attempt/validation/interruption-reason.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-links-theuy88j/validation/interruption-reason.json",
+          "sha256": "de3e17c5f182e63ab08a7a41fed6e30df85f15e682c9ff23004452d1de01227f",
+          "size": 215
+        },
+        "validation/full-suite.log": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/full-suite.log",
+          "sha256": "8daa1560a976c3fb0c477ebf1cc24a032fa135132271e3f39a28d90b8af82d11",
+          "size": 9354
+        },
+        "validation/full-suite-state.json": {
+          "anchor": "live_tests_directory",
+          "path": "109_Cedar_native-link-confirm-9m1r807r/validation/full-suite-state.json",
+          "sha256": "0c948f5e1c20eec77807e79c9595213d31aba2f5d574a6215a392963e849fafe",
+          "size": 371
+        }
+      },
+      "preserved_interrupted_full_suite": {
+        "status": "INTENTIONALLY_STOPPED_FOR_CODE_FIX",
+        "elapsed_seconds": 383.551077082986,
+        "exit_code": -15,
+        "reason": "Add exact consumed dictionary/PHIL-order checks and regressions. Prior process confirmed stopped before fresh attempt; all partial outputs retained."
+      },
+      "native_capture_count": 3,
+      "native_capture_retries": 0,
+      "full_elapsed_seconds": 932.1979687499697,
+      "completed_full_runs": 1,
+      "interrupted_full_runs": 1,
+      "slowest_test_timings": [
+        "6.21s call     tests/test_cif_generation.py::test_timeout_kills_optimizer_descendants_and_retains_raw_evidence",
+        "4.90s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[header]",
+        "4.68s call     tests/test_cif_mixed_endpoint_window.py::test_window_worker_refines_both_native_orders_of_local_boundary_evidence",
+        "4.66s call     tests/test_cif_recovered_resolution.py::test_fixed_worker_preserves_selection_and_replays_after_relocation[timeout]",
+        "4.56s call     tests/test_cif_mixed_endpoint.py::test_actual_endpoint_worker_refines_both_orders_of_local_boundary_evidence",
+        "4.48s call     tests/test_cif_mixed_endpoint_window.py::test_actual_window_worker_preserves_all_inputs_and_selects_only_qualified_native_readback[timeout]",
+        "4.46s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[summary]",
+        "4.41s call     tests/test_cif_mixed_endpoint.py::test_saved_endpoint_actual_new_worker_and_conditional_native_readback[timeout]",
+        "4.41s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[schema_bool]",
+        "4.40s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[new_calls_bool]",
+        "4.40s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[parent_bytes]",
+        "4.37s call     tests/test_cif_recovered_precision.py::test_saved_diagnostic_relocates_without_sdk_or_parent_mutation",
+        "4.35s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[reference]",
+        "4.33s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[selection]",
+        "4.31s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[declaration]",
+        "4.16s call     tests/test_cif_recovered_resolution.py::test_native_resolution_worker_revisits_both_orders_but_never_adopts",
+        "4.15s call     tests/test_cif_mixed_runtime_source.py::test_real_maintained_replay_is_required_before_resources_are_yielded",
+        "4.01s call     tests/test_cif_recovered_resolution.py::test_fixed_worker_preserves_selection_and_replays_after_relocation[missing_result]",
+        "4.01s call     tests/test_cif_recovered_precision.py::test_replay_rejects_rebound_results_and_false_authority[extra]",
+        "4.00s call     tests/test_cif_recovered_resolution.py::test_completed_receipt_rejects_forged_numerics_and_summary[summary]"
+      ],
+      "source_authority_check": "All six live source-site inspections match the recorded explicit workbook hash and NAR loader.",
+      "compilation": "PASS",
+      "whitespace": "PASS",
+      "figure": "Editable SVG regenerated, rendered and visually checked; PASS",
+      "document_check_command": "python /private/tmp/cedar-c105-build/check_docs.py",
+      "figure_render_command": "rsvg-convert -w 1400 -o /private/tmp/cedar-c109-build/overview.png docs/figures/cif-doctor-overview.svg",
+      "document_links": {
+        "relative_links_checked": 234,
+        "missing": [],
+        "json_parse": "PASS"
+      }
+    },
+    "compatibility": "No migration, dependency, chemistry-threshold or native-preparation change. Reader initially supports only the exact maintained base capture worker, not augmented energy workers or unrelated historical versions.",
+    "included_artifacts": "Source, synthetic tests, maintained docs, editable figure and compact technical evidence.",
+    "excluded_artifacts": "Workbooks/CCD copies, synthetic coordinate/candidate files, native captures/logs, runners and frozen source bundles remain local.",
+    "remaining_limits": [
+      "Native aliases and protonation differences require separate explicit policies",
+      "Installed-library ATL failure does not exclude source-preserving candidate generation",
+      "Observed energy types and positive native bond targets do not confer scientific/numerical authority",
+      "Formal-charge readback remains unsupported in these native controls",
+      "PNA operations, terminal reconstruction and PDU C104 numerical gates remain open",
+      "No optimization, adoption, Coot execution or Pine/main merge"
+    ],
+    "publication": "Validation complete; exact tested-file hashes recorded. Commit/push pending.",
+    "native_version": {
+      "full_installation_version": "2.2.1-6174",
+      "dispatcher_reported_version": "2.2.1",
+      "version_source": "phenix_env.sh exports PHENIX_VERSION=2.2.1-6174",
+      "setup_script": {
+        "sha256": "eb7624268ed7082952a36ab39ef5533a720f90fa2f5ef1eed129c04a61bee113",
+        "size": 259
+      },
+      "execution_scope": "Three completed interpretation attempts; DNA completed, both ATL attempts failed with explicit unknown-type diagnostics. Not a dry-run."
+    },
+    "next_mapping_evidence": {
+      "status": "INSTALLED_SOURCE_INSPECTED_NOT_YET_CAPTURED",
+      "module": "mmtbx.monomer_library.pdb_interpretation",
+      "source_sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235",
+      "members": [
+        "monomer_mapping.atom_names_mappings",
+        "monomer_mapping.expected_atoms",
+        "monomer_mapping.mon_lib_names"
+      ],
+      "observation": "The installed _get_mappings implementation records literal-to-effective name changes and maps effective IDs to native atoms; assign_from_monomer_mapping uses those atoms to assign energy symbols.",
+      "next_validation": "Capture explicit per-site native IDs/index mappings and prove uniqueness/binding before accepting any alias. Missing hydrogens/protonation remain a distinct policy question. Preserve C109 worker-version compatibility when extending captures."
+    }
   }
 }
