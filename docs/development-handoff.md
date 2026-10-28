@@ -14,7 +14,8 @@ not general production support. Earlier wording remains in Git and the
 ## C112 native atom-name binding
 
 Implementation, native controls, cold replay and complete regression pass.
-Publication is the remaining step; source/tests are frozen and no job is active.
+Tested implementation `251d7cb31a3a6787bb24d3adfae69c1e79749efd` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 Base: `60cdc0800b33669c9568e78277638aed4bbfe226`; continue on existing `cedar`.
 Output: `live_tests_directory/112_Cedar_native-name-mapping-gksy5b_8`.
 

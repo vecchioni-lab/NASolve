@@ -26953,7 +26953,8 @@
       "next_step": "Qualify explicit chemical-state and unmodelled-name handling across source-bound held-out components, then recover/qualify numerical candidates through existing immutable-attempt machinery.",
       "contract": "docs/cif-doctor.md#observed-native-atom-name-mappings-c112",
       "automatic_adoption": false,
-      "validation": "6051 passed, 276 subtests passed in 952.76s (0:15:52); 254 focused tests and five cold replay cases pass."
+      "validation": "6051 passed, 276 subtests passed in 952.76s (0:15:52); 254 focused tests and five cold replay cases pass.",
+      "tested_implementation_commit": "251d7cb31a3a6787bb24d3adfae69c1e79749efd"
     }
   },
   "audience": [

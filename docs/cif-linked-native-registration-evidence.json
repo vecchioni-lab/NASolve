@@ -36884,6 +36884,7 @@
       "Sticky-end stitching is parked; no Pine/main merge."
     ],
     "next_step": "Qualify explicit chemical-state and unmodelled-name handling across source-bound held-out components, then recover/qualify numerical candidates through existing immutable-attempt machinery.",
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "tested_implementation_commit": "251d7cb31a3a6787bb24d3adfae69c1e79749efd"
   }
 }
