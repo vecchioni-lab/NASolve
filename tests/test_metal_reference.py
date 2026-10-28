@@ -244,3 +244,44 @@ def test_malformed_manifest_has_controlled_failure(tmp_path,payload):
     compare_reference(context.run,'Metal/geometry_001',reference,plan)
     (context.run/'Metal/reference_comparison_001/manifest.json').write_bytes(_json_bytes(payload))
     with pytest.raises(RecipeError):verify_reference_comparison(context.run,'Metal/reference_comparison_001')
+
+
+@pytest.mark.parametrize('mismatch',[False,True])
+def test_reference_text_exposes_states_exact_extra_atoms_and_review_flags(tmp_path,monkeypatch,capsys,mismatch):
+    from nasolve.cli import build_parser
+    from nasolve.metal.cli import execute
+    import nasolve.metal.cli as module
+    context,g,reference,plan=setup(tmp_path)
+    def change(raw):
+        lines=[]
+        for line in raw.splitlines(keepends=True):
+            if line.startswith('HETATM') and line[21]=='M':
+                line=line[:54]+f'{.3:6.2f}{55.:6.2f}'+line[66:]
+                lines.append(line)
+                lines.append('ANISOU'+line[6:28]+''.join(f'{v:7d}' for v in [1000,2000,3000,100,200,300])+line[70:])
+            else:lines.append(line)
+        return ''.join(lines)
+    update_reference(reference,plan,change)
+    if mismatch:
+        plan['nodes']={'m1':inspect_reference(reference.read_bytes(),elements=['Ag'])['atoms_of_interest'][0]['key']}
+    doc=compare_reference(context.run,'Metal/geometry_001',reference,plan)
+    directory=context.run/'Metal/reference_comparison_001'
+    before={p.name:p.read_bytes() for p in directory.iterdir()}
+    monkeypatch.setattr(module,'discover_phenix',lambda *a,**kw:pytest.fail('No native discovery'))
+    parser=build_parser()
+    args=['metal','verify-reference-comparison',str(context.run),'--comparison','Metal/reference_comparison_001']
+    assert execute(parser.parse_args(args))==0
+    output=capsys.readouterr().out
+    assert 'Recorded atomic snapshots' in output
+    assert 'Stored anomalous parameters: untrusted and ignored' in output
+    assert "model='1' chain='Z' residue='9' component='AG' atom='AG'" in output
+    if mismatch:
+        assert 'element differs' in output and 'Unmapped candidate nodes: d1, d2' in output
+    else:
+        assert '+0.300' in output and '-30.000' in output
+        assert 'ANISOU + reported B' in output and 'ADP representation differs' in output
+        assert 'Unmapped reference atoms of interest: 2' in output
+        assert 'q=0.400; reported B=77.000' in output
+    assert before=={p.name:p.read_bytes() for p in directory.iterdir()}
+    assert execute(parser.parse_args(args+['--json']))==0
+    assert json.loads(capsys.readouterr().out)==doc

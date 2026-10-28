@@ -309,7 +309,61 @@ def _reference_snapshot(args):
             values = [f'{row[key]:.4f}' if row[key] is not None else 'undefined'
                       for key in ('candidate', 'reference', 'candidate_minus_reference')]
             print(f'{label:<28} {values[0]:>11} {values[1]:>13} {values[2]:>16}')
-        print(f'Unmapped reference atoms of interest: {len(report["unmapped_reference_atoms_of_interest"])}')
+        print('\n'.join(_reference_state_lines(report)))
         print(f'Complete XYZ/q/ADP snapshots and recipe angles: {result["files"]["report"]["relative_path"]}')
         print('Stored-coordinate internal geometry; no alignment, symmetry expansion, scattering fit or checkpoint adoption.')
     return 0
+
+
+def _reference_atom_label(atom):
+    """Keep case and all disambiguating fields visible in ordinary text."""
+    key = atom['key']
+    names = [('model', 'model_id'), ('chain', 'chain_id'), ('residue', 'residue_id'),
+             ('component', 'component_id'), ('atom', 'atom_name')]
+    names += [(label, field) for label, field in
+              [('ins', 'insertion_code'), ('alt', 'altloc'), ('seg', 'segment_id')]
+              if key[field]]
+    if key['symmetry'] != 'x,y,z':
+        names.append(('symmetry', 'symmetry'))
+    return ' '.join(f'{label}={key[field]!r}' for label, field in names)
+
+
+def _reference_state_lines(report):
+    """Present verified recorded fields; do not recalculate or mutate the report."""
+    adps = {'REPORTED_B_ONLY': 'reported B only',
+            'ANISOU_AND_REPORTED_B': 'ANISOU + reported B'}
+    lines = ['', 'Recorded atomic snapshots (q; reported B in A^2; C-R = candidate minus reference)',
+             'Node          Source     Element         q   Reported B  ADP representation']
+    for row in report['nodes']:
+        for source in ('candidate', 'reference'):
+            atom = row[source]
+            label = row['node_id'] if source == 'candidate' else ''
+            lines.append(f'{label:<13} {source:<10} {atom["element"]:<8} {atom["occupancy"]:>8.3f} '
+                         f'{atom["reported_b_A2"]:>12.3f}  {adps[atom["adp_representation"]]}')
+        lines.append(f'{"":13} {"C-R":<10} {"":8} {row["candidate_minus_reference_occupancy"]:>+8.3f} '
+                     f'{row["candidate_minus_reference_reported_b_A2"]:>+12.3f}')
+        lines.append('  C: '+_reference_atom_label(row['candidate']))
+        lines.append('  R: '+_reference_atom_label(row['reference']))
+        flags = []
+        if not row['element_agrees']:
+            flags.append('element differs')
+        if not row['adp_representation_agrees']:
+            flags.append('ADP representation differs')
+        if flags:
+            lines.append('  Review: '+', '.join(flags))
+    if report['unmapped_candidate_nodes']:
+        lines.append('Unmapped candidate nodes: '+', '.join(report['unmapped_candidate_nodes']))
+    extra = report['unmapped_reference_atoms_of_interest']
+    lines.append(f'Unmapped reference atoms of interest: {len(extra)}')
+    for atom in extra:
+        lines.append('  '+atom['element']+' '+_reference_atom_label(atom))
+        lines.append(f'    q={atom["occupancy"]:.3f}; reported B={atom["reported_b_A2"]:.3f}; '
+                     +adps[atom['adp_representation']])
+    warnings = report['reference_inventory']['warnings']
+    if any(warnings.values()):
+        lines.append('Reference field warnings: '
+                     f'{warnings["occupancies_outside_zero_to_one"]} occupancy values outside [0,1]; '
+                     f'{warnings["negative_reported_b"]} negative reported B values')
+    lines.append('Recorded fields only; reported-B differences do not compare ANISOU tensors.')
+    lines.append('Stored anomalous parameters: untrusted and ignored.')
+    return lines

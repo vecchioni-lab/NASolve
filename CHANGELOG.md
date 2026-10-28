@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Show recorded atomic states in reference comparison text
+
+- Display candidate/reference q and reported B with signed differences, exact
+  atom labels, ADP representations and element/ADP mismatch flags.
+- List unmapped reference scatterers individually and name unmapped candidate
+  nodes; surface recorded reference-field warnings. JSON, saved comparisons,
+  scientific calculations and native execution remain unchanged.
+
 ### Preserve human metal endpoints as explicit reference snapshots
 
 - Add `metal inspect-reference`, `metal compare-reference` and

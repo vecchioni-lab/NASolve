@@ -65,6 +65,14 @@ differences, element agreement and ADP-representation agreement. ANISOU is retai
 as six PDB integers; the B field is not silently interpreted as an isotropic
 model or an equivalent B derived from that tensor.
 
+The ordinary `compare-reference` and `verify-reference-comparison` text views
+show per-node candidate/reference q and reported B, signed differences, exact
+atom labels and ADP representation. Element/ADP mismatches and reference field
+warnings remain visible. Unmapped scatterers are listed individually, including
+recorded q/B and exact labels; unmapped candidate nodes are named. This display
+reads the verified report without modifying it. JSON and all artifact schemas
+remain unchanged; reported-B arithmetic does not compare ANISOU tensors.
+
 Coordinate frames are independent: there is no Cartesian displacement/RMSD,
 superposition, symmetry expansion, nearest-image search, chirality/chi
 classification or map score. Rigid motions leave these internal distances and

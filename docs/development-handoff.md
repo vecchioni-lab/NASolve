@@ -13,6 +13,49 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Reference comparison text readback 2026-10-28
+
+The ordinary `compare-reference` / `verify-reference-comparison` view previously
+showed internal distances and only an unmatched-scatterer count. It now also
+shows per-node candidate/reference q and reported B, signed differences, exact
+atom identities and ADP representations. Element/ADP mismatches, unmapped
+candidate nodes and recorded reference-field warnings are explicit. Unmapped
+reference scatterers are listed individually with q/B and exact labels. These
+are recorded fields; B arithmetic does not compare ANISOU tensors and stored
+anomalous values remain untrusted.
+
+Changed files: `src/nasolve/metal/cli.py`, `tests/test_metal_reference.py`, the
+[human descriptor](metal-anomalous-doctor.md#implemented-human-reference-snapshots),
+changelog and this handoff. Presentation only: no scientific calculation,
+artifact schema, JSON response, dependency, native protocol or migration change.
+Existing verified comparisons gain the text view without regeneration.
+
+Focused validation in the feature worktree:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_reference.py tests/test_cli.py
+```
+
+**48 tests and 14 subtests passed in 5.33 s; exit 0.** Two new text regressions
+failed on the preceding implementation. They cover state differences, ANISOU
+representation, element mismatch, exact extra-atom identity, missing candidate
+nodes, unchanged saved bytes and identical JSON. No full-suite run was requested
+or performed. Python 3.10 grammar, document links and whitespace checks pass.
+
+Local readback from the everyday checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A21_reference_text_controls.py
+```
+
+Exit 0 for both existing FT_Hg/FF_AuAg comparisons, with native subprocesses and
+Phenix discovery forbidden. All **692 prior run files** stayed unchanged; no new
+comparison was generated. No Phenix or Coot dry-run or complete execution.
+Local text snapshots/logs/receipts remain under ignored
+`branch-artifacts/Alder/reference-text-20261028-01/`; only source/tests/docs are
+committed. This is a terminal display improvement; scientific qualification,
+GUI attachment and the follow-ups below remain pending.
+
 ## Human reference snapshots and comparison 2026-10-28
 
 **Current additive milestone: M2c reference endpoints.** Before this change,
