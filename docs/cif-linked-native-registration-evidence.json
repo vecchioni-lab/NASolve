@@ -37653,6 +37653,7 @@
       "Sticky-end stitching remains parked; no new branch or Pine/main merge."
     ],
     "next_step": "Source-preserving numerical candidate generation and exact native qualification against these explicit permitted deltas; separately establish authority for charged reaction states.",
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "tested_implementation_commit": "65bf1a49877f9bf768e9b38e3a5b1892fbcdcf46"
   }
 }

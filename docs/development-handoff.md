@@ -14,7 +14,8 @@ not general production support. Earlier wording remains in Git and the
 ## C114 explicit neutral PNA amide operations
 
 Implementation, focused/full regression and frozen/cold transfer controls pass.
-Publication is the remaining step; source/tests are frozen and no job is active.
+Tested implementation `65bf1a49877f9bf768e9b38e3a5b1892fbcdcf46` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 Base: `49e0d9298f636dfca78646b88df076aa38bd5862`; continue on existing `cedar`.
 Local capsule: `live_tests_directory/114_Cedar_PNA-state-ciy0qgj4`.
 

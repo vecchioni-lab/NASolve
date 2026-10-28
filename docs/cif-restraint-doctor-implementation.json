@@ -26994,7 +26994,8 @@
       ],
       "next_step": "Qualify source-preserving numerical candidates against these permitted deltas, then exact native definitions/links; retain separate charged-state authority.",
       "automatic_adoption": false,
-      "validation": "6111 passed, 276 subtests passed in 965.99s (0:16:05); 264 focused tests and 22 cold API/CLI controls pass."
+      "validation": "6111 passed, 276 subtests passed in 965.99s (0:16:05); 264 focused tests and 22 cold API/CLI controls pass.",
+      "tested_implementation_commit": "65bf1a49877f9bf768e9b38e3a5b1892fbcdcf46"
     }
   },
   "audience": [
