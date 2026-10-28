@@ -1,11 +1,117 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, explicit construction and bounded recipe-only preparation implemented**.
+Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, human reference snapshots, explicit construction and bounded recipe-only preparation implemented**.
 Implementation updated 2026-10-28. Occupancy scans and scientific decision qualification remain planned.
 Solution-space search, decision logic, maps and GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
+
+## Implemented human reference snapshots
+
+A supplied human endpoint is optional comparison evidence. It does not replace
+NASolve's generated scaffold. `metal inspect-reference` inventories one explicit
+single-model PDB and its declared elements of interest. It retains exact atom
+identities, XYZ, occupancy, the reported PDB B field, raw ANISOU integers, charge
+text and CRYST1 records. Occupancy/B are recorded snapshots rather than accepted
+estimates; out-of-range occupancy and negative reported B are counted as warnings.
+Stored f-prime/f-double-prime annotations are always `UNTRUSTED_IGNORED`, including
+models subsequently refined for deposition outputs.
+
+```sh
+nasolve metal inspect-reference /path/to/human.pdb --element Hg --element Ag --element I --json
+nasolve metal compare-reference /path/to/dataset/AutoMR/run_001 --geometry Metal/geometry_001 --reference /path/to/human.pdb --mapping /path/to/reference-map.json
+nasolve metal verify-reference-comparison /path/to/dataset/AutoMR/run_001 --comparison Metal/reference_comparison_001
+```
+
+The mapping is explicit and bound to the verified geometry ID and original PDB
+SHA-256. Example shape (replace IDs/checksum with the exact values and add the
+required donor correspondences to compare recipe distances and angles):
+
+```json
+{
+  "kind": "metal-reference-map",
+  "schema_version": 1,
+  "geometry_id": "<geometry manifest geometry_id>",
+  "reference_sha256": "<inspect-reference source_sha256>",
+  "elements": ["Hg", "Ag", "I"],
+  "nodes": {
+    "m1": {
+      "model_id": "1", "chain_id": "E", "residue_id": "1",
+      "component_id": "HG", "atom_name": "Hg",
+      "insertion_code": "", "altloc": "", "segment_id": "", "symmetry": "x,y,z"
+    }
+  },
+  "note": "Explicitly reviewed correspondence to the reference metal"
+}
+```
+
+Map 1–64 recipe nodes, including a metal, one-to-one to exact reference atoms.
+Case, component, alternate, insertion, model and segment identities matter.
+No component alias, nearest-metal assignment or chemical equivalence is inferred.
+An element mismatch remains visible for review. The declared elements determine
+which **unmapped reference scatterers** are listed; include iodine/bromine when
+relevant. All source bytes are captured regardless of the selected elements.
+Reference mapping can identify arbitrary residues, but candidate nodes still
+come from the existing geometry adapter; this does not implement general-site
+candidate construction.
+
+The comparison reports every mapped pair's stored-coordinate distance and each
+recipe distance/angle, with signed candidate-minus-reference differences. Pair
+distances do not assert bonds. Unmapped/undefined terms remain explicit. Original
+recipe targets and sigmas are contextual fields and are never learned from the
+human model. Per-node records retain both XYZ/q/ADP snapshots, q and reported-B
+differences, element agreement and ADP-representation agreement. ANISOU is retained
+as six PDB integers; the B field is not silently interpreted as an isotropic
+model or an equivalent B derived from that tensor.
+
+Coordinate frames are independent: there is no Cartesian displacement/RMSD,
+superposition, symmetry expansion, nearest-image search, chirality/chi
+classification or map score. Rigid motions leave these internal distances and
+angles unchanged; mirrored or differently wrapped structures can remain ambiguous.
+An internal-distance comparison alone cannot establish the correct structural
+hypothesis. Review CRYST1, mapping, local geometry and model quality separately.
+
+The API is `metal.reference.inspect_reference`, `compare_reference` and
+`verify_reference_comparison`. A new `Metal/reference_comparison_NNN` holds the
+exact reference PDB, explicit mapping, calculated report and manifest. Schema-1
+`metal-reference-map`, `metal-reference-inventory`, `metal-reference-comparison`
+and `metal-reference-comparison-report` are additive; comparison protocol is
+`metal-reference-comparison-v1`, status `REFERENCE_COMPARISON_REVIEW`.
+Operational references use checksummed anchors. The original reference path is
+historical provenance only; replay uses the captured bytes and verified candidate
+lineage even after that original file is removed. Failed numbered attempts remain.
+Existing models/checkpoints and prior formats need no migration. No fitting,
+coordinate transfer, automatic selection or production GUI attachment occurs.
+
+**Evidence.** Synthetic controls cover rigid-frame changes, exact labels and
+ANISOU, state/geometry differences, incomplete and invalid maps, source mutation,
+rehashed tampering, offline CLI use and fresh-process replay from a relocated
+checkout with the original source/reference removed. Six supplied reference
+models were inventoried locally; FT_Hg and FF_AuAg were compared against existing
+generated geometry controls. The additional unmapped Ag in FF_AuAg stays visible.
+PDU is deferred. No Phenix or Coot process was run for this feature; human
+anisotropic snapshots do not extend native f-double-prime qualification. Exact
+validation commands and local evidence are in the
+[handoff](development-handoff.md#human-reference-snapshots-and-comparison-2026-10-28).
+
+**Methods.** NASolve parses a source-preserved PDB snapshot, verifies candidate
+lineage and applies declared exact atom correspondences. The existing geometry
+kernel computes internal distances and recipe angles independently in each
+stored frame. Raw atomic-state fields and explicit unmatched scatterers accompany
+the comparison. A checksummed numbered bundle permits offline recalculation
+without reopening the original human model or running refinement.
+
+```mermaid
+flowchart LR
+    H[Human PDB snapshot] --> B[Capture exact bytes and ignore anomalous annotations]
+    G[Verified generated geometry] --> M[Explicit source-bound atom map]
+    B --> M
+    M --> D[Internal distances and angles plus recorded q and ADPs]
+    D --> R[Reference comparison for review]
+    R --> V[Offline replay from captured source and anchored lineage]
+    R -. planned .-> U[Linked candidate and reference GUI]
+```
 
 ## Implemented single-trial frozen diagnostic
 

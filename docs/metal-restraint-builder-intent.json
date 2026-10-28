@@ -361,6 +361,31 @@
       "requires_original_trial_artifacts": true,
       "production_gui_connected": false,
       "automatic_scan_implemented": false
+    },
+    "reference_comparison": {
+      "status": "implemented; explicit offline correspondences only",
+      "contract": "docs/metal-anomalous-doctor.md#implemented-human-reference-snapshots",
+      "commands": [
+        "metal inspect-reference",
+        "metal compare-reference",
+        "metal verify-reference-comparison"
+      ],
+      "schema_version": 1,
+      "protocol": "metal-reference-comparison-v1",
+      "human_model_optional": true,
+      "stored_anomalous_parameters": "UNTRUSTED_IGNORED",
+      "occupancy_and_adp_interpretation": "RECORDED_SNAPSHOT_ONLY",
+      "exact_source_capture": true,
+      "original_path_is_provenance_only": true,
+      "maximum_mapped_nodes": 64,
+      "correspondences": "explicit exact one-to-one atom keys; no automatic assignment",
+      "coordinate_policy": "INDEPENDENT_STORED_FRAMES_NO_SUPERPOSITION",
+      "symmetry_expansion": "NOT_PERFORMED",
+      "unmapped_reference_elements": "explicit caller-selected inventory",
+      "target_learning": false,
+      "scientific_acceptance": "NOT_ASSESSED",
+      "automatic_checkpoint_selection": false,
+      "production_gui_connected": false
     }
   },
   "solution_search": {

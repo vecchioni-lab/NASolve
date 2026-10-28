@@ -1369,6 +1369,20 @@ without copying scientific inputs, and cannot replace a missing trial or serve
 as a full-artifact cache hit. General cross-geometry and cross-identity
 comparisons, optimizer qualification and automatic scans remain separate.
 
+The independent `metal.reference` consumer captures optional human PDB snapshots
+and compares explicit one-to-one node correspondences to verified geometry.
+`metal inspect-reference` inventories exact fields; `metal compare-reference`
+creates schema-1 `Metal/reference_comparison_NNN` bundles under protocol
+`metal-reference-comparison-v1`. Each contains the original PDB bytes, mapping,
+report and manifest. Operational references are checksummed anchors; the original
+source path is provenance only. `metal verify-reference-comparison` recalculates
+from captured bytes and candidate lineage after relocation/source removal.
+Internal distances/recipe angles and recorded q/ADPs remain distinct from alignment,
+symmetry expansion, target learning or fitting. Stored anomalous values are
+`UNTRUSTED_IGNORED`. Unmapped elements of interest remain explicit. Native
+anisotropic refinement qualification and general-site candidate construction
+are unchanged; see the [descriptor and methods](metal-anomalous-doctor.md#implemented-human-reference-snapshots).
+
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
 independent, with no implicit joint fitting or inherited chemical qualification.

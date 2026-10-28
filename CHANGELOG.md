@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve human metal endpoints as explicit reference snapshots
+
+- Add `metal inspect-reference`, `metal compare-reference` and
+  `metal verify-reference-comparison` for source-bound human PDB snapshots.
+- Retain exact XYZ/q/reported B/ANISOU and atom identities; ignore stored anomalous
+  parameters. Compare explicitly mapped internal distances and recipe angles,
+  show unmatched scatterers and preserve independent coordinate frames.
+- Add schema-1 immutable reference comparison bundles with captured source bytes,
+  anchored candidate lineage and offline replay after source removal/relocation.
+  Existing fitting, targets, models, checkpoints and artifact formats are unchanged.
+
 ### Compare matched frozen metal diagnostics without rerunning refinement
 
 - Add `metal compare-fdp` and `metal verify-fdp-comparison` for explicit audited

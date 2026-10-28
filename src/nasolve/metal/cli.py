@@ -26,7 +26,14 @@ def configure(subparsers):
     verify_fdp = actions.add_parser('verify-fdp', help='verify saved fdp inputs and freeze audit without a native run')
     compare_fdp = actions.add_parser('compare-fdp', help='compare audited fdp endpoints without native execution')
     verify_comparison = actions.add_parser('verify-fdp-comparison', help='replay a saved fdp comparison offline')
-    for parser in (inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison):
+    inspect_ref = actions.add_parser('inspect-reference', help='inspect an explicit reference PDB snapshot; ignore stored anomalous values')
+    inspect_ref.add_argument('model', type=Path)
+    inspect_ref.add_argument('--element', action='append', required=True)
+    inspect_ref.add_argument('--json', action='store_true')
+    inspect_ref.add_argument('--output', type=Path)
+    compare_ref = actions.add_parser('compare-reference', help='compare explicitly mapped candidate/reference internal geometry')
+    verify_ref = actions.add_parser('verify-reference-comparison', help='replay a captured reference comparison offline')
+    for parser in (inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -56,6 +63,10 @@ def configure(subparsers):
     verify_fdp.add_argument('--trial', type=Path, required=True)
     compare_fdp.add_argument('--trial', type=Path, action='append', required=True, help='exact trial directory; repeat for each existing result')
     verify_comparison.add_argument('--comparison', type=Path, required=True)
+    compare_ref.add_argument('--geometry', type=Path, required=True)
+    compare_ref.add_argument('--reference', type=Path, required=True)
+    compare_ref.add_argument('--mapping', type=Path, required=True)
+    verify_ref.add_argument('--comparison', type=Path, required=True)
 
 
 
@@ -75,6 +86,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action in {'inspect-reference', 'compare-reference', 'verify-reference-comparison'}:
+            return _reference_snapshot(args)
         if args.metal_action in {'compare-fdp', 'verify-fdp-comparison'}:
             return _fdp_comparison(args)
         if args.metal_action in {'fdp', 'verify-fdp'}:
@@ -260,4 +273,43 @@ def _fdp_comparison(args):
             print(f'{axis}: {compared} matched comparisons; {len(groups)-compared} groups not tested')
         print(f'Full vectors, settings and endpoint ranges: {path}')
         print('Endpoint agreement does not prove convergence or identify the correct structure. Checkpoint unchanged.')
+    return 0
+
+
+def _reference_snapshot(args):
+    from .reference import inspect_reference, compare_reference, verify_reference_comparison
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'inspect-reference':
+        result = inspect_reference(args.model.expanduser().read_bytes(), elements=args.element)
+        report = None
+    elif args.metal_action == 'compare-reference':
+        result = compare_reference(args.run, args.geometry, args.reference, _json(args.mapping))
+        report = _json(args.run.expanduser().resolve()/result['files']['report']['relative_path'])
+    else:
+        result = verify_reference_comparison(args.run, args.comparison)
+        report = _json(args.run.expanduser().resolve()/result['files']['report']['relative_path'])
+    serialized = json.dumps(result, indent=2, allow_nan=False)+'\n'
+    if args.output:
+        with args.output.open('x') as handle: handle.write(serialized)
+    if args.json:
+        print(serialized,end='')
+    elif report is None:
+        print(f'Reference snapshot: {result["atom_count"]} atoms; {result["anisou_atom_count"]} ANISOU records')
+        print('Elements: '+', '.join(f'{e}={n}' for e,n in result['element_counts'].items()))
+        for row in result['atoms_of_interest']:
+            k=row['key']
+            print(f'{k["chain_id"]}:{k["residue_id"]}:{k["atom_name"]} {row["element"]} q={row["occupancy"]:g} reported B={row["reported_b_A2"]:g} {row["adp_representation"]}')
+        print('Recorded XYZ/q/ADP snapshot; stored anomalous parameters ignored and untrusted.')
+    else:
+        print(f'Reference comparison: {len(report["nodes"])} explicit atom correspondences')
+        print('Nodes                        Candidate A   Reference A     Difference A')
+        for row in report['pair_distances']:
+            label=' / '.join(row['node_ids'])
+            values = [f'{row[key]:.4f}' if row[key] is not None else 'undefined'
+                      for key in ('candidate', 'reference', 'candidate_minus_reference')]
+            print(f'{label:<28} {values[0]:>11} {values[1]:>13} {values[2]:>16}')
+        print(f'Unmapped reference atoms of interest: {len(report["unmapped_reference_atoms_of_interest"])}')
+        print(f'Complete XYZ/q/ADP snapshots and recipe angles: {result["files"]["report"]["relative_path"]}')
+        print('Stored-coordinate internal geometry; no alignment, symmetry expansion, scattering fit or checkpoint adoption.')
     return 0

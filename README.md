@@ -1405,6 +1405,20 @@ and native policy, and leaves untested axes explicit. Endpoint agreement does
 not prove convergence or select the correct structure. See the
 [comparison guide](docs/metal-anomalous-doctor.md#implemented-matched-endpoint-comparisons).
 
+Inspect a supplied human endpoint and compare explicitly mapped geometry:
+
+```sh
+nasolve metal inspect-reference /path/to/human.pdb --element Hg --element Ag --element I
+nasolve metal compare-reference /path/to/dataset/AutoMR/run_001 --geometry Metal/geometry_001 --reference /path/to/human.pdb --mapping /path/to/reference-map.json
+nasolve metal verify-reference-comparison /path/to/dataset/AutoMR/run_001 --comparison Metal/reference_comparison_001
+```
+
+This preserves XYZ/q/ADP snapshots and compares internal distances and recipe
+angles with exact source-bound atom mappings. Stored anomalous values are ignored;
+extra scatterers remain visible. See the [reference mapping guide](docs/metal-anomalous-doctor.md#implemented-human-reference-snapshots)
+for coordinate-frame limits and the mapping schema. Original models and current
+checkpoints remain unchanged.
+
 ## AutoRefine and checkpoints
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It

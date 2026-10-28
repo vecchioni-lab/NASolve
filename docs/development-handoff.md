@@ -13,6 +13,89 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Human reference snapshots and comparison 2026-10-28
+
+**Current additive milestone: M2c reference endpoints.** Before this change,
+supplied human models had no supported source-preserving comparison interface.
+`metal inspect-reference` now inventories recorded XYZ/q/reported B/ANISOU and
+exact atom identities; `metal compare-reference` compares explicit source-bound
+node correspondences to verified generated geometry. Stored anomalous parameters
+are `UNTRUSTED_IGNORED`. Both models retain independent coordinate frames: only
+internal distances/recipe angles and recorded atomic fields are compared.
+Extra reference scatterers remain visible. No target learning, alignment,
+symmetry expansion, fitting, checkpoint adoption or GUI change occurs.
+
+See the [human descriptor, mapping example, methods and editable figure](metal-anomalous-doctor.md#implemented-human-reference-snapshots).
+The supplied models are optional endpoint evidence, not prerequisites for NASolve
+model generation. Their q/ADP values are snapshots, not qualified target values.
+PDU remains deferred for upstream restraint qualification. Six supplied human
+PDBs were inventoried; no f-prime/f-double-prime annotation was used as evidence.
+
+**Changed files and schemas.** New `src/nasolve/metal/reference.py` and
+`tests/test_metal_reference.py`; additive CLI commands; synchronized README,
+docs index, architecture, builder, anomalous descriptor, intent, changelog and
+this handoff. New schema-1 `metal-reference-map`, `metal-reference-inventory`,
+`metal-reference-comparison` and `metal-reference-comparison-report` types;
+comparison protocol `metal-reference-comparison-v1` and status
+`REFERENCE_COMPARISON_REVIEW`. Numbered `Metal/reference_comparison_NNN` bundles
+contain captured reference bytes, mapping, report and anchored/checksummed parent
+geometry. Original source paths are historical provenance only. Offline replay
+recalculates from captured bytes. Existing schemas/fitting defaults/checkpoints
+need no migration; no dependency was added. The nonruntime intent remains schema 1.
+
+**Validation.** Python 3.12.14. Initial regression failed before implementation
+with `ModuleNotFoundError: nasolve.metal.reference`, exit 2, recorded in
+`/private/tmp/alder-reference-red.log`. The final focused command, run in the
+Alder worktree, was:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_reference.py tests/test_metal_fdp_compare.py tests/test_metal_fdp.py tests/test_metal_geometry.py tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_refine_doctor.py tests/test_autorefine.py
+```
+
+**337 tests and 27 subtests passed in 47.02 s; exit 0.** Coverage includes rigid
+frame changes, exact atom labels/ANISOU/charge records, state/angle differences,
+partial maps, extra sites, stale or invalid identities/checksums, source mutation,
+failed numbering, rehashed tampering, malformed manifests and CLI output guards.
+The relocation control moves a temporary source/input tree, removes the original
+reference, confirms the original root is absent, and verifies from a fresh
+interpreter importing relocated code with native subprocesses forbidden. This
+qualifies offline reference/candidate replay; it does not rerun an optimizer.
+The full unrelated suite was not run under the focused-validation policy.
+Changed Python files pass Python 3.10 grammar; local document links/anchors and
+`git diff --check` pass. No Phenix or Coot invocation, dry-run or complete native
+execution occurred; existing native version/qualification boundaries are unchanged.
+
+**Local supplied-model controls.** From the everyday checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A20_human_reference_controls.py
+```
+
+Exit 0, native subprocesses forbidden. Inventories cover 7CCA_Ag4, 7CCA_Ag6,
+FF_3Ag, FF_AuAg, FT_Hg and iCiU_Ag. Exact atom-label case is retained, as are the
+iodinated bases and all explicitly selected scatterers. Existing
+`live-20261028-01/{FT_Hg,FF_AuAg}/AutoMR/run_001/Metal/geometry_001` controls each
+produced `reference_comparison_001`. FT_Hg has three explicit correspondences;
+FF_AuAg has six, plus one unmapped Ag retained in the reference inventory. The
+mappings declare correspondence only and do not qualify geometry/chemistry.
+All six original PDBs and **684 prior run files** remained byte-identical.
+
+Receipts, inventories, mappings, logs and the runner are local-only under the
+ignored `branch-artifacts/Alder/reference-20261028-01/` and `runners/` directories.
+The raw captured PDBs and comparison reports remain in their numbered local runs.
+Only source/tests/docs are committed; no supplied or generated scientific data
+are included. Source/test/intent hashes are frozen with the control receipt.
+Do not rerun the fixed-output evidence runner over its prior archive; preserve
+that receipt and choose a new explicit output location for another experiment.
+
+**Follow-up.** Reference comparison does not validate the current numerical
+candidate targets. Qualify ligand/metal geometry and native anisotropic freeze
+behavior before using human endpoints as independent f-double-prime controls.
+Keep geometry/identity/occupancy ambiguity and optimizer convergence distinct.
+Later GUI panels can consume these report IDs and node mappings alongside the
+existing anomalous comparisons; general site contexts, symmetry-aware alignment,
+scan orchestration, decision logic, cache and pruning remain separate milestones.
+
 ## Metal endpoint comparison and sensitivity controls 2026-10-28
 
 **Current additive milestone: M3b comparison foundation.** Before this change,
