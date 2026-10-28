@@ -11,6 +11,54 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C110 full-model recipe and L-3GBI
+
+Implementation, live checks and full regression pass. No job is active.
+Output: `live_tests_directory/110_Cedar_L-3GBI-6sgsjhko/validation/full-suite.log`.
+Last published continuity head remains `cc18eff956b5de6486ae2ca9a19b10d086ba4434`.
+Continue on existing `cedar`; no other branch or checkout is part of this change.
+
+The operator supplied diffraction data and exact `3gbi.pdb`, requesting its
+original sequence mirrored into L-DNA and full-model NAR restraints. The new
+`[automr] restraint_scope = all` card (or explicit PostMR override) now survives
+ordinary/campaign freezing, selects model-derived NAR pairs plus same-chain
+stacks, and uses the existing source-bound explicit compiler. It reports
+unpaired sites and never adds W-specific scaffold defaults. Source dictionary
+lookup is independent of choosing a Coot D-sugar parent. Mutation safety and
+NAR recipes/workbook remain unchanged. New selection schema 1; run/checkpoint
+schemas unchanged. Old inputs retain their behavior; old versions reject the
+new key. See [human guide and methods](full-model-restraints.md).
+
+Actual Phenix 2.2.1-6174 results: mirror maps all 855 atoms/42 residues, reverses
+126 distinct sugar centres (147 ordered checks), and round-trips atom fields
+exactly. Phaser passes TFZ 15.8 / LLG 324. NAR selects 19 pairs and 38 stacks;
+native checks confirm 49 bonds, 82 angles and 57 parallelities with other proxy
+families preserved. All 38 in-model links and 126 sugar signs survive. Ordinary
+PostMR reaches POSTMR_READY and its exact recorded bundle passes a fresh native
+membership check. Two installed-library controls fail; four generated-dictionary
+controls pass. Two ReadySet executions; no Coot or coordinate refinement.
+
+Do not call this fully repaired or scientifically qualified. Source-state
+comparisons reject the generated phosphate deprotonation/charge changes, with
+omitted R/S metadata and representation changes also recorded. L-sugar signs
+are preserved; this is not an L-flip failure. A:101/A:102/D:101/D:102 have no
+selected partner inside the ASU; symmetry coverage remains open. Next: qualify
+source-preserving L-component numerical chemistry and periodic end pairs, then
+fresh bounded refinement and measured pair improvement. C109/G2 and PDU gates
+below remain open.
+
+151 focused tests plus 34 subtests pass (15.04 s), including new recipe/source
+lookup, frozen campaign, ordinary preparation and relocation regressions. Full
+suite: **6012 tests + 276 subtests pass in 933.15 seconds**. The complete recipe
+and PostMR bundle also replay in a fresh relocated checkout with original
+paths unavailable and native execution blocked. Publication pending. Exact commands/hashes: `l_dna_full_model_recipe_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). The local capsule
+preserves every attempt; raw data/models/logs/dictionaries/runners stay outside
+Git. A new `nasolve.txt` was placed beside the original four supplied files;
+their hashes and timestamps are unchanged.
+
+— Rowan · Codex desktop
+
 ## Generalizer milestones and interruption boundary
 
 **Scope revised 2026-10-28; C109 published and validated.** Every ligand in the selected
@@ -26,7 +74,7 @@ not an estimate for complete catalogue support.
 | G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit validated. G2 remains partial.** DNA naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; PNA and terminal reconstruction remain open. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
-| G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | Partial ordinary hooks; no general end-to-end claim. |
+| G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 
 These are acceptance milestones, not a fixed count of coding pushes. G2–G5

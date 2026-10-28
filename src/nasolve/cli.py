@@ -156,6 +156,8 @@ def build_parser() -> argparse.ArgumentParser:
         help="completed AutoMR run directory (default: active workspace run)",
     )
     postmr.add_argument("--coot", help="one-run Coot executable override")
+    postmr.add_argument("--restraint-scope", choices=("all",),
+                        help="use NARestraints for model-derived pairs and all chain-order stacks")
     postmr.add_argument(
         "--allow-mr-review", action="store_true",
         help="explicitly continue from a TFZ 7.0-7.99 MR_REVIEW result",
@@ -841,6 +843,7 @@ def _postmr(args: argparse.Namespace) -> int:
             environment=phenix.environment,
             allow_mr_review=args.allow_mr_review,
             modified_pairs_only=args.modified_pairs_only,
+            restraint_scope=args.restraint_scope,
             allow_unreviewed_backbone=args.allow_unreviewed_backbone,
         )
     except (

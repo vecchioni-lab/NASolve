@@ -229,6 +229,7 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         dataset=files, mode=mode, frame=frame,
         pair_text=effective.get("pair"), pair=pair,
         force_text=force_text, force_pair=force_pair,
+        restraint_scope=effective.get("restraint_scope"),
         model=model, model_source=effective["model_source"],
         model_pair=model_pair,
         exact_pair_model=exact_pair_model,

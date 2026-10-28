@@ -101,6 +101,7 @@ def _post_mr_plan(resolved: ResolvedAutoMRInput) -> dict[str, object]:
             "changes_residue_identity": False,
         }
     return {
+        **({"restraint_scope": resolved.restraint_scope} if resolved.restraint_scope is not None else {}),
         "allow_op3_sites": list(resolved.allow_op3_sites),
         **(
             {"restraint_geometry_override": restraint_geometry_override}

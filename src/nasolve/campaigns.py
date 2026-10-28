@@ -46,7 +46,7 @@ _EXCLUDED = {
 _HASH = re.compile(r"[0-9a-f]{64}\Z")
 _AUTOMR_FIELDS = (
     "mode", "frame", "pair", "force", "model", "sequence_file", "mirror",
-    "allow_p1_standard",
+    "allow_p1_standard", "restraint_scope",
 )
 
 
@@ -242,6 +242,7 @@ def _intent_config(intent: AutoMRIntent) -> dict[str, Any]:
     return {
         "mode": intent.mode, "frame": intent.frame, "pair": intent.pair,
         "force": intent.force,
+        **({"restraint_scope": intent.restraint_scope} if intent.restraint_scope is not None else {}),
         "mirror": intent.mirror, "allow_p1_standard": intent.allow_p1_standard,
         "model_selector": intent.model,
         "model_family": intent.model_family,
@@ -381,6 +382,7 @@ def _plan_dataset(root: Path, dataset: Path, preset: ProjectPreset, staging: Pat
             entry["inputs"]["config"] = entry["inputs"]["discovery:nasolve.txt"]
         entry["effective_config"].update({
             "mode": resolved.mode,
+            **({"restraint_scope": resolved.restraint_scope} if resolved.restraint_scope is not None else {}),
             "frame": resolved.frame.name if resolved.frame is not None else None,
             "allow_op3_sites": list(resolved.allow_op3_sites),
             "phosphate_intent": resolved.phosphate_intent,
@@ -738,6 +740,8 @@ def _validate_plan(payload: Any) -> None:
             if "allow_unreviewed_backbone" in config:
                 _require(config.get("allow_unreviewed_backbone"), bool,
                          f"{name}.allow_unreviewed_backbone")
+            if config.get("restraint_scope") not in (None, "all"):
+                raise CampaignError("Malformed campaign restraint_scope")
             if "backbones" in config:
                 from .backbone import BackboneError, validate_backbone_sites
                 try:

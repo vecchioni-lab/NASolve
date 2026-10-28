@@ -1041,6 +1041,22 @@ This closes component-reuse transport, without changing the ordinary
 acquisition/adoption or current-site qualification boundary.
 
 
+The opt-in [full-model NARestraints recipe](full-model-restraints.md) uses
+`[automr] restraint_scope = all`, frozen through AutoMR and campaign resources,
+or an explicit PostMR `--restraint-scope all` override. It supersedes frame
+restraint selection for that invocation, requires registered nucleotide
+identities, records NAR-guessed pairs and same-chain stacks without bridging
+TER boundaries, and calls the existing explicit-site source/selector compiler.
+Native secondary-structure guessing is disabled in its PHIL; no W scaffold
+overlay is mixed into this policy. Conflicting modified-only/forced-geometry
+choices fail before output allocation. Unpaired/unrestrained sites, guessing
+warnings and absent symmetry search remain explicit. Source lookup no longer
+requires a supported Coot construction parent; L-sugar mutation safeguards
+remain unchanged. Existing inputs without the field preserve their semantics.
+The new selection receipt is schema 1 with relative compiler paths; PostMR uses
+run-anchored hashes. Chemical candidate adoption, refinement qualification and
+periodic relationship discovery remain separate from recipe compilation.
+
 For W/5W6W, NARestraints consumes the packaged `Std_padd.txt` specification
 (`A 11:13` / `B 5:3`) and remains the sole source of stacking restraints. The
 portable 5W6W secondary-structure template contains 17 non-overlapping

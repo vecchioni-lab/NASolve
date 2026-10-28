@@ -1837,6 +1837,7 @@ def prepare_postmr(
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
     modified_pairs_only: bool = False,
+    restraint_scope: str | None = None,
     allow_unreviewed_backbone: bool = False,
     data_root: Path | None = None,
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
@@ -1844,6 +1845,17 @@ def prepare_postmr(
 ) -> PostMRResult:
     """Prepare a completed Phaser solution without modifying the MR outputs."""
     run, report = _read_report(run_directory)
+    from .automr_input import validate_restraint_scope, AutoMRInputError
+    plan = report.get("post_mr_plan", {})
+    try:
+        recorded_scope = validate_restraint_scope(plan.get("restraint_scope"))
+        selected_scope = validate_restraint_scope(restraint_scope) or recorded_scope
+    except (AutoMRInputError, AttributeError) as exc:
+        raise PostMRPreparationError(f"Invalid restraint scope: {exc}") from exc
+    if selected_scope == "all" and modified_pairs_only:
+        raise PostMRPreparationError("Full-model restraint_scope conflicts with --modified-pairs-only")
+    if selected_scope == "all" and plan.get("restraint_geometry_override") is not None:
+        raise PostMRPreparationError("Full-model restraint_scope cannot discard a frame-specific force override")
     mr_status = report.get("status")
     if mr_status == "MR_REVIEW" and not allow_mr_review:
         raise PostMRPreparationError(
@@ -2029,7 +2041,23 @@ def prepare_postmr(
     compatibility_codes = {
         code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
     }
-    if modified_pairs_only:
+    if selected_scope == "all":
+        from .full_model_restraints import prepare_full_model_restraints
+        full_root = restraints_dir / "full_model"
+        try:
+            narestraints_report = prepare_full_model_restraints(
+                prepared, full_root, data_root=data_root,
+                ready_set_executable=ready_set_executable,
+            )
+        except (ValueError, OSError, KeyError) as exc:
+            raise PostMRPreparationError(f"Full-model NARestraints preparation failed: {exc}") from exc
+        narestraints = full_root / narestraints_report["restraint_file"]
+        narestraints_report["restraint_file"] = frozen_reference(narestraints, run)
+        narestraints_report["compiler_receipt"] = frozen_reference(
+            full_root / narestraints_report["compiler_receipt"], run)
+        narestraints_report["scope_source"] = "explicit-postmr-override" if restraint_scope is not None else "frozen-input-card"
+        restraint_paths.append(narestraints)
+    elif modified_pairs_only:
         _rewrite_codes(prepared, compatibility, compatibility_codes)
         pair_file = restraints_dir / "guessed_modified_pairs.txt"
         narestraints = restraints_dir / "narestraints_modified_pairs.phil"

@@ -35856,5 +35856,448 @@
       "next_validation": "Capture explicit per-site native IDs/index mappings and prove uniqueness/binding before accepting any alias. Missing hydrogens/protonation remain a distinct policy question. Preserve C109 worker-version compatibility when extending captures."
     },
     "tested_implementation_commit": "7907eca49db0803b4c694bc58ffb5aff8024d88a"
+  },
+  "l_dna_full_model_recipe_2026_10_28": {
+    "status": "LIVE_MR_POSTMR_NATIVE_MEMBERSHIP_AND_FULL_REGRESSION_PASS",
+    "base_commit": "cc18eff956b5de6486ae2ca9a19b10d086ba4434",
+    "scope": "General full-model NAR recipe; exact supplied 3GBI sequence and requested D-to-L mirror",
+    "before": "No input-card full-model pairing/stacking scope; generic source lookup required a supported Coot sugar parent.",
+    "after": "Opt-in all scope freezes through ordinary/campaign inputs, uses source-bound NAR compiler and reports incomplete coverage; source lookup independent of construction.",
+    "live_capsule": {
+      "anchor": "live_tests_directory",
+      "path": "110_Cedar_L-3GBI-6sgsjhko"
+    },
+    "software": {
+      "Coot": "NOT_RUN",
+      "NARestraints": "1.1.3",
+      "NASolve_base_commit": "cc18eff956b5de6486ae2ca9a19b10d086ba4434",
+      "Phenix": "2.2.1-6174"
+    },
+    "narestraints_implementation_sha256": {
+      "mirror_pdb.py": "455104ddf28f1d6304c60879a1fc4e2560c13a742743aaac2edbb4133a4a5e16",
+      "guesser.py": "6650b642962d4b457489ece6bd8b3ae11a543c2eeda86f12408f833ece88d4da",
+      "builder.py": "a2463c42626930c0ceb589e9dee39fd8797bbb96a31a4f9cefec444e966bd5ff",
+      "data/Ligands.xlsx": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+    },
+    "mirror": {
+      "atoms": 855,
+      "distinct_sugar_centres": 126,
+      "headers_preserved": false,
+      "ordered_volume_checks": 147,
+      "roundtrip": "EXACT_ATOM_RECORD_FIELDS",
+      "sites": 42
+    },
+    "molecular_replacement": {
+      "status": "MR_SUCCESS",
+      "TFZ": 15.8,
+      "LLG": 324.0,
+      "interpretation": "Complete Phaser execution, not a dry-run; exact sequence from supplied PDB."
+    },
+    "ordinary_postmr": {
+      "chirality_proxy_count": 126,
+      "chirality_sign_conflicts": 0,
+      "mode": "full-model",
+      "native_membership_pass": true,
+      "pair_count": 19,
+      "refinement": "NOT_RUN",
+      "scope_source": "explicit-postmr-override",
+      "source_stereo_status": {
+        "0DA": "REJECTED",
+        "0DC": "REJECTED",
+        "0DG": "REJECTED",
+        "0DT": "REJECTED"
+      },
+      "stack_count": 38,
+      "status": "POSTMR_READY"
+    },
+    "recipe": {
+      "setting": "restraint_scope = all",
+      "pairs": 19,
+      "stacks": 38,
+      "request_counts": {
+        "bond": 49,
+        "angle": 82,
+        "parallelity": 57
+      },
+      "unpaired_sites": [
+        "A:101",
+        "A:102",
+        "D:101",
+        "D:102"
+      ],
+      "symmetry_pairs": "NOT_SEARCHED"
+    },
+    "native": {
+      "interpretations": 6,
+      "installed_library_only_failures": 2,
+      "generated_dictionary_successes": 4,
+      "all_unaffected_proxy_families_preserved": true,
+      "in_model_backbone_links": 38,
+      "signed_sugar_proxies": 126,
+      "chirality_sign_conflicts": 0
+    },
+    "chemical_state_findings": {
+      "0DA": {
+        "added_atoms": [],
+        "changed_elements": {},
+        "changed_formal_charges": {
+          "OP2": [
+            0.0,
+            -1.0
+          ],
+          "OP3": [
+            0.0,
+            -1.0
+          ]
+        },
+        "changed_orders": {
+          "('C2A', 'N1A')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('C2A', 'N3A')": [
+            "DOUBLE",
+            "AROMATIC"
+          ],
+          "('C4A', 'C5A')": [
+            "DOUBLE",
+            "AROMATIC"
+          ],
+          "('C4A', 'N3A')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('C4A', 'N9A')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('C5A', 'C6A')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('C5A', 'N7A')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('C6A', 'N1A')": [
+            "DOUBLE",
+            "AROMATIC"
+          ],
+          "('C8A', 'N7A')": [
+            "DOUBLE",
+            "AROMATIC"
+          ],
+          "('C8A', 'N9A')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('OP1', 'P')": [
+            "DOUBLE",
+            "DELOCALIZED"
+          ],
+          "('OP2', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ],
+          "('OP3', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ]
+        },
+        "removed_atoms": [
+          "H2P",
+          "HOP3"
+        ]
+      },
+      "0DC": {
+        "added_atoms": [],
+        "changed_elements": {},
+        "changed_formal_charges": {
+          "OP2": [
+            0.0,
+            -1.0
+          ],
+          "OP3": [
+            0.0,
+            -1.0
+          ]
+        },
+        "changed_orders": {
+          "('OP1', 'P')": [
+            "DOUBLE",
+            "DELOCALIZED"
+          ],
+          "('OP2', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ],
+          "('OP3', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ]
+        },
+        "removed_atoms": [
+          "HOP2",
+          "HOP3"
+        ]
+      },
+      "0DG": {
+        "added_atoms": [],
+        "changed_elements": {},
+        "changed_formal_charges": {
+          "OP2": [
+            0.0,
+            -1.0
+          ],
+          "OP3": [
+            0.0,
+            -1.0
+          ]
+        },
+        "changed_orders": {
+          "('C4', 'C5')": [
+            "DOUBLE",
+            "AROMATIC"
+          ],
+          "('C4', 'N9')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('C5', 'N7')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('C8', 'N7')": [
+            "DOUBLE",
+            "AROMATIC"
+          ],
+          "('C8', 'N9')": [
+            "SINGLE",
+            "AROMATIC"
+          ],
+          "('OP1', 'P')": [
+            "DOUBLE",
+            "DELOCALIZED"
+          ],
+          "('OP2', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ],
+          "('OP3', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ]
+        },
+        "removed_atoms": [
+          "HOP2",
+          "HOP3"
+        ]
+      },
+      "0DT": {
+        "added_atoms": [],
+        "changed_elements": {},
+        "changed_formal_charges": {
+          "OP2": [
+            0.0,
+            -1.0
+          ],
+          "OP3": [
+            0.0,
+            -1.0
+          ]
+        },
+        "changed_orders": {
+          "('OP1', 'P')": [
+            "DOUBLE",
+            "DELOCALIZED"
+          ],
+          "('OP2', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ],
+          "('OP3', 'P')": [
+            "SINGLE",
+            "DELOCALIZED"
+          ]
+        },
+        "removed_atoms": [
+          "HOP2",
+          "HOP3"
+        ]
+      }
+    },
+    "source_state_verdict": "Exact source-state audit REJECTED for all four generated dictionaries; L sugar target signs are preserved. No new state is automatically authorized.",
+    "native_execution_counts": {
+      "coot": 0,
+      "interpretations": 6,
+      "phaser": 1,
+      "readyset": 2,
+      "refinement": 0
+    },
+    "input_preservation": {
+      "original_four_files_bytes_and_mtimes": true,
+      "new_input_card": {
+        "anchor": "original_dataset",
+        "mode": "NEW_FILE_ONLY",
+        "relative_path": "nasolve.txt",
+        "sha256": "23de388646d6aea94b0babf6e42d7fa459ce66d0af98d5c49f1f41f2f84f4f03",
+        "source_model_sha256": "587d332f64cea8f0cb84fa77feef9d32ecbeaec2077e4e4d5871ce6e3e52da9d"
+      }
+    },
+    "diagnostic_attempts": [
+      "Source lookup probe failed on L-DNA construction parent before any native call; preserved.",
+      "Explicit-source compiler succeeded; first native dispatch layout was rejected by preservation guard before execution; preserved.",
+      "Fresh separate native output roots used for all six actual interpretations."
+    ],
+    "schemas": {
+      "input": "Optional restraint_scope=all; absence unchanged",
+      "selection_receipt": 1,
+      "native_and_checkpoint_schemas": "UNCHANGED"
+    },
+    "compatibility": "No migration of old runs; older input parsers reject the new key. L mutation guard, NAR recipes/workbook, Free-R and thresholds unchanged.",
+    "generated_artifacts": "Raw data, models, native captures, generated dictionaries and runners excluded from Git. Compact technical evidence only.",
+    "limitations": [
+      "Initial scope requires registered nucleotide-only fixed-column PDB, no alternate/insertion identities, at least one detected pair, existing 64-pair/256-stack bounds.",
+      "Pair detection is not a complete periodic topology proof; four end residues unpaired in ASU.",
+      "Chemical-state/numerical qualification and coordinate refinement remain open. No improved pair geometry or scientific approval claimed.",
+      "Source lookup does not enable L-side Coot mutation or infer unsupported chemical states."
+    ],
+    "next": [
+      "Preserve/qualify explicit L-component numerical chemistry and terminal/linkage protonation.",
+      "Represent and qualify symmetry-related end pairs.",
+      "Then run a fresh bounded refinement with exact model/restraint/Free-R provenance and before/after pair measurements."
+    ],
+    "validation": {
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_full_model_restraints.py tests/test_campaign_stages.py tests/test_automr_input.py tests/test_postmr.py tests/test_cedar_ccd_resolver.py tests/test_cif_explicit_na_policy.py",
+      "focused_result": "151 passed, 34 subtests passed in 15.04s",
+      "full_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider --durations=20",
+      "full_status": "PASS",
+      "full_pid": 84604,
+      "source_hash_manifest": {
+        "anchor": "live_capsule",
+        "path": "validation/tested-hashes.json"
+      },
+      "portability": "Frozen full-model compiler inputs replay after owned original directory is renamed and no longer exists; original source/model not reread.",
+      "full_result": "6012 passed, 276 subtests passed in 933.15s (0:15:33)",
+      "full_elapsed_seconds": 933.4591102600098,
+      "new_regression_count": 23,
+      "compileall": "PASS: PYTHONPYCACHEPREFIX=/private/tmp/c110-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "docs": "PASS: 240 relative links and both evidence JSON files parse",
+      "whitespace": "PASS: git diff --check",
+      "cold_relocation": {
+        "status": "PASS",
+        "fresh_process": true,
+        "original_owned_checkout_absent": true,
+        "developer_checkout_and_original_live_inputs_and_sdk_reads_forbidden": true,
+        "all_nasolve_modules_from_relocated_checkout": true,
+        "native_processes_forbidden": true,
+        "pairs": 19,
+        "stacks": 38,
+        "run_references_and_hashes": "PASS",
+        "recipe_card": "all"
+      },
+      "changed_code_hashes": {
+        "src/nasolve/automr.py": "37f01d2fa78935404ba53d30060af224c95ab100bd51760e00ee92bc4cfea19c",
+        "src/nasolve/automr_input.py": "784247e43cdaef0c0e5e12b517d46f64738b4a2e0920b836616664bf80a45d58",
+        "src/nasolve/campaign_stages.py": "97828cf7ed667d040c9acebbbba65e47098477dfa7192ed62fc0c875c8f0642f",
+        "src/nasolve/campaigns.py": "9aa9e1ab454552de557ef38e8b669e6196d4378ac1d9a3c4e655a997bd20cb9a",
+        "src/nasolve/cli.py": "ff9d089ee1f14a5142910ae624f0cb6a86b85522223bafce2fb4229b85ef0915",
+        "src/nasolve/curated_ligands.py": "6de1e6b54261bceb9dc6b7b8bdf712c554bc89dd030c13a58e490bf06c853a87",
+        "src/nasolve/full_model_restraints.py": "0f390eb7a5208ffed83107d754c12d0dd1ae3e7885bb0cf7835b066a5b5ee5d8",
+        "src/nasolve/postmr.py": "d7323cabdfce0edf46a22415cc0125e8c34871b1680785ec065a5620bbc27f15",
+        "tests/test_campaign_stages.py": "8125b079190ed9d765b71a111188afa3d9bf1d79eed7839f7f75085fb8713138",
+        "tests/test_full_model_restraints.py": "55feb6f9e25a2ddb61ace02a993d259d10ded0f610628bdc6729df1c7cc42423"
+      }
+    },
+    "publication": "All validation passed; exact tested source hashes recorded. Commit/push pending.",
+    "compact_evidence_references": [
+      {
+        "anchor": "live_capsule",
+        "path": "audit/completion-summary.json",
+        "sha256": "fbf2043a4ba13fa39628deb42aa04d655334acf6791073fc68faeacc05434848",
+        "size": 5379
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "audit/native-membership.json",
+        "sha256": "b65f9929cade8bee58ed254816f54e49ba2a6516cf711db9d3ee5c9f24bb1948",
+        "size": 2115
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "audit/source-stereochemistry.json",
+        "sha256": "db0ff7033c93acc45e389f0b83e9d25f1b5363167ea6213301315f95b0ef7d25",
+        "size": 11660
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "audit/ordinary-source-stereochemistry.json",
+        "sha256": "dc9ec97d9e6e9a3edbc6c6be290893dd73d423dc1e0add44eca62d25812bd4b7",
+        "size": 11660
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "native-ordinary-postmr/membership.json",
+        "sha256": "b1fd09bcb0aa23730f591e1a698eafeea6252c58ddc5916939ded2949f25e3a4",
+        "size": 2115
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "audit/ordinary-identity-and-links.json",
+        "sha256": "fb703cfefde240ee6f15804a4a92c8622220229e6fe40d97ce67a73fa3226a1f",
+        "size": 208
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "validation/full-suite.log",
+        "size": 9347,
+        "sha256": "f9d47ed302bcc33b6b2c47bacedc3331a766339536c0550b079d35c5c2068b28"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "validation/tested-hashes.json",
+        "size": 48669,
+        "sha256": "06e903e10fd0b3201868a5a299865858b0a01f217ff4cfce92f27078896e6abf"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "validation/focused-final.log",
+        "size": 239,
+        "sha256": "557839e8fa24c633f5cb485c85a6ca4c5104796fb5bfc3f60a40a2f60f622828"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "cold-relocated/cold-result.json",
+        "size": 356,
+        "sha256": "75ccaa80dc580df5f3b4e28b711a97fe68c5bee54d5ef227c9c8c54f1ecaf647"
+      }
+    ],
+    "ordinary_native_identity_and_links": {
+      "status": "PASS",
+      "exact_phaser_and_postmr_native_atom_identity_element_and_coordinates": true,
+      "atom_count": 855,
+      "backbone_link_targets_and_weights_unchanged": true,
+      "backbone_link_count": 38
+    },
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/full-model-restraints.md",
+      "src/nasolve/automr.py",
+      "src/nasolve/automr_input.py",
+      "src/nasolve/campaign_stages.py",
+      "src/nasolve/campaigns.py",
+      "src/nasolve/cli.py",
+      "src/nasolve/curated_ligands.py",
+      "src/nasolve/full_model_restraints.py",
+      "src/nasolve/postmr.py",
+      "tests/test_campaign_stages.py",
+      "tests/test_full_model_restraints.py"
+    ]
   }
 }

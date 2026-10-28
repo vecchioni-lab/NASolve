@@ -26921,6 +26921,16 @@
       "automatic_adoption": false,
       "validation": "5989 passed, 276 subtests passed in 931.90s (0:15:31); 183 focused tests and six cold API/CLI cases pass. Three native interpretations, no native retry.",
       "tested_implementation_commit": "7907eca49db0803b4c694bc58ffb5aff8024d88a"
+    },
+    "full_model_narestraints_recipe": {
+      "evidence_record": "l_dna_full_model_recipe_2026_10_28",
+      "status": "LIVE_MR_POSTMR_NATIVE_MEMBERSHIP_AND_FULL_REGRESSION_PASS",
+      "input_card": "restraint_scope = all",
+      "ordinary_postmr": "PASS",
+      "chemical_state_qualification": "OPEN",
+      "periodic_pair_coverage": "OPEN",
+      "coordinate_refinement": "NOT_RUN",
+      "validation": "6012 passed, 276 subtests passed in 933.15s (0:15:33); 151 focused tests + 34 subtests; cold relocated checkout replay PASS."
     }
   },
   "audience": [

@@ -211,10 +211,8 @@ def construction_parent_code(record: Mapping[str, object]) -> str:
     return _PARENT_CODES[(sugar, base)]
 
 
-def ligand_definition(code: str) -> CuratedLigand:
-    """Return target identity plus a curated or category-selected construction hop."""
-    if code in CURATED_LIGANDS:
-        return CURATED_LIGANDS[code]
+def _registered_record(code: str) -> dict:
+    """Resolve source identity independently of a supported construction route."""
     try:
         from restraints.residue_library import load_residue_records
     except ImportError as exc:  # pragma: no cover - installation error path
@@ -226,6 +224,14 @@ def ligand_definition(code: str) -> CuratedLigand:
     ]
     from .component_records import resolve_component_record
     record, _ = resolve_component_record(matches, code)
+    return record
+
+
+def ligand_definition(code: str) -> CuratedLigand:
+    """Return target identity plus a curated or category-selected construction hop."""
+    if code in CURATED_LIGANDS:
+        return CURATED_LIGANDS[code]
+    record = _registered_record(code)
     parent_code = construction_parent_code(record)
     return CuratedLigand(
         code=code,
@@ -270,8 +276,8 @@ def ligand_source(code: str, data_root: Path | None = None, *,
                   ready_set_executable: Path | None = None) -> LigandDictionarySource:
     """Choose a local reviewed dictionary, or a verified installed Phenix CCD.
 
-    The canonical construction parent and component identity come from
-    NARestraints.  The Phenix chemical components library supplies *source
+    Component identity comes from NARestraints independently of whether a
+    Coot construction parent is supported. The Phenix library supplies *source
     chemistry*, not automatically authoritative numerical restraints:
     ReadySet must still generate those when the CCD graph lacks parameters.
 
@@ -279,8 +285,15 @@ def ligand_source(code: str, data_root: Path | None = None, *,
     resources have reviewed chemistry/parameterization which the raw CCD
     cannot silently replace.
     """
-    ligand = ligand_definition(code)
-    path = ligand_data_directory(data_root) / ligand.dictionary_filename
+    if code in CURATED_LIGANDS:
+        filename = CURATED_LIGANDS[code].dictionary_filename
+    else:
+        from re import fullmatch
+        if not isinstance(code, str) or fullmatch(r"[A-Z0-9]{1,3}", code) is None:
+            raise ValueError(f"Unsafe or non-PDB CCD component code {code!r}")
+        _registered_record(code)
+        filename = f"{code}.cif"
+    path = ligand_data_directory(data_root) / filename
     if path.is_file():
         curated = code in CURATED_LIGANDS
         return LigandDictionarySource(code, path, 'CURATED' if curated else 'EXPLICIT',

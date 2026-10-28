@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compile full-model NARestraints recipes and validate L-DNA (C110)
+
+- Add opt-in `restraint_scope = all` to the dataset input card and
+  `postmr --restraint-scope all` for an existing MR run. Freeze the choice
+  through ordinary/campaign inputs; retain existing recipe defaults.
+- Compile all detected NAR pairs and chain-order stacks with source-bound
+  selectors, explicit unpaired-site coverage and native SS guessing disabled.
+  Preserve TER boundaries; reject conflicting scope/forced-geometry requests.
+- Separate registered source-dictionary lookup from Coot construction-parent
+  selection, so L-DNA sources are readable without inventing a D-sugar route.
+- Add L-3GBI live evidence: mirror round trip, TFZ 15.8, ordinary PostMR and
+  exact native pair/stack membership pass. Phosphate chemical-state changes
+  and symmetry end-pair coverage remain open; no coordinate refinement.
+- Add schema-1 selection diagnostics and optional frozen scope fields; existing
+  run/checkpoint schemas and crystallographic thresholds remain unchanged.
+  Older releases reject the new input key; omission retains earlier behavior.
+
 ### Compare declared source links with native captures (C109)
 
 - Add read-only `cif-doctor link-native MANIFEST --native-receipt FILE` to

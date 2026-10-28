@@ -100,6 +100,18 @@ class CampaignStageTests(unittest.TestCase):
         self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["A:1"])
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
 
+    def test_full_model_scope_survives_campaign_preflight_freezing(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        (dataset / "nasolve.txt").write_text("[automr]\npair = C:G\nrestraint_scope = all\n")
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        self.assertEqual(self.dataset["effective_config"]["restraint_scope"], "all")
+        result = self.stage("preflight")
+        report = json.loads((self.root / result["run"] / "report.json").read_text())
+        self.assertEqual(report["post_mr_plan"]["restraint_scope"], "all")
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
     def test_forced_restraint_geometry_survives_campaign_preflight_freezing(self):
         dataset = make_dataset(self.root / "dataset", include_model=False)
         (dataset / "nasolve.txt").write_text(

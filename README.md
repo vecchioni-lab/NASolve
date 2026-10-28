@@ -1048,6 +1048,19 @@ with a required PostMR base change stops until the guarded
 unmirror/Coot/remirror path is implemented; this prevents an L model from
 silently receiving D-DNA chemistry.
 
+### Restrain the complete nucleotide model
+
+For a construct whose whole model should use NARestraints, add
+`restraint_scope = all` under `[automr]` in `nasolve.txt`. This freezes full-model
+pair selection and chain-order stacking for PostMR, independently of D/L
+mirroring or a W-frame pair selection. An existing accepted MR run can use
+`nasolve postmr RUN --restraint-scope all`.
+
+The [full-model recipe guide](docs/full-model-restraints.md) describes input
+cards, coverage and limits. L-3GBI passes mirroring, MR and ordinary PostMR with
+exact native restraint membership. Phosphate-state differences and periodic
+end-pair coverage remain open; coordinate refinement has not run.
+
 ## The `nasolve.txt` input file
 
 If `nasolve.txt` is absent, AutoMR generates a minimal file in the dataset so

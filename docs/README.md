@@ -5,6 +5,11 @@ Updated **2026-10-28**. Start with the
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
 
+The [full-model NARestraints recipe](full-model-restraints.md) adds the opt-in
+`restraint_scope = all` input card. C110's L-3GBI control passes mirror/round-trip,
+MR and ordinary PostMR native membership; source-state qualification and
+symmetry end-pair coverage remain open before refinement.
+
 The [current CIF Doctor capability map](cif-doctor.md#current-capability-boundary-c109)
 separates qualified implementation, open chemistry, consumer qualification and
 the next integration step. The actual Mac C95 handoff passed with zero native
