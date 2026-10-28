@@ -13,7 +13,99 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Phase-restrained XYZ review adapter 2026-10-28
+
+**Behavior before and after.** Metal hypotheses previously stopped at recipe-only
+coordinate preparation or used the separate frozen f-double-prime worker. The
+new API-only `nasolve.metal.xyz.run_xyz` captures a native XYZ/isotropic-ADP
+endpoint from a verified hypothesis and an explicit anchored HL phase source.
+`verify_xyz` checks it offline without native execution. Each independent
+`Metal/xyz_NNN` directory is a schema-1 `metal-xyz-trial`, protocol
+`metal-phased-xyz-v1`, status `XYZ_REVIEW`; failed attempts retain their inputs,
+logs and failure record without a completed manifest. No checkpoint is selected.
+The [descriptor and figure](metal-screen.md#implemented-phase-restrained-xyz-probe)
+explain methods, pipeline role and remaining qualification boundaries.
+
+**Scientific policy and native evidence.** The initial combined MLHL/anomalous
+probe exposed an explicit Phenix incompatibility. The new geometry step instead
+uses merged Bijvoet observations with MLHL phase restraints, fixed structural Q,
+fixed Sasaki f-prime and zero f-double-prime for every atom only during geometry
+refinement. Original anomalous observations remain unchanged for future fdp
+work. Full-precision native readback audits exact active/source HL coefficients,
+fixed identity/Q/scattering, reflection indices and Free-R membership; XYZ/B may
+change. Input/serialized cell precision and 1e-9 native cell roundoff are
+explicit; actual setting/cell changes fail. ANISOU conversion is not implicit.
+Metal linking, added water/H, base flipping and XYZ/ADP weight optimization are
+disabled. Retained resources provide the existing chemistry restraints.
+
+Two final three-cycle executions completed with **Phenix 2.2.1-6174**, then passed
+offline replay. These were complete refinements, not parser-only dry runs; **Coot
+was not invoked** in this step. Discovery positions, phase files and generated
+5W6W/PostMR models came from the preceding rehearsal. Raw AutoSol Q was preserved
+separately; structural Q was initialized explicitly to 1.0. No human endpoint
+seeded either case, and no numeric metal-bond targets were invented. Native
+phase coverage was complete for both working reflection arrays, with no zero-HL
+entries. Private endpoint B values and site-contact summaries remain local.
+Earlier incompatible/provisional attempts and two rounds of cell-precision
+checks remain intact; they are not relabelled as accepted results.
+
+**Data management and compatibility.** New files are `metal/xyz.py`,
+`metal/_xyz_native.py` and `tests/test_metal_xyz.py`; the sole shared behavior
+extension is `fdp.audit_reflections(..., anomalous=False)` for the separate merged
+geometry audit. Existing fdp callers retain the strict `anomalous=True` default.
+No prior schema, native fdp worker, CLI, selected checkpoint or production AutoSol
+gate changes; no migration is required. Inputs, resources, phases, endpoint,
+compressed native evidence, effective parameters and receipts use declared
+anchors/checksums. The verified source-removed temporary relocation includes
+both the checkout's Python sources and generated synthetic dataset. Failed
+numbered directories remain failures on replay. Timeout/interruption cleanup
+owns the native process group; a separate real POSIX control killed a
+TERM-ignoring parent and child within the timeout/escalation bound, leaving no
+live process. This control did not invoke Phenix or crystallographic data.
+
+The final native trials occupy about **1.0 MB and 1.4 MB** each, including retained
+inputs and audit evidence. This is a pilot measurement, not a campaign storage
+guarantee. All **446** preceding discovery files and six original raw inputs
+remain unchanged. Nothing was pruned. Earlier rehearsals and source-identical
+copies remain local for continuity.
+
+**Validation.** The new merged-reflection regression failed before implementation
+with an unsupported keyword, and passes afterward while retaining the frozen
+fdp rejection of merged data by default. The final focused command
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_metal_xyz.py tests/test_metal_fdp.py`
+passed **86 tests in 6.48 s**. Earlier broader metal coverage passed 190 tests
+before the last two symmetry controls; final intent checks passed 25 tests.
+The final full command,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`,
+passed **6,059 tests and 276 subtests in 748.70 s**, exit 0, with all **455**
+inventoried source/test/asset/intent files unchanged. It ran with the OS process-
+group permissions required by the existing campaign tests. The earlier sandboxed
+attempt was deliberately interrupted after **1,717 passes, 144 subtests and five
+campaign process failures**, all reproduced as denied `killpg`/`ps` operations;
+its separate log/receipt remain preserved. All **93** checked local file/anchor
+links, four changed Python files parsed with Python 3.10 grammar, and whitespace
+checks pass. The real timeout/escalation control passed in **6.01 s**.
+
+**Artifacts and next step.** Source/tests/scientific method docs only are intended
+for Git. All real models, reflections, phase products, scientific values, native
+logs, runners and receipts are excluded. Local artifacts are under ignored
+`branch-artifacts/Alder/live-20261028-03/` through `live-20261028-06/`,
+`xyz-20261028-01/` and `runners/`; the final native receipt is
+`live-20261028-06/final-receipt.json`, with endpoint review beside it.
+
+This is an unaccepted geometry probe: convergence, metal chemistry/count/identity,
+phase and overall-B-scale sensitivity remain unresolved. The review manifest
+explicitly sets no acceptance; the result says `fdp_quantitation_ready=false`
+and `environmental_b_applied=false`. Next establish reviewed metal/donor geometry,
+then connect this exact endpoint to environmental base/donor B and a new frozen
+anomalous seed. The discovery/cluster mapping adapter, campaign no-metal fallback,
+automatic branching and compact comparison-table design remain separate work.
+Do not substitute these native endpoints into old deterministic recipe geometry.
+
 ## Metal-screen rehearsal and phase provenance 2026-10-28
+
+This section records the preceding discovery milestone; the XYZ adapter and
+new native results are documented immediately above.
 
 **Current outcome.** The user approved the revised coordinate viewer and asked
 for representative refined data before another table/plot redesign. The

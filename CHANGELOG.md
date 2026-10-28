@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Capture phase-restrained metal XYZ/ADP review endpoints
+
+- Add the API-only `metal.xyz.run_xyz` / `verify_xyz` adapter and immutable schema-1
+  `metal-xyz-trial` bundles. Preserve the verified hypothesis, original anomalous
+  data, explicit HL source, resources and native evidence; retain failed attempts.
+- Use the qualified Phenix 2.2.1-6174 MLHL geometry route with merged observations,
+  fixed structural Q/reference f-prime and zero f-double-prime for this step only.
+  Audit phase coefficients, reflection/Free-R membership, fixed atomic state,
+  crystal symmetry and full-precision/serialized XYZ-B endpoints.
+- Keep the frozen fdp audit anomalous-only by default; require explicit merged
+  observation mode for the new geometry audit. No prior bundles need migration.
+- Terminate the native process group on completion, timeout or interruption.
+  Expose review results without automatic checkpoint selection, environmental-B
+  application, scientific acceptance or eligibility for a downstream fdp scan.
+
 ### Correct AutoSol phase-label provenance
 
 - Record the complete HL coefficient quartet in `refinement_data_phase_labels`

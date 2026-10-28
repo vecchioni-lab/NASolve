@@ -1429,7 +1429,14 @@ and declares whether an unsuccessful screen may continue on a metal-free branch.
 Quantitative environmental B comes from the candidate's completed XYZ/ADP-open
 refinement endpoint. Current recipe-only geometry replay cannot import that
 endpoint, and the frozen f-double-prime worker currently excludes external phase
-restraints. Those adapters and phase-policy qualification remain explicit gaps.
+restraints. `metal.xyz.run_xyz` now captures a separate schema-1
+`metal-xyz-trial` (`metal-phased-xyz-v1`) from a verified hypothesis and explicit
+anchored phase file. It uses MLHL with merged observations, fixed Q/reference
+f-prime and zero f-double-prime for the geometry step only. `verify_xyz` replays
+inputs, phases, reflection membership and native fixed-state audits offline.
+Numbered failed attempts remain separate; no checkpoint is selected. The bridge
+from this reviewed endpoint to environmental B/fdp seeds, site mapping and
+phase/scale-policy qualification remain explicit gaps.
 
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain

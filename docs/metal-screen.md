@@ -1,6 +1,6 @@
 # Experimental metal-screen workflow
 
-Status: **planned integration; bounded native discovery rehearsal completed**.
+Status: **phase-restrained XYZ probe implemented; full metal-screen integration planned**.
 Updated 2026-10-28. This document records the experiment-driven workflow and
 data contract. It does not enable a new CLI mode, campaign option or GUI control.
 The existing authoring, frozen f-double-prime trials and read-only viewer remain
@@ -109,8 +109,9 @@ identity, not merely matching displayed metal, XYZ, Q and fitted f-double-prime.
 The implemented B calculator can read a supplied geometry's B values, but it
 does not yet prove that those values came from an eligible XYZ/ADP-open endpoint.
 Existing recipe-only geometry bundles deterministically replay their own solver;
-an external refinement result cannot be substituted into one. A new captured
-endpoint adapter must preserve its native parent, resources, phases and audit.
+an external refinement result cannot be substituted into one. The separate XYZ
+review adapter below now captures the native endpoint, phases and audits. Its
+bridge into environmental B and frozen f-double-prime trials remains pending.
 
 ```mermaid
 flowchart TD
@@ -118,7 +119,7 @@ flowchart TD
     M --> A[AutoSol: declared species and covalent anchors]
     A --> S{Supported free-metal sites?}
     S -->|Yes| C[Preserve discovered sites, count and phases]
-    C --> G[Candidate XYZ and ADP refinement]
+    C --> G[MLHL geometry probe: merged observations, fixed Q and scattering]
     G --> B[Capture endpoint; pin XYZ; derive environmental metal B]
     B --> F[Independent frozen f-double-prime / Q trials]
     F --> E[Compare count, identity, geometry and map evidence]
@@ -128,9 +129,71 @@ flowchart TD
     P -->|Yes| Z[Separate metal-free refinement branch]
 ```
 
-*Figure: planned experiment flow. A search execution failure and a completed
+*Figure: experiment flow with the separate MLHL XYZ probe now implemented.
+The bridge from its review endpoint to environmental B and frozen anomalous
+trials, and the campaign branches, remain planned. A search execution failure and a completed
 search without supported sites remain distinct outcomes; neither proves absence.
 All candidate branches retain their parent and phase provenance.*
+
+## Implemented phase-restrained XYZ probe
+
+The API `nasolve.metal.xyz.run_xyz(run, hypothesis, native=..., phases=...,
+phase_labels=..., cycles=3, timeout=240)` creates an immutable numbered
+`Metal/xyz_NNN` review bundle from a verified metal hypothesis and an explicit
+anchored, checksum-verified phase file. `verify_xyz(run, directory)` replays its
+inputs and audits offline without executing saved scripts. This is an API-only
+experimental step; it adds no CLI/campaign execution or automatic checkpoint
+selection. Explicit hypotheses may retain unrestrained sites, which remain
+chemically unqualified. Existing geometry/fdp formats are unchanged.
+
+The native target is **MLHL with merged Bijvoet observations**. Phenix
+**2.2.1-6174** rejects MLHL combined with nonzero anomalous scattering in the
+attempted geometry protocol. Consequently this separate step fixes f-prime at
+the wavelength-dependent Sasaki reference and sets f-double-prime to zero for
+**every atom only during geometry refinement**. Those zeros are not measured
+f-double-prime results. The original anomalous MTZ and Free-R flags remain
+byte-identical inputs for later quantitation; the derived phase MTZ header does
+not supply the observation wavelength. Model-combined HLAM/HLBM/HLCM/HLDM was
+used in the native controls; alternate complete naming families require explicit
+selection and do not establish a different scientific phase origin by themselves.
+
+Individual XYZ and isotropic ADPs may refine; Q, element/atom identity, f-prime,
+and f-double-prime remain fixed. There is no occupancy refinement, automatic
+metal linking, hydrogen/water addition, base flipping or optimized XYZ/ADP weight
+search. All inherited and explicit recipe restraints remain inputs. Initial
+structural Q must be declared within physical bounds; raw AutoSol phasing Q is
+retained separately and is not imported as structural occupancy. ANISOU inputs
+are rejected rather than silently converted. This first protocol retains the
+existing no-ADP-backtrace scale policy; environmental B and scale sensitivity
+still need qualification on representative geometries.
+
+Each schema-1 `metal-xyz-trial` uses protocol `metal-phased-xyz-v1` and retains:
+
+- The parent hypothesis manifest, input model, original observations, phase file,
+  restraint resources, reference scattering and exact effective native parameters.
+- Full-precision atoms/groups, active merged reflections/Free-R assignments and
+  the selected source HL array. Active HL coefficients must match that source
+  on every used index and remain unchanged; zero-coefficient entries are counted.
+- Fixed-Q/scattering audits, XYZ/B changes, crystal symmetry, serialized endpoint
+  agreement, native version/source fingerprints and process logs.
+
+Cell comparisons allow PDB field precision at import/serialization and at most
+1e-9 native numerical roundoff; actual setting/cell changes fail the audit.
+The reflection audit permits only a common F/sigma scale, with exact indices and
+Free-R membership. Its default remains anomalous-only for frozen fdp callers;
+the new geometry caller explicitly requests merged observations. Worker timeout
+and interruption terminate the process group, and failed numbered attempts are
+retained without a completed manifest. Verification checks declared anchors and
+checksums; it never searches by basename or uses historical absolute paths as
+its sole reference. Relocation is tested after removing the original temporary
+checkout/data path.
+
+A completed bundle is **XYZ_REVIEW**, not an accepted solution or an fdp seed.
+It records `fdp_quantitation_ready=false`, `environmental_b_applied=false`, no
+automatic checkpoint selection and no convergence claim. Chemical restraints,
+site count/identity, phase sensitivity and environmental B remain review work.
+The next bridge must bind the reviewed endpoint to donor/base definitions,
+prepare B without moving XYZ, and create a distinct frozen anomalous seed.
 
 ## Count changes and no-metal outcome
 
@@ -175,8 +238,18 @@ with explicitly declared metal species and no prescribed site count; it did not
 bypass production acceptance or create approved phase/checkpoint records. The
 outputs still require site/origin mapping, chemical assessment and phase-policy
 qualification. Phasing-site occupancy-like values must be preserved as raw search
-output, not copied uncritically into physical structural Q bounds. XYZ/ADP-open
-refinement and downstream occupancy quantitation were **not performed**.
+output, not copied uncritically into physical structural Q bounds.
+
+A subsequent bounded rehearsal used the AutoSol-derived sites and phase file in
+the new XYZ API. Two final three-cycle native probes completed and passed offline
+replay with Phenix **2.2.1-6174**; Coot was not invoked in this new step. Structural
+Q was explicitly initialized to 1.0, with raw discovery Q retained separately.
+No invented metal distance targets were added. The first MLHL/anomalous attempts
+stopped at the native compatibility gate; intermediate cell-audit failures were
+also retained and informed precision regression tests. The final protocol uses
+merged geometry observations and explicit fixed scattering as described above.
+Per-base endpoint B summaries and site displacements remain local review data.
+No endpoint was accepted, environmental B applied, or new f-double-prime scan run.
 
 ## Data-management boundary and qualification order
 
@@ -196,8 +269,8 @@ feature; these rehearsals do not prune existing data.
    local controls, retaining native outputs and effective parameters.
 2. Implement and test the opt-in metal-screen request and result contract,
    including covalent anchors, no-site/failure outcomes and fallback policy.
-3. Qualify site/symmetry mapping and phase capture, then an XYZ/ADP-refined
-   endpoint adapter with correct chemistry and fixed f-prime policy.
+3. Qualify site/symmetry mapping and chemistry around the implemented XYZ review
+   adapter; evaluate phase and scale-policy sensitivity before accepting endpoints.
 4. Connect environmental B preparation and frozen trials to that endpoint;
    qualify phase handling, reuse boundaries and numerical response.
 5. Use those real result sets to settle the

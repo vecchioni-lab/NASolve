@@ -19,7 +19,10 @@ endpoint for this candidate**, followed by pinning XYZ. Parent scaffold B is not
 the intended source. The current calculator accepts its supplied geometry and
 does not yet enforce that refined-endpoint provenance; the
 [endpoint bridge](metal-screen.md#geometry-refinement-environmental-b-and-frozen-trials)
-remains to be implemented and qualified.
+remains to be implemented and qualified. A separate
+[phase-restrained XYZ review API](metal-screen.md#implemented-phase-restrained-xyz-probe)
+now captures a native refined endpoint with exact phases and fixed-Q/scattering
+audits; it does not yet feed this calculator or make an eligible fdp seed.
 
 Each fixed-geometry branch prepares metal B **before** fixed-occupancy
 f-double-prime quantitation. The assumption is that metal displacement resembles

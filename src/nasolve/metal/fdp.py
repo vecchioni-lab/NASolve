@@ -160,13 +160,18 @@ def parameters(plan, resource_names):
     return '\n'.join(lines).encode(),['input.pdb','observations.mtz',*resource_names,'parameters.phil']
 
 
-def audit_reflections(before, after):
-    """Permit only the native common F/sigma scale; retain exact indices/flags."""
+def audit_reflections(before, after, *, anomalous=True):
+    """Permit only common F/sigma scale; require declared anomalous state.
+
+    Frozen fdp callers retain the strict anomalous=True default. The separate
+    MLHL geometry audit explicitly requests merged observations.
+    """
+    if type(anomalous)is not bool:raise RecipeError("Require explicit anomalous boolean")
     for captured in (before,after):
         rows=captured['rows']
-        if (captured.get('anomalous') is not True or type(captured.get('count')) is not int
+        if (captured.get('anomalous') is not anomalous or type(captured.get('count')) is not int
                 or captured['count']!=len(rows) or not rows):
-            raise RecipeError('Missing actual anomalous observations')
+            raise RecipeError('Missing observations with the required anomalous state')
         keys=[]
         for row in rows:
             if (not isinstance(row,list) or len(row)!=4 or not isinstance(row[0],list)
@@ -195,7 +200,7 @@ def audit_reflections(before, after):
             if not math.isclose(b[field],wanted,rel_tol=1e-10,abs_tol=1e-9):
                 raise RecipeError('Observations changed beyond a uniform F/sigma scale')
     return dict(input_hash=before['hash'],output_hash=after['hash'],count=len(first),
-                anomalous=True,free_count=before['free_count'],uniform_F_sigma_scale=scale,
+                anomalous=anomalous,free_count=before['free_count'],uniform_F_sigma_scale=scale,
                 maximum_absolute_residual=absolute,maximum_relative_residual=relative,
                 relative_tolerance=1e-10,absolute_tolerance=1e-9,indices_and_flags='UNCHANGED')
 
