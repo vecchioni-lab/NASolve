@@ -21,6 +21,7 @@ from typing import Mapping
 
 from .cif_doctor import assess_dictionaries, compare_dictionaries, _bridges, _number, _ORDERS
 from .ligand_profiles import _blocks
+from .cif_purine_representation import validate_policy, purine_bond_representation
 
 POLICY_ID = "cif-independent-elbow-candidate-v4"
 BOND_REPRESENTATION_POLICY = "cif-source-declared-six-member-aromatic-v1"
@@ -209,13 +210,15 @@ def _supported_plane_review(finding: dict) -> bool:
             and isfinite(determinant))
 
 
-def inspect_component_generation(source: Path, generated: Path | None, code: str) -> dict:
+def inspect_component_generation(source: Path, generated: Path | None, code: str, *,
+                                 bond_representation_policy: str | None = None) -> dict:
     """Inventory general numerical defects and same-ID chemical differences.
 
     Full source/candidate assessments are retained; the requested component
     determines rejection. Other components in a ReadySet bundle remain visible.
     A numerically valid candidate still requires chemical and native review.
     """
+    validate_policy(bond_representation_policy)
     source = Path(source)
     before = assess_dictionaries([source], stage="source")
     after = assess_dictionaries([Path(generated)], stage="effective") if generated is not None else None
@@ -226,6 +229,11 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
     representation = (_bond_representation(left[0], right[0]) if len(left) == len(right) == 1 else
                       {"policy_id": BOND_REPRESENTATION_POLICY, "status": "NOT_RUN",
                        "connectivity_unchanged": None, "equivalent_rings": [], "unresolved_bonds": []})
+    if bond_representation_policy is not None:
+        if len(left) == len(right) == 1:
+            representation = purine_bond_representation(left[0], right[0], representation)
+        else:
+            representation.update(policy_id=bond_representation_policy, equivalent_fused_systems=[])
     reasons = []
     if len(left) != 1:
         reasons.append("source-component-missing-or-ambiguous")
@@ -266,7 +274,7 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
     if after:
         issues.extend(_numerical_issues(after, code, "generated"))
     return {"schema_version": 1, "audit_kind": "cif_component_generation_inspection",
-            "policy_id": POLICY_ID, "component_id": code,
+            "policy_id": POLICY_ID if bond_representation_policy is None else "cif-independent-elbow-candidate-v5", "component_id": code,
             "status": "REJECTED" if reasons else "CANDIDATE_REVIEW" if after else "SOURCE_REVIEW",
             "rejection_reasons": reasons,
             "source_assessment": before, "generated_assessment": after,
@@ -276,7 +284,9 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
             "limitations": ["Numerical completeness does not certify chemistry, native proxies or achieved geometry.",
                             "Only complete finite positive-semidefinite Gram findings can remain soft plane reviews.",
                             "Well-formed unresolved torsion relationships remain review evidence pending native interpretation; no term is removed or adopted.",
-                            "Only complete source-declared isolated neutral C/N six-member alternating rings can change to aromatic bond types; other order changes remain rejected.",
+                            ("Only complete source-declared isolated neutral C/N six-member alternating rings can change to aromatic bond types; other order changes remain rejected."
+                             if bond_representation_policy is None else
+                             "The explicit neutral purine policy additionally permits the bounded fused 5/6 graph with unchanged single-bridge substituents; exocyclic multiple bonds and other order changes remain rejected."),
                             "Charge representation and newly supplied stereochemistry remain explicit review evidence."]}
 
 

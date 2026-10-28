@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify declared neutral purine representations explicitly (C117)
+
+- Add an opt-in assessment policy for complete source-declared neutral fused
+  purine rings. Require exact atoms, hydrogen attachments and formal charges,
+  a bounded valence pattern and unchanged single-bridge substituents.
+- Preserve raw chemical differences and existing numerical, stereo and native
+  checks. Exocyclic multiple bonds, charged rings and partial conversion remain
+  unsupported. Six fresh native interpretations qualify preserved 40A/APN
+  candidates and the 40C control at two coordinate sets each.
+- Explicit reports use inspection-v5/usability-v3 policy IDs and fused-system
+  evidence. Default reports/workers and ordinary generation remain unchanged;
+  no new CLI, automatic adoption, linked PNA qualification or migration.
+
 ### Prepare connected source atom order explicitly (C116)
 
 - Add an opt-in preparation API that orders complete atom rows through the

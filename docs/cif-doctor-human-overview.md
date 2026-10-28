@@ -91,6 +91,15 @@ nonbonded coordinate reference into an extra bond. Purine orders remain
 rejected, while ordered 40C passes both isolated native controls. This explicit
 preparation is not an automatic retry or a general native correctness proof;
 see the [ordering contract](cif-doctor.md#explicit-connected-atom-ordering-c116).
+C117 now gives the purine representation its own narrow opt-in contract. The
+source must declare the aromatic graph, with exact atoms/H/charges and a complete
+neutral-ring valence pattern; carbonyl and charged-ring extensions stay open.
+Preserved 40A/APN candidates and 40C pass all 21 isolated native checks at both
+coordinate sets, including exact fixed covalent restraints and finite repeated
+energy/gradient evaluation. Historical attempts are not rewritten. This is
+isolated usability evidence; ordinary generation integration and linked PNA
+numerical targets still need qualification. See the
+[purine contract](cif-doctor.md#explicit-neutral-purine-representation-c117).
 Native linked typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
@@ -765,6 +774,10 @@ open. The local diagnostic order-restoration trials grant no production support.
 C116 adds explicit source-table ordering before native construction, preserving
 all chemical declarations. Its bounded 40A extra-bond workaround leaves the
 purine representation and linked-PNA qualification gates open.
+C117 extends explicit assessment to a bounded source-declared neutral purine
+representation, retaining exact atoms/H/charges and independent numerical/stereo
+checks. Preserved 40A/APN candidates pass fresh isolated native controls; ordinary
+generation integration and linked PNA targets remain separate.
 A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom

@@ -11,6 +11,57 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C117 explicit neutral purine representation
+
+Implementation, focused/full regression, native controls and cold replay pass.
+Publication is the remaining step; no job is active.
+Base: `dee700f8c95a2cf1f5e57d283f0f3db9b03f52a5`; continue on existing `cedar`.
+Capsule: `live_tests_directory/117_Cedar_purine-policy-n21usjyb`.
+
+Before C117, preserved source-correct 40A/APN diagnostic candidates were rejected
+for ten localized-to-aromatic purine bond-order differences. The new explicit
+assessment policy recognizes the neutral fused 5/6 graph with complete source
+valence, exact atoms/H/formal charges and unchanged single-bridge substituents.
+Partial conversion, carbonyl/charged rings and chemical changes remain excluded.
+Raw differences and historical generation receipts stay intact; default reports
+and generator workers are unchanged. This qualifies preserved outputs rather
+than establishing a maintained generation route.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1) completed six fresh isolated interpretations,
+not dry-runs: 40A, APN and 40C at source/generated coordinates, bounded to 60 s
+each. All 21 checks pass per case and fixed covalent proxies match per pair.
+40A source-relative handedness is retained; APN has no fixed centre in this
+control. Formal-charge native readback is unsupported, separately from exact
+CIF charge retention. No generator/optimizer ran in C117. Linked PNA targets,
+absolute CIP, convergence and ordinary adoption remain unqualified.
+
+Validation: **216 focused tests pass in 37.14 s**, including 36 new controls.
+The original 31-case regression fails before the API change and passes after;
+five further charge/topology/isotope controls are included in the final suite.
+Full suite: **6190 passed, 276 subtests passed in 929.50s (0:15:29)**; all 464 source/test hashes stay fixed.
+Legacy/opt-in assessments and six native qualifications replay cold with 252
+files unchanged, the owned original absent and original/SDK reads/processes
+blocked. Twelve C117 input files and upstream C116 source/candidate/receipt
+files retain their recorded integrity. Compilation, whitespace, documentation
+links/JSON and SVG checks pass.
+
+The optional `bond_representation_policy` selects schema-1 inspection-v5 and
+usability-v3 policy IDs plus explicit fused-system evidence. No default-report,
+CLI or run/checkpoint migration. Fourteen changed files contain code, synthetic
+tests, maintained contracts and compact technical evidence; raw CIF/PDBs, data,
+native logs, captured workers and runner scripts remain local. Exact commands,
+hashes and limits are under `neutral_purine_representation_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+Next: thread the explicit policy through a separately versioned source-reader/
+generation route with exact stage invariants, then qualify numerical restraints
+in the C114-authorized final linked PNA environment. Pruning isolated tables
+cannot supply linked numerical proof. Carbonyl purines, charged reaction states,
+ATL/L-DNA/PDU and ordinary integration remain open. Sticky-end stitching stays
+parked; no extra branch or Pine/main merge.
+
+— Rowan · Codex desktop
+
 ## C116 source-preserving connected atom ordering
 
 Implementation, focused/full regression, native controls and cold replay pass.

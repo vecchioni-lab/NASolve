@@ -33,7 +33,9 @@
 
 <a id="current-capability-boundary-c114"></a>
 
-## Current capability boundary (C115)
+<a id="current-capability-boundary-c115"></a>
+
+## Current capability boundary (C117)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -45,6 +47,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
+| Can preserved purine candidates be qualified? | C117 explicitly recognizes a bounded source-declared neutral fused purine representation. Preserved 40A/APN and 40C pass two fresh isolated native coordinate controls each. | Default generation remains unchanged. Carbonyl/charged purines, final-environment linked PNA numerics and ordinary integration remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -621,6 +624,68 @@ run/checkpoint schemas and default legacy reports require no migration. See
 [evidence ledger](cif-linked-native-registration-evidence.json).
 
 <a id="next-attachment-profile-milestone-g2-planned"></a>
+
+### Explicit neutral purine representation (C117)
+
+Three Python assessment APIs accept the keyword-only option
+`bond_representation_policy="cif-source-declared-neutral-purine-aromatic-v1"`:
+`inspect_component_generation`, `reassess_complete_candidate` and
+`qualify_candidate_native`. Omit it for the existing behavior. Unknown policy
+values raise `ValueError`; they cannot silently select a broader interpretation.
+This option assesses an existing candidate; it does not generate or edit one.
+
+The policy extends the established isolated-six-ring comparison with one bounded
+graph-selected family. A complete fused five/six-ring purine must contain nine
+atoms and ten bonds, share a carbon–carbon fusion edge, and have the corresponding
+N–C–N and N–C–N–C outer paths (either orientation). All ten source bonds must be
+explicitly aromatic while retaining a valid localized four-double-bond form.
+The candidate must replace all ten with aromatic types. Ring atoms must be
+neutral: each carbon has valence four; each nitrogen valence three; exactly one
+five-ring nitrogen is pyrrolic. Atom/residue names do not select the family.
+
+Whole-component atom/element/isotope identities, connectivity, hydrogen
+attachments and complete explicit formal charges must agree. Conflicting charge
+aliases are rejected. Every bond leaving the fused graph must be an unchanged
+single bridge; exocyclic multiple bonds, extra fusions, partial conversion and
+generic delocalized types remain unsupported. Carbonyl purines therefore need
+a separate reviewed extension. A charged remote terminus is permitted only when
+its declared state is retained exactly. Ring stereochemical assignments are
+excluded; independent source-relative/fixed chirality and numerical checks remain.
+
+This is a declared-representation contract, not general aromaticity perception
+or a tautomer/protonation choice. The [wwPDB aromatic flag](https://pdbml.wwpdb.org/dictionaries/mmcif_pdbx_v5_next.dic/Items/_chem_comp_bond.pdbx_aromatic_flag.html)
+is separate from localized bond order. The [documented RDKit models](https://www.rdkit.org/docs/RDKit_Book.html#aromaticity)
+illustrate why fused systems and exocyclic double bonds need explicit treatment;
+NASolve neither invokes RDKit here nor claims to reproduce its perception model.
+
+The schema-1 inspection uses policy `cif-independent-elbow-candidate-v5` and
+records `bond_representation.equivalent_fused_systems`, including exact edges,
+cycles and the source pyrrolic nitrogen. Extended usability reports use
+`cif-isolated-candidate-native-usability-v3`. Raw chemical differences remain.
+Default report shapes/policy IDs and native worker bytes are unchanged, allowing
+historical replay; this option needs no run/checkpoint migration. There is no
+new CLI flag or ordinary recovery/adoption integration.
+
+C117 reassesses the **preserved C116 diagnostic candidates**, without rewriting
+their generation receipts. Both **40A** and **APN** move from representation
+rejection to candidate review under this option. Six fresh, complete
+**Phenix 2.2.1-6174** interpretations (dispatcher **2.2.1**, each bounded to
+60 seconds) pass all 21 existing native checks for 40A/APN and the unchanged
+40C control at source and generated coordinates. Each pair has identical fixed
+covalent proxies and finite repeated fixed-coordinate energies/gradients.
+40A retains source-relative handedness; APN has no fixed stereocenter in this
+control. Native formal-charge readback availability is recorded separately from
+exact CIF charge retention. No new generator or optimization was run in C117.
+
+These results establish isolated candidate usability. They do not qualify
+linked amide numerics, absolute CIP, convergence, ordinary refinement or all
+purine derivatives. The maintained source-reader/generation path still needs a
+separately versioned integration with exact stage invariants. Linked numerical
+generation must then use the C114-authorized final chemical environment; pruning
+isolated numerical tables is insufficient. Exact tests, native receipts, cold
+replay and remaining limits are recorded under
+`neutral_purine_representation_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Explicit connected atom ordering (C116)
 

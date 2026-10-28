@@ -38962,5 +38962,959 @@
     ],
     "implementation_commit": "1171dc3d4e1eb80f3dbfc723cf317dcc883862fe",
     "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
+  },
+  "neutral_purine_representation_2026_10_28": {
+    "status": "FOCUSED_FULL_NATIVE_COLD_PASS_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "base_commit": "dee700f8c95a2cf1f5e57d283f0f3db9b03f52a5",
+    "before": "Preserved source-correct 40A/APN diagnostic candidates are rejected for ten localized-to-aromatic purine bond changes; the legacy isolated-six-ring policy cannot qualify a fused system.",
+    "after": "An explicit assessment option qualifies the declared neutral purine graph with exact atom/H/charge state and bounded source valence. Both preserved candidates pass fresh isolated native checks at two coordinate sets. Default assessment and generation remain unchanged.",
+    "policy": "cif-source-declared-neutral-purine-aromatic-v1",
+    "apis": [
+      "inspect_component_generation",
+      "reassess_complete_candidate",
+      "qualify_candidate_native"
+    ],
+    "keyword": "bond_representation_policy",
+    "new_report_policies": [
+      "cif-independent-elbow-candidate-v5",
+      "cif-isolated-candidate-native-usability-v3"
+    ],
+    "schema": "Schema 1 retained; explicit option selects distinct policy IDs and adds bond_representation.equivalent_fused_systems. Default report shape and policy IDs are unchanged.",
+    "authority": "Source aromatic flags, exact graph/identities and a bounded neutral-ring valence pattern; no aromaticity perception, protonation or tautomer generation.",
+    "contract": [
+      "Complete fused five/six-ring graph: nine vertices, ten edges, carbon fusion junctions, N-C-N five-ring path and N-C-N-C six-ring path up to reversal.",
+      "All ten source bonds explicitly aromatic, with four localized double bonds; candidate replaces all ten with aromatic types.",
+      "Neutral ring atoms with valence-four carbon, valence-three nitrogen and one pyrrolic nitrogen in the five-ring; explicit whole-component formal charges agree, including aliases.",
+      "Exact element/isotope identities, connectivity and hydrogen attachments. Every boundary bond is an unchanged single bridge; no exocyclic multiple bonds, chords or additional fusions.",
+      "No ring atom/bond stereochemical assignment; independent fixed/source-relative chirality and all numerical/native gates remain active.",
+      "Raw comparison differences and original generation receipts remain intact. The legacy isolated-six-ring policy remains available in the extended assessment."
+    ],
+    "unsupported": [
+      "Charged purine rings",
+      "Exocyclic multiple bonds, including carbonyl purines",
+      "Partial conversion or generic delocalized types",
+      "Changed/missing/conflicting explicit formal charges",
+      "Hydrogen movement, changed isotopes, tautomer invention, extra fusions or unsupported valence"
+    ],
+    "compatibility": "Explicit Python assessment option only. No CLI, default worker, ordinary generation/recovery integration, run/checkpoint schema, migration or automatic retry/adoption change.",
+    "native": {
+      "software": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "execution": "SIX_COMPLETE_INTERPRETATIONS_NOT_DRY_RUN",
+      "generation_in_C117": "NOT_RUN",
+      "per_interpretation_timeout_seconds": 60,
+      "fixed_energy_evaluations_per_case": 2,
+      "controls": {
+        "40A": {
+          "source": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/40A.cif",
+            "sha256": "a68e1a3ff04ff6cdbdc7744d1cdd1add155d1cdef706495b0486f51effd1bcbe",
+            "size": 9456
+          },
+          "candidate": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/40A/candidate.cif",
+            "sha256": "4ba1143443971f267b4817e1ef8424f4316fe6de6590e4927580fc90975b8ea5",
+            "size": 14030
+          },
+          "generation_receipt": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/40A/generation-receipt.json",
+            "sha256": "9cae2ff14e463231b0f5b3d849278235da2469ee9aaa21069565a56d400b9273",
+            "size": 659056
+          },
+          "candidate_origin": "C116 local source-order-restoration diagnostic; not the maintained generator",
+          "legacy_status": "REJECTED",
+          "opt_in_status": "CANDIDATE_REVIEW",
+          "representation": {
+            "policy_id": "cif-source-declared-neutral-purine-aromatic-v1",
+            "status": "SOURCE_DECLARED_EQUIVALENT",
+            "connectivity_unchanged": true,
+            "equivalent_rings": [],
+            "unresolved_bonds": [],
+            "equivalent_fused_systems": [
+              {
+                "family": "neutral-purine-single-bridge-substituents",
+                "atoms": [
+                  "C2",
+                  "C4",
+                  "C5",
+                  "C6",
+                  "C8",
+                  "N1",
+                  "N3",
+                  "N7",
+                  "N9"
+                ],
+                "cycle_sizes": [
+                  5,
+                  6
+                ],
+                "cycles": [
+                  [
+                    "C4",
+                    "N9",
+                    "C8",
+                    "N7",
+                    "C5"
+                  ],
+                  [
+                    "C4",
+                    "N3",
+                    "C2",
+                    "N1",
+                    "C6",
+                    "C5"
+                  ]
+                ],
+                "source_pyrrolic_nitrogen": "N9",
+                "bonds": [
+                  {
+                    "atoms": [
+                      "C2",
+                      "N1"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C2",
+                      "N3"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C4",
+                      "C5"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C4",
+                      "N3"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C4",
+                      "N9"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C5",
+                      "C6"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C5",
+                      "N7"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C6",
+                      "N1"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C8",
+                      "N7"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C8",
+                      "N9"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  }
+                ]
+              }
+            ]
+          },
+          "source_atoms": 39,
+          "candidate_atoms": 39,
+          "source_bonds": 40,
+          "candidate_bonds": 40,
+          "elements_preserved": true,
+          "formal_charges_preserved": true,
+          "total_source_formal_charge": 0.0,
+          "source_relative_configuration": "PRESERVED",
+          "native_qualification": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/40A/native-qualification.json",
+            "sha256": "ce6770a5e4b2f452d46f8ee8da2bc6aeff8161b2bd2761758d2d026b4be3e943",
+            "size": 3730432
+          },
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "coordinate_cases": {
+            "source_seed": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": {
+                "status": "UNSUPPORTED",
+                "missing_attribute_atom_count": 39,
+                "null_value_atom_count": 39,
+                "full_inventory": "Bound native receipt referenced alongside this summary."
+              },
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "117_Cedar_purine-policy-n21usjyb/40A/native/source_seed/cif-native-h8v7cg5c/native_receipt.json",
+                "sha256": "46424a4f0f4e49517dcf5e9918a5d9b794ba54115e4abe6fe8e55fc4b731fe83",
+                "size": 257055
+              }
+            },
+            "generated_output": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": {
+                "status": "UNSUPPORTED",
+                "missing_attribute_atom_count": 39,
+                "null_value_atom_count": 39,
+                "full_inventory": "Bound native receipt referenced alongside this summary."
+              },
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "117_Cedar_purine-policy-n21usjyb/40A/native/generated_output/cif-native-jrc3b83h/native_receipt.json",
+                "sha256": "768bd855ff77420b4f3bb49771a82e8e015fa1012fec8f212830b10e9e9a8387",
+                "size": 256629
+              }
+            }
+          },
+          "decision": "CONTINUE_WITH_NOTES",
+          "convergence": "NOT_ESTABLISHED",
+          "absolute_CIP": "NOT_RUN",
+          "linked_PNA": "NOT_RUN",
+          "automatic_adoption": false
+        },
+        "APN": {
+          "source": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/APN.cif",
+            "sha256": "efde6f9bd04461d7cf054316a9bf7cd00d1f8f21f8099b320aa85e6de2e18597",
+            "size": 9147
+          },
+          "candidate": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/APN/candidate.cif",
+            "sha256": "f750869e1a26c85d47cb5f502272b5a308d759c3844526ad46b950cba30267b8",
+            "size": 13277
+          },
+          "generation_receipt": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/APN/generation-receipt.json",
+            "sha256": "139ca7a4121685d05d3fb91b54eff74c8e2d528f99babcbff236f3064459041b",
+            "size": 636824
+          },
+          "candidate_origin": "C116 local source-order-restoration diagnostic; not the maintained generator",
+          "legacy_status": "REJECTED",
+          "opt_in_status": "CANDIDATE_REVIEW",
+          "representation": {
+            "policy_id": "cif-source-declared-neutral-purine-aromatic-v1",
+            "status": "SOURCE_DECLARED_EQUIVALENT",
+            "connectivity_unchanged": true,
+            "equivalent_rings": [],
+            "unresolved_bonds": [],
+            "equivalent_fused_systems": [
+              {
+                "family": "neutral-purine-single-bridge-substituents",
+                "atoms": [
+                  "C2",
+                  "C4",
+                  "C5",
+                  "C6",
+                  "C8",
+                  "N1",
+                  "N3",
+                  "N7",
+                  "N9"
+                ],
+                "cycle_sizes": [
+                  5,
+                  6
+                ],
+                "cycles": [
+                  [
+                    "C4",
+                    "N9",
+                    "C8",
+                    "N7",
+                    "C5"
+                  ],
+                  [
+                    "C4",
+                    "N3",
+                    "C2",
+                    "N1",
+                    "C6",
+                    "C5"
+                  ]
+                ],
+                "source_pyrrolic_nitrogen": "N9",
+                "bonds": [
+                  {
+                    "atoms": [
+                      "C2",
+                      "N1"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C2",
+                      "N3"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C4",
+                      "C5"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C4",
+                      "N3"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C4",
+                      "N9"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C5",
+                      "C6"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C5",
+                      "N7"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C6",
+                      "N1"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C8",
+                      "N7"
+                    ],
+                    "source_order": "DOUBLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  },
+                  {
+                    "atoms": [
+                      "C8",
+                      "N9"
+                    ],
+                    "source_order": "SINGLE",
+                    "generated_order": "AROMATIC",
+                    "source_aromatic_declaration": "Y"
+                  }
+                ]
+              }
+            ]
+          },
+          "source_atoms": 37,
+          "candidate_atoms": 37,
+          "source_bonds": 38,
+          "candidate_bonds": 38,
+          "elements_preserved": true,
+          "formal_charges_preserved": true,
+          "total_source_formal_charge": 1.0,
+          "source_relative_configuration": "UNASSESSED",
+          "native_qualification": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/APN/native-qualification.json",
+            "sha256": "7774ac87783075797e1a20ffc6fa8213eb364c2347ab32fc6c840256025d6ed5",
+            "size": 3607241
+          },
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "coordinate_cases": {
+            "source_seed": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": {
+                "status": "UNSUPPORTED",
+                "missing_attribute_atom_count": 37,
+                "null_value_atom_count": 37,
+                "full_inventory": "Bound native receipt referenced alongside this summary."
+              },
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "117_Cedar_purine-policy-n21usjyb/APN/native/source_seed/cif-native-q3lv_p8q/native_receipt.json",
+                "sha256": "bbf20128c594e83a1a2055c662032976f3fe709ff0c27ddc64488434b66d9d67",
+                "size": 245514
+              }
+            },
+            "generated_output": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": {
+                "status": "UNSUPPORTED",
+                "missing_attribute_atom_count": 37,
+                "null_value_atom_count": 37,
+                "full_inventory": "Bound native receipt referenced alongside this summary."
+              },
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "117_Cedar_purine-policy-n21usjyb/APN/native/generated_output/cif-native-7fq5_fl0/native_receipt.json",
+                "sha256": "1dba52920122b41d003b6d6d053255e02182770a4703dbde6173fef79980aa2d",
+                "size": 245617
+              }
+            }
+          },
+          "decision": "CONTINUE_WITH_NOTES",
+          "convergence": "NOT_ESTABLISHED",
+          "absolute_CIP": "NOT_RUN",
+          "linked_PNA": "NOT_RUN",
+          "automatic_adoption": false
+        },
+        "40C": {
+          "source": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/40C.cif",
+            "sha256": "68664389eb657e4fdca7e7c157af06a160047f1b4304f7505d509fa2664f6d3b",
+            "size": 9206
+          },
+          "candidate": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/40C/candidate.cif",
+            "sha256": "296f889f8113ab511fa3393059d0896baef90765bcc90e8dc0f57c6a9d1ac6f4",
+            "size": 12323
+          },
+          "generation_receipt": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/inputs/40C/generation-receipt.json",
+            "sha256": "d8f8258080cc5b3334ef99d8f0341bfe40fe130215663cf81bb8025599c5512e",
+            "size": 540131
+          },
+          "candidate_origin": "C116 maintained worker",
+          "legacy_status": "CANDIDATE_REVIEW",
+          "opt_in_status": "CANDIDATE_REVIEW",
+          "representation": {
+            "policy_id": "cif-source-declared-neutral-purine-aromatic-v1",
+            "status": "EXACT",
+            "connectivity_unchanged": true,
+            "equivalent_rings": [],
+            "unresolved_bonds": [],
+            "equivalent_fused_systems": []
+          },
+          "source_atoms": 37,
+          "candidate_atoms": 37,
+          "source_bonds": 37,
+          "candidate_bonds": 37,
+          "elements_preserved": true,
+          "formal_charges_preserved": true,
+          "total_source_formal_charge": 0.0,
+          "source_relative_configuration": "PRESERVED",
+          "native_qualification": {
+            "anchor": "live_tests_directory",
+            "path": "117_Cedar_purine-policy-n21usjyb/40C/native-qualification.json",
+            "sha256": "9d2ea90557b2bb0ac6e60ca32136c977135603c7514f51cb776df628c7c4abac",
+            "size": 3167098
+          },
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "coordinate_cases": {
+            "source_seed": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": {
+                "status": "UNSUPPORTED",
+                "missing_attribute_atom_count": 37,
+                "null_value_atom_count": 37,
+                "full_inventory": "Bound native receipt referenced alongside this summary."
+              },
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "117_Cedar_purine-policy-n21usjyb/40C/native/source_seed/cif-native-h4y6ah4u/native_receipt.json",
+                "sha256": "6bca2ac1231535fb4adbd20a278093023a02fd451ffb8bd190a857ca12ae945a",
+                "size": 226121
+              }
+            },
+            "generated_output": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": {
+                "status": "UNSUPPORTED",
+                "missing_attribute_atom_count": 37,
+                "null_value_atom_count": 37,
+                "full_inventory": "Bound native receipt referenced alongside this summary."
+              },
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "117_Cedar_purine-policy-n21usjyb/40C/native/generated_output/cif-native-fnxbztfs/native_receipt.json",
+                "sha256": "2ef05a134bc54654dce8a91bc3b1a94bb6ad2c4fd6115a684a7f71430e664a07",
+                "size": 225434
+              }
+            }
+          },
+          "decision": "CONTINUE_WITH_NOTES",
+          "convergence": "NOT_ESTABLISHED",
+          "absolute_CIP": "NOT_RUN",
+          "linked_PNA": "NOT_RUN",
+          "automatic_adoption": false
+        }
+      },
+      "worker_sha256_unchanged": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e"
+    },
+    "validation": {
+      "regression_before": "31 failed on the absent keyword/API contract",
+      "new_cases": 36,
+      "focused": "216 passed in 37.14s",
+      "full": "6190 passed, 276 subtests passed in 929.50s (0:15:29)",
+      "cold": {
+        "status": "PASS",
+        "components": {
+          "40A": {
+            "legacy_and_opt_in_assessments": "MATCH",
+            "native_cases": 2,
+            "candidate_bytes": "RECEIPT_HASH_VERIFIED",
+            "decision": "MATCH",
+            "same_fixed_covalent_proxies": true
+          },
+          "APN": {
+            "legacy_and_opt_in_assessments": "MATCH",
+            "native_cases": 2,
+            "candidate_bytes": "RECEIPT_HASH_VERIFIED",
+            "decision": "MATCH",
+            "same_fixed_covalent_proxies": true
+          },
+          "40C": {
+            "legacy_and_opt_in_assessments": "MATCH",
+            "native_cases": 2,
+            "candidate_bytes": "RECEIPT_HASH_VERIFIED",
+            "decision": "MATCH",
+            "same_fixed_covalent_proxies": true
+          }
+        },
+        "native_cases": 6,
+        "files_unchanged": 252,
+        "blocked_attempts": [],
+        "owned_original_absent": true,
+        "generation_execution": "NOT_RUN",
+        "native_execution": "NOT_RUN",
+        "pickle_loading": "NOT_RUN",
+        "default_worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e"
+      },
+      "commands": {
+        "regression-before": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_purine_representation.py"
+        ],
+        "regression-after": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_purine_representation.py"
+        ],
+        "focused": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_purine_representation.py",
+          "tests/test_cif_aromatic_representation.py",
+          "tests/test_cif_candidate_usability.py",
+          "tests/test_cif_generation.py",
+          "tests/test_cif_source_candidate.py",
+          "tests/test_cif_mixed_recovery.py"
+        ],
+        "full": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20"
+        ],
+        "cold": [
+          "env",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PYTHONPATH=/Users/svecchio/NASolve-live-tests/117_Cedar_purine-policy-n21usjyb/cold-relocated/src",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "/private/tmp/c117_cold.py",
+          "/Users/svecchio/NASolve-live-tests/117_Cedar_purine-policy-n21usjyb"
+        ],
+        "native": [
+          "env",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PYTHONPATH=src",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "/private/tmp/c117_native.py"
+        ]
+      },
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "logs": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/regression-before/pytest.log",
+          "sha256": "a0338aebe8817e02abb4e3937b2b0471f654137a3b0f08a3f8c038cf0fd9d207",
+          "size": 114250
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/regression-before/result.json",
+          "sha256": "8b8f2175290c192a494fadce42eab3be1e813c9ec65f6a68c74065b5b17c06a5",
+          "size": 446
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/regression-after/pytest.log",
+          "sha256": "2608be8aa4daf5836a5d848520ed78513a55f6f29e021cab5ead76e0a3db3fb6",
+          "size": 2819
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/regression-after/result.json",
+          "sha256": "ecba32a0899d4c17a0963bf6fbbc3a42b65aa7b23c0e5ed914221249b98db7d8",
+          "size": 446
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/focused/pytest.log",
+          "sha256": "470360dc643e86cd63738913f7c2556b56406f18a01f4422df1c270b58aced6d",
+          "size": 2974
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/focused/result.json",
+          "sha256": "9828517ba7222e0d5bd9128fc77b052a201a72e519afdd66f31cd0b7359f31bf",
+          "size": 657
+        }
+      ],
+      "additional_evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/all-input-manifest.json",
+          "sha256": "084e5130270e0d8340c396882b38b3d527d5eed2a85d19e82ee3d5134450402a",
+          "size": 2088
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/relocation-manifest.json",
+          "sha256": "fb306b6f343131877612c511ee49d766640ec72e5a2e4ad717aa0c0a4ceeab3c",
+          "size": 47929
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/cold-result.json",
+          "sha256": "0eec215a478a28d34869f50a241ffaa9db7ddc49ff4dc53e8877f33da84c0762",
+          "size": 983
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/source-integrity.json",
+          "sha256": "5628879971a1a5033a3a39354c20887a04cfc8c6fd79b3630929eb018e9de15e",
+          "size": 240
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/static-checks.json",
+          "sha256": "b2a7e19de65c9f9ad88f76b60e60db28d15de49929081153bb681b7c767d18b1",
+          "size": 467
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/full/result.json",
+          "sha256": "0a693870b17a4e63ec9416416b3ed1b7ae4b8ca606dbda1aeb8cfdc3fa7b15f8",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/full/source-hashes.json",
+          "sha256": "8694730e068eb4b846726656783088c00719d10a1c648b1a736e878acc52ca60",
+          "size": 50126
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/full/pytest.log",
+          "sha256": "1c699db0cfe21e2500ab5003c8c12ed26389d383cae03b961eafc3b08e4da333",
+          "size": 9497
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "117_Cedar_purine-policy-n21usjyb/validation/final-static-checks.json",
+          "sha256": "2e81f5c62f943a23ad16344e6c7e52d3b187bf79555864f61c768c22e7ead29d",
+          "size": 172
+        }
+      ],
+      "source_integrity": {
+        "C117_files": 12,
+        "C117_bytes_sizes_timestamps": "UNCHANGED",
+        "C116_source_files": 3,
+        "C116_source_bytes_sizes_timestamps": "UNCHANGED",
+        "C116_candidate_and_receipt_files": 9,
+        "C116_candidate_and_receipt_bytes": "UNCHANGED"
+      },
+      "static": {
+        "documentation": {
+          "relative_links_checked": 277,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "diff_check": "PASS",
+        "compileall": "PASS",
+        "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c117-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+        "svg": "XML valid; visible elements unchanged; accessible description and caption updated",
+        "source_test_hashes_unchanged": true
+      },
+      "full_wall_seconds": 930.0272211669944,
+      "source_test_files": 464,
+      "source_tests_unchanged": true,
+      "final_static": {
+        "documentation": {
+          "relative_links_checked": 278,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "diff_check": "PASS",
+        "source_test_hashes_unchanged": true
+      }
+    },
+    "scientific_references": [
+      {
+        "title": "wwPDB CCD aromatic bond flag",
+        "url": "https://pdbml.wwpdb.org/dictionaries/mmcif_pdbx_v5_next.dic/Items/_chem_comp_bond.pdbx_aromatic_flag.html"
+      },
+      {
+        "title": "RDKit documented aromaticity models (scope rationale only; no dependency or perception claim)",
+        "url": "https://www.rdkit.org/docs/RDKit_Book.html#aromaticity"
+      }
+    ],
+    "changed_files": [
+      "src/nasolve/cif_purine_representation.py",
+      "src/nasolve/cif_generation.py",
+      "src/nasolve/cif_candidate_usability.py",
+      "tests/test_cif_purine_representation.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "included": "Code, synthetic regressions, maintained contracts and compact technical evidence.",
+    "excluded": "Raw CIF/PDB inputs and outputs, workbook/data, SDK captures, native logs, runners, pickles and partial attempts remain local.",
+    "limitations": [
+      "This qualifies the retained C116 outputs, not a new maintained production-generation route. The ordinary reader handoff still blocks their order change.",
+      "40A source-relative handedness passes; APN has no fixed stereocenter in this control. Absolute CIP and achieved scientific geometry remain unqualified.",
+      "Isolated finite energies and exact proxies do not establish convergence, linked amide numerics, refinement or all-catalogue support."
+    ],
+    "next": "Thread the explicit policy through a separately versioned source-reader/generation route with exact stage invariants; then generate and qualify numerical restraints in the C114-authorized linked PNA chemical environment. Never prune isolated numerics into a linked dictionary."
   }
 }

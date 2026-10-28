@@ -42,9 +42,10 @@ def _torsion_weight(row):
     return 1/sigma**2
 
 
-def reassess_complete_candidate(source,candidate,code):
+def reassess_complete_candidate(source,candidate,code,*,bond_representation_policy=None):
     """Retain raw inspection while distinguishing fixed hand from 'both' terms."""
-    raw=inspect_component_generation(source,candidate,code);stereo=complete_candidate_stereo(source,candidate,code)
+    options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
+    raw=inspect_component_generation(source,candidate,code,**options);stereo=complete_candidate_stereo(source,candidate,code)
     left=raw['source_assessment']['components'];right=raw['generated_assessment']['components']
     if len(left)!=1 or len(right)!=1:raise ValueError('Require one source and candidate component')
     a,b=(_comparison_inventory(v)['signed_chirality'] for v in [left[0],right[0]])
@@ -67,7 +68,7 @@ def reassess_complete_candidate(source,candidate,code):
     if stereo['stereochemistry']=='INVERTED':reasons.append('finished-source-relative-configuration-opposed')
     omissions=[{'center':c,'ordered_neighbors':list(n),'source_volume_sign':s,'all_neighbors':sorted(neighbors[c])}
                for c,n,s in missing] if allowed else []
-    return {'schema_version':1,'policy_id':POLICY_ID,'component':code,'legacy_inspection':raw,'finished_stereo':stereo,
+    return {'schema_version':1,'policy_id':POLICY_ID if bond_representation_policy is None else 'cif-isolated-candidate-native-usability-v3','component':code,'legacy_inspection':raw,'finished_stereo':stereo,
         'candidate_status':'REJECTED' if reasons else 'CANDIDATE_REVIEW','rejection_reasons':sorted(set(reasons)),
         'formal_charges_preserved':charges_ok,'unoriented_volume_omissions':omissions,
         'requires_native_tetrahedral_coverage':bool(omissions),'native_usability':'NOT_RUN',
@@ -122,11 +123,12 @@ def energy_inventory_checks(native):
             'finite_energy_and_gradient':finite,'fixed_coordinate_repeats':repeat}
 
 
-def qualify_candidate_native(source,candidate,model,code,native):
+def qualify_candidate_native(source,candidate,model,code,native,*,bond_representation_policy=None):
     """Require isolated exact definitions, essential proxies and usable numbers."""
     from .cif_fragment_restoration import _model
     from .cif_fixed_geometry import _fixed_policy
-    candidate=Path(candidate);assessment=reassess_complete_candidate(source,candidate,code);checks={};evidence={}
+    options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
+    candidate=Path(candidate);assessment=reassess_complete_candidate(source,candidate,code,**options);checks={};evidence={}
     values=_values(candidate,code);elements,orders,_,neighbors=_graph(values)
     checks['source_chemistry_and_configuration']=assessment['candidate_status']=='CANDIDATE_REVIEW'
     checks['native_completed']=native.get('status')=='REVIEW' and native.get('inventory_detail')=='linked'
@@ -216,7 +218,7 @@ def qualify_candidate_native(source,candidate,model,code,native):
         checks.update(energy_inventory_checks(native))
     except (KeyError,TypeError,ValueError,IndexError,ZeroDivisionError,OverflowError) as exc:
         checks['complete_native_evidence']=False;evidence['error']=type(exc).__name__+': '+str(exc)
-    return {'schema_version':1,'policy_id':POLICY_ID,'component':code,'native_usable':all(checks.values()),
+    return {'schema_version':1,'policy_id':POLICY_ID if bond_representation_policy is None else 'cif-isolated-candidate-native-usability-v3','component':code,'native_usable':all(checks.values()),
         'status':'ISOLATED_NATIVE_USABILITY_PASS' if all(checks.values()) else 'REVIEW','checks':checks,'evidence':evidence,
         'candidate_sha256':sha256(candidate.read_bytes()).hexdigest(),'source_assessment':assessment,
         'scope':'ISOLATED_COMPONENT_ONLY','linked_context':'NOT_RUN','absolute_cip_assignment':'NOT_RUN',

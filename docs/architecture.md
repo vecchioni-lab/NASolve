@@ -3467,3 +3467,17 @@ still subject to the existing source-identity and native qualification gates.
 The [C116 contract](cif-doctor.md#explicit-connected-atom-ordering-c116) records
 the observed coordinate-reference promotion, bounded workaround and remaining
 purine/linked-PNA limits. No run/checkpoint migration is required.
+
+## Explicit neutral purine representation assessment (C117)
+
+`cif_purine_representation` extends the legacy representation comparison only
+when the caller supplies its named policy. A graph/valence whitelist permits
+complete source-declared neutral fused purines with unchanged single-bridge
+substituents and exact whole-component atoms/H/formal charges. No chemical
+perception or source mutation occurs. Inspection-v5 and usability-v3 reports
+carry separate policy identity; default reports and worker bytes remain exact.
+All source-relative stereo, numerical and native checks remain independent.
+The [C117 contract](cif-doctor.md#explicit-neutral-purine-representation-c117)
+records preserved-candidate qualification and exclusions. Threading the policy
+through maintained source-reader/generation stages is a separate next step;
+neither linked PNA targets nor ordinary adoption is established here.

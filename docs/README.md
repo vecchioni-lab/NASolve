@@ -55,6 +55,9 @@ distinguishing count/isotope/attachment changes from equal-count label differenc
 C114 adds [explicit neutral PNA amide operations](cif-doctor.md#explicit-neutral-pna-amide-operations-c114)
 to these read-only contracts, preserving charged terminal states and withholding
 unresolved reaction states. Native PNA support remains a separate gate.
+C117 adds [explicit neutral purine assessment](cif-doctor.md#explicit-neutral-purine-representation-c117):
+preserved 40A/APN candidates pass isolated native checks while ordinary generation
+and final-environment PNA numerical targets remain separate.
 C116 adds [explicit source atom ordering](cif-doctor.md#explicit-connected-atom-ordering-c116)
 with exact row preservation and a bounded 40A extra-bond workaround; existing
 native and chemical acceptance remain unchanged.

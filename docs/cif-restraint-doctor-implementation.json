@@ -27020,6 +27020,14 @@
       "next": "Qualify source-declared fused purine representation with exact atom/H/charge/stereo constraints; then final-environment linked PNA generation under C114 operations.",
       "validation": "6154 passed, 276 subtests passed in 957.15s (0:15:57); 166 focused tests; three preparations, six generation outcomes and two native qualifications replay cold.",
       "implementation_commit": "1171dc3d4e1eb80f3dbfc723cf317dcc883862fe"
+    },
+    "neutral_purine_representation": {
+      "status": "FOCUSED_FULL_NATIVE_COLD_PASS_PUBLICATION_PENDING",
+      "policy": "cif-source-declared-neutral-purine-aromatic-v1",
+      "evidence_key": "neutral_purine_representation_2026_10_28",
+      "scope": "Explicit isolated assessment/native qualification of preserved candidates; ordinary generation unchanged.",
+      "next": "Thread the explicit policy through a separately versioned source-reader/generation route with exact stage invariants; then generate and qualify numerical restraints in the C114-authorized linked PNA chemical environment. Never prune isolated numerics into a linked dictionary.",
+      "validation": "6190 passed, 276 subtests passed in 929.50s (0:15:29); 216 focused tests; six complete native checks and six cold native replays."
     }
   },
   "audience": [
