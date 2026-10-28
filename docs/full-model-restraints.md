@@ -112,9 +112,20 @@ L-sugar volume signs do not settle those separate questions. No coordinate
 refinement or pair-geometry improvement is claimed.
 
 Four end residues (`A:101`, `A:102`, `D:101`, `D:102`) remain unpaired within
-the supplied asymmetric unit. Symmetry-related partners have not been searched
-or qualified. These sites remain visible in the report; `all` means the full
-model is considered, not that every possible relationship is known.
+the supplied asymmetric unit. C111's separate symmetry audit finds the expected G:C partner across
+`x-2/3,y-1/3,z-1/3`, while the adjacent complementary A:T exceeds the existing
+plane-angle cutoff (30.31 versus 25 degrees). The ordinary recipe still does
+not search or activate symmetry pairs. These sites remain visible in its report;
+`all` means the full model is considered, not that every possible relationship
+is known.
+
+Ordinary Phenix custom-bond edits accept a symmetry operator; angle, planarity
+and parallelity edits do not. Separate synthetic controls confirm low-level
+angle/planarity symmetry energies, but do not qualify manager integration,
+gradients, serialization or nonbonded exclusions. These particular mates differ
+only by translation, so their plane-angle relationship is unchanged by imaging;
+that observation is not a general rotational-symmetry implementation. See the
+[C111 handoff](development-handoff.md#c111-sticky-end-symmetry-evidence).
 
 Exact commands, hashes and validation results are recorded under
 `l_dna_full_model_recipe_2026_10_28` in the

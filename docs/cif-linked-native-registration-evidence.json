@@ -36300,5 +36300,236 @@
       "tests/test_full_model_restraints.py"
     ],
     "tested_implementation_commit": "799ecc60a31f5b6264b40a4f6d6dc967a43da645"
+  },
+  "sticky_end_symmetry_audit_2026_10_28": {
+    "status": "SYMMETRY_GEOMETRY_AND_INTERFACE_AUDIT_COMPLETE",
+    "tested_implementation_commit": "799ecc60a31f5b6264b40a4f6d6dc967a43da645",
+    "base_continuity_commit": "1fda9c6cca03d3615e7da722d2d49c4d8d2a59c6",
+    "before": "Four end sites unpaired in ASU; symmetry partners unsearched.",
+    "after": "One reciprocal GC symmetry pair passes unchanged NAR candidate thresholds; complementary AT at the same image is rejected by existing plane-angle threshold. Native interface capabilities are separated from production support.",
+    "scope": "Diagnostic evidence only; no source/test/runtime changes or restraint activation.",
+    "schema_compatibility": "No runtime or checkpoint schema change; no migration.",
+    "software": {
+      "Phenix": "2.2.1-6174",
+      "cctbx": "2026.9.dev4+unknown",
+      "NARestraints": "1.1.3"
+    },
+    "execution": "Two actual phenix.python executions: symmetry extraction and synthetic interface/energy controls. Zero refinement/Coot/ReadySet/Phaser runs.",
+    "geometry": [
+      {
+        "query": "A:101",
+        "partner": "D:102",
+        "operator": "x-2/3,y-1/3,z-1/3",
+        "recipe": "GC",
+        "bond_distances": [
+          2.7520834703225825,
+          2.676744703399034,
+          2.551802286685497
+        ],
+        "score": 77.45622019046064,
+        "plane_angle": 12.115555462654035,
+        "passes_geometric_prefilter": true,
+        "translation_plane_control": {
+          "asu_angle": 12.115555462654035,
+          "mate_angle": 12.115555462654035,
+          "absolute_difference": 0.0
+        }
+      },
+      {
+        "query": "A:102",
+        "partner": "D:101",
+        "operator": "x-2/3,y-1/3,z-1/3",
+        "recipe": "AT",
+        "bond_distances": [
+          3.4275088384169408,
+          3.58863417517563
+        ],
+        "score": 37.729619611803884,
+        "plane_angle": 30.3142160636381,
+        "passes_geometric_prefilter": false,
+        "translation_plane_control": {
+          "asu_angle": 30.3142160636381,
+          "mate_angle": 30.3142160636381,
+          "absolute_difference": 0.0
+        }
+      }
+    ],
+    "checks": {
+      "baseline_unpaired_sites": true,
+      "operator_round_trip": true,
+      "rigid_score_invariance_pairs": 19,
+      "max_score_difference": 7.105427357601002e-14,
+      "one_vs_two_cell_shells_identical": true,
+      "candidate_evaluations": [
+        40,
+        40
+      ],
+      "input_preserved": true
+    },
+    "native_interface": {
+      "phil_fields": {
+        "bond": {
+          "symmetry_operation_consumed": true
+        },
+        "angle": {
+          "symmetry_operation_consumed": false
+        },
+        "planarity": {
+          "symmetry_operation_consumed": false
+        },
+        "parallelity": {
+          "symmetry_operation_consumed": false
+        }
+      },
+      "low_level_energy_checks": [
+        {
+          "kind": "angle",
+          "operator": "x+1/3,y,z",
+          "symmetry_energy": 4224.999999999996,
+          "explicit_image_energy": 4224.999999999996,
+          "difference": 0.0
+        },
+        {
+          "kind": "planarity",
+          "operator": "x+1/3,y,z",
+          "symmetry_energy": 0.013431082515625211,
+          "explicit_image_energy": 0.013431082515625211,
+          "difference": 0.0
+        },
+        {
+          "kind": "angle",
+          "operator": "-y,x-y,z",
+          "symmetry_energy": 4590.562550542347,
+          "explicit_image_energy": 4590.562550542347,
+          "difference": 0.0
+        },
+        {
+          "kind": "planarity",
+          "operator": "-y,x-y,z",
+          "symmetry_energy": 0.014808835083768304,
+          "explicit_image_energy": 0.014808835083768304,
+          "difference": 0.0
+        }
+      ],
+      "parallelity": {
+        "sym_ops_constructor": "REJECTED",
+        "exception": "ArgumentError"
+      },
+      "limitations": [
+        "No manager integration, gradients, serialization or clash-exclusion qualification",
+        "Existing Cedar parallelity derivative qualification remains required"
+      ]
+    },
+    "native_source_hashes": [
+      {
+        "anchor": "phenix_site_packages",
+        "path": "mmtbx/monomer_library/pdb_interpretation.py",
+        "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+      },
+      {
+        "anchor": "phenix_site_packages",
+        "path": "cctbx/geometry_restraints/angle_bpl.cpp",
+        "sha256": "11c10fa52ddc1ea3fa9129a9447b43b0581ba03bfbc012bfca757a476b9429e9"
+      },
+      {
+        "anchor": "phenix_site_packages",
+        "path": "cctbx/geometry_restraints/planarity_bpl.cpp",
+        "sha256": "b8d0928705786f127d953dadd3d8b179fccbce02b93ecd1105e927994098be65"
+      },
+      {
+        "anchor": "phenix_site_packages",
+        "path": "cctbx/geometry_restraints/parallelity_bpl.cpp",
+        "sha256": "3b80e303b6b1da740b8719dc32546fd1cf488ee9df9c5361655066c7dc726d5c"
+      },
+      {
+        "anchor": "phenix_site_packages",
+        "path": "cctbx/geometry_restraints/parallelity.h",
+        "sha256": "a245965c884e37dc6c3f74957d5fce2b07cd8b61338f1de91d71c1bb9b2d0c18"
+      }
+    ],
+    "full_pytest": "Deferred explicitly by operator; C110 full suite remains last complete validation.",
+    "limitations": [
+      "Scoring evidence is not global periodic assignment or native restraint qualification.",
+      "No added soft bonds, no covalent pseudolink, no clash-exclusion changes.",
+      "No periodic contact/clash classification, gradient or manager serialization test.",
+      "Ordinary parallelity is translation-invariant for these two images, but not a general rotational-symmetry solution; Cedar gradient qualification still applies.",
+      "Large helix displacement/bending requires a separate design-aware, map-supported repair search with immutable attempts; local candidate cutoffs must not be widened to invent partners.",
+      "Phosphate state qualification from C110 remains open."
+    ],
+    "next_step": "A disposable exact symmetry soft-bond native inventory test must compare nonbonded exclusions before/after. Then qualify a symmetry-aware plane/angle/parallelity route with explicit-image energy and mapped-gradient controls before optimization.",
+    "artifacts": "Only compact technical receipt and source/input hashes committed; raw model, scripts and native output stay in local C111 capsule.",
+    "commands": [
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c111_audit.py",
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/c111_followup.py",
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_full_model_restraints.py"
+    ],
+    "references": [
+      {
+        "anchor": "live_capsule",
+        "path": "input.pdb",
+        "size": 67995,
+        "sha256": "e33354ab5bf68837b51c949ce601aa36684c4409f72f18e480f455a6a02f3500"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "result.json",
+        "size": 10482,
+        "sha256": "6ae6ef89326c926dd3f3c601a671560c88520134437fb146c6061307c1cbb35e"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "complementary-overhangs-verified.json",
+        "size": 2975,
+        "sha256": "703a9e727d0106b18626181496730c162e78ba487dca8636a172e88396a2636a"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "capability.json",
+        "size": 1371,
+        "sha256": "8a048e3b813d014e295b9c08b0cfeee630e44f30f83b828dfcdbfe4d8c8690e7"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "audit.py",
+        "size": 5872,
+        "sha256": "ac74c7109e716ab6ccb0425d77ebadf5499055d6608fb1ed56eba6776e0d78c4"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "followup.py",
+        "size": 2269,
+        "sha256": "3057a810144ee528d2d1d0ffe6c38ba04aa0bb9361fb5bfeeaf15044be274169"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "capture_symmetry.py",
+        "size": 556,
+        "sha256": "bfac99f6271ce01455b08f5565738dfdd7c9f0e9b43c7d2ae48bd5cdcd82433c"
+      },
+      {
+        "anchor": "live_capsule",
+        "path": "capability.py",
+        "size": 2103,
+        "sha256": "6dacb517ec3677bc720e66d3525768753fadea3da66339478486d28810d7e30e"
+      }
+    ],
+    "anchors": {
+      "live_capsule": {
+        "parent_anchor": "live_tests_directory",
+        "relative_path": "111_Cedar_L-3GBI-symmetry-0pf3zcb4"
+      },
+      "c110_capsule": {
+        "parent_anchor": "live_tests_directory",
+        "relative_path": "110_Cedar_L-3GBI-6sgsjhko"
+      }
+    },
+    "input_model": {
+      "anchor": "c110_capsule",
+      "path": "dataset/AutoMR/run_001/Phaser/mr_solution.pdb",
+      "sha256": "e33354ab5bf68837b51c949ce601aa36684c4409f72f18e480f455a6a02f3500",
+      "size": 67995
+    },
+    "focused_validation": "22 passed in 3.97s; tests/test_full_model_restraints.py",
+    "command_path_note": "Historical execution commands; preserved scripts and inputs are identified by anchored references above. No relocation claim is made for these local audit runners."
   }
 }

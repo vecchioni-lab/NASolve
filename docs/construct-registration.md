@@ -1129,6 +1129,17 @@ and native geometry diagnostics. Existing Scout
 remains backend-only and its guided whole-chain selection helper does not yet
 perform splitting, joining, symmetry materialization or this repair.
 
+C111 adds a small L-3GBI sticky-end diagnostic: a symmetry-related G:C pair
+passes existing NAR geometry thresholds; its complementary A:T neighbor is
+present but too tilted for automatic selection. This supports a separate
+soft H-bond association experiment, not covalent chain continuation. The
+[full-model recipe evidence](full-model-restraints.md#l-3gbi-evidence) records
+the native interface limits. A future stitcher must distinguish intended
+partners from proximity, preserve whole-domain geometry during large motions,
+and evaluate periodic clashes and maps before accepting a child. Bond addition
+must be audited for changes to native nonbonded exclusions; a plausible visual
+closure or ordinary plane restraint is insufficient evidence.
+
 ### Materialization, Coot repair and Phenix enforcement
 
 Topo Net itself should remain preview/intent logic. Applying a reviewed surgery

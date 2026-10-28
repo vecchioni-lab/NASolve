@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record sticky-end symmetry evidence (C111)
+
+- Document L-3GBI complementary overhang geometry and exact crystal image,
+  separating a selected G:C candidate from an A:T plane-angle rejection.
+- Record installed native symmetry-interface and low-level energy controls;
+  preserve the distinction between base-pair association, clash/exclusion
+  qualification and covalent phosphate continuation. No runtime behavior,
+  schema, chemistry, threshold or coordinate changes.
+
 ### Compile full-model NARestraints recipes and validate L-DNA (C110)
 
 - Add opt-in `restraint_scope = all` to the dataset input card and

@@ -11,6 +11,46 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C111 sticky-end symmetry evidence
+
+Completed a bounded, read-only audit on C110 source `799ecc60a31f5b6264b40a4f6d6dc967a43da645`
+from continuity head `1fda9c6cca03d3615e7da722d2d49c4d8d2a59c6`. No job is active.
+This change records evidence and design limits only; no runtime, schema,
+threshold, input card, checkpoint or model is changed.
+
+The expected overhang uses `x-2/3,y-1/3,z-1/3`: A:101–D:102 is GC,
+score 77.46, bond distances 2.55–2.75 A and plane angle 12.12 degrees.
+A:102–D:101 is complementary AT, but at 30.31 degrees exceeds NAR's unchanged
+25-degree plane cutoff (score 37.73; distances 3.43/3.59 A). Do not promote it
+by widening thresholds. The two reported GC directions are one reciprocal
+periodic pair, not two independent restraints. One- and two-cell search shells
+agree; all 19 baseline-pair scores survive a crystal rotation.
+
+Actual Phenix 2.2.1-6174 interface controls confirm that ordinary PHIL accepts
+`symmetry_operation` only for custom bonds, not angles/planarity/parallelity.
+Low-level angle and planarity symmetry energies match explicit transformed
+coordinates in translation and rotation controls. Parallelity's Python proxy
+constructor rejects `sym_ops`. For these translation-only mates, ordinary
+plane-angle geometry is invariant; manager/gradient/exclusion qualification
+remains separate, including Cedar's known parallelity gradient requirements.
+
+Next bounded step: a disposable symmetry soft-bond inventory/exclusion audit.
+Keep sticky-end H-bond association distinct from covalent phosphate continuation.
+Larger helix tugging/bending belongs to the planned design-aware geometry module,
+with maps, explicit intended partners, periodic clashes and preserved attempts.
+No refinement, covalent link or new restraint is activated here. C110 phosphate
+chemical-state qualification remains open.
+
+Validation: **22 focused tests pass in 3.97 s**; native interface/energy and
+search controls pass. Full pytest explicitly deferred by the operator; C110
+remains the last complete suite. Exact commands, sources, hashes and remaining
+limits: `sticky_end_symmetry_audit_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Local capsule:
+`live_tests_directory/111_Cedar_L-3GBI-symmetry-0pf3zcb4`. Raw model, runners and native
+output remain local; only compact evidence is committed. No migration.
+
+— Rowan · Codex desktop
+
 ## C110 full-model recipe and L-3GBI
 
 Implementation, live checks and full regression pass. No job is active.
