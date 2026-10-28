@@ -323,15 +323,20 @@ def _find_unique(root: Path, name: str) -> Path:
     return candidates[0].resolve()
 
 
-def _hl_labels(output: str) -> bool:
-    normalized = output.upper().replace("HL_A", "HLA").replace("HL_B", "HLB")
-    normalized = normalized.replace("HL_C", "HLC").replace("HL_D", "HLD")
-    # Phenix 1.20.1 writes model-combined coefficients as
-    # HLAM/HLBM/HLCM/HLDM; newer files often use HLA/HLB/HLC/HLD.
-    return all(
-        re.search(rf"\b{label}(?:M)?\b", normalized)
-        for label in ("HLA", "HLB", "HLC", "HLD")
-    )
+def _hl_labels(output: str) -> tuple[str, ...] | None:
+    # Keep the existing AutoRefine preference; do not mix coefficient families
+    # or silently substitute anomalous-only HLanom coefficients.
+    for labels in (
+        ("HLAM", "HLBM", "HLCM", "HLDM"),
+        ("HLA", "HLB", "HLC", "HLD"),
+        ("HL_A", "HL_B", "HL_C", "HL_D"),
+    ):
+        if all(
+            re.search(rf"(?<!\S){re.escape(label)}(?!\S)", output, re.I)
+            for label in labels
+        ):
+            return labels
+    return None
 
 
 def _discover_refinement_data(
@@ -349,17 +354,16 @@ def _discover_refinement_data(
         len(path.parts),
         str(path),
     ))
-    inspected: list[str] = []
     for candidate in candidates:
         output = _run_mtz_dump(candidate, mtz_dump_executable, environment)
-        if not _hl_labels(output):
+        phase_labels = _hl_labels(output)
+        if phase_labels is None:
             continue
         try:
-            labels = anomalous_labels(output)
+            anomalous_labels(output)
         except AutoSolPreparationError:
             continue
-        inspected.append(str(candidate.resolve()))
-        return candidate.resolve(), list(labels)
+        return candidate.resolve(), list(phase_labels)
     raise AutoSolPreparationError(
         "AutoSol produced no MTZ containing both Hendrickson-Lattman phases "
         "and anomalous observations"

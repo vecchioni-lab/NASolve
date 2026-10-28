@@ -258,3 +258,48 @@ def test_environmental_b_is_branch_preparation_not_posthoc_scaling():
     assert policy['base_excludes_sugar_phosphate'] and policy['retain_separate_base_means']
     assert policy['default_cli_policy']=='base-mean'
     assert not policy['weighted_by_occupancy'] and not policy['native_worker_changed']
+
+
+def test_planned_metal_screen_is_explicit_and_starts_from_discovered_sites():
+    screen = intent()['integration']['metal_screen']
+    assert screen['status'] == 'PLANNED_NOT_IMPLEMENTED'
+    assert screen['explicit_recipe_required'] and not screen['changes_standard_autosol_gate']
+    assert screen['initial_site_source'] == 'AutoSol'
+    assert screen['initial_count'] == 'discovered_supported_free_metal_sites'
+    assert screen['count_search_directions'] == ['fewer', 'more']
+    assert screen['retain_covalent_anomalous_anchors']
+    assert screen['use_autosol_phase_lineage']
+    assert screen['solve_if_no_metal']['default'] is False
+    assert screen['solve_if_no_metal']['separate_metal_free_branch']
+    assert not screen['solve_if_no_metal']['failure_proves_absence']
+
+
+def test_planned_refined_endpoint_and_ratio_trigger_preserve_scientific_boundaries():
+    screen = intent()['integration']['metal_screen']
+    assert screen['environment_b_source'] == 'completed_xyz_adp_open_refinement_endpoint'
+    assert screen['parent_scaffold_b_is_quantitative_source'] is False
+    assert screen['phase_policy_changes_require_new_comparison_basis']
+    assert screen['production_endpoint_bridge_implemented'] is False
+    trigger = screen['extra_site_trigger']
+    assert trigger['suggested_ratio'] == 1.3 and trigger['configurable']
+    assert trigger['requires_prepared_b_and_valid_fit']
+    assert not trigger['proves_extra_metal']
+    assert trigger['retain_parent_candidate']
+    table = intent()['integration']['campaign']['viewer']['table_design']
+    assert table['status'] == 'OPEN_PENDING_REAL_DATA'
+    assert table['one_table_per_trial'] is False
+    assert table['proposed_rows_per_multisite_trial'] == [1, 2]
+    assert table['side_by_side_geometries'] and not table['implemented']
+
+
+def test_planned_symmetry_mapping_preserves_sites_and_cluster_geometry():
+    mapping = intent()['integration']['metal_screen']['symmetry_mapping']
+    assert mapping['status'] == 'PLANNED_NOT_IMPLEMENTED'
+    assert mapping['multiple_cell_offsets'] and mapping['retain_raw_sites_and_exact_transform']
+    assert mapping['tied_matches_require_review']
+    assert mapping['unambiguous_closest_copy_selected_automatically']
+    assert mapping['target'] == 'closest_actual_model_atoms_or_declared_intended_site'
+    assert mapping['connected_clusters_preserve_geometry']
+    assert mapping['independent_sites_may_map_to_different_groups']
+    assert not mapping['nearest_distance_proves_bond']
+    assert not mapping['overwrite_autosol_output']

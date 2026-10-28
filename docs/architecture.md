@@ -1422,6 +1422,15 @@ this preparation, while older trial replay retains its original B. See the
 Viewer auto fitting, display connectivity, labels, trial grouping and default
 navigation remain presentation operations. A preview never edits a saved trial.
 
+The planned [metal-screen recipe](metal-screen.md) is a separate opt-in path,
+not an expansion of the ordinary nucleotide-heavy-atom AutoSol gate. It captures
+AutoSol's discovered sites and phase lineage, permits fewer/more-site branches,
+and declares whether an unsuccessful screen may continue on a metal-free branch.
+Quantitative environmental B comes from the candidate's completed XYZ/ADP-open
+refinement endpoint. Current recipe-only geometry replay cannot import that
+endpoint, and the frozen f-double-prime worker currently excludes external phase
+restraints. Those adapters and phase-policy qualification remain explicit gaps.
+
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
 independent, with no implicit joint fitting or inherited chemical qualification.

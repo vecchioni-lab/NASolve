@@ -7,7 +7,19 @@ defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
 
+The planned [explicit metal-screen mode](metal-screen.md) starts from AutoSol
+sites and phase products, explores counts up and down, and records the campaign
+no-metal fallback policy. This is an opt-in experimental recipe; ordinary
+NASolve's conditional AutoSol behavior remains unchanged.
+
 ## Implemented environmental metal B preparation
+
+For quantitative use, the source must be the **completed XYZ/ADP-open refinement
+endpoint for this candidate**, followed by pinning XYZ. Parent scaffold B is not
+the intended source. The current calculator accepts its supplied geometry and
+does not yet enforce that refined-endpoint provenance; the
+[endpoint bridge](metal-screen.md#geometry-refinement-environmental-b-and-frozen-trials)
+remains to be implemented and qualified.
 
 Each fixed-geometry branch prepares metal B **before** fixed-occupancy
 f-double-prime quantitation. The assumption is that metal displacement resembles
@@ -70,8 +82,9 @@ legacy replay, scan inheritance and source-removed relocation. Four complete
 Phenix **2.2.1-6174** trials on the saved Hg/AuAg controls exercised both independent
 Q changes and preserved input/final atomic-state audits; all prior files were
 preserved. Their generated nucleobase atoms all have B = 20 Å², so this validates
-mechanics, not experimental f-double-prime/occupancy inference. A credible refined
-parent base-B field is still required. Uniform contributing B values are flagged
+mechanics, not experimental f-double-prime/occupancy inference. A credible base-B
+field from the candidate XYZ/ADP-open refinement endpoint is still required.
+Uniform contributing B values are flagged
 in the preview for inspection. No new Coot execution or scientific solution
 qualification is claimed.
 
@@ -79,9 +92,11 @@ qualification is claimed.
 
 `metal serve-workbench` presents the shared verified controller in a local,
 read-only browser interface. It is an initial comparison viewer, not the full
-NASolve GUI or an editable restraint builder. The initial interface received user visual review on 2026-10-28. The revised
-camera, labels and grouped tables await another visual review; scientific
-navigation and the HTTP boundary have regression coverage.
+NASolve GUI or an editable restraint builder. Initial and revised interfaces
+received user visual review on 2026-10-28; the revised viewer was positively
+received. Table/plot organization remains provisional pending representative
+real data, not a settled presentation contract. Scientific navigation and the
+HTTP boundary have regression coverage; visual review is not scientific acceptance.
 
 ```sh
 nasolve metal serve-workbench --catalog /path/to/local/catalog.json --dataset hg=/path/to/HgDataset --dataset mixed=/path/to/AuAgDataset
@@ -1207,7 +1222,22 @@ current documentation regression tests.
 
 ## Tables, plots and GUI selection
 
-Use an overview row per hypothesis/trial plus an expandable per-site table.
+**Open design questions, 2026-10-28.** Revisit layout after obtaining representative
+refined data. The preferred direction is **one compact table per geometry**,
+with each multi-site trial condensed into one or two rows, rather than a separate
+table for every trial. Roughly ten occupancy trials should be understandable at
+once, with another geometry available side by side. Preserve the Q vector and
+exact site identities within a trial. Primary values remain Q (occ), observed
+and expected f-double-prime, and their ratio; secondary details expand on demand.
+The current viewer's trial boxes are a working presentation, not the final design.
+
+Still to settle using real data: packing variable site counts without ambiguity;
+linking equivalent sites across geometries; displaying locked versus varied Q;
+handling pending/failed trials and different comparison bases; and whether
+response plots and a branch tree add useful information at realistic scale.
+No new table/graph implementation is requested until those examples are available.
+
+Use an overview row per hypothesis/trial with expandable per-site details.
 Include count, species assignments, geometry endpoint, q-vector, B policy,
 f' policy, reference and refined f'', q*f'', resolution/wavelength, grouping,
 fit metrics, local geometry, residual-map findings, convergence, freeze audit

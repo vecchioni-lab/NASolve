@@ -8,6 +8,33 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Correct AutoSol phase-label provenance
+
+- Record the complete HL coefficient quartet in `refinement_data_phase_labels`
+  instead of the anomalous observation quartet. New checkpoint phase metadata
+  now receives the correct labels. Reject incomplete mixed HL naming families.
+- Preserve AutoRefine's existing coefficient-family preference, native commands,
+  phase acceptance and ordinary AutoSol eligibility. Existing immutable reports
+  are not rewritten; AutoRefine continues to inspect the actual phase MTZ.
+
+### Specify the experimental metal-screen recipe and refined-data handoff
+
+- Record a planned opt-in metal screen using AutoSol-discovered free-metal sites
+  and phases while retaining covalent anomalous anchors. Start from its discovered
+  count and branch toward fewer or more sites; a configurable ratio near 1.3 is
+  a proposed extra-site trigger, not proof of count.
+- Specify symmetry-aware distance lookup and recorded cell/symmetry-copy mapping,
+  preserving coherent clusters and ambiguous alternatives.
+- Specify XYZ/ADP-open refinement as the source of environmental base/donor B
+  before freezing geometry and starting f-double-prime/Q trials. Document the
+  missing refined-endpoint and phase-policy integration explicitly.
+- Plan a campaign “Solve if no metal is found?” toggle, default No, with a separate
+  eligible metal-free fallback and distinct no-site, failed and unresolved outcomes.
+- Record positive revised-viewer feedback. Keep compact multi-site rows in one
+  table per geometry, side-by-side geometry comparison and plots as open design
+  questions pending real data. These design updates add no runtime mode, GUI
+  control or artifact schema; the separate phase-label correction is implemented.
+
 ### Prepare environmental metal B and clarify saved trial review
 
 - Prepare metal B after fixed geometry and before f-double-prime/occupancy trials.
@@ -24,8 +51,8 @@ entries are reconstructed from repository history.
   dataset/structure navigation without changing the shared controller contract.
 - Box metals by actual trial, retain comparison/scan aliases, and prioritize
   Q (occ), fitted/expected f-double-prime and their ratio. Expand secondary values
-  and show a workflow guide. Initial user review received; revised visuals await
-  review. The viewer remains read-only; prepared control values are not qualified
+  and show a workflow guide. Initial and revised user visual review received; table organization remains
+  provisional pending representative data. The viewer remains read-only; prepared control values are not qualified
   experimental occupancy estimates.
 
 ### View saved metal results with linked coordinates and modular panels
@@ -39,8 +66,8 @@ entries are reconstructed from repository history.
   browser memory and scientific navigation in Python. Add a transient schema-1
   presentation envelope; existing catalogs and scientific artifacts need no migration.
 - Bind the server to loopback with a random URL, strict origin/route checks and
-  no write/native-job endpoints. Browser visual review remains pending because
-  the host's automation policy blocks local URLs. Editable GUI and maps remain planned.
+  no write/native-job endpoints. User visual review has been received; automated visual testing remains blocked
+  by the host's local-URL policy. Editable GUI and maps remain planned.
 
 ### Navigate verified metal evidence across explicit datasets
 

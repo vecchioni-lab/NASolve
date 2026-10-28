@@ -1,7 +1,7 @@
 # NASolve GUI design contract
 
 Status: **general shell planned; initial local metal-results viewer implemented,
-visual review pending**. See the [viewer guide](metal-anomalous-doctor.md#implemented-local-saved-results-viewer)
+user visual review received; table organization provisional**. See the [viewer guide](metal-anomalous-doctor.md#implemented-local-saved-results-viewer)
 for its bounded read-only scope. This document defines the durable shell and
 interaction model for a future NASolve GUI. The GUI must expose existing guarded
 NASolve capabilities without creating a second scientific state model, a second
@@ -439,6 +439,17 @@ as a failure and never as evidence that AutoSol was scientifically required.
 When first-class campaign workflow recipes are added, the GUI should display the
 frozen recipe identity, intended endpoint and conditional path as backend-owned
 state. It must not maintain a separate GUI-only notion of "what should run next."
+
+The planned [metal-screen recipe](metal-screen.md) explicitly requests a search
+for declared metals, including free metals alongside covalent anomalous anchors.
+Campaign setup should expose **Solve if no metal is found? Yes / No**, default
+No, and freeze the choice per dataset. Yes permits a separate eligible metal-free
+branch; No stops the screen. Preserve no-site, unresolved, native-failure and
+budget-exhaustion states distinctly. This control is planned, not implemented.
+The revised metal viewer received positive user review; compact multi-site rows,
+side-by-side geometry tables and plots remain
+[open design questions](metal-anomalous-doctor.md#tables-plots-and-gui-selection)
+until representative refined results are available.
 
 ## Human-readable event stream / notifications
 

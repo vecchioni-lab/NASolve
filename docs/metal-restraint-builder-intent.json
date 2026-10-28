@@ -83,7 +83,7 @@
     "existing checkpoint choice",
     "development order recorded in docs/development-handoff.md"
   ],
-  "last_reconciled": "2026-10-27",
+  "last_reconciled": "2026-10-28",
   "development_order": "docs/development-handoff.md#parallel-metal-workflow-design",
   "numerical_targets_approved": false,
   "metal_counts": [
@@ -282,7 +282,7 @@
         "production_gui": false
       },
       "viewer": {
-        "status": "IMPLEMENTED_VISUAL_REVIEW_PENDING",
+        "status": "IMPLEMENTED_USER_VISUAL_REVIEW_RECEIVED",
         "module": "nasolve.metal.viewer",
         "contract": "docs/metal-anomalous-doctor.md#implemented-local-saved-results-viewer",
         "presentation_schema_version": 1,
@@ -296,15 +296,35 @@
         "native_execution": false,
         "checkpoint_adoption": false,
         "reference_coordinate_overlay": false,
-        "visual_review_passed": false,
+        "visual_review_passed": true,
         "initial_manual_review_received": true,
-        "revision_visual_review_pending": true,
+        "revision_visual_review_pending": false,
         "automatic_camera_fit": true,
         "three_rotations_two_pan_axes": true,
         "trial_snapshot_groups": true,
         "zoom_dependent_labels": true,
         "display_connectivity_changes_restraints": false,
-        "environmental_b_preview": true
+        "environmental_b_preview": true,
+        "revised_manual_review_received": true,
+        "table_design": {
+          "status": "OPEN_PENDING_REAL_DATA",
+          "implemented": false,
+          "proposed_table_scope": "one_geometry",
+          "one_table_per_trial": false,
+          "proposed_rows_per_multisite_trial": [
+            1,
+            2
+          ],
+          "side_by_side_geometries": true,
+          "primary_values": [
+            "Q (occ)",
+            "f_double_prime_observed",
+            "f_double_prime_expected",
+            "observed_expected_ratio"
+          ],
+          "retain_exact_trial_and_site_identity": true,
+          "plots_deferred_until_representative_data": true
+        }
       }
     },
     "milestones": [
@@ -477,7 +497,65 @@
       "native_worker_changed": false,
       "legacy_api_default": "keep_original_B",
       "new_trial_field": "b_calibration",
-      "scientific_qualification": "NOT_ASSESSED"
+      "scientific_qualification": "NOT_ASSESSED",
+      "quantitative_source_requirement": "completed_xyz_adp_open_refinement_endpoint",
+      "endpoint_provenance_gate_implemented": false
+    },
+    "metal_screen": {
+      "status": "PLANNED_NOT_IMPLEMENTED",
+      "contract": "docs/metal-screen.md",
+      "explicit_recipe_required": true,
+      "changes_standard_autosol_gate": false,
+      "initial_site_source": "AutoSol",
+      "initial_count": "discovered_supported_free_metal_sites",
+      "count_search_directions": [
+        "fewer",
+        "more"
+      ],
+      "retain_covalent_anomalous_anchors": true,
+      "use_autosol_phase_lineage": true,
+      "environment_b_source": "completed_xyz_adp_open_refinement_endpoint",
+      "parent_scaffold_b_is_quantitative_source": false,
+      "phase_policy_changes_require_new_comparison_basis": true,
+      "production_endpoint_bridge_implemented": false,
+      "frozen_fdp_external_phase_policy": "OPEN_QUALIFICATION_CURRENT_WORKER_MODEL_PHASES_ONLY",
+      "extra_site_trigger": {
+        "suggested_ratio": 1.3,
+        "configurable": true,
+        "requires_prepared_b_and_valid_fit": true,
+        "proves_extra_metal": false,
+        "retain_parent_candidate": true
+      },
+      "solve_if_no_metal": {
+        "label": "Solve if no metal is found?",
+        "default": false,
+        "scope": "frozen_campaign_recipe_per_dataset",
+        "separate_metal_free_branch": true,
+        "requires_eligible_starting_model": true,
+        "failure_proves_absence": false,
+        "preserve_search_outcome_and_phase_policy": true
+      },
+      "outcomes": [
+        "supported_sites",
+        "no_supported_sites",
+        "unresolved_output",
+        "execution_failed",
+        "budget_exhausted",
+        "preparation_failed"
+      ],
+      "symmetry_mapping": {
+        "status": "PLANNED_NOT_IMPLEMENTED",
+        "distance_metric": "unit_cell_metric_with_space_group_operators_and_lattice_shifts",
+        "multiple_cell_offsets": true,
+        "retain_raw_sites_and_exact_transform": true,
+        "target": "closest_actual_model_atoms_or_declared_intended_site",
+        "tied_matches_require_review": true,
+        "connected_clusters_preserve_geometry": true,
+        "independent_sites_may_map_to_different_groups": true,
+        "nearest_distance_proves_bond": false,
+        "overwrite_autosol_output": false,
+        "unambiguous_closest_copy_selected_automatically": true
+      }
     }
   },
   "solution_search": {

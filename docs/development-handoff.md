@@ -13,6 +13,91 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Metal-screen rehearsal and phase provenance 2026-10-28
+
+**Current outcome.** The user approved the revised coordinate viewer and asked
+for representative refined data before another table/plot redesign. The
+[metal-screen descriptor, methods and editable figure](metal-screen.md) now
+record a separate opt-in experimental recipe: declared metals motivate an
+AutoSol search, including free metals alongside covalent I/Br anchors. Start
+from AutoSol's discovered supported sites/count and test fewer/more-site children.
+A configurable ratio near 1.3 proposes another-site experiment; it does not
+establish count. Symmetry/cell mapping defaults to the closest actual model atoms,
+uses the intended site where appropriate, retains original coordinates and exact
+operators/shifts, and preserves connected-cluster geometry. The campaign design
+includes **Solve if no metal is found? Yes / No**, default No; Yes permits a
+separate eligible metal-free branch while retaining the search outcome.
+
+Environmental B must come from the candidate's **completed XYZ/ADP-open refinement
+endpoint**, followed by pinning XYZ and applying base/donor B before frozen
+f-double-prime/Q trials. Parent scaffold B is not the quantitative source.
+These integration rules and the campaign toggle remain **planned**. The existing
+geometry replay cannot simply adopt an external refined model; the frozen
+worker currently uses model phases without external phase restraints. Site
+mapping, phase capture/policy and endpoint provenance are the next adapter work.
+Compact multi-site trial rows in one table per geometry, side-by-side geometries,
+plots and branch-tree presentation remain open pending representative results.
+
+**Implemented correction.** Native inspection exposed observation labels stored
+as `refinement_data_phase_labels`. `autosol.py` now returns the actual complete
+HL quartet to that report/checkpoint metadata, rejecting mixed/incomplete naming
+families. The existing AutoRefine family preference, native command, site
+acceptance and ordinary AutoSol gate remain unchanged. AutoRefine already
+inspected the actual MTZ independently. There is no schema version change or
+required migration; old immutable reports are not rewritten. Historical phase
+metadata may therefore still contain the old observation labels and should not
+be used to infer which coefficients a historical fit consumed.
+
+**Bounded native evidence.** Two explicit 5W6W MR/PostMR preparations and two
+free/mixed AutoSol searches completed with **Phenix 2.2.1-6174 and Coot 1.3.3**.
+These were complete executions, not parser-only dry runs. The unmodified
+production gate rejects free-metal-only cases as expected; the separately
+labelled local diagnostic invokes AutoSol with declared species, no imposed
+site count, no model building and two processors. Exact native argv, input
+checksums and effective parameters are retained in each local `rehearsal.json`.
+Both outputs contain heavy-atom
+sites, anomalous observations and HL products. No human solution seeded the runs.
+No discovered sites/phases were adopted into approved checkpoints, and no
+XYZ/ADP-open refinement or new f-double-prime trial was performed.
+
+The per-case outer bounds were 1,080 seconds and 1.5 GB, with a 720-second native
+AutoSol limit and process-group cleanup. Actual combined rehearsal storage was
+about **34.4 MB** at completion; this is an observed pilot size, not a campaign
+storage guarantee. All **923** prior control files and six original raw input
+files remained unchanged. Corrected native MTZ readback preserved all **443**
+rehearsal files present at that audit. Native iotbx readback found identical
+Free-R values on every index in each original/phase-product pair, with no added
+or missing indices. A separate read-only closest-copy lookup
+used the existing R3 matcher without moving atoms or claiming general cluster
+mapping qualification. Scientific sites, fitted values, native logs and data
+remain excluded from Git.
+
+**Validation.** Before the phase-label fix, the new regressions returned six
+failures and four passes; after the fix, the focused command
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_autosol.py tests/test_autosol_phase_labels.py tests/test_autorefine.py tests/test_checkpoints.py tests/test_metal_workflow_intent.py`
+passed **109 tests and 21 subtests in 12.67 s**, before the final symmetry-intent
+check was added. The final full command,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`,
+passes **6,021 tests and 276 subtests in 763.25 s**, exit 0, including that final
+symmetry-intent check. All **452** inventoried source/test/asset/intent files
+remained unchanged throughout the suite. **186** local file/anchor links and
+three changed Python files parsed with Python 3.10 grammar pass; whitespace
+checks pass. No new portability claim or artifact-path change is made. Earlier
+staged intent checking found one temporary directory missing an unchanged linked
+document; that was staging setup, not a repository failure. No GUI automation or
+full metal-screen implementation is claimed.
+
+**Files, artifacts and next step.** Changes are limited to `autosol.py`, phase-
+label regression tests, development intent and its tests, the new metal-screen
+descriptor, anomalous/GUI/architecture/index docs, changelog and this handoff.
+Local runners and receipts live under ignored
+`branch-artifacts/Alder/runners/`, `live-20261028-02/` and
+`screen-20261028-01/`; none are committed. Existing source/CLI behavior and explicit
+paths remain supported. Next implement the opt-in request/result contract and
+site/phase-to-refined-endpoint adapter, including no-site/failure fallback and
+symmetry mapping, before quantitative B/f-double-prime qualification. Retain
+current viewer/table behavior until the refined examples guide the next design.
+
 ## Environmental B preparation and revised viewer 2026-10-28
 
 **Current change.** The user reviewed the initial viewer with screenshots and
@@ -89,9 +174,10 @@ opening with native subprocess creation forbidden.
 These generated controls have **B = 20 Å² throughout their nucleobases**. Sugar
 and phosphate have different inherited values and are deliberately excluded.
 The trials establish pipeline mechanics only. Credible occupancy quantitation
-still needs a suitable refined parent base-B field; neither high expected B nor
-human-reference B is silently substituted. The initial manual visual review is
-recorded; revised visuals remain pending. Browser automation is still blocked by
+still needs the candidate's completed XYZ/ADP-open refinement base-B field;
+neither scaffold B, high expected B nor human-reference B is silently substituted.
+Initial and revised manual visual review are recorded. The user approved the
+viewer presentation while leaving table/plot organization open for real data. Browser automation is still blocked by
 the host's explicit localhost policy, and no alternate automation was attempted.
 
 **Artifacts and continuity.** Local-only runners, native receipts, request/catalog,
@@ -106,8 +192,9 @@ Source development remains isolated on **Alder**, based for this step on
 are unchanged. Delivery remains source-only to Alder, with later reviewed
 integration through pine/main.
 
-**Next step.** Review the revised controls visually, then qualify preparation
-from an appropriate refined parent model before interpreting f-double-prime/Q.
+**Next step.** The revised viewer has received positive manual review. Qualify
+AutoSol-derived sites/phases and the candidate XYZ/ADP-open endpoint before
+interpreting f-double-prime/Q; see the newer metal-screen rehearsal above.
 Editable plan controls, measured-map comparison, a true branching solution tree,
 general-site construction and automatic scientific decisions remain later work.
 
@@ -122,7 +209,7 @@ Camera controls preserve 3D coordinates; view expansion and selected background
 scatterers never join or alter scientific site membership. Geometry-model q/B
 and selected-trial q/f-double-prime are shown separately. Complete reports retain
 pending points and reference limitations. This is a read-only initial interface;
-**browser visual acceptance remains pending**.
+**manual viewer review has since been received; see the newer sections above**.
 
 See the [human descriptor, methods, command and editable figure](metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
 The server binds only to loopback and exposes fixed packaged resources plus
