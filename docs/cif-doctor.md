@@ -27,7 +27,9 @@
 
 <a id="current-capability-boundary-c109"></a>
 
-## Current capability boundary (C112)
+<a id="current-capability-boundary-c112"></a>
+
+## Current capability boundary (C113)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -40,7 +42,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
-| Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases without erasing literal findings. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
+| Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; PNA operations stay unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
 | Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention or neutral furanose deletions, and compares exact projected tables. | Partner chemistry, PNA link states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
 | Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. C107 covers bounded one-site source projections; additional cores, complete linkage and native consumers remain open. |
@@ -564,6 +566,56 @@ exactly in a relocated checkout with original paths and native execution blocked
 Commands, hashes and validation are in `native_atom_name_mapping_2026_10_28`
 in the [evidence ledger](cif-linked-native-registration-evidence.json).
 
+### Bound hydrogen inventories (C113)
+
+For a C112 mapped source comparison, `link-native` now adds
+`mapped_definitions[SITE].hydrogen_inventory`, policy
+`cif-native-bound-hydrogen-inventory-v1`. This read-only layer compares the
+retained source projection and the effective native dictionary. It uses the
+existing indexed atom bindings; it performs no new native execution.
+
+Every heavy atom in both definitions must have an observed binding with the
+same element. Each H, D or T atom must have exactly one heavy-atom parent in
+an unambiguous bond inventory. Missing bond data, unbound heavy atoms,
+duplicate/self/unknown-endpoint bonds, orphan hydrogens or multiple/H-only
+parents produce `UNSUPPORTED` and `inventory_status=NOT_ASSESSED`. Unresolved
+source projections/model mappings are also not assessed. They cannot look like
+an empty, matching inventory.
+
+Recorded groups expose the source/native parent names, raw hydrogen labels and
+isotope counts. `inventory_status` separates count/isotope differences and
+changed attachments of identically named (or explicitly mapped) hydrogens;
+`name_status` separately records label differences. Two H labels swapped
+between parents remain visible even if each parent still has the same count.
+The labels of unmodelled hydrogens are not mapped or guessed. An already
+observed model-bound H alias may participate, retaining its C112 provenance.
+
+**Equal counts do not establish chemical equivalence.** They do not settle
+formal charge, protonation, individual hydrogen identity, stereochemistry or
+bond-order/numerical authority. Literal and mapped definition results remain
+unchanged by this new inventory; overall `REVIEW`, charge limitations and no
+automatic adoption remain. Text output reports recorded/unavailable inventories,
+attachment/count differences and equal-count label differences separately. Text
+totals summarize whole site inventories; individual parent groups remain in JSON.
+
+Replay of the preserved Phenix 2.2.1-6174 DNA capture records three methyl H
+atoms on both C7/C5M, under H71/H72/H73 versus H5M1/H5M2/H5M3 labels. It separately
+reports missing HOP2 at both selected sites and missing HO3′ at DT's O3′.
+The exact declared link still matches; source/mapped definitions still require
+review. These are source-versus-effective-definition observations, not claims
+of coordinate deletion or permission to change protonation. Both failed ATL
+captures stay failed. The legacy base capture keeps its original output; the
+L-DNA mapping-only control remains outside this hydrogen comparison because
+no corresponding source projection was supplied.
+
+Five saved controls replay exactly from relocated code/inputs with original
+paths and native execution blocked; the four source-link controls agree through
+API and JSON CLI. No new Phenix, ReadySet, Coot, Phaser, optimizer or refinement
+execution occurs. New report fields are additive within schema 1; worker,
+run/checkpoint schemas and default legacy reports require no migration. See
+`bound_hydrogen_inventory_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
 <a id="next-attachment-profile-milestone-g2-planned"></a>
 
 ### Remaining attachment-profile milestone (G2)
@@ -578,7 +630,8 @@ A workbook sugar label alone must not answer any of the latter three questions.
 C106 binds source cores; C107 adds single-site source projections; C108 requires
 reciprocal source-bound ports and complete declared-link scope. C109 compares
 literal endpoints with preserved native captures. C112 captures and checks actual
-model-bound native aliases. Next, establish explicit source-preserving protonation
+model-bound native aliases; C113 separates bound hydrogen counts/attachments
+from label differences. Next, establish explicit source-preserving protonation
 and unmodelled-name policies using independent DNA and held-out controls.
 Keep missing formal-charge readback distinct from contradictions. Generate and
 qualify a source-preserving numerical ATL candidate before repeating native

@@ -1557,6 +1557,12 @@ def _cif_link_native(args: argparse.Namespace) -> int:
             print(f"Captured native interpretation: {report['native_status']}; links: {report['link_status']}; source definitions: {report['definition_status']}")
             if 'atom_name_mapping' in report:
                 print(f"Observed native atom aliases: {report['atom_name_mapping']['alias_count']}; mapped source definitions: {report['mapped_definition_status']}")
+                hydrogen = [row['hydrogen_inventory'] for row in report['mapped_definitions'].values()]
+                if hydrogen:
+                    print(f"Hydrogen inventories: {sum(row['status'] == 'RECORDED' for row in hydrogen)} recorded; {sum(row['inventory_status'] == 'DIFFERENT' for row in hydrogen)} with attachment/count differences; {sum(row['inventory_status'] == 'MATCH' and row['name_status'] == 'DIFFERENT' for row in hydrogen)} with equal-count label differences; {sum(row['status'] != 'RECORDED' for row in hydrogen)} unavailable")
+                else:
+                    print("Hydrogen inventories: not assessed (native atom mappings unavailable)")
+
             if report['native_error']:
                 print("Captured error: " + report['native_error'])
             unavailable = [site for site,row in report['definitions'].items() if row['formal_charge_status'] == 'UNSUPPORTED']

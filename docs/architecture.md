@@ -3407,3 +3407,17 @@ no coordinates, chemistry, preparation, checkpoints or adoption. Old default
 captures remain readable; older readers reject the new extension. DNA, both
 failed ATL directions, L-DNA and a legacy capture pass exact cold replay. See
 the [C112 contract](cif-doctor.md#observed-native-atom-name-mappings-c112).
+
+
+## Bound source/native hydrogen inventories (C113)
+
+`cif_native_hydrogens.compare_hydrogen_inventory` groups retained source and
+effective native H/D/T atoms by observed heavy-atom bindings. Both heavy-atom
+sets and single-parent hydrogen adjacency must be complete and unambiguous
+before a comparison is recorded. The report separates isotope/count differences,
+label differences and named hydrogen attachment changes, including equal-count
+swaps between parents. It never generates unobserved H aliases or chemical-state
+permission. Charge/stereo/numerical qualification and C109/C112 outcomes stay
+independent. The C109 reader exposes this additive report only for C112 mapped
+comparisons; old default captures retain their results. No worker or preparation
+change is involved. See the [C113 contract](cif-doctor.md#bound-hydrogen-inventories-c113).

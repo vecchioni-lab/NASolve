@@ -50,6 +50,8 @@ Cold replay performs no native execution and grants no chemical qualification.
 C112 [records native name bindings](cif-doctor.md#observed-native-atom-name-mappings-c112)
 without confusing observed renaming with hydrogen/charge changes. Both new and
 legacy captures replay after relocation; automatic adoption remains disabled.
+C113 adds [bound hydrogen inventories](cif-doctor.md#bound-hydrogen-inventories-c113),
+distinguishing count/isotope/attachment changes from equal-count label differences.
 ATL retains its separate validation fixture, and joins PNA/other backbones inside
 the programme. ChemDraw-derived chemical references remain future input scope.
 

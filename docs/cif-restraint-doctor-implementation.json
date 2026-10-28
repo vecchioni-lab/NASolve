@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "native_atom_name_mapping_2026_10_28",
+    "current_diagnostic_record": "bound_hydrogen_inventory_2026_10_28",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26955,6 +26955,26 @@
       "automatic_adoption": false,
       "validation": "6051 passed, 276 subtests passed in 952.76s (0:15:52); 254 focused tests and five cold replay cases pass.",
       "tested_implementation_commit": "251d7cb31a3a6787bb24d3adfae69c1e79749efd"
+    },
+    "bound_hydrogen_inventory": {
+      "delivery": "C113",
+      "status": "BOUND_HYDROGEN_INVENTORIES_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+      "policy": "cif-native-bound-hydrogen-inventory-v1",
+      "api": "nasolve.cif_native_hydrogens.compare_hydrogen_inventory",
+      "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+      "report_field": "mapped_definitions[SITE].hydrogen_inventory",
+      "compatibility": "Additive schema-1 reader fields. C112 capture/worker bytes, legacy default reports, source pins, run/checkpoint schemas and preparation unchanged. No migration.",
+      "limitations": [
+        "Equal counts do not establish individual H-name identity, formal charge, protonation, stereochemistry or numerical equivalence.",
+        "Observed name binding and single-parent H adjacency are required; no native aliases or chemical operations are inferred.",
+        "Literal/mapped definition outcomes and unavailable formal-charge readback remain independent.",
+        "ATL numerical recovery, L-DNA chemical-state qualification and PDU energy/gradient/derivative gates remain open.",
+        "Sticky-end stitching remains parked; no automatic adoption or Pine/main merge."
+      ],
+      "next_step": "Establish explicit source- and site-authorized chemical-state operations across held-out components; use this inventory to verify permitted deltas before bounded numerical recovery and qualification.",
+      "contract": "docs/cif-doctor.md#bound-hydrogen-inventories-c113",
+      "automatic_adoption": false,
+      "validation": "6077 passed, 276 subtests passed in 933.58s (0:15:33); 258 focused tests and five cold replay cases pass."
     }
   },
   "audience": [

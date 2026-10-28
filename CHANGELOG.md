@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish bound hydrogen inventories from name differences (C113)
+
+- Extend mapped source/native reports with hydrogen attachment, isotope/count
+  and name inventories through observed heavy-atom bindings. Equal counts with
+  different labels never invent individual hydrogen aliases or protonation.
+- Expose moved hydrogens even when counts stay equal; withhold comparison for
+  incomplete heavy-atom coverage or ambiguous hydrogen/bond graphs. The CLI
+  distinguishes recorded differences from unavailable evidence.
+- Preserve literal/mapped definition outcomes, charge review and old default
+  captures. Additive schema-1 report fields only; no worker, run/checkpoint,
+  chemistry, coordinate or adoption changes.
+
 ### Capture observed native atom-name bindings (C112)
 
 - Add opt-in native capture of actual per-site model-to-dictionary atom bindings;

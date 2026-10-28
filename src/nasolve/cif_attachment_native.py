@@ -236,6 +236,16 @@ def _definitions(plan, native, root, snapshots, name_maps=None):
         if name_maps is not None:
             result[site]['atom_name_aliases'] = {k:v for k,v in names.items() if k != v}
             result[site]['source_atoms_without_model_binding'] = sorted(declared - name_maps.get(site,{}).keys())
+            if projection and identity_ok and clean_mapping:
+                from .cif_native_hydrogens import compare_hydrogen_inventory
+                elements = {a: e for a, e in zip(values['_chem_comp_atom.atom_id'], values['_chem_comp_atom.type_symbol']) if a in declared}
+                retained_bonds = [(a,b) for a,b in zip(values.get('_chem_comp_bond.atom_id_1',[]), values.get('_chem_comp_bond.atom_id_2',[])) if a in declared and b in declared]
+                result[site]['hydrogen_inventory'] = compare_hydrogen_inventory(elements, retained_bonds, definition, name_maps.get(site,{}))
+            else:
+                result[site]['hydrogen_inventory'] = {'status':'NOT_ASSESSED', 'inventory_status':'NOT_ASSESSED',
+                    'name_status':'NOT_ASSESSED', 'chemical_authority':'NOT_GRANTED',
+                    'limitations':['Source projection or native model mapping is unresolved.']}
+
     return result
 
 

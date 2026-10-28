@@ -30041,7 +30041,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "native_atom_name_mapping_2026_10_28",
+  "current_diagnostic_record": "bound_hydrogen_inventory_2026_10_28",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -36886,5 +36886,269 @@
     "next_step": "Qualify explicit chemical-state and unmodelled-name handling across source-bound held-out components, then recover/qualify numerical candidates through existing immutable-attempt machinery.",
     "author": "Rowan · Codex desktop",
     "tested_implementation_commit": "251d7cb31a3a6787bb24d3adfae69c1e79749efd"
+  },
+  "bound_hydrogen_inventory_2026_10_28": {
+    "delivery": "C113",
+    "status": "BOUND_HYDROGEN_INVENTORIES_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+    "base_commit": "d57fbb8b163ec280eb9e4ce812050c04bfdf2f91",
+    "before": "C112 records observed aliases but leaves hydrogen labels/counts as a combined definition discrepancy.",
+    "after": "A separate per-site report groups H/D/T by observed heavy-atom binding, distinguishes counts/isotopes, names and changed attachments, and withholds ambiguous/incomplete comparisons without changing definition review.",
+    "policy": "cif-native-bound-hydrogen-inventory-v1",
+    "schema_version": 1,
+    "api": "nasolve.cif_native_hydrogens.compare_hydrogen_inventory",
+    "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+    "report_field": "mapped_definitions[SITE].hydrogen_inventory",
+    "compatibility": "Additive schema-1 reader fields. C112 capture/worker bytes, legacy default reports, source pins, run/checkpoint schemas and preparation unchanged. No migration.",
+    "software": {
+      "reader_python": "3.12.14",
+      "preserved_native_capture_producer": "Phenix 2.2.1-6174"
+    },
+    "execution": "Read-only saved-capture replay, not a new native dry-run or execution. Zero Phenix/ReadySet/Coot/Phaser/optimizer/refinement calls.",
+    "cases": {
+      "DA_DT": {
+        "native_status": "REVIEW",
+        "link_status": "MATCH",
+        "literal_definition_status": "REVIEW",
+        "mapped_definition_status": "REVIEW",
+        "hydrogen_inventories": {
+          "A:1": {
+            "status": "RECORDED",
+            "inventory_status": "DIFFERENT",
+            "name_status": "DIFFERENT",
+            "changed_groups": [
+              {
+                "source_heavy_atom": "OP2",
+                "native_heavy_atom": "OP2",
+                "source_hydrogens": [
+                  "HOP2"
+                ],
+                "native_hydrogens": [],
+                "source_isotope_counts": {
+                  "H": 1
+                },
+                "native_isotope_counts": {},
+                "count_status": "DIFFERENT",
+                "name_status": "DIFFERENT"
+              }
+            ],
+            "same_name_attachment_changes": []
+          },
+          "A:2": {
+            "status": "RECORDED",
+            "inventory_status": "DIFFERENT",
+            "name_status": "DIFFERENT",
+            "changed_groups": [
+              {
+                "source_heavy_atom": "C7",
+                "native_heavy_atom": "C5M",
+                "source_hydrogens": [
+                  "H71",
+                  "H72",
+                  "H73"
+                ],
+                "native_hydrogens": [
+                  "H5M1",
+                  "H5M2",
+                  "H5M3"
+                ],
+                "source_isotope_counts": {
+                  "H": 3
+                },
+                "native_isotope_counts": {
+                  "H": 3
+                },
+                "count_status": "MATCH",
+                "name_status": "DIFFERENT"
+              },
+              {
+                "source_heavy_atom": "O3'",
+                "native_heavy_atom": "O3'",
+                "source_hydrogens": [
+                  "HO3'"
+                ],
+                "native_hydrogens": [],
+                "source_isotope_counts": {
+                  "H": 1
+                },
+                "native_isotope_counts": {},
+                "count_status": "DIFFERENT",
+                "name_status": "DIFFERENT"
+              },
+              {
+                "source_heavy_atom": "OP2",
+                "native_heavy_atom": "OP2",
+                "source_hydrogens": [
+                  "HOP2"
+                ],
+                "native_hydrogens": [],
+                "source_isotope_counts": {
+                  "H": 1
+                },
+                "native_isotope_counts": {},
+                "count_status": "DIFFERENT",
+                "name_status": "DIFFERENT"
+              }
+            ],
+            "same_name_attachment_changes": []
+          }
+        }
+      },
+      "DA_ATL": {
+        "native_status": "FAILED",
+        "link_status": "NOT_ASSESSED",
+        "literal_definition_status": "NOT_ASSESSED",
+        "mapped_definition_status": null,
+        "hydrogen_inventories": {}
+      },
+      "ATL_DA": {
+        "native_status": "FAILED",
+        "link_status": "NOT_ASSESSED",
+        "literal_definition_status": "NOT_ASSESSED",
+        "mapped_definition_status": null,
+        "hydrogen_inventories": {}
+      },
+      "L_DNA": {
+        "mapping_status": "RECORDED",
+        "alias_count": 0,
+        "hydrogen_inventory": "NOT_REQUESTED_NO_SOURCE_PROJECTION"
+      }
+    },
+    "source_capsule": {
+      "anchor": "live_tests_directory",
+      "path": "112_Cedar_native-name-mapping-gksy5b_8"
+    },
+    "source_receipt_hashes": {
+      "native/DA_DT/cif-native-m9dqe1a6/native_receipt.json": "2236c42547bbd6a5bb0cacbb16dd10a640f0ed847df05f2bc3beaf5b314092f7",
+      "native/DA_ATL/cif-native-poo634t9/native_receipt.json": "0a85e7cacefbb72b0bc66677a8c00f9f6d5d95cbcc3567402c315321eaed038c",
+      "native/ATL_DA/cif-native-pzud50ks/native_receipt.json": "bf9404e250d3332bd639edc4d3b31a474c6869e9ef600712a70dd826d31f6049",
+      "native/L_DNA/cif-native-8_ipbklx/native_receipt.json": "e7b93b8430a752122db6b75fca235a0ee276d23b13286e3213baea5e8cb5515d"
+    },
+    "source_receipts_preserved": true,
+    "cold_replay": {
+      "status": "PASS",
+      "cases": {
+        "DA_DT": {
+          "pass": true,
+          "status": "REVIEW"
+        },
+        "DA_ATL": {
+          "pass": true,
+          "status": "FAILED"
+        },
+        "ATL_DA": {
+          "pass": true,
+          "status": "FAILED"
+        },
+        "L_DNA": {
+          "pass": true,
+          "status": "RECORDED"
+        },
+        "legacy_DA_DT": {
+          "pass": true,
+          "status": "REVIEW"
+        }
+      },
+      "original_owned_path_absent": true,
+      "historical_and_sdk_reads": "BLOCKED",
+      "native_execution": "BLOCKED",
+      "source_import": "RELOCATED_CHECKOUT"
+    },
+    "cold_cli_agreement": "PASS for four source-link controls; L-DNA mapping-only control has no source projection and no hydrogen claim.",
+    "validation": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "before_result": "24 failed, 1 passed in 1.57s against C112 (proposed initial tests; legacy case passes)",
+      "focused_command": "python -m pytest -q -p no:cacheprovider tests/test_cif_native_hydrogens.py tests/test_cif_native_atom_mapping.py tests/test_cif_attachment_native.py tests/test_cif_native_validation.py tests/test_cif_attachment_sites.py tests/test_cif_attachment_links.py tests/test_cif_scaffold_return.py",
+      "focused_result": "258 passed in 21.14s",
+      "new_regression_cases": 26,
+      "full_command": "python -m pytest -q -p no:cacheprovider --durations=20",
+      "full_result": "6077 passed, 276 subtests passed in 933.58s (0:15:33)",
+      "full_elapsed_seconds": 934.057549238205,
+      "source_and_tests_preserved": true,
+      "saved_and_cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python /path/to/owned-capsule/runners/replay.py; child: python -B cold-relocated/cold_worker.py",
+      "logs": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "113_Cedar_hydrogen-inventory-0oqtyb6c/validation/before.log",
+          "sha256": "17605b85b369b006821af5fcb8e31695e659324af158b09fdda58ad5c6baac66",
+          "size": 45396
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "113_Cedar_hydrogen-inventory-0oqtyb6c/validation/focused-final.log",
+          "sha256": "aee13c74b02ad3f4df228123d6b71a67be353d4927f5233cd8e09fc733a5a366",
+          "size": 341
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "113_Cedar_hydrogen-inventory-0oqtyb6c/validation/full-suite.log",
+          "sha256": "c3a12fb6c3961425e9018c94bf3151dc5e57e3a6120aaa00b86ca1e17cebc316",
+          "size": 9422
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "113_Cedar_hydrogen-inventory-0oqtyb6c/validation/full-suite-state.json",
+          "sha256": "15bb62c394402f6e89cb58a768b45e75149d02718c3e4384456c99f2fba22373",
+          "size": 571
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "113_Cedar_hydrogen-inventory-0oqtyb6c/validation/tested-hashes.json",
+          "sha256": "e0a343c3185ecb75d9aec9f82eb14b6a0008f56be6ec6963ab5f09afcb9a2eb3",
+          "size": 49348
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "113_Cedar_hydrogen-inventory-0oqtyb6c/validation/cold-replay.log",
+          "sha256": "87fc0e693428be3238966d6ceaf09ac1454a456edbd3dbc518566432b3b41ea4",
+          "size": 539
+        }
+      ],
+      "static_checks": {
+        "doc_links_and_json": {
+          "relative_links_checked": 254,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "whitespace": "PASS",
+        "compilation": "PASS: PYTHONPYCACHEPREFIX=/private/tmp/c113-compile-cache python -m compileall -q src tests",
+        "svg": "XML valid; visible elements unchanged; description/caption updated"
+      }
+    },
+    "changed_files": [
+      "src/nasolve/cif_native_hydrogens.py",
+      "src/nasolve/cif_attachment_native.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_native_hydrogens.py",
+      "README.md",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "tested_code_hashes": {
+      "src/nasolve/cif_native_hydrogens.py": "7022fb4b553e3319bb86144d444f38e67f91ef265d0f737d7deeba4cafa2361b",
+      "src/nasolve/cif_attachment_native.py": "3e4776d5c180df5a72be72f7fff87d6da411e79659d38a29e257cd610fd05c76",
+      "src/nasolve/cli.py": "02c727e550b222aca9705d1bc26eef543d36b3e8ee38fa73e5eac4c14072b63a",
+      "tests/test_cif_native_hydrogens.py": "424482a174b84da5d853e78175455bd09c033bd2252b33525c2f6b33c06cfe62"
+    },
+    "artifacts_included": "Source, synthetic regressions, maintained docs, figure description/caption and compact technical evidence.",
+    "artifacts_excluded": "Models, scientific data, CIF/workbook files, native captures/logs and local runners stay in owned live-test capsules.",
+    "limitations": [
+      "Equal counts do not establish individual H-name identity, formal charge, protonation, stereochemistry or numerical equivalence.",
+      "Observed name binding and single-parent H adjacency are required; no native aliases or chemical operations are inferred.",
+      "Literal/mapped definition outcomes and unavailable formal-charge readback remain independent.",
+      "ATL numerical recovery, L-DNA chemical-state qualification and PDU energy/gradient/derivative gates remain open.",
+      "Sticky-end stitching remains parked; no automatic adoption or Pine/main merge."
+    ],
+    "next_step": "Establish explicit source- and site-authorized chemical-state operations across held-out components; use this inventory to verify permitted deltas before bounded numerical recovery and qualification.",
+    "author": "Rowan · Codex desktop"
   }
 }

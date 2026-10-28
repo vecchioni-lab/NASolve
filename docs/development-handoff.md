@@ -11,6 +11,47 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C113 hydrogen attachment inventories
+
+Implementation, focused/full regression and saved/cold replay pass. Publication
+is the remaining step; source/tests are frozen and no job is active.
+Base: `d57fbb8b163ec280eb9e4ce812050c04bfdf2f91`; continue on existing `cedar`.
+Local capsule: `live_tests_directory/113_Cedar_hydrogen-inventory-0oqtyb6c`.
+
+Before C113, C112 separated observed atom aliases from the remaining definition
+differences. The new read-only layer groups source/native H/D/T by observed
+heavy-atom bindings. It reports count/isotope changes, raw labels and moved
+attachments independently; equal-count H swaps between parents remain visible.
+Missing coverage or ambiguous hydrogen/bond graphs cannot appear as matching.
+The CLI summarizes recorded differences and explicitly unavailable evidence.
+Literal/mapped definition review, charge limits and source authority are unchanged.
+
+The preserved DNA capture distinguishes three H on C7/C5M under different
+labels from missing HOP2 at both sites and missing HO3′ at the DT site. These
+are definition observations, not coordinate deletion or protonation permission.
+Both ATL captures remain failed; a legacy capture keeps its original result.
+The L-DNA control only rechecks mapping because no source projection was supplied
+for a hydrogen claim. Five cases replay exactly after relocation, with four
+source-link cases also agreeing through the JSON CLI, historical/SDK reads and
+subprocesses blocked. Zero new native executions; producer version 2.2.1-6174.
+
+Validation: **258 focused tests pass in 21.14 s** (26 new cases); full suite:
+**6077 passed, 276 subtests passed in 933.58s (0:15:33)**. Source/tests retain their pre-suite hashes.
+Exact commands, files, schema details and hashes are in
+`bound_hydrogen_inventory_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+Only additive schema-1 report fields change; native workers, old default
+reports and run/checkpoint schemas need no migration. Raw scientific artifacts,
+captures and runners remain local. No coordinate changes or refinement.
+
+Next: explicit source/site-authorized chemical-state operations and permitted
+delta checks across held-out components, followed by bounded numerical recovery
+and qualification. Counts alone do not settle charge/protonation/stereochemistry
+or individual hydrogen aliases. ATL, L-DNA and PDU gates remain open. Sticky-end
+stitching is parked; no new branch or Pine/main merge.
+
+— Rowan · Codex desktop
+
 ## C112 native atom-name binding
 
 Implementation, native controls, cold replay and complete regression pass.
@@ -154,7 +195,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; C112 adds observed native mappings within the limits above.** Every ligand in the selected
+**Scope revised 2026-10-28; C113 separates bound hydrogen inventories within the limits above.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -164,7 +205,7 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit and C112 observed name bindings validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; PNA and terminal reconstruction remain open. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; PNA and terminal reconstruction remain open. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |

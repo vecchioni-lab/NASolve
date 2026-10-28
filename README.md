@@ -68,6 +68,8 @@ failed interpretations; native atom types remain observations, not new authority
 C112 [captures actual native atom-name bindings](docs/cif-doctor.md#observed-native-atom-name-mappings-c112)
 and adds a separate alias-aware comparison. Hydrogen/charge changes remain
 visible; observed renaming grants no chemical authority.
+C113 [separates hydrogen counts/attachments from label differences](docs/cif-doctor.md#bound-hydrogen-inventories-c113)
+through those bindings, without inferring protonation or individual H aliases.
 Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c109)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and
