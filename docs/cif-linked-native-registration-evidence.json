@@ -36209,7 +36209,7 @@
         "tests/test_full_model_restraints.py": "55feb6f9e25a2ddb61ace02a993d259d10ded0f610628bdc6729df1c7cc42423"
       }
     },
-    "publication": "All validation passed; exact tested source hashes recorded. Commit/push pending.",
+    "publication": "Implementation published and remote-verified on origin/cedar; this follow-up records publication only, with tested source and test files unchanged.",
     "compact_evidence_references": [
       {
         "anchor": "live_capsule",
@@ -36298,6 +36298,7 @@
       "src/nasolve/postmr.py",
       "tests/test_campaign_stages.py",
       "tests/test_full_model_restraints.py"
-    ]
+    ],
+    "tested_implementation_commit": "799ecc60a31f5b6264b40a4f6d6dc967a43da645"
   }
 }

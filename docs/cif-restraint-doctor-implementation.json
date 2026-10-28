@@ -26930,7 +26930,9 @@
       "chemical_state_qualification": "OPEN",
       "periodic_pair_coverage": "OPEN",
       "coordinate_refinement": "NOT_RUN",
-      "validation": "6012 passed, 276 subtests passed in 933.15s (0:15:33); 151 focused tests + 34 subtests; cold relocated checkout replay PASS."
+      "validation": "6012 passed, 276 subtests passed in 933.15s (0:15:33); 151 focused tests + 34 subtests; cold relocated checkout replay PASS.",
+      "tested_implementation_commit": "799ecc60a31f5b6264b40a4f6d6dc967a43da645",
+      "publication": "Published and remote-verified on origin/cedar."
     }
   },
   "audience": [

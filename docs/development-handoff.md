@@ -15,7 +15,7 @@ not general production support. Earlier wording remains in Git and the
 
 Implementation, live checks and full regression pass. No job is active.
 Output: `live_tests_directory/110_Cedar_L-3GBI-6sgsjhko/validation/full-suite.log`.
-Last published continuity head remains `cc18eff956b5de6486ae2ca9a19b10d086ba4434`.
+Tested implementation: `799ecc60a31f5b6264b40a4f6d6dc967a43da645`, published and verified on `origin/cedar`.
 Continue on existing `cedar`; no other branch or checkout is part of this change.
 
 The operator supplied diffraction data and exact `3gbi.pdb`, requesting its
@@ -51,7 +51,8 @@ below remain open.
 lookup, frozen campaign, ordinary preparation and relocation regressions. Full
 suite: **6012 tests + 276 subtests pass in 933.15 seconds**. The complete recipe
 and PostMR bundle also replay in a fresh relocated checkout with original
-paths unavailable and native execution blocked. Publication pending. Exact commands/hashes: `l_dna_full_model_recipe_2026_10_28` in the
+paths unavailable and native execution blocked. No code changes followed these
+checks; this publication handoff only records the tested commit. Exact commands/hashes: `l_dna_full_model_recipe_2026_10_28` in the
 [evidence ledger](cif-linked-native-registration-evidence.json). The local capsule
 preserves every attempt; raw data/models/logs/dictionaries/runners stay outside
 Git. A new `nasolve.txt` was placed beside the original four supplied files;
@@ -61,7 +62,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; C109 published and validated.** Every ligand in the selected
+**Scope revised 2026-10-28; C110 published and validated within the limits above.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
