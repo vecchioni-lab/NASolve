@@ -416,7 +416,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           inventory_detail: str = "basic",
                           policy_inventory: bool = False,
                           installed_library_only: bool = False,
-                          energy_inventory: bool = False) -> dict:
+                          energy_inventory: bool = False,
+                          atom_name_mapping: bool = False) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -434,6 +435,10 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         raise ValueError("Installed-library selection must be an explicit boolean")
     if type(energy_inventory) is not bool:
         raise ValueError("Native energy inventory must be an explicit boolean")
+    if type(atom_name_mapping) is not bool:
+        raise ValueError("Native atom name mapping must be an explicit boolean")
+    if atom_name_mapping and (inventory_detail != "linked" or energy_inventory):
+        raise ValueError("Atom name mapping requires linked inventory without energy augmentation")
     if not phenix_version or not str(phenix_version).strip():
         raise ValueError("An explicit Phenix version is required")
     if not isfinite(float(timeout_seconds)) or timeout_seconds <= 0:
@@ -481,6 +486,11 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         spec["energy_inventory"] = True
         (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
         worker = native_energy_worker(worker)
+    if atom_name_mapping:
+        from .cif_native_atom_mapping import native_mapping_worker
+        spec["atom_name_mapping"] = True
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_mapping_worker(worker)
     (work / "native_worker.py").write_text(worker, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]
     clock = time.monotonic()
@@ -494,6 +504,9 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         "dictionary_source_policy": "INSTALLED_LIBRARY_ONLY" if installed_library_only else "EXPLICIT_DICTIONARIES",
         "execution": {"status": "NOT_RUN", "started_at": datetime.now(timezone.utc).isoformat(),
                       "timeout_seconds": timeout_seconds}}
+    if atom_name_mapping:
+        from .cif_native_atom_mapping import POLICY_ID as mapping_policy
+        receipt["atom_name_mapping_policy"] = mapping_policy
     try:
         receipt["executable_sha256"] = _sha(executable.read_bytes())
         with (work / "native.log").open("xb") as log:
@@ -518,6 +531,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                     _check_native_report(native, len(dictionaries))
                     if inventory_detail == "linked" and native.get("status") == "REVIEW" and native.get("inventory_detail") != "linked":
                         raise ValueError("Native worker omitted requested linked inventory details")
+                    if atom_name_mapping and native.get("status") == "REVIEW" and native.get("atom_name_mapping_policy") != mapping_policy:
+                        raise ValueError("Native worker omitted requested atom mapping inventory")
                     receipt["native_validation"] = native
                     if native.get("status") == "REVIEW" and code == 0:
                         receipt["status"] = "REVIEW"

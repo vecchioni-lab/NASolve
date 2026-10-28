@@ -68,9 +68,17 @@ def _capture(path, model):
     for name in ('native_spec.json', 'native_worker.py', 'native_validation.json', 'native.log'):
         if name not in records:
             raise ValueError('Missing required native artifact: ' + name)
-    if records['native_worker.py'] != _NATIVE_WORKER.encode():
-        raise ValueError('Require the maintained base native inventory worker')
     spec = _json(records['native_spec.json'])
+    worker = _NATIVE_WORKER
+    if 'atom_name_mapping' in spec:
+        from .cif_native_atom_mapping import native_mapping_worker, POLICY_ID as mapping_policy
+        if spec['atom_name_mapping'] is not True or receipt.get('atom_name_mapping_policy') != mapping_policy:
+            raise ValueError('Invalid native atom mapping request/policy')
+        worker = native_mapping_worker(worker)
+    elif 'atom_name_mapping_policy' in receipt:
+        raise ValueError('Unrequested native atom mapping policy')
+    if records['native_worker.py'] != worker.encode():
+        raise ValueError('Require a maintained native inventory worker')
     roles = {'model': [], 'dictionary': [], 'phil': []}
     for i, row in enumerate(receipt['inputs']):
         if type(row.get('input_index')) is not int or row['input_index'] != i or row.get('role') not in roles:
@@ -88,6 +96,8 @@ def _capture(path, model):
             or installed != (not roles['dictionary'])):
         raise ValueError('Inconsistent native dictionary authority')
     native = _json(records['native_validation.json'])
+    if native.get('atom_name_mapping_policy') != receipt.get('atom_name_mapping_policy'):
+        raise ValueError('Native atom mapping policy differs from receipt')
     if native != receipt.get('native_validation'):
         raise ValueError('Native report differs from embedded receipt')
     if type(native.get('schema_version')) is not int or native.get('automatic_adoption') is not False:
@@ -169,7 +179,7 @@ def _links(native, keys, labels, selected):
     return links, symmetry
 
 
-def _definitions(plan, native, root, snapshots):
+def _definitions(plan, native, root, snapshots, name_maps=None):
     rows = native.get('monomer_mappings',{}).get('rows',[])
     by_site = {}
     for row in rows:
@@ -187,12 +197,17 @@ def _definitions(plan, native, root, snapshots):
         entry = next(e for e in plan['input_manifest']['sites'] if _json(snapshots[root/e['context']['path']])['site'] == site)
         values = component_values(root/entry['source']['path'], report['component'])
         source = dict(zip(values['_chem_comp_atom.atom_id'], values['_chem_comp_atom.type_symbol']))
-        expected = set(projection['retained_atoms']) if projection else set()
+        declared = set(projection['retained_atoms']) if projection else set()
+        names = {a: (name_maps or {}).get(site, {}).get(a, a) for a in declared}
+        if len(set(names.values())) != len(names):
+            raise ValueError('Native aliases collapse distinct source atoms')
+        expected = set(names.values())
+        source = {names[a]: source[a] for a in declared}
         missing, extra = sorted(expected-actual.keys()), sorted(actual.keys()-expected)
         bad_elements = sorted(a for a in expected & actual.keys() if actual[a].get('type_symbol','').upper() != source[a].upper())
         charges, unknown = [], []
         for atom, charge in (projection or {}).get('retained_formal_charges',{}).items():
-            observed = actual.get(atom,{}).get('charge')
+            observed = actual.get(names[atom],{}).get('charge')
             try:
                 if type(observed) is bool: raise ValueError()
                 number = float(observed)
@@ -206,8 +221,9 @@ def _definitions(plan, native, root, snapshots):
         clean_mapping = all(row.get(k,{}).get('status') == 'RECORDED' and row[k].get('atom_ids') == []
                             for k in ('unexpected_atoms','missing_non_hydrogen_atoms'))
         bonds = definition.get('bonds')
-        # Exact names are intentional: aliases/protonation require a separate policy.
-        expected_bonds = Counter(tuple(sorted((a,b))) for a,b in zip(values.get('_chem_comp_bond.atom_id_1',[]),values.get('_chem_comp_bond.atom_id_2',[])) if a in expected and b in expected)
+        # Names change only through the optional, index-bound observed mapping.
+        # Protonation and atoms absent from the model are never inferred.
+        expected_bonds = Counter(tuple(sorted((names[a],names[b]))) for a,b in zip(values.get('_chem_comp_bond.atom_id_1',[]),values.get('_chem_comp_bond.atom_id_2',[])) if a in declared and b in declared)
         actual_bonds = Counter(tuple(sorted((b['atom_id_1'],b['atom_id_2']))) for b in bonds or [])
         atoms_match = bool(projection) and identity_ok and clean_mapping and not missing and not extra and not bad_elements
         result[site] = {'component':report['component'], 'status':'MATCH' if atoms_match and bonds is not None and expected_bonds == actual_bonds and not charges else 'REVIEW',
@@ -217,6 +233,9 @@ def _definitions(plan, native, root, snapshots):
             'energy_types_observed':{a:actual[a].get('type_energy') for a in sorted(actual)},
             'energy_type_authority':'NOT_QUALIFIED', 'formal_charge_status':'CONTRADICTION' if charges else 'UNSUPPORTED' if unknown else 'MATCH' if projection else 'NOT_ASSESSED',
             'formal_charge_contradictions':charges,'unavailable_formal_charge_atoms':sorted(unknown),'partial_charge_substituted':False}
+        if name_maps is not None:
+            result[site]['atom_name_aliases'] = {k:v for k,v in names.items() if k != v}
+            result[site]['source_atoms_without_model_binding'] = sorted(declared - name_maps.get(site,{}).keys())
     return result
 
 
@@ -262,6 +281,16 @@ def _inspect_native_attachment_links(manifest, native_receipt):
             link_status='MATCH' if expected and expected==observed and not symmetry and plan['binding_status']=='BOUND' else 'REVIEW')
         result['definitions'] = _definitions(plan,native,root,snapshots)
         result['definition_status'] = 'MATCH' if plan['plan_status']=='PROPOSED' and all(row['status']=='MATCH' for row in result['definitions'].values()) else 'REVIEW'
+        if receipt.get('atom_name_mapping_policy'):
+            from .cif_native_atom_mapping import bound_name_mappings
+            mapping, name_maps = bound_name_mappings(native, keys)
+            result['limitations'].append('Mapped comparison uses only observed model-to-definition aliases; unmodelled names, hydrogens and protonation are not inferred.')
+            result.update(atom_name_mapping=mapping, mapped_definitions={}, mapped_definition_status='NOT_ASSESSED')
+            if mapping['status'] == 'RECORDED':
+                result['mapped_definitions'] = _definitions(plan,native,root,snapshots,name_maps)
+                result['mapped_definition_status'] = 'MATCH' if plan['plan_status']=='PROPOSED' and all(
+                    row['status']=='MATCH' for row in result['mapped_definitions'].values()) else 'REVIEW'
+
     if any(path.read_bytes()!=data for path,data in snapshots.items()):
         raise ValueError('Native link audit evidence changed during inspection')
     result['input_integrity']='UNCHANGED'

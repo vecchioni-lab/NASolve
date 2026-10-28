@@ -57,7 +57,12 @@ those literal endpoints. A fresh DNA control has the declared bond, while its
 native atom names/hydrogen states still differ from the source. Both installed-
 library ATL directions fail because usable energy types are missing. These
 outcomes guide recovery; they do not authorize deleting atoms or copying DNA
-types to ATL. Native numerical typing, chemical-state reconciliation and terminal
+types to ATL. C112 captures actual indexed native name bindings and adds a
+separate comparison using only those observed aliases. In DNA, OP3→O3T and
+C7→C5M are observed, while hydrogen differences remain visible. In the L-DNA
+control, all 855 atoms bind without aliases, so the earlier phosphate changes
+cannot be dismissed as renaming. The same tool reads both cases; no model-specific
+repair is added. Native numerical typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
 checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
@@ -720,7 +725,9 @@ C104 separately verifies the complete declaration-based omission candidate
 against native inventories. This preserves the bystander, phosphate and NAR
 terms; energy/gradient and derivative qualification remain separate.
 The figure depicts the implemented assessment layer and notes separate linked
-candidate/native-proxy diagnostics. A separate fixed-definition geometry trial
+candidate/native-proxy diagnostics. C112 adds observed native name bindings to
+the source/native comparison layer, preserving literal findings and keeping
+hydrogen/charge changes outside alias authority. A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom
 identity and fresh native proxy generation are assessed separately. A read-only

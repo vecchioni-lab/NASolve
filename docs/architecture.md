@@ -3388,3 +3388,22 @@ carry no new chemical authority. Overall REVIEW persists. This additive reader
 changes no capture/runtime/checkpoint schema or preparation path and never
 executes saved code. The three fresh DNA/ATL interpretations and cold replay
 are documented in the [C109 contract](cif-doctor.md#native-attachment-link-audit-c109).
+
+
+## Observed native atom-name mappings (C112)
+
+`cif_native_atom_mapping` adds an opt-in extension to the maintained native
+worker without changing its historical bytes. It captures actual monomer
+bindings, then validates complete model-site/index/name and effective-element
+agreement. Final expected/unexpected bindings govern the comparison;
+intermediate library names remain observations. Ambiguous or colliding aliases
+cannot reconcile a source difference. Missing native APIs remain unsupported.
+
+The C109 reader keeps its literal result and adds a separate mapped result for
+explicit mapping captures. Only observed model-bound names are translated;
+unmodelled hydrogen names, protonation and charge authority cannot be inferred.
+Native failure and unavailable formal charges remain distinct. This changes
+no coordinates, chemistry, preparation, checkpoints or adoption. Old default
+captures remain readable; older readers reject the new extension. DNA, both
+failed ATL directions, L-DNA and a legacy capture pass exact cold replay. See
+the [C112 contract](cif-doctor.md#observed-native-atom-name-mappings-c112).

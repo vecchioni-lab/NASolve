@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Capture observed native atom-name bindings (C112)
+
+- Add opt-in native capture of actual per-site model-to-dictionary atom bindings;
+  validate indices, names, elements, coverage and contradictions before use.
+- Preserve literal source comparisons and report a separate comparison using
+  only observed aliases. Hydrogen, charge and adjacency differences remain
+  visible; names absent from the model are never guessed.
+- Keep historical base-worker bytes and receipts readable. New schema-1 fields
+  are additive and explicitly policy-bound; older readers reject the new worker.
+  No coordinate, chemistry, run/checkpoint or automatic-adoption change.
+
 ### Record sticky-end symmetry evidence (C111)
 
 - Document L-3GBI complementary overhang geometry and exact crystal image,

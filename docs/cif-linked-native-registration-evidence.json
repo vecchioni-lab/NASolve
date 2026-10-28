@@ -30041,7 +30041,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "mixed_runtime_reporting_2026_10_26",
+  "current_diagnostic_record": "native_atom_name_mapping_2026_10_28",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -36531,5 +36531,359 @@
     },
     "focused_validation": "22 passed in 3.97s; tests/test_full_model_restraints.py",
     "command_path_note": "Historical execution commands; preserved scripts and inputs are identified by anchored references above. No relocation claim is made for these local audit runners."
+  },
+  "native_atom_name_mapping_2026_10_28": {
+    "delivery": "C112",
+    "status": "NATIVE_BINDINGS_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+    "base_commit": "60cdc0800b33669c9568e78277638aed4bbfe226",
+    "before": "C109 compares literal source/effective names; actual monomer aliases are not captured. Naming and hydrogen differences cannot be distinguished with bound native evidence.",
+    "after": "An explicit native extension captures indexed final name bindings. The reader preserves the literal result and adds a separate comparison using only observed aliases; chemical-state differences remain visible.",
+    "scope": "General diagnostic capture and source comparison, exercised across DNA, ATL and L-DNA. No model-specific repair.",
+    "policy": "cif-native-observed-atom-name-mapping-v1",
+    "capture_api": "nasolve.cif_native_validation.inspect_native_bundle(..., inventory_detail=\"linked\", atom_name_mapping=True)",
+    "reader_api": "nasolve.cif_attachment_native.inspect_native_attachment_links",
+    "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+    "schema_compatibility": {
+      "schema_version": 1,
+      "new_capture_fields": [
+        "spec.atom_name_mapping",
+        "receipt.atom_name_mapping_policy",
+        "report.atom_name_mapping_policy",
+        "monomer_mappings.rows[].atom_name_mapping"
+      ],
+      "new_reader_fields": [
+        "atom_name_mapping",
+        "mapped_definitions",
+        "mapped_definition_status"
+      ],
+      "base_worker_bytes": "UNCHANGED",
+      "base_worker_sha256": "9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78",
+      "extension_worker_sha256": "081651f3bd8cbf656537b17ba4a474b3309cbec193fd9689b0e3d368cf5474fa",
+      "legacy_receipts": "READABLE_WITH_UNCHANGED_RESULT",
+      "older_readers": "REJECT_NEW_WORKER",
+      "run_checkpoint_schemas": "UNCHANGED",
+      "migration": "NONE"
+    },
+    "software": {
+      "Phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "Python": "3.12.14",
+      "NARestraints": "1.1.3"
+    },
+    "execution": "Four complete fixed-coordinate native interpretations, not dry-runs. No ReadySet, Coot, Phaser, optimizer or refinement.",
+    "cases": [
+      {
+        "case": "DA_DT",
+        "native_status": "REVIEW",
+        "receipt": {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/native/DA_DT/cif-native-m9dqe1a6/native_receipt.json",
+          "sha256": "2236c42547bbd6a5bb0cacbb16dd10a640f0ed847df05f2bc3beaf5b314092f7",
+          "size": 220838
+        },
+        "execution": {
+          "elapsed_seconds": 1.325111,
+          "finished_at": "2026-10-28T12:10:22.229023+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-28T12:10:20.903933+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 120
+        },
+        "inputs_preserved": true,
+        "mapping_status": "RECORDED",
+        "site_count": 2,
+        "atom_count": 42,
+        "alias_count": 2,
+        "observed_aliases": [
+          {
+            "site": "A:1",
+            "component": "DA",
+            "aliases": {
+              "OP3": "O3T"
+            }
+          },
+          {
+            "site": "A:2",
+            "component": "DT",
+            "aliases": {
+              "C7": "C5M"
+            }
+          }
+        ],
+        "link_status": "MATCH",
+        "literal_definition_status": "REVIEW",
+        "mapped_definition_status": "REVIEW"
+      },
+      {
+        "case": "DA_ATL",
+        "native_status": "FAILED",
+        "receipt": {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/native/DA_ATL/cif-native-poo634t9/native_receipt.json",
+          "sha256": "0a85e7cacefbb72b0bc66677a8c00f9f6d5d95cbcc3567402c315321eaed038c",
+          "size": 88919
+        },
+        "execution": {
+          "elapsed_seconds": 0.922872,
+          "finished_at": "2026-10-28T12:10:23.413972+00:00",
+          "returncode": 2,
+          "started_at": "2026-10-28T12:10:22.491115+00:00",
+          "status": "FAILED",
+          "timeout_seconds": 120
+        },
+        "inputs_preserved": true,
+        "mapping_status": "NOT_ASSESSED",
+        "link_status": "NOT_ASSESSED",
+        "literal_definition_status": "NOT_ASSESSED",
+        "mapped_definition_status": null
+      },
+      {
+        "case": "ATL_DA",
+        "native_status": "FAILED",
+        "receipt": {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/native/ATL_DA/cif-native-pzud50ks/native_receipt.json",
+          "sha256": "bf9404e250d3332bd639edc4d3b31a474c6869e9ef600712a70dd826d31f6049",
+          "size": 86620
+        },
+        "execution": {
+          "elapsed_seconds": 0.721094,
+          "finished_at": "2026-10-28T12:10:24.376561+00:00",
+          "returncode": 2,
+          "started_at": "2026-10-28T12:10:23.655480+00:00",
+          "status": "FAILED",
+          "timeout_seconds": 120
+        },
+        "inputs_preserved": true,
+        "mapping_status": "NOT_ASSESSED",
+        "link_status": "NOT_ASSESSED",
+        "literal_definition_status": "NOT_ASSESSED",
+        "mapped_definition_status": null
+      },
+      {
+        "case": "L_DNA",
+        "native_status": "REVIEW",
+        "receipt": {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/native/L_DNA/cif-native-8_ipbklx/native_receipt.json",
+          "sha256": "e7b93b8430a752122db6b75fca235a0ee276d23b13286e3213baea5e8cb5515d",
+          "size": 6133454
+        },
+        "execution": {
+          "elapsed_seconds": 1.388733,
+          "finished_at": "2026-10-28T12:10:25.974285+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-28T12:10:24.585568+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 120
+        },
+        "inputs_preserved": true,
+        "mapping_status": "RECORDED",
+        "site_count": 42,
+        "atom_count": 855,
+        "alias_count": 0,
+        "observed_aliases": []
+      }
+    ],
+    "inventory_comparison_with_prior_captures": [
+      {
+        "case": "DA_DT",
+        "atoms_unchanged": true,
+        "geometry_unchanged": true,
+        "restraint_policy_unchanged": true,
+        "effective_definitions_unchanged": true
+      },
+      {
+        "case": "L_DNA",
+        "atoms_unchanged": true,
+        "geometry_unchanged": true,
+        "restraint_policy_unchanged": true,
+        "effective_definitions_unchanged": true
+      }
+    ],
+    "cold_replay": {
+      "status": "PASS",
+      "cases": {
+        "DA_DT": {
+          "pass": true,
+          "status": "REVIEW"
+        },
+        "DA_ATL": {
+          "pass": true,
+          "status": "FAILED"
+        },
+        "ATL_DA": {
+          "pass": true,
+          "status": "FAILED"
+        },
+        "L_DNA": {
+          "pass": true,
+          "status": "RECORDED"
+        },
+        "legacy_DA_DT": {
+          "pass": true,
+          "status": "REVIEW"
+        }
+      },
+      "original_owned_path_absent": true,
+      "historical_and_sdk_reads": "BLOCKED",
+      "native_execution": "BLOCKED",
+      "source_import": "RELOCATED_CHECKOUT"
+    },
+    "historical_fixture_relocation": {
+      "status": "PASS",
+      "result": "31 passed in 26.04s",
+      "original_owned_path_absent": true,
+      "git_history": "NOT_COPIED",
+      "historical_sdk_reads": "BLOCKED",
+      "subprocesses": "BLOCKED",
+      "source_and_test_imports": "RELOCATED"
+    },
+    "input_integrity": {
+      "original_l_dna_input_count": 4,
+      "original_l_dna_input_bytes_sizes_mtimes": "UNCHANGED_FROM_C110_MANIFEST",
+      "dna_atl_copied_source_files": 33,
+      "dna_atl_source_bytes": "IDENTICAL_TO_C109",
+      "raw_inputs_committed": false
+    },
+    "validation": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "interpreter": "Selected NASolve Python 3.12.14 environment with installed project test dependencies; run from checkout root.",
+      "before_command": "python -m pytest -q -p no:cacheprovider tests/test_cif_native_atom_mapping.py",
+      "before_result": "30 failed, 1 passed in 0.62s (initial regression subset before implementation)",
+      "focused_command": "python -m pytest -q -p no:cacheprovider tests/test_cif_native_atom_mapping.py tests/test_cif_attachment_native.py tests/test_cif_native_validation.py tests/test_cif_attachment_links.py tests/test_cif_attachment_sites.py tests/test_full_model_restraints.py tests/test_cif_scaffold_return.py",
+      "focused_result": "254 passed in 26.42s",
+      "new_regression_cases": 39,
+      "full_command": "python -m pytest -q -p no:cacheprovider --durations=20",
+      "full_result": "6051 passed, 276 subtests passed in 952.76s (0:15:52)",
+      "elapsed_seconds": 953.1045227050781,
+      "source_and_tests_preserved": true,
+      "cold_command": "python -B cold-relocated/cold_worker.py (from the owned relocated capsule)",
+      "live_command": "python runners/live.py (configured local capsule/interpreter; inputs frozen before native launch)",
+      "logs": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/before.log",
+          "sha256": "3949c33aeaaf45d5a655aacb784784a057bb369651f56f65937f14c01492a415",
+          "size": 39696
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/focused-final-2.log",
+          "sha256": "21ca0dbf42a7686f4d19ec2ba6a56124f04bf9407cf387a7a7ac2189c6aa904a",
+          "size": 341
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/focused-with-historical.log",
+          "sha256": "6d080a6f9e0e1aaeb2956bfd2d06baf6f8ea25ee3b7376b63b1e93884f862bcd",
+          "size": 341
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/full-suite.log",
+          "sha256": "7f55719fa99465f98067c159166bde2f282fc0827a3a8275b61e308cc408298e",
+          "size": 12486
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/full-suite-state.json",
+          "sha256": "0de38bf78100c58879868170c0fa7b15cef774a3a9dd4bd93b73baa90c0ae689",
+          "size": 574
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/full-suite-02/full-suite.log",
+          "sha256": "d4680feddee7c1d9c03dab5f59cef4d61419cdc5dfb6c0790d48a523ad4791f4",
+          "size": 9361
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/full-suite-02/full-suite-state.json",
+          "sha256": "c8dfa37fb517732f985fc642af0838eb3f799664ed5952924b2a901860ac85f7",
+          "size": 731
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/full-suite-02/tested-hashes.json",
+          "sha256": "2f61db43f081e04ef70dd4e8d5443d89d522d2304636df248fcedb6b08862371",
+          "size": 49131
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/cold-replay.log",
+          "sha256": "87fc0e693428be3238966d6ceaf09ac1454a456edbd3dbc518566432b3b41ea4",
+          "size": 539
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "112_Cedar_native-name-mapping-gksy5b_8/validation/cold-c60.log",
+          "sha256": "7976134a744b6cf15c47189198c10c4505c850033234388da5fb84fcba7adbeb",
+          "size": 100
+        }
+      ],
+      "preserved_attempts": "Initial synthetic fixture used padded residue numbers and was corrected. First full suite: 2 failed, 6048 passed, 276 subtests passed in 957.13s; old C60 tests incorrectly supplied current source as historical evidence. Exact historical fixture and rejection regression fix the tests without changing production pins. All logs preserved; second full suite is a fresh attempt after first PID exited. Native failures were not retried.",
+      "static_checks": {
+        "doc_links_and_json": {
+          "relative_links_checked": 249,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "whitespace": "PASS",
+        "compilation": {
+          "command": "PYTHONPYCACHEPREFIX=/private/tmp/c112-compile-cache python -m compileall -q src tests",
+          "result": "PASS; source/tests unchanged since execution"
+        },
+        "svg": "XML valid; visible elements unchanged, caption and accessible description updated",
+        "source_and_test_files_unchanged": 455
+      }
+    },
+    "changed_files": [
+      "src/nasolve/cif_native_atom_mapping.py",
+      "src/nasolve/cif_native_validation.py",
+      "src/nasolve/cif_attachment_native.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_native_atom_mapping.py",
+      "tests/test_cif_scaffold_return.py",
+      "tests/fixtures/c60_runtime/README.md",
+      "tests/fixtures/c60_runtime/cif_native_validation.py.txt",
+      "README.md",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/development-handoff.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/full-model-restraints.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "tested_code_hashes": {
+      "src/nasolve/cif_native_atom_mapping.py": "d8c85589fd187bf105515c75719a8ed450c495361dde00d6670bf433f3623fdc",
+      "src/nasolve/cif_native_validation.py": "9fd80f88b00459342fee6d9374421eef33383054cfb307349f415c88e724afe1",
+      "src/nasolve/cif_attachment_native.py": "efb5e88229889c4dcb36f616c5fa1480e880c48ea85c75a502fbb575f297aabb",
+      "src/nasolve/cli.py": "39374b0172990c57cb7784dd459ea0338a7d284f28a5aaa3bec2524179c85225",
+      "tests/test_cif_native_atom_mapping.py": "1f437393221b8acb397a73340091acf1bcc1cf0da01969b75f7c315387d98e33",
+      "tests/test_cif_scaffold_return.py": "917816d58fbda7a26632fdee17fbcfb37b0ed0aaecf5a22582b9d7dcab11ec0a",
+      "tests/fixtures/c60_runtime/README.md": "cfaaca96d2957de38d97c8ee4ccbdf91a4799f108445cd236662d7298f6b5684",
+      "tests/fixtures/c60_runtime/cif_native_validation.py.txt": "a80014965b04e224f0ac9b62ed5065c090fb2814893ef823855ef982f4ee34ce"
+    },
+    "artifacts_included": "Source, synthetic regressions, maintained contracts, editable figure/caption and compact technical evidence.",
+    "artifacts_excluded": "Raw models, diffraction data, CCD/CIF files, workbook, native logs/captures and local runners remain in the owned live-test capsule.",
+    "limitations": [
+      "Observed aliases grant no chemical authority or automatic adoption.",
+      "Unmodelled hydrogen names and protonation require separate explicit source-preserving policy.",
+      "Native formal-charge readback remains unavailable; partial charge is not substituted.",
+      "ATL numerical dictionary recovery and qualification remain open.",
+      "L-DNA phosphate chemical-state changes remain open; zero aliases do not qualify chemistry.",
+      "PDU energy/gradient and derivative qualification remains open.",
+      "Sticky-end stitching is parked; no Pine/main merge."
+    ],
+    "next_step": "Qualify explicit chemical-state and unmodelled-name handling across source-bound held-out components, then recover/qualify numerical candidates through existing immutable-attempt machinery.",
+    "author": "Rowan · Codex desktop"
   }
 }

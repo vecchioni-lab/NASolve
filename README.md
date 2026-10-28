@@ -65,6 +65,9 @@ linkage remain unqualified.
 C109 [compares those links with preserved native captures](docs/cif-doctor.md#native-attachment-link-audit-c109).
 It separates exact bond membership from source/native definition differences and
 failed interpretations; native atom types remain observations, not new authority.
+C112 [captures actual native atom-name bindings](docs/cif-doctor.md#observed-native-atom-name-mappings-c112)
+and adds a separate alias-aware comparison. Hydrogen/charge changes remain
+visible; observed renaming grants no chemical authority.
 Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c109)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and

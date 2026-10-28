@@ -47,6 +47,9 @@ C109 [compares exact native captures](cif-doctor.md#native-attachment-link-audit
 DNA's declared bond matches while source/native definition differences remain;
 both installed-library ATL directions fail explicitly on unavailable energy types.
 Cold replay performs no native execution and grants no chemical qualification.
+C112 [records native name bindings](cif-doctor.md#observed-native-atom-name-mappings-c112)
+without confusing observed renaming with hydrogen/charge changes. Both new and
+legacy captures replay after relocation; automatic adoption remains disabled.
 ATL retains its separate validation fixture, and joins PNA/other backbones inside
 the programme. ChemDraw-derived chemical references remain future input scope.
 

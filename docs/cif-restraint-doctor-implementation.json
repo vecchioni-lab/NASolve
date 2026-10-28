@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "native_attachment_link_audit_2026_10_28",
+    "current_diagnostic_record": "native_atom_name_mapping_2026_10_28",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26933,6 +26933,27 @@
       "validation": "6012 passed, 276 subtests passed in 933.15s (0:15:33); 151 focused tests + 34 subtests; cold relocated checkout replay PASS.",
       "tested_implementation_commit": "799ecc60a31f5b6264b40a4f6d6dc967a43da645",
       "publication": "Published and remote-verified on origin/cedar."
+    },
+    "native_atom_name_mapping": {
+      "delivery": "C112",
+      "status": "NATIVE_BINDINGS_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+      "policy": "cif-native-observed-atom-name-mapping-v1",
+      "capture_api": "nasolve.cif_native_validation.inspect_native_bundle(..., inventory_detail=\"linked\", atom_name_mapping=True)",
+      "reader_api": "nasolve.cif_attachment_native.inspect_native_attachment_links",
+      "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+      "limitations": [
+        "Observed aliases grant no chemical authority or automatic adoption.",
+        "Unmodelled hydrogen names and protonation require separate explicit source-preserving policy.",
+        "Native formal-charge readback remains unavailable; partial charge is not substituted.",
+        "ATL numerical dictionary recovery and qualification remain open.",
+        "L-DNA phosphate chemical-state changes remain open; zero aliases do not qualify chemistry.",
+        "PDU energy/gradient and derivative qualification remains open.",
+        "Sticky-end stitching is parked; no Pine/main merge."
+      ],
+      "next_step": "Qualify explicit chemical-state and unmodelled-name handling across source-bound held-out components, then recover/qualify numerical candidates through existing immutable-attempt machinery.",
+      "contract": "docs/cif-doctor.md#observed-native-atom-name-mappings-c112",
+      "automatic_adoption": false,
+      "validation": "6051 passed, 276 subtests passed in 952.76s (0:15:52); 254 focused tests and five cold replay cases pass."
     }
   },
   "audience": [

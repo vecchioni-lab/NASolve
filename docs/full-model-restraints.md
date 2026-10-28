@@ -109,7 +109,10 @@ chemical-state preservation: phosphate hydrogens are removed, OP2/OP3 charges
 change from 0 to -1, phosphate bond-order representations change, and R/S
 metadata is omitted. Purine aromatic representation also changes. Preserved
 L-sugar volume signs do not settle those separate questions. No coordinate
-refinement or pair-geometry improvement is claimed.
+refinement or pair-geometry improvement is claimed. C112's independent native
+name-binding capture covers all 855 atoms at 42 sites with zero aliases. The
+phosphate differences therefore remain chemical-state questions, not demonstrated
+atom renaming. See the [general mapping contract](cif-doctor.md#observed-native-atom-name-mappings-c112).
 
 Four end residues (`A:101`, `A:102`, `D:101`, `D:102`) remain unpaired within
 the supplied asymmetric unit. C111's separate symmetry audit finds the expected G:C partner across
@@ -148,8 +151,9 @@ Reported unpaired sites are evidence to investigate, not automatic deletion
 requests. Neither a successful compilation nor `POSTMR_READY` establishes
 source chemistry, numerical derivatives, convergence or scientific approval.
 Next L-3GBI gates are source-preserving numerical L-component definitions,
-explicit linkage/protonation qualification, periodic end-pair coverage and a
-fresh, bounded refinement with before/after pair measurements. The existing
+explicit linkage/protonation qualification and a fresh, bounded refinement
+with before/after pair measurements. Periodic end-pair coverage is separately
+parked at the operator's request, not a gate for this generalizer slice. The existing
 Cedar native-gradient qualification requirements still apply.
 
 ## Methods paragraph

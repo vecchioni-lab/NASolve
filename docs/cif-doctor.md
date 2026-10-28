@@ -25,7 +25,9 @@
 
 <a id="current-capability-boundary-c108"></a>
 
-## Current capability boundary (C109)
+<a id="current-capability-boundary-c109"></a>
+
+## Current capability boundary (C112)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -38,7 +40,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
-| Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. | DNA aliases/hydrogen-state differences need explicit reconciliation; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
+| Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases without erasing literal findings. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; PNA operations stay unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
 | Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention or neutral furanose deletions, and compares exact projected tables. | Partner chemistry, PNA link states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
 | Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. C107 covers bounded one-site source projections; additional cores, complete linkage and native consumers remain open. |
@@ -430,8 +432,9 @@ nasolve cif-doctor link-native /path/to/links.json \
 source inspection and reads an existing capture as data. It launches no program,
 changes no dictionary/model and grants no typing or adoption authority. The
 capture must come from the maintained **base** `inspect_native_bundle` worker
-with `inventory_detail="linked"`; augmented energy workers and unrelated historic
-worker versions are outside this initial reader contract. Both explicitly loaded
+or its explicit [C112 name-mapping extension](#observed-native-atom-name-mappings-c112),
+with `inventory_detail="linked"`. Augmented energy workers and unrelated historic
+worker versions are outside this reader contract. Both explicitly loaded
 dictionaries and explicit installed-library-only captures are representable.
 
 The reader validates all recorded input/output paths, hashes and sizes, the exact
@@ -514,6 +517,53 @@ remain preserved. Commands, hashes and results belong to
 `native_attachment_link_audit_2026_10_28` in the
 [evidence ledger](cif-linked-native-registration-evidence.json).
 
+### Observed native atom-name mappings (C112)
+
+The diagnostic Python API `inspect_native_bundle(..., inventory_detail="linked",
+atom_name_mapping=True)` requests an explicit mapping capture. It records the
+actual Phenix monomer object's `atom_names_mappings`, final expected/unexpected
+bindings, duplicate bindings and active model indices. Intermediate
+`mon_lib_names` observations are preserved when available; they never override
+the final expected-atom binding. Missing native API fields are `UNSUPPORTED`.
+This option cannot be combined with the unqualified energy-worker extension.
+
+The existing `link-native` command reads either the exact maintained base worker
+or this exact extension. Request, receipt and report must agree on policy
+`cif-native-observed-atom-name-mapping-v1`. Every site and active atom must map
+back to the bound model's component, index and literal atom name; expected names
+must exist in the effective dictionary with the same element. Duplicate,
+contradictory, missing or collapsing bindings cannot reconcile a difference.
+Native index reordering remains supported through the existing identity check.
+
+The original `definitions` and `definition_status` remain literal. A requested
+capture adds `atom_name_mapping`, `mapped_definitions` and
+`mapped_definition_status`. Only observed model-to-definition aliases translate
+source atom names for the second atom/element, retained-adjacency and available
+formal-charge comparison. `source_atoms_without_model_binding` exposes the
+remaining source atoms. **Unmodelled hydrogen names and protonation are never
+inferred.** Missing mapping APIs withhold the mapped comparison; failed native
+interpretations remain explicit failures. Overall `REVIEW`, unavailable formal
+charges, numerical qualification limits and no automatic adoption still apply.
+
+Four complete fixed-coordinate Phenix **2.2.1-6174** interpretations exercised
+this extension. DA–DT records OP3→O3T and C7→C5M and keeps the exact declared
+link, but its mapped source comparison still reports hydrogen/adjacency
+differences. The unmodelled H71/H72/H73→H5M1/H5M2/H5M3 relationship is not guessed.
+Both ATL directions retain their installed-library energy-type failures.
+The preserved ordinary L-DNA bundle binds all 855 atoms at 42 sites with **zero
+aliases**; C110's phosphate chemical-state differences are not explained away
+as naming. These are transferable diagnostic controls, not structure-specific
+repairs or a claim that L-3GBI is solved. No optimizer, ReadySet, Phaser, Coot or
+refinement runs in C112.
+
+The historical base worker is byte-for-byte unchanged. New capture/report
+schema-1 fields are additive; older readers reject the new worker rather than
+partially interpreting it. Existing default captures and run/checkpoint schemas
+require no migration. All four fresh outcomes and a real legacy capture replay
+exactly in a relocated checkout with original paths and native execution blocked.
+Commands, hashes and validation are in `native_atom_name_mapping_2026_10_28`
+in the [evidence ledger](cif-linked-native-registration-evidence.json).
+
 <a id="next-attachment-profile-milestone-g2-planned"></a>
 
 ### Remaining attachment-profile milestone (G2)
@@ -527,8 +577,9 @@ A workbook sugar label alone must not answer any of the latter three questions.
 
 C106 binds source cores; C107 adds single-site source projections; C108 requires
 reciprocal source-bound ports and complete declared-link scope. C109 compares
-literal endpoints with preserved native captures. Next, bind native alias mappings
-explicitly and establish source/native protonation policies using DNA controls.
+literal endpoints with preserved native captures. C112 captures and checks actual
+model-bound native aliases. Next, establish explicit source-preserving protonation
+and unmodelled-name policies using independent DNA and held-out controls.
 Keep missing formal-charge readback distinct from contradictions. Generate and
 qualify a source-preserving numerical ATL candidate before repeating native
 transfer; installed-library failure is not a blanket ATL exclusion. Numerical

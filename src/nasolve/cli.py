@@ -1555,6 +1555,8 @@ def _cif_link_native(args: argparse.Namespace) -> int:
             print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
         else:
             print(f"Captured native interpretation: {report['native_status']}; links: {report['link_status']}; source definitions: {report['definition_status']}")
+            if 'atom_name_mapping' in report:
+                print(f"Observed native atom aliases: {report['atom_name_mapping']['alias_count']}; mapped source definitions: {report['mapped_definition_status']}")
             if report['native_error']:
                 print("Captured error: " + report['native_error'])
             unavailable = [site for site,row in report['definitions'].items() if row['formal_charge_status'] == 'UNSUPPORTED']

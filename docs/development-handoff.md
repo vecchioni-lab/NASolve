@@ -11,6 +11,57 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C112 native atom-name binding
+
+Implementation, native controls, cold replay and complete regression pass.
+Publication is the remaining step; source/tests are frozen and no job is active.
+Base: `60cdc0800b33669c9568e78277638aed4bbfe226`; continue on existing `cedar`.
+Output: `live_tests_directory/112_Cedar_native-name-mapping-gksy5b_8`.
+
+Before C112, C109 had only literal source/native name comparison. The new
+opt-in capture records Phenix's actual per-site/index atom-name bindings and
+checks model identity, effective elements, complete coverage and contradictions.
+The reader preserves literal findings and adds a separately named comparison
+using only observed aliases. Missing mappings remain unsupported; unmodelled
+hydrogen names and protonation are never inferred. No alias grants chemistry
+or adoption authority. The CLI reports both outcomes.
+
+Four complete Phenix 2.2.1-6174 interpretations are finished: DNA records
+OP3→O3T and C7→C5M while hydrogen/adjacency differences remain; both ATL
+directions retain explicit missing-energy-type failures; the ordinary L-DNA
+bundle binds 855 atoms/42 sites with zero aliases. Atom inventories, effective
+definitions, geometry and policy match the prior DNA/L-DNA captures exactly.
+This is a general diagnostic layer, not a structure-specific repair. No native
+optimizer, ReadySet, Coot, Phaser or refinement ran.
+
+Validation: **254 focused tests pass in 26.42 s** (39 new cases). Full suite:
+**6051 passed, 276 subtests passed in 952.76s (0:15:52)**. Five cases, including a real legacy capture,
+replay exactly after relocating code/inputs with original owned paths absent,
+historical/SDK reads and native execution blocked. Source/tests retain their
+second-suite hashes. The first full run exposed two stale C60 fixture failures;
+the fixture now preserves exact historical source bytes, and a new regression
+rejects current source as C60 evidence. Production pins remain unchanged. Both
+full-suite attempts are preserved. The 31 historical replay tests also pass
+after relocation without Git history, original paths or subprocesses. Exact
+commands, changed files and hashes are recorded under
+`native_atom_name_mapping_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+The native base-worker bytes and old results remain unchanged. New schema-1
+capture/reader fields are additive and policy-bound; older readers reject the
+new worker. No run/checkpoint migration, thresholds or installed-tool changes.
+Raw data/models/CIFs/workbook, captures/logs and runners remain local; only source,
+synthetic tests, maintained docs and compact evidence enter Git.
+
+Next G2 boundary: explicit source-preserving protonation and unmodelled-name
+policy, tested across held-out components; then numerical candidate recovery
+and qualification through immutable attempts. ATL and L-DNA chemistry gates
+remain open. PDU energy/gradient/derivative proof remains open. Sticky-end
+stitching is parked by the operator and does not block this generalizer slice.
+No new branch or Pine/main merge.
+
+— Rowan · Codex desktop
+
 ## C111 sticky-end symmetry evidence
 
 Completed a bounded, read-only audit on C110 source `799ecc60a31f5b6264b40a4f6d6dc967a43da645`
@@ -34,7 +85,7 @@ constructor rejects `sym_ops`. For these translation-only mates, ordinary
 plane-angle geometry is invariant; manager/gradient/exclusion qualification
 remains separate, including Cedar's known parallelity gradient requirements.
 
-Next bounded step: a disposable symmetry soft-bond inventory/exclusion audit.
+Parked by the operator after C111: a disposable symmetry soft-bond inventory/exclusion audit.
 Keep sticky-end H-bond association distinct from covalent phosphate continuation.
 Larger helix tugging/bending belongs to the planned design-aware geometry module,
 with maps, explicit intended partners, periodic clashes and preserved attempts.
@@ -102,7 +153,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; C110 published and validated within the limits above.** Every ligand in the selected
+**Scope revised 2026-10-28; C112 adds observed native mappings within the limits above.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -112,7 +163,7 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit validated. G2 remains partial.** DNA naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; PNA and terminal reconstruction remain open. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit and C112 observed name bindings validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; PNA and terminal reconstruction remain open. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |
@@ -188,14 +239,13 @@ was confirmed dead. Frozen workbooks/CCD files, models, candidates, native
 captures/logs and generated runners remain local; only source, synthetic tests,
 maintained documentation and compact technical evidence enter Git.
 
-**Next G2 boundary:** establish explicit native atom-name mappings and separate
-protonation policies using DNA controls. The hash-matched installed source exposes
-`monomer_mapping.atom_names_mappings`, `expected_atoms` and `mon_lib_names`;
-capture their actual per-site/index bindings before accepting aliases. These
-fields have only been inspected in source, not yet captured/qualified. Preserve
-C109's worker-version compatibility when extending native captures.
-Names alone must not silently reconcile
-OP3/O3T or C7/C5M, and protonation differences must not become automatic deletions.
+**G2 continuation (updated by C112):** actual native name bindings are now
+captured and checked without changing C109's base worker. Explicit protonation
+and unmodelled-hydrogen naming policies remain open. Observed OP3→O3T/C7→C5M
+bindings cannot authorize chemical-state changes or automatic hydrogen deletion.
+Keep source declarations, observed native representation and chemical authority
+separate; qualify policies across held-out components rather than special-casing
+the L-3GBI model.
 Recover/generate a source-preserving numerical ATL candidate through existing
 bounded machinery, validate its graph/stereo/NAR identities, then qualify both
 native link directions. Installed-library failure is not a blanket ATL exclusion.
