@@ -142,6 +142,8 @@ def candidate_generation_diagnostic(report):
     failed=sorted({name for key in ('preconditions','checks')
                    for name,value in handoff.get(key,{}).items() if value is False})
     reasons=list(inspection.get('rejection_reasons',[]))
+    if report.get('representation_validation',{}).get('status')=='BLOCKED':
+        reasons.append('source-representation-handoff-not-qualified')
     if report.get('formal_charges_preserved') is False:
         reasons.append('complete-formal-charges-not-preserved')
     if report.get('finished_stereo',{}).get('stereochemistry')=='INVERTED':
@@ -187,8 +189,10 @@ def candidate_generation_diagnostic(report):
 
 
 def generate_source_candidate(installation_root,python_executable,elbow_executable,api_sources,source,code,output,*,
-        environment,expected_dialect,prior_sources,phenix_version,single_block_steps=180,timeout_seconds=600):
+        environment,expected_dialect,prior_sources,phenix_version,single_block_steps=180,timeout_seconds=600,bond_representation_policy=None):
     """Request one bounded full native builder and retain its exact written CIF."""
+    from .cif_purine_representation import validate_policy
+    validate_policy(bond_representation_policy)
     if type(single_block_steps) is not int or not 1<=single_block_steps<=600:raise ValueError('Require 1--600 optimization steps')
     if type(timeout_seconds) not in (int,float) or not math.isfinite(timeout_seconds) or not 0<timeout_seconds<=600:raise ValueError('Require a candidate deadline in (0,600]')
     root=Path(installation_root).resolve(strict=True);source=Path(source).resolve(strict=True);output=Path(output).absolute()
@@ -211,10 +215,15 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
     v=_values(source,code);elements,bonds,charges,_=_graph(v);_,xyz=_coordinates(v,source=True)
     orders={'SINGLE':1,'DOUBLE':2,'TRIPLE':3,'AROMATIC':1.5,'DELOCALIZED':1.5}
     if set(xyz)!=set(elements) or any(q is None or not q.is_integer() or abs(q)>4 for q in charges.values()) or set(bonds.values())-set(orders):raise ValueError('Require complete declared source state')
+    representation_contract=None;worker=WORKER
+    if bond_representation_policy is not None:
+        from .cif_source_representation import generation_representation_contract,source_representation_worker,generation_representation_validation
+        representation_contract=generation_representation_contract(source,code,bond_representation_policy)
+        worker=source_representation_worker(WORKER)
     seed,_=_ideal_seed(source,code);output.mkdir(parents=True)
     for name,data in payloads.items():
         p=output/('api_sources/'+name+'.txt');p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
-    (output/'source.cif').write_bytes(original);(output/'source_ideal.pdb').write_text(seed);(output/'candidate_worker.py').write_text(WORKER)
+    (output/'source.cif').write_bytes(original);(output/'source_ideal.pdb').write_text(seed);(output/'candidate_worker.py').write_text(worker)
     report={'schema_version':1,'policy_id':POLICY_ID,'component':code,'status':'FAILED','source_sha256':sha256(original).hexdigest(),
             'phenix_version':phenix_version,'sources':rows,'native_object_reference':reference,'native_setup_reference':setup_reference,
             'execution':{'status':'NOT_RUN','timeout_seconds':timeout_seconds},'candidate':None,'candidate_retained':False,
@@ -222,6 +231,9 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
             'native_proxy_validation':'NOT_RUN','absolute_cip_assignment':'NOT_RUN','automatic_adoption':False,
             'requires_cif_review':False,'installed_phenix_edits':'NOT_RUN','model_editing':'NOT_RUN',
             'selection':'PENDING_NATIVE_USABILITY; OUTPUTS_PRESERVED_FOR_AUTOMATIC_FALLBACK'}
+    if representation_contract is not None:
+        report.update(policy_id='cif-source-native-complete-candidate-v2',bond_representation_policy=bond_representation_policy,
+            source_representation_contract=representation_contract)
     started=time.monotonic()
     try:
         caps=_generator_capabilities(elbow_executable,output,environment,timeout_seconds,phenix_version);report['generator_capabilities']=caps
@@ -236,6 +248,7 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
               'sources':[{'installed':str(root/r['path']),'sha256':r['sha256'],'module':name[:-3].replace('/','.')} for name,r in zip(SOURCE_PATHS,rows)],
               'declared_charge_control':{'component':code,'dialect':expected_dialect,'elements':elements,'coordinates':xyz,
                   'charges':{n:int(q) for n,q in charges.items()},'bonds':[{'atoms':list(p),'order':orders[o]} for p,o in bonds.items()]}}
+        if representation_contract is not None:spec['source_representation_contract']=representation_contract
         (output/'candidate_spec.json').write_text(json.dumps(spec,indent=2)+'\n');report['arguments']=args
         with (output/'candidate_worker.log').open('xb') as log:
             process=subprocess.Popen([str(python_executable),'-B','candidate_worker.py','candidate_spec.json'],cwd=output,
@@ -246,17 +259,22 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
             except BaseException:_terminate_owned_group(process);raise
             else:report['execution'].update(status='COMPLETED' if rc==0 else 'FAILED',returncode=rc)
         if (output/'candidate_result.json').is_file():report['result']=json.loads((output/'candidate_result.json').read_text())
+        if representation_contract is not None:
+            report['representation_validation']=generation_representation_validation(report.get('result',{}),spec['declared_charge_control'],representation_contract)
         candidate=output/'candidate.cif'
         # Exit status/convergence do not erase an already written regular output.
         if candidate.is_file() and not candidate.is_symlink():
             data=candidate.read_bytes();report.update(candidate={'anchor':'candidate_directory','path':'candidate.cif','sha256':sha256(data).hexdigest(),'size':len(data)},candidate_retained=True)
-            inspection=inspect_component_generation(source,candidate,code);report['inspection']=inspection
-            stereo=complete_candidate_stereo(source,candidate,code);report['finished_stereo']=stereo
+            options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
+            assessment_source=output/'source.cif' if representation_contract is not None else source
+            inspection=inspect_component_generation(assessment_source,candidate,code,**options);report['inspection']=inspection
+            stereo=complete_candidate_stereo(assessment_source,candidate,code);report['finished_stereo']=stereo
             left=inspection['source_assessment']['components'];right=inspection['generated_assessment']['components']
             charges_preserved=(len(left)==len(right)==1 and bool(_explicit_formal_charges(left[0]))
                 and _explicit_formal_charges(left[0])==_explicit_formal_charges(right[0]))
             report['formal_charges_preserved']=charges_preserved
             report['status']='REJECTED' if inspection['status']=='REJECTED' or not charges_preserved or stereo['stereochemistry']=='INVERTED' else 'CANDIDATE_REVIEW'
+            if representation_contract is not None and report['representation_validation']['status']!='SOURCE_REPRESENTATION_PASS':report['status']='REJECTED'
         trajectory=audit_optimizer_log((output/'candidate_worker.log').read_text(errors='replace'))
         report['stopping']={'status':trajectory['stopping'],'convergence_claimed':False,'trajectory':trajectory}
     except (OSError,ValueError,KeyError,TypeError) as exc:report.update(status='FAILED',error=type(exc).__name__+': '+str(exc))

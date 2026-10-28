@@ -100,6 +100,16 @@ energy/gradient evaluation. Historical attempts are not rewritten. This is
 isolated usability evidence; ordinary generation integration and linked PNA
 numerical targets still need qualification. See the
 [purine contract](cif-doctor.md#explicit-neutral-purine-representation-c117).
+C118 now threads that explicit representation through maintained generation,
+checking source chemistry at each native handoff without rewriting aromatic
+orders. Fresh 40A/APN/40C candidates pass the independent isolated controls.
+C119 freezes the complete explicitly authorized PNA source network, retaining
+site/atom identities and exact amide operations. Ten controls prepare and replay;
+four unresolved reacting charged amines stay blocked. The graph carries no
+assigned coordinates, numerical restraints or final CIP. It is a chemical input
+for the next linked-generation step. See the
+[generation contract](cif-doctor.md#explicit-purine-generation-handoff-c118) and
+[source-network contract](cif-doctor.md#explicit-pna-source-network-packages-c119).
 Native linked typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
@@ -778,6 +788,10 @@ C117 extends explicit assessment to a bounded source-declared neutral purine
 representation, retaining exact atoms/H/charges and independent numerical/stereo
 checks. Preserved 40A/APN candidates pass fresh isolated native controls; ordinary
 generation integration and linked PNA targets remain separate.
+C118 extends the explicit purine policy through fresh generation and exact
+native handoffs; new 40A/APN/40C candidates pass isolated checks. C119 freezes
+source-authorized PNA graphs with explicit amide edges, portable evidence and no
+assigned geometry or numerical targets. Linked native qualification stays open.
 A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom

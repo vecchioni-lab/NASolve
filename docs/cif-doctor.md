@@ -35,7 +35,11 @@
 
 <a id="current-capability-boundary-c115"></a>
 
-## Current capability boundary (C117)
+<a id="current-capability-boundary-c117"></a>
+
+<a id="current-capability-boundary-c118"></a>
+
+## Current capability boundary (C119)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -47,7 +51,8 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 
 | Question | Established result | Remaining boundary |
 | --- | --- | --- |
-| Can preserved purine candidates be qualified? | C117 explicitly recognizes a bounded source-declared neutral fused purine representation. Preserved 40A/APN and 40C pass two fresh isolated native coordinate controls each. | Default generation remains unchanged. Carbonyl/charged purines, final-environment linked PNA numerics and ordinary integration remain open. |
+| Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. Carbonyl/charged purines, convergence, final-environment linked PNA numerics and ordinary integration remain open. |
+| Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -624,6 +629,102 @@ run/checkpoint schemas and default legacy reports require no migration. See
 [evidence ledger](cif-linked-native-registration-evidence.json).
 
 <a id="next-attachment-profile-milestone-g2-planned"></a>
+
+### Explicit purine generation handoff (C118)
+
+`generate_source_candidate` accepts the same keyword-only
+`bond_representation_policy="cif-source-declared-neutral-purine-aromatic-v1"`
+used by C117 assessment. Omitting the option preserves the existing worker,
+policy, specification and default behavior. The option selects schema-1 policy
+`cif-source-native-complete-candidate-v2` and a maintained extended worker.
+
+The host derives a `cif-source-native-representation-contract-v1` contract from
+the source classifier. The native reader may retain the complete authorized
+aromatic ring representation, while atom/element/isotope identities, connectivity,
+source coordinates and other bond orders must agree. Declared-charge control
+operates on that verified representation. Native class conversion must preserve
+the entire controlled snapshot, including its stereo markers; the finished
+inventory must preserve source chemistry and finite coordinates. This does not
+rewrite native aromatic orders into localized bonds.
+
+Independent candidate chemistry, formal-charge, source-relative stereo,
+numerical and native checks remain required. A native exception or timeout does
+not erase written output; unavailable final-stage evidence is recorded explicitly.
+Stage contradictions reject retained candidates. Convergence and independent
+absolute CIP are not inferred from successful generation or finite energies.
+
+`cif_source_representation.read_representation_candidate(directory)` is the
+standalone read-only validator for this new policy. It binds the frozen source,
+maintained worker, four installed-source captures, exact capability flags and
+bounded specification. It recomputes charge/stage evidence, actual candidate
+assessment, stopping and diagnostics. Original installation strings are historical
+provenance only; replay uses local declared paths and hashes. Captured code is
+not executed, and serialized native objects are not loaded. The legacy mixed
+recovery reader is unchanged and does not accept this new generation policy.
+
+Phenix **2.2.1-6174** (dispatcher **2.2.1**) completed fresh 40A/APN/40C
+180-step generation attempts, with a 300-second deadline per attempt, and six
+independent isolated interpretations bounded to 60 seconds each. All 21 native
+checks pass at source and generated coordinates; fixed covalent proxies agree.
+40A retains source-relative handedness; APN has no fixed center in these controls.
+Native formal-charge readback remains unsupported, separately from exact CIF
+charge retention. These are complete executions, not dry-runs. An initial 40A
+attempt is preserved after exposing a source-basename replay mismatch; corrected
+fresh attempts use the frozen source identity. No original receipt is rewritten.
+
+### Explicit PNA source network packages (C119)
+
+```python
+from nasolve.cif_pna_source_network import (
+    prepare_pna_source_network, read_pna_source_network,
+)
+
+receipt = prepare_pna_source_network("inputs/links.json", "fresh-network")
+verified = read_pna_source_network("fresh-network")
+```
+
+The input is the existing C108 manifest with C114 explicit neutral PNA operations.
+Fresh source/site/link inspection must propose the entire network. Every selected
+site must match the supported PNA profile; both ends of every amide must carry
+explicit reciprocal authority and exact leaving choices. Optional candidate
+projections, when supplied, must match. Charged reacting amines remain unresolved;
+untouched charged termini retain their exact source state. Existing explicit-PDB
+selector and identity-symmetry limits apply. Exactly one connected network is
+required; disconnected assemblies need separate packages.
+
+The new policy `cif-explicit-pna-source-network-v1` writes:
+
+- `inputs/`: byte-exact copies of only the manifest and its declared inputs.
+- `link-report.json`: the fresh, reproducible source operation report.
+- `source-network.json`: retained atoms keyed by site plus atom ID, source
+  elements/isotopes, formal charges and source stereo declarations; retained
+  source bond orders/flags and explicit new SINGLE amide bonds.
+- `preparation-receipt.json`: schema-1 completion marker with relative input
+  references, file inventory, hashes and the explicit `PREPARED_REVIEW` scope.
+
+The graph has **no assigned coordinates, native energy types, numerical targets
+or final stereochemistry**. Source stereo declarations and frozen parent
+formula/descriptors remain provenance. Independent source coordinate frames
+cannot be combined into a plausible polymer merely by writing a CIF. In
+particular, pruning isolated numerical tables would not produce qualified linked
+amide restraints. This package gives a future whole-network generator a bound
+chemical input, not a refinement dictionary.
+
+The output must be fresh and separate from preserved inputs. A partial write
+remains available for diagnosis and requires a fresh destination on retry.
+The completion receipt is written last. Replay verifies the exact file inventory
+and hashes, re-inspects frozen source/site/link inputs, then recomputes the graph
+and report. Rebinding a checksum alone cannot authorize altered chemistry.
+Relocation needs no original checkout, SDK or process execution.
+
+Ten frozen C114 networks prepare and replay; four reacting charged-amine cases
+remain blocked. These controls include mixed/repeated components, a trimer and
+charged unreacted termini. No Phenix, Coot, optimizer or refinement ran for C119.
+Both additions are explicit Python APIs: no new CLI, automatic orchestration,
+run/checkpoint migration or adoption. Linked native construction, final CIP and
+numerical qualification are the next separate gates; sticky-end stitching stays
+parked. See the [evidence ledger](cif-linked-native-registration-evidence.json),
+keys `purine_source_generation_2026_10_28` and `pna_source_network_2026_10_28`.
 
 ### Explicit neutral purine representation (C117)
 

@@ -39918,5 +39918,1274 @@
     "next": "Thread the explicit policy through a separately versioned source-reader/generation route with exact stage invariants; then generate and qualify numerical restraints in the C114-authorized linked PNA chemical environment. Never prune isolated numerics into a linked dictionary.",
     "implementation_commit": "dcda5ac2fa85b01da61945947eda8b83110b7c40",
     "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
+  },
+  "purine_source_generation_2026_10_28": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "base_commit": "95560667066f7afc73b86f3c33980cf1932b6e1e",
+    "changed_files": [
+      "src/nasolve/cif_source_candidate.py",
+      "src/nasolve/cif_source_representation.py",
+      "src/nasolve/cif_pna_source_network.py",
+      "tests/test_cif_source_representation.py",
+      "tests/test_cif_pna_source_network.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "included": "Maintained code/contracts, synthetic regressions and compact technical evidence only.",
+    "excluded": "All raw CIF/PDB/workbook/scientific data, generated graphs, SDK captures, logs, pickles, local runners and partial outputs remain outside Git.",
+    "compatibility": "Explicit Python APIs only; no CLI/default behavior, run/checkpoint schema, automatic retry/adoption or migration change.",
+    "full_validation": {
+      "status": "PASS",
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "capsule": {
+        "anchor": "live_tests_directory",
+        "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined"
+      },
+      "result": "6253 passed, 276 subtests passed in 966.55s (0:16:06)",
+      "source_test_hashes_unchanged": true,
+      "source_test_files": 468,
+      "wall_seconds": 967.7810412079562,
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined/result.json",
+          "sha256": "d77953ebaa6c436a17dcdc1702a7b12459a8eb4190a9012a56c52407935639ce",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined/pytest.log",
+          "sha256": "78bdb928593670c0f1b9a2ea75a8af44487bcfc4d0050631439ab9e9d4dca6a0",
+          "size": 9577
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined/source-hashes.json",
+          "sha256": "179c93c567398622cc3bed34a5dd87e747d2f015feb42d9099d9eae0f375d830",
+          "size": 50574
+        }
+      ]
+    },
+    "combined_focused": {
+      "result": "480 passed in 50.99s",
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_pna_source_network.py",
+        "tests/test_cif_pna_operations.py",
+        "tests/test_cif_attachment_profiles.py",
+        "tests/test_cif_attachment_sites.py",
+        "tests/test_cif_attachment_links.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_native_atom_mapping.py",
+        "tests/test_cif_native_hydrogens.py",
+        "tests/test_cif_source_representation.py",
+        "tests/test_cif_source_candidate.py",
+        "tests/test_cif_purine_representation.py",
+        "tests/test_cif_declared_charge_control.py",
+        "tests/test_cif_mixed_recovery.py",
+        "tests/test_cif_candidate_usability.py"
+      ],
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/focused/result.json",
+          "sha256": "5f37c2a4cb13552c6a7a2a0b16326d6e5a614a85798203bcf8d9228a04b1788c",
+          "size": 1011
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/focused/pytest.log",
+          "sha256": "9033fd2416aad93c89f8f85d6e457177ad2f17244e505bb4632ca302675ad3b9",
+          "size": 3177
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/focused/source-hashes.json",
+          "sha256": "179c93c567398622cc3bed34a5dd87e747d2f015feb42d9099d9eae0f375d830",
+          "size": 50574
+        }
+      ]
+    },
+    "before": "C117 can assess source-correct neutral purine outputs, but the maintained source-native generation handoff rejects the reader aromatic representation.",
+    "after": "Explicit generation derives permission from the maintained C117 source classifier, verifies exact reader/class-conversion/finished inventories, and preserves native aromatic orders. Three fresh isolated candidates pass independent native qualification.",
+    "policy": "cif-source-native-complete-candidate-v2",
+    "contract_policy": "cif-source-native-representation-contract-v1",
+    "representation_policy": "cif-source-declared-neutral-purine-aromatic-v1",
+    "apis": [
+      "generate_source_candidate(..., bond_representation_policy=...)",
+      "read_representation_candidate(directory)"
+    ],
+    "schema": "Schema-1 opt-in receipt adds bond_representation_policy, source_representation_contract and representation_validation; explicit worker/spec and standalone replay. Legacy WORKER/v1 mixed-recovery reader remain unchanged.",
+    "default_worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+    "contract": [
+      "A complete source-authorized ring may become aromatic at native handoff; exact identities, connectivity, H/isotopes, coordinates and all other bond orders remain required.",
+      "Declared-charge control is replayed from scalar inventory; native class conversion must preserve the complete controlled snapshot.",
+      "Finished inventories preserve graph and charges. Written outputs after native exceptions/timeouts remain independently assessable, with absent final-stage evidence explicit.",
+      "All existing candidate chemistry, source-relative stereo, numerical and native qualification gates remain independent.",
+      "Standalone reader verifies frozen source, maintained worker, installed API snapshots, help options, bounded spec, stage evidence, actual candidate and stopping/diagnostic results without executing captured code or loading pickles."
+    ],
+    "native": {
+      "software": "Phenix 2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "execution": "FOUR_COMPLETE_GENERATION_ATTEMPTS_AND_SIX_COMPLETE_INTERPRETATIONS; NOT_DRY_RUN",
+      "generation_steps": 180,
+      "generation_timeout_seconds": 300,
+      "interpretation_timeout_seconds": 60,
+      "controls": {
+        "40A": {
+          "source": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/inputs/40A.cif",
+            "sha256": "a68e1a3ff04ff6cdbdc7744d1cdd1add155d1cdef706495b0486f51effd1bcbe",
+            "size": 9456
+          },
+          "ordered_input": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/inputs/40A/ordered.cif",
+            "sha256": "f8e9ff78b86de573dc83b145af71e4112fddb800d71a02aee18c710b8165a0f5",
+            "size": 3846
+          },
+          "generation_receipt": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/40A/generated-qualified/source_candidate_receipt.json",
+            "sha256": "361abd90470ac7ff248d9ecdca4e93b921f415b30848e695817c28f7c4585930",
+            "size": 668728
+          },
+          "candidate": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/40A/generated-qualified/candidate.cif",
+            "sha256": "247622bde7563562a789ad0bbdae135c60c694188c71d4ad527e4668bc9c1bfc",
+            "size": 14030
+          },
+          "generation_status": "CANDIDATE_REVIEW",
+          "representation_validation": {
+            "policy_id": "cif-source-native-representation-contract-v1",
+            "status": "SOURCE_REPRESENTATION_PASS",
+            "checks": {
+              "reader_evidence": true,
+              "reader_authorized": true,
+              "charge_handoff": true,
+              "charge_evidence": true,
+              "conversion_evidence": true,
+              "conversion_authorized": true,
+              "finished_evidence": true,
+              "finished_authorized": true
+            },
+            "finished_inventory": "RECORDED",
+            "candidate_qualification": "INDEPENDENT_REQUIRED",
+            "automatic_adoption": false
+          },
+          "stopping": "NOT_REPORTED",
+          "native_qualification": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/40A/native-qualification.json",
+            "sha256": "4f1db2fdebd78d74bb5bdddcee6d3e176182e7a55c7ce323578982fef99e3d0f",
+            "size": 3167923
+          },
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "decision": "CONTINUE_WITH_NOTES",
+          "coordinate_cases": {
+            "source_seed": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": "UNSUPPORTED",
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "118_Cedar_purine-generation-1o4kbb0l/40A/native/source_seed/cif-native-un2z_xj7/native_receipt.json",
+                "sha256": "7808d1aa5438cb00d7cf230dd36d5efc35f9ffd5fc42f40e0698cde410552a0e",
+                "size": 257084
+              }
+            },
+            "generated_output": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": "UNSUPPORTED",
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "118_Cedar_purine-generation-1o4kbb0l/40A/native/generated_output/cif-native-0xsj5otq/native_receipt.json",
+                "sha256": "a3a4aaf9acc8696a16ece08c929f62cc8cab9b0ae76d6a6a3dfb1b79cc315bec",
+                "size": 256661
+              }
+            }
+          },
+          "automatic_adoption": false
+        },
+        "APN": {
+          "source": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/inputs/APN.cif",
+            "sha256": "efde6f9bd04461d7cf054316a9bf7cd00d1f8f21f8099b320aa85e6de2e18597",
+            "size": 9147
+          },
+          "ordered_input": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/inputs/APN/ordered.cif",
+            "sha256": "e3f6cd34d0ad363cfe058e98eaac1533969df81f3881559cb75229cdd2a9eb23",
+            "size": 3634
+          },
+          "generation_receipt": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/APN/generated-qualified/source_candidate_receipt.json",
+            "sha256": "3465db3c8cb94fbdf324961a3067d7bb6b2ab83aad829d61fb4bab6f7887f831",
+            "size": 646576
+          },
+          "candidate": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/APN/generated-qualified/candidate.cif",
+            "sha256": "021d22465b882bdcc14bf547fa5f23b31642c78e80e5685c62b6b6d12ce2c010",
+            "size": 13277
+          },
+          "generation_status": "CANDIDATE_REVIEW",
+          "representation_validation": {
+            "policy_id": "cif-source-native-representation-contract-v1",
+            "status": "SOURCE_REPRESENTATION_PASS",
+            "checks": {
+              "reader_evidence": true,
+              "reader_authorized": true,
+              "charge_handoff": true,
+              "charge_evidence": true,
+              "conversion_evidence": true,
+              "conversion_authorized": true,
+              "finished_evidence": true,
+              "finished_authorized": true
+            },
+            "finished_inventory": "RECORDED",
+            "candidate_qualification": "INDEPENDENT_REQUIRED",
+            "automatic_adoption": false
+          },
+          "stopping": "NOT_REPORTED",
+          "native_qualification": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/APN/native-qualification.json",
+            "sha256": "de5c27a7541180749915828ecf560333185828a1624fbb152e2c47f0a4a25b22",
+            "size": 3062256
+          },
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "decision": "CONTINUE_WITH_NOTES",
+          "coordinate_cases": {
+            "source_seed": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": "UNSUPPORTED",
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "118_Cedar_purine-generation-1o4kbb0l/APN/native/source_seed/cif-native-jw9sn39s/native_receipt.json",
+                "sha256": "bc9a65b93dbda234584bb41ca3e9c6a79dca715d1251c1d73e4ff19cd4a55ec8",
+                "size": 245539
+              }
+            },
+            "generated_output": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": "UNSUPPORTED",
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "118_Cedar_purine-generation-1o4kbb0l/APN/native/generated_output/cif-native-51ain9kx/native_receipt.json",
+                "sha256": "4b33b8a3004a48cb6fe03f6cf2fc02a1755848ae1c17eccfbd85b097df5107fc",
+                "size": 245663
+              }
+            }
+          },
+          "automatic_adoption": false
+        },
+        "40C": {
+          "source": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/inputs/40C.cif",
+            "sha256": "68664389eb657e4fdca7e7c157af06a160047f1b4304f7505d509fa2664f6d3b",
+            "size": 9206
+          },
+          "ordered_input": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/inputs/40C/ordered.cif",
+            "sha256": "3d645845287bf07a942777a52abecb8cb6048aec0d27c0942b526012106cbe2f",
+            "size": 3672
+          },
+          "generation_receipt": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/40C/generated-qualified/source_candidate_receipt.json",
+            "sha256": "1afa28c737239998a64bf762cf279306d7e5d378f80649ada3f2b27cf7e78ae0",
+            "size": 573634
+          },
+          "candidate": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/40C/generated-qualified/candidate.cif",
+            "sha256": "8aa081482cc69207c8b16228c9349d1c4b90ead839f1a80d502e92343e164d42",
+            "size": 12323
+          },
+          "generation_status": "CANDIDATE_REVIEW",
+          "representation_validation": {
+            "policy_id": "cif-source-native-representation-contract-v1",
+            "status": "SOURCE_REPRESENTATION_PASS",
+            "checks": {
+              "reader_evidence": true,
+              "reader_authorized": true,
+              "charge_handoff": true,
+              "charge_evidence": true,
+              "conversion_evidence": true,
+              "conversion_authorized": true,
+              "finished_evidence": true,
+              "finished_authorized": true
+            },
+            "finished_inventory": "RECORDED",
+            "candidate_qualification": "INDEPENDENT_REQUIRED",
+            "automatic_adoption": false
+          },
+          "stopping": "NOT_REPORTED",
+          "native_qualification": {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/40C/native-qualification.json",
+            "sha256": "69468ee5a5f6d7af9ad613441c6518bcf56ac9f82930bb5fb5dfb0f791518149",
+            "size": 2689809
+          },
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "decision": "CONTINUE_WITH_NOTES",
+          "coordinate_cases": {
+            "source_seed": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": "UNSUPPORTED",
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "118_Cedar_purine-generation-1o4kbb0l/40C/native/source_seed/cif-native-1uf_hp02/native_receipt.json",
+                "sha256": "ab67184e99334f5ea6b77e4659feeb3dd9bac7cc3f0f72f7f87776f8de3288d5",
+                "size": 226150
+              }
+            },
+            "generated_output": {
+              "checks": {
+                "source_chemistry_and_configuration": true,
+                "native_completed": true,
+                "no_native_fatal_or_unused": true,
+                "exact_model_and_component": true,
+                "native_coordinate_roundtrip": true,
+                "one_complete_monomer": true,
+                "exact_effective_definitions": true,
+                "no_contradictory_native_formal_charges": true,
+                "effective_declared_bond_orders": true,
+                "no_competing_native_ss": true,
+                "proxy_counts_complete": true,
+                "finite_active_proxy_parameters": true,
+                "exact_active_bonds": true,
+                "exact_active_angles": true,
+                "exact_active_torsions": true,
+                "exact_active_planes": true,
+                "exact_fixed_chirality_membership": true,
+                "omitted_unoriented_volume_coverage": true,
+                "energy_inventory": true,
+                "finite_energy_and_gradient": true,
+                "fixed_coordinate_repeats": true
+              },
+              "formal_charge_readback": "UNSUPPORTED",
+              "native_receipt": {
+                "anchor": "live_tests_directory",
+                "path": "118_Cedar_purine-generation-1o4kbb0l/40C/native/generated_output/cif-native-ta0u8yuu/native_receipt.json",
+                "sha256": "70981593fe690fb57331fe6bf2eebb873b7a952fb299a5f72c0e4bf7c0089f35",
+                "size": 225476
+              }
+            }
+          },
+          "automatic_adoption": false
+        }
+      },
+      "initial_attempt": {
+        "receipt": {
+          "anchor": "live_tests_directory",
+          "path": "118_Cedar_purine-generation-1o4kbb0l/40A/generated-aromatic/source_candidate_receipt.json",
+          "sha256": "1a02806b8158f449262d699687675d003e59849ad571d505af258af2b4404b4d",
+          "size": 668730
+        },
+        "outcome": "Candidate retained; standalone replay exposed original-basename versus frozen-source mismatch. Initial output/receipt remain unchanged; corrected implementation used fresh final attempts."
+      }
+    },
+    "validation": {
+      "regression_before": "29 failed, 1 passed; absent new implementation (legacy control passes).",
+      "new_cases": 38,
+      "focused": "191 passed in 11.68s",
+      "focused_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_source_representation.py",
+        "tests/test_cif_source_candidate.py",
+        "tests/test_cif_purine_representation.py",
+        "tests/test_cif_declared_charge_control.py",
+        "tests/test_cif_mixed_recovery.py",
+        "tests/test_cif_candidate_usability.py"
+      ],
+      "cold": {
+        "status": "PASS",
+        "components": {
+          "40A": {
+            "generation_replay": "MATCH",
+            "source_assessment": "MATCH",
+            "native_cases": 2,
+            "decision": "MATCH",
+            "same_fixed_covalent_proxies": true
+          },
+          "APN": {
+            "generation_replay": "MATCH",
+            "source_assessment": "MATCH",
+            "native_cases": 2,
+            "decision": "MATCH",
+            "same_fixed_covalent_proxies": true
+          },
+          "40C": {
+            "generation_replay": "MATCH",
+            "source_assessment": "MATCH",
+            "native_cases": 2,
+            "decision": "MATCH",
+            "same_fixed_covalent_proxies": true
+          }
+        },
+        "generation_cases": 3,
+        "initial_attempt": "HASH_VERIFIED; ORIGINAL BASENAME REPLAY FAILURE RETAINED",
+        "native_cases": 6,
+        "files_unchanged": 324,
+        "blocked_attempts": [],
+        "owned_original_absent": true,
+        "generation_execution": "NOT_RUN",
+        "native_execution": "NOT_RUN",
+        "pickle_loading": "NOT_RUN",
+        "default_worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+        "extended_worker_sha256": "abd9a761bc5a92fc210699b47b84812681cc2f8c3ee89044f72f676a3e237b8b"
+      },
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "118_Cedar_purine-generation-1o4kbb0l/validation/cold-result.json",
+          "sha256": "f7cfa3f4c76b7f14282b0af10f7f6af145ec3096c04079946ed5c93b1081ae5f",
+          "size": 1107
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "118_Cedar_purine-generation-1o4kbb0l/validation/relocation-manifest.json",
+          "sha256": "6714b759326f8ac836ae515d7b6630f36ca0e2a571ef84b0cb3b4e3f70d25534",
+          "size": 62289
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "118_Cedar_purine-generation-1o4kbb0l/validation/input-manifest.json",
+          "sha256": "7eaccbc80f3337baade99303da8dcc6abd2f91e4029a627c1a44311dc9a24c7d",
+          "size": 1548
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "118_Cedar_purine-generation-1o4kbb0l/validation/initial-attempt-manifest.json",
+          "sha256": "5ce50c76b1cf1de4e7e17080d5b053878f4f1f4e0210d851ec6777e14d2f5526",
+          "size": 3381
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/static-checks.json",
+          "sha256": "c5846f1fe8438495043521e1f4e8599942bc35a71347ec54bfce717d3adb50ff",
+          "size": 548
+        }
+      ],
+      "interrupted_full": {
+        "reason": "User requested one further bounded push before the full suite. Owned test process interrupted and log preserved.",
+        "result": "2292 passed, 151 subtests passed; KeyboardInterrupt; no complete-suite claim.",
+        "evidence": [
+          {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/validation/full/pytest.log",
+            "sha256": "5490ba498016aa9f8c799170100d724cb457d3b0e54bad84f466e71eb7d3ec28",
+            "size": 5659
+          },
+          {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/validation/full/result.json",
+            "sha256": "0591c19331afedd28570be73d2aff0a46fe7773935090f4cd711718dd6d04f49",
+            "size": 398
+          },
+          {
+            "anchor": "live_tests_directory",
+            "path": "118_Cedar_purine-generation-1o4kbb0l/validation/full/source-hashes.json",
+            "sha256": "cccbde585b6ad9b87da2d31dd980b96352cc01fe273337bb4a4f5ceffc9d66bb",
+            "size": 50353
+          }
+        ]
+      },
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python CAPSULE/runners/c118_native_final.py",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CAPSULE/cold-relocated/src python CAPSULE/runners/c118_cold.py CAPSULE",
+      "static": {
+        "documentation": {
+          "relative_links_checked": 288,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "diff_check": "PASS",
+        "compileall": "PASS: PYTHONPYCACHEPREFIX=/private/tmp/c119-compile-cache python -m compileall -q src tests",
+        "svg": "XML valid; visible elements unchanged; accessible description/caption updated",
+        "source_test_files": 468,
+        "source_test_hashes_unchanged": true,
+        "C118_inputs_unchanged": 9,
+        "C118_initial_attempt_files_unchanged": 17,
+        "C114_upstream_files_unchanged": 120,
+        "cold_files_unchanged": 739
+      },
+      "development_validation": {
+        "regression-before": {
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--durations=20",
+            "tests/test_cif_source_representation.py"
+          ],
+          "exit_code": 1,
+          "summary": "29 failed, 1 passed in 2.34s",
+          "evidence": [
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/regression-before/result.json",
+              "sha256": "a6f485c5f30335e75c032e05da97dd781cd0a18a6130f35601c60eeaffc04614",
+              "size": 445
+            },
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/regression-before/pytest.log",
+              "sha256": "ee708321371123e513832ab78b2df19881a20b6904eab5639b68881d07fd2189",
+              "size": 26349
+            }
+          ]
+        },
+        "focused-initial": {
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--durations=20",
+            "tests/test_cif_source_representation.py",
+            "tests/test_cif_source_candidate.py",
+            "tests/test_cif_purine_representation.py"
+          ],
+          "exit_code": 1,
+          "summary": "16 failed, 76 passed in 6.01s",
+          "evidence": [
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused-initial/result.json",
+              "sha256": "ea8e71010705be0a13865d62df80015f614daa632908017664e536fb73dcf283",
+              "size": 534
+            },
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused-initial/pytest.log",
+              "sha256": "91c75d43e6ed50464a148e8e9c93db8e108024dd5f84fe78d925b7018f69f376",
+              "size": 79503
+            }
+          ]
+        },
+        "focused-revised": {
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--durations=20",
+            "tests/test_cif_source_representation.py",
+            "tests/test_cif_source_candidate.py",
+            "tests/test_cif_purine_representation.py"
+          ],
+          "exit_code": 0,
+          "summary": "92 passed in 24.88s",
+          "evidence": [
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused-revised/result.json",
+              "sha256": "44be65ce0a7ffb0b2578b8d76db2b91dd7b9aaf6190a9e42c38d03a292fb9bda",
+              "size": 535
+            },
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused-revised/pytest.log",
+              "sha256": "b5644a768c72ac36d9c15f9e2a6749d033c8bb0ea671392f5e97b51791983aa3",
+              "size": 2890
+            }
+          ]
+        },
+        "focused-proof": {
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--durations=20",
+            "tests/test_cif_source_representation.py",
+            "tests/test_cif_source_candidate.py",
+            "tests/test_cif_purine_representation.py",
+            "tests/test_cif_declared_charge_control.py"
+          ],
+          "exit_code": 0,
+          "summary": "116 passed in 9.19s",
+          "evidence": [
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused-proof/result.json",
+              "sha256": "7010c5cf85a500b072c53c377d9e3d625dc3a3ab154e5ff247176ad8a6091c60",
+              "size": 583
+            },
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused-proof/pytest.log",
+              "sha256": "6e024722d12caefa02e5a53eeeab9f989bb692903e1299adcf5839386499c20b",
+              "size": 2837
+            }
+          ]
+        },
+        "focused": {
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--durations=20",
+            "tests/test_cif_source_representation.py",
+            "tests/test_cif_source_candidate.py",
+            "tests/test_cif_purine_representation.py",
+            "tests/test_cif_declared_charge_control.py",
+            "tests/test_cif_mixed_recovery.py",
+            "tests/test_cif_candidate_usability.py"
+          ],
+          "exit_code": 0,
+          "summary": "191 passed in 11.68s",
+          "evidence": [
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused/result.json",
+              "sha256": "e9729412ae996e48afea6ca88438a8acd8dd3893aeb5e73f28ddcace596dfcf0",
+              "size": 669
+            },
+            {
+              "anchor": "live_tests_directory",
+              "path": "118_Cedar_purine-generation-1o4kbb0l/validation/focused/pytest.log",
+              "sha256": "320e30ee1531c47d4610d1d525eb2f667e01057b58a2a4fa22af89c7ecd8197a",
+              "size": 2915
+            }
+          ]
+        }
+      },
+      "initial_focused_failure": "Extended-worker insertion checked the wrong quote spelling in the preserved base worker; exact markers were corrected before passing revised/final controls. Original failed log retained."
+    },
+    "limits": [
+      "40A source-relative handedness passes; APN has no fixed center in these controls. No independent absolute CIP assignment.",
+      "Formal-charge native readback unsupported; exact source/candidate CIF charges separately checked.",
+      "Finite fixed energies/proxies do not establish convergence, linked PNA numerics, refinement or catalogue-wide support.",
+      "Carbonyl/charged purine extensions and ordinary orchestration remain unqualified."
+    ],
+    "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration."
+  },
+  "pna_source_network_2026_10_28": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "base_commit": "95560667066f7afc73b86f3c33980cf1932b6e1e",
+    "changed_files": [
+      "src/nasolve/cif_source_candidate.py",
+      "src/nasolve/cif_source_representation.py",
+      "src/nasolve/cif_pna_source_network.py",
+      "tests/test_cif_source_representation.py",
+      "tests/test_cif_pna_source_network.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "included": "Maintained code/contracts, synthetic regressions and compact technical evidence only.",
+    "excluded": "All raw CIF/PDB/workbook/scientific data, generated graphs, SDK captures, logs, pickles, local runners and partial outputs remain outside Git.",
+    "compatibility": "Explicit Python APIs only; no CLI/default behavior, run/checkpoint schema, automatic retry/adoption or migration change.",
+    "full_validation": {
+      "status": "PASS",
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "capsule": {
+        "anchor": "live_tests_directory",
+        "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined"
+      },
+      "result": "6253 passed, 276 subtests passed in 966.55s (0:16:06)",
+      "source_test_hashes_unchanged": true,
+      "source_test_files": 468,
+      "wall_seconds": 967.7810412079562,
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined/result.json",
+          "sha256": "d77953ebaa6c436a17dcdc1702a7b12459a8eb4190a9012a56c52407935639ce",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined/pytest.log",
+          "sha256": "78bdb928593670c0f1b9a2ea75a8af44487bcfc4d0050631439ab9e9d4dca6a0",
+          "size": 9577
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/full-combined/source-hashes.json",
+          "sha256": "179c93c567398622cc3bed34a5dd87e747d2f015feb42d9099d9eae0f375d830",
+          "size": 50574
+        }
+      ]
+    },
+    "combined_focused": {
+      "result": "480 passed in 50.99s",
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_pna_source_network.py",
+        "tests/test_cif_pna_operations.py",
+        "tests/test_cif_attachment_profiles.py",
+        "tests/test_cif_attachment_sites.py",
+        "tests/test_cif_attachment_links.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_native_atom_mapping.py",
+        "tests/test_cif_native_hydrogens.py",
+        "tests/test_cif_source_representation.py",
+        "tests/test_cif_source_candidate.py",
+        "tests/test_cif_purine_representation.py",
+        "tests/test_cif_declared_charge_control.py",
+        "tests/test_cif_mixed_recovery.py",
+        "tests/test_cif_candidate_usability.py"
+      ],
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/focused/result.json",
+          "sha256": "5f37c2a4cb13552c6a7a2a0b16326d6e5a614a85798203bcf8d9228a04b1788c",
+          "size": 1011
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/focused/pytest.log",
+          "sha256": "9033fd2416aad93c89f8f85d6e457177ad2f17244e505bb4632ca302675ad3b9",
+          "size": 3177
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/focused/source-hashes.json",
+          "sha256": "179c93c567398622cc3bed34a5dd87e747d2f015feb42d9099d9eae0f375d830",
+          "size": 50574
+        }
+      ]
+    },
+    "before": "C114 proposes exact PNA source deletions and reciprocal links, but provides no standalone frozen full-network chemical input.",
+    "after": "Prepare one connected, site-qualified PNA source graph from fresh C114 checks, freeze only declared authorities, and recompute the network during standalone replay. No geometry or numerical restraints are assigned.",
+    "policy": "cif-explicit-pna-source-network-v1",
+    "operation_policy": "neutral-pna-amide-v1",
+    "apis": [
+      "prepare_pna_source_network(manifest, output_directory)",
+      "read_pna_source_network(directory)"
+    ],
+    "schema": "New schema-1 source-network.json and preparation-receipt.json, frozen original inputs and recomputable link-report.json. Existing context/link reports unchanged.",
+    "contract": [
+      "Explicit complete reciprocal neutral-amide operations only; every selected site must have the supported PNA source profile and authorized operation.",
+      "Every retained atom is identified by site and atom ID, preserving source element/isotope, charge and source stereo declarations. Source bond orders/aromatic/stereo flags remain declared provenance.",
+      "Add only the declared carboxyl-carbon to amine-nitrogen SINGLE bonds. No inter-site coordinate, native type or numerical-target synthesis.",
+      "Disconnected networks, unresolved reaction states, candidate mismatches and existing outputs are refused. Partial output remains; retry needs a fresh directory.",
+      "Completion receipt published last; relative references and exact inventory/hash checks precede fresh source inspection and graph/report recomputation.",
+      "Source stereo labels and parent formula/descriptors do not assert linked CIP/chemical descriptors. Frozen source CIFs are evidence, not linked numerical dictionaries."
+    ],
+    "execution": "Pure Python preparation/read-only replay; no Phenix/Coot/optimizer/refinement execution or dry-run.",
+    "software": {
+      "python": "3.12.14",
+      "NARestraints": "1.1.3"
+    },
+    "controls": {
+      "40A_40A": {
+        "amide_bonds": 1,
+        "atoms": 75,
+        "bonds": 78,
+        "input_codes": [
+          "40A",
+          "40A"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/40A_40A/preparation-receipt.json",
+          "sha256": "3198b93d204703d06c2bde3920f90a2a9fe0ffda64417f6685d52610619a746c"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 0.0
+      },
+      "40A_40C": {
+        "amide_bonds": 1,
+        "atoms": 73,
+        "bonds": 75,
+        "input_codes": [
+          "40A",
+          "40C"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/40A_40C/preparation-receipt.json",
+          "sha256": "582cdc11473a472fe45b2beb92d94a6acf2c60e146ecd889a7b4f497d68e1412"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 0.0
+      },
+      "40A_40C_40G": {
+        "amide_bonds": 2,
+        "atoms": 110,
+        "bonds": 114,
+        "input_codes": [
+          "40A",
+          "40C",
+          "40G"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/40A_40C_40G/preparation-receipt.json",
+          "sha256": "12ba55dc09c2a0986a342e62c5d93def055040e9576d3d7b5a92d957c4d498cd"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 0.0
+      },
+      "40A_APN": {
+        "input_codes": [
+          "40A",
+          "APN"
+        ],
+        "reason": "Require a completely proposed reciprocal source network",
+        "status": "BLOCKED"
+      },
+      "40C_40G": {
+        "amide_bonds": 1,
+        "atoms": 74,
+        "bonds": 76,
+        "input_codes": [
+          "40C",
+          "40G"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/40C_40G/preparation-receipt.json",
+          "sha256": "cac2ca96d5acdb200474b68f53d76161e3d1f4f4c8fa61c40d97d07155dfa73f"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 0.0
+      },
+      "40C_CPN": {
+        "input_codes": [
+          "40C",
+          "CPN"
+        ],
+        "reason": "Require a completely proposed reciprocal source network",
+        "status": "BLOCKED"
+      },
+      "40G_40T": {
+        "amide_bonds": 1,
+        "atoms": 76,
+        "bonds": 78,
+        "input_codes": [
+          "40G",
+          "40T"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/40G_40T/preparation-receipt.json",
+          "sha256": "9e765c08b521d31ae5b62b0988d5cc1a27424bc80b302b20dfaaca0209cef7ed"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 0.0
+      },
+      "40G_TPN": {
+        "input_codes": [
+          "40G",
+          "TPN"
+        ],
+        "reason": "Require a completely proposed reciprocal source network",
+        "status": "BLOCKED"
+      },
+      "40T_40A": {
+        "amide_bonds": 1,
+        "atoms": 75,
+        "bonds": 77,
+        "input_codes": [
+          "40T",
+          "40A"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/40T_40A/preparation-receipt.json",
+          "sha256": "34bcc14c79daf34784aa4fd81b8d246887d68c5efcb92a93315bd74bf2f4062f"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 0.0
+      },
+      "40T_OPN": {
+        "input_codes": [
+          "40T",
+          "OPN"
+        ],
+        "reason": "Require a completely proposed reciprocal source network",
+        "status": "BLOCKED"
+      },
+      "APN_40A": {
+        "amide_bonds": 1,
+        "atoms": 73,
+        "bonds": 76,
+        "input_codes": [
+          "APN",
+          "40A"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/APN_40A/preparation-receipt.json",
+          "sha256": "eda6edbd21eff8b58ff8843a7303ab4e04e24e8ea4e2a20374ce38e71dd042c5"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 1.0
+      },
+      "CPN_40C": {
+        "amide_bonds": 1,
+        "atoms": 69,
+        "bonds": 70,
+        "input_codes": [
+          "CPN",
+          "40C"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/CPN_40C/preparation-receipt.json",
+          "sha256": "fd7a820a892db5f30f2c510f3b43c5cbaaa5c45e39f3ae1faa71f1f77775bbde"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 1.0
+      },
+      "OPN_40T": {
+        "amide_bonds": 1,
+        "atoms": 75,
+        "bonds": 77,
+        "input_codes": [
+          "OPN",
+          "40T"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/OPN_40T/preparation-receipt.json",
+          "sha256": "b9e6843b7e3e01fcb599c98fe874112dbef2a660cb3e6a7c8bd7f4dc85989e6a"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 1.0
+      },
+      "TPN_40G": {
+        "amide_bonds": 1,
+        "atoms": 74,
+        "bonds": 76,
+        "input_codes": [
+          "TPN",
+          "40G"
+        ],
+        "native_qualification": "NOT_ASSESSED",
+        "receipt": {
+          "anchor": "capsule_directory",
+          "path": "cold-relocated/packages/TPN_40G/preparation-receipt.json",
+          "sha256": "b0a61638f570250ab8a328e141b845287e3106776b8f67862579836dd7722f52"
+        },
+        "status": "PREPARED_REVIEW",
+        "total_formal_charge": 1.0
+      }
+    },
+    "validation": {
+      "regression_before": "22 failed before the module/API existed. Three interruption/connectivity cases added before final code freeze.",
+      "new_cases": 25,
+      "regression_after": "94 passed in 6.53s (initial network, operation and reciprocal-link controls)",
+      "cold": {
+        "status": "PASS",
+        "prepared_replays": 10,
+        "unresolved_replays": 4,
+        "files_unchanged": 415,
+        "owned_original_absent": true,
+        "blocked_attempts": [],
+        "native_execution": "NOT_RUN",
+        "numerical_qualification": "NOT_ASSESSED"
+      },
+      "upstream_C114_files_unchanged": 120,
+      "commands": {
+        "regression-before": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_pna_source_network.py"
+        ],
+        "regression-after": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_pna_source_network.py",
+          "tests/test_cif_pna_operations.py",
+          "tests/test_cif_attachment_links.py"
+        ],
+        "focused": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_pna_source_network.py",
+          "tests/test_cif_pna_operations.py",
+          "tests/test_cif_attachment_profiles.py",
+          "tests/test_cif_attachment_sites.py",
+          "tests/test_cif_attachment_links.py",
+          "tests/test_cif_attachment_native.py",
+          "tests/test_cif_native_atom_mapping.py",
+          "tests/test_cif_native_hydrogens.py",
+          "tests/test_cif_source_representation.py",
+          "tests/test_cif_source_candidate.py",
+          "tests/test_cif_purine_representation.py",
+          "tests/test_cif_declared_charge_control.py",
+          "tests/test_cif_mixed_recovery.py",
+          "tests/test_cif_candidate_usability.py"
+        ]
+      },
+      "transfer_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python CAPSULE/runners/c119_transfer.py",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CAPSULE/cold-relocated/src python CAPSULE/runners/c119_cold.py CAPSULE",
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/cold-result.json",
+          "sha256": "8c9ca2fbe5ddb69336d18e561500b59214b5342377aa30095a3ba214f59dc96a",
+          "size": 239
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/relocation-manifest.json",
+          "sha256": "c006040f33208c5b76ff28ee3088bf631a1ce2eaa4a50062e9bfbf0de041d1af",
+          "size": 76066
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/source-integrity.json",
+          "sha256": "1c173c95e8bb5e8cf16781634eae8d82b2d5ab6af1efec70c6ecc002e81e1b1d",
+          "size": 21314
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/transfer-summary.json",
+          "sha256": "68b821a264d92a02a44f11992e402492cdc9c57b9ccaee3f3346f3dbe8ebbcae",
+          "size": 5256
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "119_Cedar_PNA-source-network-y8wwwub3/validation/static-checks.json",
+          "sha256": "c5846f1fe8438495043521e1f4e8599942bc35a71347ec54bfce717d3adb50ff",
+          "size": 548
+        }
+      ],
+      "static": {
+        "documentation": {
+          "relative_links_checked": 288,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "diff_check": "PASS",
+        "compileall": "PASS: PYTHONPYCACHEPREFIX=/private/tmp/c119-compile-cache python -m compileall -q src tests",
+        "svg": "XML valid; visible elements unchanged; accessible description/caption updated",
+        "source_test_files": 468,
+        "source_test_hashes_unchanged": true,
+        "C118_inputs_unchanged": 9,
+        "C118_initial_attempt_files_unchanged": 17,
+        "C114_upstream_files_unchanged": 120,
+        "cold_files_unchanged": 739
+      }
+    },
+    "limits": [
+      "Identity-symmetry explicit PDB site subset only; existing selector limits still apply.",
+      "10 prepared controls are chemical input packages, not PNA native-generation or refinement qualification. All four reacting charged-amine controls remain blocked.",
+      "No CLI/orchestration adoption. Native linked generation, final stereochemistry and numerical qualification remain future work."
+    ],
+    "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration."
   }
 }

@@ -27029,6 +27029,22 @@
       "next": "Thread the explicit policy through a separately versioned source-reader/generation route with exact stage invariants; then generate and qualify numerical restraints in the C114-authorized linked PNA chemical environment. Never prune isolated numerics into a linked dictionary.",
       "validation": "6190 passed, 276 subtests passed in 929.50s (0:15:29); 216 focused tests; six complete native checks and six cold native replays.",
       "implementation_commit": "dcda5ac2fa85b01da61945947eda8b83110b7c40"
+    },
+    "purine_source_generation": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "policy": "cif-source-native-complete-candidate-v2",
+      "evidence_key": "purine_source_generation_2026_10_28",
+      "scope": "Explicit generation derives permission from the maintained C117 source classifier, verifies exact reader/class-conversion/finished inventories, and preserves native aromatic orders. Three fresh isolated candidates pass independent native qualification.",
+      "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
+      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay."
+    },
+    "pna_source_network": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "policy": "cif-explicit-pna-source-network-v1",
+      "evidence_key": "pna_source_network_2026_10_28",
+      "scope": "Prepare one connected, site-qualified PNA source graph from fresh C114 checks, freeze only declared authorities, and recompute the network during standalone replay. No geometry or numerical restraints are assigned.",
+      "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
+      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay."
     }
   },
   "audience": [

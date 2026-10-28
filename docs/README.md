@@ -58,6 +58,11 @@ unresolved reaction states. Native PNA support remains a separate gate.
 C117 adds [explicit neutral purine assessment](cif-doctor.md#explicit-neutral-purine-representation-c117):
 preserved 40A/APN candidates pass isolated native checks while ordinary generation
 and final-environment PNA numerical targets remain separate.
+C118 adds [explicit purine generation](cif-doctor.md#explicit-purine-generation-handoff-c118):
+new 40A/APN/40C candidates pass stage and isolated native checks while the default
+worker remains unchanged. C119 [freezes explicit PNA source networks](cif-doctor.md#explicit-pna-source-network-packages-c119)
+with exact authorized amide operations and portable replay. These graphs carry
+no assigned geometry or numerical targets; linked native qualification remains open.
 C116 adds [explicit source atom ordering](cif-doctor.md#explicit-connected-atom-ordering-c116)
 with exact row preservation and a bounded 40A extra-bond workaround; existing
 native and chemical acceptance remain unchanged.

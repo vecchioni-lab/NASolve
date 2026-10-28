@@ -3478,6 +3478,31 @@ perception or source mutation occurs. Inspection-v5 and usability-v3 reports
 carry separate policy identity; default reports and worker bytes remain exact.
 All source-relative stereo, numerical and native checks remain independent.
 The [C117 contract](cif-doctor.md#explicit-neutral-purine-representation-c117)
-records preserved-candidate qualification and exclusions. Threading the policy
-through maintained source-reader/generation stages is a separate next step;
-neither linked PNA targets nor ordinary adoption is established here.
+records preserved-candidate qualification and exclusions. C118 below extends
+the explicit generation handoff; neither linked PNA targets nor ordinary adoption
+is established by the isolated assessment.
+
+## Explicit source-native representation handoff (C118)
+
+The optional C117 representation policy now derives an explicit source contract
+before generation. A separately versioned worker checks reader, controlled charge,
+class-conversion and finished inventories without editing native aromatic orders.
+The default worker is byte-identical. Candidate chemistry/stereo/numerical/native
+qualification remains independent; retained partial output is never erased by
+an execution failure. The standalone v2 reader recomputes the specification,
+source/worker/API bindings, stage evidence and actual candidate, without captured
+code execution or native object deserialization. Legacy mixed recovery is unchanged.
+See the [C118 contract](cif-doctor.md#explicit-purine-generation-handoff-c118).
+
+## Explicit PNA source network preparation (C119)
+
+`cif_pna_source_network` consumes fresh C114/C108 source authority and builds one
+connected, site-qualified graph with exact retained source atoms/bonds and explicit
+amide edges. It freezes manifest-declared inputs and writes a completion receipt
+last in a fresh directory. Its reader verifies hashes and recomputes both the
+source inspection and complete graph; a stored pass never replaces source proof.
+Coordinates, energy types, numerical restraints and final stereochemistry remain
+unassigned. This separates chemical construction input from numerical dictionaries
+and avoids treating pruned isolated restraints as linked evidence. Existing
+contexts/reports and ordinary generation remain unchanged. See the
+[C119 contract](cif-doctor.md#explicit-pna-source-network-packages-c119).

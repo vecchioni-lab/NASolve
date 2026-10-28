@@ -81,6 +81,11 @@ bounded diagnostic; purine representation and linked PNA remain unqualified.
 C117 [qualifies a bounded neutral purine representation explicitly](docs/cif-doctor.md#explicit-neutral-purine-representation-c117).
 Preserved 40A/APN and the 40C control pass both isolated native coordinate checks;
 default generation and linked PNA qualification remain separate.
+C118 adds [explicit purine generation](docs/cif-doctor.md#explicit-purine-generation-handoff-c118):
+new 40A/APN/40C candidates pass stage and isolated native checks while the default
+worker remains unchanged. C119 [freezes explicit PNA source networks](docs/cif-doctor.md#explicit-pna-source-network-packages-c119)
+with exact authorized amide operations and portable replay. These graphs carry
+no assigned geometry or numerical targets; linked native qualification remains open.
 Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c109)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and

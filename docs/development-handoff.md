@@ -11,6 +11,55 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C118/C119 purine generation and frozen PNA source networks
+
+Base: `95560667066f7afc73b86f3c33980cf1932b6e1e`; existing cedar only.
+C118 capsule: `live_tests_directory/118_Cedar_purine-generation-1o4kbb0l`.
+C119 capsule: `live_tests_directory/119_Cedar_PNA-source-network-y8wwwub3`.
+Implementation, 480 combined focused tests, full regression and both cold replays
+pass. Full suite: **6253 passed, 276 subtests passed in 966.55s (0:16:06)**; all 468 source/test hashes stay fixed.
+Compilation, whitespace, 288 documentation links/JSON and SVG checks pass.
+Publication is the remaining step; no job is active. The earlier C118 full run was intentionally interrupted
+for Simon's requested final push: 2292 tests and 151 subtests passed; log retained.
+
+C118 adds explicit source-authorized purine representation to maintained native
+generation. Reader, charge control, class conversion and finished inventories
+are checked; native aromatic orders remain unchanged. The standalone reader
+recomputes stage/candidate evidence without SDK execution or pickle loading.
+Default worker/v1 behavior remains exact. Fresh 40A/APN/40C candidates all reach
+CANDIDATE_REVIEW and pass six Phenix 2.2.1-6174 isolated interpretations, all 21
+checks per case with matching fixed covalent proxies. Generation used 180 steps/
+300 seconds; interpretations 60 seconds. These are complete executions, not dry-runs.
+Initial 40A output remains intact after exposing a source-basename replay mismatch;
+corrected fresh attempts use frozen source identity. Convergence, absolute CIP,
+formal-charge native readback and linked numerical targets remain unqualified.
+
+C119 adds a fresh package for one connected, explicitly authorized PNA source
+network: exact site-qualified atoms, source bonds/charges/stereo declarations
+and reciprocal amide edges. Only declared inputs are frozen. Its reader re-runs
+source inspection and reconstructs graph/report; hashes alone cannot grant
+chemistry. No coordinates, native types, numerical restraints or final CIP are
+assigned. Ten C114 controls prepare/replay; four reacting charged amines remain
+blocked. Untouched charged termini stay intact. No native execution in C119.
+
+Cold replay verifies C118's 324 files and C119's 415 files unchanged, with owned
+originals absent and original/SDK reads and process execution blocked. Regressions
+include fail-before API checks, altered evidence, exact chemistry, interruption,
+no overwrite, disconnected-network rejection and relocation. Schema-1 additions
+use distinct policies; no CLI, default orchestration or run/checkpoint migration.
+Fifteen changed files contain code/synthetic tests/contracts/compact evidence.
+Raw CIF/PDB/workbook/science, generated graphs, SDK captures and logs stay local.
+
+Next: adapt the whole linked graph to native construction with reversible site/atom
+mapping and exact H/charge/stereo checks, generate and qualify linked numerical
+restraints. Do not borrow isolated monomer numerics. Carbonyl/charged purines,
+ATL/L-DNA/PDU and ordinary integration remain open. Sticky-end stitching stays
+parked; no extra branch or Pine/main merge. Exact commands/evidence are in
+[evidence ledger](cif-linked-native-registration-evidence.json), keys
+`purine_source_generation_2026_10_28` and `pna_source_network_2026_10_28`.
+
+— Rowan · Codex desktop
+
 ## C117 explicit neutral purine representation
 
 Implementation, focused/full regression, native controls and cold replay pass.
@@ -410,8 +459,8 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations; charged reaction states, numerical PNA qualification and terminal reconstruction remain open. |
-| G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states, numerical PNA qualification and terminal reconstruction remain open. |
+| G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds an opt-in source-authorized purine generation route with exact stage checks and isolated native controls. Decision/reuse pieces exist; general orchestration remains open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |

@@ -8,6 +8,29 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Freeze explicit PNA source networks (C119)
+
+- Add opt-in preparation/replay APIs for one connected, explicitly declared PNA
+  source network. Preserve site-qualified atom identities and source chemistry;
+  add only C114-authorized reciprocal amide bonds and exact leaving-group losses.
+- Freeze manifest-declared inputs in a fresh directory and verify both hashes
+  and recomputed source graph on replay. Refuse unresolved operations, mismatched
+  projections, disconnected networks and overwrites; preserve partial attempts.
+- Introduce schema-1 graph/package receipts under a distinct policy. No assigned
+  coordinates, native types, numerical restraints, final CIP or automatic adoption.
+
+### Generate under explicit purine representation authority (C118)
+
+- Thread the explicit C117 policy through source-native generation using a
+  separately versioned worker and receipt. Check reader, charge handoff, class
+  conversion and finished graph; retain authorized native aromatic orders.
+- Recompute stage evidence and complete candidate assessments during standalone
+  replay. Canonical frozen source identity supports different original basenames.
+  Preserve written candidates and errors independently, including partial attempts.
+- Fresh 40A/APN/40C isolated generations pass independent native controls at both
+  coordinate sets. Existing default worker/receipts and ordinary recovery stay
+  unchanged; linked numerical qualification and convergence remain separate.
+
 ### Qualify declared neutral purine representations explicitly (C117)
 
 - Add an opt-in assessment policy for complete source-declared neutral fused
