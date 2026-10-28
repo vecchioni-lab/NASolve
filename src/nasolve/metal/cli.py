@@ -16,6 +16,19 @@ from .scattering import inspect_observations, reference_scattering
 def configure(subparsers):
     metal = subparsers.add_parser('metal', help='inspect generated models and preview explicit metal restraints')
     actions = metal.add_subparsers(dest='metal_action', required=True)
+    capture = actions.add_parser('capture-workbench', help='capture an explicit offline campaign catalog')
+    browse = actions.add_parser('inspect-workbench', help='replay a catalog and inspect linked saved results offline')
+    capture.add_argument('--request', type=Path, required=True)
+    capture.add_argument('--output', type=Path, required=True, help='new local catalog JSON file')
+    browse.add_argument('--catalog', type=Path, required=True)
+    browse.add_argument('--selection', type=Path, help='saved catalog-bound navigation selection')
+    browse.add_argument('--row', help='open an exact linked result row')
+    browse.add_argument('--site', help='explicit site membership when opening a row')
+    browse.add_argument('--output', type=Path, help='save view JSON to a new local file')
+    for parser in (capture, browse):
+        parser.add_argument('--dataset', action='append', required=True, metavar='ID=PATH',
+                            help='explicit dataset mount; repeat for each catalog dataset')
+        parser.add_argument('--json', action='store_true')
     inspect = actions.add_parser('inspect', help='read one generated W checkpoint and its observation wavelength')
     preview = actions.add_parser('preview', help='bind a recipe to an explicit generated W checkpoint')
     build = actions.add_parser('build', help='add explicitly placed metal sites in a new review bundle')
@@ -96,6 +109,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action in {'capture-workbench', 'inspect-workbench'}:
+            return _workbench(args)
         if args.metal_action in {'plan-fdp-scan', 'run-fdp-scan', 'verify-fdp-scan'}:
             return _fdp_scan(args)
         if args.metal_action in {'inspect-reference', 'compare-reference', 'verify-reference-comparison'}:
@@ -427,3 +442,48 @@ def _fdp_scan(args):
         print('Report: '+str(args.run.expanduser().resolve()/result['files']['report']['relative_path']))
         print('Fixed-q diagnostic grid; no automatic structural choice or convergence claim.')
     return 2 if report and report['failure'] else 0
+
+
+def _workbench(args):
+    from .workbench import capture_catalog, open_workbench
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    mounts = {}
+    for value in args.dataset:
+        key, sep, path = value.partition('=')
+        if not sep or not key or not path or key in mounts:
+            raise RecipeError('Use distinct ID=PATH dataset mounts')
+        mounts[key] = Path(path)
+    if args.metal_action == 'capture-workbench':
+        result = capture_catalog(_json(args.request), mounts)
+    else:
+        if args.site and not args.row:
+            raise RecipeError('--site requires --row')
+        workbench = open_workbench(_json(args.catalog), mounts)
+        selection = _json(args.selection) if args.selection else workbench.initial_selection()
+        if args.row:
+            selection = workbench.select_row(selection, args.row, site_id=args.site)
+        result = workbench.view(selection)
+    serialized = json.dumps(result, indent=2, allow_nan=False)+'\n'
+    if args.output:
+        with args.output.open('x') as handle:
+            handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    elif args.metal_action == 'capture-workbench':
+        print(f'Workbench catalog: {result["label"]}; {len(result["datasets"])} datasets')
+        print('Catalog: '+str(args.output))
+        print('Verified saved evidence; dataset mount paths are not stored.')
+    else:
+        print(f'Workbench: {len(result["rows"])} visible linked rows')
+        for row in result['rows']:
+            scope = ' / '.join(row[key] for key in ('dataset_id','structure_id','hypothesis_id','result_id'))
+            data = row['data']
+            value = f"; fdp={data['f_double_prime']:.6g}" if 'f_double_prime' in data else ''
+            print(f'{row["row_id"]}: {scope}; node={data["node_id"]}{value}')
+        for detail in result['details']:
+            report = detail.get('report', {})
+            if 'pending' in report:
+                print(f'{detail["dataset_id"]} / {detail["result_id"]}: {report["pending"]} pending scan points')
+        print('Navigation snapshot only; reopen to reverify sources. No jobs, ranking or checkpoint selection.')
+    return 0

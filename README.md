@@ -1433,6 +1433,18 @@ extra scatterers remain visible. See the [reference mapping guide](docs/metal-an
 for coordinate-frame limits and the mapping schema. Original models and current
 checkpoints remain unchanged.
 
+Saved metal evidence can also be opened through a shared offline workbench:
+
+```sh
+nasolve metal capture-workbench --request /path/to/local/request.json --dataset hg=/path/to/HgDataset --output /path/to/local/catalog.json
+nasolve metal inspect-workbench --catalog /path/to/local/catalog.json --dataset hg=/path/to/HgDataset --json
+```
+
+The catalog links explicit datasets, structures, hypotheses and overlapping site
+groups to verified saved results. Selecting a row changes the view only. Supply
+new dataset mounts after moving folders; no native jobs or graphical review are
+needed. See the [request format, API and limits](docs/metal-anomalous-doctor.md#implemented-offline-workbench-controller).
+
 ## AutoRefine and checkpoints
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It

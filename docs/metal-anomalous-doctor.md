@@ -1,11 +1,143 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, bounded occupancy sweeps, human reference snapshots, explicit construction and bounded recipe-only preparation implemented**.
+Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation, explicit construction and bounded recipe-only preparation implemented**.
 Implementation updated 2026-10-28. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
 Solution-space search, decision logic, maps and GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
+
+## Implemented offline workbench controller
+
+The shared `metal.workbench` backend now opens verified saved evidence across
+explicit datasets, structures and hypotheses. It supplies stable linked rows
+and pure navigation for future interchangeable panels. It does not require a
+GUI or a Phenix installation. The current inputs are verified geometry bundles
+with optional saved f-double-prime comparisons, finalized occupancy scans and
+human-reference comparisons. These remain separate scientific experiments;
+placing them in one catalog does not establish cross-candidate comparability.
+
+A catalog describes campaign → dataset → structure → hypothesis. Each structure
+names one run; each hypothesis names one exact geometry manifest. Its optional
+named site groups contain exact atom identities from that geometry, including
+neighboring residues, background scatterers or metals. Groups can overlap. They
+only organize the view: they do not change recipe membership, atom coordinates,
+restraint targets or fit selections. General-site **model construction** beyond
+the current W adapter remains a separate milestone.
+
+The API is `capture_catalog(request, mounts)`, `open_workbench(catalog, mounts)`
+and the returned immutable `Workbench` snapshot's `initial_selection`, `select`,
+`select_row`, `view` and `to_dict`. Returned objects are detached JSON copies.
+`select` changes one parent and clears dependent selections. Site and result
+filters are siblings; changing either clears the selected row. `select_row`
+opens the row's exact dataset/structure/hypothesis/result; it retains a compatible
+current site or chooses the sole matching site. For overlapping memberships it
+leaves the site unset unless the caller specifies one. Unassigned atoms remain
+visible in the unfiltered result table. Saved selections bind the exact catalog
+ID, so a revised catalog cannot silently inherit an old selection. Camera,
+layout and overlay state are outside these schemas.
+
+```sh
+nasolve metal capture-workbench --request /path/to/local/request.json --dataset hg=/path/to/HgDataset --output /path/to/local/catalog.json
+nasolve metal inspect-workbench --catalog /path/to/local/catalog.json --dataset hg=/path/to/HgDataset --json
+```
+
+Add a repeated `--dataset ID=PATH` for every dataset. On another machine supply
+new mounts for the same declared IDs; mounts are never saved in the catalog.
+There is no basename search or fallback to historical absolute paths. The
+catalog's run directories use `dataset` anchors; all geometry/result manifests
+use checksummed `run` anchors. Source lineage continues to use existing
+run/dataset/repository references. Missing, changed or wrong-parent artifacts
+reject the entire open operation; partial unavailable-dataset browsing remains
+future work. Explicit mounts must be distinct directories; aliases of the same
+mount are rejected. Each mount must match the existing run-context dataset root.
+
+An input request has this shape (use actual exact atom keys when adding sites):
+
+```json
+{
+  "kind": "metal-workbench-request", "schema_version": 1,
+  "campaign_id": "controls", "label": "Metal controls",
+  "datasets": [{
+    "dataset_id": "hg", "label": "Mercury dataset",
+    "structures": [{
+      "structure_id": "scaffold", "label": "Prepared scaffold",
+      "run": {"anchor": "dataset", "relative_path": "AutoMR/run_001"},
+      "hypotheses": [{
+        "hypothesis_id": "single", "label": "One mercury candidate",
+        "geometry": {"anchor": "run", "relative_path": "Metal/geometry_001/manifest.json"},
+        "sites": [],
+        "results": [{
+          "result_id": "profile", "label": "Occupancy profile", "kind": "fdp-scan",
+          "manifest": {"anchor": "run", "relative_path": "Metal/fdp_scan_002/manifest.json"}
+        }]
+      }]
+    }]
+  }]
+}
+```
+
+A site entry is `{ "site_id": "pair", "label": "Coordination site", "atoms":
+[ATOM_KEY, ...] }`. `ATOM_KEY` uses the exact `model_id`, `chain_id`, `residue_id`,
+`component_id`, `atom_name`, insertion/alternate/segment fields and symmetry
+identity from the candidate inventory. Existing keys can be taken from saved
+preview or result records. No residue numbers are hardcoded into this controller.
+All identifiers are stable within their parent scope; labels can be descriptive.
+Lists are bounded to 1,024 members and each site to 4,096 atoms. These are input
+validation limits, not a campaign-scale performance qualification.
+
+`capture-workbench` verifies source bundles before adding checksums and writing
+a new catalog file. `inspect-workbench` replays the complete catalog and returns
+a view. `--row ROW_ID` opens a printed linked row; `--site SITE_ID` disambiguates
+its membership. `--selection FILE` accepts the `selection` object from a prior
+view. `--output` saves a new JSON file and never overwrites an existing file.
+Keep catalogs, requests, selections and exported views in user-local storage,
+such as the ignored branch artifact directory, outside source commits.
+
+The new schema-1 types are `metal-workbench-request`, `metal-workbench-catalog`,
+`metal-workbench-snapshot`, `metal-workbench-selection` and `metal-workbench-view`;
+snapshots/views use protocol `metal-workbench-v1`. The catalog stores only labels,
+groups and checksummed references. Reports are loaded into an in-memory snapshot
+without creating new run artifacts or copying models/reflections. Row IDs bind
+campaign/scope, source manifest and source row identity: the existing comparison
+row ID, scan point plus node, or reference node. Those original keys and all
+scientific fields remain available. Complete source reports preserve
+pending scan points, controls, unmatched scatterers and qualification notes.
+There is no cross-result ranking, averaging or new scientific normalization.
+The existing matched-comparison backend remains the authority for its derived
+values; human-reference stored anomalous values remain untrusted and ignored.
+
+**Methods.** Capture and reopen use one strict schema and source-verification
+path. The existing geometry, comparison, scan and reference verifiers replay
+scientific derivations and checksums. Results must name the exact geometry
+registered for their hypothesis. Exact atom-key membership joins rows to zero,
+one or several viewing groups; scope plus source identity hashes disambiguate
+local names reused across datasets. Pure transitions validate parent scopes and
+produce new selection objects. The view returns saved report values without
+scientific recomputation, native execution, checkpoint adoption or file writes.
+
+```mermaid
+flowchart LR
+    M[Explicit dataset mounts] --> V[Replay artifact verifiers]
+    C[Catalog and anchored references] --> V
+    E[Existing geometry and result bundles] --> V
+    V --> S[Immutable in-memory snapshot]
+    S --> N[Pure scope and linked-row selection]
+    N --> P[Table and panel data]
+    L[Separate local camera and layout] -.-> P
+```
+
+**Evidence and limits.** Synthetic tests cover namespace collisions, overlapping
+and unassigned sites, pending points, parent changes, wrong geometry, source
+corruption, CLI behavior and fresh-interpreter replay after source removal and
+relocation. Read-only controls also open the existing single-Hg and mixed-Au/Ag
+results together. See the [current handoff](development-handoff.md#offline-workbench-controller-2026-10-28)
+for exact validation and local receipts. A snapshot describes evidence verified
+at opening; reopen before relying on current source availability. This is not a
+cache hit, independent scientific qualification, automatic solution decision,
+campaign scheduler, editable recipe controller or production graphical panel.
+The next bounded UI step can consume this API without duplicating scientific
+logic; rendering and visual review remain separate.
 
 ## Implemented bounded occupancy sweeps
 
@@ -520,7 +652,7 @@ contract does not silently change the existing ordinary AutoRefine default.
 The generated-run inspector reports reference f-prime/f-double-prime separately
 from future fitted values; it starts no refinement.
 
-The future campaign workbench must retain explicit campaign, dataset, run,
+The implemented offline controller and future campaign GUI must retain explicit campaign, dataset, run,
 checkpoint, hypothesis, round and trial identities. Switching the viewed dataset
 or structure only changes the view; it never changes a checkpoint, reuses a
 selection from another model or launches jobs. Different crystals remain

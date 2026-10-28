@@ -244,7 +244,7 @@
     "second_control": "mixed Au/Ag",
     "deferred_control": "two-Hg PDU slip geometry pending qualified upstream PDU restraints",
     "campaign": {
-      "status": "planned",
+      "status": "offline-navigation-implemented-gui-and-scheduling-planned",
       "switch_datasets_and_structures": true,
       "switch_changes_scientific_selection": false,
       "independent_dataset_observations": true,
@@ -259,7 +259,28 @@
         "trial"
       ],
       "bounded_automatic_proposals": true,
-      "retain_prior_and_phase_provenance": true
+      "retain_prior_and_phase_provenance": true,
+      "workbench": {
+        "status": "implemented",
+        "module": "nasolve.metal.workbench",
+        "contract": "docs/metal-anomalous-doctor.md#implemented-offline-workbench-controller",
+        "schema_version": 1,
+        "protocol": "metal-workbench-v1",
+        "explicit_dataset_mounts": true,
+        "mount_paths_persisted": false,
+        "replay_existing_artifact_verifiers": true,
+        "result_requires_exact_geometry": true,
+        "overlapping_view_groups": true,
+        "groups_change_scientific_parameters": false,
+        "selection_bound_to_catalog": true,
+        "parent_switch_clears_children": true,
+        "row_opens_exact_parent_scope": true,
+        "camera_and_layout_in_scientific_state": false,
+        "native_execution": false,
+        "checkpoint_adoption": false,
+        "ranking": false,
+        "production_gui": false
+      }
     },
     "milestones": [
       "M0 authoring core",

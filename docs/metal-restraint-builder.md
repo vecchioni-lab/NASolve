@@ -23,13 +23,13 @@ hypothesis on the generated scaffold.
 | --- | --- | --- |
 | M0: authoring core | Stable graph/revision IDs, exact role binding, numerical preview | Implemented and tested |
 | M1: generated-model integration | Read a generated W checkpoint; preserve identities, q/B, dictionaries and original observations; export exact proposed restraints | Implemented; current native checks and test counts in the handoff |
-| M1b: general site contexts | Explicit residue/atom mappings and multiple named metal-site groups per structure; view switching preserves scientific state | Planned; current W importer remains unchanged |
+| M1b: general site contexts | Explicit residue/atom mappings and multiple named metal-site groups per structure; view switching preserves scientific state | Partial: arbitrary overlapping viewing groups implemented in the offline controller; general construction and the W importer remain separate |
 | M2a: hypothesis materialization | Explicit coordinates/count/species/q/B, preserved parent atoms, immutable derived models and native consumption controls | Implemented; one Hg and mixed Au/Ag controls, including swapped identities |
 | M2b: geometry preparation | Qualified targets/chemistry, declared optimization protocol, audited derived endpoints | Partial: bounded metal-only recipe preparation implemented; chemical qualification and whole-model native optimization remain separate |
 | M2c: reference endpoints | Capture human XYZ/q/ADP snapshots and compare explicit atom correspondences without trusting stored anomalous values | Implemented offline; no alignment, symmetry expansion or target learning |
 | M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Partial: single trials and matched endpoint comparisons implemented; initial start/cycle controls and explicit bounded occupancy sweeps implemented; optimizer convergence qualification and adaptive search remain planned |
 | M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables, disk-budgeted retention/recovery and selection | Partial: explicit grids, job budgets and finalized-pass resume with exact seed/ancestor reuse implemented; GUI, adaptive centers, general cache and storage policies planned |
-| M5: campaign workbench | Switch datasets/structures/site groups/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
+| M5: campaign workbench | Switch datasets/structures/site groups/hypotheses in one GUI; independently owned jobs, failures and lineage | Partial: verified offline catalog, linked rows and pure scope navigation implemented; rendered panels and campaign scheduling planned |
 | M6: solution-space search and decision logic | Explore budgeted structural/scattering alternatives; retain promising families and provisional choices; separately validate correct choices and appropriate deferral | Planned; construction controls do not validate selection logic |
 
 Supplied human endpoints are optional [reference snapshots](metal-anomalous-doctor.md#implemented-human-reference-snapshots). Their exact source bytes and explicitly mapped internal geometry can be compared with generated candidates; stored anomalous values are ignored. This does not qualify the candidate geometry or adopt the reference checkpoint.
@@ -384,8 +384,9 @@ flowchart LR
     L -.-> S
 ```
 
-The controller and rendered panels in this figure are integration boundaries,
-not delivered GUI code. Reordering panels or replacing the rendering toolkit
+The recipe editor controller and rendered panels in this figure remain planned.
+A separate [offline evidence controller](metal-anomalous-doctor.md#implemented-offline-workbench-controller)
+now supplies catalog-bound navigation and linked saved-result rows. Reordering panels or replacing the rendering toolkit
 requires no change to the scientific graph, binding or geometry calculations.
 
 **Methods.** The implementation validates a JSON graph, resolves logical donor

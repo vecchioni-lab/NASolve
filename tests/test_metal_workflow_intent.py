@@ -230,3 +230,14 @@ def test_storage_policy_preserves_recovery_without_faking_complete_cache_hits():
     assert storage['native_regeneration_guarantees_identical_bytes'] is False
     assert storage['validate_recovery_before_enabling_destructive_compaction'] is True
     assert storage['relocation_and_shared_reference_tests_required'] is True
+
+
+def test_workbench_navigation_is_separate_from_execution_and_scientific_state():
+    workbench=intent()['integration']['campaign']['workbench']
+    assert workbench['status']=='implemented'
+    assert workbench['explicit_dataset_mounts'] and workbench['replay_existing_artifact_verifiers']
+    assert workbench['result_requires_exact_geometry'] and workbench['overlapping_view_groups']
+    assert workbench['selection_bound_to_catalog'] and workbench['parent_switch_clears_children']
+    assert workbench['row_opens_exact_parent_scope']
+    assert not any(workbench[k] for k in ('mount_paths_persisted','groups_change_scientific_parameters',
+        'camera_and_layout_in_scientific_state','native_execution','checkpoint_adoption','ranking','production_gui'))

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Navigate verified metal evidence across explicit datasets
+
+- Add offline `metal capture-workbench` / `metal inspect-workbench` and a shared
+  immutable controller for dataset, structure, hypothesis, site and result views.
+- Bind every result to its exact geometry; preserve linked original rows, pending
+  scan points and full reports. Support arbitrary overlapping viewing groups.
+- Add schema-1 local catalogs, snapshots, selections and views with explicit
+  dataset mounts and checksummed run references. Parent changes clear dependent
+  selections; row selection opens its exact scope. Keep camera/layout separate.
+- Reopen replays existing artifact verifiers, including after relocation. No
+  native jobs, checkpoint selection, scientific changes or migration are added;
+  production GUI and campaign scheduling remain planned.
+
 ### Run bounded occupancy sweeps from audited metal seeds
 
 - Add offline `metal plan-fdp-scan`, bounded sequential `metal run-fdp-scan`

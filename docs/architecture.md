@@ -1394,6 +1394,16 @@ symmetry expansion, target learning or fitting. Stored anomalous values are
 anisotropic refinement qualification and general-site candidate construction
 are unchanged; see the [descriptor and methods](metal-anomalous-doctor.md#implemented-human-reference-snapshots).
 
+The additive `metal.workbench` consumer captures user-local schema-1 catalogs
+with explicit dataset-mounted run directories and checksummed artifact manifests.
+Opening reuses existing verifiers and requires exact geometry ownership for
+saved comparisons/scans/reference reports. Immutable in-memory snapshots expose
+scope-bound rows, complete reports and pure parent/row navigation. Exact arbitrary
+atom groups may overlap; they are viewing membership only. Selection, camera and
+scientific state remain separate. It starts no jobs and performs no checkpoint
+adoption, ranking or cross-candidate science. Existing scientific artifacts and
+schemas are unchanged. See the [controller descriptor and methods](metal-anomalous-doctor.md#implemented-offline-workbench-controller).
+
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
 independent, with no implicit joint fitting or inherited chemical qualification.

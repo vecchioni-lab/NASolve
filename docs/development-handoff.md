@@ -13,6 +13,109 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Offline workbench controller 2026-10-28
+
+**Current additive milestone: M5 navigation foundation.** Before this change,
+evidence had to be inspected separately through each run command. The shared
+`metal.workbench` controller and `metal capture-workbench` /
+`metal inspect-workbench` now open explicit datasets, structures, hypotheses,
+overlapping atom groups and saved result reports together. Linked rows preserve
+original source identities and open their exact parent scope. Changing a parent
+clears dependent selections. Site/result filters and local camera/layout state
+remain separate from scientific settings and checkpoint selection.
+
+See the [human descriptor, request example, methods and editable figure](metal-anomalous-doctor.md#implemented-offline-workbench-controller).
+Opening replays the existing geometry, comparison, scan and human-reference
+verifiers and requires each result's exact registered geometry. Explicit dataset
+mounts are not persisted; each must match the existing run-context dataset root.
+The catalog stores checksummed anchored references without copying models or
+reflections. Complete reports retain pending points, controls and unmatched
+scatterers. A missing or changed artifact rejects reopening; an already opened
+snapshot remains an in-memory view of evidence verified at that opening.
+
+**Files and compatibility.** New `src/nasolve/metal/workbench.py` and
+`tests/test_metal_workbench.py`; additive `src/nasolve/metal/cli.py` commands and
+workflow-intent coverage. Updated root README, docs index, architecture,
+restraint-builder milestones, anomalous descriptor, nonruntime intent, changelog
+and this handoff. New schema-1 request/catalog/snapshot/selection/view types use
+the `metal-workbench-` prefix; snapshots/views use `metal-workbench-v1`. Existing
+recipe, geometry, trial, scan, checkpoint and workspace formats are unchanged.
+There is no migration, dependency, native-worker change or scientific refit.
+
+**Regression and focused validation.** Python 3.12.14. Initial tests failed on
+missing `nasolve.metal.workbench`; a separate dataset-root regression failed
+with `DID NOT RAISE` before tightening the mount contract. The broad focused run
+passed **403 tests and 27 subtests in 70.59 s**. After adding the root guard and
+explicit structure/hypothesis switching coverage, the final feature/intent
+command passed **49 tests in 49.99 s**:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_workbench.py tests/test_metal_workflow_intent.py
+```
+
+The broad focused command used the same environment and interpreter with
+`tests/test_metal_workbench.py tests/test_metal_fdp_scan.py tests/test_metal_reference.py tests/test_metal_fdp_compare.py tests/test_metal_fdp.py tests/test_metal_geometry.py tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_refine_doctor.py tests/test_autorefine.py`.
+Coverage includes dataset-local ID collisions, independent parent switching,
+overlapping/unassigned memberships, stale selections, malformed paths/mounts,
+wrong geometry, source corruption, pending scans, retained reference reports,
+CLI no-overwrite/offline behavior and source-removed relocation replay in a fresh
+interpreter. No GUI verification was required or performed.
+
+**Complete-suite validation.** **5,991 tests and 276 subtests passed in 771.84 s (12 min 51 s); exit 0.**
+All **435 source/test file hashes** remain unchanged across the final run.
+The first sandbox attempt reached 5,050 passing tests and 209 subtests, with five
+failures in the unchanged campaign process tests because `/bin/ps` was denied.
+It was deliberately interrupted to consolidate final-source validation with
+normal process access. The isolated process module passed **22 tests and 19
+subtests in 2.85 s** with that access; no campaign code or tests were changed.
+The final complete-suite command is:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider
+```
+
+**Saved native-evidence control.** The local control runner is:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A23_workbench_controls.py
+```
+
+It opens the existing FT_Hg and FF_AuAg generated numerical controls in one
+catalog: each geometry_001, completed fdp_scan_003, reference_comparison_001 and
+fdp_comparison_003/002 respectively. All **31 linked rows** and their explicit
+memberships round-trip, cross-dataset switching clears old children, and CLI
+JSON agrees with the API. All **839 prior run files** remain byte-identical.
+These reports contain previously completed **Phenix 2.2.1-6174** evidence;
+this control performs **zero native executions and zero Coot invocations**.
+Subprocess creation is forbidden in the runner. A final-source readback through
+`A23_workbench_final_readback.py` reopens the captured catalog and requires an
+identical snapshot after the dataset-root guard. It passes in 20.45 s, preserving the same 31 rows and all 839 prior files.
+
+**Portability, artifacts and delivery.** The relocation regression moves its
+source/input tree, removes the original location, and opens the same catalog
+through new explicit mounts in a fresh interpreter with native subprocesses
+forbidden. All four changed Python files pass Python 3.10 grammar; **23 local file/anchor
+links** and whitespace checks pass. Results are recorded in the local delivery receipt. Requests, catalogs, snapshots, selections, fitted
+values, native evidence and validation logs remain ignored under
+`branch-artifacts/Alder/workbench-20261028-01/` and `runners/`. Only source, tests
+and documentation are included in the delivery.
+
+The development branch remains **Alder**, based for this step on `9b42dda`,
+isolated from the active shared checkout. The integration target remains
+**pine**, then **main**, through normal reviewed integration; retire the isolated
+worktree after that integration and preservation audit. This read-only controller
+has no GUI/native scientific acceptance gate. Future features are independent
+milestones and do not become gates for this completed source change.
+
+**Remaining work.** A production comparison panel can now consume this shared
+controller. It still needs rendering and user visual review. Editable recipe
+panels, general-site model construction, unavailable-dataset isolation,
+async/background verification, large-campaign performance, scheduling, caching
+and reference-aware pruning remain separate. Scientific geometry qualification,
+anisotropic native freeze controls, optimizer conditioning and automatic
+structural decisions are unchanged. Viewing several candidates together does
+not establish matched cross-geometry comparison or select a winner.
+
 ## Bounded occupancy sweeps 2026-10-28
 
 **Current additive milestone: M3c / M4 execution foundation.** Before this
