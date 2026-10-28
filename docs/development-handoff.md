@@ -14,7 +14,8 @@ not general production support. Earlier wording remains in Git and the
 ## C117 explicit neutral purine representation
 
 Implementation, focused/full regression, native controls and cold replay pass.
-Publication is the remaining step; no job is active.
+Tested implementation `dcda5ac2fa85b01da61945947eda8b83110b7c40` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 Base: `dee700f8c95a2cf1f5e57d283f0f3db9b03f52a5`; continue on existing `cedar`.
 Capsule: `live_tests_directory/117_Cedar_purine-policy-n21usjyb`.
 

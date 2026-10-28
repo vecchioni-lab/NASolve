@@ -38964,7 +38964,7 @@
     "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
   },
   "neutral_purine_representation_2026_10_28": {
-    "status": "FOCUSED_FULL_NATIVE_COLD_PASS_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "base_commit": "dee700f8c95a2cf1f5e57d283f0f3db9b03f52a5",
     "before": "Preserved source-correct 40A/APN diagnostic candidates are rejected for ten localized-to-aromatic purine bond changes; the legacy isolated-six-ring policy cannot qualify a fused system.",
@@ -39915,6 +39915,8 @@
       "40A source-relative handedness passes; APN has no fixed stereocenter in this control. Absolute CIP and achieved scientific geometry remain unqualified.",
       "Isolated finite energies and exact proxies do not establish convergence, linked amide numerics, refinement or all-catalogue support."
     ],
-    "next": "Thread the explicit policy through a separately versioned source-reader/generation route with exact stage invariants; then generate and qualify numerical restraints in the C114-authorized linked PNA chemical environment. Never prune isolated numerics into a linked dictionary."
+    "next": "Thread the explicit policy through a separately versioned source-reader/generation route with exact stage invariants; then generate and qualify numerical restraints in the C114-authorized linked PNA chemical environment. Never prune isolated numerics into a linked dictionary.",
+    "implementation_commit": "dcda5ac2fa85b01da61945947eda8b83110b7c40",
+    "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
   }
 }
