@@ -39920,7 +39920,7 @@
     "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
   },
   "purine_source_generation_2026_10_28": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "base_commit": "95560667066f7afc73b86f3c33980cf1932b6e1e",
     "changed_files": [
@@ -40725,10 +40725,12 @@
       "Finite fixed energies/proxies do not establish convergence, linked PNA numerics, refinement or catalogue-wide support.",
       "Carbonyl/charged purine extensions and ordinary orchestration remain unqualified."
     ],
-    "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration."
+    "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
+    "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d",
+    "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
   },
   "pna_source_network_2026_10_28": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "base_commit": "95560667066f7afc73b86f3c33980cf1932b6e1e",
     "changed_files": [
@@ -41186,6 +41188,8 @@
       "10 prepared controls are chemical input packages, not PNA native-generation or refinement qualification. All four reacting charged-amine controls remain blocked.",
       "No CLI/orchestration adoption. Native linked generation, final stereochemistry and numerical qualification remain future work."
     ],
-    "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration."
+    "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
+    "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d",
+    "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
   }
 }

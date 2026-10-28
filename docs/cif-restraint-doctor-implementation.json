@@ -27031,20 +27031,22 @@
       "implementation_commit": "dcda5ac2fa85b01da61945947eda8b83110b7c40"
     },
     "purine_source_generation": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "policy": "cif-source-native-complete-candidate-v2",
       "evidence_key": "purine_source_generation_2026_10_28",
       "scope": "Explicit generation derives permission from the maintained C117 source classifier, verifies exact reader/class-conversion/finished inventories, and preserves native aromatic orders. Three fresh isolated candidates pass independent native qualification.",
       "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
-      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay."
+      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay.",
+      "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d"
     },
     "pna_source_network": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "policy": "cif-explicit-pna-source-network-v1",
       "evidence_key": "pna_source_network_2026_10_28",
       "scope": "Prepare one connected, site-qualified PNA source graph from fresh C114 checks, freeze only declared authorities, and recompute the network during standalone replay. No geometry or numerical restraints are assigned.",
       "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
-      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay."
+      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay.",
+      "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d"
     }
   },
   "audience": [

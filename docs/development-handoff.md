@@ -19,7 +19,8 @@ C119 capsule: `live_tests_directory/119_Cedar_PNA-source-network-y8wwwub3`.
 Implementation, 480 combined focused tests, full regression and both cold replays
 pass. Full suite: **6253 passed, 276 subtests passed in 966.55s (0:16:06)**; all 468 source/test hashes stay fixed.
 Compilation, whitespace, 288 documentation links/JSON and SVG checks pass.
-Publication is the remaining step; no job is active. The earlier C118 full run was intentionally interrupted
+Tested implementation `8511d60da30d04a038051d6a89f405b9441ef68d` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active. The earlier C118 full run was intentionally interrupted
 for Simon's requested final push: 2292 tests and 151 subtests passed; log retained.
 
 C118 adds explicit source-authorized purine representation to maintained native
