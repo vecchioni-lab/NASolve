@@ -76,7 +76,15 @@ Unreacted charged termini are preserved. All 22 new/legacy controls replay after
 relocation, without native execution. This expands the general source-operation
 contract; it supplies no PNA numerical dictionary or refinement proof. See the
 [operation policy](cif-doctor.md#explicit-neutral-pna-amide-operations-c114).
-Native numerical typing, chemical-state reconciliation and terminal
+C115 supplies isolated numerical evidence: 40C passes both native coordinate
+controls, while 40A/APN stop at the reader's purine bond-order representation.
+Separate local source-order diagnostics expose a later 40A extra bond and an
+APN candidate retaining atoms/H/charges but returning unsupported aromatic
+orders. These attempts do not change production chemistry. New generic receipt
+diagnostics distinguish those stages and actual changed fields. Linked PNA
+numerical targets remain unqualified; see the
+[C115 controls](cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
+Native linked typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
 checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
@@ -744,7 +752,9 @@ the source/native comparison layer, preserving literal findings and keeping
 hydrogen/charge changes outside alias authority. C113 reports hydrogen parent/count
 and label differences separately within that same comparison layer. C114 adds an
 explicit neutral PNA amide operation to the source/site contract, preserving
-all unrelated chemical state; native numerical support remains a later gate.
+all unrelated chemical state. C115 adds precise generation-stage diagnostics and
+isolated 40C native evidence; purine representation and linked PNA targets remain
+open. The local diagnostic order-restoration trials grant no production support.
 A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom

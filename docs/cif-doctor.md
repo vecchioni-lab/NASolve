@@ -31,7 +31,9 @@
 
 <a id="current-capability-boundary-c113"></a>
 
-## Current capability boundary (C114)
+<a id="current-capability-boundary-c114"></a>
+
+## Current capability boundary (C115)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -619,6 +621,62 @@ run/checkpoint schemas and default legacy reports require no migration. See
 [evidence ledger](cif-linked-native-registration-evidence.json).
 
 <a id="next-attachment-profile-milestone-g2-planned"></a>
+
+### Candidate-generation diagnostics and PNA controls (C115)
+
+Complete source-native generation now includes `diagnostic`, a read-only
+projection of the existing decision and evidence under
+`cif-source-candidate-diagnostic-v1`. It names the blocking stage, failed
+handoff checks, actual changed identity fields, native exception and retained
+candidate state. Missing worker results leave builder-start evidence unknown,
+rather than asserting it never started. A bond-order failure is no longer hidden behind a generic
+charge-handoff exception or confused with hydrogen loss. A written candidate
+can remain reviewable after a native exception or timeout; exit status alone
+neither deletes it nor establishes usability.
+
+`nasolve.cif_source_candidate.candidate_generation_diagnostic(report)` also
+summarizes historical in-memory receipts without modifying them. It is a
+diagnostic projection, **not a capture authenticator or scientific qualifier**.
+The maintained mixed-recovery reader recomputes the field when present;
+historical receipts without it retain their existing validation path. The
+schema-1 field is additive. Existing generation decisions, inspection schemas,
+worker bytes, thresholds, charge/aromatic policies and run/checkpoint records
+are unchanged. No new CLI or automatic recovery path is introduced.
+
+C115 tested three frozen source components using Phenix **2.2.1-6174**
+(dispatcher discovery reports **2.2.1**), with complete execution rather than
+a dry-run. Each builder was bounded to 180 steps/300 seconds; isolated native
+interpretations were bounded to 60 seconds. No experimental model or diffraction
+data was used. Cases were declared before execution, not blinded.
+
+| Control | Observed result | Scope and next gate |
+| --- | --- | --- |
+| 40C, maintained complete builder | A 37-atom/37-bond candidate preserves source atoms, orders, explicit formal charges and source-relative handedness. All 21 isolated native checks pass in both source-seed and generated coordinates; fixed covalent proxies agree. | Isolated component usability with notes; convergence is not established. No linked amide targets, final product CIP, refinement or adoption claim. |
+| 40A and APN, maintained builder | The native CCD reader replaces ten explicitly localized purine orders with 1.5. Exact graph preconditions stop the handoff before construction. Source charges already agree, including APN's +1 terminus. | Unsupported representation at the reader boundary, not demonstrated protonation failure. |
+| 40A, separate local source-order diagnostic | Restoring the declared orders only in a fresh parsed object permits construction, then serialization fails on an extra N1–C bond of 8.917 Å. No CIF candidate is written; partial outputs remain. | Diagnostic runner only; the spurious bond's origin needs a separate trace. No installed or production code is patched. |
+| APN, same separate diagnostic | A complete candidate is written and rejected for unsupported fused purine aromatic orders. Atoms, hydrogen attachments and explicit formal charges remain intact. | No general fused-ring equivalence has been asserted. This local diagnostic is not a production recovery. |
+
+A third local diagnostic observes the extra C–N1 edge first at return from
+`RemoveNonBondAngles`, called inside `ZMatrix2Internal` through
+`OrderAnglesOnZMatrix` during optimization initialization. This narrows the
+next trace to native internal-coordinate setup; the observation does not
+independently identify the exact mutation instruction or qualify a repair.
+The repeated attempt ends with the same serialization failure and stays intact.
+
+All five generation outcomes and the two 40C native qualifications replay from
+an owned relocated copy with original input, checkout and SDK reads blocked,
+without native execution or loading captured code/pickles. One replay-runner
+field-name error was preserved, then corrected in a fresh process; production
+source was unchanged. Raw sources, models, dictionaries, logs and runners stay
+local. The [evidence ledger](cif-linked-native-registration-evidence.json), key
+`pna_candidate_diagnostics_2026_10_28`, records exact validation and file hashes.
+
+The next chemical gates are separate: qualify the declared fused-ring
+representation and trace the 40A extra bond; then generate numerical restraints
+in the intended linked PNA environment under the C114 operation. Pruning an
+isolated amine dictionary does not establish the resulting amide's atom types
+or targets. Charged reaction-state authority, ATL/L-DNA/PDU work and ordinary
+workflow integration remain open. Sticky-end stitching stays parked.
 
 ### Explicit neutral PNA amide operations (C114)
 

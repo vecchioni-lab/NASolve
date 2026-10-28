@@ -73,6 +73,8 @@ through those bindings, without inferring protonation or individual H aliases.
 C114 [adds explicit neutral PNA amide projections](docs/cif-doctor.md#explicit-neutral-pna-amide-operations-c114)
 under source-checked state and exact leaving-atom choices. Charged reactive
 amines remain unresolved; native PNA dictionaries/linkage still need qualification.
+C115 [records isolated PNA controls and precise generation diagnostics](docs/cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
+40C passes isolated native checks; purine cases and linked PNA remain unresolved.
 Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c109)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and

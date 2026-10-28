@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explain candidate-generation failures precisely (C115)
+
+- Add a read-only diagnostic summary to complete source-native candidate receipts:
+  distinguish source reading, graph/charge handoff, construction, execution and
+  output assessment. Name actual changed identity fields and retain native errors.
+- Report retained reviewable output alongside native exceptions or timeouts.
+  The summary grants no chemical or native qualification; existing output
+  preservation and decisions stay unchanged.
+- Replay-check the optional schema-1 summary while accepting historical receipts.
+  Native worker bytes, chemistry policies, run/checkpoint schemas and adoption stay
+  unchanged. Record isolated 40C qualification and unresolved 40A/APN controls.
+
 ### Plan explicit neutral PNA amide source projections (C114)
 
 - Add opt-in `neutral-pna-amide-v1` to PNA attachment contexts, requiring

@@ -452,6 +452,10 @@ def read_mixed_recovery(directory):
         folder=root/directory['path'];record=json.loads((folder/'source_candidate_receipt.json').read_bytes())
         if record!={k:v for k,v in generation.items() if k!='directory'} or (folder/'candidate_worker.py').read_text()!=WORKER:
             raise ValueError('Complete candidate receipt or maintained worker differs')
+        if 'diagnostic' in generation:
+            from .cif_source_candidate import candidate_generation_diagnostic
+            if generation['diagnostic']!=candidate_generation_diagnostic(generation):
+                raise ValueError('Complete candidate diagnostic differs')
         if (folder/'source.cif').read_bytes()!=consumer.read_bytes():raise ValueError('Complete builder source differs')
         _verify_generation_spec(root,report,case,folder,consumer,code)
         if generation.get('candidate'):

@@ -30041,7 +30041,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "neutral_pna_amide_operations_2026_10_28",
+  "current_diagnostic_record": "pna_candidate_diagnostics_2026_10_28",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -37655,5 +37655,528 @@
     "next_step": "Source-preserving numerical candidate generation and exact native qualification against these explicit permitted deltas; separately establish authority for charged reaction states.",
     "author": "Rowan · Codex desktop",
     "tested_implementation_commit": "65bf1a49877f9bf768e9b38e3a5b1892fbcdcf46"
+  },
+  "pna_candidate_diagnostics_2026_10_28": {
+    "delivery": "C115",
+    "status": "FOCUSED_COLD_AND_FULL_REGRESSION_PASS_NATIVE_BOUNDARIES_RECORDED",
+    "base_commit": "f1dc3643e7f2a2956b3ff8c5df77331b5b94ca54",
+    "before": "Generic charge-handoff and atom/bond/hydrogen rejection labels obscure the actual failing checks; native exceptions are buried in nested results.",
+    "after": "Additive read-only summaries identify recorded stages, failed checks and exact identity fields without changing any scientific decision or retained output.",
+    "policy": "cif-source-candidate-diagnostic-v1",
+    "schema_version": 1,
+    "api": "nasolve.cif_source_candidate.candidate_generation_diagnostic(report)",
+    "compatibility": "Optional diagnostic in source-native complete-candidate schema 1; mixed-recovery reader checks it when present and accepts legacy omission. Existing inspection, worker, run/checkpoint and chemistry schemas/policies unchanged; no migration.",
+    "software": {
+      "Python": "3.12.14",
+      "Phenix": "2.2.1-6174",
+      "dispatcher_discovery": "2.2.1",
+      "build_authority": {
+        "anchor": "live_tests_directory",
+        "path": "115_Cedar_PNA-native-rph6hp_4/reports/verified-software.json",
+        "sha256": "605b837f7843131faa3a5483fb5f3f4eb2d6030608f5ac75961c4a9e0234fce3",
+        "size": 1097
+      }
+    },
+    "execution": {
+      "kind": "COMPLETE_EXECUTION_NOT_DRY_RUN",
+      "fresh_source_probe_calls": 1,
+      "maintained_builder_calls": 3,
+      "local_diagnostic_builder_calls": 3,
+      "isolated_native_calls": 2,
+      "builder_steps": 180,
+      "builder_timeout_seconds": 300,
+      "native_timeout_seconds": 60,
+      "refinement_calls": 0,
+      "Coot_calls": 0
+    },
+    "component_sources": {
+      "40C": {
+        "anchor": "live_tests_directory",
+        "path": "115_Cedar_PNA-native-rph6hp_4/inputs/40C.cif",
+        "sha256": "68664389eb657e4fdca7e7c157af06a160047f1b4304f7505d509fa2664f6d3b",
+        "size": 9206
+      },
+      "40A": {
+        "anchor": "live_tests_directory",
+        "path": "115_Cedar_PNA-native-rph6hp_4/inputs/40A.cif",
+        "sha256": "a68e1a3ff04ff6cdbdc7744d1cdd1add155d1cdef706495b0486f51effd1bcbe",
+        "size": 9456
+      },
+      "APN": {
+        "anchor": "live_tests_directory",
+        "path": "115_Cedar_PNA-native-rph6hp_4/inputs/APN.cif",
+        "sha256": "efde6f9bd04461d7cf054316a9bf7cd00d1f8f21f8099b320aa85e6de2e18597",
+        "size": 9147
+      }
+    },
+    "source_integrity": "Three C115 copies and original 38-file C106 source/workbook manifest retain hashes, sizes and timestamps.",
+    "40C": {
+      "source_atoms": 37,
+      "source_bonds": 37,
+      "candidate_sha256": "f1371394a43f1c5c8dd0a7038d5ad6ce953d23bdf71c8de1b9fa3988849ed38f",
+      "source_formal_charges_preserved": true,
+      "source_relative_stereo": "PRESERVED",
+      "native_cases": {
+        "source_seed": {
+          "checks_passed": 21,
+          "native_usable": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-28T16:53:26.098186+00:00",
+            "timeout_seconds": 60,
+            "returncode": 0,
+            "finished_at": "2026-10-28T16:53:28.200585+00:00",
+            "elapsed_seconds": 2.10243
+          }
+        },
+        "generated_output": {
+          "checks_passed": 21,
+          "native_usable": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-28T16:53:28.289900+00:00",
+            "timeout_seconds": 60,
+            "returncode": 0,
+            "finished_at": "2026-10-28T16:53:29.066414+00:00",
+            "elapsed_seconds": 0.776535
+          }
+        }
+      },
+      "fixed_covalent_proxies_match": true,
+      "decision": {
+        "schema_version": 1,
+        "policy_id": "cif-automatic-usable-fallback-v1",
+        "requires_cif_review": false,
+        "mechanics_changed": false,
+        "excluded_candidates": [],
+        "automatic_adoption": false,
+        "status": "CONTINUE_WITH_NOTES",
+        "continue_solving": true,
+        "selected_candidate": "source_native_generated",
+        "selected_sha256": "f1371394a43f1c5c8dd0a7038d5ad6ce953d23bdf71c8de1b9fa3988849ed38f",
+        "chemistry_sha256": "c444db4b250f8aa399961ccd0aa42faa9b528f050fe21aff78d22a720078cbf6",
+        "selected_stereochemistry": "PRESERVED",
+        "converged": null,
+        "ranking": "DECLARED_SOURCE_ORDER",
+        "notes": [
+          "Isolated component checks passed; linked scaffold qualification and independent absolute CIP remain separate.",
+          "Dictionary geometry findings remain recorded with the candidate.",
+          "The optimizer log does not provide a qualified convergence verdict."
+        ],
+        "report_text": "40C: NASolve selected source_native_generated. Isolated component checks passed; linked scaffold qualification and independent absolute CIP remain separate. Dictionary geometry findings remain recorded with the candidate. The optimizer log does not provide a qualified convergence verdict.",
+        "scope": "ISOLATED_COMPONENT_ONLY",
+        "linked_adoption": "NOT_RUN",
+        "production_pipeline": "UNCHANGED"
+      },
+      "scope": "ISOLATED_COMPONENT_ONLY"
+    },
+    "generation_diagnostics": {
+      "40C/generation": {
+        "policy_id": "cif-source-candidate-diagnostic-v1",
+        "generation_status": "CANDIDATE_REVIEW",
+        "candidate_state": "RETAINED_REVIEW",
+        "blocking_stage": null,
+        "summary": "Candidate retained for review; native usability requires separate qualification.",
+        "builder_started": true,
+        "failed_handoff_checks": [],
+        "handoff_reason": null,
+        "native_exception": null,
+        "execution_status": "COMPLETED",
+        "execution_returncode": 0,
+        "rejection_reasons": [],
+        "identity_change_fields": [],
+        "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+        "automatic_adoption": false
+      },
+      "40A/generation": {
+        "policy_id": "cif-source-candidate-diagnostic-v1",
+        "generation_status": "FAILED",
+        "candidate_state": "ABSENT",
+        "blocking_stage": "SOURCE_HANDOFF",
+        "summary": "Source handoff blocked before construction: bond_orders.",
+        "builder_started": false,
+        "failed_handoff_checks": [
+          "bond_orders"
+        ],
+        "handoff_reason": null,
+        "native_exception": {
+          "exception_type": "ValueError",
+          "message": "Declared source charge handoff failed"
+        },
+        "execution_status": "COMPLETED",
+        "execution_returncode": 0,
+        "rejection_reasons": [],
+        "identity_change_fields": [],
+        "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+        "automatic_adoption": false
+      },
+      "APN/generation": {
+        "policy_id": "cif-source-candidate-diagnostic-v1",
+        "generation_status": "FAILED",
+        "candidate_state": "ABSENT",
+        "blocking_stage": "SOURCE_HANDOFF",
+        "summary": "Source handoff blocked before construction: bond_orders.",
+        "builder_started": false,
+        "failed_handoff_checks": [
+          "bond_orders"
+        ],
+        "handoff_reason": null,
+        "native_exception": {
+          "exception_type": "ValueError",
+          "message": "Declared source charge handoff failed"
+        },
+        "execution_status": "COMPLETED",
+        "execution_returncode": 0,
+        "rejection_reasons": [],
+        "identity_change_fields": [],
+        "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+        "automatic_adoption": false
+      },
+      "40A/diagnostic-source-orders": {
+        "policy_id": "cif-source-candidate-diagnostic-v1",
+        "generation_status": "FAILED",
+        "candidate_state": "ABSENT",
+        "blocking_stage": "NATIVE_BUILDER",
+        "summary": "Native builder: Bond length too long : 8.92",
+        "builder_started": true,
+        "failed_handoff_checks": [],
+        "handoff_reason": null,
+        "native_exception": {
+          "exception_type": "Sorry",
+          "message": "Bond length too long : 8.92"
+        },
+        "execution_status": "COMPLETED",
+        "execution_returncode": 0,
+        "rejection_reasons": [],
+        "identity_change_fields": [],
+        "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+        "automatic_adoption": false
+      },
+      "APN/diagnostic-source-orders": {
+        "policy_id": "cif-source-candidate-diagnostic-v1",
+        "generation_status": "REJECTED",
+        "candidate_state": "RETAINED_REJECTED",
+        "blocking_stage": "CANDIDATE_ASSESSMENT",
+        "summary": "Retained candidate rejected: generated-atom-bond-or-hydrogen-identity-changed. Changed identity fields: bond_orders.",
+        "builder_started": true,
+        "failed_handoff_checks": [],
+        "handoff_reason": null,
+        "native_exception": null,
+        "execution_status": "COMPLETED",
+        "execution_returncode": 0,
+        "rejection_reasons": [
+          "generated-atom-bond-or-hydrogen-identity-changed"
+        ],
+        "identity_change_fields": [
+          "bond_orders"
+        ],
+        "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+        "automatic_adoption": false
+      }
+    },
+    "local_diagnostic_limits": "Restored declared orders only in fresh parsed objects; no production implementation, no source/installed file edits. 40A creates extra N1-C 8.917 A bond and writes no CIF. APN candidate preserves atoms/H/formal charges but changes purine orders to unsupported aromatic types; rejected.",
+    "cold_replay": {
+      "status": "PASS",
+      "generation_cases": {
+        "40C/generation": {
+          "diagnostic": "MATCH",
+          "bound_outputs": "PASS",
+          "capture_execution": "NOT_RUN"
+        },
+        "40A/generation": {
+          "diagnostic": "MATCH",
+          "bound_outputs": "PASS",
+          "capture_execution": "NOT_RUN"
+        },
+        "APN/generation": {
+          "diagnostic": "MATCH",
+          "bound_outputs": "PASS",
+          "capture_execution": "NOT_RUN"
+        },
+        "40A/diagnostic-source-orders": {
+          "diagnostic": "MATCH",
+          "bound_outputs": "PASS",
+          "capture_execution": "NOT_RUN"
+        },
+        "APN/diagnostic-source-orders": {
+          "diagnostic": "MATCH",
+          "bound_outputs": "PASS",
+          "capture_execution": "NOT_RUN"
+        }
+      },
+      "native_cases": 2,
+      "isolated_candidate_usable": true,
+      "fixed_covalent_proxies_match": true,
+      "files_unchanged": 286,
+      "blocked_attempts": [],
+      "original_owned_path_absent": true,
+      "captured_worker_execution": "NOT_RUN",
+      "native_execution": "NOT_RUN",
+      "pickle_loading": "NOT_RUN"
+    },
+    "validation": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "fail_before": "18 failed in 0.21s before helper implementation; two further legacy/tamper regressions added before freeze.",
+      "new_regressions": 22,
+      "focused": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_candidate_diagnostics.py",
+          "tests/test_cif_source_candidate.py",
+          "tests/test_cif_mixed_recovery.py",
+          "tests/test_cif_candidate_usability.py",
+          "tests/test_cif_declared_charge_control.py",
+          "tests/test_cif_aromatic_representation.py",
+          "tests/test_cif_generation.py",
+          "tests/test_cif_mixed_linked_recovery.py",
+          "tests/test_cif_pna_operations.py"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "exit_code": 0,
+        "seconds": 29.544723667029757,
+        "source_test_files": 460,
+        "changed_files": [],
+        "finished": true
+      },
+      "focused_result": "290 passed in 29.27s",
+      "full_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "full_result": "6133 passed, 276 subtests passed in 939.33s (0:15:39)",
+      "runner_failure": "One completed cold-runner failure used raw_inspection instead of legacy_inspection; original preserved, corrected fresh-process replay passes.",
+      "logs": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/fail-before.log",
+          "sha256": "14902e7ae68c1f7ce2cb45d01eb59ec03552f39025c3dc6968ee3a4634c104e1",
+          "size": 28883
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/focused/pytest.log",
+          "sha256": "6df3c782f4e43efc2dfa9db5295222658c2828c06be7e131638ba87ab4fb4eea",
+          "size": 3120
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/focused/result.json",
+          "sha256": "df88eddf0f611b3e6b3b463bf0edbf97e2c18ac57146e881b7d96f536b01798d",
+          "size": 793
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/cold-result.json",
+          "sha256": "3de368044b28c39b53e31a2d83a31f487ee50da541efed02448ba606f0306794",
+          "size": 1013
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/relocation-manifest.json",
+          "sha256": "2aef690085555b35f7ca835ea0977217ff5946ed760a2e4d805d5ce9478bc5f8",
+          "size": 54044
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/reports/replay-expectations.json",
+          "sha256": "77d57d79759835474ffbe1c9d4edf060dd133002132215b8f27fa36e91f851dd",
+          "size": 5385
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/focused-02/result.json",
+          "sha256": "b14eea6ecaebc097c24104ad9f31601d39bd114d941f7dcc33d11ad3a8ca786a",
+          "size": 794
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/focused-02/pytest.log",
+          "sha256": "8da860acb9b4a5692a7c2a7ee8e022bd4cf2e81f86670343f5f6f48da85f690b",
+          "size": 3206
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/unknown-before.log",
+          "sha256": "eafc9b50cb704c93e41ba850ef92b59430d764f568fa8d77088ed0ff9f71cfcc",
+          "size": 1571
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/full-01/result.json",
+          "sha256": "60d2de8769ea1f3181d8f1d182000c5aa8e7e7dc2c08c20324bd533c55cc167d",
+          "size": 397
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/full-01/pytest.log",
+          "sha256": "01d266368a33e0d242f43521b8653751f735967744f34cbfe48558af628c7a5a",
+          "size": 6311
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/full-01/interruption.json",
+          "sha256": "ef5976e67be201117b4a519f1f8351bc53349e33ab71048c63d4f1065d081cd3",
+          "size": 144
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/cold-result-02.json",
+          "sha256": "3de368044b28c39b53e31a2d83a31f487ee50da541efed02448ba606f0306794",
+          "size": 1013
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/relocation-manifest-02.json",
+          "sha256": "8e9e38925f7a19f87650af1e5b5b5206f4ce94816492aa1a99787186bf9ab89c",
+          "size": 54044
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/full-02/pytest.log",
+          "sha256": "f366eed8b3a75cfb4674b4271a3f91fe0b825b841c0fd4c806cde1e5f8aeda88",
+          "size": 9523
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/full-02/result.json",
+          "sha256": "e7160699a5de9b876559a2d469fa982abbcabdd5c92bbfb028e4f1aacc59017d",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/full-02/source-hashes.json",
+          "sha256": "63863617237bc72285374feaac993be66429ba3922c0b60e2594528433b9ed05",
+          "size": 49674
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/static-checks.json",
+          "sha256": "aaf3a205d4e5a1878ec9c7245944af90a932dc56d91eedfd0bea53f92f613144",
+          "size": 426
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "115_Cedar_PNA-native-rph6hp_4/validation/source-integrity.json",
+          "sha256": "df761f3cac0e140c6c2aab8fa0a0add3952418f93bae1770c7fffc2368778045",
+          "size": 110
+        }
+      ],
+      "additional_fail_before": "Two missing-result unknown-start cases failed before the final correction.",
+      "interrupted_full": {
+        "result": {
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--durations=20"
+          ],
+          "environment": {
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "PYTHONPATH": "src"
+          },
+          "exit_code": 2,
+          "seconds": 386.707132874988,
+          "source_test_files": 460,
+          "changed_files": [],
+          "finished": true
+        },
+        "summary": "2971 passed, 151 subtests passed in 386.33s; intentional KeyboardInterrupt before final correction"
+      },
+      "full_elapsed_seconds": 939.8364764589933,
+      "source_and_tests_preserved": true,
+      "source_test_files": 460,
+      "static_checks": {
+        "documentation": {
+          "relative_links_checked": 265,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "diff_check": "PASS",
+        "compileall": {
+          "status": "PASS",
+          "command": "PYTHONPYCACHEPREFIX=/private/tmp/c115-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests"
+        },
+        "svg": "XML valid; visible elements unchanged; description/caption updated"
+      }
+    },
+    "changed_files": [
+      "src/nasolve/cif_source_candidate.py",
+      "src/nasolve/cif_mixed_recovery.py",
+      "tests/test_cif_candidate_diagnostics.py",
+      "tests/test_cif_source_candidate.py",
+      "README.md",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "tested_code_hashes": {
+      "src/nasolve/cif_source_candidate.py": "3dd52ccc0b1279883ea353dd2b720a362e476845665f0b15fb1bd48211ecb957",
+      "src/nasolve/cif_mixed_recovery.py": "311c50d0fef6a4ee30f052e6fdfca7b4cf129b35a33b5dcbc607b3eef69be4e7",
+      "tests/test_cif_candidate_diagnostics.py": "081cdd791828e156d59621bd605f4c402be027d422054177b9dc7b1f73037e1d",
+      "tests/test_cif_source_candidate.py": "4f366011b9246d35fda5ff21363c7dad560ebdf8422caeabb07a81aa1fa69ad6"
+    },
+    "artifacts_included": "Code, synthetic tests, maintained documentation, figure description/caption and compact receipts.",
+    "artifacts_excluded": "Raw CCDs, generated CIFs/models, native logs/source snapshots, partial outputs, pickles and local runners remain in owned live-test capsule. No experimental dataset used or uploaded.",
+    "limitations": [
+      "Diagnostic projection is not a capture validator or scientific qualification.",
+      "40C isolated usability does not establish convergence, absolute CIP, linked amide types/targets or refinement.",
+      "40A/APN remain unresolved; no new aromatic equivalence, charge conversion, native patch or automatic adoption.",
+      "ATL/L-DNA/PDU gates remain open; sticky ends parked; existing cedar only, no Pine/main merge."
+    ],
+    "next_step": "Qualify source-declared fused purine representation and test the 40A ZMatrix2Internal/OrderAnglesOnZMatrix extra-edge path with source graph invariance; generate final-state linked PNA numerics under C114 separately.",
+    "author": "Rowan · Codex desktop",
+    "worker_bytes_unchanged": {
+      "source_candidate_worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+      "source_native_validation_base_unchanged": true
+    },
+    "extra_bond_trace": {
+      "execution": "COMPLETE_BOUNDED_LOCAL_DIAGNOSTIC",
+      "outcome": "FAILED_NO_CIF_RETAIN_PARTIAL_OUTPUTS",
+      "first_observed_extra_edge": [
+        "C",
+        "N1"
+      ],
+      "observation": "At return from RemoveNonBondAngles, called by ZMatrix2Internal -> OrderAnglesOnZMatrix -> InitialiseOptimisation.",
+      "scope": "First observed stage, not independent proof of exact mutation instruction; no production recovery or SDK edit.",
+      "native_exception": "Sorry: Bond length too long : 8.92",
+      "receipt": {
+        "anchor": "live_tests_directory",
+        "path": "115_Cedar_PNA-native-rph6hp_4/reports/extra-bond-trace.json",
+        "sha256": "3a58f61871e6e809c201cde94ed4005a9fd41e434a383ea8bbdd9948e029c419",
+        "size": 2936
+      },
+      "source_snapshots": {
+        "anchor": "live_tests_directory",
+        "path": "115_Cedar_PNA-native-rph6hp_4/reports/trace-source-pins.json",
+        "sha256": "627c9a0a288f3ffaa40349401c6744638b49ba2f9c7386353c7613973794db70",
+        "size": 2892
+      }
+    }
   }
 }

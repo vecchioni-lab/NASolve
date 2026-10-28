@@ -129,6 +129,63 @@ Path('candidate_result.json').write_text(json.dumps(result,indent=2,allow_nan=Fa
 '''
 
 
+def candidate_generation_diagnostic(report):
+    """Explain recorded failure stages without changing a generation decision.
+
+    This pure projection also reads old receipts. It does not validate a capture,
+    infer chemistry from exception text, or grant native usability. In particular,
+    a caught native exception can coexist with a retained reviewable candidate.
+    """
+    result=report.get('result',{});reader=result.get('reader',{})
+    handoff=result.get('charge_control',{});builder=result.get('builder',{})
+    execution=report.get('execution',{});inspection=report.get('inspection',{})
+    failed=sorted({name for key in ('preconditions','checks')
+                   for name,value in handoff.get(key,{}).items() if value is False})
+    reasons=list(inspection.get('rejection_reasons',[]))
+    if report.get('formal_charges_preserved') is False:
+        reasons.append('complete-formal-charges-not-preserved')
+    if report.get('finished_stereo',{}).get('stereochemistry')=='INVERTED':
+        reasons.append('finished-source-relative-stereo-inverted')
+    fields=sorted({row['field'] for row in inspection.get('chemical_changes',[])
+                   if row['field'] in {'atom_elements','hydrogen_attachments'}
+                   or (row['field']=='bond_orders' and
+                       inspection.get('bond_representation',{}).get('status')!='SOURCE_DECLARED_EQUIVALENT')})
+    candidate=bool(report.get('candidate'));status=report.get('status')
+    state=('ABSENT' if not candidate else 'RETAINED_REVIEW' if status=='CANDIDATE_REVIEW'
+           else 'RETAINED_REJECTED' if status=='REJECTED' else 'RETAINED_UNASSESSED')
+    exception=({k:builder[k] for k in ('exception_type','message') if k in builder}
+               if builder.get('status')=='EXCEPTION' else None)
+    stage=None
+    if report.get('error') or report.get('source_preserved') is False:
+        stage='ADAPTER';summary=report.get('error') or 'Source preservation failed.'
+    elif state=='RETAINED_REJECTED':
+        stage='CANDIDATE_ASSESSMENT'
+        summary='Retained candidate rejected: '+', '.join(reasons or ['see recorded assessment'])+'.'
+        if fields:summary+=' Changed identity fields: '+', '.join(fields)+'.'
+    elif state=='RETAINED_REVIEW':
+        summary='Candidate retained for review; native usability requires separate qualification.'
+    elif failed or handoff.get('status') in {'BLOCKED','REVIEW'}:
+        stage='SOURCE_HANDOFF'
+        summary='Source handoff blocked before construction: '+', '.join(failed or [handoff.get('reason','see recorded handoff')])+'.'
+    elif builder.get('status')=='EXCEPTION':
+        stage='NATIVE_BUILDER' if 'before' in builder else 'SOURCE_READER' if reader.get('execution')!='COMPLETED' else 'SOURCE_HANDOFF'
+        summary=stage.replace('_',' ').capitalize()+': '+builder.get('message','native exception')
+    elif execution.get('status') in {'FAILED','TIMED_OUT'}:
+        stage='EXECUTION';summary='Native execution '+execution['status'].lower().replace('_',' ')+'.'
+    else:
+        stage='UNDETERMINED';summary='No reviewable candidate or completed failure stage was recorded.'
+    if state=='RETAINED_REVIEW' and exception:
+        summary+=' Native builder also reported: '+exception.get('message','an exception')
+    return {'policy_id':'cif-source-candidate-diagnostic-v1','generation_status':status,
+            'candidate_state':state,'blocking_stage':stage,'summary':summary,
+            'builder_started':True if 'before' in builder else False if builder.get('status') in {'NOT_RUN','EXCEPTION'} else None,
+            'failed_handoff_checks':failed,
+            'handoff_reason':handoff.get('reason'),'native_exception':exception,
+            'execution_status':execution.get('status'),'execution_returncode':execution.get('returncode'),
+            'rejection_reasons':sorted(set(reasons)),'identity_change_fields':fields,
+            'native_usability':'NOT_ASSESSED_BY_DIAGNOSTIC','automatic_adoption':False}
+
+
 def generate_source_candidate(installation_root,python_executable,elbow_executable,api_sources,source,code,output,*,
         environment,expected_dialect,prior_sources,phenix_version,single_block_steps=180,timeout_seconds=600):
     """Request one bounded full native builder and retain its exact written CIF."""
@@ -214,4 +271,5 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
     report['outputs']=[r for r in artifacts if Path(r['path']).suffix not in {'.pickle','.pkl'}]
     report['excluded_serialized_outputs']=[r for r in artifacts if Path(r['path']).suffix in {'.pickle','.pkl'}]
     if any(p.is_symlink() for p in output.rglob('*')):report.update(status='FAILED',error='Unexpected candidate output symlink')
+    report['diagnostic']=candidate_generation_diagnostic(report)
     (output/'source_candidate_receipt.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n');return report

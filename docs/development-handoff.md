@@ -11,6 +11,64 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C115 PNA native controls and precise candidate diagnostics
+
+Implementation, focused/full regression and cold replay pass.
+Publication is the remaining step; source/tests are frozen and no job is active.
+Base: `f1dc3643e7f2a2956b3ff8c5df77331b5b94ca54`; continue on existing `cedar`.
+Local capsule: `live_tests_directory/115_Cedar_PNA-native-rph6hp_4`.
+
+Before C115, generic charge-handoff and atom/bond/hydrogen labels obscured the
+actual failing checks. Complete source-native receipts now add a read-only
+diagnostic naming stages, failed checks, actual identity fields, native errors
+and retained candidate state. Missing worker results leave builder start unknown.
+The summary never grants usability. Native worker bytes, scientific acceptance
+and retained-output handling are unchanged. Mixed-recovery readers recompute the
+optional schema-1 field and accept old receipts; no run/checkpoint migration.
+
+Phenix 2.2.1-6174 (dispatcher discovery 2.2.1): three maintained whole-source
+builder attempts, three separate local diagnostic builders, two isolated native
+interpretations and one fresh source probe complete. Each builder was bounded
+to 180 steps/300 s; interpretations to 60 s. This was execution, not a dry-run.
+No experimental model, diffraction input, Coot, refinement or adoption.
+
+- 40C: 37 atoms/37 bonds, explicit formal charges and source-relative handedness
+  retained. Both coordinate cases pass all 21 isolated native checks, with the
+  same fixed covalent proxies. Usability with notes is not convergence, absolute
+  CIP or linked-amide numerical qualification.
+- 40A/APN: the maintained handoff stops before construction because the CCD
+  reader changes ten source-localized purine orders to 1.5. Charges already agree.
+- Separate source-order diagnostics: 40A acquires an extra N1–C bond and fails
+  CIF serialization at 8.917 Å. APN retains atoms/H/formal charges but returns
+  unsupported purine aromatic orders and is rejected. No production repair added.
+- A third bounded diagnostic first observes the C–N1 edge during optimization
+  initialization, at RemoveNonBondAngles return inside ZMatrix2Internal through
+  OrderAnglesOnZMatrix. This locates a stage, not the exact mutation instruction.
+
+Validation: **290 focused tests pass in 29.27 s** (22 new cases); full suite:
+**6133 passed, 276 subtests passed in 939.33s (0:15:39)**. All 460 source/test files retain pre-suite hashes.
+Five generation outcomes and two native qualifications replay from the final
+relocated code/evidence, with 286 files unchanged, original/SDK reads and new
+processes blocked. Original 38 C106 inputs and three C115 copies retain hashes,
+sizes and timestamps. Compilation, whitespace, 265 doc links/JSON and SVG checks pass.
+One replay-runner field-name error and an intentionally interrupted earlier
+suite are retained locally; corrected replay and fresh final suite pass.
+
+Exact commands, changed files, hashes, source/worker provenance, compatibility
+and limits are in `pna_candidate_diagnostics_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Only code,
+synthetic tests, maintained docs and compact receipts are committed; raw CIFs,
+models, logs, source snapshots, pickles, partial outputs and runners stay local.
+
+Next: qualify source-declared fused purine representation and investigate the
+40A internal-coordinate extra-edge path while requiring graph invariance.
+Then generate linked PNA restraints in the C114-authorized final chemical
+environment; do not inherit amide targets by pruning isolated monomer numerics.
+Charged reaction states and ATL/L-DNA/PDU gates remain open. Sticky-end stitching
+stays parked; no new branch or Pine/main merge.
+
+— Rowan · Codex desktop
+
 ## C114 explicit neutral PNA amide operations
 
 Implementation, focused/full regression and frozen/cold transfer controls pass.

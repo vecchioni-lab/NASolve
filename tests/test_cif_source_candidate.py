@@ -113,6 +113,8 @@ def post_process(molecule,options):
         with pytest.raises(ValueError):generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
         assert not out.exists();return
     r=generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
+    from nasolve.cif_source_candidate import candidate_generation_diagnostic
+    assert r['diagnostic']==candidate_generation_diagnostic(r)
     assert r['source_preserved'] and r['native_proxy_validation']=='NOT_RUN' and not r['automatic_adoption'] and not r['requires_cif_review']
     if mode=='timeout':assert r['execution']['status']=='TIMED_OUT' and r['candidate'] is None
     elif mode=='exception_before_output':assert r['candidate'] is None and r['result']['builder']['status']=='EXCEPTION'

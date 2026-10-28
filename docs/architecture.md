@@ -3440,3 +3440,16 @@ proposed sites include a policy-bound operation ledger. Omission preserves v1
 behavior and exact legacy reports. Parent source descriptors/coordinates remain
 provenance, not a generated linked chemical identity. See the
 [C114 contract](cif-doctor.md#explicit-neutral-pna-amide-operations-c114).
+
+## Candidate generation diagnostic projection (C115)
+
+`cif_source_candidate.candidate_generation_diagnostic` explains the existing
+receipt without reclassifying it. Failed preconditions identify source handoff
+issues before construction; inspection differences distinguish unsupported
+bond orders from actual atom/hydrogen changes. Native exceptions remain separate
+from retained candidate state, so completed output can still reach the existing
+usability gates. `generate_source_candidate` emits the optional schema-1 field;
+`read_mixed_recovery` recomputes it when present and accepts legacy omission.
+This projection is not a standalone receipt validator. Native workers and all
+chemical acceptance policies remain unchanged. See the
+[C115 contract and controls](cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
