@@ -14,7 +14,8 @@ not general production support. Earlier wording remains in Git and the
 ## C115 PNA native controls and precise candidate diagnostics
 
 Implementation, focused/full regression and cold replay pass.
-Publication is the remaining step; source/tests are frozen and no job is active.
+Tested implementation `ce0485e1b59fed87bfa0188ed4385978092ac240` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 Base: `f1dc3643e7f2a2956b3ff8c5df77331b5b94ca54`; continue on existing `cedar`.
 Local capsule: `live_tests_directory/115_Cedar_PNA-native-rph6hp_4`.
 
